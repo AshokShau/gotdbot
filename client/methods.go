@@ -11315,10 +11315,10 @@ func (c *Client) GetPassportAuthorizationFormAvailableElements(authorizationForm
 }
 
 // SendPassportAuthorizationForm Sends a Telegram Passport authorization form, effectively sharing data with the service. This method must be called after getPassportAuthorizationFormAvailableElements if some previously available elements are going to be reused
-func (c *Client) SendPassportAuthorizationForm(authorizationFormId int32, ty []*types.PassportElementType) (*types.Ok, error) {
+func (c *Client) SendPassportAuthorizationForm(authorizationFormId int32, typesTd []*types.PassportElementType) (*types.Ok, error) {
 	req := &types.SendPassportAuthorizationForm{
 		AuthorizationFormId: authorizationFormId,
-		Types:               ty,
+		Types:               typesTd,
 	}
 	resp, err := c.Send(req)
 	if err != nil {

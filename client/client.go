@@ -13,7 +13,7 @@ import (
 	"github.com/AshokShau/gotdbot/types"
 )
 
-var StopHandlers = fmt.Errorf("stop handlers")
+var StopHandlers = errors.New("stop handlers")
 
 type ClientConfig struct {
 	LibraryPath           string
