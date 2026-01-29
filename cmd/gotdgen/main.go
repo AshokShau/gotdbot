@@ -530,6 +530,11 @@ func generateMethods(functions []TLType, classes map[string]*TLClass) {
 				argName = "funcArg"
 			}
 
+			// Avoid collision with imported package `types`
+			if argName == "types" {
+				argName = "typesTd"
+			}
+
 			args = append(args, fmt.Sprintf("%s %s", argName, goType))
 		}
 
@@ -556,6 +561,9 @@ func generateMethods(functions []TLType, classes map[string]*TLClass) {
 			}
 			if argName == "func" {
 				argName = "funcArg"
+			}
+			if argName == "types" {
+				argName = "typesTd"
 			}
 			fmt.Fprintf(f, "\t\t%s: %s,\n", fieldName, argName)
 		}
