@@ -1,52 +1,162 @@
 package types
 
-// SetAuthenticationPhoneNumberOpts contains optional parameters for SetAuthenticationPhoneNumber
-type SetAuthenticationPhoneNumberOpts struct {
-	Settings *PhoneNumberAuthenticationSettings
+// AddLocalMessageOpts contains optional parameters for AddLocalMessage
+type AddLocalMessageOpts struct {
+	ReplyTo *InputMessageReplyTo
 }
 
-// ResendAuthenticationCodeOpts contains optional parameters for ResendAuthenticationCode
-type ResendAuthenticationCodeOpts struct {
-	Reason *ResendCodeReason
+// AddPendingPaidMessageReactionOpts contains optional parameters for AddPendingPaidMessageReaction
+type AddPendingPaidMessageReactionOpts struct {
+	TypeField *PaidReactionType
 }
 
-// GetRemoteFileOpts contains optional parameters for GetRemoteFile
-type GetRemoteFileOpts struct {
-	FileType *FileType
+// AnswerInlineQueryOpts contains optional parameters for AnswerInlineQuery
+type AnswerInlineQueryOpts struct {
+	Button *InlineQueryResultsButton
 }
 
-// LoadChatsOpts contains optional parameters for LoadChats
-type LoadChatsOpts struct {
-	ChatList *ChatList
+// CreateNewSupergroupChatOpts contains optional parameters for CreateNewSupergroupChat
+type CreateNewSupergroupChatOpts struct {
+	Location *ChatLocation
 }
 
-// GetChatsOpts contains optional parameters for GetChats
-type GetChatsOpts struct {
-	ChatList *ChatList
+// DecryptGroupCallDataOpts contains optional parameters for DecryptGroupCallData
+type DecryptGroupCallDataOpts struct {
+	DataChannel *GroupCallDataChannel
 }
 
-// SearchChatMessagesOpts contains optional parameters for SearchChatMessages
-type SearchChatMessagesOpts struct {
-	TopicId  *MessageTopic
-	SenderId *MessageSender
-	Filter   *SearchMessagesFilter
+// DeleteCommandsOpts contains optional parameters for DeleteCommands
+type DeleteCommandsOpts struct {
+	Scope *BotCommandScope
 }
 
-// SearchMessagesOpts contains optional parameters for SearchMessages
-type SearchMessagesOpts struct {
-	ChatList       *ChatList
-	Filter         *SearchMessagesFilter
-	ChatTypeFilter *SearchMessagesChatTypeFilter
+// EditBusinessMessageCaptionOpts contains optional parameters for EditBusinessMessageCaption
+type EditBusinessMessageCaptionOpts struct {
+	ReplyMarkup *ReplyMarkup
+	Caption     *FormattedText
 }
 
-// SearchSecretMessagesOpts contains optional parameters for SearchSecretMessages
-type SearchSecretMessagesOpts struct {
-	Filter *SearchMessagesFilter
+// EditBusinessMessageChecklistOpts contains optional parameters for EditBusinessMessageChecklist
+type EditBusinessMessageChecklistOpts struct {
+	ReplyMarkup *ReplyMarkup
 }
 
-// SearchSavedMessagesOpts contains optional parameters for SearchSavedMessages
-type SearchSavedMessagesOpts struct {
-	Tag *ReactionType
+// EditBusinessMessageLiveLocationOpts contains optional parameters for EditBusinessMessageLiveLocation
+type EditBusinessMessageLiveLocationOpts struct {
+	ReplyMarkup *ReplyMarkup
+	Location    *Location
+}
+
+// EditBusinessMessageMediaOpts contains optional parameters for EditBusinessMessageMedia
+type EditBusinessMessageMediaOpts struct {
+	ReplyMarkup *ReplyMarkup
+}
+
+// EditBusinessMessageReplyMarkupOpts contains optional parameters for EditBusinessMessageReplyMarkup
+type EditBusinessMessageReplyMarkupOpts struct {
+	ReplyMarkup *ReplyMarkup
+}
+
+// EditBusinessMessageTextOpts contains optional parameters for EditBusinessMessageText
+type EditBusinessMessageTextOpts struct {
+	ReplyMarkup *ReplyMarkup
+}
+
+// EditInlineMessageCaptionOpts contains optional parameters for EditInlineMessageCaption
+type EditInlineMessageCaptionOpts struct {
+	ReplyMarkup *ReplyMarkup
+	Caption     *FormattedText
+}
+
+// EditInlineMessageLiveLocationOpts contains optional parameters for EditInlineMessageLiveLocation
+type EditInlineMessageLiveLocationOpts struct {
+	ReplyMarkup *ReplyMarkup
+	Location    *Location
+}
+
+// EditInlineMessageMediaOpts contains optional parameters for EditInlineMessageMedia
+type EditInlineMessageMediaOpts struct {
+	ReplyMarkup *ReplyMarkup
+}
+
+// EditInlineMessageReplyMarkupOpts contains optional parameters for EditInlineMessageReplyMarkup
+type EditInlineMessageReplyMarkupOpts struct {
+	ReplyMarkup *ReplyMarkup
+}
+
+// EditInlineMessageTextOpts contains optional parameters for EditInlineMessageText
+type EditInlineMessageTextOpts struct {
+	ReplyMarkup *ReplyMarkup
+}
+
+// EditMessageCaptionOpts contains optional parameters for EditMessageCaption
+type EditMessageCaptionOpts struct {
+	ReplyMarkup *ReplyMarkup
+	Caption     *FormattedText
+}
+
+// EditMessageChecklistOpts contains optional parameters for EditMessageChecklist
+type EditMessageChecklistOpts struct {
+	ReplyMarkup *ReplyMarkup
+}
+
+// EditMessageLiveLocationOpts contains optional parameters for EditMessageLiveLocation
+type EditMessageLiveLocationOpts struct {
+	ReplyMarkup *ReplyMarkup
+	Location    *Location
+}
+
+// EditMessageMediaOpts contains optional parameters for EditMessageMedia
+type EditMessageMediaOpts struct {
+	ReplyMarkup *ReplyMarkup
+}
+
+// EditMessageReplyMarkupOpts contains optional parameters for EditMessageReplyMarkup
+type EditMessageReplyMarkupOpts struct {
+	ReplyMarkup *ReplyMarkup
+}
+
+// EditMessageSchedulingStateOpts contains optional parameters for EditMessageSchedulingState
+type EditMessageSchedulingStateOpts struct {
+	SchedulingState *MessageSchedulingState
+}
+
+// EditMessageTextOpts contains optional parameters for EditMessageText
+type EditMessageTextOpts struct {
+	ReplyMarkup *ReplyMarkup
+}
+
+// EditStoryOpts contains optional parameters for EditStory
+type EditStoryOpts struct {
+	Content *InputStoryContent
+	Areas   *InputStoryAreas
+	Caption *FormattedText
+}
+
+// FinishFileGenerationOpts contains optional parameters for FinishFileGeneration
+type FinishFileGenerationOpts struct {
+	Error *Error
+}
+
+// ForwardMessagesOpts contains optional parameters for ForwardMessages
+type ForwardMessagesOpts struct {
+	TopicId *MessageTopic
+	Options *MessageSendOptions
+}
+
+// GetChatEventLogOpts contains optional parameters for GetChatEventLog
+type GetChatEventLogOpts struct {
+	Filters *ChatEventLogFilters
+}
+
+// GetChatInviteLinkMembersOpts contains optional parameters for GetChatInviteLinkMembers
+type GetChatInviteLinkMembersOpts struct {
+	OffsetMember *ChatInviteLinkMember
+}
+
+// GetChatJoinRequestsOpts contains optional parameters for GetChatJoinRequests
+type GetChatJoinRequestsOpts struct {
+	OffsetRequest *ChatJoinRequest
 }
 
 // GetChatMessageCalendarOpts contains optional parameters for GetChatMessageCalendar
@@ -64,6 +174,166 @@ type GetChatMessagePositionOpts struct {
 	TopicId *MessageTopic
 }
 
+// GetChatNotificationSettingsExceptionsOpts contains optional parameters for GetChatNotificationSettingsExceptions
+type GetChatNotificationSettingsExceptionsOpts struct {
+	Scope *NotificationSettingsScope
+}
+
+// GetChatsOpts contains optional parameters for GetChats
+type GetChatsOpts struct {
+	ChatList *ChatList
+}
+
+// GetChatStoryInteractionsOpts contains optional parameters for GetChatStoryInteractions
+type GetChatStoryInteractionsOpts struct {
+	ReactionType *ReactionType
+}
+
+// GetCommandsOpts contains optional parameters for GetCommands
+type GetCommandsOpts struct {
+	Scope *BotCommandScope
+}
+
+// GetGroupCallStreamSegmentOpts contains optional parameters for GetGroupCallStreamSegment
+type GetGroupCallStreamSegmentOpts struct {
+	VideoQuality *GroupCallVideoQuality
+}
+
+// GetInlineQueryResultsOpts contains optional parameters for GetInlineQueryResults
+type GetInlineQueryResultsOpts struct {
+	UserLocation *Location
+}
+
+// GetLinkPreviewOpts contains optional parameters for GetLinkPreview
+type GetLinkPreviewOpts struct {
+	LinkPreviewOptions *LinkPreviewOptions
+}
+
+// GetMessageAddedReactionsOpts contains optional parameters for GetMessageAddedReactions
+type GetMessageAddedReactionsOpts struct {
+	ReactionType *ReactionType
+}
+
+// GetPaymentFormOpts contains optional parameters for GetPaymentForm
+type GetPaymentFormOpts struct {
+	Theme *ThemeParameters
+}
+
+// GetRemoteFileOpts contains optional parameters for GetRemoteFile
+type GetRemoteFileOpts struct {
+	FileType *FileType
+}
+
+// GetStarTransactionsOpts contains optional parameters for GetStarTransactions
+type GetStarTransactionsOpts struct {
+	Direction *TransactionDirection
+}
+
+// GetSupergroupMembersOpts contains optional parameters for GetSupergroupMembers
+type GetSupergroupMembersOpts struct {
+	Filter *SupergroupMembersFilter
+}
+
+// GetTonTransactionsOpts contains optional parameters for GetTonTransactions
+type GetTonTransactionsOpts struct {
+	Direction *TransactionDirection
+}
+
+// JoinVideoChatOpts contains optional parameters for JoinVideoChat
+type JoinVideoChatOpts struct {
+	ParticipantId *MessageSender
+}
+
+// LoadChatsOpts contains optional parameters for LoadChats
+type LoadChatsOpts struct {
+	ChatList *ChatList
+}
+
+// OpenWebAppOpts contains optional parameters for OpenWebApp
+type OpenWebAppOpts struct {
+	TopicId *MessageTopic
+	ReplyTo *InputMessageReplyTo
+}
+
+// PostStoryOpts contains optional parameters for PostStory
+type PostStoryOpts struct {
+	Areas           *InputStoryAreas
+	Caption         *FormattedText
+	FromStoryFullId *StoryFullId
+}
+
+// PreliminaryUploadFileOpts contains optional parameters for PreliminaryUploadFile
+type PreliminaryUploadFileOpts struct {
+	FileType *FileType
+}
+
+// ResendAuthenticationCodeOpts contains optional parameters for ResendAuthenticationCode
+type ResendAuthenticationCodeOpts struct {
+	Reason *ResendCodeReason
+}
+
+// ResendMessagesOpts contains optional parameters for ResendMessages
+type ResendMessagesOpts struct {
+	Quote *InputTextQuote
+}
+
+// ResendPhoneNumberCodeOpts contains optional parameters for ResendPhoneNumberCode
+type ResendPhoneNumberCodeOpts struct {
+	Reason *ResendCodeReason
+}
+
+// SearchChatMembersOpts contains optional parameters for SearchChatMembers
+type SearchChatMembersOpts struct {
+	Filter *ChatMembersFilter
+}
+
+// SearchChatMessagesOpts contains optional parameters for SearchChatMessages
+type SearchChatMessagesOpts struct {
+	TopicId  *MessageTopic
+	SenderId *MessageSender
+	Filter   *SearchMessagesFilter
+}
+
+// SearchMessagesOpts contains optional parameters for SearchMessages
+type SearchMessagesOpts struct {
+	ChatList       *ChatList
+	Filter         *SearchMessagesFilter
+	ChatTypeFilter *SearchMessagesChatTypeFilter
+}
+
+// SearchSavedMessagesOpts contains optional parameters for SearchSavedMessages
+type SearchSavedMessagesOpts struct {
+	Tag *ReactionType
+}
+
+// SearchSecretMessagesOpts contains optional parameters for SearchSecretMessages
+type SearchSecretMessagesOpts struct {
+	Filter *SearchMessagesFilter
+}
+
+// SendBusinessMessageOpts contains optional parameters for SendBusinessMessage
+type SendBusinessMessageOpts struct {
+	ReplyTo     *InputMessageReplyTo
+	ReplyMarkup *ReplyMarkup
+}
+
+// SendBusinessMessageAlbumOpts contains optional parameters for SendBusinessMessageAlbum
+type SendBusinessMessageAlbumOpts struct {
+	ReplyTo *InputMessageReplyTo
+}
+
+// SendChatActionOpts contains optional parameters for SendChatAction
+type SendChatActionOpts struct {
+	Action *ChatAction
+}
+
+// SendInlineQueryResultMessageOpts contains optional parameters for SendInlineQueryResultMessage
+type SendInlineQueryResultMessageOpts struct {
+	TopicId *MessageTopic
+	ReplyTo *InputMessageReplyTo
+	Options *MessageSendOptions
+}
+
 // SendMessageOpts contains optional parameters for SendMessage
 type SendMessageOpts struct {
 	TopicId     *MessageTopic
@@ -79,144 +349,19 @@ type SendMessageAlbumOpts struct {
 	Options *MessageSendOptions
 }
 
-// SendInlineQueryResultMessageOpts contains optional parameters for SendInlineQueryResultMessage
-type SendInlineQueryResultMessageOpts struct {
-	TopicId *MessageTopic
-	ReplyTo *InputMessageReplyTo
-	Options *MessageSendOptions
+// SendPaymentFormOpts contains optional parameters for SendPaymentForm
+type SendPaymentFormOpts struct {
+	Credentials *InputCredentials
 }
 
-// ForwardMessagesOpts contains optional parameters for ForwardMessages
-type ForwardMessagesOpts struct {
-	TopicId *MessageTopic
-	Options *MessageSendOptions
+// SendPhoneNumberCodeOpts contains optional parameters for SendPhoneNumberCode
+type SendPhoneNumberCodeOpts struct {
+	Settings *PhoneNumberAuthenticationSettings
 }
 
-// ResendMessagesOpts contains optional parameters for ResendMessages
-type ResendMessagesOpts struct {
-	Quote *InputTextQuote
-}
-
-// AddLocalMessageOpts contains optional parameters for AddLocalMessage
-type AddLocalMessageOpts struct {
-	ReplyTo *InputMessageReplyTo
-}
-
-// EditMessageTextOpts contains optional parameters for EditMessageText
-type EditMessageTextOpts struct {
-	ReplyMarkup *ReplyMarkup
-}
-
-// EditMessageLiveLocationOpts contains optional parameters for EditMessageLiveLocation
-type EditMessageLiveLocationOpts struct {
-	ReplyMarkup *ReplyMarkup
-	Location    *Location
-}
-
-// EditMessageChecklistOpts contains optional parameters for EditMessageChecklist
-type EditMessageChecklistOpts struct {
-	ReplyMarkup *ReplyMarkup
-}
-
-// EditMessageMediaOpts contains optional parameters for EditMessageMedia
-type EditMessageMediaOpts struct {
-	ReplyMarkup *ReplyMarkup
-}
-
-// EditMessageCaptionOpts contains optional parameters for EditMessageCaption
-type EditMessageCaptionOpts struct {
-	ReplyMarkup *ReplyMarkup
-	Caption     *FormattedText
-}
-
-// EditMessageReplyMarkupOpts contains optional parameters for EditMessageReplyMarkup
-type EditMessageReplyMarkupOpts struct {
-	ReplyMarkup *ReplyMarkup
-}
-
-// EditInlineMessageTextOpts contains optional parameters for EditInlineMessageText
-type EditInlineMessageTextOpts struct {
-	ReplyMarkup *ReplyMarkup
-}
-
-// EditInlineMessageLiveLocationOpts contains optional parameters for EditInlineMessageLiveLocation
-type EditInlineMessageLiveLocationOpts struct {
-	ReplyMarkup *ReplyMarkup
-	Location    *Location
-}
-
-// EditInlineMessageMediaOpts contains optional parameters for EditInlineMessageMedia
-type EditInlineMessageMediaOpts struct {
-	ReplyMarkup *ReplyMarkup
-}
-
-// EditInlineMessageCaptionOpts contains optional parameters for EditInlineMessageCaption
-type EditInlineMessageCaptionOpts struct {
-	ReplyMarkup *ReplyMarkup
-	Caption     *FormattedText
-}
-
-// EditInlineMessageReplyMarkupOpts contains optional parameters for EditInlineMessageReplyMarkup
-type EditInlineMessageReplyMarkupOpts struct {
-	ReplyMarkup *ReplyMarkup
-}
-
-// EditMessageSchedulingStateOpts contains optional parameters for EditMessageSchedulingState
-type EditMessageSchedulingStateOpts struct {
-	SchedulingState *MessageSchedulingState
-}
-
-// SetMessageFactCheckOpts contains optional parameters for SetMessageFactCheck
-type SetMessageFactCheckOpts struct {
-	Text *FormattedText
-}
-
-// SendBusinessMessageOpts contains optional parameters for SendBusinessMessage
-type SendBusinessMessageOpts struct {
-	ReplyTo     *InputMessageReplyTo
-	ReplyMarkup *ReplyMarkup
-}
-
-// SendBusinessMessageAlbumOpts contains optional parameters for SendBusinessMessageAlbum
-type SendBusinessMessageAlbumOpts struct {
-	ReplyTo *InputMessageReplyTo
-}
-
-// EditBusinessMessageTextOpts contains optional parameters for EditBusinessMessageText
-type EditBusinessMessageTextOpts struct {
-	ReplyMarkup *ReplyMarkup
-}
-
-// EditBusinessMessageLiveLocationOpts contains optional parameters for EditBusinessMessageLiveLocation
-type EditBusinessMessageLiveLocationOpts struct {
-	ReplyMarkup *ReplyMarkup
-	Location    *Location
-}
-
-// EditBusinessMessageChecklistOpts contains optional parameters for EditBusinessMessageChecklist
-type EditBusinessMessageChecklistOpts struct {
-	ReplyMarkup *ReplyMarkup
-}
-
-// EditBusinessMessageMediaOpts contains optional parameters for EditBusinessMessageMedia
-type EditBusinessMessageMediaOpts struct {
-	ReplyMarkup *ReplyMarkup
-}
-
-// EditBusinessMessageCaptionOpts contains optional parameters for EditBusinessMessageCaption
-type EditBusinessMessageCaptionOpts struct {
-	ReplyMarkup *ReplyMarkup
-	Caption     *FormattedText
-}
-
-// EditBusinessMessageReplyMarkupOpts contains optional parameters for EditBusinessMessageReplyMarkup
-type EditBusinessMessageReplyMarkupOpts struct {
-	ReplyMarkup *ReplyMarkup
-}
-
-// StopBusinessPollOpts contains optional parameters for StopBusinessPoll
-type StopBusinessPollOpts struct {
-	ReplyMarkup *ReplyMarkup
+// SetAuthenticationPhoneNumberOpts contains optional parameters for SetAuthenticationPhoneNumber
+type SetAuthenticationPhoneNumberOpts struct {
+	Settings *PhoneNumberAuthenticationSettings
 }
 
 // SetBusinessAccountProfilePhotoOpts contains optional parameters for SetBusinessAccountProfilePhoto
@@ -224,60 +369,14 @@ type SetBusinessAccountProfilePhotoOpts struct {
 	Photo *InputChatPhoto
 }
 
-// AddPendingPaidMessageReactionOpts contains optional parameters for AddPendingPaidMessageReaction
-type AddPendingPaidMessageReactionOpts struct {
-	TypeField *PaidReactionType
+// SetBusinessOpeningHoursOpts contains optional parameters for SetBusinessOpeningHours
+type SetBusinessOpeningHoursOpts struct {
+	OpeningHours *BusinessOpeningHours
 }
 
-// GetMessageAddedReactionsOpts contains optional parameters for GetMessageAddedReactions
-type GetMessageAddedReactionsOpts struct {
-	ReactionType *ReactionType
-}
-
-// StopPollOpts contains optional parameters for StopPoll
-type StopPollOpts struct {
-	ReplyMarkup *ReplyMarkup
-}
-
-// GetInlineQueryResultsOpts contains optional parameters for GetInlineQueryResults
-type GetInlineQueryResultsOpts struct {
-	UserLocation *Location
-}
-
-// AnswerInlineQueryOpts contains optional parameters for AnswerInlineQuery
-type AnswerInlineQueryOpts struct {
-	Button *InlineQueryResultsButton
-}
-
-// OpenWebAppOpts contains optional parameters for OpenWebApp
-type OpenWebAppOpts struct {
-	TopicId *MessageTopic
-	ReplyTo *InputMessageReplyTo
-}
-
-// SendChatActionOpts contains optional parameters for SendChatAction
-type SendChatActionOpts struct {
-	Action *ChatAction
-}
-
-// ViewMessagesOpts contains optional parameters for ViewMessages
-type ViewMessagesOpts struct {
-	Source *MessageSource
-}
-
-// CreateNewSupergroupChatOpts contains optional parameters for CreateNewSupergroupChat
-type CreateNewSupergroupChatOpts struct {
-	Location *ChatLocation
-}
-
-// SetChatPhotoOpts contains optional parameters for SetChatPhoto
-type SetChatPhotoOpts struct {
-	Photo *InputChatPhoto
-}
-
-// SetChatEmojiStatusOpts contains optional parameters for SetChatEmojiStatus
-type SetChatEmojiStatusOpts struct {
-	EmojiStatus *EmojiStatus
+// SetChatAffiliateProgramOpts contains optional parameters for SetChatAffiliateProgram
+type SetChatAffiliateProgramOpts struct {
+	Parameters *AffiliateProgramParameters
 }
 
 // SetChatBackgroundOpts contains optional parameters for SetChatBackground
@@ -292,143 +391,19 @@ type SetChatDraftMessageOpts struct {
 	DraftMessage *DraftMessage
 }
 
-// SearchChatMembersOpts contains optional parameters for SearchChatMembers
-type SearchChatMembersOpts struct {
-	Filter *ChatMembersFilter
+// SetChatEmojiStatusOpts contains optional parameters for SetChatEmojiStatus
+type SetChatEmojiStatusOpts struct {
+	EmojiStatus *EmojiStatus
 }
 
-// GetChatNotificationSettingsExceptionsOpts contains optional parameters for GetChatNotificationSettingsExceptions
-type GetChatNotificationSettingsExceptionsOpts struct {
-	Scope *NotificationSettingsScope
-}
-
-// PostStoryOpts contains optional parameters for PostStory
-type PostStoryOpts struct {
-	Areas           *InputStoryAreas
-	Caption         *FormattedText
-	FromStoryFullId *StoryFullId
-}
-
-// EditStoryOpts contains optional parameters for EditStory
-type EditStoryOpts struct {
-	Content *InputStoryContent
-	Areas   *InputStoryAreas
-	Caption *FormattedText
-}
-
-// SetStoryReactionOpts contains optional parameters for SetStoryReaction
-type SetStoryReactionOpts struct {
-	ReactionType *ReactionType
-}
-
-// GetChatStoryInteractionsOpts contains optional parameters for GetChatStoryInteractions
-type GetChatStoryInteractionsOpts struct {
-	ReactionType *ReactionType
-}
-
-// PreliminaryUploadFileOpts contains optional parameters for PreliminaryUploadFile
-type PreliminaryUploadFileOpts struct {
-	FileType *FileType
-}
-
-// FinishFileGenerationOpts contains optional parameters for FinishFileGeneration
-type FinishFileGenerationOpts struct {
-	Error *Error
-}
-
-// GetChatInviteLinkMembersOpts contains optional parameters for GetChatInviteLinkMembers
-type GetChatInviteLinkMembersOpts struct {
-	OffsetMember *ChatInviteLinkMember
-}
-
-// GetChatJoinRequestsOpts contains optional parameters for GetChatJoinRequests
-type GetChatJoinRequestsOpts struct {
-	OffsetRequest *ChatJoinRequest
-}
-
-// JoinVideoChatOpts contains optional parameters for JoinVideoChat
-type JoinVideoChatOpts struct {
-	ParticipantId *MessageSender
-}
-
-// GetGroupCallStreamSegmentOpts contains optional parameters for GetGroupCallStreamSegment
-type GetGroupCallStreamSegmentOpts struct {
-	VideoQuality *GroupCallVideoQuality
-}
-
-// DecryptGroupCallDataOpts contains optional parameters for DecryptGroupCallData
-type DecryptGroupCallDataOpts struct {
-	DataChannel *GroupCallDataChannel
-}
-
-// SetMessageSenderBlockListOpts contains optional parameters for SetMessageSenderBlockList
-type SetMessageSenderBlockListOpts struct {
-	BlockList *BlockList
-}
-
-// GetLinkPreviewOpts contains optional parameters for GetLinkPreview
-type GetLinkPreviewOpts struct {
-	LinkPreviewOptions *LinkPreviewOptions
-}
-
-// SetBusinessOpeningHoursOpts contains optional parameters for SetBusinessOpeningHours
-type SetBusinessOpeningHoursOpts struct {
-	OpeningHours *BusinessOpeningHours
-}
-
-// SendPhoneNumberCodeOpts contains optional parameters for SendPhoneNumberCode
-type SendPhoneNumberCodeOpts struct {
-	Settings *PhoneNumberAuthenticationSettings
-}
-
-// ResendPhoneNumberCodeOpts contains optional parameters for ResendPhoneNumberCode
-type ResendPhoneNumberCodeOpts struct {
-	Reason *ResendCodeReason
+// SetChatPhotoOpts contains optional parameters for SetChatPhoto
+type SetChatPhotoOpts struct {
+	Photo *InputChatPhoto
 }
 
 // SetCommandsOpts contains optional parameters for SetCommands
 type SetCommandsOpts struct {
 	Scope *BotCommandScope
-}
-
-// DeleteCommandsOpts contains optional parameters for DeleteCommands
-type DeleteCommandsOpts struct {
-	Scope *BotCommandScope
-}
-
-// GetCommandsOpts contains optional parameters for GetCommands
-type GetCommandsOpts struct {
-	Scope *BotCommandScope
-}
-
-// GetSupergroupMembersOpts contains optional parameters for GetSupergroupMembers
-type GetSupergroupMembersOpts struct {
-	Filter *SupergroupMembersFilter
-}
-
-// GetChatEventLogOpts contains optional parameters for GetChatEventLog
-type GetChatEventLogOpts struct {
-	Filters *ChatEventLogFilters
-}
-
-// GetPaymentFormOpts contains optional parameters for GetPaymentForm
-type GetPaymentFormOpts struct {
-	Theme *ThemeParameters
-}
-
-// ValidateOrderInfoOpts contains optional parameters for ValidateOrderInfo
-type ValidateOrderInfoOpts struct {
-	OrderInfo *OrderInfo
-}
-
-// SendPaymentFormOpts contains optional parameters for SendPaymentForm
-type SendPaymentFormOpts struct {
-	Credentials *InputCredentials
-}
-
-// SetGiftResalePriceOpts contains optional parameters for SetGiftResalePrice
-type SetGiftResalePriceOpts struct {
-	Price *GiftResalePrice
 }
 
 // SetDefaultBackgroundOpts contains optional parameters for SetDefaultBackground
@@ -437,19 +412,34 @@ type SetDefaultBackgroundOpts struct {
 	TypeField  *BackgroundType
 }
 
-// SetOptionOpts contains optional parameters for SetOption
-type SetOptionOpts struct {
-	Value *OptionValue
+// SetGiftResalePriceOpts contains optional parameters for SetGiftResalePrice
+type SetGiftResalePriceOpts struct {
+	Price *GiftResalePrice
 }
 
-// GetTonTransactionsOpts contains optional parameters for GetTonTransactions
-type GetTonTransactionsOpts struct {
-	Direction *TransactionDirection
+// SetMessageFactCheckOpts contains optional parameters for SetMessageFactCheck
+type SetMessageFactCheckOpts struct {
+	Text *FormattedText
+}
+
+// SetMessageSenderBlockListOpts contains optional parameters for SetMessageSenderBlockList
+type SetMessageSenderBlockListOpts struct {
+	BlockList *BlockList
 }
 
 // SetNetworkTypeOpts contains optional parameters for SetNetworkType
 type SetNetworkTypeOpts struct {
 	TypeField *NetworkType
+}
+
+// SetOptionOpts contains optional parameters for SetOption
+type SetOptionOpts struct {
+	Value *OptionValue
+}
+
+// SetStickerMaskPositionOpts contains optional parameters for SetStickerMaskPosition
+type SetStickerMaskPositionOpts struct {
+	MaskPosition *MaskPosition
 }
 
 // SetStickerSetThumbnailOpts contains optional parameters for SetStickerSetThumbnail
@@ -458,17 +448,27 @@ type SetStickerSetThumbnailOpts struct {
 	Format    *StickerFormat
 }
 
-// SetStickerMaskPositionOpts contains optional parameters for SetStickerMaskPosition
-type SetStickerMaskPositionOpts struct {
-	MaskPosition *MaskPosition
+// SetStoryReactionOpts contains optional parameters for SetStoryReaction
+type SetStoryReactionOpts struct {
+	ReactionType *ReactionType
 }
 
-// GetStarTransactionsOpts contains optional parameters for GetStarTransactions
-type GetStarTransactionsOpts struct {
-	Direction *TransactionDirection
+// StopBusinessPollOpts contains optional parameters for StopBusinessPoll
+type StopBusinessPollOpts struct {
+	ReplyMarkup *ReplyMarkup
 }
 
-// SetChatAffiliateProgramOpts contains optional parameters for SetChatAffiliateProgram
-type SetChatAffiliateProgramOpts struct {
-	Parameters *AffiliateProgramParameters
+// StopPollOpts contains optional parameters for StopPoll
+type StopPollOpts struct {
+	ReplyMarkup *ReplyMarkup
+}
+
+// ValidateOrderInfoOpts contains optional parameters for ValidateOrderInfo
+type ValidateOrderInfoOpts struct {
+	OrderInfo *OrderInfo
+}
+
+// ViewMessagesOpts contains optional parameters for ViewMessages
+type ViewMessagesOpts struct {
+	Source *MessageSource
 }

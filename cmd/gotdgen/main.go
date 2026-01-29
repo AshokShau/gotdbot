@@ -7,6 +7,7 @@ import (
 	"os"
 	"os/exec"
 	"regexp"
+	"sort"
 	"strings"
 	"unicode"
 )
@@ -140,6 +141,12 @@ func main() {
 		log.Fatal(err)
 	}
 
+	sortTLTypesByName(types)
+	sortTLTypesByName(functions)
+	for _, cls := range classes {
+		sort.Strings(cls.Implementations)
+	}
+
 	generateClasses(classes)
 	generateObjects(types, classes)
 	generateFunctions(functions, classes)
@@ -196,6 +203,25 @@ func formatDesc(desc string) string {
 	return strings.ReplaceAll(desc, "\n", " ")
 }
 
+// sortTLTypesByName sorts a slice of TLType by Name
+func sortTLTypesByName(list []TLType) {
+	sort.Slice(list, func(i, j int) bool {
+		return strings.ToLower(list[i].Name) < strings.ToLower(list[j].Name)
+	})
+}
+
+// sortKeysAZ returns the map keys sorted
+func sortKeysAZ(m map[string]*TLClass) []string {
+	keys := make([]string, 0, len(m))
+	for k := range m {
+		keys = append(keys, k)
+	}
+	sort.Slice(keys, func(i, j int) bool {
+		return strings.ToLower(keys[i]) < strings.ToLower(keys[j])
+	})
+	return keys
+}
+
 func generateClasses(classes map[string]*TLClass) {
 	f, err := os.Create("types/classes.go")
 	if err != nil {
@@ -217,7 +243,11 @@ func generateClasses(classes map[string]*TLClass) {
 	fmt.Fprintln(f, "}")
 	fmt.Fprintln(f)
 
-	for name, cls := range classes {
+	sortedNames := sortKeysAZ(classes)
+	for _, name := range sortedNames {
+		cls := classes[name]
+		sort.Strings(cls.Implementations)
+
 		structName := toCamelCase(name)
 		fmt.Fprintf(f, "// %s %s\n", structName, formatDesc(cls.Description))
 		fmt.Fprintf(f, "type %s struct {\n", structName)
