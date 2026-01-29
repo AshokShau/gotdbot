@@ -23,7 +23,8 @@ func main() {
 	generateOptions(functions, classes)
 	generateMethods(functions, classes)
 	generateUpdates(types)
-	generateHelpers(types, functions, classes)
+	helperFiles := generateHelpers(types, functions, classes)
 
-	gofmt("gen_classes.go", "gen_types.go", "gen_functions.go", "gen_options.go", "gen_methods.go", "gen_updates.go", "gen_helpers.go")
+	filesToFmt := append([]string{"gen_classes.go", "gen_types.go", "gen_functions.go", "gen_options.go", "gen_methods.go", "gen_updates.go"}, helperFiles...)
+	gofmt(filesToFmt...)
 }
