@@ -21,7 +21,27 @@ func generateHelpers(types []TLType, functions []TLType, classes map[string]*TLC
 
 	generatedFiles := []string{f.Name()}
 
+	allowedTypes := map[string]bool{
+		"File":    true,
+		"Message": true,
+		"Chat":    true,
+		"User":    true,
+	}
+
+	manualMethods := map[string]bool{
+		"File.Download":     true,
+		"File.Delete":       true,
+		"Message.GetChat":   true,
+		"Message.LeaveChat": true,
+	}
+
+	generatedMethods := make(map[string]bool)
+
 	for _, t := range types {
+		if !allowedTypes[toCamelCase(t.Name)] {
+			continue
+		}
+
 		typeFields := make(map[string]TLParam)
 		for _, p := range t.Params {
 			typeFields[p.Name] = p
@@ -71,16 +91,17 @@ func generateHelpers(types []TLType, functions []TLType, classes map[string]*TLC
 				continue
 			}
 
-			if currentHelpers >= helpersPerFile {
-				f.Close()
-				fileCount++
-				currentHelpers = 0
-
-				f, err = createHelperFile(fileCount)
-				if err != nil {
-					log.Fatal(err)
+			if _, hasId := typeFields["id"]; hasId {
+				usedId := false
+				for _, matchVal := range matches {
+					if matchVal == "Id" {
+						usedId = true
+						break
+					}
 				}
-				generatedFiles = append(generatedFiles, f.Name())
+				if !usedId {
+					continue
+				}
 			}
 
 			methodName := toCamelCase(fn.Name)
@@ -93,6 +114,24 @@ func generateHelpers(types []TLType, functions []TLType, classes map[string]*TLC
 
 			if helperName == "" {
 				helperName = methodName
+			}
+
+			fullHelperName := toCamelCase(t.Name) + "." + helperName
+			if manualMethods[fullHelperName] || generatedMethods[fullHelperName] {
+				continue
+			}
+			generatedMethods[fullHelperName] = true
+
+			if currentHelpers >= helpersPerFile {
+				f.Close()
+				fileCount++
+				currentHelpers = 0
+
+				f, err = createHelperFile(fileCount)
+				if err != nil {
+					log.Fatal(err)
+				}
+				generatedFiles = append(generatedFiles, f.Name())
 			}
 
 			generateHelperMethod(f, t, fn, matches, helperName, classes)
