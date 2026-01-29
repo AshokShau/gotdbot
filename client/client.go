@@ -33,8 +33,8 @@ type ClientConfig struct {
 
 func DefaultClientConfig() *ClientConfig {
 	return &ClientConfig{
-		DatabaseDirectory:   "tdlib_db",
-		FilesDirectory:      "tdlib_files",
+		DatabaseDirectory:   "database",
+		FilesDirectory:      "",
 		UseFileDatabase:     true,
 		UseChatInfoDatabase: true,
 		UseMessageDatabase:  true,

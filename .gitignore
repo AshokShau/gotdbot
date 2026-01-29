@@ -2,6 +2,7 @@
 .idea
 *.so
 td
-tdlib_db
+database
 libtdjson.so
 libtdjson.so.*
+*.binlog
