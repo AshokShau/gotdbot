@@ -1,15 +1,15 @@
-package client
+package ext
 
-import "github.com/AshokShau/gotdbot/types"
+import "github.com/AshokShau/gotdbot"
 
-// MessageSender is a wrapper around types.MessageSender with helper methods.
+// MessageSender is a wrapper around gotdbot.MessageSender with helper methods.
 type MessageSender struct {
-	*types.MessageSender
-	client *Client
+	*gotdbot.MessageSender
+	client *gotdbot.Client
 }
 
 // NewMessageSender creates a new bound MessageSender.
-func NewMessageSender(client *Client, sender *types.MessageSender) *MessageSender {
+func NewMessageSender(client *gotdbot.Client, sender *gotdbot.MessageSender) *MessageSender {
 	return &MessageSender{
 		MessageSender: sender,
 		client:        client,

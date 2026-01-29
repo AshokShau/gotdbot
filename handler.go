@@ -1,12 +1,10 @@
-package client
-
-import "github.com/AshokShau/gotdbot/types"
+package gotdbot
 
 // FilterFunc is a function that filters updates.
-type FilterFunc func(types.TlObject) bool
+type FilterFunc func(TlObject) bool
 
 // HandlerFunc is a function that handles updates.
-type HandlerFunc func(client *Client, update types.TlObject) error
+type HandlerFunc func(client *Client, update TlObject) error
 
 // Handler represents an update handler.
 type Handler struct {

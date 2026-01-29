@@ -1,4 +1,4 @@
-package types
+package gotdbot
 
 // AddLocalMessageOpts contains optional parameters for AddLocalMessage
 type AddLocalMessageOpts struct {

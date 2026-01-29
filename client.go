@@ -1,4 +1,6 @@
-package client
+package gotdbot
+
+//go:generate go run ./scripts/generate
 
 import (
 	"encoding/json"
@@ -10,7 +12,6 @@ import (
 	"time"
 
 	"github.com/AshokShau/gotdbot/tdjson"
-	"github.com/AshokShau/gotdbot/types"
 )
 
 var StopHandlers = fmt.Errorf("stop handlers")
@@ -54,7 +55,7 @@ type Client struct {
 	botToken string
 	config   *ClientConfig
 
-	updates chan types.TlObject
+	updates chan TlObject
 	stop    chan struct{}
 	wg      sync.WaitGroup
 
@@ -63,7 +64,7 @@ type Client struct {
 	finalizers   []*Handler
 	hMu          sync.RWMutex
 
-	pendingRequests sync.Map // map[string]chan types.TlObject
+	pendingRequests sync.Map // map[string]chan TlObject
 }
 
 func NewClient(apiID int32, apiHash, botToken string, config *ClientConfig) *Client {
@@ -101,7 +102,7 @@ func NewClient(apiID int32, apiHash, botToken string, config *ClientConfig) *Cli
 		apiHash:  apiHash,
 		botToken: botToken,
 		config:   config,
-		updates:  make(chan types.TlObject, 1000),
+		updates:  make(chan TlObject, 1000),
 		stop:     make(chan struct{}),
 		handlers: make(map[string][]*Handler),
 	}
@@ -112,20 +113,20 @@ func NewClient(apiID int32, apiHash, botToken string, config *ClientConfig) *Cli
 	return c
 }
 
-// SetLogVerbosityLevel sets the verbosity level of TDLib's internal logging.
-func SetLogVerbosityLevel(level int32) {
+// SetTdlibLogVerbosityLevel sets the verbosity level of TDLib's internal logging.
+func SetTdlibLogVerbosityLevel(level int32) {
 	req := fmt.Sprintf(`{"@type": "setLogVerbosityLevel", "new_verbosity_level": %d}`, level)
 	tdjson.Execute(req)
 }
 
-// SetLogStreamFile redirects internal TDLib logs to a file.
-func SetLogStreamFile(path string, maxFileSize int64, redirectStderr bool) {
+// SetTdlibLogStreamFile redirects internal TDLib logs to a file.
+func SetTdlibLogStreamFile(path string, maxFileSize int64, redirectStderr bool) {
 	req := fmt.Sprintf(`{"@type": "setLogStream", "log_stream": {"@type": "logStreamFile", "path": "%s", "max_file_size": %d, "redirect_stderr": %v}}`, path, maxFileSize, redirectStderr)
 	tdjson.Execute(req)
 }
 
-// SetLogStreamEmpty disables internal TDLib logging.
-func SetLogStreamEmpty() {
+// SetTdlibLogStreamEmpty disables internal TDLib logging.
+func SetTdlibLogStreamEmpty() {
 	req := `{"@type": "setLogStream", "log_stream": {"@type": "logStreamEmpty"}}`
 	tdjson.Execute(req)
 }
@@ -154,7 +155,7 @@ func (c *Client) receiver() {
 			res := tdjson.Receive(0.1)
 			if res != "" {
 				data := []byte(res)
-				obj, err := types.Unmarshal(data)
+				obj, err := Unmarshal(data)
 				if err != nil {
 					// fmt.Println("Error unmarshaling:", err)
 					continue
@@ -166,7 +167,7 @@ func (c *Client) receiver() {
 				extra := obj.GetExtra()
 				if extra != "" {
 					if ch, ok := c.pendingRequests.Load(extra); ok {
-						ch.(chan types.TlObject) <- obj
+						ch.(chan TlObject) <- obj
 						c.pendingRequests.Delete(extra)
 						continue
 					}
@@ -190,7 +191,7 @@ func (c *Client) processor() {
 	}
 }
 
-func (c *Client) handleUpdate(update types.TlObject) {
+func (c *Client) handleUpdate(update TlObject) {
 	c.hMu.RLock()
 	defer c.hMu.RUnlock()
 
@@ -227,8 +228,8 @@ func (c *Client) handleUpdate(update types.TlObject) {
 	}
 }
 
-func (c *Client) authHandler(client *Client, update types.TlObject) error {
-	authState, ok := update.(*types.UpdateAuthorizationState)
+func (c *Client) authHandler(client *Client, update TlObject) error {
+	authState, ok := update.(*UpdateAuthorizationState)
 	if !ok {
 		return nil
 	}
@@ -264,7 +265,7 @@ func (c *Client) authHandler(client *Client, update types.TlObject) error {
 	return nil
 }
 
-func (c *Client) Send(req types.TlObject) (types.TlObject, error) {
+func (c *Client) Send(req TlObject) (TlObject, error) {
 	extra := fmt.Sprintf("%d", time.Now().UnixNano())
 	req.SetExtra(extra)
 
@@ -273,7 +274,7 @@ func (c *Client) Send(req types.TlObject) (types.TlObject, error) {
 		return nil, err
 	}
 
-	ch := make(chan types.TlObject, 1)
+	ch := make(chan TlObject, 1)
 	c.pendingRequests.Store(extra, ch)
 
 	tdjson.Send(c.clientID, string(data))
@@ -282,7 +283,7 @@ func (c *Client) Send(req types.TlObject) (types.TlObject, error) {
 	case res := <-ch:
 		// check for error
 		if res.Type() == "error" {
-			if errObj, ok := res.(*types.Error); ok {
+			if errObj, ok := res.(*Error); ok {
 				return nil, fmt.Errorf("TDLib error %d: %s", errObj.Code, errObj.Message)
 			}
 		}

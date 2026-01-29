@@ -1,20 +1,20 @@
-package client
+package ext
 
 import (
 	"encoding/base64"
 
-	"github.com/AshokShau/gotdbot/types"
+	"github.com/AshokShau/gotdbot"
 )
 
-// CallbackQuery is a wrapper around types.UpdateNewCallbackQuery with bound methods.
+// CallbackQuery is a wrapper around gotdbot.UpdateNewCallbackQuery with bound methods.
 // TDLib sends `updateNewCallbackQuery`. There is no `CallbackQuery` object in TDLib API directly,
 type CallbackQuery struct {
-	*types.UpdateNewCallbackQuery
-	client *Client
+	*gotdbot.UpdateNewCallbackQuery
+	client *gotdbot.Client
 }
 
 // NewCallbackQuery creates a new bound CallbackQuery.
-func NewCallbackQuery(client *Client, cb *types.UpdateNewCallbackQuery) *CallbackQuery {
+func NewCallbackQuery(client *gotdbot.Client, cb *gotdbot.UpdateNewCallbackQuery) *CallbackQuery {
 	return &CallbackQuery{
 		UpdateNewCallbackQuery: cb,
 		client:                 client,

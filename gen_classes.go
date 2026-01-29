@@ -1,4 +1,4 @@
-package types
+package gotdbot
 
 import "encoding/json"
 import "fmt"

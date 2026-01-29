@@ -1,6 +1,6 @@
-package client
+package ext
 
-import "github.com/AshokShau/gotdbot/types"
+import "github.com/AshokShau/gotdbot"
 
 // MessageFilter is a function that filters messages.
 type MessageFilter func(*Message) bool
@@ -9,9 +9,9 @@ type MessageFilter func(*Message) bool
 type CallbackQueryFilter func(*CallbackQuery) bool
 
 // OnMessage registers a handler for new messages that provides a bound Message object.
-func (c *Client) OnMessage(fn func(client *Client, message *Message), filters ...MessageFilter) {
-	c.AddHandler("updateNewMessage", func(cl *Client, update types.TlObject) error {
-		up, ok := update.(*types.UpdateNewMessage)
+func OnMessage(c *gotdbot.Client, fn func(client *gotdbot.Client, message *Message), filters ...MessageFilter) {
+	c.AddHandler("updateNewMessage", func(cl *gotdbot.Client, update gotdbot.TlObject) error {
+		up, ok := update.(*gotdbot.UpdateNewMessage)
 		if !ok {
 			return nil
 		}
@@ -29,9 +29,9 @@ func (c *Client) OnMessage(fn func(client *Client, message *Message), filters ..
 }
 
 // OnCallbackQuery registers a handler for new callback queries that provides a bound CallbackQuery object.
-func (c *Client) OnCallbackQuery(fn func(client *Client, callbackQuery *CallbackQuery), filters ...CallbackQueryFilter) {
-	c.AddHandler("updateNewCallbackQuery", func(cl *Client, update types.TlObject) error {
-		up, ok := update.(*types.UpdateNewCallbackQuery)
+func OnCallbackQuery(c *gotdbot.Client, fn func(client *gotdbot.Client, callbackQuery *CallbackQuery), filters ...CallbackQueryFilter) {
+	c.AddHandler("updateNewCallbackQuery", func(cl *gotdbot.Client, update gotdbot.TlObject) error {
+		up, ok := update.(*gotdbot.UpdateNewCallbackQuery)
 		if !ok {
 			return nil
 		}

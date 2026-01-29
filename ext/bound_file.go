@@ -1,15 +1,15 @@
-package client
+package ext
 
-import "github.com/AshokShau/gotdbot/types"
+import "github.com/AshokShau/gotdbot"
 
-// File is a wrapper around types.File with bound methods.
+// File is a wrapper around gotdbot.File with bound methods.
 type File struct {
-	*types.File
-	client *Client
+	*gotdbot.File
+	client *gotdbot.Client
 }
 
 // NewFile creates a new bound File.
-func NewFile(client *Client, f *types.File) *File {
+func NewFile(client *gotdbot.Client, f *gotdbot.File) *File {
 	return &File{
 		File:   f,
 		client: client,
@@ -31,14 +31,14 @@ func (f *File) Delete() error {
 	return err
 }
 
-// RemoteFile is a wrapper around types.RemoteFile with bound methods.
+// RemoteFile is a wrapper around gotdbot.RemoteFile with bound methods.
 type RemoteFile struct {
-	*types.RemoteFile
-	client *Client
+	*gotdbot.RemoteFile
+	client *gotdbot.Client
 }
 
 // NewRemoteFile creates a new bound RemoteFile.
-func NewRemoteFile(client *Client, f *types.RemoteFile) *RemoteFile {
+func NewRemoteFile(client *gotdbot.Client, f *gotdbot.RemoteFile) *RemoteFile {
 	return &RemoteFile{
 		RemoteFile: f,
 		client:     client,

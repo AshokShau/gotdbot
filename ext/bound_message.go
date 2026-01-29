@@ -1,15 +1,15 @@
-package client
+package ext
 
-import "github.com/AshokShau/gotdbot/types"
+import "github.com/AshokShau/gotdbot"
 
-// Message is a wrapper around types.Message with bound methods and helper getters.
+// Message is a wrapper around gotdbot.Message with bound methods and helper getters.
 type Message struct {
-	*types.Message
-	client *Client
+	*gotdbot.Message
+	client *gotdbot.Client
 }
 
 // NewMessage creates a new bound Message.
-func NewMessage(client *Client, msg *types.Message) *Message {
+func NewMessage(client *gotdbot.Client, msg *gotdbot.Message) *Message {
 	return &Message{
 		Message: msg,
 		client:  client,
@@ -58,7 +58,7 @@ func (m *Message) Text() string {
 }
 
 // Entities returns the entities of the message text.
-func (m *Message) Entities() []*types.TextEntity {
+func (m *Message) Entities() []*gotdbot.TextEntity {
 	if m.Content != nil && m.Content.MessageText != nil {
 		return m.Content.MessageText.Text.Entities
 	}
@@ -92,7 +92,7 @@ func (m *Message) Caption() string {
 }
 
 // CaptionEntities returns the entities of the message caption.
-func (m *Message) CaptionEntities() []*types.TextEntity {
+func (m *Message) CaptionEntities() []*gotdbot.TextEntity {
 	if m.Content == nil {
 		return nil
 	}
@@ -122,7 +122,7 @@ func (m *Message) RemoteFileID() string {
 	if m.Content == nil {
 		return ""
 	}
-	getFileId := func(f *types.File) string {
+	getFileId := func(f *gotdbot.File) string {
 		if f != nil && f.Remote != nil {
 			return f.Remote.Id
 		}
@@ -161,7 +161,7 @@ func (m *Message) RemoteUniqueFileID() string {
 	if m.Content == nil {
 		return ""
 	}
-	getUniqueId := func(f *types.File) string {
+	getUniqueId := func(f *gotdbot.File) string {
 		if f != nil && f.Remote != nil {
 			return f.Remote.UniqueId
 		}
@@ -214,12 +214,12 @@ func (m *Message) Unpin() error {
 }
 
 // GetChat returns information about the chat where the message was sent.
-func (m *Message) GetChat() (*types.Chat, error) {
+func (m *Message) GetChat() (*gotdbot.Chat, error) {
 	return m.client.GetChat(m.ChatId)
 }
 
 // GetUser returns information about the sender of the message.
-func (m *Message) GetUser() (*types.User, error) {
+func (m *Message) GetUser() (*gotdbot.User, error) {
 	userId := m.FromID()
 	if userId == 0 {
 		return nil, nil
@@ -240,7 +240,7 @@ func (m *Message) Download(priority int32, offset int64, limit int64, synchronou
 		return nil, nil
 	}
 
-	resolve := func(f *types.File) (*types.File, error) {
+	resolve := func(f *gotdbot.File) (*gotdbot.File, error) {
 		if f == nil {
 			return nil, nil
 		}
@@ -255,7 +255,7 @@ func (m *Message) Download(priority int32, offset int64, limit int64, synchronou
 	}
 
 	var (
-		fileInfo *types.File
+		fileInfo *gotdbot.File
 		err      error
 	)
 
