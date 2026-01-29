@@ -23,6 +23,7 @@ func main() {
 	generateOptions(functions, classes)
 	generateMethods(functions, classes)
 	generateUpdates(types)
+	generateHelpers(types, functions, classes)
 
-	gofmt("gen_classes.go", "gen_types.go", "gen_functions.go", "gen_options.go", "gen_methods.go", "gen_updates.go")
+	gofmt("gen_classes.go", "gen_types.go", "gen_functions.go", "gen_options.go", "gen_methods.go", "gen_updates.go", "gen_helpers.go")
 }
