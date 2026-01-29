@@ -69,10 +69,3 @@ func main() {
 
 ```
 
-## Code Generation
-
-To regenerate the code from `td_api.tl`:
-
-```bash
-go run cmd/gotdgen/main.go
-```

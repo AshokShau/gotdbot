@@ -1,0 +1,31589 @@
+package gotdbot
+
+import "encoding/json"
+
+// AcceptCall Accepts an incoming call @call_id Call identifier @protocol The call protocols supported by the application
+type AcceptCall struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	CallId int32 `json:"call_id"`
+	//
+	Protocol *CallProtocol `json:"protocol"`
+}
+
+func (t *AcceptCall) Type() string {
+	return "acceptCall"
+}
+
+func (t *AcceptCall) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *AcceptCall) GetExtra() string {
+	return t.Extra
+}
+
+func (t *AcceptCall) MarshalJSON() ([]byte, error) {
+	type Alias AcceptCall
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "acceptCall",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// AcceptTermsOfService Accepts Telegram terms of services @terms_of_service_id Terms of service identifier
+type AcceptTermsOfService struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	TermsOfServiceId string `json:"terms_of_service_id"`
+}
+
+func (t *AcceptTermsOfService) Type() string {
+	return "acceptTermsOfService"
+}
+
+func (t *AcceptTermsOfService) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *AcceptTermsOfService) GetExtra() string {
+	return t.Extra
+}
+
+func (t *AcceptTermsOfService) MarshalJSON() ([]byte, error) {
+	type Alias AcceptTermsOfService
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "acceptTermsOfService",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ActivateStoryStealthMode Activates stealth mode for stories, which hides all views of stories from the current user in the last "story_stealth_mode_past_period" seconds
+type ActivateStoryStealthMode struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *ActivateStoryStealthMode) Type() string {
+	return "activateStoryStealthMode"
+}
+
+func (t *ActivateStoryStealthMode) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ActivateStoryStealthMode) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ActivateStoryStealthMode) MarshalJSON() ([]byte, error) {
+	type Alias ActivateStoryStealthMode
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "activateStoryStealthMode",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// AddBotMediaPreview Adds a new media preview to the beginning of the list of media previews of a bot. Returns the added preview after addition is completed server-side. The total number of previews must not exceed getOption("bot_media_preview_count_max") for the given language
+type AddBotMediaPreview struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the target bot. The bot must be owned and must have the main Web App
+	BotUserId int64 `json:"bot_user_id"`
+	// A two-letter ISO 639-1 language code for which preview is added. If empty, then the preview will be shown to all users for whose languages there are no dedicated previews.
+	LanguageCode string `json:"language_code"`
+	// Content of the added preview
+	Content *InputStoryContent `json:"content"`
+}
+
+func (t *AddBotMediaPreview) Type() string {
+	return "addBotMediaPreview"
+}
+
+func (t *AddBotMediaPreview) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *AddBotMediaPreview) GetExtra() string {
+	return t.Extra
+}
+
+func (t *AddBotMediaPreview) MarshalJSON() ([]byte, error) {
+	type Alias AddBotMediaPreview
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "addBotMediaPreview",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// AddChatFolderByInviteLink Adds a chat folder by an invite link @invite_link Invite link for the chat folder @chat_ids Identifiers of the chats added to the chat folder. The chats are automatically joined if they aren't joined yet
+type AddChatFolderByInviteLink struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	InviteLink string `json:"invite_link"`
+	//
+	ChatIds []int64 `json:"chat_ids"`
+}
+
+func (t *AddChatFolderByInviteLink) Type() string {
+	return "addChatFolderByInviteLink"
+}
+
+func (t *AddChatFolderByInviteLink) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *AddChatFolderByInviteLink) GetExtra() string {
+	return t.Extra
+}
+
+func (t *AddChatFolderByInviteLink) MarshalJSON() ([]byte, error) {
+	type Alias AddChatFolderByInviteLink
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "addChatFolderByInviteLink",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// AddChatMember Adds a new member to a chat; requires can_invite_users member right. Members can't be added to private or secret chats. Returns information about members that weren't added
+type AddChatMember struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the user
+	UserId int64 `json:"user_id"`
+	// The number of earlier messages from the chat to be forwarded to the new member; up to 100. Ignored for supergroups and channels, or if the added user is a bot
+	ForwardLimit int32 `json:"forward_limit"`
+}
+
+func (t *AddChatMember) Type() string {
+	return "addChatMember"
+}
+
+func (t *AddChatMember) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *AddChatMember) GetExtra() string {
+	return t.Extra
+}
+
+func (t *AddChatMember) MarshalJSON() ([]byte, error) {
+	type Alias AddChatMember
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "addChatMember",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// AddChatMembers Adds multiple new members to a chat; requires can_invite_users member right. Currently, this method is only available for supergroups and channels.
+type AddChatMembers struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Identifiers of the users to be added to the chat. The maximum number of added users is 20 for supergroups and 100 for channels
+	UserIds []int64 `json:"user_ids"`
+}
+
+func (t *AddChatMembers) Type() string {
+	return "addChatMembers"
+}
+
+func (t *AddChatMembers) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *AddChatMembers) GetExtra() string {
+	return t.Extra
+}
+
+func (t *AddChatMembers) MarshalJSON() ([]byte, error) {
+	type Alias AddChatMembers
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "addChatMembers",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// AddChatToList Adds a chat to a chat list. A chat can't be simultaneously in Main and Archive chat lists, so it is automatically removed from another one if needed
+type AddChatToList struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// The chat list. Use getChatListsToAddChat to get suitable chat lists
+	ChatList *ChatList `json:"chat_list"`
+}
+
+func (t *AddChatToList) Type() string {
+	return "addChatToList"
+}
+
+func (t *AddChatToList) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *AddChatToList) GetExtra() string {
+	return t.Extra
+}
+
+func (t *AddChatToList) MarshalJSON() ([]byte, error) {
+	type Alias AddChatToList
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "addChatToList",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// AddChecklistTasks Adds tasks to a checklist in a message
+type AddChecklistTasks struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat with the message
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message containing the checklist. Use messageProperties.can_add_tasks to check whether the tasks can be added
+	MessageId int64 `json:"message_id"`
+	// List of added tasks
+	Tasks []*InputChecklistTask `json:"tasks"`
+}
+
+func (t *AddChecklistTasks) Type() string {
+	return "addChecklistTasks"
+}
+
+func (t *AddChecklistTasks) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *AddChecklistTasks) GetExtra() string {
+	return t.Extra
+}
+
+func (t *AddChecklistTasks) MarshalJSON() ([]byte, error) {
+	type Alias AddChecklistTasks
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "addChecklistTasks",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// AddContact Adds a user to the contact list or edits an existing contact by their user identifier
+type AddContact struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the user
+	UserId int64 `json:"user_id"`
+	// The contact to add or edit; phone number may be empty and needs to be specified only if known
+	Contact *ImportedContact `json:"contact"`
+	// Pass true to share the current user's phone number with the new contact. A corresponding rule to userPrivacySettingShowPhoneNumber will be added if needed.
+	SharePhoneNumber bool `json:"share_phone_number"`
+}
+
+func (t *AddContact) Type() string {
+	return "addContact"
+}
+
+func (t *AddContact) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *AddContact) GetExtra() string {
+	return t.Extra
+}
+
+func (t *AddContact) MarshalJSON() ([]byte, error) {
+	type Alias AddContact
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "addContact",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// AddCustomServerLanguagePack Adds a custom server language pack to the list of installed language packs in current localization target. Can be called before authorization @language_pack_id Identifier of a language pack to be added
+type AddCustomServerLanguagePack struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	LanguagePackId string `json:"language_pack_id"`
+}
+
+func (t *AddCustomServerLanguagePack) Type() string {
+	return "addCustomServerLanguagePack"
+}
+
+func (t *AddCustomServerLanguagePack) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *AddCustomServerLanguagePack) GetExtra() string {
+	return t.Extra
+}
+
+func (t *AddCustomServerLanguagePack) MarshalJSON() ([]byte, error) {
+	type Alias AddCustomServerLanguagePack
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "addCustomServerLanguagePack",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// AddFavoriteSticker Adds a new sticker to the list of favorite stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first.
+type AddFavoriteSticker struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Sticker file to add
+	Sticker *InputFile `json:"sticker"`
+}
+
+func (t *AddFavoriteSticker) Type() string {
+	return "addFavoriteSticker"
+}
+
+func (t *AddFavoriteSticker) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *AddFavoriteSticker) GetExtra() string {
+	return t.Extra
+}
+
+func (t *AddFavoriteSticker) MarshalJSON() ([]byte, error) {
+	type Alias AddFavoriteSticker
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "addFavoriteSticker",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// AddFileToDownloads Adds a file from a message to the list of file downloads. Download progress and completion of the download will be notified through updateFile updates.
+type AddFileToDownloads struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the file to download
+	FileId int32 `json:"file_id"`
+	// Chat identifier of the message with the file
+	ChatId int64 `json:"chat_id"`
+	// Message identifier
+	MessageId int64 `json:"message_id"`
+	// Priority of the download (1-32). The higher the priority, the earlier the file will be downloaded. If the priorities of two files are equal, then the last one for which downloadFile/addFileToDownloads was called will be downloaded first
+	Priority int32 `json:"priority"`
+}
+
+func (t *AddFileToDownloads) Type() string {
+	return "addFileToDownloads"
+}
+
+func (t *AddFileToDownloads) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *AddFileToDownloads) GetExtra() string {
+	return t.Extra
+}
+
+func (t *AddFileToDownloads) MarshalJSON() ([]byte, error) {
+	type Alias AddFileToDownloads
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "addFileToDownloads",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// AddGiftCollectionGifts Adds gifts to the beginning of a previously created collection. If the collection is owned by a channel chat, then requires can_post_messages administrator right in the channel chat. Returns the changed collection
+type AddGiftCollectionGifts struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the user or the channel chat that owns the collection
+	OwnerId *MessageSender `json:"owner_id"`
+	// Identifier of the gift collection
+	CollectionId int32 `json:"collection_id"`
+	// Identifier of the gifts to add to the collection; 1-getOption("gift_collection_size_max") identifiers.
+	ReceivedGiftIds []string `json:"received_gift_ids"`
+}
+
+func (t *AddGiftCollectionGifts) Type() string {
+	return "addGiftCollectionGifts"
+}
+
+func (t *AddGiftCollectionGifts) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *AddGiftCollectionGifts) GetExtra() string {
+	return t.Extra
+}
+
+func (t *AddGiftCollectionGifts) MarshalJSON() ([]byte, error) {
+	type Alias AddGiftCollectionGifts
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "addGiftCollectionGifts",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// AddLocalMessage Adds a local message to a chat. The message is persistent across application restarts only if the message database is used. Returns the added message
+type AddLocalMessage struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Target chat; channel direct messages chats aren't supported
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the sender of the message
+	SenderId *MessageSender `json:"sender_id"`
+	// Information about the message or story to be replied; pass null if none
+	ReplyTo *InputMessageReplyTo `json:"reply_to,omitempty"`
+	// Pass true to disable notification for the message
+	DisableNotification bool `json:"disable_notification"`
+	// The content of the message to be added
+	InputMessageContent *InputMessageContent `json:"input_message_content"`
+}
+
+func (t *AddLocalMessage) Type() string {
+	return "addLocalMessage"
+}
+
+func (t *AddLocalMessage) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *AddLocalMessage) GetExtra() string {
+	return t.Extra
+}
+
+func (t *AddLocalMessage) MarshalJSON() ([]byte, error) {
+	type Alias AddLocalMessage
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "addLocalMessage",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// AddLoginPasskey Adds a passkey allowed to be used for the login by the current user and returns the added passkey. Call getPasskeyParameters to get parameters for creating of the passkey
+type AddLoginPasskey struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// JSON-encoded client data
+	ClientData string `json:"client_data"`
+	// Passkey attestation object
+	AttestationObject string `json:"attestation_object"`
+}
+
+func (t *AddLoginPasskey) Type() string {
+	return "addLoginPasskey"
+}
+
+func (t *AddLoginPasskey) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *AddLoginPasskey) GetExtra() string {
+	return t.Extra
+}
+
+func (t *AddLoginPasskey) MarshalJSON() ([]byte, error) {
+	type Alias AddLoginPasskey
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "addLoginPasskey",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// AddLogMessage Adds a message to TDLib internal log. Can be called synchronously
+type AddLogMessage struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The minimum verbosity level needed for the message to be logged; 0-1023
+	VerbosityLevel int32 `json:"verbosity_level"`
+	// Text of a message to log
+	Text string `json:"text"`
+}
+
+func (t *AddLogMessage) Type() string {
+	return "addLogMessage"
+}
+
+func (t *AddLogMessage) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *AddLogMessage) GetExtra() string {
+	return t.Extra
+}
+
+func (t *AddLogMessage) MarshalJSON() ([]byte, error) {
+	type Alias AddLogMessage
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "addLogMessage",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// AddMessageReaction Adds a reaction or a tag to a message. Use getMessageAvailableReactions to receive the list of available reactions for the message
+type AddMessageReaction struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat to which the message belongs
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message
+	MessageId int64 `json:"message_id"`
+	// Type of the reaction to add. Use addPendingPaidMessageReaction instead to add the paid reaction
+	ReactionType *ReactionType `json:"reaction_type"`
+	// Pass true if the reaction is added with a big animation
+	IsBig bool `json:"is_big"`
+	// Pass true if the reaction needs to be added to recent reactions; tags are never added to the list of recent reactions
+	UpdateRecentReactions bool `json:"update_recent_reactions"`
+}
+
+func (t *AddMessageReaction) Type() string {
+	return "addMessageReaction"
+}
+
+func (t *AddMessageReaction) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *AddMessageReaction) GetExtra() string {
+	return t.Extra
+}
+
+func (t *AddMessageReaction) MarshalJSON() ([]byte, error) {
+	type Alias AddMessageReaction
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "addMessageReaction",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// AddNetworkStatistics Adds the specified data to data usage statistics. Can be called before authorization @entry The network statistics entry with the data to be added to statistics
+type AddNetworkStatistics struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Entry *NetworkStatisticsEntry `json:"entry"`
+}
+
+func (t *AddNetworkStatistics) Type() string {
+	return "addNetworkStatistics"
+}
+
+func (t *AddNetworkStatistics) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *AddNetworkStatistics) GetExtra() string {
+	return t.Extra
+}
+
+func (t *AddNetworkStatistics) MarshalJSON() ([]byte, error) {
+	type Alias AddNetworkStatistics
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "addNetworkStatistics",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// AddOffer Sends a suggested post based on a previously sent message in a channel direct messages chat. Can be also used to suggest price or time change for an existing suggested post.
+type AddOffer struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the channel direct messages chat
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message in the chat which will be sent as suggested post. Use messageProperties.can_add_offer to check whether an offer can be added
+	MessageId int64 `json:"message_id"`
+	// Options to be used to send the message. New information about the suggested post must always be specified
+	Options *MessageSendOptions `json:"options"`
+}
+
+func (t *AddOffer) Type() string {
+	return "addOffer"
+}
+
+func (t *AddOffer) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *AddOffer) GetExtra() string {
+	return t.Extra
+}
+
+func (t *AddOffer) MarshalJSON() ([]byte, error) {
+	type Alias AddOffer
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "addOffer",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// AddPendingLiveStoryReaction Adds pending paid reaction in a live story group call. Can't be used in live stories posted by the current user.
+type AddPendingLiveStoryReaction struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Group call identifier
+	GroupCallId int32 `json:"group_call_id"`
+	// Number of Telegram Stars to be used for the reaction. The total number of pending paid reactions must not exceed getOption("paid_group_call_message_star_count_max")
+	StarCount int64 `json:"star_count"`
+}
+
+func (t *AddPendingLiveStoryReaction) Type() string {
+	return "addPendingLiveStoryReaction"
+}
+
+func (t *AddPendingLiveStoryReaction) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *AddPendingLiveStoryReaction) GetExtra() string {
+	return t.Extra
+}
+
+func (t *AddPendingLiveStoryReaction) MarshalJSON() ([]byte, error) {
+	type Alias AddPendingLiveStoryReaction
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "addPendingLiveStoryReaction",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// AddPendingPaidMessageReaction Adds the paid message reaction to a message. Use getMessageAvailableReactions to check whether the reaction is available for the message
+type AddPendingPaidMessageReaction struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat to which the message belongs
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message
+	MessageId int64 `json:"message_id"`
+	// Number of Telegram Stars to be used for the reaction. The total number of pending paid reactions must not exceed getOption("paid_reaction_star_count_max")
+	StarCount int64 `json:"star_count"`
+	// Type of the paid reaction; pass null if the user didn't choose reaction type explicitly, for example, the reaction is set from the message bubble
+	TypeField *PaidReactionType `json:"type,omitempty"`
+}
+
+func (t *AddPendingPaidMessageReaction) Type() string {
+	return "addPendingPaidMessageReaction"
+}
+
+func (t *AddPendingPaidMessageReaction) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *AddPendingPaidMessageReaction) GetExtra() string {
+	return t.Extra
+}
+
+func (t *AddPendingPaidMessageReaction) MarshalJSON() ([]byte, error) {
+	type Alias AddPendingPaidMessageReaction
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "addPendingPaidMessageReaction",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// AddProfileAudio Adds an audio file to the beginning of the profile audio files of the current user
+type AddProfileAudio struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the audio file to be added. The file must have been uploaded to the server
+	FileId int32 `json:"file_id"`
+}
+
+func (t *AddProfileAudio) Type() string {
+	return "addProfileAudio"
+}
+
+func (t *AddProfileAudio) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *AddProfileAudio) GetExtra() string {
+	return t.Extra
+}
+
+func (t *AddProfileAudio) MarshalJSON() ([]byte, error) {
+	type Alias AddProfileAudio
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "addProfileAudio",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// AddProxy Adds a proxy server for network requests. Can be called before authorization
+type AddProxy struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Proxy server domain or IP address
+	Server string `json:"server"`
+	// Proxy server port
+	Port int32 `json:"port"`
+	// Pass true to immediately enable the proxy
+	Enable bool `json:"enable"`
+	// Proxy type
+	TypeField *ProxyType `json:"type"`
+}
+
+func (t *AddProxy) Type() string {
+	return "addProxy"
+}
+
+func (t *AddProxy) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *AddProxy) GetExtra() string {
+	return t.Extra
+}
+
+func (t *AddProxy) MarshalJSON() ([]byte, error) {
+	type Alias AddProxy
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "addProxy",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// AddQuickReplyShortcutInlineQueryResultMessage Adds a message to a quick reply shortcut via inline bot. If shortcut doesn't exist and there are less than getOption("quick_reply_shortcut_count_max") shortcuts, then a new shortcut is created.
+type AddQuickReplyShortcutInlineQueryResultMessage struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Name of the target shortcut
+	ShortcutName string `json:"shortcut_name"`
+	// Identifier of a quick reply message in the same shortcut to be replied; pass 0 if none
+	ReplyToMessageId int64 `json:"reply_to_message_id"`
+	// Identifier of the inline query
+	QueryId string `json:"query_id"`
+	// Identifier of the inline query result
+	ResultId string `json:"result_id"`
+	// Pass true to hide the bot, via which the message is sent. Can be used only for bots getOption("animation_search_bot_username"), getOption("photo_search_bot_username"), and getOption("venue_search_bot_username")
+	HideViaBot bool `json:"hide_via_bot"`
+}
+
+func (t *AddQuickReplyShortcutInlineQueryResultMessage) Type() string {
+	return "addQuickReplyShortcutInlineQueryResultMessage"
+}
+
+func (t *AddQuickReplyShortcutInlineQueryResultMessage) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *AddQuickReplyShortcutInlineQueryResultMessage) GetExtra() string {
+	return t.Extra
+}
+
+func (t *AddQuickReplyShortcutInlineQueryResultMessage) MarshalJSON() ([]byte, error) {
+	type Alias AddQuickReplyShortcutInlineQueryResultMessage
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "addQuickReplyShortcutInlineQueryResultMessage",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// AddQuickReplyShortcutMessage Adds a message to a quick reply shortcut. If shortcut doesn't exist and there are less than getOption("quick_reply_shortcut_count_max") shortcuts, then a new shortcut is created.
+type AddQuickReplyShortcutMessage struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Name of the target shortcut
+	ShortcutName string `json:"shortcut_name"`
+	// Identifier of a quick reply message in the same shortcut to be replied; pass 0 if none
+	ReplyToMessageId int64 `json:"reply_to_message_id"`
+	// The content of the message to be added; inputMessagePaidMedia, inputMessageForwarded and inputMessageLocation with live_period aren't supported
+	InputMessageContent *InputMessageContent `json:"input_message_content"`
+}
+
+func (t *AddQuickReplyShortcutMessage) Type() string {
+	return "addQuickReplyShortcutMessage"
+}
+
+func (t *AddQuickReplyShortcutMessage) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *AddQuickReplyShortcutMessage) GetExtra() string {
+	return t.Extra
+}
+
+func (t *AddQuickReplyShortcutMessage) MarshalJSON() ([]byte, error) {
+	type Alias AddQuickReplyShortcutMessage
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "addQuickReplyShortcutMessage",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// AddQuickReplyShortcutMessageAlbum Adds 2-10 messages grouped together into an album to a quick reply shortcut. Currently, only audio, document, photo and video messages can be grouped into an album.
+type AddQuickReplyShortcutMessageAlbum struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Name of the target shortcut
+	ShortcutName string `json:"shortcut_name"`
+	// Identifier of a quick reply message in the same shortcut to be replied; pass 0 if none
+	ReplyToMessageId int64 `json:"reply_to_message_id"`
+	// Contents of messages to be sent. At most 10 messages can be added to an album. All messages must have the same value of show_caption_above_media
+	InputMessageContents []*InputMessageContent `json:"input_message_contents"`
+}
+
+func (t *AddQuickReplyShortcutMessageAlbum) Type() string {
+	return "addQuickReplyShortcutMessageAlbum"
+}
+
+func (t *AddQuickReplyShortcutMessageAlbum) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *AddQuickReplyShortcutMessageAlbum) GetExtra() string {
+	return t.Extra
+}
+
+func (t *AddQuickReplyShortcutMessageAlbum) MarshalJSON() ([]byte, error) {
+	type Alias AddQuickReplyShortcutMessageAlbum
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "addQuickReplyShortcutMessageAlbum",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// AddRecentlyFoundChat Adds a chat to the list of recently found chats. The chat is added to the beginning of the list. If the chat is already in the list, it will be removed from the list first @chat_id Identifier of the chat to add
+type AddRecentlyFoundChat struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+}
+
+func (t *AddRecentlyFoundChat) Type() string {
+	return "addRecentlyFoundChat"
+}
+
+func (t *AddRecentlyFoundChat) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *AddRecentlyFoundChat) GetExtra() string {
+	return t.Extra
+}
+
+func (t *AddRecentlyFoundChat) MarshalJSON() ([]byte, error) {
+	type Alias AddRecentlyFoundChat
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "addRecentlyFoundChat",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// AddRecentSticker Manually adds a new sticker to the list of recently used stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first.
+type AddRecentSticker struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Pass true to add the sticker to the list of stickers recently attached to photo or video files; pass false to add the sticker to the list of recently sent stickers
+	IsAttached bool `json:"is_attached"`
+	// Sticker file to add
+	Sticker *InputFile `json:"sticker"`
+}
+
+func (t *AddRecentSticker) Type() string {
+	return "addRecentSticker"
+}
+
+func (t *AddRecentSticker) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *AddRecentSticker) GetExtra() string {
+	return t.Extra
+}
+
+func (t *AddRecentSticker) MarshalJSON() ([]byte, error) {
+	type Alias AddRecentSticker
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "addRecentSticker",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// AddSavedAnimation Manually adds a new animation to the list of saved animations. The new animation is added to the beginning of the list. If the animation was already in the list, it is removed first.
+type AddSavedAnimation struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The animation file to be added. Only animations known to the server (i.e., successfully sent via a message) can be added to the list
+	Animation *InputFile `json:"animation"`
+}
+
+func (t *AddSavedAnimation) Type() string {
+	return "addSavedAnimation"
+}
+
+func (t *AddSavedAnimation) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *AddSavedAnimation) GetExtra() string {
+	return t.Extra
+}
+
+func (t *AddSavedAnimation) MarshalJSON() ([]byte, error) {
+	type Alias AddSavedAnimation
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "addSavedAnimation",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// AddSavedNotificationSound Adds a new notification sound to the list of saved notification sounds. The new notification sound is added to the top of the list. If it is already in the list, its position isn't changed @sound Notification sound file to add
+type AddSavedNotificationSound struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Sound *InputFile `json:"sound"`
+}
+
+func (t *AddSavedNotificationSound) Type() string {
+	return "addSavedNotificationSound"
+}
+
+func (t *AddSavedNotificationSound) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *AddSavedNotificationSound) GetExtra() string {
+	return t.Extra
+}
+
+func (t *AddSavedNotificationSound) MarshalJSON() ([]byte, error) {
+	type Alias AddSavedNotificationSound
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "addSavedNotificationSound",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// AddStickerToSet Adds a new sticker to a set
+type AddStickerToSet struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Sticker set owner; ignored for regular users
+	UserId int64 `json:"user_id"`
+	// Sticker set name. The sticker set must be owned by the current user, and contain less than 200 stickers for custom emoji sticker sets and less than 120 otherwise
+	Name string `json:"name"`
+	// Sticker to add to the set
+	Sticker *InputSticker `json:"sticker"`
+}
+
+func (t *AddStickerToSet) Type() string {
+	return "addStickerToSet"
+}
+
+func (t *AddStickerToSet) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *AddStickerToSet) GetExtra() string {
+	return t.Extra
+}
+
+func (t *AddStickerToSet) MarshalJSON() ([]byte, error) {
+	type Alias AddStickerToSet
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "addStickerToSet",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// AddStoryAlbumStories Adds stories to the beginning of a previously created story album. If the album is owned by a supergroup or a channel chat, then
+type AddStoryAlbumStories struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat that owns the stories
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the story album
+	StoryAlbumId int32 `json:"story_album_id"`
+	// Identifier of the stories to add to the album; 1-getOption("story_album_size_max") identifiers.
+	StoryIds []int32 `json:"story_ids"`
+}
+
+func (t *AddStoryAlbumStories) Type() string {
+	return "addStoryAlbumStories"
+}
+
+func (t *AddStoryAlbumStories) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *AddStoryAlbumStories) GetExtra() string {
+	return t.Extra
+}
+
+func (t *AddStoryAlbumStories) MarshalJSON() ([]byte, error) {
+	type Alias AddStoryAlbumStories
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "addStoryAlbumStories",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// AllowBotToSendMessages Allows the specified bot to send messages to the user @bot_user_id Identifier of the target bot
+type AllowBotToSendMessages struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	BotUserId int64 `json:"bot_user_id"`
+}
+
+func (t *AllowBotToSendMessages) Type() string {
+	return "allowBotToSendMessages"
+}
+
+func (t *AllowBotToSendMessages) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *AllowBotToSendMessages) GetExtra() string {
+	return t.Extra
+}
+
+func (t *AllowBotToSendMessages) MarshalJSON() ([]byte, error) {
+	type Alias AllowBotToSendMessages
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "allowBotToSendMessages",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// AllowUnpaidMessagesFromUser Allows the specified user to send unpaid private messages to the current user by adding a rule to userPrivacySettingAllowUnpaidMessages
+type AllowUnpaidMessagesFromUser struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the user
+	UserId int64 `json:"user_id"`
+	// Pass true to refund the user previously paid messages
+	RefundPayments bool `json:"refund_payments"`
+}
+
+func (t *AllowUnpaidMessagesFromUser) Type() string {
+	return "allowUnpaidMessagesFromUser"
+}
+
+func (t *AllowUnpaidMessagesFromUser) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *AllowUnpaidMessagesFromUser) GetExtra() string {
+	return t.Extra
+}
+
+func (t *AllowUnpaidMessagesFromUser) MarshalJSON() ([]byte, error) {
+	type Alias AllowUnpaidMessagesFromUser
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "allowUnpaidMessagesFromUser",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// AnswerCallbackQuery Sets the result of a callback query; for bots only
+type AnswerCallbackQuery struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the callback query
+	CallbackQueryId string `json:"callback_query_id"`
+	// Text of the answer
+	Text string `json:"text"`
+	// Pass true to show an alert to the user instead of a toast notification
+	ShowAlert bool `json:"show_alert"`
+	// URL to be opened
+	Url string `json:"url"`
+	// Time during which the result of the query can be cached, in seconds
+	CacheTime int32 `json:"cache_time"`
+}
+
+func (t *AnswerCallbackQuery) Type() string {
+	return "answerCallbackQuery"
+}
+
+func (t *AnswerCallbackQuery) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *AnswerCallbackQuery) GetExtra() string {
+	return t.Extra
+}
+
+func (t *AnswerCallbackQuery) MarshalJSON() ([]byte, error) {
+	type Alias AnswerCallbackQuery
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "answerCallbackQuery",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// AnswerCustomQuery Answers a custom query; for bots only @custom_query_id Identifier of a custom query @data JSON-serialized answer to the query
+type AnswerCustomQuery struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	CustomQueryId string `json:"custom_query_id"`
+	//
+	Data string `json:"data"`
+}
+
+func (t *AnswerCustomQuery) Type() string {
+	return "answerCustomQuery"
+}
+
+func (t *AnswerCustomQuery) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *AnswerCustomQuery) GetExtra() string {
+	return t.Extra
+}
+
+func (t *AnswerCustomQuery) MarshalJSON() ([]byte, error) {
+	type Alias AnswerCustomQuery
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "answerCustomQuery",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// AnswerInlineQuery Sets the result of an inline query; for bots only
+type AnswerInlineQuery struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the inline query
+	InlineQueryId string `json:"inline_query_id"`
+	// Pass true if results may be cached and returned only for the user that sent the query. By default, results may be returned to any user who sends the same query
+	IsPersonal bool `json:"is_personal"`
+	// Button to be shown above inline query results; pass null if none
+	Button *InlineQueryResultsButton `json:"button,omitempty"`
+	// The results of the query
+	Results []*InputInlineQueryResult `json:"results"`
+	// Allowed time to cache the results of the query, in seconds
+	CacheTime int32 `json:"cache_time"`
+	// Offset for the next inline query; pass an empty string if there are no more results
+	NextOffset string `json:"next_offset"`
+}
+
+func (t *AnswerInlineQuery) Type() string {
+	return "answerInlineQuery"
+}
+
+func (t *AnswerInlineQuery) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *AnswerInlineQuery) GetExtra() string {
+	return t.Extra
+}
+
+func (t *AnswerInlineQuery) MarshalJSON() ([]byte, error) {
+	type Alias AnswerInlineQuery
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "answerInlineQuery",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// AnswerPreCheckoutQuery Sets the result of a pre-checkout query; for bots only @pre_checkout_query_id Identifier of the pre-checkout query @error_message An error message, empty on success
+type AnswerPreCheckoutQuery struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	PreCheckoutQueryId string `json:"pre_checkout_query_id"`
+	//
+	ErrorMessage string `json:"error_message"`
+}
+
+func (t *AnswerPreCheckoutQuery) Type() string {
+	return "answerPreCheckoutQuery"
+}
+
+func (t *AnswerPreCheckoutQuery) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *AnswerPreCheckoutQuery) GetExtra() string {
+	return t.Extra
+}
+
+func (t *AnswerPreCheckoutQuery) MarshalJSON() ([]byte, error) {
+	type Alias AnswerPreCheckoutQuery
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "answerPreCheckoutQuery",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// AnswerShippingQuery Sets the result of a shipping query; for bots only @shipping_query_id Identifier of the shipping query @shipping_options Available shipping options @error_message An error message, empty on success
+type AnswerShippingQuery struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ShippingQueryId string `json:"shipping_query_id"`
+	//
+	ShippingOptions []*ShippingOption `json:"shipping_options"`
+	//
+	ErrorMessage string `json:"error_message"`
+}
+
+func (t *AnswerShippingQuery) Type() string {
+	return "answerShippingQuery"
+}
+
+func (t *AnswerShippingQuery) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *AnswerShippingQuery) GetExtra() string {
+	return t.Extra
+}
+
+func (t *AnswerShippingQuery) MarshalJSON() ([]byte, error) {
+	type Alias AnswerShippingQuery
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "answerShippingQuery",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// AnswerWebAppQuery Sets the result of interaction with a Web App and sends corresponding message on behalf of the user to the chat from which the query originated; for bots only
+type AnswerWebAppQuery struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the Web App query
+	WebAppQueryId string `json:"web_app_query_id"`
+	// The result of the query
+	Result *InputInlineQueryResult `json:"result"`
+}
+
+func (t *AnswerWebAppQuery) Type() string {
+	return "answerWebAppQuery"
+}
+
+func (t *AnswerWebAppQuery) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *AnswerWebAppQuery) GetExtra() string {
+	return t.Extra
+}
+
+func (t *AnswerWebAppQuery) MarshalJSON() ([]byte, error) {
+	type Alias AnswerWebAppQuery
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "answerWebAppQuery",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ApplyPremiumGiftCode Applies a Telegram Premium gift code @code The code to apply
+type ApplyPremiumGiftCode struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Code string `json:"code"`
+}
+
+func (t *ApplyPremiumGiftCode) Type() string {
+	return "applyPremiumGiftCode"
+}
+
+func (t *ApplyPremiumGiftCode) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ApplyPremiumGiftCode) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ApplyPremiumGiftCode) MarshalJSON() ([]byte, error) {
+	type Alias ApplyPremiumGiftCode
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "applyPremiumGiftCode",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ApproveSuggestedPost Approves a suggested post in a channel direct messages chat
+type ApproveSuggestedPost struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier of the channel direct messages chat
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message with the suggested post. Use messageProperties.can_be_approved to check whether the suggested post can be approved
+	MessageId int64 `json:"message_id"`
+	// Point in time (Unix timestamp) when the post is expected to be published; pass 0 if the date has already been chosen. If specified,
+	SendDate int32 `json:"send_date"`
+}
+
+func (t *ApproveSuggestedPost) Type() string {
+	return "approveSuggestedPost"
+}
+
+func (t *ApproveSuggestedPost) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ApproveSuggestedPost) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ApproveSuggestedPost) MarshalJSON() ([]byte, error) {
+	type Alias ApproveSuggestedPost
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "approveSuggestedPost",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// AssignStoreTransaction Informs server about an in-store purchase. For official applications only @transaction Information about the transaction @purpose Transaction purpose
+type AssignStoreTransaction struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Transaction *StoreTransaction `json:"transaction"`
+	//
+	Purpose *StorePaymentPurpose `json:"purpose"`
+}
+
+func (t *AssignStoreTransaction) Type() string {
+	return "assignStoreTransaction"
+}
+
+func (t *AssignStoreTransaction) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *AssignStoreTransaction) GetExtra() string {
+	return t.Extra
+}
+
+func (t *AssignStoreTransaction) MarshalJSON() ([]byte, error) {
+	type Alias AssignStoreTransaction
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "assignStoreTransaction",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// BanChatMember Bans a member in a chat; requires can_restrict_members administrator right. Members can't be banned in private or secret chats. In supergroups and channels, the user will not be able to return to the group on their own using invite links, etc., unless unbanned first
+type BanChatMember struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Member identifier
+	MemberId *MessageSender `json:"member_id"`
+	// Point in time (Unix timestamp) when the user will be unbanned; 0 if never. If the user is banned for more than 366 days or for less than 30 seconds from the current time, the user is considered to be banned forever. Ignored in basic groups and if a chat is banned
+	BannedUntilDate int32 `json:"banned_until_date"`
+	// Pass true to delete all messages in the chat for the user that is being removed. Always true for supergroups and channels
+	RevokeMessages bool `json:"revoke_messages"`
+}
+
+func (t *BanChatMember) Type() string {
+	return "banChatMember"
+}
+
+func (t *BanChatMember) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *BanChatMember) GetExtra() string {
+	return t.Extra
+}
+
+func (t *BanChatMember) MarshalJSON() ([]byte, error) {
+	type Alias BanChatMember
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "banChatMember",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// BanGroupCallParticipants Bans users from a group call not bound to a chat; requires groupCall.is_owned. Only the owner of the group call can invite the banned users back
+type BanGroupCallParticipants struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Group call identifier
+	GroupCallId int32 `json:"group_call_id"`
+	// Identifiers of group call participants to ban; identifiers of unknown users from the update updateGroupCallParticipants can be also passed to the method
+	UserIds []string `json:"user_ids"`
+}
+
+func (t *BanGroupCallParticipants) Type() string {
+	return "banGroupCallParticipants"
+}
+
+func (t *BanGroupCallParticipants) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *BanGroupCallParticipants) GetExtra() string {
+	return t.Extra
+}
+
+func (t *BanGroupCallParticipants) MarshalJSON() ([]byte, error) {
+	type Alias BanGroupCallParticipants
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "banGroupCallParticipants",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// BlockMessageSenderFromReplies Blocks an original sender of a message in the Replies chat
+type BlockMessageSenderFromReplies struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The identifier of an incoming message in the Replies chat
+	MessageId int64 `json:"message_id"`
+	// Pass true to delete the message
+	DeleteMessage bool `json:"delete_message"`
+	// Pass true to delete all messages from the same sender
+	DeleteAllMessages bool `json:"delete_all_messages"`
+	// Pass true to report the sender to the Telegram moderators
+	ReportSpam bool `json:"report_spam"`
+}
+
+func (t *BlockMessageSenderFromReplies) Type() string {
+	return "blockMessageSenderFromReplies"
+}
+
+func (t *BlockMessageSenderFromReplies) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *BlockMessageSenderFromReplies) GetExtra() string {
+	return t.Extra
+}
+
+func (t *BlockMessageSenderFromReplies) MarshalJSON() ([]byte, error) {
+	type Alias BlockMessageSenderFromReplies
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "blockMessageSenderFromReplies",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// BoostChat Boosts a chat and returns the list of available chat boost slots for the current user after the boost
+type BoostChat struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat
+	ChatId int64 `json:"chat_id"`
+	// Identifiers of boost slots of the current user from which to apply boosts to the chat
+	SlotIds []int32 `json:"slot_ids"`
+}
+
+func (t *BoostChat) Type() string {
+	return "boostChat"
+}
+
+func (t *BoostChat) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *BoostChat) GetExtra() string {
+	return t.Extra
+}
+
+func (t *BoostChat) MarshalJSON() ([]byte, error) {
+	type Alias BoostChat
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "boostChat",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// BuyGiftUpgrade Pays for upgrade of a regular gift that is owned by another user or channel chat
+type BuyGiftUpgrade struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the user or the channel chat that owns the gift
+	OwnerId *MessageSender `json:"owner_id"`
+	// Prepaid upgrade hash as received along with the gift
+	PrepaidUpgradeHash string `json:"prepaid_upgrade_hash"`
+	// The amount of Telegram Stars the user agreed to pay for the upgrade; must be equal to gift.upgrade_star_count
+	StarCount int64 `json:"star_count"`
+}
+
+func (t *BuyGiftUpgrade) Type() string {
+	return "buyGiftUpgrade"
+}
+
+func (t *BuyGiftUpgrade) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *BuyGiftUpgrade) GetExtra() string {
+	return t.Extra
+}
+
+func (t *BuyGiftUpgrade) MarshalJSON() ([]byte, error) {
+	type Alias BuyGiftUpgrade
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "buyGiftUpgrade",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CanBotSendMessages Checks whether the specified bot can send messages to the user. Returns a 404 error if can't and the access can be granted by call to allowBotToSendMessages @bot_user_id Identifier of the target bot
+type CanBotSendMessages struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	BotUserId int64 `json:"bot_user_id"`
+}
+
+func (t *CanBotSendMessages) Type() string {
+	return "canBotSendMessages"
+}
+
+func (t *CanBotSendMessages) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CanBotSendMessages) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CanBotSendMessages) MarshalJSON() ([]byte, error) {
+	type Alias CanBotSendMessages
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "canBotSendMessages",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CancelDownloadFile Stops the downloading of a file. If a file has already been downloaded, does nothing @file_id Identifier of a file to stop downloading @only_if_pending Pass true to stop downloading only if it hasn't been started, i.e. request hasn't been sent to server
+type CancelDownloadFile struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	FileId int32 `json:"file_id"`
+	//
+	OnlyIfPending bool `json:"only_if_pending"`
+}
+
+func (t *CancelDownloadFile) Type() string {
+	return "cancelDownloadFile"
+}
+
+func (t *CancelDownloadFile) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CancelDownloadFile) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CancelDownloadFile) MarshalJSON() ([]byte, error) {
+	type Alias CancelDownloadFile
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "cancelDownloadFile",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CancelPasswordReset Cancels reset of 2-step verification password. The method can be called if passwordState.pending_reset_date > 0
+type CancelPasswordReset struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *CancelPasswordReset) Type() string {
+	return "cancelPasswordReset"
+}
+
+func (t *CancelPasswordReset) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CancelPasswordReset) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CancelPasswordReset) MarshalJSON() ([]byte, error) {
+	type Alias CancelPasswordReset
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "cancelPasswordReset",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CancelPreliminaryUploadFile Stops the preliminary uploading of a file. Supported only for files uploaded by using preliminaryUploadFile @file_id Identifier of the file to stop uploading
+type CancelPreliminaryUploadFile struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	FileId int32 `json:"file_id"`
+}
+
+func (t *CancelPreliminaryUploadFile) Type() string {
+	return "cancelPreliminaryUploadFile"
+}
+
+func (t *CancelPreliminaryUploadFile) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CancelPreliminaryUploadFile) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CancelPreliminaryUploadFile) MarshalJSON() ([]byte, error) {
+	type Alias CancelPreliminaryUploadFile
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "cancelPreliminaryUploadFile",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CancelRecoveryEmailAddressVerification Cancels verification of the 2-step verification recovery email address
+type CancelRecoveryEmailAddressVerification struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *CancelRecoveryEmailAddressVerification) Type() string {
+	return "cancelRecoveryEmailAddressVerification"
+}
+
+func (t *CancelRecoveryEmailAddressVerification) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CancelRecoveryEmailAddressVerification) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CancelRecoveryEmailAddressVerification) MarshalJSON() ([]byte, error) {
+	type Alias CancelRecoveryEmailAddressVerification
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "cancelRecoveryEmailAddressVerification",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CanPostStory Checks whether the current user can post a story on behalf of a chat; requires can_post_stories administrator right for supergroup and channel chats
+type CanPostStory struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier. Pass Saved Messages chat identifier when posting a story on behalf of the current user
+	ChatId int64 `json:"chat_id"`
+}
+
+func (t *CanPostStory) Type() string {
+	return "canPostStory"
+}
+
+func (t *CanPostStory) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CanPostStory) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CanPostStory) MarshalJSON() ([]byte, error) {
+	type Alias CanPostStory
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "canPostStory",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CanPurchaseFromStore Checks whether an in-store purchase is possible. Must be called before any in-store purchase. For official applications only @purpose Transaction purpose
+type CanPurchaseFromStore struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Purpose *StorePaymentPurpose `json:"purpose"`
+}
+
+func (t *CanPurchaseFromStore) Type() string {
+	return "canPurchaseFromStore"
+}
+
+func (t *CanPurchaseFromStore) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CanPurchaseFromStore) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CanPurchaseFromStore) MarshalJSON() ([]byte, error) {
+	type Alias CanPurchaseFromStore
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "canPurchaseFromStore",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CanSendGift Checks whether a gift with next_send_date in the future can be sent already
+type CanSendGift struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the gift to send
+	GiftId string `json:"gift_id"`
+}
+
+func (t *CanSendGift) Type() string {
+	return "canSendGift"
+}
+
+func (t *CanSendGift) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CanSendGift) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CanSendGift) MarshalJSON() ([]byte, error) {
+	type Alias CanSendGift
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "canSendGift",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CanSendMessageToUser Checks whether the current user can message another user or try to create a chat with them
+type CanSendMessageToUser struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the other user
+	UserId int64 `json:"user_id"`
+	// Pass true to get only locally available information without sending network requests
+	OnlyLocal bool `json:"only_local"`
+}
+
+func (t *CanSendMessageToUser) Type() string {
+	return "canSendMessageToUser"
+}
+
+func (t *CanSendMessageToUser) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CanSendMessageToUser) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CanSendMessageToUser) MarshalJSON() ([]byte, error) {
+	type Alias CanSendMessageToUser
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "canSendMessageToUser",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CanTransferOwnership Checks whether the current session can be used to transfer a chat ownership to another user
+type CanTransferOwnership struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *CanTransferOwnership) Type() string {
+	return "canTransferOwnership"
+}
+
+func (t *CanTransferOwnership) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CanTransferOwnership) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CanTransferOwnership) MarshalJSON() ([]byte, error) {
+	type Alias CanTransferOwnership
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "canTransferOwnership",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ChangeImportedContacts Changes imported contacts using the list of contacts saved on the device. Imports newly added contacts and, if at least the file database is enabled, deletes recently deleted contacts.
+type ChangeImportedContacts struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The new list of contacts to import
+	Contacts []*ImportedContact `json:"contacts"`
+}
+
+func (t *ChangeImportedContacts) Type() string {
+	return "changeImportedContacts"
+}
+
+func (t *ChangeImportedContacts) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ChangeImportedContacts) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ChangeImportedContacts) MarshalJSON() ([]byte, error) {
+	type Alias ChangeImportedContacts
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "changeImportedContacts",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ChangeStickerSet Installs/uninstalls or activates/archives a sticker set @set_id Identifier of the sticker set @is_installed The new value of is_installed @is_archived The new value of is_archived. A sticker set can't be installed and archived simultaneously
+type ChangeStickerSet struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	SetId string `json:"set_id"`
+	//
+	IsInstalled bool `json:"is_installed"`
+	//
+	IsArchived bool `json:"is_archived"`
+}
+
+func (t *ChangeStickerSet) Type() string {
+	return "changeStickerSet"
+}
+
+func (t *ChangeStickerSet) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ChangeStickerSet) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ChangeStickerSet) MarshalJSON() ([]byte, error) {
+	type Alias ChangeStickerSet
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "changeStickerSet",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CheckAuthenticationBotToken Checks the authentication token of a bot; to log in as a bot. Works only when the current authorization state is authorizationStateWaitPhoneNumber. Can be used instead of setAuthenticationPhoneNumber and checkAuthenticationCode to log in @token The bot token
+type CheckAuthenticationBotToken struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Token string `json:"token"`
+}
+
+func (t *CheckAuthenticationBotToken) Type() string {
+	return "checkAuthenticationBotToken"
+}
+
+func (t *CheckAuthenticationBotToken) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CheckAuthenticationBotToken) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CheckAuthenticationBotToken) MarshalJSON() ([]byte, error) {
+	type Alias CheckAuthenticationBotToken
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "checkAuthenticationBotToken",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CheckAuthenticationCode Checks the authentication code. Works only when the current authorization state is authorizationStateWaitCode @code Authentication code to check
+type CheckAuthenticationCode struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Code string `json:"code"`
+}
+
+func (t *CheckAuthenticationCode) Type() string {
+	return "checkAuthenticationCode"
+}
+
+func (t *CheckAuthenticationCode) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CheckAuthenticationCode) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CheckAuthenticationCode) MarshalJSON() ([]byte, error) {
+	type Alias CheckAuthenticationCode
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "checkAuthenticationCode",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CheckAuthenticationEmailCode Checks the authentication of an email address. Works only when the current authorization state is authorizationStateWaitEmailCode @code Email address authentication to check
+type CheckAuthenticationEmailCode struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Code *EmailAddressAuthentication `json:"code"`
+}
+
+func (t *CheckAuthenticationEmailCode) Type() string {
+	return "checkAuthenticationEmailCode"
+}
+
+func (t *CheckAuthenticationEmailCode) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CheckAuthenticationEmailCode) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CheckAuthenticationEmailCode) MarshalJSON() ([]byte, error) {
+	type Alias CheckAuthenticationEmailCode
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "checkAuthenticationEmailCode",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CheckAuthenticationPasskey Checks a passkey to log in to the corresponding account. Call getAuthenticationPasskeyParameters to get parameters for the passkey. Works only when the current authorization state is
+type CheckAuthenticationPasskey struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Base64url-encoded identifier of the credential
+	CredentialId string `json:"credential_id"`
+	// JSON-encoded client data
+	ClientData string `json:"client_data"`
+	// Authenticator data of the application that created the credential
+	AuthenticatorData string `json:"authenticator_data"`
+	// Cryptographic signature of the credential
+	Signature string `json:"signature"`
+	// User handle of the passkey
+	UserHandle string `json:"user_handle"`
+}
+
+func (t *CheckAuthenticationPasskey) Type() string {
+	return "checkAuthenticationPasskey"
+}
+
+func (t *CheckAuthenticationPasskey) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CheckAuthenticationPasskey) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CheckAuthenticationPasskey) MarshalJSON() ([]byte, error) {
+	type Alias CheckAuthenticationPasskey
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "checkAuthenticationPasskey",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CheckAuthenticationPassword Checks the 2-step verification password for correctness. Works only when the current authorization state is authorizationStateWaitPassword @password The 2-step verification password to check
+type CheckAuthenticationPassword struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Password string `json:"password"`
+}
+
+func (t *CheckAuthenticationPassword) Type() string {
+	return "checkAuthenticationPassword"
+}
+
+func (t *CheckAuthenticationPassword) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CheckAuthenticationPassword) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CheckAuthenticationPassword) MarshalJSON() ([]byte, error) {
+	type Alias CheckAuthenticationPassword
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "checkAuthenticationPassword",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CheckAuthenticationPasswordRecoveryCode Checks whether a 2-step verification password recovery code sent to an email address is valid. Works only when the current authorization state is authorizationStateWaitPassword @recovery_code Recovery code to check
+type CheckAuthenticationPasswordRecoveryCode struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	RecoveryCode string `json:"recovery_code"`
+}
+
+func (t *CheckAuthenticationPasswordRecoveryCode) Type() string {
+	return "checkAuthenticationPasswordRecoveryCode"
+}
+
+func (t *CheckAuthenticationPasswordRecoveryCode) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CheckAuthenticationPasswordRecoveryCode) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CheckAuthenticationPasswordRecoveryCode) MarshalJSON() ([]byte, error) {
+	type Alias CheckAuthenticationPasswordRecoveryCode
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "checkAuthenticationPasswordRecoveryCode",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CheckAuthenticationPremiumPurchase Checks whether an in-store purchase of Telegram Premium is possible before authorization. Works only when the current authorization state is authorizationStateWaitPremiumPurchase
+type CheckAuthenticationPremiumPurchase struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// ISO 4217 currency code of the payment currency
+	Currency string `json:"currency"`
+	// Paid amount, in the smallest units of the currency
+	Amount int64 `json:"amount"`
+}
+
+func (t *CheckAuthenticationPremiumPurchase) Type() string {
+	return "checkAuthenticationPremiumPurchase"
+}
+
+func (t *CheckAuthenticationPremiumPurchase) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CheckAuthenticationPremiumPurchase) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CheckAuthenticationPremiumPurchase) MarshalJSON() ([]byte, error) {
+	type Alias CheckAuthenticationPremiumPurchase
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "checkAuthenticationPremiumPurchase",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CheckChatFolderInviteLink Checks the validity of an invite link for a chat folder and returns information about the corresponding chat folder @invite_link Invite link to be checked
+type CheckChatFolderInviteLink struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	InviteLink string `json:"invite_link"`
+}
+
+func (t *CheckChatFolderInviteLink) Type() string {
+	return "checkChatFolderInviteLink"
+}
+
+func (t *CheckChatFolderInviteLink) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CheckChatFolderInviteLink) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CheckChatFolderInviteLink) MarshalJSON() ([]byte, error) {
+	type Alias CheckChatFolderInviteLink
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "checkChatFolderInviteLink",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CheckChatInviteLink Checks the validity of an invite link for a chat and returns information about the corresponding chat @invite_link Invite link to be checked
+type CheckChatInviteLink struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	InviteLink string `json:"invite_link"`
+}
+
+func (t *CheckChatInviteLink) Type() string {
+	return "checkChatInviteLink"
+}
+
+func (t *CheckChatInviteLink) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CheckChatInviteLink) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CheckChatInviteLink) MarshalJSON() ([]byte, error) {
+	type Alias CheckChatInviteLink
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "checkChatInviteLink",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CheckChatUsername Checks whether a username can be set for a chat @chat_id Chat identifier; must be identifier of a supergroup chat, or a channel chat, or a private chat with self, or 0 if the chat is being created @username Username to be checked
+type CheckChatUsername struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+	//
+	Username string `json:"username"`
+}
+
+func (t *CheckChatUsername) Type() string {
+	return "checkChatUsername"
+}
+
+func (t *CheckChatUsername) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CheckChatUsername) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CheckChatUsername) MarshalJSON() ([]byte, error) {
+	type Alias CheckChatUsername
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "checkChatUsername",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CheckCreatedPublicChatsLimit Checks whether the maximum number of owned public chats has been reached. Returns corresponding error if the limit was reached. The limit can be increased with Telegram Premium @type Type of the public chats, for which to check the limit
+type CheckCreatedPublicChatsLimit struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	TypeField *PublicChatType `json:"type"`
+}
+
+func (t *CheckCreatedPublicChatsLimit) Type() string {
+	return "checkCreatedPublicChatsLimit"
+}
+
+func (t *CheckCreatedPublicChatsLimit) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CheckCreatedPublicChatsLimit) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CheckCreatedPublicChatsLimit) MarshalJSON() ([]byte, error) {
+	type Alias CheckCreatedPublicChatsLimit
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "checkCreatedPublicChatsLimit",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CheckEmailAddressVerificationCode Checks the email address verification code for Telegram Passport @code Verification code to check
+type CheckEmailAddressVerificationCode struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Code string `json:"code"`
+}
+
+func (t *CheckEmailAddressVerificationCode) Type() string {
+	return "checkEmailAddressVerificationCode"
+}
+
+func (t *CheckEmailAddressVerificationCode) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CheckEmailAddressVerificationCode) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CheckEmailAddressVerificationCode) MarshalJSON() ([]byte, error) {
+	type Alias CheckEmailAddressVerificationCode
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "checkEmailAddressVerificationCode",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CheckLoginEmailAddressCode Checks the login email address authentication @code Email address authentication to check
+type CheckLoginEmailAddressCode struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Code *EmailAddressAuthentication `json:"code"`
+}
+
+func (t *CheckLoginEmailAddressCode) Type() string {
+	return "checkLoginEmailAddressCode"
+}
+
+func (t *CheckLoginEmailAddressCode) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CheckLoginEmailAddressCode) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CheckLoginEmailAddressCode) MarshalJSON() ([]byte, error) {
+	type Alias CheckLoginEmailAddressCode
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "checkLoginEmailAddressCode",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CheckPasswordRecoveryCode Checks whether a 2-step verification password recovery code sent to an email address is valid @recovery_code Recovery code to check
+type CheckPasswordRecoveryCode struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	RecoveryCode string `json:"recovery_code"`
+}
+
+func (t *CheckPasswordRecoveryCode) Type() string {
+	return "checkPasswordRecoveryCode"
+}
+
+func (t *CheckPasswordRecoveryCode) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CheckPasswordRecoveryCode) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CheckPasswordRecoveryCode) MarshalJSON() ([]byte, error) {
+	type Alias CheckPasswordRecoveryCode
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "checkPasswordRecoveryCode",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CheckPhoneNumberCode Checks the authentication code and completes the request for which the code was sent if appropriate @code Authentication code to check
+type CheckPhoneNumberCode struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Code string `json:"code"`
+}
+
+func (t *CheckPhoneNumberCode) Type() string {
+	return "checkPhoneNumberCode"
+}
+
+func (t *CheckPhoneNumberCode) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CheckPhoneNumberCode) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CheckPhoneNumberCode) MarshalJSON() ([]byte, error) {
+	type Alias CheckPhoneNumberCode
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "checkPhoneNumberCode",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CheckPremiumGiftCode Returns information about a Telegram Premium gift code @code The code to check
+type CheckPremiumGiftCode struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Code string `json:"code"`
+}
+
+func (t *CheckPremiumGiftCode) Type() string {
+	return "checkPremiumGiftCode"
+}
+
+func (t *CheckPremiumGiftCode) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CheckPremiumGiftCode) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CheckPremiumGiftCode) MarshalJSON() ([]byte, error) {
+	type Alias CheckPremiumGiftCode
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "checkPremiumGiftCode",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CheckQuickReplyShortcutName Checks validness of a name for a quick reply shortcut. Can be called synchronously @name The name of the shortcut; 1-32 characters
+type CheckQuickReplyShortcutName struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Name string `json:"name"`
+}
+
+func (t *CheckQuickReplyShortcutName) Type() string {
+	return "checkQuickReplyShortcutName"
+}
+
+func (t *CheckQuickReplyShortcutName) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CheckQuickReplyShortcutName) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CheckQuickReplyShortcutName) MarshalJSON() ([]byte, error) {
+	type Alias CheckQuickReplyShortcutName
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "checkQuickReplyShortcutName",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CheckRecoveryEmailAddressCode Checks the 2-step verification recovery email address verification code @code Verification code to check
+type CheckRecoveryEmailAddressCode struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Code string `json:"code"`
+}
+
+func (t *CheckRecoveryEmailAddressCode) Type() string {
+	return "checkRecoveryEmailAddressCode"
+}
+
+func (t *CheckRecoveryEmailAddressCode) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CheckRecoveryEmailAddressCode) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CheckRecoveryEmailAddressCode) MarshalJSON() ([]byte, error) {
+	type Alias CheckRecoveryEmailAddressCode
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "checkRecoveryEmailAddressCode",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CheckStickerSetName Checks whether a name can be used for a new sticker set @name Name to be checked
+type CheckStickerSetName struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Name string `json:"name"`
+}
+
+func (t *CheckStickerSetName) Type() string {
+	return "checkStickerSetName"
+}
+
+func (t *CheckStickerSetName) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CheckStickerSetName) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CheckStickerSetName) MarshalJSON() ([]byte, error) {
+	type Alias CheckStickerSetName
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "checkStickerSetName",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CheckWebAppFileDownload Checks whether a file can be downloaded and saved locally by Web App request
+type CheckWebAppFileDownload struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the bot, providing the Web App
+	BotUserId int64 `json:"bot_user_id"`
+	// Name of the file
+	FileName string `json:"file_name"`
+	// URL of the file
+	Url string `json:"url"`
+}
+
+func (t *CheckWebAppFileDownload) Type() string {
+	return "checkWebAppFileDownload"
+}
+
+func (t *CheckWebAppFileDownload) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CheckWebAppFileDownload) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CheckWebAppFileDownload) MarshalJSON() ([]byte, error) {
+	type Alias CheckWebAppFileDownload
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "checkWebAppFileDownload",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CleanFileName Removes potentially dangerous characters from the name of a file. Returns an empty string on failure. Can be called synchronously @file_name File name or path to the file
+type CleanFileName struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	FileName string `json:"file_name"`
+}
+
+func (t *CleanFileName) Type() string {
+	return "cleanFileName"
+}
+
+func (t *CleanFileName) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CleanFileName) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CleanFileName) MarshalJSON() ([]byte, error) {
+	type Alias CleanFileName
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "cleanFileName",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ClearAllDraftMessages Clears message drafts in all chats @exclude_secret_chats Pass true to keep local message drafts in secret chats
+type ClearAllDraftMessages struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ExcludeSecretChats bool `json:"exclude_secret_chats"`
+}
+
+func (t *ClearAllDraftMessages) Type() string {
+	return "clearAllDraftMessages"
+}
+
+func (t *ClearAllDraftMessages) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ClearAllDraftMessages) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ClearAllDraftMessages) MarshalJSON() ([]byte, error) {
+	type Alias ClearAllDraftMessages
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "clearAllDraftMessages",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ClearAutosaveSettingsExceptions Clears the list of all autosave settings exceptions. The method is guaranteed to work only after at least one call to getAutosaveSettings
+type ClearAutosaveSettingsExceptions struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *ClearAutosaveSettingsExceptions) Type() string {
+	return "clearAutosaveSettingsExceptions"
+}
+
+func (t *ClearAutosaveSettingsExceptions) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ClearAutosaveSettingsExceptions) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ClearAutosaveSettingsExceptions) MarshalJSON() ([]byte, error) {
+	type Alias ClearAutosaveSettingsExceptions
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "clearAutosaveSettingsExceptions",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ClearImportedContacts Clears all imported contacts, contact list remains unchanged
+type ClearImportedContacts struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *ClearImportedContacts) Type() string {
+	return "clearImportedContacts"
+}
+
+func (t *ClearImportedContacts) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ClearImportedContacts) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ClearImportedContacts) MarshalJSON() ([]byte, error) {
+	type Alias ClearImportedContacts
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "clearImportedContacts",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ClearRecentEmojiStatuses Clears the list of recently used emoji statuses for self status
+type ClearRecentEmojiStatuses struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *ClearRecentEmojiStatuses) Type() string {
+	return "clearRecentEmojiStatuses"
+}
+
+func (t *ClearRecentEmojiStatuses) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ClearRecentEmojiStatuses) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ClearRecentEmojiStatuses) MarshalJSON() ([]byte, error) {
+	type Alias ClearRecentEmojiStatuses
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "clearRecentEmojiStatuses",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ClearRecentlyFoundChats Clears the list of recently found chats
+type ClearRecentlyFoundChats struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *ClearRecentlyFoundChats) Type() string {
+	return "clearRecentlyFoundChats"
+}
+
+func (t *ClearRecentlyFoundChats) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ClearRecentlyFoundChats) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ClearRecentlyFoundChats) MarshalJSON() ([]byte, error) {
+	type Alias ClearRecentlyFoundChats
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "clearRecentlyFoundChats",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ClearRecentReactions Clears the list of recently used reactions
+type ClearRecentReactions struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *ClearRecentReactions) Type() string {
+	return "clearRecentReactions"
+}
+
+func (t *ClearRecentReactions) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ClearRecentReactions) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ClearRecentReactions) MarshalJSON() ([]byte, error) {
+	type Alias ClearRecentReactions
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "clearRecentReactions",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ClearRecentStickers Clears the list of recently used stickers @is_attached Pass true to clear the list of stickers recently attached to photo or video files; pass false to clear the list of recently sent stickers
+type ClearRecentStickers struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	IsAttached bool `json:"is_attached"`
+}
+
+func (t *ClearRecentStickers) Type() string {
+	return "clearRecentStickers"
+}
+
+func (t *ClearRecentStickers) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ClearRecentStickers) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ClearRecentStickers) MarshalJSON() ([]byte, error) {
+	type Alias ClearRecentStickers
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "clearRecentStickers",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ClearSearchedForTags Clears the list of recently searched for hashtags or cashtags @clear_cashtags Pass true to clear the list of recently searched for cashtags; otherwise, the list of recently searched for hashtags will be cleared
+type ClearSearchedForTags struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ClearCashtags bool `json:"clear_cashtags"`
+}
+
+func (t *ClearSearchedForTags) Type() string {
+	return "clearSearchedForTags"
+}
+
+func (t *ClearSearchedForTags) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ClearSearchedForTags) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ClearSearchedForTags) MarshalJSON() ([]byte, error) {
+	type Alias ClearSearchedForTags
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "clearSearchedForTags",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ClickAnimatedEmojiMessage Informs TDLib that a message with an animated emoji was clicked by the user. Returns a big animated sticker to be played or a 404 error if usual animation needs to be played @chat_id Chat identifier of the message @message_id Identifier of the clicked message
+type ClickAnimatedEmojiMessage struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+	//
+	MessageId int64 `json:"message_id"`
+}
+
+func (t *ClickAnimatedEmojiMessage) Type() string {
+	return "clickAnimatedEmojiMessage"
+}
+
+func (t *ClickAnimatedEmojiMessage) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ClickAnimatedEmojiMessage) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ClickAnimatedEmojiMessage) MarshalJSON() ([]byte, error) {
+	type Alias ClickAnimatedEmojiMessage
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "clickAnimatedEmojiMessage",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ClickChatSponsoredMessage Informs TDLib that the user opened the sponsored chat via the button, the name, the chat photo, a mention in the sponsored message text, or the media in the sponsored message
+type ClickChatSponsoredMessage struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier of the sponsored message
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the sponsored message
+	MessageId int64 `json:"message_id"`
+	// Pass true if the media was clicked in the sponsored message
+	IsMediaClick bool `json:"is_media_click"`
+	// Pass true if the user expanded the video from the sponsored message fullscreen before the click
+	FromFullscreen bool `json:"from_fullscreen"`
+}
+
+func (t *ClickChatSponsoredMessage) Type() string {
+	return "clickChatSponsoredMessage"
+}
+
+func (t *ClickChatSponsoredMessage) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ClickChatSponsoredMessage) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ClickChatSponsoredMessage) MarshalJSON() ([]byte, error) {
+	type Alias ClickChatSponsoredMessage
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "clickChatSponsoredMessage",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ClickPremiumSubscriptionButton Informs TDLib that the user clicked Premium subscription button on the Premium features screen
+type ClickPremiumSubscriptionButton struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *ClickPremiumSubscriptionButton) Type() string {
+	return "clickPremiumSubscriptionButton"
+}
+
+func (t *ClickPremiumSubscriptionButton) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ClickPremiumSubscriptionButton) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ClickPremiumSubscriptionButton) MarshalJSON() ([]byte, error) {
+	type Alias ClickPremiumSubscriptionButton
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "clickPremiumSubscriptionButton",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ClickVideoMessageAdvertisement Informs TDLib that the user clicked a video message advertisement @advertisement_unique_id Unique identifier of the advertisement
+type ClickVideoMessageAdvertisement struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	AdvertisementUniqueId int64 `json:"advertisement_unique_id"`
+}
+
+func (t *ClickVideoMessageAdvertisement) Type() string {
+	return "clickVideoMessageAdvertisement"
+}
+
+func (t *ClickVideoMessageAdvertisement) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ClickVideoMessageAdvertisement) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ClickVideoMessageAdvertisement) MarshalJSON() ([]byte, error) {
+	type Alias ClickVideoMessageAdvertisement
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "clickVideoMessageAdvertisement",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// Close Closes the TDLib instance. All databases will be flushed to disk and properly closed. After the close completes, updateAuthorizationState with authorizationStateClosed will be sent. Can be called before initialization
+type Close struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *Close) Type() string {
+	return "close"
+}
+
+func (t *Close) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *Close) GetExtra() string {
+	return t.Extra
+}
+
+func (t *Close) MarshalJSON() ([]byte, error) {
+	type Alias Close
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "close",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CloseChat Informs TDLib that the chat is closed by the user. Many useful activities depend on the chat being opened or closed @chat_id Chat identifier
+type CloseChat struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+}
+
+func (t *CloseChat) Type() string {
+	return "closeChat"
+}
+
+func (t *CloseChat) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CloseChat) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CloseChat) MarshalJSON() ([]byte, error) {
+	type Alias CloseChat
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "closeChat",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CloseGiftAuction Informs TDLib that a gift auction was closed by the user @gift_id Identifier of the gift, which auction was closed
+type CloseGiftAuction struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	GiftId string `json:"gift_id"`
+}
+
+func (t *CloseGiftAuction) Type() string {
+	return "closeGiftAuction"
+}
+
+func (t *CloseGiftAuction) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CloseGiftAuction) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CloseGiftAuction) MarshalJSON() ([]byte, error) {
+	type Alias CloseGiftAuction
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "closeGiftAuction",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CloseSecretChat Closes a secret chat, effectively transferring its state to secretChatStateClosed @secret_chat_id Secret chat identifier
+type CloseSecretChat struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	SecretChatId int32 `json:"secret_chat_id"`
+}
+
+func (t *CloseSecretChat) Type() string {
+	return "closeSecretChat"
+}
+
+func (t *CloseSecretChat) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CloseSecretChat) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CloseSecretChat) MarshalJSON() ([]byte, error) {
+	type Alias CloseSecretChat
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "closeSecretChat",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CloseStory Informs TDLib that a story is closed by the user
+type CloseStory struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The identifier of the poster of the story to close
+	StoryPosterChatId int64 `json:"story_poster_chat_id"`
+	// The identifier of the story
+	StoryId int32 `json:"story_id"`
+}
+
+func (t *CloseStory) Type() string {
+	return "closeStory"
+}
+
+func (t *CloseStory) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CloseStory) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CloseStory) MarshalJSON() ([]byte, error) {
+	type Alias CloseStory
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "closeStory",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CloseWebApp Informs TDLib that a previously opened Web App was closed @web_app_launch_id Identifier of Web App launch, received from openWebApp
+type CloseWebApp struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	WebAppLaunchId string `json:"web_app_launch_id"`
+}
+
+func (t *CloseWebApp) Type() string {
+	return "closeWebApp"
+}
+
+func (t *CloseWebApp) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CloseWebApp) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CloseWebApp) MarshalJSON() ([]byte, error) {
+	type Alias CloseWebApp
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "closeWebApp",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CommitPendingLiveStoryReactions Applies all pending paid reactions in a live story group call @group_call_id Group call identifier
+type CommitPendingLiveStoryReactions struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	GroupCallId int32 `json:"group_call_id"`
+}
+
+func (t *CommitPendingLiveStoryReactions) Type() string {
+	return "commitPendingLiveStoryReactions"
+}
+
+func (t *CommitPendingLiveStoryReactions) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CommitPendingLiveStoryReactions) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CommitPendingLiveStoryReactions) MarshalJSON() ([]byte, error) {
+	type Alias CommitPendingLiveStoryReactions
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "commitPendingLiveStoryReactions",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CommitPendingPaidMessageReactions Applies all pending paid reactions on a message @chat_id Identifier of the chat to which the message belongs @message_id Identifier of the message
+type CommitPendingPaidMessageReactions struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+	//
+	MessageId int64 `json:"message_id"`
+}
+
+func (t *CommitPendingPaidMessageReactions) Type() string {
+	return "commitPendingPaidMessageReactions"
+}
+
+func (t *CommitPendingPaidMessageReactions) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CommitPendingPaidMessageReactions) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CommitPendingPaidMessageReactions) MarshalJSON() ([]byte, error) {
+	type Alias CommitPendingPaidMessageReactions
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "commitPendingPaidMessageReactions",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ConfirmQrCodeAuthentication Confirms QR code authentication on another device. Returns created session on success @link A link from a QR code. The link must be scanned by the in-app camera
+type ConfirmQrCodeAuthentication struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Link string `json:"link"`
+}
+
+func (t *ConfirmQrCodeAuthentication) Type() string {
+	return "confirmQrCodeAuthentication"
+}
+
+func (t *ConfirmQrCodeAuthentication) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ConfirmQrCodeAuthentication) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ConfirmQrCodeAuthentication) MarshalJSON() ([]byte, error) {
+	type Alias ConfirmQrCodeAuthentication
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "confirmQrCodeAuthentication",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ConfirmSession Confirms an unconfirmed session of the current user from another device @session_id Session identifier
+type ConfirmSession struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	SessionId string `json:"session_id"`
+}
+
+func (t *ConfirmSession) Type() string {
+	return "confirmSession"
+}
+
+func (t *ConfirmSession) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ConfirmSession) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ConfirmSession) MarshalJSON() ([]byte, error) {
+	type Alias ConfirmSession
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "confirmSession",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ConnectAffiliateProgram Connects an affiliate program to the given affiliate. Returns information about the connected affiliate program
+type ConnectAffiliateProgram struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The affiliate to which the affiliate program will be connected
+	Affiliate *AffiliateType `json:"affiliate"`
+	// Identifier of the bot, which affiliate program is connected
+	BotUserId int64 `json:"bot_user_id"`
+}
+
+func (t *ConnectAffiliateProgram) Type() string {
+	return "connectAffiliateProgram"
+}
+
+func (t *ConnectAffiliateProgram) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ConnectAffiliateProgram) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ConnectAffiliateProgram) MarshalJSON() ([]byte, error) {
+	type Alias ConnectAffiliateProgram
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "connectAffiliateProgram",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CreateBasicGroupChat Returns an existing chat corresponding to a known basic group @basic_group_id Basic group identifier @force Pass true to create the chat without a network request. In this case all information about the chat except its type, title and photo can be incorrect
+type CreateBasicGroupChat struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	BasicGroupId int64 `json:"basic_group_id"`
+	//
+	Force bool `json:"force"`
+}
+
+func (t *CreateBasicGroupChat) Type() string {
+	return "createBasicGroupChat"
+}
+
+func (t *CreateBasicGroupChat) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CreateBasicGroupChat) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CreateBasicGroupChat) MarshalJSON() ([]byte, error) {
+	type Alias CreateBasicGroupChat
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "createBasicGroupChat",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CreateBusinessChatLink Creates a business chat link for the current account. Requires Telegram Business subscription. There can be up to getOption("business_chat_link_count_max") links created. Returns the created link
+type CreateBusinessChatLink struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Information about the link to create
+	LinkInfo *InputBusinessChatLink `json:"link_info"`
+}
+
+func (t *CreateBusinessChatLink) Type() string {
+	return "createBusinessChatLink"
+}
+
+func (t *CreateBusinessChatLink) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CreateBusinessChatLink) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CreateBusinessChatLink) MarshalJSON() ([]byte, error) {
+	type Alias CreateBusinessChatLink
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "createBusinessChatLink",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CreateCall Creates a new call
+type CreateCall struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the user to be called
+	UserId int64 `json:"user_id"`
+	// The call protocols supported by the application
+	Protocol *CallProtocol `json:"protocol"`
+	// Pass true to create a video call
+	IsVideo bool `json:"is_video"`
+}
+
+func (t *CreateCall) Type() string {
+	return "createCall"
+}
+
+func (t *CreateCall) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CreateCall) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CreateCall) MarshalJSON() ([]byte, error) {
+	type Alias CreateCall
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "createCall",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CreateChatFolder Creates new chat folder. Returns information about the created chat folder. There can be up to getOption("chat_folder_count_max") chat folders, but the limit can be increased with Telegram Premium @folder The new chat folder
+type CreateChatFolder struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Folder *ChatFolder `json:"folder"`
+}
+
+func (t *CreateChatFolder) Type() string {
+	return "createChatFolder"
+}
+
+func (t *CreateChatFolder) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CreateChatFolder) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CreateChatFolder) MarshalJSON() ([]byte, error) {
+	type Alias CreateChatFolder
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "createChatFolder",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CreateChatFolderInviteLink Creates a new invite link for a chat folder. A link can be created for a chat folder if it has only pinned and included chats
+type CreateChatFolderInviteLink struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat folder identifier
+	ChatFolderId int32 `json:"chat_folder_id"`
+	// Name of the link; 0-32 characters
+	Name string `json:"name"`
+	// Identifiers of chats to be accessible by the invite link. Use getChatsForChatFolderInviteLink to get suitable chats. Basic groups will be automatically converted to supergroups before link creation
+	ChatIds []int64 `json:"chat_ids"`
+}
+
+func (t *CreateChatFolderInviteLink) Type() string {
+	return "createChatFolderInviteLink"
+}
+
+func (t *CreateChatFolderInviteLink) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CreateChatFolderInviteLink) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CreateChatFolderInviteLink) MarshalJSON() ([]byte, error) {
+	type Alias CreateChatFolderInviteLink
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "createChatFolderInviteLink",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CreateChatInviteLink Creates a new invite link for a chat. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat
+type CreateChatInviteLink struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Invite link name; 0-32 characters
+	Name string `json:"name"`
+	// Point in time (Unix timestamp) when the link will expire; pass 0 if never
+	ExpirationDate int32 `json:"expiration_date"`
+	// The maximum number of chat members that can join the chat via the link simultaneously; 0-99999; pass 0 if not limited
+	MemberLimit int32 `json:"member_limit"`
+	// Pass true if users joining the chat via the link need to be approved by chat administrators. In this case, member_limit must be 0
+	CreatesJoinRequest bool `json:"creates_join_request"`
+}
+
+func (t *CreateChatInviteLink) Type() string {
+	return "createChatInviteLink"
+}
+
+func (t *CreateChatInviteLink) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CreateChatInviteLink) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CreateChatInviteLink) MarshalJSON() ([]byte, error) {
+	type Alias CreateChatInviteLink
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "createChatInviteLink",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CreateChatSubscriptionInviteLink Creates a new subscription invite link for a channel chat. Requires can_invite_users right in the chat
+type CreateChatSubscriptionInviteLink struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Invite link name; 0-32 characters
+	Name string `json:"name"`
+	// Information about subscription plan that will be applied to the users joining the chat via the link.
+	SubscriptionPricing *StarSubscriptionPricing `json:"subscription_pricing"`
+}
+
+func (t *CreateChatSubscriptionInviteLink) Type() string {
+	return "createChatSubscriptionInviteLink"
+}
+
+func (t *CreateChatSubscriptionInviteLink) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CreateChatSubscriptionInviteLink) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CreateChatSubscriptionInviteLink) MarshalJSON() ([]byte, error) {
+	type Alias CreateChatSubscriptionInviteLink
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "createChatSubscriptionInviteLink",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CreateForumTopic Creates a topic in a forum supergroup chat or a chat with a bot with topics; requires can_manage_topics administrator or can_create_topics member right in the supergroup
+type CreateForumTopic struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat
+	ChatId int64 `json:"chat_id"`
+	// Name of the topic; 1-128 characters
+	Name string `json:"name"`
+	// Pass true if the name of the topic wasn't entered explicitly; for chats with bots only
+	IsNameImplicit bool `json:"is_name_implicit"`
+	// Icon of the topic. Icon color must be one of 0x6FB9F0, 0xFFD67E, 0xCB86DB, 0x8EEE98, 0xFF93B2, or 0xFB6F5F. Telegram Premium users can use any custom emoji as topic icon, other users can use only a custom emoji returned by getForumTopicDefaultIcons
+	Icon *ForumTopicIcon `json:"icon"`
+}
+
+func (t *CreateForumTopic) Type() string {
+	return "createForumTopic"
+}
+
+func (t *CreateForumTopic) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CreateForumTopic) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CreateForumTopic) MarshalJSON() ([]byte, error) {
+	type Alias CreateForumTopic
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "createForumTopic",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CreateGiftCollection Creates a collection from gifts on the current user's or a channel's profile page; requires can_post_messages administrator right in the channel chat.
+type CreateGiftCollection struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the user or the channel chat that received the gifts
+	OwnerId *MessageSender `json:"owner_id"`
+	// Name of the collection; 1-12 characters
+	Name string `json:"name"`
+	// Identifier of the gifts to add to the collection; 0-getOption("gift_collection_size_max") identifiers
+	ReceivedGiftIds []string `json:"received_gift_ids"`
+}
+
+func (t *CreateGiftCollection) Type() string {
+	return "createGiftCollection"
+}
+
+func (t *CreateGiftCollection) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CreateGiftCollection) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CreateGiftCollection) MarshalJSON() ([]byte, error) {
+	type Alias CreateGiftCollection
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "createGiftCollection",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CreateGroupCall Creates a new group call that isn't bound to a chat @join_parameters Parameters to join the call; pass null to only create call link without joining the call
+type CreateGroupCall struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	JoinParameters *GroupCallJoinParameters `json:"join_parameters"`
+}
+
+func (t *CreateGroupCall) Type() string {
+	return "createGroupCall"
+}
+
+func (t *CreateGroupCall) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CreateGroupCall) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CreateGroupCall) MarshalJSON() ([]byte, error) {
+	type Alias CreateGroupCall
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "createGroupCall",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CreateInvoiceLink Creates a link for the given invoice; for bots only
+type CreateInvoiceLink struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Unique identifier of business connection on behalf of which to send the request
+	BusinessConnectionId string `json:"business_connection_id"`
+	// Information about the invoice of the type inputMessageInvoice
+	Invoice *InputMessageContent `json:"invoice"`
+}
+
+func (t *CreateInvoiceLink) Type() string {
+	return "createInvoiceLink"
+}
+
+func (t *CreateInvoiceLink) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CreateInvoiceLink) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CreateInvoiceLink) MarshalJSON() ([]byte, error) {
+	type Alias CreateInvoiceLink
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "createInvoiceLink",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CreateNewBasicGroupChat Creates a new basic group and sends a corresponding messageBasicGroupChatCreate. Returns information about the newly created chat
+type CreateNewBasicGroupChat struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifiers of users to be added to the basic group; may be empty to create a basic group without other members
+	UserIds []int64 `json:"user_ids"`
+	// Title of the new basic group; 1-128 characters
+	Title string `json:"title"`
+	// Message auto-delete time value, in seconds; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
+	MessageAutoDeleteTime int32 `json:"message_auto_delete_time"`
+}
+
+func (t *CreateNewBasicGroupChat) Type() string {
+	return "createNewBasicGroupChat"
+}
+
+func (t *CreateNewBasicGroupChat) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CreateNewBasicGroupChat) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CreateNewBasicGroupChat) MarshalJSON() ([]byte, error) {
+	type Alias CreateNewBasicGroupChat
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "createNewBasicGroupChat",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CreateNewSecretChat Creates a new secret chat. Returns the newly created chat @user_id Identifier of the target user
+type CreateNewSecretChat struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	UserId int64 `json:"user_id"`
+}
+
+func (t *CreateNewSecretChat) Type() string {
+	return "createNewSecretChat"
+}
+
+func (t *CreateNewSecretChat) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CreateNewSecretChat) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CreateNewSecretChat) MarshalJSON() ([]byte, error) {
+	type Alias CreateNewSecretChat
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "createNewSecretChat",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CreateNewStickerSet Creates a new sticker set. Returns the newly created sticker set
+type CreateNewStickerSet struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Sticker set owner; ignored for regular users
+	UserId int64 `json:"user_id"`
+	// Sticker set title; 1-64 characters
+	Title string `json:"title"`
+	// Sticker set name. Can contain only English letters, digits and underscores. Must end with *"_by_<bot username>"* (*<bot_username>* is case insensitive) for bots; 0-64 characters.
+	Name string `json:"name"`
+	// Type of the stickers in the set
+	StickerType *StickerType `json:"sticker_type"`
+	// Pass true if stickers in the sticker set must be repainted; for custom emoji sticker sets only
+	NeedsRepainting bool `json:"needs_repainting"`
+	// List of stickers to be added to the set; 1-200 stickers for custom emoji sticker sets, and 1-120 stickers otherwise. For TGS stickers, uploadStickerFile must be used before the sticker is shown
+	Stickers []*InputSticker `json:"stickers"`
+	// Source of the sticker set; may be empty if unknown
+	Source string `json:"source"`
+}
+
+func (t *CreateNewStickerSet) Type() string {
+	return "createNewStickerSet"
+}
+
+func (t *CreateNewStickerSet) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CreateNewStickerSet) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CreateNewStickerSet) MarshalJSON() ([]byte, error) {
+	type Alias CreateNewStickerSet
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "createNewStickerSet",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CreateNewSupergroupChat Creates a new supergroup or channel and sends a corresponding messageSupergroupChatCreate. Returns the newly created chat
+type CreateNewSupergroupChat struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Title of the new chat; 1-128 characters
+	Title string `json:"title"`
+	// Pass true to create a forum supergroup chat
+	IsForum bool `json:"is_forum"`
+	// Pass true to create a channel chat; ignored if a forum is created
+	IsChannel bool `json:"is_channel"`
+	//
+	Description string `json:"description"`
+	// Chat location if a location-based supergroup is being created; pass null to create an ordinary supergroup chat
+	Location *ChatLocation `json:"location,omitempty"`
+	// Message auto-delete time value, in seconds; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
+	MessageAutoDeleteTime int32 `json:"message_auto_delete_time"`
+	// Pass true to create a supergroup for importing messages using importMessages
+	ForImport bool `json:"for_import"`
+}
+
+func (t *CreateNewSupergroupChat) Type() string {
+	return "createNewSupergroupChat"
+}
+
+func (t *CreateNewSupergroupChat) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CreateNewSupergroupChat) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CreateNewSupergroupChat) MarshalJSON() ([]byte, error) {
+	type Alias CreateNewSupergroupChat
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "createNewSupergroupChat",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CreatePrivateChat Returns an existing chat corresponding to a given user @user_id User identifier @force Pass true to create the chat without a network request. In this case all information about the chat except its type, title and photo can be incorrect
+type CreatePrivateChat struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	UserId int64 `json:"user_id"`
+	//
+	Force bool `json:"force"`
+}
+
+func (t *CreatePrivateChat) Type() string {
+	return "createPrivateChat"
+}
+
+func (t *CreatePrivateChat) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CreatePrivateChat) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CreatePrivateChat) MarshalJSON() ([]byte, error) {
+	type Alias CreatePrivateChat
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "createPrivateChat",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CreateSecretChat Returns an existing chat corresponding to a known secret chat @secret_chat_id Secret chat identifier
+type CreateSecretChat struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	SecretChatId int32 `json:"secret_chat_id"`
+}
+
+func (t *CreateSecretChat) Type() string {
+	return "createSecretChat"
+}
+
+func (t *CreateSecretChat) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CreateSecretChat) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CreateSecretChat) MarshalJSON() ([]byte, error) {
+	type Alias CreateSecretChat
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "createSecretChat",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CreateStoryAlbum Creates an album of stories; requires can_edit_stories administrator right for supergroup and channel chats
+type CreateStoryAlbum struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat that posted the stories
+	StoryPosterChatId int64 `json:"story_poster_chat_id"`
+	// Name of the album; 1-12 characters
+	Name string `json:"name"`
+	// Identifiers of stories to add to the album; 0-getOption("story_album_size_max") identifiers
+	StoryIds []int32 `json:"story_ids"`
+}
+
+func (t *CreateStoryAlbum) Type() string {
+	return "createStoryAlbum"
+}
+
+func (t *CreateStoryAlbum) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CreateStoryAlbum) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CreateStoryAlbum) MarshalJSON() ([]byte, error) {
+	type Alias CreateStoryAlbum
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "createStoryAlbum",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CreateSupergroupChat Returns an existing chat corresponding to a known supergroup or channel @supergroup_id Supergroup or channel identifier @force Pass true to create the chat without a network request. In this case all information about the chat except its type, title and photo can be incorrect
+type CreateSupergroupChat struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	SupergroupId int64 `json:"supergroup_id"`
+	//
+	Force bool `json:"force"`
+}
+
+func (t *CreateSupergroupChat) Type() string {
+	return "createSupergroupChat"
+}
+
+func (t *CreateSupergroupChat) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CreateSupergroupChat) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CreateSupergroupChat) MarshalJSON() ([]byte, error) {
+	type Alias CreateSupergroupChat
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "createSupergroupChat",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CreateTemporaryPassword Creates a new temporary password for processing payments @password The 2-step verification password of the current user @valid_for Time during which the temporary password will be valid, in seconds; must be between 60 and 86400
+type CreateTemporaryPassword struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Password string `json:"password"`
+	//
+	ValidFor int32 `json:"valid_for"`
+}
+
+func (t *CreateTemporaryPassword) Type() string {
+	return "createTemporaryPassword"
+}
+
+func (t *CreateTemporaryPassword) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CreateTemporaryPassword) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CreateTemporaryPassword) MarshalJSON() ([]byte, error) {
+	type Alias CreateTemporaryPassword
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "createTemporaryPassword",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CreateVideoChat Creates a video chat (a group call bound to a chat). Available only for basic groups, supergroups and channels; requires can_manage_video_chats administrator right
+type CreateVideoChat struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of a chat in which the video chat will be created
+	ChatId int64 `json:"chat_id"`
+	// Group call title; if empty, chat title will be used
+	Title string `json:"title"`
+	// Point in time (Unix timestamp) when the group call is expected to be started by an administrator; 0 to start the video chat immediately. The date must be at least 10 seconds and at most 8 days in the future
+	StartDate int32 `json:"start_date"`
+	// Pass true to create an RTMP stream instead of an ordinary video chat
+	IsRtmpStream bool `json:"is_rtmp_stream"`
+}
+
+func (t *CreateVideoChat) Type() string {
+	return "createVideoChat"
+}
+
+func (t *CreateVideoChat) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *CreateVideoChat) GetExtra() string {
+	return t.Extra
+}
+
+func (t *CreateVideoChat) MarshalJSON() ([]byte, error) {
+	type Alias CreateVideoChat
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "createVideoChat",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// DeclineGroupCallInvitation Declines an invitation to an active group call via messageGroupCall. Can be called both by the sender and the receiver of the invitation
+type DeclineGroupCallInvitation struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat with the message
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message of the type messageGroupCall
+	MessageId int64 `json:"message_id"`
+}
+
+func (t *DeclineGroupCallInvitation) Type() string {
+	return "declineGroupCallInvitation"
+}
+
+func (t *DeclineGroupCallInvitation) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *DeclineGroupCallInvitation) GetExtra() string {
+	return t.Extra
+}
+
+func (t *DeclineGroupCallInvitation) MarshalJSON() ([]byte, error) {
+	type Alias DeclineGroupCallInvitation
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "declineGroupCallInvitation",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// DeclineSuggestedPost Declines a suggested post in a channel direct messages chat
+type DeclineSuggestedPost struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier of the channel direct messages chat
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message with the suggested post. Use messageProperties.can_be_declined to check whether the suggested post can be declined
+	MessageId int64 `json:"message_id"`
+	// Comment for the creator of the suggested post; 0-128 characters
+	Comment string `json:"comment"`
+}
+
+func (t *DeclineSuggestedPost) Type() string {
+	return "declineSuggestedPost"
+}
+
+func (t *DeclineSuggestedPost) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *DeclineSuggestedPost) GetExtra() string {
+	return t.Extra
+}
+
+func (t *DeclineSuggestedPost) MarshalJSON() ([]byte, error) {
+	type Alias DeclineSuggestedPost
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "declineSuggestedPost",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// DecryptGroupCallData Decrypts group call data received by tgcalls
+type DecryptGroupCallData struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Group call identifier. The call must not be a video chat
+	GroupCallId int32 `json:"group_call_id"`
+	// Identifier of the group call participant, which sent the data
+	ParticipantId *MessageSender `json:"participant_id"`
+	// Data channel for which data was encrypted; pass null if unknown
+	DataChannel *GroupCallDataChannel `json:"data_channel,omitempty"`
+	// Data to decrypt
+	Data string `json:"data"`
+}
+
+func (t *DecryptGroupCallData) Type() string {
+	return "decryptGroupCallData"
+}
+
+func (t *DecryptGroupCallData) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *DecryptGroupCallData) GetExtra() string {
+	return t.Extra
+}
+
+func (t *DecryptGroupCallData) MarshalJSON() ([]byte, error) {
+	type Alias DecryptGroupCallData
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "decryptGroupCallData",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// DeleteAccount Deletes the account of the current user, deleting all information associated with the user from the server. The phone number of the account can be used to create a new account.
+type DeleteAccount struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The reason why the account was deleted; optional
+	Reason string `json:"reason"`
+	// The 2-step verification password of the current user. If the current user isn't authorized, then an empty string can be passed and account deletion can be canceled within one week
+	Password string `json:"password"`
+}
+
+func (t *DeleteAccount) Type() string {
+	return "deleteAccount"
+}
+
+func (t *DeleteAccount) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *DeleteAccount) GetExtra() string {
+	return t.Extra
+}
+
+func (t *DeleteAccount) MarshalJSON() ([]byte, error) {
+	type Alias DeleteAccount
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "deleteAccount",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// DeleteAllCallMessages Deletes all call messages @revoke Pass true to delete the messages for all users
+type DeleteAllCallMessages struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Revoke bool `json:"revoke"`
+}
+
+func (t *DeleteAllCallMessages) Type() string {
+	return "deleteAllCallMessages"
+}
+
+func (t *DeleteAllCallMessages) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *DeleteAllCallMessages) GetExtra() string {
+	return t.Extra
+}
+
+func (t *DeleteAllCallMessages) MarshalJSON() ([]byte, error) {
+	type Alias DeleteAllCallMessages
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "deleteAllCallMessages",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// DeleteAllRevokedChatInviteLinks Deletes all revoked chat invite links created by a given chat administrator. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
+type DeleteAllRevokedChatInviteLinks struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// User identifier of a chat administrator, which links will be deleted. Must be an identifier of the current user for non-owner
+	CreatorUserId int64 `json:"creator_user_id"`
+}
+
+func (t *DeleteAllRevokedChatInviteLinks) Type() string {
+	return "deleteAllRevokedChatInviteLinks"
+}
+
+func (t *DeleteAllRevokedChatInviteLinks) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *DeleteAllRevokedChatInviteLinks) GetExtra() string {
+	return t.Extra
+}
+
+func (t *DeleteAllRevokedChatInviteLinks) MarshalJSON() ([]byte, error) {
+	type Alias DeleteAllRevokedChatInviteLinks
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "deleteAllRevokedChatInviteLinks",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// DeleteBotMediaPreviews Deletes media previews from the list of media previews of a bot
+type DeleteBotMediaPreviews struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the target bot. The bot must be owned and must have the main Web App
+	BotUserId int64 `json:"bot_user_id"`
+	// Language code of the media previews to delete
+	LanguageCode string `json:"language_code"`
+	// File identifiers of the media to delete
+	FileIds []int32 `json:"file_ids"`
+}
+
+func (t *DeleteBotMediaPreviews) Type() string {
+	return "deleteBotMediaPreviews"
+}
+
+func (t *DeleteBotMediaPreviews) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *DeleteBotMediaPreviews) GetExtra() string {
+	return t.Extra
+}
+
+func (t *DeleteBotMediaPreviews) MarshalJSON() ([]byte, error) {
+	type Alias DeleteBotMediaPreviews
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "deleteBotMediaPreviews",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// DeleteBusinessChatLink Deletes a business chat link of the current account @link The link to delete
+type DeleteBusinessChatLink struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Link string `json:"link"`
+}
+
+func (t *DeleteBusinessChatLink) Type() string {
+	return "deleteBusinessChatLink"
+}
+
+func (t *DeleteBusinessChatLink) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *DeleteBusinessChatLink) GetExtra() string {
+	return t.Extra
+}
+
+func (t *DeleteBusinessChatLink) MarshalJSON() ([]byte, error) {
+	type Alias DeleteBusinessChatLink
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "deleteBusinessChatLink",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// DeleteBusinessConnectedBot Deletes the business bot that is connected to the current user account @bot_user_id Unique user identifier for the bot
+type DeleteBusinessConnectedBot struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	BotUserId int64 `json:"bot_user_id"`
+}
+
+func (t *DeleteBusinessConnectedBot) Type() string {
+	return "deleteBusinessConnectedBot"
+}
+
+func (t *DeleteBusinessConnectedBot) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *DeleteBusinessConnectedBot) GetExtra() string {
+	return t.Extra
+}
+
+func (t *DeleteBusinessConnectedBot) MarshalJSON() ([]byte, error) {
+	type Alias DeleteBusinessConnectedBot
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "deleteBusinessConnectedBot",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// DeleteBusinessMessages Deletes messages on behalf of a business account; for bots only
+type DeleteBusinessMessages struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Unique identifier of business connection through which the messages were received
+	BusinessConnectionId string `json:"business_connection_id"`
+	// Identifier of the messages
+	MessageIds []int64 `json:"message_ids"`
+}
+
+func (t *DeleteBusinessMessages) Type() string {
+	return "deleteBusinessMessages"
+}
+
+func (t *DeleteBusinessMessages) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *DeleteBusinessMessages) GetExtra() string {
+	return t.Extra
+}
+
+func (t *DeleteBusinessMessages) MarshalJSON() ([]byte, error) {
+	type Alias DeleteBusinessMessages
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "deleteBusinessMessages",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// DeleteBusinessStory Deletes a story posted by the bot on behalf of a business account; for bots only
+type DeleteBusinessStory struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Unique identifier of business connection
+	BusinessConnectionId string `json:"business_connection_id"`
+	// Identifier of the story to delete
+	StoryId int32 `json:"story_id"`
+}
+
+func (t *DeleteBusinessStory) Type() string {
+	return "deleteBusinessStory"
+}
+
+func (t *DeleteBusinessStory) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *DeleteBusinessStory) GetExtra() string {
+	return t.Extra
+}
+
+func (t *DeleteBusinessStory) MarshalJSON() ([]byte, error) {
+	type Alias DeleteBusinessStory
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "deleteBusinessStory",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// DeleteChat Deletes a chat along with all messages in the corresponding chat for all chat members. For group chats this will release the usernames and remove all members.
+type DeleteChat struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+}
+
+func (t *DeleteChat) Type() string {
+	return "deleteChat"
+}
+
+func (t *DeleteChat) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *DeleteChat) GetExtra() string {
+	return t.Extra
+}
+
+func (t *DeleteChat) MarshalJSON() ([]byte, error) {
+	type Alias DeleteChat
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "deleteChat",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// DeleteChatBackground Deletes background in a specific chat
+type DeleteChatBackground struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Pass true to restore previously set background. Can be used only in private and secret chats with non-deleted users if userFullInfo.set_chat_background == true.
+	RestorePrevious bool `json:"restore_previous"`
+}
+
+func (t *DeleteChatBackground) Type() string {
+	return "deleteChatBackground"
+}
+
+func (t *DeleteChatBackground) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *DeleteChatBackground) GetExtra() string {
+	return t.Extra
+}
+
+func (t *DeleteChatBackground) MarshalJSON() ([]byte, error) {
+	type Alias DeleteChatBackground
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "deleteChatBackground",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// DeleteChatFolder Deletes existing chat folder @chat_folder_id Chat folder identifier @leave_chat_ids Identifiers of the chats to leave. The chats must be pinned or always included in the folder
+type DeleteChatFolder struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatFolderId int32 `json:"chat_folder_id"`
+	//
+	LeaveChatIds []int64 `json:"leave_chat_ids"`
+}
+
+func (t *DeleteChatFolder) Type() string {
+	return "deleteChatFolder"
+}
+
+func (t *DeleteChatFolder) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *DeleteChatFolder) GetExtra() string {
+	return t.Extra
+}
+
+func (t *DeleteChatFolder) MarshalJSON() ([]byte, error) {
+	type Alias DeleteChatFolder
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "deleteChatFolder",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// DeleteChatFolderInviteLink Deletes an invite link for a chat folder
+type DeleteChatFolderInviteLink struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat folder identifier
+	ChatFolderId int32 `json:"chat_folder_id"`
+	// Invite link to be deleted
+	InviteLink string `json:"invite_link"`
+}
+
+func (t *DeleteChatFolderInviteLink) Type() string {
+	return "deleteChatFolderInviteLink"
+}
+
+func (t *DeleteChatFolderInviteLink) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *DeleteChatFolderInviteLink) GetExtra() string {
+	return t.Extra
+}
+
+func (t *DeleteChatFolderInviteLink) MarshalJSON() ([]byte, error) {
+	type Alias DeleteChatFolderInviteLink
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "deleteChatFolderInviteLink",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// DeleteChatHistory Deletes all messages in the chat. Use chat.can_be_deleted_only_for_self and chat.can_be_deleted_for_all_users fields to find whether and how the method can be applied to the chat
+type DeleteChatHistory struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Pass true to remove the chat from all chat lists
+	RemoveFromChatList bool `json:"remove_from_chat_list"`
+	// Pass true to delete chat history for all users
+	Revoke bool `json:"revoke"`
+}
+
+func (t *DeleteChatHistory) Type() string {
+	return "deleteChatHistory"
+}
+
+func (t *DeleteChatHistory) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *DeleteChatHistory) GetExtra() string {
+	return t.Extra
+}
+
+func (t *DeleteChatHistory) MarshalJSON() ([]byte, error) {
+	type Alias DeleteChatHistory
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "deleteChatHistory",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// DeleteChatMessagesByDate Deletes all messages between the specified dates in a chat. Supported only for private chats and basic groups. Messages sent in the last 30 seconds will not be deleted
+type DeleteChatMessagesByDate struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// The minimum date of the messages to delete
+	MinDate int32 `json:"min_date"`
+	// The maximum date of the messages to delete
+	MaxDate int32 `json:"max_date"`
+	// Pass true to delete chat messages for all users; private chats only
+	Revoke bool `json:"revoke"`
+}
+
+func (t *DeleteChatMessagesByDate) Type() string {
+	return "deleteChatMessagesByDate"
+}
+
+func (t *DeleteChatMessagesByDate) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *DeleteChatMessagesByDate) GetExtra() string {
+	return t.Extra
+}
+
+func (t *DeleteChatMessagesByDate) MarshalJSON() ([]byte, error) {
+	type Alias DeleteChatMessagesByDate
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "deleteChatMessagesByDate",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// DeleteChatMessagesBySender Deletes all messages sent by the specified message sender in a chat. Supported only for supergroups; requires can_delete_messages administrator right @chat_id Chat identifier @sender_id Identifier of the sender of messages to delete
+type DeleteChatMessagesBySender struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+	//
+	SenderId *MessageSender `json:"sender_id"`
+}
+
+func (t *DeleteChatMessagesBySender) Type() string {
+	return "deleteChatMessagesBySender"
+}
+
+func (t *DeleteChatMessagesBySender) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *DeleteChatMessagesBySender) GetExtra() string {
+	return t.Extra
+}
+
+func (t *DeleteChatMessagesBySender) MarshalJSON() ([]byte, error) {
+	type Alias DeleteChatMessagesBySender
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "deleteChatMessagesBySender",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// DeleteChatReplyMarkup Deletes the default reply markup from a chat. Must be called after a one-time keyboard or a replyMarkupForceReply reply markup has been used or dismissed
+type DeleteChatReplyMarkup struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// The message identifier of the used keyboard
+	MessageId int64 `json:"message_id"`
+}
+
+func (t *DeleteChatReplyMarkup) Type() string {
+	return "deleteChatReplyMarkup"
+}
+
+func (t *DeleteChatReplyMarkup) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *DeleteChatReplyMarkup) GetExtra() string {
+	return t.Extra
+}
+
+func (t *DeleteChatReplyMarkup) MarshalJSON() ([]byte, error) {
+	type Alias DeleteChatReplyMarkup
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "deleteChatReplyMarkup",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// DeleteCommands Deletes commands supported by the bot for the given user scope and language; for bots only
+type DeleteCommands struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The scope to which the commands are relevant; pass null to delete commands in the default bot command scope
+	Scope *BotCommandScope `json:"scope,omitempty"`
+	// A two-letter ISO 639-1 language code or an empty string
+	LanguageCode string `json:"language_code"`
+}
+
+func (t *DeleteCommands) Type() string {
+	return "deleteCommands"
+}
+
+func (t *DeleteCommands) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *DeleteCommands) GetExtra() string {
+	return t.Extra
+}
+
+func (t *DeleteCommands) MarshalJSON() ([]byte, error) {
+	type Alias DeleteCommands
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "deleteCommands",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// DeleteDefaultBackground Deletes default background for chats @for_dark_theme Pass true if the background is deleted for a dark theme
+type DeleteDefaultBackground struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ForDarkTheme bool `json:"for_dark_theme"`
+}
+
+func (t *DeleteDefaultBackground) Type() string {
+	return "deleteDefaultBackground"
+}
+
+func (t *DeleteDefaultBackground) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *DeleteDefaultBackground) GetExtra() string {
+	return t.Extra
+}
+
+func (t *DeleteDefaultBackground) MarshalJSON() ([]byte, error) {
+	type Alias DeleteDefaultBackground
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "deleteDefaultBackground",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// DeleteDirectMessagesChatTopicHistory Deletes all messages in the topic in a channel direct messages chat administered by the current user
+type DeleteDirectMessagesChatTopicHistory struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier of the channel direct messages chat
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the topic which messages will be deleted
+	TopicId int64 `json:"topic_id"`
+}
+
+func (t *DeleteDirectMessagesChatTopicHistory) Type() string {
+	return "deleteDirectMessagesChatTopicHistory"
+}
+
+func (t *DeleteDirectMessagesChatTopicHistory) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *DeleteDirectMessagesChatTopicHistory) GetExtra() string {
+	return t.Extra
+}
+
+func (t *DeleteDirectMessagesChatTopicHistory) MarshalJSON() ([]byte, error) {
+	type Alias DeleteDirectMessagesChatTopicHistory
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "deleteDirectMessagesChatTopicHistory",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// DeleteDirectMessagesChatTopicMessagesByDate Deletes all messages between the specified dates in the topic in a channel direct messages chat administered by the current user. Messages sent in the last 30 seconds will not be deleted
+type DeleteDirectMessagesChatTopicMessagesByDate struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier of the channel direct messages chat
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the topic which messages will be deleted
+	TopicId int64 `json:"topic_id"`
+	// The minimum date of the messages to delete
+	MinDate int32 `json:"min_date"`
+	// The maximum date of the messages to delete
+	MaxDate int32 `json:"max_date"`
+}
+
+func (t *DeleteDirectMessagesChatTopicMessagesByDate) Type() string {
+	return "deleteDirectMessagesChatTopicMessagesByDate"
+}
+
+func (t *DeleteDirectMessagesChatTopicMessagesByDate) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *DeleteDirectMessagesChatTopicMessagesByDate) GetExtra() string {
+	return t.Extra
+}
+
+func (t *DeleteDirectMessagesChatTopicMessagesByDate) MarshalJSON() ([]byte, error) {
+	type Alias DeleteDirectMessagesChatTopicMessagesByDate
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "deleteDirectMessagesChatTopicMessagesByDate",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// DeleteFile Deletes a file from the TDLib file cache @file_id Identifier of the file to delete
+type DeleteFile struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	FileId int32 `json:"file_id"`
+}
+
+func (t *DeleteFile) Type() string {
+	return "deleteFile"
+}
+
+func (t *DeleteFile) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *DeleteFile) GetExtra() string {
+	return t.Extra
+}
+
+func (t *DeleteFile) MarshalJSON() ([]byte, error) {
+	type Alias DeleteFile
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "deleteFile",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// DeleteForumTopic Deletes all messages from a topic in a forum supergroup chat or a chat with a bot with topics; requires can_delete_messages administrator right in the supergroup
+type DeleteForumTopic struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat
+	ChatId int64 `json:"chat_id"`
+	// Forum topic identifier
+	ForumTopicId int32 `json:"forum_topic_id"`
+}
+
+func (t *DeleteForumTopic) Type() string {
+	return "deleteForumTopic"
+}
+
+func (t *DeleteForumTopic) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *DeleteForumTopic) GetExtra() string {
+	return t.Extra
+}
+
+func (t *DeleteForumTopic) MarshalJSON() ([]byte, error) {
+	type Alias DeleteForumTopic
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "deleteForumTopic",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// DeleteGiftCollection Deletes a gift collection. If the collection is owned by a channel chat, then requires can_post_messages administrator right in the channel chat
+type DeleteGiftCollection struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the user or the channel chat that owns the collection
+	OwnerId *MessageSender `json:"owner_id"`
+	// Identifier of the gift collection
+	CollectionId int32 `json:"collection_id"`
+}
+
+func (t *DeleteGiftCollection) Type() string {
+	return "deleteGiftCollection"
+}
+
+func (t *DeleteGiftCollection) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *DeleteGiftCollection) GetExtra() string {
+	return t.Extra
+}
+
+func (t *DeleteGiftCollection) MarshalJSON() ([]byte, error) {
+	type Alias DeleteGiftCollection
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "deleteGiftCollection",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// DeleteGroupCallMessages Deletes messages in a group call; for live story calls only. Requires groupCallMessage.can_be_deleted right
+type DeleteGroupCallMessages struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Group call identifier
+	GroupCallId int32 `json:"group_call_id"`
+	// Identifiers of the messages to be deleted
+	MessageIds []int32 `json:"message_ids"`
+	// Pass true to report the messages as spam
+	ReportSpam bool `json:"report_spam"`
+}
+
+func (t *DeleteGroupCallMessages) Type() string {
+	return "deleteGroupCallMessages"
+}
+
+func (t *DeleteGroupCallMessages) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *DeleteGroupCallMessages) GetExtra() string {
+	return t.Extra
+}
+
+func (t *DeleteGroupCallMessages) MarshalJSON() ([]byte, error) {
+	type Alias DeleteGroupCallMessages
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "deleteGroupCallMessages",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// DeleteGroupCallMessagesBySender Deletes all messages sent by the specified message sender in a group call; for live story calls only. Requires groupCall.can_delete_messages right
+type DeleteGroupCallMessagesBySender struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Group call identifier
+	GroupCallId int32 `json:"group_call_id"`
+	// Identifier of the sender of messages to delete
+	SenderId *MessageSender `json:"sender_id"`
+	// Pass true to report the messages as spam
+	ReportSpam bool `json:"report_spam"`
+}
+
+func (t *DeleteGroupCallMessagesBySender) Type() string {
+	return "deleteGroupCallMessagesBySender"
+}
+
+func (t *DeleteGroupCallMessagesBySender) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *DeleteGroupCallMessagesBySender) GetExtra() string {
+	return t.Extra
+}
+
+func (t *DeleteGroupCallMessagesBySender) MarshalJSON() ([]byte, error) {
+	type Alias DeleteGroupCallMessagesBySender
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "deleteGroupCallMessagesBySender",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// DeleteLanguagePack Deletes all information about a language pack in the current localization target. The language pack which is currently in use (including base language pack) or is being synchronized can't be deleted.
+type DeleteLanguagePack struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the language pack to delete
+	LanguagePackId string `json:"language_pack_id"`
+}
+
+func (t *DeleteLanguagePack) Type() string {
+	return "deleteLanguagePack"
+}
+
+func (t *DeleteLanguagePack) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *DeleteLanguagePack) GetExtra() string {
+	return t.Extra
+}
+
+func (t *DeleteLanguagePack) MarshalJSON() ([]byte, error) {
+	type Alias DeleteLanguagePack
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "deleteLanguagePack",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// DeleteMessages Deletes messages
+type DeleteMessages struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Identifiers of the messages to be deleted. Use messageProperties.can_be_deleted_only_for_self and messageProperties.can_be_deleted_for_all_users to get suitable messages
+	MessageIds []int64 `json:"message_ids"`
+	// Pass true to delete messages for all chat members. Always true for supergroups, channels and secret chats
+	Revoke bool `json:"revoke"`
+}
+
+func (t *DeleteMessages) Type() string {
+	return "deleteMessages"
+}
+
+func (t *DeleteMessages) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *DeleteMessages) GetExtra() string {
+	return t.Extra
+}
+
+func (t *DeleteMessages) MarshalJSON() ([]byte, error) {
+	type Alias DeleteMessages
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "deleteMessages",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// DeletePassportElement Deletes a Telegram Passport element @type Element type
+type DeletePassportElement struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	TypeField *PassportElementType `json:"type"`
+}
+
+func (t *DeletePassportElement) Type() string {
+	return "deletePassportElement"
+}
+
+func (t *DeletePassportElement) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *DeletePassportElement) GetExtra() string {
+	return t.Extra
+}
+
+func (t *DeletePassportElement) MarshalJSON() ([]byte, error) {
+	type Alias DeletePassportElement
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "deletePassportElement",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// DeleteProfilePhoto Deletes a profile photo @profile_photo_id Identifier of the profile photo to delete
+type DeleteProfilePhoto struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ProfilePhotoId string `json:"profile_photo_id"`
+}
+
+func (t *DeleteProfilePhoto) Type() string {
+	return "deleteProfilePhoto"
+}
+
+func (t *DeleteProfilePhoto) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *DeleteProfilePhoto) GetExtra() string {
+	return t.Extra
+}
+
+func (t *DeleteProfilePhoto) MarshalJSON() ([]byte, error) {
+	type Alias DeleteProfilePhoto
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "deleteProfilePhoto",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// DeleteQuickReplyShortcut Deletes a quick reply shortcut @shortcut_id Unique identifier of the quick reply shortcut
+type DeleteQuickReplyShortcut struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ShortcutId int32 `json:"shortcut_id"`
+}
+
+func (t *DeleteQuickReplyShortcut) Type() string {
+	return "deleteQuickReplyShortcut"
+}
+
+func (t *DeleteQuickReplyShortcut) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *DeleteQuickReplyShortcut) GetExtra() string {
+	return t.Extra
+}
+
+func (t *DeleteQuickReplyShortcut) MarshalJSON() ([]byte, error) {
+	type Alias DeleteQuickReplyShortcut
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "deleteQuickReplyShortcut",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// DeleteQuickReplyShortcutMessages Deletes specified quick reply messages
+type DeleteQuickReplyShortcutMessages struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Unique identifier of the quick reply shortcut to which the messages belong
+	ShortcutId int32 `json:"shortcut_id"`
+	// Unique identifiers of the messages
+	MessageIds []int64 `json:"message_ids"`
+}
+
+func (t *DeleteQuickReplyShortcutMessages) Type() string {
+	return "deleteQuickReplyShortcutMessages"
+}
+
+func (t *DeleteQuickReplyShortcutMessages) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *DeleteQuickReplyShortcutMessages) GetExtra() string {
+	return t.Extra
+}
+
+func (t *DeleteQuickReplyShortcutMessages) MarshalJSON() ([]byte, error) {
+	type Alias DeleteQuickReplyShortcutMessages
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "deleteQuickReplyShortcutMessages",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// DeleteRevokedChatInviteLink Deletes revoked chat invite links. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links @chat_id Chat identifier @invite_link Invite link to revoke
+type DeleteRevokedChatInviteLink struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+	//
+	InviteLink string `json:"invite_link"`
+}
+
+func (t *DeleteRevokedChatInviteLink) Type() string {
+	return "deleteRevokedChatInviteLink"
+}
+
+func (t *DeleteRevokedChatInviteLink) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *DeleteRevokedChatInviteLink) GetExtra() string {
+	return t.Extra
+}
+
+func (t *DeleteRevokedChatInviteLink) MarshalJSON() ([]byte, error) {
+	type Alias DeleteRevokedChatInviteLink
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "deleteRevokedChatInviteLink",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// DeleteSavedCredentials Deletes saved credentials for all payment provider bots
+type DeleteSavedCredentials struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *DeleteSavedCredentials) Type() string {
+	return "deleteSavedCredentials"
+}
+
+func (t *DeleteSavedCredentials) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *DeleteSavedCredentials) GetExtra() string {
+	return t.Extra
+}
+
+func (t *DeleteSavedCredentials) MarshalJSON() ([]byte, error) {
+	type Alias DeleteSavedCredentials
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "deleteSavedCredentials",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// DeleteSavedMessagesTopicHistory Deletes all messages in a Saved Messages topic @saved_messages_topic_id Identifier of Saved Messages topic which messages will be deleted
+type DeleteSavedMessagesTopicHistory struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	SavedMessagesTopicId int64 `json:"saved_messages_topic_id"`
+}
+
+func (t *DeleteSavedMessagesTopicHistory) Type() string {
+	return "deleteSavedMessagesTopicHistory"
+}
+
+func (t *DeleteSavedMessagesTopicHistory) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *DeleteSavedMessagesTopicHistory) GetExtra() string {
+	return t.Extra
+}
+
+func (t *DeleteSavedMessagesTopicHistory) MarshalJSON() ([]byte, error) {
+	type Alias DeleteSavedMessagesTopicHistory
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "deleteSavedMessagesTopicHistory",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// DeleteSavedMessagesTopicMessagesByDate Deletes all messages between the specified dates in a Saved Messages topic. Messages sent in the last 30 seconds will not be deleted
+type DeleteSavedMessagesTopicMessagesByDate struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of Saved Messages topic which messages will be deleted
+	SavedMessagesTopicId int64 `json:"saved_messages_topic_id"`
+	// The minimum date of the messages to delete
+	MinDate int32 `json:"min_date"`
+	// The maximum date of the messages to delete
+	MaxDate int32 `json:"max_date"`
+}
+
+func (t *DeleteSavedMessagesTopicMessagesByDate) Type() string {
+	return "deleteSavedMessagesTopicMessagesByDate"
+}
+
+func (t *DeleteSavedMessagesTopicMessagesByDate) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *DeleteSavedMessagesTopicMessagesByDate) GetExtra() string {
+	return t.Extra
+}
+
+func (t *DeleteSavedMessagesTopicMessagesByDate) MarshalJSON() ([]byte, error) {
+	type Alias DeleteSavedMessagesTopicMessagesByDate
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "deleteSavedMessagesTopicMessagesByDate",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// DeleteSavedOrderInfo Deletes saved order information
+type DeleteSavedOrderInfo struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *DeleteSavedOrderInfo) Type() string {
+	return "deleteSavedOrderInfo"
+}
+
+func (t *DeleteSavedOrderInfo) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *DeleteSavedOrderInfo) GetExtra() string {
+	return t.Extra
+}
+
+func (t *DeleteSavedOrderInfo) MarshalJSON() ([]byte, error) {
+	type Alias DeleteSavedOrderInfo
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "deleteSavedOrderInfo",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// DeleteStickerSet Completely deletes a sticker set @name Sticker set name. The sticker set must be owned by the current user
+type DeleteStickerSet struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Name string `json:"name"`
+}
+
+func (t *DeleteStickerSet) Type() string {
+	return "deleteStickerSet"
+}
+
+func (t *DeleteStickerSet) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *DeleteStickerSet) GetExtra() string {
+	return t.Extra
+}
+
+func (t *DeleteStickerSet) MarshalJSON() ([]byte, error) {
+	type Alias DeleteStickerSet
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "deleteStickerSet",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// DeleteStory Deletes a previously posted story. Can be called only if story.can_be_deleted == true
+type DeleteStory struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat that posted the story
+	StoryPosterChatId int64 `json:"story_poster_chat_id"`
+	// Identifier of the story to delete
+	StoryId int32 `json:"story_id"`
+}
+
+func (t *DeleteStory) Type() string {
+	return "deleteStory"
+}
+
+func (t *DeleteStory) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *DeleteStory) GetExtra() string {
+	return t.Extra
+}
+
+func (t *DeleteStory) MarshalJSON() ([]byte, error) {
+	type Alias DeleteStory
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "deleteStory",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// DeleteStoryAlbum Deletes a story album. If the album is owned by a supergroup or a channel chat, then requires can_edit_stories administrator right in the chat
+type DeleteStoryAlbum struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat that owns the stories
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the story album
+	StoryAlbumId int32 `json:"story_album_id"`
+}
+
+func (t *DeleteStoryAlbum) Type() string {
+	return "deleteStoryAlbum"
+}
+
+func (t *DeleteStoryAlbum) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *DeleteStoryAlbum) GetExtra() string {
+	return t.Extra
+}
+
+func (t *DeleteStoryAlbum) MarshalJSON() ([]byte, error) {
+	type Alias DeleteStoryAlbum
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "deleteStoryAlbum",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// Destroy Closes the TDLib instance, destroying all local data without a proper logout. The current user session will remain in the list of all active sessions. All local data will be destroyed.
+type Destroy struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *Destroy) Type() string {
+	return "destroy"
+}
+
+func (t *Destroy) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *Destroy) GetExtra() string {
+	return t.Extra
+}
+
+func (t *Destroy) MarshalJSON() ([]byte, error) {
+	type Alias Destroy
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "destroy",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// DisableAllSupergroupUsernames Disables all active non-editable usernames of a supergroup or channel, requires owner privileges in the supergroup or channel @supergroup_id Identifier of the supergroup or channel
+type DisableAllSupergroupUsernames struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	SupergroupId int64 `json:"supergroup_id"`
+}
+
+func (t *DisableAllSupergroupUsernames) Type() string {
+	return "disableAllSupergroupUsernames"
+}
+
+func (t *DisableAllSupergroupUsernames) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *DisableAllSupergroupUsernames) GetExtra() string {
+	return t.Extra
+}
+
+func (t *DisableAllSupergroupUsernames) MarshalJSON() ([]byte, error) {
+	type Alias DisableAllSupergroupUsernames
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "disableAllSupergroupUsernames",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// DisableProxy Disables the currently enabled proxy. Can be called before authorization
+type DisableProxy struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *DisableProxy) Type() string {
+	return "disableProxy"
+}
+
+func (t *DisableProxy) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *DisableProxy) GetExtra() string {
+	return t.Extra
+}
+
+func (t *DisableProxy) MarshalJSON() ([]byte, error) {
+	type Alias DisableProxy
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "disableProxy",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// DiscardCall Discards a call
+type DiscardCall struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Call identifier
+	CallId int32 `json:"call_id"`
+	// Pass true if the user was disconnected
+	IsDisconnected bool `json:"is_disconnected"`
+	// If the call was upgraded to a group call, pass invite link to the group call
+	InviteLink string `json:"invite_link"`
+	// The call duration, in seconds
+	Duration int32 `json:"duration"`
+	// Pass true if the call was a video call
+	IsVideo bool `json:"is_video"`
+	// Identifier of the connection used during the call
+	ConnectionId string `json:"connection_id"`
+}
+
+func (t *DiscardCall) Type() string {
+	return "discardCall"
+}
+
+func (t *DiscardCall) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *DiscardCall) GetExtra() string {
+	return t.Extra
+}
+
+func (t *DiscardCall) MarshalJSON() ([]byte, error) {
+	type Alias DiscardCall
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "discardCall",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// DisconnectAffiliateProgram Disconnects an affiliate program from the given affiliate and immediately deactivates its referral link. Returns updated information about the disconnected affiliate program
+type DisconnectAffiliateProgram struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The affiliate to which the affiliate program is connected
+	Affiliate *AffiliateType `json:"affiliate"`
+	// The referral link of the affiliate program
+	Url string `json:"url"`
+}
+
+func (t *DisconnectAffiliateProgram) Type() string {
+	return "disconnectAffiliateProgram"
+}
+
+func (t *DisconnectAffiliateProgram) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *DisconnectAffiliateProgram) GetExtra() string {
+	return t.Extra
+}
+
+func (t *DisconnectAffiliateProgram) MarshalJSON() ([]byte, error) {
+	type Alias DisconnectAffiliateProgram
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "disconnectAffiliateProgram",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// DisconnectAllWebsites Disconnects all websites from the current user's Telegram account
+type DisconnectAllWebsites struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *DisconnectAllWebsites) Type() string {
+	return "disconnectAllWebsites"
+}
+
+func (t *DisconnectAllWebsites) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *DisconnectAllWebsites) GetExtra() string {
+	return t.Extra
+}
+
+func (t *DisconnectAllWebsites) MarshalJSON() ([]byte, error) {
+	type Alias DisconnectAllWebsites
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "disconnectAllWebsites",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// DisconnectWebsite Disconnects website from the current user's Telegram account @website_id Website identifier
+type DisconnectWebsite struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	WebsiteId string `json:"website_id"`
+}
+
+func (t *DisconnectWebsite) Type() string {
+	return "disconnectWebsite"
+}
+
+func (t *DisconnectWebsite) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *DisconnectWebsite) GetExtra() string {
+	return t.Extra
+}
+
+func (t *DisconnectWebsite) MarshalJSON() ([]byte, error) {
+	type Alias DisconnectWebsite
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "disconnectWebsite",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// DownloadFile Downloads a file from the cloud. Download progress and completion of the download will be notified through updateFile updates
+type DownloadFile struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the file to download
+	FileId int32 `json:"file_id"`
+	// Priority of the download (1-32). The higher the priority, the earlier the file will be downloaded. If the priorities of two files are equal, then the last one for which downloadFile/addFileToDownloads was called will be downloaded first
+	Priority int32 `json:"priority"`
+	// The starting position from which the file needs to be downloaded
+	Offset int64 `json:"offset"`
+	// Number of bytes which need to be downloaded starting from the "offset" position before the download will automatically be canceled; use 0 to download without a limit
+	Limit int64 `json:"limit"`
+	// Pass true to return response only after the file download has succeeded, has failed, has been canceled, or a new downloadFile request with different offset/limit parameters was sent; pass false to return file state immediately, just after the download has been started
+	Synchronous bool `json:"synchronous"`
+}
+
+func (t *DownloadFile) Type() string {
+	return "downloadFile"
+}
+
+func (t *DownloadFile) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *DownloadFile) GetExtra() string {
+	return t.Extra
+}
+
+func (t *DownloadFile) MarshalJSON() ([]byte, error) {
+	type Alias DownloadFile
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "downloadFile",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// DropGiftOriginalDetails Drops original details for an upgraded gift
+type DropGiftOriginalDetails struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the gift
+	ReceivedGiftId string `json:"received_gift_id"`
+	// The amount of Telegram Stars required to pay for the operation
+	StarCount int64 `json:"star_count"`
+}
+
+func (t *DropGiftOriginalDetails) Type() string {
+	return "dropGiftOriginalDetails"
+}
+
+func (t *DropGiftOriginalDetails) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *DropGiftOriginalDetails) GetExtra() string {
+	return t.Extra
+}
+
+func (t *DropGiftOriginalDetails) MarshalJSON() ([]byte, error) {
+	type Alias DropGiftOriginalDetails
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "dropGiftOriginalDetails",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// EditBotMediaPreview Replaces media preview in the list of media previews of a bot. Returns the new preview after edit is completed server-side
+type EditBotMediaPreview struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the target bot. The bot must be owned and must have the main Web App
+	BotUserId int64 `json:"bot_user_id"`
+	// Language code of the media preview to edit
+	LanguageCode string `json:"language_code"`
+	// File identifier of the media to replace
+	FileId int32 `json:"file_id"`
+	// Content of the new preview
+	Content *InputStoryContent `json:"content"`
+}
+
+func (t *EditBotMediaPreview) Type() string {
+	return "editBotMediaPreview"
+}
+
+func (t *EditBotMediaPreview) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *EditBotMediaPreview) GetExtra() string {
+	return t.Extra
+}
+
+func (t *EditBotMediaPreview) MarshalJSON() ([]byte, error) {
+	type Alias EditBotMediaPreview
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "editBotMediaPreview",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// EditBusinessChatLink Edits a business chat link of the current account. Requires Telegram Business subscription. Returns the edited link
+type EditBusinessChatLink struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The link to edit
+	Link string `json:"link"`
+	// New description of the link
+	LinkInfo *InputBusinessChatLink `json:"link_info"`
+}
+
+func (t *EditBusinessChatLink) Type() string {
+	return "editBusinessChatLink"
+}
+
+func (t *EditBusinessChatLink) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *EditBusinessChatLink) GetExtra() string {
+	return t.Extra
+}
+
+func (t *EditBusinessChatLink) MarshalJSON() ([]byte, error) {
+	type Alias EditBusinessChatLink
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "editBusinessChatLink",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// EditBusinessMessageCaption Edits the caption of a message sent on behalf of a business account; for bots only
+type EditBusinessMessageCaption struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Unique identifier of business connection on behalf of which the message was sent
+	BusinessConnectionId string `json:"business_connection_id"`
+	// The chat the message belongs to
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message
+	MessageId int64 `json:"message_id"`
+	// The new message reply markup; pass null if none
+	ReplyMarkup *ReplyMarkup `json:"reply_markup,omitempty"`
+	// New message content caption; pass null to remove caption; 0-getOption("message_caption_length_max") characters
+	Caption *FormattedText `json:"caption,omitempty"`
+	// Pass true to show the caption above the media; otherwise, the caption will be shown below the media. May be true only for animation, photo, and video messages
+	ShowCaptionAboveMedia bool `json:"show_caption_above_media"`
+}
+
+func (t *EditBusinessMessageCaption) Type() string {
+	return "editBusinessMessageCaption"
+}
+
+func (t *EditBusinessMessageCaption) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *EditBusinessMessageCaption) GetExtra() string {
+	return t.Extra
+}
+
+func (t *EditBusinessMessageCaption) MarshalJSON() ([]byte, error) {
+	type Alias EditBusinessMessageCaption
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "editBusinessMessageCaption",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// EditBusinessMessageChecklist Edits the content of a checklist in a message sent on behalf of a business account; for bots only
+type EditBusinessMessageChecklist struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Unique identifier of business connection on behalf of which the message was sent
+	BusinessConnectionId string `json:"business_connection_id"`
+	// The chat the message belongs to
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message
+	MessageId int64 `json:"message_id"`
+	// The new message reply markup; pass null if none
+	ReplyMarkup *ReplyMarkup `json:"reply_markup,omitempty"`
+	// The new checklist. If some tasks were completed, this information will be kept
+	Checklist *InputChecklist `json:"checklist"`
+}
+
+func (t *EditBusinessMessageChecklist) Type() string {
+	return "editBusinessMessageChecklist"
+}
+
+func (t *EditBusinessMessageChecklist) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *EditBusinessMessageChecklist) GetExtra() string {
+	return t.Extra
+}
+
+func (t *EditBusinessMessageChecklist) MarshalJSON() ([]byte, error) {
+	type Alias EditBusinessMessageChecklist
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "editBusinessMessageChecklist",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// EditBusinessMessageLiveLocation Edits the content of a live location in a message sent on behalf of a business account; for bots only
+type EditBusinessMessageLiveLocation struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Unique identifier of business connection on behalf of which the message was sent
+	BusinessConnectionId string `json:"business_connection_id"`
+	// The chat the message belongs to
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message
+	MessageId int64 `json:"message_id"`
+	// The new message reply markup; pass null if none
+	ReplyMarkup *ReplyMarkup `json:"reply_markup,omitempty"`
+	// New location content of the message; pass null to stop sharing the live location
+	Location *Location `json:"location,omitempty"`
+	// New time relative to the message send date, for which the location can be updated, in seconds. If 0x7FFFFFFF specified, then the location can be updated forever.
+	LivePeriod int32 `json:"live_period"`
+	// The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
+	Heading int32 `json:"heading"`
+	// The new maximum distance for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled
+	ProximityAlertRadius int32 `json:"proximity_alert_radius"`
+}
+
+func (t *EditBusinessMessageLiveLocation) Type() string {
+	return "editBusinessMessageLiveLocation"
+}
+
+func (t *EditBusinessMessageLiveLocation) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *EditBusinessMessageLiveLocation) GetExtra() string {
+	return t.Extra
+}
+
+func (t *EditBusinessMessageLiveLocation) MarshalJSON() ([]byte, error) {
+	type Alias EditBusinessMessageLiveLocation
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "editBusinessMessageLiveLocation",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// EditBusinessMessageMedia Edits the media content of a message with a text, an animation, an audio, a document, a photo or a video in a message sent on behalf of a business account; for bots only
+type EditBusinessMessageMedia struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Unique identifier of business connection on behalf of which the message was sent
+	BusinessConnectionId string `json:"business_connection_id"`
+	// The chat the message belongs to
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message
+	MessageId int64 `json:"message_id"`
+	// The new message reply markup; pass null if none; for bots only
+	ReplyMarkup *ReplyMarkup `json:"reply_markup,omitempty"`
+	// New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo
+	InputMessageContent *InputMessageContent `json:"input_message_content"`
+}
+
+func (t *EditBusinessMessageMedia) Type() string {
+	return "editBusinessMessageMedia"
+}
+
+func (t *EditBusinessMessageMedia) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *EditBusinessMessageMedia) GetExtra() string {
+	return t.Extra
+}
+
+func (t *EditBusinessMessageMedia) MarshalJSON() ([]byte, error) {
+	type Alias EditBusinessMessageMedia
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "editBusinessMessageMedia",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// EditBusinessMessageReplyMarkup Edits the reply markup of a message sent on behalf of a business account; for bots only
+type EditBusinessMessageReplyMarkup struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Unique identifier of business connection on behalf of which the message was sent
+	BusinessConnectionId string `json:"business_connection_id"`
+	// The chat the message belongs to
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message
+	MessageId int64 `json:"message_id"`
+	// The new message reply markup; pass null if none
+	ReplyMarkup *ReplyMarkup `json:"reply_markup,omitempty"`
+}
+
+func (t *EditBusinessMessageReplyMarkup) Type() string {
+	return "editBusinessMessageReplyMarkup"
+}
+
+func (t *EditBusinessMessageReplyMarkup) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *EditBusinessMessageReplyMarkup) GetExtra() string {
+	return t.Extra
+}
+
+func (t *EditBusinessMessageReplyMarkup) MarshalJSON() ([]byte, error) {
+	type Alias EditBusinessMessageReplyMarkup
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "editBusinessMessageReplyMarkup",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// EditBusinessMessageText Edits the text of a text or game message sent on behalf of a business account; for bots only
+type EditBusinessMessageText struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Unique identifier of business connection on behalf of which the message was sent
+	BusinessConnectionId string `json:"business_connection_id"`
+	// The chat the message belongs to
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message
+	MessageId int64 `json:"message_id"`
+	// The new message reply markup; pass null if none
+	ReplyMarkup *ReplyMarkup `json:"reply_markup,omitempty"`
+	// New text content of the message. Must be of type inputMessageText
+	InputMessageContent *InputMessageContent `json:"input_message_content"`
+}
+
+func (t *EditBusinessMessageText) Type() string {
+	return "editBusinessMessageText"
+}
+
+func (t *EditBusinessMessageText) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *EditBusinessMessageText) GetExtra() string {
+	return t.Extra
+}
+
+func (t *EditBusinessMessageText) MarshalJSON() ([]byte, error) {
+	type Alias EditBusinessMessageText
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "editBusinessMessageText",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// EditBusinessStory Changes a story posted by the bot on behalf of a business account; for bots only
+type EditBusinessStory struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat that posted the story
+	StoryPosterChatId int64 `json:"story_poster_chat_id"`
+	// Identifier of the story to edit
+	StoryId int32 `json:"story_id"`
+	// New content of the story
+	Content *InputStoryContent `json:"content"`
+	// New clickable rectangle areas to be shown on the story media
+	Areas *InputStoryAreas `json:"areas"`
+	// New story caption
+	Caption *FormattedText `json:"caption"`
+	// The new privacy settings for the story
+	PrivacySettings *StoryPrivacySettings `json:"privacy_settings"`
+}
+
+func (t *EditBusinessStory) Type() string {
+	return "editBusinessStory"
+}
+
+func (t *EditBusinessStory) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *EditBusinessStory) GetExtra() string {
+	return t.Extra
+}
+
+func (t *EditBusinessStory) MarshalJSON() ([]byte, error) {
+	type Alias EditBusinessStory
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "editBusinessStory",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// EditChatFolder Edits existing chat folder. Returns information about the edited chat folder @chat_folder_id Chat folder identifier @folder The edited chat folder
+type EditChatFolder struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatFolderId int32 `json:"chat_folder_id"`
+	//
+	Folder *ChatFolder `json:"folder"`
+}
+
+func (t *EditChatFolder) Type() string {
+	return "editChatFolder"
+}
+
+func (t *EditChatFolder) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *EditChatFolder) GetExtra() string {
+	return t.Extra
+}
+
+func (t *EditChatFolder) MarshalJSON() ([]byte, error) {
+	type Alias EditChatFolder
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "editChatFolder",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// EditChatFolderInviteLink Edits an invite link for a chat folder
+type EditChatFolderInviteLink struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat folder identifier
+	ChatFolderId int32 `json:"chat_folder_id"`
+	// Invite link to be edited
+	InviteLink string `json:"invite_link"`
+	// New name of the link; 0-32 characters
+	Name string `json:"name"`
+	// New identifiers of chats to be accessible by the invite link. Use getChatsForChatFolderInviteLink to get suitable chats. Basic groups will be automatically converted to supergroups before link editing
+	ChatIds []int64 `json:"chat_ids"`
+}
+
+func (t *EditChatFolderInviteLink) Type() string {
+	return "editChatFolderInviteLink"
+}
+
+func (t *EditChatFolderInviteLink) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *EditChatFolderInviteLink) GetExtra() string {
+	return t.Extra
+}
+
+func (t *EditChatFolderInviteLink) MarshalJSON() ([]byte, error) {
+	type Alias EditChatFolderInviteLink
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "editChatFolderInviteLink",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// EditChatInviteLink Edits a non-primary invite link for a chat. Available for basic groups, supergroups, and channels.
+type EditChatInviteLink struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Invite link to be edited
+	InviteLink string `json:"invite_link"`
+	// Invite link name; 0-32 characters
+	Name string `json:"name"`
+	// Point in time (Unix timestamp) when the link will expire; pass 0 if never
+	ExpirationDate int32 `json:"expiration_date"`
+	// The maximum number of chat members that can join the chat via the link simultaneously; 0-99999; pass 0 if not limited
+	MemberLimit int32 `json:"member_limit"`
+	// Pass true if users joining the chat via the link need to be approved by chat administrators. In this case, member_limit must be 0
+	CreatesJoinRequest bool `json:"creates_join_request"`
+}
+
+func (t *EditChatInviteLink) Type() string {
+	return "editChatInviteLink"
+}
+
+func (t *EditChatInviteLink) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *EditChatInviteLink) GetExtra() string {
+	return t.Extra
+}
+
+func (t *EditChatInviteLink) MarshalJSON() ([]byte, error) {
+	type Alias EditChatInviteLink
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "editChatInviteLink",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// EditChatSubscriptionInviteLink Edits a subscription invite link for a channel chat. Requires can_invite_users right in the chat for own links and owner privileges for other links
+type EditChatSubscriptionInviteLink struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Invite link to be edited
+	InviteLink string `json:"invite_link"`
+	// Invite link name; 0-32 characters
+	Name string `json:"name"`
+}
+
+func (t *EditChatSubscriptionInviteLink) Type() string {
+	return "editChatSubscriptionInviteLink"
+}
+
+func (t *EditChatSubscriptionInviteLink) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *EditChatSubscriptionInviteLink) GetExtra() string {
+	return t.Extra
+}
+
+func (t *EditChatSubscriptionInviteLink) MarshalJSON() ([]byte, error) {
+	type Alias EditChatSubscriptionInviteLink
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "editChatSubscriptionInviteLink",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// EditCustomLanguagePackInfo Edits information about a custom local language pack in the current localization target. Can be called before authorization @info New information about the custom local language pack
+type EditCustomLanguagePackInfo struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Info *LanguagePackInfo `json:"info"`
+}
+
+func (t *EditCustomLanguagePackInfo) Type() string {
+	return "editCustomLanguagePackInfo"
+}
+
+func (t *EditCustomLanguagePackInfo) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *EditCustomLanguagePackInfo) GetExtra() string {
+	return t.Extra
+}
+
+func (t *EditCustomLanguagePackInfo) MarshalJSON() ([]byte, error) {
+	type Alias EditCustomLanguagePackInfo
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "editCustomLanguagePackInfo",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// EditForumTopic Edits title and icon of a topic in a forum supergroup chat or a chat with a bot with topics; for supergroup chats requires can_manage_topics administrator right
+type EditForumTopic struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat
+	ChatId int64 `json:"chat_id"`
+	// Forum topic identifier
+	ForumTopicId int32 `json:"forum_topic_id"`
+	// New name of the topic; 0-128 characters. If empty, the previous topic name is kept
+	Name string `json:"name"`
+	// Pass true to edit the icon of the topic. Icon of the General topic can't be edited
+	EditIconCustomEmoji bool `json:"edit_icon_custom_emoji"`
+	// Identifier of the new custom emoji for topic icon; pass 0 to remove the custom emoji. Ignored if edit_icon_custom_emoji is false. Telegram Premium users can use any custom emoji, other users can use only a custom emoji returned by getForumTopicDefaultIcons
+	IconCustomEmojiId string `json:"icon_custom_emoji_id"`
+}
+
+func (t *EditForumTopic) Type() string {
+	return "editForumTopic"
+}
+
+func (t *EditForumTopic) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *EditForumTopic) GetExtra() string {
+	return t.Extra
+}
+
+func (t *EditForumTopic) MarshalJSON() ([]byte, error) {
+	type Alias EditForumTopic
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "editForumTopic",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// EditInlineMessageCaption Edits the caption of an inline message sent via a bot; for bots only
+type EditInlineMessageCaption struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Inline message identifier
+	InlineMessageId string `json:"inline_message_id"`
+	// The new message reply markup; pass null if none
+	ReplyMarkup *ReplyMarkup `json:"reply_markup,omitempty"`
+	// New message content caption; pass null to remove caption; 0-getOption("message_caption_length_max") characters
+	Caption *FormattedText `json:"caption,omitempty"`
+	// Pass true to show the caption above the media; otherwise, the caption will be shown below the media. May be true only for animation, photo, and video messages
+	ShowCaptionAboveMedia bool `json:"show_caption_above_media"`
+}
+
+func (t *EditInlineMessageCaption) Type() string {
+	return "editInlineMessageCaption"
+}
+
+func (t *EditInlineMessageCaption) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *EditInlineMessageCaption) GetExtra() string {
+	return t.Extra
+}
+
+func (t *EditInlineMessageCaption) MarshalJSON() ([]byte, error) {
+	type Alias EditInlineMessageCaption
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "editInlineMessageCaption",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// EditInlineMessageLiveLocation Edits the content of a live location in an inline message sent via a bot; for bots only
+type EditInlineMessageLiveLocation struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Inline message identifier
+	InlineMessageId string `json:"inline_message_id"`
+	// The new message reply markup; pass null if none
+	ReplyMarkup *ReplyMarkup `json:"reply_markup,omitempty"`
+	// New location content of the message; pass null to stop sharing the live location
+	Location *Location `json:"location,omitempty"`
+	// New time relative to the message send date, for which the location can be updated, in seconds. If 0x7FFFFFFF specified, then the location can be updated forever.
+	LivePeriod int32 `json:"live_period"`
+	// The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
+	Heading int32 `json:"heading"`
+	// The new maximum distance for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled
+	ProximityAlertRadius int32 `json:"proximity_alert_radius"`
+}
+
+func (t *EditInlineMessageLiveLocation) Type() string {
+	return "editInlineMessageLiveLocation"
+}
+
+func (t *EditInlineMessageLiveLocation) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *EditInlineMessageLiveLocation) GetExtra() string {
+	return t.Extra
+}
+
+func (t *EditInlineMessageLiveLocation) MarshalJSON() ([]byte, error) {
+	type Alias EditInlineMessageLiveLocation
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "editInlineMessageLiveLocation",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// EditInlineMessageMedia Edits the media content of a message with a text, an animation, an audio, a document, a photo or a video in an inline message sent via a bot; for bots only
+type EditInlineMessageMedia struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Inline message identifier
+	InlineMessageId string `json:"inline_message_id"`
+	// The new message reply markup; pass null if none; for bots only
+	ReplyMarkup *ReplyMarkup `json:"reply_markup,omitempty"`
+	// New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo
+	InputMessageContent *InputMessageContent `json:"input_message_content"`
+}
+
+func (t *EditInlineMessageMedia) Type() string {
+	return "editInlineMessageMedia"
+}
+
+func (t *EditInlineMessageMedia) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *EditInlineMessageMedia) GetExtra() string {
+	return t.Extra
+}
+
+func (t *EditInlineMessageMedia) MarshalJSON() ([]byte, error) {
+	type Alias EditInlineMessageMedia
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "editInlineMessageMedia",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// EditInlineMessageReplyMarkup Edits the reply markup of an inline message sent via a bot; for bots only
+type EditInlineMessageReplyMarkup struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Inline message identifier
+	InlineMessageId string `json:"inline_message_id"`
+	// The new message reply markup; pass null if none
+	ReplyMarkup *ReplyMarkup `json:"reply_markup,omitempty"`
+}
+
+func (t *EditInlineMessageReplyMarkup) Type() string {
+	return "editInlineMessageReplyMarkup"
+}
+
+func (t *EditInlineMessageReplyMarkup) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *EditInlineMessageReplyMarkup) GetExtra() string {
+	return t.Extra
+}
+
+func (t *EditInlineMessageReplyMarkup) MarshalJSON() ([]byte, error) {
+	type Alias EditInlineMessageReplyMarkup
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "editInlineMessageReplyMarkup",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// EditInlineMessageText Edits the text of an inline text or game message sent via a bot; for bots only
+type EditInlineMessageText struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Inline message identifier
+	InlineMessageId string `json:"inline_message_id"`
+	// The new message reply markup; pass null if none
+	ReplyMarkup *ReplyMarkup `json:"reply_markup,omitempty"`
+	// New text content of the message. Must be of type inputMessageText
+	InputMessageContent *InputMessageContent `json:"input_message_content"`
+}
+
+func (t *EditInlineMessageText) Type() string {
+	return "editInlineMessageText"
+}
+
+func (t *EditInlineMessageText) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *EditInlineMessageText) GetExtra() string {
+	return t.Extra
+}
+
+func (t *EditInlineMessageText) MarshalJSON() ([]byte, error) {
+	type Alias EditInlineMessageText
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "editInlineMessageText",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// EditMessageCaption Edits the message content caption. Returns the edited message after the edit is completed on the server side
+type EditMessageCaption struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The chat the message belongs to
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message. Use messageProperties.can_be_edited to check whether the message can be edited
+	MessageId int64 `json:"message_id"`
+	// The new message reply markup; pass null if none; for bots only
+	ReplyMarkup *ReplyMarkup `json:"reply_markup,omitempty"`
+	// New message content caption; 0-getOption("message_caption_length_max") characters; pass null to remove caption
+	Caption *FormattedText `json:"caption,omitempty"`
+	// Pass true to show the caption above the media; otherwise, the caption will be shown below the media. May be true only for animation, photo, and video messages
+	ShowCaptionAboveMedia bool `json:"show_caption_above_media"`
+}
+
+func (t *EditMessageCaption) Type() string {
+	return "editMessageCaption"
+}
+
+func (t *EditMessageCaption) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *EditMessageCaption) GetExtra() string {
+	return t.Extra
+}
+
+func (t *EditMessageCaption) MarshalJSON() ([]byte, error) {
+	type Alias EditMessageCaption
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "editMessageCaption",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// EditMessageChecklist Edits the message content of a checklist. Returns the edited message after the edit is completed on the server side
+type EditMessageChecklist struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The chat the message belongs to
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message. Use messageProperties.can_be_edited to check whether the message can be edited
+	MessageId int64 `json:"message_id"`
+	// The new message reply markup; pass null if none; for bots only
+	ReplyMarkup *ReplyMarkup `json:"reply_markup,omitempty"`
+	// The new checklist. If some tasks were completed, this information will be kept
+	Checklist *InputChecklist `json:"checklist"`
+}
+
+func (t *EditMessageChecklist) Type() string {
+	return "editMessageChecklist"
+}
+
+func (t *EditMessageChecklist) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *EditMessageChecklist) GetExtra() string {
+	return t.Extra
+}
+
+func (t *EditMessageChecklist) MarshalJSON() ([]byte, error) {
+	type Alias EditMessageChecklist
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "editMessageChecklist",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// EditMessageLiveLocation Edits the message content of a live location. Messages can be edited for a limited period of time specified in the live location.
+type EditMessageLiveLocation struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The chat the message belongs to
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message. Use messageProperties.can_be_edited to check whether the message can be edited
+	MessageId int64 `json:"message_id"`
+	// The new message reply markup; pass null if none; for bots only
+	ReplyMarkup *ReplyMarkup `json:"reply_markup,omitempty"`
+	// New location content of the message; pass null to stop sharing the live location
+	Location *Location `json:"location,omitempty"`
+	// New time relative to the message send date, for which the location can be updated, in seconds. If 0x7FFFFFFF specified, then the location can be updated forever.
+	LivePeriod int32 `json:"live_period"`
+	// The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
+	Heading int32 `json:"heading"`
+	// The new maximum distance for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled
+	ProximityAlertRadius int32 `json:"proximity_alert_radius"`
+}
+
+func (t *EditMessageLiveLocation) Type() string {
+	return "editMessageLiveLocation"
+}
+
+func (t *EditMessageLiveLocation) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *EditMessageLiveLocation) GetExtra() string {
+	return t.Extra
+}
+
+func (t *EditMessageLiveLocation) MarshalJSON() ([]byte, error) {
+	type Alias EditMessageLiveLocation
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "editMessageLiveLocation",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// EditMessageMedia Edits the media content of a message, including message caption. If only the caption needs to be edited, use editMessageCaption instead.
+type EditMessageMedia struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The chat the message belongs to
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message. Use messageProperties.can_edit_media to check whether the message can be edited
+	MessageId int64 `json:"message_id"`
+	// The new message reply markup; pass null if none; for bots only
+	ReplyMarkup *ReplyMarkup `json:"reply_markup,omitempty"`
+	// New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo
+	InputMessageContent *InputMessageContent `json:"input_message_content"`
+}
+
+func (t *EditMessageMedia) Type() string {
+	return "editMessageMedia"
+}
+
+func (t *EditMessageMedia) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *EditMessageMedia) GetExtra() string {
+	return t.Extra
+}
+
+func (t *EditMessageMedia) MarshalJSON() ([]byte, error) {
+	type Alias EditMessageMedia
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "editMessageMedia",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// EditMessageReplyMarkup Edits the message reply markup; for bots only. Returns the edited message after the edit is completed on the server side
+type EditMessageReplyMarkup struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The chat the message belongs to
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message. Use messageProperties.can_be_edited to check whether the message can be edited
+	MessageId int64 `json:"message_id"`
+	// The new message reply markup; pass null if none
+	ReplyMarkup *ReplyMarkup `json:"reply_markup,omitempty"`
+}
+
+func (t *EditMessageReplyMarkup) Type() string {
+	return "editMessageReplyMarkup"
+}
+
+func (t *EditMessageReplyMarkup) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *EditMessageReplyMarkup) GetExtra() string {
+	return t.Extra
+}
+
+func (t *EditMessageReplyMarkup) MarshalJSON() ([]byte, error) {
+	type Alias EditMessageReplyMarkup
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "editMessageReplyMarkup",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// EditMessageSchedulingState Edits the time when a scheduled message will be sent. Scheduling state of all messages in the same album or forwarded together with the message will be also changed
+type EditMessageSchedulingState struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The chat the message belongs to
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message. Use messageProperties.can_edit_scheduling_state to check whether the message is suitable
+	MessageId int64 `json:"message_id"`
+	// The new message scheduling state; pass null to send the message immediately. Must be null for messages in the state messageSchedulingStateSendWhenVideoProcessed
+	SchedulingState *MessageSchedulingState `json:"scheduling_state,omitempty"`
+}
+
+func (t *EditMessageSchedulingState) Type() string {
+	return "editMessageSchedulingState"
+}
+
+func (t *EditMessageSchedulingState) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *EditMessageSchedulingState) GetExtra() string {
+	return t.Extra
+}
+
+func (t *EditMessageSchedulingState) MarshalJSON() ([]byte, error) {
+	type Alias EditMessageSchedulingState
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "editMessageSchedulingState",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// EditMessageText Edits the text of a message (or a text of a game message). Returns the edited message after the edit is completed on the server side
+type EditMessageText struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The chat the message belongs to
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message. Use messageProperties.can_be_edited to check whether the message can be edited
+	MessageId int64 `json:"message_id"`
+	// The new message reply markup; pass null if none; for bots only
+	ReplyMarkup *ReplyMarkup `json:"reply_markup,omitempty"`
+	// New text content of the message. Must be of type inputMessageText
+	InputMessageContent *InputMessageContent `json:"input_message_content"`
+}
+
+func (t *EditMessageText) Type() string {
+	return "editMessageText"
+}
+
+func (t *EditMessageText) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *EditMessageText) GetExtra() string {
+	return t.Extra
+}
+
+func (t *EditMessageText) MarshalJSON() ([]byte, error) {
+	type Alias EditMessageText
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "editMessageText",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// EditProxy Edits an existing proxy server for network requests. Can be called before authorization
+type EditProxy struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Proxy identifier
+	ProxyId int32 `json:"proxy_id"`
+	// Proxy server domain or IP address
+	Server string `json:"server"`
+	// Proxy server port
+	Port int32 `json:"port"`
+	// Pass true to immediately enable the proxy
+	Enable bool `json:"enable"`
+	// Proxy type
+	TypeField *ProxyType `json:"type"`
+}
+
+func (t *EditProxy) Type() string {
+	return "editProxy"
+}
+
+func (t *EditProxy) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *EditProxy) GetExtra() string {
+	return t.Extra
+}
+
+func (t *EditProxy) MarshalJSON() ([]byte, error) {
+	type Alias EditProxy
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "editProxy",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// EditQuickReplyMessage Asynchronously edits the text, media or caption of a quick reply message. Use quickReplyMessage.can_be_edited to check whether a message can be edited.
+type EditQuickReplyMessage struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Unique identifier of the quick reply shortcut with the message
+	ShortcutId int32 `json:"shortcut_id"`
+	// Identifier of the message
+	MessageId int64 `json:"message_id"`
+	// New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageChecklist, inputMessageDocument, inputMessagePhoto, inputMessageText, or inputMessageVideo
+	InputMessageContent *InputMessageContent `json:"input_message_content"`
+}
+
+func (t *EditQuickReplyMessage) Type() string {
+	return "editQuickReplyMessage"
+}
+
+func (t *EditQuickReplyMessage) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *EditQuickReplyMessage) GetExtra() string {
+	return t.Extra
+}
+
+func (t *EditQuickReplyMessage) MarshalJSON() ([]byte, error) {
+	type Alias EditQuickReplyMessage
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "editQuickReplyMessage",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// EditStarSubscription Cancels or re-enables Telegram Star subscription
+type EditStarSubscription struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the subscription to change
+	SubscriptionId string `json:"subscription_id"`
+	// New value of is_canceled
+	IsCanceled bool `json:"is_canceled"`
+}
+
+func (t *EditStarSubscription) Type() string {
+	return "editStarSubscription"
+}
+
+func (t *EditStarSubscription) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *EditStarSubscription) GetExtra() string {
+	return t.Extra
+}
+
+func (t *EditStarSubscription) MarshalJSON() ([]byte, error) {
+	type Alias EditStarSubscription
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "editStarSubscription",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// EditStory Changes content and caption of a story. Can be called only if story.can_be_edited == true
+type EditStory struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat that posted the story
+	StoryPosterChatId int64 `json:"story_poster_chat_id"`
+	// Identifier of the story to edit
+	StoryId int32 `json:"story_id"`
+	// New content of the story; pass null to keep the current content
+	Content *InputStoryContent `json:"content,omitempty"`
+	// New clickable rectangle areas to be shown on the story media; pass null to keep the current areas. Areas can't be edited if story content isn't changed
+	Areas *InputStoryAreas `json:"areas,omitempty"`
+	// New story caption; pass null to keep the current caption
+	Caption *FormattedText `json:"caption,omitempty"`
+}
+
+func (t *EditStory) Type() string {
+	return "editStory"
+}
+
+func (t *EditStory) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *EditStory) GetExtra() string {
+	return t.Extra
+}
+
+func (t *EditStory) MarshalJSON() ([]byte, error) {
+	type Alias EditStory
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "editStory",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// EditStoryCover Changes cover of a video story. Can be called only if story.can_be_edited == true and the story isn't being edited now
+type EditStoryCover struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat that posted the story
+	StoryPosterChatId int64 `json:"story_poster_chat_id"`
+	// Identifier of the story to edit
+	StoryId int32 `json:"story_id"`
+	// New timestamp of the frame, which will be used as video thumbnail
+	CoverFrameTimestamp float64 `json:"cover_frame_timestamp"`
+}
+
+func (t *EditStoryCover) Type() string {
+	return "editStoryCover"
+}
+
+func (t *EditStoryCover) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *EditStoryCover) GetExtra() string {
+	return t.Extra
+}
+
+func (t *EditStoryCover) MarshalJSON() ([]byte, error) {
+	type Alias EditStoryCover
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "editStoryCover",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// EditUserStarSubscription Cancels or re-enables Telegram Star subscription for a user; for bots only
+type EditUserStarSubscription struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// User identifier
+	UserId int64 `json:"user_id"`
+	// Telegram payment identifier of the subscription
+	TelegramPaymentChargeId string `json:"telegram_payment_charge_id"`
+	// Pass true to cancel the subscription; pass false to allow the user to enable it
+	IsCanceled bool `json:"is_canceled"`
+}
+
+func (t *EditUserStarSubscription) Type() string {
+	return "editUserStarSubscription"
+}
+
+func (t *EditUserStarSubscription) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *EditUserStarSubscription) GetExtra() string {
+	return t.Extra
+}
+
+func (t *EditUserStarSubscription) MarshalJSON() ([]byte, error) {
+	type Alias EditUserStarSubscription
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "editUserStarSubscription",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// EnableProxy Enables a proxy. Only one proxy can be enabled at a time. Can be called before authorization @proxy_id Proxy identifier
+type EnableProxy struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ProxyId int32 `json:"proxy_id"`
+}
+
+func (t *EnableProxy) Type() string {
+	return "enableProxy"
+}
+
+func (t *EnableProxy) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *EnableProxy) GetExtra() string {
+	return t.Extra
+}
+
+func (t *EnableProxy) MarshalJSON() ([]byte, error) {
+	type Alias EnableProxy
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "enableProxy",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// EncryptGroupCallData Encrypts group call data before sending them over network using tgcalls
+type EncryptGroupCallData struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Group call identifier. The call must not be a video chat
+	GroupCallId int32 `json:"group_call_id"`
+	// Data channel for which data is encrypted
+	DataChannel *GroupCallDataChannel `json:"data_channel"`
+	// Data to encrypt
+	Data string `json:"data"`
+	// Size of data prefix that must be kept unencrypted
+	UnencryptedPrefixSize int32 `json:"unencrypted_prefix_size"`
+}
+
+func (t *EncryptGroupCallData) Type() string {
+	return "encryptGroupCallData"
+}
+
+func (t *EncryptGroupCallData) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *EncryptGroupCallData) GetExtra() string {
+	return t.Extra
+}
+
+func (t *EncryptGroupCallData) MarshalJSON() ([]byte, error) {
+	type Alias EncryptGroupCallData
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "encryptGroupCallData",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// EndGroupCall Ends a group call. Requires groupCall.can_be_managed right for video chats and live stories or groupCall.is_owned otherwise @group_call_id Group call identifier
+type EndGroupCall struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	GroupCallId int32 `json:"group_call_id"`
+}
+
+func (t *EndGroupCall) Type() string {
+	return "endGroupCall"
+}
+
+func (t *EndGroupCall) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *EndGroupCall) GetExtra() string {
+	return t.Extra
+}
+
+func (t *EndGroupCall) MarshalJSON() ([]byte, error) {
+	type Alias EndGroupCall
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "endGroupCall",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// EndGroupCallRecording Ends recording of an active group call; for video chats only. Requires groupCall.can_be_managed right @group_call_id Group call identifier
+type EndGroupCallRecording struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	GroupCallId int32 `json:"group_call_id"`
+}
+
+func (t *EndGroupCallRecording) Type() string {
+	return "endGroupCallRecording"
+}
+
+func (t *EndGroupCallRecording) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *EndGroupCallRecording) GetExtra() string {
+	return t.Extra
+}
+
+func (t *EndGroupCallRecording) MarshalJSON() ([]byte, error) {
+	type Alias EndGroupCallRecording
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "endGroupCallRecording",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// EndGroupCallScreenSharing Ends screen sharing in a joined group call; not supported in live stories @group_call_id Group call identifier
+type EndGroupCallScreenSharing struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	GroupCallId int32 `json:"group_call_id"`
+}
+
+func (t *EndGroupCallScreenSharing) Type() string {
+	return "endGroupCallScreenSharing"
+}
+
+func (t *EndGroupCallScreenSharing) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *EndGroupCallScreenSharing) GetExtra() string {
+	return t.Extra
+}
+
+func (t *EndGroupCallScreenSharing) MarshalJSON() ([]byte, error) {
+	type Alias EndGroupCallScreenSharing
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "endGroupCallScreenSharing",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// FinishFileGeneration Finishes the file generation
+type FinishFileGeneration struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The identifier of the generation process
+	GenerationId string `json:"generation_id"`
+	// If passed, the file generation has failed and must be terminated; pass null if the file generation succeeded
+	Error *Error `json:"error,omitempty"`
+}
+
+func (t *FinishFileGeneration) Type() string {
+	return "finishFileGeneration"
+}
+
+func (t *FinishFileGeneration) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *FinishFileGeneration) GetExtra() string {
+	return t.Extra
+}
+
+func (t *FinishFileGeneration) MarshalJSON() ([]byte, error) {
+	type Alias FinishFileGeneration
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "finishFileGeneration",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ForwardMessages Forwards previously sent messages. Returns the forwarded messages in the same order as the message identifiers passed in message_ids. If a message can't be forwarded, null will be returned instead of the message
+type ForwardMessages struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat to which to forward messages
+	ChatId int64 `json:"chat_id"`
+	// Topic in which the messages will be forwarded; message threads aren't supported; pass null if none
+	TopicId *MessageTopic `json:"topic_id,omitempty"`
+	// Identifier of the chat from which to forward messages
+	FromChatId int64 `json:"from_chat_id"`
+	// Identifiers of the messages to forward. Message identifiers must be in a strictly increasing order. At most 100 messages can be forwarded simultaneously. A message can be forwarded only if messageProperties.can_be_forwarded
+	MessageIds []int64 `json:"message_ids"`
+	// Options to be used to send the messages; pass null to use default options
+	Options *MessageSendOptions `json:"options,omitempty"`
+	// Pass true to copy content of the messages without reference to the original sender. Always true if the messages are forwarded to a secret chat or are local.
+	SendCopy bool `json:"send_copy"`
+	// Pass true to remove media captions of message copies. Ignored if send_copy is false
+	RemoveCaption bool `json:"remove_caption"`
+}
+
+func (t *ForwardMessages) Type() string {
+	return "forwardMessages"
+}
+
+func (t *ForwardMessages) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ForwardMessages) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ForwardMessages) MarshalJSON() ([]byte, error) {
+	type Alias ForwardMessages
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "forwardMessages",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetAccountTtl Returns the period of inactivity after which the account of the current user will automatically be deleted
+type GetAccountTtl struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetAccountTtl) Type() string {
+	return "getAccountTtl"
+}
+
+func (t *GetAccountTtl) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetAccountTtl) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetAccountTtl) MarshalJSON() ([]byte, error) {
+	type Alias GetAccountTtl
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getAccountTtl",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetActiveSessions Returns all active sessions of the current user
+type GetActiveSessions struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetActiveSessions) Type() string {
+	return "getActiveSessions"
+}
+
+func (t *GetActiveSessions) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetActiveSessions) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetActiveSessions) MarshalJSON() ([]byte, error) {
+	type Alias GetActiveSessions
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getActiveSessions",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetAllPassportElements Returns all available Telegram Passport elements @password The 2-step verification password of the current user
+type GetAllPassportElements struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Password string `json:"password"`
+}
+
+func (t *GetAllPassportElements) Type() string {
+	return "getAllPassportElements"
+}
+
+func (t *GetAllPassportElements) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetAllPassportElements) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetAllPassportElements) MarshalJSON() ([]byte, error) {
+	type Alias GetAllPassportElements
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getAllPassportElements",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetAllStickerEmojis Returns unique emoji that correspond to stickers to be found by the getStickers(sticker_type, query, 1000000, chat_id)
+type GetAllStickerEmojis struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Type of the stickers to search for
+	StickerType *StickerType `json:"sticker_type"`
+	// Search query
+	Query string `json:"query"`
+	// Chat identifier for which to find stickers
+	ChatId int64 `json:"chat_id"`
+	// Pass true if only main emoji for each found sticker must be included in the result
+	ReturnOnlyMainEmoji bool `json:"return_only_main_emoji"`
+}
+
+func (t *GetAllStickerEmojis) Type() string {
+	return "getAllStickerEmojis"
+}
+
+func (t *GetAllStickerEmojis) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetAllStickerEmojis) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetAllStickerEmojis) MarshalJSON() ([]byte, error) {
+	type Alias GetAllStickerEmojis
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getAllStickerEmojis",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetAnimatedEmoji Returns an animated emoji corresponding to a given emoji. Returns a 404 error if the emoji has no animated emoji @emoji The emoji
+type GetAnimatedEmoji struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Emoji string `json:"emoji"`
+}
+
+func (t *GetAnimatedEmoji) Type() string {
+	return "getAnimatedEmoji"
+}
+
+func (t *GetAnimatedEmoji) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetAnimatedEmoji) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetAnimatedEmoji) MarshalJSON() ([]byte, error) {
+	type Alias GetAnimatedEmoji
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getAnimatedEmoji",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetApplicationConfig Returns application config, provided by the server. Can be called before authorization
+type GetApplicationConfig struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetApplicationConfig) Type() string {
+	return "getApplicationConfig"
+}
+
+func (t *GetApplicationConfig) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetApplicationConfig) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetApplicationConfig) MarshalJSON() ([]byte, error) {
+	type Alias GetApplicationConfig
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getApplicationConfig",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetApplicationDownloadLink Returns the link for downloading official Telegram application to be used when the current user invites friends to Telegram
+type GetApplicationDownloadLink struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetApplicationDownloadLink) Type() string {
+	return "getApplicationDownloadLink"
+}
+
+func (t *GetApplicationDownloadLink) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetApplicationDownloadLink) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetApplicationDownloadLink) MarshalJSON() ([]byte, error) {
+	type Alias GetApplicationDownloadLink
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getApplicationDownloadLink",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetArchiveChatListSettings Returns settings for automatic moving of chats to and from the Archive chat lists
+type GetArchiveChatListSettings struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetArchiveChatListSettings) Type() string {
+	return "getArchiveChatListSettings"
+}
+
+func (t *GetArchiveChatListSettings) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetArchiveChatListSettings) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetArchiveChatListSettings) MarshalJSON() ([]byte, error) {
+	type Alias GetArchiveChatListSettings
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getArchiveChatListSettings",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetArchivedStickerSets Returns a list of archived sticker sets
+type GetArchivedStickerSets struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Type of the sticker sets to return
+	StickerType *StickerType `json:"sticker_type"`
+	// Identifier of the sticker set from which to return the result; use 0 to get results from the beginning
+	OffsetStickerSetId string `json:"offset_sticker_set_id"`
+	// The maximum number of sticker sets to return; up to 100
+	Limit int32 `json:"limit"`
+}
+
+func (t *GetArchivedStickerSets) Type() string {
+	return "getArchivedStickerSets"
+}
+
+func (t *GetArchivedStickerSets) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetArchivedStickerSets) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetArchivedStickerSets) MarshalJSON() ([]byte, error) {
+	type Alias GetArchivedStickerSets
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getArchivedStickerSets",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetAttachedStickerSets Returns a list of sticker sets attached to a file, including regular, mask, and emoji sticker sets. Currently, only animations, photos, and videos can have attached sticker sets @file_id File identifier
+type GetAttachedStickerSets struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	FileId int32 `json:"file_id"`
+}
+
+func (t *GetAttachedStickerSets) Type() string {
+	return "getAttachedStickerSets"
+}
+
+func (t *GetAttachedStickerSets) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetAttachedStickerSets) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetAttachedStickerSets) MarshalJSON() ([]byte, error) {
+	type Alias GetAttachedStickerSets
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getAttachedStickerSets",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetAttachmentMenuBot Returns information about a bot that can be added to attachment or side menu @bot_user_id Bot's user identifier
+type GetAttachmentMenuBot struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	BotUserId int64 `json:"bot_user_id"`
+}
+
+func (t *GetAttachmentMenuBot) Type() string {
+	return "getAttachmentMenuBot"
+}
+
+func (t *GetAttachmentMenuBot) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetAttachmentMenuBot) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetAttachmentMenuBot) MarshalJSON() ([]byte, error) {
+	type Alias GetAttachmentMenuBot
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getAttachmentMenuBot",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetAuthenticationPasskeyParameters Returns parameters for authentication using a passkey as JSON-serialized string
+type GetAuthenticationPasskeyParameters struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetAuthenticationPasskeyParameters) Type() string {
+	return "getAuthenticationPasskeyParameters"
+}
+
+func (t *GetAuthenticationPasskeyParameters) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetAuthenticationPasskeyParameters) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetAuthenticationPasskeyParameters) MarshalJSON() ([]byte, error) {
+	type Alias GetAuthenticationPasskeyParameters
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getAuthenticationPasskeyParameters",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetAuthorizationState Returns the current authorization state. This is an offline method. For informational purposes only. Use updateAuthorizationState instead to maintain the current authorization state. Can be called before initialization
+type GetAuthorizationState struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetAuthorizationState) Type() string {
+	return "getAuthorizationState"
+}
+
+func (t *GetAuthorizationState) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetAuthorizationState) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetAuthorizationState) MarshalJSON() ([]byte, error) {
+	type Alias GetAuthorizationState
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getAuthorizationState",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetAutoDownloadSettingsPresets Returns auto-download settings presets for the current user
+type GetAutoDownloadSettingsPresets struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetAutoDownloadSettingsPresets) Type() string {
+	return "getAutoDownloadSettingsPresets"
+}
+
+func (t *GetAutoDownloadSettingsPresets) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetAutoDownloadSettingsPresets) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetAutoDownloadSettingsPresets) MarshalJSON() ([]byte, error) {
+	type Alias GetAutoDownloadSettingsPresets
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getAutoDownloadSettingsPresets",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetAutosaveSettings Returns autosave settings for the current user
+type GetAutosaveSettings struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetAutosaveSettings) Type() string {
+	return "getAutosaveSettings"
+}
+
+func (t *GetAutosaveSettings) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetAutosaveSettings) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetAutosaveSettings) MarshalJSON() ([]byte, error) {
+	type Alias GetAutosaveSettings
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getAutosaveSettings",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetAvailableChatBoostSlots Returns the list of available chat boost slots for the current user
+type GetAvailableChatBoostSlots struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetAvailableChatBoostSlots) Type() string {
+	return "getAvailableChatBoostSlots"
+}
+
+func (t *GetAvailableChatBoostSlots) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetAvailableChatBoostSlots) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetAvailableChatBoostSlots) MarshalJSON() ([]byte, error) {
+	type Alias GetAvailableChatBoostSlots
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getAvailableChatBoostSlots",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetAvailableGifts Returns gifts that can be sent to other users and channel chats
+type GetAvailableGifts struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetAvailableGifts) Type() string {
+	return "getAvailableGifts"
+}
+
+func (t *GetAvailableGifts) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetAvailableGifts) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetAvailableGifts) MarshalJSON() ([]byte, error) {
+	type Alias GetAvailableGifts
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getAvailableGifts",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetBackgroundUrl Constructs a persistent HTTP URL for a background @name Background name @type Background type; backgroundTypeChatTheme isn't supported
+type GetBackgroundUrl struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Name string `json:"name"`
+	//
+	TypeField *BackgroundType `json:"type"`
+}
+
+func (t *GetBackgroundUrl) Type() string {
+	return "getBackgroundUrl"
+}
+
+func (t *GetBackgroundUrl) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetBackgroundUrl) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetBackgroundUrl) MarshalJSON() ([]byte, error) {
+	type Alias GetBackgroundUrl
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getBackgroundUrl",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetBankCardInfo Returns information about a bank card @bank_card_number The bank card number
+type GetBankCardInfo struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	BankCardNumber string `json:"bank_card_number"`
+}
+
+func (t *GetBankCardInfo) Type() string {
+	return "getBankCardInfo"
+}
+
+func (t *GetBankCardInfo) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetBankCardInfo) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetBankCardInfo) MarshalJSON() ([]byte, error) {
+	type Alias GetBankCardInfo
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getBankCardInfo",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetBasicGroup Returns information about a basic group by its identifier. This is an offline method if the current user is not a bot @basic_group_id Basic group identifier
+type GetBasicGroup struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	BasicGroupId int64 `json:"basic_group_id"`
+}
+
+func (t *GetBasicGroup) Type() string {
+	return "getBasicGroup"
+}
+
+func (t *GetBasicGroup) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetBasicGroup) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetBasicGroup) MarshalJSON() ([]byte, error) {
+	type Alias GetBasicGroup
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getBasicGroup",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetBasicGroupFullInfo Returns full information about a basic group by its identifier @basic_group_id Basic group identifier
+type GetBasicGroupFullInfo struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	BasicGroupId int64 `json:"basic_group_id"`
+}
+
+func (t *GetBasicGroupFullInfo) Type() string {
+	return "getBasicGroupFullInfo"
+}
+
+func (t *GetBasicGroupFullInfo) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetBasicGroupFullInfo) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetBasicGroupFullInfo) MarshalJSON() ([]byte, error) {
+	type Alias GetBasicGroupFullInfo
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getBasicGroupFullInfo",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetBlockedMessageSenders Returns users and chats that were blocked by the current user
+type GetBlockedMessageSenders struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Block list from which to return users
+	BlockList *BlockList `json:"block_list"`
+	// Number of users and chats to skip in the result; must be non-negative
+	Offset int32 `json:"offset"`
+	// The maximum number of users and chats to return; up to 100
+	Limit int32 `json:"limit"`
+}
+
+func (t *GetBlockedMessageSenders) Type() string {
+	return "getBlockedMessageSenders"
+}
+
+func (t *GetBlockedMessageSenders) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetBlockedMessageSenders) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetBlockedMessageSenders) MarshalJSON() ([]byte, error) {
+	type Alias GetBlockedMessageSenders
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getBlockedMessageSenders",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetBotInfoDescription Returns the text shown in the chat with a bot if the chat is empty in the given language. Can be called only if userTypeBot.can_be_edited == true
+type GetBotInfoDescription struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the target bot
+	BotUserId int64 `json:"bot_user_id"`
+	// A two-letter ISO 639-1 language code or an empty string
+	LanguageCode string `json:"language_code"`
+}
+
+func (t *GetBotInfoDescription) Type() string {
+	return "getBotInfoDescription"
+}
+
+func (t *GetBotInfoDescription) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetBotInfoDescription) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetBotInfoDescription) MarshalJSON() ([]byte, error) {
+	type Alias GetBotInfoDescription
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getBotInfoDescription",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetBotInfoShortDescription Returns the text shown on a bot's profile page and sent together with the link when users share the bot in the given language. Can be called only if userTypeBot.can_be_edited == true
+type GetBotInfoShortDescription struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the target bot
+	BotUserId int64 `json:"bot_user_id"`
+	// A two-letter ISO 639-1 language code or an empty string
+	LanguageCode string `json:"language_code"`
+}
+
+func (t *GetBotInfoShortDescription) Type() string {
+	return "getBotInfoShortDescription"
+}
+
+func (t *GetBotInfoShortDescription) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetBotInfoShortDescription) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetBotInfoShortDescription) MarshalJSON() ([]byte, error) {
+	type Alias GetBotInfoShortDescription
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getBotInfoShortDescription",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetBotMediaPreviewInfo Returns the list of media previews for the given language and the list of languages for which the bot has dedicated previews
+type GetBotMediaPreviewInfo struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the target bot. The bot must be owned and must have the main Web App
+	BotUserId int64 `json:"bot_user_id"`
+	// A two-letter ISO 639-1 language code for which to get previews. If empty, then default previews are returned
+	LanguageCode string `json:"language_code"`
+}
+
+func (t *GetBotMediaPreviewInfo) Type() string {
+	return "getBotMediaPreviewInfo"
+}
+
+func (t *GetBotMediaPreviewInfo) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetBotMediaPreviewInfo) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetBotMediaPreviewInfo) MarshalJSON() ([]byte, error) {
+	type Alias GetBotMediaPreviewInfo
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getBotMediaPreviewInfo",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetBotMediaPreviews Returns the list of media previews of a bot @bot_user_id Identifier of the target bot. The bot must have the main Web App
+type GetBotMediaPreviews struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	BotUserId int64 `json:"bot_user_id"`
+}
+
+func (t *GetBotMediaPreviews) Type() string {
+	return "getBotMediaPreviews"
+}
+
+func (t *GetBotMediaPreviews) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetBotMediaPreviews) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetBotMediaPreviews) MarshalJSON() ([]byte, error) {
+	type Alias GetBotMediaPreviews
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getBotMediaPreviews",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetBotName Returns the name of a bot in the given language. Can be called only if userTypeBot.can_be_edited == true
+type GetBotName struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the target bot
+	BotUserId int64 `json:"bot_user_id"`
+	// A two-letter ISO 639-1 language code or an empty string
+	LanguageCode string `json:"language_code"`
+}
+
+func (t *GetBotName) Type() string {
+	return "getBotName"
+}
+
+func (t *GetBotName) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetBotName) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetBotName) MarshalJSON() ([]byte, error) {
+	type Alias GetBotName
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getBotName",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetBotSimilarBotCount Returns approximate number of bots similar to the given bot
+type GetBotSimilarBotCount struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// User identifier of the target bot
+	BotUserId int64 `json:"bot_user_id"`
+	// Pass true to get the number of bots without sending network requests, or -1 if the number of bots is unknown locally
+	ReturnLocal bool `json:"return_local"`
+}
+
+func (t *GetBotSimilarBotCount) Type() string {
+	return "getBotSimilarBotCount"
+}
+
+func (t *GetBotSimilarBotCount) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetBotSimilarBotCount) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetBotSimilarBotCount) MarshalJSON() ([]byte, error) {
+	type Alias GetBotSimilarBotCount
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getBotSimilarBotCount",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetBotSimilarBots Returns a list of bots similar to the given bot @bot_user_id User identifier of the target bot
+type GetBotSimilarBots struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	BotUserId int64 `json:"bot_user_id"`
+}
+
+func (t *GetBotSimilarBots) Type() string {
+	return "getBotSimilarBots"
+}
+
+func (t *GetBotSimilarBots) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetBotSimilarBots) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetBotSimilarBots) MarshalJSON() ([]byte, error) {
+	type Alias GetBotSimilarBots
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getBotSimilarBots",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetBusinessAccountStarAmount Returns the amount of Telegram Stars owned by a business account; for bots only @business_connection_id Unique identifier of business connection
+type GetBusinessAccountStarAmount struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	BusinessConnectionId string `json:"business_connection_id"`
+}
+
+func (t *GetBusinessAccountStarAmount) Type() string {
+	return "getBusinessAccountStarAmount"
+}
+
+func (t *GetBusinessAccountStarAmount) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetBusinessAccountStarAmount) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetBusinessAccountStarAmount) MarshalJSON() ([]byte, error) {
+	type Alias GetBusinessAccountStarAmount
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getBusinessAccountStarAmount",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetBusinessChatLinkInfo Returns information about a business chat link @link_name Name of the link
+type GetBusinessChatLinkInfo struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	LinkName string `json:"link_name"`
+}
+
+func (t *GetBusinessChatLinkInfo) Type() string {
+	return "getBusinessChatLinkInfo"
+}
+
+func (t *GetBusinessChatLinkInfo) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetBusinessChatLinkInfo) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetBusinessChatLinkInfo) MarshalJSON() ([]byte, error) {
+	type Alias GetBusinessChatLinkInfo
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getBusinessChatLinkInfo",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetBusinessChatLinks Returns business chat links created for the current account
+type GetBusinessChatLinks struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetBusinessChatLinks) Type() string {
+	return "getBusinessChatLinks"
+}
+
+func (t *GetBusinessChatLinks) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetBusinessChatLinks) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetBusinessChatLinks) MarshalJSON() ([]byte, error) {
+	type Alias GetBusinessChatLinks
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getBusinessChatLinks",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetBusinessConnectedBot Returns the business bot that is connected to the current user account. Returns a 404 error if there is no connected bot
+type GetBusinessConnectedBot struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetBusinessConnectedBot) Type() string {
+	return "getBusinessConnectedBot"
+}
+
+func (t *GetBusinessConnectedBot) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetBusinessConnectedBot) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetBusinessConnectedBot) MarshalJSON() ([]byte, error) {
+	type Alias GetBusinessConnectedBot
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getBusinessConnectedBot",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetBusinessConnection Returns information about a business connection by its identifier; for bots only @connection_id Identifier of the business connection to return
+type GetBusinessConnection struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ConnectionId string `json:"connection_id"`
+}
+
+func (t *GetBusinessConnection) Type() string {
+	return "getBusinessConnection"
+}
+
+func (t *GetBusinessConnection) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetBusinessConnection) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetBusinessConnection) MarshalJSON() ([]byte, error) {
+	type Alias GetBusinessConnection
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getBusinessConnection",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetBusinessFeatures Returns information about features, available to Business users @source Source of the request; pass null if the method is called from settings or some non-standard source
+type GetBusinessFeatures struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Source *BusinessFeature `json:"source"`
+}
+
+func (t *GetBusinessFeatures) Type() string {
+	return "getBusinessFeatures"
+}
+
+func (t *GetBusinessFeatures) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetBusinessFeatures) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetBusinessFeatures) MarshalJSON() ([]byte, error) {
+	type Alias GetBusinessFeatures
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getBusinessFeatures",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetCallbackQueryAnswer Sends a callback query to a bot and returns an answer. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires
+type GetCallbackQueryAnswer struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat with the message
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message from which the query originated. The message must not be scheduled
+	MessageId int64 `json:"message_id"`
+	// Query payload
+	Payload *CallbackQueryPayload `json:"payload"`
+}
+
+func (t *GetCallbackQueryAnswer) Type() string {
+	return "getCallbackQueryAnswer"
+}
+
+func (t *GetCallbackQueryAnswer) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetCallbackQueryAnswer) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetCallbackQueryAnswer) MarshalJSON() ([]byte, error) {
+	type Alias GetCallbackQueryAnswer
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getCallbackQueryAnswer",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetCallbackQueryMessage Returns information about a message with the callback button that originated a callback query; for bots only @chat_id Identifier of the chat the message belongs to @message_id Message identifier @callback_query_id Identifier of the callback query
+type GetCallbackQueryMessage struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+	//
+	MessageId int64 `json:"message_id"`
+	//
+	CallbackQueryId string `json:"callback_query_id"`
+}
+
+func (t *GetCallbackQueryMessage) Type() string {
+	return "getCallbackQueryMessage"
+}
+
+func (t *GetCallbackQueryMessage) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetCallbackQueryMessage) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetCallbackQueryMessage) MarshalJSON() ([]byte, error) {
+	type Alias GetCallbackQueryMessage
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getCallbackQueryMessage",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetChat Returns information about a chat by its identifier. This is an offline method if the current user is not a bot @chat_id Chat identifier
+type GetChat struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+}
+
+func (t *GetChat) Type() string {
+	return "getChat"
+}
+
+func (t *GetChat) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetChat) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetChat) MarshalJSON() ([]byte, error) {
+	type Alias GetChat
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getChat",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetChatActiveStories Returns the list of active stories posted by the given chat @chat_id Chat identifier
+type GetChatActiveStories struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+}
+
+func (t *GetChatActiveStories) Type() string {
+	return "getChatActiveStories"
+}
+
+func (t *GetChatActiveStories) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetChatActiveStories) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetChatActiveStories) MarshalJSON() ([]byte, error) {
+	type Alias GetChatActiveStories
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getChatActiveStories",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetChatAdministrators Returns a list of administrators of the chat with their custom titles @chat_id Chat identifier
+type GetChatAdministrators struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+}
+
+func (t *GetChatAdministrators) Type() string {
+	return "getChatAdministrators"
+}
+
+func (t *GetChatAdministrators) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetChatAdministrators) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetChatAdministrators) MarshalJSON() ([]byte, error) {
+	type Alias GetChatAdministrators
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getChatAdministrators",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetChatArchivedStories Returns the list of all stories posted by the given chat; requires can_edit_stories administrator right in the chat.
+type GetChatArchivedStories struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the story starting from which stories must be returned; use 0 to get results from the last story
+	FromStoryId int32 `json:"from_story_id"`
+	// The maximum number of stories to be returned.
+	Limit int32 `json:"limit"`
+}
+
+func (t *GetChatArchivedStories) Type() string {
+	return "getChatArchivedStories"
+}
+
+func (t *GetChatArchivedStories) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetChatArchivedStories) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetChatArchivedStories) MarshalJSON() ([]byte, error) {
+	type Alias GetChatArchivedStories
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getChatArchivedStories",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetChatAvailableMessageSenders Returns the list of message sender identifiers, which can be used to send messages in a chat @chat_id Chat identifier
+type GetChatAvailableMessageSenders struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+}
+
+func (t *GetChatAvailableMessageSenders) Type() string {
+	return "getChatAvailableMessageSenders"
+}
+
+func (t *GetChatAvailableMessageSenders) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetChatAvailableMessageSenders) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetChatAvailableMessageSenders) MarshalJSON() ([]byte, error) {
+	type Alias GetChatAvailableMessageSenders
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getChatAvailableMessageSenders",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetChatAvailablePaidMessageReactionSenders Returns the list of message sender identifiers, which can be used to send a paid reaction in a chat @chat_id Chat identifier
+type GetChatAvailablePaidMessageReactionSenders struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+}
+
+func (t *GetChatAvailablePaidMessageReactionSenders) Type() string {
+	return "getChatAvailablePaidMessageReactionSenders"
+}
+
+func (t *GetChatAvailablePaidMessageReactionSenders) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetChatAvailablePaidMessageReactionSenders) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetChatAvailablePaidMessageReactionSenders) MarshalJSON() ([]byte, error) {
+	type Alias GetChatAvailablePaidMessageReactionSenders
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getChatAvailablePaidMessageReactionSenders",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetChatBoostFeatures Returns the list of features available for different chat boost levels. This is an offline method
+type GetChatBoostFeatures struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Pass true to get the list of features for channels; pass false to get the list of features for supergroups
+	IsChannel bool `json:"is_channel"`
+}
+
+func (t *GetChatBoostFeatures) Type() string {
+	return "getChatBoostFeatures"
+}
+
+func (t *GetChatBoostFeatures) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetChatBoostFeatures) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetChatBoostFeatures) MarshalJSON() ([]byte, error) {
+	type Alias GetChatBoostFeatures
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getChatBoostFeatures",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetChatBoostLevelFeatures Returns the list of features available on the specific chat boost level. This is an offline method
+type GetChatBoostLevelFeatures struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Pass true to get the list of features for channels; pass false to get the list of features for supergroups
+	IsChannel bool `json:"is_channel"`
+	// Chat boost level
+	Level int32 `json:"level"`
+}
+
+func (t *GetChatBoostLevelFeatures) Type() string {
+	return "getChatBoostLevelFeatures"
+}
+
+func (t *GetChatBoostLevelFeatures) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetChatBoostLevelFeatures) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetChatBoostLevelFeatures) MarshalJSON() ([]byte, error) {
+	type Alias GetChatBoostLevelFeatures
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getChatBoostLevelFeatures",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetChatBoostLink Returns an HTTPS link to boost the specified supergroup or channel chat @chat_id Identifier of the chat
+type GetChatBoostLink struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+}
+
+func (t *GetChatBoostLink) Type() string {
+	return "getChatBoostLink"
+}
+
+func (t *GetChatBoostLink) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetChatBoostLink) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetChatBoostLink) MarshalJSON() ([]byte, error) {
+	type Alias GetChatBoostLink
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getChatBoostLink",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetChatBoostLinkInfo Returns information about a link to boost a chat. Can be called for any internal link of the type internalLinkTypeChatBoost @url The link to boost a chat
+type GetChatBoostLinkInfo struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Url string `json:"url"`
+}
+
+func (t *GetChatBoostLinkInfo) Type() string {
+	return "getChatBoostLinkInfo"
+}
+
+func (t *GetChatBoostLinkInfo) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetChatBoostLinkInfo) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetChatBoostLinkInfo) MarshalJSON() ([]byte, error) {
+	type Alias GetChatBoostLinkInfo
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getChatBoostLinkInfo",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetChatBoosts Returns the list of boosts applied to a chat; requires administrator rights in the chat
+type GetChatBoosts struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat
+	ChatId int64 `json:"chat_id"`
+	// Pass true to receive only boosts received from gift codes and giveaways created by the chat
+	OnlyGiftCodes bool `json:"only_gift_codes"`
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
+	// The maximum number of boosts to be returned; up to 100. For optimal performance, the number of returned boosts can be smaller than the specified limit
+	Limit int32 `json:"limit"`
+}
+
+func (t *GetChatBoosts) Type() string {
+	return "getChatBoosts"
+}
+
+func (t *GetChatBoosts) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetChatBoosts) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetChatBoosts) MarshalJSON() ([]byte, error) {
+	type Alias GetChatBoosts
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getChatBoosts",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetChatBoostStatus Returns the current boost status for a supergroup or a channel chat @chat_id Identifier of the chat
+type GetChatBoostStatus struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+}
+
+func (t *GetChatBoostStatus) Type() string {
+	return "getChatBoostStatus"
+}
+
+func (t *GetChatBoostStatus) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetChatBoostStatus) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetChatBoostStatus) MarshalJSON() ([]byte, error) {
+	type Alias GetChatBoostStatus
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getChatBoostStatus",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetChatEventLog Returns a list of service actions taken by chat members and administrators in the last 48 hours. Available only for supergroups and channels. Requires administrator rights. Returns results in reverse chronological order (i.e., in order of decreasing event_id)
+type GetChatEventLog struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Search query by which to filter events
+	Query string `json:"query"`
+	// Identifier of an event from which to return results. Use 0 to get results from the latest events
+	FromEventId string `json:"from_event_id"`
+	// The maximum number of events to return; up to 100
+	Limit int32 `json:"limit"`
+	// The types of events to return; pass null to get chat events of all types
+	Filters *ChatEventLogFilters `json:"filters,omitempty"`
+	// User identifiers by which to filter events. By default, events relating to all users will be returned
+	UserIds []int64 `json:"user_ids"`
+}
+
+func (t *GetChatEventLog) Type() string {
+	return "getChatEventLog"
+}
+
+func (t *GetChatEventLog) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetChatEventLog) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetChatEventLog) MarshalJSON() ([]byte, error) {
+	type Alias GetChatEventLog
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getChatEventLog",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetChatFolder Returns information about a chat folder by its identifier @chat_folder_id Chat folder identifier
+type GetChatFolder struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatFolderId int32 `json:"chat_folder_id"`
+}
+
+func (t *GetChatFolder) Type() string {
+	return "getChatFolder"
+}
+
+func (t *GetChatFolder) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetChatFolder) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetChatFolder) MarshalJSON() ([]byte, error) {
+	type Alias GetChatFolder
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getChatFolder",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetChatFolderChatCount Returns approximate number of chats in a being created chat folder. Main and archive chat lists must be fully preloaded for this function to work correctly @folder The new chat folder
+type GetChatFolderChatCount struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Folder *ChatFolder `json:"folder"`
+}
+
+func (t *GetChatFolderChatCount) Type() string {
+	return "getChatFolderChatCount"
+}
+
+func (t *GetChatFolderChatCount) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetChatFolderChatCount) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetChatFolderChatCount) MarshalJSON() ([]byte, error) {
+	type Alias GetChatFolderChatCount
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getChatFolderChatCount",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetChatFolderChatsToLeave Returns identifiers of pinned or always included chats from a chat folder, which are suggested to be left when the chat folder is deleted @chat_folder_id Chat folder identifier
+type GetChatFolderChatsToLeave struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatFolderId int32 `json:"chat_folder_id"`
+}
+
+func (t *GetChatFolderChatsToLeave) Type() string {
+	return "getChatFolderChatsToLeave"
+}
+
+func (t *GetChatFolderChatsToLeave) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetChatFolderChatsToLeave) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetChatFolderChatsToLeave) MarshalJSON() ([]byte, error) {
+	type Alias GetChatFolderChatsToLeave
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getChatFolderChatsToLeave",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetChatFolderDefaultIconName Returns default icon name for a folder. Can be called synchronously @folder Chat folder
+type GetChatFolderDefaultIconName struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Folder *ChatFolder `json:"folder"`
+}
+
+func (t *GetChatFolderDefaultIconName) Type() string {
+	return "getChatFolderDefaultIconName"
+}
+
+func (t *GetChatFolderDefaultIconName) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetChatFolderDefaultIconName) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetChatFolderDefaultIconName) MarshalJSON() ([]byte, error) {
+	type Alias GetChatFolderDefaultIconName
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getChatFolderDefaultIconName",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetChatFolderInviteLinks Returns invite links created by the current user for a shareable chat folder @chat_folder_id Chat folder identifier
+type GetChatFolderInviteLinks struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatFolderId int32 `json:"chat_folder_id"`
+}
+
+func (t *GetChatFolderInviteLinks) Type() string {
+	return "getChatFolderInviteLinks"
+}
+
+func (t *GetChatFolderInviteLinks) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetChatFolderInviteLinks) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetChatFolderInviteLinks) MarshalJSON() ([]byte, error) {
+	type Alias GetChatFolderInviteLinks
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getChatFolderInviteLinks",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetChatFolderNewChats Returns new chats added to a shareable chat folder by its owner. The method must be called at most once in getOption("chat_folder_new_chats_update_period") for the given chat folder @chat_folder_id Chat folder identifier
+type GetChatFolderNewChats struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatFolderId int32 `json:"chat_folder_id"`
+}
+
+func (t *GetChatFolderNewChats) Type() string {
+	return "getChatFolderNewChats"
+}
+
+func (t *GetChatFolderNewChats) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetChatFolderNewChats) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetChatFolderNewChats) MarshalJSON() ([]byte, error) {
+	type Alias GetChatFolderNewChats
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getChatFolderNewChats",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetChatHistory Returns messages in a chat. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id).
+type GetChatHistory struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
+	FromMessageId int64 `json:"from_message_id"`
+	// Specify 0 to get results from exactly the message from_message_id or a negative number from -99 to -1 to get additionally -offset newer messages
+	Offset int32 `json:"offset"`
+	// The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, then the limit must be greater than or equal to -offset.
+	Limit int32 `json:"limit"`
+	// Pass true to get only messages that are available without sending network requests
+	OnlyLocal bool `json:"only_local"`
+}
+
+func (t *GetChatHistory) Type() string {
+	return "getChatHistory"
+}
+
+func (t *GetChatHistory) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetChatHistory) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetChatHistory) MarshalJSON() ([]byte, error) {
+	type Alias GetChatHistory
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getChatHistory",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetChatInviteLink Returns information about an invite link. Requires administrator privileges and can_invite_users right in the chat to get own links and owner privileges to get other links
+type GetChatInviteLink struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Invite link to get
+	InviteLink string `json:"invite_link"`
+}
+
+func (t *GetChatInviteLink) Type() string {
+	return "getChatInviteLink"
+}
+
+func (t *GetChatInviteLink) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetChatInviteLink) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetChatInviteLink) MarshalJSON() ([]byte, error) {
+	type Alias GetChatInviteLink
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getChatInviteLink",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetChatInviteLinkCounts Returns the list of chat administrators with number of their invite links. Requires owner privileges in the chat @chat_id Chat identifier
+type GetChatInviteLinkCounts struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+}
+
+func (t *GetChatInviteLinkCounts) Type() string {
+	return "getChatInviteLinkCounts"
+}
+
+func (t *GetChatInviteLinkCounts) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetChatInviteLinkCounts) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetChatInviteLinkCounts) MarshalJSON() ([]byte, error) {
+	type Alias GetChatInviteLinkCounts
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getChatInviteLinkCounts",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetChatInviteLinkMembers Returns chat members joined a chat via an invite link. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
+type GetChatInviteLinkMembers struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Invite link for which to return chat members
+	InviteLink string `json:"invite_link"`
+	// Pass true if the link is a subscription link and only members with expired subscription must be returned
+	OnlyWithExpiredSubscription bool `json:"only_with_expired_subscription"`
+	// A chat member from which to return next chat members; pass null to get results from the beginning
+	OffsetMember *ChatInviteLinkMember `json:"offset_member,omitempty"`
+	// The maximum number of chat members to return; up to 100
+	Limit int32 `json:"limit"`
+}
+
+func (t *GetChatInviteLinkMembers) Type() string {
+	return "getChatInviteLinkMembers"
+}
+
+func (t *GetChatInviteLinkMembers) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetChatInviteLinkMembers) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetChatInviteLinkMembers) MarshalJSON() ([]byte, error) {
+	type Alias GetChatInviteLinkMembers
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getChatInviteLinkMembers",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetChatInviteLinks Returns invite links for a chat created by specified administrator. Requires administrator privileges and can_invite_users right in the chat to get own links and owner privileges to get other links
+type GetChatInviteLinks struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// User identifier of a chat administrator. Must be an identifier of the current user for non-owner
+	CreatorUserId int64 `json:"creator_user_id"`
+	// Pass true if revoked links needs to be returned instead of active or expired
+	IsRevoked bool `json:"is_revoked"`
+	// Creation date of an invite link starting after which to return invite links; use 0 to get results from the beginning
+	OffsetDate int32 `json:"offset_date"`
+	// Invite link starting after which to return invite links; use empty string to get results from the beginning
+	OffsetInviteLink string `json:"offset_invite_link"`
+	// The maximum number of invite links to return; up to 100
+	Limit int32 `json:"limit"`
+}
+
+func (t *GetChatInviteLinks) Type() string {
+	return "getChatInviteLinks"
+}
+
+func (t *GetChatInviteLinks) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetChatInviteLinks) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetChatInviteLinks) MarshalJSON() ([]byte, error) {
+	type Alias GetChatInviteLinks
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getChatInviteLinks",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetChatJoinRequests Returns pending join requests in a chat
+type GetChatJoinRequests struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Invite link for which to return join requests. If empty, all join requests will be returned. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
+	InviteLink string `json:"invite_link"`
+	// A query to search for in the first names, last names and usernames of the users to return
+	Query string `json:"query"`
+	// A chat join request from which to return next requests; pass null to get results from the beginning
+	OffsetRequest *ChatJoinRequest `json:"offset_request,omitempty"`
+	// The maximum number of requests to join the chat to return
+	Limit int32 `json:"limit"`
+}
+
+func (t *GetChatJoinRequests) Type() string {
+	return "getChatJoinRequests"
+}
+
+func (t *GetChatJoinRequests) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetChatJoinRequests) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetChatJoinRequests) MarshalJSON() ([]byte, error) {
+	type Alias GetChatJoinRequests
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getChatJoinRequests",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetChatListsToAddChat Returns chat lists to which the chat can be added. This is an offline method @chat_id Chat identifier
+type GetChatListsToAddChat struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+}
+
+func (t *GetChatListsToAddChat) Type() string {
+	return "getChatListsToAddChat"
+}
+
+func (t *GetChatListsToAddChat) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetChatListsToAddChat) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetChatListsToAddChat) MarshalJSON() ([]byte, error) {
+	type Alias GetChatListsToAddChat
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getChatListsToAddChat",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetChatMember Returns information about a single member of a chat @chat_id Chat identifier @member_id Member identifier
+type GetChatMember struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+	//
+	MemberId *MessageSender `json:"member_id"`
+}
+
+func (t *GetChatMember) Type() string {
+	return "getChatMember"
+}
+
+func (t *GetChatMember) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetChatMember) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetChatMember) MarshalJSON() ([]byte, error) {
+	type Alias GetChatMember
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getChatMember",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetChatMessageByDate Returns the last message sent in a chat no later than the specified date. Returns a 404 error if such message doesn't exist
+type GetChatMessageByDate struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Point in time (Unix timestamp) relative to which to search for messages
+	Date int32 `json:"date"`
+}
+
+func (t *GetChatMessageByDate) Type() string {
+	return "getChatMessageByDate"
+}
+
+func (t *GetChatMessageByDate) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetChatMessageByDate) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetChatMessageByDate) MarshalJSON() ([]byte, error) {
+	type Alias GetChatMessageByDate
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getChatMessageByDate",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetChatMessageCalendar Returns information about the next messages of the specified type in the chat split by days. Returns the results in reverse chronological order. Can return partial result for the last returned day. Behavior of this method depends on the value of the option "utc_time_offset"
+type GetChatMessageCalendar struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat in which to return information about messages
+	ChatId int64 `json:"chat_id"`
+	// Pass topic identifier to get the result only in specific topic; pass null to get the result in all topics; forum topics and message threads aren't supported
+	TopicId *MessageTopic `json:"topic_id,omitempty"`
+	// Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, and searchMessagesFilterUnreadReaction are unsupported in this function
+	Filter *SearchMessagesFilter `json:"filter"`
+	// The message identifier from which to return information about messages; use 0 to get results from the last message
+	FromMessageId int64 `json:"from_message_id"`
+}
+
+func (t *GetChatMessageCalendar) Type() string {
+	return "getChatMessageCalendar"
+}
+
+func (t *GetChatMessageCalendar) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetChatMessageCalendar) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetChatMessageCalendar) MarshalJSON() ([]byte, error) {
+	type Alias GetChatMessageCalendar
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getChatMessageCalendar",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetChatMessageCount Returns approximate number of messages of the specified type in the chat or its topic
+type GetChatMessageCount struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat in which to count messages
+	ChatId int64 `json:"chat_id"`
+	// Pass topic identifier to get number of messages only in specific topic; pass null to get number of messages in all topics; message threads aren't supported
+	TopicId *MessageTopic `json:"topic_id,omitempty"`
+	// Filter for message content; searchMessagesFilterEmpty is unsupported in this function
+	Filter *SearchMessagesFilter `json:"filter"`
+	// Pass true to get the number of messages without sending network requests, or -1 if the number of messages is unknown locally
+	ReturnLocal bool `json:"return_local"`
+}
+
+func (t *GetChatMessageCount) Type() string {
+	return "getChatMessageCount"
+}
+
+func (t *GetChatMessageCount) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetChatMessageCount) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetChatMessageCount) MarshalJSON() ([]byte, error) {
+	type Alias GetChatMessageCount
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getChatMessageCount",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetChatMessagePosition Returns approximate 1-based position of a message among messages, which can be found by the specified filter in the chat and topic. Cannot be used in secret chats
+type GetChatMessagePosition struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat in which to find message position
+	ChatId int64 `json:"chat_id"`
+	// Pass topic identifier to get position among messages only in specific topic; pass null to get position among all chat messages; message threads aren't supported
+	TopicId *MessageTopic `json:"topic_id,omitempty"`
+	// Filter for message content; searchMessagesFilterEmpty, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, and searchMessagesFilterFailedToSend are unsupported in this function
+	Filter *SearchMessagesFilter `json:"filter"`
+	// Message identifier
+	MessageId int64 `json:"message_id"`
+}
+
+func (t *GetChatMessagePosition) Type() string {
+	return "getChatMessagePosition"
+}
+
+func (t *GetChatMessagePosition) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetChatMessagePosition) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetChatMessagePosition) MarshalJSON() ([]byte, error) {
+	type Alias GetChatMessagePosition
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getChatMessagePosition",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetChatNotificationSettingsExceptions Returns the list of chats with non-default notification settings for new messages
+type GetChatNotificationSettingsExceptions struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// If specified, only chats from the scope will be returned; pass null to return chats from all scopes
+	Scope *NotificationSettingsScope `json:"scope,omitempty"`
+	// Pass true to include in the response chats with only non-default sound
+	CompareSound bool `json:"compare_sound"`
+}
+
+func (t *GetChatNotificationSettingsExceptions) Type() string {
+	return "getChatNotificationSettingsExceptions"
+}
+
+func (t *GetChatNotificationSettingsExceptions) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetChatNotificationSettingsExceptions) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetChatNotificationSettingsExceptions) MarshalJSON() ([]byte, error) {
+	type Alias GetChatNotificationSettingsExceptions
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getChatNotificationSettingsExceptions",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetChatPinnedMessage Returns information about a newest pinned message in the chat. Returns a 404 error if the message doesn't exist @chat_id Identifier of the chat the message belongs to
+type GetChatPinnedMessage struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+}
+
+func (t *GetChatPinnedMessage) Type() string {
+	return "getChatPinnedMessage"
+}
+
+func (t *GetChatPinnedMessage) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetChatPinnedMessage) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetChatPinnedMessage) MarshalJSON() ([]byte, error) {
+	type Alias GetChatPinnedMessage
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getChatPinnedMessage",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetChatPostedToChatPageStories Returns the list of stories that posted by the given chat to its chat page. If from_story_id == 0, then pinned stories are returned first.
+type GetChatPostedToChatPageStories struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the story starting from which stories must be returned; use 0 to get results from pinned and the newest story
+	FromStoryId int32 `json:"from_story_id"`
+	// The maximum number of stories to be returned.
+	Limit int32 `json:"limit"`
+}
+
+func (t *GetChatPostedToChatPageStories) Type() string {
+	return "getChatPostedToChatPageStories"
+}
+
+func (t *GetChatPostedToChatPageStories) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetChatPostedToChatPageStories) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetChatPostedToChatPageStories) MarshalJSON() ([]byte, error) {
+	type Alias GetChatPostedToChatPageStories
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getChatPostedToChatPageStories",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetChatRevenueStatistics Returns detailed revenue statistics about a chat. Currently, this method can be used only
+type GetChatRevenueStatistics struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Pass true if a dark theme is used by the application
+	IsDark bool `json:"is_dark"`
+}
+
+func (t *GetChatRevenueStatistics) Type() string {
+	return "getChatRevenueStatistics"
+}
+
+func (t *GetChatRevenueStatistics) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetChatRevenueStatistics) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetChatRevenueStatistics) MarshalJSON() ([]byte, error) {
+	type Alias GetChatRevenueStatistics
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getChatRevenueStatistics",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetChatRevenueTransactions Returns the list of revenue transactions for a chat. Currently, this method can be used only
+type GetChatRevenueTransactions struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Offset of the first transaction to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
+	// The maximum number of transactions to be returned; up to 100
+	Limit int32 `json:"limit"`
+}
+
+func (t *GetChatRevenueTransactions) Type() string {
+	return "getChatRevenueTransactions"
+}
+
+func (t *GetChatRevenueTransactions) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetChatRevenueTransactions) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetChatRevenueTransactions) MarshalJSON() ([]byte, error) {
+	type Alias GetChatRevenueTransactions
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getChatRevenueTransactions",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetChatRevenueWithdrawalUrl Returns a URL for chat revenue withdrawal; requires owner privileges in the channel chat or the bot. Currently, this method can be used only
+type GetChatRevenueWithdrawalUrl struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// The 2-step verification password of the current user
+	Password string `json:"password"`
+}
+
+func (t *GetChatRevenueWithdrawalUrl) Type() string {
+	return "getChatRevenueWithdrawalUrl"
+}
+
+func (t *GetChatRevenueWithdrawalUrl) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetChatRevenueWithdrawalUrl) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetChatRevenueWithdrawalUrl) MarshalJSON() ([]byte, error) {
+	type Alias GetChatRevenueWithdrawalUrl
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getChatRevenueWithdrawalUrl",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetChats Returns an ordered list of chats from the beginning of a chat list. For informational purposes only. Use loadChats and updates processing instead to maintain chat lists in a consistent state
+type GetChats struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The chat list in which to return chats; pass null to get chats from the main chat list
+	ChatList *ChatList `json:"chat_list,omitempty"`
+	// The maximum number of chats to be returned
+	Limit int32 `json:"limit"`
+}
+
+func (t *GetChats) Type() string {
+	return "getChats"
+}
+
+func (t *GetChats) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetChats) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetChats) MarshalJSON() ([]byte, error) {
+	type Alias GetChats
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getChats",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetChatScheduledMessages Returns all scheduled messages in a chat. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id) @chat_id Chat identifier
+type GetChatScheduledMessages struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+}
+
+func (t *GetChatScheduledMessages) Type() string {
+	return "getChatScheduledMessages"
+}
+
+func (t *GetChatScheduledMessages) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetChatScheduledMessages) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetChatScheduledMessages) MarshalJSON() ([]byte, error) {
+	type Alias GetChatScheduledMessages
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getChatScheduledMessages",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetChatsForChatFolderInviteLink Returns identifiers of chats from a chat folder, suitable for adding to a chat folder invite link @chat_folder_id Chat folder identifier
+type GetChatsForChatFolderInviteLink struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatFolderId int32 `json:"chat_folder_id"`
+}
+
+func (t *GetChatsForChatFolderInviteLink) Type() string {
+	return "getChatsForChatFolderInviteLink"
+}
+
+func (t *GetChatsForChatFolderInviteLink) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetChatsForChatFolderInviteLink) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetChatsForChatFolderInviteLink) MarshalJSON() ([]byte, error) {
+	type Alias GetChatsForChatFolderInviteLink
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getChatsForChatFolderInviteLink",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetChatSimilarChatCount Returns approximate number of chats similar to the given chat
+type GetChatSimilarChatCount struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the target chat; must be an identifier of a channel chat
+	ChatId int64 `json:"chat_id"`
+	// Pass true to get the number of chats without sending network requests, or -1 if the number of chats is unknown locally
+	ReturnLocal bool `json:"return_local"`
+}
+
+func (t *GetChatSimilarChatCount) Type() string {
+	return "getChatSimilarChatCount"
+}
+
+func (t *GetChatSimilarChatCount) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetChatSimilarChatCount) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetChatSimilarChatCount) MarshalJSON() ([]byte, error) {
+	type Alias GetChatSimilarChatCount
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getChatSimilarChatCount",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetChatSimilarChats Returns a list of chats similar to the given chat @chat_id Identifier of the target chat; must be an identifier of a channel chat
+type GetChatSimilarChats struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+}
+
+func (t *GetChatSimilarChats) Type() string {
+	return "getChatSimilarChats"
+}
+
+func (t *GetChatSimilarChats) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetChatSimilarChats) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetChatSimilarChats) MarshalJSON() ([]byte, error) {
+	type Alias GetChatSimilarChats
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getChatSimilarChats",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetChatSparseMessagePositions Returns sparse positions of messages of the specified type in the chat to be used for shared media scroll implementation. Returns the results in reverse chronological order (i.e., in order of decreasing message_id).
+type GetChatSparseMessagePositions struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat in which to return information about message positions
+	ChatId int64 `json:"chat_id"`
+	// Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, and searchMessagesFilterUnreadReaction are unsupported in this function
+	Filter *SearchMessagesFilter `json:"filter"`
+	// The message identifier from which to return information about message positions
+	FromMessageId int64 `json:"from_message_id"`
+	// The expected number of message positions to be returned; 50-2000. A smaller number of positions can be returned, if there are not enough appropriate messages
+	Limit int32 `json:"limit"`
+	// If not 0, only messages in the specified Saved Messages topic will be considered; pass 0 to consider all messages, or for chats other than Saved Messages
+	SavedMessagesTopicId int64 `json:"saved_messages_topic_id"`
+}
+
+func (t *GetChatSparseMessagePositions) Type() string {
+	return "getChatSparseMessagePositions"
+}
+
+func (t *GetChatSparseMessagePositions) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetChatSparseMessagePositions) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetChatSparseMessagePositions) MarshalJSON() ([]byte, error) {
+	type Alias GetChatSparseMessagePositions
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getChatSparseMessagePositions",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetChatSponsoredMessages Returns sponsored messages to be shown in a chat; for channel chats and chats with bots only @chat_id Identifier of the chat
+type GetChatSponsoredMessages struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+}
+
+func (t *GetChatSponsoredMessages) Type() string {
+	return "getChatSponsoredMessages"
+}
+
+func (t *GetChatSponsoredMessages) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetChatSponsoredMessages) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetChatSponsoredMessages) MarshalJSON() ([]byte, error) {
+	type Alias GetChatSponsoredMessages
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getChatSponsoredMessages",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetChatStatistics Returns detailed statistics about a chat. Currently, this method can be used only for supergroups and channels. Can be used only if supergroupFullInfo.can_get_statistics == true @chat_id Chat identifier @is_dark Pass true if a dark theme is used by the application
+type GetChatStatistics struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+	//
+	IsDark bool `json:"is_dark"`
+}
+
+func (t *GetChatStatistics) Type() string {
+	return "getChatStatistics"
+}
+
+func (t *GetChatStatistics) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetChatStatistics) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetChatStatistics) MarshalJSON() ([]byte, error) {
+	type Alias GetChatStatistics
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getChatStatistics",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetChatsToPostStories Returns supergroup and channel chats in which the current user has the right to post stories. The chats must be rechecked with canPostStory before actually trying to post a story there
+type GetChatsToPostStories struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetChatsToPostStories) Type() string {
+	return "getChatsToPostStories"
+}
+
+func (t *GetChatsToPostStories) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetChatsToPostStories) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetChatsToPostStories) MarshalJSON() ([]byte, error) {
+	type Alias GetChatsToPostStories
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getChatsToPostStories",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetChatStoryAlbums Returns the list of story albums owned by the given chat @chat_id Chat identifier
+type GetChatStoryAlbums struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+}
+
+func (t *GetChatStoryAlbums) Type() string {
+	return "getChatStoryAlbums"
+}
+
+func (t *GetChatStoryAlbums) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetChatStoryAlbums) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetChatStoryAlbums) MarshalJSON() ([]byte, error) {
+	type Alias GetChatStoryAlbums
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getChatStoryAlbums",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetChatStoryInteractions Returns interactions with a story posted in a chat. Can be used only if story is posted on behalf of a chat and the user is an administrator in the chat
+type GetChatStoryInteractions struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The identifier of the poster of the story
+	StoryPosterChatId int64 `json:"story_poster_chat_id"`
+	// Story identifier
+	StoryId int32 `json:"story_id"`
+	// Pass the default heart reaction or a suggested reaction type to receive only interactions with the specified reaction type; pass null to receive all interactions; reactionTypePaid isn't supported
+	ReactionType *ReactionType `json:"reaction_type,omitempty"`
+	// Pass true to get forwards and reposts first, then reactions, then other views; pass false to get interactions sorted just by interaction date
+	PreferForwards bool `json:"prefer_forwards"`
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
+	// The maximum number of story interactions to return
+	Limit int32 `json:"limit"`
+}
+
+func (t *GetChatStoryInteractions) Type() string {
+	return "getChatStoryInteractions"
+}
+
+func (t *GetChatStoryInteractions) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetChatStoryInteractions) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetChatStoryInteractions) MarshalJSON() ([]byte, error) {
+	type Alias GetChatStoryInteractions
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getChatStoryInteractions",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetCloseFriends Returns all close friends of the current user
+type GetCloseFriends struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetCloseFriends) Type() string {
+	return "getCloseFriends"
+}
+
+func (t *GetCloseFriends) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetCloseFriends) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetCloseFriends) MarshalJSON() ([]byte, error) {
+	type Alias GetCloseFriends
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getCloseFriends",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetCollectibleItemInfo Returns information about a given collectible item that was purchased at https://fragment.com
+type GetCollectibleItemInfo struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Type of the collectible item. The item must be used by a user and must be visible to the current user
+	TypeField *CollectibleItemType `json:"type"`
+}
+
+func (t *GetCollectibleItemInfo) Type() string {
+	return "getCollectibleItemInfo"
+}
+
+func (t *GetCollectibleItemInfo) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetCollectibleItemInfo) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetCollectibleItemInfo) MarshalJSON() ([]byte, error) {
+	type Alias GetCollectibleItemInfo
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getCollectibleItemInfo",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetCommands Returns the list of commands supported by the bot for the given user scope and language; for bots only
+type GetCommands struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The scope to which the commands are relevant; pass null to get commands in the default bot command scope
+	Scope *BotCommandScope `json:"scope,omitempty"`
+	// A two-letter ISO 639-1 language code or an empty string
+	LanguageCode string `json:"language_code"`
+}
+
+func (t *GetCommands) Type() string {
+	return "getCommands"
+}
+
+func (t *GetCommands) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetCommands) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetCommands) MarshalJSON() ([]byte, error) {
+	type Alias GetCommands
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getCommands",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetConnectedAffiliateProgram Returns an affiliate program that were connected to the given affiliate by identifier of the bot that created the program
+type GetConnectedAffiliateProgram struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The affiliate to which the affiliate program will be connected
+	Affiliate *AffiliateType `json:"affiliate"`
+	// Identifier of the bot that created the program
+	BotUserId int64 `json:"bot_user_id"`
+}
+
+func (t *GetConnectedAffiliateProgram) Type() string {
+	return "getConnectedAffiliateProgram"
+}
+
+func (t *GetConnectedAffiliateProgram) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetConnectedAffiliateProgram) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetConnectedAffiliateProgram) MarshalJSON() ([]byte, error) {
+	type Alias GetConnectedAffiliateProgram
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getConnectedAffiliateProgram",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetConnectedAffiliatePrograms Returns affiliate programs that were connected to the given affiliate
+type GetConnectedAffiliatePrograms struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The affiliate to which the affiliate program were connected
+	Affiliate *AffiliateType `json:"affiliate"`
+	// Offset of the first affiliate program to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
+	// The maximum number of affiliate programs to return
+	Limit int32 `json:"limit"`
+}
+
+func (t *GetConnectedAffiliatePrograms) Type() string {
+	return "getConnectedAffiliatePrograms"
+}
+
+func (t *GetConnectedAffiliatePrograms) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetConnectedAffiliatePrograms) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetConnectedAffiliatePrograms) MarshalJSON() ([]byte, error) {
+	type Alias GetConnectedAffiliatePrograms
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getConnectedAffiliatePrograms",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetConnectedWebsites Returns all website where the current user used Telegram to log in
+type GetConnectedWebsites struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetConnectedWebsites) Type() string {
+	return "getConnectedWebsites"
+}
+
+func (t *GetConnectedWebsites) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetConnectedWebsites) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetConnectedWebsites) MarshalJSON() ([]byte, error) {
+	type Alias GetConnectedWebsites
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getConnectedWebsites",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetContacts Returns all contacts of the user
+type GetContacts struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetContacts) Type() string {
+	return "getContacts"
+}
+
+func (t *GetContacts) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetContacts) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetContacts) MarshalJSON() ([]byte, error) {
+	type Alias GetContacts
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getContacts",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetCountries Returns information about existing countries. Can be called before authorization
+type GetCountries struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetCountries) Type() string {
+	return "getCountries"
+}
+
+func (t *GetCountries) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetCountries) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetCountries) MarshalJSON() ([]byte, error) {
+	type Alias GetCountries
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getCountries",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetCountryCode Uses the current IP address to find the current country. Returns two-letter ISO 3166-1 alpha-2 country code. Can be called before authorization
+type GetCountryCode struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetCountryCode) Type() string {
+	return "getCountryCode"
+}
+
+func (t *GetCountryCode) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetCountryCode) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetCountryCode) MarshalJSON() ([]byte, error) {
+	type Alias GetCountryCode
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getCountryCode",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetCountryFlagEmoji Returns an emoji for the given country. Returns an empty string on failure. Can be called synchronously @country_code A two-letter ISO 3166-1 alpha-2 country code as received from getCountries
+type GetCountryFlagEmoji struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	CountryCode string `json:"country_code"`
+}
+
+func (t *GetCountryFlagEmoji) Type() string {
+	return "getCountryFlagEmoji"
+}
+
+func (t *GetCountryFlagEmoji) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetCountryFlagEmoji) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetCountryFlagEmoji) MarshalJSON() ([]byte, error) {
+	type Alias GetCountryFlagEmoji
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getCountryFlagEmoji",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetCreatedPublicChats Returns a list of public chats of the specified type, owned by the user @type Type of the public chats to return
+type GetCreatedPublicChats struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	TypeField *PublicChatType `json:"type"`
+}
+
+func (t *GetCreatedPublicChats) Type() string {
+	return "getCreatedPublicChats"
+}
+
+func (t *GetCreatedPublicChats) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetCreatedPublicChats) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetCreatedPublicChats) MarshalJSON() ([]byte, error) {
+	type Alias GetCreatedPublicChats
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getCreatedPublicChats",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetCurrentState Returns all updates needed to restore current TDLib state, i.e. all actual updateAuthorizationState/updateUser/updateNewChat and others. This is especially useful if TDLib is run in a separate process. Can be called before initialization
+type GetCurrentState struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetCurrentState) Type() string {
+	return "getCurrentState"
+}
+
+func (t *GetCurrentState) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetCurrentState) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetCurrentState) MarshalJSON() ([]byte, error) {
+	type Alias GetCurrentState
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getCurrentState",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetCurrentWeather Returns the current weather in the given location @location The location
+type GetCurrentWeather struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Location *Location `json:"location"`
+}
+
+func (t *GetCurrentWeather) Type() string {
+	return "getCurrentWeather"
+}
+
+func (t *GetCurrentWeather) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetCurrentWeather) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetCurrentWeather) MarshalJSON() ([]byte, error) {
+	type Alias GetCurrentWeather
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getCurrentWeather",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetCustomEmojiReactionAnimations Returns TGS stickers with generic animations for custom emoji reactions
+type GetCustomEmojiReactionAnimations struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetCustomEmojiReactionAnimations) Type() string {
+	return "getCustomEmojiReactionAnimations"
+}
+
+func (t *GetCustomEmojiReactionAnimations) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetCustomEmojiReactionAnimations) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetCustomEmojiReactionAnimations) MarshalJSON() ([]byte, error) {
+	type Alias GetCustomEmojiReactionAnimations
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getCustomEmojiReactionAnimations",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetCustomEmojiStickers Returns the list of custom emoji stickers by their identifiers. Stickers are returned in arbitrary order. Only found stickers are returned
+type GetCustomEmojiStickers struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifiers of custom emoji stickers. At most 200 custom emoji stickers can be received simultaneously
+	CustomEmojiIds []string `json:"custom_emoji_ids"`
+}
+
+func (t *GetCustomEmojiStickers) Type() string {
+	return "getCustomEmojiStickers"
+}
+
+func (t *GetCustomEmojiStickers) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetCustomEmojiStickers) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetCustomEmojiStickers) MarshalJSON() ([]byte, error) {
+	type Alias GetCustomEmojiStickers
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getCustomEmojiStickers",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetDatabaseStatistics Returns database statistics
+type GetDatabaseStatistics struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetDatabaseStatistics) Type() string {
+	return "getDatabaseStatistics"
+}
+
+func (t *GetDatabaseStatistics) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetDatabaseStatistics) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetDatabaseStatistics) MarshalJSON() ([]byte, error) {
+	type Alias GetDatabaseStatistics
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getDatabaseStatistics",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetDeepLinkInfo Returns information about a tg:// deep link. Use "tg://need_update_for_some_feature" or "tg:some_unsupported_feature" for testing. Returns a 404 error for unknown links. Can be called before authorization @link The link
+type GetDeepLinkInfo struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Link string `json:"link"`
+}
+
+func (t *GetDeepLinkInfo) Type() string {
+	return "getDeepLinkInfo"
+}
+
+func (t *GetDeepLinkInfo) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetDeepLinkInfo) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetDeepLinkInfo) MarshalJSON() ([]byte, error) {
+	type Alias GetDeepLinkInfo
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getDeepLinkInfo",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetDefaultBackgroundCustomEmojiStickers Returns default list of custom emoji stickers for reply background
+type GetDefaultBackgroundCustomEmojiStickers struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetDefaultBackgroundCustomEmojiStickers) Type() string {
+	return "getDefaultBackgroundCustomEmojiStickers"
+}
+
+func (t *GetDefaultBackgroundCustomEmojiStickers) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetDefaultBackgroundCustomEmojiStickers) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetDefaultBackgroundCustomEmojiStickers) MarshalJSON() ([]byte, error) {
+	type Alias GetDefaultBackgroundCustomEmojiStickers
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getDefaultBackgroundCustomEmojiStickers",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetDefaultChatEmojiStatuses Returns default emoji statuses for chats
+type GetDefaultChatEmojiStatuses struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetDefaultChatEmojiStatuses) Type() string {
+	return "getDefaultChatEmojiStatuses"
+}
+
+func (t *GetDefaultChatEmojiStatuses) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetDefaultChatEmojiStatuses) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetDefaultChatEmojiStatuses) MarshalJSON() ([]byte, error) {
+	type Alias GetDefaultChatEmojiStatuses
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getDefaultChatEmojiStatuses",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetDefaultChatPhotoCustomEmojiStickers Returns default list of custom emoji stickers for placing on a chat photo
+type GetDefaultChatPhotoCustomEmojiStickers struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetDefaultChatPhotoCustomEmojiStickers) Type() string {
+	return "getDefaultChatPhotoCustomEmojiStickers"
+}
+
+func (t *GetDefaultChatPhotoCustomEmojiStickers) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetDefaultChatPhotoCustomEmojiStickers) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetDefaultChatPhotoCustomEmojiStickers) MarshalJSON() ([]byte, error) {
+	type Alias GetDefaultChatPhotoCustomEmojiStickers
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getDefaultChatPhotoCustomEmojiStickers",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetDefaultEmojiStatuses Returns default emoji statuses for self status
+type GetDefaultEmojiStatuses struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetDefaultEmojiStatuses) Type() string {
+	return "getDefaultEmojiStatuses"
+}
+
+func (t *GetDefaultEmojiStatuses) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetDefaultEmojiStatuses) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetDefaultEmojiStatuses) MarshalJSON() ([]byte, error) {
+	type Alias GetDefaultEmojiStatuses
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getDefaultEmojiStatuses",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetDefaultMessageAutoDeleteTime Returns default message auto-delete time setting for new chats
+type GetDefaultMessageAutoDeleteTime struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetDefaultMessageAutoDeleteTime) Type() string {
+	return "getDefaultMessageAutoDeleteTime"
+}
+
+func (t *GetDefaultMessageAutoDeleteTime) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetDefaultMessageAutoDeleteTime) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetDefaultMessageAutoDeleteTime) MarshalJSON() ([]byte, error) {
+	type Alias GetDefaultMessageAutoDeleteTime
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getDefaultMessageAutoDeleteTime",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetDefaultProfilePhotoCustomEmojiStickers Returns default list of custom emoji stickers for placing on a profile photo
+type GetDefaultProfilePhotoCustomEmojiStickers struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetDefaultProfilePhotoCustomEmojiStickers) Type() string {
+	return "getDefaultProfilePhotoCustomEmojiStickers"
+}
+
+func (t *GetDefaultProfilePhotoCustomEmojiStickers) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetDefaultProfilePhotoCustomEmojiStickers) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetDefaultProfilePhotoCustomEmojiStickers) MarshalJSON() ([]byte, error) {
+	type Alias GetDefaultProfilePhotoCustomEmojiStickers
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getDefaultProfilePhotoCustomEmojiStickers",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetDirectMessagesChatTopic Returns information about the topic in a channel direct messages chat administered by the current user
+type GetDirectMessagesChatTopic struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier of the channel direct messages chat
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the topic to get
+	TopicId int64 `json:"topic_id"`
+}
+
+func (t *GetDirectMessagesChatTopic) Type() string {
+	return "getDirectMessagesChatTopic"
+}
+
+func (t *GetDirectMessagesChatTopic) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetDirectMessagesChatTopic) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetDirectMessagesChatTopic) MarshalJSON() ([]byte, error) {
+	type Alias GetDirectMessagesChatTopic
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getDirectMessagesChatTopic",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetDirectMessagesChatTopicHistory Returns messages in the topic in a channel direct messages chat administered by the current user. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id)
+type GetDirectMessagesChatTopicHistory struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier of the channel direct messages chat
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the topic which messages will be fetched
+	TopicId int64 `json:"topic_id"`
+	// Identifier of the message starting from which messages must be fetched; use 0 to get results from the last message
+	FromMessageId int64 `json:"from_message_id"`
+	// Specify 0 to get results from exactly the message from_message_id or a negative number from -99 to -1 to get additionally -offset newer messages
+	Offset int32 `json:"offset"`
+	// The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, then the limit must be greater than or equal to -offset.
+	Limit int32 `json:"limit"`
+}
+
+func (t *GetDirectMessagesChatTopicHistory) Type() string {
+	return "getDirectMessagesChatTopicHistory"
+}
+
+func (t *GetDirectMessagesChatTopicHistory) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetDirectMessagesChatTopicHistory) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetDirectMessagesChatTopicHistory) MarshalJSON() ([]byte, error) {
+	type Alias GetDirectMessagesChatTopicHistory
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getDirectMessagesChatTopicHistory",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetDirectMessagesChatTopicMessageByDate Returns the last message sent in the topic in a channel direct messages chat administered by the current user no later than the specified date
+type GetDirectMessagesChatTopicMessageByDate struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier of the channel direct messages chat
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the topic which messages will be fetched
+	TopicId int64 `json:"topic_id"`
+	// Point in time (Unix timestamp) relative to which to search for messages
+	Date int32 `json:"date"`
+}
+
+func (t *GetDirectMessagesChatTopicMessageByDate) Type() string {
+	return "getDirectMessagesChatTopicMessageByDate"
+}
+
+func (t *GetDirectMessagesChatTopicMessageByDate) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetDirectMessagesChatTopicMessageByDate) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetDirectMessagesChatTopicMessageByDate) MarshalJSON() ([]byte, error) {
+	type Alias GetDirectMessagesChatTopicMessageByDate
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getDirectMessagesChatTopicMessageByDate",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetDirectMessagesChatTopicRevenue Returns the total number of Telegram Stars received by the channel chat for direct messages from the given topic
+type GetDirectMessagesChatTopicRevenue struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier of the channel direct messages chat administered by the current user
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the topic
+	TopicId int64 `json:"topic_id"`
+}
+
+func (t *GetDirectMessagesChatTopicRevenue) Type() string {
+	return "getDirectMessagesChatTopicRevenue"
+}
+
+func (t *GetDirectMessagesChatTopicRevenue) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetDirectMessagesChatTopicRevenue) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetDirectMessagesChatTopicRevenue) MarshalJSON() ([]byte, error) {
+	type Alias GetDirectMessagesChatTopicRevenue
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getDirectMessagesChatTopicRevenue",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetDisallowedChatEmojiStatuses Returns the list of emoji statuses, which can't be used as chat emoji status, even if they are from a sticker set with is_allowed_as_chat_emoji_status == true
+type GetDisallowedChatEmojiStatuses struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetDisallowedChatEmojiStatuses) Type() string {
+	return "getDisallowedChatEmojiStatuses"
+}
+
+func (t *GetDisallowedChatEmojiStatuses) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetDisallowedChatEmojiStatuses) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetDisallowedChatEmojiStatuses) MarshalJSON() ([]byte, error) {
+	type Alias GetDisallowedChatEmojiStatuses
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getDisallowedChatEmojiStatuses",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetEmojiCategories Returns available emoji categories @type Type of emoji categories to return; pass null to get default emoji categories
+type GetEmojiCategories struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	TypeField *EmojiCategoryType `json:"type"`
+}
+
+func (t *GetEmojiCategories) Type() string {
+	return "getEmojiCategories"
+}
+
+func (t *GetEmojiCategories) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetEmojiCategories) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetEmojiCategories) MarshalJSON() ([]byte, error) {
+	type Alias GetEmojiCategories
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getEmojiCategories",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetEmojiReaction Returns information about an emoji reaction. Returns a 404 error if the reaction is not found @emoji Text representation of the reaction
+type GetEmojiReaction struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Emoji string `json:"emoji"`
+}
+
+func (t *GetEmojiReaction) Type() string {
+	return "getEmojiReaction"
+}
+
+func (t *GetEmojiReaction) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetEmojiReaction) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetEmojiReaction) MarshalJSON() ([]byte, error) {
+	type Alias GetEmojiReaction
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getEmojiReaction",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetEmojiSuggestionsUrl Returns an HTTP URL which can be used to automatically log in to the translation platform and suggest new emoji replacements. The URL will be valid for 30 seconds after generation
+type GetEmojiSuggestionsUrl struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Language code for which the emoji replacements will be suggested
+	LanguageCode string `json:"language_code"`
+}
+
+func (t *GetEmojiSuggestionsUrl) Type() string {
+	return "getEmojiSuggestionsUrl"
+}
+
+func (t *GetEmojiSuggestionsUrl) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetEmojiSuggestionsUrl) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetEmojiSuggestionsUrl) MarshalJSON() ([]byte, error) {
+	type Alias GetEmojiSuggestionsUrl
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getEmojiSuggestionsUrl",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetExternalLink Returns an HTTP URL which can be used to automatically authorize the current user on a website after clicking an HTTP link. Use the method getExternalLinkInfo to find whether a prior user confirmation is needed
+type GetExternalLink struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The HTTP link
+	Link string `json:"link"`
+	// Pass true if the current user allowed the bot, returned in getExternalLinkInfo, to send them messages
+	AllowWriteAccess bool `json:"allow_write_access"`
+}
+
+func (t *GetExternalLink) Type() string {
+	return "getExternalLink"
+}
+
+func (t *GetExternalLink) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetExternalLink) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetExternalLink) MarshalJSON() ([]byte, error) {
+	type Alias GetExternalLink
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getExternalLink",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetExternalLinkInfo Returns information about an action to be done when the current user clicks an external link. Don't use this method for links from secret chats if link preview is disabled in secret chats @link The link
+type GetExternalLinkInfo struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Link string `json:"link"`
+}
+
+func (t *GetExternalLinkInfo) Type() string {
+	return "getExternalLinkInfo"
+}
+
+func (t *GetExternalLinkInfo) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetExternalLinkInfo) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetExternalLinkInfo) MarshalJSON() ([]byte, error) {
+	type Alias GetExternalLinkInfo
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getExternalLinkInfo",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetFavoriteStickers Returns favorite stickers
+type GetFavoriteStickers struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetFavoriteStickers) Type() string {
+	return "getFavoriteStickers"
+}
+
+func (t *GetFavoriteStickers) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetFavoriteStickers) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetFavoriteStickers) MarshalJSON() ([]byte, error) {
+	type Alias GetFavoriteStickers
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getFavoriteStickers",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetFile Returns information about a file. This is an offline method @file_id Identifier of the file to get
+type GetFile struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	FileId int32 `json:"file_id"`
+}
+
+func (t *GetFile) Type() string {
+	return "getFile"
+}
+
+func (t *GetFile) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetFile) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetFile) MarshalJSON() ([]byte, error) {
+	type Alias GetFile
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getFile",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetFileDownloadedPrefixSize Returns file downloaded prefix size from a given offset, in bytes @file_id Identifier of the file @offset Offset from which downloaded prefix size needs to be calculated
+type GetFileDownloadedPrefixSize struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	FileId int32 `json:"file_id"`
+	//
+	Offset int64 `json:"offset"`
+}
+
+func (t *GetFileDownloadedPrefixSize) Type() string {
+	return "getFileDownloadedPrefixSize"
+}
+
+func (t *GetFileDownloadedPrefixSize) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetFileDownloadedPrefixSize) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetFileDownloadedPrefixSize) MarshalJSON() ([]byte, error) {
+	type Alias GetFileDownloadedPrefixSize
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getFileDownloadedPrefixSize",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetFileExtension Returns the extension of a file, guessed by its MIME type. Returns an empty string on failure. Can be called synchronously @mime_type The MIME type of the file
+type GetFileExtension struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	MimeType string `json:"mime_type"`
+}
+
+func (t *GetFileExtension) Type() string {
+	return "getFileExtension"
+}
+
+func (t *GetFileExtension) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetFileExtension) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetFileExtension) MarshalJSON() ([]byte, error) {
+	type Alias GetFileExtension
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getFileExtension",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetFileMimeType Returns the MIME type of a file, guessed by its extension. Returns an empty string on failure. Can be called synchronously @file_name The name of the file or path to the file
+type GetFileMimeType struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	FileName string `json:"file_name"`
+}
+
+func (t *GetFileMimeType) Type() string {
+	return "getFileMimeType"
+}
+
+func (t *GetFileMimeType) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetFileMimeType) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetFileMimeType) MarshalJSON() ([]byte, error) {
+	type Alias GetFileMimeType
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getFileMimeType",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetForumTopic Returns information about a topic in a forum supergroup chat or a chat with a bot with topics
+type GetForumTopic struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat
+	ChatId int64 `json:"chat_id"`
+	// Forum topic identifier
+	ForumTopicId int32 `json:"forum_topic_id"`
+}
+
+func (t *GetForumTopic) Type() string {
+	return "getForumTopic"
+}
+
+func (t *GetForumTopic) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetForumTopic) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetForumTopic) MarshalJSON() ([]byte, error) {
+	type Alias GetForumTopic
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getForumTopic",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetForumTopicDefaultIcons Returns the list of custom emoji, which can be used as forum topic icon by all users
+type GetForumTopicDefaultIcons struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetForumTopicDefaultIcons) Type() string {
+	return "getForumTopicDefaultIcons"
+}
+
+func (t *GetForumTopicDefaultIcons) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetForumTopicDefaultIcons) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetForumTopicDefaultIcons) MarshalJSON() ([]byte, error) {
+	type Alias GetForumTopicDefaultIcons
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getForumTopicDefaultIcons",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetForumTopicHistory Returns messages in a topic in a forum supergroup chat or a chat with a bot with topics. The messages are returned in reverse chronological order
+type GetForumTopicHistory struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Forum topic identifier
+	ForumTopicId int32 `json:"forum_topic_id"`
+	// Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
+	FromMessageId int64 `json:"from_message_id"`
+	// Specify 0 to get results from exactly the message from_message_id or a negative number from -99 to -1 to get additionally -offset newer messages
+	Offset int32 `json:"offset"`
+	// The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, then the limit must be greater than or equal to -offset.
+	Limit int32 `json:"limit"`
+}
+
+func (t *GetForumTopicHistory) Type() string {
+	return "getForumTopicHistory"
+}
+
+func (t *GetForumTopicHistory) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetForumTopicHistory) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetForumTopicHistory) MarshalJSON() ([]byte, error) {
+	type Alias GetForumTopicHistory
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getForumTopicHistory",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetForumTopicLink Returns an HTTPS link to a topic in a forum supergroup chat. This is an offline method @chat_id Identifier of the chat @forum_topic_id Forum topic identifier
+type GetForumTopicLink struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+	//
+	ForumTopicId int32 `json:"forum_topic_id"`
+}
+
+func (t *GetForumTopicLink) Type() string {
+	return "getForumTopicLink"
+}
+
+func (t *GetForumTopicLink) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetForumTopicLink) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetForumTopicLink) MarshalJSON() ([]byte, error) {
+	type Alias GetForumTopicLink
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getForumTopicLink",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetForumTopics Returns found forum topics in a forum supergroup chat or a chat with a bot with topics. This is a temporary method for getting information about topic list from the server
+type GetForumTopics struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat
+	ChatId int64 `json:"chat_id"`
+	// Query to search for in the forum topic's name
+	Query string `json:"query"`
+	// The date starting from which the results need to be fetched. Use 0 or any date in the future to get results from the last topic
+	OffsetDate int32 `json:"offset_date"`
+	// The message identifier of the last message in the last found topic, or 0 for the first request
+	OffsetMessageId int64 `json:"offset_message_id"`
+	// The forum topic identifier of the last found topic, or 0 for the first request
+	OffsetForumTopicId int32 `json:"offset_forum_topic_id"`
+	// The maximum number of forum topics to be returned; up to 100. For optimal performance, the number of returned forum topics is chosen by TDLib and can be smaller than the specified limit
+	Limit int32 `json:"limit"`
+}
+
+func (t *GetForumTopics) Type() string {
+	return "getForumTopics"
+}
+
+func (t *GetForumTopics) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetForumTopics) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetForumTopics) MarshalJSON() ([]byte, error) {
+	type Alias GetForumTopics
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getForumTopics",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetGameHighScores Returns the high scores for a game and some part of the high score table in the range of the specified user; for bots only @chat_id The chat that contains the message with the game @message_id Identifier of the message @user_id User identifier
+type GetGameHighScores struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+	//
+	MessageId int64 `json:"message_id"`
+	//
+	UserId int64 `json:"user_id"`
+}
+
+func (t *GetGameHighScores) Type() string {
+	return "getGameHighScores"
+}
+
+func (t *GetGameHighScores) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetGameHighScores) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetGameHighScores) MarshalJSON() ([]byte, error) {
+	type Alias GetGameHighScores
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getGameHighScores",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetGiftAuctionAcquiredGifts Returns the gifts that were acquired by the current user on a gift auction @gift_id Identifier of the auctioned gift
+type GetGiftAuctionAcquiredGifts struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	GiftId string `json:"gift_id"`
+}
+
+func (t *GetGiftAuctionAcquiredGifts) Type() string {
+	return "getGiftAuctionAcquiredGifts"
+}
+
+func (t *GetGiftAuctionAcquiredGifts) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetGiftAuctionAcquiredGifts) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetGiftAuctionAcquiredGifts) MarshalJSON() ([]byte, error) {
+	type Alias GetGiftAuctionAcquiredGifts
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getGiftAuctionAcquiredGifts",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetGiftAuctionState Returns auction state for a gift @auction_id Unique identifier of the auction
+type GetGiftAuctionState struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	AuctionId string `json:"auction_id"`
+}
+
+func (t *GetGiftAuctionState) Type() string {
+	return "getGiftAuctionState"
+}
+
+func (t *GetGiftAuctionState) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetGiftAuctionState) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetGiftAuctionState) MarshalJSON() ([]byte, error) {
+	type Alias GetGiftAuctionState
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getGiftAuctionState",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetGiftChatThemes Returns available to the current user gift chat themes
+type GetGiftChatThemes struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
+	// The maximum number of chat themes to return
+	Limit int32 `json:"limit"`
+}
+
+func (t *GetGiftChatThemes) Type() string {
+	return "getGiftChatThemes"
+}
+
+func (t *GetGiftChatThemes) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetGiftChatThemes) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetGiftChatThemes) MarshalJSON() ([]byte, error) {
+	type Alias GetGiftChatThemes
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getGiftChatThemes",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetGiftCollections Returns collections of gifts owned by the given user or chat
+type GetGiftCollections struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the user or the channel chat that received the gifts
+	OwnerId *MessageSender `json:"owner_id"`
+}
+
+func (t *GetGiftCollections) Type() string {
+	return "getGiftCollections"
+}
+
+func (t *GetGiftCollections) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetGiftCollections) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetGiftCollections) MarshalJSON() ([]byte, error) {
+	type Alias GetGiftCollections
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getGiftCollections",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetGiftUpgradePreview Returns examples of possible upgraded gifts for a regular gift @gift_id Identifier of the gift
+type GetGiftUpgradePreview struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	GiftId string `json:"gift_id"`
+}
+
+func (t *GetGiftUpgradePreview) Type() string {
+	return "getGiftUpgradePreview"
+}
+
+func (t *GetGiftUpgradePreview) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetGiftUpgradePreview) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetGiftUpgradePreview) MarshalJSON() ([]byte, error) {
+	type Alias GetGiftUpgradePreview
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getGiftUpgradePreview",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetGiftUpgradeVariants Returns all possible variants of upgraded gifts for a regular gift @gift_id Identifier of the gift
+type GetGiftUpgradeVariants struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	GiftId string `json:"gift_id"`
+}
+
+func (t *GetGiftUpgradeVariants) Type() string {
+	return "getGiftUpgradeVariants"
+}
+
+func (t *GetGiftUpgradeVariants) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetGiftUpgradeVariants) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetGiftUpgradeVariants) MarshalJSON() ([]byte, error) {
+	type Alias GetGiftUpgradeVariants
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getGiftUpgradeVariants",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetGiveawayInfo Returns information about a giveaway
+type GetGiveawayInfo struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the channel chat which started the giveaway
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the giveaway or a giveaway winners message in the chat
+	MessageId int64 `json:"message_id"`
+}
+
+func (t *GetGiveawayInfo) Type() string {
+	return "getGiveawayInfo"
+}
+
+func (t *GetGiveawayInfo) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetGiveawayInfo) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetGiveawayInfo) MarshalJSON() ([]byte, error) {
+	type Alias GetGiveawayInfo
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getGiveawayInfo",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetGreetingStickers Returns greeting stickers from regular sticker sets that can be used for the start page of other users
+type GetGreetingStickers struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetGreetingStickers) Type() string {
+	return "getGreetingStickers"
+}
+
+func (t *GetGreetingStickers) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetGreetingStickers) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetGreetingStickers) MarshalJSON() ([]byte, error) {
+	type Alias GetGreetingStickers
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getGreetingStickers",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetGrossingWebAppBots Returns the most grossing Web App bots
+type GetGrossingWebAppBots struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
+	// The maximum number of bots to be returned; up to 100
+	Limit int32 `json:"limit"`
+}
+
+func (t *GetGrossingWebAppBots) Type() string {
+	return "getGrossingWebAppBots"
+}
+
+func (t *GetGrossingWebAppBots) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetGrossingWebAppBots) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetGrossingWebAppBots) MarshalJSON() ([]byte, error) {
+	type Alias GetGrossingWebAppBots
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getGrossingWebAppBots",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetGroupCall Returns information about a group call @group_call_id Group call identifier
+type GetGroupCall struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	GroupCallId int32 `json:"group_call_id"`
+}
+
+func (t *GetGroupCall) Type() string {
+	return "getGroupCall"
+}
+
+func (t *GetGroupCall) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetGroupCall) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetGroupCall) MarshalJSON() ([]byte, error) {
+	type Alias GetGroupCall
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getGroupCall",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetGroupCallParticipants Returns information about participants of a non-joined group call that is not bound to a chat
+type GetGroupCallParticipants struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The group call which participants will be returned
+	InputGroupCall *InputGroupCall `json:"input_group_call"`
+	// The maximum number of participants to return; must be positive
+	Limit int32 `json:"limit"`
+}
+
+func (t *GetGroupCallParticipants) Type() string {
+	return "getGroupCallParticipants"
+}
+
+func (t *GetGroupCallParticipants) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetGroupCallParticipants) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetGroupCallParticipants) MarshalJSON() ([]byte, error) {
+	type Alias GetGroupCallParticipants
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getGroupCallParticipants",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetGroupCallStreams Returns information about available streams in a video chat or a live story @group_call_id Group call identifier
+type GetGroupCallStreams struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	GroupCallId int32 `json:"group_call_id"`
+}
+
+func (t *GetGroupCallStreams) Type() string {
+	return "getGroupCallStreams"
+}
+
+func (t *GetGroupCallStreams) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetGroupCallStreams) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetGroupCallStreams) MarshalJSON() ([]byte, error) {
+	type Alias GetGroupCallStreams
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getGroupCallStreams",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetGroupCallStreamSegment Returns a file with a segment of a video chat or live story in a modified OGG format for audio or MPEG-4 format for video
+type GetGroupCallStreamSegment struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Group call identifier
+	GroupCallId int32 `json:"group_call_id"`
+	// Point in time when the stream segment begins; Unix timestamp in milliseconds
+	TimeOffset int64 `json:"time_offset"`
+	// Segment duration scale; 0-1. Segment's duration is 1000/(2**scale) milliseconds
+	Scale int32 `json:"scale"`
+	// Identifier of an audio/video channel to get as received from tgcalls
+	ChannelId int32 `json:"channel_id"`
+	// Video quality as received from tgcalls; pass null to get the worst available quality
+	VideoQuality *GroupCallVideoQuality `json:"video_quality,omitempty"`
+}
+
+func (t *GetGroupCallStreamSegment) Type() string {
+	return "getGroupCallStreamSegment"
+}
+
+func (t *GetGroupCallStreamSegment) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetGroupCallStreamSegment) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetGroupCallStreamSegment) MarshalJSON() ([]byte, error) {
+	type Alias GetGroupCallStreamSegment
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getGroupCallStreamSegment",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetGroupsInCommon Returns a list of common group chats with a given user. Chats are sorted by their type and creation date
+type GetGroupsInCommon struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// User identifier
+	UserId int64 `json:"user_id"`
+	// Chat identifier starting from which to return chats; use 0 for the first request
+	OffsetChatId int64 `json:"offset_chat_id"`
+	// The maximum number of chats to be returned; up to 100
+	Limit int32 `json:"limit"`
+}
+
+func (t *GetGroupsInCommon) Type() string {
+	return "getGroupsInCommon"
+}
+
+func (t *GetGroupsInCommon) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetGroupsInCommon) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetGroupsInCommon) MarshalJSON() ([]byte, error) {
+	type Alias GetGroupsInCommon
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getGroupsInCommon",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetImportedContactCount Returns the total number of imported contacts
+type GetImportedContactCount struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetImportedContactCount) Type() string {
+	return "getImportedContactCount"
+}
+
+func (t *GetImportedContactCount) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetImportedContactCount) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetImportedContactCount) MarshalJSON() ([]byte, error) {
+	type Alias GetImportedContactCount
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getImportedContactCount",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetInactiveSupergroupChats Returns a list of recently inactive supergroups and channels. Can be used when user reaches limit on the number of joined supergroups and channels and receives the error "CHANNELS_TOO_MUCH". Also, the limit can be increased with Telegram Premium
+type GetInactiveSupergroupChats struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetInactiveSupergroupChats) Type() string {
+	return "getInactiveSupergroupChats"
+}
+
+func (t *GetInactiveSupergroupChats) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetInactiveSupergroupChats) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetInactiveSupergroupChats) MarshalJSON() ([]byte, error) {
+	type Alias GetInactiveSupergroupChats
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getInactiveSupergroupChats",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetInlineGameHighScores Returns game high scores and some part of the high score table in the range of the specified user; for bots only @inline_message_id Inline message identifier @user_id User identifier
+type GetInlineGameHighScores struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	InlineMessageId string `json:"inline_message_id"`
+	//
+	UserId int64 `json:"user_id"`
+}
+
+func (t *GetInlineGameHighScores) Type() string {
+	return "getInlineGameHighScores"
+}
+
+func (t *GetInlineGameHighScores) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetInlineGameHighScores) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetInlineGameHighScores) MarshalJSON() ([]byte, error) {
+	type Alias GetInlineGameHighScores
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getInlineGameHighScores",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetInlineQueryResults Sends an inline query to a bot and returns its results. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires
+type GetInlineQueryResults struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the target bot
+	BotUserId int64 `json:"bot_user_id"`
+	// Identifier of the chat where the query was sent
+	ChatId int64 `json:"chat_id"`
+	// Location of the user; pass null if unknown or the bot doesn't need user's location
+	UserLocation *Location `json:"user_location,omitempty"`
+	// Text of the query
+	Query string `json:"query"`
+	// Offset of the first entry to return; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
+}
+
+func (t *GetInlineQueryResults) Type() string {
+	return "getInlineQueryResults"
+}
+
+func (t *GetInlineQueryResults) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetInlineQueryResults) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetInlineQueryResults) MarshalJSON() ([]byte, error) {
+	type Alias GetInlineQueryResults
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getInlineQueryResults",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetInstalledBackgrounds Returns backgrounds installed by the user @for_dark_theme Pass true to order returned backgrounds for a dark theme
+type GetInstalledBackgrounds struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ForDarkTheme bool `json:"for_dark_theme"`
+}
+
+func (t *GetInstalledBackgrounds) Type() string {
+	return "getInstalledBackgrounds"
+}
+
+func (t *GetInstalledBackgrounds) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetInstalledBackgrounds) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetInstalledBackgrounds) MarshalJSON() ([]byte, error) {
+	type Alias GetInstalledBackgrounds
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getInstalledBackgrounds",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetInstalledStickerSets Returns a list of installed sticker sets @sticker_type Type of the sticker sets to return
+type GetInstalledStickerSets struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	StickerType *StickerType `json:"sticker_type"`
+}
+
+func (t *GetInstalledStickerSets) Type() string {
+	return "getInstalledStickerSets"
+}
+
+func (t *GetInstalledStickerSets) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetInstalledStickerSets) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetInstalledStickerSets) MarshalJSON() ([]byte, error) {
+	type Alias GetInstalledStickerSets
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getInstalledStickerSets",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetInternalLink Returns an HTTPS or a tg: link with the given type. Can be called before authorization @type Expected type of the link @is_http Pass true to create an HTTPS link (only available for some link types); pass false to create a tg: link
+type GetInternalLink struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	TypeField *InternalLinkType `json:"type"`
+	//
+	IsHttp bool `json:"is_http"`
+}
+
+func (t *GetInternalLink) Type() string {
+	return "getInternalLink"
+}
+
+func (t *GetInternalLink) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetInternalLink) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetInternalLink) MarshalJSON() ([]byte, error) {
+	type Alias GetInternalLink
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getInternalLink",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetInternalLinkType Returns information about the type of internal link. Returns a 404 error if the link is not internal. Can be called before authorization @link The link
+type GetInternalLinkType struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Link string `json:"link"`
+}
+
+func (t *GetInternalLinkType) Type() string {
+	return "getInternalLinkType"
+}
+
+func (t *GetInternalLinkType) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetInternalLinkType) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetInternalLinkType) MarshalJSON() ([]byte, error) {
+	type Alias GetInternalLinkType
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getInternalLinkType",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetJsonString Converts a JsonValue object to corresponding JSON-serialized string. Can be called synchronously @json_value The JsonValue object
+type GetJsonString struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	JsonValue *JsonValue `json:"json_value"`
+}
+
+func (t *GetJsonString) Type() string {
+	return "getJsonString"
+}
+
+func (t *GetJsonString) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetJsonString) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetJsonString) MarshalJSON() ([]byte, error) {
+	type Alias GetJsonString
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getJsonString",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetJsonValue Converts a JSON-serialized string to corresponding JsonValue object. Can be called synchronously @json The JSON-serialized string
+type GetJsonValue struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Json string `json:"json"`
+}
+
+func (t *GetJsonValue) Type() string {
+	return "getJsonValue"
+}
+
+func (t *GetJsonValue) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetJsonValue) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetJsonValue) MarshalJSON() ([]byte, error) {
+	type Alias GetJsonValue
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getJsonValue",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetKeywordEmojis Returns emojis matching the keyword. Supported only if the file database is enabled. Order of results is unspecified
+type GetKeywordEmojis struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Text to search for
+	Text string `json:"text"`
+	// List of possible IETF language tags of the user's input language; may be empty if unknown
+	InputLanguageCodes []string `json:"input_language_codes"`
+}
+
+func (t *GetKeywordEmojis) Type() string {
+	return "getKeywordEmojis"
+}
+
+func (t *GetKeywordEmojis) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetKeywordEmojis) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetKeywordEmojis) MarshalJSON() ([]byte, error) {
+	type Alias GetKeywordEmojis
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getKeywordEmojis",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetLanguagePackInfo Returns information about a language pack. Returned language pack identifier may be different from a provided one. Can be called before authorization @language_pack_id Language pack identifier
+type GetLanguagePackInfo struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	LanguagePackId string `json:"language_pack_id"`
+}
+
+func (t *GetLanguagePackInfo) Type() string {
+	return "getLanguagePackInfo"
+}
+
+func (t *GetLanguagePackInfo) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetLanguagePackInfo) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetLanguagePackInfo) MarshalJSON() ([]byte, error) {
+	type Alias GetLanguagePackInfo
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getLanguagePackInfo",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetLanguagePackString Returns a string stored in the local database from the specified localization target and language pack by its key. Returns a 404 error if the string is not found. Can be called synchronously
+type GetLanguagePackString struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Path to the language pack database in which strings are stored
+	LanguagePackDatabasePath string `json:"language_pack_database_path"`
+	// Localization target to which the language pack belongs
+	LocalizationTarget string `json:"localization_target"`
+	// Language pack identifier
+	LanguagePackId string `json:"language_pack_id"`
+	// Language pack key of the string to be returned
+	Key string `json:"key"`
+}
+
+func (t *GetLanguagePackString) Type() string {
+	return "getLanguagePackString"
+}
+
+func (t *GetLanguagePackString) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetLanguagePackString) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetLanguagePackString) MarshalJSON() ([]byte, error) {
+	type Alias GetLanguagePackString
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getLanguagePackString",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetLanguagePackStrings Returns strings from a language pack in the current localization target by their keys. Can be called before authorization
+type GetLanguagePackStrings struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Language pack identifier of the strings to be returned
+	LanguagePackId string `json:"language_pack_id"`
+	// Language pack keys of the strings to be returned; leave empty to request all available strings
+	Keys []string `json:"keys"`
+}
+
+func (t *GetLanguagePackStrings) Type() string {
+	return "getLanguagePackStrings"
+}
+
+func (t *GetLanguagePackStrings) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetLanguagePackStrings) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetLanguagePackStrings) MarshalJSON() ([]byte, error) {
+	type Alias GetLanguagePackStrings
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getLanguagePackStrings",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetLinkPreview Returns a link preview by the text of a message. Do not call this function too often. Returns a 404 error if the text has no link preview
+type GetLinkPreview struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Message text with formatting
+	Text *FormattedText `json:"text"`
+	// Options to be used for generation of the link preview; pass null to use default link preview options
+	LinkPreviewOptions *LinkPreviewOptions `json:"link_preview_options,omitempty"`
+}
+
+func (t *GetLinkPreview) Type() string {
+	return "getLinkPreview"
+}
+
+func (t *GetLinkPreview) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetLinkPreview) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetLinkPreview) MarshalJSON() ([]byte, error) {
+	type Alias GetLinkPreview
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getLinkPreview",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetLiveStoryAvailableMessageSenders Returns the list of message sender identifiers, on whose behalf messages can be sent to a live story @group_call_id Group call identifier
+type GetLiveStoryAvailableMessageSenders struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	GroupCallId int32 `json:"group_call_id"`
+}
+
+func (t *GetLiveStoryAvailableMessageSenders) Type() string {
+	return "getLiveStoryAvailableMessageSenders"
+}
+
+func (t *GetLiveStoryAvailableMessageSenders) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetLiveStoryAvailableMessageSenders) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetLiveStoryAvailableMessageSenders) MarshalJSON() ([]byte, error) {
+	type Alias GetLiveStoryAvailableMessageSenders
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getLiveStoryAvailableMessageSenders",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetLiveStoryRtmpUrl Returns RTMP URL for streaming to a live story; requires can_post_stories administrator right for channel chats @chat_id Chat identifier
+type GetLiveStoryRtmpUrl struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+}
+
+func (t *GetLiveStoryRtmpUrl) Type() string {
+	return "getLiveStoryRtmpUrl"
+}
+
+func (t *GetLiveStoryRtmpUrl) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetLiveStoryRtmpUrl) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetLiveStoryRtmpUrl) MarshalJSON() ([]byte, error) {
+	type Alias GetLiveStoryRtmpUrl
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getLiveStoryRtmpUrl",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetLiveStoryStreamer Returns information about the user or the chat that streams to a live story; for live stories that aren't an RTMP stream only @group_call_id Group call identifier
+type GetLiveStoryStreamer struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	GroupCallId int32 `json:"group_call_id"`
+}
+
+func (t *GetLiveStoryStreamer) Type() string {
+	return "getLiveStoryStreamer"
+}
+
+func (t *GetLiveStoryStreamer) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetLiveStoryStreamer) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetLiveStoryStreamer) MarshalJSON() ([]byte, error) {
+	type Alias GetLiveStoryStreamer
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getLiveStoryStreamer",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetLiveStoryTopDonors Returns the list of top live story donors @group_call_id Group call identifier of the live story
+type GetLiveStoryTopDonors struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	GroupCallId int32 `json:"group_call_id"`
+}
+
+func (t *GetLiveStoryTopDonors) Type() string {
+	return "getLiveStoryTopDonors"
+}
+
+func (t *GetLiveStoryTopDonors) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetLiveStoryTopDonors) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetLiveStoryTopDonors) MarshalJSON() ([]byte, error) {
+	type Alias GetLiveStoryTopDonors
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getLiveStoryTopDonors",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetLocalizationTargetInfo Returns information about the current localization target. This is an offline method if only_local is true. Can be called before authorization @only_local Pass true to get only locally available information without sending network requests
+type GetLocalizationTargetInfo struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	OnlyLocal bool `json:"only_local"`
+}
+
+func (t *GetLocalizationTargetInfo) Type() string {
+	return "getLocalizationTargetInfo"
+}
+
+func (t *GetLocalizationTargetInfo) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetLocalizationTargetInfo) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetLocalizationTargetInfo) MarshalJSON() ([]byte, error) {
+	type Alias GetLocalizationTargetInfo
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getLocalizationTargetInfo",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetLoginPasskeys Returns the list of passkeys allowed to be used for the login by the current user
+type GetLoginPasskeys struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetLoginPasskeys) Type() string {
+	return "getLoginPasskeys"
+}
+
+func (t *GetLoginPasskeys) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetLoginPasskeys) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetLoginPasskeys) MarshalJSON() ([]byte, error) {
+	type Alias GetLoginPasskeys
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getLoginPasskeys",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetLoginUrl Returns an HTTP URL which can be used to automatically authorize the user on a website after clicking an inline button of type inlineKeyboardButtonTypeLoginUrl.
+type GetLoginUrl struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier of the message with the button
+	ChatId int64 `json:"chat_id"`
+	// Message identifier of the message with the button
+	MessageId int64 `json:"message_id"`
+	// Button identifier
+	ButtonId int64 `json:"button_id"`
+	// Pass true to allow the bot to send messages to the current user
+	AllowWriteAccess bool `json:"allow_write_access"`
+}
+
+func (t *GetLoginUrl) Type() string {
+	return "getLoginUrl"
+}
+
+func (t *GetLoginUrl) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetLoginUrl) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetLoginUrl) MarshalJSON() ([]byte, error) {
+	type Alias GetLoginUrl
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getLoginUrl",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetLoginUrlInfo Returns information about a button of type inlineKeyboardButtonTypeLoginUrl. The method needs to be called when the user presses the button
+type GetLoginUrlInfo struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier of the message with the button
+	ChatId int64 `json:"chat_id"`
+	// Message identifier of the message with the button. The message must not be scheduled
+	MessageId int64 `json:"message_id"`
+	// Button identifier
+	ButtonId int64 `json:"button_id"`
+}
+
+func (t *GetLoginUrlInfo) Type() string {
+	return "getLoginUrlInfo"
+}
+
+func (t *GetLoginUrlInfo) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetLoginUrlInfo) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetLoginUrlInfo) MarshalJSON() ([]byte, error) {
+	type Alias GetLoginUrlInfo
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getLoginUrlInfo",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetLogStream Returns information about currently used log stream for internal logging of TDLib. Can be called synchronously
+type GetLogStream struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetLogStream) Type() string {
+	return "getLogStream"
+}
+
+func (t *GetLogStream) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetLogStream) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetLogStream) MarshalJSON() ([]byte, error) {
+	type Alias GetLogStream
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getLogStream",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetLogTags Returns the list of available TDLib internal log tags, for example, ["actor", "binlog", "connections", "notifications", "proxy"]. Can be called synchronously
+type GetLogTags struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetLogTags) Type() string {
+	return "getLogTags"
+}
+
+func (t *GetLogTags) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetLogTags) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetLogTags) MarshalJSON() ([]byte, error) {
+	type Alias GetLogTags
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getLogTags",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetLogTagVerbosityLevel Returns current verbosity level for a specified TDLib internal log tag. Can be called synchronously @tag Logging tag to change verbosity level
+type GetLogTagVerbosityLevel struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Tag string `json:"tag"`
+}
+
+func (t *GetLogTagVerbosityLevel) Type() string {
+	return "getLogTagVerbosityLevel"
+}
+
+func (t *GetLogTagVerbosityLevel) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetLogTagVerbosityLevel) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetLogTagVerbosityLevel) MarshalJSON() ([]byte, error) {
+	type Alias GetLogTagVerbosityLevel
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getLogTagVerbosityLevel",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetLogVerbosityLevel Returns current verbosity level of the internal logging of TDLib. Can be called synchronously
+type GetLogVerbosityLevel struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetLogVerbosityLevel) Type() string {
+	return "getLogVerbosityLevel"
+}
+
+func (t *GetLogVerbosityLevel) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetLogVerbosityLevel) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetLogVerbosityLevel) MarshalJSON() ([]byte, error) {
+	type Alias GetLogVerbosityLevel
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getLogVerbosityLevel",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetMainWebApp Returns information needed to open the main Web App of a bot
+type GetMainWebApp struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat in which the Web App is opened; pass 0 if none
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the target bot. If the bot is restricted for the current user, then show an error instead of calling the method
+	BotUserId int64 `json:"bot_user_id"`
+	// Start parameter from internalLinkTypeMainWebApp
+	StartParameter string `json:"start_parameter"`
+	// Parameters to use to open the Web App
+	Parameters *WebAppOpenParameters `json:"parameters"`
+}
+
+func (t *GetMainWebApp) Type() string {
+	return "getMainWebApp"
+}
+
+func (t *GetMainWebApp) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetMainWebApp) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetMainWebApp) MarshalJSON() ([]byte, error) {
+	type Alias GetMainWebApp
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getMainWebApp",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetMapThumbnailFile Returns information about a file with a map thumbnail in PNG format. Only map thumbnail files with size less than 1MB can be downloaded
+type GetMapThumbnailFile struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Location of the map center
+	Location *Location `json:"location"`
+	// Map zoom level; 13-20
+	Zoom int32 `json:"zoom"`
+	// Map width in pixels before applying scale; 16-1024
+	Width int32 `json:"width"`
+	// Map height in pixels before applying scale; 16-1024
+	Height int32 `json:"height"`
+	// Map scale; 1-3
+	Scale int32 `json:"scale"`
+	// Identifier of a chat in which the thumbnail will be shown. Use 0 if unknown
+	ChatId int64 `json:"chat_id"`
+}
+
+func (t *GetMapThumbnailFile) Type() string {
+	return "getMapThumbnailFile"
+}
+
+func (t *GetMapThumbnailFile) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetMapThumbnailFile) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetMapThumbnailFile) MarshalJSON() ([]byte, error) {
+	type Alias GetMapThumbnailFile
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getMapThumbnailFile",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetMarkdownText Replaces text entities with Markdown formatting in a human-friendly format. Entities that can't be represented in Markdown unambiguously are kept as is. Can be called synchronously @text The text
+type GetMarkdownText struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Text *FormattedText `json:"text"`
+}
+
+func (t *GetMarkdownText) Type() string {
+	return "getMarkdownText"
+}
+
+func (t *GetMarkdownText) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetMarkdownText) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetMarkdownText) MarshalJSON() ([]byte, error) {
+	type Alias GetMarkdownText
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getMarkdownText",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetMe Returns the current user
+type GetMe struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetMe) Type() string {
+	return "getMe"
+}
+
+func (t *GetMe) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetMe) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetMe) MarshalJSON() ([]byte, error) {
+	type Alias GetMe
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getMe",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetMenuButton Returns menu button set by the bot for the given user; for bots only @user_id Identifier of the user or 0 to get the default menu button
+type GetMenuButton struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	UserId int64 `json:"user_id"`
+}
+
+func (t *GetMenuButton) Type() string {
+	return "getMenuButton"
+}
+
+func (t *GetMenuButton) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetMenuButton) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetMenuButton) MarshalJSON() ([]byte, error) {
+	type Alias GetMenuButton
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getMenuButton",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetMessage Returns information about a message. Returns a 404 error if the message doesn't exist
+type GetMessage struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat the message belongs to
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message to get
+	MessageId int64 `json:"message_id"`
+}
+
+func (t *GetMessage) Type() string {
+	return "getMessage"
+}
+
+func (t *GetMessage) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetMessage) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetMessage) MarshalJSON() ([]byte, error) {
+	type Alias GetMessage
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getMessage",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetMessageAddedReactions Returns reactions added for a message, along with their sender
+type GetMessageAddedReactions struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat to which the message belongs
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message. Use message.interaction_info.reactions.can_get_added_reactions to check whether added reactions can be received for the message
+	MessageId int64 `json:"message_id"`
+	// Type of the reactions to return; pass null to return all added reactions; reactionTypePaid isn't supported
+	ReactionType *ReactionType `json:"reaction_type,omitempty"`
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
+	// The maximum number of reactions to be returned; must be positive and can't be greater than 100
+	Limit int32 `json:"limit"`
+}
+
+func (t *GetMessageAddedReactions) Type() string {
+	return "getMessageAddedReactions"
+}
+
+func (t *GetMessageAddedReactions) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetMessageAddedReactions) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetMessageAddedReactions) MarshalJSON() ([]byte, error) {
+	type Alias GetMessageAddedReactions
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getMessageAddedReactions",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetMessageAuthor Returns information about actual author of a message sent on behalf of a channel. The method can be called if messageProperties.can_get_author == true
+type GetMessageAuthor struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message
+	MessageId int64 `json:"message_id"`
+}
+
+func (t *GetMessageAuthor) Type() string {
+	return "getMessageAuthor"
+}
+
+func (t *GetMessageAuthor) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetMessageAuthor) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetMessageAuthor) MarshalJSON() ([]byte, error) {
+	type Alias GetMessageAuthor
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getMessageAuthor",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetMessageAvailableReactions Returns reactions, which can be added to a message. The list can change after updateActiveEmojiReactions, updateChatAvailableReactions for the chat, or updateMessageInteractionInfo for the message
+type GetMessageAvailableReactions struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat to which the message belongs
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message
+	MessageId int64 `json:"message_id"`
+	// Number of reaction per row, 5-25
+	RowSize int32 `json:"row_size"`
+}
+
+func (t *GetMessageAvailableReactions) Type() string {
+	return "getMessageAvailableReactions"
+}
+
+func (t *GetMessageAvailableReactions) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetMessageAvailableReactions) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetMessageAvailableReactions) MarshalJSON() ([]byte, error) {
+	type Alias GetMessageAvailableReactions
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getMessageAvailableReactions",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetMessageEffect Returns information about a message effect. Returns a 404 error if the effect is not found @effect_id Unique identifier of the effect
+type GetMessageEffect struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	EffectId string `json:"effect_id"`
+}
+
+func (t *GetMessageEffect) Type() string {
+	return "getMessageEffect"
+}
+
+func (t *GetMessageEffect) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetMessageEffect) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetMessageEffect) MarshalJSON() ([]byte, error) {
+	type Alias GetMessageEffect
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getMessageEffect",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetMessageEmbeddingCode Returns an HTML code for embedding the message. Available only if messageProperties.can_get_embedding_code
+type GetMessageEmbeddingCode struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat to which the message belongs
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message
+	MessageId int64 `json:"message_id"`
+	// Pass true to return an HTML code for embedding of the whole media album
+	ForAlbum bool `json:"for_album"`
+}
+
+func (t *GetMessageEmbeddingCode) Type() string {
+	return "getMessageEmbeddingCode"
+}
+
+func (t *GetMessageEmbeddingCode) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetMessageEmbeddingCode) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetMessageEmbeddingCode) MarshalJSON() ([]byte, error) {
+	type Alias GetMessageEmbeddingCode
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getMessageEmbeddingCode",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetMessageFileType Returns information about a file with messages exported from another application @message_file_head Beginning of the message file; up to 100 first lines
+type GetMessageFileType struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	MessageFileHead string `json:"message_file_head"`
+}
+
+func (t *GetMessageFileType) Type() string {
+	return "getMessageFileType"
+}
+
+func (t *GetMessageFileType) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetMessageFileType) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetMessageFileType) MarshalJSON() ([]byte, error) {
+	type Alias GetMessageFileType
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getMessageFileType",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetMessageImportConfirmationText Returns a confirmation text to be shown to the user before starting message import
+type GetMessageImportConfirmationText struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of a chat to which the messages will be imported. It must be an identifier of a private chat with a mutual contact or an identifier of a supergroup chat with can_change_info member right
+	ChatId int64 `json:"chat_id"`
+}
+
+func (t *GetMessageImportConfirmationText) Type() string {
+	return "getMessageImportConfirmationText"
+}
+
+func (t *GetMessageImportConfirmationText) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetMessageImportConfirmationText) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetMessageImportConfirmationText) MarshalJSON() ([]byte, error) {
+	type Alias GetMessageImportConfirmationText
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getMessageImportConfirmationText",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetMessageLink Returns an HTTPS link to a message in a chat. Available only if messageProperties.can_get_link, or if messageProperties.can_get_media_timestamp_links and a media timestamp link is generated. This is an offline method
+type GetMessageLink struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat to which the message belongs
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message
+	MessageId int64 `json:"message_id"`
+	// If not 0, timestamp from which the video/audio/video note/voice note/story playing must start, in seconds. The media can be in the message content or in its link preview
+	MediaTimestamp int32 `json:"media_timestamp"`
+	// Pass true to create a link for the whole media album
+	ForAlbum bool `json:"for_album"`
+	// Pass true to create a link to the message as a channel post comment, in a message thread, or a forum topic
+	InMessageThread bool `json:"in_message_thread"`
+}
+
+func (t *GetMessageLink) Type() string {
+	return "getMessageLink"
+}
+
+func (t *GetMessageLink) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetMessageLink) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetMessageLink) MarshalJSON() ([]byte, error) {
+	type Alias GetMessageLink
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getMessageLink",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetMessageLinkInfo Returns information about a public or private message link. Can be called for any internal link of the type internalLinkTypeMessage @url The message link
+type GetMessageLinkInfo struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Url string `json:"url"`
+}
+
+func (t *GetMessageLinkInfo) Type() string {
+	return "getMessageLinkInfo"
+}
+
+func (t *GetMessageLinkInfo) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetMessageLinkInfo) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetMessageLinkInfo) MarshalJSON() ([]byte, error) {
+	type Alias GetMessageLinkInfo
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getMessageLinkInfo",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetMessageLocally Returns information about a message, if it is available without sending network request. Returns a 404 error if message isn't available locally. This is an offline method
+type GetMessageLocally struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat the message belongs to
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message to get
+	MessageId int64 `json:"message_id"`
+}
+
+func (t *GetMessageLocally) Type() string {
+	return "getMessageLocally"
+}
+
+func (t *GetMessageLocally) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetMessageLocally) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetMessageLocally) MarshalJSON() ([]byte, error) {
+	type Alias GetMessageLocally
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getMessageLocally",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetMessageProperties Returns properties of a message. This is an offline method @chat_id Chat identifier @message_id Identifier of the message
+type GetMessageProperties struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+	//
+	MessageId int64 `json:"message_id"`
+}
+
+func (t *GetMessageProperties) Type() string {
+	return "getMessageProperties"
+}
+
+func (t *GetMessageProperties) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetMessageProperties) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetMessageProperties) MarshalJSON() ([]byte, error) {
+	type Alias GetMessageProperties
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getMessageProperties",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetMessagePublicForwards Returns forwarded copies of a channel message to different public channels and public reposts as a story. Can be used only if messageProperties.can_get_statistics == true. For optimal performance, the number of returned messages and stories is chosen by TDLib
+type GetMessagePublicForwards struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier of the message
+	ChatId int64 `json:"chat_id"`
+	// Message identifier
+	MessageId int64 `json:"message_id"`
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
+	// The maximum number of messages and stories to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned objects is chosen by TDLib and can be smaller than the specified limit
+	Limit int32 `json:"limit"`
+}
+
+func (t *GetMessagePublicForwards) Type() string {
+	return "getMessagePublicForwards"
+}
+
+func (t *GetMessagePublicForwards) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetMessagePublicForwards) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetMessagePublicForwards) MarshalJSON() ([]byte, error) {
+	type Alias GetMessagePublicForwards
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getMessagePublicForwards",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetMessageReadDate Returns read date of a recent outgoing message in a private chat. The method can be called if messageProperties.can_get_read_date == true
+type GetMessageReadDate struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message
+	MessageId int64 `json:"message_id"`
+}
+
+func (t *GetMessageReadDate) Type() string {
+	return "getMessageReadDate"
+}
+
+func (t *GetMessageReadDate) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetMessageReadDate) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetMessageReadDate) MarshalJSON() ([]byte, error) {
+	type Alias GetMessageReadDate
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getMessageReadDate",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetMessages Returns information about messages. If a message is not found, returns null on the corresponding position of the result @chat_id Identifier of the chat the messages belong to @message_ids Identifiers of the messages to get
+type GetMessages struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+	//
+	MessageIds []int64 `json:"message_ids"`
+}
+
+func (t *GetMessages) Type() string {
+	return "getMessages"
+}
+
+func (t *GetMessages) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetMessages) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetMessages) MarshalJSON() ([]byte, error) {
+	type Alias GetMessages
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getMessages",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetMessageStatistics Returns detailed statistics about a message. Can be used only if messageProperties.can_get_statistics == true @chat_id Chat identifier @message_id Message identifier @is_dark Pass true if a dark theme is used by the application
+type GetMessageStatistics struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+	//
+	MessageId int64 `json:"message_id"`
+	//
+	IsDark bool `json:"is_dark"`
+}
+
+func (t *GetMessageStatistics) Type() string {
+	return "getMessageStatistics"
+}
+
+func (t *GetMessageStatistics) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetMessageStatistics) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetMessageStatistics) MarshalJSON() ([]byte, error) {
+	type Alias GetMessageStatistics
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getMessageStatistics",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetMessageThread Returns information about a message thread. Can be used only if messageProperties.can_get_message_thread == true @chat_id Chat identifier @message_id Identifier of the message
+type GetMessageThread struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+	//
+	MessageId int64 `json:"message_id"`
+}
+
+func (t *GetMessageThread) Type() string {
+	return "getMessageThread"
+}
+
+func (t *GetMessageThread) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetMessageThread) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetMessageThread) MarshalJSON() ([]byte, error) {
+	type Alias GetMessageThread
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getMessageThread",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetMessageThreadHistory Returns messages in a message thread of a message. Can be used only if messageProperties.can_get_message_thread == true. Message thread of a channel message is in the channel's linked supergroup.
+type GetMessageThreadHistory struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Message identifier, which thread history needs to be returned
+	MessageId int64 `json:"message_id"`
+	// Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
+	FromMessageId int64 `json:"from_message_id"`
+	// Specify 0 to get results from exactly the message from_message_id or a negative number from -99 to -1 to get additionally -offset newer messages
+	Offset int32 `json:"offset"`
+	// The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, then the limit must be greater than or equal to -offset.
+	Limit int32 `json:"limit"`
+}
+
+func (t *GetMessageThreadHistory) Type() string {
+	return "getMessageThreadHistory"
+}
+
+func (t *GetMessageThreadHistory) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetMessageThreadHistory) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetMessageThreadHistory) MarshalJSON() ([]byte, error) {
+	type Alias GetMessageThreadHistory
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getMessageThreadHistory",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetMessageViewers Returns viewers of a recent outgoing message in a basic group or a supergroup chat. For video notes and voice notes only users, opened content of the message, are returned. The method can be called if messageProperties.can_get_viewers == true
+type GetMessageViewers struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message
+	MessageId int64 `json:"message_id"`
+}
+
+func (t *GetMessageViewers) Type() string {
+	return "getMessageViewers"
+}
+
+func (t *GetMessageViewers) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetMessageViewers) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetMessageViewers) MarshalJSON() ([]byte, error) {
+	type Alias GetMessageViewers
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getMessageViewers",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetNetworkStatistics Returns network data usage statistics. Can be called before authorization @only_current Pass true to get statistics only for the current library launch
+type GetNetworkStatistics struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	OnlyCurrent bool `json:"only_current"`
+}
+
+func (t *GetNetworkStatistics) Type() string {
+	return "getNetworkStatistics"
+}
+
+func (t *GetNetworkStatistics) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetNetworkStatistics) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetNetworkStatistics) MarshalJSON() ([]byte, error) {
+	type Alias GetNetworkStatistics
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getNetworkStatistics",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetNewChatPrivacySettings Returns privacy settings for new chat creation
+type GetNewChatPrivacySettings struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetNewChatPrivacySettings) Type() string {
+	return "getNewChatPrivacySettings"
+}
+
+func (t *GetNewChatPrivacySettings) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetNewChatPrivacySettings) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetNewChatPrivacySettings) MarshalJSON() ([]byte, error) {
+	type Alias GetNewChatPrivacySettings
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getNewChatPrivacySettings",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetOption Returns the value of an option by its name. (Check the list of available options on https://core.telegram.org/tdlib/options.) Can be called before authorization. Can be called synchronously for options "version" and "commit_hash"
+type GetOption struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The name of the option
+	Name string `json:"name"`
+}
+
+func (t *GetOption) Type() string {
+	return "getOption"
+}
+
+func (t *GetOption) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetOption) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetOption) MarshalJSON() ([]byte, error) {
+	type Alias GetOption
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getOption",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetOwnedBots Returns the list of bots owned by the current user
+type GetOwnedBots struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetOwnedBots) Type() string {
+	return "getOwnedBots"
+}
+
+func (t *GetOwnedBots) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetOwnedBots) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetOwnedBots) MarshalJSON() ([]byte, error) {
+	type Alias GetOwnedBots
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getOwnedBots",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetOwnedStickerSets Returns sticker sets owned by the current user
+type GetOwnedStickerSets struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the sticker set from which to return owned sticker sets; use 0 to get results from the beginning
+	OffsetStickerSetId string `json:"offset_sticker_set_id"`
+	// The maximum number of sticker sets to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned objects is chosen by TDLib and can be smaller than the specified limit
+	Limit int32 `json:"limit"`
+}
+
+func (t *GetOwnedStickerSets) Type() string {
+	return "getOwnedStickerSets"
+}
+
+func (t *GetOwnedStickerSets) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetOwnedStickerSets) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetOwnedStickerSets) MarshalJSON() ([]byte, error) {
+	type Alias GetOwnedStickerSets
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getOwnedStickerSets",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetPaidMessageRevenue Returns the total number of Telegram Stars received by the current user for paid messages from the given user @user_id Identifier of the user
+type GetPaidMessageRevenue struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	UserId int64 `json:"user_id"`
+}
+
+func (t *GetPaidMessageRevenue) Type() string {
+	return "getPaidMessageRevenue"
+}
+
+func (t *GetPaidMessageRevenue) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetPaidMessageRevenue) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetPaidMessageRevenue) MarshalJSON() ([]byte, error) {
+	type Alias GetPaidMessageRevenue
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getPaidMessageRevenue",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetPasskeyParameters Returns parameters for creating of a new passkey as JSON-serialized string
+type GetPasskeyParameters struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetPasskeyParameters) Type() string {
+	return "getPasskeyParameters"
+}
+
+func (t *GetPasskeyParameters) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetPasskeyParameters) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetPasskeyParameters) MarshalJSON() ([]byte, error) {
+	type Alias GetPasskeyParameters
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getPasskeyParameters",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetPassportAuthorizationForm Returns a Telegram Passport authorization form for sharing data with a service
+type GetPassportAuthorizationForm struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// User identifier of the service's bot
+	BotUserId int64 `json:"bot_user_id"`
+	// Telegram Passport element types requested by the service
+	Scope string `json:"scope"`
+	// Service's public key
+	PublicKey string `json:"public_key"`
+	// Unique request identifier provided by the service
+	Nonce string `json:"nonce"`
+}
+
+func (t *GetPassportAuthorizationForm) Type() string {
+	return "getPassportAuthorizationForm"
+}
+
+func (t *GetPassportAuthorizationForm) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetPassportAuthorizationForm) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetPassportAuthorizationForm) MarshalJSON() ([]byte, error) {
+	type Alias GetPassportAuthorizationForm
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getPassportAuthorizationForm",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetPassportAuthorizationFormAvailableElements Returns already available Telegram Passport elements suitable for completing a Telegram Passport authorization form. Result can be received only once for each authorization form
+type GetPassportAuthorizationFormAvailableElements struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Authorization form identifier
+	AuthorizationFormId int32 `json:"authorization_form_id"`
+	// The 2-step verification password of the current user
+	Password string `json:"password"`
+}
+
+func (t *GetPassportAuthorizationFormAvailableElements) Type() string {
+	return "getPassportAuthorizationFormAvailableElements"
+}
+
+func (t *GetPassportAuthorizationFormAvailableElements) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetPassportAuthorizationFormAvailableElements) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetPassportAuthorizationFormAvailableElements) MarshalJSON() ([]byte, error) {
+	type Alias GetPassportAuthorizationFormAvailableElements
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getPassportAuthorizationFormAvailableElements",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetPassportElement Returns one of the available Telegram Passport elements @type Telegram Passport element type @password The 2-step verification password of the current user
+type GetPassportElement struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	TypeField *PassportElementType `json:"type"`
+	//
+	Password string `json:"password"`
+}
+
+func (t *GetPassportElement) Type() string {
+	return "getPassportElement"
+}
+
+func (t *GetPassportElement) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetPassportElement) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetPassportElement) MarshalJSON() ([]byte, error) {
+	type Alias GetPassportElement
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getPassportElement",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetPasswordState Returns the current state of 2-step verification
+type GetPasswordState struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetPasswordState) Type() string {
+	return "getPasswordState"
+}
+
+func (t *GetPasswordState) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetPasswordState) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetPasswordState) MarshalJSON() ([]byte, error) {
+	type Alias GetPasswordState
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getPasswordState",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetPaymentForm Returns an invoice payment form. This method must be called when the user presses inline button of the type inlineKeyboardButtonTypeBuy, or wants to buy access to media in a messagePaidMedia message
+type GetPaymentForm struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The invoice
+	InputInvoice *InputInvoice `json:"input_invoice"`
+	// Preferred payment form theme; pass null to use the default theme
+	Theme *ThemeParameters `json:"theme,omitempty"`
+}
+
+func (t *GetPaymentForm) Type() string {
+	return "getPaymentForm"
+}
+
+func (t *GetPaymentForm) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetPaymentForm) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetPaymentForm) MarshalJSON() ([]byte, error) {
+	type Alias GetPaymentForm
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getPaymentForm",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetPaymentReceipt Returns information about a successful payment @chat_id Chat identifier of the messagePaymentSuccessful message @message_id Message identifier
+type GetPaymentReceipt struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+	//
+	MessageId int64 `json:"message_id"`
+}
+
+func (t *GetPaymentReceipt) Type() string {
+	return "getPaymentReceipt"
+}
+
+func (t *GetPaymentReceipt) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetPaymentReceipt) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetPaymentReceipt) MarshalJSON() ([]byte, error) {
+	type Alias GetPaymentReceipt
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getPaymentReceipt",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetPhoneNumberInfo Returns information about a phone number by its prefix. Can be called before authorization @phone_number_prefix The phone number prefix
+type GetPhoneNumberInfo struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	PhoneNumberPrefix string `json:"phone_number_prefix"`
+}
+
+func (t *GetPhoneNumberInfo) Type() string {
+	return "getPhoneNumberInfo"
+}
+
+func (t *GetPhoneNumberInfo) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetPhoneNumberInfo) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetPhoneNumberInfo) MarshalJSON() ([]byte, error) {
+	type Alias GetPhoneNumberInfo
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getPhoneNumberInfo",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetPhoneNumberInfoSync Returns information about a phone number by its prefix synchronously. getCountries must be called at least once after changing localization to the specified language if properly localized country information is expected. Can be called synchronously
+type GetPhoneNumberInfoSync struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// A two-letter ISO 639-1 language code for country information localization
+	LanguageCode string `json:"language_code"`
+	// The phone number prefix
+	PhoneNumberPrefix string `json:"phone_number_prefix"`
+}
+
+func (t *GetPhoneNumberInfoSync) Type() string {
+	return "getPhoneNumberInfoSync"
+}
+
+func (t *GetPhoneNumberInfoSync) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetPhoneNumberInfoSync) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetPhoneNumberInfoSync) MarshalJSON() ([]byte, error) {
+	type Alias GetPhoneNumberInfoSync
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getPhoneNumberInfoSync",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetPollVoters Returns message senders voted for the specified option in a non-anonymous polls. For optimal performance, the number of returned users is chosen by TDLib
+type GetPollVoters struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat to which the poll belongs
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message containing the poll
+	MessageId int64 `json:"message_id"`
+	// 0-based identifier of the answer option
+	OptionId int32 `json:"option_id"`
+	// Number of voters to skip in the result; must be non-negative
+	Offset int32 `json:"offset"`
+	// The maximum number of voters to be returned; must be positive and can't be greater than 50. For optimal performance, the number of returned voters is chosen by TDLib and can be smaller than the specified limit, even if the end of the voter list has not been reached
+	Limit int32 `json:"limit"`
+}
+
+func (t *GetPollVoters) Type() string {
+	return "getPollVoters"
+}
+
+func (t *GetPollVoters) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetPollVoters) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetPollVoters) MarshalJSON() ([]byte, error) {
+	type Alias GetPollVoters
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getPollVoters",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetPreferredCountryLanguage Returns an IETF language tag of the language preferred in the country, which must be used to fill native fields in Telegram Passport personal details. Returns a 404 error if unknown @country_code A two-letter ISO 3166-1 alpha-2 country code
+type GetPreferredCountryLanguage struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	CountryCode string `json:"country_code"`
+}
+
+func (t *GetPreferredCountryLanguage) Type() string {
+	return "getPreferredCountryLanguage"
+}
+
+func (t *GetPreferredCountryLanguage) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetPreferredCountryLanguage) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetPreferredCountryLanguage) MarshalJSON() ([]byte, error) {
+	type Alias GetPreferredCountryLanguage
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getPreferredCountryLanguage",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetPremiumFeatures Returns information about features, available to Premium users @source Source of the request; pass null if the method is called from some non-standard source
+type GetPremiumFeatures struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Source *PremiumSource `json:"source"`
+}
+
+func (t *GetPremiumFeatures) Type() string {
+	return "getPremiumFeatures"
+}
+
+func (t *GetPremiumFeatures) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetPremiumFeatures) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetPremiumFeatures) MarshalJSON() ([]byte, error) {
+	type Alias GetPremiumFeatures
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getPremiumFeatures",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetPremiumGiftPaymentOptions Returns available options for gifting Telegram Premium to a user
+type GetPremiumGiftPaymentOptions struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetPremiumGiftPaymentOptions) Type() string {
+	return "getPremiumGiftPaymentOptions"
+}
+
+func (t *GetPremiumGiftPaymentOptions) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetPremiumGiftPaymentOptions) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetPremiumGiftPaymentOptions) MarshalJSON() ([]byte, error) {
+	type Alias GetPremiumGiftPaymentOptions
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getPremiumGiftPaymentOptions",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetPremiumGiveawayPaymentOptions Returns available options for creating of Telegram Premium giveaway or manual distribution of Telegram Premium among chat members
+type GetPremiumGiveawayPaymentOptions struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the supergroup or channel chat, which will be automatically boosted by receivers of the gift codes and which is administered by the user
+	BoostedChatId int64 `json:"boosted_chat_id"`
+}
+
+func (t *GetPremiumGiveawayPaymentOptions) Type() string {
+	return "getPremiumGiveawayPaymentOptions"
+}
+
+func (t *GetPremiumGiveawayPaymentOptions) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetPremiumGiveawayPaymentOptions) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetPremiumGiveawayPaymentOptions) MarshalJSON() ([]byte, error) {
+	type Alias GetPremiumGiveawayPaymentOptions
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getPremiumGiveawayPaymentOptions",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetPremiumInfoSticker Returns the sticker to be used as representation of the Telegram Premium subscription @month_count Number of months the Telegram Premium subscription will be active
+type GetPremiumInfoSticker struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	MonthCount int32 `json:"month_count"`
+}
+
+func (t *GetPremiumInfoSticker) Type() string {
+	return "getPremiumInfoSticker"
+}
+
+func (t *GetPremiumInfoSticker) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetPremiumInfoSticker) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetPremiumInfoSticker) MarshalJSON() ([]byte, error) {
+	type Alias GetPremiumInfoSticker
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getPremiumInfoSticker",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetPremiumLimit Returns information about a limit, increased for Premium users. Returns a 404 error if the limit is unknown @limit_type Type of the limit
+type GetPremiumLimit struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	LimitType *PremiumLimitType `json:"limit_type"`
+}
+
+func (t *GetPremiumLimit) Type() string {
+	return "getPremiumLimit"
+}
+
+func (t *GetPremiumLimit) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetPremiumLimit) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetPremiumLimit) MarshalJSON() ([]byte, error) {
+	type Alias GetPremiumLimit
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getPremiumLimit",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetPremiumState Returns state of Telegram Premium subscription and promotion videos for Premium features
+type GetPremiumState struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetPremiumState) Type() string {
+	return "getPremiumState"
+}
+
+func (t *GetPremiumState) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetPremiumState) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetPremiumState) MarshalJSON() ([]byte, error) {
+	type Alias GetPremiumState
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getPremiumState",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetPremiumStickerExamples Returns examples of premium stickers for demonstration purposes
+type GetPremiumStickerExamples struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetPremiumStickerExamples) Type() string {
+	return "getPremiumStickerExamples"
+}
+
+func (t *GetPremiumStickerExamples) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetPremiumStickerExamples) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetPremiumStickerExamples) MarshalJSON() ([]byte, error) {
+	type Alias GetPremiumStickerExamples
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getPremiumStickerExamples",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetPremiumStickers Returns premium stickers from regular sticker sets @limit The maximum number of stickers to be returned; 0-100
+type GetPremiumStickers struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Limit int32 `json:"limit"`
+}
+
+func (t *GetPremiumStickers) Type() string {
+	return "getPremiumStickers"
+}
+
+func (t *GetPremiumStickers) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetPremiumStickers) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetPremiumStickers) MarshalJSON() ([]byte, error) {
+	type Alias GetPremiumStickers
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getPremiumStickers",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetPreparedInlineMessage Saves an inline message to be sent by the given user
+type GetPreparedInlineMessage struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the bot that created the message
+	BotUserId int64 `json:"bot_user_id"`
+	// Identifier of the prepared message
+	PreparedMessageId string `json:"prepared_message_id"`
+}
+
+func (t *GetPreparedInlineMessage) Type() string {
+	return "getPreparedInlineMessage"
+}
+
+func (t *GetPreparedInlineMessage) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetPreparedInlineMessage) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetPreparedInlineMessage) MarshalJSON() ([]byte, error) {
+	type Alias GetPreparedInlineMessage
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getPreparedInlineMessage",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetProxies Returns the list of proxies that are currently set up. Can be called before authorization
+type GetProxies struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetProxies) Type() string {
+	return "getProxies"
+}
+
+func (t *GetProxies) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetProxies) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetProxies) MarshalJSON() ([]byte, error) {
+	type Alias GetProxies
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getProxies",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetProxyLink Returns an HTTPS link, which can be used to add a proxy. Available only for SOCKS5 and MTProto proxies. Can be called before authorization @proxy_id Proxy identifier
+type GetProxyLink struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ProxyId int32 `json:"proxy_id"`
+}
+
+func (t *GetProxyLink) Type() string {
+	return "getProxyLink"
+}
+
+func (t *GetProxyLink) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetProxyLink) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetProxyLink) MarshalJSON() ([]byte, error) {
+	type Alias GetProxyLink
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getProxyLink",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetPublicPostSearchLimits Checks public post search limits without actually performing the search @query Query that will be searched for
+type GetPublicPostSearchLimits struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Query string `json:"query"`
+}
+
+func (t *GetPublicPostSearchLimits) Type() string {
+	return "getPublicPostSearchLimits"
+}
+
+func (t *GetPublicPostSearchLimits) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetPublicPostSearchLimits) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetPublicPostSearchLimits) MarshalJSON() ([]byte, error) {
+	type Alias GetPublicPostSearchLimits
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getPublicPostSearchLimits",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetPushReceiverId Returns a globally unique push notification subscription identifier for identification of an account, which has received a push notification. Can be called synchronously @payload JSON-encoded push notification payload
+type GetPushReceiverId struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Payload string `json:"payload"`
+}
+
+func (t *GetPushReceiverId) Type() string {
+	return "getPushReceiverId"
+}
+
+func (t *GetPushReceiverId) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetPushReceiverId) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetPushReceiverId) MarshalJSON() ([]byte, error) {
+	type Alias GetPushReceiverId
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getPushReceiverId",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetReadDatePrivacySettings Returns privacy settings for message read date
+type GetReadDatePrivacySettings struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetReadDatePrivacySettings) Type() string {
+	return "getReadDatePrivacySettings"
+}
+
+func (t *GetReadDatePrivacySettings) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetReadDatePrivacySettings) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetReadDatePrivacySettings) MarshalJSON() ([]byte, error) {
+	type Alias GetReadDatePrivacySettings
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getReadDatePrivacySettings",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetReceivedGift Returns information about a received gift @received_gift_id Identifier of the gift
+type GetReceivedGift struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ReceivedGiftId string `json:"received_gift_id"`
+}
+
+func (t *GetReceivedGift) Type() string {
+	return "getReceivedGift"
+}
+
+func (t *GetReceivedGift) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetReceivedGift) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetReceivedGift) MarshalJSON() ([]byte, error) {
+	type Alias GetReceivedGift
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getReceivedGift",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetReceivedGifts Returns gifts received by the given user or chat
+type GetReceivedGifts struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Unique identifier of business connection on behalf of which to send the request; for bots only
+	BusinessConnectionId string `json:"business_connection_id"`
+	// Identifier of the gift receiver
+	OwnerId *MessageSender `json:"owner_id"`
+	// Pass collection identifier to get gifts only from the specified collection; pass 0 to get gifts regardless of collections
+	CollectionId int32 `json:"collection_id"`
+	// Pass true to exclude gifts that aren't saved to the chat's profile page. Always true for gifts received by other users and channel chats without can_post_messages administrator right
+	ExcludeUnsaved bool `json:"exclude_unsaved"`
+	// Pass true to exclude gifts that are saved to the chat's profile page. Always false for gifts received by other users and channel chats without can_post_messages administrator right
+	ExcludeSaved bool `json:"exclude_saved"`
+	// Pass true to exclude gifts that can be purchased unlimited number of times
+	ExcludeUnlimited bool `json:"exclude_unlimited"`
+	// Pass true to exclude gifts that can be purchased limited number of times and can be upgraded
+	ExcludeUpgradable bool `json:"exclude_upgradable"`
+	// Pass true to exclude gifts that can be purchased limited number of times and can't be upgraded
+	ExcludeNonUpgradable bool `json:"exclude_non_upgradable"`
+	// Pass true to exclude upgraded gifts
+	ExcludeUpgraded bool `json:"exclude_upgraded"`
+	// Pass true to exclude gifts that can't be used in setUpgradedGiftColors
+	ExcludeWithoutColors bool `json:"exclude_without_colors"`
+	// Pass true to exclude gifts that are just hosted and are not owned by the owner
+	ExcludeHosted bool `json:"exclude_hosted"`
+	// Pass true to sort results by gift price instead of send date
+	SortByPrice bool `json:"sort_by_price"`
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
+	// The maximum number of gifts to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned objects is chosen by TDLib and can be smaller than the specified limit
+	Limit int32 `json:"limit"`
+}
+
+func (t *GetReceivedGifts) Type() string {
+	return "getReceivedGifts"
+}
+
+func (t *GetReceivedGifts) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetReceivedGifts) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetReceivedGifts) MarshalJSON() ([]byte, error) {
+	type Alias GetReceivedGifts
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getReceivedGifts",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetRecentEmojiStatuses Returns recent emoji statuses for self status
+type GetRecentEmojiStatuses struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetRecentEmojiStatuses) Type() string {
+	return "getRecentEmojiStatuses"
+}
+
+func (t *GetRecentEmojiStatuses) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetRecentEmojiStatuses) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetRecentEmojiStatuses) MarshalJSON() ([]byte, error) {
+	type Alias GetRecentEmojiStatuses
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getRecentEmojiStatuses",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetRecentInlineBots Returns up to 20 recently used inline bots in the order of their last usage
+type GetRecentInlineBots struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetRecentInlineBots) Type() string {
+	return "getRecentInlineBots"
+}
+
+func (t *GetRecentInlineBots) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetRecentInlineBots) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetRecentInlineBots) MarshalJSON() ([]byte, error) {
+	type Alias GetRecentInlineBots
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getRecentInlineBots",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetRecentlyOpenedChats Returns recently opened chats. This is an offline method. Returns chats in the order of last opening @limit The maximum number of chats to be returned
+type GetRecentlyOpenedChats struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Limit int32 `json:"limit"`
+}
+
+func (t *GetRecentlyOpenedChats) Type() string {
+	return "getRecentlyOpenedChats"
+}
+
+func (t *GetRecentlyOpenedChats) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetRecentlyOpenedChats) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetRecentlyOpenedChats) MarshalJSON() ([]byte, error) {
+	type Alias GetRecentlyOpenedChats
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getRecentlyOpenedChats",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetRecentlyVisitedTMeUrls Returns t.me URLs recently visited by a newly registered user @referrer Google Play referrer to identify the user
+type GetRecentlyVisitedTMeUrls struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Referrer string `json:"referrer"`
+}
+
+func (t *GetRecentlyVisitedTMeUrls) Type() string {
+	return "getRecentlyVisitedTMeUrls"
+}
+
+func (t *GetRecentlyVisitedTMeUrls) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetRecentlyVisitedTMeUrls) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetRecentlyVisitedTMeUrls) MarshalJSON() ([]byte, error) {
+	type Alias GetRecentlyVisitedTMeUrls
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getRecentlyVisitedTMeUrls",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetRecentStickers Returns a list of recently used stickers @is_attached Pass true to return stickers and masks that were recently attached to photos or video files; pass false to return recently sent stickers
+type GetRecentStickers struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	IsAttached bool `json:"is_attached"`
+}
+
+func (t *GetRecentStickers) Type() string {
+	return "getRecentStickers"
+}
+
+func (t *GetRecentStickers) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetRecentStickers) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetRecentStickers) MarshalJSON() ([]byte, error) {
+	type Alias GetRecentStickers
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getRecentStickers",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetRecommendedChatFolders Returns recommended chat folders for the current user
+type GetRecommendedChatFolders struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetRecommendedChatFolders) Type() string {
+	return "getRecommendedChatFolders"
+}
+
+func (t *GetRecommendedChatFolders) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetRecommendedChatFolders) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetRecommendedChatFolders) MarshalJSON() ([]byte, error) {
+	type Alias GetRecommendedChatFolders
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getRecommendedChatFolders",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetRecommendedChats Returns a list of channel chats recommended to the current user
+type GetRecommendedChats struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetRecommendedChats) Type() string {
+	return "getRecommendedChats"
+}
+
+func (t *GetRecommendedChats) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetRecommendedChats) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetRecommendedChats) MarshalJSON() ([]byte, error) {
+	type Alias GetRecommendedChats
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getRecommendedChats",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetRecoveryEmailAddress Returns a 2-step verification recovery email address that was previously set up. This method can be used to verify a password provided by the user @password The 2-step verification password for the current user
+type GetRecoveryEmailAddress struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Password string `json:"password"`
+}
+
+func (t *GetRecoveryEmailAddress) Type() string {
+	return "getRecoveryEmailAddress"
+}
+
+func (t *GetRecoveryEmailAddress) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetRecoveryEmailAddress) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetRecoveryEmailAddress) MarshalJSON() ([]byte, error) {
+	type Alias GetRecoveryEmailAddress
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getRecoveryEmailAddress",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetRemoteFile Returns information about a file by its remote identifier. This is an offline method. Can be used to register a URL as a file for further uploading, or sending as a message. Even the request succeeds, the file can be used only if it is still accessible to the user.
+type GetRemoteFile struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Remote identifier of the file to get
+	RemoteFileId string `json:"remote_file_id"`
+	// File type; pass null if unknown
+	FileType *FileType `json:"file_type,omitempty"`
+}
+
+func (t *GetRemoteFile) Type() string {
+	return "getRemoteFile"
+}
+
+func (t *GetRemoteFile) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetRemoteFile) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetRemoteFile) MarshalJSON() ([]byte, error) {
+	type Alias GetRemoteFile
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getRemoteFile",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetRepliedMessage Returns information about a non-bundled message that is replied by a given message. Also, returns the pinned message for messagePinMessage,
+type GetRepliedMessage struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat the message belongs to
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the reply message
+	MessageId int64 `json:"message_id"`
+}
+
+func (t *GetRepliedMessage) Type() string {
+	return "getRepliedMessage"
+}
+
+func (t *GetRepliedMessage) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetRepliedMessage) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetRepliedMessage) MarshalJSON() ([]byte, error) {
+	type Alias GetRepliedMessage
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getRepliedMessage",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetSavedAnimations Returns saved animations
+type GetSavedAnimations struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetSavedAnimations) Type() string {
+	return "getSavedAnimations"
+}
+
+func (t *GetSavedAnimations) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetSavedAnimations) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetSavedAnimations) MarshalJSON() ([]byte, error) {
+	type Alias GetSavedAnimations
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getSavedAnimations",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetSavedMessagesTags Returns tags used in Saved Messages or a Saved Messages topic
+type GetSavedMessagesTags struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of Saved Messages topic which tags will be returned; pass 0 to get all Saved Messages tags
+	SavedMessagesTopicId int64 `json:"saved_messages_topic_id"`
+}
+
+func (t *GetSavedMessagesTags) Type() string {
+	return "getSavedMessagesTags"
+}
+
+func (t *GetSavedMessagesTags) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetSavedMessagesTags) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetSavedMessagesTags) MarshalJSON() ([]byte, error) {
+	type Alias GetSavedMessagesTags
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getSavedMessagesTags",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetSavedMessagesTopicHistory Returns messages in a Saved Messages topic. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id)
+type GetSavedMessagesTopicHistory struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of Saved Messages topic which messages will be fetched
+	SavedMessagesTopicId int64 `json:"saved_messages_topic_id"`
+	// Identifier of the message starting from which messages must be fetched; use 0 to get results from the last message
+	FromMessageId int64 `json:"from_message_id"`
+	// Specify 0 to get results from exactly the message from_message_id or a negative number from -99 to -1 to get additionally -offset newer messages
+	Offset int32 `json:"offset"`
+	// The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, then the limit must be greater than or equal to -offset.
+	Limit int32 `json:"limit"`
+}
+
+func (t *GetSavedMessagesTopicHistory) Type() string {
+	return "getSavedMessagesTopicHistory"
+}
+
+func (t *GetSavedMessagesTopicHistory) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetSavedMessagesTopicHistory) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetSavedMessagesTopicHistory) MarshalJSON() ([]byte, error) {
+	type Alias GetSavedMessagesTopicHistory
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getSavedMessagesTopicHistory",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetSavedMessagesTopicMessageByDate Returns the last message sent in a Saved Messages topic no later than the specified date
+type GetSavedMessagesTopicMessageByDate struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of Saved Messages topic which message will be returned
+	SavedMessagesTopicId int64 `json:"saved_messages_topic_id"`
+	// Point in time (Unix timestamp) relative to which to search for messages
+	Date int32 `json:"date"`
+}
+
+func (t *GetSavedMessagesTopicMessageByDate) Type() string {
+	return "getSavedMessagesTopicMessageByDate"
+}
+
+func (t *GetSavedMessagesTopicMessageByDate) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetSavedMessagesTopicMessageByDate) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetSavedMessagesTopicMessageByDate) MarshalJSON() ([]byte, error) {
+	type Alias GetSavedMessagesTopicMessageByDate
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getSavedMessagesTopicMessageByDate",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetSavedNotificationSound Returns saved notification sound by its identifier. Returns a 404 error if there is no saved notification sound with the specified identifier @notification_sound_id Identifier of the notification sound
+type GetSavedNotificationSound struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	NotificationSoundId string `json:"notification_sound_id"`
+}
+
+func (t *GetSavedNotificationSound) Type() string {
+	return "getSavedNotificationSound"
+}
+
+func (t *GetSavedNotificationSound) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetSavedNotificationSound) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetSavedNotificationSound) MarshalJSON() ([]byte, error) {
+	type Alias GetSavedNotificationSound
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getSavedNotificationSound",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetSavedNotificationSounds Returns the list of saved notification sounds. If a sound isn't in the list, then default sound needs to be used
+type GetSavedNotificationSounds struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetSavedNotificationSounds) Type() string {
+	return "getSavedNotificationSounds"
+}
+
+func (t *GetSavedNotificationSounds) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetSavedNotificationSounds) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetSavedNotificationSounds) MarshalJSON() ([]byte, error) {
+	type Alias GetSavedNotificationSounds
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getSavedNotificationSounds",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetSavedOrderInfo Returns saved order information. Returns a 404 error if there is no saved order information
+type GetSavedOrderInfo struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetSavedOrderInfo) Type() string {
+	return "getSavedOrderInfo"
+}
+
+func (t *GetSavedOrderInfo) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetSavedOrderInfo) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetSavedOrderInfo) MarshalJSON() ([]byte, error) {
+	type Alias GetSavedOrderInfo
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getSavedOrderInfo",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetScopeNotificationSettings Returns the notification settings for chats of a given type @scope Types of chats for which to return the notification settings information
+type GetScopeNotificationSettings struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Scope *NotificationSettingsScope `json:"scope"`
+}
+
+func (t *GetScopeNotificationSettings) Type() string {
+	return "getScopeNotificationSettings"
+}
+
+func (t *GetScopeNotificationSettings) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetScopeNotificationSettings) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetScopeNotificationSettings) MarshalJSON() ([]byte, error) {
+	type Alias GetScopeNotificationSettings
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getScopeNotificationSettings",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetSearchedForTags Returns recently searched for hashtags or cashtags by their prefix @tag_prefix Prefix of hashtags or cashtags to return @limit The maximum number of items to be returned
+type GetSearchedForTags struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	TagPrefix string `json:"tag_prefix"`
+	//
+	Limit int32 `json:"limit"`
+}
+
+func (t *GetSearchedForTags) Type() string {
+	return "getSearchedForTags"
+}
+
+func (t *GetSearchedForTags) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetSearchedForTags) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetSearchedForTags) MarshalJSON() ([]byte, error) {
+	type Alias GetSearchedForTags
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getSearchedForTags",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetSearchSponsoredChats Returns sponsored chats to be shown in the search results @query Query the user searches for
+type GetSearchSponsoredChats struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Query string `json:"query"`
+}
+
+func (t *GetSearchSponsoredChats) Type() string {
+	return "getSearchSponsoredChats"
+}
+
+func (t *GetSearchSponsoredChats) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetSearchSponsoredChats) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetSearchSponsoredChats) MarshalJSON() ([]byte, error) {
+	type Alias GetSearchSponsoredChats
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getSearchSponsoredChats",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetSecretChat Returns information about a secret chat by its identifier. This is an offline method @secret_chat_id Secret chat identifier
+type GetSecretChat struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	SecretChatId int32 `json:"secret_chat_id"`
+}
+
+func (t *GetSecretChat) Type() string {
+	return "getSecretChat"
+}
+
+func (t *GetSecretChat) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetSecretChat) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetSecretChat) MarshalJSON() ([]byte, error) {
+	type Alias GetSecretChat
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getSecretChat",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetStakeDiceState Returns the current state of stake dice
+type GetStakeDiceState struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetStakeDiceState) Type() string {
+	return "getStakeDiceState"
+}
+
+func (t *GetStakeDiceState) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetStakeDiceState) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetStakeDiceState) MarshalJSON() ([]byte, error) {
+	type Alias GetStakeDiceState
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getStakeDiceState",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetStarAdAccountUrl Returns a URL for a Telegram Ad platform account that can be used to set up advertisements for the chat paid in the owned Telegram Stars
+type GetStarAdAccountUrl struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the owner of the Telegram Stars; can be identifier of an owned bot, or identifier of an owned channel chat
+	OwnerId *MessageSender `json:"owner_id"`
+}
+
+func (t *GetStarAdAccountUrl) Type() string {
+	return "getStarAdAccountUrl"
+}
+
+func (t *GetStarAdAccountUrl) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetStarAdAccountUrl) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetStarAdAccountUrl) MarshalJSON() ([]byte, error) {
+	type Alias GetStarAdAccountUrl
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getStarAdAccountUrl",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetStarGiftPaymentOptions Returns available options for Telegram Stars gifting @user_id Identifier of the user that will receive Telegram Stars; pass 0 to get options for an unspecified user
+type GetStarGiftPaymentOptions struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	UserId int64 `json:"user_id"`
+}
+
+func (t *GetStarGiftPaymentOptions) Type() string {
+	return "getStarGiftPaymentOptions"
+}
+
+func (t *GetStarGiftPaymentOptions) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetStarGiftPaymentOptions) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetStarGiftPaymentOptions) MarshalJSON() ([]byte, error) {
+	type Alias GetStarGiftPaymentOptions
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getStarGiftPaymentOptions",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetStarGiveawayPaymentOptions Returns available options for Telegram Star giveaway creation
+type GetStarGiveawayPaymentOptions struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetStarGiveawayPaymentOptions) Type() string {
+	return "getStarGiveawayPaymentOptions"
+}
+
+func (t *GetStarGiveawayPaymentOptions) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetStarGiveawayPaymentOptions) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetStarGiveawayPaymentOptions) MarshalJSON() ([]byte, error) {
+	type Alias GetStarGiveawayPaymentOptions
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getStarGiveawayPaymentOptions",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetStarPaymentOptions Returns available options for Telegram Stars purchase
+type GetStarPaymentOptions struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetStarPaymentOptions) Type() string {
+	return "getStarPaymentOptions"
+}
+
+func (t *GetStarPaymentOptions) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetStarPaymentOptions) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetStarPaymentOptions) MarshalJSON() ([]byte, error) {
+	type Alias GetStarPaymentOptions
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getStarPaymentOptions",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetStarRevenueStatistics Returns detailed Telegram Star revenue statistics
+type GetStarRevenueStatistics struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the owner of the Telegram Stars; can be identifier of the current user, an owned bot, or a supergroup or a channel chat with supergroupFullInfo.can_get_star_revenue_statistics == true
+	OwnerId *MessageSender `json:"owner_id"`
+	// Pass true if a dark theme is used by the application
+	IsDark bool `json:"is_dark"`
+}
+
+func (t *GetStarRevenueStatistics) Type() string {
+	return "getStarRevenueStatistics"
+}
+
+func (t *GetStarRevenueStatistics) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetStarRevenueStatistics) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetStarRevenueStatistics) MarshalJSON() ([]byte, error) {
+	type Alias GetStarRevenueStatistics
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getStarRevenueStatistics",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetStarSubscriptions Returns the list of Telegram Star subscriptions for the current user
+type GetStarSubscriptions struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Pass true to receive only expiring subscriptions for which there are no enough Telegram Stars to extend
+	OnlyExpiring bool `json:"only_expiring"`
+	// Offset of the first subscription to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
+}
+
+func (t *GetStarSubscriptions) Type() string {
+	return "getStarSubscriptions"
+}
+
+func (t *GetStarSubscriptions) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetStarSubscriptions) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetStarSubscriptions) MarshalJSON() ([]byte, error) {
+	type Alias GetStarSubscriptions
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getStarSubscriptions",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetStarTransactions Returns the list of Telegram Star transactions for the specified owner
+type GetStarTransactions struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the owner of the Telegram Stars; can be the identifier of the current user, identifier of an owned bot,
+	OwnerId *MessageSender `json:"owner_id"`
+	// If non-empty, only transactions related to the Star Subscription will be returned
+	SubscriptionId string `json:"subscription_id"`
+	// Direction of the transactions to receive; pass null to get all transactions
+	Direction *TransactionDirection `json:"direction,omitempty"`
+	// Offset of the first transaction to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
+	// The maximum number of transactions to return
+	Limit int32 `json:"limit"`
+}
+
+func (t *GetStarTransactions) Type() string {
+	return "getStarTransactions"
+}
+
+func (t *GetStarTransactions) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetStarTransactions) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetStarTransactions) MarshalJSON() ([]byte, error) {
+	type Alias GetStarTransactions
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getStarTransactions",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetStarWithdrawalUrl Returns a URL for Telegram Star withdrawal
+type GetStarWithdrawalUrl struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the owner of the Telegram Stars; can be identifier of the current user, an owned bot, or an owned supergroup or channel chat
+	OwnerId *MessageSender `json:"owner_id"`
+	// The number of Telegram Stars to withdraw; must be between getOption("star_withdrawal_count_min") and getOption("star_withdrawal_count_max")
+	StarCount int64 `json:"star_count"`
+	// The 2-step verification password of the current user
+	Password string `json:"password"`
+}
+
+func (t *GetStarWithdrawalUrl) Type() string {
+	return "getStarWithdrawalUrl"
+}
+
+func (t *GetStarWithdrawalUrl) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetStarWithdrawalUrl) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetStarWithdrawalUrl) MarshalJSON() ([]byte, error) {
+	type Alias GetStarWithdrawalUrl
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getStarWithdrawalUrl",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetStatisticalGraph Loads an asynchronous or a zoomed in statistical graph @chat_id Chat identifier @token The token for graph loading @x X-value for zoomed in graph or 0 otherwise
+type GetStatisticalGraph struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+	//
+	Token string `json:"token"`
+	//
+	X int64 `json:"x"`
+}
+
+func (t *GetStatisticalGraph) Type() string {
+	return "getStatisticalGraph"
+}
+
+func (t *GetStatisticalGraph) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetStatisticalGraph) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetStatisticalGraph) MarshalJSON() ([]byte, error) {
+	type Alias GetStatisticalGraph
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getStatisticalGraph",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetStickerEmojis Returns emoji corresponding to a sticker. The list is only for informational purposes, because a sticker is always sent with a fixed emoji from the corresponding Sticker object @sticker Sticker file identifier
+type GetStickerEmojis struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Sticker *InputFile `json:"sticker"`
+}
+
+func (t *GetStickerEmojis) Type() string {
+	return "getStickerEmojis"
+}
+
+func (t *GetStickerEmojis) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetStickerEmojis) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetStickerEmojis) MarshalJSON() ([]byte, error) {
+	type Alias GetStickerEmojis
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getStickerEmojis",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetStickerOutline Returns outline of a sticker. This is an offline method. Returns a 404 error if the outline isn't known
+type GetStickerOutline struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// File identifier of the sticker
+	StickerFileId int32 `json:"sticker_file_id"`
+	// Pass true to get the outline scaled for animated emoji
+	ForAnimatedEmoji bool `json:"for_animated_emoji"`
+	// Pass true to get the outline scaled for clicked animated emoji message
+	ForClickedAnimatedEmojiMessage bool `json:"for_clicked_animated_emoji_message"`
+}
+
+func (t *GetStickerOutline) Type() string {
+	return "getStickerOutline"
+}
+
+func (t *GetStickerOutline) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetStickerOutline) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetStickerOutline) MarshalJSON() ([]byte, error) {
+	type Alias GetStickerOutline
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getStickerOutline",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetStickerOutlineSvgPath Returns outline of a sticker as an SVG path. This is an offline method. Returns an empty string if the outline isn't known
+type GetStickerOutlineSvgPath struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// File identifier of the sticker
+	StickerFileId int32 `json:"sticker_file_id"`
+	// Pass true to get the outline scaled for animated emoji
+	ForAnimatedEmoji bool `json:"for_animated_emoji"`
+	// Pass true to get the outline scaled for clicked animated emoji message
+	ForClickedAnimatedEmojiMessage bool `json:"for_clicked_animated_emoji_message"`
+}
+
+func (t *GetStickerOutlineSvgPath) Type() string {
+	return "getStickerOutlineSvgPath"
+}
+
+func (t *GetStickerOutlineSvgPath) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetStickerOutlineSvgPath) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetStickerOutlineSvgPath) MarshalJSON() ([]byte, error) {
+	type Alias GetStickerOutlineSvgPath
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getStickerOutlineSvgPath",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetStickers Returns stickers from the installed sticker sets that correspond to any of the given emoji or can be found by sticker-specific keywords. If the query is non-empty, then favorite, recently used or trending stickers may also be returned
+type GetStickers struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Type of the stickers to return
+	StickerType *StickerType `json:"sticker_type"`
+	// Search query; a space-separated list of emojis or a keyword prefix. If empty, returns all known installed stickers
+	Query string `json:"query"`
+	// The maximum number of stickers to be returned
+	Limit int32 `json:"limit"`
+	// Chat identifier for which to return stickers. Available custom emoji stickers may be different for different chats
+	ChatId int64 `json:"chat_id"`
+}
+
+func (t *GetStickers) Type() string {
+	return "getStickers"
+}
+
+func (t *GetStickers) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetStickers) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetStickers) MarshalJSON() ([]byte, error) {
+	type Alias GetStickers
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getStickers",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetStickerSet Returns information about a sticker set by its identifier @set_id Identifier of the sticker set
+type GetStickerSet struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	SetId string `json:"set_id"`
+}
+
+func (t *GetStickerSet) Type() string {
+	return "getStickerSet"
+}
+
+func (t *GetStickerSet) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetStickerSet) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetStickerSet) MarshalJSON() ([]byte, error) {
+	type Alias GetStickerSet
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getStickerSet",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetStickerSetName Returns name of a sticker set by its identifier @set_id Identifier of the sticker set
+type GetStickerSetName struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	SetId string `json:"set_id"`
+}
+
+func (t *GetStickerSetName) Type() string {
+	return "getStickerSetName"
+}
+
+func (t *GetStickerSetName) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetStickerSetName) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetStickerSetName) MarshalJSON() ([]byte, error) {
+	type Alias GetStickerSetName
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getStickerSetName",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetStorageStatistics Returns storage usage statistics. Can be called before authorization
+type GetStorageStatistics struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The maximum number of chats with the largest storage usage for which separate statistics need to be returned. All other chats will be grouped in entries with chat_id == 0. If the chat info database is not used, the chat_limit is ignored and is always set to 0
+	ChatLimit int32 `json:"chat_limit"`
+}
+
+func (t *GetStorageStatistics) Type() string {
+	return "getStorageStatistics"
+}
+
+func (t *GetStorageStatistics) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetStorageStatistics) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetStorageStatistics) MarshalJSON() ([]byte, error) {
+	type Alias GetStorageStatistics
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getStorageStatistics",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetStorageStatisticsFast Quickly returns approximate storage usage statistics. Can be called before authorization
+type GetStorageStatisticsFast struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetStorageStatisticsFast) Type() string {
+	return "getStorageStatisticsFast"
+}
+
+func (t *GetStorageStatisticsFast) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetStorageStatisticsFast) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetStorageStatisticsFast) MarshalJSON() ([]byte, error) {
+	type Alias GetStorageStatisticsFast
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getStorageStatisticsFast",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetStory Returns a story
+type GetStory struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat that posted the story
+	StoryPosterChatId int64 `json:"story_poster_chat_id"`
+	// Story identifier
+	StoryId int32 `json:"story_id"`
+	// Pass true to get only locally available information without sending network requests
+	OnlyLocal bool `json:"only_local"`
+}
+
+func (t *GetStory) Type() string {
+	return "getStory"
+}
+
+func (t *GetStory) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetStory) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetStory) MarshalJSON() ([]byte, error) {
+	type Alias GetStory
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getStory",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetStoryAlbumStories Returns the list of stories added to the given story album. For optimal performance, the number of returned stories is chosen by TDLib
+type GetStoryAlbumStories struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Story album identifier
+	StoryAlbumId int32 `json:"story_album_id"`
+	// Offset of the first entry to return; use 0 to get results from the first album story
+	Offset int32 `json:"offset"`
+	// The maximum number of stories to be returned. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
+	Limit int32 `json:"limit"`
+}
+
+func (t *GetStoryAlbumStories) Type() string {
+	return "getStoryAlbumStories"
+}
+
+func (t *GetStoryAlbumStories) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetStoryAlbumStories) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetStoryAlbumStories) MarshalJSON() ([]byte, error) {
+	type Alias GetStoryAlbumStories
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getStoryAlbumStories",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetStoryAvailableReactions Returns reactions, which can be chosen for a story @row_size Number of reaction per row, 5-25
+type GetStoryAvailableReactions struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	RowSize int32 `json:"row_size"`
+}
+
+func (t *GetStoryAvailableReactions) Type() string {
+	return "getStoryAvailableReactions"
+}
+
+func (t *GetStoryAvailableReactions) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetStoryAvailableReactions) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetStoryAvailableReactions) MarshalJSON() ([]byte, error) {
+	type Alias GetStoryAvailableReactions
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getStoryAvailableReactions",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetStoryInteractions Returns interactions with a story. The method can be called only for stories posted on behalf of the current user
+type GetStoryInteractions struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Story identifier
+	StoryId int32 `json:"story_id"`
+	// Query to search for in names, usernames and titles; may be empty to get all relevant interactions
+	Query string `json:"query"`
+	// Pass true to get only interactions by contacts; pass false to get all relevant interactions
+	OnlyContacts bool `json:"only_contacts"`
+	// Pass true to get forwards and reposts first, then reactions, then other views; pass false to get interactions sorted just by interaction date
+	PreferForwards bool `json:"prefer_forwards"`
+	// Pass true to get interactions with reaction first; pass false to get interactions sorted just by interaction date. Ignored if prefer_forwards == true
+	PreferWithReaction bool `json:"prefer_with_reaction"`
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
+	// The maximum number of story interactions to return
+	Limit int32 `json:"limit"`
+}
+
+func (t *GetStoryInteractions) Type() string {
+	return "getStoryInteractions"
+}
+
+func (t *GetStoryInteractions) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetStoryInteractions) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetStoryInteractions) MarshalJSON() ([]byte, error) {
+	type Alias GetStoryInteractions
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getStoryInteractions",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetStoryNotificationSettingsExceptions Returns the list of chats with non-default notification settings for stories
+type GetStoryNotificationSettingsExceptions struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetStoryNotificationSettingsExceptions) Type() string {
+	return "getStoryNotificationSettingsExceptions"
+}
+
+func (t *GetStoryNotificationSettingsExceptions) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetStoryNotificationSettingsExceptions) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetStoryNotificationSettingsExceptions) MarshalJSON() ([]byte, error) {
+	type Alias GetStoryNotificationSettingsExceptions
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getStoryNotificationSettingsExceptions",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetStoryPublicForwards Returns forwards of a story as a message to public chats and reposts by public channels. Can be used only if the story is posted on behalf of the current user or story.can_get_statistics == true.
+type GetStoryPublicForwards struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The identifier of the poster of the story
+	StoryPosterChatId int64 `json:"story_poster_chat_id"`
+	// The identifier of the story
+	StoryId int32 `json:"story_id"`
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
+	// The maximum number of messages and stories to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned objects is chosen by TDLib and can be smaller than the specified limit
+	Limit int32 `json:"limit"`
+}
+
+func (t *GetStoryPublicForwards) Type() string {
+	return "getStoryPublicForwards"
+}
+
+func (t *GetStoryPublicForwards) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetStoryPublicForwards) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetStoryPublicForwards) MarshalJSON() ([]byte, error) {
+	type Alias GetStoryPublicForwards
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getStoryPublicForwards",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetStoryStatistics Returns detailed statistics about a story. Can be used only if story.can_get_statistics == true @chat_id Chat identifier @story_id Story identifier @is_dark Pass true if a dark theme is used by the application
+type GetStoryStatistics struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+	//
+	StoryId int32 `json:"story_id"`
+	//
+	IsDark bool `json:"is_dark"`
+}
+
+func (t *GetStoryStatistics) Type() string {
+	return "getStoryStatistics"
+}
+
+func (t *GetStoryStatistics) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetStoryStatistics) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetStoryStatistics) MarshalJSON() ([]byte, error) {
+	type Alias GetStoryStatistics
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getStoryStatistics",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetSuggestedFileName Returns suggested name for saving a file in a given directory @file_id Identifier of the file @directory Directory in which the file is expected to be saved
+type GetSuggestedFileName struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	FileId int32 `json:"file_id"`
+	//
+	Directory string `json:"directory"`
+}
+
+func (t *GetSuggestedFileName) Type() string {
+	return "getSuggestedFileName"
+}
+
+func (t *GetSuggestedFileName) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetSuggestedFileName) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetSuggestedFileName) MarshalJSON() ([]byte, error) {
+	type Alias GetSuggestedFileName
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getSuggestedFileName",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetSuggestedStickerSetName Returns a suggested name for a new sticker set with a given title @title Sticker set title; 1-64 characters
+type GetSuggestedStickerSetName struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Title string `json:"title"`
+}
+
+func (t *GetSuggestedStickerSetName) Type() string {
+	return "getSuggestedStickerSetName"
+}
+
+func (t *GetSuggestedStickerSetName) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetSuggestedStickerSetName) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetSuggestedStickerSetName) MarshalJSON() ([]byte, error) {
+	type Alias GetSuggestedStickerSetName
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getSuggestedStickerSetName",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetSuitableDiscussionChats Returns a list of basic group and supergroup chats, which can be used as a discussion group for a channel. Returned basic group chats must be first upgraded to supergroups before they can be set as a discussion group.
+type GetSuitableDiscussionChats struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetSuitableDiscussionChats) Type() string {
+	return "getSuitableDiscussionChats"
+}
+
+func (t *GetSuitableDiscussionChats) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetSuitableDiscussionChats) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetSuitableDiscussionChats) MarshalJSON() ([]byte, error) {
+	type Alias GetSuitableDiscussionChats
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getSuitableDiscussionChats",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetSuitablePersonalChats Returns a list of channel chats, which can be used as a personal chat
+type GetSuitablePersonalChats struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetSuitablePersonalChats) Type() string {
+	return "getSuitablePersonalChats"
+}
+
+func (t *GetSuitablePersonalChats) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetSuitablePersonalChats) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetSuitablePersonalChats) MarshalJSON() ([]byte, error) {
+	type Alias GetSuitablePersonalChats
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getSuitablePersonalChats",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetSupergroup Returns information about a supergroup or a channel by its identifier. This is an offline method if the current user is not a bot @supergroup_id Supergroup or channel identifier
+type GetSupergroup struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	SupergroupId int64 `json:"supergroup_id"`
+}
+
+func (t *GetSupergroup) Type() string {
+	return "getSupergroup"
+}
+
+func (t *GetSupergroup) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetSupergroup) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetSupergroup) MarshalJSON() ([]byte, error) {
+	type Alias GetSupergroup
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getSupergroup",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetSupergroupFullInfo Returns full information about a supergroup or a channel by its identifier, cached for up to 1 minute @supergroup_id Supergroup or channel identifier
+type GetSupergroupFullInfo struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	SupergroupId int64 `json:"supergroup_id"`
+}
+
+func (t *GetSupergroupFullInfo) Type() string {
+	return "getSupergroupFullInfo"
+}
+
+func (t *GetSupergroupFullInfo) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetSupergroupFullInfo) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetSupergroupFullInfo) MarshalJSON() ([]byte, error) {
+	type Alias GetSupergroupFullInfo
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getSupergroupFullInfo",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetSupergroupMembers Returns information about members or banned users in a supergroup or channel. Can be used only if supergroupFullInfo.can_get_members == true; additionally, administrator privileges may be required for some filters
+type GetSupergroupMembers struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the supergroup or channel
+	SupergroupId int64 `json:"supergroup_id"`
+	// The type of users to return; pass null to use supergroupMembersFilterRecent
+	Filter *SupergroupMembersFilter `json:"filter,omitempty"`
+	// Number of users to skip
+	Offset int32 `json:"offset"`
+	// The maximum number of users to be returned; up to 200
+	Limit int32 `json:"limit"`
+}
+
+func (t *GetSupergroupMembers) Type() string {
+	return "getSupergroupMembers"
+}
+
+func (t *GetSupergroupMembers) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetSupergroupMembers) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetSupergroupMembers) MarshalJSON() ([]byte, error) {
+	type Alias GetSupergroupMembers
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getSupergroupMembers",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetSupportName Returns localized name of the Telegram support user; for Telegram support only
+type GetSupportName struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetSupportName) Type() string {
+	return "getSupportName"
+}
+
+func (t *GetSupportName) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetSupportName) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetSupportName) MarshalJSON() ([]byte, error) {
+	type Alias GetSupportName
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getSupportName",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetSupportUser Returns a user that can be contacted to get support
+type GetSupportUser struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetSupportUser) Type() string {
+	return "getSupportUser"
+}
+
+func (t *GetSupportUser) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetSupportUser) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetSupportUser) MarshalJSON() ([]byte, error) {
+	type Alias GetSupportUser
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getSupportUser",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetTemporaryPasswordState Returns information about the current temporary password
+type GetTemporaryPasswordState struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetTemporaryPasswordState) Type() string {
+	return "getTemporaryPasswordState"
+}
+
+func (t *GetTemporaryPasswordState) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetTemporaryPasswordState) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetTemporaryPasswordState) MarshalJSON() ([]byte, error) {
+	type Alias GetTemporaryPasswordState
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getTemporaryPasswordState",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetTextEntities Returns all entities (mentions, hashtags, cashtags, bot commands, bank card numbers, URLs, and email addresses) found in the text. Can be called synchronously @text The text in which to look for entities
+type GetTextEntities struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Text string `json:"text"`
+}
+
+func (t *GetTextEntities) Type() string {
+	return "getTextEntities"
+}
+
+func (t *GetTextEntities) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetTextEntities) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetTextEntities) MarshalJSON() ([]byte, error) {
+	type Alias GetTextEntities
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getTextEntities",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetThemedChatEmojiStatuses Returns up to 8 emoji statuses, which must be shown in the emoji status list for chats
+type GetThemedChatEmojiStatuses struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetThemedChatEmojiStatuses) Type() string {
+	return "getThemedChatEmojiStatuses"
+}
+
+func (t *GetThemedChatEmojiStatuses) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetThemedChatEmojiStatuses) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetThemedChatEmojiStatuses) MarshalJSON() ([]byte, error) {
+	type Alias GetThemedChatEmojiStatuses
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getThemedChatEmojiStatuses",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetThemedEmojiStatuses Returns up to 8 emoji statuses, which must be shown right after the default Premium Badge in the emoji status list for self status
+type GetThemedEmojiStatuses struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetThemedEmojiStatuses) Type() string {
+	return "getThemedEmojiStatuses"
+}
+
+func (t *GetThemedEmojiStatuses) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetThemedEmojiStatuses) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetThemedEmojiStatuses) MarshalJSON() ([]byte, error) {
+	type Alias GetThemedEmojiStatuses
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getThemedEmojiStatuses",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetThemeParametersJsonString Converts a themeParameters object to corresponding JSON-serialized string. Can be called synchronously @theme Theme parameters to convert to JSON
+type GetThemeParametersJsonString struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Theme *ThemeParameters `json:"theme"`
+}
+
+func (t *GetThemeParametersJsonString) Type() string {
+	return "getThemeParametersJsonString"
+}
+
+func (t *GetThemeParametersJsonString) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetThemeParametersJsonString) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetThemeParametersJsonString) MarshalJSON() ([]byte, error) {
+	type Alias GetThemeParametersJsonString
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getThemeParametersJsonString",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetTimeZones Returns the list of supported time zones
+type GetTimeZones struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetTimeZones) Type() string {
+	return "getTimeZones"
+}
+
+func (t *GetTimeZones) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetTimeZones) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetTimeZones) MarshalJSON() ([]byte, error) {
+	type Alias GetTimeZones
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getTimeZones",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetTonRevenueStatistics Returns detailed Toncoin revenue statistics of the current user @is_dark Pass true if a dark theme is used by the application
+type GetTonRevenueStatistics struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	IsDark bool `json:"is_dark"`
+}
+
+func (t *GetTonRevenueStatistics) Type() string {
+	return "getTonRevenueStatistics"
+}
+
+func (t *GetTonRevenueStatistics) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetTonRevenueStatistics) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetTonRevenueStatistics) MarshalJSON() ([]byte, error) {
+	type Alias GetTonRevenueStatistics
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getTonRevenueStatistics",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetTonTransactions Returns the list of Toncoin transactions of the current user
+type GetTonTransactions struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Direction of the transactions to receive; pass null to get all transactions
+	Direction *TransactionDirection `json:"direction,omitempty"`
+	// Offset of the first transaction to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
+	// The maximum number of transactions to return
+	Limit int32 `json:"limit"`
+}
+
+func (t *GetTonTransactions) Type() string {
+	return "getTonTransactions"
+}
+
+func (t *GetTonTransactions) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetTonTransactions) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetTonTransactions) MarshalJSON() ([]byte, error) {
+	type Alias GetTonTransactions
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getTonTransactions",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetTonWithdrawalUrl Returns a URL for Toncoin withdrawal from the current user's account. The user must have at least 10 toncoins to withdraw
+type GetTonWithdrawalUrl struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The 2-step verification password of the current user
+	Password string `json:"password"`
+}
+
+func (t *GetTonWithdrawalUrl) Type() string {
+	return "getTonWithdrawalUrl"
+}
+
+func (t *GetTonWithdrawalUrl) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetTonWithdrawalUrl) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetTonWithdrawalUrl) MarshalJSON() ([]byte, error) {
+	type Alias GetTonWithdrawalUrl
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getTonWithdrawalUrl",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetTopChats Returns a list of frequently used chats @category Category of chats to be returned @limit The maximum number of chats to be returned; up to 30
+type GetTopChats struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Category *TopChatCategory `json:"category"`
+	//
+	Limit int32 `json:"limit"`
+}
+
+func (t *GetTopChats) Type() string {
+	return "getTopChats"
+}
+
+func (t *GetTopChats) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetTopChats) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetTopChats) MarshalJSON() ([]byte, error) {
+	type Alias GetTopChats
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getTopChats",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetTrendingStickerSets Returns a list of trending sticker sets. For optimal performance, the number of returned sticker sets is chosen by TDLib
+type GetTrendingStickerSets struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Type of the sticker sets to return
+	StickerType *StickerType `json:"sticker_type"`
+	// The offset from which to return the sticker sets; must be non-negative
+	Offset int32 `json:"offset"`
+	// The maximum number of sticker sets to be returned; up to 100. For optimal performance, the number of returned sticker sets is chosen by TDLib and can be smaller than the specified limit, even if the end of the list has not been reached
+	Limit int32 `json:"limit"`
+}
+
+func (t *GetTrendingStickerSets) Type() string {
+	return "getTrendingStickerSets"
+}
+
+func (t *GetTrendingStickerSets) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetTrendingStickerSets) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetTrendingStickerSets) MarshalJSON() ([]byte, error) {
+	type Alias GetTrendingStickerSets
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getTrendingStickerSets",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetUpgradedGift Returns information about an upgraded gift by its name @name Unique name of the upgraded gift
+type GetUpgradedGift struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Name string `json:"name"`
+}
+
+func (t *GetUpgradedGift) Type() string {
+	return "getUpgradedGift"
+}
+
+func (t *GetUpgradedGift) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetUpgradedGift) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetUpgradedGift) MarshalJSON() ([]byte, error) {
+	type Alias GetUpgradedGift
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getUpgradedGift",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetUpgradedGiftEmojiStatuses Returns available upgraded gift emoji statuses for self status
+type GetUpgradedGiftEmojiStatuses struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetUpgradedGiftEmojiStatuses) Type() string {
+	return "getUpgradedGiftEmojiStatuses"
+}
+
+func (t *GetUpgradedGiftEmojiStatuses) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetUpgradedGiftEmojiStatuses) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetUpgradedGiftEmojiStatuses) MarshalJSON() ([]byte, error) {
+	type Alias GetUpgradedGiftEmojiStatuses
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getUpgradedGiftEmojiStatuses",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetUpgradedGiftsPromotionalAnimation Returns promotional anumation for upgraded gifts
+type GetUpgradedGiftsPromotionalAnimation struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetUpgradedGiftsPromotionalAnimation) Type() string {
+	return "getUpgradedGiftsPromotionalAnimation"
+}
+
+func (t *GetUpgradedGiftsPromotionalAnimation) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetUpgradedGiftsPromotionalAnimation) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetUpgradedGiftsPromotionalAnimation) MarshalJSON() ([]byte, error) {
+	type Alias GetUpgradedGiftsPromotionalAnimation
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getUpgradedGiftsPromotionalAnimation",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetUpgradedGiftValueInfo Returns information about value of an upgraded gift by its name @name Unique name of the upgraded gift
+type GetUpgradedGiftValueInfo struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Name string `json:"name"`
+}
+
+func (t *GetUpgradedGiftValueInfo) Type() string {
+	return "getUpgradedGiftValueInfo"
+}
+
+func (t *GetUpgradedGiftValueInfo) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetUpgradedGiftValueInfo) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetUpgradedGiftValueInfo) MarshalJSON() ([]byte, error) {
+	type Alias GetUpgradedGiftValueInfo
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getUpgradedGiftValueInfo",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetUpgradedGiftWithdrawalUrl Returns a URL for upgraded gift withdrawal in the TON blockchain as an NFT; requires owner privileges for gifts owned by a chat
+type GetUpgradedGiftWithdrawalUrl struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the gift
+	ReceivedGiftId string `json:"received_gift_id"`
+	// The 2-step verification password of the current user
+	Password string `json:"password"`
+}
+
+func (t *GetUpgradedGiftWithdrawalUrl) Type() string {
+	return "getUpgradedGiftWithdrawalUrl"
+}
+
+func (t *GetUpgradedGiftWithdrawalUrl) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetUpgradedGiftWithdrawalUrl) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetUpgradedGiftWithdrawalUrl) MarshalJSON() ([]byte, error) {
+	type Alias GetUpgradedGiftWithdrawalUrl
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getUpgradedGiftWithdrawalUrl",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetUser Returns information about a user by their identifier. This is an offline method if the current user is not a bot @user_id User identifier
+type GetUser struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	UserId int64 `json:"user_id"`
+}
+
+func (t *GetUser) Type() string {
+	return "getUser"
+}
+
+func (t *GetUser) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetUser) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetUser) MarshalJSON() ([]byte, error) {
+	type Alias GetUser
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getUser",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetUserChatBoosts Returns the list of boosts applied to a chat by a given user; requires administrator rights in the chat; for bots only
+type GetUserChatBoosts struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the user
+	UserId int64 `json:"user_id"`
+}
+
+func (t *GetUserChatBoosts) Type() string {
+	return "getUserChatBoosts"
+}
+
+func (t *GetUserChatBoosts) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetUserChatBoosts) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetUserChatBoosts) MarshalJSON() ([]byte, error) {
+	type Alias GetUserChatBoosts
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getUserChatBoosts",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetUserFullInfo Returns full information about a user by their identifier @user_id User identifier
+type GetUserFullInfo struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	UserId int64 `json:"user_id"`
+}
+
+func (t *GetUserFullInfo) Type() string {
+	return "getUserFullInfo"
+}
+
+func (t *GetUserFullInfo) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetUserFullInfo) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetUserFullInfo) MarshalJSON() ([]byte, error) {
+	type Alias GetUserFullInfo
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getUserFullInfo",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetUserLink Returns an HTTPS link, which can be used to get information about the current user
+type GetUserLink struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *GetUserLink) Type() string {
+	return "getUserLink"
+}
+
+func (t *GetUserLink) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetUserLink) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetUserLink) MarshalJSON() ([]byte, error) {
+	type Alias GetUserLink
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getUserLink",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetUserPrivacySettingRules Returns the current privacy settings @setting The privacy setting
+type GetUserPrivacySettingRules struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Setting *UserPrivacySetting `json:"setting"`
+}
+
+func (t *GetUserPrivacySettingRules) Type() string {
+	return "getUserPrivacySettingRules"
+}
+
+func (t *GetUserPrivacySettingRules) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetUserPrivacySettingRules) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetUserPrivacySettingRules) MarshalJSON() ([]byte, error) {
+	type Alias GetUserPrivacySettingRules
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getUserPrivacySettingRules",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetUserProfileAudios Returns the list of profile audio files of a user
+type GetUserProfileAudios struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// User identifier
+	UserId int64 `json:"user_id"`
+	// The number of audio files to skip; must be non-negative
+	Offset int32 `json:"offset"`
+	// The maximum number of audio files to be returned; up to 100
+	Limit int32 `json:"limit"`
+}
+
+func (t *GetUserProfileAudios) Type() string {
+	return "getUserProfileAudios"
+}
+
+func (t *GetUserProfileAudios) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetUserProfileAudios) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetUserProfileAudios) MarshalJSON() ([]byte, error) {
+	type Alias GetUserProfileAudios
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getUserProfileAudios",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetUserProfilePhotos Returns the profile photos of a user. Personal and public photo aren't returned
+type GetUserProfilePhotos struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// User identifier
+	UserId int64 `json:"user_id"`
+	// The number of photos to skip; must be non-negative
+	Offset int32 `json:"offset"`
+	// The maximum number of photos to be returned; up to 100
+	Limit int32 `json:"limit"`
+}
+
+func (t *GetUserProfilePhotos) Type() string {
+	return "getUserProfilePhotos"
+}
+
+func (t *GetUserProfilePhotos) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetUserProfilePhotos) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetUserProfilePhotos) MarshalJSON() ([]byte, error) {
+	type Alias GetUserProfilePhotos
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getUserProfilePhotos",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetUserSupportInfo Returns support information for the given user; for Telegram support only @user_id User identifier
+type GetUserSupportInfo struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	UserId int64 `json:"user_id"`
+}
+
+func (t *GetUserSupportInfo) Type() string {
+	return "getUserSupportInfo"
+}
+
+func (t *GetUserSupportInfo) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetUserSupportInfo) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetUserSupportInfo) MarshalJSON() ([]byte, error) {
+	type Alias GetUserSupportInfo
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getUserSupportInfo",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetVideoChatAvailableParticipants Returns the list of participant identifiers, on whose behalf a video chat in the chat can be joined @chat_id Chat identifier
+type GetVideoChatAvailableParticipants struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+}
+
+func (t *GetVideoChatAvailableParticipants) Type() string {
+	return "getVideoChatAvailableParticipants"
+}
+
+func (t *GetVideoChatAvailableParticipants) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetVideoChatAvailableParticipants) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetVideoChatAvailableParticipants) MarshalJSON() ([]byte, error) {
+	type Alias GetVideoChatAvailableParticipants
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getVideoChatAvailableParticipants",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetVideoChatInviteLink Returns invite link to a video chat in a public chat
+type GetVideoChatInviteLink struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Group call identifier
+	GroupCallId int32 `json:"group_call_id"`
+	// Pass true if the invite link needs to contain an invite hash, passing which to joinVideoChat would allow the invited user to unmute themselves. Requires groupCall.can_be_managed right
+	CanSelfUnmute bool `json:"can_self_unmute"`
+}
+
+func (t *GetVideoChatInviteLink) Type() string {
+	return "getVideoChatInviteLink"
+}
+
+func (t *GetVideoChatInviteLink) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetVideoChatInviteLink) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetVideoChatInviteLink) MarshalJSON() ([]byte, error) {
+	type Alias GetVideoChatInviteLink
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getVideoChatInviteLink",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetVideoChatRtmpUrl Returns RTMP URL for streaming to the video chat of a chat; requires can_manage_video_chats administrator right @chat_id Chat identifier
+type GetVideoChatRtmpUrl struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+}
+
+func (t *GetVideoChatRtmpUrl) Type() string {
+	return "getVideoChatRtmpUrl"
+}
+
+func (t *GetVideoChatRtmpUrl) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetVideoChatRtmpUrl) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetVideoChatRtmpUrl) MarshalJSON() ([]byte, error) {
+	type Alias GetVideoChatRtmpUrl
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getVideoChatRtmpUrl",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetVideoMessageAdvertisements Returns advertisements to be shown while a video from a message is watched. Available only if messageProperties.can_get_video_advertisements
+type GetVideoMessageAdvertisements struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat with the message
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message
+	MessageId int64 `json:"message_id"`
+}
+
+func (t *GetVideoMessageAdvertisements) Type() string {
+	return "getVideoMessageAdvertisements"
+}
+
+func (t *GetVideoMessageAdvertisements) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetVideoMessageAdvertisements) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetVideoMessageAdvertisements) MarshalJSON() ([]byte, error) {
+	type Alias GetVideoMessageAdvertisements
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getVideoMessageAdvertisements",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetWebAppLinkUrl Returns an HTTPS URL of a Web App to open after a link of the type internalLinkTypeWebApp is clicked
+type GetWebAppLinkUrl struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat in which the link was clicked; pass 0 if none
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the target bot
+	BotUserId int64 `json:"bot_user_id"`
+	// Short name of the Web App
+	WebAppShortName string `json:"web_app_short_name"`
+	// Start parameter from internalLinkTypeWebApp
+	StartParameter string `json:"start_parameter"`
+	// Pass true if the current user allowed the bot to send them messages
+	AllowWriteAccess bool `json:"allow_write_access"`
+	// Parameters to use to open the Web App
+	Parameters *WebAppOpenParameters `json:"parameters"`
+}
+
+func (t *GetWebAppLinkUrl) Type() string {
+	return "getWebAppLinkUrl"
+}
+
+func (t *GetWebAppLinkUrl) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetWebAppLinkUrl) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetWebAppLinkUrl) MarshalJSON() ([]byte, error) {
+	type Alias GetWebAppLinkUrl
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getWebAppLinkUrl",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetWebAppPlaceholder Returns a default placeholder for Web Apps of a bot. This is an offline method. Returns a 404 error if the placeholder isn't known @bot_user_id Identifier of the target bot
+type GetWebAppPlaceholder struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	BotUserId int64 `json:"bot_user_id"`
+}
+
+func (t *GetWebAppPlaceholder) Type() string {
+	return "getWebAppPlaceholder"
+}
+
+func (t *GetWebAppPlaceholder) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetWebAppPlaceholder) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetWebAppPlaceholder) MarshalJSON() ([]byte, error) {
+	type Alias GetWebAppPlaceholder
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getWebAppPlaceholder",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetWebAppUrl Returns an HTTPS URL of a Web App to open from the side menu, a keyboardButtonTypeWebApp button, or an inlineQueryResultsButtonTypeWebApp button
+type GetWebAppUrl struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the target bot. If the bot is restricted for the current user, then show an error instead of calling the method
+	BotUserId int64 `json:"bot_user_id"`
+	// The URL from a keyboardButtonTypeWebApp button, inlineQueryResultsButtonTypeWebApp button, or an empty string when the bot is opened from the side menu
+	Url string `json:"url"`
+	// Parameters to use to open the Web App
+	Parameters *WebAppOpenParameters `json:"parameters"`
+}
+
+func (t *GetWebAppUrl) Type() string {
+	return "getWebAppUrl"
+}
+
+func (t *GetWebAppUrl) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetWebAppUrl) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetWebAppUrl) MarshalJSON() ([]byte, error) {
+	type Alias GetWebAppUrl
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getWebAppUrl",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetWebPageInstantView Returns an instant view version of a web page if available. This is an offline method if only_local is true. Returns a 404 error if the web page has no instant view page
+type GetWebPageInstantView struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The web page URL
+	Url string `json:"url"`
+	// Pass true to get only locally available information without sending network requests
+	OnlyLocal bool `json:"only_local"`
+}
+
+func (t *GetWebPageInstantView) Type() string {
+	return "getWebPageInstantView"
+}
+
+func (t *GetWebPageInstantView) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GetWebPageInstantView) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GetWebPageInstantView) MarshalJSON() ([]byte, error) {
+	type Alias GetWebPageInstantView
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getWebPageInstantView",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GiftPremiumWithStars Allows to buy a Telegram Premium subscription for another user with payment in Telegram Stars; for bots only
+type GiftPremiumWithStars struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the user which will receive Telegram Premium
+	UserId int64 `json:"user_id"`
+	// The number of Telegram Stars to pay for subscription
+	StarCount int64 `json:"star_count"`
+	// Number of months the Telegram Premium subscription will be active for the user
+	MonthCount int32 `json:"month_count"`
+	// Text to show to the user receiving Telegram Premium; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed
+	Text *FormattedText `json:"text"`
+}
+
+func (t *GiftPremiumWithStars) Type() string {
+	return "giftPremiumWithStars"
+}
+
+func (t *GiftPremiumWithStars) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *GiftPremiumWithStars) GetExtra() string {
+	return t.Extra
+}
+
+func (t *GiftPremiumWithStars) MarshalJSON() ([]byte, error) {
+	type Alias GiftPremiumWithStars
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "giftPremiumWithStars",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// HideContactCloseBirthdays Hides the list of contacts that have close birthdays for 24 hours
+type HideContactCloseBirthdays struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *HideContactCloseBirthdays) Type() string {
+	return "hideContactCloseBirthdays"
+}
+
+func (t *HideContactCloseBirthdays) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *HideContactCloseBirthdays) GetExtra() string {
+	return t.Extra
+}
+
+func (t *HideContactCloseBirthdays) MarshalJSON() ([]byte, error) {
+	type Alias HideContactCloseBirthdays
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "hideContactCloseBirthdays",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// HideSuggestedAction Hides a suggested action @action Suggested action to hide
+type HideSuggestedAction struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Action *SuggestedAction `json:"action"`
+}
+
+func (t *HideSuggestedAction) Type() string {
+	return "hideSuggestedAction"
+}
+
+func (t *HideSuggestedAction) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *HideSuggestedAction) GetExtra() string {
+	return t.Extra
+}
+
+func (t *HideSuggestedAction) MarshalJSON() ([]byte, error) {
+	type Alias HideSuggestedAction
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "hideSuggestedAction",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ImportContacts Adds new contacts or edits existing contacts by their phone numbers; contacts' user identifiers are ignored
+type ImportContacts struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The list of contacts to import or edit
+	Contacts []*ImportedContact `json:"contacts"`
+}
+
+func (t *ImportContacts) Type() string {
+	return "importContacts"
+}
+
+func (t *ImportContacts) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ImportContacts) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ImportContacts) MarshalJSON() ([]byte, error) {
+	type Alias ImportContacts
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "importContacts",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ImportMessages Imports messages exported from another app
+type ImportMessages struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of a chat to which the messages will be imported. It must be an identifier of a private chat with a mutual contact or an identifier of a supergroup chat with can_change_info member right
+	ChatId int64 `json:"chat_id"`
+	// File with messages to import. Only inputFileLocal and inputFileGenerated are supported. The file must not be previously uploaded
+	MessageFile *InputFile `json:"message_file"`
+	// Files used in the imported messages. Only inputFileLocal and inputFileGenerated are supported. The files must not be previously uploaded
+	AttachedFiles []*InputFile `json:"attached_files"`
+}
+
+func (t *ImportMessages) Type() string {
+	return "importMessages"
+}
+
+func (t *ImportMessages) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ImportMessages) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ImportMessages) MarshalJSON() ([]byte, error) {
+	type Alias ImportMessages
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "importMessages",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// IncreaseGiftAuctionBid Increases a bid for an auction gift without changing gift text and receiver
+type IncreaseGiftAuctionBid struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the gift to put the bid on
+	GiftId string `json:"gift_id"`
+	// The number of Telegram Stars to put in the bid
+	StarCount int64 `json:"star_count"`
+}
+
+func (t *IncreaseGiftAuctionBid) Type() string {
+	return "increaseGiftAuctionBid"
+}
+
+func (t *IncreaseGiftAuctionBid) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *IncreaseGiftAuctionBid) GetExtra() string {
+	return t.Extra
+}
+
+func (t *IncreaseGiftAuctionBid) MarshalJSON() ([]byte, error) {
+	type Alias IncreaseGiftAuctionBid
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "increaseGiftAuctionBid",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// InviteGroupCallParticipant Invites a user to an active group call; for group calls not bound to a chat only. Sends a service message of the type messageGroupCall.
+type InviteGroupCallParticipant struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Group call identifier
+	GroupCallId int32 `json:"group_call_id"`
+	// User identifier
+	UserId int64 `json:"user_id"`
+	// Pass true if the group call is a video call
+	IsVideo bool `json:"is_video"`
+}
+
+func (t *InviteGroupCallParticipant) Type() string {
+	return "inviteGroupCallParticipant"
+}
+
+func (t *InviteGroupCallParticipant) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *InviteGroupCallParticipant) GetExtra() string {
+	return t.Extra
+}
+
+func (t *InviteGroupCallParticipant) MarshalJSON() ([]byte, error) {
+	type Alias InviteGroupCallParticipant
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "inviteGroupCallParticipant",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// InviteVideoChatParticipants Invites users to an active video chat. Sends a service message of the type messageInviteVideoChatParticipants to the chat bound to the group call
+type InviteVideoChatParticipants struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Group call identifier
+	GroupCallId int32 `json:"group_call_id"`
+	// User identifiers. At most 10 users can be invited simultaneously
+	UserIds []int64 `json:"user_ids"`
+}
+
+func (t *InviteVideoChatParticipants) Type() string {
+	return "inviteVideoChatParticipants"
+}
+
+func (t *InviteVideoChatParticipants) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *InviteVideoChatParticipants) GetExtra() string {
+	return t.Extra
+}
+
+func (t *InviteVideoChatParticipants) MarshalJSON() ([]byte, error) {
+	type Alias InviteVideoChatParticipants
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "inviteVideoChatParticipants",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// IsLoginEmailAddressRequired Checks whether the current user is required to set login email address
+type IsLoginEmailAddressRequired struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *IsLoginEmailAddressRequired) Type() string {
+	return "isLoginEmailAddressRequired"
+}
+
+func (t *IsLoginEmailAddressRequired) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *IsLoginEmailAddressRequired) GetExtra() string {
+	return t.Extra
+}
+
+func (t *IsLoginEmailAddressRequired) MarshalJSON() ([]byte, error) {
+	type Alias IsLoginEmailAddressRequired
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "isLoginEmailAddressRequired",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// IsProfileAudio Checks whether a file is in the profile audio files of the current user. Returns a 404 error if it isn't @file_id Identifier of the audio file to check
+type IsProfileAudio struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	FileId int32 `json:"file_id"`
+}
+
+func (t *IsProfileAudio) Type() string {
+	return "isProfileAudio"
+}
+
+func (t *IsProfileAudio) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *IsProfileAudio) GetExtra() string {
+	return t.Extra
+}
+
+func (t *IsProfileAudio) MarshalJSON() ([]byte, error) {
+	type Alias IsProfileAudio
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "isProfileAudio",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// JoinChat Adds the current user as a new member to a chat. Private and secret chats can't be joined using this method. May return an error with a message "INVITE_REQUEST_SENT" if only a join request was created @chat_id Chat identifier
+type JoinChat struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+}
+
+func (t *JoinChat) Type() string {
+	return "joinChat"
+}
+
+func (t *JoinChat) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *JoinChat) GetExtra() string {
+	return t.Extra
+}
+
+func (t *JoinChat) MarshalJSON() ([]byte, error) {
+	type Alias JoinChat
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "joinChat",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// JoinChatByInviteLink Uses an invite link to add the current user to the chat if possible. May return an error with a message "INVITE_REQUEST_SENT" if only a join request was created @invite_link Invite link to use
+type JoinChatByInviteLink struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	InviteLink string `json:"invite_link"`
+}
+
+func (t *JoinChatByInviteLink) Type() string {
+	return "joinChatByInviteLink"
+}
+
+func (t *JoinChatByInviteLink) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *JoinChatByInviteLink) GetExtra() string {
+	return t.Extra
+}
+
+func (t *JoinChatByInviteLink) MarshalJSON() ([]byte, error) {
+	type Alias JoinChatByInviteLink
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "joinChatByInviteLink",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// JoinGroupCall Joins a regular group call that is not bound to a chat @input_group_call The group call to join @join_parameters Parameters to join the call
+type JoinGroupCall struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	InputGroupCall *InputGroupCall `json:"input_group_call"`
+	//
+	JoinParameters *GroupCallJoinParameters `json:"join_parameters"`
+}
+
+func (t *JoinGroupCall) Type() string {
+	return "joinGroupCall"
+}
+
+func (t *JoinGroupCall) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *JoinGroupCall) GetExtra() string {
+	return t.Extra
+}
+
+func (t *JoinGroupCall) MarshalJSON() ([]byte, error) {
+	type Alias JoinGroupCall
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "joinGroupCall",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// JoinLiveStory Joins a group call of an active live story. Returns join response payload for tgcalls
+type JoinLiveStory struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Group call identifier
+	GroupCallId int32 `json:"group_call_id"`
+	// Parameters to join the call
+	JoinParameters *GroupCallJoinParameters `json:"join_parameters"`
+}
+
+func (t *JoinLiveStory) Type() string {
+	return "joinLiveStory"
+}
+
+func (t *JoinLiveStory) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *JoinLiveStory) GetExtra() string {
+	return t.Extra
+}
+
+func (t *JoinLiveStory) MarshalJSON() ([]byte, error) {
+	type Alias JoinLiveStory
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "joinLiveStory",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// JoinVideoChat Joins an active video chat. Returns join response payload for tgcalls
+type JoinVideoChat struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Group call identifier
+	GroupCallId int32 `json:"group_call_id"`
+	// Identifier of a group call participant, which will be used to join the call; pass null to join as self
+	ParticipantId *MessageSender `json:"participant_id,omitempty"`
+	// Parameters to join the call
+	JoinParameters *GroupCallJoinParameters `json:"join_parameters"`
+	// Invite hash as received from internalLinkTypeVideoChat
+	InviteHash string `json:"invite_hash"`
+}
+
+func (t *JoinVideoChat) Type() string {
+	return "joinVideoChat"
+}
+
+func (t *JoinVideoChat) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *JoinVideoChat) GetExtra() string {
+	return t.Extra
+}
+
+func (t *JoinVideoChat) MarshalJSON() ([]byte, error) {
+	type Alias JoinVideoChat
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "joinVideoChat",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// LaunchPrepaidGiveaway Launches a prepaid giveaway
+type LaunchPrepaidGiveaway struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Unique identifier of the prepaid giveaway
+	GiveawayId string `json:"giveaway_id"`
+	// Giveaway parameters
+	Parameters *GiveawayParameters `json:"parameters"`
+	// The number of users to receive giveaway prize
+	WinnerCount int32 `json:"winner_count"`
+	// The number of Telegram Stars to be distributed through the giveaway; pass 0 for Telegram Premium giveaways
+	StarCount int64 `json:"star_count"`
+}
+
+func (t *LaunchPrepaidGiveaway) Type() string {
+	return "launchPrepaidGiveaway"
+}
+
+func (t *LaunchPrepaidGiveaway) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *LaunchPrepaidGiveaway) GetExtra() string {
+	return t.Extra
+}
+
+func (t *LaunchPrepaidGiveaway) MarshalJSON() ([]byte, error) {
+	type Alias LaunchPrepaidGiveaway
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "launchPrepaidGiveaway",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// LeaveChat Removes the current user from chat members. Private and secret chats can't be left using this method @chat_id Chat identifier
+type LeaveChat struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+}
+
+func (t *LeaveChat) Type() string {
+	return "leaveChat"
+}
+
+func (t *LeaveChat) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *LeaveChat) GetExtra() string {
+	return t.Extra
+}
+
+func (t *LeaveChat) MarshalJSON() ([]byte, error) {
+	type Alias LeaveChat
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "leaveChat",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// LeaveGroupCall Leaves a group call @group_call_id Group call identifier
+type LeaveGroupCall struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	GroupCallId int32 `json:"group_call_id"`
+}
+
+func (t *LeaveGroupCall) Type() string {
+	return "leaveGroupCall"
+}
+
+func (t *LeaveGroupCall) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *LeaveGroupCall) GetExtra() string {
+	return t.Extra
+}
+
+func (t *LeaveGroupCall) MarshalJSON() ([]byte, error) {
+	type Alias LeaveGroupCall
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "leaveGroupCall",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// LoadActiveStories Loads more active stories from a story list. The loaded stories will be sent through updates. Active stories are sorted by
+type LoadActiveStories struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The story list in which to load active stories
+	StoryList *StoryList `json:"story_list"`
+}
+
+func (t *LoadActiveStories) Type() string {
+	return "loadActiveStories"
+}
+
+func (t *LoadActiveStories) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *LoadActiveStories) GetExtra() string {
+	return t.Extra
+}
+
+func (t *LoadActiveStories) MarshalJSON() ([]byte, error) {
+	type Alias LoadActiveStories
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "loadActiveStories",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// LoadChats Loads more chats from a chat list. The loaded chats and their positions in the chat list will be sent through updates. Chats are sorted by the pair (chat.position.order, chat.id) in descending order. Returns a 404 error if all chats have been loaded
+type LoadChats struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The chat list in which to load chats; pass null to load chats from the main chat list
+	ChatList *ChatList `json:"chat_list,omitempty"`
+	// The maximum number of chats to be loaded. For optimal performance, the number of loaded chats is chosen by TDLib and can be smaller than the specified limit, even if the end of the list is not reached
+	Limit int32 `json:"limit"`
+}
+
+func (t *LoadChats) Type() string {
+	return "loadChats"
+}
+
+func (t *LoadChats) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *LoadChats) GetExtra() string {
+	return t.Extra
+}
+
+func (t *LoadChats) MarshalJSON() ([]byte, error) {
+	type Alias LoadChats
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "loadChats",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// LoadDirectMessagesChatTopics Loads more topics in a channel direct messages chat administered by the current user. The loaded topics will be sent through updateDirectMessagesChatTopic.
+type LoadDirectMessagesChatTopics struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier of the channel direct messages chat
+	ChatId int64 `json:"chat_id"`
+	// The maximum number of topics to be loaded. For optimal performance, the number of loaded topics is chosen by TDLib and can be smaller than the specified limit, even if the end of the list is not reached
+	Limit int32 `json:"limit"`
+}
+
+func (t *LoadDirectMessagesChatTopics) Type() string {
+	return "loadDirectMessagesChatTopics"
+}
+
+func (t *LoadDirectMessagesChatTopics) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *LoadDirectMessagesChatTopics) GetExtra() string {
+	return t.Extra
+}
+
+func (t *LoadDirectMessagesChatTopics) MarshalJSON() ([]byte, error) {
+	type Alias LoadDirectMessagesChatTopics
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "loadDirectMessagesChatTopics",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// LoadGroupCallParticipants Loads more participants of a group call; not supported in live stories. The loaded participants will be received through updates.
+type LoadGroupCallParticipants struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Group call identifier. The group call must be previously received through getGroupCall and must be joined or being joined
+	GroupCallId int32 `json:"group_call_id"`
+	// The maximum number of participants to load; up to 100
+	Limit int32 `json:"limit"`
+}
+
+func (t *LoadGroupCallParticipants) Type() string {
+	return "loadGroupCallParticipants"
+}
+
+func (t *LoadGroupCallParticipants) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *LoadGroupCallParticipants) GetExtra() string {
+	return t.Extra
+}
+
+func (t *LoadGroupCallParticipants) MarshalJSON() ([]byte, error) {
+	type Alias LoadGroupCallParticipants
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "loadGroupCallParticipants",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// LoadQuickReplyShortcutMessages Loads quick reply messages that can be sent by a given quick reply shortcut. The loaded messages will be sent through updateQuickReplyShortcutMessages
+type LoadQuickReplyShortcutMessages struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Unique identifier of the quick reply shortcut
+	ShortcutId int32 `json:"shortcut_id"`
+}
+
+func (t *LoadQuickReplyShortcutMessages) Type() string {
+	return "loadQuickReplyShortcutMessages"
+}
+
+func (t *LoadQuickReplyShortcutMessages) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *LoadQuickReplyShortcutMessages) GetExtra() string {
+	return t.Extra
+}
+
+func (t *LoadQuickReplyShortcutMessages) MarshalJSON() ([]byte, error) {
+	type Alias LoadQuickReplyShortcutMessages
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "loadQuickReplyShortcutMessages",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// LoadQuickReplyShortcuts Loads quick reply shortcuts created by the current user. The loaded data will be sent through updateQuickReplyShortcut and updateQuickReplyShortcuts
+type LoadQuickReplyShortcuts struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *LoadQuickReplyShortcuts) Type() string {
+	return "loadQuickReplyShortcuts"
+}
+
+func (t *LoadQuickReplyShortcuts) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *LoadQuickReplyShortcuts) GetExtra() string {
+	return t.Extra
+}
+
+func (t *LoadQuickReplyShortcuts) MarshalJSON() ([]byte, error) {
+	type Alias LoadQuickReplyShortcuts
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "loadQuickReplyShortcuts",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// LoadSavedMessagesTopics Loads more Saved Messages topics. The loaded topics will be sent through updateSavedMessagesTopic. Topics are sorted by their topic.order in descending order. Returns a 404 error if all topics have been loaded
+type LoadSavedMessagesTopics struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The maximum number of topics to be loaded. For optimal performance, the number of loaded topics is chosen by TDLib and can be smaller than the specified limit, even if the end of the list is not reached
+	Limit int32 `json:"limit"`
+}
+
+func (t *LoadSavedMessagesTopics) Type() string {
+	return "loadSavedMessagesTopics"
+}
+
+func (t *LoadSavedMessagesTopics) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *LoadSavedMessagesTopics) GetExtra() string {
+	return t.Extra
+}
+
+func (t *LoadSavedMessagesTopics) MarshalJSON() ([]byte, error) {
+	type Alias LoadSavedMessagesTopics
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "loadSavedMessagesTopics",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// LogOut Closes the TDLib instance after a proper logout. Requires an available network connection. All local data will be destroyed. After the logout completes, updateAuthorizationState with authorizationStateClosed will be sent
+type LogOut struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *LogOut) Type() string {
+	return "logOut"
+}
+
+func (t *LogOut) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *LogOut) GetExtra() string {
+	return t.Extra
+}
+
+func (t *LogOut) MarshalJSON() ([]byte, error) {
+	type Alias LogOut
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "logOut",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// MarkChecklistTasksAsDone Adds tasks of a checklist in a message as done or not done
+type MarkChecklistTasksAsDone struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat with the message
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message containing the checklist. Use messageProperties.can_mark_tasks_as_done to check whether the tasks can be marked as done or not done
+	MessageId int64 `json:"message_id"`
+	// Identifiers of tasks that were marked as done
+	MarkedAsDoneTaskIds []int32 `json:"marked_as_done_task_ids"`
+	// Identifiers of tasks that were marked as not done
+	MarkedAsNotDoneTaskIds []int32 `json:"marked_as_not_done_task_ids"`
+}
+
+func (t *MarkChecklistTasksAsDone) Type() string {
+	return "markChecklistTasksAsDone"
+}
+
+func (t *MarkChecklistTasksAsDone) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *MarkChecklistTasksAsDone) GetExtra() string {
+	return t.Extra
+}
+
+func (t *MarkChecklistTasksAsDone) MarshalJSON() ([]byte, error) {
+	type Alias MarkChecklistTasksAsDone
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "markChecklistTasksAsDone",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// OpenBotSimilarBot Informs TDLib that a bot was opened from the list of similar bots
+type OpenBotSimilarBot struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the original bot, which similar bots were requested
+	BotUserId int64 `json:"bot_user_id"`
+	// Identifier of the opened bot
+	OpenedBotUserId int64 `json:"opened_bot_user_id"`
+}
+
+func (t *OpenBotSimilarBot) Type() string {
+	return "openBotSimilarBot"
+}
+
+func (t *OpenBotSimilarBot) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *OpenBotSimilarBot) GetExtra() string {
+	return t.Extra
+}
+
+func (t *OpenBotSimilarBot) MarshalJSON() ([]byte, error) {
+	type Alias OpenBotSimilarBot
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "openBotSimilarBot",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// OpenChat Informs TDLib that the chat is opened by the user. Many useful activities depend on the chat being opened or closed (e.g., in supergroups and channels all updates are received only for opened chats) @chat_id Chat identifier
+type OpenChat struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+}
+
+func (t *OpenChat) Type() string {
+	return "openChat"
+}
+
+func (t *OpenChat) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *OpenChat) GetExtra() string {
+	return t.Extra
+}
+
+func (t *OpenChat) MarshalJSON() ([]byte, error) {
+	type Alias OpenChat
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "openChat",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// OpenChatSimilarChat Informs TDLib that a chat was opened from the list of similar chats. The method is independent of openChat and closeChat methods
+type OpenChatSimilarChat struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the original chat, which similar chats were requested
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the opened chat
+	OpenedChatId int64 `json:"opened_chat_id"`
+}
+
+func (t *OpenChatSimilarChat) Type() string {
+	return "openChatSimilarChat"
+}
+
+func (t *OpenChatSimilarChat) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *OpenChatSimilarChat) GetExtra() string {
+	return t.Extra
+}
+
+func (t *OpenChatSimilarChat) MarshalJSON() ([]byte, error) {
+	type Alias OpenChatSimilarChat
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "openChatSimilarChat",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// OpenGiftAuction Informs TDLib that a gift auction was opened by the user @gift_id Identifier of the gift, which auction was opened
+type OpenGiftAuction struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	GiftId string `json:"gift_id"`
+}
+
+func (t *OpenGiftAuction) Type() string {
+	return "openGiftAuction"
+}
+
+func (t *OpenGiftAuction) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *OpenGiftAuction) GetExtra() string {
+	return t.Extra
+}
+
+func (t *OpenGiftAuction) MarshalJSON() ([]byte, error) {
+	type Alias OpenGiftAuction
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "openGiftAuction",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// OpenMessageContent Informs TDLib that the message content has been opened (e.g., the user has opened a photo, video, document, location or venue, or has listened to an audio file or voice note message).
+type OpenMessageContent struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier of the message
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message with the opened content
+	MessageId int64 `json:"message_id"`
+}
+
+func (t *OpenMessageContent) Type() string {
+	return "openMessageContent"
+}
+
+func (t *OpenMessageContent) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *OpenMessageContent) GetExtra() string {
+	return t.Extra
+}
+
+func (t *OpenMessageContent) MarshalJSON() ([]byte, error) {
+	type Alias OpenMessageContent
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "openMessageContent",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// OpenSponsoredChat Informs TDLib that the user opened a sponsored chat @sponsored_chat_unique_id Unique identifier of the sponsored chat
+type OpenSponsoredChat struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	SponsoredChatUniqueId int64 `json:"sponsored_chat_unique_id"`
+}
+
+func (t *OpenSponsoredChat) Type() string {
+	return "openSponsoredChat"
+}
+
+func (t *OpenSponsoredChat) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *OpenSponsoredChat) GetExtra() string {
+	return t.Extra
+}
+
+func (t *OpenSponsoredChat) MarshalJSON() ([]byte, error) {
+	type Alias OpenSponsoredChat
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "openSponsoredChat",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// OpenStory Informs TDLib that a story is opened and is being viewed by the user
+type OpenStory struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The identifier of the chat that posted the opened story
+	StoryPosterChatId int64 `json:"story_poster_chat_id"`
+	// The identifier of the story
+	StoryId int32 `json:"story_id"`
+}
+
+func (t *OpenStory) Type() string {
+	return "openStory"
+}
+
+func (t *OpenStory) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *OpenStory) GetExtra() string {
+	return t.Extra
+}
+
+func (t *OpenStory) MarshalJSON() ([]byte, error) {
+	type Alias OpenStory
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "openStory",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// OpenWebApp Informs TDLib that a Web App is being opened from the attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button.
+type OpenWebApp struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat in which the Web App is opened. The Web App can't be opened in secret chats
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the bot, providing the Web App. If the bot is restricted for the current user, then show an error instead of calling the method
+	BotUserId int64 `json:"bot_user_id"`
+	// The URL from an inlineKeyboardButtonTypeWebApp button, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an empty string otherwise
+	Url string `json:"url"`
+	// Topic in which the message will be sent; pass null if none
+	TopicId *MessageTopic `json:"topic_id,omitempty"`
+	// Information about the message or story to be replied in the message sent by the Web App; pass null if none
+	ReplyTo *InputMessageReplyTo `json:"reply_to,omitempty"`
+	// Parameters to use to open the Web App
+	Parameters *WebAppOpenParameters `json:"parameters"`
+}
+
+func (t *OpenWebApp) Type() string {
+	return "openWebApp"
+}
+
+func (t *OpenWebApp) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *OpenWebApp) GetExtra() string {
+	return t.Extra
+}
+
+func (t *OpenWebApp) MarshalJSON() ([]byte, error) {
+	type Alias OpenWebApp
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "openWebApp",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// OptimizeStorage Optimizes storage usage, i.e. deletes some files and returns new storage usage statistics. Secret thumbnails can't be deleted
+type OptimizeStorage struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Limit on the total size of files after deletion, in bytes. Pass -1 to use the default limit
+	Size int64 `json:"size"`
+	// Limit on the time that has passed since the last time a file was accessed (or creation time for some filesystems). Pass -1 to use the default limit
+	Ttl int32 `json:"ttl"`
+	// Limit on the total number of files after deletion. Pass -1 to use the default limit
+	Count int32 `json:"count"`
+	// The amount of time after the creation of a file during which it can't be deleted, in seconds. Pass -1 to use the default value
+	ImmunityDelay int32 `json:"immunity_delay"`
+	// If non-empty, only files with the given types are considered. By default, all types except thumbnails, profile photos, stickers and wallpapers are deleted
+	FileTypes []*FileType `json:"file_types"`
+	// If non-empty, only files from the given chats are considered. Use 0 as chat identifier to delete files not belonging to any chat (e.g., profile photos)
+	ChatIds []int64 `json:"chat_ids"`
+	// If non-empty, files from the given chats are excluded. Use 0 as chat identifier to exclude all files not belonging to any chat (e.g., profile photos)
+	ExcludeChatIds []int64 `json:"exclude_chat_ids"`
+	// Pass true if statistics about the files that were deleted must be returned instead of the whole storage usage statistics. Affects only returned statistics
+	ReturnDeletedFileStatistics bool `json:"return_deleted_file_statistics"`
+	// Same as in getStorageStatistics. Affects only returned statistics
+	ChatLimit int32 `json:"chat_limit"`
+}
+
+func (t *OptimizeStorage) Type() string {
+	return "optimizeStorage"
+}
+
+func (t *OptimizeStorage) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *OptimizeStorage) GetExtra() string {
+	return t.Extra
+}
+
+func (t *OptimizeStorage) MarshalJSON() ([]byte, error) {
+	type Alias OptimizeStorage
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "optimizeStorage",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ParseMarkdown Parses Markdown entities in a human-friendly format, ignoring markup errors. Can be called synchronously
+type ParseMarkdown struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The text to parse. For example, "__italic__ ~~strikethrough~~ ||spoiler|| **bold** `code` ```pre``` __[italic__ text_url](telegram.org) __italic**bold italic__bold**"
+	Text *FormattedText `json:"text"`
+}
+
+func (t *ParseMarkdown) Type() string {
+	return "parseMarkdown"
+}
+
+func (t *ParseMarkdown) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ParseMarkdown) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ParseMarkdown) MarshalJSON() ([]byte, error) {
+	type Alias ParseMarkdown
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "parseMarkdown",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ParseTextEntities Parses Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, BlockQuote, ExpandableBlockQuote, Code, Pre, PreCode, TextUrl
+type ParseTextEntities struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The text to parse
+	Text string `json:"text"`
+	// Text parse mode
+	ParseMode *TextParseMode `json:"parse_mode"`
+}
+
+func (t *ParseTextEntities) Type() string {
+	return "parseTextEntities"
+}
+
+func (t *ParseTextEntities) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ParseTextEntities) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ParseTextEntities) MarshalJSON() ([]byte, error) {
+	type Alias ParseTextEntities
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "parseTextEntities",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// PinChatMessage Pins a message in a chat. A message can be pinned only if messageProperties.can_be_pinned
+type PinChatMessage struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the new pinned message
+	MessageId int64 `json:"message_id"`
+	// Pass true to disable notification about the pinned message. Notifications are always disabled in channels and private chats
+	DisableNotification bool `json:"disable_notification"`
+	// Pass true to pin the message only for self; private chats only
+	OnlyForSelf bool `json:"only_for_self"`
+}
+
+func (t *PinChatMessage) Type() string {
+	return "pinChatMessage"
+}
+
+func (t *PinChatMessage) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *PinChatMessage) GetExtra() string {
+	return t.Extra
+}
+
+func (t *PinChatMessage) MarshalJSON() ([]byte, error) {
+	type Alias PinChatMessage
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "pinChatMessage",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// PingProxy Computes time needed to receive a response from a Telegram server through a proxy. Can be called before authorization @proxy_id Proxy identifier. Use 0 to ping a Telegram server without a proxy
+type PingProxy struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ProxyId int32 `json:"proxy_id"`
+}
+
+func (t *PingProxy) Type() string {
+	return "pingProxy"
+}
+
+func (t *PingProxy) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *PingProxy) GetExtra() string {
+	return t.Extra
+}
+
+func (t *PingProxy) MarshalJSON() ([]byte, error) {
+	type Alias PingProxy
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "pingProxy",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// PlaceGiftAuctionBid Places a bid on an auction gift
+type PlaceGiftAuctionBid struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the gift to place the bid on
+	GiftId string `json:"gift_id"`
+	// The number of Telegram Stars to place in the bid
+	StarCount int64 `json:"star_count"`
+	// Identifier of the user that will receive the gift
+	UserId int64 `json:"user_id"`
+	// Text to show along with the gift; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed.
+	Text *FormattedText `json:"text"`
+	// Pass true to show gift text and sender only to the gift receiver; otherwise, everyone will be able to see them
+	IsPrivate bool `json:"is_private"`
+}
+
+func (t *PlaceGiftAuctionBid) Type() string {
+	return "placeGiftAuctionBid"
+}
+
+func (t *PlaceGiftAuctionBid) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *PlaceGiftAuctionBid) GetExtra() string {
+	return t.Extra
+}
+
+func (t *PlaceGiftAuctionBid) MarshalJSON() ([]byte, error) {
+	type Alias PlaceGiftAuctionBid
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "placeGiftAuctionBid",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// PostStory Posts a new story on behalf of a chat; requires can_post_stories administrator right for supergroup and channel chats. Returns a temporary story
+type PostStory struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat that will post the story. Pass Saved Messages chat identifier when posting a story on behalf of the current user
+	ChatId int64 `json:"chat_id"`
+	// Content of the story
+	Content *InputStoryContent `json:"content"`
+	// Clickable rectangle areas to be shown on the story media; pass null if none
+	Areas *InputStoryAreas `json:"areas,omitempty"`
+	// Story caption; pass null to use an empty caption; 0-getOption("story_caption_length_max") characters; can have entities only if getOption("can_use_text_entities_in_story_caption")
+	Caption *FormattedText `json:"caption,omitempty"`
+	// The privacy settings for the story; ignored for stories posted on behalf of supergroup and channel chats
+	PrivacySettings *StoryPrivacySettings `json:"privacy_settings"`
+	// Identifiers of story albums to which the story will be added upon posting. An album can have up to getOption("story_album_size_max") stories
+	AlbumIds []int32 `json:"album_ids"`
+	// Period after which the story is moved to archive, in seconds; must be one of 6 * 3600, 12 * 3600, 86400, or 2 * 86400 for Telegram Premium users, and 86400 otherwise
+	ActivePeriod int32 `json:"active_period"`
+	// Full identifier of the original story, which content was used to create the story; pass null if the story isn't repost of another story
+	FromStoryFullId *StoryFullId `json:"from_story_full_id,omitempty"`
+	// Pass true to keep the story accessible after expiration
+	IsPostedToChatPage bool `json:"is_posted_to_chat_page"`
+	// Pass true if the content of the story must be protected from forwarding and screenshotting
+	ProtectContent bool `json:"protect_content"`
+}
+
+func (t *PostStory) Type() string {
+	return "postStory"
+}
+
+func (t *PostStory) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *PostStory) GetExtra() string {
+	return t.Extra
+}
+
+func (t *PostStory) MarshalJSON() ([]byte, error) {
+	type Alias PostStory
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "postStory",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// PreliminaryUploadFile Preliminarily uploads a file to the cloud before sending it in a message, which can be useful for uploading of being recorded voice and video notes.
+type PreliminaryUploadFile struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// File to upload
+	File *InputFile `json:"file"`
+	// File type; pass null if unknown
+	FileType *FileType `json:"file_type,omitempty"`
+	// Priority of the upload (1-32). The higher the priority, the earlier the file will be uploaded. If the priorities of two files are equal, then the first one for which preliminaryUploadFile was called will be uploaded first
+	Priority int32 `json:"priority"`
+}
+
+func (t *PreliminaryUploadFile) Type() string {
+	return "preliminaryUploadFile"
+}
+
+func (t *PreliminaryUploadFile) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *PreliminaryUploadFile) GetExtra() string {
+	return t.Extra
+}
+
+func (t *PreliminaryUploadFile) MarshalJSON() ([]byte, error) {
+	type Alias PreliminaryUploadFile
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "preliminaryUploadFile",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ProcessChatFolderNewChats Process new chats added to a shareable chat folder by its owner @chat_folder_id Chat folder identifier @added_chat_ids Identifiers of the new chats, which are added to the chat folder. The chats are automatically joined if they aren't joined yet
+type ProcessChatFolderNewChats struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatFolderId int32 `json:"chat_folder_id"`
+	//
+	AddedChatIds []int64 `json:"added_chat_ids"`
+}
+
+func (t *ProcessChatFolderNewChats) Type() string {
+	return "processChatFolderNewChats"
+}
+
+func (t *ProcessChatFolderNewChats) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ProcessChatFolderNewChats) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ProcessChatFolderNewChats) MarshalJSON() ([]byte, error) {
+	type Alias ProcessChatFolderNewChats
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "processChatFolderNewChats",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ProcessChatJoinRequest Handles a pending join request in a chat @chat_id Chat identifier @user_id Identifier of the user that sent the request @approve Pass true to approve the request; pass false to decline it
+type ProcessChatJoinRequest struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+	//
+	UserId int64 `json:"user_id"`
+	//
+	Approve bool `json:"approve"`
+}
+
+func (t *ProcessChatJoinRequest) Type() string {
+	return "processChatJoinRequest"
+}
+
+func (t *ProcessChatJoinRequest) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ProcessChatJoinRequest) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ProcessChatJoinRequest) MarshalJSON() ([]byte, error) {
+	type Alias ProcessChatJoinRequest
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "processChatJoinRequest",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ProcessChatJoinRequests Handles all pending join requests for a given link in a chat
+type ProcessChatJoinRequests struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Invite link for which to process join requests. If empty, all join requests will be processed. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
+	InviteLink string `json:"invite_link"`
+	// Pass true to approve all requests; pass false to decline them
+	Approve bool `json:"approve"`
+}
+
+func (t *ProcessChatJoinRequests) Type() string {
+	return "processChatJoinRequests"
+}
+
+func (t *ProcessChatJoinRequests) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ProcessChatJoinRequests) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ProcessChatJoinRequests) MarshalJSON() ([]byte, error) {
+	type Alias ProcessChatJoinRequests
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "processChatJoinRequests",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ProcessGiftPurchaseOffer Handles a pending gift purchase offer
+type ProcessGiftPurchaseOffer struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the message with the gift purchase offer
+	MessageId int64 `json:"message_id"`
+	// Pass true to accept the request; pass false to reject it
+	Accept bool `json:"accept"`
+}
+
+func (t *ProcessGiftPurchaseOffer) Type() string {
+	return "processGiftPurchaseOffer"
+}
+
+func (t *ProcessGiftPurchaseOffer) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ProcessGiftPurchaseOffer) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ProcessGiftPurchaseOffer) MarshalJSON() ([]byte, error) {
+	type Alias ProcessGiftPurchaseOffer
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "processGiftPurchaseOffer",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ProcessPushNotification Handles a push notification. Returns error with code 406 if the push notification is not supported and connection to the server is required to fetch new data. Can be called before authorization
+type ProcessPushNotification struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// JSON-encoded push notification payload with all fields sent by the server, and "google.sent_time" and "google.notification.sound" fields added
+	Payload string `json:"payload"`
+}
+
+func (t *ProcessPushNotification) Type() string {
+	return "processPushNotification"
+}
+
+func (t *ProcessPushNotification) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ProcessPushNotification) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ProcessPushNotification) MarshalJSON() ([]byte, error) {
+	type Alias ProcessPushNotification
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "processPushNotification",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// RateSpeechRecognition Rates recognized speech in a video note or a voice note message @chat_id Identifier of the chat to which the message belongs @message_id Identifier of the message @is_good Pass true if the speech recognition is good
+type RateSpeechRecognition struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+	//
+	MessageId int64 `json:"message_id"`
+	//
+	IsGood bool `json:"is_good"`
+}
+
+func (t *RateSpeechRecognition) Type() string {
+	return "rateSpeechRecognition"
+}
+
+func (t *RateSpeechRecognition) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *RateSpeechRecognition) GetExtra() string {
+	return t.Extra
+}
+
+func (t *RateSpeechRecognition) MarshalJSON() ([]byte, error) {
+	type Alias RateSpeechRecognition
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "rateSpeechRecognition",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ReadAllChatMentions Marks all mentions in a chat as read @chat_id Chat identifier
+type ReadAllChatMentions struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+}
+
+func (t *ReadAllChatMentions) Type() string {
+	return "readAllChatMentions"
+}
+
+func (t *ReadAllChatMentions) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ReadAllChatMentions) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ReadAllChatMentions) MarshalJSON() ([]byte, error) {
+	type Alias ReadAllChatMentions
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "readAllChatMentions",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ReadAllChatReactions Marks all reactions in a chat as read @chat_id Chat identifier
+type ReadAllChatReactions struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+}
+
+func (t *ReadAllChatReactions) Type() string {
+	return "readAllChatReactions"
+}
+
+func (t *ReadAllChatReactions) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ReadAllChatReactions) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ReadAllChatReactions) MarshalJSON() ([]byte, error) {
+	type Alias ReadAllChatReactions
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "readAllChatReactions",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ReadAllDirectMessagesChatTopicReactions Removes all unread reactions in the topic in a channel direct messages chat administered by the current user
+type ReadAllDirectMessagesChatTopicReactions struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat
+	ChatId int64 `json:"chat_id"`
+	// Topic identifier
+	TopicId int64 `json:"topic_id"`
+}
+
+func (t *ReadAllDirectMessagesChatTopicReactions) Type() string {
+	return "readAllDirectMessagesChatTopicReactions"
+}
+
+func (t *ReadAllDirectMessagesChatTopicReactions) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ReadAllDirectMessagesChatTopicReactions) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ReadAllDirectMessagesChatTopicReactions) MarshalJSON() ([]byte, error) {
+	type Alias ReadAllDirectMessagesChatTopicReactions
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "readAllDirectMessagesChatTopicReactions",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ReadAllForumTopicMentions Marks all mentions in a topic in a forum supergroup chat as read
+type ReadAllForumTopicMentions struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Forum topic identifier in which mentions are marked as read
+	ForumTopicId int32 `json:"forum_topic_id"`
+}
+
+func (t *ReadAllForumTopicMentions) Type() string {
+	return "readAllForumTopicMentions"
+}
+
+func (t *ReadAllForumTopicMentions) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ReadAllForumTopicMentions) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ReadAllForumTopicMentions) MarshalJSON() ([]byte, error) {
+	type Alias ReadAllForumTopicMentions
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "readAllForumTopicMentions",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ReadAllForumTopicReactions Marks all reactions in a topic in a forum supergroup chat or a chat with a bot with topics as read
+type ReadAllForumTopicReactions struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Forum topic identifier in which reactions are marked as read
+	ForumTopicId int32 `json:"forum_topic_id"`
+}
+
+func (t *ReadAllForumTopicReactions) Type() string {
+	return "readAllForumTopicReactions"
+}
+
+func (t *ReadAllForumTopicReactions) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ReadAllForumTopicReactions) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ReadAllForumTopicReactions) MarshalJSON() ([]byte, error) {
+	type Alias ReadAllForumTopicReactions
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "readAllForumTopicReactions",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ReadBusinessMessage Reads a message on behalf of a business account; for bots only
+type ReadBusinessMessage struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Unique identifier of business connection through which the message was received
+	BusinessConnectionId string `json:"business_connection_id"`
+	// The chat the message belongs to
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message
+	MessageId int64 `json:"message_id"`
+}
+
+func (t *ReadBusinessMessage) Type() string {
+	return "readBusinessMessage"
+}
+
+func (t *ReadBusinessMessage) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ReadBusinessMessage) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ReadBusinessMessage) MarshalJSON() ([]byte, error) {
+	type Alias ReadBusinessMessage
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "readBusinessMessage",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ReadChatList Traverses all chats in a chat list and marks all messages in the chats as read @chat_list Chat list in which to mark all chats as read
+type ReadChatList struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatList *ChatList `json:"chat_list"`
+}
+
+func (t *ReadChatList) Type() string {
+	return "readChatList"
+}
+
+func (t *ReadChatList) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ReadChatList) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ReadChatList) MarshalJSON() ([]byte, error) {
+	type Alias ReadChatList
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "readChatList",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ReaddQuickReplyShortcutMessages Readds quick reply messages which failed to add. Can be called only for messages for which messageSendingStateFailed.can_retry is true and after specified in messageSendingStateFailed.retry_after time passed.
+type ReaddQuickReplyShortcutMessages struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Name of the target shortcut
+	ShortcutName string `json:"shortcut_name"`
+	// Identifiers of the quick reply messages to readd. Message identifiers must be in a strictly increasing order
+	MessageIds []int64 `json:"message_ids"`
+}
+
+func (t *ReaddQuickReplyShortcutMessages) Type() string {
+	return "readdQuickReplyShortcutMessages"
+}
+
+func (t *ReaddQuickReplyShortcutMessages) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ReaddQuickReplyShortcutMessages) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ReaddQuickReplyShortcutMessages) MarshalJSON() ([]byte, error) {
+	type Alias ReaddQuickReplyShortcutMessages
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "readdQuickReplyShortcutMessages",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ReadFilePart Reads a part of a file from the TDLib file cache and returns read bytes. This method is intended to be used only if the application has no direct access to TDLib's file system, because it is usually slower than a direct read from the file
+type ReadFilePart struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the file. The file must be located in the TDLib file cache
+	FileId int32 `json:"file_id"`
+	// The offset from which to read the file
+	Offset int64 `json:"offset"`
+	// Number of bytes to read. An error will be returned if there are not enough bytes available in the file from the specified position. Pass 0 to read all available data from the specified position
+	Count int64 `json:"count"`
+}
+
+func (t *ReadFilePart) Type() string {
+	return "readFilePart"
+}
+
+func (t *ReadFilePart) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ReadFilePart) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ReadFilePart) MarshalJSON() ([]byte, error) {
+	type Alias ReadFilePart
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "readFilePart",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// RecognizeSpeech Recognizes speech in a video note or a voice note message
+type RecognizeSpeech struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat to which the message belongs
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message. Use messageProperties.can_recognize_speech to check whether the message is suitable
+	MessageId int64 `json:"message_id"`
+}
+
+func (t *RecognizeSpeech) Type() string {
+	return "recognizeSpeech"
+}
+
+func (t *RecognizeSpeech) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *RecognizeSpeech) GetExtra() string {
+	return t.Extra
+}
+
+func (t *RecognizeSpeech) MarshalJSON() ([]byte, error) {
+	type Alias RecognizeSpeech
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "recognizeSpeech",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// RecoverAuthenticationPassword Recovers the 2-step verification password with a password recovery code sent to an email address that was previously set up. Works only when the current authorization state is authorizationStateWaitPassword
+type RecoverAuthenticationPassword struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Recovery code to check
+	RecoveryCode string `json:"recovery_code"`
+	// New 2-step verification password of the user; may be empty to remove the password
+	NewPassword string `json:"new_password"`
+	// New password hint; may be empty
+	NewHint string `json:"new_hint"`
+}
+
+func (t *RecoverAuthenticationPassword) Type() string {
+	return "recoverAuthenticationPassword"
+}
+
+func (t *RecoverAuthenticationPassword) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *RecoverAuthenticationPassword) GetExtra() string {
+	return t.Extra
+}
+
+func (t *RecoverAuthenticationPassword) MarshalJSON() ([]byte, error) {
+	type Alias RecoverAuthenticationPassword
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "recoverAuthenticationPassword",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// RecoverPassword Recovers the 2-step verification password using a recovery code sent to an email address that was previously set up
+type RecoverPassword struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Recovery code to check
+	RecoveryCode string `json:"recovery_code"`
+	// New 2-step verification password of the user; may be empty to remove the password
+	NewPassword string `json:"new_password"`
+	// New password hint; may be empty
+	NewHint string `json:"new_hint"`
+}
+
+func (t *RecoverPassword) Type() string {
+	return "recoverPassword"
+}
+
+func (t *RecoverPassword) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *RecoverPassword) GetExtra() string {
+	return t.Extra
+}
+
+func (t *RecoverPassword) MarshalJSON() ([]byte, error) {
+	type Alias RecoverPassword
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "recoverPassword",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// RefundStarPayment Refunds a previously done payment in Telegram Stars; for bots only
+type RefundStarPayment struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the user that did the payment
+	UserId int64 `json:"user_id"`
+	// Telegram payment identifier
+	TelegramPaymentChargeId string `json:"telegram_payment_charge_id"`
+}
+
+func (t *RefundStarPayment) Type() string {
+	return "refundStarPayment"
+}
+
+func (t *RefundStarPayment) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *RefundStarPayment) GetExtra() string {
+	return t.Extra
+}
+
+func (t *RefundStarPayment) MarshalJSON() ([]byte, error) {
+	type Alias RefundStarPayment
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "refundStarPayment",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// RegisterDevice Registers the currently used device for receiving push notifications. Returns a globally unique identifier of the push notification subscription @device_token Device token @other_user_ids List of user identifiers of other users currently using the application
+type RegisterDevice struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	DeviceToken *DeviceToken `json:"device_token"`
+	//
+	OtherUserIds []int64 `json:"other_user_ids"`
+}
+
+func (t *RegisterDevice) Type() string {
+	return "registerDevice"
+}
+
+func (t *RegisterDevice) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *RegisterDevice) GetExtra() string {
+	return t.Extra
+}
+
+func (t *RegisterDevice) MarshalJSON() ([]byte, error) {
+	type Alias RegisterDevice
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "registerDevice",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// RegisterUser Finishes user registration. Works only when the current authorization state is authorizationStateWaitRegistration
+type RegisterUser struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The first name of the user; 1-64 characters
+	FirstName string `json:"first_name"`
+	// The last name of the user; 0-64 characters
+	LastName string `json:"last_name"`
+	// Pass true to disable notification about the current user joining Telegram for other users that added them to contact list
+	DisableNotification bool `json:"disable_notification"`
+}
+
+func (t *RegisterUser) Type() string {
+	return "registerUser"
+}
+
+func (t *RegisterUser) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *RegisterUser) GetExtra() string {
+	return t.Extra
+}
+
+func (t *RegisterUser) MarshalJSON() ([]byte, error) {
+	type Alias RegisterUser
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "registerUser",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// RemoveAllFilesFromDownloads Removes all files from the file download list
+type RemoveAllFilesFromDownloads struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Pass true to remove only active downloads, including paused
+	OnlyActive bool `json:"only_active"`
+	// Pass true to remove only completed downloads
+	OnlyCompleted bool `json:"only_completed"`
+	// Pass true to delete the file from the TDLib file cache
+	DeleteFromCache bool `json:"delete_from_cache"`
+}
+
+func (t *RemoveAllFilesFromDownloads) Type() string {
+	return "removeAllFilesFromDownloads"
+}
+
+func (t *RemoveAllFilesFromDownloads) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *RemoveAllFilesFromDownloads) GetExtra() string {
+	return t.Extra
+}
+
+func (t *RemoveAllFilesFromDownloads) MarshalJSON() ([]byte, error) {
+	type Alias RemoveAllFilesFromDownloads
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "removeAllFilesFromDownloads",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// RemoveBusinessConnectedBotFromChat Removes the connected business bot from a specific chat by adding the chat to businessRecipients.excluded_chat_ids @chat_id Chat identifier
+type RemoveBusinessConnectedBotFromChat struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+}
+
+func (t *RemoveBusinessConnectedBotFromChat) Type() string {
+	return "removeBusinessConnectedBotFromChat"
+}
+
+func (t *RemoveBusinessConnectedBotFromChat) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *RemoveBusinessConnectedBotFromChat) GetExtra() string {
+	return t.Extra
+}
+
+func (t *RemoveBusinessConnectedBotFromChat) MarshalJSON() ([]byte, error) {
+	type Alias RemoveBusinessConnectedBotFromChat
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "removeBusinessConnectedBotFromChat",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// RemoveChatActionBar Removes a chat action bar without any other action @chat_id Chat identifier
+type RemoveChatActionBar struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+}
+
+func (t *RemoveChatActionBar) Type() string {
+	return "removeChatActionBar"
+}
+
+func (t *RemoveChatActionBar) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *RemoveChatActionBar) GetExtra() string {
+	return t.Extra
+}
+
+func (t *RemoveChatActionBar) MarshalJSON() ([]byte, error) {
+	type Alias RemoveChatActionBar
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "removeChatActionBar",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// RemoveContacts Removes users from the contact list @user_ids Identifiers of users to be deleted
+type RemoveContacts struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	UserIds []int64 `json:"user_ids"`
+}
+
+func (t *RemoveContacts) Type() string {
+	return "removeContacts"
+}
+
+func (t *RemoveContacts) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *RemoveContacts) GetExtra() string {
+	return t.Extra
+}
+
+func (t *RemoveContacts) MarshalJSON() ([]byte, error) {
+	type Alias RemoveContacts
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "removeContacts",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// RemoveFavoriteSticker Removes a sticker from the list of favorite stickers @sticker Sticker file to delete from the list
+type RemoveFavoriteSticker struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Sticker *InputFile `json:"sticker"`
+}
+
+func (t *RemoveFavoriteSticker) Type() string {
+	return "removeFavoriteSticker"
+}
+
+func (t *RemoveFavoriteSticker) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *RemoveFavoriteSticker) GetExtra() string {
+	return t.Extra
+}
+
+func (t *RemoveFavoriteSticker) MarshalJSON() ([]byte, error) {
+	type Alias RemoveFavoriteSticker
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "removeFavoriteSticker",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// RemoveFileFromDownloads Removes a file from the file download list @file_id Identifier of the downloaded file @delete_from_cache Pass true to delete the file from the TDLib file cache
+type RemoveFileFromDownloads struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	FileId int32 `json:"file_id"`
+	//
+	DeleteFromCache bool `json:"delete_from_cache"`
+}
+
+func (t *RemoveFileFromDownloads) Type() string {
+	return "removeFileFromDownloads"
+}
+
+func (t *RemoveFileFromDownloads) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *RemoveFileFromDownloads) GetExtra() string {
+	return t.Extra
+}
+
+func (t *RemoveFileFromDownloads) MarshalJSON() ([]byte, error) {
+	type Alias RemoveFileFromDownloads
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "removeFileFromDownloads",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// RemoveGiftCollectionGifts Removes gifts from a collection. If the collection is owned by a channel chat, then requires can_post_messages administrator right in the channel chat. Returns the changed collection
+type RemoveGiftCollectionGifts struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the user or the channel chat that owns the collection
+	OwnerId *MessageSender `json:"owner_id"`
+	// Identifier of the gift collection
+	CollectionId int32 `json:"collection_id"`
+	// Identifier of the gifts to remove from the collection
+	ReceivedGiftIds []string `json:"received_gift_ids"`
+}
+
+func (t *RemoveGiftCollectionGifts) Type() string {
+	return "removeGiftCollectionGifts"
+}
+
+func (t *RemoveGiftCollectionGifts) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *RemoveGiftCollectionGifts) GetExtra() string {
+	return t.Extra
+}
+
+func (t *RemoveGiftCollectionGifts) MarshalJSON() ([]byte, error) {
+	type Alias RemoveGiftCollectionGifts
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "removeGiftCollectionGifts",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// RemoveInstalledBackground Removes background from the list of installed backgrounds @background_id The background identifier
+type RemoveInstalledBackground struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	BackgroundId string `json:"background_id"`
+}
+
+func (t *RemoveInstalledBackground) Type() string {
+	return "removeInstalledBackground"
+}
+
+func (t *RemoveInstalledBackground) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *RemoveInstalledBackground) GetExtra() string {
+	return t.Extra
+}
+
+func (t *RemoveInstalledBackground) MarshalJSON() ([]byte, error) {
+	type Alias RemoveInstalledBackground
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "removeInstalledBackground",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// RemoveLoginPasskey Removes a passkey from the list of passkeys allowed to be used for the login by the current user @passkey_id Unique identifier of the passkey to remove
+type RemoveLoginPasskey struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	PasskeyId string `json:"passkey_id"`
+}
+
+func (t *RemoveLoginPasskey) Type() string {
+	return "removeLoginPasskey"
+}
+
+func (t *RemoveLoginPasskey) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *RemoveLoginPasskey) GetExtra() string {
+	return t.Extra
+}
+
+func (t *RemoveLoginPasskey) MarshalJSON() ([]byte, error) {
+	type Alias RemoveLoginPasskey
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "removeLoginPasskey",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// RemoveMessageReaction Removes a reaction from a message. A chosen reaction can always be removed
+type RemoveMessageReaction struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat to which the message belongs
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message
+	MessageId int64 `json:"message_id"`
+	// Type of the reaction to remove. The paid reaction can't be removed
+	ReactionType *ReactionType `json:"reaction_type"`
+}
+
+func (t *RemoveMessageReaction) Type() string {
+	return "removeMessageReaction"
+}
+
+func (t *RemoveMessageReaction) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *RemoveMessageReaction) GetExtra() string {
+	return t.Extra
+}
+
+func (t *RemoveMessageReaction) MarshalJSON() ([]byte, error) {
+	type Alias RemoveMessageReaction
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "removeMessageReaction",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// RemoveMessageSenderBotVerification Removes the verification status of a user or a chat by an owned bot
+type RemoveMessageSenderBotVerification struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the owned bot, which verified the user or the chat
+	BotUserId int64 `json:"bot_user_id"`
+	// Identifier of the user or the supergroup or channel chat, which verification is removed
+	VerifiedId *MessageSender `json:"verified_id"`
+}
+
+func (t *RemoveMessageSenderBotVerification) Type() string {
+	return "removeMessageSenderBotVerification"
+}
+
+func (t *RemoveMessageSenderBotVerification) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *RemoveMessageSenderBotVerification) GetExtra() string {
+	return t.Extra
+}
+
+func (t *RemoveMessageSenderBotVerification) MarshalJSON() ([]byte, error) {
+	type Alias RemoveMessageSenderBotVerification
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "removeMessageSenderBotVerification",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// RemoveNotification Removes an active notification from notification list. Needs to be called only if the notification is removed by the current user @notification_group_id Identifier of notification group to which the notification belongs @notification_id Identifier of removed notification
+type RemoveNotification struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	NotificationGroupId int32 `json:"notification_group_id"`
+	//
+	NotificationId int32 `json:"notification_id"`
+}
+
+func (t *RemoveNotification) Type() string {
+	return "removeNotification"
+}
+
+func (t *RemoveNotification) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *RemoveNotification) GetExtra() string {
+	return t.Extra
+}
+
+func (t *RemoveNotification) MarshalJSON() ([]byte, error) {
+	type Alias RemoveNotification
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "removeNotification",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// RemoveNotificationGroup Removes a group of active notifications. Needs to be called only if the notification group is removed by the current user @notification_group_id Notification group identifier @max_notification_id The maximum identifier of removed notifications
+type RemoveNotificationGroup struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	NotificationGroupId int32 `json:"notification_group_id"`
+	//
+	MaxNotificationId int32 `json:"max_notification_id"`
+}
+
+func (t *RemoveNotificationGroup) Type() string {
+	return "removeNotificationGroup"
+}
+
+func (t *RemoveNotificationGroup) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *RemoveNotificationGroup) GetExtra() string {
+	return t.Extra
+}
+
+func (t *RemoveNotificationGroup) MarshalJSON() ([]byte, error) {
+	type Alias RemoveNotificationGroup
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "removeNotificationGroup",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// RemovePendingLiveStoryReactions Removes all pending paid reactions in a live story group call @group_call_id Group call identifier
+type RemovePendingLiveStoryReactions struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	GroupCallId int32 `json:"group_call_id"`
+}
+
+func (t *RemovePendingLiveStoryReactions) Type() string {
+	return "removePendingLiveStoryReactions"
+}
+
+func (t *RemovePendingLiveStoryReactions) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *RemovePendingLiveStoryReactions) GetExtra() string {
+	return t.Extra
+}
+
+func (t *RemovePendingLiveStoryReactions) MarshalJSON() ([]byte, error) {
+	type Alias RemovePendingLiveStoryReactions
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "removePendingLiveStoryReactions",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// RemovePendingPaidMessageReactions Removes all pending paid reactions on a message @chat_id Identifier of the chat to which the message belongs @message_id Identifier of the message
+type RemovePendingPaidMessageReactions struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+	//
+	MessageId int64 `json:"message_id"`
+}
+
+func (t *RemovePendingPaidMessageReactions) Type() string {
+	return "removePendingPaidMessageReactions"
+}
+
+func (t *RemovePendingPaidMessageReactions) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *RemovePendingPaidMessageReactions) GetExtra() string {
+	return t.Extra
+}
+
+func (t *RemovePendingPaidMessageReactions) MarshalJSON() ([]byte, error) {
+	type Alias RemovePendingPaidMessageReactions
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "removePendingPaidMessageReactions",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// RemoveProfileAudio Removes an audio file from the profile audio files of the current user @file_id Identifier of the audio file to be removed
+type RemoveProfileAudio struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	FileId int32 `json:"file_id"`
+}
+
+func (t *RemoveProfileAudio) Type() string {
+	return "removeProfileAudio"
+}
+
+func (t *RemoveProfileAudio) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *RemoveProfileAudio) GetExtra() string {
+	return t.Extra
+}
+
+func (t *RemoveProfileAudio) MarshalJSON() ([]byte, error) {
+	type Alias RemoveProfileAudio
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "removeProfileAudio",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// RemoveProxy Removes a proxy server. Can be called before authorization @proxy_id Proxy identifier
+type RemoveProxy struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ProxyId int32 `json:"proxy_id"`
+}
+
+func (t *RemoveProxy) Type() string {
+	return "removeProxy"
+}
+
+func (t *RemoveProxy) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *RemoveProxy) GetExtra() string {
+	return t.Extra
+}
+
+func (t *RemoveProxy) MarshalJSON() ([]byte, error) {
+	type Alias RemoveProxy
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "removeProxy",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// RemoveRecentHashtag Removes a hashtag from the list of recently used hashtags @hashtag Hashtag to delete
+type RemoveRecentHashtag struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Hashtag string `json:"hashtag"`
+}
+
+func (t *RemoveRecentHashtag) Type() string {
+	return "removeRecentHashtag"
+}
+
+func (t *RemoveRecentHashtag) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *RemoveRecentHashtag) GetExtra() string {
+	return t.Extra
+}
+
+func (t *RemoveRecentHashtag) MarshalJSON() ([]byte, error) {
+	type Alias RemoveRecentHashtag
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "removeRecentHashtag",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// RemoveRecentlyFoundChat Removes a chat from the list of recently found chats @chat_id Identifier of the chat to be removed
+type RemoveRecentlyFoundChat struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+}
+
+func (t *RemoveRecentlyFoundChat) Type() string {
+	return "removeRecentlyFoundChat"
+}
+
+func (t *RemoveRecentlyFoundChat) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *RemoveRecentlyFoundChat) GetExtra() string {
+	return t.Extra
+}
+
+func (t *RemoveRecentlyFoundChat) MarshalJSON() ([]byte, error) {
+	type Alias RemoveRecentlyFoundChat
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "removeRecentlyFoundChat",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// RemoveRecentSticker Removes a sticker from the list of recently used stickers @is_attached Pass true to remove the sticker from the list of stickers recently attached to photo or video files; pass false to remove the sticker from the list of recently sent stickers @sticker Sticker file to delete
+type RemoveRecentSticker struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	IsAttached bool `json:"is_attached"`
+	//
+	Sticker *InputFile `json:"sticker"`
+}
+
+func (t *RemoveRecentSticker) Type() string {
+	return "removeRecentSticker"
+}
+
+func (t *RemoveRecentSticker) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *RemoveRecentSticker) GetExtra() string {
+	return t.Extra
+}
+
+func (t *RemoveRecentSticker) MarshalJSON() ([]byte, error) {
+	type Alias RemoveRecentSticker
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "removeRecentSticker",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// RemoveSavedAnimation Removes an animation from the list of saved animations @animation Animation file to be removed
+type RemoveSavedAnimation struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Animation *InputFile `json:"animation"`
+}
+
+func (t *RemoveSavedAnimation) Type() string {
+	return "removeSavedAnimation"
+}
+
+func (t *RemoveSavedAnimation) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *RemoveSavedAnimation) GetExtra() string {
+	return t.Extra
+}
+
+func (t *RemoveSavedAnimation) MarshalJSON() ([]byte, error) {
+	type Alias RemoveSavedAnimation
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "removeSavedAnimation",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// RemoveSavedNotificationSound Removes a notification sound from the list of saved notification sounds @notification_sound_id Identifier of the notification sound
+type RemoveSavedNotificationSound struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	NotificationSoundId string `json:"notification_sound_id"`
+}
+
+func (t *RemoveSavedNotificationSound) Type() string {
+	return "removeSavedNotificationSound"
+}
+
+func (t *RemoveSavedNotificationSound) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *RemoveSavedNotificationSound) GetExtra() string {
+	return t.Extra
+}
+
+func (t *RemoveSavedNotificationSound) MarshalJSON() ([]byte, error) {
+	type Alias RemoveSavedNotificationSound
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "removeSavedNotificationSound",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// RemoveSearchedForTag Removes a hashtag or a cashtag from the list of recently searched for hashtags or cashtags @tag Hashtag or cashtag to delete
+type RemoveSearchedForTag struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Tag string `json:"tag"`
+}
+
+func (t *RemoveSearchedForTag) Type() string {
+	return "removeSearchedForTag"
+}
+
+func (t *RemoveSearchedForTag) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *RemoveSearchedForTag) GetExtra() string {
+	return t.Extra
+}
+
+func (t *RemoveSearchedForTag) MarshalJSON() ([]byte, error) {
+	type Alias RemoveSearchedForTag
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "removeSearchedForTag",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// RemoveStickerFromSet Removes a sticker from the set to which it belongs. The sticker set must be owned by the current user @sticker Sticker to remove from the set
+type RemoveStickerFromSet struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Sticker *InputFile `json:"sticker"`
+}
+
+func (t *RemoveStickerFromSet) Type() string {
+	return "removeStickerFromSet"
+}
+
+func (t *RemoveStickerFromSet) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *RemoveStickerFromSet) GetExtra() string {
+	return t.Extra
+}
+
+func (t *RemoveStickerFromSet) MarshalJSON() ([]byte, error) {
+	type Alias RemoveStickerFromSet
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "removeStickerFromSet",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// RemoveStoryAlbumStories Removes stories from an album. If the album is owned by a supergroup or a channel chat, then
+type RemoveStoryAlbumStories struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat that owns the stories
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the story album
+	StoryAlbumId int32 `json:"story_album_id"`
+	// Identifier of the stories to remove from the album
+	StoryIds []int32 `json:"story_ids"`
+}
+
+func (t *RemoveStoryAlbumStories) Type() string {
+	return "removeStoryAlbumStories"
+}
+
+func (t *RemoveStoryAlbumStories) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *RemoveStoryAlbumStories) GetExtra() string {
+	return t.Extra
+}
+
+func (t *RemoveStoryAlbumStories) MarshalJSON() ([]byte, error) {
+	type Alias RemoveStoryAlbumStories
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "removeStoryAlbumStories",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// RemoveTopChat Removes a chat from the list of frequently used chats. Supported only if the chat info database is enabled @category Category of frequently used chats @chat_id Chat identifier
+type RemoveTopChat struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Category *TopChatCategory `json:"category"`
+	//
+	ChatId int64 `json:"chat_id"`
+}
+
+func (t *RemoveTopChat) Type() string {
+	return "removeTopChat"
+}
+
+func (t *RemoveTopChat) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *RemoveTopChat) GetExtra() string {
+	return t.Extra
+}
+
+func (t *RemoveTopChat) MarshalJSON() ([]byte, error) {
+	type Alias RemoveTopChat
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "removeTopChat",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ReorderActiveUsernames Changes order of active usernames of the current user @usernames The new order of active usernames. All currently active usernames must be specified
+type ReorderActiveUsernames struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Usernames []string `json:"usernames"`
+}
+
+func (t *ReorderActiveUsernames) Type() string {
+	return "reorderActiveUsernames"
+}
+
+func (t *ReorderActiveUsernames) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ReorderActiveUsernames) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ReorderActiveUsernames) MarshalJSON() ([]byte, error) {
+	type Alias ReorderActiveUsernames
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "reorderActiveUsernames",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ReorderBotActiveUsernames Changes order of active usernames of a bot. Can be called only if userTypeBot.can_be_edited == true @bot_user_id Identifier of the target bot @usernames The new order of active usernames. All currently active usernames must be specified
+type ReorderBotActiveUsernames struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	BotUserId int64 `json:"bot_user_id"`
+	//
+	Usernames []string `json:"usernames"`
+}
+
+func (t *ReorderBotActiveUsernames) Type() string {
+	return "reorderBotActiveUsernames"
+}
+
+func (t *ReorderBotActiveUsernames) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ReorderBotActiveUsernames) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ReorderBotActiveUsernames) MarshalJSON() ([]byte, error) {
+	type Alias ReorderBotActiveUsernames
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "reorderBotActiveUsernames",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ReorderBotMediaPreviews Changes order of media previews in the list of media previews of a bot
+type ReorderBotMediaPreviews struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the target bot. The bot must be owned and must have the main Web App
+	BotUserId int64 `json:"bot_user_id"`
+	// Language code of the media previews to reorder
+	LanguageCode string `json:"language_code"`
+	// File identifiers of the media in the new order
+	FileIds []int32 `json:"file_ids"`
+}
+
+func (t *ReorderBotMediaPreviews) Type() string {
+	return "reorderBotMediaPreviews"
+}
+
+func (t *ReorderBotMediaPreviews) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ReorderBotMediaPreviews) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ReorderBotMediaPreviews) MarshalJSON() ([]byte, error) {
+	type Alias ReorderBotMediaPreviews
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "reorderBotMediaPreviews",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ReorderChatFolders Changes the order of chat folders @chat_folder_ids Identifiers of chat folders in the new correct order @main_chat_list_position Position of the main chat list among chat folders, 0-based. Can be non-zero only for Premium users
+type ReorderChatFolders struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatFolderIds []int32 `json:"chat_folder_ids"`
+	//
+	MainChatListPosition int32 `json:"main_chat_list_position"`
+}
+
+func (t *ReorderChatFolders) Type() string {
+	return "reorderChatFolders"
+}
+
+func (t *ReorderChatFolders) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ReorderChatFolders) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ReorderChatFolders) MarshalJSON() ([]byte, error) {
+	type Alias ReorderChatFolders
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "reorderChatFolders",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ReorderGiftCollectionGifts Changes order of gifts in a collection. If the collection is owned by a channel chat, then requires can_post_messages administrator right in the channel chat. Returns the changed collection
+type ReorderGiftCollectionGifts struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the user or the channel chat that owns the collection
+	OwnerId *MessageSender `json:"owner_id"`
+	// Identifier of the gift collection
+	CollectionId int32 `json:"collection_id"`
+	// Identifier of the gifts to move to the beginning of the collection. All other gifts are placed in the current order after the specified gifts
+	ReceivedGiftIds []string `json:"received_gift_ids"`
+}
+
+func (t *ReorderGiftCollectionGifts) Type() string {
+	return "reorderGiftCollectionGifts"
+}
+
+func (t *ReorderGiftCollectionGifts) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ReorderGiftCollectionGifts) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ReorderGiftCollectionGifts) MarshalJSON() ([]byte, error) {
+	type Alias ReorderGiftCollectionGifts
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "reorderGiftCollectionGifts",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ReorderGiftCollections Changes order of gift collections. If the collections are owned by a channel chat, then requires can_post_messages administrator right in the channel chat
+type ReorderGiftCollections struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the user or the channel chat that owns the collection
+	OwnerId *MessageSender `json:"owner_id"`
+	// New order of gift collections
+	CollectionIds []int32 `json:"collection_ids"`
+}
+
+func (t *ReorderGiftCollections) Type() string {
+	return "reorderGiftCollections"
+}
+
+func (t *ReorderGiftCollections) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ReorderGiftCollections) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ReorderGiftCollections) MarshalJSON() ([]byte, error) {
+	type Alias ReorderGiftCollections
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "reorderGiftCollections",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ReorderInstalledStickerSets Changes the order of installed sticker sets @sticker_type Type of the sticker sets to reorder @sticker_set_ids Identifiers of installed sticker sets in the new correct order
+type ReorderInstalledStickerSets struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	StickerType *StickerType `json:"sticker_type"`
+	//
+	StickerSetIds []string `json:"sticker_set_ids"`
+}
+
+func (t *ReorderInstalledStickerSets) Type() string {
+	return "reorderInstalledStickerSets"
+}
+
+func (t *ReorderInstalledStickerSets) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ReorderInstalledStickerSets) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ReorderInstalledStickerSets) MarshalJSON() ([]byte, error) {
+	type Alias ReorderInstalledStickerSets
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "reorderInstalledStickerSets",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ReorderQuickReplyShortcuts Changes the order of quick reply shortcuts @shortcut_ids The new order of quick reply shortcuts
+type ReorderQuickReplyShortcuts struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ShortcutIds []int32 `json:"shortcut_ids"`
+}
+
+func (t *ReorderQuickReplyShortcuts) Type() string {
+	return "reorderQuickReplyShortcuts"
+}
+
+func (t *ReorderQuickReplyShortcuts) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ReorderQuickReplyShortcuts) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ReorderQuickReplyShortcuts) MarshalJSON() ([]byte, error) {
+	type Alias ReorderQuickReplyShortcuts
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "reorderQuickReplyShortcuts",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ReorderStoryAlbums Changes order of story albums. If the albums are owned by a supergroup or a channel chat, then requires can_edit_stories administrator right in the chat
+type ReorderStoryAlbums struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat that owns the stories
+	ChatId int64 `json:"chat_id"`
+	// New order of story albums
+	StoryAlbumIds []int32 `json:"story_album_ids"`
+}
+
+func (t *ReorderStoryAlbums) Type() string {
+	return "reorderStoryAlbums"
+}
+
+func (t *ReorderStoryAlbums) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ReorderStoryAlbums) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ReorderStoryAlbums) MarshalJSON() ([]byte, error) {
+	type Alias ReorderStoryAlbums
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "reorderStoryAlbums",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ReorderStoryAlbumStories Changes order of stories in an album. If the album is owned by a supergroup or a channel chat, then
+type ReorderStoryAlbumStories struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat that owns the stories
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the story album
+	StoryAlbumId int32 `json:"story_album_id"`
+	// Identifier of the stories to move to the beginning of the album. All other stories are placed in the current order after the specified stories
+	StoryIds []int32 `json:"story_ids"`
+}
+
+func (t *ReorderStoryAlbumStories) Type() string {
+	return "reorderStoryAlbumStories"
+}
+
+func (t *ReorderStoryAlbumStories) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ReorderStoryAlbumStories) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ReorderStoryAlbumStories) MarshalJSON() ([]byte, error) {
+	type Alias ReorderStoryAlbumStories
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "reorderStoryAlbumStories",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ReorderSupergroupActiveUsernames Changes order of active usernames of a supergroup or channel, requires owner privileges in the supergroup or channel
+type ReorderSupergroupActiveUsernames struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the supergroup or channel
+	SupergroupId int64 `json:"supergroup_id"`
+	// The new order of active usernames. All currently active usernames must be specified
+	Usernames []string `json:"usernames"`
+}
+
+func (t *ReorderSupergroupActiveUsernames) Type() string {
+	return "reorderSupergroupActiveUsernames"
+}
+
+func (t *ReorderSupergroupActiveUsernames) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ReorderSupergroupActiveUsernames) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ReorderSupergroupActiveUsernames) MarshalJSON() ([]byte, error) {
+	type Alias ReorderSupergroupActiveUsernames
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "reorderSupergroupActiveUsernames",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ReplaceLiveStoryRtmpUrl Replaces the current RTMP URL for streaming to a live story; requires owner privileges for channel chats @chat_id Chat identifier
+type ReplaceLiveStoryRtmpUrl struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+}
+
+func (t *ReplaceLiveStoryRtmpUrl) Type() string {
+	return "replaceLiveStoryRtmpUrl"
+}
+
+func (t *ReplaceLiveStoryRtmpUrl) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ReplaceLiveStoryRtmpUrl) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ReplaceLiveStoryRtmpUrl) MarshalJSON() ([]byte, error) {
+	type Alias ReplaceLiveStoryRtmpUrl
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "replaceLiveStoryRtmpUrl",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ReplacePrimaryChatInviteLink Replaces current primary invite link for a chat with a new primary invite link. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right @chat_id Chat identifier
+type ReplacePrimaryChatInviteLink struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+}
+
+func (t *ReplacePrimaryChatInviteLink) Type() string {
+	return "replacePrimaryChatInviteLink"
+}
+
+func (t *ReplacePrimaryChatInviteLink) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ReplacePrimaryChatInviteLink) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ReplacePrimaryChatInviteLink) MarshalJSON() ([]byte, error) {
+	type Alias ReplacePrimaryChatInviteLink
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "replacePrimaryChatInviteLink",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ReplaceStickerInSet Replaces existing sticker in a set. The function is equivalent to removeStickerFromSet, then addStickerToSet, then setStickerPositionInSet
+type ReplaceStickerInSet struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Sticker set owner; ignored for regular users
+	UserId int64 `json:"user_id"`
+	// Sticker set name. The sticker set must be owned by the current user
+	Name string `json:"name"`
+	// Sticker to remove from the set
+	OldSticker *InputFile `json:"old_sticker"`
+	// Sticker to add to the set
+	NewSticker *InputSticker `json:"new_sticker"`
+}
+
+func (t *ReplaceStickerInSet) Type() string {
+	return "replaceStickerInSet"
+}
+
+func (t *ReplaceStickerInSet) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ReplaceStickerInSet) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ReplaceStickerInSet) MarshalJSON() ([]byte, error) {
+	type Alias ReplaceStickerInSet
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "replaceStickerInSet",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ReplaceVideoChatRtmpUrl Replaces the current RTMP URL for streaming to the video chat of a chat; requires owner privileges in the chat @chat_id Chat identifier
+type ReplaceVideoChatRtmpUrl struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+}
+
+func (t *ReplaceVideoChatRtmpUrl) Type() string {
+	return "replaceVideoChatRtmpUrl"
+}
+
+func (t *ReplaceVideoChatRtmpUrl) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ReplaceVideoChatRtmpUrl) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ReplaceVideoChatRtmpUrl) MarshalJSON() ([]byte, error) {
+	type Alias ReplaceVideoChatRtmpUrl
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "replaceVideoChatRtmpUrl",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ReportAuthenticationCodeMissing Reports that authentication code wasn't delivered via SMS; for official mobile applications only. Works only when the current authorization state is authorizationStateWaitCode @mobile_network_code Current mobile network code
+type ReportAuthenticationCodeMissing struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	MobileNetworkCode string `json:"mobile_network_code"`
+}
+
+func (t *ReportAuthenticationCodeMissing) Type() string {
+	return "reportAuthenticationCodeMissing"
+}
+
+func (t *ReportAuthenticationCodeMissing) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ReportAuthenticationCodeMissing) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ReportAuthenticationCodeMissing) MarshalJSON() ([]byte, error) {
+	type Alias ReportAuthenticationCodeMissing
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "reportAuthenticationCodeMissing",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ReportChat Reports a chat to the Telegram moderators. A chat can be reported only from the chat action bar, or if chat.can_be_reported
+type ReportChat struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Option identifier chosen by the user; leave empty for the initial request
+	OptionId string `json:"option_id"`
+	// Identifiers of reported messages. Use messageProperties.can_report_chat to check whether the message can be reported
+	MessageIds []int64 `json:"message_ids"`
+	// Additional report details if asked by the server; 0-1024 characters; leave empty for the initial request
+	Text string `json:"text"`
+}
+
+func (t *ReportChat) Type() string {
+	return "reportChat"
+}
+
+func (t *ReportChat) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ReportChat) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ReportChat) MarshalJSON() ([]byte, error) {
+	type Alias ReportChat
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "reportChat",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ReportChatPhoto Reports a chat photo to the Telegram moderators. A chat photo can be reported only if chat.can_be_reported
+type ReportChatPhoto struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the photo to report. Only full photos from chatPhoto can be reported
+	FileId int32 `json:"file_id"`
+	// The reason for reporting the chat photo
+	Reason *ReportReason `json:"reason"`
+	// Additional report details; 0-1024 characters
+	Text string `json:"text"`
+}
+
+func (t *ReportChatPhoto) Type() string {
+	return "reportChatPhoto"
+}
+
+func (t *ReportChatPhoto) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ReportChatPhoto) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ReportChatPhoto) MarshalJSON() ([]byte, error) {
+	type Alias ReportChatPhoto
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "reportChatPhoto",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ReportChatSponsoredMessage Reports a sponsored message to Telegram moderators
+type ReportChatSponsoredMessage struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier of the sponsored message
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the sponsored message
+	MessageId int64 `json:"message_id"`
+	// Option identifier chosen by the user; leave empty for the initial request
+	OptionId string `json:"option_id"`
+}
+
+func (t *ReportChatSponsoredMessage) Type() string {
+	return "reportChatSponsoredMessage"
+}
+
+func (t *ReportChatSponsoredMessage) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ReportChatSponsoredMessage) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ReportChatSponsoredMessage) MarshalJSON() ([]byte, error) {
+	type Alias ReportChatSponsoredMessage
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "reportChatSponsoredMessage",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ReportMessageReactions Reports reactions set on a message to the Telegram moderators. Reactions on a message can be reported only if messageProperties.can_report_reactions
+type ReportMessageReactions struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Message identifier
+	MessageId int64 `json:"message_id"`
+	// Identifier of the sender, which added the reaction
+	SenderId *MessageSender `json:"sender_id"`
+}
+
+func (t *ReportMessageReactions) Type() string {
+	return "reportMessageReactions"
+}
+
+func (t *ReportMessageReactions) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ReportMessageReactions) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ReportMessageReactions) MarshalJSON() ([]byte, error) {
+	type Alias ReportMessageReactions
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "reportMessageReactions",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ReportPhoneNumberCodeMissing Reports that authentication code wasn't delivered via SMS to the specified phone number; for official mobile applications only @mobile_network_code Current mobile network code
+type ReportPhoneNumberCodeMissing struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	MobileNetworkCode string `json:"mobile_network_code"`
+}
+
+func (t *ReportPhoneNumberCodeMissing) Type() string {
+	return "reportPhoneNumberCodeMissing"
+}
+
+func (t *ReportPhoneNumberCodeMissing) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ReportPhoneNumberCodeMissing) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ReportPhoneNumberCodeMissing) MarshalJSON() ([]byte, error) {
+	type Alias ReportPhoneNumberCodeMissing
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "reportPhoneNumberCodeMissing",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ReportSponsoredChat Reports a sponsored chat to Telegram moderators
+type ReportSponsoredChat struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Unique identifier of the sponsored chat
+	SponsoredChatUniqueId int64 `json:"sponsored_chat_unique_id"`
+	// Option identifier chosen by the user; leave empty for the initial request
+	OptionId string `json:"option_id"`
+}
+
+func (t *ReportSponsoredChat) Type() string {
+	return "reportSponsoredChat"
+}
+
+func (t *ReportSponsoredChat) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ReportSponsoredChat) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ReportSponsoredChat) MarshalJSON() ([]byte, error) {
+	type Alias ReportSponsoredChat
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "reportSponsoredChat",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ReportStory Reports a story to the Telegram moderators
+type ReportStory struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The identifier of the poster of the story to report
+	StoryPosterChatId int64 `json:"story_poster_chat_id"`
+	// The identifier of the story to report
+	StoryId int32 `json:"story_id"`
+	// Option identifier chosen by the user; leave empty for the initial request
+	OptionId string `json:"option_id"`
+	// Additional report details; 0-1024 characters; leave empty for the initial request
+	Text string `json:"text"`
+}
+
+func (t *ReportStory) Type() string {
+	return "reportStory"
+}
+
+func (t *ReportStory) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ReportStory) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ReportStory) MarshalJSON() ([]byte, error) {
+	type Alias ReportStory
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "reportStory",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ReportSupergroupAntiSpamFalsePositive Reports a false deletion of a message by aggressive anti-spam checks; requires administrator rights in the supergroup. Can be called only for messages from chatEventMessageDeleted with can_report_anti_spam_false_positive == true
+type ReportSupergroupAntiSpamFalsePositive struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Supergroup identifier
+	SupergroupId int64 `json:"supergroup_id"`
+	// Identifier of the erroneously deleted message from chatEventMessageDeleted
+	MessageId int64 `json:"message_id"`
+}
+
+func (t *ReportSupergroupAntiSpamFalsePositive) Type() string {
+	return "reportSupergroupAntiSpamFalsePositive"
+}
+
+func (t *ReportSupergroupAntiSpamFalsePositive) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ReportSupergroupAntiSpamFalsePositive) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ReportSupergroupAntiSpamFalsePositive) MarshalJSON() ([]byte, error) {
+	type Alias ReportSupergroupAntiSpamFalsePositive
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "reportSupergroupAntiSpamFalsePositive",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ReportSupergroupSpam Reports messages in a supergroup as spam; requires administrator rights in the supergroup
+type ReportSupergroupSpam struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Supergroup identifier
+	SupergroupId int64 `json:"supergroup_id"`
+	// Identifiers of messages to report. Use messageProperties.can_report_supergroup_spam to check whether the message can be reported
+	MessageIds []int64 `json:"message_ids"`
+}
+
+func (t *ReportSupergroupSpam) Type() string {
+	return "reportSupergroupSpam"
+}
+
+func (t *ReportSupergroupSpam) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ReportSupergroupSpam) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ReportSupergroupSpam) MarshalJSON() ([]byte, error) {
+	type Alias ReportSupergroupSpam
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "reportSupergroupSpam",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ReportVideoMessageAdvertisement Reports a video message advertisement to Telegram moderators
+type ReportVideoMessageAdvertisement struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Unique identifier of the advertisement
+	AdvertisementUniqueId int64 `json:"advertisement_unique_id"`
+	// Option identifier chosen by the user; leave empty for the initial request
+	OptionId string `json:"option_id"`
+}
+
+func (t *ReportVideoMessageAdvertisement) Type() string {
+	return "reportVideoMessageAdvertisement"
+}
+
+func (t *ReportVideoMessageAdvertisement) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ReportVideoMessageAdvertisement) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ReportVideoMessageAdvertisement) MarshalJSON() ([]byte, error) {
+	type Alias ReportVideoMessageAdvertisement
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "reportVideoMessageAdvertisement",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// RequestAuthenticationPasswordRecovery Requests to send a 2-step verification password recovery code to an email address that was previously set up. Works only when the current authorization state is authorizationStateWaitPassword
+type RequestAuthenticationPasswordRecovery struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *RequestAuthenticationPasswordRecovery) Type() string {
+	return "requestAuthenticationPasswordRecovery"
+}
+
+func (t *RequestAuthenticationPasswordRecovery) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *RequestAuthenticationPasswordRecovery) GetExtra() string {
+	return t.Extra
+}
+
+func (t *RequestAuthenticationPasswordRecovery) MarshalJSON() ([]byte, error) {
+	type Alias RequestAuthenticationPasswordRecovery
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "requestAuthenticationPasswordRecovery",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// RequestPasswordRecovery Requests to send a 2-step verification password recovery code to an email address that was previously set up
+type RequestPasswordRecovery struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *RequestPasswordRecovery) Type() string {
+	return "requestPasswordRecovery"
+}
+
+func (t *RequestPasswordRecovery) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *RequestPasswordRecovery) GetExtra() string {
+	return t.Extra
+}
+
+func (t *RequestPasswordRecovery) MarshalJSON() ([]byte, error) {
+	type Alias RequestPasswordRecovery
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "requestPasswordRecovery",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// RequestQrCodeAuthentication Requests QR code authentication by scanning a QR code on another logged in device. Works only when the current authorization state is authorizationStateWaitPhoneNumber,
+type RequestQrCodeAuthentication struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// List of user identifiers of other users currently using the application
+	OtherUserIds []int64 `json:"other_user_ids"`
+}
+
+func (t *RequestQrCodeAuthentication) Type() string {
+	return "requestQrCodeAuthentication"
+}
+
+func (t *RequestQrCodeAuthentication) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *RequestQrCodeAuthentication) GetExtra() string {
+	return t.Extra
+}
+
+func (t *RequestQrCodeAuthentication) MarshalJSON() ([]byte, error) {
+	type Alias RequestQrCodeAuthentication
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "requestQrCodeAuthentication",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ResendAuthenticationCode Resends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitCode, the next_code_type of the result is not null
+type ResendAuthenticationCode struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Reason of code resending; pass null if unknown
+	Reason *ResendCodeReason `json:"reason,omitempty"`
+}
+
+func (t *ResendAuthenticationCode) Type() string {
+	return "resendAuthenticationCode"
+}
+
+func (t *ResendAuthenticationCode) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ResendAuthenticationCode) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ResendAuthenticationCode) MarshalJSON() ([]byte, error) {
+	type Alias ResendAuthenticationCode
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "resendAuthenticationCode",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ResendEmailAddressVerificationCode Resends the code to verify an email address to be added to a user's Telegram Passport
+type ResendEmailAddressVerificationCode struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *ResendEmailAddressVerificationCode) Type() string {
+	return "resendEmailAddressVerificationCode"
+}
+
+func (t *ResendEmailAddressVerificationCode) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ResendEmailAddressVerificationCode) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ResendEmailAddressVerificationCode) MarshalJSON() ([]byte, error) {
+	type Alias ResendEmailAddressVerificationCode
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "resendEmailAddressVerificationCode",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ResendLoginEmailAddressCode Resends the login email address verification code
+type ResendLoginEmailAddressCode struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *ResendLoginEmailAddressCode) Type() string {
+	return "resendLoginEmailAddressCode"
+}
+
+func (t *ResendLoginEmailAddressCode) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ResendLoginEmailAddressCode) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ResendLoginEmailAddressCode) MarshalJSON() ([]byte, error) {
+	type Alias ResendLoginEmailAddressCode
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "resendLoginEmailAddressCode",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ResendMessages Resends messages which failed to send. Can be called only for messages for which messageSendingStateFailed.can_retry is true and after specified in messageSendingStateFailed.retry_after time passed.
+type ResendMessages struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat to send messages
+	ChatId int64 `json:"chat_id"`
+	// Identifiers of the messages to resend. Message identifiers must be in a strictly increasing order
+	MessageIds []int64 `json:"message_ids"`
+	// New manually chosen quote from the message to be replied; pass null if none. Ignored if more than one message is re-sent, or if messageSendingStateFailed.need_another_reply_quote == false
+	Quote *InputTextQuote `json:"quote,omitempty"`
+	// The number of Telegram Stars the user agreed to pay to send the messages. Ignored if messageSendingStateFailed.required_paid_message_star_count == 0
+	PaidMessageStarCount int64 `json:"paid_message_star_count"`
+}
+
+func (t *ResendMessages) Type() string {
+	return "resendMessages"
+}
+
+func (t *ResendMessages) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ResendMessages) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ResendMessages) MarshalJSON() ([]byte, error) {
+	type Alias ResendMessages
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "resendMessages",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ResendPhoneNumberCode Resends the authentication code sent to a phone number. Works only if the previously received authenticationCodeInfo next_code_type was not null and the server-specified timeout has passed
+type ResendPhoneNumberCode struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Reason of code resending; pass null if unknown
+	Reason *ResendCodeReason `json:"reason,omitempty"`
+}
+
+func (t *ResendPhoneNumberCode) Type() string {
+	return "resendPhoneNumberCode"
+}
+
+func (t *ResendPhoneNumberCode) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ResendPhoneNumberCode) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ResendPhoneNumberCode) MarshalJSON() ([]byte, error) {
+	type Alias ResendPhoneNumberCode
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "resendPhoneNumberCode",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ResendRecoveryEmailAddressCode Resends the 2-step verification recovery email address verification code
+type ResendRecoveryEmailAddressCode struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *ResendRecoveryEmailAddressCode) Type() string {
+	return "resendRecoveryEmailAddressCode"
+}
+
+func (t *ResendRecoveryEmailAddressCode) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ResendRecoveryEmailAddressCode) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ResendRecoveryEmailAddressCode) MarshalJSON() ([]byte, error) {
+	type Alias ResendRecoveryEmailAddressCode
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "resendRecoveryEmailAddressCode",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ResetAllNotificationSettings Resets all chat and scope notification settings to their default values. By default, all chats are unmuted and message previews are shown
+type ResetAllNotificationSettings struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *ResetAllNotificationSettings) Type() string {
+	return "resetAllNotificationSettings"
+}
+
+func (t *ResetAllNotificationSettings) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ResetAllNotificationSettings) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ResetAllNotificationSettings) MarshalJSON() ([]byte, error) {
+	type Alias ResetAllNotificationSettings
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "resetAllNotificationSettings",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ResetAuthenticationEmailAddress Resets the login email address. May return an error with a message "TASK_ALREADY_EXISTS" if reset is still pending.
+type ResetAuthenticationEmailAddress struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *ResetAuthenticationEmailAddress) Type() string {
+	return "resetAuthenticationEmailAddress"
+}
+
+func (t *ResetAuthenticationEmailAddress) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ResetAuthenticationEmailAddress) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ResetAuthenticationEmailAddress) MarshalJSON() ([]byte, error) {
+	type Alias ResetAuthenticationEmailAddress
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "resetAuthenticationEmailAddress",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ResetInstalledBackgrounds Resets list of installed backgrounds to its default value
+type ResetInstalledBackgrounds struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *ResetInstalledBackgrounds) Type() string {
+	return "resetInstalledBackgrounds"
+}
+
+func (t *ResetInstalledBackgrounds) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ResetInstalledBackgrounds) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ResetInstalledBackgrounds) MarshalJSON() ([]byte, error) {
+	type Alias ResetInstalledBackgrounds
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "resetInstalledBackgrounds",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ResetNetworkStatistics Resets all network data usage statistics to zero. Can be called before authorization
+type ResetNetworkStatistics struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *ResetNetworkStatistics) Type() string {
+	return "resetNetworkStatistics"
+}
+
+func (t *ResetNetworkStatistics) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ResetNetworkStatistics) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ResetNetworkStatistics) MarshalJSON() ([]byte, error) {
+	type Alias ResetNetworkStatistics
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "resetNetworkStatistics",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ResetPassword Removes 2-step verification password without previous password and access to recovery email address. The password can't be reset immediately and the request needs to be repeated after the specified time
+type ResetPassword struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *ResetPassword) Type() string {
+	return "resetPassword"
+}
+
+func (t *ResetPassword) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ResetPassword) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ResetPassword) MarshalJSON() ([]byte, error) {
+	type Alias ResetPassword
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "resetPassword",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ReuseStarSubscription Reuses an active Telegram Star subscription to a channel chat and joins the chat again @subscription_id Identifier of the subscription
+type ReuseStarSubscription struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	SubscriptionId string `json:"subscription_id"`
+}
+
+func (t *ReuseStarSubscription) Type() string {
+	return "reuseStarSubscription"
+}
+
+func (t *ReuseStarSubscription) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ReuseStarSubscription) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ReuseStarSubscription) MarshalJSON() ([]byte, error) {
+	type Alias ReuseStarSubscription
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "reuseStarSubscription",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// RevokeChatInviteLink Revokes invite link for a chat. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links.
+type RevokeChatInviteLink struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Invite link to be revoked
+	InviteLink string `json:"invite_link"`
+}
+
+func (t *RevokeChatInviteLink) Type() string {
+	return "revokeChatInviteLink"
+}
+
+func (t *RevokeChatInviteLink) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *RevokeChatInviteLink) GetExtra() string {
+	return t.Extra
+}
+
+func (t *RevokeChatInviteLink) MarshalJSON() ([]byte, error) {
+	type Alias RevokeChatInviteLink
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "revokeChatInviteLink",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// RevokeGroupCallInviteLink Revokes invite link for a group call. Requires groupCall.can_be_managed right for video chats or groupCall.is_owned otherwise @group_call_id Group call identifier
+type RevokeGroupCallInviteLink struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	GroupCallId int32 `json:"group_call_id"`
+}
+
+func (t *RevokeGroupCallInviteLink) Type() string {
+	return "revokeGroupCallInviteLink"
+}
+
+func (t *RevokeGroupCallInviteLink) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *RevokeGroupCallInviteLink) GetExtra() string {
+	return t.Extra
+}
+
+func (t *RevokeGroupCallInviteLink) MarshalJSON() ([]byte, error) {
+	type Alias RevokeGroupCallInviteLink
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "revokeGroupCallInviteLink",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SaveApplicationLogEvent Saves application log event on the server. Can be called before authorization @type Event type @chat_id Optional chat identifier, associated with the event @data The log event data
+type SaveApplicationLogEvent struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	TypeField string `json:"type"`
+	//
+	ChatId int64 `json:"chat_id"`
+	//
+	Data *JsonValue `json:"data"`
+}
+
+func (t *SaveApplicationLogEvent) Type() string {
+	return "saveApplicationLogEvent"
+}
+
+func (t *SaveApplicationLogEvent) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SaveApplicationLogEvent) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SaveApplicationLogEvent) MarshalJSON() ([]byte, error) {
+	type Alias SaveApplicationLogEvent
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "saveApplicationLogEvent",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SavePreparedInlineMessage Saves an inline message to be sent by the given user; for bots only
+type SavePreparedInlineMessage struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the user
+	UserId int64 `json:"user_id"`
+	// The description of the message
+	Result *InputInlineQueryResult `json:"result"`
+	// Types of the chats to which the message can be sent
+	ChatTypes *TargetChatTypes `json:"chat_types"`
+}
+
+func (t *SavePreparedInlineMessage) Type() string {
+	return "savePreparedInlineMessage"
+}
+
+func (t *SavePreparedInlineMessage) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SavePreparedInlineMessage) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SavePreparedInlineMessage) MarshalJSON() ([]byte, error) {
+	type Alias SavePreparedInlineMessage
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "savePreparedInlineMessage",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SearchAffiliatePrograms Searches affiliate programs that can be connected to the given affiliate
+type SearchAffiliatePrograms struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The affiliate for which affiliate programs are searched for
+	Affiliate *AffiliateType `json:"affiliate"`
+	// Sort order for the results
+	SortOrder *AffiliateProgramSortOrder `json:"sort_order"`
+	// Offset of the first affiliate program to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
+	// The maximum number of affiliate programs to return
+	Limit int32 `json:"limit"`
+}
+
+func (t *SearchAffiliatePrograms) Type() string {
+	return "searchAffiliatePrograms"
+}
+
+func (t *SearchAffiliatePrograms) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SearchAffiliatePrograms) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SearchAffiliatePrograms) MarshalJSON() ([]byte, error) {
+	type Alias SearchAffiliatePrograms
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "searchAffiliatePrograms",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SearchBackground Searches for a background by its name @name The name of the background
+type SearchBackground struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Name string `json:"name"`
+}
+
+func (t *SearchBackground) Type() string {
+	return "searchBackground"
+}
+
+func (t *SearchBackground) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SearchBackground) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SearchBackground) MarshalJSON() ([]byte, error) {
+	type Alias SearchBackground
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "searchBackground",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SearchCallMessages Searches for call and group call messages. Returns the results in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
+type SearchCallMessages struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
+	// The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+	Limit int32 `json:"limit"`
+	// Pass true to search only for messages with missed/declined calls
+	OnlyMissed bool `json:"only_missed"`
+}
+
+func (t *SearchCallMessages) Type() string {
+	return "searchCallMessages"
+}
+
+func (t *SearchCallMessages) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SearchCallMessages) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SearchCallMessages) MarshalJSON() ([]byte, error) {
+	type Alias SearchCallMessages
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "searchCallMessages",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SearchChatAffiliateProgram Searches a chat with an affiliate program. Returns the chat if found and the program is active
+type SearchChatAffiliateProgram struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Username of the chat
+	Username string `json:"username"`
+	// The referrer from an internalLinkTypeChatAffiliateProgram link
+	Referrer string `json:"referrer"`
+}
+
+func (t *SearchChatAffiliateProgram) Type() string {
+	return "searchChatAffiliateProgram"
+}
+
+func (t *SearchChatAffiliateProgram) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SearchChatAffiliateProgram) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SearchChatAffiliateProgram) MarshalJSON() ([]byte, error) {
+	type Alias SearchChatAffiliateProgram
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "searchChatAffiliateProgram",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SearchChatMembers Searches for a specified query in the first name, last name and usernames of the members of a specified chat. Requires administrator rights if the chat is a channel
+type SearchChatMembers struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Query to search for
+	Query string `json:"query"`
+	// The maximum number of users to be returned; up to 200
+	Limit int32 `json:"limit"`
+	// The type of users to search for; pass null to search among all chat members
+	Filter *ChatMembersFilter `json:"filter,omitempty"`
+}
+
+func (t *SearchChatMembers) Type() string {
+	return "searchChatMembers"
+}
+
+func (t *SearchChatMembers) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SearchChatMembers) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SearchChatMembers) MarshalJSON() ([]byte, error) {
+	type Alias SearchChatMembers
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "searchChatMembers",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SearchChatMessages Searches for messages with given words in the chat. Returns the results in reverse chronological order, i.e. in order of decreasing message_id. Cannot be used in secret chats with a non-empty query
+type SearchChatMessages struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat in which to search messages
+	ChatId int64 `json:"chat_id"`
+	// Pass topic identifier to search messages only in specific topic; pass null to search for messages in all topics
+	TopicId *MessageTopic `json:"topic_id,omitempty"`
+	// Query to search for
+	Query string `json:"query"`
+	// Identifier of the sender of messages to search for; pass null to search for messages from any sender. Not supported in secret chats
+	SenderId *MessageSender `json:"sender_id,omitempty"`
+	// Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
+	FromMessageId int64 `json:"from_message_id"`
+	// Specify 0 to get results from exactly the message from_message_id or a negative number to get the specified message and some newer messages
+	Offset int32 `json:"offset"`
+	// The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, then the limit must be greater than -offset.
+	Limit int32 `json:"limit"`
+	// Additional filter for messages to search; pass null to search for all messages
+	Filter *SearchMessagesFilter `json:"filter,omitempty"`
+}
+
+func (t *SearchChatMessages) Type() string {
+	return "searchChatMessages"
+}
+
+func (t *SearchChatMessages) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SearchChatMessages) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SearchChatMessages) MarshalJSON() ([]byte, error) {
+	type Alias SearchChatMessages
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "searchChatMessages",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SearchChatRecentLocationMessages Returns information about the recent locations of chat members that were sent to the chat. Returns up to 1 location message per user @chat_id Chat identifier @limit The maximum number of messages to be returned
+type SearchChatRecentLocationMessages struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+	//
+	Limit int32 `json:"limit"`
+}
+
+func (t *SearchChatRecentLocationMessages) Type() string {
+	return "searchChatRecentLocationMessages"
+}
+
+func (t *SearchChatRecentLocationMessages) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SearchChatRecentLocationMessages) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SearchChatRecentLocationMessages) MarshalJSON() ([]byte, error) {
+	type Alias SearchChatRecentLocationMessages
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "searchChatRecentLocationMessages",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SearchChats Searches for the specified query in the title and username of already known chats. This is an offline method. Returns chats in the order seen in the main chat list
+type SearchChats struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Query to search for. If the query is empty, returns up to 50 recently found chats
+	Query string `json:"query"`
+	// The maximum number of chats to be returned
+	Limit int32 `json:"limit"`
+}
+
+func (t *SearchChats) Type() string {
+	return "searchChats"
+}
+
+func (t *SearchChats) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SearchChats) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SearchChats) MarshalJSON() ([]byte, error) {
+	type Alias SearchChats
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "searchChats",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SearchChatsOnServer Searches for the specified query in the title and username of already known chats via request to the server. Returns chats in the order seen in the main chat list @query Query to search for @limit The maximum number of chats to be returned
+type SearchChatsOnServer struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Query string `json:"query"`
+	//
+	Limit int32 `json:"limit"`
+}
+
+func (t *SearchChatsOnServer) Type() string {
+	return "searchChatsOnServer"
+}
+
+func (t *SearchChatsOnServer) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SearchChatsOnServer) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SearchChatsOnServer) MarshalJSON() ([]byte, error) {
+	type Alias SearchChatsOnServer
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "searchChatsOnServer",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SearchContacts Searches for the specified query in the first names, last names and usernames of the known user contacts
+type SearchContacts struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Query to search for; may be empty to return all contacts
+	Query string `json:"query"`
+	// The maximum number of users to be returned
+	Limit int32 `json:"limit"`
+}
+
+func (t *SearchContacts) Type() string {
+	return "searchContacts"
+}
+
+func (t *SearchContacts) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SearchContacts) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SearchContacts) MarshalJSON() ([]byte, error) {
+	type Alias SearchContacts
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "searchContacts",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SearchEmojis Searches for emojis by keywords. Supported only if the file database is enabled. Order of results is unspecified
+type SearchEmojis struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Text to search for
+	Text string `json:"text"`
+	// List of possible IETF language tags of the user's input language; may be empty if unknown
+	InputLanguageCodes []string `json:"input_language_codes"`
+}
+
+func (t *SearchEmojis) Type() string {
+	return "searchEmojis"
+}
+
+func (t *SearchEmojis) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SearchEmojis) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SearchEmojis) MarshalJSON() ([]byte, error) {
+	type Alias SearchEmojis
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "searchEmojis",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SearchFileDownloads Searches for files in the file download list or recently downloaded files from the list
+type SearchFileDownloads struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Query to search for; may be empty to return all downloaded files
+	Query string `json:"query"`
+	// Pass true to search only for active downloads, including paused
+	OnlyActive bool `json:"only_active"`
+	// Pass true to search only for completed downloads
+	OnlyCompleted bool `json:"only_completed"`
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
+	// The maximum number of files to be returned
+	Limit int32 `json:"limit"`
+}
+
+func (t *SearchFileDownloads) Type() string {
+	return "searchFileDownloads"
+}
+
+func (t *SearchFileDownloads) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SearchFileDownloads) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SearchFileDownloads) MarshalJSON() ([]byte, error) {
+	type Alias SearchFileDownloads
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "searchFileDownloads",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SearchGiftsForResale Returns upgraded gifts that can be bought from other owners using sendResoldGift
+type SearchGiftsForResale struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the regular gift that was upgraded to a unique gift
+	GiftId string `json:"gift_id"`
+	// Order in which the results will be sorted
+	Order *GiftForResaleOrder `json:"order"`
+	// Attributes used to filter received gifts. If multiple attributes of the same type are specified, then all of them are allowed.
+	Attributes []*UpgradedGiftAttributeId `json:"attributes"`
+	// Offset of the first entry to return as received from the previous request with the same order and attributes; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
+	// The maximum number of gifts to return
+	Limit int32 `json:"limit"`
+}
+
+func (t *SearchGiftsForResale) Type() string {
+	return "searchGiftsForResale"
+}
+
+func (t *SearchGiftsForResale) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SearchGiftsForResale) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SearchGiftsForResale) MarshalJSON() ([]byte, error) {
+	type Alias SearchGiftsForResale
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "searchGiftsForResale",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SearchHashtags Searches for recently used hashtags by their prefix @prefix Hashtag prefix to search for @limit The maximum number of hashtags to be returned
+type SearchHashtags struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Prefix string `json:"prefix"`
+	//
+	Limit int32 `json:"limit"`
+}
+
+func (t *SearchHashtags) Type() string {
+	return "searchHashtags"
+}
+
+func (t *SearchHashtags) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SearchHashtags) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SearchHashtags) MarshalJSON() ([]byte, error) {
+	type Alias SearchHashtags
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "searchHashtags",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SearchInstalledStickerSets Searches for installed sticker sets by looking for specified query in their title and name @sticker_type Type of the sticker sets to search for @query Query to search for @limit The maximum number of sticker sets to return
+type SearchInstalledStickerSets struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	StickerType *StickerType `json:"sticker_type"`
+	//
+	Query string `json:"query"`
+	//
+	Limit int32 `json:"limit"`
+}
+
+func (t *SearchInstalledStickerSets) Type() string {
+	return "searchInstalledStickerSets"
+}
+
+func (t *SearchInstalledStickerSets) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SearchInstalledStickerSets) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SearchInstalledStickerSets) MarshalJSON() ([]byte, error) {
+	type Alias SearchInstalledStickerSets
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "searchInstalledStickerSets",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SearchMessages Searches for messages in all chats except secret chats. Returns the results in reverse chronological order (i.e., in order of decreasing (date, chat_id, message_id)).
+type SearchMessages struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat list in which to search messages; pass null to search in all chats regardless of their chat list. Only Main and Archive chat lists are supported
+	ChatList *ChatList `json:"chat_list,omitempty"`
+	// Query to search for
+	Query string `json:"query"`
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
+	// The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+	Limit int32 `json:"limit"`
+	// Additional filter for messages to search; pass null to search for all messages. Filters searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, searchMessagesFilterFailedToSend, and searchMessagesFilterPinned are unsupported in this function
+	Filter *SearchMessagesFilter `json:"filter,omitempty"`
+	// Additional filter for type of the chat of the searched messages; pass null to search for messages in all chats
+	ChatTypeFilter *SearchMessagesChatTypeFilter `json:"chat_type_filter,omitempty"`
+	// If not 0, the minimum date of the messages to return
+	MinDate int32 `json:"min_date"`
+	// If not 0, the maximum date of the messages to return
+	MaxDate int32 `json:"max_date"`
+}
+
+func (t *SearchMessages) Type() string {
+	return "searchMessages"
+}
+
+func (t *SearchMessages) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SearchMessages) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SearchMessages) MarshalJSON() ([]byte, error) {
+	type Alias SearchMessages
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "searchMessages",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SearchOutgoingDocumentMessages Searches for outgoing messages with content of the type messageDocument in all chats except secret chats. Returns the results in reverse chronological order
+type SearchOutgoingDocumentMessages struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Query to search for in document file name and message caption
+	Query string `json:"query"`
+	// The maximum number of messages to be returned; up to 100
+	Limit int32 `json:"limit"`
+}
+
+func (t *SearchOutgoingDocumentMessages) Type() string {
+	return "searchOutgoingDocumentMessages"
+}
+
+func (t *SearchOutgoingDocumentMessages) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SearchOutgoingDocumentMessages) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SearchOutgoingDocumentMessages) MarshalJSON() ([]byte, error) {
+	type Alias SearchOutgoingDocumentMessages
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "searchOutgoingDocumentMessages",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SearchPublicChat Searches a public chat by its username. Currently, only private chats, supergroups and channels can be public. Returns the chat if found; otherwise, an error is returned @username Username to be resolved
+type SearchPublicChat struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Username string `json:"username"`
+}
+
+func (t *SearchPublicChat) Type() string {
+	return "searchPublicChat"
+}
+
+func (t *SearchPublicChat) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SearchPublicChat) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SearchPublicChat) MarshalJSON() ([]byte, error) {
+	type Alias SearchPublicChat
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "searchPublicChat",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SearchPublicChats Searches public chats by looking for specified query in their username and title. Currently, only private chats, supergroups and channels can be public. Returns a meaningful number of results.
+type SearchPublicChats struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Query to search for
+	Query string `json:"query"`
+}
+
+func (t *SearchPublicChats) Type() string {
+	return "searchPublicChats"
+}
+
+func (t *SearchPublicChats) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SearchPublicChats) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SearchPublicChats) MarshalJSON() ([]byte, error) {
+	type Alias SearchPublicChats
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "searchPublicChats",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SearchPublicMessagesByTag Searches for public channel posts containing the given hashtag or cashtag. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+type SearchPublicMessagesByTag struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Hashtag or cashtag to search for
+	Tag string `json:"tag"`
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
+	// The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+	Limit int32 `json:"limit"`
+}
+
+func (t *SearchPublicMessagesByTag) Type() string {
+	return "searchPublicMessagesByTag"
+}
+
+func (t *SearchPublicMessagesByTag) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SearchPublicMessagesByTag) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SearchPublicMessagesByTag) MarshalJSON() ([]byte, error) {
+	type Alias SearchPublicMessagesByTag
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "searchPublicMessagesByTag",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SearchPublicPosts Searches for public channel posts using the given query. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+type SearchPublicPosts struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Query to search for
+	Query string `json:"query"`
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
+	// The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+	Limit int32 `json:"limit"`
+	// The amount of Telegram Stars the user agreed to pay for the search; pass 0 for free searches
+	StarCount int64 `json:"star_count"`
+}
+
+func (t *SearchPublicPosts) Type() string {
+	return "searchPublicPosts"
+}
+
+func (t *SearchPublicPosts) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SearchPublicPosts) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SearchPublicPosts) MarshalJSON() ([]byte, error) {
+	type Alias SearchPublicPosts
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "searchPublicPosts",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SearchPublicStoriesByLocation Searches for public stories by the given address location. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
+type SearchPublicStoriesByLocation struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Address of the location
+	Address *LocationAddress `json:"address"`
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
+	// The maximum number of stories to be returned; up to 100. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
+	Limit int32 `json:"limit"`
+}
+
+func (t *SearchPublicStoriesByLocation) Type() string {
+	return "searchPublicStoriesByLocation"
+}
+
+func (t *SearchPublicStoriesByLocation) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SearchPublicStoriesByLocation) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SearchPublicStoriesByLocation) MarshalJSON() ([]byte, error) {
+	type Alias SearchPublicStoriesByLocation
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "searchPublicStoriesByLocation",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SearchPublicStoriesByTag Searches for public stories containing the given hashtag or cashtag. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
+type SearchPublicStoriesByTag struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat that posted the stories to search for; pass 0 to search stories in all chats
+	StoryPosterChatId int64 `json:"story_poster_chat_id"`
+	// Hashtag or cashtag to search for
+	Tag string `json:"tag"`
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
+	// The maximum number of stories to be returned; up to 100. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
+	Limit int32 `json:"limit"`
+}
+
+func (t *SearchPublicStoriesByTag) Type() string {
+	return "searchPublicStoriesByTag"
+}
+
+func (t *SearchPublicStoriesByTag) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SearchPublicStoriesByTag) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SearchPublicStoriesByTag) MarshalJSON() ([]byte, error) {
+	type Alias SearchPublicStoriesByTag
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "searchPublicStoriesByTag",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SearchPublicStoriesByVenue Searches for public stories from the given venue. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
+type SearchPublicStoriesByVenue struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Provider of the venue
+	VenueProvider string `json:"venue_provider"`
+	// Identifier of the venue in the provider database
+	VenueId string `json:"venue_id"`
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
+	// The maximum number of stories to be returned; up to 100. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
+	Limit int32 `json:"limit"`
+}
+
+func (t *SearchPublicStoriesByVenue) Type() string {
+	return "searchPublicStoriesByVenue"
+}
+
+func (t *SearchPublicStoriesByVenue) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SearchPublicStoriesByVenue) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SearchPublicStoriesByVenue) MarshalJSON() ([]byte, error) {
+	type Alias SearchPublicStoriesByVenue
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "searchPublicStoriesByVenue",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SearchQuote Searches for a given quote in a text. Returns found quote start position in UTF-16 code units. Returns a 404 error if the quote is not found. Can be called synchronously
+type SearchQuote struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Text in which to search for the quote
+	Text *FormattedText `json:"text"`
+	// Quote to search for
+	Quote *FormattedText `json:"quote"`
+	// Approximate quote position in UTF-16 code units
+	QuotePosition int32 `json:"quote_position"`
+}
+
+func (t *SearchQuote) Type() string {
+	return "searchQuote"
+}
+
+func (t *SearchQuote) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SearchQuote) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SearchQuote) MarshalJSON() ([]byte, error) {
+	type Alias SearchQuote
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "searchQuote",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SearchRecentlyFoundChats Searches for the specified query in the title and username of up to 50 recently found chats. This is an offline method
+type SearchRecentlyFoundChats struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Query to search for
+	Query string `json:"query"`
+	// The maximum number of chats to be returned
+	Limit int32 `json:"limit"`
+}
+
+func (t *SearchRecentlyFoundChats) Type() string {
+	return "searchRecentlyFoundChats"
+}
+
+func (t *SearchRecentlyFoundChats) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SearchRecentlyFoundChats) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SearchRecentlyFoundChats) MarshalJSON() ([]byte, error) {
+	type Alias SearchRecentlyFoundChats
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "searchRecentlyFoundChats",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SearchSavedMessages Searches for messages tagged by the given reaction and with the given words in the Saved Messages chat; for Telegram Premium users only.
+type SearchSavedMessages struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// If not 0, only messages in the specified Saved Messages topic will be considered; pass 0 to consider all messages
+	SavedMessagesTopicId int64 `json:"saved_messages_topic_id"`
+	// Tag to search for; pass null to return all suitable messages
+	Tag *ReactionType `json:"tag,omitempty"`
+	// Query to search for
+	Query string `json:"query"`
+	// Identifier of the message starting from which messages must be fetched; use 0 to get results from the last message
+	FromMessageId int64 `json:"from_message_id"`
+	// Specify 0 to get results from exactly the message from_message_id or a negative number to get the specified message and some newer messages
+	Offset int32 `json:"offset"`
+	// The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, then the limit must be greater than -offset.
+	Limit int32 `json:"limit"`
+}
+
+func (t *SearchSavedMessages) Type() string {
+	return "searchSavedMessages"
+}
+
+func (t *SearchSavedMessages) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SearchSavedMessages) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SearchSavedMessages) MarshalJSON() ([]byte, error) {
+	type Alias SearchSavedMessages
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "searchSavedMessages",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SearchSecretMessages Searches for messages in secret chats. Returns the results in reverse chronological order. For optimal performance, the number of returned messages is chosen by TDLib
+type SearchSecretMessages struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat in which to search. Specify 0 to search in all secret chats
+	ChatId int64 `json:"chat_id"`
+	// Query to search for. If empty, searchChatMessages must be used instead
+	Query string `json:"query"`
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
+	// The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+	Limit int32 `json:"limit"`
+	// Additional filter for messages to search; pass null to search for all messages
+	Filter *SearchMessagesFilter `json:"filter,omitempty"`
+}
+
+func (t *SearchSecretMessages) Type() string {
+	return "searchSecretMessages"
+}
+
+func (t *SearchSecretMessages) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SearchSecretMessages) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SearchSecretMessages) MarshalJSON() ([]byte, error) {
+	type Alias SearchSecretMessages
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "searchSecretMessages",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SearchStickers Searches for stickers from public sticker sets that correspond to any of the given emoji
+type SearchStickers struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Type of the stickers to return
+	StickerType *StickerType `json:"sticker_type"`
+	// Space-separated list of emojis to search for
+	Emojis string `json:"emojis"`
+	// Query to search for; may be empty to search for emoji only
+	Query string `json:"query"`
+	// List of possible IETF language tags of the user's input language; may be empty if unknown
+	InputLanguageCodes []string `json:"input_language_codes"`
+	// The offset from which to return the stickers; must be non-negative
+	Offset int32 `json:"offset"`
+	// The maximum number of stickers to be returned; 0-100
+	Limit int32 `json:"limit"`
+}
+
+func (t *SearchStickers) Type() string {
+	return "searchStickers"
+}
+
+func (t *SearchStickers) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SearchStickers) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SearchStickers) MarshalJSON() ([]byte, error) {
+	type Alias SearchStickers
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "searchStickers",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SearchStickerSet Searches for a sticker set by its name @name Name of the sticker set @ignore_cache Pass true to ignore local cache of sticker sets and always send a network request
+type SearchStickerSet struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Name string `json:"name"`
+	//
+	IgnoreCache bool `json:"ignore_cache"`
+}
+
+func (t *SearchStickerSet) Type() string {
+	return "searchStickerSet"
+}
+
+func (t *SearchStickerSet) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SearchStickerSet) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SearchStickerSet) MarshalJSON() ([]byte, error) {
+	type Alias SearchStickerSet
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "searchStickerSet",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SearchStickerSets Searches for sticker sets by looking for specified query in their title and name. Excludes installed sticker sets from the results
+type SearchStickerSets struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Type of the sticker sets to return
+	StickerType *StickerType `json:"sticker_type"`
+	// Query to search for
+	Query string `json:"query"`
+}
+
+func (t *SearchStickerSets) Type() string {
+	return "searchStickerSets"
+}
+
+func (t *SearchStickerSets) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SearchStickerSets) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SearchStickerSets) MarshalJSON() ([]byte, error) {
+	type Alias SearchStickerSets
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "searchStickerSets",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SearchStringsByPrefix Searches specified query by word prefixes in the provided strings. Returns 0-based positions of strings that matched. Can be called synchronously
+type SearchStringsByPrefix struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The strings to search in for the query
+	Strings []string `json:"strings"`
+	// Query to search for
+	Query string `json:"query"`
+	// The maximum number of objects to return
+	Limit int32 `json:"limit"`
+	// Pass true to receive no results for an empty query
+	ReturnNoneForEmptyQuery bool `json:"return_none_for_empty_query"`
+}
+
+func (t *SearchStringsByPrefix) Type() string {
+	return "searchStringsByPrefix"
+}
+
+func (t *SearchStringsByPrefix) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SearchStringsByPrefix) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SearchStringsByPrefix) MarshalJSON() ([]byte, error) {
+	type Alias SearchStringsByPrefix
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "searchStringsByPrefix",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SearchUserByPhoneNumber Searches a user by their phone number. Returns a 404 error if the user can't be found
+type SearchUserByPhoneNumber struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Phone number to search for
+	PhoneNumber string `json:"phone_number"`
+	// Pass true to get only locally available information without sending network requests
+	OnlyLocal bool `json:"only_local"`
+}
+
+func (t *SearchUserByPhoneNumber) Type() string {
+	return "searchUserByPhoneNumber"
+}
+
+func (t *SearchUserByPhoneNumber) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SearchUserByPhoneNumber) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SearchUserByPhoneNumber) MarshalJSON() ([]byte, error) {
+	type Alias SearchUserByPhoneNumber
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "searchUserByPhoneNumber",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SearchUserByToken Searches a user by a token from the user's link @token Token to search for
+type SearchUserByToken struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Token string `json:"token"`
+}
+
+func (t *SearchUserByToken) Type() string {
+	return "searchUserByToken"
+}
+
+func (t *SearchUserByToken) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SearchUserByToken) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SearchUserByToken) MarshalJSON() ([]byte, error) {
+	type Alias SearchUserByToken
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "searchUserByToken",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SearchWebApp Returns information about a Web App by its short name. Returns a 404 error if the Web App is not found
+type SearchWebApp struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the target bot
+	BotUserId int64 `json:"bot_user_id"`
+	// Short name of the Web App
+	WebAppShortName string `json:"web_app_short_name"`
+}
+
+func (t *SearchWebApp) Type() string {
+	return "searchWebApp"
+}
+
+func (t *SearchWebApp) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SearchWebApp) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SearchWebApp) MarshalJSON() ([]byte, error) {
+	type Alias SearchWebApp
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "searchWebApp",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SellGift Sells a gift for Telegram Stars; requires owner privileges for gifts owned by a chat
+type SellGift struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Unique identifier of business connection on behalf of which to send the request; for bots only
+	BusinessConnectionId string `json:"business_connection_id"`
+	// Identifier of the gift
+	ReceivedGiftId string `json:"received_gift_id"`
+}
+
+func (t *SellGift) Type() string {
+	return "sellGift"
+}
+
+func (t *SellGift) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SellGift) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SellGift) MarshalJSON() ([]byte, error) {
+	type Alias SellGift
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "sellGift",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SendAuthenticationFirebaseSms Sends Firebase Authentication SMS to the phone number of the user. Works only when the current authorization state is authorizationStateWaitCode and the server returned code of the type authenticationCodeTypeFirebaseAndroid or authenticationCodeTypeFirebaseIos
+type SendAuthenticationFirebaseSms struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Play Integrity API or SafetyNet Attestation API token for the Android application, or secret from push notification for the iOS application
+	Token string `json:"token"`
+}
+
+func (t *SendAuthenticationFirebaseSms) Type() string {
+	return "sendAuthenticationFirebaseSms"
+}
+
+func (t *SendAuthenticationFirebaseSms) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SendAuthenticationFirebaseSms) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SendAuthenticationFirebaseSms) MarshalJSON() ([]byte, error) {
+	type Alias SendAuthenticationFirebaseSms
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "sendAuthenticationFirebaseSms",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SendBotStartMessage Invites a bot to a chat (if it is not yet a member) and sends it the /start command; requires can_invite_users member right. Bots can't be invited to a private chat other than the chat with the bot.
+type SendBotStartMessage struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the bot
+	BotUserId int64 `json:"bot_user_id"`
+	// Identifier of the target chat
+	ChatId int64 `json:"chat_id"`
+	// A hidden parameter sent to the bot for deep linking purposes (https://core.telegram.org/bots#deep-linking)
+	Parameter string `json:"parameter"`
+}
+
+func (t *SendBotStartMessage) Type() string {
+	return "sendBotStartMessage"
+}
+
+func (t *SendBotStartMessage) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SendBotStartMessage) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SendBotStartMessage) MarshalJSON() ([]byte, error) {
+	type Alias SendBotStartMessage
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "sendBotStartMessage",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SendBusinessMessage Sends a message on behalf of a business account; for bots only. Returns the message after it was sent
+type SendBusinessMessage struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Unique identifier of business connection on behalf of which to send the request
+	BusinessConnectionId string `json:"business_connection_id"`
+	// Target chat
+	ChatId int64 `json:"chat_id"`
+	// Information about the message to be replied; pass null if none
+	ReplyTo *InputMessageReplyTo `json:"reply_to,omitempty"`
+	// Pass true to disable notification for the message
+	DisableNotification bool `json:"disable_notification"`
+	// Pass true if the content of the message must be protected from forwarding and saving
+	ProtectContent bool `json:"protect_content"`
+	// Identifier of the effect to apply to the message
+	EffectId string `json:"effect_id"`
+	// Markup for replying to the message; pass null if none
+	ReplyMarkup *ReplyMarkup `json:"reply_markup,omitempty"`
+	// The content of the message to be sent
+	InputMessageContent *InputMessageContent `json:"input_message_content"`
+}
+
+func (t *SendBusinessMessage) Type() string {
+	return "sendBusinessMessage"
+}
+
+func (t *SendBusinessMessage) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SendBusinessMessage) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SendBusinessMessage) MarshalJSON() ([]byte, error) {
+	type Alias SendBusinessMessage
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "sendBusinessMessage",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SendBusinessMessageAlbum Sends 2-10 messages grouped together into an album on behalf of a business account; for bots only. Currently, only audio, document, photo and video messages can be grouped into an album.
+type SendBusinessMessageAlbum struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Unique identifier of business connection on behalf of which to send the request
+	BusinessConnectionId string `json:"business_connection_id"`
+	// Target chat
+	ChatId int64 `json:"chat_id"`
+	// Information about the message to be replied; pass null if none
+	ReplyTo *InputMessageReplyTo `json:"reply_to,omitempty"`
+	// Pass true to disable notification for the message
+	DisableNotification bool `json:"disable_notification"`
+	// Pass true if the content of the message must be protected from forwarding and saving
+	ProtectContent bool `json:"protect_content"`
+	// Identifier of the effect to apply to the message
+	EffectId string `json:"effect_id"`
+	// Contents of messages to be sent. At most 10 messages can be added to an album. All messages must have the same value of show_caption_above_media
+	InputMessageContents []*InputMessageContent `json:"input_message_contents"`
+}
+
+func (t *SendBusinessMessageAlbum) Type() string {
+	return "sendBusinessMessageAlbum"
+}
+
+func (t *SendBusinessMessageAlbum) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SendBusinessMessageAlbum) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SendBusinessMessageAlbum) MarshalJSON() ([]byte, error) {
+	type Alias SendBusinessMessageAlbum
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "sendBusinessMessageAlbum",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SendCallDebugInformation Sends debug information for a call to Telegram servers @call_id Call identifier @debug_information Debug information in application-specific format
+type SendCallDebugInformation struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	CallId int32 `json:"call_id"`
+	//
+	DebugInformation string `json:"debug_information"`
+}
+
+func (t *SendCallDebugInformation) Type() string {
+	return "sendCallDebugInformation"
+}
+
+func (t *SendCallDebugInformation) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SendCallDebugInformation) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SendCallDebugInformation) MarshalJSON() ([]byte, error) {
+	type Alias SendCallDebugInformation
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "sendCallDebugInformation",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SendCallLog Sends log file for a call to Telegram servers @call_id Call identifier @log_file Call log file. Only inputFileLocal and inputFileGenerated are supported
+type SendCallLog struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	CallId int32 `json:"call_id"`
+	//
+	LogFile *InputFile `json:"log_file"`
+}
+
+func (t *SendCallLog) Type() string {
+	return "sendCallLog"
+}
+
+func (t *SendCallLog) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SendCallLog) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SendCallLog) MarshalJSON() ([]byte, error) {
+	type Alias SendCallLog
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "sendCallLog",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SendCallRating Sends a call rating
+type SendCallRating struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Call identifier
+	CallId int32 `json:"call_id"`
+	// Call rating; 1-5
+	Rating int32 `json:"rating"`
+	// An optional user comment if the rating is less than 5
+	Comment string `json:"comment"`
+	// List of the exact types of problems with the call, specified by the user
+	Problems []*CallProblem `json:"problems"`
+}
+
+func (t *SendCallRating) Type() string {
+	return "sendCallRating"
+}
+
+func (t *SendCallRating) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SendCallRating) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SendCallRating) MarshalJSON() ([]byte, error) {
+	type Alias SendCallRating
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "sendCallRating",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SendCallSignalingData Sends call signaling data @call_id Call identifier @data The data
+type SendCallSignalingData struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	CallId int32 `json:"call_id"`
+	//
+	Data string `json:"data"`
+}
+
+func (t *SendCallSignalingData) Type() string {
+	return "sendCallSignalingData"
+}
+
+func (t *SendCallSignalingData) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SendCallSignalingData) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SendCallSignalingData) MarshalJSON() ([]byte, error) {
+	type Alias SendCallSignalingData
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "sendCallSignalingData",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SendChatAction Sends a notification about user activity in a chat
+type SendChatAction struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the topic in which the action is performed
+	TopicId *MessageTopic `json:"topic_id"`
+	// Unique identifier of business connection on behalf of which to send the request; for bots only
+	BusinessConnectionId string `json:"business_connection_id"`
+	// The action description; pass null to cancel the currently active action
+	Action *ChatAction `json:"action,omitempty"`
+}
+
+func (t *SendChatAction) Type() string {
+	return "sendChatAction"
+}
+
+func (t *SendChatAction) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SendChatAction) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SendChatAction) MarshalJSON() ([]byte, error) {
+	type Alias SendChatAction
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "sendChatAction",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SendCustomRequest Sends a custom request; for bots only @method The method name @parameters JSON-serialized method parameters
+type SendCustomRequest struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Method string `json:"method"`
+	//
+	Parameters string `json:"parameters"`
+}
+
+func (t *SendCustomRequest) Type() string {
+	return "sendCustomRequest"
+}
+
+func (t *SendCustomRequest) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SendCustomRequest) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SendCustomRequest) MarshalJSON() ([]byte, error) {
+	type Alias SendCustomRequest
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "sendCustomRequest",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SendEmailAddressVerificationCode Sends a code to verify an email address to be added to a user's Telegram Passport @email_address Email address
+type SendEmailAddressVerificationCode struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	EmailAddress string `json:"email_address"`
+}
+
+func (t *SendEmailAddressVerificationCode) Type() string {
+	return "sendEmailAddressVerificationCode"
+}
+
+func (t *SendEmailAddressVerificationCode) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SendEmailAddressVerificationCode) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SendEmailAddressVerificationCode) MarshalJSON() ([]byte, error) {
+	type Alias SendEmailAddressVerificationCode
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "sendEmailAddressVerificationCode",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SendGift Sends a gift to another user or channel chat. May return an error with a message "STARGIFT_USAGE_LIMITED" if the gift was sold out
+type SendGift struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the gift to send
+	GiftId string `json:"gift_id"`
+	// Identifier of the user or the channel chat that will receive the gift; limited gifts can't be sent to channel chats
+	OwnerId *MessageSender `json:"owner_id"`
+	// Text to show along with the gift; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed.
+	Text *FormattedText `json:"text"`
+	// Pass true to show gift text and sender only to the gift receiver; otherwise, everyone will be able to see them
+	IsPrivate bool `json:"is_private"`
+	// Pass true to additionally pay for the gift upgrade and allow the receiver to upgrade it for free
+	PayForUpgrade bool `json:"pay_for_upgrade"`
+}
+
+func (t *SendGift) Type() string {
+	return "sendGift"
+}
+
+func (t *SendGift) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SendGift) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SendGift) MarshalJSON() ([]byte, error) {
+	type Alias SendGift
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "sendGift",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SendGiftPurchaseOffer Sends an offer to purchase an upgraded gift
+type SendGiftPurchaseOffer struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the user or the channel chat that currently owns the gift and will receive the offer
+	OwnerId *MessageSender `json:"owner_id"`
+	// Name of the upgraded gift
+	GiftName string `json:"gift_name"`
+	// The price that the user agreed to pay for the gift
+	Price *GiftResalePrice `json:"price"`
+	// Duration of the offer, in seconds; must be one of 21600, 43200, 86400, 129600, 172800, or 259200. Can also be 120 if Telegram test environment is used
+	Duration int32 `json:"duration"`
+	// The number of Telegram Stars the user agreed to pay additionally for sending of the offer message to the current gift owner; pass userFullInfo.outgoing_paid_message_star_count for users and 0 otherwise
+	PaidMessageStarCount int64 `json:"paid_message_star_count"`
+}
+
+func (t *SendGiftPurchaseOffer) Type() string {
+	return "sendGiftPurchaseOffer"
+}
+
+func (t *SendGiftPurchaseOffer) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SendGiftPurchaseOffer) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SendGiftPurchaseOffer) MarshalJSON() ([]byte, error) {
+	type Alias SendGiftPurchaseOffer
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "sendGiftPurchaseOffer",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SendGroupCallMessage Sends a message to other participants of a group call. Requires groupCall.can_send_messages right
+type SendGroupCallMessage struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Group call identifier
+	GroupCallId int32 `json:"group_call_id"`
+	// Text of the message to send; 1-getOption("group_call_message_text_length_max") characters for non-live-stories; see updateGroupCallMessageLevels for live story restrictions,
+	Text *FormattedText `json:"text"`
+	// The number of Telegram Stars the user agreed to pay to send the message; for live stories only; 0-getOption("paid_group_call_message_star_count_max").
+	PaidMessageStarCount int64 `json:"paid_message_star_count"`
+}
+
+func (t *SendGroupCallMessage) Type() string {
+	return "sendGroupCallMessage"
+}
+
+func (t *SendGroupCallMessage) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SendGroupCallMessage) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SendGroupCallMessage) MarshalJSON() ([]byte, error) {
+	type Alias SendGroupCallMessage
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "sendGroupCallMessage",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SendInlineQueryResultMessage Sends the result of an inline query as a message. Returns the sent message. Always clears a chat draft message
+type SendInlineQueryResultMessage struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Target chat
+	ChatId int64 `json:"chat_id"`
+	// Topic in which the message will be sent; pass null if none
+	TopicId *MessageTopic `json:"topic_id,omitempty"`
+	// Information about the message or story to be replied; pass null if none
+	ReplyTo *InputMessageReplyTo `json:"reply_to,omitempty"`
+	// Options to be used to send the message; pass null to use default options
+	Options *MessageSendOptions `json:"options,omitempty"`
+	// Identifier of the inline query
+	QueryId string `json:"query_id"`
+	// Identifier of the inline query result
+	ResultId string `json:"result_id"`
+	// Pass true to hide the bot, via which the message is sent. Can be used only for bots getOption("animation_search_bot_username"), getOption("photo_search_bot_username"), and getOption("venue_search_bot_username")
+	HideViaBot bool `json:"hide_via_bot"`
+}
+
+func (t *SendInlineQueryResultMessage) Type() string {
+	return "sendInlineQueryResultMessage"
+}
+
+func (t *SendInlineQueryResultMessage) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SendInlineQueryResultMessage) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SendInlineQueryResultMessage) MarshalJSON() ([]byte, error) {
+	type Alias SendInlineQueryResultMessage
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "sendInlineQueryResultMessage",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SendMessage Sends a message. Returns the sent message
+type SendMessage struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Target chat
+	ChatId int64 `json:"chat_id"`
+	// Topic in which the message will be sent; pass null if none
+	TopicId *MessageTopic `json:"topic_id,omitempty"`
+	// Information about the message or story to be replied; pass null if none
+	ReplyTo *InputMessageReplyTo `json:"reply_to,omitempty"`
+	// Options to be used to send the message; pass null to use default options
+	Options *MessageSendOptions `json:"options,omitempty"`
+	// Markup for replying to the message; pass null if none; for bots only
+	ReplyMarkup *ReplyMarkup `json:"reply_markup,omitempty"`
+	// The content of the message to be sent
+	InputMessageContent *InputMessageContent `json:"input_message_content"`
+}
+
+func (t *SendMessage) Type() string {
+	return "sendMessage"
+}
+
+func (t *SendMessage) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SendMessage) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SendMessage) MarshalJSON() ([]byte, error) {
+	type Alias SendMessage
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "sendMessage",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SendMessageAlbum Sends 2-10 messages grouped together into an album. Currently, only audio, document, photo and video messages can be grouped into an album.
+type SendMessageAlbum struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Target chat
+	ChatId int64 `json:"chat_id"`
+	// Topic in which the messages will be sent; pass null if none
+	TopicId *MessageTopic `json:"topic_id,omitempty"`
+	// Information about the message or story to be replied; pass null if none
+	ReplyTo *InputMessageReplyTo `json:"reply_to,omitempty"`
+	// Options to be used to send the messages; pass null to use default options
+	Options *MessageSendOptions `json:"options,omitempty"`
+	// Contents of messages to be sent. At most 10 messages can be added to an album. All messages must have the same value of show_caption_above_media
+	InputMessageContents []*InputMessageContent `json:"input_message_contents"`
+}
+
+func (t *SendMessageAlbum) Type() string {
+	return "sendMessageAlbum"
+}
+
+func (t *SendMessageAlbum) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SendMessageAlbum) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SendMessageAlbum) MarshalJSON() ([]byte, error) {
+	type Alias SendMessageAlbum
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "sendMessageAlbum",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SendPassportAuthorizationForm Sends a Telegram Passport authorization form, effectively sharing data with the service. This method must be called after getPassportAuthorizationFormAvailableElements if some previously available elements are going to be reused
+type SendPassportAuthorizationForm struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Authorization form identifier
+	AuthorizationFormId int32 `json:"authorization_form_id"`
+	// Types of Telegram Passport elements chosen by user to complete the authorization form
+	Types []*PassportElementType `json:"types"`
+}
+
+func (t *SendPassportAuthorizationForm) Type() string {
+	return "sendPassportAuthorizationForm"
+}
+
+func (t *SendPassportAuthorizationForm) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SendPassportAuthorizationForm) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SendPassportAuthorizationForm) MarshalJSON() ([]byte, error) {
+	type Alias SendPassportAuthorizationForm
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "sendPassportAuthorizationForm",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SendPaymentForm Sends a filled-out payment form to the bot for final verification
+type SendPaymentForm struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The invoice
+	InputInvoice *InputInvoice `json:"input_invoice"`
+	// Payment form identifier returned by getPaymentForm
+	PaymentFormId string `json:"payment_form_id"`
+	// Identifier returned by validateOrderInfo, or an empty string
+	OrderInfoId string `json:"order_info_id"`
+	// Identifier of a chosen shipping option, if applicable
+	ShippingOptionId string `json:"shipping_option_id"`
+	// The credentials chosen by user for payment; pass null for a payment in Telegram Stars
+	Credentials *InputCredentials `json:"credentials,omitempty"`
+	// Chosen by the user amount of tip in the smallest units of the currency
+	TipAmount int64 `json:"tip_amount"`
+}
+
+func (t *SendPaymentForm) Type() string {
+	return "sendPaymentForm"
+}
+
+func (t *SendPaymentForm) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SendPaymentForm) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SendPaymentForm) MarshalJSON() ([]byte, error) {
+	type Alias SendPaymentForm
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "sendPaymentForm",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SendPhoneNumberCode Sends a code to the specified phone number. Aborts previous phone number verification if there was one. On success, returns information about the sent code
+type SendPhoneNumberCode struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The phone number, in international format
+	PhoneNumber string `json:"phone_number"`
+	// Settings for the authentication of the user's phone number; pass null to use default settings
+	Settings *PhoneNumberAuthenticationSettings `json:"settings,omitempty"`
+	// Type of the request for which the code is sent
+	TypeField *PhoneNumberCodeType `json:"type"`
+}
+
+func (t *SendPhoneNumberCode) Type() string {
+	return "sendPhoneNumberCode"
+}
+
+func (t *SendPhoneNumberCode) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SendPhoneNumberCode) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SendPhoneNumberCode) MarshalJSON() ([]byte, error) {
+	type Alias SendPhoneNumberCode
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "sendPhoneNumberCode",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SendPhoneNumberFirebaseSms Sends Firebase Authentication SMS to the specified phone number. Works only when received a code of the type authenticationCodeTypeFirebaseAndroid or authenticationCodeTypeFirebaseIos
+type SendPhoneNumberFirebaseSms struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Play Integrity API or SafetyNet Attestation API token for the Android application, or secret from push notification for the iOS application
+	Token string `json:"token"`
+}
+
+func (t *SendPhoneNumberFirebaseSms) Type() string {
+	return "sendPhoneNumberFirebaseSms"
+}
+
+func (t *SendPhoneNumberFirebaseSms) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SendPhoneNumberFirebaseSms) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SendPhoneNumberFirebaseSms) MarshalJSON() ([]byte, error) {
+	type Alias SendPhoneNumberFirebaseSms
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "sendPhoneNumberFirebaseSms",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SendQuickReplyShortcutMessages Sends messages from a quick reply shortcut. Requires Telegram Business subscription. Can't be used to send paid messages
+type SendQuickReplyShortcutMessages struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat to which to send messages. The chat must be a private chat with a regular user
+	ChatId int64 `json:"chat_id"`
+	// Unique identifier of the quick reply shortcut
+	ShortcutId int32 `json:"shortcut_id"`
+	// Non-persistent identifier, which will be returned back in messageSendingStatePending object and can be used to match sent messages and corresponding updateNewMessage updates
+	SendingId int32 `json:"sending_id"`
+}
+
+func (t *SendQuickReplyShortcutMessages) Type() string {
+	return "sendQuickReplyShortcutMessages"
+}
+
+func (t *SendQuickReplyShortcutMessages) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SendQuickReplyShortcutMessages) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SendQuickReplyShortcutMessages) MarshalJSON() ([]byte, error) {
+	type Alias SendQuickReplyShortcutMessages
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "sendQuickReplyShortcutMessages",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SendResoldGift Sends an upgraded gift that is available for resale to another user or channel chat; gifts already owned by the current user
+type SendResoldGift struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Name of the upgraded gift to send
+	GiftName string `json:"gift_name"`
+	// Identifier of the user or the channel chat that will receive the gift
+	OwnerId *MessageSender `json:"owner_id"`
+	// The price that the user agreed to pay for the gift
+	Price *GiftResalePrice `json:"price"`
+}
+
+func (t *SendResoldGift) Type() string {
+	return "sendResoldGift"
+}
+
+func (t *SendResoldGift) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SendResoldGift) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SendResoldGift) MarshalJSON() ([]byte, error) {
+	type Alias SendResoldGift
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "sendResoldGift",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SendTextMessageDraft Sends a draft for a being generated text message; for bots only
+type SendTextMessageDraft struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// The forum topic identifier in which the message will be sent; pass 0 if none
+	ForumTopicId int32 `json:"forum_topic_id"`
+	// Unique identifier of the draft
+	DraftId string `json:"draft_id"`
+	// Draft text of the message
+	Text *FormattedText `json:"text"`
+}
+
+func (t *SendTextMessageDraft) Type() string {
+	return "sendTextMessageDraft"
+}
+
+func (t *SendTextMessageDraft) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SendTextMessageDraft) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SendTextMessageDraft) MarshalJSON() ([]byte, error) {
+	type Alias SendTextMessageDraft
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "sendTextMessageDraft",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SendWebAppCustomRequest Sends a custom request from a Web App
+type SendWebAppCustomRequest struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the bot
+	BotUserId int64 `json:"bot_user_id"`
+	// The method name
+	Method string `json:"method"`
+	// JSON-serialized method parameters
+	Parameters string `json:"parameters"`
+}
+
+func (t *SendWebAppCustomRequest) Type() string {
+	return "sendWebAppCustomRequest"
+}
+
+func (t *SendWebAppCustomRequest) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SendWebAppCustomRequest) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SendWebAppCustomRequest) MarshalJSON() ([]byte, error) {
+	type Alias SendWebAppCustomRequest
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "sendWebAppCustomRequest",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SendWebAppData Sends data received from a keyboardButtonTypeWebApp Web App to a bot
+type SendWebAppData struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the target bot
+	BotUserId int64 `json:"bot_user_id"`
+	// Text of the keyboardButtonTypeWebApp button, which opened the Web App
+	ButtonText string `json:"button_text"`
+	// The data
+	Data string `json:"data"`
+}
+
+func (t *SendWebAppData) Type() string {
+	return "sendWebAppData"
+}
+
+func (t *SendWebAppData) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SendWebAppData) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SendWebAppData) MarshalJSON() ([]byte, error) {
+	type Alias SendWebAppData
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "sendWebAppData",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetAccentColor Changes accent color and background custom emoji for the current user; for Telegram Premium users only
+type SetAccentColor struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the accent color to use
+	AccentColorId int32 `json:"accent_color_id"`
+	// Identifier of a custom emoji to be shown on the reply header and link preview background; 0 if none
+	BackgroundCustomEmojiId string `json:"background_custom_emoji_id"`
+}
+
+func (t *SetAccentColor) Type() string {
+	return "setAccentColor"
+}
+
+func (t *SetAccentColor) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetAccentColor) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetAccentColor) MarshalJSON() ([]byte, error) {
+	type Alias SetAccentColor
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setAccentColor",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetAccountTtl Changes the period of inactivity after which the account of the current user will automatically be deleted @ttl New account TTL
+type SetAccountTtl struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Ttl *AccountTtl `json:"ttl"`
+}
+
+func (t *SetAccountTtl) Type() string {
+	return "setAccountTtl"
+}
+
+func (t *SetAccountTtl) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetAccountTtl) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetAccountTtl) MarshalJSON() ([]byte, error) {
+	type Alias SetAccountTtl
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setAccountTtl",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetAlarm Succeeds after a specified amount of time has passed. Can be called before initialization @seconds Number of seconds before the function returns
+type SetAlarm struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Seconds float64 `json:"seconds"`
+}
+
+func (t *SetAlarm) Type() string {
+	return "setAlarm"
+}
+
+func (t *SetAlarm) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetAlarm) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetAlarm) MarshalJSON() ([]byte, error) {
+	type Alias SetAlarm
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setAlarm",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetApplicationVerificationToken Informs TDLib that application or reCAPTCHA verification has been completed. Can be called before authorization
+type SetApplicationVerificationToken struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Unique identifier for the verification process as received from updateApplicationVerificationRequired or updateApplicationRecaptchaVerificationRequired
+	VerificationId int64 `json:"verification_id"`
+	// Play Integrity API token for the Android application, or secret from push notification for the iOS application for application verification, or reCAPTCHA token for reCAPTCHA verifications;
+	Token string `json:"token"`
+}
+
+func (t *SetApplicationVerificationToken) Type() string {
+	return "setApplicationVerificationToken"
+}
+
+func (t *SetApplicationVerificationToken) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetApplicationVerificationToken) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetApplicationVerificationToken) MarshalJSON() ([]byte, error) {
+	type Alias SetApplicationVerificationToken
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setApplicationVerificationToken",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetArchiveChatListSettings Changes settings for automatic moving of chats to and from the Archive chat lists @settings New settings
+type SetArchiveChatListSettings struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Settings *ArchiveChatListSettings `json:"settings"`
+}
+
+func (t *SetArchiveChatListSettings) Type() string {
+	return "setArchiveChatListSettings"
+}
+
+func (t *SetArchiveChatListSettings) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetArchiveChatListSettings) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetArchiveChatListSettings) MarshalJSON() ([]byte, error) {
+	type Alias SetArchiveChatListSettings
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setArchiveChatListSettings",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetAuthenticationEmailAddress Sets the email address of the user and sends an authentication code to the email address. Works only when the current authorization state is authorizationStateWaitEmailAddress @email_address The email address of the user
+type SetAuthenticationEmailAddress struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	EmailAddress string `json:"email_address"`
+}
+
+func (t *SetAuthenticationEmailAddress) Type() string {
+	return "setAuthenticationEmailAddress"
+}
+
+func (t *SetAuthenticationEmailAddress) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetAuthenticationEmailAddress) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetAuthenticationEmailAddress) MarshalJSON() ([]byte, error) {
+	type Alias SetAuthenticationEmailAddress
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setAuthenticationEmailAddress",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetAuthenticationPhoneNumber Sets the phone number of the user and sends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitPhoneNumber,
+type SetAuthenticationPhoneNumber struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The phone number of the user, in international format
+	PhoneNumber string `json:"phone_number"`
+	// Settings for the authentication of the user's phone number; pass null to use default settings
+	Settings *PhoneNumberAuthenticationSettings `json:"settings,omitempty"`
+}
+
+func (t *SetAuthenticationPhoneNumber) Type() string {
+	return "setAuthenticationPhoneNumber"
+}
+
+func (t *SetAuthenticationPhoneNumber) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetAuthenticationPhoneNumber) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetAuthenticationPhoneNumber) MarshalJSON() ([]byte, error) {
+	type Alias SetAuthenticationPhoneNumber
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setAuthenticationPhoneNumber",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetAuthenticationPremiumPurchaseTransaction Informs server about an in-store purchase of Telegram Premium before authorization. Works only when the current authorization state is authorizationStateWaitPremiumPurchase
+type SetAuthenticationPremiumPurchaseTransaction struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Information about the transaction
+	Transaction *StoreTransaction `json:"transaction"`
+	// Pass true if this is a restore of a Telegram Premium purchase; only for App Store
+	IsRestore bool `json:"is_restore"`
+	// ISO 4217 currency code of the payment currency
+	Currency string `json:"currency"`
+	// Paid amount, in the smallest units of the currency
+	Amount int64 `json:"amount"`
+}
+
+func (t *SetAuthenticationPremiumPurchaseTransaction) Type() string {
+	return "setAuthenticationPremiumPurchaseTransaction"
+}
+
+func (t *SetAuthenticationPremiumPurchaseTransaction) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetAuthenticationPremiumPurchaseTransaction) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetAuthenticationPremiumPurchaseTransaction) MarshalJSON() ([]byte, error) {
+	type Alias SetAuthenticationPremiumPurchaseTransaction
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setAuthenticationPremiumPurchaseTransaction",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetAutoDownloadSettings Sets auto-download settings @settings New user auto-download settings @type Type of the network for which the new settings are relevant
+type SetAutoDownloadSettings struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Settings *AutoDownloadSettings `json:"settings"`
+	//
+	TypeField *NetworkType `json:"type"`
+}
+
+func (t *SetAutoDownloadSettings) Type() string {
+	return "setAutoDownloadSettings"
+}
+
+func (t *SetAutoDownloadSettings) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetAutoDownloadSettings) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetAutoDownloadSettings) MarshalJSON() ([]byte, error) {
+	type Alias SetAutoDownloadSettings
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setAutoDownloadSettings",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetAutosaveSettings Sets autosave settings for the given scope. The method is guaranteed to work only after at least one call to getAutosaveSettings @scope Autosave settings scope @settings New autosave settings for the scope; pass null to set autosave settings to default
+type SetAutosaveSettings struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Scope *AutosaveSettingsScope `json:"scope"`
+	//
+	Settings *ScopeAutosaveSettings `json:"settings"`
+}
+
+func (t *SetAutosaveSettings) Type() string {
+	return "setAutosaveSettings"
+}
+
+func (t *SetAutosaveSettings) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetAutosaveSettings) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetAutosaveSettings) MarshalJSON() ([]byte, error) {
+	type Alias SetAutosaveSettings
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setAutosaveSettings",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetBio Changes the bio of the current user @bio The new value of the user bio; 0-getOption("bio_length_max") characters without line feeds
+type SetBio struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Bio string `json:"bio"`
+}
+
+func (t *SetBio) Type() string {
+	return "setBio"
+}
+
+func (t *SetBio) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetBio) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetBio) MarshalJSON() ([]byte, error) {
+	type Alias SetBio
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setBio",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetBirthdate Changes the birthdate of the current user @birthdate The new value of the current user's birthdate; pass null to remove the birthdate
+type SetBirthdate struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Birthdate *Birthdate `json:"birthdate"`
+}
+
+func (t *SetBirthdate) Type() string {
+	return "setBirthdate"
+}
+
+func (t *SetBirthdate) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetBirthdate) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetBirthdate) MarshalJSON() ([]byte, error) {
+	type Alias SetBirthdate
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setBirthdate",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetBotInfoDescription Sets the text shown in the chat with a bot if the chat is empty. Can be called only if userTypeBot.can_be_edited == true
+type SetBotInfoDescription struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the target bot
+	BotUserId int64 `json:"bot_user_id"`
+	// A two-letter ISO 639-1 language code. If empty, the description will be shown to all users for whose languages there is no dedicated description
+	LanguageCode string `json:"language_code"`
+	//
+	Description string `json:"description"`
+}
+
+func (t *SetBotInfoDescription) Type() string {
+	return "setBotInfoDescription"
+}
+
+func (t *SetBotInfoDescription) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetBotInfoDescription) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetBotInfoDescription) MarshalJSON() ([]byte, error) {
+	type Alias SetBotInfoDescription
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setBotInfoDescription",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetBotInfoShortDescription Sets the text shown on a bot's profile page and sent together with the link when users share the bot. Can be called only if userTypeBot.can_be_edited == true
+type SetBotInfoShortDescription struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the target bot
+	BotUserId int64 `json:"bot_user_id"`
+	// A two-letter ISO 639-1 language code. If empty, the short description will be shown to all users for whose languages there is no dedicated description
+	LanguageCode string `json:"language_code"`
+	// New bot's short description on the specified language
+	ShortDescription string `json:"short_description"`
+}
+
+func (t *SetBotInfoShortDescription) Type() string {
+	return "setBotInfoShortDescription"
+}
+
+func (t *SetBotInfoShortDescription) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetBotInfoShortDescription) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetBotInfoShortDescription) MarshalJSON() ([]byte, error) {
+	type Alias SetBotInfoShortDescription
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setBotInfoShortDescription",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetBotName Sets the name of a bot. Can be called only if userTypeBot.can_be_edited == true
+type SetBotName struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the target bot
+	BotUserId int64 `json:"bot_user_id"`
+	// A two-letter ISO 639-1 language code. If empty, the name will be shown to all users for whose languages there is no dedicated name
+	LanguageCode string `json:"language_code"`
+	// New bot's name on the specified language; 0-64 characters; must be non-empty if language code is empty
+	Name string `json:"name"`
+}
+
+func (t *SetBotName) Type() string {
+	return "setBotName"
+}
+
+func (t *SetBotName) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetBotName) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetBotName) MarshalJSON() ([]byte, error) {
+	type Alias SetBotName
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setBotName",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetBotProfilePhoto Changes a profile photo for a bot @bot_user_id Identifier of the target bot @photo Profile photo to set; pass null to delete the chat photo
+type SetBotProfilePhoto struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	BotUserId int64 `json:"bot_user_id"`
+	//
+	Photo *InputChatPhoto `json:"photo"`
+}
+
+func (t *SetBotProfilePhoto) Type() string {
+	return "setBotProfilePhoto"
+}
+
+func (t *SetBotProfilePhoto) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetBotProfilePhoto) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetBotProfilePhoto) MarshalJSON() ([]byte, error) {
+	type Alias SetBotProfilePhoto
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setBotProfilePhoto",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetBotUpdatesStatus Informs the server about the number of pending bot updates if they haven't been processed for a long time; for bots only @pending_update_count The number of pending updates @error_message The last error message
+type SetBotUpdatesStatus struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	PendingUpdateCount int32 `json:"pending_update_count"`
+	//
+	ErrorMessage string `json:"error_message"`
+}
+
+func (t *SetBotUpdatesStatus) Type() string {
+	return "setBotUpdatesStatus"
+}
+
+func (t *SetBotUpdatesStatus) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetBotUpdatesStatus) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetBotUpdatesStatus) MarshalJSON() ([]byte, error) {
+	type Alias SetBotUpdatesStatus
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setBotUpdatesStatus",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetBusinessAccountBio Changes the bio of a business account; for bots only
+type SetBusinessAccountBio struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Unique identifier of business connection
+	BusinessConnectionId string `json:"business_connection_id"`
+	// The new value of the bio; 0-getOption("bio_length_max") characters without line feeds
+	Bio string `json:"bio"`
+}
+
+func (t *SetBusinessAccountBio) Type() string {
+	return "setBusinessAccountBio"
+}
+
+func (t *SetBusinessAccountBio) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetBusinessAccountBio) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetBusinessAccountBio) MarshalJSON() ([]byte, error) {
+	type Alias SetBusinessAccountBio
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setBusinessAccountBio",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetBusinessAccountGiftSettings Changes settings for gift receiving of a business account; for bots only
+type SetBusinessAccountGiftSettings struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Unique identifier of business connection
+	BusinessConnectionId string `json:"business_connection_id"`
+	// The new settings
+	Settings *GiftSettings `json:"settings"`
+}
+
+func (t *SetBusinessAccountGiftSettings) Type() string {
+	return "setBusinessAccountGiftSettings"
+}
+
+func (t *SetBusinessAccountGiftSettings) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetBusinessAccountGiftSettings) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetBusinessAccountGiftSettings) MarshalJSON() ([]byte, error) {
+	type Alias SetBusinessAccountGiftSettings
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setBusinessAccountGiftSettings",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetBusinessAccountName Changes the first and last name of a business account; for bots only
+type SetBusinessAccountName struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Unique identifier of business connection
+	BusinessConnectionId string `json:"business_connection_id"`
+	// The new value of the first name for the business account; 1-64 characters
+	FirstName string `json:"first_name"`
+	// The new value of the optional last name for the business account; 0-64 characters
+	LastName string `json:"last_name"`
+}
+
+func (t *SetBusinessAccountName) Type() string {
+	return "setBusinessAccountName"
+}
+
+func (t *SetBusinessAccountName) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetBusinessAccountName) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetBusinessAccountName) MarshalJSON() ([]byte, error) {
+	type Alias SetBusinessAccountName
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setBusinessAccountName",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetBusinessAccountProfilePhoto Changes a profile photo of a business account; for bots only
+type SetBusinessAccountProfilePhoto struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Unique identifier of business connection
+	BusinessConnectionId string `json:"business_connection_id"`
+	// Profile photo to set; pass null to remove the photo
+	Photo *InputChatPhoto `json:"photo,omitempty"`
+	// Pass true to set the public photo, which will be visible even if the main photo is hidden by privacy settings
+	IsPublic bool `json:"is_public"`
+}
+
+func (t *SetBusinessAccountProfilePhoto) Type() string {
+	return "setBusinessAccountProfilePhoto"
+}
+
+func (t *SetBusinessAccountProfilePhoto) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetBusinessAccountProfilePhoto) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetBusinessAccountProfilePhoto) MarshalJSON() ([]byte, error) {
+	type Alias SetBusinessAccountProfilePhoto
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setBusinessAccountProfilePhoto",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetBusinessAccountUsername Changes the editable username of a business account; for bots only
+type SetBusinessAccountUsername struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Unique identifier of business connection
+	BusinessConnectionId string `json:"business_connection_id"`
+	// The new value of the username
+	Username string `json:"username"`
+}
+
+func (t *SetBusinessAccountUsername) Type() string {
+	return "setBusinessAccountUsername"
+}
+
+func (t *SetBusinessAccountUsername) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetBusinessAccountUsername) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetBusinessAccountUsername) MarshalJSON() ([]byte, error) {
+	type Alias SetBusinessAccountUsername
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setBusinessAccountUsername",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetBusinessAwayMessageSettings Changes the business away message settings of the current user. Requires Telegram Business subscription @away_message_settings The new settings for the away message of the business; pass null to disable the away message
+type SetBusinessAwayMessageSettings struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	AwayMessageSettings *BusinessAwayMessageSettings `json:"away_message_settings"`
+}
+
+func (t *SetBusinessAwayMessageSettings) Type() string {
+	return "setBusinessAwayMessageSettings"
+}
+
+func (t *SetBusinessAwayMessageSettings) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetBusinessAwayMessageSettings) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetBusinessAwayMessageSettings) MarshalJSON() ([]byte, error) {
+	type Alias SetBusinessAwayMessageSettings
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setBusinessAwayMessageSettings",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetBusinessConnectedBot Adds or changes business bot that is connected to the current user account @bot Connection settings for the bot
+type SetBusinessConnectedBot struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Bot *BusinessConnectedBot `json:"bot"`
+}
+
+func (t *SetBusinessConnectedBot) Type() string {
+	return "setBusinessConnectedBot"
+}
+
+func (t *SetBusinessConnectedBot) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetBusinessConnectedBot) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetBusinessConnectedBot) MarshalJSON() ([]byte, error) {
+	type Alias SetBusinessConnectedBot
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setBusinessConnectedBot",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetBusinessGreetingMessageSettings Changes the business greeting message settings of the current user. Requires Telegram Business subscription @greeting_message_settings The new settings for the greeting message of the business; pass null to disable the greeting message
+type SetBusinessGreetingMessageSettings struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	GreetingMessageSettings *BusinessGreetingMessageSettings `json:"greeting_message_settings"`
+}
+
+func (t *SetBusinessGreetingMessageSettings) Type() string {
+	return "setBusinessGreetingMessageSettings"
+}
+
+func (t *SetBusinessGreetingMessageSettings) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetBusinessGreetingMessageSettings) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetBusinessGreetingMessageSettings) MarshalJSON() ([]byte, error) {
+	type Alias SetBusinessGreetingMessageSettings
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setBusinessGreetingMessageSettings",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetBusinessLocation Changes the business location of the current user. Requires Telegram Business subscription @location The new location of the business; pass null to remove the location
+type SetBusinessLocation struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Location *BusinessLocation `json:"location"`
+}
+
+func (t *SetBusinessLocation) Type() string {
+	return "setBusinessLocation"
+}
+
+func (t *SetBusinessLocation) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetBusinessLocation) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetBusinessLocation) MarshalJSON() ([]byte, error) {
+	type Alias SetBusinessLocation
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setBusinessLocation",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetBusinessMessageIsPinned Pins or unpins a message sent on behalf of a business account; for bots only
+type SetBusinessMessageIsPinned struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Unique identifier of business connection on behalf of which the message was sent
+	BusinessConnectionId string `json:"business_connection_id"`
+	// The chat the message belongs to
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message
+	MessageId int64 `json:"message_id"`
+	// Pass true to pin the message, pass false to unpin it
+	IsPinned bool `json:"is_pinned"`
+}
+
+func (t *SetBusinessMessageIsPinned) Type() string {
+	return "setBusinessMessageIsPinned"
+}
+
+func (t *SetBusinessMessageIsPinned) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetBusinessMessageIsPinned) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetBusinessMessageIsPinned) MarshalJSON() ([]byte, error) {
+	type Alias SetBusinessMessageIsPinned
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setBusinessMessageIsPinned",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetBusinessOpeningHours Changes the business opening hours of the current user. Requires Telegram Business subscription
+type SetBusinessOpeningHours struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The new opening hours of the business; pass null to remove the opening hours; up to 28 time intervals can be specified
+	OpeningHours *BusinessOpeningHours `json:"opening_hours,omitempty"`
+}
+
+func (t *SetBusinessOpeningHours) Type() string {
+	return "setBusinessOpeningHours"
+}
+
+func (t *SetBusinessOpeningHours) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetBusinessOpeningHours) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetBusinessOpeningHours) MarshalJSON() ([]byte, error) {
+	type Alias SetBusinessOpeningHours
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setBusinessOpeningHours",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetBusinessStartPage Changes the business start page of the current user. Requires Telegram Business subscription @start_page The new start page of the business; pass null to remove custom start page
+type SetBusinessStartPage struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	StartPage *InputBusinessStartPage `json:"start_page"`
+}
+
+func (t *SetBusinessStartPage) Type() string {
+	return "setBusinessStartPage"
+}
+
+func (t *SetBusinessStartPage) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetBusinessStartPage) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetBusinessStartPage) MarshalJSON() ([]byte, error) {
+	type Alias SetBusinessStartPage
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setBusinessStartPage",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetChatAccentColor Changes accent color and background custom emoji of a channel chat. Requires can_change_info administrator right
+type SetChatAccentColor struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the accent color to use. The chat must have at least accentColor.min_channel_chat_boost_level boost level to pass the corresponding color
+	AccentColorId int32 `json:"accent_color_id"`
+	// Identifier of a custom emoji to be shown on the reply header and link preview background; 0 if none. Use chatBoostLevelFeatures.can_set_background_custom_emoji to check whether a custom emoji can be set
+	BackgroundCustomEmojiId string `json:"background_custom_emoji_id"`
+}
+
+func (t *SetChatAccentColor) Type() string {
+	return "setChatAccentColor"
+}
+
+func (t *SetChatAccentColor) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetChatAccentColor) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetChatAccentColor) MarshalJSON() ([]byte, error) {
+	type Alias SetChatAccentColor
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setChatAccentColor",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetChatActiveStoriesList Changes story list in which stories from the chat are shown @chat_id Identifier of the chat that posted stories @story_list New list for active stories posted by the chat
+type SetChatActiveStoriesList struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+	//
+	StoryList *StoryList `json:"story_list"`
+}
+
+func (t *SetChatActiveStoriesList) Type() string {
+	return "setChatActiveStoriesList"
+}
+
+func (t *SetChatActiveStoriesList) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetChatActiveStoriesList) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetChatActiveStoriesList) MarshalJSON() ([]byte, error) {
+	type Alias SetChatActiveStoriesList
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setChatActiveStoriesList",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetChatAffiliateProgram Changes affiliate program for a bot
+type SetChatAffiliateProgram struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat with an owned bot for which affiliate program is changed
+	ChatId int64 `json:"chat_id"`
+	// Parameters of the affiliate program; pass null to close the currently active program. If there is an active program, then commission and program duration can only be increased.
+	Parameters *AffiliateProgramParameters `json:"parameters,omitempty"`
+}
+
+func (t *SetChatAffiliateProgram) Type() string {
+	return "setChatAffiliateProgram"
+}
+
+func (t *SetChatAffiliateProgram) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetChatAffiliateProgram) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetChatAffiliateProgram) MarshalJSON() ([]byte, error) {
+	type Alias SetChatAffiliateProgram
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setChatAffiliateProgram",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetChatAvailableReactions Changes reactions, available in a chat. Available for basic groups, supergroups, and channels. Requires can_change_info member right
+type SetChatAvailableReactions struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat
+	ChatId int64 `json:"chat_id"`
+	// Reactions available in the chat. All explicitly specified emoji reactions must be active. In channel chats up to the chat's boost level custom emoji reactions can be explicitly specified
+	AvailableReactions *ChatAvailableReactions `json:"available_reactions"`
+}
+
+func (t *SetChatAvailableReactions) Type() string {
+	return "setChatAvailableReactions"
+}
+
+func (t *SetChatAvailableReactions) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetChatAvailableReactions) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetChatAvailableReactions) MarshalJSON() ([]byte, error) {
+	type Alias SetChatAvailableReactions
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setChatAvailableReactions",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetChatBackground Sets the background in a specific chat. Supported only in private and secret chats with non-deleted users, and in chats with sufficient boost level and can_change_info administrator right
+type SetChatBackground struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// The input background to use; pass null to create a new filled or chat theme background
+	Background *InputBackground `json:"background,omitempty"`
+	// Background type; pass null to use default background type for the chosen background; backgroundTypeChatTheme isn't supported for private and secret chats.
+	TypeField *BackgroundType `json:"type,omitempty"`
+	// Dimming of the background in dark themes, as a percentage; 0-100. Applied only to Wallpaper and Fill types of background
+	DarkThemeDimming int32 `json:"dark_theme_dimming"`
+	// Pass true to set background only for self; pass false to set background for all chat users. Always false for backgrounds set in boosted chats. Background can be set for both users only by Telegram Premium users and if set background isn't of the type inputBackgroundPrevious
+	OnlyForSelf bool `json:"only_for_self"`
+}
+
+func (t *SetChatBackground) Type() string {
+	return "setChatBackground"
+}
+
+func (t *SetChatBackground) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetChatBackground) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetChatBackground) MarshalJSON() ([]byte, error) {
+	type Alias SetChatBackground
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setChatBackground",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetChatClientData Changes application-specific data associated with a chat @chat_id Chat identifier @client_data New value of client_data
+type SetChatClientData struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+	//
+	ClientData string `json:"client_data"`
+}
+
+func (t *SetChatClientData) Type() string {
+	return "setChatClientData"
+}
+
+func (t *SetChatClientData) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetChatClientData) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetChatClientData) MarshalJSON() ([]byte, error) {
+	type Alias SetChatClientData
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setChatClientData",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetChatDescription Changes information about a chat. Available for basic groups, supergroups, and channels. Requires can_change_info member right @chat_id Identifier of the chat @param_description New chat description; 0-255 characters
+type SetChatDescription struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+	//
+	Description string `json:"description"`
+}
+
+func (t *SetChatDescription) Type() string {
+	return "setChatDescription"
+}
+
+func (t *SetChatDescription) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetChatDescription) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetChatDescription) MarshalJSON() ([]byte, error) {
+	type Alias SetChatDescription
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setChatDescription",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetChatDirectMessagesGroup Changes direct messages group settings for a channel chat; requires owner privileges in the chat
+type SetChatDirectMessagesGroup struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the channel chat
+	ChatId int64 `json:"chat_id"`
+	// Pass true if the direct messages group is enabled for the channel chat; pass false otherwise
+	IsEnabled bool `json:"is_enabled"`
+	// The new number of Telegram Stars that must be paid for each message that is sent to the direct messages chat unless the sender is an administrator of the channel chat; 0-getOption("paid_message_star_count_max").
+	PaidMessageStarCount int64 `json:"paid_message_star_count"`
+}
+
+func (t *SetChatDirectMessagesGroup) Type() string {
+	return "setChatDirectMessagesGroup"
+}
+
+func (t *SetChatDirectMessagesGroup) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetChatDirectMessagesGroup) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetChatDirectMessagesGroup) MarshalJSON() ([]byte, error) {
+	type Alias SetChatDirectMessagesGroup
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setChatDirectMessagesGroup",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetChatDiscussionGroup Changes the discussion group of a channel chat; requires can_change_info administrator right in the channel if it is specified
+type SetChatDiscussionGroup struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the channel chat. Pass 0 to remove a link from the supergroup passed in the second argument to a linked channel chat (requires can_pin_messages member right in the supergroup)
+	ChatId int64 `json:"chat_id"`
+	// Identifier of a new channel's discussion group. Use 0 to remove the discussion group. Use the method getSuitableDiscussionChats to find all suitable groups.
+	DiscussionChatId int64 `json:"discussion_chat_id"`
+}
+
+func (t *SetChatDiscussionGroup) Type() string {
+	return "setChatDiscussionGroup"
+}
+
+func (t *SetChatDiscussionGroup) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetChatDiscussionGroup) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetChatDiscussionGroup) MarshalJSON() ([]byte, error) {
+	type Alias SetChatDiscussionGroup
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setChatDiscussionGroup",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetChatDraftMessage Changes the draft message in a chat or a topic
+type SetChatDraftMessage struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Topic in which the draft will be changed; pass null to change the draft for the chat itself
+	TopicId *MessageTopic `json:"topic_id,omitempty"`
+	// New draft message; pass null to remove the draft. All files in draft message content must be of the type inputFileLocal. Media thumbnails and captions are ignored
+	DraftMessage *DraftMessage `json:"draft_message,omitempty"`
+}
+
+func (t *SetChatDraftMessage) Type() string {
+	return "setChatDraftMessage"
+}
+
+func (t *SetChatDraftMessage) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetChatDraftMessage) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetChatDraftMessage) MarshalJSON() ([]byte, error) {
+	type Alias SetChatDraftMessage
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setChatDraftMessage",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetChatEmojiStatus Changes the emoji status of a chat. Use chatBoostLevelFeatures.can_set_emoji_status to check whether an emoji status can be set. Requires can_change_info administrator right
+type SetChatEmojiStatus struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// New emoji status; pass null to remove emoji status
+	EmojiStatus *EmojiStatus `json:"emoji_status,omitempty"`
+}
+
+func (t *SetChatEmojiStatus) Type() string {
+	return "setChatEmojiStatus"
+}
+
+func (t *SetChatEmojiStatus) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetChatEmojiStatus) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetChatEmojiStatus) MarshalJSON() ([]byte, error) {
+	type Alias SetChatEmojiStatus
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setChatEmojiStatus",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetChatLocation Changes the location of a chat. Available only for some location-based supergroups, use supergroupFullInfo.can_set_location to check whether the method is allowed to use @chat_id Chat identifier @location New location for the chat; must be valid and not null
+type SetChatLocation struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+	//
+	Location *ChatLocation `json:"location"`
+}
+
+func (t *SetChatLocation) Type() string {
+	return "setChatLocation"
+}
+
+func (t *SetChatLocation) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetChatLocation) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetChatLocation) MarshalJSON() ([]byte, error) {
+	type Alias SetChatLocation
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setChatLocation",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetChatMemberStatus Changes the status of a chat member; requires can_invite_users member right to add a chat member, can_promote_members administrator right to change administrator rights of the member,
+type SetChatMemberStatus struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Member identifier. Chats can be only banned and unbanned in supergroups and channels
+	MemberId *MessageSender `json:"member_id"`
+	// The new status of the member in the chat
+	Status *ChatMemberStatus `json:"status"`
+}
+
+func (t *SetChatMemberStatus) Type() string {
+	return "setChatMemberStatus"
+}
+
+func (t *SetChatMemberStatus) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetChatMemberStatus) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetChatMemberStatus) MarshalJSON() ([]byte, error) {
+	type Alias SetChatMemberStatus
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setChatMemberStatus",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetChatMessageAutoDeleteTime Changes the message auto-delete or self-destruct (for secret chats) time in a chat. Requires change_info administrator right in basic groups, supergroups and channels.
+type SetChatMessageAutoDeleteTime struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// New time value, in seconds; unless the chat is secret, it must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
+	MessageAutoDeleteTime int32 `json:"message_auto_delete_time"`
+}
+
+func (t *SetChatMessageAutoDeleteTime) Type() string {
+	return "setChatMessageAutoDeleteTime"
+}
+
+func (t *SetChatMessageAutoDeleteTime) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetChatMessageAutoDeleteTime) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetChatMessageAutoDeleteTime) MarshalJSON() ([]byte, error) {
+	type Alias SetChatMessageAutoDeleteTime
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setChatMessageAutoDeleteTime",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetChatMessageSender Selects a message sender to send messages in a chat @chat_id Chat identifier @message_sender_id New message sender for the chat
+type SetChatMessageSender struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+	//
+	MessageSenderId *MessageSender `json:"message_sender_id"`
+}
+
+func (t *SetChatMessageSender) Type() string {
+	return "setChatMessageSender"
+}
+
+func (t *SetChatMessageSender) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetChatMessageSender) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetChatMessageSender) MarshalJSON() ([]byte, error) {
+	type Alias SetChatMessageSender
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setChatMessageSender",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetChatNotificationSettings Changes the notification settings of a chat. Notification settings of a chat with the current user (Saved Messages) can't be changed
+type SetChatNotificationSettings struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// New notification settings for the chat. If the chat is muted for more than 366 days, it is considered to be muted forever
+	NotificationSettings *ChatNotificationSettings `json:"notification_settings"`
+}
+
+func (t *SetChatNotificationSettings) Type() string {
+	return "setChatNotificationSettings"
+}
+
+func (t *SetChatNotificationSettings) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetChatNotificationSettings) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetChatNotificationSettings) MarshalJSON() ([]byte, error) {
+	type Alias SetChatNotificationSettings
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setChatNotificationSettings",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetChatPaidMessageStarCount Changes the amount of Telegram Stars that must be paid to send a message to a supergroup chat; requires can_restrict_members administrator right and supergroupFullInfo.can_enable_paid_messages
+type SetChatPaidMessageStarCount struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the supergroup chat
+	ChatId int64 `json:"chat_id"`
+	// The new number of Telegram Stars that must be paid for each message that is sent to the supergroup chat unless the sender is an administrator of the chat; 0-getOption("paid_message_star_count_max").
+	PaidMessageStarCount int64 `json:"paid_message_star_count"`
+}
+
+func (t *SetChatPaidMessageStarCount) Type() string {
+	return "setChatPaidMessageStarCount"
+}
+
+func (t *SetChatPaidMessageStarCount) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetChatPaidMessageStarCount) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetChatPaidMessageStarCount) MarshalJSON() ([]byte, error) {
+	type Alias SetChatPaidMessageStarCount
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setChatPaidMessageStarCount",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetChatPermissions Changes the chat members permissions. Supported only for basic groups and supergroups. Requires can_restrict_members administrator right
+type SetChatPermissions struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// New non-administrator members permissions in the chat
+	Permissions *ChatPermissions `json:"permissions"`
+}
+
+func (t *SetChatPermissions) Type() string {
+	return "setChatPermissions"
+}
+
+func (t *SetChatPermissions) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetChatPermissions) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetChatPermissions) MarshalJSON() ([]byte, error) {
+	type Alias SetChatPermissions
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setChatPermissions",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetChatPhoto Changes the photo of a chat. Supported only for basic groups, supergroups and channels. Requires can_change_info member right
+type SetChatPhoto struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// New chat photo; pass null to delete the chat photo
+	Photo *InputChatPhoto `json:"photo,omitempty"`
+}
+
+func (t *SetChatPhoto) Type() string {
+	return "setChatPhoto"
+}
+
+func (t *SetChatPhoto) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetChatPhoto) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetChatPhoto) MarshalJSON() ([]byte, error) {
+	type Alias SetChatPhoto
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setChatPhoto",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetChatPinnedStories Changes the list of pinned stories on a chat page; requires can_edit_stories administrator right in the chat
+type SetChatPinnedStories struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat that posted the stories
+	ChatId int64 `json:"chat_id"`
+	// New list of pinned stories. All stories must be posted to the chat page first. There can be up to getOption("pinned_story_count_max") pinned stories on a chat page
+	StoryIds []int32 `json:"story_ids"`
+}
+
+func (t *SetChatPinnedStories) Type() string {
+	return "setChatPinnedStories"
+}
+
+func (t *SetChatPinnedStories) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetChatPinnedStories) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetChatPinnedStories) MarshalJSON() ([]byte, error) {
+	type Alias SetChatPinnedStories
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setChatPinnedStories",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetChatProfileAccentColor Changes accent color and background custom emoji for profile of a supergroup or channel chat. Requires can_change_info administrator right
+type SetChatProfileAccentColor struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the accent color to use for profile; pass -1 if none. The chat must have at least profileAccentColor.min_supergroup_chat_boost_level for supergroups
+	ProfileAccentColorId int32 `json:"profile_accent_color_id"`
+	// Identifier of a custom emoji to be shown on the chat's profile photo background; 0 if none. Use chatBoostLevelFeatures.can_set_profile_background_custom_emoji to check whether a custom emoji can be set
+	ProfileBackgroundCustomEmojiId string `json:"profile_background_custom_emoji_id"`
+}
+
+func (t *SetChatProfileAccentColor) Type() string {
+	return "setChatProfileAccentColor"
+}
+
+func (t *SetChatProfileAccentColor) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetChatProfileAccentColor) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetChatProfileAccentColor) MarshalJSON() ([]byte, error) {
+	type Alias SetChatProfileAccentColor
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setChatProfileAccentColor",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetChatSlowModeDelay Changes the slow mode delay of a chat. Available only for supergroups; requires can_restrict_members administrator right @chat_id Chat identifier @slow_mode_delay New slow mode delay for the chat, in seconds; must be one of 0, 5, 10, 30, 60, 300, 900, 3600
+type SetChatSlowModeDelay struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+	//
+	SlowModeDelay int32 `json:"slow_mode_delay"`
+}
+
+func (t *SetChatSlowModeDelay) Type() string {
+	return "setChatSlowModeDelay"
+}
+
+func (t *SetChatSlowModeDelay) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetChatSlowModeDelay) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetChatSlowModeDelay) MarshalJSON() ([]byte, error) {
+	type Alias SetChatSlowModeDelay
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setChatSlowModeDelay",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetChatTheme Changes the chat theme. Supported only in private and secret chats @chat_id Chat identifier @theme New chat theme; pass null to return the default theme
+type SetChatTheme struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+	//
+	Theme *InputChatTheme `json:"theme"`
+}
+
+func (t *SetChatTheme) Type() string {
+	return "setChatTheme"
+}
+
+func (t *SetChatTheme) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetChatTheme) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetChatTheme) MarshalJSON() ([]byte, error) {
+	type Alias SetChatTheme
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setChatTheme",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetChatTitle Changes the chat title. Supported only for basic groups, supergroups and channels. Requires can_change_info member right
+type SetChatTitle struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// New title of the chat; 1-128 characters
+	Title string `json:"title"`
+}
+
+func (t *SetChatTitle) Type() string {
+	return "setChatTitle"
+}
+
+func (t *SetChatTitle) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetChatTitle) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetChatTitle) MarshalJSON() ([]byte, error) {
+	type Alias SetChatTitle
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setChatTitle",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetCloseFriends Changes the list of close friends of the current user @user_ids User identifiers of close friends; the users must be contacts of the current user
+type SetCloseFriends struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	UserIds []int64 `json:"user_ids"`
+}
+
+func (t *SetCloseFriends) Type() string {
+	return "setCloseFriends"
+}
+
+func (t *SetCloseFriends) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetCloseFriends) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetCloseFriends) MarshalJSON() ([]byte, error) {
+	type Alias SetCloseFriends
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setCloseFriends",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetCommands Sets the list of commands supported by the bot for the given user scope and language; for bots only
+type SetCommands struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The scope to which the commands are relevant; pass null to change commands in the default bot command scope
+	Scope *BotCommandScope `json:"scope,omitempty"`
+	// A two-letter ISO 639-1 language code. If empty, the commands will be applied to all users from the given scope, for which language there are no dedicated commands
+	LanguageCode string `json:"language_code"`
+	// List of the bot's commands
+	Commands []*BotCommand `json:"commands"`
+}
+
+func (t *SetCommands) Type() string {
+	return "setCommands"
+}
+
+func (t *SetCommands) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetCommands) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetCommands) MarshalJSON() ([]byte, error) {
+	type Alias SetCommands
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setCommands",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetCustomEmojiStickerSetThumbnail Sets a custom emoji sticker set thumbnail
+type SetCustomEmojiStickerSetThumbnail struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Sticker set name. The sticker set must be owned by the current user
+	Name string `json:"name"`
+	// Identifier of the custom emoji from the sticker set, which will be set as sticker set thumbnail; pass 0 to remove the sticker set thumbnail
+	CustomEmojiId string `json:"custom_emoji_id"`
+}
+
+func (t *SetCustomEmojiStickerSetThumbnail) Type() string {
+	return "setCustomEmojiStickerSetThumbnail"
+}
+
+func (t *SetCustomEmojiStickerSetThumbnail) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetCustomEmojiStickerSetThumbnail) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetCustomEmojiStickerSetThumbnail) MarshalJSON() ([]byte, error) {
+	type Alias SetCustomEmojiStickerSetThumbnail
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setCustomEmojiStickerSetThumbnail",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetCustomLanguagePack Adds or changes a custom local language pack to the current localization target
+type SetCustomLanguagePack struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Information about the language pack. Language pack identifier must start with 'X', consist only of English letters, digits and hyphens, and must not exceed 64 characters. Can be called before authorization
+	Info *LanguagePackInfo `json:"info"`
+	// Strings of the new language pack
+	Strings []*LanguagePackString `json:"strings"`
+}
+
+func (t *SetCustomLanguagePack) Type() string {
+	return "setCustomLanguagePack"
+}
+
+func (t *SetCustomLanguagePack) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetCustomLanguagePack) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetCustomLanguagePack) MarshalJSON() ([]byte, error) {
+	type Alias SetCustomLanguagePack
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setCustomLanguagePack",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetCustomLanguagePackString Adds, edits or deletes a string in a custom local language pack. Can be called before authorization @language_pack_id Identifier of a previously added custom local language pack in the current localization target @new_string New language pack string
+type SetCustomLanguagePackString struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	LanguagePackId string `json:"language_pack_id"`
+	//
+	NewString *LanguagePackString `json:"new_string"`
+}
+
+func (t *SetCustomLanguagePackString) Type() string {
+	return "setCustomLanguagePackString"
+}
+
+func (t *SetCustomLanguagePackString) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetCustomLanguagePackString) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetCustomLanguagePackString) MarshalJSON() ([]byte, error) {
+	type Alias SetCustomLanguagePackString
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setCustomLanguagePackString",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetDatabaseEncryptionKey Changes the database encryption key. Usually the encryption key is never changed and is stored in some OS keychain @new_encryption_key New encryption key
+type SetDatabaseEncryptionKey struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	NewEncryptionKey string `json:"new_encryption_key"`
+}
+
+func (t *SetDatabaseEncryptionKey) Type() string {
+	return "setDatabaseEncryptionKey"
+}
+
+func (t *SetDatabaseEncryptionKey) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetDatabaseEncryptionKey) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetDatabaseEncryptionKey) MarshalJSON() ([]byte, error) {
+	type Alias SetDatabaseEncryptionKey
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setDatabaseEncryptionKey",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetDefaultBackground Sets default background for chats; adds the background to the list of installed backgrounds
+type SetDefaultBackground struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The input background to use; pass null to create a new filled background
+	Background *InputBackground `json:"background,omitempty"`
+	// Background type; pass null to use the default type of the remote background; backgroundTypeChatTheme isn't supported
+	TypeField *BackgroundType `json:"type,omitempty"`
+	// Pass true if the background is set for a dark theme
+	ForDarkTheme bool `json:"for_dark_theme"`
+}
+
+func (t *SetDefaultBackground) Type() string {
+	return "setDefaultBackground"
+}
+
+func (t *SetDefaultBackground) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetDefaultBackground) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetDefaultBackground) MarshalJSON() ([]byte, error) {
+	type Alias SetDefaultBackground
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setDefaultBackground",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetDefaultChannelAdministratorRights Sets default administrator rights for adding the bot to channel chats; for bots only @default_channel_administrator_rights Default administrator rights for adding the bot to channels; pass null to remove default rights
+type SetDefaultChannelAdministratorRights struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	DefaultChannelAdministratorRights *ChatAdministratorRights `json:"default_channel_administrator_rights"`
+}
+
+func (t *SetDefaultChannelAdministratorRights) Type() string {
+	return "setDefaultChannelAdministratorRights"
+}
+
+func (t *SetDefaultChannelAdministratorRights) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetDefaultChannelAdministratorRights) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetDefaultChannelAdministratorRights) MarshalJSON() ([]byte, error) {
+	type Alias SetDefaultChannelAdministratorRights
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setDefaultChannelAdministratorRights",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetDefaultGroupAdministratorRights Sets default administrator rights for adding the bot to basic group and supergroup chats; for bots only @default_group_administrator_rights Default administrator rights for adding the bot to basic group and supergroup chats; pass null to remove default rights
+type SetDefaultGroupAdministratorRights struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	DefaultGroupAdministratorRights *ChatAdministratorRights `json:"default_group_administrator_rights"`
+}
+
+func (t *SetDefaultGroupAdministratorRights) Type() string {
+	return "setDefaultGroupAdministratorRights"
+}
+
+func (t *SetDefaultGroupAdministratorRights) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetDefaultGroupAdministratorRights) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetDefaultGroupAdministratorRights) MarshalJSON() ([]byte, error) {
+	type Alias SetDefaultGroupAdministratorRights
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setDefaultGroupAdministratorRights",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetDefaultMessageAutoDeleteTime Changes the default message auto-delete time for new chats @message_auto_delete_time New default message auto-delete time; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
+type SetDefaultMessageAutoDeleteTime struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	MessageAutoDeleteTime *MessageAutoDeleteTime `json:"message_auto_delete_time"`
+}
+
+func (t *SetDefaultMessageAutoDeleteTime) Type() string {
+	return "setDefaultMessageAutoDeleteTime"
+}
+
+func (t *SetDefaultMessageAutoDeleteTime) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetDefaultMessageAutoDeleteTime) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetDefaultMessageAutoDeleteTime) MarshalJSON() ([]byte, error) {
+	type Alias SetDefaultMessageAutoDeleteTime
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setDefaultMessageAutoDeleteTime",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetDefaultReactionType Changes type of default reaction for the current user @reaction_type New type of the default reaction. The paid reaction can't be set as default
+type SetDefaultReactionType struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ReactionType *ReactionType `json:"reaction_type"`
+}
+
+func (t *SetDefaultReactionType) Type() string {
+	return "setDefaultReactionType"
+}
+
+func (t *SetDefaultReactionType) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetDefaultReactionType) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetDefaultReactionType) MarshalJSON() ([]byte, error) {
+	type Alias SetDefaultReactionType
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setDefaultReactionType",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetDirectMessagesChatTopicIsMarkedAsUnread Changes the marked as unread state of the topic in a channel direct messages chat administered by the current user
+type SetDirectMessagesChatTopicIsMarkedAsUnread struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier of the channel direct messages chat
+	ChatId int64 `json:"chat_id"`
+	// Topic identifier
+	TopicId int64 `json:"topic_id"`
+	// New value of is_marked_as_unread
+	IsMarkedAsUnread bool `json:"is_marked_as_unread"`
+}
+
+func (t *SetDirectMessagesChatTopicIsMarkedAsUnread) Type() string {
+	return "setDirectMessagesChatTopicIsMarkedAsUnread"
+}
+
+func (t *SetDirectMessagesChatTopicIsMarkedAsUnread) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetDirectMessagesChatTopicIsMarkedAsUnread) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetDirectMessagesChatTopicIsMarkedAsUnread) MarshalJSON() ([]byte, error) {
+	type Alias SetDirectMessagesChatTopicIsMarkedAsUnread
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setDirectMessagesChatTopicIsMarkedAsUnread",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetEmojiStatus Changes the emoji status of the current user; for Telegram Premium users only @emoji_status New emoji status; pass null to switch to the default badge
+type SetEmojiStatus struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	EmojiStatus *EmojiStatus `json:"emoji_status"`
+}
+
+func (t *SetEmojiStatus) Type() string {
+	return "setEmojiStatus"
+}
+
+func (t *SetEmojiStatus) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetEmojiStatus) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetEmojiStatus) MarshalJSON() ([]byte, error) {
+	type Alias SetEmojiStatus
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setEmojiStatus",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetFileGenerationProgress Informs TDLib on a file generation progress
+type SetFileGenerationProgress struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The identifier of the generation process
+	GenerationId string `json:"generation_id"`
+	// Expected size of the generated file, in bytes; 0 if unknown
+	ExpectedSize int64 `json:"expected_size"`
+	// The number of bytes already generated
+	LocalPrefixSize int64 `json:"local_prefix_size"`
+}
+
+func (t *SetFileGenerationProgress) Type() string {
+	return "setFileGenerationProgress"
+}
+
+func (t *SetFileGenerationProgress) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetFileGenerationProgress) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetFileGenerationProgress) MarshalJSON() ([]byte, error) {
+	type Alias SetFileGenerationProgress
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setFileGenerationProgress",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetForumTopicNotificationSettings Changes the notification settings of a forum topic in a forum supergroup chat or a chat with a bot with topics
+type SetForumTopicNotificationSettings struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Forum topic identifier
+	ForumTopicId int32 `json:"forum_topic_id"`
+	// New notification settings for the forum topic. If the topic is muted for more than 366 days, it is considered to be muted forever
+	NotificationSettings *ChatNotificationSettings `json:"notification_settings"`
+}
+
+func (t *SetForumTopicNotificationSettings) Type() string {
+	return "setForumTopicNotificationSettings"
+}
+
+func (t *SetForumTopicNotificationSettings) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetForumTopicNotificationSettings) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetForumTopicNotificationSettings) MarshalJSON() ([]byte, error) {
+	type Alias SetForumTopicNotificationSettings
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setForumTopicNotificationSettings",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetGameScore Updates the game score of the specified user in the game; for bots only
+type SetGameScore struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The chat to which the message with the game belongs
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message
+	MessageId int64 `json:"message_id"`
+	// Pass true to edit the game message to include the current scoreboard
+	EditMessage bool `json:"edit_message"`
+	// User identifier
+	UserId int64 `json:"user_id"`
+	// The new score
+	Score int32 `json:"score"`
+	// Pass true to update the score even if it decreases. If the score is 0, the user will be deleted from the high score table
+	Force bool `json:"force"`
+}
+
+func (t *SetGameScore) Type() string {
+	return "setGameScore"
+}
+
+func (t *SetGameScore) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetGameScore) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetGameScore) MarshalJSON() ([]byte, error) {
+	type Alias SetGameScore
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setGameScore",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetGiftCollectionName Changes name of a gift collection. If the collection is owned by a channel chat, then requires can_post_messages administrator right in the channel chat. Returns the changed collection
+type SetGiftCollectionName struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the user or the channel chat that owns the collection
+	OwnerId *MessageSender `json:"owner_id"`
+	// Identifier of the gift collection
+	CollectionId int32 `json:"collection_id"`
+	// New name of the collection; 1-12 characters
+	Name string `json:"name"`
+}
+
+func (t *SetGiftCollectionName) Type() string {
+	return "setGiftCollectionName"
+}
+
+func (t *SetGiftCollectionName) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetGiftCollectionName) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetGiftCollectionName) MarshalJSON() ([]byte, error) {
+	type Alias SetGiftCollectionName
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setGiftCollectionName",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetGiftResalePrice Changes resale price of a unique gift owned by the current user
+type SetGiftResalePrice struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the unique gift
+	ReceivedGiftId string `json:"received_gift_id"`
+	// The new price for the unique gift; pass null to disallow gift resale. The current user will receive
+	Price *GiftResalePrice `json:"price,omitempty"`
+}
+
+func (t *SetGiftResalePrice) Type() string {
+	return "setGiftResalePrice"
+}
+
+func (t *SetGiftResalePrice) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetGiftResalePrice) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetGiftResalePrice) MarshalJSON() ([]byte, error) {
+	type Alias SetGiftResalePrice
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setGiftResalePrice",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetGiftSettings Changes settings for gift receiving for the current user @settings The new settings
+type SetGiftSettings struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Settings *GiftSettings `json:"settings"`
+}
+
+func (t *SetGiftSettings) Type() string {
+	return "setGiftSettings"
+}
+
+func (t *SetGiftSettings) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetGiftSettings) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetGiftSettings) MarshalJSON() ([]byte, error) {
+	type Alias SetGiftSettings
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setGiftSettings",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetGroupCallPaidMessageStarCount Changes the minimum number of Telegram Stars that must be paid by general participant for each sent message to a live story call. Requires groupCall.can_be_managed right
+type SetGroupCallPaidMessageStarCount struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Group call identifier; must be an identifier of a live story call
+	GroupCallId int32 `json:"group_call_id"`
+	// The new minimum number of Telegram Stars; 0-getOption("paid_group_call_message_star_count_max")
+	PaidMessageStarCount int64 `json:"paid_message_star_count"`
+}
+
+func (t *SetGroupCallPaidMessageStarCount) Type() string {
+	return "setGroupCallPaidMessageStarCount"
+}
+
+func (t *SetGroupCallPaidMessageStarCount) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetGroupCallPaidMessageStarCount) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetGroupCallPaidMessageStarCount) MarshalJSON() ([]byte, error) {
+	type Alias SetGroupCallPaidMessageStarCount
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setGroupCallPaidMessageStarCount",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetGroupCallParticipantIsSpeaking Informs TDLib that speaking state of a participant of an active group call has changed. Returns identifier of the participant if it is found
+type SetGroupCallParticipantIsSpeaking struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Group call identifier
+	GroupCallId int32 `json:"group_call_id"`
+	// Group call participant's synchronization audio source identifier, or 0 for the current user
+	AudioSource int32 `json:"audio_source"`
+	// Pass true if the user is speaking
+	IsSpeaking bool `json:"is_speaking"`
+}
+
+func (t *SetGroupCallParticipantIsSpeaking) Type() string {
+	return "setGroupCallParticipantIsSpeaking"
+}
+
+func (t *SetGroupCallParticipantIsSpeaking) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetGroupCallParticipantIsSpeaking) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetGroupCallParticipantIsSpeaking) MarshalJSON() ([]byte, error) {
+	type Alias SetGroupCallParticipantIsSpeaking
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setGroupCallParticipantIsSpeaking",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetGroupCallParticipantVolumeLevel Changes volume level of a participant of an active group call; not supported for live stories. If the current user can manage the group call or is the owner of the group call,
+type SetGroupCallParticipantVolumeLevel struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Group call identifier
+	GroupCallId int32 `json:"group_call_id"`
+	// Participant identifier
+	ParticipantId *MessageSender `json:"participant_id"`
+	// New participant's volume level; 1-20000 in hundreds of percents
+	VolumeLevel int32 `json:"volume_level"`
+}
+
+func (t *SetGroupCallParticipantVolumeLevel) Type() string {
+	return "setGroupCallParticipantVolumeLevel"
+}
+
+func (t *SetGroupCallParticipantVolumeLevel) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetGroupCallParticipantVolumeLevel) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetGroupCallParticipantVolumeLevel) MarshalJSON() ([]byte, error) {
+	type Alias SetGroupCallParticipantVolumeLevel
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setGroupCallParticipantVolumeLevel",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetInactiveSessionTtl Changes the period of inactivity after which sessions will automatically be terminated @inactive_session_ttl_days New number of days of inactivity before sessions will be automatically terminated; 1-366 days
+type SetInactiveSessionTtl struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	InactiveSessionTtlDays int32 `json:"inactive_session_ttl_days"`
+}
+
+func (t *SetInactiveSessionTtl) Type() string {
+	return "setInactiveSessionTtl"
+}
+
+func (t *SetInactiveSessionTtl) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetInactiveSessionTtl) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetInactiveSessionTtl) MarshalJSON() ([]byte, error) {
+	type Alias SetInactiveSessionTtl
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setInactiveSessionTtl",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetInlineGameScore Updates the game score of the specified user in a game; for bots only
+type SetInlineGameScore struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Inline message identifier
+	InlineMessageId string `json:"inline_message_id"`
+	// Pass true to edit the game message to include the current scoreboard
+	EditMessage bool `json:"edit_message"`
+	// User identifier
+	UserId int64 `json:"user_id"`
+	// The new score
+	Score int32 `json:"score"`
+	// Pass true to update the score even if it decreases. If the score is 0, the user will be deleted from the high score table
+	Force bool `json:"force"`
+}
+
+func (t *SetInlineGameScore) Type() string {
+	return "setInlineGameScore"
+}
+
+func (t *SetInlineGameScore) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetInlineGameScore) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetInlineGameScore) MarshalJSON() ([]byte, error) {
+	type Alias SetInlineGameScore
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setInlineGameScore",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetLiveStoryMessageSender Selects a message sender to send messages in a live story call
+type SetLiveStoryMessageSender struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Group call identifier
+	GroupCallId int32 `json:"group_call_id"`
+	// New message sender for the group call
+	MessageSenderId *MessageSender `json:"message_sender_id"`
+}
+
+func (t *SetLiveStoryMessageSender) Type() string {
+	return "setLiveStoryMessageSender"
+}
+
+func (t *SetLiveStoryMessageSender) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetLiveStoryMessageSender) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetLiveStoryMessageSender) MarshalJSON() ([]byte, error) {
+	type Alias SetLiveStoryMessageSender
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setLiveStoryMessageSender",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetLoginEmailAddress Changes the login email address of the user. The email address can be changed only if the current user already has login email and passwordState.login_email_address_pattern is non-empty,
+type SetLoginEmailAddress struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// New login email address
+	NewLoginEmailAddress string `json:"new_login_email_address"`
+}
+
+func (t *SetLoginEmailAddress) Type() string {
+	return "setLoginEmailAddress"
+}
+
+func (t *SetLoginEmailAddress) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetLoginEmailAddress) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetLoginEmailAddress) MarshalJSON() ([]byte, error) {
+	type Alias SetLoginEmailAddress
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setLoginEmailAddress",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetLogStream Sets new log stream for internal logging of TDLib. Can be called synchronously @log_stream New log stream
+type SetLogStream struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	LogStream *LogStream `json:"log_stream"`
+}
+
+func (t *SetLogStream) Type() string {
+	return "setLogStream"
+}
+
+func (t *SetLogStream) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetLogStream) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetLogStream) MarshalJSON() ([]byte, error) {
+	type Alias SetLogStream
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setLogStream",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetLogTagVerbosityLevel Sets the verbosity level for a specified TDLib internal log tag. Can be called synchronously
+type SetLogTagVerbosityLevel struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Logging tag to change verbosity level
+	Tag string `json:"tag"`
+	// New verbosity level; 1-1024
+	NewVerbosityLevel int32 `json:"new_verbosity_level"`
+}
+
+func (t *SetLogTagVerbosityLevel) Type() string {
+	return "setLogTagVerbosityLevel"
+}
+
+func (t *SetLogTagVerbosityLevel) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetLogTagVerbosityLevel) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetLogTagVerbosityLevel) MarshalJSON() ([]byte, error) {
+	type Alias SetLogTagVerbosityLevel
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setLogTagVerbosityLevel",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetLogVerbosityLevel Sets the verbosity level of the internal logging of TDLib. Can be called synchronously
+type SetLogVerbosityLevel struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// New value of the verbosity level for logging. Value 0 corresponds to fatal errors, value 1 corresponds to errors, value 2 corresponds to warnings and debug warnings,
+	NewVerbosityLevel int32 `json:"new_verbosity_level"`
+}
+
+func (t *SetLogVerbosityLevel) Type() string {
+	return "setLogVerbosityLevel"
+}
+
+func (t *SetLogVerbosityLevel) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetLogVerbosityLevel) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetLogVerbosityLevel) MarshalJSON() ([]byte, error) {
+	type Alias SetLogVerbosityLevel
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setLogVerbosityLevel",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetMainProfileTab Changes the main profile tab of the current user @main_profile_tab The new value of the main profile tab
+type SetMainProfileTab struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	MainProfileTab *ProfileTab `json:"main_profile_tab"`
+}
+
+func (t *SetMainProfileTab) Type() string {
+	return "setMainProfileTab"
+}
+
+func (t *SetMainProfileTab) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetMainProfileTab) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetMainProfileTab) MarshalJSON() ([]byte, error) {
+	type Alias SetMainProfileTab
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setMainProfileTab",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetMenuButton Sets menu button for the given user or for all users; for bots only
+type SetMenuButton struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the user or 0 to set menu button for all users
+	UserId int64 `json:"user_id"`
+	// New menu button
+	MenuButton *BotMenuButton `json:"menu_button"`
+}
+
+func (t *SetMenuButton) Type() string {
+	return "setMenuButton"
+}
+
+func (t *SetMenuButton) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetMenuButton) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetMenuButton) MarshalJSON() ([]byte, error) {
+	type Alias SetMenuButton
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setMenuButton",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetMessageFactCheck Changes the fact-check of a message. Can be only used if messageProperties.can_set_fact_check == true
+type SetMessageFactCheck struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The channel chat the message belongs to
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message
+	MessageId int64 `json:"message_id"`
+	// New text of the fact-check; 0-getOption("fact_check_length_max") characters; pass null to remove it. Only Bold, Italic, and TextUrl entities with https://t.me/ links are supported
+	Text *FormattedText `json:"text,omitempty"`
+}
+
+func (t *SetMessageFactCheck) Type() string {
+	return "setMessageFactCheck"
+}
+
+func (t *SetMessageFactCheck) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetMessageFactCheck) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetMessageFactCheck) MarshalJSON() ([]byte, error) {
+	type Alias SetMessageFactCheck
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setMessageFactCheck",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetMessageReactions Sets reactions on a message; for bots only
+type SetMessageReactions struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat to which the message belongs
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message
+	MessageId int64 `json:"message_id"`
+	// Types of the reaction to set; pass an empty list to remove the reactions
+	ReactionTypes []*ReactionType `json:"reaction_types"`
+	// Pass true if the reactions are added with a big animation
+	IsBig bool `json:"is_big"`
+}
+
+func (t *SetMessageReactions) Type() string {
+	return "setMessageReactions"
+}
+
+func (t *SetMessageReactions) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetMessageReactions) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetMessageReactions) MarshalJSON() ([]byte, error) {
+	type Alias SetMessageReactions
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setMessageReactions",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetMessageSenderBlockList Changes the block list of a message sender. Currently, only users and supergroup chats can be blocked
+type SetMessageSenderBlockList struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of a message sender to block/unblock
+	SenderId *MessageSender `json:"sender_id"`
+	// New block list for the message sender; pass null to unblock the message sender
+	BlockList *BlockList `json:"block_list,omitempty"`
+}
+
+func (t *SetMessageSenderBlockList) Type() string {
+	return "setMessageSenderBlockList"
+}
+
+func (t *SetMessageSenderBlockList) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetMessageSenderBlockList) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetMessageSenderBlockList) MarshalJSON() ([]byte, error) {
+	type Alias SetMessageSenderBlockList
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setMessageSenderBlockList",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetMessageSenderBotVerification Changes the verification status of a user or a chat by an owned bot
+type SetMessageSenderBotVerification struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the owned bot, which will verify the user or the chat
+	BotUserId int64 `json:"bot_user_id"`
+	// Identifier of the user or the supergroup or channel chat, which will be verified by the bot
+	VerifiedId *MessageSender `json:"verified_id"`
+	// Custom description of verification reason; 0-getOption("bot_verification_custom_description_length_max").
+	CustomDescription string `json:"custom_description"`
+}
+
+func (t *SetMessageSenderBotVerification) Type() string {
+	return "setMessageSenderBotVerification"
+}
+
+func (t *SetMessageSenderBotVerification) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetMessageSenderBotVerification) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetMessageSenderBotVerification) MarshalJSON() ([]byte, error) {
+	type Alias SetMessageSenderBotVerification
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setMessageSenderBotVerification",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetName Changes the first and last name of the current user @first_name The new value of the first name for the current user; 1-64 characters @last_name The new value of the optional last name for the current user; 0-64 characters
+type SetName struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	FirstName string `json:"first_name"`
+	//
+	LastName string `json:"last_name"`
+}
+
+func (t *SetName) Type() string {
+	return "setName"
+}
+
+func (t *SetName) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetName) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetName) MarshalJSON() ([]byte, error) {
+	type Alias SetName
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setName",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetNetworkType Sets the current network type. Can be called before authorization. Calling this method forces all network connections to reopen, mitigating the delay in switching between different networks,
+type SetNetworkType struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The new network type; pass null to set network type to networkTypeOther
+	TypeField *NetworkType `json:"type,omitempty"`
+}
+
+func (t *SetNetworkType) Type() string {
+	return "setNetworkType"
+}
+
+func (t *SetNetworkType) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetNetworkType) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetNetworkType) MarshalJSON() ([]byte, error) {
+	type Alias SetNetworkType
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setNetworkType",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetNewChatPrivacySettings Changes privacy settings for new chat creation; can be used only if getOption("can_set_new_chat_privacy_settings") @settings New settings
+type SetNewChatPrivacySettings struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Settings *NewChatPrivacySettings `json:"settings"`
+}
+
+func (t *SetNewChatPrivacySettings) Type() string {
+	return "setNewChatPrivacySettings"
+}
+
+func (t *SetNewChatPrivacySettings) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetNewChatPrivacySettings) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetNewChatPrivacySettings) MarshalJSON() ([]byte, error) {
+	type Alias SetNewChatPrivacySettings
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setNewChatPrivacySettings",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetOption Sets the value of an option. (Check the list of available options on https://core.telegram.org/tdlib/options.) Only writable options can be set. Can be called before authorization
+type SetOption struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The name of the option
+	Name string `json:"name"`
+	// The new value of the option; pass null to reset option value to a default value
+	Value *OptionValue `json:"value,omitempty"`
+}
+
+func (t *SetOption) Type() string {
+	return "setOption"
+}
+
+func (t *SetOption) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetOption) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetOption) MarshalJSON() ([]byte, error) {
+	type Alias SetOption
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setOption",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetPaidMessageReactionType Changes type of paid message reaction of the current user on a message. The message must have paid reaction added by the current user
+type SetPaidMessageReactionType struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat to which the message belongs
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message
+	MessageId int64 `json:"message_id"`
+	// New type of the paid reaction
+	TypeField *PaidReactionType `json:"type"`
+}
+
+func (t *SetPaidMessageReactionType) Type() string {
+	return "setPaidMessageReactionType"
+}
+
+func (t *SetPaidMessageReactionType) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetPaidMessageReactionType) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetPaidMessageReactionType) MarshalJSON() ([]byte, error) {
+	type Alias SetPaidMessageReactionType
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setPaidMessageReactionType",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetPassportElement Adds an element to the user's Telegram Passport. May return an error with a message "PHONE_VERIFICATION_NEEDED" or "EMAIL_VERIFICATION_NEEDED" if the chosen phone number or the chosen email address must be verified first
+type SetPassportElement struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Input Telegram Passport element
+	Element *InputPassportElement `json:"element"`
+	// The 2-step verification password of the current user
+	Password string `json:"password"`
+}
+
+func (t *SetPassportElement) Type() string {
+	return "setPassportElement"
+}
+
+func (t *SetPassportElement) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetPassportElement) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetPassportElement) MarshalJSON() ([]byte, error) {
+	type Alias SetPassportElement
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setPassportElement",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetPassportElementErrors Informs the user that some of the elements in their Telegram Passport contain errors; for bots only. The user will not be able to resend the elements, until the errors are fixed @user_id User identifier @errors The errors
+type SetPassportElementErrors struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	UserId int64 `json:"user_id"`
+	//
+	Errors []*InputPassportElementError `json:"errors"`
+}
+
+func (t *SetPassportElementErrors) Type() string {
+	return "setPassportElementErrors"
+}
+
+func (t *SetPassportElementErrors) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetPassportElementErrors) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetPassportElementErrors) MarshalJSON() ([]byte, error) {
+	type Alias SetPassportElementErrors
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setPassportElementErrors",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetPassword Changes the 2-step verification password for the current user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed
+type SetPassword struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Previous 2-step verification password of the user
+	OldPassword string `json:"old_password"`
+	// New 2-step verification password of the user; may be empty to remove the password
+	NewPassword string `json:"new_password"`
+	// New password hint; may be empty
+	NewHint string `json:"new_hint"`
+	// Pass true to change also the recovery email address
+	SetRecoveryEmailAddress bool `json:"set_recovery_email_address"`
+	// New recovery email address; may be empty
+	NewRecoveryEmailAddress string `json:"new_recovery_email_address"`
+}
+
+func (t *SetPassword) Type() string {
+	return "setPassword"
+}
+
+func (t *SetPassword) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetPassword) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetPassword) MarshalJSON() ([]byte, error) {
+	type Alias SetPassword
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setPassword",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetPersonalChat Changes the personal chat of the current user @chat_id Identifier of the new personal chat; pass 0 to remove the chat. Use getSuitablePersonalChats to get suitable chats
+type SetPersonalChat struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+}
+
+func (t *SetPersonalChat) Type() string {
+	return "setPersonalChat"
+}
+
+func (t *SetPersonalChat) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetPersonalChat) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetPersonalChat) MarshalJSON() ([]byte, error) {
+	type Alias SetPersonalChat
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setPersonalChat",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetPinnedChats Changes the order of pinned chats @chat_list Chat list in which to change the order of pinned chats @chat_ids The new list of pinned chats
+type SetPinnedChats struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatList *ChatList `json:"chat_list"`
+	//
+	ChatIds []int64 `json:"chat_ids"`
+}
+
+func (t *SetPinnedChats) Type() string {
+	return "setPinnedChats"
+}
+
+func (t *SetPinnedChats) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetPinnedChats) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetPinnedChats) MarshalJSON() ([]byte, error) {
+	type Alias SetPinnedChats
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setPinnedChats",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetPinnedForumTopics Changes the order of pinned topics in a forum supergroup chat or a chat with a bot with topics; requires can_manage_topics administrator right in the supergroup
+type SetPinnedForumTopics struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// The new list of identifiers of the pinned forum topics
+	ForumTopicIds []int32 `json:"forum_topic_ids"`
+}
+
+func (t *SetPinnedForumTopics) Type() string {
+	return "setPinnedForumTopics"
+}
+
+func (t *SetPinnedForumTopics) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetPinnedForumTopics) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetPinnedForumTopics) MarshalJSON() ([]byte, error) {
+	type Alias SetPinnedForumTopics
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setPinnedForumTopics",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetPinnedGifts Changes the list of pinned gifts on the current user's or the channel's profile page; requires can_post_messages administrator right in the channel chat
+type SetPinnedGifts struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the user or the channel chat that received the gifts
+	OwnerId *MessageSender `json:"owner_id"`
+	// New list of pinned gifts. All gifts must be upgraded and saved on the profile page first. There can be up to getOption("pinned_gift_count_max") pinned gifts
+	ReceivedGiftIds []string `json:"received_gift_ids"`
+}
+
+func (t *SetPinnedGifts) Type() string {
+	return "setPinnedGifts"
+}
+
+func (t *SetPinnedGifts) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetPinnedGifts) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetPinnedGifts) MarshalJSON() ([]byte, error) {
+	type Alias SetPinnedGifts
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setPinnedGifts",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetPinnedSavedMessagesTopics Changes the order of pinned Saved Messages topics @saved_messages_topic_ids Identifiers of the new pinned Saved Messages topics
+type SetPinnedSavedMessagesTopics struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	SavedMessagesTopicIds []int64 `json:"saved_messages_topic_ids"`
+}
+
+func (t *SetPinnedSavedMessagesTopics) Type() string {
+	return "setPinnedSavedMessagesTopics"
+}
+
+func (t *SetPinnedSavedMessagesTopics) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetPinnedSavedMessagesTopics) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetPinnedSavedMessagesTopics) MarshalJSON() ([]byte, error) {
+	type Alias SetPinnedSavedMessagesTopics
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setPinnedSavedMessagesTopics",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetPollAnswer Changes the user answer to a poll. A poll in quiz mode can be answered only once
+type SetPollAnswer struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat to which the poll belongs
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message containing the poll
+	MessageId int64 `json:"message_id"`
+	// 0-based identifiers of answer options, chosen by the user. User can choose more than 1 answer option only is the poll allows multiple answers
+	OptionIds []int32 `json:"option_ids"`
+}
+
+func (t *SetPollAnswer) Type() string {
+	return "setPollAnswer"
+}
+
+func (t *SetPollAnswer) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetPollAnswer) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetPollAnswer) MarshalJSON() ([]byte, error) {
+	type Alias SetPollAnswer
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setPollAnswer",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetProfileAccentColor Changes accent color and background custom emoji for profile of the current user; for Telegram Premium users only
+type SetProfileAccentColor struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the accent color to use for profile; pass -1 if none
+	ProfileAccentColorId int32 `json:"profile_accent_color_id"`
+	// Identifier of a custom emoji to be shown on the user's profile photo background; 0 if none
+	ProfileBackgroundCustomEmojiId string `json:"profile_background_custom_emoji_id"`
+}
+
+func (t *SetProfileAccentColor) Type() string {
+	return "setProfileAccentColor"
+}
+
+func (t *SetProfileAccentColor) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetProfileAccentColor) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetProfileAccentColor) MarshalJSON() ([]byte, error) {
+	type Alias SetProfileAccentColor
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setProfileAccentColor",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetProfileAudioPosition Changes position of an audio file in the profile audio files of the current user
+type SetProfileAudioPosition struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the file from profile audio files, which position will be changed
+	FileId int32 `json:"file_id"`
+	// Identifier of the file from profile audio files after which the file will be positioned; pass 0 to move the file to the beginning of the list
+	AfterFileId int32 `json:"after_file_id"`
+}
+
+func (t *SetProfileAudioPosition) Type() string {
+	return "setProfileAudioPosition"
+}
+
+func (t *SetProfileAudioPosition) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetProfileAudioPosition) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetProfileAudioPosition) MarshalJSON() ([]byte, error) {
+	type Alias SetProfileAudioPosition
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setProfileAudioPosition",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetProfilePhoto Changes a profile photo for the current user
+type SetProfilePhoto struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Profile photo to set
+	Photo *InputChatPhoto `json:"photo"`
+	// Pass true to set the public photo, which will be visible even if the main photo is hidden by privacy settings
+	IsPublic bool `json:"is_public"`
+}
+
+func (t *SetProfilePhoto) Type() string {
+	return "setProfilePhoto"
+}
+
+func (t *SetProfilePhoto) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetProfilePhoto) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetProfilePhoto) MarshalJSON() ([]byte, error) {
+	type Alias SetProfilePhoto
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setProfilePhoto",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetQuickReplyShortcutName Changes name of a quick reply shortcut @shortcut_id Unique identifier of the quick reply shortcut @name New name for the shortcut. Use checkQuickReplyShortcutName to check its validness
+type SetQuickReplyShortcutName struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ShortcutId int32 `json:"shortcut_id"`
+	//
+	Name string `json:"name"`
+}
+
+func (t *SetQuickReplyShortcutName) Type() string {
+	return "setQuickReplyShortcutName"
+}
+
+func (t *SetQuickReplyShortcutName) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetQuickReplyShortcutName) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetQuickReplyShortcutName) MarshalJSON() ([]byte, error) {
+	type Alias SetQuickReplyShortcutName
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setQuickReplyShortcutName",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetReactionNotificationSettings Changes notification settings for reactions @notification_settings The new notification settings for reactions
+type SetReactionNotificationSettings struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	NotificationSettings *ReactionNotificationSettings `json:"notification_settings"`
+}
+
+func (t *SetReactionNotificationSettings) Type() string {
+	return "setReactionNotificationSettings"
+}
+
+func (t *SetReactionNotificationSettings) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetReactionNotificationSettings) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetReactionNotificationSettings) MarshalJSON() ([]byte, error) {
+	type Alias SetReactionNotificationSettings
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setReactionNotificationSettings",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetReadDatePrivacySettings Changes privacy settings for message read date @settings New settings
+type SetReadDatePrivacySettings struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Settings *ReadDatePrivacySettings `json:"settings"`
+}
+
+func (t *SetReadDatePrivacySettings) Type() string {
+	return "setReadDatePrivacySettings"
+}
+
+func (t *SetReadDatePrivacySettings) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetReadDatePrivacySettings) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetReadDatePrivacySettings) MarshalJSON() ([]byte, error) {
+	type Alias SetReadDatePrivacySettings
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setReadDatePrivacySettings",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetRecoveryEmailAddress Changes the 2-step verification recovery email address of the user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed.
+type SetRecoveryEmailAddress struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The 2-step verification password of the current user
+	Password string `json:"password"`
+	// New recovery email address
+	NewRecoveryEmailAddress string `json:"new_recovery_email_address"`
+}
+
+func (t *SetRecoveryEmailAddress) Type() string {
+	return "setRecoveryEmailAddress"
+}
+
+func (t *SetRecoveryEmailAddress) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetRecoveryEmailAddress) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetRecoveryEmailAddress) MarshalJSON() ([]byte, error) {
+	type Alias SetRecoveryEmailAddress
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setRecoveryEmailAddress",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetSavedMessagesTagLabel Changes label of a Saved Messages tag; for Telegram Premium users only @tag The tag which label will be changed @label New label for the tag; 0-12 characters
+type SetSavedMessagesTagLabel struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Tag *ReactionType `json:"tag"`
+	//
+	Label string `json:"label"`
+}
+
+func (t *SetSavedMessagesTagLabel) Type() string {
+	return "setSavedMessagesTagLabel"
+}
+
+func (t *SetSavedMessagesTagLabel) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetSavedMessagesTagLabel) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetSavedMessagesTagLabel) MarshalJSON() ([]byte, error) {
+	type Alias SetSavedMessagesTagLabel
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setSavedMessagesTagLabel",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetScopeNotificationSettings Changes notification settings for chats of a given type @scope Types of chats for which to change the notification settings @notification_settings The new notification settings for the given scope
+type SetScopeNotificationSettings struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Scope *NotificationSettingsScope `json:"scope"`
+	//
+	NotificationSettings *ScopeNotificationSettings `json:"notification_settings"`
+}
+
+func (t *SetScopeNotificationSettings) Type() string {
+	return "setScopeNotificationSettings"
+}
+
+func (t *SetScopeNotificationSettings) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetScopeNotificationSettings) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetScopeNotificationSettings) MarshalJSON() ([]byte, error) {
+	type Alias SetScopeNotificationSettings
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setScopeNotificationSettings",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetStickerEmojis Changes the list of emojis corresponding to a sticker. The sticker must belong to a regular or custom emoji sticker set that is owned by the current user
+type SetStickerEmojis struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Sticker
+	Sticker *InputFile `json:"sticker"`
+	// New string with 1-20 emoji corresponding to the sticker
+	Emojis string `json:"emojis"`
+}
+
+func (t *SetStickerEmojis) Type() string {
+	return "setStickerEmojis"
+}
+
+func (t *SetStickerEmojis) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetStickerEmojis) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetStickerEmojis) MarshalJSON() ([]byte, error) {
+	type Alias SetStickerEmojis
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setStickerEmojis",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetStickerKeywords Changes the list of keywords of a sticker. The sticker must belong to a regular or custom emoji sticker set that is owned by the current user
+type SetStickerKeywords struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Sticker
+	Sticker *InputFile `json:"sticker"`
+	// List of up to 20 keywords with total length up to 64 characters, which can be used to find the sticker
+	Keywords []string `json:"keywords"`
+}
+
+func (t *SetStickerKeywords) Type() string {
+	return "setStickerKeywords"
+}
+
+func (t *SetStickerKeywords) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetStickerKeywords) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetStickerKeywords) MarshalJSON() ([]byte, error) {
+	type Alias SetStickerKeywords
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setStickerKeywords",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetStickerMaskPosition Changes the mask position of a mask sticker. The sticker must belong to a mask sticker set that is owned by the current user
+type SetStickerMaskPosition struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Sticker
+	Sticker *InputFile `json:"sticker"`
+	// Position where the mask is placed; pass null to remove mask position
+	MaskPosition *MaskPosition `json:"mask_position,omitempty"`
+}
+
+func (t *SetStickerMaskPosition) Type() string {
+	return "setStickerMaskPosition"
+}
+
+func (t *SetStickerMaskPosition) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetStickerMaskPosition) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetStickerMaskPosition) MarshalJSON() ([]byte, error) {
+	type Alias SetStickerMaskPosition
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setStickerMaskPosition",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetStickerPositionInSet Changes the position of a sticker in the set to which it belongs. The sticker set must be owned by the current user
+type SetStickerPositionInSet struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Sticker
+	Sticker *InputFile `json:"sticker"`
+	// New position of the sticker in the set, 0-based
+	Position int32 `json:"position"`
+}
+
+func (t *SetStickerPositionInSet) Type() string {
+	return "setStickerPositionInSet"
+}
+
+func (t *SetStickerPositionInSet) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetStickerPositionInSet) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetStickerPositionInSet) MarshalJSON() ([]byte, error) {
+	type Alias SetStickerPositionInSet
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setStickerPositionInSet",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetStickerSetThumbnail Sets a sticker set thumbnail
+type SetStickerSetThumbnail struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Sticker set owner; ignored for regular users
+	UserId int64 `json:"user_id"`
+	// Sticker set name. The sticker set must be owned by the current user
+	Name string `json:"name"`
+	// Thumbnail to set; pass null to remove the sticker set thumbnail
+	Thumbnail *InputFile `json:"thumbnail,omitempty"`
+	// Format of the thumbnail; pass null if thumbnail is removed
+	Format *StickerFormat `json:"format,omitempty"`
+}
+
+func (t *SetStickerSetThumbnail) Type() string {
+	return "setStickerSetThumbnail"
+}
+
+func (t *SetStickerSetThumbnail) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetStickerSetThumbnail) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetStickerSetThumbnail) MarshalJSON() ([]byte, error) {
+	type Alias SetStickerSetThumbnail
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setStickerSetThumbnail",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetStickerSetTitle Sets a sticker set title @name Sticker set name. The sticker set must be owned by the current user @title New sticker set title
+type SetStickerSetTitle struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Name string `json:"name"`
+	//
+	Title string `json:"title"`
+}
+
+func (t *SetStickerSetTitle) Type() string {
+	return "setStickerSetTitle"
+}
+
+func (t *SetStickerSetTitle) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetStickerSetTitle) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetStickerSetTitle) MarshalJSON() ([]byte, error) {
+	type Alias SetStickerSetTitle
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setStickerSetTitle",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetStoryAlbumName Changes name of an album of stories. If the album is owned by a supergroup or a channel chat, then requires can_edit_stories administrator right in the chat. Returns the changed album
+type SetStoryAlbumName struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat that owns the stories
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the story album
+	StoryAlbumId int32 `json:"story_album_id"`
+	// New name of the album; 1-12 characters
+	Name string `json:"name"`
+}
+
+func (t *SetStoryAlbumName) Type() string {
+	return "setStoryAlbumName"
+}
+
+func (t *SetStoryAlbumName) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetStoryAlbumName) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetStoryAlbumName) MarshalJSON() ([]byte, error) {
+	type Alias SetStoryAlbumName
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setStoryAlbumName",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetStoryPrivacySettings Changes privacy settings of a story. The method can be called only for stories posted on behalf of the current user and if story.can_set_privacy_settings == true
+type SetStoryPrivacySettings struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the story
+	StoryId int32 `json:"story_id"`
+	// The new privacy settings for the story
+	PrivacySettings *StoryPrivacySettings `json:"privacy_settings"`
+}
+
+func (t *SetStoryPrivacySettings) Type() string {
+	return "setStoryPrivacySettings"
+}
+
+func (t *SetStoryPrivacySettings) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetStoryPrivacySettings) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetStoryPrivacySettings) MarshalJSON() ([]byte, error) {
+	type Alias SetStoryPrivacySettings
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setStoryPrivacySettings",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetStoryReaction Changes chosen reaction on a story that has already been sent; not supported for live stories
+type SetStoryReaction struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The identifier of the poster of the story
+	StoryPosterChatId int64 `json:"story_poster_chat_id"`
+	// The identifier of the story
+	StoryId int32 `json:"story_id"`
+	// Type of the reaction to set; pass null to remove the reaction. Custom emoji reactions can be used only by Telegram Premium users. Paid reactions can't be set
+	ReactionType *ReactionType `json:"reaction_type,omitempty"`
+	// Pass true if the reaction needs to be added to recent reactions
+	UpdateRecentReactions bool `json:"update_recent_reactions"`
+}
+
+func (t *SetStoryReaction) Type() string {
+	return "setStoryReaction"
+}
+
+func (t *SetStoryReaction) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetStoryReaction) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetStoryReaction) MarshalJSON() ([]byte, error) {
+	type Alias SetStoryReaction
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setStoryReaction",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetSupergroupCustomEmojiStickerSet Changes the custom emoji sticker set of a supergroup; requires can_change_info administrator right. The chat must have at least chatBoostFeatures.min_custom_emoji_sticker_set_boost_level boost level to pass the corresponding color
+type SetSupergroupCustomEmojiStickerSet struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the supergroup
+	SupergroupId int64 `json:"supergroup_id"`
+	// New value of the custom emoji sticker set identifier for the supergroup. Use 0 to remove the custom emoji sticker set in the supergroup
+	CustomEmojiStickerSetId string `json:"custom_emoji_sticker_set_id"`
+}
+
+func (t *SetSupergroupCustomEmojiStickerSet) Type() string {
+	return "setSupergroupCustomEmojiStickerSet"
+}
+
+func (t *SetSupergroupCustomEmojiStickerSet) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetSupergroupCustomEmojiStickerSet) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetSupergroupCustomEmojiStickerSet) MarshalJSON() ([]byte, error) {
+	type Alias SetSupergroupCustomEmojiStickerSet
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setSupergroupCustomEmojiStickerSet",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetSupergroupMainProfileTab Changes the main profile tab of the channel; requires can_change_info administrator right
+type SetSupergroupMainProfileTab struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the channel
+	SupergroupId int64 `json:"supergroup_id"`
+	// The new value of the main profile tab
+	MainProfileTab *ProfileTab `json:"main_profile_tab"`
+}
+
+func (t *SetSupergroupMainProfileTab) Type() string {
+	return "setSupergroupMainProfileTab"
+}
+
+func (t *SetSupergroupMainProfileTab) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetSupergroupMainProfileTab) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetSupergroupMainProfileTab) MarshalJSON() ([]byte, error) {
+	type Alias SetSupergroupMainProfileTab
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setSupergroupMainProfileTab",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetSupergroupStickerSet Changes the sticker set of a supergroup; requires can_change_info administrator right @supergroup_id Identifier of the supergroup @sticker_set_id New value of the supergroup sticker set identifier. Use 0 to remove the supergroup sticker set
+type SetSupergroupStickerSet struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	SupergroupId int64 `json:"supergroup_id"`
+	//
+	StickerSetId string `json:"sticker_set_id"`
+}
+
+func (t *SetSupergroupStickerSet) Type() string {
+	return "setSupergroupStickerSet"
+}
+
+func (t *SetSupergroupStickerSet) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetSupergroupStickerSet) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetSupergroupStickerSet) MarshalJSON() ([]byte, error) {
+	type Alias SetSupergroupStickerSet
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setSupergroupStickerSet",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetSupergroupUnrestrictBoostCount Changes the number of times the supergroup must be boosted by a user to ignore slow mode and chat permission restrictions; requires can_restrict_members administrator right
+type SetSupergroupUnrestrictBoostCount struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the supergroup
+	SupergroupId int64 `json:"supergroup_id"`
+	// New value of the unrestrict_boost_count supergroup setting; 0-8. Use 0 to remove the setting
+	UnrestrictBoostCount int32 `json:"unrestrict_boost_count"`
+}
+
+func (t *SetSupergroupUnrestrictBoostCount) Type() string {
+	return "setSupergroupUnrestrictBoostCount"
+}
+
+func (t *SetSupergroupUnrestrictBoostCount) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetSupergroupUnrestrictBoostCount) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetSupergroupUnrestrictBoostCount) MarshalJSON() ([]byte, error) {
+	type Alias SetSupergroupUnrestrictBoostCount
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setSupergroupUnrestrictBoostCount",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetSupergroupUsername Changes the editable username of a supergroup or channel, requires owner privileges in the supergroup or channel
+type SetSupergroupUsername struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the supergroup or channel
+	SupergroupId int64 `json:"supergroup_id"`
+	// New value of the username. Use an empty string to remove the username. The username can't be completely removed if there is another active or disabled username
+	Username string `json:"username"`
+}
+
+func (t *SetSupergroupUsername) Type() string {
+	return "setSupergroupUsername"
+}
+
+func (t *SetSupergroupUsername) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetSupergroupUsername) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetSupergroupUsername) MarshalJSON() ([]byte, error) {
+	type Alias SetSupergroupUsername
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setSupergroupUsername",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetTdlibParameters Sets the parameters for TDLib initialization. Works only when the current authorization state is authorizationStateWaitTdlibParameters
+type SetTdlibParameters struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Pass true to use Telegram test environment instead of the production environment
+	UseTestDc bool `json:"use_test_dc"`
+	// The path to the directory for the persistent database; if empty, the current working directory will be used
+	DatabaseDirectory string `json:"database_directory"`
+	// The path to the directory for storing files; if empty, database_directory will be used
+	FilesDirectory string `json:"files_directory"`
+	// Encryption key for the database. If the encryption key is invalid, then an error with code 401 will be returned
+	DatabaseEncryptionKey string `json:"database_encryption_key"`
+	// Pass true to keep information about downloaded and uploaded files between application restarts
+	UseFileDatabase bool `json:"use_file_database"`
+	// Pass true to keep cache of users, basic groups, supergroups, channels and secret chats between restarts. Implies use_file_database
+	UseChatInfoDatabase bool `json:"use_chat_info_database"`
+	// Pass true to keep cache of chats and messages between restarts. Implies use_chat_info_database
+	UseMessageDatabase bool `json:"use_message_database"`
+	// Pass true to enable support for secret chats
+	UseSecretChats bool `json:"use_secret_chats"`
+	// Application identifier for Telegram API access, which can be obtained at https://my.telegram.org
+	ApiId int32 `json:"api_id"`
+	// Application identifier hash for Telegram API access, which can be obtained at https://my.telegram.org
+	ApiHash string `json:"api_hash"`
+	// IETF language tag of the user's operating system language; must be non-empty
+	SystemLanguageCode string `json:"system_language_code"`
+	// Model of the device the application is being run on; must be non-empty
+	DeviceModel string `json:"device_model"`
+	// Version of the operating system the application is being run on. If empty, the version is automatically detected by TDLib
+	SystemVersion string `json:"system_version"`
+	// Application version; must be non-empty
+	ApplicationVersion string `json:"application_version"`
+}
+
+func (t *SetTdlibParameters) Type() string {
+	return "setTdlibParameters"
+}
+
+func (t *SetTdlibParameters) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetTdlibParameters) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetTdlibParameters) MarshalJSON() ([]byte, error) {
+	type Alias SetTdlibParameters
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setTdlibParameters",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetUpgradedGiftColors Changes color scheme for the current user based on an owned or a hosted upgraded gift; for Telegram Premium users only
+type SetUpgradedGiftColors struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the upgradedGiftColors scheme to use
+	UpgradedGiftColorsId string `json:"upgraded_gift_colors_id"`
+}
+
+func (t *SetUpgradedGiftColors) Type() string {
+	return "setUpgradedGiftColors"
+}
+
+func (t *SetUpgradedGiftColors) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetUpgradedGiftColors) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetUpgradedGiftColors) MarshalJSON() ([]byte, error) {
+	type Alias SetUpgradedGiftColors
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setUpgradedGiftColors",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetUserEmojiStatus Changes the emoji status of a user; for bots only @user_id Identifier of the user @emoji_status New emoji status; pass null to switch to the default badge
+type SetUserEmojiStatus struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	UserId int64 `json:"user_id"`
+	//
+	EmojiStatus *EmojiStatus `json:"emoji_status"`
+}
+
+func (t *SetUserEmojiStatus) Type() string {
+	return "setUserEmojiStatus"
+}
+
+func (t *SetUserEmojiStatus) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetUserEmojiStatus) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetUserEmojiStatus) MarshalJSON() ([]byte, error) {
+	type Alias SetUserEmojiStatus
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setUserEmojiStatus",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetUsername Changes the editable username of the current user
+type SetUsername struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The new value of the username. Use an empty string to remove the username. The username can't be completely removed if there is another active or disabled username
+	Username string `json:"username"`
+}
+
+func (t *SetUsername) Type() string {
+	return "setUsername"
+}
+
+func (t *SetUsername) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetUsername) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetUsername) MarshalJSON() ([]byte, error) {
+	type Alias SetUsername
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setUsername",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetUserNote Changes a note of a contact user
+type SetUserNote struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// User identifier
+	UserId int64 `json:"user_id"`
+	// Note to set for the user; 0-getOption("user_note_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed
+	Note *FormattedText `json:"note"`
+}
+
+func (t *SetUserNote) Type() string {
+	return "setUserNote"
+}
+
+func (t *SetUserNote) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetUserNote) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetUserNote) MarshalJSON() ([]byte, error) {
+	type Alias SetUserNote
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setUserNote",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetUserPersonalProfilePhoto Changes a personal profile photo of a contact user @user_id User identifier @photo Profile photo to set; pass null to delete the photo; inputChatPhotoPrevious isn't supported in this function
+type SetUserPersonalProfilePhoto struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	UserId int64 `json:"user_id"`
+	//
+	Photo *InputChatPhoto `json:"photo"`
+}
+
+func (t *SetUserPersonalProfilePhoto) Type() string {
+	return "setUserPersonalProfilePhoto"
+}
+
+func (t *SetUserPersonalProfilePhoto) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetUserPersonalProfilePhoto) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetUserPersonalProfilePhoto) MarshalJSON() ([]byte, error) {
+	type Alias SetUserPersonalProfilePhoto
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setUserPersonalProfilePhoto",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetUserPrivacySettingRules Changes user privacy settings @setting The privacy setting @rules The new privacy rules
+type SetUserPrivacySettingRules struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Setting *UserPrivacySetting `json:"setting"`
+	//
+	Rules *UserPrivacySettingRules `json:"rules"`
+}
+
+func (t *SetUserPrivacySettingRules) Type() string {
+	return "setUserPrivacySettingRules"
+}
+
+func (t *SetUserPrivacySettingRules) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetUserPrivacySettingRules) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetUserPrivacySettingRules) MarshalJSON() ([]byte, error) {
+	type Alias SetUserPrivacySettingRules
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setUserPrivacySettingRules",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetUserSupportInfo Sets support information for the given user; for Telegram support only @user_id User identifier @message New information message
+type SetUserSupportInfo struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	UserId int64 `json:"user_id"`
+	//
+	Message *FormattedText `json:"message"`
+}
+
+func (t *SetUserSupportInfo) Type() string {
+	return "setUserSupportInfo"
+}
+
+func (t *SetUserSupportInfo) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetUserSupportInfo) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetUserSupportInfo) MarshalJSON() ([]byte, error) {
+	type Alias SetUserSupportInfo
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setUserSupportInfo",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetVideoChatDefaultParticipant Changes default participant identifier, on whose behalf a video chat in the chat will be joined
+type SetVideoChatDefaultParticipant struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Default group call participant identifier to join the video chats in the chat
+	DefaultParticipantId *MessageSender `json:"default_participant_id"`
+}
+
+func (t *SetVideoChatDefaultParticipant) Type() string {
+	return "setVideoChatDefaultParticipant"
+}
+
+func (t *SetVideoChatDefaultParticipant) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetVideoChatDefaultParticipant) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetVideoChatDefaultParticipant) MarshalJSON() ([]byte, error) {
+	type Alias SetVideoChatDefaultParticipant
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setVideoChatDefaultParticipant",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SetVideoChatTitle Sets title of a video chat; requires groupCall.can_be_managed right @group_call_id Group call identifier @title New group call title; 1-64 characters
+type SetVideoChatTitle struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	GroupCallId int32 `json:"group_call_id"`
+	//
+	Title string `json:"title"`
+}
+
+func (t *SetVideoChatTitle) Type() string {
+	return "setVideoChatTitle"
+}
+
+func (t *SetVideoChatTitle) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SetVideoChatTitle) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SetVideoChatTitle) MarshalJSON() ([]byte, error) {
+	type Alias SetVideoChatTitle
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setVideoChatTitle",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ShareChatWithBot Shares a chat after pressing a keyboardButtonTypeRequestChat button with the bot
+type ShareChatWithBot struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat with the bot
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message with the button
+	MessageId int64 `json:"message_id"`
+	// Identifier of the button
+	ButtonId int32 `json:"button_id"`
+	// Identifier of the shared chat
+	SharedChatId int64 `json:"shared_chat_id"`
+	// Pass true to check that the chat can be shared by the button instead of actually sharing it. Doesn't check bot_is_member and bot_administrator_rights restrictions.
+	OnlyCheck bool `json:"only_check"`
+}
+
+func (t *ShareChatWithBot) Type() string {
+	return "shareChatWithBot"
+}
+
+func (t *ShareChatWithBot) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ShareChatWithBot) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ShareChatWithBot) MarshalJSON() ([]byte, error) {
+	type Alias ShareChatWithBot
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "shareChatWithBot",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SharePhoneNumber Shares the phone number of the current user with a mutual contact. Supposed to be called when the user clicks on chatActionBarSharePhoneNumber
+type SharePhoneNumber struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the user with whom to share the phone number. The user must be a mutual contact
+	UserId int64 `json:"user_id"`
+}
+
+func (t *SharePhoneNumber) Type() string {
+	return "sharePhoneNumber"
+}
+
+func (t *SharePhoneNumber) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SharePhoneNumber) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SharePhoneNumber) MarshalJSON() ([]byte, error) {
+	type Alias SharePhoneNumber
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "sharePhoneNumber",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ShareUsersWithBot Shares users after pressing a keyboardButtonTypeRequestUsers button with the bot
+type ShareUsersWithBot struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat with the bot
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message with the button
+	MessageId int64 `json:"message_id"`
+	// Identifier of the button
+	ButtonId int32 `json:"button_id"`
+	// Identifiers of the shared users
+	SharedUserIds []int64 `json:"shared_user_ids"`
+	// Pass true to check that the users can be shared by the button instead of actually sharing them
+	OnlyCheck bool `json:"only_check"`
+}
+
+func (t *ShareUsersWithBot) Type() string {
+	return "shareUsersWithBot"
+}
+
+func (t *ShareUsersWithBot) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ShareUsersWithBot) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ShareUsersWithBot) MarshalJSON() ([]byte, error) {
+	type Alias ShareUsersWithBot
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "shareUsersWithBot",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// StartGroupCallRecording Starts recording of an active group call; for video chats only. Requires groupCall.can_be_managed right
+type StartGroupCallRecording struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Group call identifier
+	GroupCallId int32 `json:"group_call_id"`
+	// Group call recording title; 0-64 characters
+	Title string `json:"title"`
+	// Pass true to record a video file instead of an audio file
+	RecordVideo bool `json:"record_video"`
+	// Pass true to use portrait orientation for video instead of landscape one
+	UsePortraitOrientation bool `json:"use_portrait_orientation"`
+}
+
+func (t *StartGroupCallRecording) Type() string {
+	return "startGroupCallRecording"
+}
+
+func (t *StartGroupCallRecording) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *StartGroupCallRecording) GetExtra() string {
+	return t.Extra
+}
+
+func (t *StartGroupCallRecording) MarshalJSON() ([]byte, error) {
+	type Alias StartGroupCallRecording
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "startGroupCallRecording",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// StartGroupCallScreenSharing Starts screen sharing in a joined group call; not supported in live stories. Returns join response payload for tgcalls
+type StartGroupCallScreenSharing struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Group call identifier
+	GroupCallId int32 `json:"group_call_id"`
+	// Screen sharing audio channel synchronization source identifier; received from tgcalls
+	AudioSourceId int32 `json:"audio_source_id"`
+	// Group call join payload; received from tgcalls
+	Payload string `json:"payload"`
+}
+
+func (t *StartGroupCallScreenSharing) Type() string {
+	return "startGroupCallScreenSharing"
+}
+
+func (t *StartGroupCallScreenSharing) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *StartGroupCallScreenSharing) GetExtra() string {
+	return t.Extra
+}
+
+func (t *StartGroupCallScreenSharing) MarshalJSON() ([]byte, error) {
+	type Alias StartGroupCallScreenSharing
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "startGroupCallScreenSharing",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// StartLiveStory Starts a new live story on behalf of a chat; requires can_post_stories administrator right for channel chats
+type StartLiveStory struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat that will start the live story. Pass Saved Messages chat identifier when starting a live story on behalf of the current user, or a channel chat identifier
+	ChatId int64 `json:"chat_id"`
+	// The privacy settings for the story; ignored for stories posted on behalf of channel chats
+	PrivacySettings *StoryPrivacySettings `json:"privacy_settings"`
+	// Pass true if the content of the story must be protected from screenshotting
+	ProtectContent bool `json:"protect_content"`
+	// Pass true to create an RTMP stream instead of an ordinary group call
+	IsRtmpStream bool `json:"is_rtmp_stream"`
+	// Pass true to allow viewers of the story to send messages
+	EnableMessages bool `json:"enable_messages"`
+	// The minimum number of Telegram Stars that must be paid by viewers for each sent message to the call; 0-getOption("paid_group_call_message_star_count_max")
+	PaidMessageStarCount int64 `json:"paid_message_star_count"`
+}
+
+func (t *StartLiveStory) Type() string {
+	return "startLiveStory"
+}
+
+func (t *StartLiveStory) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *StartLiveStory) GetExtra() string {
+	return t.Extra
+}
+
+func (t *StartLiveStory) MarshalJSON() ([]byte, error) {
+	type Alias StartLiveStory
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "startLiveStory",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// StartScheduledVideoChat Starts a scheduled video chat @group_call_id Group call identifier of the video chat
+type StartScheduledVideoChat struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	GroupCallId int32 `json:"group_call_id"`
+}
+
+func (t *StartScheduledVideoChat) Type() string {
+	return "startScheduledVideoChat"
+}
+
+func (t *StartScheduledVideoChat) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *StartScheduledVideoChat) GetExtra() string {
+	return t.Extra
+}
+
+func (t *StartScheduledVideoChat) MarshalJSON() ([]byte, error) {
+	type Alias StartScheduledVideoChat
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "startScheduledVideoChat",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// StopBusinessPoll Stops a poll sent on behalf of a business account; for bots only
+type StopBusinessPoll struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Unique identifier of business connection on behalf of which the message with the poll was sent
+	BusinessConnectionId string `json:"business_connection_id"`
+	// The chat the message belongs to
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message containing the poll
+	MessageId int64 `json:"message_id"`
+	// The new message reply markup; pass null if none
+	ReplyMarkup *ReplyMarkup `json:"reply_markup,omitempty"`
+}
+
+func (t *StopBusinessPoll) Type() string {
+	return "stopBusinessPoll"
+}
+
+func (t *StopBusinessPoll) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *StopBusinessPoll) GetExtra() string {
+	return t.Extra
+}
+
+func (t *StopBusinessPoll) MarshalJSON() ([]byte, error) {
+	type Alias StopBusinessPoll
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "stopBusinessPoll",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// StopPoll Stops a poll
+type StopPoll struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat to which the poll belongs
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message containing the poll. Use messageProperties.can_be_edited to check whether the poll can be stopped
+	MessageId int64 `json:"message_id"`
+	// The new message reply markup; pass null if none; for bots only
+	ReplyMarkup *ReplyMarkup `json:"reply_markup,omitempty"`
+}
+
+func (t *StopPoll) Type() string {
+	return "stopPoll"
+}
+
+func (t *StopPoll) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *StopPoll) GetExtra() string {
+	return t.Extra
+}
+
+func (t *StopPoll) MarshalJSON() ([]byte, error) {
+	type Alias StopPoll
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "stopPoll",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SuggestUserBirthdate Suggests a birthdate to another regular user with common messages and allowing non-paid messages
+type SuggestUserBirthdate struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// User identifier
+	UserId int64 `json:"user_id"`
+	// Birthdate to suggest
+	Birthdate *Birthdate `json:"birthdate"`
+}
+
+func (t *SuggestUserBirthdate) Type() string {
+	return "suggestUserBirthdate"
+}
+
+func (t *SuggestUserBirthdate) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SuggestUserBirthdate) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SuggestUserBirthdate) MarshalJSON() ([]byte, error) {
+	type Alias SuggestUserBirthdate
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "suggestUserBirthdate",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SuggestUserProfilePhoto Suggests a profile photo to another regular user with common messages and allowing non-paid messages
+type SuggestUserProfilePhoto struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// User identifier
+	UserId int64 `json:"user_id"`
+	// Profile photo to suggest; inputChatPhotoPrevious isn't supported in this function
+	Photo *InputChatPhoto `json:"photo"`
+}
+
+func (t *SuggestUserProfilePhoto) Type() string {
+	return "suggestUserProfilePhoto"
+}
+
+func (t *SuggestUserProfilePhoto) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SuggestUserProfilePhoto) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SuggestUserProfilePhoto) MarshalJSON() ([]byte, error) {
+	type Alias SuggestUserProfilePhoto
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "suggestUserProfilePhoto",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SummarizeMessage Summarizes content of the message with non-empty summary_language_code
+type SummarizeMessage struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat to which the message belongs
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message
+	MessageId int64 `json:"message_id"`
+	// Pass a language code to which the summary will be translated; may be empty if translation isn't needed. See translateText.to_language_code for the list of supported values
+	TranslateToLanguageCode string `json:"translate_to_language_code"`
+}
+
+func (t *SummarizeMessage) Type() string {
+	return "summarizeMessage"
+}
+
+func (t *SummarizeMessage) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SummarizeMessage) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SummarizeMessage) MarshalJSON() ([]byte, error) {
+	type Alias SummarizeMessage
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "summarizeMessage",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SynchronizeLanguagePack Fetches the latest versions of all strings from a language pack in the current localization target from the server.
+type SynchronizeLanguagePack struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Language pack identifier
+	LanguagePackId string `json:"language_pack_id"`
+}
+
+func (t *SynchronizeLanguagePack) Type() string {
+	return "synchronizeLanguagePack"
+}
+
+func (t *SynchronizeLanguagePack) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *SynchronizeLanguagePack) GetExtra() string {
+	return t.Extra
+}
+
+func (t *SynchronizeLanguagePack) MarshalJSON() ([]byte, error) {
+	type Alias SynchronizeLanguagePack
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "synchronizeLanguagePack",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// TerminateAllOtherSessions Terminates all other sessions of the current user
+type TerminateAllOtherSessions struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *TerminateAllOtherSessions) Type() string {
+	return "terminateAllOtherSessions"
+}
+
+func (t *TerminateAllOtherSessions) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *TerminateAllOtherSessions) GetExtra() string {
+	return t.Extra
+}
+
+func (t *TerminateAllOtherSessions) MarshalJSON() ([]byte, error) {
+	type Alias TerminateAllOtherSessions
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "terminateAllOtherSessions",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// TerminateSession Terminates a session of the current user @session_id Session identifier
+type TerminateSession struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	SessionId string `json:"session_id"`
+}
+
+func (t *TerminateSession) Type() string {
+	return "terminateSession"
+}
+
+func (t *TerminateSession) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *TerminateSession) GetExtra() string {
+	return t.Extra
+}
+
+func (t *TerminateSession) MarshalJSON() ([]byte, error) {
+	type Alias TerminateSession
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "terminateSession",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// TestCallBytes Returns the received bytes; for testing only. This is an offline method. Can be called before authorization @x Bytes to return
+type TestCallBytes struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	X string `json:"x"`
+}
+
+func (t *TestCallBytes) Type() string {
+	return "testCallBytes"
+}
+
+func (t *TestCallBytes) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *TestCallBytes) GetExtra() string {
+	return t.Extra
+}
+
+func (t *TestCallBytes) MarshalJSON() ([]byte, error) {
+	type Alias TestCallBytes
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "testCallBytes",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// TestCallEmpty Does nothing; for testing only. This is an offline method. Can be called before authorization
+type TestCallEmpty struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *TestCallEmpty) Type() string {
+	return "testCallEmpty"
+}
+
+func (t *TestCallEmpty) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *TestCallEmpty) GetExtra() string {
+	return t.Extra
+}
+
+func (t *TestCallEmpty) MarshalJSON() ([]byte, error) {
+	type Alias TestCallEmpty
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "testCallEmpty",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// TestCallString Returns the received string; for testing only. This is an offline method. Can be called before authorization @x String to return
+type TestCallString struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	X string `json:"x"`
+}
+
+func (t *TestCallString) Type() string {
+	return "testCallString"
+}
+
+func (t *TestCallString) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *TestCallString) GetExtra() string {
+	return t.Extra
+}
+
+func (t *TestCallString) MarshalJSON() ([]byte, error) {
+	type Alias TestCallString
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "testCallString",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// TestCallVectorInt Returns the received vector of numbers; for testing only. This is an offline method. Can be called before authorization @x Vector of numbers to return
+type TestCallVectorInt struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	X []int32 `json:"x"`
+}
+
+func (t *TestCallVectorInt) Type() string {
+	return "testCallVectorInt"
+}
+
+func (t *TestCallVectorInt) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *TestCallVectorInt) GetExtra() string {
+	return t.Extra
+}
+
+func (t *TestCallVectorInt) MarshalJSON() ([]byte, error) {
+	type Alias TestCallVectorInt
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "testCallVectorInt",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// TestCallVectorIntObject Returns the received vector of objects containing a number; for testing only. This is an offline method. Can be called before authorization @x Vector of objects to return
+type TestCallVectorIntObject struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	X []*TestInt `json:"x"`
+}
+
+func (t *TestCallVectorIntObject) Type() string {
+	return "testCallVectorIntObject"
+}
+
+func (t *TestCallVectorIntObject) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *TestCallVectorIntObject) GetExtra() string {
+	return t.Extra
+}
+
+func (t *TestCallVectorIntObject) MarshalJSON() ([]byte, error) {
+	type Alias TestCallVectorIntObject
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "testCallVectorIntObject",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// TestCallVectorString Returns the received vector of strings; for testing only. This is an offline method. Can be called before authorization @x Vector of strings to return
+type TestCallVectorString struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	X []string `json:"x"`
+}
+
+func (t *TestCallVectorString) Type() string {
+	return "testCallVectorString"
+}
+
+func (t *TestCallVectorString) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *TestCallVectorString) GetExtra() string {
+	return t.Extra
+}
+
+func (t *TestCallVectorString) MarshalJSON() ([]byte, error) {
+	type Alias TestCallVectorString
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "testCallVectorString",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// TestCallVectorStringObject Returns the received vector of objects containing a string; for testing only. This is an offline method. Can be called before authorization @x Vector of objects to return
+type TestCallVectorStringObject struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	X []*TestString `json:"x"`
+}
+
+func (t *TestCallVectorStringObject) Type() string {
+	return "testCallVectorStringObject"
+}
+
+func (t *TestCallVectorStringObject) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *TestCallVectorStringObject) GetExtra() string {
+	return t.Extra
+}
+
+func (t *TestCallVectorStringObject) MarshalJSON() ([]byte, error) {
+	type Alias TestCallVectorStringObject
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "testCallVectorStringObject",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// TestGetDifference Forces an updates.getDifference call to the Telegram servers; for testing only
+type TestGetDifference struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *TestGetDifference) Type() string {
+	return "testGetDifference"
+}
+
+func (t *TestGetDifference) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *TestGetDifference) GetExtra() string {
+	return t.Extra
+}
+
+func (t *TestGetDifference) MarshalJSON() ([]byte, error) {
+	type Alias TestGetDifference
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "testGetDifference",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// TestNetwork Sends a simple network request to the Telegram servers; for testing only. Can be called before authorization
+type TestNetwork struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *TestNetwork) Type() string {
+	return "testNetwork"
+}
+
+func (t *TestNetwork) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *TestNetwork) GetExtra() string {
+	return t.Extra
+}
+
+func (t *TestNetwork) MarshalJSON() ([]byte, error) {
+	type Alias TestNetwork
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "testNetwork",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// TestProxy Sends a simple network request to the Telegram servers via proxy; for testing only. Can be called before authorization
+type TestProxy struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Proxy server domain or IP address
+	Server string `json:"server"`
+	// Proxy server port
+	Port int32 `json:"port"`
+	// Proxy type
+	TypeField *ProxyType `json:"type"`
+	// Identifier of a datacenter with which to test connection
+	DcId int32 `json:"dc_id"`
+	// The maximum overall timeout for the request
+	Timeout float64 `json:"timeout"`
+}
+
+func (t *TestProxy) Type() string {
+	return "testProxy"
+}
+
+func (t *TestProxy) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *TestProxy) GetExtra() string {
+	return t.Extra
+}
+
+func (t *TestProxy) MarshalJSON() ([]byte, error) {
+	type Alias TestProxy
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "testProxy",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// TestReturnError Returns the specified error and ensures that the Error object is used; for testing only. Can be called synchronously @error The error to be returned
+type TestReturnError struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Error *Error `json:"error"`
+}
+
+func (t *TestReturnError) Type() string {
+	return "testReturnError"
+}
+
+func (t *TestReturnError) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *TestReturnError) GetExtra() string {
+	return t.Extra
+}
+
+func (t *TestReturnError) MarshalJSON() ([]byte, error) {
+	type Alias TestReturnError
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "testReturnError",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// TestSquareInt Returns the squared received number; for testing only. This is an offline method. Can be called before authorization @x Number to square
+type TestSquareInt struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	X int32 `json:"x"`
+}
+
+func (t *TestSquareInt) Type() string {
+	return "testSquareInt"
+}
+
+func (t *TestSquareInt) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *TestSquareInt) GetExtra() string {
+	return t.Extra
+}
+
+func (t *TestSquareInt) MarshalJSON() ([]byte, error) {
+	type Alias TestSquareInt
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "testSquareInt",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// TestUseUpdate Does nothing and ensures that the Update object is used; for testing only. This is an offline method. Can be called before authorization
+type TestUseUpdate struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+}
+
+func (t *TestUseUpdate) Type() string {
+	return "testUseUpdate"
+}
+
+func (t *TestUseUpdate) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *TestUseUpdate) GetExtra() string {
+	return t.Extra
+}
+
+func (t *TestUseUpdate) MarshalJSON() ([]byte, error) {
+	type Alias TestUseUpdate
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "testUseUpdate",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ToggleAllDownloadsArePaused Changes pause state of all files in the file download list @are_paused Pass true to pause all downloads; pass false to unpause them
+type ToggleAllDownloadsArePaused struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ArePaused bool `json:"are_paused"`
+}
+
+func (t *ToggleAllDownloadsArePaused) Type() string {
+	return "toggleAllDownloadsArePaused"
+}
+
+func (t *ToggleAllDownloadsArePaused) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ToggleAllDownloadsArePaused) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ToggleAllDownloadsArePaused) MarshalJSON() ([]byte, error) {
+	type Alias ToggleAllDownloadsArePaused
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "toggleAllDownloadsArePaused",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ToggleBotCanManageEmojiStatus Toggles whether the bot can manage emoji status of the current user @bot_user_id User identifier of the bot @can_manage_emoji_status Pass true if the bot is allowed to change emoji status of the user; pass false otherwise
+type ToggleBotCanManageEmojiStatus struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	BotUserId int64 `json:"bot_user_id"`
+	//
+	CanManageEmojiStatus bool `json:"can_manage_emoji_status"`
+}
+
+func (t *ToggleBotCanManageEmojiStatus) Type() string {
+	return "toggleBotCanManageEmojiStatus"
+}
+
+func (t *ToggleBotCanManageEmojiStatus) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ToggleBotCanManageEmojiStatus) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ToggleBotCanManageEmojiStatus) MarshalJSON() ([]byte, error) {
+	type Alias ToggleBotCanManageEmojiStatus
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "toggleBotCanManageEmojiStatus",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ToggleBotIsAddedToAttachmentMenu Adds or removes a bot to attachment and side menu. Bot can be added to the menu, only if userTypeBot.can_be_added_to_attachment_menu == true
+type ToggleBotIsAddedToAttachmentMenu struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Bot's user identifier
+	BotUserId int64 `json:"bot_user_id"`
+	// Pass true to add the bot to attachment menu; pass false to remove the bot from attachment menu
+	IsAdded bool `json:"is_added"`
+	// Pass true if the current user allowed the bot to send them messages. Ignored if is_added is false
+	AllowWriteAccess bool `json:"allow_write_access"`
+}
+
+func (t *ToggleBotIsAddedToAttachmentMenu) Type() string {
+	return "toggleBotIsAddedToAttachmentMenu"
+}
+
+func (t *ToggleBotIsAddedToAttachmentMenu) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ToggleBotIsAddedToAttachmentMenu) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ToggleBotIsAddedToAttachmentMenu) MarshalJSON() ([]byte, error) {
+	type Alias ToggleBotIsAddedToAttachmentMenu
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "toggleBotIsAddedToAttachmentMenu",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ToggleBotUsernameIsActive Changes active state for a username of a bot. The editable username can be disabled only if there are other active usernames.
+type ToggleBotUsernameIsActive struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the target bot
+	BotUserId int64 `json:"bot_user_id"`
+	// The username to change
+	Username string `json:"username"`
+	// Pass true to activate the username; pass false to disable it
+	IsActive bool `json:"is_active"`
+}
+
+func (t *ToggleBotUsernameIsActive) Type() string {
+	return "toggleBotUsernameIsActive"
+}
+
+func (t *ToggleBotUsernameIsActive) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ToggleBotUsernameIsActive) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ToggleBotUsernameIsActive) MarshalJSON() ([]byte, error) {
+	type Alias ToggleBotUsernameIsActive
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "toggleBotUsernameIsActive",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ToggleBusinessConnectedBotChatIsPaused Pauses or resumes the connected business bot in a specific chat @chat_id Chat identifier @is_paused Pass true to pause the connected bot in the chat; pass false to resume the bot
+type ToggleBusinessConnectedBotChatIsPaused struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+	//
+	IsPaused bool `json:"is_paused"`
+}
+
+func (t *ToggleBusinessConnectedBotChatIsPaused) Type() string {
+	return "toggleBusinessConnectedBotChatIsPaused"
+}
+
+func (t *ToggleBusinessConnectedBotChatIsPaused) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ToggleBusinessConnectedBotChatIsPaused) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ToggleBusinessConnectedBotChatIsPaused) MarshalJSON() ([]byte, error) {
+	type Alias ToggleBusinessConnectedBotChatIsPaused
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "toggleBusinessConnectedBotChatIsPaused",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ToggleChatDefaultDisableNotification Changes the value of the default disable_notification parameter, used when a message is sent to a chat @chat_id Chat identifier @default_disable_notification New value of default_disable_notification
+type ToggleChatDefaultDisableNotification struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+	//
+	DefaultDisableNotification bool `json:"default_disable_notification"`
+}
+
+func (t *ToggleChatDefaultDisableNotification) Type() string {
+	return "toggleChatDefaultDisableNotification"
+}
+
+func (t *ToggleChatDefaultDisableNotification) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ToggleChatDefaultDisableNotification) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ToggleChatDefaultDisableNotification) MarshalJSON() ([]byte, error) {
+	type Alias ToggleChatDefaultDisableNotification
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "toggleChatDefaultDisableNotification",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ToggleChatFolderTags Toggles whether chat folder tags are enabled @are_tags_enabled Pass true to enable folder tags; pass false to disable them
+type ToggleChatFolderTags struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	AreTagsEnabled bool `json:"are_tags_enabled"`
+}
+
+func (t *ToggleChatFolderTags) Type() string {
+	return "toggleChatFolderTags"
+}
+
+func (t *ToggleChatFolderTags) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ToggleChatFolderTags) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ToggleChatFolderTags) MarshalJSON() ([]byte, error) {
+	type Alias ToggleChatFolderTags
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "toggleChatFolderTags",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ToggleChatGiftNotifications Toggles whether notifications for new gifts received by a channel chat are sent to the current user; requires can_post_messages administrator right in the chat
+type ToggleChatGiftNotifications struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the channel chat
+	ChatId int64 `json:"chat_id"`
+	// Pass true to enable notifications about new gifts owned by the channel chat; pass false to disable the notifications
+	AreEnabled bool `json:"are_enabled"`
+}
+
+func (t *ToggleChatGiftNotifications) Type() string {
+	return "toggleChatGiftNotifications"
+}
+
+func (t *ToggleChatGiftNotifications) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ToggleChatGiftNotifications) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ToggleChatGiftNotifications) MarshalJSON() ([]byte, error) {
+	type Alias ToggleChatGiftNotifications
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "toggleChatGiftNotifications",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ToggleChatHasProtectedContent Changes the ability of users to save, forward, or copy chat content. Supported only for basic groups, supergroups and channels. Requires owner privileges
+type ToggleChatHasProtectedContent struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// New value of has_protected_content
+	HasProtectedContent bool `json:"has_protected_content"`
+}
+
+func (t *ToggleChatHasProtectedContent) Type() string {
+	return "toggleChatHasProtectedContent"
+}
+
+func (t *ToggleChatHasProtectedContent) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ToggleChatHasProtectedContent) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ToggleChatHasProtectedContent) MarshalJSON() ([]byte, error) {
+	type Alias ToggleChatHasProtectedContent
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "toggleChatHasProtectedContent",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ToggleChatIsMarkedAsUnread Changes the marked as unread state of a chat @chat_id Chat identifier @is_marked_as_unread New value of is_marked_as_unread
+type ToggleChatIsMarkedAsUnread struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+	//
+	IsMarkedAsUnread bool `json:"is_marked_as_unread"`
+}
+
+func (t *ToggleChatIsMarkedAsUnread) Type() string {
+	return "toggleChatIsMarkedAsUnread"
+}
+
+func (t *ToggleChatIsMarkedAsUnread) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ToggleChatIsMarkedAsUnread) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ToggleChatIsMarkedAsUnread) MarshalJSON() ([]byte, error) {
+	type Alias ToggleChatIsMarkedAsUnread
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "toggleChatIsMarkedAsUnread",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ToggleChatIsPinned Changes the pinned state of a chat. There can be up to getOption("pinned_chat_count_max")/getOption("pinned_archived_chat_count_max") pinned non-secret chats and the same number of secret chats in the main/archive chat list. The limit can be increased with Telegram Premium
+type ToggleChatIsPinned struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat list in which to change the pinned state of the chat
+	ChatList *ChatList `json:"chat_list"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Pass true to pin the chat; pass false to unpin it
+	IsPinned bool `json:"is_pinned"`
+}
+
+func (t *ToggleChatIsPinned) Type() string {
+	return "toggleChatIsPinned"
+}
+
+func (t *ToggleChatIsPinned) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ToggleChatIsPinned) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ToggleChatIsPinned) MarshalJSON() ([]byte, error) {
+	type Alias ToggleChatIsPinned
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "toggleChatIsPinned",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ToggleChatIsTranslatable Changes the translatable state of a chat @chat_id Chat identifier @is_translatable New value of is_translatable
+type ToggleChatIsTranslatable struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+	//
+	IsTranslatable bool `json:"is_translatable"`
+}
+
+func (t *ToggleChatIsTranslatable) Type() string {
+	return "toggleChatIsTranslatable"
+}
+
+func (t *ToggleChatIsTranslatable) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ToggleChatIsTranslatable) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ToggleChatIsTranslatable) MarshalJSON() ([]byte, error) {
+	type Alias ToggleChatIsTranslatable
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "toggleChatIsTranslatable",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ToggleChatViewAsTopics Changes the view_as_topics setting of a forum chat or Saved Messages @chat_id Chat identifier @view_as_topics New value of view_as_topics
+type ToggleChatViewAsTopics struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+	//
+	ViewAsTopics bool `json:"view_as_topics"`
+}
+
+func (t *ToggleChatViewAsTopics) Type() string {
+	return "toggleChatViewAsTopics"
+}
+
+func (t *ToggleChatViewAsTopics) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ToggleChatViewAsTopics) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ToggleChatViewAsTopics) MarshalJSON() ([]byte, error) {
+	type Alias ToggleChatViewAsTopics
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "toggleChatViewAsTopics",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ToggleDirectMessagesChatTopicCanSendUnpaidMessages Allows to send unpaid messages to the given topic of the channel direct messages chat administered by the current user
+type ToggleDirectMessagesChatTopicCanSendUnpaidMessages struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the topic
+	TopicId int64 `json:"topic_id"`
+	// Pass true to allow unpaid messages; pass false to disallow unpaid messages
+	CanSendUnpaidMessages bool `json:"can_send_unpaid_messages"`
+	// Pass true to refund the user previously paid messages
+	RefundPayments bool `json:"refund_payments"`
+}
+
+func (t *ToggleDirectMessagesChatTopicCanSendUnpaidMessages) Type() string {
+	return "toggleDirectMessagesChatTopicCanSendUnpaidMessages"
+}
+
+func (t *ToggleDirectMessagesChatTopicCanSendUnpaidMessages) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ToggleDirectMessagesChatTopicCanSendUnpaidMessages) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ToggleDirectMessagesChatTopicCanSendUnpaidMessages) MarshalJSON() ([]byte, error) {
+	type Alias ToggleDirectMessagesChatTopicCanSendUnpaidMessages
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "toggleDirectMessagesChatTopicCanSendUnpaidMessages",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ToggleDownloadIsPaused Changes pause state of a file in the file download list
+type ToggleDownloadIsPaused struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the downloaded file
+	FileId int32 `json:"file_id"`
+	// Pass true if the download is paused
+	IsPaused bool `json:"is_paused"`
+}
+
+func (t *ToggleDownloadIsPaused) Type() string {
+	return "toggleDownloadIsPaused"
+}
+
+func (t *ToggleDownloadIsPaused) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ToggleDownloadIsPaused) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ToggleDownloadIsPaused) MarshalJSON() ([]byte, error) {
+	type Alias ToggleDownloadIsPaused
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "toggleDownloadIsPaused",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ToggleForumTopicIsClosed Toggles whether a topic is closed in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup unless the user is creator of the topic
+type ToggleForumTopicIsClosed struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat
+	ChatId int64 `json:"chat_id"`
+	// Forum topic identifier
+	ForumTopicId int32 `json:"forum_topic_id"`
+	// Pass true to close the topic; pass false to reopen it
+	IsClosed bool `json:"is_closed"`
+}
+
+func (t *ToggleForumTopicIsClosed) Type() string {
+	return "toggleForumTopicIsClosed"
+}
+
+func (t *ToggleForumTopicIsClosed) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ToggleForumTopicIsClosed) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ToggleForumTopicIsClosed) MarshalJSON() ([]byte, error) {
+	type Alias ToggleForumTopicIsClosed
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "toggleForumTopicIsClosed",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ToggleForumTopicIsPinned Changes the pinned state of a topic in a forum supergroup chat or a chat with a bot with topics; requires can_manage_topics administrator right in the supergroup.
+type ToggleForumTopicIsPinned struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Forum topic identifier
+	ForumTopicId int32 `json:"forum_topic_id"`
+	// Pass true to pin the topic; pass false to unpin it
+	IsPinned bool `json:"is_pinned"`
+}
+
+func (t *ToggleForumTopicIsPinned) Type() string {
+	return "toggleForumTopicIsPinned"
+}
+
+func (t *ToggleForumTopicIsPinned) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ToggleForumTopicIsPinned) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ToggleForumTopicIsPinned) MarshalJSON() ([]byte, error) {
+	type Alias ToggleForumTopicIsPinned
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "toggleForumTopicIsPinned",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ToggleGeneralForumTopicIsHidden Toggles whether a General topic is hidden in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup
+type ToggleGeneralForumTopicIsHidden struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat
+	ChatId int64 `json:"chat_id"`
+	// Pass true to hide and close the General topic; pass false to unhide it
+	IsHidden bool `json:"is_hidden"`
+}
+
+func (t *ToggleGeneralForumTopicIsHidden) Type() string {
+	return "toggleGeneralForumTopicIsHidden"
+}
+
+func (t *ToggleGeneralForumTopicIsHidden) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ToggleGeneralForumTopicIsHidden) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ToggleGeneralForumTopicIsHidden) MarshalJSON() ([]byte, error) {
+	type Alias ToggleGeneralForumTopicIsHidden
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "toggleGeneralForumTopicIsHidden",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ToggleGiftIsSaved Toggles whether a gift is shown on the current user's or the channel's profile page; requires can_post_messages administrator right in the channel chat
+type ToggleGiftIsSaved struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the gift
+	ReceivedGiftId string `json:"received_gift_id"`
+	// Pass true to display the gift on the user's or the channel's profile page; pass false to remove it from the profile page
+	IsSaved bool `json:"is_saved"`
+}
+
+func (t *ToggleGiftIsSaved) Type() string {
+	return "toggleGiftIsSaved"
+}
+
+func (t *ToggleGiftIsSaved) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ToggleGiftIsSaved) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ToggleGiftIsSaved) MarshalJSON() ([]byte, error) {
+	type Alias ToggleGiftIsSaved
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "toggleGiftIsSaved",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ToggleGroupCallAreMessagesAllowed Toggles whether participants of a group call can send messages there. Requires groupCall.can_toggle_are_messages_allowed right
+type ToggleGroupCallAreMessagesAllowed struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Group call identifier
+	GroupCallId int32 `json:"group_call_id"`
+	// New value of the are_messages_allowed setting
+	AreMessagesAllowed bool `json:"are_messages_allowed"`
+}
+
+func (t *ToggleGroupCallAreMessagesAllowed) Type() string {
+	return "toggleGroupCallAreMessagesAllowed"
+}
+
+func (t *ToggleGroupCallAreMessagesAllowed) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ToggleGroupCallAreMessagesAllowed) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ToggleGroupCallAreMessagesAllowed) MarshalJSON() ([]byte, error) {
+	type Alias ToggleGroupCallAreMessagesAllowed
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "toggleGroupCallAreMessagesAllowed",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ToggleGroupCallIsMyVideoEnabled Toggles whether current user's video is enabled @group_call_id Group call identifier @is_my_video_enabled Pass true if the current user's video is enabled
+type ToggleGroupCallIsMyVideoEnabled struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	GroupCallId int32 `json:"group_call_id"`
+	//
+	IsMyVideoEnabled bool `json:"is_my_video_enabled"`
+}
+
+func (t *ToggleGroupCallIsMyVideoEnabled) Type() string {
+	return "toggleGroupCallIsMyVideoEnabled"
+}
+
+func (t *ToggleGroupCallIsMyVideoEnabled) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ToggleGroupCallIsMyVideoEnabled) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ToggleGroupCallIsMyVideoEnabled) MarshalJSON() ([]byte, error) {
+	type Alias ToggleGroupCallIsMyVideoEnabled
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "toggleGroupCallIsMyVideoEnabled",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ToggleGroupCallIsMyVideoPaused Toggles whether current user's video is paused @group_call_id Group call identifier @is_my_video_paused Pass true if the current user's video is paused
+type ToggleGroupCallIsMyVideoPaused struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	GroupCallId int32 `json:"group_call_id"`
+	//
+	IsMyVideoPaused bool `json:"is_my_video_paused"`
+}
+
+func (t *ToggleGroupCallIsMyVideoPaused) Type() string {
+	return "toggleGroupCallIsMyVideoPaused"
+}
+
+func (t *ToggleGroupCallIsMyVideoPaused) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ToggleGroupCallIsMyVideoPaused) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ToggleGroupCallIsMyVideoPaused) MarshalJSON() ([]byte, error) {
+	type Alias ToggleGroupCallIsMyVideoPaused
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "toggleGroupCallIsMyVideoPaused",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ToggleGroupCallParticipantIsHandRaised Toggles whether a group call participant hand is rased; for video chats only
+type ToggleGroupCallParticipantIsHandRaised struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Group call identifier
+	GroupCallId int32 `json:"group_call_id"`
+	// Participant identifier
+	ParticipantId *MessageSender `json:"participant_id"`
+	// Pass true if the user's hand needs to be raised. Only self hand can be raised. Requires groupCall.can_be_managed right to lower other's hand
+	IsHandRaised bool `json:"is_hand_raised"`
+}
+
+func (t *ToggleGroupCallParticipantIsHandRaised) Type() string {
+	return "toggleGroupCallParticipantIsHandRaised"
+}
+
+func (t *ToggleGroupCallParticipantIsHandRaised) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ToggleGroupCallParticipantIsHandRaised) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ToggleGroupCallParticipantIsHandRaised) MarshalJSON() ([]byte, error) {
+	type Alias ToggleGroupCallParticipantIsHandRaised
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "toggleGroupCallParticipantIsHandRaised",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ToggleGroupCallParticipantIsMuted Toggles whether a participant of an active group call is muted, unmuted, or allowed to unmute themselves; not supported for live stories
+type ToggleGroupCallParticipantIsMuted struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Group call identifier
+	GroupCallId int32 `json:"group_call_id"`
+	// Participant identifier
+	ParticipantId *MessageSender `json:"participant_id"`
+	// Pass true to mute the user; pass false to unmute them
+	IsMuted bool `json:"is_muted"`
+}
+
+func (t *ToggleGroupCallParticipantIsMuted) Type() string {
+	return "toggleGroupCallParticipantIsMuted"
+}
+
+func (t *ToggleGroupCallParticipantIsMuted) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ToggleGroupCallParticipantIsMuted) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ToggleGroupCallParticipantIsMuted) MarshalJSON() ([]byte, error) {
+	type Alias ToggleGroupCallParticipantIsMuted
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "toggleGroupCallParticipantIsMuted",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ToggleGroupCallScreenSharingIsPaused Pauses or unpauses screen sharing in a joined group call; not supported in live stories @group_call_id Group call identifier @is_paused Pass true to pause screen sharing; pass false to unpause it
+type ToggleGroupCallScreenSharingIsPaused struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	GroupCallId int32 `json:"group_call_id"`
+	//
+	IsPaused bool `json:"is_paused"`
+}
+
+func (t *ToggleGroupCallScreenSharingIsPaused) Type() string {
+	return "toggleGroupCallScreenSharingIsPaused"
+}
+
+func (t *ToggleGroupCallScreenSharingIsPaused) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ToggleGroupCallScreenSharingIsPaused) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ToggleGroupCallScreenSharingIsPaused) MarshalJSON() ([]byte, error) {
+	type Alias ToggleGroupCallScreenSharingIsPaused
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "toggleGroupCallScreenSharingIsPaused",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ToggleHasSponsoredMessagesEnabled Toggles whether the current user has sponsored messages enabled. The setting has no effect for users without Telegram Premium for which sponsored messages are always enabled
+type ToggleHasSponsoredMessagesEnabled struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Pass true to enable sponsored messages for the current user; false to disable them
+	HasSponsoredMessagesEnabled bool `json:"has_sponsored_messages_enabled"`
+}
+
+func (t *ToggleHasSponsoredMessagesEnabled) Type() string {
+	return "toggleHasSponsoredMessagesEnabled"
+}
+
+func (t *ToggleHasSponsoredMessagesEnabled) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ToggleHasSponsoredMessagesEnabled) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ToggleHasSponsoredMessagesEnabled) MarshalJSON() ([]byte, error) {
+	type Alias ToggleHasSponsoredMessagesEnabled
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "toggleHasSponsoredMessagesEnabled",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ToggleSavedMessagesTopicIsPinned Changes the pinned state of a Saved Messages topic. There can be up to getOption("pinned_saved_messages_topic_count_max") pinned topics. The limit can be increased with Telegram Premium
+type ToggleSavedMessagesTopicIsPinned struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of Saved Messages topic to pin or unpin
+	SavedMessagesTopicId int64 `json:"saved_messages_topic_id"`
+	// Pass true to pin the topic; pass false to unpin it
+	IsPinned bool `json:"is_pinned"`
+}
+
+func (t *ToggleSavedMessagesTopicIsPinned) Type() string {
+	return "toggleSavedMessagesTopicIsPinned"
+}
+
+func (t *ToggleSavedMessagesTopicIsPinned) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ToggleSavedMessagesTopicIsPinned) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ToggleSavedMessagesTopicIsPinned) MarshalJSON() ([]byte, error) {
+	type Alias ToggleSavedMessagesTopicIsPinned
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "toggleSavedMessagesTopicIsPinned",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ToggleSessionCanAcceptCalls Toggles whether a session can accept incoming calls @session_id Session identifier @can_accept_calls Pass true to allow accepting incoming calls by the session; pass false otherwise
+type ToggleSessionCanAcceptCalls struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	SessionId string `json:"session_id"`
+	//
+	CanAcceptCalls bool `json:"can_accept_calls"`
+}
+
+func (t *ToggleSessionCanAcceptCalls) Type() string {
+	return "toggleSessionCanAcceptCalls"
+}
+
+func (t *ToggleSessionCanAcceptCalls) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ToggleSessionCanAcceptCalls) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ToggleSessionCanAcceptCalls) MarshalJSON() ([]byte, error) {
+	type Alias ToggleSessionCanAcceptCalls
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "toggleSessionCanAcceptCalls",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ToggleSessionCanAcceptSecretChats Toggles whether a session can accept incoming secret chats @session_id Session identifier @can_accept_secret_chats Pass true to allow accepting secret chats by the session; pass false otherwise
+type ToggleSessionCanAcceptSecretChats struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	SessionId string `json:"session_id"`
+	//
+	CanAcceptSecretChats bool `json:"can_accept_secret_chats"`
+}
+
+func (t *ToggleSessionCanAcceptSecretChats) Type() string {
+	return "toggleSessionCanAcceptSecretChats"
+}
+
+func (t *ToggleSessionCanAcceptSecretChats) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ToggleSessionCanAcceptSecretChats) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ToggleSessionCanAcceptSecretChats) MarshalJSON() ([]byte, error) {
+	type Alias ToggleSessionCanAcceptSecretChats
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "toggleSessionCanAcceptSecretChats",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ToggleStoryIsPostedToChatPage Toggles whether a story is accessible after expiration. Can be called only if story.can_toggle_is_posted_to_chat_page == true
+type ToggleStoryIsPostedToChatPage struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat that posted the story
+	StoryPosterChatId int64 `json:"story_poster_chat_id"`
+	// Identifier of the story
+	StoryId int32 `json:"story_id"`
+	// Pass true to make the story accessible after expiration; pass false to make it private
+	IsPostedToChatPage bool `json:"is_posted_to_chat_page"`
+}
+
+func (t *ToggleStoryIsPostedToChatPage) Type() string {
+	return "toggleStoryIsPostedToChatPage"
+}
+
+func (t *ToggleStoryIsPostedToChatPage) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ToggleStoryIsPostedToChatPage) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ToggleStoryIsPostedToChatPage) MarshalJSON() ([]byte, error) {
+	type Alias ToggleStoryIsPostedToChatPage
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "toggleStoryIsPostedToChatPage",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ToggleSupergroupCanHaveSponsoredMessages Toggles whether sponsored messages are shown in the channel chat; requires owner privileges in the channel. The chat must have at least chatBoostFeatures.min_sponsored_message_disable_boost_level boost level to disable sponsored messages
+type ToggleSupergroupCanHaveSponsoredMessages struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The identifier of the channel
+	SupergroupId int64 `json:"supergroup_id"`
+	// The new value of can_have_sponsored_messages
+	CanHaveSponsoredMessages bool `json:"can_have_sponsored_messages"`
+}
+
+func (t *ToggleSupergroupCanHaveSponsoredMessages) Type() string {
+	return "toggleSupergroupCanHaveSponsoredMessages"
+}
+
+func (t *ToggleSupergroupCanHaveSponsoredMessages) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ToggleSupergroupCanHaveSponsoredMessages) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ToggleSupergroupCanHaveSponsoredMessages) MarshalJSON() ([]byte, error) {
+	type Alias ToggleSupergroupCanHaveSponsoredMessages
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "toggleSupergroupCanHaveSponsoredMessages",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ToggleSupergroupHasAggressiveAntiSpamEnabled Toggles whether aggressive anti-spam checks are enabled in the supergroup. Can be called only if supergroupFullInfo.can_toggle_aggressive_anti_spam == true
+type ToggleSupergroupHasAggressiveAntiSpamEnabled struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The identifier of the supergroup, which isn't a broadcast group
+	SupergroupId int64 `json:"supergroup_id"`
+	// The new value of has_aggressive_anti_spam_enabled
+	HasAggressiveAntiSpamEnabled bool `json:"has_aggressive_anti_spam_enabled"`
+}
+
+func (t *ToggleSupergroupHasAggressiveAntiSpamEnabled) Type() string {
+	return "toggleSupergroupHasAggressiveAntiSpamEnabled"
+}
+
+func (t *ToggleSupergroupHasAggressiveAntiSpamEnabled) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ToggleSupergroupHasAggressiveAntiSpamEnabled) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ToggleSupergroupHasAggressiveAntiSpamEnabled) MarshalJSON() ([]byte, error) {
+	type Alias ToggleSupergroupHasAggressiveAntiSpamEnabled
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "toggleSupergroupHasAggressiveAntiSpamEnabled",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ToggleSupergroupHasAutomaticTranslation Toggles whether messages are automatically translated in the channel chat; requires can_change_info administrator right in the channel.
+type ToggleSupergroupHasAutomaticTranslation struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The identifier of the channel
+	SupergroupId int64 `json:"supergroup_id"`
+	// The new value of has_automatic_translation
+	HasAutomaticTranslation bool `json:"has_automatic_translation"`
+}
+
+func (t *ToggleSupergroupHasAutomaticTranslation) Type() string {
+	return "toggleSupergroupHasAutomaticTranslation"
+}
+
+func (t *ToggleSupergroupHasAutomaticTranslation) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ToggleSupergroupHasAutomaticTranslation) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ToggleSupergroupHasAutomaticTranslation) MarshalJSON() ([]byte, error) {
+	type Alias ToggleSupergroupHasAutomaticTranslation
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "toggleSupergroupHasAutomaticTranslation",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ToggleSupergroupHasHiddenMembers Toggles whether non-administrators can receive only administrators and bots using getSupergroupMembers or searchChatMembers. Can be called only if supergroupFullInfo.can_hide_members == true
+type ToggleSupergroupHasHiddenMembers struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the supergroup
+	SupergroupId int64 `json:"supergroup_id"`
+	// New value of has_hidden_members
+	HasHiddenMembers bool `json:"has_hidden_members"`
+}
+
+func (t *ToggleSupergroupHasHiddenMembers) Type() string {
+	return "toggleSupergroupHasHiddenMembers"
+}
+
+func (t *ToggleSupergroupHasHiddenMembers) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ToggleSupergroupHasHiddenMembers) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ToggleSupergroupHasHiddenMembers) MarshalJSON() ([]byte, error) {
+	type Alias ToggleSupergroupHasHiddenMembers
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "toggleSupergroupHasHiddenMembers",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ToggleSupergroupIsAllHistoryAvailable Toggles whether the message history of a supergroup is available to new members; requires can_change_info member right @supergroup_id The identifier of the supergroup @is_all_history_available The new value of is_all_history_available
+type ToggleSupergroupIsAllHistoryAvailable struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	SupergroupId int64 `json:"supergroup_id"`
+	//
+	IsAllHistoryAvailable bool `json:"is_all_history_available"`
+}
+
+func (t *ToggleSupergroupIsAllHistoryAvailable) Type() string {
+	return "toggleSupergroupIsAllHistoryAvailable"
+}
+
+func (t *ToggleSupergroupIsAllHistoryAvailable) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ToggleSupergroupIsAllHistoryAvailable) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ToggleSupergroupIsAllHistoryAvailable) MarshalJSON() ([]byte, error) {
+	type Alias ToggleSupergroupIsAllHistoryAvailable
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "toggleSupergroupIsAllHistoryAvailable",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ToggleSupergroupIsBroadcastGroup Upgrades supergroup to a broadcast group; requires owner privileges in the supergroup @supergroup_id Identifier of the supergroup
+type ToggleSupergroupIsBroadcastGroup struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	SupergroupId int64 `json:"supergroup_id"`
+}
+
+func (t *ToggleSupergroupIsBroadcastGroup) Type() string {
+	return "toggleSupergroupIsBroadcastGroup"
+}
+
+func (t *ToggleSupergroupIsBroadcastGroup) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ToggleSupergroupIsBroadcastGroup) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ToggleSupergroupIsBroadcastGroup) MarshalJSON() ([]byte, error) {
+	type Alias ToggleSupergroupIsBroadcastGroup
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "toggleSupergroupIsBroadcastGroup",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ToggleSupergroupIsForum Toggles whether the supergroup is a forum; requires owner privileges in the supergroup. Discussion supergroups can't be converted to forums
+type ToggleSupergroupIsForum struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the supergroup
+	SupergroupId int64 `json:"supergroup_id"`
+	// New value of is_forum
+	IsForum bool `json:"is_forum"`
+	// New value of has_forum_tabs; ignored if is_forum is false
+	HasForumTabs bool `json:"has_forum_tabs"`
+}
+
+func (t *ToggleSupergroupIsForum) Type() string {
+	return "toggleSupergroupIsForum"
+}
+
+func (t *ToggleSupergroupIsForum) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ToggleSupergroupIsForum) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ToggleSupergroupIsForum) MarshalJSON() ([]byte, error) {
+	type Alias ToggleSupergroupIsForum
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "toggleSupergroupIsForum",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ToggleSupergroupJoinByRequest Toggles whether all users directly joining the supergroup need to be approved by supergroup administrators; requires can_restrict_members administrator right
+type ToggleSupergroupJoinByRequest struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the supergroup that isn't a broadcast group and isn't a channel direct message group
+	SupergroupId int64 `json:"supergroup_id"`
+	// New value of join_by_request
+	JoinByRequest bool `json:"join_by_request"`
+}
+
+func (t *ToggleSupergroupJoinByRequest) Type() string {
+	return "toggleSupergroupJoinByRequest"
+}
+
+func (t *ToggleSupergroupJoinByRequest) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ToggleSupergroupJoinByRequest) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ToggleSupergroupJoinByRequest) MarshalJSON() ([]byte, error) {
+	type Alias ToggleSupergroupJoinByRequest
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "toggleSupergroupJoinByRequest",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ToggleSupergroupJoinToSendMessages Toggles whether joining is mandatory to send messages to a discussion supergroup; requires can_restrict_members administrator right
+type ToggleSupergroupJoinToSendMessages struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the supergroup that isn't a broadcast group
+	SupergroupId int64 `json:"supergroup_id"`
+	// New value of join_to_send_messages
+	JoinToSendMessages bool `json:"join_to_send_messages"`
+}
+
+func (t *ToggleSupergroupJoinToSendMessages) Type() string {
+	return "toggleSupergroupJoinToSendMessages"
+}
+
+func (t *ToggleSupergroupJoinToSendMessages) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ToggleSupergroupJoinToSendMessages) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ToggleSupergroupJoinToSendMessages) MarshalJSON() ([]byte, error) {
+	type Alias ToggleSupergroupJoinToSendMessages
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "toggleSupergroupJoinToSendMessages",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ToggleSupergroupSignMessages Toggles whether sender signature or link to the account is added to sent messages in a channel; requires can_change_info member right
+type ToggleSupergroupSignMessages struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the channel
+	SupergroupId int64 `json:"supergroup_id"`
+	// New value of sign_messages
+	SignMessages bool `json:"sign_messages"`
+	// New value of show_message_sender
+	ShowMessageSender bool `json:"show_message_sender"`
+}
+
+func (t *ToggleSupergroupSignMessages) Type() string {
+	return "toggleSupergroupSignMessages"
+}
+
+func (t *ToggleSupergroupSignMessages) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ToggleSupergroupSignMessages) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ToggleSupergroupSignMessages) MarshalJSON() ([]byte, error) {
+	type Alias ToggleSupergroupSignMessages
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "toggleSupergroupSignMessages",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ToggleSupergroupUsernameIsActive Changes active state for a username of a supergroup or channel, requires owner privileges in the supergroup or channel. The editable username can't be disabled.
+type ToggleSupergroupUsernameIsActive struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the supergroup or channel
+	SupergroupId int64 `json:"supergroup_id"`
+	// The username to change
+	Username string `json:"username"`
+	// Pass true to activate the username; pass false to disable it
+	IsActive bool `json:"is_active"`
+}
+
+func (t *ToggleSupergroupUsernameIsActive) Type() string {
+	return "toggleSupergroupUsernameIsActive"
+}
+
+func (t *ToggleSupergroupUsernameIsActive) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ToggleSupergroupUsernameIsActive) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ToggleSupergroupUsernameIsActive) MarshalJSON() ([]byte, error) {
+	type Alias ToggleSupergroupUsernameIsActive
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "toggleSupergroupUsernameIsActive",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ToggleUsernameIsActive Changes active state for a username of the current user. The editable username can't be disabled. May return an error with a message "USERNAMES_ACTIVE_TOO_MUCH" if the maximum number of active usernames has been reached
+type ToggleUsernameIsActive struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The username to change
+	Username string `json:"username"`
+	// Pass true to activate the username; pass false to disable it
+	IsActive bool `json:"is_active"`
+}
+
+func (t *ToggleUsernameIsActive) Type() string {
+	return "toggleUsernameIsActive"
+}
+
+func (t *ToggleUsernameIsActive) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ToggleUsernameIsActive) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ToggleUsernameIsActive) MarshalJSON() ([]byte, error) {
+	type Alias ToggleUsernameIsActive
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "toggleUsernameIsActive",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ToggleVideoChatEnabledStartNotification Toggles whether the current user will receive a notification when the video chat starts; for scheduled video chats only
+type ToggleVideoChatEnabledStartNotification struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Group call identifier
+	GroupCallId int32 `json:"group_call_id"`
+	// New value of the enabled_start_notification setting
+	EnabledStartNotification bool `json:"enabled_start_notification"`
+}
+
+func (t *ToggleVideoChatEnabledStartNotification) Type() string {
+	return "toggleVideoChatEnabledStartNotification"
+}
+
+func (t *ToggleVideoChatEnabledStartNotification) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ToggleVideoChatEnabledStartNotification) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ToggleVideoChatEnabledStartNotification) MarshalJSON() ([]byte, error) {
+	type Alias ToggleVideoChatEnabledStartNotification
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "toggleVideoChatEnabledStartNotification",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ToggleVideoChatMuteNewParticipants Toggles whether new participants of a video chat can be unmuted only by administrators of the video chat. Requires groupCall.can_toggle_mute_new_participants right
+type ToggleVideoChatMuteNewParticipants struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Group call identifier
+	GroupCallId int32 `json:"group_call_id"`
+	// New value of the mute_new_participants setting
+	MuteNewParticipants bool `json:"mute_new_participants"`
+}
+
+func (t *ToggleVideoChatMuteNewParticipants) Type() string {
+	return "toggleVideoChatMuteNewParticipants"
+}
+
+func (t *ToggleVideoChatMuteNewParticipants) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ToggleVideoChatMuteNewParticipants) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ToggleVideoChatMuteNewParticipants) MarshalJSON() ([]byte, error) {
+	type Alias ToggleVideoChatMuteNewParticipants
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "toggleVideoChatMuteNewParticipants",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// TransferBusinessAccountStars Transfers Telegram Stars from the business account to the business bot; for bots only
+type TransferBusinessAccountStars struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Unique identifier of business connection
+	BusinessConnectionId string `json:"business_connection_id"`
+	// Number of Telegram Stars to transfer
+	StarCount int64 `json:"star_count"`
+}
+
+func (t *TransferBusinessAccountStars) Type() string {
+	return "transferBusinessAccountStars"
+}
+
+func (t *TransferBusinessAccountStars) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *TransferBusinessAccountStars) GetExtra() string {
+	return t.Extra
+}
+
+func (t *TransferBusinessAccountStars) MarshalJSON() ([]byte, error) {
+	type Alias TransferBusinessAccountStars
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "transferBusinessAccountStars",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// TransferChatOwnership Changes the owner of a chat; requires owner privileges in the chat. Use the method canTransferOwnership to check whether the ownership can be transferred from the current session. Available only for supergroups and channel chats
+type TransferChatOwnership struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the user to which transfer the ownership. The ownership can't be transferred to a bot or to a deleted user
+	UserId int64 `json:"user_id"`
+	// The 2-step verification password of the current user
+	Password string `json:"password"`
+}
+
+func (t *TransferChatOwnership) Type() string {
+	return "transferChatOwnership"
+}
+
+func (t *TransferChatOwnership) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *TransferChatOwnership) GetExtra() string {
+	return t.Extra
+}
+
+func (t *TransferChatOwnership) MarshalJSON() ([]byte, error) {
+	type Alias TransferChatOwnership
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "transferChatOwnership",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// TransferGift Sends an upgraded gift to another user or channel chat
+type TransferGift struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Unique identifier of business connection on behalf of which to send the request; for bots only
+	BusinessConnectionId string `json:"business_connection_id"`
+	// Identifier of the gift
+	ReceivedGiftId string `json:"received_gift_id"`
+	// Identifier of the user or the channel chat that will receive the gift
+	NewOwnerId *MessageSender `json:"new_owner_id"`
+	// The amount of Telegram Stars required to pay for the transfer
+	StarCount int64 `json:"star_count"`
+}
+
+func (t *TransferGift) Type() string {
+	return "transferGift"
+}
+
+func (t *TransferGift) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *TransferGift) GetExtra() string {
+	return t.Extra
+}
+
+func (t *TransferGift) MarshalJSON() ([]byte, error) {
+	type Alias TransferGift
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "transferGift",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// TranslateMessageText Extracts text or caption of the given message and translates it to the given language. If the current user is a Telegram Premium user, then text formatting is preserved
+type TranslateMessageText struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat to which the message belongs
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message
+	MessageId int64 `json:"message_id"`
+	// Language code of the language to which the message is translated. See translateText.to_language_code for the list of supported values
+	ToLanguageCode string `json:"to_language_code"`
+}
+
+func (t *TranslateMessageText) Type() string {
+	return "translateMessageText"
+}
+
+func (t *TranslateMessageText) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *TranslateMessageText) GetExtra() string {
+	return t.Extra
+}
+
+func (t *TranslateMessageText) MarshalJSON() ([]byte, error) {
+	type Alias TranslateMessageText
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "translateMessageText",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// TranslateText Translates a text to the given language. If the current user is a Telegram Premium user, then text formatting is preserved
+type TranslateText struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Text to translate
+	Text *FormattedText `json:"text"`
+	// Language code of the language to which the message is translated. Must be one of
+	ToLanguageCode string `json:"to_language_code"`
+}
+
+func (t *TranslateText) Type() string {
+	return "translateText"
+}
+
+func (t *TranslateText) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *TranslateText) GetExtra() string {
+	return t.Extra
+}
+
+func (t *TranslateText) MarshalJSON() ([]byte, error) {
+	type Alias TranslateText
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "translateText",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// UnpinAllChatMessages Removes all pinned messages from a chat; requires can_pin_messages member right if the chat is a basic group or supergroup, or can_edit_messages administrator right if the chat is a channel @chat_id Identifier of the chat
+type UnpinAllChatMessages struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+}
+
+func (t *UnpinAllChatMessages) Type() string {
+	return "unpinAllChatMessages"
+}
+
+func (t *UnpinAllChatMessages) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *UnpinAllChatMessages) GetExtra() string {
+	return t.Extra
+}
+
+func (t *UnpinAllChatMessages) MarshalJSON() ([]byte, error) {
+	type Alias UnpinAllChatMessages
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "unpinAllChatMessages",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// UnpinAllDirectMessagesChatTopicMessages Removes all pinned messages from the topic in a channel direct messages chat administered by the current user
+type UnpinAllDirectMessagesChatTopicMessages struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat
+	ChatId int64 `json:"chat_id"`
+	// Topic identifier
+	TopicId int64 `json:"topic_id"`
+}
+
+func (t *UnpinAllDirectMessagesChatTopicMessages) Type() string {
+	return "unpinAllDirectMessagesChatTopicMessages"
+}
+
+func (t *UnpinAllDirectMessagesChatTopicMessages) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *UnpinAllDirectMessagesChatTopicMessages) GetExtra() string {
+	return t.Extra
+}
+
+func (t *UnpinAllDirectMessagesChatTopicMessages) MarshalJSON() ([]byte, error) {
+	type Alias UnpinAllDirectMessagesChatTopicMessages
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "unpinAllDirectMessagesChatTopicMessages",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// UnpinAllForumTopicMessages Removes all pinned messages from a topic in a forum supergroup chat or a chat with a bot with topics; requires can_pin_messages member right in the supergroup
+type UnpinAllForumTopicMessages struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Identifier of the chat
+	ChatId int64 `json:"chat_id"`
+	// Forum topic identifier in which messages will be unpinned
+	ForumTopicId int32 `json:"forum_topic_id"`
+}
+
+func (t *UnpinAllForumTopicMessages) Type() string {
+	return "unpinAllForumTopicMessages"
+}
+
+func (t *UnpinAllForumTopicMessages) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *UnpinAllForumTopicMessages) GetExtra() string {
+	return t.Extra
+}
+
+func (t *UnpinAllForumTopicMessages) MarshalJSON() ([]byte, error) {
+	type Alias UnpinAllForumTopicMessages
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "unpinAllForumTopicMessages",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// UnpinChatMessage Removes a pinned message from a chat; requires can_pin_messages member right if the chat is a basic group or supergroup, or can_edit_messages administrator right if the chat is a channel @chat_id Identifier of the chat @message_id Identifier of the removed pinned message
+type UnpinChatMessage struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+	//
+	MessageId int64 `json:"message_id"`
+}
+
+func (t *UnpinChatMessage) Type() string {
+	return "unpinChatMessage"
+}
+
+func (t *UnpinChatMessage) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *UnpinChatMessage) GetExtra() string {
+	return t.Extra
+}
+
+func (t *UnpinChatMessage) MarshalJSON() ([]byte, error) {
+	type Alias UnpinChatMessage
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "unpinChatMessage",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// UpgradeBasicGroupChatToSupergroupChat Creates a new supergroup from an existing basic group and sends a corresponding messageChatUpgradeTo and messageChatUpgradeFrom; requires owner privileges. Deactivates the original basic group @chat_id Identifier of the chat to upgrade
+type UpgradeBasicGroupChatToSupergroupChat struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	ChatId int64 `json:"chat_id"`
+}
+
+func (t *UpgradeBasicGroupChatToSupergroupChat) Type() string {
+	return "upgradeBasicGroupChatToSupergroupChat"
+}
+
+func (t *UpgradeBasicGroupChatToSupergroupChat) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *UpgradeBasicGroupChatToSupergroupChat) GetExtra() string {
+	return t.Extra
+}
+
+func (t *UpgradeBasicGroupChatToSupergroupChat) MarshalJSON() ([]byte, error) {
+	type Alias UpgradeBasicGroupChatToSupergroupChat
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "upgradeBasicGroupChatToSupergroupChat",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// UpgradeGift Upgrades a regular gift
+type UpgradeGift struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Unique identifier of business connection on behalf of which to send the request; for bots only
+	BusinessConnectionId string `json:"business_connection_id"`
+	// Identifier of the gift
+	ReceivedGiftId string `json:"received_gift_id"`
+	// Pass true to keep the original gift text, sender and receiver in the upgraded gift
+	KeepOriginalDetails bool `json:"keep_original_details"`
+	// The amount of Telegram Stars required to pay for the upgrade. It the gift has prepaid_upgrade_star_count > 0, then pass 0, otherwise, pass gift.upgrade_star_count
+	StarCount int64 `json:"star_count"`
+}
+
+func (t *UpgradeGift) Type() string {
+	return "upgradeGift"
+}
+
+func (t *UpgradeGift) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *UpgradeGift) GetExtra() string {
+	return t.Extra
+}
+
+func (t *UpgradeGift) MarshalJSON() ([]byte, error) {
+	type Alias UpgradeGift
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "upgradeGift",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// UploadStickerFile Uploads a file with a sticker; returns the uploaded file
+type UploadStickerFile struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Sticker file owner; ignored for regular users
+	UserId int64 `json:"user_id"`
+	// Sticker format
+	StickerFormat *StickerFormat `json:"sticker_format"`
+	// File file to upload; must fit in a 512x512 square. For WEBP stickers the file must be in WEBP or PNG format, which will be converted to WEBP server-side.
+	Sticker *InputFile `json:"sticker"`
+}
+
+func (t *UploadStickerFile) Type() string {
+	return "uploadStickerFile"
+}
+
+func (t *UploadStickerFile) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *UploadStickerFile) GetExtra() string {
+	return t.Extra
+}
+
+func (t *UploadStickerFile) MarshalJSON() ([]byte, error) {
+	type Alias UploadStickerFile
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "uploadStickerFile",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ValidateOrderInfo Validates the order information provided by a user and returns the available shipping options for a flexible invoice
+type ValidateOrderInfo struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The invoice
+	InputInvoice *InputInvoice `json:"input_invoice"`
+	// The order information, provided by the user; pass null if empty
+	OrderInfo *OrderInfo `json:"order_info,omitempty"`
+	// Pass true to save the order information
+	AllowSave bool `json:"allow_save"`
+}
+
+func (t *ValidateOrderInfo) Type() string {
+	return "validateOrderInfo"
+}
+
+func (t *ValidateOrderInfo) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ValidateOrderInfo) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ValidateOrderInfo) MarshalJSON() ([]byte, error) {
+	type Alias ValidateOrderInfo
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "validateOrderInfo",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ViewMessages Informs TDLib that messages are being viewed by the user. Sponsored messages must be marked as viewed only when the entire text of the message is shown on the screen (excluding the button).
+type ViewMessages struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// The identifiers of the messages being viewed
+	MessageIds []int64 `json:"message_ids"`
+	// Source of the message view; pass null to guess the source based on chat open state
+	Source *MessageSource `json:"source,omitempty"`
+	// Pass true to mark as read the specified messages even if the chat is closed
+	ForceRead bool `json:"force_read"`
+}
+
+func (t *ViewMessages) Type() string {
+	return "viewMessages"
+}
+
+func (t *ViewMessages) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ViewMessages) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ViewMessages) MarshalJSON() ([]byte, error) {
+	type Alias ViewMessages
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "viewMessages",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ViewPremiumFeature Informs TDLib that the user viewed detailed information about a Premium feature on the Premium features screen @feature The viewed premium feature
+type ViewPremiumFeature struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	Feature *PremiumFeature `json:"feature"`
+}
+
+func (t *ViewPremiumFeature) Type() string {
+	return "viewPremiumFeature"
+}
+
+func (t *ViewPremiumFeature) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ViewPremiumFeature) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ViewPremiumFeature) MarshalJSON() ([]byte, error) {
+	type Alias ViewPremiumFeature
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "viewPremiumFeature",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ViewSponsoredChat Informs TDLib that the user fully viewed a sponsored chat @sponsored_chat_unique_id Unique identifier of the sponsored chat
+type ViewSponsoredChat struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	SponsoredChatUniqueId int64 `json:"sponsored_chat_unique_id"`
+}
+
+func (t *ViewSponsoredChat) Type() string {
+	return "viewSponsoredChat"
+}
+
+func (t *ViewSponsoredChat) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ViewSponsoredChat) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ViewSponsoredChat) MarshalJSON() ([]byte, error) {
+	type Alias ViewSponsoredChat
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "viewSponsoredChat",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ViewTrendingStickerSets Informs the server that some trending sticker sets have been viewed by the user @sticker_set_ids Identifiers of viewed trending sticker sets
+type ViewTrendingStickerSets struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	StickerSetIds []string `json:"sticker_set_ids"`
+}
+
+func (t *ViewTrendingStickerSets) Type() string {
+	return "viewTrendingStickerSets"
+}
+
+func (t *ViewTrendingStickerSets) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ViewTrendingStickerSets) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ViewTrendingStickerSets) MarshalJSON() ([]byte, error) {
+	type Alias ViewTrendingStickerSets
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "viewTrendingStickerSets",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ViewVideoMessageAdvertisement Informs TDLib that the user viewed a video message advertisement @advertisement_unique_id Unique identifier of the advertisement
+type ViewVideoMessageAdvertisement struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	//
+	AdvertisementUniqueId int64 `json:"advertisement_unique_id"`
+}
+
+func (t *ViewVideoMessageAdvertisement) Type() string {
+	return "viewVideoMessageAdvertisement"
+}
+
+func (t *ViewVideoMessageAdvertisement) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *ViewVideoMessageAdvertisement) GetExtra() string {
+	return t.Extra
+}
+
+func (t *ViewVideoMessageAdvertisement) MarshalJSON() ([]byte, error) {
+	type Alias ViewVideoMessageAdvertisement
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "viewVideoMessageAdvertisement",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// WriteGeneratedFilePart Writes a part of a generated file. This method is intended to be used only if the application has no direct access to TDLib's file system, because it is usually slower than a direct write to the destination file
+type WriteGeneratedFilePart struct {
+	TypeStr string `json:"@type"`
+	Extra   string `json:"@extra,omitempty"`
+	// The identifier of the generation process
+	GenerationId string `json:"generation_id"`
+	// The offset from which to write the data to the file
+	Offset int64 `json:"offset"`
+	// The data to write
+	Data string `json:"data"`
+}
+
+func (t *WriteGeneratedFilePart) Type() string {
+	return "writeGeneratedFilePart"
+}
+
+func (t *WriteGeneratedFilePart) SetExtra(extra string) {
+	t.Extra = extra
+}
+
+func (t *WriteGeneratedFilePart) GetExtra() string {
+	return t.Extra
+}
+
+func (t *WriteGeneratedFilePart) MarshalJSON() ([]byte, error) {
+	type Alias WriteGeneratedFilePart
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "writeGeneratedFilePart",
+		Alias:   (*Alias)(t),
+	})
+}

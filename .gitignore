@@ -1,3 +1,9 @@
 .env
 .idea
 *.so
+td
+database
+libtdjson.so
+libtdjson.so.*
+*.binlog
+examples
