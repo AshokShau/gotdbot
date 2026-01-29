@@ -12,13 +12,14 @@ type TlObject interface {
 
 // ActiveStoryState Describes state of active stories posted by a chat
 type ActiveStoryState struct {
+	TypeStr                string                  `json:"@type"`
 	ActiveStoryStateLive   *ActiveStoryStateLive   `json:"activeStoryStateLive,omitempty"`
 	ActiveStoryStateRead   *ActiveStoryStateRead   `json:"activeStoryStateRead,omitempty"`
 	ActiveStoryStateUnread *ActiveStoryStateUnread `json:"activeStoryStateUnread,omitempty"`
 }
 
 func (t *ActiveStoryState) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *ActiveStoryState) SetExtra(extra string) {
@@ -36,6 +37,7 @@ func (t *ActiveStoryState) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "activeStoryStateLive":
 		t.ActiveStoryStateLive = new(ActiveStoryStateLive)
@@ -65,13 +67,14 @@ func (t *ActiveStoryState) MarshalJSON() ([]byte, error) {
 
 // AffiliateProgramSortOrder Describes the order of the found affiliate programs
 type AffiliateProgramSortOrder struct {
+	TypeStr                                string                                  `json:"@type"`
 	AffiliateProgramSortOrderCreationDate  *AffiliateProgramSortOrderCreationDate  `json:"affiliateProgramSortOrderCreationDate,omitempty"`
 	AffiliateProgramSortOrderProfitability *AffiliateProgramSortOrderProfitability `json:"affiliateProgramSortOrderProfitability,omitempty"`
 	AffiliateProgramSortOrderRevenue       *AffiliateProgramSortOrderRevenue       `json:"affiliateProgramSortOrderRevenue,omitempty"`
 }
 
 func (t *AffiliateProgramSortOrder) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *AffiliateProgramSortOrder) SetExtra(extra string) {
@@ -89,6 +92,7 @@ func (t *AffiliateProgramSortOrder) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "affiliateProgramSortOrderCreationDate":
 		t.AffiliateProgramSortOrderCreationDate = new(AffiliateProgramSortOrderCreationDate)
@@ -118,13 +122,14 @@ func (t *AffiliateProgramSortOrder) MarshalJSON() ([]byte, error) {
 
 // AffiliateType Describes type of affiliate for an affiliate program
 type AffiliateType struct {
+	TypeStr                  string                    `json:"@type"`
 	AffiliateTypeBot         *AffiliateTypeBot         `json:"affiliateTypeBot,omitempty"`
 	AffiliateTypeChannel     *AffiliateTypeChannel     `json:"affiliateTypeChannel,omitempty"`
 	AffiliateTypeCurrentUser *AffiliateTypeCurrentUser `json:"affiliateTypeCurrentUser,omitempty"`
 }
 
 func (t *AffiliateType) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *AffiliateType) SetExtra(extra string) {
@@ -142,6 +147,7 @@ func (t *AffiliateType) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "affiliateTypeBot":
 		t.AffiliateTypeBot = new(AffiliateTypeBot)
@@ -171,12 +177,13 @@ func (t *AffiliateType) MarshalJSON() ([]byte, error) {
 
 // AuctionState Describes state of an auction
 type AuctionState struct {
+	TypeStr              string                `json:"@type"`
 	AuctionStateActive   *AuctionStateActive   `json:"auctionStateActive,omitempty"`
 	AuctionStateFinished *AuctionStateFinished `json:"auctionStateFinished,omitempty"`
 }
 
 func (t *AuctionState) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *AuctionState) SetExtra(extra string) {
@@ -194,6 +201,7 @@ func (t *AuctionState) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "auctionStateActive":
 		t.AuctionStateActive = new(AuctionStateActive)
@@ -217,6 +225,7 @@ func (t *AuctionState) MarshalJSON() ([]byte, error) {
 
 // AuthenticationCodeType Provides information about the method by which an authentication code is delivered to the user
 type AuthenticationCodeType struct {
+	TypeStr                               string                                 `json:"@type"`
 	AuthenticationCodeTypeCall            *AuthenticationCodeTypeCall            `json:"authenticationCodeTypeCall,omitempty"`
 	AuthenticationCodeTypeFirebaseAndroid *AuthenticationCodeTypeFirebaseAndroid `json:"authenticationCodeTypeFirebaseAndroid,omitempty"`
 	AuthenticationCodeTypeFirebaseIos     *AuthenticationCodeTypeFirebaseIos     `json:"authenticationCodeTypeFirebaseIos,omitempty"`
@@ -230,7 +239,7 @@ type AuthenticationCodeType struct {
 }
 
 func (t *AuthenticationCodeType) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *AuthenticationCodeType) SetExtra(extra string) {
@@ -248,6 +257,7 @@ func (t *AuthenticationCodeType) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "authenticationCodeTypeCall":
 		t.AuthenticationCodeTypeCall = new(AuthenticationCodeTypeCall)
@@ -319,6 +329,7 @@ func (t *AuthenticationCodeType) MarshalJSON() ([]byte, error) {
 
 // AuthorizationState Represents the current authorization state of the TDLib client
 type AuthorizationState struct {
+	TypeStr                                       string                                         `json:"@type"`
 	AuthorizationStateClosed                      *AuthorizationStateClosed                      `json:"authorizationStateClosed,omitempty"`
 	AuthorizationStateClosing                     *AuthorizationStateClosing                     `json:"authorizationStateClosing,omitempty"`
 	AuthorizationStateLoggingOut                  *AuthorizationStateLoggingOut                  `json:"authorizationStateLoggingOut,omitempty"`
@@ -335,7 +346,7 @@ type AuthorizationState struct {
 }
 
 func (t *AuthorizationState) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *AuthorizationState) SetExtra(extra string) {
@@ -353,6 +364,7 @@ func (t *AuthorizationState) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "authorizationStateClosed":
 		t.AuthorizationStateClosed = new(AuthorizationStateClosed)
@@ -442,6 +454,7 @@ func (t *AuthorizationState) MarshalJSON() ([]byte, error) {
 
 // AutosaveSettingsScope Describes scope of autosave settings
 type AutosaveSettingsScope struct {
+	TypeStr                           string                             `json:"@type"`
 	AutosaveSettingsScopeChannelChats *AutosaveSettingsScopeChannelChats `json:"autosaveSettingsScopeChannelChats,omitempty"`
 	AutosaveSettingsScopeChat         *AutosaveSettingsScopeChat         `json:"autosaveSettingsScopeChat,omitempty"`
 	AutosaveSettingsScopeGroupChats   *AutosaveSettingsScopeGroupChats   `json:"autosaveSettingsScopeGroupChats,omitempty"`
@@ -449,7 +462,7 @@ type AutosaveSettingsScope struct {
 }
 
 func (t *AutosaveSettingsScope) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *AutosaveSettingsScope) SetExtra(extra string) {
@@ -467,6 +480,7 @@ func (t *AutosaveSettingsScope) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "autosaveSettingsScopeChannelChats":
 		t.AutosaveSettingsScopeChannelChats = new(AutosaveSettingsScopeChannelChats)
@@ -502,13 +516,14 @@ func (t *AutosaveSettingsScope) MarshalJSON() ([]byte, error) {
 
 // BackgroundFill Describes a fill of a background
 type BackgroundFill struct {
+	TypeStr                        string                          `json:"@type"`
 	BackgroundFillFreeformGradient *BackgroundFillFreeformGradient `json:"backgroundFillFreeformGradient,omitempty"`
 	BackgroundFillGradient         *BackgroundFillGradient         `json:"backgroundFillGradient,omitempty"`
 	BackgroundFillSolid            *BackgroundFillSolid            `json:"backgroundFillSolid,omitempty"`
 }
 
 func (t *BackgroundFill) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *BackgroundFill) SetExtra(extra string) {
@@ -526,6 +541,7 @@ func (t *BackgroundFill) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "backgroundFillFreeformGradient":
 		t.BackgroundFillFreeformGradient = new(BackgroundFillFreeformGradient)
@@ -555,6 +571,7 @@ func (t *BackgroundFill) MarshalJSON() ([]byte, error) {
 
 // BackgroundType Describes the type of background
 type BackgroundType struct {
+	TypeStr                 string                   `json:"@type"`
 	BackgroundTypeChatTheme *BackgroundTypeChatTheme `json:"backgroundTypeChatTheme,omitempty"`
 	BackgroundTypeFill      *BackgroundTypeFill      `json:"backgroundTypeFill,omitempty"`
 	BackgroundTypePattern   *BackgroundTypePattern   `json:"backgroundTypePattern,omitempty"`
@@ -562,7 +579,7 @@ type BackgroundType struct {
 }
 
 func (t *BackgroundType) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *BackgroundType) SetExtra(extra string) {
@@ -580,6 +597,7 @@ func (t *BackgroundType) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "backgroundTypeChatTheme":
 		t.BackgroundTypeChatTheme = new(BackgroundTypeChatTheme)
@@ -615,12 +633,13 @@ func (t *BackgroundType) MarshalJSON() ([]byte, error) {
 
 // BlockList Describes type of block list
 type BlockList struct {
+	TypeStr          string            `json:"@type"`
 	BlockListMain    *BlockListMain    `json:"blockListMain,omitempty"`
 	BlockListStories *BlockListStories `json:"blockListStories,omitempty"`
 }
 
 func (t *BlockList) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *BlockList) SetExtra(extra string) {
@@ -638,6 +657,7 @@ func (t *BlockList) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "blockListMain":
 		t.BlockListMain = new(BlockListMain)
@@ -661,6 +681,7 @@ func (t *BlockList) MarshalJSON() ([]byte, error) {
 
 // BotCommandScope Represents the scope to which bot commands are relevant
 type BotCommandScope struct {
+	TypeStr                              string                                `json:"@type"`
 	BotCommandScopeAllChatAdministrators *BotCommandScopeAllChatAdministrators `json:"botCommandScopeAllChatAdministrators,omitempty"`
 	BotCommandScopeAllGroupChats         *BotCommandScopeAllGroupChats         `json:"botCommandScopeAllGroupChats,omitempty"`
 	BotCommandScopeAllPrivateChats       *BotCommandScopeAllPrivateChats       `json:"botCommandScopeAllPrivateChats,omitempty"`
@@ -671,7 +692,7 @@ type BotCommandScope struct {
 }
 
 func (t *BotCommandScope) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *BotCommandScope) SetExtra(extra string) {
@@ -689,6 +710,7 @@ func (t *BotCommandScope) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "botCommandScopeAllChatAdministrators":
 		t.BotCommandScopeAllChatAdministrators = new(BotCommandScopeAllChatAdministrators)
@@ -742,6 +764,7 @@ func (t *BotCommandScope) MarshalJSON() ([]byte, error) {
 
 // BotWriteAccessAllowReason Describes a reason why a bot was allowed to write messages to the current user
 type BotWriteAccessAllowReason struct {
+	TypeStr                                        string                                          `json:"@type"`
 	BotWriteAccessAllowReasonAcceptedRequest       *BotWriteAccessAllowReasonAcceptedRequest       `json:"botWriteAccessAllowReasonAcceptedRequest,omitempty"`
 	BotWriteAccessAllowReasonAddedToAttachmentMenu *BotWriteAccessAllowReasonAddedToAttachmentMenu `json:"botWriteAccessAllowReasonAddedToAttachmentMenu,omitempty"`
 	BotWriteAccessAllowReasonConnectedWebsite      *BotWriteAccessAllowReasonConnectedWebsite      `json:"botWriteAccessAllowReasonConnectedWebsite,omitempty"`
@@ -749,7 +772,7 @@ type BotWriteAccessAllowReason struct {
 }
 
 func (t *BotWriteAccessAllowReason) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *BotWriteAccessAllowReason) SetExtra(extra string) {
@@ -767,6 +790,7 @@ func (t *BotWriteAccessAllowReason) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "botWriteAccessAllowReasonAcceptedRequest":
 		t.BotWriteAccessAllowReasonAcceptedRequest = new(BotWriteAccessAllowReasonAcceptedRequest)
@@ -802,6 +826,7 @@ func (t *BotWriteAccessAllowReason) MarshalJSON() ([]byte, error) {
 
 // BuiltInTheme Describes a built-in theme of an official app
 type BuiltInTheme struct {
+	TypeStr             string               `json:"@type"`
 	BuiltInThemeArctic  *BuiltInThemeArctic  `json:"builtInThemeArctic,omitempty"`
 	BuiltInThemeClassic *BuiltInThemeClassic `json:"builtInThemeClassic,omitempty"`
 	BuiltInThemeDay     *BuiltInThemeDay     `json:"builtInThemeDay,omitempty"`
@@ -810,7 +835,7 @@ type BuiltInTheme struct {
 }
 
 func (t *BuiltInTheme) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *BuiltInTheme) SetExtra(extra string) {
@@ -828,6 +853,7 @@ func (t *BuiltInTheme) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "builtInThemeArctic":
 		t.BuiltInThemeArctic = new(BuiltInThemeArctic)
@@ -869,13 +895,14 @@ func (t *BuiltInTheme) MarshalJSON() ([]byte, error) {
 
 // BusinessAwayMessageSchedule Describes conditions for sending of away messages by a Telegram Business account
 type BusinessAwayMessageSchedule struct {
+	TypeStr                                          string                                            `json:"@type"`
 	BusinessAwayMessageScheduleAlways                *BusinessAwayMessageScheduleAlways                `json:"businessAwayMessageScheduleAlways,omitempty"`
 	BusinessAwayMessageScheduleCustom                *BusinessAwayMessageScheduleCustom                `json:"businessAwayMessageScheduleCustom,omitempty"`
 	BusinessAwayMessageScheduleOutsideOfOpeningHours *BusinessAwayMessageScheduleOutsideOfOpeningHours `json:"businessAwayMessageScheduleOutsideOfOpeningHours,omitempty"`
 }
 
 func (t *BusinessAwayMessageSchedule) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *BusinessAwayMessageSchedule) SetExtra(extra string) {
@@ -893,6 +920,7 @@ func (t *BusinessAwayMessageSchedule) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "businessAwayMessageScheduleAlways":
 		t.BusinessAwayMessageScheduleAlways = new(BusinessAwayMessageScheduleAlways)
@@ -922,6 +950,7 @@ func (t *BusinessAwayMessageSchedule) MarshalJSON() ([]byte, error) {
 
 // BusinessFeature Describes a feature available to Business user accounts
 type BusinessFeature struct {
+	TypeStr                        string                          `json:"@type"`
 	BusinessFeatureAccountLinks    *BusinessFeatureAccountLinks    `json:"businessFeatureAccountLinks,omitempty"`
 	BusinessFeatureAwayMessage     *BusinessFeatureAwayMessage     `json:"businessFeatureAwayMessage,omitempty"`
 	BusinessFeatureBots            *BusinessFeatureBots            `json:"businessFeatureBots,omitempty"`
@@ -936,7 +965,7 @@ type BusinessFeature struct {
 }
 
 func (t *BusinessFeature) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *BusinessFeature) SetExtra(extra string) {
@@ -954,6 +983,7 @@ func (t *BusinessFeature) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "businessFeatureAccountLinks":
 		t.BusinessFeatureAccountLinks = new(BusinessFeatureAccountLinks)
@@ -1031,13 +1061,14 @@ func (t *BusinessFeature) MarshalJSON() ([]byte, error) {
 
 // CallbackQueryPayload Represents a payload of a callback query
 type CallbackQueryPayload struct {
+	TypeStr                              string                                `json:"@type"`
 	CallbackQueryPayloadData             *CallbackQueryPayloadData             `json:"callbackQueryPayloadData,omitempty"`
 	CallbackQueryPayloadDataWithPassword *CallbackQueryPayloadDataWithPassword `json:"callbackQueryPayloadDataWithPassword,omitempty"`
 	CallbackQueryPayloadGame             *CallbackQueryPayloadGame             `json:"callbackQueryPayloadGame,omitempty"`
 }
 
 func (t *CallbackQueryPayload) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *CallbackQueryPayload) SetExtra(extra string) {
@@ -1055,6 +1086,7 @@ func (t *CallbackQueryPayload) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "callbackQueryPayloadData":
 		t.CallbackQueryPayloadData = new(CallbackQueryPayloadData)
@@ -1084,6 +1116,7 @@ func (t *CallbackQueryPayload) MarshalJSON() ([]byte, error) {
 
 // CallDiscardReason Describes the reason why a call was discarded
 type CallDiscardReason struct {
+	TypeStr                             string                               `json:"@type"`
 	CallDiscardReasonDeclined           *CallDiscardReasonDeclined           `json:"callDiscardReasonDeclined,omitempty"`
 	CallDiscardReasonDisconnected       *CallDiscardReasonDisconnected       `json:"callDiscardReasonDisconnected,omitempty"`
 	CallDiscardReasonEmpty              *CallDiscardReasonEmpty              `json:"callDiscardReasonEmpty,omitempty"`
@@ -1093,7 +1126,7 @@ type CallDiscardReason struct {
 }
 
 func (t *CallDiscardReason) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *CallDiscardReason) SetExtra(extra string) {
@@ -1111,6 +1144,7 @@ func (t *CallDiscardReason) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "callDiscardReasonDeclined":
 		t.CallDiscardReasonDeclined = new(CallDiscardReasonDeclined)
@@ -1158,6 +1192,7 @@ func (t *CallDiscardReason) MarshalJSON() ([]byte, error) {
 
 // CallProblem Describes the exact type of problem with a call
 type CallProblem struct {
+	TypeStr                    string                      `json:"@type"`
 	CallProblemDistortedSpeech *CallProblemDistortedSpeech `json:"callProblemDistortedSpeech,omitempty"`
 	CallProblemDistortedVideo  *CallProblemDistortedVideo  `json:"callProblemDistortedVideo,omitempty"`
 	CallProblemDropped         *CallProblemDropped         `json:"callProblemDropped,omitempty"`
@@ -1170,7 +1205,7 @@ type CallProblem struct {
 }
 
 func (t *CallProblem) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *CallProblem) SetExtra(extra string) {
@@ -1188,6 +1223,7 @@ func (t *CallProblem) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "callProblemDistortedSpeech":
 		t.CallProblemDistortedSpeech = new(CallProblemDistortedSpeech)
@@ -1253,12 +1289,13 @@ func (t *CallProblem) MarshalJSON() ([]byte, error) {
 
 // CallServerType Describes the type of call server
 type CallServerType struct {
+	TypeStr                         string                           `json:"@type"`
 	CallServerTypeTelegramReflector *CallServerTypeTelegramReflector `json:"callServerTypeTelegramReflector,omitempty"`
 	CallServerTypeWebrtc            *CallServerTypeWebrtc            `json:"callServerTypeWebrtc,omitempty"`
 }
 
 func (t *CallServerType) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *CallServerType) SetExtra(extra string) {
@@ -1276,6 +1313,7 @@ func (t *CallServerType) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "callServerTypeTelegramReflector":
 		t.CallServerTypeTelegramReflector = new(CallServerTypeTelegramReflector)
@@ -1299,6 +1337,7 @@ func (t *CallServerType) MarshalJSON() ([]byte, error) {
 
 // CallState Describes the current call state
 type CallState struct {
+	TypeStr                 string                   `json:"@type"`
 	CallStateDiscarded      *CallStateDiscarded      `json:"callStateDiscarded,omitempty"`
 	CallStateError          *CallStateError          `json:"callStateError,omitempty"`
 	CallStateExchangingKeys *CallStateExchangingKeys `json:"callStateExchangingKeys,omitempty"`
@@ -1308,7 +1347,7 @@ type CallState struct {
 }
 
 func (t *CallState) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *CallState) SetExtra(extra string) {
@@ -1326,6 +1365,7 @@ func (t *CallState) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "callStateDiscarded":
 		t.CallStateDiscarded = new(CallStateDiscarded)
@@ -1373,6 +1413,7 @@ func (t *CallState) MarshalJSON() ([]byte, error) {
 
 // CanPostStoryResult Represents result of checking whether the current user can post a story on behalf of the specific chat
 type CanPostStoryResult struct {
+	TypeStr                                    string                                      `json:"@type"`
 	CanPostStoryResultActiveStoryLimitExceeded *CanPostStoryResultActiveStoryLimitExceeded `json:"canPostStoryResultActiveStoryLimitExceeded,omitempty"`
 	CanPostStoryResultBoostNeeded              *CanPostStoryResultBoostNeeded              `json:"canPostStoryResultBoostNeeded,omitempty"`
 	CanPostStoryResultLiveStoryIsActive        *CanPostStoryResultLiveStoryIsActive        `json:"canPostStoryResultLiveStoryIsActive,omitempty"`
@@ -1383,7 +1424,7 @@ type CanPostStoryResult struct {
 }
 
 func (t *CanPostStoryResult) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *CanPostStoryResult) SetExtra(extra string) {
@@ -1401,6 +1442,7 @@ func (t *CanPostStoryResult) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "canPostStoryResultActiveStoryLimitExceeded":
 		t.CanPostStoryResultActiveStoryLimitExceeded = new(CanPostStoryResultActiveStoryLimitExceeded)
@@ -1454,12 +1496,13 @@ func (t *CanPostStoryResult) MarshalJSON() ([]byte, error) {
 
 // CanSendGiftResult Describes whether a gift can be sent now by the current user
 type CanSendGiftResult struct {
+	TypeStr               string                 `json:"@type"`
 	CanSendGiftResultFail *CanSendGiftResultFail `json:"canSendGiftResultFail,omitempty"`
 	CanSendGiftResultOk   *CanSendGiftResultOk   `json:"canSendGiftResultOk,omitempty"`
 }
 
 func (t *CanSendGiftResult) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *CanSendGiftResult) SetExtra(extra string) {
@@ -1477,6 +1520,7 @@ func (t *CanSendGiftResult) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "canSendGiftResultFail":
 		t.CanSendGiftResultFail = new(CanSendGiftResultFail)
@@ -1500,6 +1544,7 @@ func (t *CanSendGiftResult) MarshalJSON() ([]byte, error) {
 
 // CanSendMessageToUserResult Describes result of canSendMessageToUser
 type CanSendMessageToUserResult struct {
+	TypeStr                                         string                                           `json:"@type"`
 	CanSendMessageToUserResultOk                    *CanSendMessageToUserResultOk                    `json:"canSendMessageToUserResultOk,omitempty"`
 	CanSendMessageToUserResultUserHasPaidMessages   *CanSendMessageToUserResultUserHasPaidMessages   `json:"canSendMessageToUserResultUserHasPaidMessages,omitempty"`
 	CanSendMessageToUserResultUserIsDeleted         *CanSendMessageToUserResultUserIsDeleted         `json:"canSendMessageToUserResultUserIsDeleted,omitempty"`
@@ -1507,7 +1552,7 @@ type CanSendMessageToUserResult struct {
 }
 
 func (t *CanSendMessageToUserResult) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *CanSendMessageToUserResult) SetExtra(extra string) {
@@ -1525,6 +1570,7 @@ func (t *CanSendMessageToUserResult) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "canSendMessageToUserResultOk":
 		t.CanSendMessageToUserResultOk = new(CanSendMessageToUserResultOk)
@@ -1560,6 +1606,7 @@ func (t *CanSendMessageToUserResult) MarshalJSON() ([]byte, error) {
 
 // CanTransferOwnershipResult Represents result of checking whether the current session can be used to transfer a chat ownership to another user
 type CanTransferOwnershipResult struct {
+	TypeStr                                    string                                      `json:"@type"`
 	CanTransferOwnershipResultOk               *CanTransferOwnershipResultOk               `json:"canTransferOwnershipResultOk,omitempty"`
 	CanTransferOwnershipResultPasswordNeeded   *CanTransferOwnershipResultPasswordNeeded   `json:"canTransferOwnershipResultPasswordNeeded,omitempty"`
 	CanTransferOwnershipResultPasswordTooFresh *CanTransferOwnershipResultPasswordTooFresh `json:"canTransferOwnershipResultPasswordTooFresh,omitempty"`
@@ -1567,7 +1614,7 @@ type CanTransferOwnershipResult struct {
 }
 
 func (t *CanTransferOwnershipResult) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *CanTransferOwnershipResult) SetExtra(extra string) {
@@ -1585,6 +1632,7 @@ func (t *CanTransferOwnershipResult) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "canTransferOwnershipResultOk":
 		t.CanTransferOwnershipResultOk = new(CanTransferOwnershipResultOk)
@@ -1620,6 +1668,7 @@ func (t *CanTransferOwnershipResult) MarshalJSON() ([]byte, error) {
 
 // ChatAction Describes the different types of activity in a chat
 type ChatAction struct {
+	TypeStr                      string                        `json:"@type"`
 	ChatActionCancel             *ChatActionCancel             `json:"chatActionCancel,omitempty"`
 	ChatActionChoosingContact    *ChatActionChoosingContact    `json:"chatActionChoosingContact,omitempty"`
 	ChatActionChoosingLocation   *ChatActionChoosingLocation   `json:"chatActionChoosingLocation,omitempty"`
@@ -1638,7 +1687,7 @@ type ChatAction struct {
 }
 
 func (t *ChatAction) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *ChatAction) SetExtra(extra string) {
@@ -1656,6 +1705,7 @@ func (t *ChatAction) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "chatActionCancel":
 		t.ChatActionCancel = new(ChatActionCancel)
@@ -1757,6 +1807,7 @@ func (t *ChatAction) MarshalJSON() ([]byte, error) {
 
 // ChatActionBar Describes actions which must be possible to do through a chat action bar
 type ChatActionBar struct {
+	TypeStr                       string                         `json:"@type"`
 	ChatActionBarAddContact       *ChatActionBarAddContact       `json:"chatActionBarAddContact,omitempty"`
 	ChatActionBarInviteMembers    *ChatActionBarInviteMembers    `json:"chatActionBarInviteMembers,omitempty"`
 	ChatActionBarJoinRequest      *ChatActionBarJoinRequest      `json:"chatActionBarJoinRequest,omitempty"`
@@ -1766,7 +1817,7 @@ type ChatActionBar struct {
 }
 
 func (t *ChatActionBar) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *ChatActionBar) SetExtra(extra string) {
@@ -1784,6 +1835,7 @@ func (t *ChatActionBar) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "chatActionBarAddContact":
 		t.ChatActionBarAddContact = new(ChatActionBarAddContact)
@@ -1831,12 +1883,13 @@ func (t *ChatActionBar) MarshalJSON() ([]byte, error) {
 
 // ChatAvailableReactions Describes reactions available in the chat
 type ChatAvailableReactions struct {
+	TypeStr                    string                      `json:"@type"`
 	ChatAvailableReactionsAll  *ChatAvailableReactionsAll  `json:"chatAvailableReactionsAll,omitempty"`
 	ChatAvailableReactionsSome *ChatAvailableReactionsSome `json:"chatAvailableReactionsSome,omitempty"`
 }
 
 func (t *ChatAvailableReactions) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *ChatAvailableReactions) SetExtra(extra string) {
@@ -1854,6 +1907,7 @@ func (t *ChatAvailableReactions) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "chatAvailableReactionsAll":
 		t.ChatAvailableReactionsAll = new(ChatAvailableReactionsAll)
@@ -1877,13 +1931,14 @@ func (t *ChatAvailableReactions) MarshalJSON() ([]byte, error) {
 
 // ChatBoostSource Describes source of a chat boost
 type ChatBoostSource struct {
+	TypeStr                 string                   `json:"@type"`
 	ChatBoostSourceGiftCode *ChatBoostSourceGiftCode `json:"chatBoostSourceGiftCode,omitempty"`
 	ChatBoostSourceGiveaway *ChatBoostSourceGiveaway `json:"chatBoostSourceGiveaway,omitempty"`
 	ChatBoostSourcePremium  *ChatBoostSourcePremium  `json:"chatBoostSourcePremium,omitempty"`
 }
 
 func (t *ChatBoostSource) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *ChatBoostSource) SetExtra(extra string) {
@@ -1901,6 +1956,7 @@ func (t *ChatBoostSource) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "chatBoostSourceGiftCode":
 		t.ChatBoostSourceGiftCode = new(ChatBoostSourceGiftCode)
@@ -1930,6 +1986,7 @@ func (t *ChatBoostSource) MarshalJSON() ([]byte, error) {
 
 // ChatEventAction Represents a chat event
 type ChatEventAction struct {
+	TypeStr                                         string                                           `json:"@type"`
 	ChatEventAccentColorChanged                     *ChatEventAccentColorChanged                     `json:"chatEventAccentColorChanged,omitempty"`
 	ChatEventActiveUsernamesChanged                 *ChatEventActiveUsernamesChanged                 `json:"chatEventActiveUsernamesChanged,omitempty"`
 	ChatEventAutomaticTranslationToggled            *ChatEventAutomaticTranslationToggled            `json:"chatEventAutomaticTranslationToggled,omitempty"`
@@ -1985,7 +2042,7 @@ type ChatEventAction struct {
 }
 
 func (t *ChatEventAction) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *ChatEventAction) SetExtra(extra string) {
@@ -2003,6 +2060,7 @@ func (t *ChatEventAction) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "chatEventAccentColorChanged":
 		t.ChatEventAccentColorChanged = new(ChatEventAccentColorChanged)
@@ -2326,13 +2384,14 @@ func (t *ChatEventAction) MarshalJSON() ([]byte, error) {
 
 // ChatList Describes a list of chats
 type ChatList struct {
+	TypeStr         string           `json:"@type"`
 	ChatListArchive *ChatListArchive `json:"chatListArchive,omitempty"`
 	ChatListFolder  *ChatListFolder  `json:"chatListFolder,omitempty"`
 	ChatListMain    *ChatListMain    `json:"chatListMain,omitempty"`
 }
 
 func (t *ChatList) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *ChatList) SetExtra(extra string) {
@@ -2350,6 +2409,7 @@ func (t *ChatList) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "chatListArchive":
 		t.ChatListArchive = new(ChatListArchive)
@@ -2379,6 +2439,7 @@ func (t *ChatList) MarshalJSON() ([]byte, error) {
 
 // ChatMembersFilter Specifies the kind of chat members to return in searchChatMembers
 type ChatMembersFilter struct {
+	TypeStr                         string                           `json:"@type"`
 	ChatMembersFilterAdministrators *ChatMembersFilterAdministrators `json:"chatMembersFilterAdministrators,omitempty"`
 	ChatMembersFilterBanned         *ChatMembersFilterBanned         `json:"chatMembersFilterBanned,omitempty"`
 	ChatMembersFilterBots           *ChatMembersFilterBots           `json:"chatMembersFilterBots,omitempty"`
@@ -2389,7 +2450,7 @@ type ChatMembersFilter struct {
 }
 
 func (t *ChatMembersFilter) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *ChatMembersFilter) SetExtra(extra string) {
@@ -2407,6 +2468,7 @@ func (t *ChatMembersFilter) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "chatMembersFilterAdministrators":
 		t.ChatMembersFilterAdministrators = new(ChatMembersFilterAdministrators)
@@ -2460,6 +2522,7 @@ func (t *ChatMembersFilter) MarshalJSON() ([]byte, error) {
 
 // ChatMemberStatus Provides information about the status of a member in a chat
 type ChatMemberStatus struct {
+	TypeStr                       string                         `json:"@type"`
 	ChatMemberStatusAdministrator *ChatMemberStatusAdministrator `json:"chatMemberStatusAdministrator,omitempty"`
 	ChatMemberStatusBanned        *ChatMemberStatusBanned        `json:"chatMemberStatusBanned,omitempty"`
 	ChatMemberStatusCreator       *ChatMemberStatusCreator       `json:"chatMemberStatusCreator,omitempty"`
@@ -2469,7 +2532,7 @@ type ChatMemberStatus struct {
 }
 
 func (t *ChatMemberStatus) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *ChatMemberStatus) SetExtra(extra string) {
@@ -2487,6 +2550,7 @@ func (t *ChatMemberStatus) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "chatMemberStatusAdministrator":
 		t.ChatMemberStatusAdministrator = new(ChatMemberStatusAdministrator)
@@ -2534,12 +2598,13 @@ func (t *ChatMemberStatus) MarshalJSON() ([]byte, error) {
 
 // ChatPhotoStickerType Describes type of sticker, which was used to create a chat photo
 type ChatPhotoStickerType struct {
+	TypeStr                           string                             `json:"@type"`
 	ChatPhotoStickerTypeCustomEmoji   *ChatPhotoStickerTypeCustomEmoji   `json:"chatPhotoStickerTypeCustomEmoji,omitempty"`
 	ChatPhotoStickerTypeRegularOrMask *ChatPhotoStickerTypeRegularOrMask `json:"chatPhotoStickerTypeRegularOrMask,omitempty"`
 }
 
 func (t *ChatPhotoStickerType) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *ChatPhotoStickerType) SetExtra(extra string) {
@@ -2557,6 +2622,7 @@ func (t *ChatPhotoStickerType) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "chatPhotoStickerTypeCustomEmoji":
 		t.ChatPhotoStickerTypeCustomEmoji = new(ChatPhotoStickerTypeCustomEmoji)
@@ -2580,6 +2646,7 @@ func (t *ChatPhotoStickerType) MarshalJSON() ([]byte, error) {
 
 // ChatRevenueTransactionType Describes type of transaction for revenue earned from sponsored messages in a chat
 type ChatRevenueTransactionType struct {
+	TypeStr                                            string                                              `json:"@type"`
 	ChatRevenueTransactionTypeFragmentRefund           *ChatRevenueTransactionTypeFragmentRefund           `json:"chatRevenueTransactionTypeFragmentRefund,omitempty"`
 	ChatRevenueTransactionTypeFragmentWithdrawal       *ChatRevenueTransactionTypeFragmentWithdrawal       `json:"chatRevenueTransactionTypeFragmentWithdrawal,omitempty"`
 	ChatRevenueTransactionTypeSponsoredMessageEarnings *ChatRevenueTransactionTypeSponsoredMessageEarnings `json:"chatRevenueTransactionTypeSponsoredMessageEarnings,omitempty"`
@@ -2588,7 +2655,7 @@ type ChatRevenueTransactionType struct {
 }
 
 func (t *ChatRevenueTransactionType) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *ChatRevenueTransactionType) SetExtra(extra string) {
@@ -2606,6 +2673,7 @@ func (t *ChatRevenueTransactionType) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "chatRevenueTransactionTypeFragmentRefund":
 		t.ChatRevenueTransactionTypeFragmentRefund = new(ChatRevenueTransactionTypeFragmentRefund)
@@ -2647,12 +2715,13 @@ func (t *ChatRevenueTransactionType) MarshalJSON() ([]byte, error) {
 
 // ChatSource Describes a reason why an external chat is shown in a chat list
 type ChatSource struct {
+	TypeStr                             string                               `json:"@type"`
 	ChatSourceMtprotoProxy              *ChatSourceMtprotoProxy              `json:"chatSourceMtprotoProxy,omitempty"`
 	ChatSourcePublicServiceAnnouncement *ChatSourcePublicServiceAnnouncement `json:"chatSourcePublicServiceAnnouncement,omitempty"`
 }
 
 func (t *ChatSource) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *ChatSource) SetExtra(extra string) {
@@ -2670,6 +2739,7 @@ func (t *ChatSource) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "chatSourceMtprotoProxy":
 		t.ChatSourceMtprotoProxy = new(ChatSourceMtprotoProxy)
@@ -2693,12 +2763,13 @@ func (t *ChatSource) MarshalJSON() ([]byte, error) {
 
 // ChatStatistics Contains a detailed statistics about a chat
 type ChatStatistics struct {
+	TypeStr                  string                    `json:"@type"`
 	ChatStatisticsChannel    *ChatStatisticsChannel    `json:"chatStatisticsChannel,omitempty"`
 	ChatStatisticsSupergroup *ChatStatisticsSupergroup `json:"chatStatisticsSupergroup,omitempty"`
 }
 
 func (t *ChatStatistics) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *ChatStatistics) SetExtra(extra string) {
@@ -2716,6 +2787,7 @@ func (t *ChatStatistics) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "chatStatisticsChannel":
 		t.ChatStatisticsChannel = new(ChatStatisticsChannel)
@@ -2739,12 +2811,13 @@ func (t *ChatStatistics) MarshalJSON() ([]byte, error) {
 
 // ChatStatisticsObjectType Describes type of object, for which statistics are provided
 type ChatStatisticsObjectType struct {
+	TypeStr                         string                           `json:"@type"`
 	ChatStatisticsObjectTypeMessage *ChatStatisticsObjectTypeMessage `json:"chatStatisticsObjectTypeMessage,omitempty"`
 	ChatStatisticsObjectTypeStory   *ChatStatisticsObjectTypeStory   `json:"chatStatisticsObjectTypeStory,omitempty"`
 }
 
 func (t *ChatStatisticsObjectType) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *ChatStatisticsObjectType) SetExtra(extra string) {
@@ -2762,6 +2835,7 @@ func (t *ChatStatisticsObjectType) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "chatStatisticsObjectTypeMessage":
 		t.ChatStatisticsObjectTypeMessage = new(ChatStatisticsObjectTypeMessage)
@@ -2785,12 +2859,13 @@ func (t *ChatStatisticsObjectType) MarshalJSON() ([]byte, error) {
 
 // ChatTheme Describes a chat theme
 type ChatTheme struct {
+	TypeStr        string          `json:"@type"`
 	ChatThemeEmoji *ChatThemeEmoji `json:"chatThemeEmoji,omitempty"`
 	ChatThemeGift  *ChatThemeGift  `json:"chatThemeGift,omitempty"`
 }
 
 func (t *ChatTheme) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *ChatTheme) SetExtra(extra string) {
@@ -2808,6 +2883,7 @@ func (t *ChatTheme) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "chatThemeEmoji":
 		t.ChatThemeEmoji = new(ChatThemeEmoji)
@@ -2831,6 +2907,7 @@ func (t *ChatTheme) MarshalJSON() ([]byte, error) {
 
 // ChatType Describes the type of chat
 type ChatType struct {
+	TypeStr            string              `json:"@type"`
 	ChatTypeBasicGroup *ChatTypeBasicGroup `json:"chatTypeBasicGroup,omitempty"`
 	ChatTypePrivate    *ChatTypePrivate    `json:"chatTypePrivate,omitempty"`
 	ChatTypeSecret     *ChatTypeSecret     `json:"chatTypeSecret,omitempty"`
@@ -2838,7 +2915,7 @@ type ChatType struct {
 }
 
 func (t *ChatType) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *ChatType) SetExtra(extra string) {
@@ -2856,6 +2933,7 @@ func (t *ChatType) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "chatTypeBasicGroup":
 		t.ChatTypeBasicGroup = new(ChatTypeBasicGroup)
@@ -2891,6 +2969,7 @@ func (t *ChatType) MarshalJSON() ([]byte, error) {
 
 // CheckChatUsernameResult Represents result of checking whether a username can be set for a chat
 type CheckChatUsernameResult struct {
+	TypeStr                                        string                                          `json:"@type"`
 	CheckChatUsernameResultOk                      *CheckChatUsernameResultOk                      `json:"checkChatUsernameResultOk,omitempty"`
 	CheckChatUsernameResultPublicChatsTooMany      *CheckChatUsernameResultPublicChatsTooMany      `json:"checkChatUsernameResultPublicChatsTooMany,omitempty"`
 	CheckChatUsernameResultPublicGroupsUnavailable *CheckChatUsernameResultPublicGroupsUnavailable `json:"checkChatUsernameResultPublicGroupsUnavailable,omitempty"`
@@ -2900,7 +2979,7 @@ type CheckChatUsernameResult struct {
 }
 
 func (t *CheckChatUsernameResult) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *CheckChatUsernameResult) SetExtra(extra string) {
@@ -2918,6 +2997,7 @@ func (t *CheckChatUsernameResult) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "checkChatUsernameResultOk":
 		t.CheckChatUsernameResultOk = new(CheckChatUsernameResultOk)
@@ -2965,13 +3045,14 @@ func (t *CheckChatUsernameResult) MarshalJSON() ([]byte, error) {
 
 // CheckStickerSetNameResult Represents result of checking whether a name can be used for a new sticker set
 type CheckStickerSetNameResult struct {
+	TypeStr                               string                                 `json:"@type"`
 	CheckStickerSetNameResultNameInvalid  *CheckStickerSetNameResultNameInvalid  `json:"checkStickerSetNameResultNameInvalid,omitempty"`
 	CheckStickerSetNameResultNameOccupied *CheckStickerSetNameResultNameOccupied `json:"checkStickerSetNameResultNameOccupied,omitempty"`
 	CheckStickerSetNameResultOk           *CheckStickerSetNameResultOk           `json:"checkStickerSetNameResultOk,omitempty"`
 }
 
 func (t *CheckStickerSetNameResult) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *CheckStickerSetNameResult) SetExtra(extra string) {
@@ -2989,6 +3070,7 @@ func (t *CheckStickerSetNameResult) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "checkStickerSetNameResultNameInvalid":
 		t.CheckStickerSetNameResultNameInvalid = new(CheckStickerSetNameResultNameInvalid)
@@ -3018,12 +3100,13 @@ func (t *CheckStickerSetNameResult) MarshalJSON() ([]byte, error) {
 
 // CollectibleItemType Describes a collectible item that can be purchased at https://fragment.com
 type CollectibleItemType struct {
+	TypeStr                        string                          `json:"@type"`
 	CollectibleItemTypePhoneNumber *CollectibleItemTypePhoneNumber `json:"collectibleItemTypePhoneNumber,omitempty"`
 	CollectibleItemTypeUsername    *CollectibleItemTypeUsername    `json:"collectibleItemTypeUsername,omitempty"`
 }
 
 func (t *CollectibleItemType) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *CollectibleItemType) SetExtra(extra string) {
@@ -3041,6 +3124,7 @@ func (t *CollectibleItemType) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "collectibleItemTypePhoneNumber":
 		t.CollectibleItemTypePhoneNumber = new(CollectibleItemTypePhoneNumber)
@@ -3064,6 +3148,7 @@ func (t *CollectibleItemType) MarshalJSON() ([]byte, error) {
 
 // ConnectionState Describes the current state of the connection to Telegram servers
 type ConnectionState struct {
+	TypeStr                          string                            `json:"@type"`
 	ConnectionStateConnecting        *ConnectionStateConnecting        `json:"connectionStateConnecting,omitempty"`
 	ConnectionStateConnectingToProxy *ConnectionStateConnectingToProxy `json:"connectionStateConnectingToProxy,omitempty"`
 	ConnectionStateReady             *ConnectionStateReady             `json:"connectionStateReady,omitempty"`
@@ -3072,7 +3157,7 @@ type ConnectionState struct {
 }
 
 func (t *ConnectionState) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *ConnectionState) SetExtra(extra string) {
@@ -3090,6 +3175,7 @@ func (t *ConnectionState) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "connectionStateConnecting":
 		t.ConnectionStateConnecting = new(ConnectionStateConnecting)
@@ -3131,6 +3217,7 @@ func (t *ConnectionState) MarshalJSON() ([]byte, error) {
 
 // DeviceToken Represents a data needed to subscribe for push notifications through registerDevice method.
 type DeviceToken struct {
+	TypeStr                           string                             `json:"@type"`
 	DeviceTokenApplePush              *DeviceTokenApplePush              `json:"deviceTokenApplePush,omitempty"`
 	DeviceTokenApplePushVoIP          *DeviceTokenApplePushVoIP          `json:"deviceTokenApplePushVoIP,omitempty"`
 	DeviceTokenBlackBerryPush         *DeviceTokenBlackBerryPush         `json:"deviceTokenBlackBerryPush,omitempty"`
@@ -3146,7 +3233,7 @@ type DeviceToken struct {
 }
 
 func (t *DeviceToken) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *DeviceToken) SetExtra(extra string) {
@@ -3164,6 +3251,7 @@ func (t *DeviceToken) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "deviceTokenApplePush":
 		t.DeviceTokenApplePush = new(DeviceTokenApplePush)
@@ -3247,12 +3335,13 @@ func (t *DeviceToken) MarshalJSON() ([]byte, error) {
 
 // DiceStickers Contains animated stickers which must be used for dice animation rendering
 type DiceStickers struct {
+	TypeStr                 string                   `json:"@type"`
 	DiceStickersRegular     *DiceStickersRegular     `json:"diceStickersRegular,omitempty"`
 	DiceStickersSlotMachine *DiceStickersSlotMachine `json:"diceStickersSlotMachine,omitempty"`
 }
 
 func (t *DiceStickers) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *DiceStickers) SetExtra(extra string) {
@@ -3270,6 +3359,7 @@ func (t *DiceStickers) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "diceStickersRegular":
 		t.DiceStickersRegular = new(DiceStickersRegular)
@@ -3293,13 +3383,14 @@ func (t *DiceStickers) MarshalJSON() ([]byte, error) {
 
 // EmailAddressAuthentication Contains authentication data for an email address
 type EmailAddressAuthentication struct {
+	TypeStr                            string                              `json:"@type"`
 	EmailAddressAuthenticationAppleId  *EmailAddressAuthenticationAppleId  `json:"emailAddressAuthenticationAppleId,omitempty"`
 	EmailAddressAuthenticationCode     *EmailAddressAuthenticationCode     `json:"emailAddressAuthenticationCode,omitempty"`
 	EmailAddressAuthenticationGoogleId *EmailAddressAuthenticationGoogleId `json:"emailAddressAuthenticationGoogleId,omitempty"`
 }
 
 func (t *EmailAddressAuthentication) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *EmailAddressAuthentication) SetExtra(extra string) {
@@ -3317,6 +3408,7 @@ func (t *EmailAddressAuthentication) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "emailAddressAuthenticationAppleId":
 		t.EmailAddressAuthenticationAppleId = new(EmailAddressAuthenticationAppleId)
@@ -3346,12 +3438,13 @@ func (t *EmailAddressAuthentication) MarshalJSON() ([]byte, error) {
 
 // EmailAddressResetState Describes reset state of an email address
 type EmailAddressResetState struct {
+	TypeStr                         string                           `json:"@type"`
 	EmailAddressResetStateAvailable *EmailAddressResetStateAvailable `json:"emailAddressResetStateAvailable,omitempty"`
 	EmailAddressResetStatePending   *EmailAddressResetStatePending   `json:"emailAddressResetStatePending,omitempty"`
 }
 
 func (t *EmailAddressResetState) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *EmailAddressResetState) SetExtra(extra string) {
@@ -3369,6 +3462,7 @@ func (t *EmailAddressResetState) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "emailAddressResetStateAvailable":
 		t.EmailAddressResetStateAvailable = new(EmailAddressResetStateAvailable)
@@ -3392,12 +3486,13 @@ func (t *EmailAddressResetState) MarshalJSON() ([]byte, error) {
 
 // EmojiCategorySource Describes source of stickers for an emoji category
 type EmojiCategorySource struct {
+	TypeStr                    string                      `json:"@type"`
 	EmojiCategorySourcePremium *EmojiCategorySourcePremium `json:"emojiCategorySourcePremium,omitempty"`
 	EmojiCategorySourceSearch  *EmojiCategorySourceSearch  `json:"emojiCategorySourceSearch,omitempty"`
 }
 
 func (t *EmojiCategorySource) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *EmojiCategorySource) SetExtra(extra string) {
@@ -3415,6 +3510,7 @@ func (t *EmojiCategorySource) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "emojiCategorySourcePremium":
 		t.EmojiCategorySourcePremium = new(EmojiCategorySourcePremium)
@@ -3438,6 +3534,7 @@ func (t *EmojiCategorySource) MarshalJSON() ([]byte, error) {
 
 // EmojiCategoryType Describes type of emoji category
 type EmojiCategoryType struct {
+	TypeStr                          string                            `json:"@type"`
 	EmojiCategoryTypeChatPhoto       *EmojiCategoryTypeChatPhoto       `json:"emojiCategoryTypeChatPhoto,omitempty"`
 	EmojiCategoryTypeDefault         *EmojiCategoryTypeDefault         `json:"emojiCategoryTypeDefault,omitempty"`
 	EmojiCategoryTypeEmojiStatus     *EmojiCategoryTypeEmojiStatus     `json:"emojiCategoryTypeEmojiStatus,omitempty"`
@@ -3445,7 +3542,7 @@ type EmojiCategoryType struct {
 }
 
 func (t *EmojiCategoryType) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *EmojiCategoryType) SetExtra(extra string) {
@@ -3463,6 +3560,7 @@ func (t *EmojiCategoryType) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "emojiCategoryTypeChatPhoto":
 		t.EmojiCategoryTypeChatPhoto = new(EmojiCategoryTypeChatPhoto)
@@ -3498,12 +3596,13 @@ func (t *EmojiCategoryType) MarshalJSON() ([]byte, error) {
 
 // EmojiStatusType Describes type of emoji status
 type EmojiStatusType struct {
+	TypeStr                     string                       `json:"@type"`
 	EmojiStatusTypeCustomEmoji  *EmojiStatusTypeCustomEmoji  `json:"emojiStatusTypeCustomEmoji,omitempty"`
 	EmojiStatusTypeUpgradedGift *EmojiStatusTypeUpgradedGift `json:"emojiStatusTypeUpgradedGift,omitempty"`
 }
 
 func (t *EmojiStatusType) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *EmojiStatusType) SetExtra(extra string) {
@@ -3521,6 +3620,7 @@ func (t *EmojiStatusType) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "emojiStatusTypeCustomEmoji":
 		t.EmojiStatusTypeCustomEmoji = new(EmojiStatusTypeCustomEmoji)
@@ -3544,6 +3644,7 @@ func (t *EmojiStatusType) MarshalJSON() ([]byte, error) {
 
 // FileType Represents the type of file
 type FileType struct {
+	TypeStr                          string                            `json:"@type"`
 	FileTypeAnimation                *FileTypeAnimation                `json:"fileTypeAnimation,omitempty"`
 	FileTypeAudio                    *FileTypeAudio                    `json:"fileTypeAudio,omitempty"`
 	FileTypeDocument                 *FileTypeDocument                 `json:"fileTypeDocument,omitempty"`
@@ -3570,7 +3671,7 @@ type FileType struct {
 }
 
 func (t *FileType) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *FileType) SetExtra(extra string) {
@@ -3588,6 +3689,7 @@ func (t *FileType) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "fileTypeAnimation":
 		t.FileTypeAnimation = new(FileTypeAnimation)
@@ -3737,12 +3839,13 @@ func (t *FileType) MarshalJSON() ([]byte, error) {
 
 // FirebaseAuthenticationSettings Contains settings for Firebase Authentication in the official applications
 type FirebaseAuthenticationSettings struct {
+	TypeStr                               string                                 `json:"@type"`
 	FirebaseAuthenticationSettingsAndroid *FirebaseAuthenticationSettingsAndroid `json:"firebaseAuthenticationSettingsAndroid,omitempty"`
 	FirebaseAuthenticationSettingsIos     *FirebaseAuthenticationSettingsIos     `json:"firebaseAuthenticationSettingsIos,omitempty"`
 }
 
 func (t *FirebaseAuthenticationSettings) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *FirebaseAuthenticationSettings) SetExtra(extra string) {
@@ -3760,6 +3863,7 @@ func (t *FirebaseAuthenticationSettings) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "firebaseAuthenticationSettingsAndroid":
 		t.FirebaseAuthenticationSettingsAndroid = new(FirebaseAuthenticationSettingsAndroid)
@@ -3783,12 +3887,13 @@ func (t *FirebaseAuthenticationSettings) MarshalJSON() ([]byte, error) {
 
 // FirebaseDeviceVerificationParameters Describes parameters to be used for device verification
 type FirebaseDeviceVerificationParameters struct {
+	TypeStr                                           string                                             `json:"@type"`
 	FirebaseDeviceVerificationParametersPlayIntegrity *FirebaseDeviceVerificationParametersPlayIntegrity `json:"firebaseDeviceVerificationParametersPlayIntegrity,omitempty"`
 	FirebaseDeviceVerificationParametersSafetyNet     *FirebaseDeviceVerificationParametersSafetyNet     `json:"firebaseDeviceVerificationParametersSafetyNet,omitempty"`
 }
 
 func (t *FirebaseDeviceVerificationParameters) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *FirebaseDeviceVerificationParameters) SetExtra(extra string) {
@@ -3806,6 +3911,7 @@ func (t *FirebaseDeviceVerificationParameters) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "firebaseDeviceVerificationParametersPlayIntegrity":
 		t.FirebaseDeviceVerificationParametersPlayIntegrity = new(FirebaseDeviceVerificationParametersPlayIntegrity)
@@ -3829,13 +3935,14 @@ func (t *FirebaseDeviceVerificationParameters) MarshalJSON() ([]byte, error) {
 
 // GiftForResaleOrder Describes order in which upgraded gifts for resale will be sorted
 type GiftForResaleOrder struct {
+	TypeStr                           string                             `json:"@type"`
 	GiftForResaleOrderNumber          *GiftForResaleOrderNumber          `json:"giftForResaleOrderNumber,omitempty"`
 	GiftForResaleOrderPrice           *GiftForResaleOrderPrice           `json:"giftForResaleOrderPrice,omitempty"`
 	GiftForResaleOrderPriceChangeDate *GiftForResaleOrderPriceChangeDate `json:"giftForResaleOrderPriceChangeDate,omitempty"`
 }
 
 func (t *GiftForResaleOrder) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *GiftForResaleOrder) SetExtra(extra string) {
@@ -3853,6 +3960,7 @@ func (t *GiftForResaleOrder) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "giftForResaleOrderNumber":
 		t.GiftForResaleOrderNumber = new(GiftForResaleOrderNumber)
@@ -3882,13 +3990,14 @@ func (t *GiftForResaleOrder) MarshalJSON() ([]byte, error) {
 
 // GiftPurchaseOfferState Describes state of a gift purchase offer
 type GiftPurchaseOfferState struct {
+	TypeStr                        string                          `json:"@type"`
 	GiftPurchaseOfferStateAccepted *GiftPurchaseOfferStateAccepted `json:"giftPurchaseOfferStateAccepted,omitempty"`
 	GiftPurchaseOfferStatePending  *GiftPurchaseOfferStatePending  `json:"giftPurchaseOfferStatePending,omitempty"`
 	GiftPurchaseOfferStateRejected *GiftPurchaseOfferStateRejected `json:"giftPurchaseOfferStateRejected,omitempty"`
 }
 
 func (t *GiftPurchaseOfferState) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *GiftPurchaseOfferState) SetExtra(extra string) {
@@ -3906,6 +4015,7 @@ func (t *GiftPurchaseOfferState) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "giftPurchaseOfferStateAccepted":
 		t.GiftPurchaseOfferStateAccepted = new(GiftPurchaseOfferStateAccepted)
@@ -3935,12 +4045,13 @@ func (t *GiftPurchaseOfferState) MarshalJSON() ([]byte, error) {
 
 // GiftResalePrice Describes price of a resold gift
 type GiftResalePrice struct {
+	TypeStr             string               `json:"@type"`
 	GiftResalePriceStar *GiftResalePriceStar `json:"giftResalePriceStar,omitempty"`
 	GiftResalePriceTon  *GiftResalePriceTon  `json:"giftResalePriceTon,omitempty"`
 }
 
 func (t *GiftResalePrice) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *GiftResalePrice) SetExtra(extra string) {
@@ -3958,6 +4069,7 @@ func (t *GiftResalePrice) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "giftResalePriceStar":
 		t.GiftResalePriceStar = new(GiftResalePriceStar)
@@ -3981,12 +4093,13 @@ func (t *GiftResalePrice) MarshalJSON() ([]byte, error) {
 
 // GiftResaleResult Describes result of sending a resold gift
 type GiftResaleResult struct {
+	TypeStr                        string                          `json:"@type"`
 	GiftResaleResultOk             *GiftResaleResultOk             `json:"giftResaleResultOk,omitempty"`
 	GiftResaleResultPriceIncreased *GiftResaleResultPriceIncreased `json:"giftResaleResultPriceIncreased,omitempty"`
 }
 
 func (t *GiftResaleResult) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *GiftResaleResult) SetExtra(extra string) {
@@ -4004,6 +4117,7 @@ func (t *GiftResaleResult) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "giftResaleResultOk":
 		t.GiftResaleResultOk = new(GiftResaleResultOk)
@@ -4027,12 +4141,13 @@ func (t *GiftResaleResult) MarshalJSON() ([]byte, error) {
 
 // GiveawayInfo Contains information about a giveaway
 type GiveawayInfo struct {
+	TypeStr               string                 `json:"@type"`
 	GiveawayInfoCompleted *GiveawayInfoCompleted `json:"giveawayInfoCompleted,omitempty"`
 	GiveawayInfoOngoing   *GiveawayInfoOngoing   `json:"giveawayInfoOngoing,omitempty"`
 }
 
 func (t *GiveawayInfo) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *GiveawayInfo) SetExtra(extra string) {
@@ -4050,6 +4165,7 @@ func (t *GiveawayInfo) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "giveawayInfoCompleted":
 		t.GiveawayInfoCompleted = new(GiveawayInfoCompleted)
@@ -4073,6 +4189,7 @@ func (t *GiveawayInfo) MarshalJSON() ([]byte, error) {
 
 // GiveawayParticipantStatus Contains information about status of a user in a giveaway
 type GiveawayParticipantStatus struct {
+	TypeStr                                    string                                      `json:"@type"`
 	GiveawayParticipantStatusAdministrator     *GiveawayParticipantStatusAdministrator     `json:"giveawayParticipantStatusAdministrator,omitempty"`
 	GiveawayParticipantStatusAlreadyWasMember  *GiveawayParticipantStatusAlreadyWasMember  `json:"giveawayParticipantStatusAlreadyWasMember,omitempty"`
 	GiveawayParticipantStatusDisallowedCountry *GiveawayParticipantStatusDisallowedCountry `json:"giveawayParticipantStatusDisallowedCountry,omitempty"`
@@ -4081,7 +4198,7 @@ type GiveawayParticipantStatus struct {
 }
 
 func (t *GiveawayParticipantStatus) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *GiveawayParticipantStatus) SetExtra(extra string) {
@@ -4099,6 +4216,7 @@ func (t *GiveawayParticipantStatus) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "giveawayParticipantStatusAdministrator":
 		t.GiveawayParticipantStatusAdministrator = new(GiveawayParticipantStatusAdministrator)
@@ -4140,12 +4258,13 @@ func (t *GiveawayParticipantStatus) MarshalJSON() ([]byte, error) {
 
 // GiveawayPrize Contains information about a giveaway prize
 type GiveawayPrize struct {
+	TypeStr              string                `json:"@type"`
 	GiveawayPrizePremium *GiveawayPrizePremium `json:"giveawayPrizePremium,omitempty"`
 	GiveawayPrizeStars   *GiveawayPrizeStars   `json:"giveawayPrizeStars,omitempty"`
 }
 
 func (t *GiveawayPrize) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *GiveawayPrize) SetExtra(extra string) {
@@ -4163,6 +4282,7 @@ func (t *GiveawayPrize) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "giveawayPrizePremium":
 		t.GiveawayPrizePremium = new(GiveawayPrizePremium)
@@ -4186,12 +4306,13 @@ func (t *GiveawayPrize) MarshalJSON() ([]byte, error) {
 
 // GroupCallDataChannel Describes data channel for a group call
 type GroupCallDataChannel struct {
+	TypeStr                           string                             `json:"@type"`
 	GroupCallDataChannelMain          *GroupCallDataChannelMain          `json:"groupCallDataChannelMain,omitempty"`
 	GroupCallDataChannelScreenSharing *GroupCallDataChannelScreenSharing `json:"groupCallDataChannelScreenSharing,omitempty"`
 }
 
 func (t *GroupCallDataChannel) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *GroupCallDataChannel) SetExtra(extra string) {
@@ -4209,6 +4330,7 @@ func (t *GroupCallDataChannel) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "groupCallDataChannelMain":
 		t.GroupCallDataChannelMain = new(GroupCallDataChannelMain)
@@ -4232,13 +4354,14 @@ func (t *GroupCallDataChannel) MarshalJSON() ([]byte, error) {
 
 // GroupCallVideoQuality Describes the quality of a group call video
 type GroupCallVideoQuality struct {
+	TypeStr                        string                          `json:"@type"`
 	GroupCallVideoQualityFull      *GroupCallVideoQualityFull      `json:"groupCallVideoQualityFull,omitempty"`
 	GroupCallVideoQualityMedium    *GroupCallVideoQualityMedium    `json:"groupCallVideoQualityMedium,omitempty"`
 	GroupCallVideoQualityThumbnail *GroupCallVideoQualityThumbnail `json:"groupCallVideoQualityThumbnail,omitempty"`
 }
 
 func (t *GroupCallVideoQuality) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *GroupCallVideoQuality) SetExtra(extra string) {
@@ -4256,6 +4379,7 @@ func (t *GroupCallVideoQuality) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "groupCallVideoQualityFull":
 		t.GroupCallVideoQualityFull = new(GroupCallVideoQualityFull)
@@ -4285,6 +4409,7 @@ func (t *GroupCallVideoQuality) MarshalJSON() ([]byte, error) {
 
 // InlineKeyboardButtonType Describes the type of inline keyboard button
 type InlineKeyboardButtonType struct {
+	TypeStr                                      string                                        `json:"@type"`
 	InlineKeyboardButtonTypeBuy                  *InlineKeyboardButtonTypeBuy                  `json:"inlineKeyboardButtonTypeBuy,omitempty"`
 	InlineKeyboardButtonTypeCallback             *InlineKeyboardButtonTypeCallback             `json:"inlineKeyboardButtonTypeCallback,omitempty"`
 	InlineKeyboardButtonTypeCallbackGame         *InlineKeyboardButtonTypeCallbackGame         `json:"inlineKeyboardButtonTypeCallbackGame,omitempty"`
@@ -4298,7 +4423,7 @@ type InlineKeyboardButtonType struct {
 }
 
 func (t *InlineKeyboardButtonType) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *InlineKeyboardButtonType) SetExtra(extra string) {
@@ -4316,6 +4441,7 @@ func (t *InlineKeyboardButtonType) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "inlineKeyboardButtonTypeBuy":
 		t.InlineKeyboardButtonTypeBuy = new(InlineKeyboardButtonTypeBuy)
@@ -4387,6 +4513,7 @@ func (t *InlineKeyboardButtonType) MarshalJSON() ([]byte, error) {
 
 // InlineQueryResult Represents a single result of an inline query
 type InlineQueryResult struct {
+	TypeStr                    string                      `json:"@type"`
 	InlineQueryResultAnimation *InlineQueryResultAnimation `json:"inlineQueryResultAnimation,omitempty"`
 	InlineQueryResultArticle   *InlineQueryResultArticle   `json:"inlineQueryResultArticle,omitempty"`
 	InlineQueryResultAudio     *InlineQueryResultAudio     `json:"inlineQueryResultAudio,omitempty"`
@@ -4402,7 +4529,7 @@ type InlineQueryResult struct {
 }
 
 func (t *InlineQueryResult) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *InlineQueryResult) SetExtra(extra string) {
@@ -4420,6 +4547,7 @@ func (t *InlineQueryResult) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "inlineQueryResultAnimation":
 		t.InlineQueryResultAnimation = new(InlineQueryResultAnimation)
@@ -4503,12 +4631,13 @@ func (t *InlineQueryResult) MarshalJSON() ([]byte, error) {
 
 // InlineQueryResultsButtonType Represents type of button in results of inline query
 type InlineQueryResultsButtonType struct {
+	TypeStr                              string                                `json:"@type"`
 	InlineQueryResultsButtonTypeStartBot *InlineQueryResultsButtonTypeStartBot `json:"inlineQueryResultsButtonTypeStartBot,omitempty"`
 	InlineQueryResultsButtonTypeWebApp   *InlineQueryResultsButtonTypeWebApp   `json:"inlineQueryResultsButtonTypeWebApp,omitempty"`
 }
 
 func (t *InlineQueryResultsButtonType) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *InlineQueryResultsButtonType) SetExtra(extra string) {
@@ -4526,6 +4655,7 @@ func (t *InlineQueryResultsButtonType) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "inlineQueryResultsButtonTypeStartBot":
 		t.InlineQueryResultsButtonTypeStartBot = new(InlineQueryResultsButtonTypeStartBot)
@@ -4549,13 +4679,14 @@ func (t *InlineQueryResultsButtonType) MarshalJSON() ([]byte, error) {
 
 // InputBackground Contains information about background to set
 type InputBackground struct {
+	TypeStr                 string                   `json:"@type"`
 	InputBackgroundLocal    *InputBackgroundLocal    `json:"inputBackgroundLocal,omitempty"`
 	InputBackgroundPrevious *InputBackgroundPrevious `json:"inputBackgroundPrevious,omitempty"`
 	InputBackgroundRemote   *InputBackgroundRemote   `json:"inputBackgroundRemote,omitempty"`
 }
 
 func (t *InputBackground) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *InputBackground) SetExtra(extra string) {
@@ -4573,6 +4704,7 @@ func (t *InputBackground) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "inputBackgroundLocal":
 		t.InputBackgroundLocal = new(InputBackgroundLocal)
@@ -4602,6 +4734,7 @@ func (t *InputBackground) MarshalJSON() ([]byte, error) {
 
 // InputChatPhoto Describes a photo to be set as a user profile or chat photo
 type InputChatPhoto struct {
+	TypeStr                 string                   `json:"@type"`
 	InputChatPhotoAnimation *InputChatPhotoAnimation `json:"inputChatPhotoAnimation,omitempty"`
 	InputChatPhotoPrevious  *InputChatPhotoPrevious  `json:"inputChatPhotoPrevious,omitempty"`
 	InputChatPhotoStatic    *InputChatPhotoStatic    `json:"inputChatPhotoStatic,omitempty"`
@@ -4609,7 +4742,7 @@ type InputChatPhoto struct {
 }
 
 func (t *InputChatPhoto) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *InputChatPhoto) SetExtra(extra string) {
@@ -4627,6 +4760,7 @@ func (t *InputChatPhoto) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "inputChatPhotoAnimation":
 		t.InputChatPhotoAnimation = new(InputChatPhotoAnimation)
@@ -4662,12 +4796,13 @@ func (t *InputChatPhoto) MarshalJSON() ([]byte, error) {
 
 // InputChatTheme Describes a chat theme to set
 type InputChatTheme struct {
+	TypeStr             string               `json:"@type"`
 	InputChatThemeEmoji *InputChatThemeEmoji `json:"inputChatThemeEmoji,omitempty"`
 	InputChatThemeGift  *InputChatThemeGift  `json:"inputChatThemeGift,omitempty"`
 }
 
 func (t *InputChatTheme) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *InputChatTheme) SetExtra(extra string) {
@@ -4685,6 +4820,7 @@ func (t *InputChatTheme) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "inputChatThemeEmoji":
 		t.InputChatThemeEmoji = new(InputChatThemeEmoji)
@@ -4708,6 +4844,7 @@ func (t *InputChatTheme) MarshalJSON() ([]byte, error) {
 
 // InputCredentials Contains information about the payment method chosen by the user
 type InputCredentials struct {
+	TypeStr                   string                     `json:"@type"`
 	InputCredentialsApplePay  *InputCredentialsApplePay  `json:"inputCredentialsApplePay,omitempty"`
 	InputCredentialsGooglePay *InputCredentialsGooglePay `json:"inputCredentialsGooglePay,omitempty"`
 	InputCredentialsNew       *InputCredentialsNew       `json:"inputCredentialsNew,omitempty"`
@@ -4715,7 +4852,7 @@ type InputCredentials struct {
 }
 
 func (t *InputCredentials) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *InputCredentials) SetExtra(extra string) {
@@ -4733,6 +4870,7 @@ func (t *InputCredentials) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "inputCredentialsApplePay":
 		t.InputCredentialsApplePay = new(InputCredentialsApplePay)
@@ -4768,6 +4906,7 @@ func (t *InputCredentials) MarshalJSON() ([]byte, error) {
 
 // InputFile Points to a file
 type InputFile struct {
+	TypeStr            string              `json:"@type"`
 	InputFileGenerated *InputFileGenerated `json:"inputFileGenerated,omitempty"`
 	InputFileId        *InputFileId        `json:"inputFileId,omitempty"`
 	InputFileLocal     *InputFileLocal     `json:"inputFileLocal,omitempty"`
@@ -4775,7 +4914,7 @@ type InputFile struct {
 }
 
 func (t *InputFile) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *InputFile) SetExtra(extra string) {
@@ -4793,6 +4932,7 @@ func (t *InputFile) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "inputFileGenerated":
 		t.InputFileGenerated = new(InputFileGenerated)
@@ -4828,12 +4968,13 @@ func (t *InputFile) MarshalJSON() ([]byte, error) {
 
 // InputGroupCall Describes a non-joined group call that isn't bound to a chat
 type InputGroupCall struct {
+	TypeStr               string                 `json:"@type"`
 	InputGroupCallLink    *InputGroupCallLink    `json:"inputGroupCallLink,omitempty"`
 	InputGroupCallMessage *InputGroupCallMessage `json:"inputGroupCallMessage,omitempty"`
 }
 
 func (t *InputGroupCall) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *InputGroupCall) SetExtra(extra string) {
@@ -4851,6 +4992,7 @@ func (t *InputGroupCall) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "inputGroupCallLink":
 		t.InputGroupCallLink = new(InputGroupCallLink)
@@ -4874,6 +5016,7 @@ func (t *InputGroupCall) MarshalJSON() ([]byte, error) {
 
 // InputInlineQueryResult Represents a single result of an inline query; for bots only
 type InputInlineQueryResult struct {
+	TypeStr                         string                           `json:"@type"`
 	InputInlineQueryResultAnimation *InputInlineQueryResultAnimation `json:"inputInlineQueryResultAnimation,omitempty"`
 	InputInlineQueryResultArticle   *InputInlineQueryResultArticle   `json:"inputInlineQueryResultArticle,omitempty"`
 	InputInlineQueryResultAudio     *InputInlineQueryResultAudio     `json:"inputInlineQueryResultAudio,omitempty"`
@@ -4889,7 +5032,7 @@ type InputInlineQueryResult struct {
 }
 
 func (t *InputInlineQueryResult) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *InputInlineQueryResult) SetExtra(extra string) {
@@ -4907,6 +5050,7 @@ func (t *InputInlineQueryResult) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "inputInlineQueryResultAnimation":
 		t.InputInlineQueryResultAnimation = new(InputInlineQueryResultAnimation)
@@ -4990,13 +5134,14 @@ func (t *InputInlineQueryResult) MarshalJSON() ([]byte, error) {
 
 // InputInvoice Describes an invoice to process
 type InputInvoice struct {
+	TypeStr              string                `json:"@type"`
 	InputInvoiceMessage  *InputInvoiceMessage  `json:"inputInvoiceMessage,omitempty"`
 	InputInvoiceName     *InputInvoiceName     `json:"inputInvoiceName,omitempty"`
 	InputInvoiceTelegram *InputInvoiceTelegram `json:"inputInvoiceTelegram,omitempty"`
 }
 
 func (t *InputInvoice) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *InputInvoice) SetExtra(extra string) {
@@ -5014,6 +5159,7 @@ func (t *InputInvoice) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "inputInvoiceMessage":
 		t.InputInvoiceMessage = new(InputInvoiceMessage)
@@ -5043,6 +5189,7 @@ func (t *InputInvoice) MarshalJSON() ([]byte, error) {
 
 // InputMessageContent The content of a message to send
 type InputMessageContent struct {
+	TypeStr               string                 `json:"@type"`
 	InputMessageAnimation *InputMessageAnimation `json:"inputMessageAnimation,omitempty"`
 	InputMessageAudio     *InputMessageAudio     `json:"inputMessageAudio,omitempty"`
 	InputMessageChecklist *InputMessageChecklist `json:"inputMessageChecklist,omitempty"`
@@ -5067,7 +5214,7 @@ type InputMessageContent struct {
 }
 
 func (t *InputMessageContent) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *InputMessageContent) SetExtra(extra string) {
@@ -5085,6 +5232,7 @@ func (t *InputMessageContent) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "inputMessageAnimation":
 		t.InputMessageAnimation = new(InputMessageAnimation)
@@ -5222,13 +5370,14 @@ func (t *InputMessageContent) MarshalJSON() ([]byte, error) {
 
 // InputMessageReplyTo Contains information about the message or the story to be replied
 type InputMessageReplyTo struct {
+	TypeStr                            string                              `json:"@type"`
 	InputMessageReplyToExternalMessage *InputMessageReplyToExternalMessage `json:"inputMessageReplyToExternalMessage,omitempty"`
 	InputMessageReplyToMessage         *InputMessageReplyToMessage         `json:"inputMessageReplyToMessage,omitempty"`
 	InputMessageReplyToStory           *InputMessageReplyToStory           `json:"inputMessageReplyToStory,omitempty"`
 }
 
 func (t *InputMessageReplyTo) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *InputMessageReplyTo) SetExtra(extra string) {
@@ -5246,6 +5395,7 @@ func (t *InputMessageReplyTo) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "inputMessageReplyToExternalMessage":
 		t.InputMessageReplyToExternalMessage = new(InputMessageReplyToExternalMessage)
@@ -5275,12 +5425,13 @@ func (t *InputMessageReplyTo) MarshalJSON() ([]byte, error) {
 
 // InputPaidMediaType Describes type of paid media to sent
 type InputPaidMediaType struct {
+	TypeStr                 string                   `json:"@type"`
 	InputPaidMediaTypePhoto *InputPaidMediaTypePhoto `json:"inputPaidMediaTypePhoto,omitempty"`
 	InputPaidMediaTypeVideo *InputPaidMediaTypeVideo `json:"inputPaidMediaTypeVideo,omitempty"`
 }
 
 func (t *InputPaidMediaType) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *InputPaidMediaType) SetExtra(extra string) {
@@ -5298,6 +5449,7 @@ func (t *InputPaidMediaType) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "inputPaidMediaTypePhoto":
 		t.InputPaidMediaTypePhoto = new(InputPaidMediaTypePhoto)
@@ -5321,6 +5473,7 @@ func (t *InputPaidMediaType) MarshalJSON() ([]byte, error) {
 
 // InputPassportElement Contains information about a Telegram Passport element to be saved
 type InputPassportElement struct {
+	TypeStr                                   string                                     `json:"@type"`
 	InputPassportElementAddress               *InputPassportElementAddress               `json:"inputPassportElementAddress,omitempty"`
 	InputPassportElementBankStatement         *InputPassportElementBankStatement         `json:"inputPassportElementBankStatement,omitempty"`
 	InputPassportElementDriverLicense         *InputPassportElementDriverLicense         `json:"inputPassportElementDriverLicense,omitempty"`
@@ -5337,7 +5490,7 @@ type InputPassportElement struct {
 }
 
 func (t *InputPassportElement) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *InputPassportElement) SetExtra(extra string) {
@@ -5355,6 +5508,7 @@ func (t *InputPassportElement) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "inputPassportElementAddress":
 		t.InputPassportElementAddress = new(InputPassportElementAddress)
@@ -5444,6 +5598,7 @@ func (t *InputPassportElement) MarshalJSON() ([]byte, error) {
 
 // InputPassportElementErrorSource Contains the description of an error in a Telegram Passport element; for bots only
 type InputPassportElementErrorSource struct {
+	TypeStr                                         string                                           `json:"@type"`
 	InputPassportElementErrorSourceDataField        *InputPassportElementErrorSourceDataField        `json:"inputPassportElementErrorSourceDataField,omitempty"`
 	InputPassportElementErrorSourceFile             *InputPassportElementErrorSourceFile             `json:"inputPassportElementErrorSourceFile,omitempty"`
 	InputPassportElementErrorSourceFiles            *InputPassportElementErrorSourceFiles            `json:"inputPassportElementErrorSourceFiles,omitempty"`
@@ -5456,7 +5611,7 @@ type InputPassportElementErrorSource struct {
 }
 
 func (t *InputPassportElementErrorSource) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *InputPassportElementErrorSource) SetExtra(extra string) {
@@ -5474,6 +5629,7 @@ func (t *InputPassportElementErrorSource) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "inputPassportElementErrorSourceDataField":
 		t.InputPassportElementErrorSourceDataField = new(InputPassportElementErrorSourceDataField)
@@ -5539,6 +5695,7 @@ func (t *InputPassportElementErrorSource) MarshalJSON() ([]byte, error) {
 
 // InputStoryAreaType Describes type of clickable area on a story media to be added
 type InputStoryAreaType struct {
+	TypeStr                             string                               `json:"@type"`
 	InputStoryAreaTypeFoundVenue        *InputStoryAreaTypeFoundVenue        `json:"inputStoryAreaTypeFoundVenue,omitempty"`
 	InputStoryAreaTypeLink              *InputStoryAreaTypeLink              `json:"inputStoryAreaTypeLink,omitempty"`
 	InputStoryAreaTypeLocation          *InputStoryAreaTypeLocation          `json:"inputStoryAreaTypeLocation,omitempty"`
@@ -5550,7 +5707,7 @@ type InputStoryAreaType struct {
 }
 
 func (t *InputStoryAreaType) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *InputStoryAreaType) SetExtra(extra string) {
@@ -5568,6 +5725,7 @@ func (t *InputStoryAreaType) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "inputStoryAreaTypeFoundVenue":
 		t.InputStoryAreaTypeFoundVenue = new(InputStoryAreaTypeFoundVenue)
@@ -5627,12 +5785,13 @@ func (t *InputStoryAreaType) MarshalJSON() ([]byte, error) {
 
 // InputStoryContent The content of a story to post
 type InputStoryContent struct {
+	TypeStr                string                  `json:"@type"`
 	InputStoryContentPhoto *InputStoryContentPhoto `json:"inputStoryContentPhoto,omitempty"`
 	InputStoryContentVideo *InputStoryContentVideo `json:"inputStoryContentVideo,omitempty"`
 }
 
 func (t *InputStoryContent) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *InputStoryContent) SetExtra(extra string) {
@@ -5650,6 +5809,7 @@ func (t *InputStoryContent) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "inputStoryContentPhoto":
 		t.InputStoryContentPhoto = new(InputStoryContentPhoto)
@@ -5673,6 +5833,7 @@ func (t *InputStoryContent) MarshalJSON() ([]byte, error) {
 
 // InternalLinkType Describes an internal https://t.me or tg: link, which must be processed by the application in a special way
 type InternalLinkType struct {
+	TypeStr                                               string                                                 `json:"@type"`
 	InternalLinkTypeActiveSessions                        *InternalLinkTypeActiveSessions                        `json:"internalLinkTypeActiveSessions,omitempty"`
 	InternalLinkTypeAttachmentMenuBot                     *InternalLinkTypeAttachmentMenuBot                     `json:"internalLinkTypeAttachmentMenuBot,omitempty"`
 	InternalLinkTypeAuthenticationCode                    *InternalLinkTypeAuthenticationCode                    `json:"internalLinkTypeAuthenticationCode,omitempty"`
@@ -5734,7 +5895,7 @@ type InternalLinkType struct {
 }
 
 func (t *InternalLinkType) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *InternalLinkType) SetExtra(extra string) {
@@ -5752,6 +5913,7 @@ func (t *InternalLinkType) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "internalLinkTypeActiveSessions":
 		t.InternalLinkTypeActiveSessions = new(InternalLinkTypeActiveSessions)
@@ -6111,6 +6273,7 @@ func (t *InternalLinkType) MarshalJSON() ([]byte, error) {
 
 // InviteGroupCallParticipantResult Describes result of group call participant invitation
 type InviteGroupCallParticipantResult struct {
+	TypeStr                                                string                                                  `json:"@type"`
 	InviteGroupCallParticipantResultSuccess                *InviteGroupCallParticipantResultSuccess                `json:"inviteGroupCallParticipantResultSuccess,omitempty"`
 	InviteGroupCallParticipantResultUserAlreadyParticipant *InviteGroupCallParticipantResultUserAlreadyParticipant `json:"inviteGroupCallParticipantResultUserAlreadyParticipant,omitempty"`
 	InviteGroupCallParticipantResultUserPrivacyRestricted  *InviteGroupCallParticipantResultUserPrivacyRestricted  `json:"inviteGroupCallParticipantResultUserPrivacyRestricted,omitempty"`
@@ -6118,7 +6281,7 @@ type InviteGroupCallParticipantResult struct {
 }
 
 func (t *InviteGroupCallParticipantResult) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *InviteGroupCallParticipantResult) SetExtra(extra string) {
@@ -6136,6 +6299,7 @@ func (t *InviteGroupCallParticipantResult) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "inviteGroupCallParticipantResultSuccess":
 		t.InviteGroupCallParticipantResultSuccess = new(InviteGroupCallParticipantResultSuccess)
@@ -6171,13 +6335,14 @@ func (t *InviteGroupCallParticipantResult) MarshalJSON() ([]byte, error) {
 
 // InviteLinkChatType Describes the type of chat to which points an invite link
 type InviteLinkChatType struct {
+	TypeStr                      string                        `json:"@type"`
 	InviteLinkChatTypeBasicGroup *InviteLinkChatTypeBasicGroup `json:"inviteLinkChatTypeBasicGroup,omitempty"`
 	InviteLinkChatTypeChannel    *InviteLinkChatTypeChannel    `json:"inviteLinkChatTypeChannel,omitempty"`
 	InviteLinkChatTypeSupergroup *InviteLinkChatTypeSupergroup `json:"inviteLinkChatTypeSupergroup,omitempty"`
 }
 
 func (t *InviteLinkChatType) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *InviteLinkChatType) SetExtra(extra string) {
@@ -6195,6 +6360,7 @@ func (t *InviteLinkChatType) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "inviteLinkChatTypeBasicGroup":
 		t.InviteLinkChatTypeBasicGroup = new(InviteLinkChatTypeBasicGroup)
@@ -6224,6 +6390,7 @@ func (t *InviteLinkChatType) MarshalJSON() ([]byte, error) {
 
 // JsonValue Represents a JSON value
 type JsonValue struct {
+	TypeStr          string            `json:"@type"`
 	JsonValueArray   *JsonValueArray   `json:"jsonValueArray,omitempty"`
 	JsonValueBoolean *JsonValueBoolean `json:"jsonValueBoolean,omitempty"`
 	JsonValueNull    *JsonValueNull    `json:"jsonValueNull,omitempty"`
@@ -6233,7 +6400,7 @@ type JsonValue struct {
 }
 
 func (t *JsonValue) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *JsonValue) SetExtra(extra string) {
@@ -6251,6 +6418,7 @@ func (t *JsonValue) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "jsonValueArray":
 		t.JsonValueArray = new(JsonValueArray)
@@ -6298,6 +6466,7 @@ func (t *JsonValue) MarshalJSON() ([]byte, error) {
 
 // KeyboardButtonType Describes a keyboard button type
 type KeyboardButtonType struct {
+	TypeStr                              string                                `json:"@type"`
 	KeyboardButtonTypeRequestChat        *KeyboardButtonTypeRequestChat        `json:"keyboardButtonTypeRequestChat,omitempty"`
 	KeyboardButtonTypeRequestLocation    *KeyboardButtonTypeRequestLocation    `json:"keyboardButtonTypeRequestLocation,omitempty"`
 	KeyboardButtonTypeRequestPhoneNumber *KeyboardButtonTypeRequestPhoneNumber `json:"keyboardButtonTypeRequestPhoneNumber,omitempty"`
@@ -6308,7 +6477,7 @@ type KeyboardButtonType struct {
 }
 
 func (t *KeyboardButtonType) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *KeyboardButtonType) SetExtra(extra string) {
@@ -6326,6 +6495,7 @@ func (t *KeyboardButtonType) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "keyboardButtonTypeRequestChat":
 		t.KeyboardButtonTypeRequestChat = new(KeyboardButtonTypeRequestChat)
@@ -6379,13 +6549,14 @@ func (t *KeyboardButtonType) MarshalJSON() ([]byte, error) {
 
 // LanguagePackStringValue Represents the value of a string in a language pack
 type LanguagePackStringValue struct {
+	TypeStr                           string                             `json:"@type"`
 	LanguagePackStringValueDeleted    *LanguagePackStringValueDeleted    `json:"languagePackStringValueDeleted,omitempty"`
 	LanguagePackStringValueOrdinary   *LanguagePackStringValueOrdinary   `json:"languagePackStringValueOrdinary,omitempty"`
 	LanguagePackStringValuePluralized *LanguagePackStringValuePluralized `json:"languagePackStringValuePluralized,omitempty"`
 }
 
 func (t *LanguagePackStringValue) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *LanguagePackStringValue) SetExtra(extra string) {
@@ -6403,6 +6574,7 @@ func (t *LanguagePackStringValue) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "languagePackStringValueDeleted":
 		t.LanguagePackStringValueDeleted = new(LanguagePackStringValueDeleted)
@@ -6432,12 +6604,13 @@ func (t *LanguagePackStringValue) MarshalJSON() ([]byte, error) {
 
 // LinkPreviewAlbumMedia Describes a media from a link preview album
 type LinkPreviewAlbumMedia struct {
+	TypeStr                    string                      `json:"@type"`
 	LinkPreviewAlbumMediaPhoto *LinkPreviewAlbumMediaPhoto `json:"linkPreviewAlbumMediaPhoto,omitempty"`
 	LinkPreviewAlbumMediaVideo *LinkPreviewAlbumMediaVideo `json:"linkPreviewAlbumMediaVideo,omitempty"`
 }
 
 func (t *LinkPreviewAlbumMedia) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *LinkPreviewAlbumMedia) SetExtra(extra string) {
@@ -6455,6 +6628,7 @@ func (t *LinkPreviewAlbumMedia) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "linkPreviewAlbumMediaPhoto":
 		t.LinkPreviewAlbumMediaPhoto = new(LinkPreviewAlbumMediaPhoto)
@@ -6478,6 +6652,7 @@ func (t *LinkPreviewAlbumMedia) MarshalJSON() ([]byte, error) {
 
 // LinkPreviewType Describes type of link preview
 type LinkPreviewType struct {
+	TypeStr                                string                                  `json:"@type"`
 	LinkPreviewTypeAlbum                   *LinkPreviewTypeAlbum                   `json:"linkPreviewTypeAlbum,omitempty"`
 	LinkPreviewTypeAnimation               *LinkPreviewTypeAnimation               `json:"linkPreviewTypeAnimation,omitempty"`
 	LinkPreviewTypeApp                     *LinkPreviewTypeApp                     `json:"linkPreviewTypeApp,omitempty"`
@@ -6519,7 +6694,7 @@ type LinkPreviewType struct {
 }
 
 func (t *LinkPreviewType) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *LinkPreviewType) SetExtra(extra string) {
@@ -6537,6 +6712,7 @@ func (t *LinkPreviewType) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "linkPreviewTypeAlbum":
 		t.LinkPreviewTypeAlbum = new(LinkPreviewTypeAlbum)
@@ -6776,12 +6952,13 @@ func (t *LinkPreviewType) MarshalJSON() ([]byte, error) {
 
 // LoginUrlInfo Contains information about an inline button of type inlineKeyboardButtonTypeLoginUrl
 type LoginUrlInfo struct {
+	TypeStr                         string                           `json:"@type"`
 	LoginUrlInfoOpen                *LoginUrlInfoOpen                `json:"loginUrlInfoOpen,omitempty"`
 	LoginUrlInfoRequestConfirmation *LoginUrlInfoRequestConfirmation `json:"loginUrlInfoRequestConfirmation,omitempty"`
 }
 
 func (t *LoginUrlInfo) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *LoginUrlInfo) SetExtra(extra string) {
@@ -6799,6 +6976,7 @@ func (t *LoginUrlInfo) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "loginUrlInfoOpen":
 		t.LoginUrlInfoOpen = new(LoginUrlInfoOpen)
@@ -6822,13 +7000,14 @@ func (t *LoginUrlInfo) MarshalJSON() ([]byte, error) {
 
 // LogStream Describes a stream to which TDLib internal log is written
 type LogStream struct {
+	TypeStr          string            `json:"@type"`
 	LogStreamDefault *LogStreamDefault `json:"logStreamDefault,omitempty"`
 	LogStreamEmpty   *LogStreamEmpty   `json:"logStreamEmpty,omitempty"`
 	LogStreamFile    *LogStreamFile    `json:"logStreamFile,omitempty"`
 }
 
 func (t *LogStream) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *LogStream) SetExtra(extra string) {
@@ -6846,6 +7025,7 @@ func (t *LogStream) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "logStreamDefault":
 		t.LogStreamDefault = new(LogStreamDefault)
@@ -6875,6 +7055,7 @@ func (t *LogStream) MarshalJSON() ([]byte, error) {
 
 // MaskPoint Part of the face, relative to which a mask is placed
 type MaskPoint struct {
+	TypeStr           string             `json:"@type"`
 	MaskPointChin     *MaskPointChin     `json:"maskPointChin,omitempty"`
 	MaskPointEyes     *MaskPointEyes     `json:"maskPointEyes,omitempty"`
 	MaskPointForehead *MaskPointForehead `json:"maskPointForehead,omitempty"`
@@ -6882,7 +7063,7 @@ type MaskPoint struct {
 }
 
 func (t *MaskPoint) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *MaskPoint) SetExtra(extra string) {
@@ -6900,6 +7081,7 @@ func (t *MaskPoint) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "maskPointChin":
 		t.MaskPointChin = new(MaskPointChin)
@@ -6935,6 +7117,7 @@ func (t *MaskPoint) MarshalJSON() ([]byte, error) {
 
 // MessageContent Contains the content of a message
 type MessageContent struct {
+	TypeStr                                  string                                    `json:"@type"`
 	MessageAnimatedEmoji                     *MessageAnimatedEmoji                     `json:"messageAnimatedEmoji,omitempty"`
 	MessageAnimation                         *MessageAnimation                         `json:"messageAnimation,omitempty"`
 	MessageAudio                             *MessageAudio                             `json:"messageAudio,omitempty"`
@@ -7031,7 +7214,7 @@ type MessageContent struct {
 }
 
 func (t *MessageContent) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *MessageContent) SetExtra(extra string) {
@@ -7049,6 +7232,7 @@ func (t *MessageContent) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "messageAnimatedEmoji":
 		t.MessageAnimatedEmoji = new(MessageAnimatedEmoji)
@@ -7618,12 +7802,13 @@ func (t *MessageContent) MarshalJSON() ([]byte, error) {
 
 // MessageEffectType Describes type of emoji effect
 type MessageEffectType struct {
+	TypeStr                         string                           `json:"@type"`
 	MessageEffectTypeEmojiReaction  *MessageEffectTypeEmojiReaction  `json:"messageEffectTypeEmojiReaction,omitempty"`
 	MessageEffectTypePremiumSticker *MessageEffectTypePremiumSticker `json:"messageEffectTypePremiumSticker,omitempty"`
 }
 
 func (t *MessageEffectType) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *MessageEffectType) SetExtra(extra string) {
@@ -7641,6 +7826,7 @@ func (t *MessageEffectType) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "messageEffectTypeEmojiReaction":
 		t.MessageEffectTypeEmojiReaction = new(MessageEffectTypeEmojiReaction)
@@ -7664,13 +7850,14 @@ func (t *MessageEffectType) MarshalJSON() ([]byte, error) {
 
 // MessageFileType Contains information about a file with messages exported from another app
 type MessageFileType struct {
+	TypeStr                string                  `json:"@type"`
 	MessageFileTypeGroup   *MessageFileTypeGroup   `json:"messageFileTypeGroup,omitempty"`
 	MessageFileTypePrivate *MessageFileTypePrivate `json:"messageFileTypePrivate,omitempty"`
 	MessageFileTypeUnknown *MessageFileTypeUnknown `json:"messageFileTypeUnknown,omitempty"`
 }
 
 func (t *MessageFileType) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *MessageFileType) SetExtra(extra string) {
@@ -7688,6 +7875,7 @@ func (t *MessageFileType) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "messageFileTypeGroup":
 		t.MessageFileTypeGroup = new(MessageFileTypeGroup)
@@ -7717,6 +7905,7 @@ func (t *MessageFileType) MarshalJSON() ([]byte, error) {
 
 // MessageOrigin Contains information about the origin of a message
 type MessageOrigin struct {
+	TypeStr                 string                   `json:"@type"`
 	MessageOriginChannel    *MessageOriginChannel    `json:"messageOriginChannel,omitempty"`
 	MessageOriginChat       *MessageOriginChat       `json:"messageOriginChat,omitempty"`
 	MessageOriginHiddenUser *MessageOriginHiddenUser `json:"messageOriginHiddenUser,omitempty"`
@@ -7724,7 +7913,7 @@ type MessageOrigin struct {
 }
 
 func (t *MessageOrigin) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *MessageOrigin) SetExtra(extra string) {
@@ -7742,6 +7931,7 @@ func (t *MessageOrigin) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "messageOriginChannel":
 		t.MessageOriginChannel = new(MessageOriginChannel)
@@ -7777,6 +7967,7 @@ func (t *MessageOrigin) MarshalJSON() ([]byte, error) {
 
 // MessageReadDate Describes read date of a recent outgoing message in a private chat
 type MessageReadDate struct {
+	TypeStr                              string                                `json:"@type"`
 	MessageReadDateMyPrivacyRestricted   *MessageReadDateMyPrivacyRestricted   `json:"messageReadDateMyPrivacyRestricted,omitempty"`
 	MessageReadDateRead                  *MessageReadDateRead                  `json:"messageReadDateRead,omitempty"`
 	MessageReadDateTooOld                *MessageReadDateTooOld                `json:"messageReadDateTooOld,omitempty"`
@@ -7785,7 +7976,7 @@ type MessageReadDate struct {
 }
 
 func (t *MessageReadDate) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *MessageReadDate) SetExtra(extra string) {
@@ -7803,6 +7994,7 @@ func (t *MessageReadDate) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "messageReadDateMyPrivacyRestricted":
 		t.MessageReadDateMyPrivacyRestricted = new(MessageReadDateMyPrivacyRestricted)
@@ -7844,12 +8036,13 @@ func (t *MessageReadDate) MarshalJSON() ([]byte, error) {
 
 // MessageReplyTo Contains information about the message or the story a message is replying to
 type MessageReplyTo struct {
+	TypeStr               string                 `json:"@type"`
 	MessageReplyToMessage *MessageReplyToMessage `json:"messageReplyToMessage,omitempty"`
 	MessageReplyToStory   *MessageReplyToStory   `json:"messageReplyToStory,omitempty"`
 }
 
 func (t *MessageReplyTo) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *MessageReplyTo) SetExtra(extra string) {
@@ -7867,6 +8060,7 @@ func (t *MessageReplyTo) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "messageReplyToMessage":
 		t.MessageReplyToMessage = new(MessageReplyToMessage)
@@ -7890,13 +8084,14 @@ func (t *MessageReplyTo) MarshalJSON() ([]byte, error) {
 
 // MessageSchedulingState Contains information about the time when a scheduled message will be sent
 type MessageSchedulingState struct {
+	TypeStr                                      string                                        `json:"@type"`
 	MessageSchedulingStateSendAtDate             *MessageSchedulingStateSendAtDate             `json:"messageSchedulingStateSendAtDate,omitempty"`
 	MessageSchedulingStateSendWhenOnline         *MessageSchedulingStateSendWhenOnline         `json:"messageSchedulingStateSendWhenOnline,omitempty"`
 	MessageSchedulingStateSendWhenVideoProcessed *MessageSchedulingStateSendWhenVideoProcessed `json:"messageSchedulingStateSendWhenVideoProcessed,omitempty"`
 }
 
 func (t *MessageSchedulingState) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *MessageSchedulingState) SetExtra(extra string) {
@@ -7914,6 +8109,7 @@ func (t *MessageSchedulingState) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "messageSchedulingStateSendAtDate":
 		t.MessageSchedulingStateSendAtDate = new(MessageSchedulingStateSendAtDate)
@@ -7943,12 +8139,13 @@ func (t *MessageSchedulingState) MarshalJSON() ([]byte, error) {
 
 // MessageSelfDestructType Describes when a message will be self-destructed
 type MessageSelfDestructType struct {
+	TypeStr                            string                              `json:"@type"`
 	MessageSelfDestructTypeImmediately *MessageSelfDestructTypeImmediately `json:"messageSelfDestructTypeImmediately,omitempty"`
 	MessageSelfDestructTypeTimer       *MessageSelfDestructTypeTimer       `json:"messageSelfDestructTypeTimer,omitempty"`
 }
 
 func (t *MessageSelfDestructType) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *MessageSelfDestructType) SetExtra(extra string) {
@@ -7966,6 +8163,7 @@ func (t *MessageSelfDestructType) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "messageSelfDestructTypeImmediately":
 		t.MessageSelfDestructTypeImmediately = new(MessageSelfDestructTypeImmediately)
@@ -7989,12 +8187,13 @@ func (t *MessageSelfDestructType) MarshalJSON() ([]byte, error) {
 
 // MessageSender Contains information about the sender of a message
 type MessageSender struct {
+	TypeStr           string             `json:"@type"`
 	MessageSenderChat *MessageSenderChat `json:"messageSenderChat,omitempty"`
 	MessageSenderUser *MessageSenderUser `json:"messageSenderUser,omitempty"`
 }
 
 func (t *MessageSender) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *MessageSender) SetExtra(extra string) {
@@ -8012,6 +8211,7 @@ func (t *MessageSender) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "messageSenderChat":
 		t.MessageSenderChat = new(MessageSenderChat)
@@ -8035,12 +8235,13 @@ func (t *MessageSender) MarshalJSON() ([]byte, error) {
 
 // MessageSendingState Contains information about the sending state of the message
 type MessageSendingState struct {
+	TypeStr                    string                      `json:"@type"`
 	MessageSendingStateFailed  *MessageSendingStateFailed  `json:"messageSendingStateFailed,omitempty"`
 	MessageSendingStatePending *MessageSendingStatePending `json:"messageSendingStatePending,omitempty"`
 }
 
 func (t *MessageSendingState) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *MessageSendingState) SetExtra(extra string) {
@@ -8058,6 +8259,7 @@ func (t *MessageSendingState) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "messageSendingStateFailed":
 		t.MessageSendingStateFailed = new(MessageSendingStateFailed)
@@ -8081,6 +8283,7 @@ func (t *MessageSendingState) MarshalJSON() ([]byte, error) {
 
 // MessageSource Describes source of a message
 type MessageSource struct {
+	TypeStr                                     string                                       `json:"@type"`
 	MessageSourceChatEventLog                   *MessageSourceChatEventLog                   `json:"messageSourceChatEventLog,omitempty"`
 	MessageSourceChatHistory                    *MessageSourceChatHistory                    `json:"messageSourceChatHistory,omitempty"`
 	MessageSourceChatList                       *MessageSourceChatList                       `json:"messageSourceChatList,omitempty"`
@@ -8095,7 +8298,7 @@ type MessageSource struct {
 }
 
 func (t *MessageSource) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *MessageSource) SetExtra(extra string) {
@@ -8113,6 +8316,7 @@ func (t *MessageSource) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "messageSourceChatEventLog":
 		t.MessageSourceChatEventLog = new(MessageSourceChatEventLog)
@@ -8190,6 +8394,7 @@ func (t *MessageSource) MarshalJSON() ([]byte, error) {
 
 // MessageTopic Describes a topic of messages in a chat
 type MessageTopic struct {
+	TypeStr                    string                      `json:"@type"`
 	MessageTopicDirectMessages *MessageTopicDirectMessages `json:"messageTopicDirectMessages,omitempty"`
 	MessageTopicForum          *MessageTopicForum          `json:"messageTopicForum,omitempty"`
 	MessageTopicSavedMessages  *MessageTopicSavedMessages  `json:"messageTopicSavedMessages,omitempty"`
@@ -8197,7 +8402,7 @@ type MessageTopic struct {
 }
 
 func (t *MessageTopic) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *MessageTopic) SetExtra(extra string) {
@@ -8215,6 +8420,7 @@ func (t *MessageTopic) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "messageTopicDirectMessages":
 		t.MessageTopicDirectMessages = new(MessageTopicDirectMessages)
@@ -8250,12 +8456,13 @@ func (t *MessageTopic) MarshalJSON() ([]byte, error) {
 
 // NetworkStatisticsEntry Contains statistics about network usage
 type NetworkStatisticsEntry struct {
+	TypeStr                    string                      `json:"@type"`
 	NetworkStatisticsEntryCall *NetworkStatisticsEntryCall `json:"networkStatisticsEntryCall,omitempty"`
 	NetworkStatisticsEntryFile *NetworkStatisticsEntryFile `json:"networkStatisticsEntryFile,omitempty"`
 }
 
 func (t *NetworkStatisticsEntry) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *NetworkStatisticsEntry) SetExtra(extra string) {
@@ -8273,6 +8480,7 @@ func (t *NetworkStatisticsEntry) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "networkStatisticsEntryCall":
 		t.NetworkStatisticsEntryCall = new(NetworkStatisticsEntryCall)
@@ -8296,6 +8504,7 @@ func (t *NetworkStatisticsEntry) MarshalJSON() ([]byte, error) {
 
 // NetworkType Represents the type of network
 type NetworkType struct {
+	TypeStr                  string                    `json:"@type"`
 	NetworkTypeMobile        *NetworkTypeMobile        `json:"networkTypeMobile,omitempty"`
 	NetworkTypeMobileRoaming *NetworkTypeMobileRoaming `json:"networkTypeMobileRoaming,omitempty"`
 	NetworkTypeNone          *NetworkTypeNone          `json:"networkTypeNone,omitempty"`
@@ -8304,7 +8513,7 @@ type NetworkType struct {
 }
 
 func (t *NetworkType) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *NetworkType) SetExtra(extra string) {
@@ -8322,6 +8531,7 @@ func (t *NetworkType) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "networkTypeMobile":
 		t.NetworkTypeMobile = new(NetworkTypeMobile)
@@ -8363,6 +8573,7 @@ func (t *NetworkType) MarshalJSON() ([]byte, error) {
 
 // NotificationGroupType Describes the type of notifications in a notification group
 type NotificationGroupType struct {
+	TypeStr                         string                           `json:"@type"`
 	NotificationGroupTypeCalls      *NotificationGroupTypeCalls      `json:"notificationGroupTypeCalls,omitempty"`
 	NotificationGroupTypeMentions   *NotificationGroupTypeMentions   `json:"notificationGroupTypeMentions,omitempty"`
 	NotificationGroupTypeMessages   *NotificationGroupTypeMessages   `json:"notificationGroupTypeMessages,omitempty"`
@@ -8370,7 +8581,7 @@ type NotificationGroupType struct {
 }
 
 func (t *NotificationGroupType) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *NotificationGroupType) SetExtra(extra string) {
@@ -8388,6 +8599,7 @@ func (t *NotificationGroupType) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "notificationGroupTypeCalls":
 		t.NotificationGroupTypeCalls = new(NotificationGroupTypeCalls)
@@ -8423,13 +8635,14 @@ func (t *NotificationGroupType) MarshalJSON() ([]byte, error) {
 
 // NotificationSettingsScope Describes the types of chats to which notification settings are relevant
 type NotificationSettingsScope struct {
+	TypeStr                               string                                 `json:"@type"`
 	NotificationSettingsScopeChannelChats *NotificationSettingsScopeChannelChats `json:"notificationSettingsScopeChannelChats,omitempty"`
 	NotificationSettingsScopeGroupChats   *NotificationSettingsScopeGroupChats   `json:"notificationSettingsScopeGroupChats,omitempty"`
 	NotificationSettingsScopePrivateChats *NotificationSettingsScopePrivateChats `json:"notificationSettingsScopePrivateChats,omitempty"`
 }
 
 func (t *NotificationSettingsScope) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *NotificationSettingsScope) SetExtra(extra string) {
@@ -8447,6 +8660,7 @@ func (t *NotificationSettingsScope) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "notificationSettingsScopeChannelChats":
 		t.NotificationSettingsScopeChannelChats = new(NotificationSettingsScopeChannelChats)
@@ -8476,6 +8690,7 @@ func (t *NotificationSettingsScope) MarshalJSON() ([]byte, error) {
 
 // NotificationType Contains detailed information about a notification
 type NotificationType struct {
+	TypeStr                        string                          `json:"@type"`
 	NotificationTypeNewCall        *NotificationTypeNewCall        `json:"notificationTypeNewCall,omitempty"`
 	NotificationTypeNewMessage     *NotificationTypeNewMessage     `json:"notificationTypeNewMessage,omitempty"`
 	NotificationTypeNewPushMessage *NotificationTypeNewPushMessage `json:"notificationTypeNewPushMessage,omitempty"`
@@ -8483,7 +8698,7 @@ type NotificationType struct {
 }
 
 func (t *NotificationType) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *NotificationType) SetExtra(extra string) {
@@ -8501,6 +8716,7 @@ func (t *NotificationType) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "notificationTypeNewCall":
 		t.NotificationTypeNewCall = new(NotificationTypeNewCall)
@@ -8536,6 +8752,7 @@ func (t *NotificationType) MarshalJSON() ([]byte, error) {
 
 // OptionValue Represents the value of an option
 type OptionValue struct {
+	TypeStr            string              `json:"@type"`
 	OptionValueBoolean *OptionValueBoolean `json:"optionValueBoolean,omitempty"`
 	OptionValueEmpty   *OptionValueEmpty   `json:"optionValueEmpty,omitempty"`
 	OptionValueInteger *OptionValueInteger `json:"optionValueInteger,omitempty"`
@@ -8543,7 +8760,7 @@ type OptionValue struct {
 }
 
 func (t *OptionValue) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *OptionValue) SetExtra(extra string) {
@@ -8561,6 +8778,7 @@ func (t *OptionValue) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "optionValueBoolean":
 		t.OptionValueBoolean = new(OptionValueBoolean)
@@ -8596,6 +8814,7 @@ func (t *OptionValue) MarshalJSON() ([]byte, error) {
 
 // PageBlock Describes a block of an instant view for a web page
 type PageBlock struct {
+	TypeStr                  string                    `json:"@type"`
 	PageBlockAnchor          *PageBlockAnchor          `json:"pageBlockAnchor,omitempty"`
 	PageBlockAnimation       *PageBlockAnimation       `json:"pageBlockAnimation,omitempty"`
 	PageBlockAudio           *PageBlockAudio           `json:"pageBlockAudio,omitempty"`
@@ -8628,7 +8847,7 @@ type PageBlock struct {
 }
 
 func (t *PageBlock) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *PageBlock) SetExtra(extra string) {
@@ -8646,6 +8865,7 @@ func (t *PageBlock) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "pageBlockAnchor":
 		t.PageBlockAnchor = new(PageBlockAnchor)
@@ -8831,13 +9051,14 @@ func (t *PageBlock) MarshalJSON() ([]byte, error) {
 
 // PageBlockHorizontalAlignment Describes a horizontal alignment of a table cell content
 type PageBlockHorizontalAlignment struct {
+	TypeStr                            string                              `json:"@type"`
 	PageBlockHorizontalAlignmentCenter *PageBlockHorizontalAlignmentCenter `json:"pageBlockHorizontalAlignmentCenter,omitempty"`
 	PageBlockHorizontalAlignmentLeft   *PageBlockHorizontalAlignmentLeft   `json:"pageBlockHorizontalAlignmentLeft,omitempty"`
 	PageBlockHorizontalAlignmentRight  *PageBlockHorizontalAlignmentRight  `json:"pageBlockHorizontalAlignmentRight,omitempty"`
 }
 
 func (t *PageBlockHorizontalAlignment) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *PageBlockHorizontalAlignment) SetExtra(extra string) {
@@ -8855,6 +9076,7 @@ func (t *PageBlockHorizontalAlignment) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "pageBlockHorizontalAlignmentCenter":
 		t.PageBlockHorizontalAlignmentCenter = new(PageBlockHorizontalAlignmentCenter)
@@ -8884,13 +9106,14 @@ func (t *PageBlockHorizontalAlignment) MarshalJSON() ([]byte, error) {
 
 // PageBlockVerticalAlignment Describes a Vertical alignment of a table cell content
 type PageBlockVerticalAlignment struct {
+	TypeStr                          string                            `json:"@type"`
 	PageBlockVerticalAlignmentBottom *PageBlockVerticalAlignmentBottom `json:"pageBlockVerticalAlignmentBottom,omitempty"`
 	PageBlockVerticalAlignmentMiddle *PageBlockVerticalAlignmentMiddle `json:"pageBlockVerticalAlignmentMiddle,omitempty"`
 	PageBlockVerticalAlignmentTop    *PageBlockVerticalAlignmentTop    `json:"pageBlockVerticalAlignmentTop,omitempty"`
 }
 
 func (t *PageBlockVerticalAlignment) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *PageBlockVerticalAlignment) SetExtra(extra string) {
@@ -8908,6 +9131,7 @@ func (t *PageBlockVerticalAlignment) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "pageBlockVerticalAlignmentBottom":
 		t.PageBlockVerticalAlignmentBottom = new(PageBlockVerticalAlignmentBottom)
@@ -8937,6 +9161,7 @@ func (t *PageBlockVerticalAlignment) MarshalJSON() ([]byte, error) {
 
 // PaidMedia Describes a paid media
 type PaidMedia struct {
+	TypeStr              string                `json:"@type"`
 	PaidMediaPhoto       *PaidMediaPhoto       `json:"paidMediaPhoto,omitempty"`
 	PaidMediaPreview     *PaidMediaPreview     `json:"paidMediaPreview,omitempty"`
 	PaidMediaUnsupported *PaidMediaUnsupported `json:"paidMediaUnsupported,omitempty"`
@@ -8944,7 +9169,7 @@ type PaidMedia struct {
 }
 
 func (t *PaidMedia) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *PaidMedia) SetExtra(extra string) {
@@ -8962,6 +9187,7 @@ func (t *PaidMedia) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "paidMediaPhoto":
 		t.PaidMediaPhoto = new(PaidMediaPhoto)
@@ -8997,13 +9223,14 @@ func (t *PaidMedia) MarshalJSON() ([]byte, error) {
 
 // PaidReactionType Describes type of paid message reaction
 type PaidReactionType struct {
+	TypeStr                   string                     `json:"@type"`
 	PaidReactionTypeAnonymous *PaidReactionTypeAnonymous `json:"paidReactionTypeAnonymous,omitempty"`
 	PaidReactionTypeChat      *PaidReactionTypeChat      `json:"paidReactionTypeChat,omitempty"`
 	PaidReactionTypeRegular   *PaidReactionTypeRegular   `json:"paidReactionTypeRegular,omitempty"`
 }
 
 func (t *PaidReactionType) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *PaidReactionType) SetExtra(extra string) {
@@ -9021,6 +9248,7 @@ func (t *PaidReactionType) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "paidReactionTypeAnonymous":
 		t.PaidReactionTypeAnonymous = new(PaidReactionTypeAnonymous)
@@ -9050,6 +9278,7 @@ func (t *PaidReactionType) MarshalJSON() ([]byte, error) {
 
 // PassportElement Contains information about a Telegram Passport element
 type PassportElement struct {
+	TypeStr                              string                                `json:"@type"`
 	PassportElementAddress               *PassportElementAddress               `json:"passportElementAddress,omitempty"`
 	PassportElementBankStatement         *PassportElementBankStatement         `json:"passportElementBankStatement,omitempty"`
 	PassportElementDriverLicense         *PassportElementDriverLicense         `json:"passportElementDriverLicense,omitempty"`
@@ -9066,7 +9295,7 @@ type PassportElement struct {
 }
 
 func (t *PassportElement) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *PassportElement) SetExtra(extra string) {
@@ -9084,6 +9313,7 @@ func (t *PassportElement) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "passportElementAddress":
 		t.PassportElementAddress = new(PassportElementAddress)
@@ -9173,6 +9403,7 @@ func (t *PassportElement) MarshalJSON() ([]byte, error) {
 
 // PassportElementErrorSource Contains the description of an error in a Telegram Passport element
 type PassportElementErrorSource struct {
+	TypeStr                                    string                                      `json:"@type"`
 	PassportElementErrorSourceDataField        *PassportElementErrorSourceDataField        `json:"passportElementErrorSourceDataField,omitempty"`
 	PassportElementErrorSourceFile             *PassportElementErrorSourceFile             `json:"passportElementErrorSourceFile,omitempty"`
 	PassportElementErrorSourceFiles            *PassportElementErrorSourceFiles            `json:"passportElementErrorSourceFiles,omitempty"`
@@ -9185,7 +9416,7 @@ type PassportElementErrorSource struct {
 }
 
 func (t *PassportElementErrorSource) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *PassportElementErrorSource) SetExtra(extra string) {
@@ -9203,6 +9434,7 @@ func (t *PassportElementErrorSource) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "passportElementErrorSourceDataField":
 		t.PassportElementErrorSourceDataField = new(PassportElementErrorSourceDataField)
@@ -9268,6 +9500,7 @@ func (t *PassportElementErrorSource) MarshalJSON() ([]byte, error) {
 
 // PassportElementType Contains the type of Telegram Passport element
 type PassportElementType struct {
+	TypeStr                                  string                                    `json:"@type"`
 	PassportElementTypeAddress               *PassportElementTypeAddress               `json:"passportElementTypeAddress,omitempty"`
 	PassportElementTypeBankStatement         *PassportElementTypeBankStatement         `json:"passportElementTypeBankStatement,omitempty"`
 	PassportElementTypeDriverLicense         *PassportElementTypeDriverLicense         `json:"passportElementTypeDriverLicense,omitempty"`
@@ -9284,7 +9517,7 @@ type PassportElementType struct {
 }
 
 func (t *PassportElementType) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *PassportElementType) SetExtra(extra string) {
@@ -9302,6 +9535,7 @@ func (t *PassportElementType) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "passportElementTypeAddress":
 		t.PassportElementTypeAddress = new(PassportElementTypeAddress)
@@ -9391,13 +9625,14 @@ func (t *PassportElementType) MarshalJSON() ([]byte, error) {
 
 // PaymentFormType Describes type of payment form
 type PaymentFormType struct {
+	TypeStr                         string                           `json:"@type"`
 	PaymentFormTypeRegular          *PaymentFormTypeRegular          `json:"paymentFormTypeRegular,omitempty"`
 	PaymentFormTypeStarSubscription *PaymentFormTypeStarSubscription `json:"paymentFormTypeStarSubscription,omitempty"`
 	PaymentFormTypeStars            *PaymentFormTypeStars            `json:"paymentFormTypeStars,omitempty"`
 }
 
 func (t *PaymentFormType) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *PaymentFormType) SetExtra(extra string) {
@@ -9415,6 +9650,7 @@ func (t *PaymentFormType) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "paymentFormTypeRegular":
 		t.PaymentFormTypeRegular = new(PaymentFormTypeRegular)
@@ -9444,13 +9680,14 @@ func (t *PaymentFormType) MarshalJSON() ([]byte, error) {
 
 // PaymentProvider Contains information about a payment provider
 type PaymentProvider struct {
+	TypeStr                    string                      `json:"@type"`
 	PaymentProviderOther       *PaymentProviderOther       `json:"paymentProviderOther,omitempty"`
 	PaymentProviderSmartGlocal *PaymentProviderSmartGlocal `json:"paymentProviderSmartGlocal,omitempty"`
 	PaymentProviderStripe      *PaymentProviderStripe      `json:"paymentProviderStripe,omitempty"`
 }
 
 func (t *PaymentProvider) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *PaymentProvider) SetExtra(extra string) {
@@ -9468,6 +9705,7 @@ func (t *PaymentProvider) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "paymentProviderOther":
 		t.PaymentProviderOther = new(PaymentProviderOther)
@@ -9497,12 +9735,13 @@ func (t *PaymentProvider) MarshalJSON() ([]byte, error) {
 
 // PaymentReceiptType Describes type of successful payment
 type PaymentReceiptType struct {
+	TypeStr                   string                     `json:"@type"`
 	PaymentReceiptTypeRegular *PaymentReceiptTypeRegular `json:"paymentReceiptTypeRegular,omitempty"`
 	PaymentReceiptTypeStars   *PaymentReceiptTypeStars   `json:"paymentReceiptTypeStars,omitempty"`
 }
 
 func (t *PaymentReceiptType) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *PaymentReceiptType) SetExtra(extra string) {
@@ -9520,6 +9759,7 @@ func (t *PaymentReceiptType) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "paymentReceiptTypeRegular":
 		t.PaymentReceiptTypeRegular = new(PaymentReceiptTypeRegular)
@@ -9543,13 +9783,14 @@ func (t *PaymentReceiptType) MarshalJSON() ([]byte, error) {
 
 // PhoneNumberCodeType Describes type of the request for which a code is sent to a phone number
 type PhoneNumberCodeType struct {
+	TypeStr                             string                               `json:"@type"`
 	PhoneNumberCodeTypeChange           *PhoneNumberCodeTypeChange           `json:"phoneNumberCodeTypeChange,omitempty"`
 	PhoneNumberCodeTypeConfirmOwnership *PhoneNumberCodeTypeConfirmOwnership `json:"phoneNumberCodeTypeConfirmOwnership,omitempty"`
 	PhoneNumberCodeTypeVerify           *PhoneNumberCodeTypeVerify           `json:"phoneNumberCodeTypeVerify,omitempty"`
 }
 
 func (t *PhoneNumberCodeType) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *PhoneNumberCodeType) SetExtra(extra string) {
@@ -9567,6 +9808,7 @@ func (t *PhoneNumberCodeType) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "phoneNumberCodeTypeChange":
 		t.PhoneNumberCodeTypeChange = new(PhoneNumberCodeTypeChange)
@@ -9596,12 +9838,13 @@ func (t *PhoneNumberCodeType) MarshalJSON() ([]byte, error) {
 
 // PollType Describes the type of poll
 type PollType struct {
+	TypeStr         string           `json:"@type"`
 	PollTypeQuiz    *PollTypeQuiz    `json:"pollTypeQuiz,omitempty"`
 	PollTypeRegular *PollTypeRegular `json:"pollTypeRegular,omitempty"`
 }
 
 func (t *PollType) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *PollType) SetExtra(extra string) {
@@ -9619,6 +9862,7 @@ func (t *PollType) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "pollTypeQuiz":
 		t.PollTypeQuiz = new(PollTypeQuiz)
@@ -9642,6 +9886,7 @@ func (t *PollType) MarshalJSON() ([]byte, error) {
 
 // PremiumFeature Describes a feature available to Premium users
 type PremiumFeature struct {
+	TypeStr                               string                                 `json:"@type"`
 	PremiumFeatureAccentColor             *PremiumFeatureAccentColor             `json:"premiumFeatureAccentColor,omitempty"`
 	PremiumFeatureAdvancedChatManagement  *PremiumFeatureAdvancedChatManagement  `json:"premiumFeatureAdvancedChatManagement,omitempty"`
 	PremiumFeatureAnimatedProfilePhoto    *PremiumFeatureAnimatedProfilePhoto    `json:"premiumFeatureAnimatedProfilePhoto,omitempty"`
@@ -9671,7 +9916,7 @@ type PremiumFeature struct {
 }
 
 func (t *PremiumFeature) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *PremiumFeature) SetExtra(extra string) {
@@ -9689,6 +9934,7 @@ func (t *PremiumFeature) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "premiumFeatureAccentColor":
 		t.PremiumFeatureAccentColor = new(PremiumFeatureAccentColor)
@@ -9856,6 +10102,7 @@ func (t *PremiumFeature) MarshalJSON() ([]byte, error) {
 
 // PremiumLimitType Describes type of limit, increased for Premium users
 type PremiumLimitType struct {
+	TypeStr                                         string                                           `json:"@type"`
 	PremiumLimitTypeActiveStoryCount                *PremiumLimitTypeActiveStoryCount                `json:"premiumLimitTypeActiveStoryCount,omitempty"`
 	PremiumLimitTypeBioLength                       *PremiumLimitTypeBioLength                       `json:"premiumLimitTypeBioLength,omitempty"`
 	PremiumLimitTypeCaptionLength                   *PremiumLimitTypeCaptionLength                   `json:"premiumLimitTypeCaptionLength,omitempty"`
@@ -9878,7 +10125,7 @@ type PremiumLimitType struct {
 }
 
 func (t *PremiumLimitType) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *PremiumLimitType) SetExtra(extra string) {
@@ -9896,6 +10143,7 @@ func (t *PremiumLimitType) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "premiumLimitTypeActiveStoryCount":
 		t.PremiumLimitTypeActiveStoryCount = new(PremiumLimitTypeActiveStoryCount)
@@ -10021,6 +10269,7 @@ func (t *PremiumLimitType) MarshalJSON() ([]byte, error) {
 
 // PremiumSource Describes a source from which the Premium features screen is opened
 type PremiumSource struct {
+	TypeStr                      string                        `json:"@type"`
 	PremiumSourceBusinessFeature *PremiumSourceBusinessFeature `json:"premiumSourceBusinessFeature,omitempty"`
 	PremiumSourceFeature         *PremiumSourceFeature         `json:"premiumSourceFeature,omitempty"`
 	PremiumSourceLimitExceeded   *PremiumSourceLimitExceeded   `json:"premiumSourceLimitExceeded,omitempty"`
@@ -10030,7 +10279,7 @@ type PremiumSource struct {
 }
 
 func (t *PremiumSource) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *PremiumSource) SetExtra(extra string) {
@@ -10048,6 +10297,7 @@ func (t *PremiumSource) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "premiumSourceBusinessFeature":
 		t.PremiumSourceBusinessFeature = new(PremiumSourceBusinessFeature)
@@ -10095,6 +10345,7 @@ func (t *PremiumSource) MarshalJSON() ([]byte, error) {
 
 // PremiumStoryFeature Describes a story feature available to Premium users
 type PremiumStoryFeature struct {
+	TypeStr                                     string                                       `json:"@type"`
 	PremiumStoryFeatureCustomExpirationDuration *PremiumStoryFeatureCustomExpirationDuration `json:"premiumStoryFeatureCustomExpirationDuration,omitempty"`
 	PremiumStoryFeatureLinksAndFormatting       *PremiumStoryFeatureLinksAndFormatting       `json:"premiumStoryFeatureLinksAndFormatting,omitempty"`
 	PremiumStoryFeaturePermanentViewsHistory    *PremiumStoryFeaturePermanentViewsHistory    `json:"premiumStoryFeaturePermanentViewsHistory,omitempty"`
@@ -10105,7 +10356,7 @@ type PremiumStoryFeature struct {
 }
 
 func (t *PremiumStoryFeature) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *PremiumStoryFeature) SetExtra(extra string) {
@@ -10123,6 +10374,7 @@ func (t *PremiumStoryFeature) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "premiumStoryFeatureCustomExpirationDuration":
 		t.PremiumStoryFeatureCustomExpirationDuration = new(PremiumStoryFeatureCustomExpirationDuration)
@@ -10176,6 +10428,7 @@ func (t *PremiumStoryFeature) MarshalJSON() ([]byte, error) {
 
 // ProfileTab Describes a tab shown in a user or a chat profile
 type ProfileTab struct {
+	TypeStr         string           `json:"@type"`
 	ProfileTabFiles *ProfileTabFiles `json:"profileTabFiles,omitempty"`
 	ProfileTabGifs  *ProfileTabGifs  `json:"profileTabGifs,omitempty"`
 	ProfileTabGifts *ProfileTabGifts `json:"profileTabGifts,omitempty"`
@@ -10187,7 +10440,7 @@ type ProfileTab struct {
 }
 
 func (t *ProfileTab) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *ProfileTab) SetExtra(extra string) {
@@ -10205,6 +10458,7 @@ func (t *ProfileTab) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "profileTabFiles":
 		t.ProfileTabFiles = new(ProfileTabFiles)
@@ -10264,13 +10518,14 @@ func (t *ProfileTab) MarshalJSON() ([]byte, error) {
 
 // ProxyType Describes the type of proxy server
 type ProxyType struct {
+	TypeStr          string            `json:"@type"`
 	ProxyTypeHttp    *ProxyTypeHttp    `json:"proxyTypeHttp,omitempty"`
 	ProxyTypeMtproto *ProxyTypeMtproto `json:"proxyTypeMtproto,omitempty"`
 	ProxyTypeSocks5  *ProxyTypeSocks5  `json:"proxyTypeSocks5,omitempty"`
 }
 
 func (t *ProxyType) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *ProxyType) SetExtra(extra string) {
@@ -10288,6 +10543,7 @@ func (t *ProxyType) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "proxyTypeHttp":
 		t.ProxyTypeHttp = new(ProxyTypeHttp)
@@ -10317,12 +10573,13 @@ func (t *ProxyType) MarshalJSON() ([]byte, error) {
 
 // PublicChatType Describes type of public chat
 type PublicChatType struct {
+	TypeStr                       string                         `json:"@type"`
 	PublicChatTypeHasUsername     *PublicChatTypeHasUsername     `json:"publicChatTypeHasUsername,omitempty"`
 	PublicChatTypeIsLocationBased *PublicChatTypeIsLocationBased `json:"publicChatTypeIsLocationBased,omitempty"`
 }
 
 func (t *PublicChatType) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *PublicChatType) SetExtra(extra string) {
@@ -10340,6 +10597,7 @@ func (t *PublicChatType) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "publicChatTypeHasUsername":
 		t.PublicChatTypeHasUsername = new(PublicChatTypeHasUsername)
@@ -10363,12 +10621,13 @@ func (t *PublicChatType) MarshalJSON() ([]byte, error) {
 
 // PublicForward Describes a public forward or repost of a story
 type PublicForward struct {
+	TypeStr              string                `json:"@type"`
 	PublicForwardMessage *PublicForwardMessage `json:"publicForwardMessage,omitempty"`
 	PublicForwardStory   *PublicForwardStory   `json:"publicForwardStory,omitempty"`
 }
 
 func (t *PublicForward) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *PublicForward) SetExtra(extra string) {
@@ -10386,6 +10645,7 @@ func (t *PublicForward) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "publicForwardMessage":
 		t.PublicForwardMessage = new(PublicForwardMessage)
@@ -10409,6 +10669,7 @@ func (t *PublicForward) MarshalJSON() ([]byte, error) {
 
 // PushMessageContent Contains content of a push message notification
 type PushMessageContent struct {
+	TypeStr                                       string                                         `json:"@type"`
 	PushMessageContentAnimation                   *PushMessageContentAnimation                   `json:"pushMessageContentAnimation,omitempty"`
 	PushMessageContentAudio                       *PushMessageContentAudio                       `json:"pushMessageContentAudio,omitempty"`
 	PushMessageContentBasicGroupChatCreate        *PushMessageContentBasicGroupChatCreate        `json:"pushMessageContentBasicGroupChatCreate,omitempty"`
@@ -10457,7 +10718,7 @@ type PushMessageContent struct {
 }
 
 func (t *PushMessageContent) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *PushMessageContent) SetExtra(extra string) {
@@ -10475,6 +10736,7 @@ func (t *PushMessageContent) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "pushMessageContentAnimation":
 		t.PushMessageContentAnimation = new(PushMessageContentAnimation)
@@ -10756,13 +11018,14 @@ func (t *PushMessageContent) MarshalJSON() ([]byte, error) {
 
 // ReactionNotificationSource Describes sources of reactions for which notifications will be shown
 type ReactionNotificationSource struct {
+	TypeStr                            string                              `json:"@type"`
 	ReactionNotificationSourceAll      *ReactionNotificationSourceAll      `json:"reactionNotificationSourceAll,omitempty"`
 	ReactionNotificationSourceContacts *ReactionNotificationSourceContacts `json:"reactionNotificationSourceContacts,omitempty"`
 	ReactionNotificationSourceNone     *ReactionNotificationSourceNone     `json:"reactionNotificationSourceNone,omitempty"`
 }
 
 func (t *ReactionNotificationSource) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *ReactionNotificationSource) SetExtra(extra string) {
@@ -10780,6 +11043,7 @@ func (t *ReactionNotificationSource) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "reactionNotificationSourceAll":
 		t.ReactionNotificationSourceAll = new(ReactionNotificationSourceAll)
@@ -10809,13 +11073,14 @@ func (t *ReactionNotificationSource) MarshalJSON() ([]byte, error) {
 
 // ReactionType Describes type of message reaction
 type ReactionType struct {
+	TypeStr                 string                   `json:"@type"`
 	ReactionTypeCustomEmoji *ReactionTypeCustomEmoji `json:"reactionTypeCustomEmoji,omitempty"`
 	ReactionTypeEmoji       *ReactionTypeEmoji       `json:"reactionTypeEmoji,omitempty"`
 	ReactionTypePaid        *ReactionTypePaid        `json:"reactionTypePaid,omitempty"`
 }
 
 func (t *ReactionType) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *ReactionType) SetExtra(extra string) {
@@ -10833,6 +11098,7 @@ func (t *ReactionType) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "reactionTypeCustomEmoji":
 		t.ReactionTypeCustomEmoji = new(ReactionTypeCustomEmoji)
@@ -10862,12 +11128,13 @@ func (t *ReactionType) MarshalJSON() ([]byte, error) {
 
 // ReactionUnavailabilityReason Describes why the current user can't add reactions to the message, despite some other users can
 type ReactionUnavailabilityReason struct {
+	TypeStr                                            string                                              `json:"@type"`
 	ReactionUnavailabilityReasonAnonymousAdministrator *ReactionUnavailabilityReasonAnonymousAdministrator `json:"reactionUnavailabilityReasonAnonymousAdministrator,omitempty"`
 	ReactionUnavailabilityReasonGuest                  *ReactionUnavailabilityReasonGuest                  `json:"reactionUnavailabilityReasonGuest,omitempty"`
 }
 
 func (t *ReactionUnavailabilityReason) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *ReactionUnavailabilityReason) SetExtra(extra string) {
@@ -10885,6 +11152,7 @@ func (t *ReactionUnavailabilityReason) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "reactionUnavailabilityReasonAnonymousAdministrator":
 		t.ReactionUnavailabilityReasonAnonymousAdministrator = new(ReactionUnavailabilityReasonAnonymousAdministrator)
@@ -10908,6 +11176,7 @@ func (t *ReactionUnavailabilityReason) MarshalJSON() ([]byte, error) {
 
 // ReplyMarkup Contains a description of a custom keyboard and actions that can be done with it to quickly reply to bots
 type ReplyMarkup struct {
+	TypeStr                   string                     `json:"@type"`
 	ReplyMarkupForceReply     *ReplyMarkupForceReply     `json:"replyMarkupForceReply,omitempty"`
 	ReplyMarkupInlineKeyboard *ReplyMarkupInlineKeyboard `json:"replyMarkupInlineKeyboard,omitempty"`
 	ReplyMarkupRemoveKeyboard *ReplyMarkupRemoveKeyboard `json:"replyMarkupRemoveKeyboard,omitempty"`
@@ -10915,7 +11184,7 @@ type ReplyMarkup struct {
 }
 
 func (t *ReplyMarkup) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *ReplyMarkup) SetExtra(extra string) {
@@ -10933,6 +11202,7 @@ func (t *ReplyMarkup) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "replyMarkupForceReply":
 		t.ReplyMarkupForceReply = new(ReplyMarkupForceReply)
@@ -10968,6 +11238,7 @@ func (t *ReplyMarkup) MarshalJSON() ([]byte, error) {
 
 // ReportChatResult Describes result of chat report
 type ReportChatResult struct {
+	TypeStr                          string                            `json:"@type"`
 	ReportChatResultMessagesRequired *ReportChatResultMessagesRequired `json:"reportChatResultMessagesRequired,omitempty"`
 	ReportChatResultOk               *ReportChatResultOk               `json:"reportChatResultOk,omitempty"`
 	ReportChatResultOptionRequired   *ReportChatResultOptionRequired   `json:"reportChatResultOptionRequired,omitempty"`
@@ -10975,7 +11246,7 @@ type ReportChatResult struct {
 }
 
 func (t *ReportChatResult) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *ReportChatResult) SetExtra(extra string) {
@@ -10993,6 +11264,7 @@ func (t *ReportChatResult) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "reportChatResultMessagesRequired":
 		t.ReportChatResultMessagesRequired = new(ReportChatResultMessagesRequired)
@@ -11028,6 +11300,7 @@ func (t *ReportChatResult) MarshalJSON() ([]byte, error) {
 
 // ReportReason Describes the reason why a chat is reported
 type ReportReason struct {
+	TypeStr                       string                         `json:"@type"`
 	ReportReasonChildAbuse        *ReportReasonChildAbuse        `json:"reportReasonChildAbuse,omitempty"`
 	ReportReasonCopyright         *ReportReasonCopyright         `json:"reportReasonCopyright,omitempty"`
 	ReportReasonCustom            *ReportReasonCustom            `json:"reportReasonCustom,omitempty"`
@@ -11041,7 +11314,7 @@ type ReportReason struct {
 }
 
 func (t *ReportReason) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *ReportReason) SetExtra(extra string) {
@@ -11059,6 +11332,7 @@ func (t *ReportReason) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "reportReasonChildAbuse":
 		t.ReportReasonChildAbuse = new(ReportReasonChildAbuse)
@@ -11130,6 +11404,7 @@ func (t *ReportReason) MarshalJSON() ([]byte, error) {
 
 // ReportSponsoredResult Describes result of sponsored message or chat report
 type ReportSponsoredResult struct {
+	TypeStr                              string                                `json:"@type"`
 	ReportSponsoredResultAdsHidden       *ReportSponsoredResultAdsHidden       `json:"reportSponsoredResultAdsHidden,omitempty"`
 	ReportSponsoredResultFailed          *ReportSponsoredResultFailed          `json:"reportSponsoredResultFailed,omitempty"`
 	ReportSponsoredResultOk              *ReportSponsoredResultOk              `json:"reportSponsoredResultOk,omitempty"`
@@ -11138,7 +11413,7 @@ type ReportSponsoredResult struct {
 }
 
 func (t *ReportSponsoredResult) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *ReportSponsoredResult) SetExtra(extra string) {
@@ -11156,6 +11431,7 @@ func (t *ReportSponsoredResult) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "reportSponsoredResultAdsHidden":
 		t.ReportSponsoredResultAdsHidden = new(ReportSponsoredResultAdsHidden)
@@ -11197,13 +11473,14 @@ func (t *ReportSponsoredResult) MarshalJSON() ([]byte, error) {
 
 // ReportStoryResult Describes result of story report
 type ReportStoryResult struct {
+	TypeStr                         string                           `json:"@type"`
 	ReportStoryResultOk             *ReportStoryResultOk             `json:"reportStoryResultOk,omitempty"`
 	ReportStoryResultOptionRequired *ReportStoryResultOptionRequired `json:"reportStoryResultOptionRequired,omitempty"`
 	ReportStoryResultTextRequired   *ReportStoryResultTextRequired   `json:"reportStoryResultTextRequired,omitempty"`
 }
 
 func (t *ReportStoryResult) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *ReportStoryResult) SetExtra(extra string) {
@@ -11221,6 +11498,7 @@ func (t *ReportStoryResult) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "reportStoryResultOk":
 		t.ReportStoryResultOk = new(ReportStoryResultOk)
@@ -11250,12 +11528,13 @@ func (t *ReportStoryResult) MarshalJSON() ([]byte, error) {
 
 // ResendCodeReason Describes the reason why a code needs to be re-sent
 type ResendCodeReason struct {
+	TypeStr                            string                              `json:"@type"`
 	ResendCodeReasonUserRequest        *ResendCodeReasonUserRequest        `json:"resendCodeReasonUserRequest,omitempty"`
 	ResendCodeReasonVerificationFailed *ResendCodeReasonVerificationFailed `json:"resendCodeReasonVerificationFailed,omitempty"`
 }
 
 func (t *ResendCodeReason) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *ResendCodeReason) SetExtra(extra string) {
@@ -11273,6 +11552,7 @@ func (t *ResendCodeReason) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "resendCodeReasonUserRequest":
 		t.ResendCodeReasonUserRequest = new(ResendCodeReasonUserRequest)
@@ -11296,13 +11576,14 @@ func (t *ResendCodeReason) MarshalJSON() ([]byte, error) {
 
 // ResetPasswordResult Represents result of 2-step verification password reset
 type ResetPasswordResult struct {
+	TypeStr                     string                       `json:"@type"`
 	ResetPasswordResultDeclined *ResetPasswordResultDeclined `json:"resetPasswordResultDeclined,omitempty"`
 	ResetPasswordResultOk       *ResetPasswordResultOk       `json:"resetPasswordResultOk,omitempty"`
 	ResetPasswordResultPending  *ResetPasswordResultPending  `json:"resetPasswordResultPending,omitempty"`
 }
 
 func (t *ResetPasswordResult) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *ResetPasswordResult) SetExtra(extra string) {
@@ -11320,6 +11601,7 @@ func (t *ResetPasswordResult) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "resetPasswordResultDeclined":
 		t.ResetPasswordResultDeclined = new(ResetPasswordResultDeclined)
@@ -11349,13 +11631,14 @@ func (t *ResetPasswordResult) MarshalJSON() ([]byte, error) {
 
 // RevenueWithdrawalState Describes state of a revenue withdrawal
 type RevenueWithdrawalState struct {
+	TypeStr                         string                           `json:"@type"`
 	RevenueWithdrawalStateFailed    *RevenueWithdrawalStateFailed    `json:"revenueWithdrawalStateFailed,omitempty"`
 	RevenueWithdrawalStatePending   *RevenueWithdrawalStatePending   `json:"revenueWithdrawalStatePending,omitempty"`
 	RevenueWithdrawalStateSucceeded *RevenueWithdrawalStateSucceeded `json:"revenueWithdrawalStateSucceeded,omitempty"`
 }
 
 func (t *RevenueWithdrawalState) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *RevenueWithdrawalState) SetExtra(extra string) {
@@ -11373,6 +11656,7 @@ func (t *RevenueWithdrawalState) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "revenueWithdrawalStateFailed":
 		t.RevenueWithdrawalStateFailed = new(RevenueWithdrawalStateFailed)
@@ -11402,6 +11686,7 @@ func (t *RevenueWithdrawalState) MarshalJSON() ([]byte, error) {
 
 // RichText Describes a formatted text object
 type RichText struct {
+	TypeStr               string                 `json:"@type"`
 	RichTextAnchor        *RichTextAnchor        `json:"richTextAnchor,omitempty"`
 	RichTextAnchorLink    *RichTextAnchorLink    `json:"richTextAnchorLink,omitempty"`
 	RichTextBold          *RichTextBold          `json:"richTextBold,omitempty"`
@@ -11422,7 +11707,7 @@ type RichText struct {
 }
 
 func (t *RichText) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *RichText) SetExtra(extra string) {
@@ -11440,6 +11725,7 @@ func (t *RichText) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "richTextAnchor":
 		t.RichTextAnchor = new(RichTextAnchor)
@@ -11553,13 +11839,14 @@ func (t *RichText) MarshalJSON() ([]byte, error) {
 
 // SavedMessagesTopicType Describes type of Saved Messages topic
 type SavedMessagesTopicType struct {
+	TypeStr                             string                               `json:"@type"`
 	SavedMessagesTopicTypeAuthorHidden  *SavedMessagesTopicTypeAuthorHidden  `json:"savedMessagesTopicTypeAuthorHidden,omitempty"`
 	SavedMessagesTopicTypeMyNotes       *SavedMessagesTopicTypeMyNotes       `json:"savedMessagesTopicTypeMyNotes,omitempty"`
 	SavedMessagesTopicTypeSavedFromChat *SavedMessagesTopicTypeSavedFromChat `json:"savedMessagesTopicTypeSavedFromChat,omitempty"`
 }
 
 func (t *SavedMessagesTopicType) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *SavedMessagesTopicType) SetExtra(extra string) {
@@ -11577,6 +11864,7 @@ func (t *SavedMessagesTopicType) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "savedMessagesTopicTypeAuthorHidden":
 		t.SavedMessagesTopicTypeAuthorHidden = new(SavedMessagesTopicTypeAuthorHidden)
@@ -11606,13 +11894,14 @@ func (t *SavedMessagesTopicType) MarshalJSON() ([]byte, error) {
 
 // SearchMessagesChatTypeFilter Represents a filter for type of the chats in which to search messages
 type SearchMessagesChatTypeFilter struct {
+	TypeStr                             string                               `json:"@type"`
 	SearchMessagesChatTypeFilterChannel *SearchMessagesChatTypeFilterChannel `json:"searchMessagesChatTypeFilterChannel,omitempty"`
 	SearchMessagesChatTypeFilterGroup   *SearchMessagesChatTypeFilterGroup   `json:"searchMessagesChatTypeFilterGroup,omitempty"`
 	SearchMessagesChatTypeFilterPrivate *SearchMessagesChatTypeFilterPrivate `json:"searchMessagesChatTypeFilterPrivate,omitempty"`
 }
 
 func (t *SearchMessagesChatTypeFilter) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *SearchMessagesChatTypeFilter) SetExtra(extra string) {
@@ -11630,6 +11919,7 @@ func (t *SearchMessagesChatTypeFilter) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "searchMessagesChatTypeFilterChannel":
 		t.SearchMessagesChatTypeFilterChannel = new(SearchMessagesChatTypeFilterChannel)
@@ -11659,6 +11949,7 @@ func (t *SearchMessagesChatTypeFilter) MarshalJSON() ([]byte, error) {
 
 // SearchMessagesFilter Represents a filter for message search results
 type SearchMessagesFilter struct {
+	TypeStr                               string                                 `json:"@type"`
 	SearchMessagesFilterAnimation         *SearchMessagesFilterAnimation         `json:"searchMessagesFilterAnimation,omitempty"`
 	SearchMessagesFilterAudio             *SearchMessagesFilterAudio             `json:"searchMessagesFilterAudio,omitempty"`
 	SearchMessagesFilterChatPhoto         *SearchMessagesFilterChatPhoto         `json:"searchMessagesFilterChatPhoto,omitempty"`
@@ -11679,7 +11970,7 @@ type SearchMessagesFilter struct {
 }
 
 func (t *SearchMessagesFilter) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *SearchMessagesFilter) SetExtra(extra string) {
@@ -11697,6 +11988,7 @@ func (t *SearchMessagesFilter) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "searchMessagesFilterAnimation":
 		t.SearchMessagesFilterAnimation = new(SearchMessagesFilterAnimation)
@@ -11810,13 +12102,14 @@ func (t *SearchMessagesFilter) MarshalJSON() ([]byte, error) {
 
 // SecretChatState Describes the current secret chat state
 type SecretChatState struct {
+	TypeStr                string                  `json:"@type"`
 	SecretChatStateClosed  *SecretChatStateClosed  `json:"secretChatStateClosed,omitempty"`
 	SecretChatStatePending *SecretChatStatePending `json:"secretChatStatePending,omitempty"`
 	SecretChatStateReady   *SecretChatStateReady   `json:"secretChatStateReady,omitempty"`
 }
 
 func (t *SecretChatState) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *SecretChatState) SetExtra(extra string) {
@@ -11834,6 +12127,7 @@ func (t *SecretChatState) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "secretChatStateClosed":
 		t.SecretChatStateClosed = new(SecretChatStateClosed)
@@ -11863,12 +12157,13 @@ func (t *SecretChatState) MarshalJSON() ([]byte, error) {
 
 // SentGift Represents content of a gift received by a user or a channel chat
 type SentGift struct {
+	TypeStr          string            `json:"@type"`
 	SentGiftRegular  *SentGiftRegular  `json:"sentGiftRegular,omitempty"`
 	SentGiftUpgraded *SentGiftUpgraded `json:"sentGiftUpgraded,omitempty"`
 }
 
 func (t *SentGift) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *SentGift) SetExtra(extra string) {
@@ -11886,6 +12181,7 @@ func (t *SentGift) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "sentGiftRegular":
 		t.SentGiftRegular = new(SentGiftRegular)
@@ -11909,6 +12205,7 @@ func (t *SentGift) MarshalJSON() ([]byte, error) {
 
 // SessionType Represents the type of session
 type SessionType struct {
+	TypeStr            string              `json:"@type"`
 	SessionTypeAndroid *SessionTypeAndroid `json:"sessionTypeAndroid,omitempty"`
 	SessionTypeApple   *SessionTypeApple   `json:"sessionTypeApple,omitempty"`
 	SessionTypeBrave   *SessionTypeBrave   `json:"sessionTypeBrave,omitempty"`
@@ -11929,7 +12226,7 @@ type SessionType struct {
 }
 
 func (t *SessionType) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *SessionType) SetExtra(extra string) {
@@ -11947,6 +12244,7 @@ func (t *SessionType) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "sessionTypeAndroid":
 		t.SessionTypeAndroid = new(SessionTypeAndroid)
@@ -12060,13 +12358,14 @@ func (t *SessionType) MarshalJSON() ([]byte, error) {
 
 // SpeechRecognitionResult Describes result of speech recognition in a voice note
 type SpeechRecognitionResult struct {
+	TypeStr                        string                          `json:"@type"`
 	SpeechRecognitionResultError   *SpeechRecognitionResultError   `json:"speechRecognitionResultError,omitempty"`
 	SpeechRecognitionResultPending *SpeechRecognitionResultPending `json:"speechRecognitionResultPending,omitempty"`
 	SpeechRecognitionResultText    *SpeechRecognitionResultText    `json:"speechRecognitionResultText,omitempty"`
 }
 
 func (t *SpeechRecognitionResult) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *SpeechRecognitionResult) SetExtra(extra string) {
@@ -12084,6 +12383,7 @@ func (t *SpeechRecognitionResult) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "speechRecognitionResultError":
 		t.SpeechRecognitionResultError = new(SpeechRecognitionResultError)
@@ -12113,12 +12413,13 @@ func (t *SpeechRecognitionResult) MarshalJSON() ([]byte, error) {
 
 // StarSubscriptionType Describes type of subscription paid in Telegram Stars
 type StarSubscriptionType struct {
+	TypeStr                     string                       `json:"@type"`
 	StarSubscriptionTypeBot     *StarSubscriptionTypeBot     `json:"starSubscriptionTypeBot,omitempty"`
 	StarSubscriptionTypeChannel *StarSubscriptionTypeChannel `json:"starSubscriptionTypeChannel,omitempty"`
 }
 
 func (t *StarSubscriptionType) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *StarSubscriptionType) SetExtra(extra string) {
@@ -12136,6 +12437,7 @@ func (t *StarSubscriptionType) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "starSubscriptionTypeBot":
 		t.StarSubscriptionTypeBot = new(StarSubscriptionTypeBot)
@@ -12159,12 +12461,13 @@ func (t *StarSubscriptionType) MarshalJSON() ([]byte, error) {
 
 // StartLiveStoryResult Represents result of starting a live story
 type StartLiveStoryResult struct {
+	TypeStr                  string                    `json:"@type"`
 	StartLiveStoryResultFail *StartLiveStoryResultFail `json:"startLiveStoryResultFail,omitempty"`
 	StartLiveStoryResultOk   *StartLiveStoryResultOk   `json:"startLiveStoryResultOk,omitempty"`
 }
 
 func (t *StartLiveStoryResult) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *StartLiveStoryResult) SetExtra(extra string) {
@@ -12182,6 +12485,7 @@ func (t *StartLiveStoryResult) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "startLiveStoryResultFail":
 		t.StartLiveStoryResultFail = new(StartLiveStoryResultFail)
@@ -12205,6 +12509,7 @@ func (t *StartLiveStoryResult) MarshalJSON() ([]byte, error) {
 
 // StarTransactionType Describes type of transaction with Telegram Stars
 type StarTransactionType struct {
+	TypeStr                                         string                                           `json:"@type"`
 	StarTransactionTypeAffiliateProgramCommission   *StarTransactionTypeAffiliateProgramCommission   `json:"starTransactionTypeAffiliateProgramCommission,omitempty"`
 	StarTransactionTypeAppStoreDeposit              *StarTransactionTypeAppStoreDeposit              `json:"starTransactionTypeAppStoreDeposit,omitempty"`
 	StarTransactionTypeBotInvoicePurchase           *StarTransactionTypeBotInvoicePurchase           `json:"starTransactionTypeBotInvoicePurchase,omitempty"`
@@ -12253,7 +12558,7 @@ type StarTransactionType struct {
 }
 
 func (t *StarTransactionType) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *StarTransactionType) SetExtra(extra string) {
@@ -12271,6 +12576,7 @@ func (t *StarTransactionType) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "starTransactionTypeAffiliateProgramCommission":
 		t.StarTransactionTypeAffiliateProgramCommission = new(StarTransactionTypeAffiliateProgramCommission)
@@ -12552,13 +12858,14 @@ func (t *StarTransactionType) MarshalJSON() ([]byte, error) {
 
 // StatisticalGraph Describes a statistical graph
 type StatisticalGraph struct {
+	TypeStr               string                 `json:"@type"`
 	StatisticalGraphAsync *StatisticalGraphAsync `json:"statisticalGraphAsync,omitempty"`
 	StatisticalGraphData  *StatisticalGraphData  `json:"statisticalGraphData,omitempty"`
 	StatisticalGraphError *StatisticalGraphError `json:"statisticalGraphError,omitempty"`
 }
 
 func (t *StatisticalGraph) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *StatisticalGraph) SetExtra(extra string) {
@@ -12576,6 +12883,7 @@ func (t *StatisticalGraph) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "statisticalGraphAsync":
 		t.StatisticalGraphAsync = new(StatisticalGraphAsync)
@@ -12605,13 +12913,14 @@ func (t *StatisticalGraph) MarshalJSON() ([]byte, error) {
 
 // StickerFormat Describes format of a sticker
 type StickerFormat struct {
+	TypeStr           string             `json:"@type"`
 	StickerFormatTgs  *StickerFormatTgs  `json:"stickerFormatTgs,omitempty"`
 	StickerFormatWebm *StickerFormatWebm `json:"stickerFormatWebm,omitempty"`
 	StickerFormatWebp *StickerFormatWebp `json:"stickerFormatWebp,omitempty"`
 }
 
 func (t *StickerFormat) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *StickerFormat) SetExtra(extra string) {
@@ -12629,6 +12938,7 @@ func (t *StickerFormat) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "stickerFormatTgs":
 		t.StickerFormatTgs = new(StickerFormatTgs)
@@ -12658,13 +12968,14 @@ func (t *StickerFormat) MarshalJSON() ([]byte, error) {
 
 // StickerFullType Contains full information about sticker type
 type StickerFullType struct {
+	TypeStr                    string                      `json:"@type"`
 	StickerFullTypeCustomEmoji *StickerFullTypeCustomEmoji `json:"stickerFullTypeCustomEmoji,omitempty"`
 	StickerFullTypeMask        *StickerFullTypeMask        `json:"stickerFullTypeMask,omitempty"`
 	StickerFullTypeRegular     *StickerFullTypeRegular     `json:"stickerFullTypeRegular,omitempty"`
 }
 
 func (t *StickerFullType) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *StickerFullType) SetExtra(extra string) {
@@ -12682,6 +12993,7 @@ func (t *StickerFullType) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "stickerFullTypeCustomEmoji":
 		t.StickerFullTypeCustomEmoji = new(StickerFullTypeCustomEmoji)
@@ -12711,13 +13023,14 @@ func (t *StickerFullType) MarshalJSON() ([]byte, error) {
 
 // StickerType Describes type of sticker
 type StickerType struct {
+	TypeStr                string                  `json:"@type"`
 	StickerTypeCustomEmoji *StickerTypeCustomEmoji `json:"stickerTypeCustomEmoji,omitempty"`
 	StickerTypeMask        *StickerTypeMask        `json:"stickerTypeMask,omitempty"`
 	StickerTypeRegular     *StickerTypeRegular     `json:"stickerTypeRegular,omitempty"`
 }
 
 func (t *StickerType) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *StickerType) SetExtra(extra string) {
@@ -12735,6 +13048,7 @@ func (t *StickerType) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "stickerTypeCustomEmoji":
 		t.StickerTypeCustomEmoji = new(StickerTypeCustomEmoji)
@@ -12764,6 +13078,7 @@ func (t *StickerType) MarshalJSON() ([]byte, error) {
 
 // StorePaymentPurpose Describes a purpose of an in-store payment
 type StorePaymentPurpose struct {
+	TypeStr                                string                                  `json:"@type"`
 	StorePaymentPurposeGiftedStars         *StorePaymentPurposeGiftedStars         `json:"storePaymentPurposeGiftedStars,omitempty"`
 	StorePaymentPurposePremiumGift         *StorePaymentPurposePremiumGift         `json:"storePaymentPurposePremiumGift,omitempty"`
 	StorePaymentPurposePremiumGiftCodes    *StorePaymentPurposePremiumGiftCodes    `json:"storePaymentPurposePremiumGiftCodes,omitempty"`
@@ -12774,7 +13089,7 @@ type StorePaymentPurpose struct {
 }
 
 func (t *StorePaymentPurpose) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *StorePaymentPurpose) SetExtra(extra string) {
@@ -12792,6 +13107,7 @@ func (t *StorePaymentPurpose) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "storePaymentPurposeGiftedStars":
 		t.StorePaymentPurposeGiftedStars = new(StorePaymentPurposeGiftedStars)
@@ -12845,12 +13161,13 @@ func (t *StorePaymentPurpose) MarshalJSON() ([]byte, error) {
 
 // StoreTransaction Describes an in-store transaction
 type StoreTransaction struct {
+	TypeStr                    string                      `json:"@type"`
 	StoreTransactionAppStore   *StoreTransactionAppStore   `json:"storeTransactionAppStore,omitempty"`
 	StoreTransactionGooglePlay *StoreTransactionGooglePlay `json:"storeTransactionGooglePlay,omitempty"`
 }
 
 func (t *StoreTransaction) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *StoreTransaction) SetExtra(extra string) {
@@ -12868,6 +13185,7 @@ func (t *StoreTransaction) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "storeTransactionAppStore":
 		t.StoreTransactionAppStore = new(StoreTransactionAppStore)
@@ -12891,6 +13209,7 @@ func (t *StoreTransaction) MarshalJSON() ([]byte, error) {
 
 // StoryAreaType Describes type of clickable area on a story media
 type StoryAreaType struct {
+	TypeStr                        string                          `json:"@type"`
 	StoryAreaTypeLink              *StoryAreaTypeLink              `json:"storyAreaTypeLink,omitempty"`
 	StoryAreaTypeLocation          *StoryAreaTypeLocation          `json:"storyAreaTypeLocation,omitempty"`
 	StoryAreaTypeMessage           *StoryAreaTypeMessage           `json:"storyAreaTypeMessage,omitempty"`
@@ -12901,7 +13220,7 @@ type StoryAreaType struct {
 }
 
 func (t *StoryAreaType) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *StoryAreaType) SetExtra(extra string) {
@@ -12919,6 +13238,7 @@ func (t *StoryAreaType) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "storyAreaTypeLink":
 		t.StoryAreaTypeLink = new(StoryAreaTypeLink)
@@ -12972,6 +13292,7 @@ func (t *StoryAreaType) MarshalJSON() ([]byte, error) {
 
 // StoryContent Contains the content of a story
 type StoryContent struct {
+	TypeStr                 string                   `json:"@type"`
 	StoryContentLive        *StoryContentLive        `json:"storyContentLive,omitempty"`
 	StoryContentPhoto       *StoryContentPhoto       `json:"storyContentPhoto,omitempty"`
 	StoryContentUnsupported *StoryContentUnsupported `json:"storyContentUnsupported,omitempty"`
@@ -12979,7 +13300,7 @@ type StoryContent struct {
 }
 
 func (t *StoryContent) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *StoryContent) SetExtra(extra string) {
@@ -12997,6 +13318,7 @@ func (t *StoryContent) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "storyContentLive":
 		t.StoryContentLive = new(StoryContentLive)
@@ -13032,13 +13354,14 @@ func (t *StoryContent) MarshalJSON() ([]byte, error) {
 
 // StoryInteractionType Describes type of interaction with a story
 type StoryInteractionType struct {
+	TypeStr                     string                       `json:"@type"`
 	StoryInteractionTypeForward *StoryInteractionTypeForward `json:"storyInteractionTypeForward,omitempty"`
 	StoryInteractionTypeRepost  *StoryInteractionTypeRepost  `json:"storyInteractionTypeRepost,omitempty"`
 	StoryInteractionTypeView    *StoryInteractionTypeView    `json:"storyInteractionTypeView,omitempty"`
 }
 
 func (t *StoryInteractionType) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *StoryInteractionType) SetExtra(extra string) {
@@ -13056,6 +13379,7 @@ func (t *StoryInteractionType) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "storyInteractionTypeForward":
 		t.StoryInteractionTypeForward = new(StoryInteractionTypeForward)
@@ -13085,12 +13409,13 @@ func (t *StoryInteractionType) MarshalJSON() ([]byte, error) {
 
 // StoryList Describes a list of stories
 type StoryList struct {
+	TypeStr          string            `json:"@type"`
 	StoryListArchive *StoryListArchive `json:"storyListArchive,omitempty"`
 	StoryListMain    *StoryListMain    `json:"storyListMain,omitempty"`
 }
 
 func (t *StoryList) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *StoryList) SetExtra(extra string) {
@@ -13108,6 +13433,7 @@ func (t *StoryList) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "storyListArchive":
 		t.StoryListArchive = new(StoryListArchive)
@@ -13131,12 +13457,13 @@ func (t *StoryList) MarshalJSON() ([]byte, error) {
 
 // StoryOrigin Contains information about the origin of a story that was reposted
 type StoryOrigin struct {
+	TypeStr                string                  `json:"@type"`
 	StoryOriginHiddenUser  *StoryOriginHiddenUser  `json:"storyOriginHiddenUser,omitempty"`
 	StoryOriginPublicStory *StoryOriginPublicStory `json:"storyOriginPublicStory,omitempty"`
 }
 
 func (t *StoryOrigin) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *StoryOrigin) SetExtra(extra string) {
@@ -13154,6 +13481,7 @@ func (t *StoryOrigin) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "storyOriginHiddenUser":
 		t.StoryOriginHiddenUser = new(StoryOriginHiddenUser)
@@ -13177,6 +13505,7 @@ func (t *StoryOrigin) MarshalJSON() ([]byte, error) {
 
 // StoryPrivacySettings Describes privacy settings of a story
 type StoryPrivacySettings struct {
+	TypeStr                           string                             `json:"@type"`
 	StoryPrivacySettingsCloseFriends  *StoryPrivacySettingsCloseFriends  `json:"storyPrivacySettingsCloseFriends,omitempty"`
 	StoryPrivacySettingsContacts      *StoryPrivacySettingsContacts      `json:"storyPrivacySettingsContacts,omitempty"`
 	StoryPrivacySettingsEveryone      *StoryPrivacySettingsEveryone      `json:"storyPrivacySettingsEveryone,omitempty"`
@@ -13184,7 +13513,7 @@ type StoryPrivacySettings struct {
 }
 
 func (t *StoryPrivacySettings) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *StoryPrivacySettings) SetExtra(extra string) {
@@ -13202,6 +13531,7 @@ func (t *StoryPrivacySettings) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "storyPrivacySettingsCloseFriends":
 		t.StoryPrivacySettingsCloseFriends = new(StoryPrivacySettingsCloseFriends)
@@ -13237,6 +13567,7 @@ func (t *StoryPrivacySettings) MarshalJSON() ([]byte, error) {
 
 // SuggestedAction Describes an action suggested to the current user
 type SuggestedAction struct {
+	TypeStr                                     string                                       `json:"@type"`
 	SuggestedActionAddLoginPasskey              *SuggestedActionAddLoginPasskey              `json:"suggestedActionAddLoginPasskey,omitempty"`
 	SuggestedActionCheckPassword                *SuggestedActionCheckPassword                `json:"suggestedActionCheckPassword,omitempty"`
 	SuggestedActionCheckPhoneNumber             *SuggestedActionCheckPhoneNumber             `json:"suggestedActionCheckPhoneNumber,omitempty"`
@@ -13257,7 +13588,7 @@ type SuggestedAction struct {
 }
 
 func (t *SuggestedAction) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *SuggestedAction) SetExtra(extra string) {
@@ -13275,6 +13606,7 @@ func (t *SuggestedAction) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "suggestedActionAddLoginPasskey":
 		t.SuggestedActionAddLoginPasskey = new(SuggestedActionAddLoginPasskey)
@@ -13388,12 +13720,13 @@ func (t *SuggestedAction) MarshalJSON() ([]byte, error) {
 
 // SuggestedPostPrice Describes price of a suggested post
 type SuggestedPostPrice struct {
+	TypeStr                string                  `json:"@type"`
 	SuggestedPostPriceStar *SuggestedPostPriceStar `json:"suggestedPostPriceStar,omitempty"`
 	SuggestedPostPriceTon  *SuggestedPostPriceTon  `json:"suggestedPostPriceTon,omitempty"`
 }
 
 func (t *SuggestedPostPrice) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *SuggestedPostPrice) SetExtra(extra string) {
@@ -13411,6 +13744,7 @@ func (t *SuggestedPostPrice) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "suggestedPostPriceStar":
 		t.SuggestedPostPriceStar = new(SuggestedPostPriceStar)
@@ -13434,12 +13768,13 @@ func (t *SuggestedPostPrice) MarshalJSON() ([]byte, error) {
 
 // SuggestedPostRefundReason Describes reason for refund of the payment for a suggested post
 type SuggestedPostRefundReason struct {
+	TypeStr                                  string                                    `json:"@type"`
 	SuggestedPostRefundReasonPaymentRefunded *SuggestedPostRefundReasonPaymentRefunded `json:"suggestedPostRefundReasonPaymentRefunded,omitempty"`
 	SuggestedPostRefundReasonPostDeleted     *SuggestedPostRefundReasonPostDeleted     `json:"suggestedPostRefundReasonPostDeleted,omitempty"`
 }
 
 func (t *SuggestedPostRefundReason) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *SuggestedPostRefundReason) SetExtra(extra string) {
@@ -13457,6 +13792,7 @@ func (t *SuggestedPostRefundReason) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "suggestedPostRefundReasonPaymentRefunded":
 		t.SuggestedPostRefundReasonPaymentRefunded = new(SuggestedPostRefundReasonPaymentRefunded)
@@ -13480,13 +13816,14 @@ func (t *SuggestedPostRefundReason) MarshalJSON() ([]byte, error) {
 
 // SuggestedPostState Describes state of a suggested post
 type SuggestedPostState struct {
+	TypeStr                    string                      `json:"@type"`
 	SuggestedPostStateApproved *SuggestedPostStateApproved `json:"suggestedPostStateApproved,omitempty"`
 	SuggestedPostStateDeclined *SuggestedPostStateDeclined `json:"suggestedPostStateDeclined,omitempty"`
 	SuggestedPostStatePending  *SuggestedPostStatePending  `json:"suggestedPostStatePending,omitempty"`
 }
 
 func (t *SuggestedPostState) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *SuggestedPostState) SetExtra(extra string) {
@@ -13504,6 +13841,7 @@ func (t *SuggestedPostState) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "suggestedPostStateApproved":
 		t.SuggestedPostStateApproved = new(SuggestedPostStateApproved)
@@ -13533,6 +13871,7 @@ func (t *SuggestedPostState) MarshalJSON() ([]byte, error) {
 
 // SupergroupMembersFilter Specifies the kind of chat members to return in getSupergroupMembers
 type SupergroupMembersFilter struct {
+	TypeStr                               string                                 `json:"@type"`
 	SupergroupMembersFilterAdministrators *SupergroupMembersFilterAdministrators `json:"supergroupMembersFilterAdministrators,omitempty"`
 	SupergroupMembersFilterBanned         *SupergroupMembersFilterBanned         `json:"supergroupMembersFilterBanned,omitempty"`
 	SupergroupMembersFilterBots           *SupergroupMembersFilterBots           `json:"supergroupMembersFilterBots,omitempty"`
@@ -13544,7 +13883,7 @@ type SupergroupMembersFilter struct {
 }
 
 func (t *SupergroupMembersFilter) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *SupergroupMembersFilter) SetExtra(extra string) {
@@ -13562,6 +13901,7 @@ func (t *SupergroupMembersFilter) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "supergroupMembersFilterAdministrators":
 		t.SupergroupMembersFilterAdministrators = new(SupergroupMembersFilterAdministrators)
@@ -13621,13 +13961,14 @@ func (t *SupergroupMembersFilter) MarshalJSON() ([]byte, error) {
 
 // TargetChat Describes the target chat to be opened
 type TargetChat struct {
+	TypeStr                string                  `json:"@type"`
 	TargetChatChosen       *TargetChatChosen       `json:"targetChatChosen,omitempty"`
 	TargetChatCurrent      *TargetChatCurrent      `json:"targetChatCurrent,omitempty"`
 	TargetChatInternalLink *TargetChatInternalLink `json:"targetChatInternalLink,omitempty"`
 }
 
 func (t *TargetChat) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *TargetChat) SetExtra(extra string) {
@@ -13645,6 +13986,7 @@ func (t *TargetChat) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "targetChatChosen":
 		t.TargetChatChosen = new(TargetChatChosen)
@@ -13674,6 +14016,7 @@ func (t *TargetChat) MarshalJSON() ([]byte, error) {
 
 // TelegramPaymentPurpose Describes a purpose of a payment toward Telegram
 type TelegramPaymentPurpose struct {
+	TypeStr                                string                                  `json:"@type"`
 	TelegramPaymentPurposeGiftedStars      *TelegramPaymentPurposeGiftedStars      `json:"telegramPaymentPurposeGiftedStars,omitempty"`
 	TelegramPaymentPurposeJoinChat         *TelegramPaymentPurposeJoinChat         `json:"telegramPaymentPurposeJoinChat,omitempty"`
 	TelegramPaymentPurposePremiumGift      *TelegramPaymentPurposePremiumGift      `json:"telegramPaymentPurposePremiumGift,omitempty"`
@@ -13684,7 +14027,7 @@ type TelegramPaymentPurpose struct {
 }
 
 func (t *TelegramPaymentPurpose) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *TelegramPaymentPurpose) SetExtra(extra string) {
@@ -13702,6 +14045,7 @@ func (t *TelegramPaymentPurpose) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "telegramPaymentPurposeGiftedStars":
 		t.TelegramPaymentPurposeGiftedStars = new(TelegramPaymentPurposeGiftedStars)
@@ -13755,6 +14099,7 @@ func (t *TelegramPaymentPurpose) MarshalJSON() ([]byte, error) {
 
 // TextEntityType Represents a part of the text which must be formatted differently
 type TextEntityType struct {
+	TypeStr                            string                              `json:"@type"`
 	TextEntityTypeBankCardNumber       *TextEntityTypeBankCardNumber       `json:"textEntityTypeBankCardNumber,omitempty"`
 	TextEntityTypeBlockQuote           *TextEntityTypeBlockQuote           `json:"textEntityTypeBlockQuote,omitempty"`
 	TextEntityTypeBold                 *TextEntityTypeBold                 `json:"textEntityTypeBold,omitempty"`
@@ -13780,7 +14125,7 @@ type TextEntityType struct {
 }
 
 func (t *TextEntityType) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *TextEntityType) SetExtra(extra string) {
@@ -13798,6 +14143,7 @@ func (t *TextEntityType) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "textEntityTypeBankCardNumber":
 		t.TextEntityTypeBankCardNumber = new(TextEntityTypeBankCardNumber)
@@ -13941,12 +14287,13 @@ func (t *TextEntityType) MarshalJSON() ([]byte, error) {
 
 // TextParseMode Describes the way the text needs to be parsed for text entities
 type TextParseMode struct {
+	TypeStr               string                 `json:"@type"`
 	TextParseModeHTML     *TextParseModeHTML     `json:"textParseModeHTML,omitempty"`
 	TextParseModeMarkdown *TextParseModeMarkdown `json:"textParseModeMarkdown,omitempty"`
 }
 
 func (t *TextParseMode) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *TextParseMode) SetExtra(extra string) {
@@ -13964,6 +14311,7 @@ func (t *TextParseMode) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "textParseModeHTML":
 		t.TextParseModeHTML = new(TextParseModeHTML)
@@ -13987,6 +14335,7 @@ func (t *TextParseMode) MarshalJSON() ([]byte, error) {
 
 // ThumbnailFormat Describes format of a thumbnail
 type ThumbnailFormat struct {
+	TypeStr              string                `json:"@type"`
 	ThumbnailFormatGif   *ThumbnailFormatGif   `json:"thumbnailFormatGif,omitempty"`
 	ThumbnailFormatJpeg  *ThumbnailFormatJpeg  `json:"thumbnailFormatJpeg,omitempty"`
 	ThumbnailFormatMpeg4 *ThumbnailFormatMpeg4 `json:"thumbnailFormatMpeg4,omitempty"`
@@ -13997,7 +14346,7 @@ type ThumbnailFormat struct {
 }
 
 func (t *ThumbnailFormat) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *ThumbnailFormat) SetExtra(extra string) {
@@ -14015,6 +14364,7 @@ func (t *ThumbnailFormat) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "thumbnailFormatGif":
 		t.ThumbnailFormatGif = new(ThumbnailFormatGif)
@@ -14068,6 +14418,7 @@ func (t *ThumbnailFormat) MarshalJSON() ([]byte, error) {
 
 // TMeUrlType Describes the type of URL linking to an internal Telegram entity
 type TMeUrlType struct {
+	TypeStr              string                `json:"@type"`
 	TMeUrlTypeChatInvite *TMeUrlTypeChatInvite `json:"tMeUrlTypeChatInvite,omitempty"`
 	TMeUrlTypeStickerSet *TMeUrlTypeStickerSet `json:"tMeUrlTypeStickerSet,omitempty"`
 	TMeUrlTypeSupergroup *TMeUrlTypeSupergroup `json:"tMeUrlTypeSupergroup,omitempty"`
@@ -14075,7 +14426,7 @@ type TMeUrlType struct {
 }
 
 func (t *TMeUrlType) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *TMeUrlType) SetExtra(extra string) {
@@ -14093,6 +14444,7 @@ func (t *TMeUrlType) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "tMeUrlTypeChatInvite":
 		t.TMeUrlTypeChatInvite = new(TMeUrlTypeChatInvite)
@@ -14128,6 +14480,7 @@ func (t *TMeUrlType) MarshalJSON() ([]byte, error) {
 
 // TonTransactionType Describes type of transaction with Toncoins
 type TonTransactionType struct {
+	TypeStr                                string                                  `json:"@type"`
 	TonTransactionTypeFragmentDeposit      *TonTransactionTypeFragmentDeposit      `json:"tonTransactionTypeFragmentDeposit,omitempty"`
 	TonTransactionTypeFragmentWithdrawal   *TonTransactionTypeFragmentWithdrawal   `json:"tonTransactionTypeFragmentWithdrawal,omitempty"`
 	TonTransactionTypeGiftPurchaseOffer    *TonTransactionTypeGiftPurchaseOffer    `json:"tonTransactionTypeGiftPurchaseOffer,omitempty"`
@@ -14138,7 +14491,7 @@ type TonTransactionType struct {
 }
 
 func (t *TonTransactionType) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *TonTransactionType) SetExtra(extra string) {
@@ -14156,6 +14509,7 @@ func (t *TonTransactionType) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "tonTransactionTypeFragmentDeposit":
 		t.TonTransactionTypeFragmentDeposit = new(TonTransactionTypeFragmentDeposit)
@@ -14209,6 +14563,7 @@ func (t *TonTransactionType) MarshalJSON() ([]byte, error) {
 
 // TopChatCategory Represents the categories of chats for which a list of frequently used chats can be retrieved
 type TopChatCategory struct {
+	TypeStr                     string                       `json:"@type"`
 	TopChatCategoryBots         *TopChatCategoryBots         `json:"topChatCategoryBots,omitempty"`
 	TopChatCategoryCalls        *TopChatCategoryCalls        `json:"topChatCategoryCalls,omitempty"`
 	TopChatCategoryChannels     *TopChatCategoryChannels     `json:"topChatCategoryChannels,omitempty"`
@@ -14220,7 +14575,7 @@ type TopChatCategory struct {
 }
 
 func (t *TopChatCategory) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *TopChatCategory) SetExtra(extra string) {
@@ -14238,6 +14593,7 @@ func (t *TopChatCategory) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "topChatCategoryBots":
 		t.TopChatCategoryBots = new(TopChatCategoryBots)
@@ -14297,12 +14653,13 @@ func (t *TopChatCategory) MarshalJSON() ([]byte, error) {
 
 // TransactionDirection Describes direction of transactions in a transaction list
 type TransactionDirection struct {
+	TypeStr                      string                        `json:"@type"`
 	TransactionDirectionIncoming *TransactionDirectionIncoming `json:"transactionDirectionIncoming,omitempty"`
 	TransactionDirectionOutgoing *TransactionDirectionOutgoing `json:"transactionDirectionOutgoing,omitempty"`
 }
 
 func (t *TransactionDirection) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *TransactionDirection) SetExtra(extra string) {
@@ -14320,6 +14677,7 @@ func (t *TransactionDirection) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "transactionDirectionIncoming":
 		t.TransactionDirectionIncoming = new(TransactionDirectionIncoming)
@@ -14343,6 +14701,7 @@ func (t *TransactionDirection) MarshalJSON() ([]byte, error) {
 
 // Update Contains notifications about data changes
 type Update struct {
+	TypeStr                                        string                                          `json:"@type"`
 	UpdateAccentColors                             *UpdateAccentColors                             `json:"updateAccentColors,omitempty"`
 	UpdateActiveEmojiReactions                     *UpdateActiveEmojiReactions                     `json:"updateActiveEmojiReactions,omitempty"`
 	UpdateActiveGiftAuctions                       *UpdateActiveGiftAuctions                       `json:"updateActiveGiftAuctions,omitempty"`
@@ -14520,7 +14879,7 @@ type Update struct {
 }
 
 func (t *Update) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *Update) SetExtra(extra string) {
@@ -14538,6 +14897,7 @@ func (t *Update) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "updateAccentColors":
 		t.UpdateAccentColors = new(UpdateAccentColors)
@@ -15593,13 +15953,14 @@ func (t *Update) MarshalJSON() ([]byte, error) {
 
 // UpgradedGiftAttributeId Contains identifier of an upgraded gift attribute to search for
 type UpgradedGiftAttributeId struct {
+	TypeStr                         string                           `json:"@type"`
 	UpgradedGiftAttributeIdBackdrop *UpgradedGiftAttributeIdBackdrop `json:"upgradedGiftAttributeIdBackdrop,omitempty"`
 	UpgradedGiftAttributeIdModel    *UpgradedGiftAttributeIdModel    `json:"upgradedGiftAttributeIdModel,omitempty"`
 	UpgradedGiftAttributeIdSymbol   *UpgradedGiftAttributeIdSymbol   `json:"upgradedGiftAttributeIdSymbol,omitempty"`
 }
 
 func (t *UpgradedGiftAttributeId) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *UpgradedGiftAttributeId) SetExtra(extra string) {
@@ -15617,6 +15978,7 @@ func (t *UpgradedGiftAttributeId) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "upgradedGiftAttributeIdBackdrop":
 		t.UpgradedGiftAttributeIdBackdrop = new(UpgradedGiftAttributeIdBackdrop)
@@ -15646,6 +16008,7 @@ func (t *UpgradedGiftAttributeId) MarshalJSON() ([]byte, error) {
 
 // UpgradedGiftOrigin Describes origin from which the upgraded gift was obtained
 type UpgradedGiftOrigin struct {
+	TypeStr                          string                            `json:"@type"`
 	UpgradedGiftOriginBlockchain     *UpgradedGiftOriginBlockchain     `json:"upgradedGiftOriginBlockchain,omitempty"`
 	UpgradedGiftOriginOffer          *UpgradedGiftOriginOffer          `json:"upgradedGiftOriginOffer,omitempty"`
 	UpgradedGiftOriginPrepaidUpgrade *UpgradedGiftOriginPrepaidUpgrade `json:"upgradedGiftOriginPrepaidUpgrade,omitempty"`
@@ -15655,7 +16018,7 @@ type UpgradedGiftOrigin struct {
 }
 
 func (t *UpgradedGiftOrigin) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *UpgradedGiftOrigin) SetExtra(extra string) {
@@ -15673,6 +16036,7 @@ func (t *UpgradedGiftOrigin) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "upgradedGiftOriginBlockchain":
 		t.UpgradedGiftOriginBlockchain = new(UpgradedGiftOriginBlockchain)
@@ -15720,6 +16084,7 @@ func (t *UpgradedGiftOrigin) MarshalJSON() ([]byte, error) {
 
 // UserPrivacySetting Describes available user privacy settings
 type UserPrivacySetting struct {
+	TypeStr                                                 string                                                   `json:"@type"`
 	UserPrivacySettingAllowCalls                            *UserPrivacySettingAllowCalls                            `json:"userPrivacySettingAllowCalls,omitempty"`
 	UserPrivacySettingAllowChatInvites                      *UserPrivacySettingAllowChatInvites                      `json:"userPrivacySettingAllowChatInvites,omitempty"`
 	UserPrivacySettingAllowFindingByPhoneNumber             *UserPrivacySettingAllowFindingByPhoneNumber             `json:"userPrivacySettingAllowFindingByPhoneNumber,omitempty"`
@@ -15737,7 +16102,7 @@ type UserPrivacySetting struct {
 }
 
 func (t *UserPrivacySetting) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *UserPrivacySetting) SetExtra(extra string) {
@@ -15755,6 +16120,7 @@ func (t *UserPrivacySetting) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "userPrivacySettingAllowCalls":
 		t.UserPrivacySettingAllowCalls = new(UserPrivacySettingAllowCalls)
@@ -15850,6 +16216,7 @@ func (t *UserPrivacySetting) MarshalJSON() ([]byte, error) {
 
 // UserPrivacySettingRule Represents a single rule for managing user privacy settings
 type UserPrivacySettingRule struct {
+	TypeStr                                   string                                     `json:"@type"`
 	UserPrivacySettingRuleAllowAll            *UserPrivacySettingRuleAllowAll            `json:"userPrivacySettingRuleAllowAll,omitempty"`
 	UserPrivacySettingRuleAllowBots           *UserPrivacySettingRuleAllowBots           `json:"userPrivacySettingRuleAllowBots,omitempty"`
 	UserPrivacySettingRuleAllowChatMembers    *UserPrivacySettingRuleAllowChatMembers    `json:"userPrivacySettingRuleAllowChatMembers,omitempty"`
@@ -15864,7 +16231,7 @@ type UserPrivacySettingRule struct {
 }
 
 func (t *UserPrivacySettingRule) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *UserPrivacySettingRule) SetExtra(extra string) {
@@ -15882,6 +16249,7 @@ func (t *UserPrivacySettingRule) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "userPrivacySettingRuleAllowAll":
 		t.UserPrivacySettingRuleAllowAll = new(UserPrivacySettingRuleAllowAll)
@@ -15959,6 +16327,7 @@ func (t *UserPrivacySettingRule) MarshalJSON() ([]byte, error) {
 
 // UserStatus Describes the last time the user was online
 type UserStatus struct {
+	TypeStr             string               `json:"@type"`
 	UserStatusEmpty     *UserStatusEmpty     `json:"userStatusEmpty,omitempty"`
 	UserStatusLastMonth *UserStatusLastMonth `json:"userStatusLastMonth,omitempty"`
 	UserStatusLastWeek  *UserStatusLastWeek  `json:"userStatusLastWeek,omitempty"`
@@ -15968,7 +16337,7 @@ type UserStatus struct {
 }
 
 func (t *UserStatus) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *UserStatus) SetExtra(extra string) {
@@ -15986,6 +16355,7 @@ func (t *UserStatus) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "userStatusEmpty":
 		t.UserStatusEmpty = new(UserStatusEmpty)
@@ -16033,6 +16403,7 @@ func (t *UserStatus) MarshalJSON() ([]byte, error) {
 
 // UserType Represents the type of user. The following types are possible: regular users, deleted users and bots
 type UserType struct {
+	TypeStr         string           `json:"@type"`
 	UserTypeBot     *UserTypeBot     `json:"userTypeBot,omitempty"`
 	UserTypeDeleted *UserTypeDeleted `json:"userTypeDeleted,omitempty"`
 	UserTypeRegular *UserTypeRegular `json:"userTypeRegular,omitempty"`
@@ -16040,7 +16411,7 @@ type UserType struct {
 }
 
 func (t *UserType) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *UserType) SetExtra(extra string) {
@@ -16058,6 +16429,7 @@ func (t *UserType) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "userTypeBot":
 		t.UserTypeBot = new(UserTypeBot)
@@ -16093,12 +16465,13 @@ func (t *UserType) MarshalJSON() ([]byte, error) {
 
 // VectorPathCommand Represents a vector path command
 type VectorPathCommand struct {
+	TypeStr                           string                             `json:"@type"`
 	VectorPathCommandCubicBezierCurve *VectorPathCommandCubicBezierCurve `json:"vectorPathCommandCubicBezierCurve,omitempty"`
 	VectorPathCommandLine             *VectorPathCommandLine             `json:"vectorPathCommandLine,omitempty"`
 }
 
 func (t *VectorPathCommand) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *VectorPathCommand) SetExtra(extra string) {
@@ -16116,6 +16489,7 @@ func (t *VectorPathCommand) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "vectorPathCommandCubicBezierCurve":
 		t.VectorPathCommandCubicBezierCurve = new(VectorPathCommandCubicBezierCurve)
@@ -16139,13 +16513,14 @@ func (t *VectorPathCommand) MarshalJSON() ([]byte, error) {
 
 // WebAppOpenMode Describes mode in which a Web App is opened
 type WebAppOpenMode struct {
+	TypeStr                  string                    `json:"@type"`
 	WebAppOpenModeCompact    *WebAppOpenModeCompact    `json:"webAppOpenModeCompact,omitempty"`
 	WebAppOpenModeFullScreen *WebAppOpenModeFullScreen `json:"webAppOpenModeFullScreen,omitempty"`
 	WebAppOpenModeFullSize   *WebAppOpenModeFullSize   `json:"webAppOpenModeFullSize,omitempty"`
 }
 
 func (t *WebAppOpenMode) Type() string {
-	return ""
+	return t.TypeStr
 }
 
 func (t *WebAppOpenMode) SetExtra(extra string) {
@@ -16163,6 +16538,7 @@ func (t *WebAppOpenMode) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &typeObj); err != nil {
 		return err
 	}
+	t.TypeStr = typeObj.Type
 	switch typeObj.Type {
 	case "webAppOpenModeCompact":
 		t.WebAppOpenModeCompact = new(WebAppOpenModeCompact)
