@@ -53,3 +53,9 @@ func (c *CallbackQuery) GetMessage() (*Message, error) {
 	}
 	return NewMessage(c.client, msg), nil
 }
+
+// Answer sends an answer to the callback query.
+func (c *CallbackQuery) Answer(text string, showAlert bool, url string, cacheTime int32) error {
+	_, err := c.client.AnswerCallbackQuery(c.Id, text, showAlert, url, cacheTime)
+	return err
+}
