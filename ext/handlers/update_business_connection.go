@@ -1,0 +1,34 @@
+package handlers
+
+import (
+	"github.com/AshokShau/gotdbot"
+	"github.com/AshokShau/gotdbot/ext"
+	"github.com/AshokShau/gotdbot/ext/handlers/filters"
+)
+
+type UpdateBusinessConnection struct {
+	Filter   filters.UpdateBusinessConnection
+	Response func(ctx *ext.Context) error
+}
+
+func NewUpdateBusinessConnection(filter filters.UpdateBusinessConnection, response func(ctx *ext.Context) error) *UpdateBusinessConnection {
+	return &UpdateBusinessConnection{
+		Filter:   filter,
+		Response: response,
+	}
+}
+
+func (h *UpdateBusinessConnection) CheckUpdate(ctx *ext.Context) bool {
+	u, ok := ctx.RawUpdate.(*gotdbot.UpdateBusinessConnection)
+	if !ok {
+		return false
+	}
+	if h.Filter == nil {
+		return true
+	}
+	return h.Filter(u)
+}
+
+func (h *UpdateBusinessConnection) HandleUpdate(ctx *ext.Context) error {
+	return h.Response(ctx)
+}

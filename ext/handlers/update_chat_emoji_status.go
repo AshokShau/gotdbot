@@ -1,0 +1,34 @@
+package handlers
+
+import (
+	"github.com/AshokShau/gotdbot"
+	"github.com/AshokShau/gotdbot/ext"
+	"github.com/AshokShau/gotdbot/ext/handlers/filters"
+)
+
+type UpdateChatEmojiStatus struct {
+	Filter   filters.UpdateChatEmojiStatus
+	Response func(ctx *ext.Context) error
+}
+
+func NewUpdateChatEmojiStatus(filter filters.UpdateChatEmojiStatus, response func(ctx *ext.Context) error) *UpdateChatEmojiStatus {
+	return &UpdateChatEmojiStatus{
+		Filter:   filter,
+		Response: response,
+	}
+}
+
+func (h *UpdateChatEmojiStatus) CheckUpdate(ctx *ext.Context) bool {
+	u, ok := ctx.RawUpdate.(*gotdbot.UpdateChatEmojiStatus)
+	if !ok {
+		return false
+	}
+	if h.Filter == nil {
+		return true
+	}
+	return h.Filter(u)
+}
+
+func (h *UpdateChatEmojiStatus) HandleUpdate(ctx *ext.Context) error {
+	return h.Response(ctx)
+}

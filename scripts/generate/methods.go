@@ -74,7 +74,6 @@ func generateMethods(functions []TLType, classes map[string]*TLClass) {
 		fmt.Fprintf(f, ") (%s, error) {\n", retTypeStr)
 
 		fmt.Fprintf(f, "\treq := &%s{\n", structName)
-		fmt.Fprintf(f, "\t\tTypeStr: \"%s\",\n", fn.Name)
 		for _, p := range fn.Params {
 			if p.IsOptional {
 				continue

@@ -1,0 +1,34 @@
+package handlers
+
+import (
+	"github.com/AshokShau/gotdbot"
+	"github.com/AshokShau/gotdbot/ext"
+	"github.com/AshokShau/gotdbot/ext/handlers/filters"
+)
+
+type UpdateSavedMessagesTopic struct {
+	Filter   filters.UpdateSavedMessagesTopic
+	Response func(ctx *ext.Context) error
+}
+
+func NewUpdateSavedMessagesTopic(filter filters.UpdateSavedMessagesTopic, response func(ctx *ext.Context) error) *UpdateSavedMessagesTopic {
+	return &UpdateSavedMessagesTopic{
+		Filter:   filter,
+		Response: response,
+	}
+}
+
+func (h *UpdateSavedMessagesTopic) CheckUpdate(ctx *ext.Context) bool {
+	u, ok := ctx.RawUpdate.(*gotdbot.UpdateSavedMessagesTopic)
+	if !ok {
+		return false
+	}
+	if h.Filter == nil {
+		return true
+	}
+	return h.Filter(u)
+}
+
+func (h *UpdateSavedMessagesTopic) HandleUpdate(ctx *ext.Context) error {
+	return h.Response(ctx)
+}

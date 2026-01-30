@@ -1,0 +1,34 @@
+package handlers
+
+import (
+	"github.com/AshokShau/gotdbot"
+	"github.com/AshokShau/gotdbot/ext"
+	"github.com/AshokShau/gotdbot/ext/handlers/filters"
+)
+
+type UpdateMessageUnreadReactions struct {
+	Filter   filters.UpdateMessageUnreadReactions
+	Response func(ctx *ext.Context) error
+}
+
+func NewUpdateMessageUnreadReactions(filter filters.UpdateMessageUnreadReactions, response func(ctx *ext.Context) error) *UpdateMessageUnreadReactions {
+	return &UpdateMessageUnreadReactions{
+		Filter:   filter,
+		Response: response,
+	}
+}
+
+func (h *UpdateMessageUnreadReactions) CheckUpdate(ctx *ext.Context) bool {
+	u, ok := ctx.RawUpdate.(*gotdbot.UpdateMessageUnreadReactions)
+	if !ok {
+		return false
+	}
+	if h.Filter == nil {
+		return true
+	}
+	return h.Filter(u)
+}
+
+func (h *UpdateMessageUnreadReactions) HandleUpdate(ctx *ext.Context) error {
+	return h.Response(ctx)
+}

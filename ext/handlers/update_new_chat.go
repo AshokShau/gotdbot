@@ -1,0 +1,34 @@
+package handlers
+
+import (
+	"github.com/AshokShau/gotdbot"
+	"github.com/AshokShau/gotdbot/ext"
+	"github.com/AshokShau/gotdbot/ext/handlers/filters"
+)
+
+type UpdateNewChat struct {
+	Filter   filters.UpdateNewChat
+	Response func(ctx *ext.Context) error
+}
+
+func NewUpdateNewChat(filter filters.UpdateNewChat, response func(ctx *ext.Context) error) *UpdateNewChat {
+	return &UpdateNewChat{
+		Filter:   filter,
+		Response: response,
+	}
+}
+
+func (h *UpdateNewChat) CheckUpdate(ctx *ext.Context) bool {
+	u, ok := ctx.RawUpdate.(*gotdbot.UpdateNewChat)
+	if !ok {
+		return false
+	}
+	if h.Filter == nil {
+		return true
+	}
+	return h.Filter(u)
+}
+
+func (h *UpdateNewChat) HandleUpdate(ctx *ext.Context) error {
+	return h.Response(ctx)
+}

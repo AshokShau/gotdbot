@@ -3,70 +3,120 @@ package main
 import (
 	"fmt"
 	"log"
-	"os"
-	"os/signal"
 	"runtime"
-	"syscall"
+	"time"
 
 	"github.com/AshokShau/gotdbot"
+	"github.com/AshokShau/gotdbot/ext"
+	"github.com/AshokShau/gotdbot/ext/handlers"
+	"github.com/AshokShau/gotdbot/ext/handlers/filters"
 )
 
 func main() {
 	apiID := int32(6)
-	apiHash := ""
-	botToken := "BOT_TOKEN"
+	apiHash := "API_HASH"
+	botToken := "YOUR_BOT_TOKEN"
 
 	bot := gotdbot.NewClient(apiID, apiHash, botToken, &gotdbot.ClientConfig{LibraryPath: "./libtdjson.so.1.8.60"})
-	gotdbot.SetTdlibLogVerbosityLevel(2) // 1-5
+	gotdbot.SetTdlibLogVerbosityLevel(2)
 
-	bot.OnUpdateAuthorizationState(func(c *gotdbot.Client, u *gotdbot.UpdateAuthorizationState) error {
-		if u.AuthorizationState.Type() == "authorizationStateReady" {
-			me, err := c.GetMe()
-			if err != nil {
-				log.Fatalf("Failed to get me: %v", err)
-				return nil
-			}
-			fmt.Printf("Logged in as: %s %s (%d)\n", me.FirstName, me.LastName, me.Id)
-		}
-		return nil
-	}, nil, 0)
+	dispatcher := ext.NewDispatcher(bot)
 
-	bot.OnUpdateNewMessage(func(c *gotdbot.Client, u *gotdbot.UpdateNewMessage) error {
-		msg := u.Message
-		if msg.Content.MessageText != nil && msg.Content.MessageText.Text != nil && msg.Content.MessageText.Text.Text == "/go" {
-			reply := fmt.Sprintf("Hello! There are currently %d goroutines running.", runtime.NumGoroutine())
-			_, err := c.SendMessage(msg.ChatId, &gotdbot.InputMessageContent{
-				InputMessageText: &gotdbot.InputMessageText{
-					Text: &gotdbot.FormattedText{
-						Text: reply,
+	var startTime = time.Now()
+
+	dispatcher.AddHandler(handlers.NewCommand("start", func(ctx *ext.Context) error {
+		kb := &gotdbot.ReplyMarkupInlineKeyboard{
+			Rows: [][]*gotdbot.InlineKeyboardButton{
+				{
+					{
+						Text: "GoTDBot GitHub",
+						TypeField: &gotdbot.InlineKeyboardButtonType{
+							InlineKeyboardButtonTypeUrl: &gotdbot.InlineKeyboardButtonTypeUrl{
+								Url: "https://github.com/AshokShau/gotdbot",
+							},
+						},
 					},
 				},
-			}, nil)
-			if err != nil {
-				return err
-			}
-			return nil
-
+			},
 		}
 
-		_, err := c.ForwardMessages(msg.ChatId, msg.ChatId, []int64{msg.Id}, true, false, nil)
+		content := &gotdbot.InputMessageContent{
+			InputMessageText: &gotdbot.InputMessageText{
+				Text: &gotdbot.FormattedText{
+					Text: "Hello! I am an echo bot powered by gotdbot",
+				},
+			},
+		}
+
+		opts := &gotdbot.SendMessageOpts{
+			ReplyTo: &gotdbot.InputMessageReplyTo{
+				InputMessageReplyToMessage: &gotdbot.InputMessageReplyToMessage{
+					MessageId: ctx.EffectiveMessage.Id,
+				},
+			},
+			ReplyMarkup: &gotdbot.ReplyMarkup{
+				ReplyMarkupInlineKeyboard: kb,
+			},
+		}
+
+		_, err := ctx.Client.SendMessage(ctx.EffectiveChatId, content, opts)
 		if err != nil {
-			return err
+			log.Printf("Error sending message: %v", err)
 		}
 		return nil
-	}, nil, 0)
+	}))
 
-	bot.OnUpdateNewCallbackQuery(func(c *gotdbot.Client, msg *gotdbot.UpdateNewCallbackQuery) error {
-		fmt.Printf("Callback query received: %s\n", msg.Payload.CallbackQueryPayloadData)
-		return nil
-	}, nil, 0)
+	dispatcher.AddHandler(handlers.NewCommand("go", func(ctx *ext.Context) error {
+		var m runtime.MemStats
+		runtime.ReadMemStats(&m)
 
-	bot.Run()
+		uptime := time.Since(startTime).Round(time.Second)
 
-	sig := make(chan os.Signal, 1)
-	signal.Notify(sig, syscall.SIGINT, syscall.SIGTERM)
-	<-sig
+		reply := fmt.Sprintf(
+			"🟢 Go runtime stats\n\n"+
+				"• Goroutines : %d\n"+
+				"• CPUs       : %d\n"+
+				"• GOMAXPROCS : %d\n"+
+				"• Uptime     : %s\n\n"+
+				"🧠 Memory\n"+
+				"• Alloc      : %.2f MB\n"+
+				"• HeapAlloc  : %.2f MB\n"+
+				"• Sys        : %.2f MB\n"+
+				"• GC cycles  : %d",
+			runtime.NumGoroutine(),
+			runtime.NumCPU(),
+			runtime.GOMAXPROCS(0),
+			uptime,
+			float64(m.Alloc)/1024/1024,
+			float64(m.HeapAlloc)/1024/1024,
+			float64(m.Sys)/1024/1024,
+			m.NumGC,
+		)
 
-	fmt.Println("Stopping...")
-	bot.Stop()
+		_, err := ctx.Reply(reply, nil)
+		return err
+	}))
+
+	dispatcher.AddHandler(handlers.NewMessage(filters.Text.And(filters.Incoming), func(ctx *ext.Context) error {
+		_, err := ctx.Client.ForwardMessages(ctx.EffectiveChatId, ctx.EffectiveChatId, []int64{ctx.EffectiveMessage.Id}, true, false, nil)
+		return err
+	}))
+
+	dispatcher.Start()
+
+	log.Println("Starting bot...")
+	if err := bot.Start(); err != nil {
+		log.Fatalf("Failed to start bot: %v", err)
+	}
+
+	me := bot.Me()
+	if me != nil {
+		username := ""
+		if me.Usernames != nil && len(me.Usernames.ActiveUsernames) > 0 {
+			username = me.Usernames.ActiveUsernames[0]
+		}
+		log.Printf("Logged in as @%s (%d)", username, me.Id)
+	}
+
+	bot.Idle()
 }

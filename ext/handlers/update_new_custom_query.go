@@ -1,0 +1,34 @@
+package handlers
+
+import (
+	"github.com/AshokShau/gotdbot"
+	"github.com/AshokShau/gotdbot/ext"
+	"github.com/AshokShau/gotdbot/ext/handlers/filters"
+)
+
+type UpdateNewCustomQuery struct {
+	Filter   filters.UpdateNewCustomQuery
+	Response func(ctx *ext.Context) error
+}
+
+func NewUpdateNewCustomQuery(filter filters.UpdateNewCustomQuery, response func(ctx *ext.Context) error) *UpdateNewCustomQuery {
+	return &UpdateNewCustomQuery{
+		Filter:   filter,
+		Response: response,
+	}
+}
+
+func (h *UpdateNewCustomQuery) CheckUpdate(ctx *ext.Context) bool {
+	u, ok := ctx.RawUpdate.(*gotdbot.UpdateNewCustomQuery)
+	if !ok {
+		return false
+	}
+	if h.Filter == nil {
+		return true
+	}
+	return h.Filter(u)
+}
+
+func (h *UpdateNewCustomQuery) HandleUpdate(ctx *ext.Context) error {
+	return h.Response(ctx)
+}

@@ -1,0 +1,34 @@
+package handlers
+
+import (
+	"github.com/AshokShau/gotdbot"
+	"github.com/AshokShau/gotdbot/ext"
+	"github.com/AshokShau/gotdbot/ext/handlers/filters"
+)
+
+type UpdateNewInlineCallbackQuery struct {
+	Filter   filters.UpdateNewInlineCallbackQuery
+	Response func(ctx *ext.Context) error
+}
+
+func NewUpdateNewInlineCallbackQuery(filter filters.UpdateNewInlineCallbackQuery, response func(ctx *ext.Context) error) *UpdateNewInlineCallbackQuery {
+	return &UpdateNewInlineCallbackQuery{
+		Filter:   filter,
+		Response: response,
+	}
+}
+
+func (h *UpdateNewInlineCallbackQuery) CheckUpdate(ctx *ext.Context) bool {
+	u, ok := ctx.RawUpdate.(*gotdbot.UpdateNewInlineCallbackQuery)
+	if !ok {
+		return false
+	}
+	if h.Filter == nil {
+		return true
+	}
+	return h.Filter(u)
+}
+
+func (h *UpdateNewInlineCallbackQuery) HandleUpdate(ctx *ext.Context) error {
+	return h.Response(ctx)
+}

@@ -1,0 +1,34 @@
+package handlers
+
+import (
+	"github.com/AshokShau/gotdbot"
+	"github.com/AshokShau/gotdbot/ext"
+	"github.com/AshokShau/gotdbot/ext/handlers/filters"
+)
+
+type UpdateAnimatedEmojiMessageClicked struct {
+	Filter   filters.UpdateAnimatedEmojiMessageClicked
+	Response func(ctx *ext.Context) error
+}
+
+func NewUpdateAnimatedEmojiMessageClicked(filter filters.UpdateAnimatedEmojiMessageClicked, response func(ctx *ext.Context) error) *UpdateAnimatedEmojiMessageClicked {
+	return &UpdateAnimatedEmojiMessageClicked{
+		Filter:   filter,
+		Response: response,
+	}
+}
+
+func (h *UpdateAnimatedEmojiMessageClicked) CheckUpdate(ctx *ext.Context) bool {
+	u, ok := ctx.RawUpdate.(*gotdbot.UpdateAnimatedEmojiMessageClicked)
+	if !ok {
+		return false
+	}
+	if h.Filter == nil {
+		return true
+	}
+	return h.Filter(u)
+}
+
+func (h *UpdateAnimatedEmojiMessageClicked) HandleUpdate(ctx *ext.Context) error {
+	return h.Response(ctx)
+}

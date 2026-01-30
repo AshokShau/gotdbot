@@ -1,0 +1,34 @@
+package handlers
+
+import (
+	"github.com/AshokShau/gotdbot"
+	"github.com/AshokShau/gotdbot/ext"
+	"github.com/AshokShau/gotdbot/ext/handlers/filters"
+)
+
+type UpdateFileGenerationStop struct {
+	Filter   filters.UpdateFileGenerationStop
+	Response func(ctx *ext.Context) error
+}
+
+func NewUpdateFileGenerationStop(filter filters.UpdateFileGenerationStop, response func(ctx *ext.Context) error) *UpdateFileGenerationStop {
+	return &UpdateFileGenerationStop{
+		Filter:   filter,
+		Response: response,
+	}
+}
+
+func (h *UpdateFileGenerationStop) CheckUpdate(ctx *ext.Context) bool {
+	u, ok := ctx.RawUpdate.(*gotdbot.UpdateFileGenerationStop)
+	if !ok {
+		return false
+	}
+	if h.Filter == nil {
+		return true
+	}
+	return h.Filter(u)
+}
+
+func (h *UpdateFileGenerationStop) HandleUpdate(ctx *ext.Context) error {
+	return h.Response(ctx)
+}

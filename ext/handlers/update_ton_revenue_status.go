@@ -1,0 +1,34 @@
+package handlers
+
+import (
+	"github.com/AshokShau/gotdbot"
+	"github.com/AshokShau/gotdbot/ext"
+	"github.com/AshokShau/gotdbot/ext/handlers/filters"
+)
+
+type UpdateTonRevenueStatus struct {
+	Filter   filters.UpdateTonRevenueStatus
+	Response func(ctx *ext.Context) error
+}
+
+func NewUpdateTonRevenueStatus(filter filters.UpdateTonRevenueStatus, response func(ctx *ext.Context) error) *UpdateTonRevenueStatus {
+	return &UpdateTonRevenueStatus{
+		Filter:   filter,
+		Response: response,
+	}
+}
+
+func (h *UpdateTonRevenueStatus) CheckUpdate(ctx *ext.Context) bool {
+	u, ok := ctx.RawUpdate.(*gotdbot.UpdateTonRevenueStatus)
+	if !ok {
+		return false
+	}
+	if h.Filter == nil {
+		return true
+	}
+	return h.Filter(u)
+}
+
+func (h *UpdateTonRevenueStatus) HandleUpdate(ctx *ext.Context) error {
+	return h.Response(ctx)
+}

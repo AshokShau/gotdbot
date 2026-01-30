@@ -6,9 +6,12 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"log"
+	"log/slog"
+	"os"
+	"os/signal"
 	"sort"
 	"sync"
+	"syscall"
 	"time"
 
 	"github.com/AshokShau/gotdbot/tdjson"
@@ -30,6 +33,7 @@ type ClientConfig struct {
 	DeviceModel           string
 	SystemVersion         string
 	ApplicationVersion    string
+	Logger                *slog.Logger
 }
 
 func DefaultClientConfig() *ClientConfig {
@@ -44,6 +48,7 @@ func DefaultClientConfig() *ClientConfig {
 		DeviceModel:         "Gotdbot",
 		SystemVersion:       "1.0",
 		ApplicationVersion:  "1.0",
+		Logger:              slog.New(slog.NewTextHandler(os.Stdout, nil)),
 	}
 }
 
@@ -54,6 +59,7 @@ type Client struct {
 	apiHash  string
 	botToken string
 	config   *ClientConfig
+	logger   *slog.Logger
 
 	updates chan TlObject
 	stop    chan struct{}
@@ -65,6 +71,14 @@ type Client struct {
 	hMu          sync.RWMutex
 
 	pendingRequests sync.Map // map[string]chan TlObject
+
+	// Cache
+	me   *User
+	meMu sync.RWMutex
+
+	// Auth state management
+	authErrorChan chan error
+	isAuthorized  bool
 }
 
 func NewClient(apiID int32, apiHash, botToken string, config *ClientConfig) *Client {
@@ -90,27 +104,62 @@ func NewClient(apiID int32, apiHash, botToken string, config *ClientConfig) *Cli
 		if config.FilesDirectory == "" {
 			config.FilesDirectory = def.FilesDirectory
 		}
+		if config.Logger == nil {
+			config.Logger = def.Logger
+		}
 	}
 
 	if err := tdjson.Init(config.LibraryPath); err != nil {
-		log.Fatalf("Failed to initialize TDLib: %v", err)
+		config.Logger.Error("Failed to initialize TDLib", "error", err)
+		os.Exit(1)
 	}
 
 	c := &Client{
-		clientID: tdjson.CreateClientID(),
-		apiID:    apiID,
-		apiHash:  apiHash,
-		botToken: botToken,
-		config:   config,
-		updates:  make(chan TlObject, 1000),
-		stop:     make(chan struct{}),
-		handlers: make(map[string][]*Handler),
+		clientID:      tdjson.CreateClientID(),
+		apiID:         apiID,
+		apiHash:       apiHash,
+		botToken:      botToken,
+		config:        config,
+		logger:        config.Logger,
+		updates:       make(chan TlObject, 1000),
+		stop:          make(chan struct{}),
+		handlers:      make(map[string][]*Handler),
+		authErrorChan: make(chan error, 1),
 	}
 
 	c.AddHandler("updateAuthorizationState", c.authHandler, nil, 0)
+	c.AddHandler("updateUser", c.userHandler, nil, 0)
+
+	//tdjson.Send(c.clientID, `{"@type": "getOption", "name": "version"}`)
+	return c
+}
+
+// Start initializes the client and blocks until authorization is successful or fails.
+func (c *Client) Start() error {
+	c.wg.Add(1)
+	go c.receiver()
+
+	c.wg.Add(1)
+	go c.processor()
+
 	tdjson.Send(c.clientID, `{"@type": "getOption", "name": "version"}`)
 
-	return c
+	select {
+	case err := <-c.authErrorChan:
+		return err
+	case <-time.After(60 * time.Second):
+		return fmt.Errorf("authorization timeout")
+	}
+}
+
+// Idle blocks the current goroutine until a SIGINT or SIGTERM signal is received.
+func (c *Client) Idle() {
+	c.logger.Info("Bot is running. Press Ctrl+C to stop.")
+	sig := make(chan os.Signal, 1)
+	signal.Notify(sig, syscall.SIGINT, syscall.SIGTERM)
+	<-sig
+	c.logger.Info("Stopping...")
+	c.Stop()
 }
 
 // SetTdlibLogVerbosityLevel sets the verbosity level of TDLib's internal logging.
@@ -131,14 +180,6 @@ func SetTdlibLogStreamEmpty() {
 	tdjson.Execute(req)
 }
 
-func (c *Client) Run() {
-	c.wg.Add(1)
-	go c.receiver()
-
-	c.wg.Add(1)
-	go c.processor()
-}
-
 func (c *Client) Stop() {
 	close(c.stop)
 	c.wg.Wait()
@@ -151,7 +192,6 @@ func (c *Client) receiver() {
 		case <-c.stop:
 			return
 		default:
-			// Receive with short timeout
 			res := tdjson.Receive(0.1)
 			if res != "" {
 				data := []byte(res)
@@ -234,6 +274,8 @@ func (c *Client) authHandler(client *Client, update TlObject) error {
 		return nil
 	}
 
+	c.logger.Debug("Authorization state update", "state", authState.AuthorizationState.Type())
+
 	switch authState.AuthorizationState.Type() {
 	case "authorizationStateWaitTdlibParameters":
 		_, err := c.SetTdlibParameters(
@@ -253,14 +295,62 @@ func (c *Client) authHandler(client *Client, update TlObject) error {
 			c.config.ApplicationVersion,
 		)
 		if err != nil {
-			log.Printf("Error setting tdlib parameters: %v", err)
+			c.logger.Error("Error setting tdlib parameters", "error", err)
+			c.authErrorChan <- err
 		}
 
 	case "authorizationStateWaitPhoneNumber":
 		_, err := c.CheckAuthenticationBotToken(c.botToken)
 		if err != nil {
-			log.Printf("Error checking bot token: %v", err)
+			c.logger.Error("Error checking bot token", "error", err)
+			c.authErrorChan <- err
 		}
+
+	case "authorizationStateReady":
+		c.isAuthorized = true
+		me, err := c.GetMe()
+		if err != nil {
+			c.logger.Error("Failed to get me", "error", err)
+			c.authErrorChan <- err
+			return nil
+		}
+		c.meMu.Lock()
+		c.me = me
+		c.meMu.Unlock()
+
+		username := ""
+		if me.Usernames != nil && len(me.Usernames.ActiveUsernames) > 0 {
+			username = me.Usernames.ActiveUsernames[0]
+		}
+		c.logger.Info("Logged in", "user_id", me.Id, "username", username)
+
+		select {
+		case c.authErrorChan <- nil:
+		default:
+		}
+
+	case "authorizationStateClosed":
+		if !c.isAuthorized {
+			c.authErrorChan <- fmt.Errorf("authorization closed unexpectedly")
+		}
+	}
+	return nil
+}
+
+func (c *Client) userHandler(client *Client, update TlObject) error {
+	u, ok := update.(*UpdateUser)
+	if !ok {
+		return nil
+	}
+
+	c.meMu.RLock()
+	isMe := c.me != nil && c.me.Id == u.User.Id
+	c.meMu.RUnlock()
+
+	if isMe {
+		c.meMu.Lock()
+		c.me = u.User
+		c.meMu.Unlock()
 	}
 	return nil
 }
@@ -281,14 +371,13 @@ func (c *Client) Send(req TlObject) (TlObject, error) {
 
 	select {
 	case res := <-ch:
-		// check for error
 		if res.Type() == "error" {
 			if errObj, ok := res.(*Error); ok {
 				return nil, fmt.Errorf("TDLib error %d: %s", errObj.Code, errObj.Message)
 			}
 		}
 		return res, nil
-	case <-time.After(30 * time.Second): // Timeout
+	case <-time.After(30 * time.Second):
 		c.pendingRequests.Delete(extra)
 		return nil, fmt.Errorf("timeout")
 	}
@@ -317,4 +406,11 @@ func sortHandlers(handlers []*Handler) {
 	sort.Slice(handlers, func(i, j int) bool {
 		return handlers[i].Position < handlers[j].Position
 	})
+}
+
+// Me returns the cached User object for the current bot.
+func (c *Client) Me() *User {
+	c.meMu.RLock()
+	defer c.meMu.RUnlock()
+	return c.me
 }
