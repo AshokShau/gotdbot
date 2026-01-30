@@ -6,4 +6,4 @@ database
 libtdjson.so
 libtdjson.so.*
 *.binlog
-examples
+

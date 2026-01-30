@@ -13,7 +13,7 @@ var CallbackQueryAll CallbackQuery = func(cq *gotdbot.UpdateNewCallbackQuery) bo
 func CallbackQueryData(data string) CallbackQuery {
 	return func(cq *gotdbot.UpdateNewCallbackQuery) bool {
 		if cq.Payload.CallbackQueryPayloadData != nil {
-			return strings.Contains(cq.Payload.CallbackQueryPayloadData.Data, data)
+			return strings.Contains(string(cq.Payload.CallbackQueryPayloadData.Data), data)
 		}
 		return false
 	}

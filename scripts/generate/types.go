@@ -145,9 +145,9 @@ func generateObjects(types []TLType, classes map[string]*TLClass) {
 
 	// Generate unmarshal helper
 	fmt.Fprintln(f, "func Unmarshal(data []byte) (TlObject, error) {")
-	fmt.Fprintln(f, "\tvar typeObj struct {\n")
-	fmt.Fprintln(f, "\t\tType string `json:\"@type\"`\n")
-	fmt.Fprintln(f, "\t\tExtra string `json:\"@extra\"`\n")
+	fmt.Fprintln(f, "\tvar typeObj struct {")
+	fmt.Fprintln(f, "\t\tType string `json:\"@type\"`")
+	fmt.Fprintln(f, "\t\tExtra string `json:\"@extra\"`")
 	fmt.Fprintln(f, "\t}")
 	fmt.Fprintln(f, "\tif err := json.Unmarshal(data, &typeObj); err != nil { return nil, err }")
 	fmt.Fprintln(f, "\tswitch typeObj.Type {")

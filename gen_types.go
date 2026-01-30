@@ -5246,7 +5246,7 @@ func (t *CallbackQueryAnswer) MarshalJSON() ([]byte, error) {
 type CallbackQueryPayloadData struct {
 	extra string
 	//
-	Data string `json:"data"`
+	Data []byte `json:"data"`
 }
 
 func (t *CallbackQueryPayloadData) Type() string {
@@ -5280,7 +5280,7 @@ type CallbackQueryPayloadDataWithPassword struct {
 	//
 	Password string `json:"password"`
 	//
-	Data string `json:"data"`
+	Data []byte `json:"data"`
 }
 
 func (t *CallbackQueryPayloadDataWithPassword) Type() string {
@@ -5908,7 +5908,7 @@ func (t *CallServer) MarshalJSON() ([]byte, error) {
 type CallServerTypeTelegramReflector struct {
 	extra string
 	//
-	PeerTag string `json:"peer_tag"`
+	PeerTag []byte `json:"peer_tag"`
 	//
 	IsTcp bool `json:"is_tcp"`
 }
@@ -6150,7 +6150,7 @@ type CallStateReady struct {
 	// A JSON-encoded call config
 	Config string `json:"config"`
 	// Call encryption key
-	EncryptionKey string `json:"encryption_key"`
+	EncryptionKey []byte `json:"encryption_key"`
 	// Encryption key fingerprint represented as 4 emoji
 	Emojis []string `json:"emojis"`
 	// True, if peer-to-peer connection is allowed by users privacy settings
@@ -13878,7 +13878,7 @@ func (t *CustomRequestResult) MarshalJSON() ([]byte, error) {
 type Data struct {
 	extra string
 	//
-	Data string `json:"data"`
+	Data []byte `json:"data"`
 }
 
 func (t *Data) Type() string {
@@ -15552,11 +15552,11 @@ func (t *EmojiStatusTypeUpgradedGift) MarshalJSON() ([]byte, error) {
 type EncryptedCredentials struct {
 	extra string
 	//
-	Data string `json:"data"`
+	Data []byte `json:"data"`
 	//
-	Hash string `json:"hash"`
+	Hash []byte `json:"hash"`
 	//
-	Secret string `json:"secret"`
+	Secret []byte `json:"secret"`
 }
 
 func (t *EncryptedCredentials) Type() string {
@@ -15590,7 +15590,7 @@ type EncryptedPassportElement struct {
 	// Type of Telegram Passport element
 	TypeField *PassportElementType `json:"type"`
 	// Encrypted JSON-encoded data about the user
-	Data string `json:"data"`
+	Data []byte `json:"data"`
 	// The front side of an identity document
 	FrontSide *DatedFile `json:"front_side"`
 	// The reverse side of an identity document; may be null
@@ -16672,7 +16672,7 @@ func (t *FirebaseDeviceVerificationParametersPlayIntegrity) MarshalJSON() ([]byt
 type FirebaseDeviceVerificationParametersSafetyNet struct {
 	extra string
 	//
-	Nonce string `json:"nonce"`
+	Nonce []byte `json:"nonce"`
 }
 
 func (t *FirebaseDeviceVerificationParametersSafetyNet) Type() string {
@@ -19772,7 +19772,7 @@ func (t *InlineKeyboardButtonTypeBuy) MarshalJSON() ([]byte, error) {
 type InlineKeyboardButtonTypeCallback struct {
 	extra string
 	//
-	Data string `json:"data"`
+	Data []byte `json:"data"`
 }
 
 func (t *InlineKeyboardButtonTypeCallback) Type() string {
@@ -19834,7 +19834,7 @@ func (t *InlineKeyboardButtonTypeCallbackGame) MarshalJSON() ([]byte, error) {
 type InlineKeyboardButtonTypeCallbackWithPassword struct {
 	extra string
 	//
-	Data string `json:"data"`
+	Data []byte `json:"data"`
 }
 
 func (t *InlineKeyboardButtonTypeCallbackWithPassword) Type() string {
@@ -22406,7 +22406,7 @@ type InputMessageInvoice struct {
 	// Product photo height
 	PhotoHeight int32 `json:"photo_height"`
 	// The invoice payload
-	Payload string `json:"payload"`
+	Payload []byte `json:"payload"`
 	// Payment provider token; may be empty for payments in Telegram Stars
 	ProviderToken string `json:"provider_token"`
 	// JSON-encoded data about the invoice, which will be shared with the payment provider
@@ -23004,7 +23004,7 @@ type InputMessageVoiceNote struct {
 	// Duration of the voice note, in seconds
 	Duration int32 `json:"duration"`
 	// Waveform representation of the voice note in 5-bit format
-	Waveform string `json:"waveform"`
+	Waveform []byte `json:"waveform"`
 	// Voice note caption; may be null if empty; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
 	Caption *FormattedText `json:"caption,omitempty"`
 	// Voice note self-destruct type; may be null if none; pass null if none; private chats only
@@ -23316,7 +23316,7 @@ type InputPassportElementErrorSourceDataField struct {
 	//
 	FieldName string `json:"field_name"`
 	//
-	DataHash string `json:"data_hash"`
+	DataHash []byte `json:"data_hash"`
 }
 
 func (t *InputPassportElementErrorSourceDataField) Type() string {
@@ -23348,7 +23348,7 @@ func (t *InputPassportElementErrorSourceDataField) MarshalJSON() ([]byte, error)
 type InputPassportElementErrorSourceFile struct {
 	extra string
 	//
-	FileHash string `json:"file_hash"`
+	FileHash []byte `json:"file_hash"`
 }
 
 func (t *InputPassportElementErrorSourceFile) Type() string {
@@ -23380,7 +23380,7 @@ func (t *InputPassportElementErrorSourceFile) MarshalJSON() ([]byte, error) {
 type InputPassportElementErrorSourceFiles struct {
 	extra string
 	//
-	FileHashes []string `json:"file_hashes"`
+	FileHashes [][]byte `json:"file_hashes"`
 }
 
 func (t *InputPassportElementErrorSourceFiles) Type() string {
@@ -23412,7 +23412,7 @@ func (t *InputPassportElementErrorSourceFiles) MarshalJSON() ([]byte, error) {
 type InputPassportElementErrorSourceFrontSide struct {
 	extra string
 	//
-	FileHash string `json:"file_hash"`
+	FileHash []byte `json:"file_hash"`
 }
 
 func (t *InputPassportElementErrorSourceFrontSide) Type() string {
@@ -23444,7 +23444,7 @@ func (t *InputPassportElementErrorSourceFrontSide) MarshalJSON() ([]byte, error)
 type InputPassportElementErrorSourceReverseSide struct {
 	extra string
 	//
-	FileHash string `json:"file_hash"`
+	FileHash []byte `json:"file_hash"`
 }
 
 func (t *InputPassportElementErrorSourceReverseSide) Type() string {
@@ -23476,7 +23476,7 @@ func (t *InputPassportElementErrorSourceReverseSide) MarshalJSON() ([]byte, erro
 type InputPassportElementErrorSourceSelfie struct {
 	extra string
 	//
-	FileHash string `json:"file_hash"`
+	FileHash []byte `json:"file_hash"`
 }
 
 func (t *InputPassportElementErrorSourceSelfie) Type() string {
@@ -23508,7 +23508,7 @@ func (t *InputPassportElementErrorSourceSelfie) MarshalJSON() ([]byte, error) {
 type InputPassportElementErrorSourceTranslationFile struct {
 	extra string
 	//
-	FileHash string `json:"file_hash"`
+	FileHash []byte `json:"file_hash"`
 }
 
 func (t *InputPassportElementErrorSourceTranslationFile) Type() string {
@@ -23540,7 +23540,7 @@ func (t *InputPassportElementErrorSourceTranslationFile) MarshalJSON() ([]byte, 
 type InputPassportElementErrorSourceTranslationFiles struct {
 	extra string
 	//
-	FileHashes []string `json:"file_hashes"`
+	FileHashes [][]byte `json:"file_hashes"`
 }
 
 func (t *InputPassportElementErrorSourceTranslationFiles) Type() string {
@@ -23572,7 +23572,7 @@ func (t *InputPassportElementErrorSourceTranslationFiles) MarshalJSON() ([]byte,
 type InputPassportElementErrorSourceUnspecified struct {
 	extra string
 	//
-	ElementHash string `json:"element_hash"`
+	ElementHash []byte `json:"element_hash"`
 }
 
 func (t *InputPassportElementErrorSourceUnspecified) Type() string {
@@ -32352,7 +32352,7 @@ type MessagePaymentRefunded struct {
 	// Total price for the product, in the smallest units of the currency
 	TotalAmount int64 `json:"total_amount"`
 	// Invoice payload; only for bots
-	InvoicePayload string `json:"invoice_payload"`
+	InvoicePayload []byte `json:"invoice_payload"`
 	// Telegram payment identifier
 	TelegramPaymentChargeId string `json:"telegram_payment_charge_id"`
 	// Provider payment identifier
@@ -32444,7 +32444,7 @@ type MessagePaymentSuccessfulBot struct {
 	// True, if this is the first recurring payment
 	IsFirstRecurring bool `json:"is_first_recurring"`
 	// Invoice payload
-	InvoicePayload string `json:"invoice_payload"`
+	InvoicePayload []byte `json:"invoice_payload"`
 	// Identifier of the shipping option chosen by the user; may be empty if not applicable; for bots only
 	ShippingOptionId string `json:"shipping_option_id"`
 	// Information about the order; may be null; for bots only
@@ -35214,7 +35214,7 @@ type Minithumbnail struct {
 	//
 	Height int32 `json:"height"`
 	//
-	Data string `json:"data"`
+	Data []byte `json:"data"`
 }
 
 func (t *Minithumbnail) Type() string {
@@ -45728,7 +45728,7 @@ func (t *ReportChatResultOptionRequired) MarshalJSON() ([]byte, error) {
 type ReportChatResultTextRequired struct {
 	extra string
 	//
-	OptionId string `json:"option_id"`
+	OptionId []byte `json:"option_id"`
 	//
 	IsOptional bool `json:"is_optional"`
 }
@@ -45762,7 +45762,7 @@ func (t *ReportChatResultTextRequired) MarshalJSON() ([]byte, error) {
 type ReportOption struct {
 	extra string
 	//
-	Id string `json:"id"`
+	Id []byte `json:"id"`
 	//
 	Text string `json:"text"`
 }
@@ -46314,7 +46314,7 @@ func (t *ReportStoryResultOptionRequired) MarshalJSON() ([]byte, error) {
 type ReportStoryResultTextRequired struct {
 	extra string
 	//
-	OptionId string `json:"option_id"`
+	OptionId []byte `json:"option_id"`
 	//
 	IsOptional bool `json:"is_optional"`
 }
@@ -48190,7 +48190,7 @@ type SecretChat struct {
 	// True, if the chat was created by the current user; false otherwise
 	IsOutbound bool `json:"is_outbound"`
 	// Hash of the currently used key for comparison with the hash of the chat partner's key. This is a string of 36 little-endian bytes, which must be split into groups of 2 bits, each denoting a pixel of one of 4 colors FFFFFF, D5E6F3, 2D5775, and 2F99C9.
-	KeyHash string `json:"key_hash"`
+	KeyHash []byte `json:"key_hash"`
 	// Secret chat layer; determines features supported by the chat partner's application. Nested text entities and underline and strikethrough entities are supported if the layer >= 101,
 	Layer int32 `json:"layer"`
 }
@@ -50184,7 +50184,7 @@ type StarTransactionTypeBotInvoiceSale struct {
 	// Information about the bought product
 	ProductInfo *ProductInfo `json:"product_info"`
 	// Invoice payload
-	InvoicePayload string `json:"invoice_payload"`
+	InvoicePayload []byte `json:"invoice_payload"`
 	// Information about the affiliate which received commission from the transaction; may be null if none
 	Affiliate *AffiliateInfo `json:"affiliate,omitempty"`
 }
@@ -50332,7 +50332,7 @@ type StarTransactionTypeBotSubscriptionSale struct {
 	// Information about the bought subscription
 	ProductInfo *ProductInfo `json:"product_info"`
 	// Invoice payload
-	InvoicePayload string `json:"invoice_payload"`
+	InvoicePayload []byte `json:"invoice_payload"`
 	// Information about the affiliate which received commission from the transaction; may be null if none
 	Affiliate *AffiliateInfo `json:"affiliate,omitempty"`
 }
@@ -52662,7 +52662,7 @@ func (t *StorePaymentPurposeStars) MarshalJSON() ([]byte, error) {
 type StoreTransactionAppStore struct {
 	extra string
 	//
-	Receipt string `json:"receipt"`
+	Receipt []byte `json:"receipt"`
 }
 
 func (t *StoreTransactionAppStore) Type() string {
@@ -55742,7 +55742,7 @@ func (t *TermsOfService) MarshalJSON() ([]byte, error) {
 type TestBytes struct {
 	extra string
 	//
-	Value string `json:"value"`
+	Value []byte `json:"value"`
 }
 
 func (t *TestBytes) Type() string {
@@ -62026,7 +62026,7 @@ type UpdateNewCallSignalingData struct {
 	//
 	CallId int32 `json:"call_id"`
 	//
-	Data string `json:"data"`
+	Data []byte `json:"data"`
 }
 
 func (t *UpdateNewCallSignalingData) Type() string {
@@ -62428,7 +62428,7 @@ type UpdateNewPreCheckoutQuery struct {
 	// Total price for the product, in the smallest units of the currency
 	TotalAmount int64 `json:"total_amount"`
 	// Invoice payload
-	InvoicePayload string `json:"invoice_payload"`
+	InvoicePayload []byte `json:"invoice_payload"`
 	// Identifier of a shipping option chosen by the user; may be empty if not applicable
 	ShippingOptionId string `json:"shipping_option_id"`
 	// Information about the order; may be null
@@ -66966,7 +66966,7 @@ type VideoNote struct {
 	// Duration of the video, in seconds; as defined by the sender
 	Duration int32 `json:"duration"`
 	// A waveform representation of the video note's audio in 5-bit format; may be empty if unknown
-	Waveform string `json:"waveform"`
+	Waveform []byte `json:"waveform"`
 	// Video width and height; as defined by the sender
 	Length int32 `json:"length"`
 	// Video minithumbnail; may be null
@@ -67048,7 +67048,7 @@ type VoiceNote struct {
 	// Duration of the voice note, in seconds; as defined by the sender
 	Duration int32 `json:"duration"`
 	// A waveform representation of the voice note in 5-bit format
-	Waveform string `json:"waveform"`
+	Waveform []byte `json:"waveform"`
 	// MIME type of the file; as defined by the sender. Usually, one of "audio/ogg" for Opus in an OGG container, "audio/mpeg" for an MP3 audio, or "audio/mp4" for an M4A audio
 	MimeType string `json:"mime_type"`
 	// Result of speech recognition in the voice note; may be null
@@ -67326,8 +67326,7 @@ func (t *WebPageInstantView) MarshalJSON() ([]byte, error) {
 
 func Unmarshal(data []byte) (TlObject, error) {
 	var typeObj struct {
-		Type string `json:"@type"`
-
+		Type  string `json:"@type"`
 		Extra string `json:"@extra"`
 	}
 	if err := json.Unmarshal(data, &typeObj); err != nil {

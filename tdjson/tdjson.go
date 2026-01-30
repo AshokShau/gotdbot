@@ -2,7 +2,6 @@ package tdjson
 
 import (
 	"fmt"
-	"runtime"
 	"unsafe"
 
 	"github.com/ebitengine/purego"
@@ -44,14 +43,7 @@ func Init(libPath string) error {
 }
 
 func getDefaultLibName() string {
-	switch runtime.GOOS {
-	case "windows":
-		return "tdjson.dll"
-	case "darwin":
-		return "libtdjson.dylib"
-	default:
-		return "libtdjson.so"
-	}
+	return "libtdjson.so"
 }
 
 // CreateClientID returns an opaque identifier of a new TDLib instance.
