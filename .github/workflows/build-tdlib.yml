@@ -7,9 +7,33 @@ permissions:
   contents: write
 
 jobs:
-  linux-x86_64:
-    name: tdjson linux x86_64
-    runs-on: ubuntu-22.04
+  build:
+    name: ${{ matrix.name }}
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: linux-x86_64
+            os: ubuntu-22.04
+            arch: x86_64
+
+          - name: linux-aarch64
+            os: ubuntu-22.04
+            arch: aarch64
+
+          - name: windows-x64
+            os: windows-2022
+            arch: x86_64
+
+          - name: macos-x86_64
+            os: macos-latest
+            arch: x86_64
+
+          - name: macos-arm64
+            os: macos-14
+            arch: arm64
 
     steps:
       - name: Checkout TDLib
@@ -21,6 +45,7 @@ jobs:
 
       - name: Detect TDLib version
         id: ver
+        shell: bash
         run: |
           cd td
           VER=$(grep -Po 'TDLib version \K[0-9.]+' README.md || true)
@@ -32,31 +57,64 @@ jobs:
           fi
           echo "version=$VER" >> $GITHUB_OUTPUT
 
-      - name: Install deps
+      - name: Install deps (Linux)
+        if: runner.os == 'Linux'
         run: |
           sudo apt update
           sudo apt install -y \
             cmake gperf \
             zlib1g-dev libssl-dev
 
-      - name: Configure
+      - name: Install deps (macOS)
+        if: runner.os == 'macOS'
         run: |
-          cmake -S td -B td/build \
+          brew update
+          brew install cmake gperf openssl@3
+
+      - name: Install deps (Windows)
+        if: runner.os == 'Windows'
+        run: |
+          choco install -y cmake gperf zlib openssl
+
+      - name: Configure (Linux / macOS)
+        if: runner.os != 'Windows'
+        shell: bash
+        run: |
+          cmake -S td -B build \
             -DCMAKE_BUILD_TYPE=Release
 
-      - name: Build tdjson
+      - name: Configure (Windows)
+        if: runner.os == 'Windows'
+        shell: powershell
         run: |
-          cmake --build td/build --target tdjson -j$(nproc)
+          cmake -S td -B build -A x64 `
+            -DGPERF_EXECUTABLE="C:/ProgramData/chocolatey/bin/gperf.exe"
+      
+      - name: Build tdjson
+        shell: bash
+        run: |
+          cmake --build build --config Release --target tdjson
 
-      - name: Collect tdjson
+      - name: Collect tdjson (Linux / macOS)
+        if: runner.os != 'Windows'
+        shell: bash
         run: |
           mkdir -p out
-          find td/build -name "libtdjson.so*" -type f -exec cp {} out/ \;
+          find build -type f \( -name "libtdjson.so*" -o -name "libtdjson.dylib*" \) -exec cp {} out/ \;
+
+      - name: Collect tdjson (Windows)
+        if: runner.os == 'Windows'
+        shell: powershell
+        run: |
+          mkdir out
+          Get-ChildItem -Recurse build -Filter tdjson.dll | Copy-Item -Destination out
+          Get-ChildItem -Recurse build -Filter tdjson.lib | Copy-Item -Destination out -ErrorAction SilentlyContinue
 
       - name: Package
+        shell: bash
         run: |
           cd out
-          tar -czf tdjson-linux-x86_64.tar.gz libtdjson.so*
+          tar -czf tdjson-${{ matrix.name }}.tar.gz *
 
       - name: Create release
         uses: softprops/action-gh-release@v2
@@ -64,4 +122,4 @@ jobs:
           tag_name: tdjson-v${{ steps.ver.outputs.version }}
           name: tdjson v${{ steps.ver.outputs.version }}
           files: |
-            out/tdjson-linux-x86_64.tar.gz
+            out/tdjson-${{ matrix.name }}.tar.gz
