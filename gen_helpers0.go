@@ -1280,6 +1280,16 @@ func (f File) CancelPreliminaryUpload(client *Client) (*Ok, error) {
 	return client.CancelPreliminaryUploadFile(f.Id)
 }
 
+// Delete is a helper method for Client.DeleteFile
+func (f File) Delete(client *Client) (*Ok, error) {
+	return client.DeleteFile(f.Id)
+}
+
+// Download is a helper method for Client.DownloadFile
+func (f File) Download(client *Client, priority int32, offset int64, limit int64, synchronous bool) (*File, error) {
+	return client.DownloadFile(f.Id, priority, offset, limit, synchronous)
+}
+
 // EditBotMediaPreview is a helper method for Client.EditBotMediaPreview
 func (f File) EditBotMediaPreview(client *Client, botUserId int64, languageCode string, content *InputStoryContent) (*BotMediaPreview, error) {
 	return client.EditBotMediaPreview(botUserId, languageCode, f.Id, content)
@@ -1723,6 +1733,11 @@ func (m Message) TranslateText(client *Client, toLanguageCode string) (*Formatte
 // UnpinChat is a helper method for Client.UnpinChatMessage
 func (m Message) UnpinChat(client *Client) (*Ok, error) {
 	return client.UnpinChatMessage(m.ChatId, m.Id)
+}
+
+// Get is a helper method for Client.GetRemoteFile
+func (r RemoteFile) Get(client *Client, opts *GetRemoteFileOpts) (*File, error) {
+	return client.GetRemoteFile(r.Id, opts)
 }
 
 // AddChatMember is a helper method for Client.AddChatMember

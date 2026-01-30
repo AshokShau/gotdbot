@@ -22,17 +22,11 @@ func generateHelpers(types []TLType, functions []TLType, classes map[string]*TLC
 	generatedFiles := []string{f.Name()}
 
 	allowedTypes := map[string]bool{
-		"File":    true,
-		"Message": true,
-		"Chat":    true,
-		"User":    true,
-	}
-
-	manualMethods := map[string]bool{
-		"File.Download":     true,
-		"File.Delete":       true,
-		"Message.GetChat":   true,
-		"Message.LeaveChat": true,
+		"File":       true,
+		"RemoteFile": true,
+		"Message":    true,
+		"Chat":       true,
+		"User":       true,
 	}
 
 	generatedMethods := make(map[string]bool)
@@ -117,7 +111,7 @@ func generateHelpers(types []TLType, functions []TLType, classes map[string]*TLC
 			}
 
 			fullHelperName := toCamelCase(t.Name) + "." + helperName
-			if manualMethods[fullHelperName] || generatedMethods[fullHelperName] {
+			if generatedMethods[fullHelperName] {
 				continue
 			}
 			generatedMethods[fullHelperName] = true

@@ -21,35 +21,37 @@ import (
 var StopHandlers = fmt.Errorf("stop handlers")
 
 type ClientConfig struct {
-	LibraryPath           string
-	UseTestDC             bool
-	DatabaseDirectory     string
-	FilesDirectory        string
-	DatabaseEncryptionKey string
-	UseFileDatabase       bool
-	UseChatInfoDatabase   bool
-	UseMessageDatabase    bool
-	UseSecretChats        bool
-	SystemLanguageCode    string
-	DeviceModel           string
-	SystemVersion         string
-	ApplicationVersion    string
-	Logger                *slog.Logger
+	LibraryPath             string
+	UseTestDC               bool
+	DatabaseDirectory       string
+	FilesDirectory          string
+	DatabaseEncryptionKey   string
+	UseFileDatabase         bool
+	UseChatInfoDatabase     bool
+	UseMessageDatabase      bool
+	UseSecretChats          bool
+	LoadMessagesBeforeReply bool
+	SystemLanguageCode      string
+	DeviceModel             string
+	SystemVersion           string
+	ApplicationVersion      string
+	Logger                  *slog.Logger
 }
 
 func DefaultClientConfig() *ClientConfig {
 	return &ClientConfig{
-		DatabaseDirectory:   "database",
-		FilesDirectory:      "",
-		UseFileDatabase:     true,
-		UseChatInfoDatabase: true,
-		UseMessageDatabase:  true,
-		UseSecretChats:      true,
-		SystemLanguageCode:  "en",
-		DeviceModel:         "Gotdbot",
-		SystemVersion:       "1.0",
-		ApplicationVersion:  "1.0",
-		Logger:              slog.New(slog.NewTextHandler(os.Stdout, nil)),
+		DatabaseDirectory:       "database",
+		FilesDirectory:          "",
+		UseFileDatabase:         true,
+		UseChatInfoDatabase:     true,
+		UseMessageDatabase:      true,
+		UseSecretChats:          true,
+		LoadMessagesBeforeReply: false,
+		SystemLanguageCode:      "en",
+		DeviceModel:             "Gotdbot",
+		SystemVersion:           "1.0",
+		ApplicationVersion:      "1.0",
+		Logger:                  slog.New(slog.NewTextHandler(os.Stdout, nil)),
 	}
 }
 
