@@ -1,6 +1,9 @@
 package gotdbot
 
-import "strings"
+import (
+	"strconv"
+	"strings"
+)
 
 // SendTextMessageOpts contains optional parameters for SendTextMessage
 type SendTextMessageOpts struct {
@@ -20,6 +23,7 @@ type SendTextMessageOpts struct {
 	ReplyToMessageID      int64
 	ReplyMarkup           *ReplyMarkup
 	ClearDraft            bool
+	EffectId              int64
 }
 
 // SendTextMessage sends a text message to chat
@@ -50,6 +54,7 @@ func (c *Client) SendTextMessage(chatId int64, text string, opts *SendTextMessag
 		DisableNotification: opts.DisableNotification,
 		ProtectContent:      opts.ProtectContent,
 		AllowPaidBroadcast:  opts.AllowPaidBroadcast,
+		EffectId:            strconv.FormatInt(opts.EffectId, 10),
 	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
 }
 
@@ -72,6 +77,7 @@ type SendPhotoOpts struct {
 	ReplyToMessageID    int64
 	ReplyMarkup         *ReplyMarkup
 	Thumbnail           *InputThumbnail
+	EffectId            int64
 }
 
 // SendPhoto sends a photo to chat
@@ -100,6 +106,7 @@ func (c *Client) SendPhoto(chatId int64, photo string, opts *SendPhotoOpts) (*Me
 		DisableNotification: opts.DisableNotification,
 		ProtectContent:      opts.ProtectContent,
 		AllowPaidBroadcast:  opts.AllowPaidBroadcast,
+		EffectId:            strconv.FormatInt(opts.EffectId, 10),
 	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
 }
 
@@ -124,6 +131,7 @@ type SendVideoOpts struct {
 	ReplyToMessageID    int64
 	ReplyMarkup         *ReplyMarkup
 	Thumbnail           *InputThumbnail
+	EffectId            int64
 }
 
 // SendVideo sends a video to chat
@@ -154,6 +162,7 @@ func (c *Client) SendVideo(chatId int64, video string, opts *SendVideoOpts) (*Me
 		DisableNotification: opts.DisableNotification,
 		ProtectContent:      opts.ProtectContent,
 		AllowPaidBroadcast:  opts.AllowPaidBroadcast,
+		EffectId:            strconv.FormatInt(opts.EffectId, 10),
 	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
 }
 
@@ -176,6 +185,7 @@ type SendAnimationOpts struct {
 	ReplyToMessageID    int64
 	ReplyMarkup         *ReplyMarkup
 	Thumbnail           *InputThumbnail
+	EffectId            int64
 }
 
 // SendAnimation sends an animation to chat
@@ -204,6 +214,7 @@ func (c *Client) SendAnimation(chatId int64, animation string, opts *SendAnimati
 		DisableNotification: opts.DisableNotification,
 		ProtectContent:      opts.ProtectContent,
 		AllowPaidBroadcast:  opts.AllowPaidBroadcast,
+		EffectId:            strconv.FormatInt(opts.EffectId, 10),
 	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
 }
 
@@ -224,6 +235,7 @@ type SendAudioOpts struct {
 	ReplyToMessageID    int64
 	ReplyMarkup         *ReplyMarkup
 	AlbumCoverThumbnail *InputThumbnail
+	EffectId            int64
 }
 
 // SendAudio sends an audio to chat
@@ -250,6 +262,7 @@ func (c *Client) SendAudio(chatId int64, audio string, opts *SendAudioOpts) (*Me
 		DisableNotification: opts.DisableNotification,
 		ProtectContent:      opts.ProtectContent,
 		AllowPaidBroadcast:  opts.AllowPaidBroadcast,
+		EffectId:            strconv.FormatInt(opts.EffectId, 10),
 	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
 }
 
@@ -268,6 +281,7 @@ type SendDocumentOpts struct {
 	ReplyToMessageID            int64
 	ReplyMarkup                 *ReplyMarkup
 	Thumbnail                   *InputThumbnail
+	EffectId                    int64
 }
 
 // SendDocument sends a document to chat
@@ -292,6 +306,7 @@ func (c *Client) SendDocument(chatId int64, document string, opts *SendDocumentO
 		DisableNotification: opts.DisableNotification,
 		ProtectContent:      opts.ProtectContent,
 		AllowPaidBroadcast:  opts.AllowPaidBroadcast,
+		EffectId:            strconv.FormatInt(opts.EffectId, 10),
 	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
 }
 
@@ -310,6 +325,7 @@ type SendVoiceOpts struct {
 	ReplyTo             *InputMessageReplyTo
 	ReplyToMessageID    int64
 	ReplyMarkup         *ReplyMarkup
+	EffectId            int64
 }
 
 // SendVoice sends a voice note to chat
@@ -334,6 +350,7 @@ func (c *Client) SendVoice(chatId int64, voice string, opts *SendVoiceOpts) (*Me
 		DisableNotification: opts.DisableNotification,
 		ProtectContent:      opts.ProtectContent,
 		AllowPaidBroadcast:  opts.AllowPaidBroadcast,
+		EffectId:            strconv.FormatInt(opts.EffectId, 10),
 	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
 }
 
@@ -350,6 +367,7 @@ type SendVideoNoteOpts struct {
 	ReplyToMessageID    int64
 	ReplyMarkup         *ReplyMarkup
 	Thumbnail           *InputThumbnail
+	EffectId            int64
 }
 
 // SendVideoNote sends a video note to chat
@@ -373,6 +391,7 @@ func (c *Client) SendVideoNote(chatId int64, videoNote string, opts *SendVideoNo
 		DisableNotification: opts.DisableNotification,
 		ProtectContent:      opts.ProtectContent,
 		AllowPaidBroadcast:  opts.AllowPaidBroadcast,
+		EffectId:            strconv.FormatInt(opts.EffectId, 10),
 	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
 }
 
@@ -390,6 +409,7 @@ type SendStickerOpts struct {
 	ReplyToMessageID    int64
 	ReplyMarkup         *ReplyMarkup
 	Thumbnail           *InputThumbnail
+	EffectId            int64
 }
 
 // SendSticker sends a sticker to chat
@@ -414,6 +434,7 @@ func (c *Client) SendSticker(chatId int64, sticker string, opts *SendStickerOpts
 		DisableNotification: opts.DisableNotification,
 		ProtectContent:      opts.ProtectContent,
 		AllowPaidBroadcast:  opts.AllowPaidBroadcast,
+		EffectId:            strconv.FormatInt(opts.EffectId, 10),
 	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
 }
 
@@ -431,6 +452,7 @@ type SendCopyOpts struct {
 	Quote               *InputTextQuote
 	ReplyTo             *InputMessageReplyTo
 	ReplyToMessageID    int64
+	EffectId            int64
 }
 
 // SendCopy copies a message to chat
@@ -458,6 +480,7 @@ func (c *Client) SendCopy(chatId int64, fromChatId int64, messageId int64, opts 
 		DisableNotification: opts.DisableNotification,
 		ProtectContent:      opts.ProtectContent,
 		AllowPaidBroadcast:  opts.AllowPaidBroadcast,
+		EffectId:            strconv.FormatInt(opts.EffectId, 10),
 	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, nil)
 }
 
@@ -465,6 +488,7 @@ func (c *Client) SendCopy(chatId int64, fromChatId int64, messageId int64, opts 
 type ForwardMessageOpts struct {
 	InGameShare         bool
 	DisableNotification bool
+	EffectId            int64
 }
 
 // ForwardMessage forwards a message to chat
@@ -483,6 +507,7 @@ func (c *Client) ForwardMessage(chatId int64, fromChatId int64, messageId int64,
 
 	return c.sendMessageWithContent(chatId, content, &MessageSendOptions{
 		DisableNotification: opts.DisableNotification,
+		EffectId:            strconv.FormatInt(opts.EffectId, 10),
 	}, nil, nil, nil, 0, nil)
 }
 
