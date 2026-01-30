@@ -29,6 +29,10 @@ func generateHelpers(types []TLType, functions []TLType, classes map[string]*TLC
 		"User":       true,
 	}
 
+	manualMethods := map[string]bool{
+		"EditText": true,
+	}
+
 	generatedMethods := make(map[string]bool)
 
 	for _, t := range types {
@@ -111,9 +115,11 @@ func generateHelpers(types []TLType, functions []TLType, classes map[string]*TLC
 			}
 
 			fullHelperName := toCamelCase(t.Name) + "." + helperName
-			if generatedMethods[fullHelperName] {
+
+			if manualMethods[fullHelperName] || generatedMethods[fullHelperName] {
 				continue
 			}
+
 			generatedMethods[fullHelperName] = true
 
 			if currentHelpers >= helpersPerFile {

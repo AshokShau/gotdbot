@@ -1,35 +1,8 @@
 package gotdbot
 
 import (
-	"os"
+	"strings"
 )
-
-func GetFormattedText(c *Client, text string, entities []*TextEntity, parseMode string) *FormattedText {
-	if len(entities) > 0 {
-		return &FormattedText{
-			Text:     text,
-			Entities: entities,
-		}
-	} else if parseMode != "" {
-		ft, err := c.ParseText(text, parseMode)
-		if err == nil {
-			return ft
-		}
-	}
-	return &FormattedText{Text: text}
-}
-
-func GetInputFile(path string) *InputFile {
-	if _, err := os.Stat(path); err == nil {
-		return &InputFile{
-			InputFileLocal: &InputFileLocal{Path: path},
-		}
-	}
-
-	return &InputFile{
-		InputFileRemote: &InputFileRemote{Id: path},
-	}
-}
 
 // FromID returns the user ID or chat ID of the sender.
 func (m *Message) FromID() int64 {
@@ -300,4 +273,200 @@ func (m *Message) Download(c *Client, priority int32, offset int64, limit int64,
 	}
 
 	return fileInfo.Download(c, priority, offset, limit, synchronous)
+}
+
+// Mention returns the text mention of the message sender.
+func (m *Message) Mention(c *Client, parseMode string) (string, error) {
+	chat, err := c.GetChat(m.FromID())
+	if err != nil {
+		return "", err
+	}
+	html := strings.ToLower(parseMode) == "html"
+	return Mention(chat.Title, m.FromID(), html, true), nil
+}
+
+// GetMessageProperties returns the message properties.
+func (m *Message) GetMessageProperties(c *Client) (*MessageProperties, error) {
+	return c.GetMessageProperties(m.ChatId, m.Id)
+}
+
+// GetMessageLink returns the message link.
+func (m *Message) GetMessageLink(c *Client, mediaTimestamp int32, forAlbum bool, inMessageThread bool) (*MessageLink, error) {
+	return c.GetMessageLink(m.ChatId, m.Id, mediaTimestamp, forAlbum, inMessageThread)
+}
+
+// GetRepliedMessage returns the replied message.
+func (m *Message) GetRepliedMessage(c *Client) (*Message, error) {
+	return c.GetRepliedMessage(m.ChatId, m.Id)
+}
+
+// GetChatMember returns member info in the current chat.
+func (m *Message) GetChatMember(c *Client) (*ChatMember, error) {
+	return c.GetChatMember(m.ChatId, m.SenderId)
+}
+
+// SetChatMemberStatus sets chat member status.
+func (m *Message) SetChatMemberStatus(c *Client, status *ChatMemberStatus) (*Ok, error) {
+	return c.SetChatMemberStatus(m.ChatId, m.SenderId, status)
+}
+
+// Ban bans the message sender.
+func (m *Message) Ban(c *Client, bannedUntilDate int32) (*Ok, error) {
+	return m.SetChatMemberStatus(c, &ChatMemberStatus{
+		ChatMemberStatusBanned: &ChatMemberStatusBanned{
+			BannedUntilDate: bannedUntilDate,
+		},
+	})
+}
+
+// Kick kicks the message sender.
+func (m *Message) Kick(c *Client) (*Ok, error) {
+	return m.SetChatMemberStatus(c, &ChatMemberStatus{
+		ChatMemberStatusLeft: &ChatMemberStatusLeft{},
+	})
+}
+
+// Restrict restricts the message sender.
+func (m *Message) Restrict(c *Client, permissions *ChatPermissions, restrictedUntilDate int32) (*Ok, error) {
+	return m.SetChatMemberStatus(c, &ChatMemberStatus{
+		ChatMemberStatusRestricted: &ChatMemberStatusRestricted{
+			IsMember:            true,
+			Permissions:         permissions,
+			RestrictedUntilDate: restrictedUntilDate,
+		},
+	})
+}
+
+// React reacts to the current message.
+func (m *Message) React(c *Client, emoji string, isBig bool) (*Ok, error) {
+	var reactionTypes []*ReactionType
+	if emoji != "" {
+		reactionTypes = []*ReactionType{
+			{
+				ReactionTypeEmoji: &ReactionTypeEmoji{
+					Emoji: emoji,
+				},
+			},
+		}
+	}
+	return c.SetMessageReactions(m.ChatId, m.Id, reactionTypes, isBig)
+}
+
+// Action sends a chat action to a specific chat.
+func (m *Message) Action(c *Client, action string, topicId *MessageTopic) (*ChatActionSender, error) {
+	return NewChatAction(c, m.ChatId, action, topicId)
+}
+
+// ReplyText replies to the message with text.
+func (m *Message) ReplyText(c *Client, text string, opts *SendTextMessageOpts) (*Message, error) {
+	if opts == nil {
+		opts = &SendTextMessageOpts{}
+	}
+	if opts.ReplyToMessageID == 0 {
+		opts.ReplyToMessageID = m.Id
+	}
+	return c.SendTextMessage(m.ChatId, text, opts)
+}
+
+// ReplyAnimation replies to the message with animation.
+func (m *Message) ReplyAnimation(c *Client, animation string, opts *SendAnimationOpts) (*Message, error) {
+	if opts == nil {
+		opts = &SendAnimationOpts{}
+	}
+	if opts.ReplyToMessageID == 0 {
+		opts.ReplyToMessageID = m.Id
+	}
+	return c.SendAnimation(m.ChatId, animation, opts)
+}
+
+// ReplyAudio replies to the message with audio.
+func (m *Message) ReplyAudio(c *Client, audio string, opts *SendAudioOpts) (*Message, error) {
+	if opts == nil {
+		opts = &SendAudioOpts{}
+	}
+	if opts.ReplyToMessageID == 0 {
+		opts.ReplyToMessageID = m.Id
+	}
+	return c.SendAudio(m.ChatId, audio, opts)
+}
+
+// ReplyDocument replies to the message with a document.
+func (m *Message) ReplyDocument(c *Client, document string, opts *SendDocumentOpts) (*Message, error) {
+	if opts == nil {
+		opts = &SendDocumentOpts{}
+	}
+	if opts.ReplyToMessageID == 0 {
+		opts.ReplyToMessageID = m.Id
+	}
+	return c.SendDocument(m.ChatId, document, opts)
+}
+
+// ReplyPhoto replies to the message with a photo.
+func (m *Message) ReplyPhoto(c *Client, photo string, opts *SendPhotoOpts) (*Message, error) {
+	if opts == nil {
+		opts = &SendPhotoOpts{}
+	}
+	if opts.ReplyToMessageID == 0 {
+		opts.ReplyToMessageID = m.Id
+	}
+	return c.SendPhoto(m.ChatId, photo, opts)
+}
+
+// ReplyVideo replies to the message with a video.
+func (m *Message) ReplyVideo(c *Client, video string, opts *SendVideoOpts) (*Message, error) {
+	if opts == nil {
+		opts = &SendVideoOpts{}
+	}
+	if opts.ReplyToMessageID == 0 {
+		opts.ReplyToMessageID = m.Id
+	}
+	return c.SendVideo(m.ChatId, video, opts)
+}
+
+// ReplyVideoNote replies to the message with a video note.
+func (m *Message) ReplyVideoNote(c *Client, videoNote string, opts *SendVideoNoteOpts) (*Message, error) {
+	if opts == nil {
+		opts = &SendVideoNoteOpts{}
+	}
+	if opts.ReplyToMessageID == 0 {
+		opts.ReplyToMessageID = m.Id
+	}
+	return c.SendVideoNote(m.ChatId, videoNote, opts)
+}
+
+// ReplyVoice replies to the message with a voice note.
+func (m *Message) ReplyVoice(c *Client, voice string, opts *SendVoiceOpts) (*Message, error) {
+	if opts == nil {
+		opts = &SendVoiceOpts{}
+	}
+	if opts.ReplyToMessageID == 0 {
+		opts.ReplyToMessageID = m.Id
+	}
+	return c.SendVoice(m.ChatId, voice, opts)
+}
+
+// ReplySticker replies to the message with a sticker.
+func (m *Message) ReplySticker(c *Client, sticker string, opts *SendStickerOpts) (*Message, error) {
+	if opts == nil {
+		opts = &SendStickerOpts{}
+	}
+	if opts.ReplyToMessageID == 0 {
+		opts.ReplyToMessageID = m.Id
+	}
+	return c.SendSticker(m.ChatId, sticker, opts)
+}
+
+// Copy copies message to chat.
+func (m *Message) Copy(c *Client, chatId int64, opts *SendCopyOpts) (*Message, error) {
+	return c.SendCopy(chatId, m.ChatId, m.Id, opts)
+}
+
+// Forward forwards message to chat.
+func (m *Message) Forward(c *Client, chatId int64, opts *ForwardMessageOpts) (*Message, error) {
+	return c.ForwardMessage(chatId, m.ChatId, m.Id, opts)
+}
+
+// EditText edits a text message.
+func (m *Message) EditText(c *Client, text string, opts *EditTextMessageOpts) (*Message, error) {
+	return c.EditTextMessage(m.ChatId, m.Id, text, opts)
 }
