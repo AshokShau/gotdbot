@@ -1,0 +1,67 @@
+name: TDLib tdjson auto build
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  linux-x86_64:
+    name: tdjson linux x86_64
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout TDLib
+        uses: actions/checkout@v4
+        with:
+          repository: tdlib/td
+          fetch-depth: 1
+          path: td
+
+      - name: Detect TDLib version
+        id: ver
+        run: |
+          cd td
+          VER=$(grep -Po 'TDLib version \K[0-9.]+' README.md || true)
+          if [ -z "$VER" ]; then
+            VER=$(grep -Po 'set\(TDLIB_VERSION +"\K[^"]+' CMakeLists.txt || true)
+          fi
+          if [ -z "$VER" ]; then
+            VER=$(git rev-parse --short HEAD)
+          fi
+          echo "version=$VER" >> $GITHUB_OUTPUT
+
+      - name: Install deps
+        run: |
+          sudo apt update
+          sudo apt install -y \
+            cmake gperf \
+            zlib1g-dev libssl-dev
+
+      - name: Configure
+        run: |
+          cmake -S td -B td/build \
+            -DCMAKE_BUILD_TYPE=Release
+
+      - name: Build tdjson
+        run: |
+          cmake --build td/build --target tdjson -j$(nproc)
+
+      - name: Collect tdjson
+        run: |
+          mkdir -p out
+          find td/build -name "libtdjson.so*" -type f -exec cp {} out/ \;
+
+      - name: Package
+        run: |
+          cd out
+          tar -czf tdjson-linux-x86_64.tar.gz libtdjson.so*
+
+      - name: Create release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: tdjson-v${{ steps.ver.outputs.version }}
+          name: tdjson v${{ steps.ver.outputs.version }}
+          files: |
+            out/tdjson-linux-x86_64.tar.gz
