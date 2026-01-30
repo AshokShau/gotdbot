@@ -9,31 +9,17 @@ permissions:
 jobs:
   build:
     name: ${{ matrix.name }}
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-22.04
 
     strategy:
       fail-fast: false
       matrix:
         include:
           - name: linux-x86_64
-            os: ubuntu-22.04
             arch: x86_64
 
           - name: linux-aarch64
-            os: ubuntu-22.04
             arch: aarch64
-
-          - name: windows-x64
-            os: windows-2022
-            arch: x86_64
-
-          - name: macos-x86_64
-            os: macos-latest
-            arch: x86_64
-
-          - name: macos-arm64
-            os: macos-14
-            arch: arm64
 
     steps:
       - name: Checkout TDLib
@@ -57,58 +43,29 @@ jobs:
           fi
           echo "version=$VER" >> $GITHUB_OUTPUT
 
-      - name: Install deps (Linux)
-        if: runner.os == 'Linux'
+      - name: Install deps
         run: |
           sudo apt update
           sudo apt install -y \
             cmake gperf \
             zlib1g-dev libssl-dev
 
-      - name: Install deps (macOS)
-        if: runner.os == 'macOS'
-        run: |
-          brew update
-          brew install cmake gperf openssl@3
-
-      - name: Install deps (Windows)
-        if: runner.os == 'Windows'
-        run: |
-          choco install -y cmake gperf zlib openssl
-
-      - name: Configure (Linux / macOS)
-        if: runner.os != 'Windows'
+      - name: Configure
         shell: bash
         run: |
           cmake -S td -B build \
             -DCMAKE_BUILD_TYPE=Release
 
-      - name: Configure (Windows)
-        if: runner.os == 'Windows'
-        shell: powershell
-        run: |
-          cmake -S td -B build -A x64 `
-            -DGPERF_EXECUTABLE="C:/ProgramData/chocolatey/bin/gperf.exe"
-      
       - name: Build tdjson
         shell: bash
         run: |
-          cmake --build build --config Release --target tdjson
+          cmake --build build --target tdjson -j$(nproc)
 
-      - name: Collect tdjson (Linux / macOS)
-        if: runner.os != 'Windows'
+      - name: Collect tdjson
         shell: bash
         run: |
           mkdir -p out
-          find build -type f \( -name "libtdjson.so*" -o -name "libtdjson.dylib*" \) -exec cp {} out/ \;
-
-      - name: Collect tdjson (Windows)
-        if: runner.os == 'Windows'
-        shell: powershell
-        run: |
-          mkdir out
-          Get-ChildItem -Recurse build -Filter tdjson.dll | Copy-Item -Destination out
-          Get-ChildItem -Recurse build -Filter tdjson.lib | Copy-Item -Destination out -ErrorAction SilentlyContinue
+          find build -type f -name "libtdjson.so*" -exec cp {} out/ \;
 
       - name: Package
         shell: bash

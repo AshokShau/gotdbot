@@ -10,6 +10,7 @@ import (
 	"os"
 	"os/signal"
 	"sort"
+	"strings"
 	"sync"
 	"syscall"
 	"time"
@@ -59,7 +60,7 @@ type Client struct {
 	apiHash  string
 	botToken string
 	config   *ClientConfig
-	logger   *slog.Logger
+	Logger   *slog.Logger
 
 	updates chan TlObject
 	stop    chan struct{}
@@ -120,7 +121,7 @@ func NewClient(apiID int32, apiHash, botToken string, config *ClientConfig) *Cli
 		apiHash:       apiHash,
 		botToken:      botToken,
 		config:        config,
-		logger:        config.Logger,
+		Logger:        config.Logger,
 		updates:       make(chan TlObject, 1000),
 		stop:          make(chan struct{}),
 		handlers:      make(map[string][]*Handler),
@@ -129,6 +130,7 @@ func NewClient(apiID int32, apiHash, botToken string, config *ClientConfig) *Cli
 
 	c.AddHandler("updateAuthorizationState", c.authHandler, nil, 0)
 	c.AddHandler("updateUser", c.userHandler, nil, 0)
+	c.AddHandler("updateConnectionState", c.connectionStateHandler, nil, 0)
 
 	//tdjson.Send(c.clientID, `{"@type": "getOption", "name": "version"}`)
 	return c
@@ -154,11 +156,11 @@ func (c *Client) Start() error {
 
 // Idle blocks the current goroutine until a SIGINT or SIGTERM signal is received.
 func (c *Client) Idle() {
-	c.logger.Info("Bot is running. Press Ctrl+C to stop.")
+	c.Logger.Info("Bot is running. Press Ctrl+C to stop.")
 	sig := make(chan os.Signal, 1)
 	signal.Notify(sig, syscall.SIGINT, syscall.SIGTERM)
 	<-sig
-	c.logger.Info("Stopping...")
+	c.Logger.Info("Stopping...")
 	c.Stop()
 }
 
@@ -274,7 +276,7 @@ func (c *Client) authHandler(client *Client, update TlObject) error {
 		return nil
 	}
 
-	c.logger.Debug("Authorization state update", "state", authState.AuthorizationState.Type())
+	c.Logger.Debug("Authorization state update", "state", authState.AuthorizationState.Type())
 
 	switch authState.AuthorizationState.Type() {
 	case "authorizationStateWaitTdlibParameters":
@@ -295,14 +297,14 @@ func (c *Client) authHandler(client *Client, update TlObject) error {
 			c.config.ApplicationVersion,
 		)
 		if err != nil {
-			c.logger.Error("Error setting tdlib parameters", "error", err)
+			c.Logger.Error("Error setting tdlib parameters", "error", err)
 			c.authErrorChan <- err
 		}
 
 	case "authorizationStateWaitPhoneNumber":
 		_, err := c.CheckAuthenticationBotToken(c.botToken)
 		if err != nil {
-			c.logger.Error("Error checking bot token", "error", err)
+			c.Logger.Error("Error checking bot token", "error", err)
 			c.authErrorChan <- err
 		}
 
@@ -310,7 +312,7 @@ func (c *Client) authHandler(client *Client, update TlObject) error {
 		c.isAuthorized = true
 		me, err := c.GetMe()
 		if err != nil {
-			c.logger.Error("Failed to get me", "error", err)
+			c.Logger.Error("Failed to get me", "error", err)
 			c.authErrorChan <- err
 			return nil
 		}
@@ -322,7 +324,7 @@ func (c *Client) authHandler(client *Client, update TlObject) error {
 		if me.Usernames != nil && len(me.Usernames.ActiveUsernames) > 0 {
 			username = me.Usernames.ActiveUsernames[0]
 		}
-		c.logger.Info("Logged in", "user_id", me.Id, "username", username)
+		c.Logger.Info("Logged in", "user_id", me.Id, "username", username)
 
 		select {
 		case c.authErrorChan <- nil:
@@ -352,6 +354,18 @@ func (c *Client) userHandler(client *Client, update TlObject) error {
 		c.me = u.User
 		c.meMu.Unlock()
 	}
+	return nil
+}
+
+func (c *Client) connectionStateHandler(client *Client, update TlObject) error {
+	u, ok := update.(*UpdateConnectionState)
+	if !ok {
+		return nil
+	}
+
+	state := u.State.Type()
+	state = strings.TrimPrefix(state, "connectionState")
+	c.Logger.Info("Connection state changed", "state", state)
 	return nil
 }
 
