@@ -24,7 +24,6 @@ func TestDispatcher_Message(t *testing.T) {
 		Message: &gotdbot.Message{
 			ChatId: 123,
 			Content: &gotdbot.MessageContent{
-				TypeStr: "messageText",
 				MessageText: &gotdbot.MessageText{
 					Text: &gotdbot.FormattedText{
 						Text: "hello",
@@ -54,7 +53,6 @@ func TestDispatcher_Command(t *testing.T) {
 		Message: &gotdbot.Message{
 			ChatId: 123,
 			Content: &gotdbot.MessageContent{
-				TypeStr: "messageText",
 				MessageText: &gotdbot.MessageText{
 					Text: &gotdbot.FormattedText{
 						Text: "/start",
@@ -80,7 +78,7 @@ func TestDispatcher_InlineQuery(t *testing.T) {
 	d.AddHandler(h)
 
 	update := &gotdbot.UpdateNewInlineQuery{
-		Id: "1",
+		Id:    "1",
 		Query: "test",
 	}
 

@@ -69,7 +69,6 @@ func (c *Context) extractEffectiveFields() {
 	// Callbacks and Queries
 	case *gotdbot.UpdateNewCallbackQuery:
 		c.EffectiveSenderId = &gotdbot.MessageSender{
-			TypeStr: "messageSenderUser",
 			MessageSenderUser: &gotdbot.MessageSenderUser{
 				UserId: u.SenderUserId,
 			},
@@ -77,35 +76,30 @@ func (c *Context) extractEffectiveFields() {
 		c.EffectiveChatId = u.ChatId
 	case *gotdbot.UpdateNewInlineCallbackQuery:
 		c.EffectiveSenderId = &gotdbot.MessageSender{
-			TypeStr: "messageSenderUser",
 			MessageSenderUser: &gotdbot.MessageSenderUser{
 				UserId: u.SenderUserId,
 			},
 		}
 	case *gotdbot.UpdateNewBusinessCallbackQuery:
 		c.EffectiveSenderId = &gotdbot.MessageSender{
-			TypeStr: "messageSenderUser",
 			MessageSenderUser: &gotdbot.MessageSenderUser{
 				UserId: u.SenderUserId,
 			},
 		}
 	case *gotdbot.UpdateNewInlineQuery:
 		c.EffectiveSenderId = &gotdbot.MessageSender{
-			TypeStr: "messageSenderUser",
 			MessageSenderUser: &gotdbot.MessageSenderUser{
 				UserId: u.SenderUserId,
 			},
 		}
 	case *gotdbot.UpdateNewPreCheckoutQuery:
 		c.EffectiveSenderId = &gotdbot.MessageSender{
-			TypeStr: "messageSenderUser",
 			MessageSenderUser: &gotdbot.MessageSenderUser{
 				UserId: u.SenderUserId,
 			},
 		}
 	case *gotdbot.UpdateNewShippingQuery:
 		c.EffectiveSenderId = &gotdbot.MessageSender{
-			TypeStr: "messageSenderUser",
 			MessageSenderUser: &gotdbot.MessageSenderUser{
 				UserId: u.SenderUserId,
 			},
@@ -188,7 +182,6 @@ func (c *Context) Reply(text string, contentOpts *gotdbot.InputMessageContent) (
 	if c.EffectiveMessage != nil {
 		opts = &gotdbot.SendMessageOpts{
 			ReplyTo: &gotdbot.InputMessageReplyTo{
-				TypeStr: "inputMessageReplyToMessage",
 				InputMessageReplyToMessage: &gotdbot.InputMessageReplyToMessage{
 					MessageId: c.EffectiveMessage.Id,
 				},

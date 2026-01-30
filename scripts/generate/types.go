@@ -35,7 +35,7 @@ func generateClasses(classes map[string]*TLClass) {
 		structName := toCamelCase(name)
 		fmt.Fprintf(f, "// %s %s\n", structName, formatDesc(cls.Description))
 		fmt.Fprintf(f, "type %s struct {\n", structName)
-		fmt.Fprintf(f, "\tTypeStr string `json:\"@type\"`\n")
+		fmt.Fprintf(f, "\ttypeStr string `json:\"@type\"`\n")
 		// Add fields for implementations
 		for _, impl := range cls.Implementations {
 			implStructName := toCamelCase(impl)
@@ -44,7 +44,7 @@ func generateClasses(classes map[string]*TLClass) {
 		fmt.Fprintf(f, "}\n\n")
 
 		fmt.Fprintf(f, "func (t *%s) Type() string {\n", structName)
-		fmt.Fprintf(f, "\treturn t.TypeStr\n")
+		fmt.Fprintf(f, "\treturn t.typeStr\n")
 		fmt.Fprintf(f, "}\n\n")
 
 		fmt.Fprintf(f, "func (t *%s) SetExtra(extra string) {\n", structName)
@@ -59,7 +59,7 @@ func generateClasses(classes map[string]*TLClass) {
 		fmt.Fprintf(f, "func (t *%s) UnmarshalJSON(b []byte) error {\n", structName)
 		fmt.Fprintf(f, "\tvar typeObj struct { Type string `json:\"@type\"` }\n")
 		fmt.Fprintf(f, "\tif err := json.Unmarshal(b, &typeObj); err != nil { return err }\n")
-		fmt.Fprintf(f, "\tt.TypeStr = typeObj.Type\n")
+		fmt.Fprintf(f, "\tt.typeStr = typeObj.Type\n")
 		fmt.Fprintf(f, "\tswitch typeObj.Type {\n")
 		for _, impl := range cls.Implementations {
 			implStructName := toCamelCase(impl)
@@ -100,8 +100,7 @@ func generateObjects(types []TLType, classes map[string]*TLClass) {
 		structName := toCamelCase(t.Name)
 		fmt.Fprintf(f, "// %s %s\n", structName, formatDesc(t.Description))
 		fmt.Fprintf(f, "type %s struct {\n", structName)
-		fmt.Fprintf(f, "\tTypeStr string `json:\"@type\"`\n")
-		fmt.Fprintf(f, "\tExtra   string `json:\"@extra,omitempty\"`\n")
+		fmt.Fprintf(f, "\textra string\n")
 		for _, p := range t.Params {
 			goType := toGoType(p.Type, classes)
 			fieldName := toCamelCase(p.Name)
@@ -122,11 +121,11 @@ func generateObjects(types []TLType, classes map[string]*TLClass) {
 		fmt.Fprintf(f, "}\n\n")
 
 		fmt.Fprintf(f, "func (t *%s) SetExtra(extra string) {\n", structName)
-		fmt.Fprintf(f, "\tt.Extra = extra\n")
+		fmt.Fprintf(f, "\tt.extra = extra\n")
 		fmt.Fprintf(f, "}\n\n")
 
 		fmt.Fprintf(f, "func (t *%s) GetExtra() string {\n", structName)
-		fmt.Fprintf(f, "\treturn t.Extra\n")
+		fmt.Fprintf(f, "\treturn t.extra\n")
 		fmt.Fprintf(f, "}\n\n")
 
 		// MarshalJSON for Concrete Type
@@ -134,9 +133,11 @@ func generateObjects(types []TLType, classes map[string]*TLClass) {
 		fmt.Fprintf(f, "\ttype Alias %s\n", structName)
 		fmt.Fprintf(f, "\treturn json.Marshal(&struct {\n")
 		fmt.Fprintf(f, "\t\tTypeStr string `json:\"@type\"`\n")
+		fmt.Fprintf(f, "\t\tExtra   string `json:\"@extra,omitempty\"`\n")
 		fmt.Fprintf(f, "\t\t*Alias\n")
 		fmt.Fprintf(f, "\t}{\n")
 		fmt.Fprintf(f, "\t\tTypeStr: \"%s\",\n", t.Name)
+		fmt.Fprintf(f, "\t\tExtra:   t.extra,\n")
 		fmt.Fprintf(f, "\t\tAlias:   (*Alias)(t),\n")
 		fmt.Fprintf(f, "\t})\n")
 		fmt.Fprintf(f, "}\n\n")
@@ -144,7 +145,10 @@ func generateObjects(types []TLType, classes map[string]*TLClass) {
 
 	// Generate unmarshal helper
 	fmt.Fprintln(f, "func Unmarshal(data []byte) (TlObject, error) {")
-	fmt.Fprintln(f, "\tvar typeObj struct { Type string `json:\"@type\"` }")
+	fmt.Fprintln(f, "\tvar typeObj struct {\n")
+	fmt.Fprintln(f, "\t\tType string `json:\"@type\"`\n")
+	fmt.Fprintln(f, "\t\tExtra string `json:\"@extra\"`\n")
+	fmt.Fprintln(f, "\t}")
 	fmt.Fprintln(f, "\tif err := json.Unmarshal(data, &typeObj); err != nil { return nil, err }")
 	fmt.Fprintln(f, "\tswitch typeObj.Type {")
 	for _, t := range types {
@@ -152,6 +156,7 @@ func generateObjects(types []TLType, classes map[string]*TLClass) {
 		fmt.Fprintf(f, "\tcase \"%s\":\n", t.Name)
 		fmt.Fprintf(f, "\t\tvar obj %s\n", structName)
 		fmt.Fprintf(f, "\t\tif err := json.Unmarshal(data, &obj); err != nil { return nil, err }\n")
+		fmt.Fprintf(f, "\t\tobj.SetExtra(typeObj.Extra)\n")
 		fmt.Fprintf(f, "\t\treturn &obj, nil\n")
 	}
 	fmt.Fprintln(f, "\tdefault:")
@@ -176,8 +181,7 @@ func generateFunctions(functions []TLType, classes map[string]*TLClass) {
 		structName := toCamelCase(t.Name)
 		fmt.Fprintf(f, "// %s %s\n", structName, formatDesc(t.Description))
 		fmt.Fprintf(f, "type %s struct {\n", structName)
-		fmt.Fprintf(f, "\tTypeStr string `json:\"@type\"`\n")
-		fmt.Fprintf(f, "\tExtra   string `json:\"@extra,omitempty\"`\n")
+		fmt.Fprintf(f, "\textra string\n")
 		for _, p := range t.Params {
 			goType := toGoType(p.Type, classes)
 			fieldName := toCamelCase(p.Name)
@@ -198,11 +202,11 @@ func generateFunctions(functions []TLType, classes map[string]*TLClass) {
 		fmt.Fprintf(f, "}\n\n")
 
 		fmt.Fprintf(f, "func (t *%s) SetExtra(extra string) {\n", structName)
-		fmt.Fprintf(f, "\tt.Extra = extra\n")
+		fmt.Fprintf(f, "\tt.extra = extra\n")
 		fmt.Fprintf(f, "}\n\n")
 
 		fmt.Fprintf(f, "func (t *%s) GetExtra() string {\n", structName)
-		fmt.Fprintf(f, "\treturn t.Extra\n")
+		fmt.Fprintf(f, "\treturn t.extra\n")
 		fmt.Fprintf(f, "}\n\n")
 
 		// MarshalJSON for Function
@@ -210,9 +214,11 @@ func generateFunctions(functions []TLType, classes map[string]*TLClass) {
 		fmt.Fprintf(f, "\ttype Alias %s\n", structName)
 		fmt.Fprintf(f, "\treturn json.Marshal(&struct {\n")
 		fmt.Fprintf(f, "\t\tTypeStr string `json:\"@type\"`\n")
+		fmt.Fprintf(f, "\t\tExtra   string `json:\"@extra,omitempty\"`\n")
 		fmt.Fprintf(f, "\t\t*Alias\n")
 		fmt.Fprintf(f, "\t}{\n")
 		fmt.Fprintf(f, "\t\tTypeStr: \"%s\",\n", t.Name)
+		fmt.Fprintf(f, "\t\tExtra:   t.extra,\n")
 		fmt.Fprintf(f, "\t\tAlias:   (*Alias)(t),\n")
 		fmt.Fprintf(f, "\t})\n")
 		fmt.Fprintf(f, "}\n\n")

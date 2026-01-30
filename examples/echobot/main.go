@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"runtime"
+	"time"
 
 	"github.com/AshokShau/gotdbot"
 	"github.com/AshokShau/gotdbot/ext"
@@ -21,13 +22,77 @@ func main() {
 
 	dispatcher := ext.NewDispatcher(bot)
 
+	var startTime = time.Now()
+
 	dispatcher.AddHandler(handlers.NewCommand("start", func(ctx *ext.Context) error {
-		_, err := ctx.Reply("Hello! I am an echo bot powered by gotdbot.", nil)
-		return err
+		kb := &gotdbot.ReplyMarkupInlineKeyboard{
+			Rows: [][]*gotdbot.InlineKeyboardButton{
+				{
+					{
+						Text: "GoTDBot GitHub",
+						TypeField: &gotdbot.InlineKeyboardButtonType{
+							InlineKeyboardButtonTypeUrl: &gotdbot.InlineKeyboardButtonTypeUrl{
+								Url: "https://github.com/AshokShau/gotdbot",
+							},
+						},
+					},
+				},
+			},
+		}
+
+		content := &gotdbot.InputMessageContent{
+			InputMessageText: &gotdbot.InputMessageText{
+				Text: &gotdbot.FormattedText{
+					Text: "Hello! I am an echo bot powered by gotdbot",
+				},
+			},
+		}
+
+		opts := &gotdbot.SendMessageOpts{
+			ReplyTo: &gotdbot.InputMessageReplyTo{
+				InputMessageReplyToMessage: &gotdbot.InputMessageReplyToMessage{
+					MessageId: ctx.EffectiveMessage.Id,
+				},
+			},
+			ReplyMarkup: &gotdbot.ReplyMarkup{
+				ReplyMarkupInlineKeyboard: kb,
+			},
+		}
+
+		_, err := ctx.Client.SendMessage(ctx.EffectiveChatId, content, opts)
+		if err != nil {
+			log.Printf("Error sending message: %v", err)
+		}
+		return nil
 	}))
 
 	dispatcher.AddHandler(handlers.NewCommand("go", func(ctx *ext.Context) error {
-		reply := fmt.Sprintf("Hello! There are currently %d goroutines running.", runtime.NumGoroutine())
+		var m runtime.MemStats
+		runtime.ReadMemStats(&m)
+
+		uptime := time.Since(startTime).Round(time.Second)
+
+		reply := fmt.Sprintf(
+			"🟢 Go runtime stats\n\n"+
+				"• Goroutines : %d\n"+
+				"• CPUs       : %d\n"+
+				"• GOMAXPROCS : %d\n"+
+				"• Uptime     : %s\n\n"+
+				"🧠 Memory\n"+
+				"• Alloc      : %.2f MB\n"+
+				"• HeapAlloc  : %.2f MB\n"+
+				"• Sys        : %.2f MB\n"+
+				"• GC cycles  : %d",
+			runtime.NumGoroutine(),
+			runtime.NumCPU(),
+			runtime.GOMAXPROCS(0),
+			uptime,
+			float64(m.Alloc)/1024/1024,
+			float64(m.HeapAlloc)/1024/1024,
+			float64(m.Sys)/1024/1024,
+			m.NumGC,
+		)
+
 		_, err := ctx.Reply(reply, nil)
 		return err
 	}))

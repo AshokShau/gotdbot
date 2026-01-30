@@ -65,7 +65,7 @@ func toGoType(tlType string, classes map[string]*TLClass) string {
 		return "float64"
 	case "string":
 		return "string"
-	case "bytes":
+	case "bytes": // TODO: handle bytes properly
 		return "string"
 	case "Bool":
 		return "bool"
