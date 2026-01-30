@@ -1,7 +1,6 @@
 package gotdbot
 
 import (
-	"encoding/base64"
 	"os"
 	"strings"
 )
@@ -334,12 +333,7 @@ func (t *UpdateNewCallbackQuery) CallbackData() []byte {
 		return nil
 	}
 	if t.Payload.CallbackQueryPayloadData != nil {
-		data, err := base64.StdEncoding.DecodeString(t.Payload.CallbackQueryPayloadData.Data)
-		if err == nil {
-			return data
-		}
-
-		return []byte(t.Payload.CallbackQueryPayloadData.Data)
+		return t.Payload.CallbackQueryPayloadData.Data
 	}
 	return nil
 }

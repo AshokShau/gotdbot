@@ -86,7 +86,7 @@ func main() {
 						Text: "OwO",
 						TypeField: &gotdbot.InlineKeyboardButtonType{
 							InlineKeyboardButtonTypeCallback: &gotdbot.InlineKeyboardButtonTypeCallback{
-								Data: "OwO",
+								Data: []byte("OwO"),
 							},
 						},
 					},
@@ -94,7 +94,7 @@ func main() {
 						Text: "UwU",
 						TypeField: &gotdbot.InlineKeyboardButtonType{
 							InlineKeyboardButtonTypeCallback: &gotdbot.InlineKeyboardButtonTypeCallback{
-								Data: "UwU",
+								Data: []byte("UwU"),
 							},
 						},
 					},
@@ -206,7 +206,7 @@ func main() {
 
 		var data string
 		if update.Payload != nil && update.Payload.CallbackQueryPayloadData != nil {
-			data = update.Payload.CallbackQueryPayloadData.Data
+			data = string(update.Payload.CallbackQueryPayloadData.Data)
 		}
 
 		if data != "" {

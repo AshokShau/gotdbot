@@ -284,7 +284,7 @@ func (c *Client) authHandler(client *Client, update TlObject) error {
 			c.config.UseTestDC,
 			c.config.DatabaseDirectory,
 			c.config.FilesDirectory,
-			c.config.DatabaseEncryptionKey,
+			[]byte(c.config.DatabaseEncryptionKey),
 			c.config.UseFileDatabase,
 			c.config.UseChatInfoDatabase,
 			c.config.UseMessageDatabase,

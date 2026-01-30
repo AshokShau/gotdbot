@@ -528,7 +528,7 @@ type AddLoginPasskey struct {
 	// JSON-encoded client data
 	ClientData string `json:"client_data"`
 	// Passkey attestation object
-	AttestationObject string `json:"attestation_object"`
+	AttestationObject []byte `json:"attestation_object"`
 }
 
 func (t *AddLoginPasskey) Type() string {
@@ -2212,11 +2212,11 @@ type CheckAuthenticationPasskey struct {
 	// JSON-encoded client data
 	ClientData string `json:"client_data"`
 	// Authenticator data of the application that created the credential
-	AuthenticatorData string `json:"authenticator_data"`
+	AuthenticatorData []byte `json:"authenticator_data"`
 	// Cryptographic signature of the credential
-	Signature string `json:"signature"`
+	Signature []byte `json:"signature"`
 	// User handle of the passkey
-	UserHandle string `json:"user_handle"`
+	UserHandle []byte `json:"user_handle"`
 }
 
 func (t *CheckAuthenticationPasskey) Type() string {
@@ -4362,7 +4362,7 @@ type DecryptGroupCallData struct {
 	// Data channel for which data was encrypted; pass null if unknown
 	DataChannel *GroupCallDataChannel `json:"data_channel,omitempty"`
 	// Data to decrypt
-	Data string `json:"data"`
+	Data []byte `json:"data"`
 }
 
 func (t *DecryptGroupCallData) Type() string {
@@ -7308,7 +7308,7 @@ type EncryptGroupCallData struct {
 	// Data channel for which data is encrypted
 	DataChannel *GroupCallDataChannel `json:"data_channel"`
 	// Data to encrypt
-	Data string `json:"data"`
+	Data []byte `json:"data"`
 	// Size of data prefix that must be kept unencrypted
 	UnencryptedPrefixSize int32 `json:"unencrypted_prefix_size"`
 }
@@ -21554,7 +21554,7 @@ type ReportChat struct {
 	// Chat identifier
 	ChatId int64 `json:"chat_id"`
 	// Option identifier chosen by the user; leave empty for the initial request
-	OptionId string `json:"option_id"`
+	OptionId []byte `json:"option_id"`
 	// Identifiers of reported messages. Use messageProperties.can_report_chat to check whether the message can be reported
 	MessageIds []int64 `json:"message_ids"`
 	// Additional report details if asked by the server; 0-1024 characters; leave empty for the initial request
@@ -21632,7 +21632,7 @@ type ReportChatSponsoredMessage struct {
 	// Identifier of the sponsored message
 	MessageId int64 `json:"message_id"`
 	// Option identifier chosen by the user; leave empty for the initial request
-	OptionId string `json:"option_id"`
+	OptionId []byte `json:"option_id"`
 }
 
 func (t *ReportChatSponsoredMessage) Type() string {
@@ -21734,7 +21734,7 @@ type ReportSponsoredChat struct {
 	// Unique identifier of the sponsored chat
 	SponsoredChatUniqueId int64 `json:"sponsored_chat_unique_id"`
 	// Option identifier chosen by the user; leave empty for the initial request
-	OptionId string `json:"option_id"`
+	OptionId []byte `json:"option_id"`
 }
 
 func (t *ReportSponsoredChat) Type() string {
@@ -21770,7 +21770,7 @@ type ReportStory struct {
 	// The identifier of the story to report
 	StoryId int32 `json:"story_id"`
 	// Option identifier chosen by the user; leave empty for the initial request
-	OptionId string `json:"option_id"`
+	OptionId []byte `json:"option_id"`
 	// Additional report details; 0-1024 characters; leave empty for the initial request
 	Text string `json:"text"`
 }
@@ -21874,7 +21874,7 @@ type ReportVideoMessageAdvertisement struct {
 	// Unique identifier of the advertisement
 	AdvertisementUniqueId int64 `json:"advertisement_unique_id"`
 	// Option identifier chosen by the user; leave empty for the initial request
-	OptionId string `json:"option_id"`
+	OptionId []byte `json:"option_id"`
 }
 
 func (t *ReportVideoMessageAdvertisement) Type() string {
@@ -24084,7 +24084,7 @@ type SendCallSignalingData struct {
 	//
 	CallId int32 `json:"call_id"`
 	//
-	Data string `json:"data"`
+	Data []byte `json:"data"`
 }
 
 func (t *SendCallSignalingData) Type() string {
@@ -26770,7 +26770,7 @@ func (t *SetCustomLanguagePackString) MarshalJSON() ([]byte, error) {
 type SetDatabaseEncryptionKey struct {
 	extra string
 	//
-	NewEncryptionKey string `json:"new_encryption_key"`
+	NewEncryptionKey []byte `json:"new_encryption_key"`
 }
 
 func (t *SetDatabaseEncryptionKey) Type() string {
@@ -29074,7 +29074,7 @@ type SetTdlibParameters struct {
 	// The path to the directory for storing files; if empty, database_directory will be used
 	FilesDirectory string `json:"files_directory"`
 	// Encryption key for the database. If the encryption key is invalid, then an error with code 401 will be returned
-	DatabaseEncryptionKey string `json:"database_encryption_key"`
+	DatabaseEncryptionKey []byte `json:"database_encryption_key"`
 	// Pass true to keep information about downloaded and uploaded files between application restarts
 	UseFileDatabase bool `json:"use_file_database"`
 	// Pass true to keep cache of users, basic groups, supergroups, channels and secret chats between restarts. Implies use_file_database
@@ -29960,7 +29960,7 @@ func (t *TerminateSession) MarshalJSON() ([]byte, error) {
 type TestCallBytes struct {
 	extra string
 	//
-	X string `json:"x"`
+	X []byte `json:"x"`
 }
 
 func (t *TestCallBytes) Type() string {
@@ -32514,7 +32514,7 @@ type WriteGeneratedFilePart struct {
 	// The offset from which to write the data to the file
 	Offset int64 `json:"offset"`
 	// The data to write
-	Data string `json:"data"`
+	Data []byte `json:"data"`
 }
 
 func (t *WriteGeneratedFilePart) Type() string {

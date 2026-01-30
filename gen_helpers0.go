@@ -851,7 +851,7 @@ func (c Chat) ReplaceVideoRtmpUrl(client *Client) (*RtmpUrl, error) {
 }
 
 // Report is a helper method for Client.ReportChat
-func (c Chat) Report(client *Client, optionId string, messageIds []int64, text string) (*ReportChatResult, error) {
+func (c Chat) Report(client *Client, optionId []byte, messageIds []int64, text string) (*ReportChatResult, error) {
 	return client.ReportChat(c.Id, optionId, messageIds, text)
 }
 
@@ -861,7 +861,7 @@ func (c Chat) ReportPhoto(client *Client, fileId int32, reason *ReportReason, te
 }
 
 // ReportSponsoredMessage is a helper method for Client.ReportChatSponsoredMessage
-func (c Chat) ReportSponsoredMessage(client *Client, messageId int64, optionId string) (*ReportSponsoredResult, error) {
+func (c Chat) ReportSponsoredMessage(client *Client, messageId int64, optionId []byte) (*ReportSponsoredResult, error) {
 	return client.ReportChatSponsoredMessage(c.Id, messageId, optionId)
 }
 
@@ -1646,7 +1646,7 @@ func (m Message) RemovePendingPaidReactions(client *Client) (*Ok, error) {
 }
 
 // ReportChatSponsored is a helper method for Client.ReportChatSponsoredMessage
-func (m Message) ReportChatSponsored(client *Client, optionId string) (*ReportSponsoredResult, error) {
+func (m Message) ReportChatSponsored(client *Client, optionId []byte) (*ReportSponsoredResult, error) {
 	return client.ReportChatSponsoredMessage(m.ChatId, m.Id, optionId)
 }
 

@@ -202,7 +202,7 @@ func (c *Client) AddLocalMessage(chatId int64, senderId *MessageSender, disableN
 }
 
 // AddLoginPasskey Adds a passkey allowed to be used for the login by the current user and returns the added passkey. Call getPasskeyParameters to get parameters for creating of the passkey
-func (c *Client) AddLoginPasskey(clientData string, attestationObject string) (*Passkey, error) {
+func (c *Client) AddLoginPasskey(clientData string, attestationObject []byte) (*Passkey, error) {
 	req := &AddLoginPasskey{
 		ClientData:        clientData,
 		AttestationObject: attestationObject,
@@ -848,7 +848,7 @@ func (c *Client) CheckAuthenticationEmailCode(code *EmailAddressAuthentication) 
 }
 
 // CheckAuthenticationPasskey Checks a passkey to log in to the corresponding account. Call getAuthenticationPasskeyParameters to get parameters for the passkey. Works only when the current authorization state is
-func (c *Client) CheckAuthenticationPasskey(credentialId string, clientData string, authenticatorData string, signature string, userHandle string) (*Ok, error) {
+func (c *Client) CheckAuthenticationPasskey(credentialId string, clientData string, authenticatorData []byte, signature []byte, userHandle []byte) (*Ok, error) {
 	req := &CheckAuthenticationPasskey{
 		CredentialId:      credentialId,
 		ClientData:        clientData,
@@ -1661,7 +1661,7 @@ func (c *Client) DeclineSuggestedPost(chatId int64, messageId int64, comment str
 }
 
 // DecryptGroupCallData Decrypts group call data received by tgcalls
-func (c *Client) DecryptGroupCallData(groupCallId int32, participantId *MessageSender, data string, opts *DecryptGroupCallDataOpts) (*Data, error) {
+func (c *Client) DecryptGroupCallData(groupCallId int32, participantId *MessageSender, data []byte, opts *DecryptGroupCallDataOpts) (*Data, error) {
 	req := &DecryptGroupCallData{
 		GroupCallId:   groupCallId,
 		ParticipantId: participantId,
@@ -2840,7 +2840,7 @@ func (c *Client) EnableProxy(proxyId int32) (*Ok, error) {
 }
 
 // EncryptGroupCallData Encrypts group call data before sending them over network using tgcalls
-func (c *Client) EncryptGroupCallData(groupCallId int32, dataChannel *GroupCallDataChannel, data string, unencryptedPrefixSize int32) (*Data, error) {
+func (c *Client) EncryptGroupCallData(groupCallId int32, dataChannel *GroupCallDataChannel, data []byte, unencryptedPrefixSize int32) (*Data, error) {
 	req := &EncryptGroupCallData{
 		GroupCallId:           groupCallId,
 		DataChannel:           dataChannel,
@@ -8237,7 +8237,7 @@ func (c *Client) ReportAuthenticationCodeMissing(mobileNetworkCode string) (*Ok,
 }
 
 // ReportChat Reports a chat to the Telegram moderators. A chat can be reported only from the chat action bar, or if chat.can_be_reported
-func (c *Client) ReportChat(chatId int64, optionId string, messageIds []int64, text string) (*ReportChatResult, error) {
+func (c *Client) ReportChat(chatId int64, optionId []byte, messageIds []int64, text string) (*ReportChatResult, error) {
 	req := &ReportChat{
 		ChatId:     chatId,
 		OptionId:   optionId,
@@ -8267,7 +8267,7 @@ func (c *Client) ReportChatPhoto(chatId int64, fileId int32, reason *ReportReaso
 }
 
 // ReportChatSponsoredMessage Reports a sponsored message to Telegram moderators
-func (c *Client) ReportChatSponsoredMessage(chatId int64, messageId int64, optionId string) (*ReportSponsoredResult, error) {
+func (c *Client) ReportChatSponsoredMessage(chatId int64, messageId int64, optionId []byte) (*ReportSponsoredResult, error) {
 	req := &ReportChatSponsoredMessage{
 		ChatId:    chatId,
 		MessageId: messageId,
@@ -8307,7 +8307,7 @@ func (c *Client) ReportPhoneNumberCodeMissing(mobileNetworkCode string) (*Ok, er
 }
 
 // ReportSponsoredChat Reports a sponsored chat to Telegram moderators
-func (c *Client) ReportSponsoredChat(sponsoredChatUniqueId int64, optionId string) (*ReportSponsoredResult, error) {
+func (c *Client) ReportSponsoredChat(sponsoredChatUniqueId int64, optionId []byte) (*ReportSponsoredResult, error) {
 	req := &ReportSponsoredChat{
 		SponsoredChatUniqueId: sponsoredChatUniqueId,
 		OptionId:              optionId,
@@ -8320,7 +8320,7 @@ func (c *Client) ReportSponsoredChat(sponsoredChatUniqueId int64, optionId strin
 }
 
 // ReportStory Reports a story to the Telegram moderators
-func (c *Client) ReportStory(storyPosterChatId int64, storyId int32, optionId string, text string) (*ReportStoryResult, error) {
+func (c *Client) ReportStory(storyPosterChatId int64, storyId int32, optionId []byte, text string) (*ReportStoryResult, error) {
 	req := &ReportStory{
 		StoryPosterChatId: storyPosterChatId,
 		StoryId:           storyId,
@@ -8361,7 +8361,7 @@ func (c *Client) ReportSupergroupSpam(supergroupId int64, messageIds []int64) (*
 }
 
 // ReportVideoMessageAdvertisement Reports a video message advertisement to Telegram moderators
-func (c *Client) ReportVideoMessageAdvertisement(advertisementUniqueId int64, optionId string) (*ReportSponsoredResult, error) {
+func (c *Client) ReportVideoMessageAdvertisement(advertisementUniqueId int64, optionId []byte) (*ReportSponsoredResult, error) {
 	req := &ReportVideoMessageAdvertisement{
 		AdvertisementUniqueId: advertisementUniqueId,
 		OptionId:              optionId,
@@ -9222,7 +9222,7 @@ func (c *Client) SendCallRating(callId int32, rating int32, comment string, prob
 }
 
 // SendCallSignalingData Sends call signaling data @call_id Call identifier @data The data
-func (c *Client) SendCallSignalingData(callId int32, data string) (*Ok, error) {
+func (c *Client) SendCallSignalingData(callId int32, data []byte) (*Ok, error) {
 	req := &SendCallSignalingData{
 		CallId: callId,
 		Data:   data,
@@ -10287,7 +10287,7 @@ func (c *Client) SetCustomLanguagePackString(languagePackId string, newString *L
 }
 
 // SetDatabaseEncryptionKey Changes the database encryption key. Usually the encryption key is never changed and is stored in some OS keychain @new_encryption_key New encryption key
-func (c *Client) SetDatabaseEncryptionKey(newEncryptionKey string) (*Ok, error) {
+func (c *Client) SetDatabaseEncryptionKey(newEncryptionKey []byte) (*Ok, error) {
 	req := &SetDatabaseEncryptionKey{
 		NewEncryptionKey: newEncryptionKey,
 	}
@@ -11185,7 +11185,7 @@ func (c *Client) SetSupergroupUsername(supergroupId int64, username string) (*Ok
 }
 
 // SetTdlibParameters Sets the parameters for TDLib initialization. Works only when the current authorization state is authorizationStateWaitTdlibParameters
-func (c *Client) SetTdlibParameters(useTestDc bool, databaseDirectory string, filesDirectory string, databaseEncryptionKey string, useFileDatabase bool, useChatInfoDatabase bool, useMessageDatabase bool, useSecretChats bool, apiId int32, apiHash string, systemLanguageCode string, deviceModel string, systemVersion string, applicationVersion string) (*Ok, error) {
+func (c *Client) SetTdlibParameters(useTestDc bool, databaseDirectory string, filesDirectory string, databaseEncryptionKey []byte, useFileDatabase bool, useChatInfoDatabase bool, useMessageDatabase bool, useSecretChats bool, apiId int32, apiHash string, systemLanguageCode string, deviceModel string, systemVersion string, applicationVersion string) (*Ok, error) {
 	req := &SetTdlibParameters{
 		UseTestDc:             useTestDc,
 		DatabaseDirectory:     databaseDirectory,
@@ -11534,7 +11534,7 @@ func (c *Client) TerminateSession(sessionId string) (*Ok, error) {
 }
 
 // TestCallBytes Returns the received bytes; for testing only. This is an offline method. Can be called before authorization @x Bytes to return
-func (c *Client) TestCallBytes(x string) (*TestBytes, error) {
+func (c *Client) TestCallBytes(x []byte) (*TestBytes, error) {
 	req := &TestCallBytes{
 		X: x,
 	}
@@ -12509,7 +12509,7 @@ func (c *Client) ViewVideoMessageAdvertisement(advertisementUniqueId int64) (*Ok
 }
 
 // WriteGeneratedFilePart Writes a part of a generated file. This method is intended to be used only if the application has no direct access to TDLib's file system, because it is usually slower than a direct write to the destination file
-func (c *Client) WriteGeneratedFilePart(generationId string, offset int64, data string) (*Ok, error) {
+func (c *Client) WriteGeneratedFilePart(generationId string, offset int64, data []byte) (*Ok, error) {
 	req := &WriteGeneratedFilePart{
 		GenerationId: generationId,
 		Offset:       offset,
