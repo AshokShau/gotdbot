@@ -35,21 +35,27 @@ func (c *Context) extractEffectiveFields() {
 	switch u := c.RawUpdate.(type) {
 	// Message updates
 	case *gotdbot.UpdateNewMessage:
-		c.EffectiveMessage = u.Message
-		c.EffectiveChatId = u.Message.ChatId
-		c.EffectiveSenderId = u.Message.SenderId
+		if u.Message != nil {
+			c.EffectiveMessage = u.Message
+			c.EffectiveChatId = u.Message.ChatId
+			c.EffectiveSenderId = u.Message.SenderId
+		}
 	case *gotdbot.UpdateMessageContent:
 		c.EffectiveChatId = u.ChatId
 	case *gotdbot.UpdateMessageEdited:
 		c.EffectiveChatId = u.ChatId
 	case *gotdbot.UpdateMessageSendSucceeded:
-		c.EffectiveMessage = u.Message
-		c.EffectiveChatId = u.Message.ChatId
-		c.EffectiveSenderId = u.Message.SenderId
+		if u.Message != nil {
+			c.EffectiveMessage = u.Message
+			c.EffectiveChatId = u.Message.ChatId
+			c.EffectiveSenderId = u.Message.SenderId
+		}
 	case *gotdbot.UpdateMessageSendFailed:
-		c.EffectiveMessage = u.Message
-		c.EffectiveChatId = u.Message.ChatId
-		c.EffectiveSenderId = u.Message.SenderId
+		if u.Message != nil {
+			c.EffectiveMessage = u.Message
+			c.EffectiveChatId = u.Message.ChatId
+			c.EffectiveSenderId = u.Message.SenderId
+		}
 	case *gotdbot.UpdateMessageContentOpened:
 		c.EffectiveChatId = u.ChatId
 	case *gotdbot.UpdateMessageIsPinned:
@@ -109,7 +115,9 @@ func (c *Context) extractEffectiveFields() {
 
 	// Chat updates
 	case *gotdbot.UpdateNewChat:
-		c.EffectiveChatId = u.Chat.Id
+		if u.Chat != nil {
+			c.EffectiveChatId = u.Chat.Id
+		}
 	case *gotdbot.UpdateChatTitle:
 		c.EffectiveChatId = u.ChatId
 	case *gotdbot.UpdateChatPhoto:
@@ -158,9 +166,10 @@ func (c *Context) extractEffectiveFields() {
 	case *gotdbot.UpdateNewChatJoinRequest:
 		c.EffectiveChatId = u.ChatId
 	}
+	extractGeneratedEffectiveFields(c.RawUpdate, c)
 }
 
-// Reply replies to the effective chat with a text message. (JUST TEST WILL REMOVE LATER)
+// Reply replies to the effective chat with a text message. (JUST TEST WILL REMOVE)
 func (c *Context) Reply(text string, contentOpts *gotdbot.InputMessageContent) (*gotdbot.Message, error) {
 	if c.EffectiveChatId == 0 {
 		return nil, fmt.Errorf("no effective chat id")

@@ -1,0 +1,34 @@
+package handlers
+
+import (
+	"github.com/AshokShau/gotdbot"
+	"github.com/AshokShau/gotdbot/ext"
+	"github.com/AshokShau/gotdbot/ext/handlers/filters"
+)
+
+type UpdateChatUnreadMentionCount struct {
+	Filter   filters.UpdateChatUnreadMentionCount
+	Response func(ctx *ext.Context) error
+}
+
+func NewUpdateChatUnreadMentionCount(filter filters.UpdateChatUnreadMentionCount, response func(ctx *ext.Context) error) *UpdateChatUnreadMentionCount {
+	return &UpdateChatUnreadMentionCount{
+		Filter:   filter,
+		Response: response,
+	}
+}
+
+func (h *UpdateChatUnreadMentionCount) CheckUpdate(ctx *ext.Context) bool {
+	u, ok := ctx.RawUpdate.(*gotdbot.UpdateChatUnreadMentionCount)
+	if !ok {
+		return false
+	}
+	if h.Filter == nil {
+		return true
+	}
+	return h.Filter(u)
+}
+
+func (h *UpdateChatUnreadMentionCount) HandleUpdate(ctx *ext.Context) error {
+	return h.Response(ctx)
+}

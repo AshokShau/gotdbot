@@ -1,0 +1,2093 @@
+package handlers
+
+import (
+	"testing"
+
+	"github.com/AshokShau/gotdbot"
+	"github.com/AshokShau/gotdbot/ext"
+)
+
+func TestGeneratedHandlers(t *testing.T) {
+	d := ext.NewDispatcher(&gotdbot.Client{})
+
+	func() {
+		called := false
+		h := NewUpdateAccentColors(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateAccentColors{})
+		if !called {
+			t.Errorf("Handler for UpdateAccentColors not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateActiveEmojiReactions(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateActiveEmojiReactions{})
+		if !called {
+			t.Errorf("Handler for UpdateActiveEmojiReactions not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateActiveGiftAuctions(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateActiveGiftAuctions{})
+		if !called {
+			t.Errorf("Handler for UpdateActiveGiftAuctions not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateActiveLiveLocationMessages(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateActiveLiveLocationMessages{})
+		if !called {
+			t.Errorf("Handler for UpdateActiveLiveLocationMessages not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateActiveNotifications(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateActiveNotifications{})
+		if !called {
+			t.Errorf("Handler for UpdateActiveNotifications not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateAgeVerificationParameters(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateAgeVerificationParameters{})
+		if !called {
+			t.Errorf("Handler for UpdateAgeVerificationParameters not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateAnimatedEmojiMessageClicked(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateAnimatedEmojiMessageClicked{})
+		if !called {
+			t.Errorf("Handler for UpdateAnimatedEmojiMessageClicked not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateAnimationSearchParameters(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateAnimationSearchParameters{})
+		if !called {
+			t.Errorf("Handler for UpdateAnimationSearchParameters not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateApplicationRecaptchaVerificationRequired(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateApplicationRecaptchaVerificationRequired{})
+		if !called {
+			t.Errorf("Handler for UpdateApplicationRecaptchaVerificationRequired not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateApplicationVerificationRequired(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateApplicationVerificationRequired{})
+		if !called {
+			t.Errorf("Handler for UpdateApplicationVerificationRequired not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateAttachmentMenuBots(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateAttachmentMenuBots{})
+		if !called {
+			t.Errorf("Handler for UpdateAttachmentMenuBots not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateAutosaveSettings(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateAutosaveSettings{})
+		if !called {
+			t.Errorf("Handler for UpdateAutosaveSettings not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateAvailableMessageEffects(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateAvailableMessageEffects{})
+		if !called {
+			t.Errorf("Handler for UpdateAvailableMessageEffects not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateBasicGroup(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateBasicGroup{})
+		if !called {
+			t.Errorf("Handler for UpdateBasicGroup not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateBasicGroupFullInfo(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateBasicGroupFullInfo{})
+		if !called {
+			t.Errorf("Handler for UpdateBasicGroupFullInfo not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateBusinessConnection(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateBusinessConnection{})
+		if !called {
+			t.Errorf("Handler for UpdateBusinessConnection not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateBusinessMessageEdited(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateBusinessMessageEdited{})
+		if !called {
+			t.Errorf("Handler for UpdateBusinessMessageEdited not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateBusinessMessagesDeleted(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateBusinessMessagesDeleted{})
+		if !called {
+			t.Errorf("Handler for UpdateBusinessMessagesDeleted not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateCall(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateCall{})
+		if !called {
+			t.Errorf("Handler for UpdateCall not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateChatAccentColors(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateChatAccentColors{})
+		if !called {
+			t.Errorf("Handler for UpdateChatAccentColors not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateChatAction(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateChatAction{})
+		if !called {
+			t.Errorf("Handler for UpdateChatAction not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateChatActionBar(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateChatActionBar{})
+		if !called {
+			t.Errorf("Handler for UpdateChatActionBar not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateChatActiveStories(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateChatActiveStories{})
+		if !called {
+			t.Errorf("Handler for UpdateChatActiveStories not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateChatAddedToList(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateChatAddedToList{})
+		if !called {
+			t.Errorf("Handler for UpdateChatAddedToList not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateChatAvailableReactions(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateChatAvailableReactions{})
+		if !called {
+			t.Errorf("Handler for UpdateChatAvailableReactions not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateChatBackground(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateChatBackground{})
+		if !called {
+			t.Errorf("Handler for UpdateChatBackground not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateChatBlockList(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateChatBlockList{})
+		if !called {
+			t.Errorf("Handler for UpdateChatBlockList not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateChatBoost(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateChatBoost{})
+		if !called {
+			t.Errorf("Handler for UpdateChatBoost not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateChatBusinessBotManageBar(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateChatBusinessBotManageBar{})
+		if !called {
+			t.Errorf("Handler for UpdateChatBusinessBotManageBar not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateChatDefaultDisableNotification(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateChatDefaultDisableNotification{})
+		if !called {
+			t.Errorf("Handler for UpdateChatDefaultDisableNotification not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateChatDraftMessage(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateChatDraftMessage{})
+		if !called {
+			t.Errorf("Handler for UpdateChatDraftMessage not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateChatEmojiStatus(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateChatEmojiStatus{})
+		if !called {
+			t.Errorf("Handler for UpdateChatEmojiStatus not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateChatFolders(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateChatFolders{})
+		if !called {
+			t.Errorf("Handler for UpdateChatFolders not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateChatHasProtectedContent(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateChatHasProtectedContent{})
+		if !called {
+			t.Errorf("Handler for UpdateChatHasProtectedContent not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateChatHasScheduledMessages(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateChatHasScheduledMessages{})
+		if !called {
+			t.Errorf("Handler for UpdateChatHasScheduledMessages not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateChatIsMarkedAsUnread(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateChatIsMarkedAsUnread{})
+		if !called {
+			t.Errorf("Handler for UpdateChatIsMarkedAsUnread not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateChatIsTranslatable(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateChatIsTranslatable{})
+		if !called {
+			t.Errorf("Handler for UpdateChatIsTranslatable not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateChatLastMessage(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateChatLastMessage{})
+		if !called {
+			t.Errorf("Handler for UpdateChatLastMessage not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateChatMessageAutoDeleteTime(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateChatMessageAutoDeleteTime{})
+		if !called {
+			t.Errorf("Handler for UpdateChatMessageAutoDeleteTime not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateChatMessageSender(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateChatMessageSender{})
+		if !called {
+			t.Errorf("Handler for UpdateChatMessageSender not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateChatNotificationSettings(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateChatNotificationSettings{})
+		if !called {
+			t.Errorf("Handler for UpdateChatNotificationSettings not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateChatOnlineMemberCount(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateChatOnlineMemberCount{})
+		if !called {
+			t.Errorf("Handler for UpdateChatOnlineMemberCount not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateChatPendingJoinRequests(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateChatPendingJoinRequests{})
+		if !called {
+			t.Errorf("Handler for UpdateChatPendingJoinRequests not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateChatPermissions(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateChatPermissions{})
+		if !called {
+			t.Errorf("Handler for UpdateChatPermissions not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateChatPhoto(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateChatPhoto{})
+		if !called {
+			t.Errorf("Handler for UpdateChatPhoto not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateChatPosition(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateChatPosition{})
+		if !called {
+			t.Errorf("Handler for UpdateChatPosition not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateChatReadInbox(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateChatReadInbox{})
+		if !called {
+			t.Errorf("Handler for UpdateChatReadInbox not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateChatReadOutbox(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateChatReadOutbox{})
+		if !called {
+			t.Errorf("Handler for UpdateChatReadOutbox not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateChatRemovedFromList(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateChatRemovedFromList{})
+		if !called {
+			t.Errorf("Handler for UpdateChatRemovedFromList not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateChatReplyMarkup(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateChatReplyMarkup{})
+		if !called {
+			t.Errorf("Handler for UpdateChatReplyMarkup not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateChatRevenueAmount(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateChatRevenueAmount{})
+		if !called {
+			t.Errorf("Handler for UpdateChatRevenueAmount not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateChatTheme(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateChatTheme{})
+		if !called {
+			t.Errorf("Handler for UpdateChatTheme not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateChatTitle(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateChatTitle{})
+		if !called {
+			t.Errorf("Handler for UpdateChatTitle not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateChatUnreadMentionCount(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateChatUnreadMentionCount{})
+		if !called {
+			t.Errorf("Handler for UpdateChatUnreadMentionCount not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateChatUnreadReactionCount(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateChatUnreadReactionCount{})
+		if !called {
+			t.Errorf("Handler for UpdateChatUnreadReactionCount not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateChatVideoChat(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateChatVideoChat{})
+		if !called {
+			t.Errorf("Handler for UpdateChatVideoChat not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateChatViewAsTopics(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateChatViewAsTopics{})
+		if !called {
+			t.Errorf("Handler for UpdateChatViewAsTopics not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateConnectionState(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateConnectionState{})
+		if !called {
+			t.Errorf("Handler for UpdateConnectionState not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateContactCloseBirthdays(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateContactCloseBirthdays{})
+		if !called {
+			t.Errorf("Handler for UpdateContactCloseBirthdays not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateDefaultBackground(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateDefaultBackground{})
+		if !called {
+			t.Errorf("Handler for UpdateDefaultBackground not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateDefaultPaidReactionType(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateDefaultPaidReactionType{})
+		if !called {
+			t.Errorf("Handler for UpdateDefaultPaidReactionType not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateDefaultReactionType(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateDefaultReactionType{})
+		if !called {
+			t.Errorf("Handler for UpdateDefaultReactionType not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateDeleteMessages(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateDeleteMessages{})
+		if !called {
+			t.Errorf("Handler for UpdateDeleteMessages not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateDiceEmojis(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateDiceEmojis{})
+		if !called {
+			t.Errorf("Handler for UpdateDiceEmojis not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateDirectMessagesChatTopic(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateDirectMessagesChatTopic{})
+		if !called {
+			t.Errorf("Handler for UpdateDirectMessagesChatTopic not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateEmojiChatThemes(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateEmojiChatThemes{})
+		if !called {
+			t.Errorf("Handler for UpdateEmojiChatThemes not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateFavoriteStickers(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateFavoriteStickers{})
+		if !called {
+			t.Errorf("Handler for UpdateFavoriteStickers not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateFile(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateFile{})
+		if !called {
+			t.Errorf("Handler for UpdateFile not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateFileAddedToDownloads(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateFileAddedToDownloads{})
+		if !called {
+			t.Errorf("Handler for UpdateFileAddedToDownloads not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateFileDownload(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateFileDownload{})
+		if !called {
+			t.Errorf("Handler for UpdateFileDownload not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateFileDownloads(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateFileDownloads{})
+		if !called {
+			t.Errorf("Handler for UpdateFileDownloads not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateFileGenerationStart(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateFileGenerationStart{})
+		if !called {
+			t.Errorf("Handler for UpdateFileGenerationStart not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateFileGenerationStop(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateFileGenerationStop{})
+		if !called {
+			t.Errorf("Handler for UpdateFileGenerationStop not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateFileRemovedFromDownloads(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateFileRemovedFromDownloads{})
+		if !called {
+			t.Errorf("Handler for UpdateFileRemovedFromDownloads not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateForumTopic(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateForumTopic{})
+		if !called {
+			t.Errorf("Handler for UpdateForumTopic not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateForumTopicInfo(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateForumTopicInfo{})
+		if !called {
+			t.Errorf("Handler for UpdateForumTopicInfo not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateFreezeState(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateFreezeState{})
+		if !called {
+			t.Errorf("Handler for UpdateFreezeState not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateGiftAuctionState(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateGiftAuctionState{})
+		if !called {
+			t.Errorf("Handler for UpdateGiftAuctionState not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateGroupCall(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateGroupCall{})
+		if !called {
+			t.Errorf("Handler for UpdateGroupCall not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateGroupCallMessageLevels(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateGroupCallMessageLevels{})
+		if !called {
+			t.Errorf("Handler for UpdateGroupCallMessageLevels not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateGroupCallMessagesDeleted(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateGroupCallMessagesDeleted{})
+		if !called {
+			t.Errorf("Handler for UpdateGroupCallMessagesDeleted not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateGroupCallMessageSendFailed(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateGroupCallMessageSendFailed{})
+		if !called {
+			t.Errorf("Handler for UpdateGroupCallMessageSendFailed not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateGroupCallParticipant(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateGroupCallParticipant{})
+		if !called {
+			t.Errorf("Handler for UpdateGroupCallParticipant not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateGroupCallParticipants(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateGroupCallParticipants{})
+		if !called {
+			t.Errorf("Handler for UpdateGroupCallParticipants not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateGroupCallVerificationState(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateGroupCallVerificationState{})
+		if !called {
+			t.Errorf("Handler for UpdateGroupCallVerificationState not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateHavePendingNotifications(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateHavePendingNotifications{})
+		if !called {
+			t.Errorf("Handler for UpdateHavePendingNotifications not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateInstalledStickerSets(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateInstalledStickerSets{})
+		if !called {
+			t.Errorf("Handler for UpdateInstalledStickerSets not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateLanguagePackStrings(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateLanguagePackStrings{})
+		if !called {
+			t.Errorf("Handler for UpdateLanguagePackStrings not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateLiveStoryTopDonors(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateLiveStoryTopDonors{})
+		if !called {
+			t.Errorf("Handler for UpdateLiveStoryTopDonors not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateMessageContent(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateMessageContent{})
+		if !called {
+			t.Errorf("Handler for UpdateMessageContent not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateMessageContentOpened(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateMessageContentOpened{})
+		if !called {
+			t.Errorf("Handler for UpdateMessageContentOpened not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateMessageFactCheck(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateMessageFactCheck{})
+		if !called {
+			t.Errorf("Handler for UpdateMessageFactCheck not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateMessageInteractionInfo(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateMessageInteractionInfo{})
+		if !called {
+			t.Errorf("Handler for UpdateMessageInteractionInfo not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateMessageIsPinned(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateMessageIsPinned{})
+		if !called {
+			t.Errorf("Handler for UpdateMessageIsPinned not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateMessageLiveLocationViewed(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateMessageLiveLocationViewed{})
+		if !called {
+			t.Errorf("Handler for UpdateMessageLiveLocationViewed not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateMessageMentionRead(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateMessageMentionRead{})
+		if !called {
+			t.Errorf("Handler for UpdateMessageMentionRead not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateMessageReaction(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateMessageReaction{})
+		if !called {
+			t.Errorf("Handler for UpdateMessageReaction not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateMessageReactions(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateMessageReactions{})
+		if !called {
+			t.Errorf("Handler for UpdateMessageReactions not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateMessageSendAcknowledged(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateMessageSendAcknowledged{})
+		if !called {
+			t.Errorf("Handler for UpdateMessageSendAcknowledged not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateMessageSendFailed(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateMessageSendFailed{})
+		if !called {
+			t.Errorf("Handler for UpdateMessageSendFailed not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateMessageSendSucceeded(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateMessageSendSucceeded{})
+		if !called {
+			t.Errorf("Handler for UpdateMessageSendSucceeded not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateMessageSuggestedPostInfo(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateMessageSuggestedPostInfo{})
+		if !called {
+			t.Errorf("Handler for UpdateMessageSuggestedPostInfo not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateMessageUnreadReactions(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateMessageUnreadReactions{})
+		if !called {
+			t.Errorf("Handler for UpdateMessageUnreadReactions not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateNewBusinessCallbackQuery(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateNewBusinessCallbackQuery{})
+		if !called {
+			t.Errorf("Handler for UpdateNewBusinessCallbackQuery not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateNewBusinessMessage(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateNewBusinessMessage{})
+		if !called {
+			t.Errorf("Handler for UpdateNewBusinessMessage not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateNewCallSignalingData(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateNewCallSignalingData{})
+		if !called {
+			t.Errorf("Handler for UpdateNewCallSignalingData not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateNewChat(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateNewChat{})
+		if !called {
+			t.Errorf("Handler for UpdateNewChat not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateNewCustomEvent(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateNewCustomEvent{})
+		if !called {
+			t.Errorf("Handler for UpdateNewCustomEvent not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateNewCustomQuery(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateNewCustomQuery{})
+		if !called {
+			t.Errorf("Handler for UpdateNewCustomQuery not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateNewGroupCallMessage(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateNewGroupCallMessage{})
+		if !called {
+			t.Errorf("Handler for UpdateNewGroupCallMessage not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateNewGroupCallPaidReaction(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateNewGroupCallPaidReaction{})
+		if !called {
+			t.Errorf("Handler for UpdateNewGroupCallPaidReaction not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateNewInlineCallbackQuery(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateNewInlineCallbackQuery{})
+		if !called {
+			t.Errorf("Handler for UpdateNewInlineCallbackQuery not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateNotification(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateNotification{})
+		if !called {
+			t.Errorf("Handler for UpdateNotification not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateNotificationGroup(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateNotificationGroup{})
+		if !called {
+			t.Errorf("Handler for UpdateNotificationGroup not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateOption(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateOption{})
+		if !called {
+			t.Errorf("Handler for UpdateOption not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateOwnedStarCount(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateOwnedStarCount{})
+		if !called {
+			t.Errorf("Handler for UpdateOwnedStarCount not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateOwnedTonCount(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateOwnedTonCount{})
+		if !called {
+			t.Errorf("Handler for UpdateOwnedTonCount not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdatePaidMediaPurchased(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdatePaidMediaPurchased{})
+		if !called {
+			t.Errorf("Handler for UpdatePaidMediaPurchased not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdatePendingTextMessage(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdatePendingTextMessage{})
+		if !called {
+			t.Errorf("Handler for UpdatePendingTextMessage not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateProfileAccentColors(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateProfileAccentColors{})
+		if !called {
+			t.Errorf("Handler for UpdateProfileAccentColors not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateQuickReplyShortcut(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateQuickReplyShortcut{})
+		if !called {
+			t.Errorf("Handler for UpdateQuickReplyShortcut not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateQuickReplyShortcutDeleted(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateQuickReplyShortcutDeleted{})
+		if !called {
+			t.Errorf("Handler for UpdateQuickReplyShortcutDeleted not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateQuickReplyShortcutMessages(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateQuickReplyShortcutMessages{})
+		if !called {
+			t.Errorf("Handler for UpdateQuickReplyShortcutMessages not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateQuickReplyShortcuts(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateQuickReplyShortcuts{})
+		if !called {
+			t.Errorf("Handler for UpdateQuickReplyShortcuts not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateReactionNotificationSettings(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateReactionNotificationSettings{})
+		if !called {
+			t.Errorf("Handler for UpdateReactionNotificationSettings not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateRecentStickers(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateRecentStickers{})
+		if !called {
+			t.Errorf("Handler for UpdateRecentStickers not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateSavedAnimations(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateSavedAnimations{})
+		if !called {
+			t.Errorf("Handler for UpdateSavedAnimations not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateSavedMessagesTags(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateSavedMessagesTags{})
+		if !called {
+			t.Errorf("Handler for UpdateSavedMessagesTags not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateSavedMessagesTopic(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateSavedMessagesTopic{})
+		if !called {
+			t.Errorf("Handler for UpdateSavedMessagesTopic not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateSavedMessagesTopicCount(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateSavedMessagesTopicCount{})
+		if !called {
+			t.Errorf("Handler for UpdateSavedMessagesTopicCount not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateSavedNotificationSounds(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateSavedNotificationSounds{})
+		if !called {
+			t.Errorf("Handler for UpdateSavedNotificationSounds not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateScopeNotificationSettings(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateScopeNotificationSettings{})
+		if !called {
+			t.Errorf("Handler for UpdateScopeNotificationSettings not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateSecretChat(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateSecretChat{})
+		if !called {
+			t.Errorf("Handler for UpdateSecretChat not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateServiceNotification(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateServiceNotification{})
+		if !called {
+			t.Errorf("Handler for UpdateServiceNotification not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateSpeechRecognitionTrial(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateSpeechRecognitionTrial{})
+		if !called {
+			t.Errorf("Handler for UpdateSpeechRecognitionTrial not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateSpeedLimitNotification(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateSpeedLimitNotification{})
+		if !called {
+			t.Errorf("Handler for UpdateSpeedLimitNotification not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateStakeDiceState(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateStakeDiceState{})
+		if !called {
+			t.Errorf("Handler for UpdateStakeDiceState not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateStarRevenueStatus(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateStarRevenueStatus{})
+		if !called {
+			t.Errorf("Handler for UpdateStarRevenueStatus not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateStickerSet(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateStickerSet{})
+		if !called {
+			t.Errorf("Handler for UpdateStickerSet not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateStory(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateStory{})
+		if !called {
+			t.Errorf("Handler for UpdateStory not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateStoryDeleted(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateStoryDeleted{})
+		if !called {
+			t.Errorf("Handler for UpdateStoryDeleted not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateStoryListChatCount(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateStoryListChatCount{})
+		if !called {
+			t.Errorf("Handler for UpdateStoryListChatCount not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateStoryPostFailed(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateStoryPostFailed{})
+		if !called {
+			t.Errorf("Handler for UpdateStoryPostFailed not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateStoryPostSucceeded(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateStoryPostSucceeded{})
+		if !called {
+			t.Errorf("Handler for UpdateStoryPostSucceeded not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateStoryStealthMode(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateStoryStealthMode{})
+		if !called {
+			t.Errorf("Handler for UpdateStoryStealthMode not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateSuggestedActions(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateSuggestedActions{})
+		if !called {
+			t.Errorf("Handler for UpdateSuggestedActions not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateSupergroup(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateSupergroup{})
+		if !called {
+			t.Errorf("Handler for UpdateSupergroup not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateSupergroupFullInfo(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateSupergroupFullInfo{})
+		if !called {
+			t.Errorf("Handler for UpdateSupergroupFullInfo not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateTermsOfService(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateTermsOfService{})
+		if !called {
+			t.Errorf("Handler for UpdateTermsOfService not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateTonRevenueStatus(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateTonRevenueStatus{})
+		if !called {
+			t.Errorf("Handler for UpdateTonRevenueStatus not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateTopicMessageCount(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateTopicMessageCount{})
+		if !called {
+			t.Errorf("Handler for UpdateTopicMessageCount not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateTrendingStickerSets(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateTrendingStickerSets{})
+		if !called {
+			t.Errorf("Handler for UpdateTrendingStickerSets not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateTrustedMiniAppBots(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateTrustedMiniAppBots{})
+		if !called {
+			t.Errorf("Handler for UpdateTrustedMiniAppBots not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateUnconfirmedSession(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateUnconfirmedSession{})
+		if !called {
+			t.Errorf("Handler for UpdateUnconfirmedSession not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateUnreadChatCount(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateUnreadChatCount{})
+		if !called {
+			t.Errorf("Handler for UpdateUnreadChatCount not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateUnreadMessageCount(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateUnreadMessageCount{})
+		if !called {
+			t.Errorf("Handler for UpdateUnreadMessageCount not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateUserFullInfo(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateUserFullInfo{})
+		if !called {
+			t.Errorf("Handler for UpdateUserFullInfo not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateUserPrivacySettingRules(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateUserPrivacySettingRules{})
+		if !called {
+			t.Errorf("Handler for UpdateUserPrivacySettingRules not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateVideoPublished(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateVideoPublished{})
+		if !called {
+			t.Errorf("Handler for UpdateVideoPublished not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateWebAppMessageSent(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateWebAppMessageSent{})
+		if !called {
+			t.Errorf("Handler for UpdateWebAppMessageSent not called")
+		}
+	}()
+
+}

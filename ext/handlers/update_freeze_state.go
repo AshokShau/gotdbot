@@ -1,0 +1,34 @@
+package handlers
+
+import (
+	"github.com/AshokShau/gotdbot"
+	"github.com/AshokShau/gotdbot/ext"
+	"github.com/AshokShau/gotdbot/ext/handlers/filters"
+)
+
+type UpdateFreezeState struct {
+	Filter   filters.UpdateFreezeState
+	Response func(ctx *ext.Context) error
+}
+
+func NewUpdateFreezeState(filter filters.UpdateFreezeState, response func(ctx *ext.Context) error) *UpdateFreezeState {
+	return &UpdateFreezeState{
+		Filter:   filter,
+		Response: response,
+	}
+}
+
+func (h *UpdateFreezeState) CheckUpdate(ctx *ext.Context) bool {
+	u, ok := ctx.RawUpdate.(*gotdbot.UpdateFreezeState)
+	if !ok {
+		return false
+	}
+	if h.Filter == nil {
+		return true
+	}
+	return h.Filter(u)
+}
+
+func (h *UpdateFreezeState) HandleUpdate(ctx *ext.Context) error {
+	return h.Response(ctx)
+}

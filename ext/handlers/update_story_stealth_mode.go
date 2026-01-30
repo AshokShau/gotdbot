@@ -1,0 +1,34 @@
+package handlers
+
+import (
+	"github.com/AshokShau/gotdbot"
+	"github.com/AshokShau/gotdbot/ext"
+	"github.com/AshokShau/gotdbot/ext/handlers/filters"
+)
+
+type UpdateStoryStealthMode struct {
+	Filter   filters.UpdateStoryStealthMode
+	Response func(ctx *ext.Context) error
+}
+
+func NewUpdateStoryStealthMode(filter filters.UpdateStoryStealthMode, response func(ctx *ext.Context) error) *UpdateStoryStealthMode {
+	return &UpdateStoryStealthMode{
+		Filter:   filter,
+		Response: response,
+	}
+}
+
+func (h *UpdateStoryStealthMode) CheckUpdate(ctx *ext.Context) bool {
+	u, ok := ctx.RawUpdate.(*gotdbot.UpdateStoryStealthMode)
+	if !ok {
+		return false
+	}
+	if h.Filter == nil {
+		return true
+	}
+	return h.Filter(u)
+}
+
+func (h *UpdateStoryStealthMode) HandleUpdate(ctx *ext.Context) error {
+	return h.Response(ctx)
+}

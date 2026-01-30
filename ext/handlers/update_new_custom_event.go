@@ -1,0 +1,34 @@
+package handlers
+
+import (
+	"github.com/AshokShau/gotdbot"
+	"github.com/AshokShau/gotdbot/ext"
+	"github.com/AshokShau/gotdbot/ext/handlers/filters"
+)
+
+type UpdateNewCustomEvent struct {
+	Filter   filters.UpdateNewCustomEvent
+	Response func(ctx *ext.Context) error
+}
+
+func NewUpdateNewCustomEvent(filter filters.UpdateNewCustomEvent, response func(ctx *ext.Context) error) *UpdateNewCustomEvent {
+	return &UpdateNewCustomEvent{
+		Filter:   filter,
+		Response: response,
+	}
+}
+
+func (h *UpdateNewCustomEvent) CheckUpdate(ctx *ext.Context) bool {
+	u, ok := ctx.RawUpdate.(*gotdbot.UpdateNewCustomEvent)
+	if !ok {
+		return false
+	}
+	if h.Filter == nil {
+		return true
+	}
+	return h.Filter(u)
+}
+
+func (h *UpdateNewCustomEvent) HandleUpdate(ctx *ext.Context) error {
+	return h.Response(ctx)
+}
