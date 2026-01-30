@@ -1475,11 +1475,6 @@ func (m Message) EditSchedulingState(client *Client, opts *EditMessageScheduling
 	return client.EditMessageSchedulingState(m.ChatId, m.Id, opts)
 }
 
-// EditText is a helper method for Client.EditMessageText
-func (m Message) EditText(client *Client, inputMessageContent *InputMessageContent, opts *EditMessageTextOpts) (*Message, error) {
-	return client.EditMessageText(m.ChatId, m.Id, inputMessageContent, opts)
-}
-
 // EditQuickReply is a helper method for Client.EditQuickReplyMessage
 func (m Message) EditQuickReply(client *Client, shortcutId int32, inputMessageContent *InputMessageContent) (*Ok, error) {
 	return client.EditQuickReplyMessage(shortcutId, m.Id, inputMessageContent)

@@ -30,7 +30,7 @@ func generateHelpers(types []TLType, functions []TLType, classes map[string]*TLC
 	}
 
 	manualMethods := map[string]bool{
-		"EditText": true,
+		"Message.EditText": true,
 	}
 
 	generatedMethods := make(map[string]bool)
