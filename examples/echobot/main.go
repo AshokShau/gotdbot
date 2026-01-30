@@ -1,5 +1,7 @@
 package main
 
+//go:generate go run ../../scripts/tools/get_tdjson.go
+
 import (
 	"fmt"
 	"log"
@@ -15,7 +17,7 @@ import (
 func main() {
 	apiID := int32(6)
 	apiHash := "API_HASH"
-	botToken := "YOUR_BOT_TOKEN"
+	botToken := "BOT_TOKEN"
 
 	bot := gotdbot.NewClient(apiID, apiHash, botToken, &gotdbot.ClientConfig{LibraryPath: "./libtdjson.so.1.8.60"})
 	gotdbot.SetTdlibLogVerbosityLevel(2)

@@ -1693,7 +1693,7 @@ type BuyGiftUpgrade struct {
 	OwnerId *MessageSender `json:"owner_id"`
 	// Prepaid upgrade hash as received along with the gift
 	PrepaidUpgradeHash string `json:"prepaid_upgrade_hash"`
-	// The amount of Telegram Stars the user agreed to pay for the upgrade; must be equal to gift.upgrade_star_count
+	// The Telegram Star amount the user agreed to pay for the upgrade; must be equal to gift.upgrade_star_count
 	StarCount int64 `json:"star_count"`
 }
 
@@ -5979,7 +5979,7 @@ type DropGiftOriginalDetails struct {
 	extra string
 	// Identifier of the gift
 	ReceivedGiftId string `json:"received_gift_id"`
-	// The amount of Telegram Stars required to pay for the operation
+	// The Telegram Star amount required to pay for the operation
 	StarCount int64 `json:"star_count"`
 }
 
@@ -8444,7 +8444,7 @@ func (t *GetBotSimilarBots) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// GetBusinessAccountStarAmount Returns the amount of Telegram Stars owned by a business account; for bots only @business_connection_id Unique identifier of business connection
+// GetBusinessAccountStarAmount Returns the Telegram Star amount owned by a business account; for bots only @business_connection_id Unique identifier of business connection
 type GetBusinessAccountStarAmount struct {
 	extra string
 	//
@@ -10452,7 +10452,7 @@ func (t *GetCommands) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// GetConnectedAffiliateProgram Returns an affiliate program that were connected to the given affiliate by identifier of the bot that created the program
+// GetConnectedAffiliateProgram Returns an affiliate program that was connected to the given affiliate by identifier of the bot that created the program
 type GetConnectedAffiliateProgram struct {
 	extra string
 	// The affiliate to which the affiliate program will be connected
@@ -23239,7 +23239,7 @@ type SearchPublicPosts struct {
 	Offset string `json:"offset"`
 	// The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
 	Limit int32 `json:"limit"`
-	// The amount of Telegram Stars the user agreed to pay for the search; pass 0 for free searches
+	// The Telegram Star amount the user agreed to pay for the search; pass 0 for free searches
 	StarCount int64 `json:"star_count"`
 }
 
@@ -26322,7 +26322,7 @@ func (t *SetChatNotificationSettings) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// SetChatPaidMessageStarCount Changes the amount of Telegram Stars that must be paid to send a message to a supergroup chat; requires can_restrict_members administrator right and supergroupFullInfo.can_enable_paid_messages
+// SetChatPaidMessageStarCount Changes the Telegram Star amount that must be paid to send a message to a supergroup chat; requires can_restrict_members administrator right and supergroupFullInfo.can_enable_paid_messages
 type SetChatPaidMessageStarCount struct {
 	extra string
 	// Identifier of the supergroup chat
@@ -31965,7 +31965,7 @@ type TransferGift struct {
 	ReceivedGiftId string `json:"received_gift_id"`
 	// Identifier of the user or the channel chat that will receive the gift
 	NewOwnerId *MessageSender `json:"new_owner_id"`
-	// The amount of Telegram Stars required to pay for the transfer
+	// The Telegram Star amount required to pay for the transfer
 	StarCount int64 `json:"star_count"`
 }
 
@@ -32239,7 +32239,7 @@ type UpgradeGift struct {
 	ReceivedGiftId string `json:"received_gift_id"`
 	// Pass true to keep the original gift text, sender and receiver in the upgraded gift
 	KeepOriginalDetails bool `json:"keep_original_details"`
-	// The amount of Telegram Stars required to pay for the upgrade. It the gift has prepaid_upgrade_star_count > 0, then pass 0, otherwise, pass gift.upgrade_star_count
+	// The Telegram Star amount required to pay for the upgrade. It the gift has prepaid_upgrade_star_count > 0, then pass 0, otherwise, pass gift.upgrade_star_count
 	StarCount int64 `json:"star_count"`
 }
 

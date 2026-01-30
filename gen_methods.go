@@ -3264,7 +3264,7 @@ func (c *Client) GetBotSimilarBots(botUserId int64) (*Users, error) {
 	return resp.(*Users), nil
 }
 
-// GetBusinessAccountStarAmount Returns the amount of Telegram Stars owned by a business account; for bots only @business_connection_id Unique identifier of business connection
+// GetBusinessAccountStarAmount Returns the Telegram Star amount owned by a business account; for bots only @business_connection_id Unique identifier of business connection
 func (c *Client) GetBusinessAccountStarAmount(businessConnectionId string) (*StarAmount, error) {
 	req := &GetBusinessAccountStarAmount{
 		BusinessConnectionId: businessConnectionId,
@@ -4048,7 +4048,7 @@ func (c *Client) GetCommands(languageCode string, opts *GetCommandsOpts) (*BotCo
 	return resp.(*BotCommands), nil
 }
 
-// GetConnectedAffiliateProgram Returns an affiliate program that were connected to the given affiliate by identifier of the bot that created the program
+// GetConnectedAffiliateProgram Returns an affiliate program that was connected to the given affiliate by identifier of the bot that created the program
 func (c *Client) GetConnectedAffiliateProgram(affiliate *AffiliateType, botUserId int64) (*ConnectedAffiliateProgram, error) {
 	req := &GetConnectedAffiliateProgram{
 		Affiliate: affiliate,
@@ -10112,7 +10112,7 @@ func (c *Client) SetChatNotificationSettings(chatId int64, notificationSettings 
 	return resp.(*Ok), nil
 }
 
-// SetChatPaidMessageStarCount Changes the amount of Telegram Stars that must be paid to send a message to a supergroup chat; requires can_restrict_members administrator right and supergroupFullInfo.can_enable_paid_messages
+// SetChatPaidMessageStarCount Changes the Telegram Star amount that must be paid to send a message to a supergroup chat; requires can_restrict_members administrator right and supergroupFullInfo.can_enable_paid_messages
 func (c *Client) SetChatPaidMessageStarCount(chatId int64, paidMessageStarCount int64) (*Ok, error) {
 	req := &SetChatPaidMessageStarCount{
 		ChatId:               chatId,

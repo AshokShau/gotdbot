@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	types, functions, classes, err := ParseTL("td_api.tl")
+	types, functions, classes, err := ParseTL("https://raw.githubusercontent.com/tdlib/td/refs/heads/master/td/generate/scheme/td_api.tl")
 	if err != nil {
 		log.Fatalf("Failed to parse TL: %v", err)
 	}

@@ -405,7 +405,7 @@ type AffiliateInfo struct {
 	CommissionPerMille int32 `json:"commission_per_mille"`
 	// Identifier of the chat which received the commission
 	AffiliateChatId int64 `json:"affiliate_chat_id"`
-	// The amount of Telegram Stars that were received by the affiliate; can be negative for refunds
+	// The Telegram Star amount that was received by the affiliate; can be negative for refunds
 	StarAmount *StarAmount `json:"star_amount"`
 }
 
@@ -4189,7 +4189,7 @@ type BusinessBotRights struct {
 	CanEditProfilePhoto bool `json:"can_edit_profile_photo"`
 	// True, if the bot can edit username of the business account
 	CanEditUsername bool `json:"can_edit_username"`
-	// True, if the bot can view gifts and amount of Telegram Stars owned by the business account
+	// True, if the bot can view gifts and Telegram Star amount owned by the business account
 	CanViewGiftsAndStars bool `json:"can_view_gifts_and_stars"`
 	// True, if the bot can sell regular gifts received by the business account
 	CanSellGifts bool `json:"can_sell_gifts"`
@@ -18165,7 +18165,7 @@ func (t *GiftResaleParameters) MarshalJSON() ([]byte, error) {
 // GiftResalePriceStar Describes price of a resold gift in Telegram Stars
 type GiftResalePriceStar struct {
 	extra string
-	// The amount of Telegram Stars expected to be paid for the gift. Must be in the range
+	// The Telegram Star amount expected to be paid for the gift. Must be in the range
 	StarCount int64 `json:"star_count"`
 }
 
@@ -18409,7 +18409,7 @@ type GiftUpgradePrice struct {
 	extra string
 	// Point in time (Unix timestamp) when the price will be in effect
 	Date int32 `json:"date"`
-	// The amount of Telegram Stars required to pay to upgrade the gift
+	// The Telegram Star amount required to pay to upgrade the gift
 	StarCount int64 `json:"star_count"`
 }
 
@@ -18491,7 +18491,7 @@ type GiveawayInfoCompleted struct {
 	ActivationCount int32 `json:"activation_count"`
 	// Telegram Premium gift code that was received by the current user; empty if the user isn't a winner in the giveaway or the giveaway isn't a Telegram Premium giveaway
 	GiftCode string `json:"gift_code"`
-	// The amount of Telegram Stars won by the current user; 0 if the user isn't a winner in the giveaway or the giveaway isn't a Telegram Star giveaway
+	// The Telegram Star amount won by the current user; 0 if the user isn't a winner in the giveaway or the giveaway isn't a Telegram Star giveaway
 	WonStarCount int64 `json:"won_star_count"`
 }
 
@@ -22727,7 +22727,7 @@ type InputMessageStakeDice struct {
 	extra string
 	// Hash of the stake dice state. The state hash can be used only if it was received recently enough. Otherwise, a new state must be requested using getStakeDiceState
 	StateHash string `json:"state_hash"`
-	// The amount of Toncoins that will be staked; in the smallest units of the currency. Must be in the range
+	// The Toncoin amount that will be staked; in the smallest units of the currency. Must be in the range
 	StakeToncoinAmount int64 `json:"stake_toncoin_amount"`
 	// True, if the chat message draft must be deleted
 	ClearDraft bool `json:"clear_draft"`
@@ -31493,7 +31493,7 @@ type MessageGiftedTon struct {
 	GifterUserId int64 `json:"gifter_user_id"`
 	// The identifier of a user that received Toncoins; 0 if the gift is incoming
 	ReceiverUserId int64 `json:"receiver_user_id"`
-	// The received amount of Toncoins, in the smallest units of the cryptocurrency
+	// The received Toncoin amount, in the smallest units of the cryptocurrency
 	TonAmount int64 `json:"ton_amount"`
 	// Identifier of the transaction for Toncoin credit; for receiver only
 	TransactionId string `json:"transaction_id"`
@@ -34017,9 +34017,9 @@ type MessageStakeDice struct {
 	FinalState *DiceStickers `json:"final_state,omitempty"`
 	// The dice value. If the value is 0, then the dice don't have final state yet
 	Value int32 `json:"value"`
-	// The amount of Toncoins that were staked; in the smallest units of the currency
+	// The Toncoin amount that was staked; in the smallest units of the currency
 	StakeToncoinAmount int64 `json:"stake_toncoin_amount"`
-	// The amount of Toncoins that were gained from the roll; in the smallest units of the currency; -1 if the dice don't have final state yet
+	// The Toncoin amount that was gained from the roll; in the smallest units of the currency; -1 if the dice don't have final state yet
 	PrizeToncoinAmount int64 `json:"prize_toncoin_amount"`
 }
 
@@ -41133,7 +41133,7 @@ type PremiumGiftPaymentOption struct {
 	Currency string `json:"currency"`
 	// The amount to pay, in the smallest units of the currency
 	Amount int64 `json:"amount"`
-	// The alternative amount of Telegram Stars to pay; 0 if payment in Telegram Stars is not possible
+	// The alternative Telegram Star amount to pay; 0 if payment in Telegram Stars is not possible
 	StarCount int64 `json:"star_count"`
 	// The discount associated with this option, as a percentage
 	DiscountPercentage int32 `json:"discount_percentage"`
@@ -49385,7 +49385,7 @@ type StakeDiceState struct {
 	extra string
 	// Hash of the state to use for sending the next dice; may be empty if the stake dice can't be sent by the current user
 	StateHash string `json:"state_hash"`
-	// The amount of Toncoins that was staked in the previous roll; in the smallest units of the currency
+	// The Toncoin amount that was staked in the previous roll; in the smallest units of the currency
 	StakeToncoinAmount int64 `json:"stake_toncoin_amount"`
 	// The amounts of Toncoins that are suggested to be staked; in the smallest units of the currency
 	SuggestedStakeToncoinAmounts []int64 `json:"suggested_stake_toncoin_amounts"`
@@ -49422,10 +49422,10 @@ func (t *StakeDiceState) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// StarAmount Describes a possibly non-integer amount of Telegram Stars
+// StarAmount Describes a possibly non-integer Telegram Star amount
 type StarAmount struct {
 	extra string
-	// The integer amount of Telegram Stars rounded to 0
+	// The integer Telegram Star amount rounded to 0
 	StarCount int64 `json:"star_count"`
 	// The number of 1/1000000000 shares of Telegram Stars; from -999999999 to 999999999
 	NanostarCount int32 `json:"nanostar_count"`
@@ -49713,11 +49713,11 @@ func (t *StarRevenueStatistics) MarshalJSON() ([]byte, error) {
 // StarRevenueStatus Contains information about Telegram Stars earned by a user or a chat
 type StarRevenueStatus struct {
 	extra string
-	// Total amount of Telegram Stars earned
+	// Total Telegram Star amount earned
 	TotalAmount *StarAmount `json:"total_amount"`
-	// The amount of Telegram Stars that aren't withdrawn yet
+	// The Telegram Star amount that isn't withdrawn yet
 	CurrentAmount *StarAmount `json:"current_amount"`
-	// The amount of Telegram Stars that are available for withdrawal
+	// The Telegram Star amount that is available for withdrawal
 	AvailableAmount *StarAmount `json:"available_amount"`
 	// True, if Telegram Stars can be withdrawn now or later
 	WithdrawalEnabled bool `json:"withdrawal_enabled"`
@@ -49799,7 +49799,7 @@ type StarSubscriptionPricing struct {
 	extra string
 	// The number of seconds between consecutive Telegram Star debiting
 	Period int32 `json:"period"`
-	// The amount of Telegram Stars that must be paid for each period
+	// The Telegram Star amount that must be paid for each period
 	StarCount int64 `json:"star_count"`
 }
 
@@ -51037,7 +51037,7 @@ type StarTransactionTypePaidGroupCallMessageReceive struct {
 	SenderId *MessageSender `json:"sender_id"`
 	// The number of Telegram Stars received by the Telegram for each 1000 Telegram Stars paid for message sending
 	CommissionPerMille int32 `json:"commission_per_mille"`
-	// The amount of Telegram Stars that were received by Telegram; can be negative for refunds
+	// The Telegram Star amount that was received by Telegram; can be negative for refunds
 	CommissionStarAmount *StarAmount `json:"commission_star_amount"`
 }
 
@@ -51105,7 +51105,7 @@ type StarTransactionTypePaidGroupCallReactionReceive struct {
 	SenderId *MessageSender `json:"sender_id"`
 	// The number of Telegram Stars received by the Telegram for each 1000 Telegram Stars paid for reaction sending
 	CommissionPerMille int32 `json:"commission_per_mille"`
-	// The amount of Telegram Stars that were received by Telegram; can be negative for refunds
+	// The Telegram Star amount that was received by Telegram; can be negative for refunds
 	CommissionStarAmount *StarAmount `json:"commission_star_amount"`
 }
 
@@ -51175,7 +51175,7 @@ type StarTransactionTypePaidMessageReceive struct {
 	MessageCount int32 `json:"message_count"`
 	// The number of Telegram Stars received by the Telegram for each 1000 Telegram Stars paid for message sending
 	CommissionPerMille int32 `json:"commission_per_mille"`
-	// The amount of Telegram Stars that were received by Telegram; can be negative for refunds
+	// The Telegram Star amount that was received by Telegram; can be negative for refunds
 	CommissionStarAmount *StarAmount `json:"commission_star_amount"`
 }
 
@@ -51533,7 +51533,7 @@ type StarTransactionTypeUpgradedGiftSale struct {
 	Gift *UpgradedGift `json:"gift"`
 	// The number of Telegram Stars received by the Telegram for each 1000 Telegram Stars received by the seller of the gift
 	CommissionPerMille int32 `json:"commission_per_mille"`
-	// The amount of Telegram Stars that were received by Telegram; can be negative for refunds
+	// The Telegram Star amount that was received by Telegram; can be negative for refunds
 	CommissionStarAmount *StarAmount `json:"commission_star_amount"`
 	// True, if the gift was sold through a purchase offer
 	ViaOffer bool `json:"via_offer"`
@@ -54613,7 +54613,7 @@ func (t *SuggestedPostInfo) MarshalJSON() ([]byte, error) {
 // SuggestedPostPriceStar Describes price of a suggested post in Telegram Stars
 type SuggestedPostPriceStar struct {
 	extra string
-	// The amount of Telegram Stars expected to be paid for the post; getOption("suggested_post_star_count_min")-getOption("suggested_post_star_count_max")
+	// The Telegram Star amount expected to be paid for the post; getOption("suggested_post_star_count_min")-getOption("suggested_post_star_count_max")
 	StarCount int64 `json:"star_count"`
 }
 
@@ -57481,11 +57481,11 @@ func (t *TonRevenueStatistics) MarshalJSON() ([]byte, error) {
 // TonRevenueStatus Contains information about Toncoins earned by the current user
 type TonRevenueStatus struct {
 	extra string
-	// Total amount of Toncoins earned; in the smallest units of the cryptocurrency
+	// Total Toncoin amount earned; in the smallest units of the cryptocurrency
 	TotalAmount string `json:"total_amount"`
-	// Amount of Toncoins that aren't withdrawn yet; in the smallest units of the cryptocurrency
+	// The Toncoin amount that isn't withdrawn yet; in the smallest units of the cryptocurrency
 	BalanceAmount string `json:"balance_amount"`
-	// Amount of Toncoins that are available for withdrawal; in the smallest units of the cryptocurrency
+	// The Toncoin amount that is available for withdrawal; in the smallest units of the cryptocurrency
 	AvailableAmount string `json:"available_amount"`
 	// True, if Toncoins can be withdrawn
 	WithdrawalEnabled bool `json:"withdrawal_enabled"`
@@ -57795,7 +57795,7 @@ type TonTransactionTypeUpgradedGiftSale struct {
 	Gift *UpgradedGift `json:"gift"`
 	// The number of Toncoins received by the Telegram for each 1000 Toncoins received by the seller of the gift
 	CommissionPerMille int32 `json:"commission_per_mille"`
-	// The amount of Toncoins that were received by the Telegram; in the smallest units of the currency
+	// The Toncoin amount that was received by the Telegram; in the smallest units of the currency
 	CommissionToncoinAmount int64 `json:"commission_toncoin_amount"`
 	// True, if the gift was sold through a purchase offer
 	ViaOffer bool `json:"via_offer"`
@@ -64997,7 +64997,7 @@ type UpgradedGiftValueInfo struct {
 	IsValueAverage bool `json:"is_value_average"`
 	// Point in time (Unix timestamp) when the corresponding regular gift was originally purchased
 	InitialSaleDate int32 `json:"initial_sale_date"`
-	// Amount of Telegram Stars that were paid for the gift
+	// The Telegram Star amount that was paid for the gift
 	InitialSaleStarCount int64 `json:"initial_sale_star_count"`
 	// Initial price of the gift; in the smallest units of the currency
 	InitialSalePrice int64 `json:"initial_sale_price"`

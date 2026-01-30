@@ -3,7 +3,8 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"os"
+	"io"
+	"net/http"
 	"regexp"
 	"strings"
 )
@@ -15,19 +16,29 @@ var (
 	paramDetailRegex = regexp.MustCompile(`(?P<name>\w+):(?P<type>[\w<>]+)`)
 )
 
-func ParseTL(filename string) (types []TLType, functions []TLType, classes map[string]*TLClass, err error) {
-	file, err := os.Open(filename)
+// ParseTL fetches a TL file over HTTP and parses.
+func ParseTL(url string) (types []TLType, functions []TLType, classes map[string]*TLClass, err error) {
+	resp, err := http.Get(url)
 	if err != nil {
-		return nil, nil, nil, fmt.Errorf("failed to open %s: %v", filename, err)
+		return nil, nil, nil, fmt.Errorf("failed to GET %s: %v", url, err)
 	}
-	defer file.Close()
+	defer resp.Body.Close()
 
+	if resp.StatusCode != http.StatusOK {
+		return nil, nil, nil, fmt.Errorf("failed to fetch %s: status %d", url, resp.StatusCode)
+	}
+
+	return parseFromReader(resp.Body)
+}
+
+// parseFromReader contains the core parsing logic and works with any io.Reader.
+func parseFromReader(r io.Reader) (types []TLType, functions []TLType, classes map[string]*TLClass, err error) {
 	classes = make(map[string]*TLClass)
 	var currentDescription string
 	var currentParams = make(map[string]string)
 	var isFunctionsSection bool
 
-	scanner := bufio.NewScanner(file)
+	scanner := bufio.NewScanner(r)
 	for scanner.Scan() {
 		line := strings.TrimSpace(scanner.Text())
 		if line == "" {
@@ -104,6 +115,10 @@ func ParseTL(filename string) (types []TLType, functions []TLType, classes map[s
 			currentDescription = ""
 			currentParams = make(map[string]string)
 		}
+	}
+
+	if serr := scanner.Err(); serr != nil {
+		return nil, nil, nil, fmt.Errorf("scanner error: %v", serr)
 	}
 
 	return types, functions, classes, nil
