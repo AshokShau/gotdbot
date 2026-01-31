@@ -5,8 +5,8 @@ func (t *UpdateNewCallbackQuery) CallbackData() []byte {
 	if t.Payload == nil {
 		return nil
 	}
-	if t.Payload.CallbackQueryPayloadData != nil {
-		return t.Payload.CallbackQueryPayloadData.Data
+	if p, ok := t.Payload.(*CallbackQueryPayloadData); ok {
+		return p.Data
 	}
 	return nil
 }
@@ -31,6 +31,6 @@ func (t *UpdateNewCallbackQuery) EditMessageText(c *Client, text string, opts *E
 }
 
 // EditMessageReplyMarkup edits the reply markup of the message associated with the callback query.
-func (t *UpdateNewCallbackQuery) EditMessageReplyMarkup(c *Client, replyMarkup *ReplyMarkup) (*Message, error) {
+func (t *UpdateNewCallbackQuery) EditMessageReplyMarkup(c *Client, replyMarkup ReplyMarkup) (*Message, error) {
 	return c.EditMessageReplyMarkup(t.ChatId, t.MessageId, &EditMessageReplyMarkupOpts{ReplyMarkup: replyMarkup})
 }

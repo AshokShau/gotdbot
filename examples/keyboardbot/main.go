@@ -14,8 +14,8 @@ import (
 
 func main() {
 	apiID := int32(6)
-	apiHash := "API_HASH"
-	botToken := "BOT_TOKEN"
+	apiHash := ""
+	botToken := ""
 
 	if envID := os.Getenv("API_ID"); envID != "" {
 		fmt.Sscanf(envID, "%d", &apiID)
@@ -34,9 +34,14 @@ func main() {
 
 	// /start - Send welcome message with inline keyboard
 	dispatcher.AddHandler(handlers.NewCommand("start", func(ctx *ext.Context) error {
-		ctx.Client.Logger.Info("Received /start command", "user_id", ctx.EffectiveSenderId.MessageSenderUser.UserId)
+		var userId int64
+		if u, ok := ctx.EffectiveSenderId.(*gotdbot.MessageSenderUser); ok {
+			userId = u.UserId
+		}
 
-		user, err := ctx.Client.GetUser(ctx.EffectiveSenderId.MessageSenderUser.UserId)
+		ctx.Client.Logger.Info("Received /start command", "user_id", userId)
+
+		user, err := ctx.Client.GetUser(userId)
 		userName := "User"
 		if err == nil {
 			userName = user.FirstName
@@ -49,28 +54,22 @@ func main() {
 				{
 					{
 						Text: "GitHub",
-						TypeField: &gotdbot.InlineKeyboardButtonType{
-							InlineKeyboardButtonTypeUrl: &gotdbot.InlineKeyboardButtonTypeUrl{
-								Url: "https://github.com/AshokShau/gotdbot",
-							},
+						TypeField: &gotdbot.InlineKeyboardButtonTypeUrl{
+							Url: "https://github.com/AshokShau/gotdbot",
 						},
 					},
 				},
 			},
 		}
 
-		content := &gotdbot.InputMessageContent{
-			InputMessageText: &gotdbot.InputMessageText{
-				Text: &gotdbot.FormattedText{
-					Text: text,
-				},
+		content := &gotdbot.InputMessageText{
+			Text: &gotdbot.FormattedText{
+				Text: text,
 			},
 		}
 
 		opts := &gotdbot.SendMessageOpts{
-			ReplyMarkup: &gotdbot.ReplyMarkup{
-				ReplyMarkupInlineKeyboard: kb,
-			},
+			ReplyMarkup: kb,
 		}
 
 		_, err = ctx.Client.SendMessage(ctx.EffectiveChatId, content, opts)
@@ -84,18 +83,14 @@ func main() {
 				{
 					{
 						Text: "OwO",
-						TypeField: &gotdbot.InlineKeyboardButtonType{
-							InlineKeyboardButtonTypeCallback: &gotdbot.InlineKeyboardButtonTypeCallback{
-								Data: []byte("OwO"),
-							},
+						TypeField: &gotdbot.InlineKeyboardButtonTypeCallback{
+							Data: []byte("OwO"),
 						},
 					},
 					{
 						Text: "UwU",
-						TypeField: &gotdbot.InlineKeyboardButtonType{
-							InlineKeyboardButtonTypeCallback: &gotdbot.InlineKeyboardButtonTypeCallback{
-								Data: []byte("UwU"),
-							},
+						TypeField: &gotdbot.InlineKeyboardButtonTypeCallback{
+							Data: []byte("UwU"),
 						},
 					},
 				},
@@ -108,11 +103,9 @@ func main() {
 			return err
 		}
 
-		content := &gotdbot.InputMessageContent{InputMessageText: &gotdbot.InputMessageText{Text: text}}
+		content := &gotdbot.InputMessageText{Text: text}
 		opts := &gotdbot.SendMessageOpts{
-			ReplyMarkup: &gotdbot.ReplyMarkup{
-				ReplyMarkupInlineKeyboard: kb,
-			},
+			ReplyMarkup: kb,
 		}
 
 		_, err = ctx.Client.SendMessage(ctx.EffectiveChatId, content, opts)
@@ -125,16 +118,12 @@ func main() {
 			Rows: [][]*gotdbot.KeyboardButton{
 				{
 					{
-						Text: "OwO",
-						TypeField: &gotdbot.KeyboardButtonType{
-							KeyboardButtonTypeText: &gotdbot.KeyboardButtonTypeText{},
-						},
+						Text:      "OwO",
+						TypeField: &gotdbot.KeyboardButtonTypeText{},
 					},
 					{
-						Text: "UwU",
-						TypeField: &gotdbot.KeyboardButtonType{
-							KeyboardButtonTypeText: &gotdbot.KeyboardButtonTypeText{},
-						},
+						Text:      "UwU",
+						TypeField: &gotdbot.KeyboardButtonTypeText{},
 					},
 				},
 			},
@@ -142,18 +131,14 @@ func main() {
 			OneTime:        true,
 		}
 
-		content := &gotdbot.InputMessageContent{
-			InputMessageText: &gotdbot.InputMessageText{
-				Text: &gotdbot.FormattedText{
-					Text: "This is a keyboard",
-				},
+		content := &gotdbot.InputMessageText{
+			Text: &gotdbot.FormattedText{
+				Text: "This is a keyboard",
 			},
 		}
 
 		opts := &gotdbot.SendMessageOpts{
-			ReplyMarkup: &gotdbot.ReplyMarkup{
-				ReplyMarkupShowKeyboard: kb,
-			},
+			ReplyMarkup: kb,
 		}
 
 		_, err := ctx.Client.SendMessage(ctx.EffectiveChatId, content, opts)
@@ -162,18 +147,14 @@ func main() {
 
 	// /remove - Remove keyboard
 	dispatcher.AddHandler(handlers.NewCommand("remove", func(ctx *ext.Context) error {
-		content := &gotdbot.InputMessageContent{
-			InputMessageText: &gotdbot.InputMessageText{
-				Text: &gotdbot.FormattedText{
-					Text: "Keyboards removed",
-				},
+		content := &gotdbot.InputMessageText{
+			Text: &gotdbot.FormattedText{
+				Text: "Keyboards removed",
 			},
 		}
 
 		opts := &gotdbot.SendMessageOpts{
-			ReplyMarkup: &gotdbot.ReplyMarkup{
-				ReplyMarkupRemoveKeyboard: &gotdbot.ReplyMarkupRemoveKeyboard{},
-			},
+			ReplyMarkup: &gotdbot.ReplyMarkupRemoveKeyboard{},
 		}
 
 		_, err := ctx.Client.SendMessage(ctx.EffectiveChatId, content, opts)
@@ -182,18 +163,14 @@ func main() {
 
 	// /force - Force reply
 	dispatcher.AddHandler(handlers.NewCommand("force", func(ctx *ext.Context) error {
-		content := &gotdbot.InputMessageContent{
-			InputMessageText: &gotdbot.InputMessageText{
-				Text: &gotdbot.FormattedText{
-					Text: "This is a force reply",
-				},
+		content := &gotdbot.InputMessageText{
+			Text: &gotdbot.FormattedText{
+				Text: "This is a force reply",
 			},
 		}
 
 		opts := &gotdbot.SendMessageOpts{
-			ReplyMarkup: &gotdbot.ReplyMarkup{
-				ReplyMarkupForceReply: &gotdbot.ReplyMarkupForceReply{},
-			},
+			ReplyMarkup: &gotdbot.ReplyMarkupForceReply{},
 		}
 
 		_, err := ctx.Client.SendMessage(ctx.EffectiveChatId, content, opts)
@@ -205,8 +182,10 @@ func main() {
 		update := ctx.RawUpdate.(*gotdbot.UpdateNewCallbackQuery)
 
 		var data string
-		if update.Payload != nil && update.Payload.CallbackQueryPayloadData != nil {
-			data = string(update.Payload.CallbackQueryPayloadData.Data)
+		if update.Payload != nil {
+			if p, ok := update.Payload.(*gotdbot.CallbackQueryPayloadData); ok {
+				data = string(p.Data)
+			}
 		}
 
 		if data != "" {
@@ -215,28 +194,22 @@ func main() {
 					{
 						{
 							Text: "GitHub",
-							TypeField: &gotdbot.InlineKeyboardButtonType{
-								InlineKeyboardButtonTypeUrl: &gotdbot.InlineKeyboardButtonTypeUrl{
-									Url: "https://github.com/AshokShau/gotdbot",
-								},
+							TypeField: &gotdbot.InlineKeyboardButtonTypeUrl{
+								Url: "https://github.com/AshokShau/gotdbot",
 							},
 						},
 					},
 				},
 			}
 
-			inputContent := &gotdbot.InputMessageContent{
-				InputMessageText: &gotdbot.InputMessageText{
-					Text: &gotdbot.FormattedText{
-						Text: fmt.Sprintf("You pressed %s", data),
-					},
+			inputContent := &gotdbot.InputMessageText{
+				Text: &gotdbot.FormattedText{
+					Text: fmt.Sprintf("You pressed %s", data),
 				},
 			}
 
 			_, err := ctx.Client.EditMessageText(update.ChatId, update.MessageId, inputContent, &gotdbot.EditMessageTextOpts{
-				ReplyMarkup: &gotdbot.ReplyMarkup{
-					ReplyMarkupInlineKeyboard: kb,
-				},
+				ReplyMarkup: kb,
 			})
 			if err != nil {
 				ctx.Client.Logger.Error("Failed to edit message", "error", err)

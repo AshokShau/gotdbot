@@ -23,11 +23,9 @@ func TestDispatcher_Message(t *testing.T) {
 	update := &gotdbot.UpdateNewMessage{
 		Message: &gotdbot.Message{
 			ChatId: 123,
-			Content: &gotdbot.MessageContent{
-				MessageText: &gotdbot.MessageText{
-					Text: &gotdbot.FormattedText{
-						Text: "hello",
-					},
+			Content: &gotdbot.MessageText{
+				Text: &gotdbot.FormattedText{
+					Text: "hello",
 				},
 			},
 		},
@@ -52,11 +50,9 @@ func TestDispatcher_Command(t *testing.T) {
 	update := &gotdbot.UpdateNewMessage{
 		Message: &gotdbot.Message{
 			ChatId: 123,
-			Content: &gotdbot.MessageContent{
-				MessageText: &gotdbot.MessageText{
-					Text: &gotdbot.FormattedText{
-						Text: "/start",
-					},
+			Content: &gotdbot.MessageText{
+				Text: &gotdbot.FormattedText{
+					Text: "/start",
 				},
 			},
 		},

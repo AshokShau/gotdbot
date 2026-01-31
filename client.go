@@ -199,7 +199,7 @@ func (c *Client) receiver() {
 			res := tdjson.Receive(0.1)
 			if res != "" {
 				data := []byte(res)
-				obj, err := Unmarshal(data)
+				obj, extra, err := Unmarshal(data)
 				if err != nil {
 					// fmt.Println("Error unmarshaling:", err)
 					continue
@@ -208,7 +208,6 @@ func (c *Client) receiver() {
 					continue
 				}
 
-				extra := obj.GetExtra()
 				if extra != "" {
 					if ch, ok := c.pendingRequests.Load(extra); ok {
 						ch.(chan TlObject) <- obj
@@ -373,9 +372,18 @@ func (c *Client) connectionStateHandler(client *Client, update TlObject) error {
 
 func (c *Client) Send(req TlObject) (TlObject, error) {
 	extra := fmt.Sprintf("%d", time.Now().UnixNano())
-	req.SetExtra(extra)
 
 	data, err := json.Marshal(req)
+	if err != nil {
+		return nil, err
+	}
+
+	var tmp map[string]interface{}
+	if err := json.Unmarshal(data, &tmp); err != nil {
+		return nil, err
+	}
+	tmp["@extra"] = extra
+	data, err = json.Marshal(tmp)
 	if err != nil {
 		return nil, err
 	}

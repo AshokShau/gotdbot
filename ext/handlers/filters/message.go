@@ -19,39 +19,75 @@ var Outgoing Message = func(msg *gotdbot.Message) bool {
 }
 
 var Text Message = func(msg *gotdbot.Message) bool {
-	return msg.Content != nil && msg.Content.MessageText != nil
+	if msg.Content == nil {
+		return false
+	}
+	_, ok := msg.Content.(*gotdbot.MessageText)
+	return ok
 }
 
 var Photo Message = func(msg *gotdbot.Message) bool {
-	return msg.Content != nil && msg.Content.MessagePhoto != nil
+	if msg.Content == nil {
+		return false
+	}
+	_, ok := msg.Content.(*gotdbot.MessagePhoto)
+	return ok
 }
 
 var Video Message = func(msg *gotdbot.Message) bool {
-	return msg.Content != nil && msg.Content.MessageVideo != nil
+	if msg.Content == nil {
+		return false
+	}
+	_, ok := msg.Content.(*gotdbot.MessageVideo)
+	return ok
 }
 
 var Animation Message = func(msg *gotdbot.Message) bool {
-	return msg.Content != nil && msg.Content.MessageAnimation != nil
+	if msg.Content == nil {
+		return false
+	}
+	_, ok := msg.Content.(*gotdbot.MessageAnimation)
+	return ok
 }
 
 var Audio Message = func(msg *gotdbot.Message) bool {
-	return msg.Content != nil && msg.Content.MessageAudio != nil
+	if msg.Content == nil {
+		return false
+	}
+	_, ok := msg.Content.(*gotdbot.MessageAudio)
+	return ok
 }
 
 var Document Message = func(msg *gotdbot.Message) bool {
-	return msg.Content != nil && msg.Content.MessageDocument != nil
+	if msg.Content == nil {
+		return false
+	}
+	_, ok := msg.Content.(*gotdbot.MessageDocument)
+	return ok
 }
 
 var Sticker Message = func(msg *gotdbot.Message) bool {
-	return msg.Content != nil && msg.Content.MessageSticker != nil
+	if msg.Content == nil {
+		return false
+	}
+	_, ok := msg.Content.(*gotdbot.MessageSticker)
+	return ok
 }
 
 var VideoNote Message = func(msg *gotdbot.Message) bool {
-	return msg.Content != nil && msg.Content.MessageVideoNote != nil
+	if msg.Content == nil {
+		return false
+	}
+	_, ok := msg.Content.(*gotdbot.MessageVideoNote)
+	return ok
 }
 
 var VoiceNote Message = func(msg *gotdbot.Message) bool {
-	return msg.Content != nil && msg.Content.MessageVoiceNote != nil
+	if msg.Content == nil {
+		return false
+	}
+	_, ok := msg.Content.(*gotdbot.MessageVoiceNote)
+	return ok
 }
 
 var Private Message = func(msg *gotdbot.Message) bool {
@@ -69,11 +105,11 @@ func SenderID(id int64) Message {
 		if msg.SenderId == nil {
 			return false
 		}
-		if msg.SenderId.MessageSenderUser != nil {
-			return msg.SenderId.MessageSenderUser.UserId == id
+		if u, ok := msg.SenderId.(*gotdbot.MessageSenderUser); ok {
+			return u.UserId == id
 		}
-		if msg.SenderId.MessageSenderChat != nil {
-			return msg.SenderId.MessageSenderChat.ChatId == id
+		if c, ok := msg.SenderId.(*gotdbot.MessageSenderChat); ok {
+			return c.ChatId == id
 		}
 		return false
 	}
@@ -85,10 +121,15 @@ func Command(command string, prefixes ...rune) Message {
 		prefixes = []rune{'/'}
 	}
 	return func(msg *gotdbot.Message) bool {
-		if msg.Content == nil || msg.Content.MessageText == nil {
+		if msg.Content == nil {
 			return false
 		}
-		text := msg.Content.MessageText.Text.Text
+		txt, ok := msg.Content.(*gotdbot.MessageText)
+		if !ok || txt.Text == nil {
+			return false
+		}
+		
+		text := txt.Text.Text
 		if text == "" {
 			return false
 		}
@@ -104,27 +145,39 @@ func Command(command string, prefixes ...rune) Message {
 
 func Contains(text string) Message {
 	return func(msg *gotdbot.Message) bool {
-		if msg.Content == nil || msg.Content.MessageText == nil {
+		if msg.Content == nil {
 			return false
 		}
-		return strings.Contains(msg.Content.MessageText.Text.Text, text)
+		txt, ok := msg.Content.(*gotdbot.MessageText)
+		if !ok || txt.Text == nil {
+			return false
+		}
+		return strings.Contains(txt.Text.Text, text)
 	}
 }
 
 func HasPrefix(prefix string) Message {
 	return func(msg *gotdbot.Message) bool {
-		if msg.Content == nil || msg.Content.MessageText == nil {
+		if msg.Content == nil {
 			return false
 		}
-		return strings.HasPrefix(msg.Content.MessageText.Text.Text, prefix)
+		txt, ok := msg.Content.(*gotdbot.MessageText)
+		if !ok || txt.Text == nil {
+			return false
+		}
+		return strings.HasPrefix(txt.Text.Text, prefix)
 	}
 }
 
 func Equal(text string) Message {
 	return func(msg *gotdbot.Message) bool {
-		if msg.Content == nil || msg.Content.MessageText == nil {
+		if msg.Content == nil {
 			return false
 		}
-		return msg.Content.MessageText.Text.Text == text
+		txt, ok := msg.Content.(*gotdbot.MessageText)
+		if !ok || txt.Text == nil {
+			return false
+		}
+		return txt.Text.Text == text
 	}
 }

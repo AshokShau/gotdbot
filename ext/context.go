@@ -18,7 +18,7 @@ type Context struct {
 	// Helper fields derived from the update
 	EffectiveMessage  *gotdbot.Message
 	EffectiveChatId   int64
-	EffectiveSenderId *gotdbot.MessageSender
+	EffectiveSenderId gotdbot.MessageSender
 }
 
 func NewContext(client *gotdbot.Client, update gotdbot.TlObject) *Context {
@@ -74,41 +74,29 @@ func (c *Context) extractEffectiveFields() {
 
 	// Callbacks and Queries
 	case *gotdbot.UpdateNewCallbackQuery:
-		c.EffectiveSenderId = &gotdbot.MessageSender{
-			MessageSenderUser: &gotdbot.MessageSenderUser{
-				UserId: u.SenderUserId,
-			},
+		c.EffectiveSenderId = &gotdbot.MessageSenderUser{
+			UserId: u.SenderUserId,
 		}
 		c.EffectiveChatId = u.ChatId
 	case *gotdbot.UpdateNewInlineCallbackQuery:
-		c.EffectiveSenderId = &gotdbot.MessageSender{
-			MessageSenderUser: &gotdbot.MessageSenderUser{
-				UserId: u.SenderUserId,
-			},
+		c.EffectiveSenderId = &gotdbot.MessageSenderUser{
+			UserId: u.SenderUserId,
 		}
 	case *gotdbot.UpdateNewBusinessCallbackQuery:
-		c.EffectiveSenderId = &gotdbot.MessageSender{
-			MessageSenderUser: &gotdbot.MessageSenderUser{
-				UserId: u.SenderUserId,
-			},
+		c.EffectiveSenderId = &gotdbot.MessageSenderUser{
+			UserId: u.SenderUserId,
 		}
 	case *gotdbot.UpdateNewInlineQuery:
-		c.EffectiveSenderId = &gotdbot.MessageSender{
-			MessageSenderUser: &gotdbot.MessageSenderUser{
-				UserId: u.SenderUserId,
-			},
+		c.EffectiveSenderId = &gotdbot.MessageSenderUser{
+			UserId: u.SenderUserId,
 		}
 	case *gotdbot.UpdateNewPreCheckoutQuery:
-		c.EffectiveSenderId = &gotdbot.MessageSender{
-			MessageSenderUser: &gotdbot.MessageSenderUser{
-				UserId: u.SenderUserId,
-			},
+		c.EffectiveSenderId = &gotdbot.MessageSenderUser{
+			UserId: u.SenderUserId,
 		}
 	case *gotdbot.UpdateNewShippingQuery:
-		c.EffectiveSenderId = &gotdbot.MessageSender{
-			MessageSenderUser: &gotdbot.MessageSenderUser{
-				UserId: u.SenderUserId,
-			},
+		c.EffectiveSenderId = &gotdbot.MessageSenderUser{
+			UserId: u.SenderUserId,
 		}
 	case *gotdbot.UpdateNewCustomQuery:
 		// No sender ID in structure directly, only data
@@ -170,30 +158,25 @@ func (c *Context) extractEffectiveFields() {
 }
 
 // Reply replies to the effective chat with a text message. (JUST TEST WILL REMOVE)
-func (c *Context) Reply(text string, contentOpts *gotdbot.InputMessageContent) (*gotdbot.Message, error) {
+func (c *Context) Reply(text string, contentOpts gotdbot.InputMessageContent) (*gotdbot.Message, error) {
 	if c.EffectiveChatId == 0 {
 		return nil, fmt.Errorf("no effective chat id")
 	}
 
 	content := contentOpts
 	if content == nil {
-		content = &gotdbot.InputMessageContent{
-			InputMessageText: &gotdbot.InputMessageText{
-				Text: &gotdbot.FormattedText{
-					Text: text,
-				},
+		content = &gotdbot.InputMessageText{
+			Text: &gotdbot.FormattedText{
+				Text: text,
 			},
 		}
-	} else if content.InputMessageText == nil {
 	}
 
 	var opts *gotdbot.SendMessageOpts
 	if c.EffectiveMessage != nil {
 		opts = &gotdbot.SendMessageOpts{
-			ReplyTo: &gotdbot.InputMessageReplyTo{
-				InputMessageReplyToMessage: &gotdbot.InputMessageReplyToMessage{
-					MessageId: c.EffectiveMessage.Id,
-				},
+			ReplyTo: &gotdbot.InputMessageReplyToMessage{
+				MessageId: c.EffectiveMessage.Id,
 			},
 		}
 	}

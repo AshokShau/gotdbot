@@ -206,7 +206,7 @@ func generateHelperMethod(f *os.File, t TLType, fn TLType, matches map[string]st
 	}
 	retTypeStr := "*" + resultType
 	if _, ok := classes[fn.ResultType]; ok {
-		retTypeStr = "*" + toCamelCase(fn.ResultType)
+		retTypeStr = toCamelCase(fn.ResultType)
 	}
 
 	receiverVar := strings.ToLower(structName[:1])

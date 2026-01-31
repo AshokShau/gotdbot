@@ -3,6 +3,7 @@ package handlers
 import (
 	"strings"
 
+	"github.com/AshokShau/gotdbot"
 	"github.com/AshokShau/gotdbot/ext"
 )
 
@@ -26,7 +27,12 @@ func (c *Command) SetTriggers(triggers []rune) *Command {
 }
 
 func (c *Command) CheckUpdate(ctx *ext.Context) bool {
-	if ctx.EffectiveMessage == nil || ctx.EffectiveMessage.Content == nil || ctx.EffectiveMessage.Content.MessageText == nil {
+	if ctx.EffectiveMessage == nil || ctx.EffectiveMessage.Content == nil {
+		return false
+	}
+	
+	msgText, ok := ctx.EffectiveMessage.Content.(*gotdbot.MessageText)
+	if !ok || msgText.Text == nil {
 		return false
 	}
 
@@ -35,7 +41,7 @@ func (c *Command) CheckUpdate(ctx *ext.Context) bool {
 		return false
 	}
 
-	text := ctx.EffectiveMessage.Content.MessageText.Text.Text
+	text := msgText.Text.Text
 	if text == "" {
 		return false
 	}

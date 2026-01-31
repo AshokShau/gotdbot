@@ -71,7 +71,7 @@ func toGoType(tlType string, classes map[string]*TLClass) string {
 		return "bool"
 	default:
 		if _, ok := classes[tlType]; ok {
-			return "*" + toCamelCase(tlType)
+			return toCamelCase(tlType)
 		}
 		return "*" + toCamelCase(tlType)
 	}

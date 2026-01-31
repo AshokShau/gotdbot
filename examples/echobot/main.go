@@ -32,33 +32,25 @@ func main() {
 				{
 					{
 						Text: "GoTDBot GitHub",
-						TypeField: &gotdbot.InlineKeyboardButtonType{
-							InlineKeyboardButtonTypeUrl: &gotdbot.InlineKeyboardButtonTypeUrl{
-								Url: "https://github.com/AshokShau/gotdbot",
-							},
+						TypeField: &gotdbot.InlineKeyboardButtonTypeUrl{
+							Url: "https://github.com/AshokShau/gotdbot",
 						},
 					},
 				},
 			},
 		}
 
-		content := &gotdbot.InputMessageContent{
-			InputMessageText: &gotdbot.InputMessageText{
-				Text: &gotdbot.FormattedText{
-					Text: "Hello! I am an echo bot powered by gotdbot",
-				},
+		content := &gotdbot.InputMessageText{
+			Text: &gotdbot.FormattedText{
+				Text: "Hello! I am an echo bot powered by gotdbot",
 			},
 		}
 
 		opts := &gotdbot.SendMessageOpts{
-			ReplyTo: &gotdbot.InputMessageReplyTo{
-				InputMessageReplyToMessage: &gotdbot.InputMessageReplyToMessage{
-					MessageId: ctx.EffectiveMessage.Id,
-				},
+			ReplyTo: &gotdbot.InputMessageReplyToMessage{
+				MessageId: ctx.EffectiveMessage.Id,
 			},
-			ReplyMarkup: &gotdbot.ReplyMarkup{
-				ReplyMarkupInlineKeyboard: kb,
-			},
+			ReplyMarkup: kb,
 		}
 
 		_, err := ctx.Client.SendMessage(ctx.EffectiveChatId, content, opts)

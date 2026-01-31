@@ -17,11 +17,11 @@ type SendTextMessageOpts struct {
 	DisableNotification   bool
 	ProtectContent        bool
 	AllowPaidBroadcast    bool
-	TopicId               *MessageTopic
+	TopicId               MessageTopic
 	Quote                 *InputTextQuote
-	ReplyTo               *InputMessageReplyTo
+	ReplyTo               InputMessageReplyTo
 	ReplyToMessageID      int64
-	ReplyMarkup           *ReplyMarkup
+	ReplyMarkup           ReplyMarkup
 	ClearDraft            bool
 	EffectId              int64
 }
@@ -42,12 +42,10 @@ func (c *Client) SendTextMessage(chatId int64, text string, opts *SendTextMessag
 		ShowAboveText:   opts.ShowAboveText,
 	}
 
-	content := &InputMessageContent{
-		InputMessageText: &InputMessageText{
-			Text:               formattedText,
-			LinkPreviewOptions: linkPreviewOptions,
-			ClearDraft:         opts.ClearDraft,
-		},
+	content := &InputMessageText{
+		Text:               formattedText,
+		LinkPreviewOptions: linkPreviewOptions,
+		ClearDraft:         opts.ClearDraft,
 	}
 
 	return c.sendMessageWithContent(chatId, content, &MessageSendOptions{
@@ -66,16 +64,16 @@ type SendPhotoOpts struct {
 	AddedStickerFileIds []int32
 	Width               int32
 	Height              int32
-	SelfDestructType    *MessageSelfDestructType
+	SelfDestructType    MessageSelfDestructType
 	DisableNotification bool
 	ProtectContent      bool
 	AllowPaidBroadcast  bool
 	HasSpoiler          bool
-	TopicId             *MessageTopic
+	TopicId             MessageTopic
 	Quote               *InputTextQuote
-	ReplyTo             *InputMessageReplyTo
+	ReplyTo             InputMessageReplyTo
 	ReplyToMessageID    int64
-	ReplyMarkup         *ReplyMarkup
+	ReplyMarkup         ReplyMarkup
 	Thumbnail           *InputThumbnail
 	EffectId            int64
 }
@@ -89,17 +87,15 @@ func (c *Client) SendPhoto(chatId int64, photo string, opts *SendPhotoOpts) (*Me
 	caption := GetFormattedText(c, opts.Caption, opts.CaptionEntities, opts.ParseMode)
 	inputFile := GetInputFile(photo)
 
-	content := &InputMessageContent{
-		InputMessagePhoto: &InputMessagePhoto{
-			Photo:               inputFile,
-			Thumbnail:           opts.Thumbnail,
-			AddedStickerFileIds: opts.AddedStickerFileIds,
-			Width:               opts.Width,
-			Height:              opts.Height,
-			Caption:             caption,
-			SelfDestructType:    opts.SelfDestructType,
-			HasSpoiler:          opts.HasSpoiler,
-		},
+	content := &InputMessagePhoto{
+		Photo:               inputFile,
+		Thumbnail:           opts.Thumbnail,
+		AddedStickerFileIds: opts.AddedStickerFileIds,
+		Width:               opts.Width,
+		Height:              opts.Height,
+		Caption:             caption,
+		SelfDestructType:    opts.SelfDestructType,
+		HasSpoiler:          opts.HasSpoiler,
 	}
 
 	return c.sendMessageWithContent(chatId, content, &MessageSendOptions{
@@ -120,16 +116,16 @@ type SendVideoOpts struct {
 	Duration            int32
 	Width               int32
 	Height              int32
-	SelfDestructType    *MessageSelfDestructType
+	SelfDestructType    MessageSelfDestructType
 	DisableNotification bool
 	ProtectContent      bool
 	AllowPaidBroadcast  bool
 	HasSpoiler          bool
-	TopicId             *MessageTopic
+	TopicId             MessageTopic
 	Quote               *InputTextQuote
-	ReplyTo             *InputMessageReplyTo
+	ReplyTo             InputMessageReplyTo
 	ReplyToMessageID    int64
-	ReplyMarkup         *ReplyMarkup
+	ReplyMarkup         ReplyMarkup
 	Thumbnail           *InputThumbnail
 	EffectId            int64
 }
@@ -143,19 +139,17 @@ func (c *Client) SendVideo(chatId int64, video string, opts *SendVideoOpts) (*Me
 	caption := GetFormattedText(c, opts.Caption, opts.CaptionEntities, opts.ParseMode)
 	inputFile := GetInputFile(video)
 
-	content := &InputMessageContent{
-		InputMessageVideo: &InputMessageVideo{
-			Video:               inputFile,
-			Thumbnail:           opts.Thumbnail,
-			AddedStickerFileIds: opts.AddedStickerFileIds,
-			Duration:            opts.Duration,
-			Width:               opts.Width,
-			Height:              opts.Height,
-			SupportsStreaming:   opts.SupportsStreaming,
-			Caption:             caption,
-			SelfDestructType:    opts.SelfDestructType,
-			HasSpoiler:          opts.HasSpoiler,
-		},
+	content := &InputMessageVideo{
+		Video:               inputFile,
+		Thumbnail:           opts.Thumbnail,
+		AddedStickerFileIds: opts.AddedStickerFileIds,
+		Duration:            opts.Duration,
+		Width:               opts.Width,
+		Height:              opts.Height,
+		SupportsStreaming:   opts.SupportsStreaming,
+		Caption:             caption,
+		SelfDestructType:    opts.SelfDestructType,
+		HasSpoiler:          opts.HasSpoiler,
 	}
 
 	return c.sendMessageWithContent(chatId, content, &MessageSendOptions{
@@ -179,11 +173,11 @@ type SendAnimationOpts struct {
 	ProtectContent      bool
 	AllowPaidBroadcast  bool
 	HasSpoiler          bool
-	TopicId             *MessageTopic
+	TopicId             MessageTopic
 	Quote               *InputTextQuote
-	ReplyTo             *InputMessageReplyTo
+	ReplyTo             InputMessageReplyTo
 	ReplyToMessageID    int64
-	ReplyMarkup         *ReplyMarkup
+	ReplyMarkup         ReplyMarkup
 	Thumbnail           *InputThumbnail
 	EffectId            int64
 }
@@ -197,17 +191,15 @@ func (c *Client) SendAnimation(chatId int64, animation string, opts *SendAnimati
 	caption := GetFormattedText(c, opts.Caption, opts.CaptionEntities, opts.ParseMode)
 	inputFile := GetInputFile(animation)
 
-	content := &InputMessageContent{
-		InputMessageAnimation: &InputMessageAnimation{
-			Animation:           inputFile,
-			Thumbnail:           opts.Thumbnail,
-			AddedStickerFileIds: opts.AddedStickerFileIds,
-			Duration:            opts.Duration,
-			Width:               opts.Width,
-			Height:              opts.Height,
-			Caption:             caption,
-			HasSpoiler:          opts.HasSpoiler,
-		},
+	content := &InputMessageAnimation{
+		Animation:           inputFile,
+		Thumbnail:           opts.Thumbnail,
+		AddedStickerFileIds: opts.AddedStickerFileIds,
+		Duration:            opts.Duration,
+		Width:               opts.Width,
+		Height:              opts.Height,
+		Caption:             caption,
+		HasSpoiler:          opts.HasSpoiler,
 	}
 
 	return c.sendMessageWithContent(chatId, content, &MessageSendOptions{
@@ -229,11 +221,11 @@ type SendAudioOpts struct {
 	DisableNotification bool
 	ProtectContent      bool
 	AllowPaidBroadcast  bool
-	TopicId             *MessageTopic
+	TopicId             MessageTopic
 	Quote               *InputTextQuote
-	ReplyTo             *InputMessageReplyTo
+	ReplyTo             InputMessageReplyTo
 	ReplyToMessageID    int64
-	ReplyMarkup         *ReplyMarkup
+	ReplyMarkup         ReplyMarkup
 	AlbumCoverThumbnail *InputThumbnail
 	EffectId            int64
 }
@@ -247,15 +239,13 @@ func (c *Client) SendAudio(chatId int64, audio string, opts *SendAudioOpts) (*Me
 	caption := GetFormattedText(c, opts.Caption, opts.CaptionEntities, opts.ParseMode)
 	inputFile := GetInputFile(audio)
 
-	content := &InputMessageContent{
-		InputMessageAudio: &InputMessageAudio{
-			Audio:               inputFile,
-			AlbumCoverThumbnail: opts.AlbumCoverThumbnail,
-			Title:               opts.Title,
-			Performer:           opts.Performer,
-			Duration:            opts.Duration,
-			Caption:             caption,
-		},
+	content := &InputMessageAudio{
+		Audio:               inputFile,
+		AlbumCoverThumbnail: opts.AlbumCoverThumbnail,
+		Title:               opts.Title,
+		Performer:           opts.Performer,
+		Duration:            opts.Duration,
+		Caption:             caption,
 	}
 
 	return c.sendMessageWithContent(chatId, content, &MessageSendOptions{
@@ -275,11 +265,11 @@ type SendDocumentOpts struct {
 	DisableNotification         bool
 	ProtectContent              bool
 	AllowPaidBroadcast          bool
-	TopicId                     *MessageTopic
+	TopicId                     MessageTopic
 	Quote                       *InputTextQuote
-	ReplyTo                     *InputMessageReplyTo
+	ReplyTo                     InputMessageReplyTo
 	ReplyToMessageID            int64
-	ReplyMarkup                 *ReplyMarkup
+	ReplyMarkup                 ReplyMarkup
 	Thumbnail                   *InputThumbnail
 	EffectId                    int64
 }
@@ -293,13 +283,11 @@ func (c *Client) SendDocument(chatId int64, document string, opts *SendDocumentO
 	caption := GetFormattedText(c, opts.Caption, opts.CaptionEntities, opts.ParseMode)
 	inputFile := GetInputFile(document)
 
-	content := &InputMessageContent{
-		InputMessageDocument: &InputMessageDocument{
-			Document:                    inputFile,
-			Thumbnail:                   opts.Thumbnail,
-			DisableContentTypeDetection: opts.DisableContentTypeDetection,
-			Caption:                     caption,
-		},
+	content := &InputMessageDocument{
+		Document:                    inputFile,
+		Thumbnail:                   opts.Thumbnail,
+		DisableContentTypeDetection: opts.DisableContentTypeDetection,
+		Caption:                     caption,
 	}
 
 	return c.sendMessageWithContent(chatId, content, &MessageSendOptions{
@@ -320,11 +308,11 @@ type SendVoiceOpts struct {
 	DisableNotification bool
 	ProtectContent      bool
 	AllowPaidBroadcast  bool
-	TopicId             *MessageTopic
+	TopicId             MessageTopic
 	Quote               *InputTextQuote
-	ReplyTo             *InputMessageReplyTo
+	ReplyTo             InputMessageReplyTo
 	ReplyToMessageID    int64
-	ReplyMarkup         *ReplyMarkup
+	ReplyMarkup         ReplyMarkup
 	EffectId            int64
 }
 
@@ -337,13 +325,11 @@ func (c *Client) SendVoice(chatId int64, voice string, opts *SendVoiceOpts) (*Me
 	caption := GetFormattedText(c, opts.Caption, opts.CaptionEntities, opts.ParseMode)
 	inputFile := GetInputFile(voice)
 
-	content := &InputMessageContent{
-		InputMessageVoiceNote: &InputMessageVoiceNote{
-			VoiceNote: inputFile,
-			Waveform:  opts.Waveform,
-			Duration:  opts.Duration,
-			Caption:   caption,
-		},
+	content := &InputMessageVoiceNote{
+		VoiceNote: inputFile,
+		Waveform:  opts.Waveform,
+		Duration:  opts.Duration,
+		Caption:   caption,
 	}
 
 	return c.sendMessageWithContent(chatId, content, &MessageSendOptions{
@@ -361,11 +347,11 @@ type SendVideoNoteOpts struct {
 	DisableNotification bool
 	ProtectContent      bool
 	AllowPaidBroadcast  bool
-	TopicId             *MessageTopic
+	TopicId             MessageTopic
 	Quote               *InputTextQuote
-	ReplyTo             *InputMessageReplyTo
+	ReplyTo             InputMessageReplyTo
 	ReplyToMessageID    int64
-	ReplyMarkup         *ReplyMarkup
+	ReplyMarkup         ReplyMarkup
 	Thumbnail           *InputThumbnail
 	EffectId            int64
 }
@@ -378,13 +364,11 @@ func (c *Client) SendVideoNote(chatId int64, videoNote string, opts *SendVideoNo
 
 	inputFile := GetInputFile(videoNote)
 
-	content := &InputMessageContent{
-		InputMessageVideoNote: &InputMessageVideoNote{
-			VideoNote: inputFile,
-			Thumbnail: opts.Thumbnail,
-			Duration:  opts.Duration,
-			Length:    opts.Length,
-		},
+	content := &InputMessageVideoNote{
+		VideoNote: inputFile,
+		Thumbnail: opts.Thumbnail,
+		Duration:  opts.Duration,
+		Length:    opts.Length,
 	}
 
 	return c.sendMessageWithContent(chatId, content, &MessageSendOptions{
@@ -403,11 +387,11 @@ type SendStickerOpts struct {
 	DisableNotification bool
 	ProtectContent      bool
 	AllowPaidBroadcast  bool
-	TopicId             *MessageTopic
+	TopicId             MessageTopic
 	Quote               *InputTextQuote
-	ReplyTo             *InputMessageReplyTo
+	ReplyTo             InputMessageReplyTo
 	ReplyToMessageID    int64
-	ReplyMarkup         *ReplyMarkup
+	ReplyMarkup         ReplyMarkup
 	Thumbnail           *InputThumbnail
 	EffectId            int64
 }
@@ -420,14 +404,12 @@ func (c *Client) SendSticker(chatId int64, sticker string, opts *SendStickerOpts
 
 	inputFile := GetInputFile(sticker)
 
-	content := &InputMessageContent{
-		InputMessageSticker: &InputMessageSticker{
-			Sticker:   inputFile,
-			Thumbnail: opts.Thumbnail,
-			Width:     opts.Width,
-			Height:    opts.Height,
-			Emoji:     opts.Emoji,
-		},
+	content := &InputMessageSticker{
+		Sticker:   inputFile,
+		Thumbnail: opts.Thumbnail,
+		Width:     opts.Width,
+		Height:    opts.Height,
+		Emoji:     opts.Emoji,
 	}
 
 	return c.sendMessageWithContent(chatId, content, &MessageSendOptions{
@@ -448,9 +430,9 @@ type SendCopyOpts struct {
 	DisableNotification bool
 	ProtectContent      bool
 	AllowPaidBroadcast  bool
-	TopicId             *MessageTopic
+	TopicId             MessageTopic
 	Quote               *InputTextQuote
-	ReplyTo             *InputMessageReplyTo
+	ReplyTo             InputMessageReplyTo
 	ReplyToMessageID    int64
 	EffectId            int64
 }
@@ -463,16 +445,14 @@ func (c *Client) SendCopy(chatId int64, fromChatId int64, messageId int64, opts 
 
 	caption := GetFormattedText(c, opts.NewCaption, opts.NewCaptionEntities, opts.ParseMode)
 
-	content := &InputMessageContent{
-		InputMessageForwarded: &InputMessageForwarded{
-			FromChatId:  fromChatId,
-			MessageId:   messageId,
-			InGameShare: opts.InGameShare,
-			CopyOptions: &MessageCopyOptions{
-				SendCopy:       true,
-				ReplaceCaption: opts.ReplaceCaption,
-				NewCaption:     caption,
-			},
+	content := &InputMessageForwarded{
+		FromChatId:  fromChatId,
+		MessageId:   messageId,
+		InGameShare: opts.InGameShare,
+		CopyOptions: &MessageCopyOptions{
+			SendCopy:       true,
+			ReplaceCaption: opts.ReplaceCaption,
+			NewCaption:     caption,
 		},
 	}
 
@@ -497,12 +477,10 @@ func (c *Client) ForwardMessage(chatId int64, fromChatId int64, messageId int64,
 		opts = &ForwardMessageOpts{}
 	}
 
-	content := &InputMessageContent{
-		InputMessageForwarded: &InputMessageForwarded{
-			FromChatId:  fromChatId,
-			MessageId:   messageId,
-			InGameShare: opts.InGameShare,
-		},
+	content := &InputMessageForwarded{
+		FromChatId:  fromChatId,
+		MessageId:   messageId,
+		InGameShare: opts.InGameShare,
 	}
 
 	return c.sendMessageWithContent(chatId, content, &MessageSendOptions{
@@ -520,7 +498,7 @@ type EditTextMessageOpts struct {
 	ForceSmallMedia       bool
 	ForceLargeMedia       bool
 	ShowAboveText         bool
-	ReplyMarkup           *ReplyMarkup
+	ReplyMarkup           ReplyMarkup
 }
 
 // EditTextMessage edits a text message
@@ -545,11 +523,9 @@ func (c *Client) EditTextMessage(chatId int64, messageId int64, text string, opt
 		ShowAboveText:   opts.ShowAboveText,
 	}
 
-	content := &InputMessageContent{
-		InputMessageText: &InputMessageText{
-			Text:               formattedText,
-			LinkPreviewOptions: linkPreviewOptions,
-		},
+	content := &InputMessageText{
+		Text:               formattedText,
+		LinkPreviewOptions: linkPreviewOptions,
 	}
 
 	return c.EditMessageText(chatId, messageId, content, &EditMessageTextOpts{
@@ -568,8 +544,8 @@ func (c *Client) GetSupergroupId(chatId int64) (int64, error) {
 		return 0, nil
 	}
 
-	if chat.TypeField.ChatTypeSupergroup != nil {
-		return chat.TypeField.ChatTypeSupergroup.SupergroupId, nil
+	if ct, ok := chat.TypeField.(*ChatTypeSupergroup); ok {
+		return ct.SupergroupId, nil
 	}
 
 	return 0, nil
@@ -578,20 +554,18 @@ func (c *Client) GetSupergroupId(chatId int64) (int64, error) {
 // sendMessageWithContent is a helper function to send a message with content
 func (c *Client) sendMessageWithContent(
 	chatId int64,
-	content *InputMessageContent,
+	content InputMessageContent,
 	options *MessageSendOptions,
-	topicId *MessageTopic,
+	topicId MessageTopic,
 	quote *InputTextQuote,
-	replyTo *InputMessageReplyTo,
+	replyTo InputMessageReplyTo,
 	replyToMessageId int64,
-	replyMarkup *ReplyMarkup,
+	replyMarkup ReplyMarkup,
 ) (*Message, error) {
 	if replyToMessageId > 0 {
-		replyTo = &InputMessageReplyTo{
-			InputMessageReplyToMessage: &InputMessageReplyToMessage{
-				MessageId: replyToMessageId,
-				Quote:     quote,
-			},
+		replyTo = &InputMessageReplyToMessage{
+			MessageId: replyToMessageId,
+			Quote:     quote,
 		}
 	}
 
@@ -609,21 +583,15 @@ func (c *Client) sendMessageWithContent(
 
 // ParseText parses the text using the specified parse mode.
 func (c *Client) ParseText(text string, parseMode string) (*FormattedText, error) {
-	var mode *TextParseMode
+	var mode TextParseMode
 
 	switch strings.ToLower(parseMode) {
 	case "markdown":
-		mode = &TextParseMode{
-			TextParseModeMarkdown: &TextParseModeMarkdown{Version: 1},
-		}
+		mode = &TextParseModeMarkdown{Version: 1}
 	case "markdownv2":
-		mode = &TextParseMode{
-			TextParseModeMarkdown: &TextParseModeMarkdown{Version: 2},
-		}
+		mode = &TextParseModeMarkdown{Version: 2}
 	case "html":
-		mode = &TextParseMode{
-			TextParseModeHTML: &TextParseModeHTML{},
-		}
+		mode = &TextParseModeHTML{}
 	default:
 		return &FormattedText{Text: text}, nil
 	}

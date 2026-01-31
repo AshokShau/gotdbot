@@ -10,14 +10,14 @@ import (
 type ChatActionSender struct {
 	client   *Client
 	chatId   int64
-	action   *ChatAction
-	topicId  *MessageTopic
+	action   ChatAction
+	topicId  MessageTopic
 	stopChan chan struct{}
 	mu       sync.Mutex
 }
 
 // NewChatAction creates a new ChatActionSender instance.
-func NewChatAction(client *Client, chatId int64, action string, topicId *MessageTopic) (*ChatActionSender, error) {
+func NewChatAction(client *Client, chatId int64, action string, topicId MessageTopic) (*ChatActionSender, error) {
 	ca := &ChatActionSender{
 		client:   client,
 		chatId:   chatId,
@@ -62,29 +62,29 @@ func (ca *ChatActionSender) setAction(action string) error {
 	defer ca.mu.Unlock()
 	switch action {
 	case "typing", "chatActionTyping":
-		ca.action = &ChatAction{ChatActionTyping: &ChatActionTyping{}}
+		ca.action = &ChatActionTyping{}
 	case "upload_photo", "chatActionUploadingPhoto":
-		ca.action = &ChatAction{ChatActionUploadingPhoto: &ChatActionUploadingPhoto{}}
+		ca.action = &ChatActionUploadingPhoto{}
 	case "record_video", "chatActionRecordingVideo":
-		ca.action = &ChatAction{ChatActionRecordingVideo: &ChatActionRecordingVideo{}}
+		ca.action = &ChatActionRecordingVideo{}
 	case "upload_video", "chatActionUploadingVideo":
-		ca.action = &ChatAction{ChatActionUploadingVideo: &ChatActionUploadingVideo{}}
+		ca.action = &ChatActionUploadingVideo{}
 	case "record_voice", "chatActionRecordingVoiceNote":
-		ca.action = &ChatAction{ChatActionRecordingVoiceNote: &ChatActionRecordingVoiceNote{}}
+		ca.action = &ChatActionRecordingVoiceNote{}
 	case "upload_voice", "chatActionUploadingVoiceNote":
-		ca.action = &ChatAction{ChatActionUploadingVoiceNote: &ChatActionUploadingVoiceNote{}}
+		ca.action = &ChatActionUploadingVoiceNote{}
 	case "upload_document", "chatActionUploadingDocument":
-		ca.action = &ChatAction{ChatActionUploadingDocument: &ChatActionUploadingDocument{}}
+		ca.action = &ChatActionUploadingDocument{}
 	case "choose_sticker", "chatActionChoosingSticker":
-		ca.action = &ChatAction{ChatActionChoosingSticker: &ChatActionChoosingSticker{}}
+		ca.action = &ChatActionChoosingSticker{}
 	case "find_location", "chatActionChoosingLocation":
-		ca.action = &ChatAction{ChatActionChoosingLocation: &ChatActionChoosingLocation{}}
+		ca.action = &ChatActionChoosingLocation{}
 	case "record_video_note", "chatActionRecordingVideoNote":
-		ca.action = &ChatAction{ChatActionRecordingVideoNote: &ChatActionRecordingVideoNote{}}
+		ca.action = &ChatActionRecordingVideoNote{}
 	case "upload_video_note", "chatActionUploadingVideoNote":
-		ca.action = &ChatAction{ChatActionUploadingVideoNote: &ChatActionUploadingVideoNote{}}
+		ca.action = &ChatActionUploadingVideoNote{}
 	case "cancel", "chatActionCancel":
-		ca.action = &ChatAction{ChatActionCancel: &ChatActionCancel{}}
+		ca.action = &ChatActionCancel{}
 	default:
 		return fmt.Errorf("unknown action type %s", action)
 	}

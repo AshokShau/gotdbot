@@ -9,11 +9,11 @@ func (m *Message) FromID() int64 {
 	if m.SenderId == nil {
 		return 0
 	}
-	if m.SenderId.MessageSenderUser != nil {
-		return m.SenderId.MessageSenderUser.UserId
+	if u, ok := m.SenderId.(*MessageSenderUser); ok {
+		return u.UserId
 	}
-	if m.SenderId.MessageSenderChat != nil {
-		return m.SenderId.MessageSenderChat.ChatId
+	if c, ok := m.SenderId.(*MessageSenderChat); ok {
+		return c.ChatId
 	}
 	return 0
 }
@@ -28,8 +28,8 @@ func (m *Message) ReplyToMessageID() int64 {
 	if m.ReplyTo == nil {
 		return 0
 	}
-	if m.ReplyTo.MessageReplyToMessage != nil {
-		return m.ReplyTo.MessageReplyToMessage.MessageId
+	if r, ok := m.ReplyTo.(*MessageReplyToMessage); ok {
+		return r.MessageId
 	}
 	return 0
 }
@@ -39,16 +39,19 @@ func (m *Message) Text() string {
 	if m.Content == nil {
 		return ""
 	}
-	if m.Content.MessageText != nil {
-		return m.Content.MessageText.Text.Text
+	if c, ok := m.Content.(*MessageText); ok {
+		return c.Text.Text
 	}
 	return ""
 }
 
 // Entities returns the entities of the message text.
 func (m *Message) Entities() []*TextEntity {
-	if m.Content != nil && m.Content.MessageText != nil {
-		return m.Content.MessageText.Text.Entities
+	if m.Content == nil {
+		return nil
+	}
+	if c, ok := m.Content.(*MessageText); ok {
+		return c.Text.Entities
 	}
 	return nil
 }
@@ -58,23 +61,23 @@ func (m *Message) Caption() string {
 	if m.Content == nil {
 		return ""
 	}
-	if m.Content.MessagePhoto != nil {
-		return m.Content.MessagePhoto.Caption.Text
+	if c, ok := m.Content.(*MessagePhoto); ok {
+		return c.Caption.Text
 	}
-	if m.Content.MessageVideo != nil {
-		return m.Content.MessageVideo.Caption.Text
+	if c, ok := m.Content.(*MessageVideo); ok {
+		return c.Caption.Text
 	}
-	if m.Content.MessageAnimation != nil {
-		return m.Content.MessageAnimation.Caption.Text
+	if c, ok := m.Content.(*MessageAnimation); ok {
+		return c.Caption.Text
 	}
-	if m.Content.MessageAudio != nil {
-		return m.Content.MessageAudio.Caption.Text
+	if c, ok := m.Content.(*MessageAudio); ok {
+		return c.Caption.Text
 	}
-	if m.Content.MessageDocument != nil {
-		return m.Content.MessageDocument.Caption.Text
+	if c, ok := m.Content.(*MessageDocument); ok {
+		return c.Caption.Text
 	}
-	if m.Content.MessageVoiceNote != nil {
-		return m.Content.MessageVoiceNote.Caption.Text
+	if c, ok := m.Content.(*MessageVoiceNote); ok {
+		return c.Caption.Text
 	}
 	return ""
 }
@@ -84,23 +87,23 @@ func (m *Message) CaptionEntities() []*TextEntity {
 	if m.Content == nil {
 		return nil
 	}
-	if m.Content.MessagePhoto != nil {
-		return m.Content.MessagePhoto.Caption.Entities
+	if c, ok := m.Content.(*MessagePhoto); ok {
+		return c.Caption.Entities
 	}
-	if m.Content.MessageVideo != nil {
-		return m.Content.MessageVideo.Caption.Entities
+	if c, ok := m.Content.(*MessageVideo); ok {
+		return c.Caption.Entities
 	}
-	if m.Content.MessageAnimation != nil {
-		return m.Content.MessageAnimation.Caption.Entities
+	if c, ok := m.Content.(*MessageAnimation); ok {
+		return c.Caption.Entities
 	}
-	if m.Content.MessageAudio != nil {
-		return m.Content.MessageAudio.Caption.Entities
+	if c, ok := m.Content.(*MessageAudio); ok {
+		return c.Caption.Entities
 	}
-	if m.Content.MessageDocument != nil {
-		return m.Content.MessageDocument.Caption.Entities
+	if c, ok := m.Content.(*MessageDocument); ok {
+		return c.Caption.Entities
 	}
-	if m.Content.MessageVoiceNote != nil {
-		return m.Content.MessageVoiceNote.Caption.Entities
+	if c, ok := m.Content.(*MessageVoiceNote); ok {
+		return c.Caption.Entities
 	}
 	return nil
 }
@@ -155,29 +158,29 @@ func (m *Message) RemoteFileID() string {
 		return ""
 	}
 
-	if m.Content.MessagePhoto != nil && len(m.Content.MessagePhoto.Photo.Sizes) > 0 {
-		return getFileId(m.Content.MessagePhoto.Photo.Sizes[len(m.Content.MessagePhoto.Photo.Sizes)-1].Photo)
+	if c, ok := m.Content.(*MessagePhoto); ok && len(c.Photo.Sizes) > 0 {
+		return getFileId(c.Photo.Sizes[len(c.Photo.Sizes)-1].Photo)
 	}
-	if m.Content.MessageVideo != nil {
-		return getFileId(m.Content.MessageVideo.Video.Video)
+	if c, ok := m.Content.(*MessageVideo); ok {
+		return getFileId(c.Video.Video)
 	}
-	if m.Content.MessageSticker != nil {
-		return getFileId(m.Content.MessageSticker.Sticker.Sticker)
+	if c, ok := m.Content.(*MessageSticker); ok {
+		return getFileId(c.Sticker.Sticker)
 	}
-	if m.Content.MessageAnimation != nil {
-		return getFileId(m.Content.MessageAnimation.Animation.Animation)
+	if c, ok := m.Content.(*MessageAnimation); ok {
+		return getFileId(c.Animation.Animation)
 	}
-	if m.Content.MessageAudio != nil {
-		return getFileId(m.Content.MessageAudio.Audio.Audio)
+	if c, ok := m.Content.(*MessageAudio); ok {
+		return getFileId(c.Audio.Audio)
 	}
-	if m.Content.MessageDocument != nil {
-		return getFileId(m.Content.MessageDocument.Document.Document)
+	if c, ok := m.Content.(*MessageDocument); ok {
+		return getFileId(c.Document.Document)
 	}
-	if m.Content.MessageVoiceNote != nil {
-		return getFileId(m.Content.MessageVoiceNote.VoiceNote.Voice)
+	if c, ok := m.Content.(*MessageVoiceNote); ok {
+		return getFileId(c.VoiceNote.Voice)
 	}
-	if m.Content.MessageVideoNote != nil {
-		return getFileId(m.Content.MessageVideoNote.VideoNote.Video)
+	if c, ok := m.Content.(*MessageVideoNote); ok {
+		return getFileId(c.VideoNote.Video)
 	}
 	return ""
 }
@@ -194,29 +197,29 @@ func (m *Message) RemoteUniqueFileID() string {
 		return ""
 	}
 
-	if m.Content.MessagePhoto != nil && len(m.Content.MessagePhoto.Photo.Sizes) > 0 {
-		return getUniqueId(m.Content.MessagePhoto.Photo.Sizes[len(m.Content.MessagePhoto.Photo.Sizes)-1].Photo)
+	if c, ok := m.Content.(*MessagePhoto); ok && len(c.Photo.Sizes) > 0 {
+		return getUniqueId(c.Photo.Sizes[len(c.Photo.Sizes)-1].Photo)
 	}
-	if m.Content.MessageVideo != nil {
-		return getUniqueId(m.Content.MessageVideo.Video.Video)
+	if c, ok := m.Content.(*MessageVideo); ok {
+		return getUniqueId(c.Video.Video)
 	}
-	if m.Content.MessageSticker != nil {
-		return getUniqueId(m.Content.MessageSticker.Sticker.Sticker)
+	if c, ok := m.Content.(*MessageSticker); ok {
+		return getUniqueId(c.Sticker.Sticker)
 	}
-	if m.Content.MessageAnimation != nil {
-		return getUniqueId(m.Content.MessageAnimation.Animation.Animation)
+	if c, ok := m.Content.(*MessageAnimation); ok {
+		return getUniqueId(c.Animation.Animation)
 	}
-	if m.Content.MessageAudio != nil {
-		return getUniqueId(m.Content.MessageAudio.Audio.Audio)
+	if c, ok := m.Content.(*MessageAudio); ok {
+		return getUniqueId(c.Audio.Audio)
 	}
-	if m.Content.MessageDocument != nil {
-		return getUniqueId(m.Content.MessageDocument.Document.Document)
+	if c, ok := m.Content.(*MessageDocument); ok {
+		return getUniqueId(c.Document.Document)
 	}
-	if m.Content.MessageVoiceNote != nil {
-		return getUniqueId(m.Content.MessageVoiceNote.VoiceNote.Voice)
+	if c, ok := m.Content.(*MessageVoiceNote); ok {
+		return getUniqueId(c.VoiceNote.Voice)
 	}
-	if m.Content.MessageVideoNote != nil {
-		return getUniqueId(m.Content.MessageVideoNote.VideoNote.Video)
+	if c, ok := m.Content.(*MessageVideoNote); ok {
+		return getUniqueId(c.VideoNote.Video)
 	}
 	return ""
 }
@@ -247,22 +250,22 @@ func (m *Message) Download(c *Client, priority int32, offset int64, limit int64,
 		err      error
 	)
 
-	if m.Content.MessagePhoto != nil && len(m.Content.MessagePhoto.Photo.Sizes) > 0 {
-		fileInfo, err = resolve(m.Content.MessagePhoto.Photo.Sizes[len(m.Content.MessagePhoto.Photo.Sizes)-1].Photo)
-	} else if m.Content.MessageVideo != nil {
-		fileInfo, err = resolve(m.Content.MessageVideo.Video.Video)
-	} else if m.Content.MessageSticker != nil {
-		fileInfo, err = resolve(m.Content.MessageSticker.Sticker.Sticker)
-	} else if m.Content.MessageAnimation != nil {
-		fileInfo, err = resolve(m.Content.MessageAnimation.Animation.Animation)
-	} else if m.Content.MessageAudio != nil {
-		fileInfo, err = resolve(m.Content.MessageAudio.Audio.Audio)
-	} else if m.Content.MessageDocument != nil {
-		fileInfo, err = resolve(m.Content.MessageDocument.Document.Document)
-	} else if m.Content.MessageVoiceNote != nil {
-		fileInfo, err = resolve(m.Content.MessageVoiceNote.VoiceNote.Voice)
-	} else if m.Content.MessageVideoNote != nil {
-		fileInfo, err = resolve(m.Content.MessageVideoNote.VideoNote.Video)
+	if c, ok := m.Content.(*MessagePhoto); ok && len(c.Photo.Sizes) > 0 {
+		fileInfo, err = resolve(c.Photo.Sizes[len(c.Photo.Sizes)-1].Photo)
+	} else if c, ok := m.Content.(*MessageVideo); ok {
+		fileInfo, err = resolve(c.Video.Video)
+	} else if c, ok := m.Content.(*MessageSticker); ok {
+		fileInfo, err = resolve(c.Sticker.Sticker)
+	} else if c, ok := m.Content.(*MessageAnimation); ok {
+		fileInfo, err = resolve(c.Animation.Animation)
+	} else if c, ok := m.Content.(*MessageAudio); ok {
+		fileInfo, err = resolve(c.Audio.Audio)
+	} else if c, ok := m.Content.(*MessageDocument); ok {
+		fileInfo, err = resolve(c.Document.Document)
+	} else if c, ok := m.Content.(*MessageVoiceNote); ok {
+		fileInfo, err = resolve(c.VoiceNote.Voice)
+	} else if c, ok := m.Content.(*MessageVideoNote); ok {
+		fileInfo, err = resolve(c.VideoNote.Video)
 	}
 
 	if err != nil {
@@ -306,46 +309,38 @@ func (m *Message) GetChatMember(c *Client) (*ChatMember, error) {
 }
 
 // SetChatMemberStatus sets chat member status.
-func (m *Message) SetChatMemberStatus(c *Client, status *ChatMemberStatus) (*Ok, error) {
+func (m *Message) SetChatMemberStatus(c *Client, status ChatMemberStatus) (*Ok, error) {
 	return c.SetChatMemberStatus(m.ChatId, m.SenderId, status)
 }
 
 // Ban bans the message sender.
 func (m *Message) Ban(c *Client, bannedUntilDate int32) (*Ok, error) {
-	return m.SetChatMemberStatus(c, &ChatMemberStatus{
-		ChatMemberStatusBanned: &ChatMemberStatusBanned{
-			BannedUntilDate: bannedUntilDate,
-		},
+	return m.SetChatMemberStatus(c, &ChatMemberStatusBanned{
+		BannedUntilDate: bannedUntilDate,
 	})
 }
 
 // Kick kicks the message sender.
 func (m *Message) Kick(c *Client) (*Ok, error) {
-	return m.SetChatMemberStatus(c, &ChatMemberStatus{
-		ChatMemberStatusLeft: &ChatMemberStatusLeft{},
-	})
+	return m.SetChatMemberStatus(c, &ChatMemberStatusLeft{})
 }
 
 // Restrict restricts the message sender.
 func (m *Message) Restrict(c *Client, permissions *ChatPermissions, restrictedUntilDate int32) (*Ok, error) {
-	return m.SetChatMemberStatus(c, &ChatMemberStatus{
-		ChatMemberStatusRestricted: &ChatMemberStatusRestricted{
-			IsMember:            true,
-			Permissions:         permissions,
-			RestrictedUntilDate: restrictedUntilDate,
-		},
+	return m.SetChatMemberStatus(c, &ChatMemberStatusRestricted{
+		IsMember:            true,
+		Permissions:         permissions,
+		RestrictedUntilDate: restrictedUntilDate,
 	})
 }
 
 // React reacts to the current message.
 func (m *Message) React(c *Client, emoji string, isBig bool) (*Ok, error) {
-	var reactionTypes []*ReactionType
+	var reactionTypes []ReactionType
 	if emoji != "" {
-		reactionTypes = []*ReactionType{
-			{
-				ReactionTypeEmoji: &ReactionTypeEmoji{
-					Emoji: emoji,
-				},
+		reactionTypes = []ReactionType{
+			&ReactionTypeEmoji{
+				Emoji: emoji,
 			},
 		}
 	}
@@ -353,7 +348,7 @@ func (m *Message) React(c *Client, emoji string, isBig bool) (*Ok, error) {
 }
 
 // Action sends a chat action to a specific chat.
-func (m *Message) Action(c *Client, action string, topicId *MessageTopic) (*ChatActionSender, error) {
+func (m *Message) Action(c *Client, action string, topicId MessageTopic) (*ChatActionSender, error) {
 	return NewChatAction(c, m.ChatId, action, topicId)
 }
 
