@@ -47,7 +47,7 @@ func main() {
 			userName = user.FirstName
 		}
 
-		text := fmt.Sprintf("Hello %s!\nHere are some bot commands:\n\n- /keyboard - show keyboard\n- /inline - show inline keyboard\n- /remove - remove keyboard\n- /force - force reply", userName)
+		text := fmt.Sprintf("Hello %s! (gotdbot %s)\nHere are some bot commands:\n\n- /keyboard - show keyboard\n- /inline - show inline keyboard\n- /remove - remove keyboard\n- /force - force reply", userName, gotdbot.Version)
 
 		kb := &gotdbot.ReplyMarkupInlineKeyboard{
 			Rows: [][]*gotdbot.InlineKeyboardButton{

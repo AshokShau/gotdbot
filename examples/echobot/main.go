@@ -42,7 +42,7 @@ func main() {
 
 		content := &gotdbot.InputMessageText{
 			Text: &gotdbot.FormattedText{
-				Text: "Hello! I am an echo bot powered by gotdbot",
+				Text: "Hello! I am an echo bot powered by gotdbot " + gotdbot.Version,
 			},
 		}
 
@@ -65,7 +65,6 @@ func main() {
 		runtime.ReadMemStats(&m)
 
 		uptime := time.Since(startTime).Round(time.Second)
-
 		reply := fmt.Sprintf(
 			"🟢 Go runtime stats\n\n"+
 				"• Goroutines : %d\n"+
@@ -87,7 +86,7 @@ func main() {
 			m.NumGC,
 		)
 
-		_, err := ctx.Reply(reply, nil)
+		_, err := ctx.Client.SendTextMessage(ctx.EffectiveChatId, reply, &gotdbot.SendTextMessageOpts{ReplyToMessageID: ctx.EffectiveMessage.Id})
 		return err
 	}))
 

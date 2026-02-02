@@ -1,8 +1,6 @@
 package ext
 
 import (
-	"fmt"
-
 	"github.com/AshokShau/gotdbot"
 )
 
@@ -155,31 +153,4 @@ func (c *Context) extractEffectiveFields() {
 		c.EffectiveChatId = u.ChatId
 	}
 	extractGeneratedEffectiveFields(c.RawUpdate, c)
-}
-
-// Reply replies to the effective chat with a text message. (JUST TEST WILL REMOVE)
-func (c *Context) Reply(text string, contentOpts gotdbot.InputMessageContent) (*gotdbot.Message, error) {
-	if c.EffectiveChatId == 0 {
-		return nil, fmt.Errorf("no effective chat id")
-	}
-
-	content := contentOpts
-	if content == nil {
-		content = &gotdbot.InputMessageText{
-			Text: &gotdbot.FormattedText{
-				Text: text,
-			},
-		}
-	}
-
-	var opts *gotdbot.SendMessageOpts
-	if c.EffectiveMessage != nil {
-		opts = &gotdbot.SendMessageOpts{
-			ReplyTo: &gotdbot.InputMessageReplyToMessage{
-				MessageId: c.EffectiveMessage.Id,
-			},
-		}
-	}
-
-	return c.Client.SendMessage(c.EffectiveChatId, content, opts)
 }

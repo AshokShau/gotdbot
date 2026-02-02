@@ -49,8 +49,8 @@ func DefaultClientConfig() *ClientConfig {
 		LoadMessagesBeforeReply: false,
 		SystemLanguageCode:      "en",
 		DeviceModel:             "Gotdbot",
-		SystemVersion:           "1.0",
-		ApplicationVersion:      "1.0",
+		SystemVersion:           Version,
+		ApplicationVersion:      TDLibVersion,
 		Logger:                  slog.New(slog.NewTextHandler(os.Stdout, nil)),
 	}
 }
