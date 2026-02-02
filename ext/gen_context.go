@@ -587,7 +587,12 @@ func extractGeneratedEffectiveFields(u gotdbot.TlObject, c *Context) {
 	case *gotdbot.UpdateMessageUnreadReactions:
 		c.EffectiveChatId = u.ChatId
 	case *gotdbot.UpdateNewGroupCallPaidReaction:
-		c.EffectiveSenderId = u.SenderId
+		if up, ok := u.SenderId.(*gotdbot.MessageSenderUser); ok {
+			c.EffectiveChatId = up.UserId
+		}
+		if up, ok := u.SenderId.(*gotdbot.MessageSenderChat); ok {
+			c.EffectiveChatId = up.ChatId
+		}
 	case *gotdbot.UpdateNotificationGroup:
 		c.EffectiveChatId = u.ChatId
 	case *gotdbot.UpdatePendingTextMessage:

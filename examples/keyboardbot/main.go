@@ -35,7 +35,7 @@ func main() {
 	// /start - Send welcome message with inline keyboard
 	dispatcher.AddHandler(handlers.NewCommand("start", func(ctx *ext.Context) error {
 		var userId int64
-		if u, ok := ctx.EffectiveSenderId.(*gotdbot.MessageSenderUser); ok {
+		if u, ok := ctx.EffectiveMessage.SenderId.(*gotdbot.MessageSenderUser); ok {
 			userId = u.UserId
 		}
 

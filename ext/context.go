@@ -14,16 +14,15 @@ type Context struct {
 	Data map[string]interface{}
 
 	// Helper fields derived from the update
-	EffectiveMessage  *gotdbot.Message
-	EffectiveChatId   int64
-	EffectiveSenderId gotdbot.MessageSender
+	EffectiveMessage *gotdbot.Message
+	EffectiveChatId  int64
 }
 
 func NewContext(client *gotdbot.Client, update gotdbot.TlObject) *Context {
 	ctx := &Context{
-		Update:    NewUpdates(update),
-		Client:    client,
-		Data:      make(map[string]interface{}),
+		Update: NewUpdates(update),
+		Client: client,
+		Data:   make(map[string]interface{}),
 	}
 	ctx.extractEffectiveFields(update)
 	return ctx
@@ -36,7 +35,6 @@ func (c *Context) extractEffectiveFields(u gotdbot.TlObject) {
 		if u.Message != nil {
 			c.EffectiveMessage = u.Message
 			c.EffectiveChatId = u.Message.ChatId
-			c.EffectiveSenderId = u.Message.SenderId
 		}
 	case *gotdbot.UpdateMessageContent:
 		c.EffectiveChatId = u.ChatId
@@ -46,13 +44,11 @@ func (c *Context) extractEffectiveFields(u gotdbot.TlObject) {
 		if u.Message != nil {
 			c.EffectiveMessage = u.Message
 			c.EffectiveChatId = u.Message.ChatId
-			c.EffectiveSenderId = u.Message.SenderId
 		}
 	case *gotdbot.UpdateMessageSendFailed:
 		if u.Message != nil {
 			c.EffectiveMessage = u.Message
 			c.EffectiveChatId = u.Message.ChatId
-			c.EffectiveSenderId = u.Message.SenderId
 		}
 	case *gotdbot.UpdateMessageContentOpened:
 		c.EffectiveChatId = u.ChatId
@@ -64,7 +60,6 @@ func (c *Context) extractEffectiveFields(u gotdbot.TlObject) {
 		c.EffectiveChatId = u.ChatId
 	case *gotdbot.UpdateMessageReaction:
 		c.EffectiveChatId = u.ChatId
-		c.EffectiveSenderId = u.ActorId
 	case *gotdbot.UpdateMessageReactions:
 		c.EffectiveChatId = u.ChatId
 	case *gotdbot.UpdateMessageFactCheck:
@@ -72,32 +67,19 @@ func (c *Context) extractEffectiveFields(u gotdbot.TlObject) {
 
 	// Callbacks and Queries
 	case *gotdbot.UpdateNewCallbackQuery:
-		c.EffectiveSenderId = &gotdbot.MessageSenderUser{
-			UserId: u.SenderUserId,
-		}
 		c.EffectiveChatId = u.ChatId
 	case *gotdbot.UpdateNewInlineCallbackQuery:
-		c.EffectiveSenderId = &gotdbot.MessageSenderUser{
-			UserId: u.SenderUserId,
-		}
+		c.EffectiveChatId = u.SenderUserId
 	case *gotdbot.UpdateNewBusinessCallbackQuery:
-		c.EffectiveSenderId = &gotdbot.MessageSenderUser{
-			UserId: u.SenderUserId,
-		}
+		c.EffectiveChatId = u.SenderUserId
 	case *gotdbot.UpdateNewInlineQuery:
-		c.EffectiveSenderId = &gotdbot.MessageSenderUser{
-			UserId: u.SenderUserId,
-		}
+		c.EffectiveChatId = u.SenderUserId
 	case *gotdbot.UpdateNewPreCheckoutQuery:
-		c.EffectiveSenderId = &gotdbot.MessageSenderUser{
-			UserId: u.SenderUserId,
-		}
+		c.EffectiveChatId = u.SenderUserId
 	case *gotdbot.UpdateNewShippingQuery:
-		c.EffectiveSenderId = &gotdbot.MessageSenderUser{
-			UserId: u.SenderUserId,
-		}
+		c.EffectiveChatId = u.SenderUserId
 	case *gotdbot.UpdateNewCustomQuery:
-		// No sender ID in structure directly, only data
+		//  only data
 
 	// Chat updates
 	case *gotdbot.UpdateNewChat:
@@ -114,7 +96,6 @@ func (c *Context) extractEffectiveFields(u gotdbot.TlObject) {
 		c.EffectiveChatId = u.ChatId
 		if u.LastMessage != nil {
 			c.EffectiveMessage = u.LastMessage
-			c.EffectiveSenderId = u.LastMessage.SenderId
 		}
 	case *gotdbot.UpdateChatPosition:
 		c.EffectiveChatId = u.ChatId
@@ -148,7 +129,6 @@ func (c *Context) extractEffectiveFields(u gotdbot.TlObject) {
 		c.EffectiveChatId = u.ChatId
 	case *gotdbot.UpdateChatAction:
 		c.EffectiveChatId = u.ChatId
-		c.EffectiveSenderId = u.SenderId
 	case *gotdbot.UpdateNewChatJoinRequest:
 		c.EffectiveChatId = u.ChatId
 	}

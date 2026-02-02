@@ -230,10 +230,14 @@ func generateExtHandlers(types []TLType) []string {
 				fmt.Fprintf(fContext, "\t\tif u.Message != nil {\n")
 				fmt.Fprintf(fContext, "\t\t\tc.EffectiveMessage = u.Message\n")
 				fmt.Fprintf(fContext, "\t\t\tc.EffectiveChatId = u.Message.ChatId\n")
-				fmt.Fprintf(fContext, "\t\t\tc.EffectiveSenderId = u.Message.SenderId\n")
 				fmt.Fprintf(fContext, "\t\t}\n")
 			} else if p.Name == "sender_id" {
-				fmt.Fprintf(fContext, "\t\tc.EffectiveSenderId = u.SenderId\n")
+				fmt.Fprintf(fContext, "\t\tif up, ok := u.SenderId.(*gotdbot.MessageSenderUser); ok {\n")
+				fmt.Fprintf(fContext, "\t\t\tc.EffectiveChatId = up.UserId\n")
+				fmt.Fprintf(fContext, "\t\t}\n")
+				fmt.Fprintf(fContext, "\t\tif up, ok := u.SenderId.(*gotdbot.MessageSenderChat); ok {\n")
+				fmt.Fprintf(fContext, "\t\t\tc.EffectiveChatId = up.ChatId\n")
+				fmt.Fprintf(fContext, "\t\t}\n")
 			}
 		}
 	}
