@@ -9358,7 +9358,7 @@ func (c *Client) SendMessage(chatId int64, inputMessageContent InputMessageConte
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Message), nil
+	return c.WaitMessage(resp.(*Message))
 }
 
 // SendMessageAlbum Sends 2-10 messages grouped together into an album. Currently, only audio, document, photo and video messages can be grouped into an album.

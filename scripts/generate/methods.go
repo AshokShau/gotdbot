@@ -111,7 +111,12 @@ func generateMethods(functions []TLType, classes map[string]*TLClass) {
 
 		fmt.Fprintf(f, "\tresp, err := c.Send(req)\n")
 		fmt.Fprintf(f, "\tif err != nil {\n\t\treturn nil, err\n\t}\n")
-		fmt.Fprintf(f, "\treturn resp.(%s), nil\n", retTypeStr)
+
+		if methodName == "SendMessage" {
+			fmt.Fprintf(f, "\treturn c.WaitMessage(resp.(*Message))\n")
+		} else {
+			fmt.Fprintf(f, "\treturn resp.(%s), nil\n", retTypeStr)
+		}
 		fmt.Fprintf(f, "}\n\n")
 	}
 }
