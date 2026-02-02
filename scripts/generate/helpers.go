@@ -7,13 +7,8 @@ import (
 	"strings"
 )
 
-// generateHelpers splits helper methods into multiple files.
 func generateHelpers(types []TLType, functions []TLType, classes map[string]*TLClass) []string {
-	fileCount := 0
-	helpersPerFile := 1500
-	currentHelpers := 0
-
-	f, err := createHelperFile(fileCount)
+	f, err := createHelperFile()
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -121,29 +116,15 @@ func generateHelpers(types []TLType, functions []TLType, classes map[string]*TLC
 			}
 
 			generatedMethods[fullHelperName] = true
-
-			if currentHelpers >= helpersPerFile {
-				f.Close()
-				fileCount++
-				currentHelpers = 0
-
-				f, err = createHelperFile(fileCount)
-				if err != nil {
-					log.Fatal(err)
-				}
-				generatedFiles = append(generatedFiles, f.Name())
-			}
-
 			generateHelperMethod(f, t, fn, matches, helperName, classes)
-			currentHelpers++
 		}
 	}
 
 	return generatedFiles
 }
 
-func createHelperFile(index int) (*os.File, error) {
-	filename := fmt.Sprintf("gen_helpers%d.go", index)
+func createHelperFile() (*os.File, error) {
+	filename := "gen_helpers.go"
 	f, err := os.Create(filename)
 	if err != nil {
 		return nil, err
