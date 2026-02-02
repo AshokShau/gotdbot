@@ -92,7 +92,6 @@ func generateExtHandlers(types []TLType) []string {
 		fmt.Fprintln(f, "package handlers")
 		fmt.Fprintln(f)
 		fmt.Fprintln(f, "import (")
-		fmt.Fprintln(f, "\t\"github.com/AshokShau/gotdbot\"")
 		fmt.Fprintln(f, "\t\"github.com/AshokShau/gotdbot/ext\"")
 		fmt.Fprintln(f, "\t\"github.com/AshokShau/gotdbot/ext/handlers/filters\"")
 		fmt.Fprintln(f, ")")
@@ -111,8 +110,8 @@ func generateExtHandlers(types []TLType) []string {
 		fmt.Fprintf(f, "}\n\n")
 
 		fmt.Fprintf(f, "func (h *%s) CheckUpdate(ctx *ext.Context) bool {\n", structName)
-		fmt.Fprintf(f, "\tu, ok := ctx.RawUpdate.(*gotdbot.%s)\n", structName)
-		fmt.Fprintf(f, "\tif !ok {\n")
+		fmt.Fprintf(f, "\tu := ctx.Update.%s\n", structName)
+		fmt.Fprintf(f, "\tif u == nil {\n")
 		fmt.Fprintf(f, "\t\treturn false\n")
 		fmt.Fprintf(f, "\t}\n")
 		fmt.Fprintf(f, "\tif h.Filter == nil {\n")
@@ -162,6 +161,36 @@ func generateExtHandlers(types []TLType) []string {
 	fmt.Fprintln(fContext)
 	fmt.Fprintln(fContext, "import \"github.com/AshokShau/gotdbot\"")
 	fmt.Fprintln(fContext)
+
+	// Updates Struct
+	fmt.Fprintln(fContext, "type Updates struct {")
+	for _, t := range types {
+		if t.ResultType != "Update" {
+			continue
+		}
+		structName := toCamelCase(t.Name)
+		fmt.Fprintf(fContext, "\t%s *gotdbot.%s\n", structName, structName)
+	}
+	fmt.Fprintln(fContext, "}")
+	fmt.Fprintln(fContext)
+
+	// NewUpdates Function
+	fmt.Fprintln(fContext, "func NewUpdates(u gotdbot.TlObject) *Updates {")
+	fmt.Fprintln(fContext, "\tup := &Updates{}")
+	fmt.Fprintln(fContext, "\tswitch u := u.(type) {")
+	for _, t := range types {
+		if t.ResultType != "Update" {
+			continue
+		}
+		structName := toCamelCase(t.Name)
+		fmt.Fprintf(fContext, "\tcase *gotdbot.%s:\n", structName)
+		fmt.Fprintf(fContext, "\t\tup.%s = u\n", structName)
+	}
+	fmt.Fprintln(fContext, "\t}")
+	fmt.Fprintln(fContext, "\treturn up")
+	fmt.Fprintln(fContext, "}")
+	fmt.Fprintln(fContext)
+
 	fmt.Fprintln(fContext, "func extractGeneratedEffectiveFields(u gotdbot.TlObject, c *Context) {")
 	fmt.Fprintln(fContext, "\tswitch u := u.(type) {")
 	for _, t := range types {
@@ -201,10 +230,14 @@ func generateExtHandlers(types []TLType) []string {
 				fmt.Fprintf(fContext, "\t\tif u.Message != nil {\n")
 				fmt.Fprintf(fContext, "\t\t\tc.EffectiveMessage = u.Message\n")
 				fmt.Fprintf(fContext, "\t\t\tc.EffectiveChatId = u.Message.ChatId\n")
-				fmt.Fprintf(fContext, "\t\t\tc.EffectiveSenderId = u.Message.SenderId\n")
 				fmt.Fprintf(fContext, "\t\t}\n")
 			} else if p.Name == "sender_id" {
-				fmt.Fprintf(fContext, "\t\tc.EffectiveSenderId = u.SenderId\n")
+				fmt.Fprintf(fContext, "\t\tif up, ok := u.SenderId.(*gotdbot.MessageSenderUser); ok {\n")
+				fmt.Fprintf(fContext, "\t\t\tc.EffectiveChatId = up.UserId\n")
+				fmt.Fprintf(fContext, "\t\t}\n")
+				fmt.Fprintf(fContext, "\t\tif up, ok := u.SenderId.(*gotdbot.MessageSenderChat); ok {\n")
+				fmt.Fprintf(fContext, "\t\t\tc.EffectiveChatId = up.ChatId\n")
+				fmt.Fprintf(fContext, "\t\t}\n")
 			}
 		}
 	}

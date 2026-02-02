@@ -3,6 +3,7 @@ package handlers
 import (
 	"strings"
 
+	"github.com/AshokShau/gotdbot"
 	"github.com/AshokShau/gotdbot/ext"
 )
 
@@ -26,16 +27,20 @@ func (c *Command) SetTriggers(triggers []rune) *Command {
 }
 
 func (c *Command) CheckUpdate(ctx *ext.Context) bool {
-	if ctx.EffectiveMessage == nil || ctx.EffectiveMessage.Content == nil || ctx.EffectiveMessage.Content.MessageText == nil {
+	if ctx.EffectiveMessage == nil || ctx.EffectiveMessage.Content == nil {
 		return false
 	}
 
-	// Ignore outgoing messages
+	msgText, ok := ctx.EffectiveMessage.Content.(*gotdbot.MessageText)
+	if !ok || msgText.Text == nil {
+		return false
+	}
+
 	if ctx.EffectiveMessage.IsOutgoing {
 		return false
 	}
 
-	text := ctx.EffectiveMessage.Content.MessageText.Text.Text
+	text := msgText.Text.Text
 	if text == "" {
 		return false
 	}
@@ -52,15 +57,44 @@ func (c *Command) CheckUpdate(ctx *ext.Context) bool {
 		}
 
 		cmdPart := parts[0][len(prefix):]
-		// Handle bot username mentions: command@username
-		if idx := strings.Index(cmdPart, "@"); idx != -1 {
-			cmdPart = cmdPart[:idx]
+
+		var (
+			cmdName      string
+			mentionedBot string
+		)
+
+		if i := strings.Index(cmdPart, "@"); i != -1 {
+			cmdName = cmdPart[:i]
+			mentionedBot = cmdPart[i+1:]
+		} else {
+			cmdName = cmdPart
 		}
 
-		if strings.ToLower(cmdPart) == c.Command {
-			return true
+		if strings.ToLower(cmdName) != c.Command {
+			continue
 		}
+
+		if mentionedBot != "" {
+			me := ctx.Client.Me()
+			if me == nil {
+				return false
+			}
+			botUsername := ""
+			if me.Usernames != nil && len(me.Usernames.ActiveUsernames) > 0 {
+				botUsername = strings.ToLower(me.Usernames.ActiveUsernames[0])
+			}
+
+			if botUsername == "" {
+				return false
+			}
+			if strings.ToLower(mentionedBot) != botUsername {
+				return false
+			}
+		}
+
+		return true
 	}
+
 	return false
 }
 

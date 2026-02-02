@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"github.com/AshokShau/gotdbot"
 	"github.com/AshokShau/gotdbot/ext"
 	"github.com/AshokShau/gotdbot/ext/handlers/filters"
 )
@@ -19,8 +18,8 @@ func NewUpdateMessageFactCheck(filter filters.UpdateMessageFactCheck, response f
 }
 
 func (h *UpdateMessageFactCheck) CheckUpdate(ctx *ext.Context) bool {
-	u, ok := ctx.RawUpdate.(*gotdbot.UpdateMessageFactCheck)
-	if !ok {
+	u := ctx.Update.UpdateMessageFactCheck
+	if u == nil {
 		return false
 	}
 	if h.Filter == nil {

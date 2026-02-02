@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"github.com/AshokShau/gotdbot"
 	"github.com/AshokShau/gotdbot/ext"
 	"github.com/AshokShau/gotdbot/ext/handlers/filters"
 )
@@ -19,8 +18,8 @@ func NewUpdateFavoriteStickers(filter filters.UpdateFavoriteStickers, response f
 }
 
 func (h *UpdateFavoriteStickers) CheckUpdate(ctx *ext.Context) bool {
-	u, ok := ctx.RawUpdate.(*gotdbot.UpdateFavoriteStickers)
-	if !ok {
+	u := ctx.Update.UpdateFavoriteStickers
+	if u == nil {
 		return false
 	}
 	if h.Filter == nil {

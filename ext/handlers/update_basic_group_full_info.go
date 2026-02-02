@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"github.com/AshokShau/gotdbot"
 	"github.com/AshokShau/gotdbot/ext"
 	"github.com/AshokShau/gotdbot/ext/handlers/filters"
 )
@@ -19,8 +18,8 @@ func NewUpdateBasicGroupFullInfo(filter filters.UpdateBasicGroupFullInfo, respon
 }
 
 func (h *UpdateBasicGroupFullInfo) CheckUpdate(ctx *ext.Context) bool {
-	u, ok := ctx.RawUpdate.(*gotdbot.UpdateBasicGroupFullInfo)
-	if !ok {
+	u := ctx.Update.UpdateBasicGroupFullInfo
+	if u == nil {
 		return false
 	}
 	if h.Filter == nil {

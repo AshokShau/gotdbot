@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"github.com/AshokShau/gotdbot"
 	"github.com/AshokShau/gotdbot/ext"
 	"github.com/AshokShau/gotdbot/ext/handlers/filters"
 )
@@ -19,8 +18,8 @@ func NewUpdateStakeDiceState(filter filters.UpdateStakeDiceState, response func(
 }
 
 func (h *UpdateStakeDiceState) CheckUpdate(ctx *ext.Context) bool {
-	u, ok := ctx.RawUpdate.(*gotdbot.UpdateStakeDiceState)
-	if !ok {
+	u := ctx.Update.UpdateStakeDiceState
+	if u == nil {
 		return false
 	}
 	if h.Filter == nil {

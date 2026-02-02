@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"github.com/AshokShau/gotdbot"
 	"github.com/AshokShau/gotdbot/ext"
 	"github.com/AshokShau/gotdbot/ext/handlers/filters"
 )
@@ -19,8 +18,8 @@ func NewUpdateFreezeState(filter filters.UpdateFreezeState, response func(ctx *e
 }
 
 func (h *UpdateFreezeState) CheckUpdate(ctx *ext.Context) bool {
-	u, ok := ctx.RawUpdate.(*gotdbot.UpdateFreezeState)
-	if !ok {
+	u := ctx.Update.UpdateFreezeState
+	if u == nil {
 		return false
 	}
 	if h.Filter == nil {

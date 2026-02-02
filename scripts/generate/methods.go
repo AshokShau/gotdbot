@@ -40,7 +40,7 @@ func generateMethods(functions []TLType, classes map[string]*TLClass) {
 
 		retTypeStr := "*" + resultType
 		if _, ok := classes[fn.ResultType]; ok {
-			retTypeStr = "*" + toCamelCase(fn.ResultType)
+			retTypeStr = toCamelCase(fn.ResultType)
 		}
 
 		fmt.Fprintf(f, "// %s %s\n", methodName, formatDesc(fn.Description))

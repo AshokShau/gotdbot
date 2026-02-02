@@ -32,33 +32,25 @@ func main() {
 				{
 					{
 						Text: "GoTDBot GitHub",
-						TypeField: &gotdbot.InlineKeyboardButtonType{
-							InlineKeyboardButtonTypeUrl: &gotdbot.InlineKeyboardButtonTypeUrl{
-								Url: "https://github.com/AshokShau/gotdbot",
-							},
+						TypeField: &gotdbot.InlineKeyboardButtonTypeUrl{
+							Url: "https://github.com/AshokShau/gotdbot",
 						},
 					},
 				},
 			},
 		}
 
-		content := &gotdbot.InputMessageContent{
-			InputMessageText: &gotdbot.InputMessageText{
-				Text: &gotdbot.FormattedText{
-					Text: "Hello! I am an echo bot powered by gotdbot",
-				},
+		content := &gotdbot.InputMessageText{
+			Text: &gotdbot.FormattedText{
+				Text: "Hello! I am an echo bot powered by gotdbot " + gotdbot.Version,
 			},
 		}
 
 		opts := &gotdbot.SendMessageOpts{
-			ReplyTo: &gotdbot.InputMessageReplyTo{
-				InputMessageReplyToMessage: &gotdbot.InputMessageReplyToMessage{
-					MessageId: ctx.EffectiveMessage.Id,
-				},
+			ReplyTo: &gotdbot.InputMessageReplyToMessage{
+				MessageId: ctx.EffectiveMessage.Id,
 			},
-			ReplyMarkup: &gotdbot.ReplyMarkup{
-				ReplyMarkupInlineKeyboard: kb,
-			},
+			ReplyMarkup: kb,
 		}
 
 		_, err := ctx.Client.SendMessage(ctx.EffectiveChatId, content, opts)
@@ -68,12 +60,17 @@ func main() {
 		return nil
 	}))
 
+	dispatcher.AddHandler(handlers.NewUpdateDeleteMessages(nil, func(ctx *ext.Context) error {
+		update := ctx.Update.UpdateDeleteMessages
+		log.Printf("Messages deleted: %v (ChatID %d)", update.MessageIds, update.ChatId)
+		return nil
+	}))
+
 	dispatcher.AddHandler(handlers.NewCommand("go", func(ctx *ext.Context) error {
 		var m runtime.MemStats
 		runtime.ReadMemStats(&m)
 
 		uptime := time.Since(startTime).Round(time.Second)
-
 		reply := fmt.Sprintf(
 			"🟢 Go runtime stats\n\n"+
 				"• Goroutines : %d\n"+
@@ -95,7 +92,7 @@ func main() {
 			m.NumGC,
 		)
 
-		_, err := ctx.Reply(reply, nil)
+		_, err := ctx.Client.SendTextMessage(ctx.EffectiveChatId, reply, &gotdbot.SendTextMessageOpts{ReplyToMessageID: ctx.EffectiveMessage.Id})
 		return err
 	}))
 

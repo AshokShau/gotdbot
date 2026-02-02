@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"github.com/AshokShau/gotdbot"
 	"github.com/AshokShau/gotdbot/ext"
 	"github.com/AshokShau/gotdbot/ext/handlers/filters"
 )
@@ -19,8 +18,8 @@ func NewUpdateWebAppMessageSent(filter filters.UpdateWebAppMessageSent, response
 }
 
 func (h *UpdateWebAppMessageSent) CheckUpdate(ctx *ext.Context) bool {
-	u, ok := ctx.RawUpdate.(*gotdbot.UpdateWebAppMessageSent)
-	if !ok {
+	u := ctx.Update.UpdateWebAppMessageSent
+	if u == nil {
 		return false
 	}
 	if h.Filter == nil {

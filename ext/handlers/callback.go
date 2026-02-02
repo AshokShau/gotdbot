@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"github.com/AshokShau/gotdbot"
 	"github.com/AshokShau/gotdbot/ext"
 	"github.com/AshokShau/gotdbot/ext/handlers/filters"
 )
@@ -19,8 +18,8 @@ func NewCallbackQuery(filter filters.CallbackQuery, response func(ctx *ext.Conte
 }
 
 func (c *CallbackQuery) CheckUpdate(ctx *ext.Context) bool {
-	update, ok := ctx.RawUpdate.(*gotdbot.UpdateNewCallbackQuery)
-	if !ok {
+	update := ctx.Update.UpdateNewCallbackQuery
+	if update == nil {
 		return false
 	}
 	if c.Filter == nil {

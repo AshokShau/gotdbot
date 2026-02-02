@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"github.com/AshokShau/gotdbot"
 	"github.com/AshokShau/gotdbot/ext"
 	"github.com/AshokShau/gotdbot/ext/handlers/filters"
 )
@@ -19,8 +18,8 @@ func NewUpdateAccentColors(filter filters.UpdateAccentColors, response func(ctx 
 }
 
 func (h *UpdateAccentColors) CheckUpdate(ctx *ext.Context) bool {
-	u, ok := ctx.RawUpdate.(*gotdbot.UpdateAccentColors)
-	if !ok {
+	u := ctx.Update.UpdateAccentColors
+	if u == nil {
 		return false
 	}
 	if h.Filter == nil {

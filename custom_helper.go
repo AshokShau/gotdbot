@@ -22,16 +22,12 @@ func GetFormattedText(c *Client, text string, entities []*TextEntity, parseMode 
 	return &FormattedText{Text: text}
 }
 
-func GetInputFile(path string) *InputFile {
+func GetInputFile(path string) InputFile {
 	if _, err := os.Stat(path); err == nil {
-		return &InputFile{
-			InputFileLocal: &InputFileLocal{Path: path},
-		}
+		return &InputFileLocal{Path: path}
 	}
 
-	return &InputFile{
-		InputFileRemote: &InputFileRemote{Id: path},
-	}
+	return &InputFileRemote{Id: path}
 }
 
 // EscapeHTML escapes HTML characters in the given text.

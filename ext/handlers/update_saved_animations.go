@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"github.com/AshokShau/gotdbot"
 	"github.com/AshokShau/gotdbot/ext"
 	"github.com/AshokShau/gotdbot/ext/handlers/filters"
 )
@@ -19,8 +18,8 @@ func NewUpdateSavedAnimations(filter filters.UpdateSavedAnimations, response fun
 }
 
 func (h *UpdateSavedAnimations) CheckUpdate(ctx *ext.Context) bool {
-	u, ok := ctx.RawUpdate.(*gotdbot.UpdateSavedAnimations)
-	if !ok {
+	u := ctx.Update.UpdateSavedAnimations
+	if u == nil {
 		return false
 	}
 	if h.Filter == nil {
