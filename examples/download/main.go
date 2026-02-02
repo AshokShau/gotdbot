@@ -39,7 +39,7 @@ var (
 )
 
 func main() {
-	apiID := int32(6)
+	apiID := int32(0)
 	apiHash := ""
 	botToken := ""
 
@@ -54,6 +54,12 @@ func main() {
 
 	// Register /upload command
 	dispatcher.AddHandler(handlers.NewCommand("upload", uploadCmd))
+
+	// Register /fileid command
+	dispatcher.AddHandler(handlers.NewCommand("fileid", getFileID))
+
+	//  Register /file command
+	dispatcher.AddHandler(handlers.NewCommand("file", sendWithFileID))
 
 	// Register UpdateFile handler for progress tracking
 	dispatcher.AddHandler(handlers.NewUpdateFile(nil, progressHandler))
@@ -181,6 +187,51 @@ func uploadCmd(ctx *ext.Context) error {
 	if err != nil {
 		activeTasksByName.Delete(base)
 		_, _ = progressMsg.EditText(c, fmt.Sprintf("Failed to start upload: %v", err), nil)
+		return err
+	}
+	return nil
+}
+
+func getFileID(ctx *ext.Context) error {
+	msg := ctx.EffectiveMessage
+	c := ctx.Client
+	if msg.ReplyToMessageID() == 0 {
+		_, err := msg.ReplyText(c, "Please reply to a message with a file to get its File ID.", &gotdbot.SendTextMessageOpts{ParseMode: "HTML"})
+		return err
+	}
+
+	replyMsg, err := msg.GetRepliedMessage(c)
+	if err != nil {
+		_, _ = msg.ReplyText(c, fmt.Sprintf("Failed to get reply message: %v", err), &gotdbot.SendTextMessageOpts{ParseMode: "HTML"})
+		return fmt.Errorf("failed to get reply message: %w", err)
+	}
+
+	fileID := replyMsg.RemoteFileID()
+	if fileID == "" {
+		_, err = msg.ReplyText(c, "No supported media found in the replied message.", &gotdbot.SendTextMessageOpts{ParseMode: "HTML"})
+		return err
+	}
+
+	_, err = msg.ReplyText(c, fmt.Sprintf("📁 File ID: <code>%s</code>", gotdbot.EscapeHTML(fileID)), &gotdbot.SendTextMessageOpts{ParseMode: "HTML"})
+	return err
+}
+
+func sendWithFileID(ctx *ext.Context) error {
+	args := getArgs(ctx)
+	msg := ctx.EffectiveMessage
+	c := ctx.Client
+
+	if len(args) == 0 {
+		_, err := msg.ReplyText(c, "Please provide a File ID to send. Usage: /file <file_id>", &gotdbot.SendTextMessageOpts{ParseMode: "HTML"})
+		return err
+	}
+
+	_, err := c.SendDocument(ctx.EffectiveChatId, args[0], &gotdbot.SendDocumentOpts{
+		Caption: "Here is your file",
+	})
+
+	if err != nil {
+		_, _ = msg.ReplyText(c, fmt.Sprintf("Failed to send file: %v", err), &gotdbot.SendTextMessageOpts{ParseMode: "HTML"})
 		return err
 	}
 	return nil
