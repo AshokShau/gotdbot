@@ -122,8 +122,14 @@ func main() {
 			ReplyMarkup: kb,
 		}
 
-		_, err = ctx.Client.SendMessage(ctx.EffectiveChatId, content, opts)
-		return err
+		message, err := ctx.Client.SendMessage(ctx.EffectiveChatId, content, opts)
+		if err != nil {
+			ctx.Client.Logger.Error("Failed to send message", "err", err)
+			return err
+		}
+		ctx.Client.Logger.Info("Sent message with inline", "message_id", message.Id)
+
+		return nil
 	}))
 
 	// /keyboard - Send message with reply keyboard
@@ -155,8 +161,13 @@ func main() {
 			ReplyMarkup: kb,
 		}
 
-		_, err := ctx.Client.SendMessage(ctx.EffectiveChatId, content, opts)
-		return err
+		message, err := ctx.Client.SendMessage(ctx.EffectiveChatId, content, opts)
+		if err != nil {
+			ctx.Client.Logger.Error("Failed to send message", "err", err)
+			return err
+		}
+		ctx.Client.Logger.Info("Sent message with keyboard", "message_id", message.Id)
+		return nil
 	}))
 
 	// /remove - Remove keyboard
@@ -194,7 +205,7 @@ func main() {
 	// CallbackQuery Handler
 	dispatcher.AddHandler(handlers.NewCallbackQuery(nil, func(ctx *ext.Context) error {
 		update := ctx.Update.UpdateNewCallbackQuery
-
+		ctx.Client.Logger.Info("Received callback query", "message_id", update.MessageId, "chat_id", update.ChatId)
 		var data string
 		if update.Payload != nil {
 			if p, ok := update.Payload.(*gotdbot.CallbackQueryPayloadData); ok {

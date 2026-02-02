@@ -66,6 +66,7 @@ type Client struct {
 
 	updates chan TlObject
 	stop    chan struct{}
+	closed  chan struct{}
 	wg      sync.WaitGroup
 
 	handlers     map[string][]*Handler
@@ -74,6 +75,7 @@ type Client struct {
 	hMu          sync.RWMutex
 
 	pendingRequests sync.Map // map[string]chan TlObject
+	pendingMessages sync.Map // map[string]chan TlObject
 
 	// Cache
 	me   *User
@@ -126,6 +128,7 @@ func NewClient(apiID int32, apiHash, botToken string, config *ClientConfig) *Cli
 		Logger:        config.Logger,
 		updates:       make(chan TlObject, 1000),
 		stop:          make(chan struct{}),
+		closed:        make(chan struct{}),
 		handlers:      make(map[string][]*Handler),
 		authErrorChan: make(chan error, 1),
 	}
@@ -133,8 +136,8 @@ func NewClient(apiID int32, apiHash, botToken string, config *ClientConfig) *Cli
 	c.AddHandler("updateAuthorizationState", c.authHandler, nil, 0)
 	c.AddHandler("updateUser", c.userHandler, nil, 0)
 	c.AddHandler("updateConnectionState", c.connectionStateHandler, nil, 0)
-
-	//tdjson.Send(c.clientID, `{"@type": "getOption", "name": "version"}`)
+	c.AddHandler("updateMessageSendSucceeded", c.messageSendSucceededHandler, nil, 0)
+	c.AddHandler("updateMessageSendFailed", c.messageSendFailedHandler, nil, 0)
 	return c
 }
 
@@ -185,6 +188,14 @@ func SetTdlibLogStreamEmpty() {
 }
 
 func (c *Client) Stop() {
+	_, _ = c.Send(&Close{})
+
+	select {
+	case <-c.closed:
+	case <-time.After(5 * time.Second):
+		c.Logger.Warn("Timeout waiting for TDLib to close")
+	}
+
 	close(c.stop)
 	c.wg.Wait()
 }
@@ -336,6 +347,11 @@ func (c *Client) authHandler(client *Client, update TlObject) error {
 		if !c.isAuthorized {
 			c.authErrorChan <- fmt.Errorf("authorization closed unexpectedly")
 		}
+		select {
+		case <-c.closed:
+		default:
+			close(c.closed)
+		}
 	}
 	return nil
 }
@@ -367,6 +383,32 @@ func (c *Client) connectionStateHandler(client *Client, update TlObject) error {
 	state := u.State.Type()
 	state = strings.TrimPrefix(state, "connectionState")
 	c.Logger.Info("Connection state changed", "state", state)
+	return nil
+}
+
+func (c *Client) messageSendSucceededHandler(client *Client, update TlObject) error {
+	u, ok := update.(*UpdateMessageSendSucceeded)
+	if !ok {
+		return nil
+	}
+	key := fmt.Sprintf("%d:%d", u.Message.ChatId, u.OldMessageId)
+	if ch, ok := c.pendingMessages.Load(key); ok {
+		ch.(chan TlObject) <- u.Message
+		c.pendingMessages.Delete(key)
+	}
+	return nil
+}
+
+func (c *Client) messageSendFailedHandler(client *Client, update TlObject) error {
+	u, ok := update.(*UpdateMessageSendFailed)
+	if !ok {
+		return nil
+	}
+	key := fmt.Sprintf("%d:%d", u.Message.ChatId, u.OldMessageId)
+	if ch, ok := c.pendingMessages.Load(key); ok {
+		ch.(chan TlObject) <- u.Error
+		c.pendingMessages.Delete(key)
+	}
 	return nil
 }
 
