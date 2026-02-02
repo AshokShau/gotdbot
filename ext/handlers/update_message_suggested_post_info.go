@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"github.com/AshokShau/gotdbot"
 	"github.com/AshokShau/gotdbot/ext"
 	"github.com/AshokShau/gotdbot/ext/handlers/filters"
 )
@@ -19,8 +18,8 @@ func NewUpdateMessageSuggestedPostInfo(filter filters.UpdateMessageSuggestedPost
 }
 
 func (h *UpdateMessageSuggestedPostInfo) CheckUpdate(ctx *ext.Context) bool {
-	u, ok := ctx.RawUpdate.(*gotdbot.UpdateMessageSuggestedPostInfo)
-	if !ok {
+	u := ctx.Update.UpdateMessageSuggestedPostInfo
+	if u == nil {
 		return false
 	}
 	if h.Filter == nil {

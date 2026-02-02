@@ -92,7 +92,6 @@ func generateExtHandlers(types []TLType) []string {
 		fmt.Fprintln(f, "package handlers")
 		fmt.Fprintln(f)
 		fmt.Fprintln(f, "import (")
-		fmt.Fprintln(f, "\t\"github.com/AshokShau/gotdbot\"")
 		fmt.Fprintln(f, "\t\"github.com/AshokShau/gotdbot/ext\"")
 		fmt.Fprintln(f, "\t\"github.com/AshokShau/gotdbot/ext/handlers/filters\"")
 		fmt.Fprintln(f, ")")
@@ -111,8 +110,8 @@ func generateExtHandlers(types []TLType) []string {
 		fmt.Fprintf(f, "}\n\n")
 
 		fmt.Fprintf(f, "func (h *%s) CheckUpdate(ctx *ext.Context) bool {\n", structName)
-		fmt.Fprintf(f, "\tu, ok := ctx.RawUpdate.(*gotdbot.%s)\n", structName)
-		fmt.Fprintf(f, "\tif !ok {\n")
+		fmt.Fprintf(f, "\tu := ctx.Update.%s\n", structName)
+		fmt.Fprintf(f, "\tif u == nil {\n")
 		fmt.Fprintf(f, "\t\treturn false\n")
 		fmt.Fprintf(f, "\t}\n")
 		fmt.Fprintf(f, "\tif h.Filter == nil {\n")
@@ -162,6 +161,36 @@ func generateExtHandlers(types []TLType) []string {
 	fmt.Fprintln(fContext)
 	fmt.Fprintln(fContext, "import \"github.com/AshokShau/gotdbot\"")
 	fmt.Fprintln(fContext)
+
+	// Updates Struct
+	fmt.Fprintln(fContext, "type Updates struct {")
+	for _, t := range types {
+		if t.ResultType != "Update" {
+			continue
+		}
+		structName := toCamelCase(t.Name)
+		fmt.Fprintf(fContext, "\t%s *gotdbot.%s\n", structName, structName)
+	}
+	fmt.Fprintln(fContext, "}")
+	fmt.Fprintln(fContext)
+
+	// NewUpdates Function
+	fmt.Fprintln(fContext, "func NewUpdates(u gotdbot.TlObject) *Updates {")
+	fmt.Fprintln(fContext, "\tup := &Updates{}")
+	fmt.Fprintln(fContext, "\tswitch u := u.(type) {")
+	for _, t := range types {
+		if t.ResultType != "Update" {
+			continue
+		}
+		structName := toCamelCase(t.Name)
+		fmt.Fprintf(fContext, "\tcase *gotdbot.%s:\n", structName)
+		fmt.Fprintf(fContext, "\t\tup.%s = u\n", structName)
+	}
+	fmt.Fprintln(fContext, "\t}")
+	fmt.Fprintln(fContext, "\treturn up")
+	fmt.Fprintln(fContext, "}")
+	fmt.Fprintln(fContext)
+
 	fmt.Fprintln(fContext, "func extractGeneratedEffectiveFields(u gotdbot.TlObject, c *Context) {")
 	fmt.Fprintln(fContext, "\tswitch u := u.(type) {")
 	for _, t := range types {

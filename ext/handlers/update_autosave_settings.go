@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"github.com/AshokShau/gotdbot"
 	"github.com/AshokShau/gotdbot/ext"
 	"github.com/AshokShau/gotdbot/ext/handlers/filters"
 )
@@ -19,8 +18,8 @@ func NewUpdateAutosaveSettings(filter filters.UpdateAutosaveSettings, response f
 }
 
 func (h *UpdateAutosaveSettings) CheckUpdate(ctx *ext.Context) bool {
-	u, ok := ctx.RawUpdate.(*gotdbot.UpdateAutosaveSettings)
-	if !ok {
+	u := ctx.Update.UpdateAutosaveSettings
+	if u == nil {
 		return false
 	}
 	if h.Filter == nil {

@@ -179,7 +179,7 @@ func main() {
 
 	// CallbackQuery Handler
 	dispatcher.AddHandler(handlers.NewCallbackQuery(nil, func(ctx *ext.Context) error {
-		update := ctx.RawUpdate.(*gotdbot.UpdateNewCallbackQuery)
+		update := ctx.Update.UpdateNewCallbackQuery
 
 		var data string
 		if update.Payload != nil {

@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"github.com/AshokShau/gotdbot"
 	"github.com/AshokShau/gotdbot/ext"
 	"github.com/AshokShau/gotdbot/ext/handlers/filters"
 )
@@ -19,8 +18,8 @@ func NewUpdateActiveEmojiReactions(filter filters.UpdateActiveEmojiReactions, re
 }
 
 func (h *UpdateActiveEmojiReactions) CheckUpdate(ctx *ext.Context) bool {
-	u, ok := ctx.RawUpdate.(*gotdbot.UpdateActiveEmojiReactions)
-	if !ok {
+	u := ctx.Update.UpdateActiveEmojiReactions
+	if u == nil {
 		return false
 	}
 	if h.Filter == nil {

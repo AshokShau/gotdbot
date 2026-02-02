@@ -128,7 +128,7 @@ func Command(command string, prefixes ...rune) Message {
 		if !ok || txt.Text == nil {
 			return false
 		}
-		
+
 		text := txt.Text.Text
 		if text == "" {
 			return false

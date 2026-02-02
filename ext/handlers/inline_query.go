@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"github.com/AshokShau/gotdbot"
 	"github.com/AshokShau/gotdbot/ext"
 	"github.com/AshokShau/gotdbot/ext/handlers/filters"
 )
@@ -19,8 +18,8 @@ func NewInlineQuery(filter filters.InlineQuery, response func(ctx *ext.Context) 
 }
 
 func (h *InlineQuery) CheckUpdate(ctx *ext.Context) bool {
-	update, ok := ctx.RawUpdate.(*gotdbot.UpdateNewInlineQuery)
-	if !ok {
+	update := ctx.Update.UpdateNewInlineQuery
+	if update == nil {
 		return false
 	}
 	if h.Filter == nil {

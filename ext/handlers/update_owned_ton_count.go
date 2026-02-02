@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"github.com/AshokShau/gotdbot"
 	"github.com/AshokShau/gotdbot/ext"
 	"github.com/AshokShau/gotdbot/ext/handlers/filters"
 )
@@ -19,8 +18,8 @@ func NewUpdateOwnedTonCount(filter filters.UpdateOwnedTonCount, response func(ct
 }
 
 func (h *UpdateOwnedTonCount) CheckUpdate(ctx *ext.Context) bool {
-	u, ok := ctx.RawUpdate.(*gotdbot.UpdateOwnedTonCount)
-	if !ok {
+	u := ctx.Update.UpdateOwnedTonCount
+	if u == nil {
 		return false
 	}
 	if h.Filter == nil {

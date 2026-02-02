@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"github.com/AshokShau/gotdbot"
 	"github.com/AshokShau/gotdbot/ext"
 	"github.com/AshokShau/gotdbot/ext/handlers/filters"
 )
@@ -19,8 +18,8 @@ func NewChosenInlineResult(filter filters.ChosenInlineResult, response func(ctx 
 }
 
 func (h *ChosenInlineResult) CheckUpdate(ctx *ext.Context) bool {
-	update, ok := ctx.RawUpdate.(*gotdbot.UpdateNewChosenInlineResult)
-	if !ok {
+	update := ctx.Update.UpdateNewChosenInlineResult
+	if update == nil {
 		return false
 	}
 	if h.Filter == nil {

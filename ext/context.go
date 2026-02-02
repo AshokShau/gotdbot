@@ -5,8 +5,8 @@ import (
 )
 
 type Context struct {
-	// RawUpdate is the original update object.
-	RawUpdate gotdbot.TlObject
+	// Update contains pointers to all possible update types.
+	Update *Updates
 	// Client is the gotdbot client.
 	Client *gotdbot.Client
 
@@ -21,16 +21,16 @@ type Context struct {
 
 func NewContext(client *gotdbot.Client, update gotdbot.TlObject) *Context {
 	ctx := &Context{
-		RawUpdate: update,
+		Update:    NewUpdates(update),
 		Client:    client,
 		Data:      make(map[string]interface{}),
 	}
-	ctx.extractEffectiveFields()
+	ctx.extractEffectiveFields(update)
 	return ctx
 }
 
-func (c *Context) extractEffectiveFields() {
-	switch u := c.RawUpdate.(type) {
+func (c *Context) extractEffectiveFields(u gotdbot.TlObject) {
+	switch u := u.(type) {
 	// Message updates
 	case *gotdbot.UpdateNewMessage:
 		if u.Message != nil {
@@ -152,5 +152,5 @@ func (c *Context) extractEffectiveFields() {
 	case *gotdbot.UpdateNewChatJoinRequest:
 		c.EffectiveChatId = u.ChatId
 	}
-	extractGeneratedEffectiveFields(c.RawUpdate, c)
+	extractGeneratedEffectiveFields(u, c)
 }

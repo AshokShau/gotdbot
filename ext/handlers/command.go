@@ -45,16 +45,6 @@ func (c *Command) CheckUpdate(ctx *ext.Context) bool {
 		return false
 	}
 
-	me := ctx.Client.Me()
-	if me == nil {
-		return false
-	}
-
-	botUsername := ""
-	if me.Usernames != nil && len(me.Usernames.ActiveUsernames) > 0 {
-		botUsername = strings.ToLower(me.Usernames.ActiveUsernames[0])
-	}
-
 	for _, trigger := range c.Triggers {
 		prefix := string(trigger)
 		if !strings.HasPrefix(text, prefix) {
@@ -85,6 +75,15 @@ func (c *Command) CheckUpdate(ctx *ext.Context) bool {
 		}
 
 		if mentionedBot != "" {
+			me := ctx.Client.Me()
+			if me == nil {
+				return false
+			}
+			botUsername := ""
+			if me.Usernames != nil && len(me.Usernames.ActiveUsernames) > 0 {
+				botUsername = strings.ToLower(me.Usernames.ActiveUsernames[0])
+			}
+
 			if botUsername == "" {
 				return false
 			}

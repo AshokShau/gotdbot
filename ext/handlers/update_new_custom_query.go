@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"github.com/AshokShau/gotdbot"
 	"github.com/AshokShau/gotdbot/ext"
 	"github.com/AshokShau/gotdbot/ext/handlers/filters"
 )
@@ -19,8 +18,8 @@ func NewUpdateNewCustomQuery(filter filters.UpdateNewCustomQuery, response func(
 }
 
 func (h *UpdateNewCustomQuery) CheckUpdate(ctx *ext.Context) bool {
-	u, ok := ctx.RawUpdate.(*gotdbot.UpdateNewCustomQuery)
-	if !ok {
+	u := ctx.Update.UpdateNewCustomQuery
+	if u == nil {
 		return false
 	}
 	if h.Filter == nil {

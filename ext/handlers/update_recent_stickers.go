@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"github.com/AshokShau/gotdbot"
 	"github.com/AshokShau/gotdbot/ext"
 	"github.com/AshokShau/gotdbot/ext/handlers/filters"
 )
@@ -19,8 +18,8 @@ func NewUpdateRecentStickers(filter filters.UpdateRecentStickers, response func(
 }
 
 func (h *UpdateRecentStickers) CheckUpdate(ctx *ext.Context) bool {
-	u, ok := ctx.RawUpdate.(*gotdbot.UpdateRecentStickers)
-	if !ok {
+	u := ctx.Update.UpdateRecentStickers
+	if u == nil {
 		return false
 	}
 	if h.Filter == nil {

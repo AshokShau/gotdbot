@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"github.com/AshokShau/gotdbot"
 	"github.com/AshokShau/gotdbot/ext"
 	"github.com/AshokShau/gotdbot/ext/handlers/filters"
 )
@@ -19,8 +18,8 @@ func NewUpdateChatPhoto(filter filters.UpdateChatPhoto, response func(ctx *ext.C
 }
 
 func (h *UpdateChatPhoto) CheckUpdate(ctx *ext.Context) bool {
-	u, ok := ctx.RawUpdate.(*gotdbot.UpdateChatPhoto)
-	if !ok {
+	u := ctx.Update.UpdateChatPhoto
+	if u == nil {
 		return false
 	}
 	if h.Filter == nil {

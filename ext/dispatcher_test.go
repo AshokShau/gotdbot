@@ -39,7 +39,7 @@ func TestDispatcher_Message(t *testing.T) {
 }
 
 func TestDispatcher_Command(t *testing.T) {
-	d := ext.NewDispatcher(nil)
+	d := ext.NewDispatcher(&gotdbot.Client{})
 	called := false
 	cmd := handlers.NewCommand("start", func(ctx *ext.Context) error {
 		called = true

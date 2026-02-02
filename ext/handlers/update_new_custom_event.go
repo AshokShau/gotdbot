@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"github.com/AshokShau/gotdbot"
 	"github.com/AshokShau/gotdbot/ext"
 	"github.com/AshokShau/gotdbot/ext/handlers/filters"
 )
@@ -19,8 +18,8 @@ func NewUpdateNewCustomEvent(filter filters.UpdateNewCustomEvent, response func(
 }
 
 func (h *UpdateNewCustomEvent) CheckUpdate(ctx *ext.Context) bool {
-	u, ok := ctx.RawUpdate.(*gotdbot.UpdateNewCustomEvent)
-	if !ok {
+	u := ctx.Update.UpdateNewCustomEvent
+	if u == nil {
 		return false
 	}
 	if h.Filter == nil {

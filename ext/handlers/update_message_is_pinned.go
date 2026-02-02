@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"github.com/AshokShau/gotdbot"
 	"github.com/AshokShau/gotdbot/ext"
 	"github.com/AshokShau/gotdbot/ext/handlers/filters"
 )
@@ -19,8 +18,8 @@ func NewUpdateMessageIsPinned(filter filters.UpdateMessageIsPinned, response fun
 }
 
 func (h *UpdateMessageIsPinned) CheckUpdate(ctx *ext.Context) bool {
-	u, ok := ctx.RawUpdate.(*gotdbot.UpdateMessageIsPinned)
-	if !ok {
+	u := ctx.Update.UpdateMessageIsPinned
+	if u == nil {
 		return false
 	}
 	if h.Filter == nil {

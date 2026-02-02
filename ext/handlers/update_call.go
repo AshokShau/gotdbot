@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"github.com/AshokShau/gotdbot"
 	"github.com/AshokShau/gotdbot/ext"
 	"github.com/AshokShau/gotdbot/ext/handlers/filters"
 )
@@ -19,8 +18,8 @@ func NewUpdateCall(filter filters.UpdateCall, response func(ctx *ext.Context) er
 }
 
 func (h *UpdateCall) CheckUpdate(ctx *ext.Context) bool {
-	u, ok := ctx.RawUpdate.(*gotdbot.UpdateCall)
-	if !ok {
+	u := ctx.Update.UpdateCall
+	if u == nil {
 		return false
 	}
 	if h.Filter == nil {

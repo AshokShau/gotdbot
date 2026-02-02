@@ -61,7 +61,7 @@ func main() {
 	}))
 
 	dispatcher.AddHandler(handlers.NewUpdateDeleteMessages(nil, func(ctx *ext.Context) error {
-		update := ctx.RawUpdate.(*gotdbot.UpdateDeleteMessages)
+		update := ctx.Update.UpdateDeleteMessages
 		log.Printf("Messages deleted: %v (ChatID %d)", update.MessageIds, update.ChatId)
 		return nil
 	}))

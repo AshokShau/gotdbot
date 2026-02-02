@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"github.com/AshokShau/gotdbot"
 	"github.com/AshokShau/gotdbot/ext"
 	"github.com/AshokShau/gotdbot/ext/handlers/filters"
 )
@@ -19,8 +18,8 @@ func NewUpdateAgeVerificationParameters(filter filters.UpdateAgeVerificationPara
 }
 
 func (h *UpdateAgeVerificationParameters) CheckUpdate(ctx *ext.Context) bool {
-	u, ok := ctx.RawUpdate.(*gotdbot.UpdateAgeVerificationParameters)
-	if !ok {
+	u := ctx.Update.UpdateAgeVerificationParameters
+	if u == nil {
 		return false
 	}
 	if h.Filter == nil {

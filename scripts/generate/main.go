@@ -22,10 +22,10 @@ func main() {
 	generateFunctions(functions, classes)
 	generateOptions(functions, classes)
 	generateMethods(functions, classes)
-	generateUpdates(types)
+	// generateUpdates(types)
 	extFiles := generateExtHandlers(types)
 	helperFiles := generateHelpers(types, functions, classes)
-	filesToFmt := append([]string{"gen_classes.go", "gen_types.go", "gen_functions.go", "gen_options.go", "gen_methods.go", "gen_updates.go"}, helperFiles...)
+	filesToFmt := append([]string{"gen_classes.go", "gen_types.go", "gen_functions.go", "gen_options.go", "gen_methods.go"}, helperFiles...)
 	filesToFmt = append(filesToFmt, extFiles...)
 	gofmt(filesToFmt...)
 }

@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"github.com/AshokShau/gotdbot"
 	"github.com/AshokShau/gotdbot/ext"
 	"github.com/AshokShau/gotdbot/ext/handlers/filters"
 )
@@ -19,8 +18,8 @@ func NewUpdateAttachmentMenuBots(filter filters.UpdateAttachmentMenuBots, respon
 }
 
 func (h *UpdateAttachmentMenuBots) CheckUpdate(ctx *ext.Context) bool {
-	u, ok := ctx.RawUpdate.(*gotdbot.UpdateAttachmentMenuBots)
-	if !ok {
+	u := ctx.Update.UpdateAttachmentMenuBots
+	if u == nil {
 		return false
 	}
 	if h.Filter == nil {

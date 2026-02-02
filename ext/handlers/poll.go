@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"github.com/AshokShau/gotdbot"
 	"github.com/AshokShau/gotdbot/ext"
 	"github.com/AshokShau/gotdbot/ext/handlers/filters"
 )
@@ -19,8 +18,8 @@ func NewPoll(filter filters.Poll, response func(ctx *ext.Context) error) *Poll {
 }
 
 func (h *Poll) CheckUpdate(ctx *ext.Context) bool {
-	update, ok := ctx.RawUpdate.(*gotdbot.UpdatePoll)
-	if !ok {
+	update := ctx.Update.UpdatePoll
+	if update == nil {
 		return false
 	}
 	if h.Filter == nil {
@@ -46,8 +45,8 @@ func NewPollAnswer(filter filters.PollAnswer, response func(ctx *ext.Context) er
 }
 
 func (h *PollAnswer) CheckUpdate(ctx *ext.Context) bool {
-	update, ok := ctx.RawUpdate.(*gotdbot.UpdatePollAnswer)
-	if !ok {
+	update := ctx.Update.UpdatePollAnswer
+	if update == nil {
 		return false
 	}
 	if h.Filter == nil {

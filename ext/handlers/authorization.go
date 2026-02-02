@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"github.com/AshokShau/gotdbot"
 	"github.com/AshokShau/gotdbot/ext"
 	"github.com/AshokShau/gotdbot/ext/handlers/filters"
 )
@@ -19,8 +18,8 @@ func NewAuthorizationState(filter filters.AuthorizationState, response func(ctx 
 }
 
 func (h *AuthorizationState) CheckUpdate(ctx *ext.Context) bool {
-	update, ok := ctx.RawUpdate.(*gotdbot.UpdateAuthorizationState)
-	if !ok {
+	update := ctx.Update.UpdateAuthorizationState
+	if update == nil {
 		return false
 	}
 	if h.Filter == nil {

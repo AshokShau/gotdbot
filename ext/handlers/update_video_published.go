@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"github.com/AshokShau/gotdbot"
 	"github.com/AshokShau/gotdbot/ext"
 	"github.com/AshokShau/gotdbot/ext/handlers/filters"
 )
@@ -19,8 +18,8 @@ func NewUpdateVideoPublished(filter filters.UpdateVideoPublished, response func(
 }
 
 func (h *UpdateVideoPublished) CheckUpdate(ctx *ext.Context) bool {
-	u, ok := ctx.RawUpdate.(*gotdbot.UpdateVideoPublished)
-	if !ok {
+	u := ctx.Update.UpdateVideoPublished
+	if u == nil {
 		return false
 	}
 	if h.Filter == nil {

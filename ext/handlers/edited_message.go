@@ -18,8 +18,8 @@ func NewEditedMessage(filter func(u *gotdbot.UpdateMessageEdited) bool, response
 }
 
 func (h *EditedMessage) CheckUpdate(ctx *ext.Context) bool {
-	update, ok := ctx.RawUpdate.(*gotdbot.UpdateMessageEdited)
-	if !ok {
+	update := ctx.Update.UpdateMessageEdited
+	if update == nil {
 		return false
 	}
 	if h.Filter == nil {

@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"github.com/AshokShau/gotdbot"
 	"github.com/AshokShau/gotdbot/ext"
 	"github.com/AshokShau/gotdbot/ext/handlers/filters"
 )
@@ -19,8 +18,8 @@ func NewChatJoinRequest(filter filters.ChatJoinRequest, response func(ctx *ext.C
 }
 
 func (h *ChatJoinRequest) CheckUpdate(ctx *ext.Context) bool {
-	update, ok := ctx.RawUpdate.(*gotdbot.UpdateNewChatJoinRequest)
-	if !ok {
+	update := ctx.Update.UpdateNewChatJoinRequest
+	if update == nil {
 		return false
 	}
 	if h.Filter == nil {

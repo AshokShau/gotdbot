@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"github.com/AshokShau/gotdbot"
 	"github.com/AshokShau/gotdbot/ext"
 	"github.com/AshokShau/gotdbot/ext/handlers/filters"
 )
@@ -19,8 +18,8 @@ func NewShippingQuery(filter filters.ShippingQuery, response func(ctx *ext.Conte
 }
 
 func (h *ShippingQuery) CheckUpdate(ctx *ext.Context) bool {
-	update, ok := ctx.RawUpdate.(*gotdbot.UpdateNewShippingQuery)
-	if !ok {
+	update := ctx.Update.UpdateNewShippingQuery
+	if update == nil {
 		return false
 	}
 	if h.Filter == nil {
