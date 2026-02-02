@@ -60,6 +60,12 @@ func main() {
 		return nil
 	}))
 
+	dispatcher.AddHandler(handlers.NewUpdateDeleteMessages(nil, func(ctx *ext.Context) error {
+		update := ctx.RawUpdate.(*gotdbot.UpdateDeleteMessages)
+		log.Printf("Messages deleted: %v (ChatID %d)", update.MessageIds, update.ChatId)
+		return nil
+	}))
+
 	dispatcher.AddHandler(handlers.NewCommand("go", func(ctx *ext.Context) error {
 		var m runtime.MemStats
 		runtime.ReadMemStats(&m)

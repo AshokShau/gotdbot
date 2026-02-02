@@ -14,8 +14,8 @@ import (
 
 func main() {
 	apiID := int32(6)
-	apiHash := ""
-	botToken := ""
+	apiHash := "API_HASH"
+	botToken := "BOT_TOKEN"
 
 	if envID := os.Getenv("API_ID"); envID != "" {
 		fmt.Sscanf(envID, "%d", &apiID)

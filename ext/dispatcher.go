@@ -70,7 +70,6 @@ func (d *Dispatcher) ProcessUpdate(update gotdbot.TlObject) {
 			if h.CheckUpdate(ctx) {
 				err := h.HandleUpdate(ctx)
 				if err != nil {
-					// We might want to have an ErrorHandler here
 					log.Printf("Handler error: %v", err)
 				}
 				break
