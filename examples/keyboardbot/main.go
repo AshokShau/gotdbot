@@ -39,6 +39,18 @@ func main() {
 			userId = u.UserId
 		}
 
+		msg := ctx.EffectiveMessage
+		c := ctx.Client
+
+		action, err := msg.Action(c, "typing", nil)
+		if err != nil {
+			ctx.Client.Logger.Error("Failed to create chat action", "err", err)
+			return err
+		}
+
+		//action.Start() // Start sending action in loop
+		action.Send() // Send once
+
 		ctx.Client.Logger.Info("Received /start command", "user_id", userId)
 
 		user, err := ctx.Client.GetUser(userId)
@@ -73,6 +85,8 @@ func main() {
 		}
 
 		_, err = ctx.Client.SendMessage(ctx.EffectiveChatId, content, opts)
+
+		// action.Stop()
 		return err
 	}))
 
