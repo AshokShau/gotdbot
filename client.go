@@ -27,10 +27,10 @@ type ClientConfig struct {
 	DatabaseDirectory       string
 	FilesDirectory          string
 	DatabaseEncryptionKey   string
-	UseFileDatabase         bool
-	UseChatInfoDatabase     bool
-	UseMessageDatabase      bool
-	UseSecretChats          bool
+	UseFileDatabase         *bool
+	UseChatInfoDatabase     *bool
+	UseMessageDatabase      *bool
+	UseSecretChats          *bool
 	LoadMessagesBeforeReply bool
 	SystemLanguageCode      string
 	DeviceModel             string
@@ -45,10 +45,10 @@ func DefaultClientConfig() *ClientConfig {
 		DatabaseDirectory:       "database",
 		FilesDirectory:          "database",
 		DatabaseEncryptionKey:   "default",
-		UseFileDatabase:         true,
-		UseChatInfoDatabase:     true,
-		UseMessageDatabase:      true,
-		UseSecretChats:          true,
+		UseFileDatabase:         Bool(true),
+		UseChatInfoDatabase:     Bool(true),
+		UseMessageDatabase:      Bool(true),
+		UseSecretChats:          Bool(false),
 		LoadMessagesBeforeReply: false,
 		SystemLanguageCode:      "en",
 		DeviceModel:             "Gotdbot",
@@ -94,6 +94,18 @@ func NewClient(apiID int32, apiHash, botToken string, config *ClientConfig) *Cli
 		config = DefaultClientConfig()
 	} else {
 		def := DefaultClientConfig()
+		if config.UseFileDatabase == nil {
+			config.UseFileDatabase = def.UseFileDatabase
+		}
+		if config.UseChatInfoDatabase == nil {
+			config.UseChatInfoDatabase = def.UseChatInfoDatabase
+		}
+		if config.UseMessageDatabase == nil {
+			config.UseMessageDatabase = def.UseMessageDatabase
+		}
+		if config.UseSecretChats == nil {
+			config.UseSecretChats = def.UseSecretChats
+		}
 		if config.SystemLanguageCode == "" {
 			config.SystemLanguageCode = def.SystemLanguageCode
 		}
@@ -310,10 +322,10 @@ func (c *Client) authHandler(client *Client, update TlObject) error {
 			"use_test_dc", c.config.UseTestDC,
 			"database_directory", c.config.DatabaseDirectory,
 			"files_directory", c.config.FilesDirectory,
-			"use_file_database", c.config.UseFileDatabase,
-			"use_chat_info_database", c.config.UseChatInfoDatabase,
-			"use_message_database", c.config.UseMessageDatabase,
-			"use_secret_chats", c.config.UseSecretChats,
+			"use_file_database", *c.config.UseFileDatabase,
+			"use_chat_info_database", *c.config.UseChatInfoDatabase,
+			"use_message_database", *c.config.UseMessageDatabase,
+			"use_secret_chats", *c.config.UseSecretChats,
 			"api_id", c.apiID,
 			"system_language_code", c.config.SystemLanguageCode,
 			"device_model", c.config.DeviceModel,
@@ -326,10 +338,10 @@ func (c *Client) authHandler(client *Client, update TlObject) error {
 			c.config.DatabaseDirectory,
 			c.config.FilesDirectory,
 			[]byte(c.config.DatabaseEncryptionKey),
-			c.config.UseFileDatabase,
-			c.config.UseChatInfoDatabase,
-			c.config.UseMessageDatabase,
-			c.config.UseSecretChats,
+			*c.config.UseFileDatabase,
+			*c.config.UseChatInfoDatabase,
+			*c.config.UseMessageDatabase,
+			*c.config.UseSecretChats,
 			c.apiID,
 			c.apiHash,
 			c.config.SystemLanguageCode,

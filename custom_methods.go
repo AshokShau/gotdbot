@@ -507,7 +507,7 @@ func (c *Client) EditTextMessage(chatId int64, messageId int64, text string, opt
 		opts = &EditTextMessageOpts{}
 	}
 
-	if !c.config.UseMessageDatabase {
+	if !*c.config.UseMessageDatabase {
 		if _, err := c.GetMessage(chatId, messageId); err != nil {
 			return nil, err
 		}

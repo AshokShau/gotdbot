@@ -19,7 +19,7 @@ Current Version: **v0.1.0**
 
 ## Requirements
 
-- **Go**: 1.20+
+- **Go**: 1.22+
 - **TDLib**: You need the compiled `libtdjson` shared library.
     - [Build TDLib instructions](https://tdlib.github.io/td/build.html?language=Go)
     - Ensure `libtdjson.so` (Linux), `libtdjson.dylib` (macOS), or `tdjson.dll` (Windows) is available.
