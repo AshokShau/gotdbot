@@ -9,6 +9,7 @@ import (
 	"log/slog"
 	"os"
 	"os/signal"
+	"runtime"
 	"sort"
 	"strings"
 	"sync"
@@ -35,13 +36,15 @@ type ClientConfig struct {
 	DeviceModel             string
 	SystemVersion           string
 	ApplicationVersion      string
+	TDLibOptions            map[string]interface{}
 	Logger                  *slog.Logger
 }
 
 func DefaultClientConfig() *ClientConfig {
 	return &ClientConfig{
 		DatabaseDirectory:       "database",
-		FilesDirectory:          "",
+		FilesDirectory:          "database",
+		DatabaseEncryptionKey:   "default",
 		UseFileDatabase:         true,
 		UseChatInfoDatabase:     true,
 		UseMessageDatabase:      true,
@@ -49,8 +52,8 @@ func DefaultClientConfig() *ClientConfig {
 		LoadMessagesBeforeReply: false,
 		SystemLanguageCode:      "en",
 		DeviceModel:             "Gotdbot",
-		SystemVersion:           Version,
-		ApplicationVersion:      TDLibVersion,
+		SystemVersion:           runtime.GOOS,
+		ApplicationVersion:      "Gotdbot " + Version,
 		Logger:                  slog.New(slog.NewTextHandler(os.Stdout, nil)),
 	}
 }
@@ -292,6 +295,32 @@ func (c *Client) authHandler(client *Client, update TlObject) error {
 
 	switch authState.AuthorizationState.Type() {
 	case "authorizationStateWaitTdlibParameters":
+		if len(c.config.TDLibOptions) > 0 {
+			for k, v := range c.config.TDLibOptions {
+				if opt := toOptionValue(v); opt != nil {
+					_, err := c.SetOption(k, &SetOptionOpts{Value: opt})
+					if err != nil {
+						c.Logger.Error("Error setting option", "option", k, "error", err)
+					}
+				}
+			}
+		}
+
+		c.Logger.Debug("Setting TDLib parameters",
+			"use_test_dc", c.config.UseTestDC,
+			"database_directory", c.config.DatabaseDirectory,
+			"files_directory", c.config.FilesDirectory,
+			"use_file_database", c.config.UseFileDatabase,
+			"use_chat_info_database", c.config.UseChatInfoDatabase,
+			"use_message_database", c.config.UseMessageDatabase,
+			"use_secret_chats", c.config.UseSecretChats,
+			"api_id", c.apiID,
+			"system_language_code", c.config.SystemLanguageCode,
+			"device_model", c.config.DeviceModel,
+			"system_version", c.config.SystemVersion,
+			"application_version", c.config.ApplicationVersion,
+		)
+
 		_, err := c.SetTdlibParameters(
 			c.config.UseTestDC,
 			c.config.DatabaseDirectory,
@@ -479,4 +508,23 @@ func (c *Client) Me() *User {
 	c.meMu.RLock()
 	defer c.meMu.RUnlock()
 	return c.me
+}
+
+func toOptionValue(v interface{}) OptionValue {
+	switch val := v.(type) {
+	case bool:
+		return &OptionValueBoolean{Value: val}
+	case int:
+		return &OptionValueInteger{Value: fmt.Sprintf("%d", val)}
+	case int32:
+		return &OptionValueInteger{Value: fmt.Sprintf("%d", val)}
+	case int64:
+		return &OptionValueInteger{Value: fmt.Sprintf("%d", val)}
+	case string:
+		return &OptionValueString{Value: val}
+	case nil:
+		return &OptionValueEmpty{}
+	default:
+		return nil
+	}
 }
