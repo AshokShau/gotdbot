@@ -8,12 +8,10 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"strings"
 )
 
-const (
-	downloadURL = "https://github.com/AshokShau/gotdbot/releases/latest/download/tdjson-linux-x86_64.tar.gz"
-	targetLib   = "libtdjson.so.1.8.60"
-)
+const downloadURL = "https://github.com/AshokShau/gotdbot/releases/latest/download/TDLib-tdjson-linux-x86_64.tar.gz"
 
 func main() {
 	fmt.Println("Downloading tdjson release...")
@@ -34,7 +32,6 @@ func main() {
 	defer gz.Close()
 
 	tr := tar.NewReader(gz)
-
 	found := false
 
 	for {
@@ -47,9 +44,8 @@ func main() {
 		}
 
 		name := filepath.Base(hdr.Name)
-
-		if name == targetLib {
-			out, err := os.Create(targetLib)
+		if strings.HasPrefix(name, "libtdjson.so") {
+			out, err := os.Create(name)
 			if err != nil {
 				panic(err)
 			}
@@ -60,13 +56,14 @@ func main() {
 				panic(err)
 			}
 
-			fmt.Println("Extracted:", targetLib)
+			fmt.Println("Extracted:", name)
 			found = true
 			break
 		}
 	}
 
 	if !found {
-		panic("library not found in archive: " + targetLib)
+		panic("libtdjson.so not found in archive")
 	}
+	fmt.Println("Done.")
 }
