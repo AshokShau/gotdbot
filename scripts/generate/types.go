@@ -34,6 +34,10 @@ func generateClasses(classes map[string]*TLClass) {
 		methodName := toLowerCamelCase(name)
 
 		fmt.Fprintf(f, "// %s %s\n", structName, formatDesc(cls.Description))
+		fmt.Fprintf(f, "// Implemented by:\n")
+		for _, impl := range cls.Implementations {
+			fmt.Fprintf(f, "// %s\n", toCamelCase(impl))
+		}
 		fmt.Fprintf(f, "type %s interface {\n", structName)
 		fmt.Fprintf(f, "\tTlObject\n")
 		fmt.Fprintf(f, "\t%s()\n", methodName)
@@ -76,10 +80,10 @@ func generateObjects(types []TLType, classes map[string]*TLClass) {
 		structName := toCamelCase(t.Name)
 		fmt.Fprintf(f, "// %s %s\n", structName, formatDesc(t.Description))
 		fmt.Fprintf(f, "type %s struct {\n", structName)
-		
+
 		// Check for fields that are classes to determine if we need custom UnmarshalJSON
 		var classFields []TLParam
-		
+
 		for _, p := range t.Params {
 			goType := toGoType(p.Type, classes)
 			fieldName := toCamelCase(p.Name)
@@ -92,7 +96,7 @@ func generateObjects(types []TLType, classes map[string]*TLClass) {
 			}
 			fmt.Fprintf(f, "\t// %s\n", formatDesc(p.Description))
 			fmt.Fprintf(f, "\t%s %s %s\n", fieldName, goType, jsonTag)
-			
+
 			// Check if type corresponds to a class
 			isClass := false
 			typeName := p.Type
@@ -102,7 +106,7 @@ func generateObjects(types []TLType, classes map[string]*TLClass) {
 			if _, ok := classes[typeName]; ok {
 				isClass = true
 			}
-			
+
 			if isClass {
 				classFields = append(classFields, p)
 			}
@@ -138,7 +142,9 @@ func generateObjects(types []TLType, classes map[string]*TLClass) {
 			fmt.Fprintf(f, "\taux := &struct {\n")
 			for _, p := range classFields {
 				fieldName := toCamelCase(p.Name)
-				if fieldName == "Type" { fieldName = "TypeField" }
+				if fieldName == "Type" {
+					fieldName = "TypeField"
+				}
 				if strings.HasPrefix(p.Type, "vector<") {
 					fmt.Fprintf(f, "\t\t%s []json.RawMessage `json:\"%s\"`\n", fieldName, p.Name)
 				} else {
@@ -154,11 +160,13 @@ func generateObjects(types []TLType, classes map[string]*TLClass) {
 			fmt.Fprintf(f, "\t\treturn err\n")
 			fmt.Fprintf(f, "\t}\n")
 			fmt.Fprintf(f, "\n")
-			
+
 			for _, p := range classFields {
 				fieldName := toCamelCase(p.Name)
-				if fieldName == "Type" { fieldName = "TypeField" }
-				
+				if fieldName == "Type" {
+					fieldName = "TypeField"
+				}
+
 				typeName := p.Type
 				isVector := false
 				if strings.HasPrefix(typeName, "vector<") {
@@ -226,7 +234,7 @@ func generateFunctions(functions []TLType, classes map[string]*TLClass) {
 		structName := toCamelCase(t.Name)
 		fmt.Fprintf(f, "// %s %s\n", structName, formatDesc(t.Description))
 		fmt.Fprintf(f, "type %s struct {\n", structName)
-		
+
 		for _, p := range t.Params {
 			goType := toGoType(p.Type, classes)
 			fieldName := toCamelCase(p.Name)

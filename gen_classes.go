@@ -9,6 +9,10 @@ type TlObject interface {
 }
 
 // ActiveStoryState Describes state of active stories posted by a chat
+// Implemented by:
+// ActiveStoryStateLive
+// ActiveStoryStateRead
+// ActiveStoryStateUnread
 type ActiveStoryState interface {
 	TlObject
 	activeStoryState()
@@ -47,6 +51,10 @@ func UnmarshalActiveStoryState(data []byte) (ActiveStoryState, error) {
 }
 
 // AffiliateProgramSortOrder Describes the order of the found affiliate programs
+// Implemented by:
+// AffiliateProgramSortOrderCreationDate
+// AffiliateProgramSortOrderProfitability
+// AffiliateProgramSortOrderRevenue
 type AffiliateProgramSortOrder interface {
 	TlObject
 	affiliateProgramSortOrder()
@@ -85,6 +93,10 @@ func UnmarshalAffiliateProgramSortOrder(data []byte) (AffiliateProgramSortOrder,
 }
 
 // AffiliateType Describes type of affiliate for an affiliate program
+// Implemented by:
+// AffiliateTypeBot
+// AffiliateTypeChannel
+// AffiliateTypeCurrentUser
 type AffiliateType interface {
 	TlObject
 	affiliateType()
@@ -123,6 +135,9 @@ func UnmarshalAffiliateType(data []byte) (AffiliateType, error) {
 }
 
 // AuctionState Describes state of an auction
+// Implemented by:
+// AuctionStateActive
+// AuctionStateFinished
 type AuctionState interface {
 	TlObject
 	auctionState()
@@ -155,6 +170,17 @@ func UnmarshalAuctionState(data []byte) (AuctionState, error) {
 }
 
 // AuthenticationCodeType Provides information about the method by which an authentication code is delivered to the user
+// Implemented by:
+// AuthenticationCodeTypeCall
+// AuthenticationCodeTypeFirebaseAndroid
+// AuthenticationCodeTypeFirebaseIos
+// AuthenticationCodeTypeFlashCall
+// AuthenticationCodeTypeFragment
+// AuthenticationCodeTypeMissedCall
+// AuthenticationCodeTypeSms
+// AuthenticationCodeTypeSmsPhrase
+// AuthenticationCodeTypeSmsWord
+// AuthenticationCodeTypeTelegramMessage
 type AuthenticationCodeType interface {
 	TlObject
 	authenticationCodeType()
@@ -235,6 +261,20 @@ func UnmarshalAuthenticationCodeType(data []byte) (AuthenticationCodeType, error
 }
 
 // AuthorizationState Represents the current authorization state of the TDLib client
+// Implemented by:
+// AuthorizationStateClosed
+// AuthorizationStateClosing
+// AuthorizationStateLoggingOut
+// AuthorizationStateReady
+// AuthorizationStateWaitCode
+// AuthorizationStateWaitEmailAddress
+// AuthorizationStateWaitEmailCode
+// AuthorizationStateWaitOtherDeviceConfirmation
+// AuthorizationStateWaitPassword
+// AuthorizationStateWaitPhoneNumber
+// AuthorizationStateWaitPremiumPurchase
+// AuthorizationStateWaitRegistration
+// AuthorizationStateWaitTdlibParameters
 type AuthorizationState interface {
 	TlObject
 	authorizationState()
@@ -333,6 +373,11 @@ func UnmarshalAuthorizationState(data []byte) (AuthorizationState, error) {
 }
 
 // AutosaveSettingsScope Describes scope of autosave settings
+// Implemented by:
+// AutosaveSettingsScopeChannelChats
+// AutosaveSettingsScopeChat
+// AutosaveSettingsScopeGroupChats
+// AutosaveSettingsScopePrivateChats
 type AutosaveSettingsScope interface {
 	TlObject
 	autosaveSettingsScope()
@@ -377,6 +422,10 @@ func UnmarshalAutosaveSettingsScope(data []byte) (AutosaveSettingsScope, error) 
 }
 
 // BackgroundFill Describes a fill of a background
+// Implemented by:
+// BackgroundFillFreeformGradient
+// BackgroundFillGradient
+// BackgroundFillSolid
 type BackgroundFill interface {
 	TlObject
 	backgroundFill()
@@ -415,6 +464,11 @@ func UnmarshalBackgroundFill(data []byte) (BackgroundFill, error) {
 }
 
 // BackgroundType Describes the type of background
+// Implemented by:
+// BackgroundTypeChatTheme
+// BackgroundTypeFill
+// BackgroundTypePattern
+// BackgroundTypeWallpaper
 type BackgroundType interface {
 	TlObject
 	backgroundType()
@@ -459,6 +513,9 @@ func UnmarshalBackgroundType(data []byte) (BackgroundType, error) {
 }
 
 // BlockList Describes type of block list
+// Implemented by:
+// BlockListMain
+// BlockListStories
 type BlockList interface {
 	TlObject
 	blockList()
@@ -491,6 +548,14 @@ func UnmarshalBlockList(data []byte) (BlockList, error) {
 }
 
 // BotCommandScope Represents the scope to which bot commands are relevant
+// Implemented by:
+// BotCommandScopeAllChatAdministrators
+// BotCommandScopeAllGroupChats
+// BotCommandScopeAllPrivateChats
+// BotCommandScopeChat
+// BotCommandScopeChatAdministrators
+// BotCommandScopeChatMember
+// BotCommandScopeDefault
 type BotCommandScope interface {
 	TlObject
 	botCommandScope()
@@ -553,6 +618,11 @@ func UnmarshalBotCommandScope(data []byte) (BotCommandScope, error) {
 }
 
 // BotWriteAccessAllowReason Describes a reason why a bot was allowed to write messages to the current user
+// Implemented by:
+// BotWriteAccessAllowReasonAcceptedRequest
+// BotWriteAccessAllowReasonAddedToAttachmentMenu
+// BotWriteAccessAllowReasonConnectedWebsite
+// BotWriteAccessAllowReasonLaunchedWebApp
 type BotWriteAccessAllowReason interface {
 	TlObject
 	botWriteAccessAllowReason()
@@ -597,6 +667,12 @@ func UnmarshalBotWriteAccessAllowReason(data []byte) (BotWriteAccessAllowReason,
 }
 
 // BuiltInTheme Describes a built-in theme of an official app
+// Implemented by:
+// BuiltInThemeArctic
+// BuiltInThemeClassic
+// BuiltInThemeDay
+// BuiltInThemeNight
+// BuiltInThemeTinted
 type BuiltInTheme interface {
 	TlObject
 	builtInTheme()
@@ -647,6 +723,10 @@ func UnmarshalBuiltInTheme(data []byte) (BuiltInTheme, error) {
 }
 
 // BusinessAwayMessageSchedule Describes conditions for sending of away messages by a Telegram Business account
+// Implemented by:
+// BusinessAwayMessageScheduleAlways
+// BusinessAwayMessageScheduleCustom
+// BusinessAwayMessageScheduleOutsideOfOpeningHours
 type BusinessAwayMessageSchedule interface {
 	TlObject
 	businessAwayMessageSchedule()
@@ -685,6 +765,18 @@ func UnmarshalBusinessAwayMessageSchedule(data []byte) (BusinessAwayMessageSched
 }
 
 // BusinessFeature Describes a feature available to Business user accounts
+// Implemented by:
+// BusinessFeatureAccountLinks
+// BusinessFeatureAwayMessage
+// BusinessFeatureBots
+// BusinessFeatureChatFolderTags
+// BusinessFeatureEmojiStatus
+// BusinessFeatureGreetingMessage
+// BusinessFeatureLocation
+// BusinessFeatureOpeningHours
+// BusinessFeatureQuickReplies
+// BusinessFeatureStartPage
+// BusinessFeatureUpgradedStories
 type BusinessFeature interface {
 	TlObject
 	businessFeature()
@@ -771,6 +863,10 @@ func UnmarshalBusinessFeature(data []byte) (BusinessFeature, error) {
 }
 
 // CallbackQueryPayload Represents a payload of a callback query
+// Implemented by:
+// CallbackQueryPayloadData
+// CallbackQueryPayloadDataWithPassword
+// CallbackQueryPayloadGame
 type CallbackQueryPayload interface {
 	TlObject
 	callbackQueryPayload()
@@ -809,6 +905,13 @@ func UnmarshalCallbackQueryPayload(data []byte) (CallbackQueryPayload, error) {
 }
 
 // CallDiscardReason Describes the reason why a call was discarded
+// Implemented by:
+// CallDiscardReasonDeclined
+// CallDiscardReasonDisconnected
+// CallDiscardReasonEmpty
+// CallDiscardReasonHungUp
+// CallDiscardReasonMissed
+// CallDiscardReasonUpgradeToGroupCall
 type CallDiscardReason interface {
 	TlObject
 	callDiscardReason()
@@ -865,6 +968,16 @@ func UnmarshalCallDiscardReason(data []byte) (CallDiscardReason, error) {
 }
 
 // CallProblem Describes the exact type of problem with a call
+// Implemented by:
+// CallProblemDistortedSpeech
+// CallProblemDistortedVideo
+// CallProblemDropped
+// CallProblemEcho
+// CallProblemInterruptions
+// CallProblemNoise
+// CallProblemPixelatedVideo
+// CallProblemSilentLocal
+// CallProblemSilentRemote
 type CallProblem interface {
 	TlObject
 	callProblem()
@@ -939,6 +1052,9 @@ func UnmarshalCallProblem(data []byte) (CallProblem, error) {
 }
 
 // CallServerType Describes the type of call server
+// Implemented by:
+// CallServerTypeTelegramReflector
+// CallServerTypeWebrtc
 type CallServerType interface {
 	TlObject
 	callServerType()
@@ -971,6 +1087,13 @@ func UnmarshalCallServerType(data []byte) (CallServerType, error) {
 }
 
 // CallState Describes the current call state
+// Implemented by:
+// CallStateDiscarded
+// CallStateError
+// CallStateExchangingKeys
+// CallStateHangingUp
+// CallStatePending
+// CallStateReady
 type CallState interface {
 	TlObject
 	callState()
@@ -1027,6 +1150,14 @@ func UnmarshalCallState(data []byte) (CallState, error) {
 }
 
 // CanPostStoryResult Represents result of checking whether the current user can post a story on behalf of the specific chat
+// Implemented by:
+// CanPostStoryResultActiveStoryLimitExceeded
+// CanPostStoryResultBoostNeeded
+// CanPostStoryResultLiveStoryIsActive
+// CanPostStoryResultMonthlyLimitExceeded
+// CanPostStoryResultOk
+// CanPostStoryResultPremiumNeeded
+// CanPostStoryResultWeeklyLimitExceeded
 type CanPostStoryResult interface {
 	TlObject
 	canPostStoryResult()
@@ -1089,6 +1220,9 @@ func UnmarshalCanPostStoryResult(data []byte) (CanPostStoryResult, error) {
 }
 
 // CanSendGiftResult Describes whether a gift can be sent now by the current user
+// Implemented by:
+// CanSendGiftResultFail
+// CanSendGiftResultOk
 type CanSendGiftResult interface {
 	TlObject
 	canSendGiftResult()
@@ -1121,6 +1255,11 @@ func UnmarshalCanSendGiftResult(data []byte) (CanSendGiftResult, error) {
 }
 
 // CanSendMessageToUserResult Describes result of canSendMessageToUser
+// Implemented by:
+// CanSendMessageToUserResultOk
+// CanSendMessageToUserResultUserHasPaidMessages
+// CanSendMessageToUserResultUserIsDeleted
+// CanSendMessageToUserResultUserRestrictsNewChats
 type CanSendMessageToUserResult interface {
 	TlObject
 	canSendMessageToUserResult()
@@ -1165,6 +1304,11 @@ func UnmarshalCanSendMessageToUserResult(data []byte) (CanSendMessageToUserResul
 }
 
 // CanTransferOwnershipResult Represents result of checking whether the current session can be used to transfer a chat ownership to another user
+// Implemented by:
+// CanTransferOwnershipResultOk
+// CanTransferOwnershipResultPasswordNeeded
+// CanTransferOwnershipResultPasswordTooFresh
+// CanTransferOwnershipResultSessionTooFresh
 type CanTransferOwnershipResult interface {
 	TlObject
 	canTransferOwnershipResult()
@@ -1209,6 +1353,22 @@ func UnmarshalCanTransferOwnershipResult(data []byte) (CanTransferOwnershipResul
 }
 
 // ChatAction Describes the different types of activity in a chat
+// Implemented by:
+// ChatActionCancel
+// ChatActionChoosingContact
+// ChatActionChoosingLocation
+// ChatActionChoosingSticker
+// ChatActionRecordingVideo
+// ChatActionRecordingVideoNote
+// ChatActionRecordingVoiceNote
+// ChatActionStartPlayingGame
+// ChatActionTyping
+// ChatActionUploadingDocument
+// ChatActionUploadingPhoto
+// ChatActionUploadingVideo
+// ChatActionUploadingVideoNote
+// ChatActionUploadingVoiceNote
+// ChatActionWatchingAnimations
 type ChatAction interface {
 	TlObject
 	chatAction()
@@ -1319,6 +1479,13 @@ func UnmarshalChatAction(data []byte) (ChatAction, error) {
 }
 
 // ChatActionBar Describes actions which must be possible to do through a chat action bar
+// Implemented by:
+// ChatActionBarAddContact
+// ChatActionBarInviteMembers
+// ChatActionBarJoinRequest
+// ChatActionBarReportAddBlock
+// ChatActionBarReportSpam
+// ChatActionBarSharePhoneNumber
 type ChatActionBar interface {
 	TlObject
 	chatActionBar()
@@ -1375,6 +1542,9 @@ func UnmarshalChatActionBar(data []byte) (ChatActionBar, error) {
 }
 
 // ChatAvailableReactions Describes reactions available in the chat
+// Implemented by:
+// ChatAvailableReactionsAll
+// ChatAvailableReactionsSome
 type ChatAvailableReactions interface {
 	TlObject
 	chatAvailableReactions()
@@ -1407,6 +1577,10 @@ func UnmarshalChatAvailableReactions(data []byte) (ChatAvailableReactions, error
 }
 
 // ChatBoostSource Describes source of a chat boost
+// Implemented by:
+// ChatBoostSourceGiftCode
+// ChatBoostSourceGiveaway
+// ChatBoostSourcePremium
 type ChatBoostSource interface {
 	TlObject
 	chatBoostSource()
@@ -1445,6 +1619,59 @@ func UnmarshalChatBoostSource(data []byte) (ChatBoostSource, error) {
 }
 
 // ChatEventAction Represents a chat event
+// Implemented by:
+// ChatEventAccentColorChanged
+// ChatEventActiveUsernamesChanged
+// ChatEventAutomaticTranslationToggled
+// ChatEventAvailableReactionsChanged
+// ChatEventBackgroundChanged
+// ChatEventCustomEmojiStickerSetChanged
+// ChatEventDescriptionChanged
+// ChatEventEmojiStatusChanged
+// ChatEventForumTopicCreated
+// ChatEventForumTopicDeleted
+// ChatEventForumTopicEdited
+// ChatEventForumTopicPinned
+// ChatEventForumTopicToggleIsClosed
+// ChatEventForumTopicToggleIsHidden
+// ChatEventHasAggressiveAntiSpamEnabledToggled
+// ChatEventHasProtectedContentToggled
+// ChatEventInviteLinkDeleted
+// ChatEventInviteLinkEdited
+// ChatEventInviteLinkRevoked
+// ChatEventInvitesToggled
+// ChatEventIsAllHistoryAvailableToggled
+// ChatEventIsForumToggled
+// ChatEventLinkedChatChanged
+// ChatEventLocationChanged
+// ChatEventMemberInvited
+// ChatEventMemberJoined
+// ChatEventMemberJoinedByInviteLink
+// ChatEventMemberJoinedByRequest
+// ChatEventMemberLeft
+// ChatEventMemberPromoted
+// ChatEventMemberRestricted
+// ChatEventMemberSubscriptionExtended
+// ChatEventMessageAutoDeleteTimeChanged
+// ChatEventMessageDeleted
+// ChatEventMessageEdited
+// ChatEventMessagePinned
+// ChatEventMessageUnpinned
+// ChatEventPermissionsChanged
+// ChatEventPhotoChanged
+// ChatEventPollStopped
+// ChatEventProfileAccentColorChanged
+// ChatEventShowMessageSenderToggled
+// ChatEventSignMessagesToggled
+// ChatEventSlowModeDelayChanged
+// ChatEventStickerSetChanged
+// ChatEventTitleChanged
+// ChatEventUsernameChanged
+// ChatEventVideoChatCreated
+// ChatEventVideoChatEnded
+// ChatEventVideoChatMuteNewParticipantsToggled
+// ChatEventVideoChatParticipantIsMutedToggled
+// ChatEventVideoChatParticipantVolumeLevelChanged
 type ChatEventAction interface {
 	TlObject
 	chatEventAction()
@@ -1777,6 +2004,10 @@ func UnmarshalChatEventAction(data []byte) (ChatEventAction, error) {
 }
 
 // ChatList Describes a list of chats
+// Implemented by:
+// ChatListArchive
+// ChatListFolder
+// ChatListMain
 type ChatList interface {
 	TlObject
 	chatList()
@@ -1815,6 +2046,14 @@ func UnmarshalChatList(data []byte) (ChatList, error) {
 }
 
 // ChatMembersFilter Specifies the kind of chat members to return in searchChatMembers
+// Implemented by:
+// ChatMembersFilterAdministrators
+// ChatMembersFilterBanned
+// ChatMembersFilterBots
+// ChatMembersFilterContacts
+// ChatMembersFilterMembers
+// ChatMembersFilterMention
+// ChatMembersFilterRestricted
 type ChatMembersFilter interface {
 	TlObject
 	chatMembersFilter()
@@ -1877,6 +2116,13 @@ func UnmarshalChatMembersFilter(data []byte) (ChatMembersFilter, error) {
 }
 
 // ChatMemberStatus Provides information about the status of a member in a chat
+// Implemented by:
+// ChatMemberStatusAdministrator
+// ChatMemberStatusBanned
+// ChatMemberStatusCreator
+// ChatMemberStatusLeft
+// ChatMemberStatusMember
+// ChatMemberStatusRestricted
 type ChatMemberStatus interface {
 	TlObject
 	chatMemberStatus()
@@ -1933,6 +2179,9 @@ func UnmarshalChatMemberStatus(data []byte) (ChatMemberStatus, error) {
 }
 
 // ChatPhotoStickerType Describes type of sticker, which was used to create a chat photo
+// Implemented by:
+// ChatPhotoStickerTypeCustomEmoji
+// ChatPhotoStickerTypeRegularOrMask
 type ChatPhotoStickerType interface {
 	TlObject
 	chatPhotoStickerType()
@@ -1965,6 +2214,12 @@ func UnmarshalChatPhotoStickerType(data []byte) (ChatPhotoStickerType, error) {
 }
 
 // ChatRevenueTransactionType Describes type of transaction for revenue earned from sponsored messages in a chat
+// Implemented by:
+// ChatRevenueTransactionTypeFragmentRefund
+// ChatRevenueTransactionTypeFragmentWithdrawal
+// ChatRevenueTransactionTypeSponsoredMessageEarnings
+// ChatRevenueTransactionTypeSuggestedPostEarnings
+// ChatRevenueTransactionTypeUnsupported
 type ChatRevenueTransactionType interface {
 	TlObject
 	chatRevenueTransactionType()
@@ -2015,6 +2270,9 @@ func UnmarshalChatRevenueTransactionType(data []byte) (ChatRevenueTransactionTyp
 }
 
 // ChatSource Describes a reason why an external chat is shown in a chat list
+// Implemented by:
+// ChatSourceMtprotoProxy
+// ChatSourcePublicServiceAnnouncement
 type ChatSource interface {
 	TlObject
 	chatSource()
@@ -2047,6 +2305,9 @@ func UnmarshalChatSource(data []byte) (ChatSource, error) {
 }
 
 // ChatStatistics Contains a detailed statistics about a chat
+// Implemented by:
+// ChatStatisticsChannel
+// ChatStatisticsSupergroup
 type ChatStatistics interface {
 	TlObject
 	chatStatistics()
@@ -2079,6 +2340,9 @@ func UnmarshalChatStatistics(data []byte) (ChatStatistics, error) {
 }
 
 // ChatStatisticsObjectType Describes type of object, for which statistics are provided
+// Implemented by:
+// ChatStatisticsObjectTypeMessage
+// ChatStatisticsObjectTypeStory
 type ChatStatisticsObjectType interface {
 	TlObject
 	chatStatisticsObjectType()
@@ -2111,6 +2375,9 @@ func UnmarshalChatStatisticsObjectType(data []byte) (ChatStatisticsObjectType, e
 }
 
 // ChatTheme Describes a chat theme
+// Implemented by:
+// ChatThemeEmoji
+// ChatThemeGift
 type ChatTheme interface {
 	TlObject
 	chatTheme()
@@ -2143,6 +2410,11 @@ func UnmarshalChatTheme(data []byte) (ChatTheme, error) {
 }
 
 // ChatType Describes the type of chat
+// Implemented by:
+// ChatTypeBasicGroup
+// ChatTypePrivate
+// ChatTypeSecret
+// ChatTypeSupergroup
 type ChatType interface {
 	TlObject
 	chatType()
@@ -2187,6 +2459,13 @@ func UnmarshalChatType(data []byte) (ChatType, error) {
 }
 
 // CheckChatUsernameResult Represents result of checking whether a username can be set for a chat
+// Implemented by:
+// CheckChatUsernameResultOk
+// CheckChatUsernameResultPublicChatsTooMany
+// CheckChatUsernameResultPublicGroupsUnavailable
+// CheckChatUsernameResultUsernameInvalid
+// CheckChatUsernameResultUsernameOccupied
+// CheckChatUsernameResultUsernamePurchasable
 type CheckChatUsernameResult interface {
 	TlObject
 	checkChatUsernameResult()
@@ -2243,6 +2522,10 @@ func UnmarshalCheckChatUsernameResult(data []byte) (CheckChatUsernameResult, err
 }
 
 // CheckStickerSetNameResult Represents result of checking whether a name can be used for a new sticker set
+// Implemented by:
+// CheckStickerSetNameResultNameInvalid
+// CheckStickerSetNameResultNameOccupied
+// CheckStickerSetNameResultOk
 type CheckStickerSetNameResult interface {
 	TlObject
 	checkStickerSetNameResult()
@@ -2281,6 +2564,9 @@ func UnmarshalCheckStickerSetNameResult(data []byte) (CheckStickerSetNameResult,
 }
 
 // CollectibleItemType Describes a collectible item that can be purchased at https://fragment.com
+// Implemented by:
+// CollectibleItemTypePhoneNumber
+// CollectibleItemTypeUsername
 type CollectibleItemType interface {
 	TlObject
 	collectibleItemType()
@@ -2313,6 +2599,12 @@ func UnmarshalCollectibleItemType(data []byte) (CollectibleItemType, error) {
 }
 
 // ConnectionState Describes the current state of the connection to Telegram servers
+// Implemented by:
+// ConnectionStateConnecting
+// ConnectionStateConnectingToProxy
+// ConnectionStateReady
+// ConnectionStateUpdating
+// ConnectionStateWaitingForNetwork
 type ConnectionState interface {
 	TlObject
 	connectionState()
@@ -2363,6 +2655,19 @@ func UnmarshalConnectionState(data []byte) (ConnectionState, error) {
 }
 
 // DeviceToken Represents a data needed to subscribe for push notifications through registerDevice method.
+// Implemented by:
+// DeviceTokenApplePush
+// DeviceTokenApplePushVoIP
+// DeviceTokenBlackBerryPush
+// DeviceTokenFirebaseCloudMessaging
+// DeviceTokenHuaweiPush
+// DeviceTokenMicrosoftPush
+// DeviceTokenMicrosoftPushVoIP
+// DeviceTokenSimplePush
+// DeviceTokenTizenPush
+// DeviceTokenUbuntuPush
+// DeviceTokenWebPush
+// DeviceTokenWindowsPush
 type DeviceToken interface {
 	TlObject
 	deviceToken()
@@ -2455,6 +2760,9 @@ func UnmarshalDeviceToken(data []byte) (DeviceToken, error) {
 }
 
 // DiceStickers Contains animated stickers which must be used for dice animation rendering
+// Implemented by:
+// DiceStickersRegular
+// DiceStickersSlotMachine
 type DiceStickers interface {
 	TlObject
 	diceStickers()
@@ -2487,6 +2795,10 @@ func UnmarshalDiceStickers(data []byte) (DiceStickers, error) {
 }
 
 // EmailAddressAuthentication Contains authentication data for an email address
+// Implemented by:
+// EmailAddressAuthenticationAppleId
+// EmailAddressAuthenticationCode
+// EmailAddressAuthenticationGoogleId
 type EmailAddressAuthentication interface {
 	TlObject
 	emailAddressAuthentication()
@@ -2525,6 +2837,9 @@ func UnmarshalEmailAddressAuthentication(data []byte) (EmailAddressAuthenticatio
 }
 
 // EmailAddressResetState Describes reset state of an email address
+// Implemented by:
+// EmailAddressResetStateAvailable
+// EmailAddressResetStatePending
 type EmailAddressResetState interface {
 	TlObject
 	emailAddressResetState()
@@ -2557,6 +2872,9 @@ func UnmarshalEmailAddressResetState(data []byte) (EmailAddressResetState, error
 }
 
 // EmojiCategorySource Describes source of stickers for an emoji category
+// Implemented by:
+// EmojiCategorySourcePremium
+// EmojiCategorySourceSearch
 type EmojiCategorySource interface {
 	TlObject
 	emojiCategorySource()
@@ -2589,6 +2907,11 @@ func UnmarshalEmojiCategorySource(data []byte) (EmojiCategorySource, error) {
 }
 
 // EmojiCategoryType Describes type of emoji category
+// Implemented by:
+// EmojiCategoryTypeChatPhoto
+// EmojiCategoryTypeDefault
+// EmojiCategoryTypeEmojiStatus
+// EmojiCategoryTypeRegularStickers
 type EmojiCategoryType interface {
 	TlObject
 	emojiCategoryType()
@@ -2633,6 +2956,9 @@ func UnmarshalEmojiCategoryType(data []byte) (EmojiCategoryType, error) {
 }
 
 // EmojiStatusType Describes type of emoji status
+// Implemented by:
+// EmojiStatusTypeCustomEmoji
+// EmojiStatusTypeUpgradedGift
 type EmojiStatusType interface {
 	TlObject
 	emojiStatusType()
@@ -2665,6 +2991,30 @@ func UnmarshalEmojiStatusType(data []byte) (EmojiStatusType, error) {
 }
 
 // FileType Represents the type of file
+// Implemented by:
+// FileTypeAnimation
+// FileTypeAudio
+// FileTypeDocument
+// FileTypeNone
+// FileTypeNotificationSound
+// FileTypePhoto
+// FileTypePhotoStory
+// FileTypeProfilePhoto
+// FileTypeSecret
+// FileTypeSecretThumbnail
+// FileTypeSecure
+// FileTypeSelfDestructingPhoto
+// FileTypeSelfDestructingVideo
+// FileTypeSelfDestructingVideoNote
+// FileTypeSelfDestructingVoiceNote
+// FileTypeSticker
+// FileTypeThumbnail
+// FileTypeUnknown
+// FileTypeVideo
+// FileTypeVideoNote
+// FileTypeVideoStory
+// FileTypeVoiceNote
+// FileTypeWallpaper
 type FileType interface {
 	TlObject
 	fileType()
@@ -2823,6 +3173,9 @@ func UnmarshalFileType(data []byte) (FileType, error) {
 }
 
 // FirebaseAuthenticationSettings Contains settings for Firebase Authentication in the official applications
+// Implemented by:
+// FirebaseAuthenticationSettingsAndroid
+// FirebaseAuthenticationSettingsIos
 type FirebaseAuthenticationSettings interface {
 	TlObject
 	firebaseAuthenticationSettings()
@@ -2855,6 +3208,9 @@ func UnmarshalFirebaseAuthenticationSettings(data []byte) (FirebaseAuthenticatio
 }
 
 // FirebaseDeviceVerificationParameters Describes parameters to be used for device verification
+// Implemented by:
+// FirebaseDeviceVerificationParametersPlayIntegrity
+// FirebaseDeviceVerificationParametersSafetyNet
 type FirebaseDeviceVerificationParameters interface {
 	TlObject
 	firebaseDeviceVerificationParameters()
@@ -2887,6 +3243,10 @@ func UnmarshalFirebaseDeviceVerificationParameters(data []byte) (FirebaseDeviceV
 }
 
 // GiftForResaleOrder Describes order in which upgraded gifts for resale will be sorted
+// Implemented by:
+// GiftForResaleOrderNumber
+// GiftForResaleOrderPrice
+// GiftForResaleOrderPriceChangeDate
 type GiftForResaleOrder interface {
 	TlObject
 	giftForResaleOrder()
@@ -2925,6 +3285,10 @@ func UnmarshalGiftForResaleOrder(data []byte) (GiftForResaleOrder, error) {
 }
 
 // GiftPurchaseOfferState Describes state of a gift purchase offer
+// Implemented by:
+// GiftPurchaseOfferStateAccepted
+// GiftPurchaseOfferStatePending
+// GiftPurchaseOfferStateRejected
 type GiftPurchaseOfferState interface {
 	TlObject
 	giftPurchaseOfferState()
@@ -2963,6 +3327,9 @@ func UnmarshalGiftPurchaseOfferState(data []byte) (GiftPurchaseOfferState, error
 }
 
 // GiftResalePrice Describes price of a resold gift
+// Implemented by:
+// GiftResalePriceStar
+// GiftResalePriceTon
 type GiftResalePrice interface {
 	TlObject
 	giftResalePrice()
@@ -2995,6 +3362,9 @@ func UnmarshalGiftResalePrice(data []byte) (GiftResalePrice, error) {
 }
 
 // GiftResaleResult Describes result of sending a resold gift
+// Implemented by:
+// GiftResaleResultOk
+// GiftResaleResultPriceIncreased
 type GiftResaleResult interface {
 	TlObject
 	giftResaleResult()
@@ -3027,6 +3397,9 @@ func UnmarshalGiftResaleResult(data []byte) (GiftResaleResult, error) {
 }
 
 // GiveawayInfo Contains information about a giveaway
+// Implemented by:
+// GiveawayInfoCompleted
+// GiveawayInfoOngoing
 type GiveawayInfo interface {
 	TlObject
 	giveawayInfo()
@@ -3059,6 +3432,12 @@ func UnmarshalGiveawayInfo(data []byte) (GiveawayInfo, error) {
 }
 
 // GiveawayParticipantStatus Contains information about status of a user in a giveaway
+// Implemented by:
+// GiveawayParticipantStatusAdministrator
+// GiveawayParticipantStatusAlreadyWasMember
+// GiveawayParticipantStatusDisallowedCountry
+// GiveawayParticipantStatusEligible
+// GiveawayParticipantStatusParticipating
 type GiveawayParticipantStatus interface {
 	TlObject
 	giveawayParticipantStatus()
@@ -3109,6 +3488,9 @@ func UnmarshalGiveawayParticipantStatus(data []byte) (GiveawayParticipantStatus,
 }
 
 // GiveawayPrize Contains information about a giveaway prize
+// Implemented by:
+// GiveawayPrizePremium
+// GiveawayPrizeStars
 type GiveawayPrize interface {
 	TlObject
 	giveawayPrize()
@@ -3141,6 +3523,9 @@ func UnmarshalGiveawayPrize(data []byte) (GiveawayPrize, error) {
 }
 
 // GroupCallDataChannel Describes data channel for a group call
+// Implemented by:
+// GroupCallDataChannelMain
+// GroupCallDataChannelScreenSharing
 type GroupCallDataChannel interface {
 	TlObject
 	groupCallDataChannel()
@@ -3173,6 +3558,10 @@ func UnmarshalGroupCallDataChannel(data []byte) (GroupCallDataChannel, error) {
 }
 
 // GroupCallVideoQuality Describes the quality of a group call video
+// Implemented by:
+// GroupCallVideoQualityFull
+// GroupCallVideoQualityMedium
+// GroupCallVideoQualityThumbnail
 type GroupCallVideoQuality interface {
 	TlObject
 	groupCallVideoQuality()
@@ -3211,6 +3600,17 @@ func UnmarshalGroupCallVideoQuality(data []byte) (GroupCallVideoQuality, error) 
 }
 
 // InlineKeyboardButtonType Describes the type of inline keyboard button
+// Implemented by:
+// InlineKeyboardButtonTypeBuy
+// InlineKeyboardButtonTypeCallback
+// InlineKeyboardButtonTypeCallbackGame
+// InlineKeyboardButtonTypeCallbackWithPassword
+// InlineKeyboardButtonTypeCopyText
+// InlineKeyboardButtonTypeLoginUrl
+// InlineKeyboardButtonTypeSwitchInline
+// InlineKeyboardButtonTypeUrl
+// InlineKeyboardButtonTypeUser
+// InlineKeyboardButtonTypeWebApp
 type InlineKeyboardButtonType interface {
 	TlObject
 	inlineKeyboardButtonType()
@@ -3291,6 +3691,19 @@ func UnmarshalInlineKeyboardButtonType(data []byte) (InlineKeyboardButtonType, e
 }
 
 // InlineQueryResult Represents a single result of an inline query
+// Implemented by:
+// InlineQueryResultAnimation
+// InlineQueryResultArticle
+// InlineQueryResultAudio
+// InlineQueryResultContact
+// InlineQueryResultDocument
+// InlineQueryResultGame
+// InlineQueryResultLocation
+// InlineQueryResultPhoto
+// InlineQueryResultSticker
+// InlineQueryResultVenue
+// InlineQueryResultVideo
+// InlineQueryResultVoiceNote
 type InlineQueryResult interface {
 	TlObject
 	inlineQueryResult()
@@ -3383,6 +3796,9 @@ func UnmarshalInlineQueryResult(data []byte) (InlineQueryResult, error) {
 }
 
 // InlineQueryResultsButtonType Represents type of button in results of inline query
+// Implemented by:
+// InlineQueryResultsButtonTypeStartBot
+// InlineQueryResultsButtonTypeWebApp
 type InlineQueryResultsButtonType interface {
 	TlObject
 	inlineQueryResultsButtonType()
@@ -3415,6 +3831,10 @@ func UnmarshalInlineQueryResultsButtonType(data []byte) (InlineQueryResultsButto
 }
 
 // InputBackground Contains information about background to set
+// Implemented by:
+// InputBackgroundLocal
+// InputBackgroundPrevious
+// InputBackgroundRemote
 type InputBackground interface {
 	TlObject
 	inputBackground()
@@ -3453,6 +3873,11 @@ func UnmarshalInputBackground(data []byte) (InputBackground, error) {
 }
 
 // InputChatPhoto Describes a photo to be set as a user profile or chat photo
+// Implemented by:
+// InputChatPhotoAnimation
+// InputChatPhotoPrevious
+// InputChatPhotoStatic
+// InputChatPhotoSticker
 type InputChatPhoto interface {
 	TlObject
 	inputChatPhoto()
@@ -3497,6 +3922,9 @@ func UnmarshalInputChatPhoto(data []byte) (InputChatPhoto, error) {
 }
 
 // InputChatTheme Describes a chat theme to set
+// Implemented by:
+// InputChatThemeEmoji
+// InputChatThemeGift
 type InputChatTheme interface {
 	TlObject
 	inputChatTheme()
@@ -3529,6 +3957,11 @@ func UnmarshalInputChatTheme(data []byte) (InputChatTheme, error) {
 }
 
 // InputCredentials Contains information about the payment method chosen by the user
+// Implemented by:
+// InputCredentialsApplePay
+// InputCredentialsGooglePay
+// InputCredentialsNew
+// InputCredentialsSaved
 type InputCredentials interface {
 	TlObject
 	inputCredentials()
@@ -3573,6 +4006,11 @@ func UnmarshalInputCredentials(data []byte) (InputCredentials, error) {
 }
 
 // InputFile Points to a file
+// Implemented by:
+// InputFileGenerated
+// InputFileId
+// InputFileLocal
+// InputFileRemote
 type InputFile interface {
 	TlObject
 	inputFile()
@@ -3617,6 +4055,9 @@ func UnmarshalInputFile(data []byte) (InputFile, error) {
 }
 
 // InputGroupCall Describes a non-joined group call that isn't bound to a chat
+// Implemented by:
+// InputGroupCallLink
+// InputGroupCallMessage
 type InputGroupCall interface {
 	TlObject
 	inputGroupCall()
@@ -3649,6 +4090,19 @@ func UnmarshalInputGroupCall(data []byte) (InputGroupCall, error) {
 }
 
 // InputInlineQueryResult Represents a single result of an inline query; for bots only
+// Implemented by:
+// InputInlineQueryResultAnimation
+// InputInlineQueryResultArticle
+// InputInlineQueryResultAudio
+// InputInlineQueryResultContact
+// InputInlineQueryResultDocument
+// InputInlineQueryResultGame
+// InputInlineQueryResultLocation
+// InputInlineQueryResultPhoto
+// InputInlineQueryResultSticker
+// InputInlineQueryResultVenue
+// InputInlineQueryResultVideo
+// InputInlineQueryResultVoiceNote
 type InputInlineQueryResult interface {
 	TlObject
 	inputInlineQueryResult()
@@ -3741,6 +4195,10 @@ func UnmarshalInputInlineQueryResult(data []byte) (InputInlineQueryResult, error
 }
 
 // InputInvoice Describes an invoice to process
+// Implemented by:
+// InputInvoiceMessage
+// InputInvoiceName
+// InputInvoiceTelegram
 type InputInvoice interface {
 	TlObject
 	inputInvoice()
@@ -3779,6 +4237,28 @@ func UnmarshalInputInvoice(data []byte) (InputInvoice, error) {
 }
 
 // InputMessageContent The content of a message to send
+// Implemented by:
+// InputMessageAnimation
+// InputMessageAudio
+// InputMessageChecklist
+// InputMessageContact
+// InputMessageDice
+// InputMessageDocument
+// InputMessageForwarded
+// InputMessageGame
+// InputMessageInvoice
+// InputMessageLocation
+// InputMessagePaidMedia
+// InputMessagePhoto
+// InputMessagePoll
+// InputMessageStakeDice
+// InputMessageSticker
+// InputMessageStory
+// InputMessageText
+// InputMessageVenue
+// InputMessageVideo
+// InputMessageVideoNote
+// InputMessageVoiceNote
 type InputMessageContent interface {
 	TlObject
 	inputMessageContent()
@@ -3925,6 +4405,10 @@ func UnmarshalInputMessageContent(data []byte) (InputMessageContent, error) {
 }
 
 // InputMessageReplyTo Contains information about the message or the story to be replied
+// Implemented by:
+// InputMessageReplyToExternalMessage
+// InputMessageReplyToMessage
+// InputMessageReplyToStory
 type InputMessageReplyTo interface {
 	TlObject
 	inputMessageReplyTo()
@@ -3963,6 +4447,9 @@ func UnmarshalInputMessageReplyTo(data []byte) (InputMessageReplyTo, error) {
 }
 
 // InputPaidMediaType Describes type of paid media to sent
+// Implemented by:
+// InputPaidMediaTypePhoto
+// InputPaidMediaTypeVideo
 type InputPaidMediaType interface {
 	TlObject
 	inputPaidMediaType()
@@ -3995,6 +4482,20 @@ func UnmarshalInputPaidMediaType(data []byte) (InputPaidMediaType, error) {
 }
 
 // InputPassportElement Contains information about a Telegram Passport element to be saved
+// Implemented by:
+// InputPassportElementAddress
+// InputPassportElementBankStatement
+// InputPassportElementDriverLicense
+// InputPassportElementEmailAddress
+// InputPassportElementIdentityCard
+// InputPassportElementInternalPassport
+// InputPassportElementPassport
+// InputPassportElementPassportRegistration
+// InputPassportElementPersonalDetails
+// InputPassportElementPhoneNumber
+// InputPassportElementRentalAgreement
+// InputPassportElementTemporaryRegistration
+// InputPassportElementUtilityBill
 type InputPassportElement interface {
 	TlObject
 	inputPassportElement()
@@ -4093,6 +4594,16 @@ func UnmarshalInputPassportElement(data []byte) (InputPassportElement, error) {
 }
 
 // InputPassportElementErrorSource Contains the description of an error in a Telegram Passport element; for bots only
+// Implemented by:
+// InputPassportElementErrorSourceDataField
+// InputPassportElementErrorSourceFile
+// InputPassportElementErrorSourceFiles
+// InputPassportElementErrorSourceFrontSide
+// InputPassportElementErrorSourceReverseSide
+// InputPassportElementErrorSourceSelfie
+// InputPassportElementErrorSourceTranslationFile
+// InputPassportElementErrorSourceTranslationFiles
+// InputPassportElementErrorSourceUnspecified
 type InputPassportElementErrorSource interface {
 	TlObject
 	inputPassportElementErrorSource()
@@ -4167,6 +4678,15 @@ func UnmarshalInputPassportElementErrorSource(data []byte) (InputPassportElement
 }
 
 // InputStoryAreaType Describes type of clickable area on a story media to be added
+// Implemented by:
+// InputStoryAreaTypeFoundVenue
+// InputStoryAreaTypeLink
+// InputStoryAreaTypeLocation
+// InputStoryAreaTypeMessage
+// InputStoryAreaTypePreviousVenue
+// InputStoryAreaTypeSuggestedReaction
+// InputStoryAreaTypeUpgradedGift
+// InputStoryAreaTypeWeather
 type InputStoryAreaType interface {
 	TlObject
 	inputStoryAreaType()
@@ -4235,6 +4755,9 @@ func UnmarshalInputStoryAreaType(data []byte) (InputStoryAreaType, error) {
 }
 
 // InputStoryContent The content of a story to post
+// Implemented by:
+// InputStoryContentPhoto
+// InputStoryContentVideo
 type InputStoryContent interface {
 	TlObject
 	inputStoryContent()
@@ -4267,6 +4790,65 @@ func UnmarshalInputStoryContent(data []byte) (InputStoryContent, error) {
 }
 
 // InternalLinkType Describes an internal https://t.me or tg: link, which must be processed by the application in a special way
+// Implemented by:
+// InternalLinkTypeActiveSessions
+// InternalLinkTypeAttachmentMenuBot
+// InternalLinkTypeAuthenticationCode
+// InternalLinkTypeBackground
+// InternalLinkTypeBotAddToChannel
+// InternalLinkTypeBotStart
+// InternalLinkTypeBotStartInGroup
+// InternalLinkTypeBusinessChat
+// InternalLinkTypeBuyStars
+// InternalLinkTypeChangePhoneNumber
+// InternalLinkTypeChatAffiliateProgram
+// InternalLinkTypeChatBoost
+// InternalLinkTypeChatFolderInvite
+// InternalLinkTypeChatFolderSettings
+// InternalLinkTypeChatInvite
+// InternalLinkTypeDefaultMessageAutoDeleteTimerSettings
+// InternalLinkTypeDirectMessagesChat
+// InternalLinkTypeEditProfileSettings
+// InternalLinkTypeGame
+// InternalLinkTypeGiftAuction
+// InternalLinkTypeGiftCollection
+// InternalLinkTypeGroupCall
+// InternalLinkTypeInstantView
+// InternalLinkTypeInvoice
+// InternalLinkTypeLanguagePack
+// InternalLinkTypeLanguageSettings
+// InternalLinkTypeLiveStory
+// InternalLinkTypeLoginEmailSettings
+// InternalLinkTypeMainWebApp
+// InternalLinkTypeMessage
+// InternalLinkTypeMessageDraft
+// InternalLinkTypeMyStars
+// InternalLinkTypeMyToncoins
+// InternalLinkTypePassportDataRequest
+// InternalLinkTypePasswordSettings
+// InternalLinkTypePhoneNumberConfirmation
+// InternalLinkTypePhoneNumberPrivacySettings
+// InternalLinkTypePremiumFeatures
+// InternalLinkTypePremiumGift
+// InternalLinkTypePremiumGiftCode
+// InternalLinkTypePrivacyAndSecuritySettings
+// InternalLinkTypeProxy
+// InternalLinkTypePublicChat
+// InternalLinkTypeQrCodeAuthentication
+// InternalLinkTypeRestorePurchases
+// InternalLinkTypeSettings
+// InternalLinkTypeStickerSet
+// InternalLinkTypeStory
+// InternalLinkTypeStoryAlbum
+// InternalLinkTypeTheme
+// InternalLinkTypeThemeSettings
+// InternalLinkTypeUnknownDeepLink
+// InternalLinkTypeUnsupportedProxy
+// InternalLinkTypeUpgradedGift
+// InternalLinkTypeUserPhoneNumber
+// InternalLinkTypeUserToken
+// InternalLinkTypeVideoChat
+// InternalLinkTypeWebApp
 type InternalLinkType interface {
 	TlObject
 	internalLinkType()
@@ -4635,6 +5217,11 @@ func UnmarshalInternalLinkType(data []byte) (InternalLinkType, error) {
 }
 
 // InviteGroupCallParticipantResult Describes result of group call participant invitation
+// Implemented by:
+// InviteGroupCallParticipantResultSuccess
+// InviteGroupCallParticipantResultUserAlreadyParticipant
+// InviteGroupCallParticipantResultUserPrivacyRestricted
+// InviteGroupCallParticipantResultUserWasBanned
 type InviteGroupCallParticipantResult interface {
 	TlObject
 	inviteGroupCallParticipantResult()
@@ -4679,6 +5266,10 @@ func UnmarshalInviteGroupCallParticipantResult(data []byte) (InviteGroupCallPart
 }
 
 // InviteLinkChatType Describes the type of chat to which points an invite link
+// Implemented by:
+// InviteLinkChatTypeBasicGroup
+// InviteLinkChatTypeChannel
+// InviteLinkChatTypeSupergroup
 type InviteLinkChatType interface {
 	TlObject
 	inviteLinkChatType()
@@ -4717,6 +5308,13 @@ func UnmarshalInviteLinkChatType(data []byte) (InviteLinkChatType, error) {
 }
 
 // JsonValue Represents a JSON value
+// Implemented by:
+// JsonValueArray
+// JsonValueBoolean
+// JsonValueNull
+// JsonValueNumber
+// JsonValueObject
+// JsonValueString
 type JsonValue interface {
 	TlObject
 	jsonValue()
@@ -4773,6 +5371,14 @@ func UnmarshalJsonValue(data []byte) (JsonValue, error) {
 }
 
 // KeyboardButtonType Describes a keyboard button type
+// Implemented by:
+// KeyboardButtonTypeRequestChat
+// KeyboardButtonTypeRequestLocation
+// KeyboardButtonTypeRequestPhoneNumber
+// KeyboardButtonTypeRequestPoll
+// KeyboardButtonTypeRequestUsers
+// KeyboardButtonTypeText
+// KeyboardButtonTypeWebApp
 type KeyboardButtonType interface {
 	TlObject
 	keyboardButtonType()
@@ -4835,6 +5441,10 @@ func UnmarshalKeyboardButtonType(data []byte) (KeyboardButtonType, error) {
 }
 
 // LanguagePackStringValue Represents the value of a string in a language pack
+// Implemented by:
+// LanguagePackStringValueDeleted
+// LanguagePackStringValueOrdinary
+// LanguagePackStringValuePluralized
 type LanguagePackStringValue interface {
 	TlObject
 	languagePackStringValue()
@@ -4873,6 +5483,9 @@ func UnmarshalLanguagePackStringValue(data []byte) (LanguagePackStringValue, err
 }
 
 // LinkPreviewAlbumMedia Describes a media from a link preview album
+// Implemented by:
+// LinkPreviewAlbumMediaPhoto
+// LinkPreviewAlbumMediaVideo
 type LinkPreviewAlbumMedia interface {
 	TlObject
 	linkPreviewAlbumMedia()
@@ -4905,6 +5518,45 @@ func UnmarshalLinkPreviewAlbumMedia(data []byte) (LinkPreviewAlbumMedia, error) 
 }
 
 // LinkPreviewType Describes type of link preview
+// Implemented by:
+// LinkPreviewTypeAlbum
+// LinkPreviewTypeAnimation
+// LinkPreviewTypeApp
+// LinkPreviewTypeArticle
+// LinkPreviewTypeAudio
+// LinkPreviewTypeBackground
+// LinkPreviewTypeChannelBoost
+// LinkPreviewTypeChat
+// LinkPreviewTypeDirectMessagesChat
+// LinkPreviewTypeDocument
+// LinkPreviewTypeEmbeddedAnimationPlayer
+// LinkPreviewTypeEmbeddedAudioPlayer
+// LinkPreviewTypeEmbeddedVideoPlayer
+// LinkPreviewTypeExternalAudio
+// LinkPreviewTypeExternalVideo
+// LinkPreviewTypeGiftAuction
+// LinkPreviewTypeGiftCollection
+// LinkPreviewTypeGroupCall
+// LinkPreviewTypeInvoice
+// LinkPreviewTypeLiveStory
+// LinkPreviewTypeMessage
+// LinkPreviewTypePhoto
+// LinkPreviewTypePremiumGiftCode
+// LinkPreviewTypeShareableChatFolder
+// LinkPreviewTypeSticker
+// LinkPreviewTypeStickerSet
+// LinkPreviewTypeStory
+// LinkPreviewTypeStoryAlbum
+// LinkPreviewTypeSupergroupBoost
+// LinkPreviewTypeTheme
+// LinkPreviewTypeUnsupported
+// LinkPreviewTypeUpgradedGift
+// LinkPreviewTypeUser
+// LinkPreviewTypeVideo
+// LinkPreviewTypeVideoChat
+// LinkPreviewTypeVideoNote
+// LinkPreviewTypeVoiceNote
+// LinkPreviewTypeWebApp
 type LinkPreviewType interface {
 	TlObject
 	linkPreviewType()
@@ -5153,6 +5805,9 @@ func UnmarshalLinkPreviewType(data []byte) (LinkPreviewType, error) {
 }
 
 // LoginUrlInfo Contains information about an inline button of type inlineKeyboardButtonTypeLoginUrl
+// Implemented by:
+// LoginUrlInfoOpen
+// LoginUrlInfoRequestConfirmation
 type LoginUrlInfo interface {
 	TlObject
 	loginUrlInfo()
@@ -5185,6 +5840,10 @@ func UnmarshalLoginUrlInfo(data []byte) (LoginUrlInfo, error) {
 }
 
 // LogStream Describes a stream to which TDLib internal log is written
+// Implemented by:
+// LogStreamDefault
+// LogStreamEmpty
+// LogStreamFile
 type LogStream interface {
 	TlObject
 	logStream()
@@ -5223,6 +5882,11 @@ func UnmarshalLogStream(data []byte) (LogStream, error) {
 }
 
 // MaskPoint Part of the face, relative to which a mask is placed
+// Implemented by:
+// MaskPointChin
+// MaskPointEyes
+// MaskPointForehead
+// MaskPointMouth
 type MaskPoint interface {
 	TlObject
 	maskPoint()
@@ -5267,6 +5931,100 @@ func UnmarshalMaskPoint(data []byte) (MaskPoint, error) {
 }
 
 // MessageContent Contains the content of a message
+// Implemented by:
+// MessageAnimatedEmoji
+// MessageAnimation
+// MessageAudio
+// MessageBasicGroupChatCreate
+// MessageBotWriteAccessAllowed
+// MessageCall
+// MessageChatAddMembers
+// MessageChatBoost
+// MessageChatChangePhoto
+// MessageChatChangeTitle
+// MessageChatDeleteMember
+// MessageChatDeletePhoto
+// MessageChatJoinByLink
+// MessageChatJoinByRequest
+// MessageChatSetBackground
+// MessageChatSetMessageAutoDeleteTime
+// MessageChatSetTheme
+// MessageChatShared
+// MessageChatUpgradeFrom
+// MessageChatUpgradeTo
+// MessageChecklist
+// MessageChecklistTasksAdded
+// MessageChecklistTasksDone
+// MessageContact
+// MessageContactRegistered
+// MessageCustomServiceAction
+// MessageDice
+// MessageDirectMessagePriceChanged
+// MessageDocument
+// MessageExpiredPhoto
+// MessageExpiredVideo
+// MessageExpiredVideoNote
+// MessageExpiredVoiceNote
+// MessageForumTopicCreated
+// MessageForumTopicEdited
+// MessageForumTopicIsClosedToggled
+// MessageForumTopicIsHiddenToggled
+// MessageGame
+// MessageGameScore
+// MessageGift
+// MessageGiftedPremium
+// MessageGiftedStars
+// MessageGiftedTon
+// MessageGiveaway
+// MessageGiveawayCompleted
+// MessageGiveawayCreated
+// MessageGiveawayPrizeStars
+// MessageGiveawayWinners
+// MessageGroupCall
+// MessageInviteVideoChatParticipants
+// MessageInvoice
+// MessageLocation
+// MessagePaidMedia
+// MessagePaidMessagePriceChanged
+// MessagePaidMessagesRefunded
+// MessagePassportDataReceived
+// MessagePassportDataSent
+// MessagePaymentRefunded
+// MessagePaymentSuccessful
+// MessagePaymentSuccessfulBot
+// MessagePhoto
+// MessagePinMessage
+// MessagePoll
+// MessagePremiumGiftCode
+// MessageProximityAlertTriggered
+// MessageRefundedUpgradedGift
+// MessageScreenshotTaken
+// MessageStakeDice
+// MessageSticker
+// MessageStory
+// MessageSuggestBirthdate
+// MessageSuggestProfilePhoto
+// MessageSuggestedPostApprovalFailed
+// MessageSuggestedPostApproved
+// MessageSuggestedPostDeclined
+// MessageSuggestedPostPaid
+// MessageSuggestedPostRefunded
+// MessageSupergroupChatCreate
+// MessageText
+// MessageUnsupported
+// MessageUpgradedGift
+// MessageUpgradedGiftPurchaseOffer
+// MessageUpgradedGiftPurchaseOfferRejected
+// MessageUsersShared
+// MessageVenue
+// MessageVideo
+// MessageVideoChatEnded
+// MessageVideoChatScheduled
+// MessageVideoChatStarted
+// MessageVideoNote
+// MessageVoiceNote
+// MessageWebAppDataReceived
+// MessageWebAppDataSent
 type MessageContent interface {
 	TlObject
 	messageContent()
@@ -5845,6 +6603,9 @@ func UnmarshalMessageContent(data []byte) (MessageContent, error) {
 }
 
 // MessageEffectType Describes type of emoji effect
+// Implemented by:
+// MessageEffectTypeEmojiReaction
+// MessageEffectTypePremiumSticker
 type MessageEffectType interface {
 	TlObject
 	messageEffectType()
@@ -5877,6 +6638,10 @@ func UnmarshalMessageEffectType(data []byte) (MessageEffectType, error) {
 }
 
 // MessageFileType Contains information about a file with messages exported from another app
+// Implemented by:
+// MessageFileTypeGroup
+// MessageFileTypePrivate
+// MessageFileTypeUnknown
 type MessageFileType interface {
 	TlObject
 	messageFileType()
@@ -5915,6 +6680,11 @@ func UnmarshalMessageFileType(data []byte) (MessageFileType, error) {
 }
 
 // MessageOrigin Contains information about the origin of a message
+// Implemented by:
+// MessageOriginChannel
+// MessageOriginChat
+// MessageOriginHiddenUser
+// MessageOriginUser
 type MessageOrigin interface {
 	TlObject
 	messageOrigin()
@@ -5959,6 +6729,12 @@ func UnmarshalMessageOrigin(data []byte) (MessageOrigin, error) {
 }
 
 // MessageReadDate Describes read date of a recent outgoing message in a private chat
+// Implemented by:
+// MessageReadDateMyPrivacyRestricted
+// MessageReadDateRead
+// MessageReadDateTooOld
+// MessageReadDateUnread
+// MessageReadDateUserPrivacyRestricted
 type MessageReadDate interface {
 	TlObject
 	messageReadDate()
@@ -6009,6 +6785,9 @@ func UnmarshalMessageReadDate(data []byte) (MessageReadDate, error) {
 }
 
 // MessageReplyTo Contains information about the message or the story a message is replying to
+// Implemented by:
+// MessageReplyToMessage
+// MessageReplyToStory
 type MessageReplyTo interface {
 	TlObject
 	messageReplyTo()
@@ -6041,6 +6820,10 @@ func UnmarshalMessageReplyTo(data []byte) (MessageReplyTo, error) {
 }
 
 // MessageSchedulingState Contains information about the time when a scheduled message will be sent
+// Implemented by:
+// MessageSchedulingStateSendAtDate
+// MessageSchedulingStateSendWhenOnline
+// MessageSchedulingStateSendWhenVideoProcessed
 type MessageSchedulingState interface {
 	TlObject
 	messageSchedulingState()
@@ -6079,6 +6862,9 @@ func UnmarshalMessageSchedulingState(data []byte) (MessageSchedulingState, error
 }
 
 // MessageSelfDestructType Describes when a message will be self-destructed
+// Implemented by:
+// MessageSelfDestructTypeImmediately
+// MessageSelfDestructTypeTimer
 type MessageSelfDestructType interface {
 	TlObject
 	messageSelfDestructType()
@@ -6111,6 +6897,9 @@ func UnmarshalMessageSelfDestructType(data []byte) (MessageSelfDestructType, err
 }
 
 // MessageSender Contains information about the sender of a message
+// Implemented by:
+// MessageSenderChat
+// MessageSenderUser
 type MessageSender interface {
 	TlObject
 	messageSender()
@@ -6143,6 +6932,9 @@ func UnmarshalMessageSender(data []byte) (MessageSender, error) {
 }
 
 // MessageSendingState Contains information about the sending state of the message
+// Implemented by:
+// MessageSendingStateFailed
+// MessageSendingStatePending
 type MessageSendingState interface {
 	TlObject
 	messageSendingState()
@@ -6175,6 +6967,18 @@ func UnmarshalMessageSendingState(data []byte) (MessageSendingState, error) {
 }
 
 // MessageSource Describes source of a message
+// Implemented by:
+// MessageSourceChatEventLog
+// MessageSourceChatHistory
+// MessageSourceChatList
+// MessageSourceDirectMessagesChatTopicHistory
+// MessageSourceForumTopicHistory
+// MessageSourceHistoryPreview
+// MessageSourceMessageThreadHistory
+// MessageSourceNotification
+// MessageSourceOther
+// MessageSourceScreenshot
+// MessageSourceSearch
 type MessageSource interface {
 	TlObject
 	messageSource()
@@ -6261,6 +7065,11 @@ func UnmarshalMessageSource(data []byte) (MessageSource, error) {
 }
 
 // MessageTopic Describes a topic of messages in a chat
+// Implemented by:
+// MessageTopicDirectMessages
+// MessageTopicForum
+// MessageTopicSavedMessages
+// MessageTopicThread
 type MessageTopic interface {
 	TlObject
 	messageTopic()
@@ -6305,6 +7114,9 @@ func UnmarshalMessageTopic(data []byte) (MessageTopic, error) {
 }
 
 // NetworkStatisticsEntry Contains statistics about network usage
+// Implemented by:
+// NetworkStatisticsEntryCall
+// NetworkStatisticsEntryFile
 type NetworkStatisticsEntry interface {
 	TlObject
 	networkStatisticsEntry()
@@ -6337,6 +7149,12 @@ func UnmarshalNetworkStatisticsEntry(data []byte) (NetworkStatisticsEntry, error
 }
 
 // NetworkType Represents the type of network
+// Implemented by:
+// NetworkTypeMobile
+// NetworkTypeMobileRoaming
+// NetworkTypeNone
+// NetworkTypeOther
+// NetworkTypeWiFi
 type NetworkType interface {
 	TlObject
 	networkType()
@@ -6387,6 +7205,11 @@ func UnmarshalNetworkType(data []byte) (NetworkType, error) {
 }
 
 // NotificationGroupType Describes the type of notifications in a notification group
+// Implemented by:
+// NotificationGroupTypeCalls
+// NotificationGroupTypeMentions
+// NotificationGroupTypeMessages
+// NotificationGroupTypeSecretChat
 type NotificationGroupType interface {
 	TlObject
 	notificationGroupType()
@@ -6431,6 +7254,10 @@ func UnmarshalNotificationGroupType(data []byte) (NotificationGroupType, error) 
 }
 
 // NotificationSettingsScope Describes the types of chats to which notification settings are relevant
+// Implemented by:
+// NotificationSettingsScopeChannelChats
+// NotificationSettingsScopeGroupChats
+// NotificationSettingsScopePrivateChats
 type NotificationSettingsScope interface {
 	TlObject
 	notificationSettingsScope()
@@ -6469,6 +7296,11 @@ func UnmarshalNotificationSettingsScope(data []byte) (NotificationSettingsScope,
 }
 
 // NotificationType Contains detailed information about a notification
+// Implemented by:
+// NotificationTypeNewCall
+// NotificationTypeNewMessage
+// NotificationTypeNewPushMessage
+// NotificationTypeNewSecretChat
 type NotificationType interface {
 	TlObject
 	notificationType()
@@ -6513,6 +7345,11 @@ func UnmarshalNotificationType(data []byte) (NotificationType, error) {
 }
 
 // OptionValue Represents the value of an option
+// Implemented by:
+// OptionValueBoolean
+// OptionValueEmpty
+// OptionValueInteger
+// OptionValueString
 type OptionValue interface {
 	TlObject
 	optionValue()
@@ -6557,6 +7394,36 @@ func UnmarshalOptionValue(data []byte) (OptionValue, error) {
 }
 
 // PageBlock Describes a block of an instant view for a web page
+// Implemented by:
+// PageBlockAnchor
+// PageBlockAnimation
+// PageBlockAudio
+// PageBlockAuthorDate
+// PageBlockBlockQuote
+// PageBlockChatLink
+// PageBlockCollage
+// PageBlockCover
+// PageBlockDetails
+// PageBlockDivider
+// PageBlockEmbedded
+// PageBlockEmbeddedPost
+// PageBlockFooter
+// PageBlockHeader
+// PageBlockKicker
+// PageBlockList
+// PageBlockMap
+// PageBlockParagraph
+// PageBlockPhoto
+// PageBlockPreformatted
+// PageBlockPullQuote
+// PageBlockRelatedArticles
+// PageBlockSlideshow
+// PageBlockSubheader
+// PageBlockSubtitle
+// PageBlockTable
+// PageBlockTitle
+// PageBlockVideo
+// PageBlockVoiceNote
 type PageBlock interface {
 	TlObject
 	pageBlock()
@@ -6751,6 +7618,10 @@ func UnmarshalPageBlock(data []byte) (PageBlock, error) {
 }
 
 // PageBlockHorizontalAlignment Describes a horizontal alignment of a table cell content
+// Implemented by:
+// PageBlockHorizontalAlignmentCenter
+// PageBlockHorizontalAlignmentLeft
+// PageBlockHorizontalAlignmentRight
 type PageBlockHorizontalAlignment interface {
 	TlObject
 	pageBlockHorizontalAlignment()
@@ -6789,6 +7660,10 @@ func UnmarshalPageBlockHorizontalAlignment(data []byte) (PageBlockHorizontalAlig
 }
 
 // PageBlockVerticalAlignment Describes a Vertical alignment of a table cell content
+// Implemented by:
+// PageBlockVerticalAlignmentBottom
+// PageBlockVerticalAlignmentMiddle
+// PageBlockVerticalAlignmentTop
 type PageBlockVerticalAlignment interface {
 	TlObject
 	pageBlockVerticalAlignment()
@@ -6827,6 +7702,11 @@ func UnmarshalPageBlockVerticalAlignment(data []byte) (PageBlockVerticalAlignmen
 }
 
 // PaidMedia Describes a paid media
+// Implemented by:
+// PaidMediaPhoto
+// PaidMediaPreview
+// PaidMediaUnsupported
+// PaidMediaVideo
 type PaidMedia interface {
 	TlObject
 	paidMedia()
@@ -6871,6 +7751,10 @@ func UnmarshalPaidMedia(data []byte) (PaidMedia, error) {
 }
 
 // PaidReactionType Describes type of paid message reaction
+// Implemented by:
+// PaidReactionTypeAnonymous
+// PaidReactionTypeChat
+// PaidReactionTypeRegular
 type PaidReactionType interface {
 	TlObject
 	paidReactionType()
@@ -6909,6 +7793,20 @@ func UnmarshalPaidReactionType(data []byte) (PaidReactionType, error) {
 }
 
 // PassportElement Contains information about a Telegram Passport element
+// Implemented by:
+// PassportElementAddress
+// PassportElementBankStatement
+// PassportElementDriverLicense
+// PassportElementEmailAddress
+// PassportElementIdentityCard
+// PassportElementInternalPassport
+// PassportElementPassport
+// PassportElementPassportRegistration
+// PassportElementPersonalDetails
+// PassportElementPhoneNumber
+// PassportElementRentalAgreement
+// PassportElementTemporaryRegistration
+// PassportElementUtilityBill
 type PassportElement interface {
 	TlObject
 	passportElement()
@@ -7007,6 +7905,16 @@ func UnmarshalPassportElement(data []byte) (PassportElement, error) {
 }
 
 // PassportElementErrorSource Contains the description of an error in a Telegram Passport element
+// Implemented by:
+// PassportElementErrorSourceDataField
+// PassportElementErrorSourceFile
+// PassportElementErrorSourceFiles
+// PassportElementErrorSourceFrontSide
+// PassportElementErrorSourceReverseSide
+// PassportElementErrorSourceSelfie
+// PassportElementErrorSourceTranslationFile
+// PassportElementErrorSourceTranslationFiles
+// PassportElementErrorSourceUnspecified
 type PassportElementErrorSource interface {
 	TlObject
 	passportElementErrorSource()
@@ -7081,6 +7989,20 @@ func UnmarshalPassportElementErrorSource(data []byte) (PassportElementErrorSourc
 }
 
 // PassportElementType Contains the type of Telegram Passport element
+// Implemented by:
+// PassportElementTypeAddress
+// PassportElementTypeBankStatement
+// PassportElementTypeDriverLicense
+// PassportElementTypeEmailAddress
+// PassportElementTypeIdentityCard
+// PassportElementTypeInternalPassport
+// PassportElementTypePassport
+// PassportElementTypePassportRegistration
+// PassportElementTypePersonalDetails
+// PassportElementTypePhoneNumber
+// PassportElementTypeRentalAgreement
+// PassportElementTypeTemporaryRegistration
+// PassportElementTypeUtilityBill
 type PassportElementType interface {
 	TlObject
 	passportElementType()
@@ -7179,6 +8101,10 @@ func UnmarshalPassportElementType(data []byte) (PassportElementType, error) {
 }
 
 // PaymentFormType Describes type of payment form
+// Implemented by:
+// PaymentFormTypeRegular
+// PaymentFormTypeStarSubscription
+// PaymentFormTypeStars
 type PaymentFormType interface {
 	TlObject
 	paymentFormType()
@@ -7217,6 +8143,10 @@ func UnmarshalPaymentFormType(data []byte) (PaymentFormType, error) {
 }
 
 // PaymentProvider Contains information about a payment provider
+// Implemented by:
+// PaymentProviderOther
+// PaymentProviderSmartGlocal
+// PaymentProviderStripe
 type PaymentProvider interface {
 	TlObject
 	paymentProvider()
@@ -7255,6 +8185,9 @@ func UnmarshalPaymentProvider(data []byte) (PaymentProvider, error) {
 }
 
 // PaymentReceiptType Describes type of successful payment
+// Implemented by:
+// PaymentReceiptTypeRegular
+// PaymentReceiptTypeStars
 type PaymentReceiptType interface {
 	TlObject
 	paymentReceiptType()
@@ -7287,6 +8220,10 @@ func UnmarshalPaymentReceiptType(data []byte) (PaymentReceiptType, error) {
 }
 
 // PhoneNumberCodeType Describes type of the request for which a code is sent to a phone number
+// Implemented by:
+// PhoneNumberCodeTypeChange
+// PhoneNumberCodeTypeConfirmOwnership
+// PhoneNumberCodeTypeVerify
 type PhoneNumberCodeType interface {
 	TlObject
 	phoneNumberCodeType()
@@ -7325,6 +8262,9 @@ func UnmarshalPhoneNumberCodeType(data []byte) (PhoneNumberCodeType, error) {
 }
 
 // PollType Describes the type of poll
+// Implemented by:
+// PollTypeQuiz
+// PollTypeRegular
 type PollType interface {
 	TlObject
 	pollType()
@@ -7357,6 +8297,33 @@ func UnmarshalPollType(data []byte) (PollType, error) {
 }
 
 // PremiumFeature Describes a feature available to Premium users
+// Implemented by:
+// PremiumFeatureAccentColor
+// PremiumFeatureAdvancedChatManagement
+// PremiumFeatureAnimatedProfilePhoto
+// PremiumFeatureAppIcons
+// PremiumFeatureBackgroundForBoth
+// PremiumFeatureBusiness
+// PremiumFeatureChatBoost
+// PremiumFeatureChecklists
+// PremiumFeatureCustomEmoji
+// PremiumFeatureDisabledAds
+// PremiumFeatureEmojiStatus
+// PremiumFeatureForumTopicIcon
+// PremiumFeatureImprovedDownloadSpeed
+// PremiumFeatureIncreasedLimits
+// PremiumFeatureIncreasedUploadFileSize
+// PremiumFeatureLastSeenTimes
+// PremiumFeatureMessageEffects
+// PremiumFeatureMessagePrivacy
+// PremiumFeaturePaidMessages
+// PremiumFeatureProfileBadge
+// PremiumFeatureRealTimeChatTranslation
+// PremiumFeatureSavedMessagesTags
+// PremiumFeatureUniqueReactions
+// PremiumFeatureUniqueStickers
+// PremiumFeatureUpgradedStories
+// PremiumFeatureVoiceRecognition
 type PremiumFeature interface {
 	TlObject
 	premiumFeature()
@@ -7533,6 +8500,26 @@ func UnmarshalPremiumFeature(data []byte) (PremiumFeature, error) {
 }
 
 // PremiumLimitType Describes type of limit, increased for Premium users
+// Implemented by:
+// PremiumLimitTypeActiveStoryCount
+// PremiumLimitTypeBioLength
+// PremiumLimitTypeCaptionLength
+// PremiumLimitTypeChatFolderChosenChatCount
+// PremiumLimitTypeChatFolderCount
+// PremiumLimitTypeChatFolderInviteLinkCount
+// PremiumLimitTypeCreatedPublicChatCount
+// PremiumLimitTypeFavoriteStickerCount
+// PremiumLimitTypeMonthlyPostedStoryCount
+// PremiumLimitTypePinnedArchivedChatCount
+// PremiumLimitTypePinnedChatCount
+// PremiumLimitTypePinnedSavedMessagesTopicCount
+// PremiumLimitTypeSavedAnimationCount
+// PremiumLimitTypeShareableChatFolderCount
+// PremiumLimitTypeSimilarChatCount
+// PremiumLimitTypeStoryCaptionLength
+// PremiumLimitTypeStorySuggestedReactionAreaCount
+// PremiumLimitTypeSupergroupCount
+// PremiumLimitTypeWeeklyPostedStoryCount
 type PremiumLimitType interface {
 	TlObject
 	premiumLimitType()
@@ -7667,6 +8654,13 @@ func UnmarshalPremiumLimitType(data []byte) (PremiumLimitType, error) {
 }
 
 // PremiumSource Describes a source from which the Premium features screen is opened
+// Implemented by:
+// PremiumSourceBusinessFeature
+// PremiumSourceFeature
+// PremiumSourceLimitExceeded
+// PremiumSourceLink
+// PremiumSourceSettings
+// PremiumSourceStoryFeature
 type PremiumSource interface {
 	TlObject
 	premiumSource()
@@ -7723,6 +8717,14 @@ func UnmarshalPremiumSource(data []byte) (PremiumSource, error) {
 }
 
 // PremiumStoryFeature Describes a story feature available to Premium users
+// Implemented by:
+// PremiumStoryFeatureCustomExpirationDuration
+// PremiumStoryFeatureLinksAndFormatting
+// PremiumStoryFeaturePermanentViewsHistory
+// PremiumStoryFeaturePriorityOrder
+// PremiumStoryFeatureSaveStories
+// PremiumStoryFeatureStealthMode
+// PremiumStoryFeatureVideoQuality
 type PremiumStoryFeature interface {
 	TlObject
 	premiumStoryFeature()
@@ -7785,6 +8787,15 @@ func UnmarshalPremiumStoryFeature(data []byte) (PremiumStoryFeature, error) {
 }
 
 // ProfileTab Describes a tab shown in a user or a chat profile
+// Implemented by:
+// ProfileTabFiles
+// ProfileTabGifs
+// ProfileTabGifts
+// ProfileTabLinks
+// ProfileTabMedia
+// ProfileTabMusic
+// ProfileTabPosts
+// ProfileTabVoice
 type ProfileTab interface {
 	TlObject
 	profileTab()
@@ -7853,6 +8864,10 @@ func UnmarshalProfileTab(data []byte) (ProfileTab, error) {
 }
 
 // ProxyType Describes the type of proxy server
+// Implemented by:
+// ProxyTypeHttp
+// ProxyTypeMtproto
+// ProxyTypeSocks5
 type ProxyType interface {
 	TlObject
 	proxyType()
@@ -7891,6 +8906,9 @@ func UnmarshalProxyType(data []byte) (ProxyType, error) {
 }
 
 // PublicChatType Describes type of public chat
+// Implemented by:
+// PublicChatTypeHasUsername
+// PublicChatTypeIsLocationBased
 type PublicChatType interface {
 	TlObject
 	publicChatType()
@@ -7923,6 +8941,9 @@ func UnmarshalPublicChatType(data []byte) (PublicChatType, error) {
 }
 
 // PublicForward Describes a public forward or repost of a story
+// Implemented by:
+// PublicForwardMessage
+// PublicForwardStory
 type PublicForward interface {
 	TlObject
 	publicForward()
@@ -7955,6 +8976,52 @@ func UnmarshalPublicForward(data []byte) (PublicForward, error) {
 }
 
 // PushMessageContent Contains content of a push message notification
+// Implemented by:
+// PushMessageContentAnimation
+// PushMessageContentAudio
+// PushMessageContentBasicGroupChatCreate
+// PushMessageContentChatAddMembers
+// PushMessageContentChatChangePhoto
+// PushMessageContentChatChangeTitle
+// PushMessageContentChatDeleteMember
+// PushMessageContentChatJoinByLink
+// PushMessageContentChatJoinByRequest
+// PushMessageContentChatSetBackground
+// PushMessageContentChatSetTheme
+// PushMessageContentChecklist
+// PushMessageContentChecklistTasksAdded
+// PushMessageContentChecklistTasksDone
+// PushMessageContentContact
+// PushMessageContentContactRegistered
+// PushMessageContentDocument
+// PushMessageContentGame
+// PushMessageContentGameScore
+// PushMessageContentGift
+// PushMessageContentGiveaway
+// PushMessageContentHidden
+// PushMessageContentInviteVideoChatParticipants
+// PushMessageContentInvoice
+// PushMessageContentLocation
+// PushMessageContentMediaAlbum
+// PushMessageContentMessageForwards
+// PushMessageContentPaidMedia
+// PushMessageContentPhoto
+// PushMessageContentPoll
+// PushMessageContentPremiumGiftCode
+// PushMessageContentProximityAlertTriggered
+// PushMessageContentRecurringPayment
+// PushMessageContentScreenshotTaken
+// PushMessageContentSticker
+// PushMessageContentStory
+// PushMessageContentSuggestBirthdate
+// PushMessageContentSuggestProfilePhoto
+// PushMessageContentText
+// PushMessageContentUpgradedGift
+// PushMessageContentVideo
+// PushMessageContentVideoChatEnded
+// PushMessageContentVideoChatStarted
+// PushMessageContentVideoNote
+// PushMessageContentVoiceNote
 type PushMessageContent interface {
 	TlObject
 	pushMessageContent()
@@ -8245,6 +9312,10 @@ func UnmarshalPushMessageContent(data []byte) (PushMessageContent, error) {
 }
 
 // ReactionNotificationSource Describes sources of reactions for which notifications will be shown
+// Implemented by:
+// ReactionNotificationSourceAll
+// ReactionNotificationSourceContacts
+// ReactionNotificationSourceNone
 type ReactionNotificationSource interface {
 	TlObject
 	reactionNotificationSource()
@@ -8283,6 +9354,10 @@ func UnmarshalReactionNotificationSource(data []byte) (ReactionNotificationSourc
 }
 
 // ReactionType Describes type of message reaction
+// Implemented by:
+// ReactionTypeCustomEmoji
+// ReactionTypeEmoji
+// ReactionTypePaid
 type ReactionType interface {
 	TlObject
 	reactionType()
@@ -8321,6 +9396,9 @@ func UnmarshalReactionType(data []byte) (ReactionType, error) {
 }
 
 // ReactionUnavailabilityReason Describes why the current user can't add reactions to the message, despite some other users can
+// Implemented by:
+// ReactionUnavailabilityReasonAnonymousAdministrator
+// ReactionUnavailabilityReasonGuest
 type ReactionUnavailabilityReason interface {
 	TlObject
 	reactionUnavailabilityReason()
@@ -8353,6 +9431,11 @@ func UnmarshalReactionUnavailabilityReason(data []byte) (ReactionUnavailabilityR
 }
 
 // ReplyMarkup Contains a description of a custom keyboard and actions that can be done with it to quickly reply to bots
+// Implemented by:
+// ReplyMarkupForceReply
+// ReplyMarkupInlineKeyboard
+// ReplyMarkupRemoveKeyboard
+// ReplyMarkupShowKeyboard
 type ReplyMarkup interface {
 	TlObject
 	replyMarkup()
@@ -8397,6 +9480,11 @@ func UnmarshalReplyMarkup(data []byte) (ReplyMarkup, error) {
 }
 
 // ReportChatResult Describes result of chat report
+// Implemented by:
+// ReportChatResultMessagesRequired
+// ReportChatResultOk
+// ReportChatResultOptionRequired
+// ReportChatResultTextRequired
 type ReportChatResult interface {
 	TlObject
 	reportChatResult()
@@ -8441,6 +9529,17 @@ func UnmarshalReportChatResult(data []byte) (ReportChatResult, error) {
 }
 
 // ReportReason Describes the reason why a chat is reported
+// Implemented by:
+// ReportReasonChildAbuse
+// ReportReasonCopyright
+// ReportReasonCustom
+// ReportReasonFake
+// ReportReasonIllegalDrugs
+// ReportReasonPersonalDetails
+// ReportReasonPornography
+// ReportReasonSpam
+// ReportReasonUnrelatedLocation
+// ReportReasonViolence
 type ReportReason interface {
 	TlObject
 	reportReason()
@@ -8521,6 +9620,12 @@ func UnmarshalReportReason(data []byte) (ReportReason, error) {
 }
 
 // ReportSponsoredResult Describes result of sponsored message or chat report
+// Implemented by:
+// ReportSponsoredResultAdsHidden
+// ReportSponsoredResultFailed
+// ReportSponsoredResultOk
+// ReportSponsoredResultOptionRequired
+// ReportSponsoredResultPremiumRequired
 type ReportSponsoredResult interface {
 	TlObject
 	reportSponsoredResult()
@@ -8571,6 +9676,10 @@ func UnmarshalReportSponsoredResult(data []byte) (ReportSponsoredResult, error) 
 }
 
 // ReportStoryResult Describes result of story report
+// Implemented by:
+// ReportStoryResultOk
+// ReportStoryResultOptionRequired
+// ReportStoryResultTextRequired
 type ReportStoryResult interface {
 	TlObject
 	reportStoryResult()
@@ -8609,6 +9718,9 @@ func UnmarshalReportStoryResult(data []byte) (ReportStoryResult, error) {
 }
 
 // ResendCodeReason Describes the reason why a code needs to be re-sent
+// Implemented by:
+// ResendCodeReasonUserRequest
+// ResendCodeReasonVerificationFailed
 type ResendCodeReason interface {
 	TlObject
 	resendCodeReason()
@@ -8641,6 +9753,10 @@ func UnmarshalResendCodeReason(data []byte) (ResendCodeReason, error) {
 }
 
 // ResetPasswordResult Represents result of 2-step verification password reset
+// Implemented by:
+// ResetPasswordResultDeclined
+// ResetPasswordResultOk
+// ResetPasswordResultPending
 type ResetPasswordResult interface {
 	TlObject
 	resetPasswordResult()
@@ -8679,6 +9795,10 @@ func UnmarshalResetPasswordResult(data []byte) (ResetPasswordResult, error) {
 }
 
 // RevenueWithdrawalState Describes state of a revenue withdrawal
+// Implemented by:
+// RevenueWithdrawalStateFailed
+// RevenueWithdrawalStatePending
+// RevenueWithdrawalStateSucceeded
 type RevenueWithdrawalState interface {
 	TlObject
 	revenueWithdrawalState()
@@ -8717,6 +9837,24 @@ func UnmarshalRevenueWithdrawalState(data []byte) (RevenueWithdrawalState, error
 }
 
 // RichText Describes a formatted text object
+// Implemented by:
+// RichTextAnchor
+// RichTextAnchorLink
+// RichTextBold
+// RichTextEmailAddress
+// RichTextFixed
+// RichTextIcon
+// RichTextItalic
+// RichTextMarked
+// RichTextPhoneNumber
+// RichTextPlain
+// RichTextReference
+// RichTextStrikethrough
+// RichTextSubscript
+// RichTextSuperscript
+// RichTextUnderline
+// RichTextUrl
+// RichTexts
 type RichText interface {
 	TlObject
 	richText()
@@ -8839,6 +9977,10 @@ func UnmarshalRichText(data []byte) (RichText, error) {
 }
 
 // SavedMessagesTopicType Describes type of Saved Messages topic
+// Implemented by:
+// SavedMessagesTopicTypeAuthorHidden
+// SavedMessagesTopicTypeMyNotes
+// SavedMessagesTopicTypeSavedFromChat
 type SavedMessagesTopicType interface {
 	TlObject
 	savedMessagesTopicType()
@@ -8877,6 +10019,10 @@ func UnmarshalSavedMessagesTopicType(data []byte) (SavedMessagesTopicType, error
 }
 
 // SearchMessagesChatTypeFilter Represents a filter for type of the chats in which to search messages
+// Implemented by:
+// SearchMessagesChatTypeFilterChannel
+// SearchMessagesChatTypeFilterGroup
+// SearchMessagesChatTypeFilterPrivate
 type SearchMessagesChatTypeFilter interface {
 	TlObject
 	searchMessagesChatTypeFilter()
@@ -8915,6 +10061,24 @@ func UnmarshalSearchMessagesChatTypeFilter(data []byte) (SearchMessagesChatTypeF
 }
 
 // SearchMessagesFilter Represents a filter for message search results
+// Implemented by:
+// SearchMessagesFilterAnimation
+// SearchMessagesFilterAudio
+// SearchMessagesFilterChatPhoto
+// SearchMessagesFilterDocument
+// SearchMessagesFilterEmpty
+// SearchMessagesFilterFailedToSend
+// SearchMessagesFilterMention
+// SearchMessagesFilterPhoto
+// SearchMessagesFilterPhotoAndVideo
+// SearchMessagesFilterPinned
+// SearchMessagesFilterUnreadMention
+// SearchMessagesFilterUnreadReaction
+// SearchMessagesFilterUrl
+// SearchMessagesFilterVideo
+// SearchMessagesFilterVideoNote
+// SearchMessagesFilterVoiceAndVideoNote
+// SearchMessagesFilterVoiceNote
 type SearchMessagesFilter interface {
 	TlObject
 	searchMessagesFilter()
@@ -9037,6 +10201,10 @@ func UnmarshalSearchMessagesFilter(data []byte) (SearchMessagesFilter, error) {
 }
 
 // SecretChatState Describes the current secret chat state
+// Implemented by:
+// SecretChatStateClosed
+// SecretChatStatePending
+// SecretChatStateReady
 type SecretChatState interface {
 	TlObject
 	secretChatState()
@@ -9075,6 +10243,9 @@ func UnmarshalSecretChatState(data []byte) (SecretChatState, error) {
 }
 
 // SentGift Represents content of a gift received by a user or a channel chat
+// Implemented by:
+// SentGiftRegular
+// SentGiftUpgraded
 type SentGift interface {
 	TlObject
 	sentGift()
@@ -9107,6 +10278,24 @@ func UnmarshalSentGift(data []byte) (SentGift, error) {
 }
 
 // SessionType Represents the type of session
+// Implemented by:
+// SessionTypeAndroid
+// SessionTypeApple
+// SessionTypeBrave
+// SessionTypeChrome
+// SessionTypeEdge
+// SessionTypeFirefox
+// SessionTypeIpad
+// SessionTypeIphone
+// SessionTypeLinux
+// SessionTypeMac
+// SessionTypeOpera
+// SessionTypeSafari
+// SessionTypeUbuntu
+// SessionTypeUnknown
+// SessionTypeVivaldi
+// SessionTypeWindows
+// SessionTypeXbox
 type SessionType interface {
 	TlObject
 	sessionType()
@@ -9229,6 +10418,10 @@ func UnmarshalSessionType(data []byte) (SessionType, error) {
 }
 
 // SpeechRecognitionResult Describes result of speech recognition in a voice note
+// Implemented by:
+// SpeechRecognitionResultError
+// SpeechRecognitionResultPending
+// SpeechRecognitionResultText
 type SpeechRecognitionResult interface {
 	TlObject
 	speechRecognitionResult()
@@ -9267,6 +10460,9 @@ func UnmarshalSpeechRecognitionResult(data []byte) (SpeechRecognitionResult, err
 }
 
 // StarSubscriptionType Describes type of subscription paid in Telegram Stars
+// Implemented by:
+// StarSubscriptionTypeBot
+// StarSubscriptionTypeChannel
 type StarSubscriptionType interface {
 	TlObject
 	starSubscriptionType()
@@ -9299,6 +10495,9 @@ func UnmarshalStarSubscriptionType(data []byte) (StarSubscriptionType, error) {
 }
 
 // StartLiveStoryResult Represents result of starting a live story
+// Implemented by:
+// StartLiveStoryResultFail
+// StartLiveStoryResultOk
 type StartLiveStoryResult interface {
 	TlObject
 	startLiveStoryResult()
@@ -9331,6 +10530,52 @@ func UnmarshalStartLiveStoryResult(data []byte) (StartLiveStoryResult, error) {
 }
 
 // StarTransactionType Describes type of transaction with Telegram Stars
+// Implemented by:
+// StarTransactionTypeAffiliateProgramCommission
+// StarTransactionTypeAppStoreDeposit
+// StarTransactionTypeBotInvoicePurchase
+// StarTransactionTypeBotInvoiceSale
+// StarTransactionTypeBotPaidMediaPurchase
+// StarTransactionTypeBotPaidMediaSale
+// StarTransactionTypeBotSubscriptionPurchase
+// StarTransactionTypeBotSubscriptionSale
+// StarTransactionTypeBusinessBotTransferReceive
+// StarTransactionTypeBusinessBotTransferSend
+// StarTransactionTypeChannelPaidMediaPurchase
+// StarTransactionTypeChannelPaidMediaSale
+// StarTransactionTypeChannelPaidReactionReceive
+// StarTransactionTypeChannelPaidReactionSend
+// StarTransactionTypeChannelSubscriptionPurchase
+// StarTransactionTypeChannelSubscriptionSale
+// StarTransactionTypeFragmentDeposit
+// StarTransactionTypeFragmentWithdrawal
+// StarTransactionTypeGiftAuctionBid
+// StarTransactionTypeGiftOriginalDetailsDrop
+// StarTransactionTypeGiftPurchase
+// StarTransactionTypeGiftPurchaseOffer
+// StarTransactionTypeGiftSale
+// StarTransactionTypeGiftTransfer
+// StarTransactionTypeGiftUpgrade
+// StarTransactionTypeGiftUpgradePurchase
+// StarTransactionTypeGiveawayDeposit
+// StarTransactionTypeGooglePlayDeposit
+// StarTransactionTypePaidGroupCallMessageReceive
+// StarTransactionTypePaidGroupCallMessageSend
+// StarTransactionTypePaidGroupCallReactionReceive
+// StarTransactionTypePaidGroupCallReactionSend
+// StarTransactionTypePaidMessageReceive
+// StarTransactionTypePaidMessageSend
+// StarTransactionTypePremiumBotDeposit
+// StarTransactionTypePremiumPurchase
+// StarTransactionTypePublicPostSearch
+// StarTransactionTypeSuggestedPostPaymentReceive
+// StarTransactionTypeSuggestedPostPaymentSend
+// StarTransactionTypeTelegramAdsWithdrawal
+// StarTransactionTypeTelegramApiUsage
+// StarTransactionTypeUnsupported
+// StarTransactionTypeUpgradedGiftPurchase
+// StarTransactionTypeUpgradedGiftSale
+// StarTransactionTypeUserDeposit
 type StarTransactionType interface {
 	TlObject
 	starTransactionType()
@@ -9621,6 +10866,10 @@ func UnmarshalStarTransactionType(data []byte) (StarTransactionType, error) {
 }
 
 // StatisticalGraph Describes a statistical graph
+// Implemented by:
+// StatisticalGraphAsync
+// StatisticalGraphData
+// StatisticalGraphError
 type StatisticalGraph interface {
 	TlObject
 	statisticalGraph()
@@ -9659,6 +10908,10 @@ func UnmarshalStatisticalGraph(data []byte) (StatisticalGraph, error) {
 }
 
 // StickerFormat Describes format of a sticker
+// Implemented by:
+// StickerFormatTgs
+// StickerFormatWebm
+// StickerFormatWebp
 type StickerFormat interface {
 	TlObject
 	stickerFormat()
@@ -9697,6 +10950,10 @@ func UnmarshalStickerFormat(data []byte) (StickerFormat, error) {
 }
 
 // StickerFullType Contains full information about sticker type
+// Implemented by:
+// StickerFullTypeCustomEmoji
+// StickerFullTypeMask
+// StickerFullTypeRegular
 type StickerFullType interface {
 	TlObject
 	stickerFullType()
@@ -9735,6 +10992,10 @@ func UnmarshalStickerFullType(data []byte) (StickerFullType, error) {
 }
 
 // StickerType Describes type of sticker
+// Implemented by:
+// StickerTypeCustomEmoji
+// StickerTypeMask
+// StickerTypeRegular
 type StickerType interface {
 	TlObject
 	stickerType()
@@ -9773,6 +11034,14 @@ func UnmarshalStickerType(data []byte) (StickerType, error) {
 }
 
 // StorePaymentPurpose Describes a purpose of an in-store payment
+// Implemented by:
+// StorePaymentPurposeGiftedStars
+// StorePaymentPurposePremiumGift
+// StorePaymentPurposePremiumGiftCodes
+// StorePaymentPurposePremiumGiveaway
+// StorePaymentPurposePremiumSubscription
+// StorePaymentPurposeStarGiveaway
+// StorePaymentPurposeStars
 type StorePaymentPurpose interface {
 	TlObject
 	storePaymentPurpose()
@@ -9835,6 +11104,9 @@ func UnmarshalStorePaymentPurpose(data []byte) (StorePaymentPurpose, error) {
 }
 
 // StoreTransaction Describes an in-store transaction
+// Implemented by:
+// StoreTransactionAppStore
+// StoreTransactionGooglePlay
 type StoreTransaction interface {
 	TlObject
 	storeTransaction()
@@ -9867,6 +11139,14 @@ func UnmarshalStoreTransaction(data []byte) (StoreTransaction, error) {
 }
 
 // StoryAreaType Describes type of clickable area on a story media
+// Implemented by:
+// StoryAreaTypeLink
+// StoryAreaTypeLocation
+// StoryAreaTypeMessage
+// StoryAreaTypeSuggestedReaction
+// StoryAreaTypeUpgradedGift
+// StoryAreaTypeVenue
+// StoryAreaTypeWeather
 type StoryAreaType interface {
 	TlObject
 	storyAreaType()
@@ -9929,6 +11209,11 @@ func UnmarshalStoryAreaType(data []byte) (StoryAreaType, error) {
 }
 
 // StoryContent Contains the content of a story
+// Implemented by:
+// StoryContentLive
+// StoryContentPhoto
+// StoryContentUnsupported
+// StoryContentVideo
 type StoryContent interface {
 	TlObject
 	storyContent()
@@ -9973,6 +11258,10 @@ func UnmarshalStoryContent(data []byte) (StoryContent, error) {
 }
 
 // StoryInteractionType Describes type of interaction with a story
+// Implemented by:
+// StoryInteractionTypeForward
+// StoryInteractionTypeRepost
+// StoryInteractionTypeView
 type StoryInteractionType interface {
 	TlObject
 	storyInteractionType()
@@ -10011,6 +11300,9 @@ func UnmarshalStoryInteractionType(data []byte) (StoryInteractionType, error) {
 }
 
 // StoryList Describes a list of stories
+// Implemented by:
+// StoryListArchive
+// StoryListMain
 type StoryList interface {
 	TlObject
 	storyList()
@@ -10043,6 +11335,9 @@ func UnmarshalStoryList(data []byte) (StoryList, error) {
 }
 
 // StoryOrigin Contains information about the origin of a story that was reposted
+// Implemented by:
+// StoryOriginHiddenUser
+// StoryOriginPublicStory
 type StoryOrigin interface {
 	TlObject
 	storyOrigin()
@@ -10075,6 +11370,11 @@ func UnmarshalStoryOrigin(data []byte) (StoryOrigin, error) {
 }
 
 // StoryPrivacySettings Describes privacy settings of a story
+// Implemented by:
+// StoryPrivacySettingsCloseFriends
+// StoryPrivacySettingsContacts
+// StoryPrivacySettingsEveryone
+// StoryPrivacySettingsSelectedUsers
 type StoryPrivacySettings interface {
 	TlObject
 	storyPrivacySettings()
@@ -10119,6 +11419,24 @@ func UnmarshalStoryPrivacySettings(data []byte) (StoryPrivacySettings, error) {
 }
 
 // SuggestedAction Describes an action suggested to the current user
+// Implemented by:
+// SuggestedActionAddLoginPasskey
+// SuggestedActionCheckPassword
+// SuggestedActionCheckPhoneNumber
+// SuggestedActionConvertToBroadcastGroup
+// SuggestedActionCustom
+// SuggestedActionEnableArchiveAndMuteNewChats
+// SuggestedActionExtendPremium
+// SuggestedActionExtendStarSubscriptions
+// SuggestedActionGiftPremiumForChristmas
+// SuggestedActionRestorePremium
+// SuggestedActionSetBirthdate
+// SuggestedActionSetLoginEmailAddress
+// SuggestedActionSetPassword
+// SuggestedActionSetProfilePhoto
+// SuggestedActionSubscribeToAnnualPremium
+// SuggestedActionUpgradePremium
+// SuggestedActionViewChecksHint
 type SuggestedAction interface {
 	TlObject
 	suggestedAction()
@@ -10241,6 +11559,9 @@ func UnmarshalSuggestedAction(data []byte) (SuggestedAction, error) {
 }
 
 // SuggestedPostPrice Describes price of a suggested post
+// Implemented by:
+// SuggestedPostPriceStar
+// SuggestedPostPriceTon
 type SuggestedPostPrice interface {
 	TlObject
 	suggestedPostPrice()
@@ -10273,6 +11594,9 @@ func UnmarshalSuggestedPostPrice(data []byte) (SuggestedPostPrice, error) {
 }
 
 // SuggestedPostRefundReason Describes reason for refund of the payment for a suggested post
+// Implemented by:
+// SuggestedPostRefundReasonPaymentRefunded
+// SuggestedPostRefundReasonPostDeleted
 type SuggestedPostRefundReason interface {
 	TlObject
 	suggestedPostRefundReason()
@@ -10305,6 +11629,10 @@ func UnmarshalSuggestedPostRefundReason(data []byte) (SuggestedPostRefundReason,
 }
 
 // SuggestedPostState Describes state of a suggested post
+// Implemented by:
+// SuggestedPostStateApproved
+// SuggestedPostStateDeclined
+// SuggestedPostStatePending
 type SuggestedPostState interface {
 	TlObject
 	suggestedPostState()
@@ -10343,6 +11671,15 @@ func UnmarshalSuggestedPostState(data []byte) (SuggestedPostState, error) {
 }
 
 // SupergroupMembersFilter Specifies the kind of chat members to return in getSupergroupMembers
+// Implemented by:
+// SupergroupMembersFilterAdministrators
+// SupergroupMembersFilterBanned
+// SupergroupMembersFilterBots
+// SupergroupMembersFilterContacts
+// SupergroupMembersFilterMention
+// SupergroupMembersFilterRecent
+// SupergroupMembersFilterRestricted
+// SupergroupMembersFilterSearch
 type SupergroupMembersFilter interface {
 	TlObject
 	supergroupMembersFilter()
@@ -10411,6 +11748,10 @@ func UnmarshalSupergroupMembersFilter(data []byte) (SupergroupMembersFilter, err
 }
 
 // TargetChat Describes the target chat to be opened
+// Implemented by:
+// TargetChatChosen
+// TargetChatCurrent
+// TargetChatInternalLink
 type TargetChat interface {
 	TlObject
 	targetChat()
@@ -10449,6 +11790,14 @@ func UnmarshalTargetChat(data []byte) (TargetChat, error) {
 }
 
 // TelegramPaymentPurpose Describes a purpose of a payment toward Telegram
+// Implemented by:
+// TelegramPaymentPurposeGiftedStars
+// TelegramPaymentPurposeJoinChat
+// TelegramPaymentPurposePremiumGift
+// TelegramPaymentPurposePremiumGiftCodes
+// TelegramPaymentPurposePremiumGiveaway
+// TelegramPaymentPurposeStarGiveaway
+// TelegramPaymentPurposeStars
 type TelegramPaymentPurpose interface {
 	TlObject
 	telegramPaymentPurpose()
@@ -10511,6 +11860,29 @@ func UnmarshalTelegramPaymentPurpose(data []byte) (TelegramPaymentPurpose, error
 }
 
 // TextEntityType Represents a part of the text which must be formatted differently
+// Implemented by:
+// TextEntityTypeBankCardNumber
+// TextEntityTypeBlockQuote
+// TextEntityTypeBold
+// TextEntityTypeBotCommand
+// TextEntityTypeCashtag
+// TextEntityTypeCode
+// TextEntityTypeCustomEmoji
+// TextEntityTypeEmailAddress
+// TextEntityTypeExpandableBlockQuote
+// TextEntityTypeHashtag
+// TextEntityTypeItalic
+// TextEntityTypeMediaTimestamp
+// TextEntityTypeMention
+// TextEntityTypeMentionName
+// TextEntityTypePhoneNumber
+// TextEntityTypePre
+// TextEntityTypePreCode
+// TextEntityTypeSpoiler
+// TextEntityTypeStrikethrough
+// TextEntityTypeTextUrl
+// TextEntityTypeUnderline
+// TextEntityTypeUrl
 type TextEntityType interface {
 	TlObject
 	textEntityType()
@@ -10663,6 +12035,9 @@ func UnmarshalTextEntityType(data []byte) (TextEntityType, error) {
 }
 
 // TextParseMode Describes the way the text needs to be parsed for text entities
+// Implemented by:
+// TextParseModeHTML
+// TextParseModeMarkdown
 type TextParseMode interface {
 	TlObject
 	textParseMode()
@@ -10695,6 +12070,14 @@ func UnmarshalTextParseMode(data []byte) (TextParseMode, error) {
 }
 
 // ThumbnailFormat Describes format of a thumbnail
+// Implemented by:
+// ThumbnailFormatGif
+// ThumbnailFormatJpeg
+// ThumbnailFormatMpeg4
+// ThumbnailFormatPng
+// ThumbnailFormatTgs
+// ThumbnailFormatWebm
+// ThumbnailFormatWebp
 type ThumbnailFormat interface {
 	TlObject
 	thumbnailFormat()
@@ -10757,6 +12140,11 @@ func UnmarshalThumbnailFormat(data []byte) (ThumbnailFormat, error) {
 }
 
 // TMeUrlType Describes the type of URL linking to an internal Telegram entity
+// Implemented by:
+// TMeUrlTypeChatInvite
+// TMeUrlTypeStickerSet
+// TMeUrlTypeSupergroup
+// TMeUrlTypeUser
 type TMeUrlType interface {
 	TlObject
 	tMeUrlType()
@@ -10801,6 +12189,14 @@ func UnmarshalTMeUrlType(data []byte) (TMeUrlType, error) {
 }
 
 // TonTransactionType Describes type of transaction with Toncoins
+// Implemented by:
+// TonTransactionTypeFragmentDeposit
+// TonTransactionTypeFragmentWithdrawal
+// TonTransactionTypeGiftPurchaseOffer
+// TonTransactionTypeSuggestedPostPayment
+// TonTransactionTypeUnsupported
+// TonTransactionTypeUpgradedGiftPurchase
+// TonTransactionTypeUpgradedGiftSale
 type TonTransactionType interface {
 	TlObject
 	tonTransactionType()
@@ -10863,6 +12259,15 @@ func UnmarshalTonTransactionType(data []byte) (TonTransactionType, error) {
 }
 
 // TopChatCategory Represents the categories of chats for which a list of frequently used chats can be retrieved
+// Implemented by:
+// TopChatCategoryBots
+// TopChatCategoryCalls
+// TopChatCategoryChannels
+// TopChatCategoryForwardChats
+// TopChatCategoryGroups
+// TopChatCategoryInlineBots
+// TopChatCategoryUsers
+// TopChatCategoryWebAppBots
 type TopChatCategory interface {
 	TlObject
 	topChatCategory()
@@ -10931,6 +12336,9 @@ func UnmarshalTopChatCategory(data []byte) (TopChatCategory, error) {
 }
 
 // TransactionDirection Describes direction of transactions in a transaction list
+// Implemented by:
+// TransactionDirectionIncoming
+// TransactionDirectionOutgoing
 type TransactionDirection interface {
 	TlObject
 	transactionDirection()
@@ -10963,6 +12371,181 @@ func UnmarshalTransactionDirection(data []byte) (TransactionDirection, error) {
 }
 
 // Update Contains notifications about data changes
+// Implemented by:
+// UpdateAccentColors
+// UpdateActiveEmojiReactions
+// UpdateActiveGiftAuctions
+// UpdateActiveLiveLocationMessages
+// UpdateActiveNotifications
+// UpdateAgeVerificationParameters
+// UpdateAnimatedEmojiMessageClicked
+// UpdateAnimationSearchParameters
+// UpdateApplicationRecaptchaVerificationRequired
+// UpdateApplicationVerificationRequired
+// UpdateAttachmentMenuBots
+// UpdateAuthorizationState
+// UpdateAutosaveSettings
+// UpdateAvailableMessageEffects
+// UpdateBasicGroup
+// UpdateBasicGroupFullInfo
+// UpdateBusinessConnection
+// UpdateBusinessMessageEdited
+// UpdateBusinessMessagesDeleted
+// UpdateCall
+// UpdateChatAccentColors
+// UpdateChatAction
+// UpdateChatActionBar
+// UpdateChatActiveStories
+// UpdateChatAddedToList
+// UpdateChatAvailableReactions
+// UpdateChatBackground
+// UpdateChatBlockList
+// UpdateChatBoost
+// UpdateChatBusinessBotManageBar
+// UpdateChatDefaultDisableNotification
+// UpdateChatDraftMessage
+// UpdateChatEmojiStatus
+// UpdateChatFolders
+// UpdateChatHasProtectedContent
+// UpdateChatHasScheduledMessages
+// UpdateChatIsMarkedAsUnread
+// UpdateChatIsTranslatable
+// UpdateChatLastMessage
+// UpdateChatMember
+// UpdateChatMessageAutoDeleteTime
+// UpdateChatMessageSender
+// UpdateChatNotificationSettings
+// UpdateChatOnlineMemberCount
+// UpdateChatPendingJoinRequests
+// UpdateChatPermissions
+// UpdateChatPhoto
+// UpdateChatPosition
+// UpdateChatReadInbox
+// UpdateChatReadOutbox
+// UpdateChatRemovedFromList
+// UpdateChatReplyMarkup
+// UpdateChatRevenueAmount
+// UpdateChatTheme
+// UpdateChatTitle
+// UpdateChatUnreadMentionCount
+// UpdateChatUnreadReactionCount
+// UpdateChatVideoChat
+// UpdateChatViewAsTopics
+// UpdateConnectionState
+// UpdateContactCloseBirthdays
+// UpdateDefaultBackground
+// UpdateDefaultPaidReactionType
+// UpdateDefaultReactionType
+// UpdateDeleteMessages
+// UpdateDiceEmojis
+// UpdateDirectMessagesChatTopic
+// UpdateEmojiChatThemes
+// UpdateFavoriteStickers
+// UpdateFile
+// UpdateFileAddedToDownloads
+// UpdateFileDownload
+// UpdateFileDownloads
+// UpdateFileGenerationStart
+// UpdateFileGenerationStop
+// UpdateFileRemovedFromDownloads
+// UpdateForumTopic
+// UpdateForumTopicInfo
+// UpdateFreezeState
+// UpdateGiftAuctionState
+// UpdateGroupCall
+// UpdateGroupCallMessageLevels
+// UpdateGroupCallMessageSendFailed
+// UpdateGroupCallMessagesDeleted
+// UpdateGroupCallParticipant
+// UpdateGroupCallParticipants
+// UpdateGroupCallVerificationState
+// UpdateHavePendingNotifications
+// UpdateInstalledStickerSets
+// UpdateLanguagePackStrings
+// UpdateLiveStoryTopDonors
+// UpdateMessageContent
+// UpdateMessageContentOpened
+// UpdateMessageEdited
+// UpdateMessageFactCheck
+// UpdateMessageInteractionInfo
+// UpdateMessageIsPinned
+// UpdateMessageLiveLocationViewed
+// UpdateMessageMentionRead
+// UpdateMessageReaction
+// UpdateMessageReactions
+// UpdateMessageSendAcknowledged
+// UpdateMessageSendFailed
+// UpdateMessageSendSucceeded
+// UpdateMessageSuggestedPostInfo
+// UpdateMessageUnreadReactions
+// UpdateNewBusinessCallbackQuery
+// UpdateNewBusinessMessage
+// UpdateNewCallSignalingData
+// UpdateNewCallbackQuery
+// UpdateNewChat
+// UpdateNewChatJoinRequest
+// UpdateNewChosenInlineResult
+// UpdateNewCustomEvent
+// UpdateNewCustomQuery
+// UpdateNewGroupCallMessage
+// UpdateNewGroupCallPaidReaction
+// UpdateNewInlineCallbackQuery
+// UpdateNewInlineQuery
+// UpdateNewMessage
+// UpdateNewPreCheckoutQuery
+// UpdateNewShippingQuery
+// UpdateNotification
+// UpdateNotificationGroup
+// UpdateOption
+// UpdateOwnedStarCount
+// UpdateOwnedTonCount
+// UpdatePaidMediaPurchased
+// UpdatePendingTextMessage
+// UpdatePoll
+// UpdatePollAnswer
+// UpdateProfileAccentColors
+// UpdateQuickReplyShortcut
+// UpdateQuickReplyShortcutDeleted
+// UpdateQuickReplyShortcutMessages
+// UpdateQuickReplyShortcuts
+// UpdateReactionNotificationSettings
+// UpdateRecentStickers
+// UpdateSavedAnimations
+// UpdateSavedMessagesTags
+// UpdateSavedMessagesTopic
+// UpdateSavedMessagesTopicCount
+// UpdateSavedNotificationSounds
+// UpdateScopeNotificationSettings
+// UpdateSecretChat
+// UpdateServiceNotification
+// UpdateSpeechRecognitionTrial
+// UpdateSpeedLimitNotification
+// UpdateStakeDiceState
+// UpdateStarRevenueStatus
+// UpdateStickerSet
+// UpdateStory
+// UpdateStoryDeleted
+// UpdateStoryListChatCount
+// UpdateStoryPostFailed
+// UpdateStoryPostSucceeded
+// UpdateStoryStealthMode
+// UpdateSuggestedActions
+// UpdateSupergroup
+// UpdateSupergroupFullInfo
+// UpdateTermsOfService
+// UpdateTonRevenueStatus
+// UpdateTopicMessageCount
+// UpdateTrendingStickerSets
+// UpdateTrustedMiniAppBots
+// UpdateUnconfirmedSession
+// UpdateUnreadChatCount
+// UpdateUnreadMessageCount
+// UpdateUser
+// UpdateUserFullInfo
+// UpdateUserPrivacySettingRules
+// UpdateUserStatus
+// UpdateVideoPublished
+// UpdateWebAppMessageSent
 type Update interface {
 	TlObject
 	update()
@@ -12027,6 +13610,10 @@ func UnmarshalUpdate(data []byte) (Update, error) {
 }
 
 // UpgradedGiftAttributeId Contains identifier of an upgraded gift attribute to search for
+// Implemented by:
+// UpgradedGiftAttributeIdBackdrop
+// UpgradedGiftAttributeIdModel
+// UpgradedGiftAttributeIdSymbol
 type UpgradedGiftAttributeId interface {
 	TlObject
 	upgradedGiftAttributeId()
@@ -12065,6 +13652,13 @@ func UnmarshalUpgradedGiftAttributeId(data []byte) (UpgradedGiftAttributeId, err
 }
 
 // UpgradedGiftOrigin Describes origin from which the upgraded gift was obtained
+// Implemented by:
+// UpgradedGiftOriginBlockchain
+// UpgradedGiftOriginOffer
+// UpgradedGiftOriginPrepaidUpgrade
+// UpgradedGiftOriginResale
+// UpgradedGiftOriginTransfer
+// UpgradedGiftOriginUpgrade
 type UpgradedGiftOrigin interface {
 	TlObject
 	upgradedGiftOrigin()
@@ -12121,6 +13715,21 @@ func UnmarshalUpgradedGiftOrigin(data []byte) (UpgradedGiftOrigin, error) {
 }
 
 // UserPrivacySetting Describes available user privacy settings
+// Implemented by:
+// UserPrivacySettingAllowCalls
+// UserPrivacySettingAllowChatInvites
+// UserPrivacySettingAllowFindingByPhoneNumber
+// UserPrivacySettingAllowPeerToPeerCalls
+// UserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages
+// UserPrivacySettingAllowUnpaidMessages
+// UserPrivacySettingAutosaveGifts
+// UserPrivacySettingShowBio
+// UserPrivacySettingShowBirthdate
+// UserPrivacySettingShowLinkInForwardedMessages
+// UserPrivacySettingShowPhoneNumber
+// UserPrivacySettingShowProfileAudio
+// UserPrivacySettingShowProfilePhoto
+// UserPrivacySettingShowStatus
 type UserPrivacySetting interface {
 	TlObject
 	userPrivacySetting()
@@ -12225,6 +13834,18 @@ func UnmarshalUserPrivacySetting(data []byte) (UserPrivacySetting, error) {
 }
 
 // UserPrivacySettingRule Represents a single rule for managing user privacy settings
+// Implemented by:
+// UserPrivacySettingRuleAllowAll
+// UserPrivacySettingRuleAllowBots
+// UserPrivacySettingRuleAllowChatMembers
+// UserPrivacySettingRuleAllowContacts
+// UserPrivacySettingRuleAllowPremiumUsers
+// UserPrivacySettingRuleAllowUsers
+// UserPrivacySettingRuleRestrictAll
+// UserPrivacySettingRuleRestrictBots
+// UserPrivacySettingRuleRestrictChatMembers
+// UserPrivacySettingRuleRestrictContacts
+// UserPrivacySettingRuleRestrictUsers
 type UserPrivacySettingRule interface {
 	TlObject
 	userPrivacySettingRule()
@@ -12311,6 +13932,13 @@ func UnmarshalUserPrivacySettingRule(data []byte) (UserPrivacySettingRule, error
 }
 
 // UserStatus Describes the last time the user was online
+// Implemented by:
+// UserStatusEmpty
+// UserStatusLastMonth
+// UserStatusLastWeek
+// UserStatusOffline
+// UserStatusOnline
+// UserStatusRecently
 type UserStatus interface {
 	TlObject
 	userStatus()
@@ -12367,6 +13995,11 @@ func UnmarshalUserStatus(data []byte) (UserStatus, error) {
 }
 
 // UserType Represents the type of user. The following types are possible: regular users, deleted users and bots
+// Implemented by:
+// UserTypeBot
+// UserTypeDeleted
+// UserTypeRegular
+// UserTypeUnknown
 type UserType interface {
 	TlObject
 	userType()
@@ -12411,6 +14044,9 @@ func UnmarshalUserType(data []byte) (UserType, error) {
 }
 
 // VectorPathCommand Represents a vector path command
+// Implemented by:
+// VectorPathCommandCubicBezierCurve
+// VectorPathCommandLine
 type VectorPathCommand interface {
 	TlObject
 	vectorPathCommand()
@@ -12443,6 +14079,10 @@ func UnmarshalVectorPathCommand(data []byte) (VectorPathCommand, error) {
 }
 
 // WebAppOpenMode Describes mode in which a Web App is opened
+// Implemented by:
+// WebAppOpenModeCompact
+// WebAppOpenModeFullScreen
+// WebAppOpenModeFullSize
 type WebAppOpenMode interface {
 	TlObject
 	webAppOpenMode()
