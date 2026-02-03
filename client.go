@@ -43,8 +43,8 @@ type ClientConfig struct {
 func DefaultClientConfig() *ClientConfig {
 	return &ClientConfig{
 		DatabaseDirectory:       "database",
-		FilesDirectory:          "database",
-		DatabaseEncryptionKey:   "default",
+		FilesDirectory:          "",
+		DatabaseEncryptionKey:   "",
 		UseFileDatabase:         Bool(true),
 		UseChatInfoDatabase:     Bool(true),
 		UseMessageDatabase:      Bool(true),
