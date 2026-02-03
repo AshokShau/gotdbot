@@ -1,5 +1,3 @@
-name: TDLib tdjson auto build
-
 on:
   workflow_dispatch:
 
@@ -29,54 +27,51 @@ jobs:
           fetch-depth: 1
           path: td
 
-      - name: Detect TDLib version
-        id: ver
-        shell: bash
-        run: |
-          cd td
-          VER=$(grep -Po 'TDLib version \K[0-9.]+' README.md || true)
-          if [ -z "$VER" ]; then
-            VER=$(grep -Po 'set\(TDLIB_VERSION +"\K[^"]+' CMakeLists.txt || true)
-          fi
-          if [ -z "$VER" ]; then
-            VER=$(git rev-parse --short HEAD)
-          fi
-          echo "version=$VER" >> $GITHUB_OUTPUT
-
       - name: Install deps
         run: |
           sudo apt update
           sudo apt install -y \
             cmake gperf \
-            zlib1g-dev libssl-dev
+            zlib1g-dev libssl-dev jq
 
       - name: Configure
-        shell: bash
         run: |
           cmake -S td -B build \
             -DCMAKE_BUILD_TYPE=Release
 
       - name: Build tdjson
-        shell: bash
         run: |
           cmake --build build --target tdjson -j$(nproc)
 
       - name: Collect tdjson
-        shell: bash
         run: |
           mkdir -p out
           find build -type f -name "libtdjson.so*" -exec cp {} out/ \;
 
       - name: Package
-        shell: bash
         run: |
           cd out
-          tar -czf tdjson-${{ matrix.name }}.tar.gz *
+          tar -czf TDLib-tdjson-${{ matrix.name }}.tar.gz *
 
-      - name: Create release
+      - name: Get latest gotdbot release tag
+        id: rel
+        run: |
+          TAG=$(curl -s \
+            -H "Authorization: Bearer ${{ github.token }}" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/${{ github.repository }}/releases/latest \
+            | jq -r .tag_name)
+
+          if [ -z "$TAG" ] || [ "$TAG" = "null" ]; then
+            echo "No release found in this repository"
+            exit 1
+          fi
+
+          echo "tag=$TAG" >> $GITHUB_OUTPUT
+
+      - name: Upload asset to latest gotdbot release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: tdjson-v${{ steps.ver.outputs.version }}
-          name: tdjson v${{ steps.ver.outputs.version }}
+          tag_name: ${{ steps.rel.outputs.tag }}
           files: |
-            out/tdjson-${{ matrix.name }}.tar.gz
+            out/TDLib-tdjson-${{ matrix.name }}.tar.gz
