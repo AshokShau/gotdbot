@@ -1,6 +1,7 @@
 package ext
 
 import (
+	"errors"
 	"fmt"
 	"log"
 	"runtime/debug"
@@ -11,6 +12,8 @@ import (
 
 	"github.com/AshokShau/gotdbot"
 )
+
+var ErrWaitTimeout = errors.New("wait timeout")
 
 type Waiter struct {
 	Filter UpdateFilter
@@ -81,7 +84,7 @@ func (d *Dispatcher) WaitFor(filter UpdateFilter, timeout time.Duration) (gotdbo
 	case u := <-ch:
 		return u, nil
 	case <-time.After(timeout):
-		return nil, fmt.Errorf("timeout")
+		return nil, ErrWaitTimeout
 	}
 }
 
