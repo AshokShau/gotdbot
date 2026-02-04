@@ -1,13 +1,21 @@
 package ext
 
 import (
+	"fmt"
 	"log"
 	"runtime/debug"
 	"sort"
 	"sync"
+	"sync/atomic"
+	"time"
 
 	"github.com/AshokShau/gotdbot"
 )
+
+type Waiter struct {
+	Filter UpdateFilter
+	C      chan gotdbot.TlObject
+}
 
 type Dispatcher struct {
 	Client *gotdbot.Client
@@ -18,6 +26,11 @@ type Dispatcher struct {
 	groups []int
 	mu     sync.RWMutex
 
+	// Waiters
+	waiters     map[string]*Waiter
+	waiterCount int64
+	wMu         sync.RWMutex
+
 	// PanicHandler handles panics during update processing.
 	PanicHandler func(c *Context, r interface{})
 }
@@ -26,6 +39,7 @@ func NewDispatcher(client *gotdbot.Client) *Dispatcher {
 	return &Dispatcher{
 		Client:   client,
 		handlers: make(map[int][]Handler),
+		waiters:  make(map[string]*Waiter),
 	}
 }
 
@@ -47,9 +61,33 @@ func (d *Dispatcher) AddHandlerToGroup(h Handler, group int) {
 	d.handlers[group] = append(d.handlers[group], h)
 }
 
+// WaitFor registers a waiter and blocks until a matching update arrives or timeout occurs.
+func (d *Dispatcher) WaitFor(filter UpdateFilter, timeout time.Duration) (gotdbot.TlObject, error) {
+	ch := make(chan gotdbot.TlObject, 1)
+	idNum := atomic.AddInt64(&d.waiterCount, 1)
+	id := fmt.Sprintf("%d", idNum)
+
+	d.wMu.Lock()
+	d.waiters[id] = &Waiter{Filter: filter, C: ch}
+	d.wMu.Unlock()
+
+	defer func() {
+		d.wMu.Lock()
+		delete(d.waiters, id)
+		d.wMu.Unlock()
+	}()
+
+	select {
+	case u := <-ch:
+		return u, nil
+	case <-time.After(timeout):
+		return nil, fmt.Errorf("timeout")
+	}
+}
+
 // ProcessUpdate processes a single update through the handlers.
 func (d *Dispatcher) ProcessUpdate(update gotdbot.TlObject) {
-	ctx := NewContext(d.Client, update)
+	ctx := NewContext(d.Client, update, d)
 
 	defer func() {
 		if r := recover(); r != nil {
@@ -60,6 +98,22 @@ func (d *Dispatcher) ProcessUpdate(update gotdbot.TlObject) {
 			}
 		}
 	}()
+
+	d.wMu.RLock()
+	var matchedWaiters []*Waiter
+	for _, w := range d.waiters {
+		if w.Filter(ctx) {
+			matchedWaiters = append(matchedWaiters, w)
+		}
+	}
+	d.wMu.RUnlock()
+
+	for _, w := range matchedWaiters {
+		select {
+		case w.C <- update:
+		default:
+		}
+	}
 
 	d.mu.RLock()
 	defer d.mu.RUnlock()
