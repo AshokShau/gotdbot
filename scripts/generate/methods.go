@@ -8,16 +8,9 @@ import (
 )
 
 func generateMethods(functions []TLType, classes map[string]*TLClass) {
-	f, err := os.Create("gen_methods.go")
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer f.Close()
-
-	fmt.Fprintln(f, "package gotdbot")
-	fmt.Fprintln(f)
-
-	fmt.Fprintln(f)
+	var sb strings.Builder
+	sb.WriteString(header)
+	sb.WriteString("package gotdbot\n\n")
 
 	for _, fn := range functions {
 		methodName := toCamelCase(fn.Name)
@@ -43,8 +36,8 @@ func generateMethods(functions []TLType, classes map[string]*TLClass) {
 			retTypeStr = toCamelCase(fn.ResultType)
 		}
 
-		fmt.Fprintf(f, "// %s %s\n", methodName, formatDesc(fn.Description))
-		fmt.Fprintf(f, "func (c *Client) %s(", methodName)
+		fmt.Fprintf(&sb, "// %s %s\n", methodName, formatDesc(fn.Description))
+		fmt.Fprintf(&sb, "func (c *Client) %s(", methodName)
 
 		// Args
 		var args []string
@@ -70,10 +63,10 @@ func generateMethods(functions []TLType, classes map[string]*TLClass) {
 			args = append(args, fmt.Sprintf("opts *%s", optsStructName))
 		}
 
-		fmt.Fprintf(f, "%s", strings.Join(args, ", "))
-		fmt.Fprintf(f, ") (%s, error) {\n", retTypeStr)
+		fmt.Fprintf(&sb, "%s", strings.Join(args, ", "))
+		fmt.Fprintf(&sb, ") (%s, error) {\n", retTypeStr)
 
-		fmt.Fprintf(f, "\treq := &%s{\n", structName)
+		fmt.Fprintf(&sb, "\treq := &%s{\n", structName)
 		for _, p := range fn.Params {
 			if p.IsOptional {
 				continue
@@ -90,12 +83,12 @@ func generateMethods(functions []TLType, classes map[string]*TLClass) {
 				argName = "funcArg"
 			}
 
-			fmt.Fprintf(f, "\t\t%s: %s,\n", fieldName, argName)
+			fmt.Fprintf(&sb, "\t\t%s: %s,\n", fieldName, argName)
 		}
-		fmt.Fprintf(f, "\t}\n")
+		sb.WriteString("\t}\n")
 
 		if hasOptional {
-			fmt.Fprintf(f, "\tif opts != nil {\n")
+			sb.WriteString("\tif opts != nil {\n")
 			for _, p := range fn.Params {
 				if !p.IsOptional {
 					continue
@@ -104,19 +97,23 @@ func generateMethods(functions []TLType, classes map[string]*TLClass) {
 				if fieldName == "Type" {
 					fieldName = "TypeField"
 				}
-				fmt.Fprintf(f, "\t\treq.%s = opts.%s\n", fieldName, fieldName)
+				fmt.Fprintf(&sb, "\t\treq.%s = opts.%s\n", fieldName, fieldName)
 			}
-			fmt.Fprintf(f, "\t}\n")
+			sb.WriteString("\t}\n")
 		}
 
-		fmt.Fprintf(f, "\tresp, err := c.Send(req)\n")
-		fmt.Fprintf(f, "\tif err != nil {\n\t\treturn nil, err\n\t}\n")
+		sb.WriteString("\tresp, err := c.Send(req)\n")
+		sb.WriteString("\tif err != nil {\n\t\treturn nil, err\n\t}\n")
 
 		if methodName == "SendMessage" {
-			fmt.Fprintf(f, "\treturn c.WaitMessage(resp.(*Message))\n")
+			sb.WriteString("\treturn c.WaitMessage(resp.(*Message))\n")
 		} else {
-			fmt.Fprintf(f, "\treturn resp.(%s), nil\n", retTypeStr)
+			fmt.Fprintf(&sb, "\treturn resp.(%s), nil\n", retTypeStr)
 		}
-		fmt.Fprintf(f, "}\n\n")
+		sb.WriteString("}\n\n")
+	}
+
+	if err := os.WriteFile("gen_methods.go", []byte(sb.String()), 0644); err != nil {
+		log.Fatal(err)
 	}
 }

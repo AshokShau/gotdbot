@@ -67,7 +67,7 @@ func TestDispatcher_Command(t *testing.T) {
 func TestDispatcher_InlineQuery(t *testing.T) {
 	d := ext.NewDispatcher(nil)
 	called := false
-	h := handlers.NewInlineQuery(nil, func(ctx *ext.Context) error {
+	h := handlers.NewUpdateNewInlineQuery(nil, func(ctx *ext.Context) error {
 		called = true
 		return nil
 	})
