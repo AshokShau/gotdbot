@@ -8,13 +8,11 @@ import (
 )
 
 func generateHelpers(types []TLType, functions []TLType, classes map[string]*TLClass) []string {
-	f, err := createHelperFile()
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer f.Close()
+	var sb strings.Builder
+	sb.WriteString(header)
+	sb.WriteString("package gotdbot\n\n")
 
-	generatedFiles := []string{f.Name()}
+	generatedFiles := []string{"gen_helpers.go"}
 
 	allowedTypes := map[string]bool{
 		"File":       true,
@@ -117,28 +115,18 @@ func generateHelpers(types []TLType, functions []TLType, classes map[string]*TLC
 			}
 
 			generatedMethods[fullHelperName] = true
-			generateHelperMethod(f, t, fn, matches, helperName, classes)
+			generateHelperMethod(&sb, t, fn, matches, helperName, classes)
 		}
+	}
+
+	if err := os.WriteFile("gen_helpers.go", []byte(sb.String()), 0644); err != nil {
+		log.Fatal(err)
 	}
 
 	return generatedFiles
 }
 
-func createHelperFile() (*os.File, error) {
-	filename := "gen_helpers.go"
-	f, err := os.Create(filename)
-	if err != nil {
-		return nil, err
-	}
-
-	fmt.Fprintln(f, "package gotdbot")
-	fmt.Fprintln(f)
-	fmt.Fprintln(f)
-
-	return f, nil
-}
-
-func generateHelperMethod(f *os.File, t TLType, fn TLType, matches map[string]string, helperName string, classes map[string]*TLClass) {
+func generateHelperMethod(sb *strings.Builder, t TLType, fn TLType, matches map[string]string, helperName string, classes map[string]*TLClass) {
 	clientMethodName := toCamelCase(fn.Name)
 	structName := toCamelCase(t.Name)
 
@@ -193,22 +181,22 @@ func generateHelperMethod(f *os.File, t TLType, fn TLType, matches map[string]st
 
 	receiverVar := strings.ToLower(structName[:1])
 
-	fmt.Fprintf(f, "// %s is a helper method for Client.%s\n", helperName, clientMethodName)
+	fmt.Fprintf(sb, "// %s is a helper method for Client.%s\n", helperName, clientMethodName)
 
-	fmt.Fprintf(f, "func (%s *%s) %s(client *Client, %s) (%s, error) {\n",
+	fmt.Fprintf(sb, "func (%s *%s) %s(client *Client, %s) (%s, error) {\n",
 		receiverVar, structName, helperName, strings.Join(funcArgs, ", "), retTypeStr)
 
-	fmt.Fprintf(f, "\treturn client.%s(%s)\n", clientMethodName, strings.Join(callArgs, ", "))
-	fmt.Fprintf(f, "}\n\n")
+	fmt.Fprintf(sb, "\treturn client.%s(%s)\n", clientMethodName, strings.Join(callArgs, ", "))
+	sb.WriteString("}\n\n")
 }
 
 func toSnakeCase(s string) string {
-	var res []rune
+	var res strings.Builder
 	for i, r := range s {
 		if i > 0 && r >= 'A' && r <= 'Z' {
-			res = append(res, '_')
+			res.WriteRune('_')
 		}
-		res = append(res, r)
+		res.WriteRune(r)
 	}
-	return strings.ToLower(string(res))
+	return strings.ToLower(res.String())
 }
