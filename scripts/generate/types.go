@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"sort"
 	"strings"
 	"unicode"
 )
@@ -34,10 +35,15 @@ func generateClasses(classes map[string]*TLClass) {
 		methodName := toLowerCamelCase(name)
 
 		fmt.Fprintf(f, "// %s %s\n", structName, formatDesc(cls.Description))
-		fmt.Fprintf(f, "// Implemented by:\n")
-		for _, impl := range cls.Implementations {
-			fmt.Fprintf(f, "// %s\n", toCamelCase(impl))
+		if len(cls.Implementations) > 0 {
+			impls := append([]string(nil), cls.Implementations...)
+			sort.Strings(impls)
+			fmt.Fprintf(f, "// Implemented by:\n")
+			for _, impl := range impls {
+				fmt.Fprintf(f, "// %s\n", toCamelCase(impl))
+			}
 		}
+
 		fmt.Fprintf(f, "type %s interface {\n", structName)
 		fmt.Fprintf(f, "\tTlObject\n")
 		fmt.Fprintf(f, "\t%s()\n", methodName)
