@@ -195,7 +195,7 @@ func generateHelperMethod(f *os.File, t TLType, fn TLType, matches map[string]st
 
 	fmt.Fprintf(f, "// %s is a helper method for Client.%s\n", helperName, clientMethodName)
 
-	fmt.Fprintf(f, "func (%s %s) %s(client *Client, %s) (%s, error) {\n",
+	fmt.Fprintf(f, "func (%s *%s) %s(client *Client, %s) (%s, error) {\n",
 		receiverVar, structName, helperName, strings.Join(funcArgs, ", "), retTypeStr)
 
 	fmt.Fprintf(f, "\treturn client.%s(%s)\n", clientMethodName, strings.Join(callArgs, ", "))
