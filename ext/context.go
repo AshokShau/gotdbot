@@ -1,6 +1,8 @@
 package ext
 
 import (
+	"time"
+
 	"github.com/AshokShau/gotdbot"
 )
 
@@ -9,6 +11,8 @@ type Context struct {
 	Update *Updates
 	// Client is the gotdbot client.
 	Client *gotdbot.Client
+	// Dispatcher is the dispatcher that created this context.
+	Dispatcher *Dispatcher
 
 	// Data is a map for storing data across handlers.
 	Data map[string]interface{}
@@ -18,14 +22,43 @@ type Context struct {
 	EffectiveChatId  int64
 }
 
-func NewContext(client *gotdbot.Client, update gotdbot.TlObject) *Context {
+func NewContext(client *gotdbot.Client, update gotdbot.TlObject, dispatcher *Dispatcher) *Context {
 	ctx := &Context{
-		Update: NewUpdates(update),
-		Client: client,
-		Data:   make(map[string]interface{}),
+		Update:     NewUpdates(update),
+		Client:     client,
+		Dispatcher: dispatcher,
+		Data:       make(map[string]interface{}),
 	}
 	ctx.extractEffectiveFields(update)
 	return ctx
+}
+
+// WaitFor waits for an update that matches the filter.
+func (c *Context) WaitFor(filter UpdateFilter, timeout time.Duration) (gotdbot.TlObject, error) {
+	return c.Dispatcher.WaitFor(filter, timeout)
+}
+
+// WaitForMessage waits for a new message in the specified chat.
+func (c *Context) WaitForMessage(chatId int64, filter func(*gotdbot.Message) bool, timeout time.Duration) (*gotdbot.Message, error) {
+	msgFilter := func(ctx *Context) bool {
+		if ctx.EffectiveChatId != chatId {
+			return false
+		}
+		if ctx.Update.UpdateNewMessage == nil {
+			return false
+		}
+		if filter != nil && !filter(ctx.Update.UpdateNewMessage.Message) {
+			return false
+		}
+		return true
+	}
+
+	u, err := c.WaitFor(msgFilter, timeout)
+	if err != nil {
+		return nil, err
+	}
+
+	return u.(*gotdbot.UpdateNewMessage).Message, nil
 }
 
 func (c *Context) extractEffectiveFields(u gotdbot.TlObject) {
