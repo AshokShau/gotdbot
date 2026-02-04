@@ -14,6 +14,7 @@ type (
 	UpdateApplicationRecaptchaVerificationRequired func(u *gotdbot.UpdateApplicationRecaptchaVerificationRequired) bool
 	UpdateApplicationVerificationRequired          func(u *gotdbot.UpdateApplicationVerificationRequired) bool
 	UpdateAttachmentMenuBots                       func(u *gotdbot.UpdateAttachmentMenuBots) bool
+	UpdateAuthorizationState                       func(u *gotdbot.UpdateAuthorizationState) bool
 	UpdateAutosaveSettings                         func(u *gotdbot.UpdateAutosaveSettings) bool
 	UpdateAvailableMessageEffects                  func(u *gotdbot.UpdateAvailableMessageEffects) bool
 	UpdateBasicGroup                               func(u *gotdbot.UpdateBasicGroup) bool
@@ -41,6 +42,7 @@ type (
 	UpdateChatIsMarkedAsUnread                     func(u *gotdbot.UpdateChatIsMarkedAsUnread) bool
 	UpdateChatIsTranslatable                       func(u *gotdbot.UpdateChatIsTranslatable) bool
 	UpdateChatLastMessage                          func(u *gotdbot.UpdateChatLastMessage) bool
+	UpdateChatMember                               func(u *gotdbot.UpdateChatMember) bool
 	UpdateChatMessageAutoDeleteTime                func(u *gotdbot.UpdateChatMessageAutoDeleteTime) bool
 	UpdateChatMessageSender                        func(u *gotdbot.UpdateChatMessageSender) bool
 	UpdateChatNotificationSettings                 func(u *gotdbot.UpdateChatNotificationSettings) bool
@@ -94,6 +96,7 @@ type (
 	UpdateLiveStoryTopDonors                       func(u *gotdbot.UpdateLiveStoryTopDonors) bool
 	UpdateMessageContent                           func(u *gotdbot.UpdateMessageContent) bool
 	UpdateMessageContentOpened                     func(u *gotdbot.UpdateMessageContentOpened) bool
+	UpdateMessageEdited                            func(u *gotdbot.UpdateMessageEdited) bool
 	UpdateMessageFactCheck                         func(u *gotdbot.UpdateMessageFactCheck) bool
 	UpdateMessageInteractionInfo                   func(u *gotdbot.UpdateMessageInteractionInfo) bool
 	UpdateMessageIsPinned                          func(u *gotdbot.UpdateMessageIsPinned) bool
@@ -108,13 +111,20 @@ type (
 	UpdateMessageUnreadReactions                   func(u *gotdbot.UpdateMessageUnreadReactions) bool
 	UpdateNewBusinessCallbackQuery                 func(u *gotdbot.UpdateNewBusinessCallbackQuery) bool
 	UpdateNewBusinessMessage                       func(u *gotdbot.UpdateNewBusinessMessage) bool
+	UpdateNewCallbackQuery                         func(u *gotdbot.UpdateNewCallbackQuery) bool
 	UpdateNewCallSignalingData                     func(u *gotdbot.UpdateNewCallSignalingData) bool
 	UpdateNewChat                                  func(u *gotdbot.UpdateNewChat) bool
+	UpdateNewChatJoinRequest                       func(u *gotdbot.UpdateNewChatJoinRequest) bool
+	UpdateNewChosenInlineResult                    func(u *gotdbot.UpdateNewChosenInlineResult) bool
 	UpdateNewCustomEvent                           func(u *gotdbot.UpdateNewCustomEvent) bool
 	UpdateNewCustomQuery                           func(u *gotdbot.UpdateNewCustomQuery) bool
 	UpdateNewGroupCallMessage                      func(u *gotdbot.UpdateNewGroupCallMessage) bool
 	UpdateNewGroupCallPaidReaction                 func(u *gotdbot.UpdateNewGroupCallPaidReaction) bool
 	UpdateNewInlineCallbackQuery                   func(u *gotdbot.UpdateNewInlineCallbackQuery) bool
+	UpdateNewInlineQuery                           func(u *gotdbot.UpdateNewInlineQuery) bool
+	UpdateNewMessage                               func(u *gotdbot.UpdateNewMessage) bool
+	UpdateNewPreCheckoutQuery                      func(u *gotdbot.UpdateNewPreCheckoutQuery) bool
+	UpdateNewShippingQuery                         func(u *gotdbot.UpdateNewShippingQuery) bool
 	UpdateNotification                             func(u *gotdbot.UpdateNotification) bool
 	UpdateNotificationGroup                        func(u *gotdbot.UpdateNotificationGroup) bool
 	UpdateOption                                   func(u *gotdbot.UpdateOption) bool
@@ -122,6 +132,8 @@ type (
 	UpdateOwnedTonCount                            func(u *gotdbot.UpdateOwnedTonCount) bool
 	UpdatePaidMediaPurchased                       func(u *gotdbot.UpdatePaidMediaPurchased) bool
 	UpdatePendingTextMessage                       func(u *gotdbot.UpdatePendingTextMessage) bool
+	UpdatePoll                                     func(u *gotdbot.UpdatePoll) bool
+	UpdatePollAnswer                               func(u *gotdbot.UpdatePollAnswer) bool
 	UpdateProfileAccentColors                      func(u *gotdbot.UpdateProfileAccentColors) bool
 	UpdateQuickReplyShortcut                       func(u *gotdbot.UpdateQuickReplyShortcut) bool
 	UpdateQuickReplyShortcutDeleted                func(u *gotdbot.UpdateQuickReplyShortcutDeleted) bool
@@ -159,8 +171,10 @@ type (
 	UpdateUnconfirmedSession                       func(u *gotdbot.UpdateUnconfirmedSession) bool
 	UpdateUnreadChatCount                          func(u *gotdbot.UpdateUnreadChatCount) bool
 	UpdateUnreadMessageCount                       func(u *gotdbot.UpdateUnreadMessageCount) bool
+	UpdateUser                                     func(u *gotdbot.UpdateUser) bool
 	UpdateUserFullInfo                             func(u *gotdbot.UpdateUserFullInfo) bool
 	UpdateUserPrivacySettingRules                  func(u *gotdbot.UpdateUserPrivacySettingRules) bool
+	UpdateUserStatus                               func(u *gotdbot.UpdateUserStatus) bool
 	UpdateVideoPublished                           func(u *gotdbot.UpdateVideoPublished) bool
 	UpdateWebAppMessageSent                        func(u *gotdbot.UpdateWebAppMessageSent) bool
 )

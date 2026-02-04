@@ -155,6 +155,19 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := false
+		h := NewUpdateAuthorizationState(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateAuthorizationState{})
+		if !called {
+			t.Errorf("Handler for UpdateAuthorizationState not called")
+		}
+	}()
+
+	func() {
+		called := false
 		h := NewUpdateAutosaveSettings(nil, func(ctx *ext.Context) error {
 			called = true
 			return nil
@@ -501,6 +514,19 @@ func TestGeneratedHandlers(t *testing.T) {
 		d.ProcessUpdate(&gotdbot.UpdateChatLastMessage{})
 		if !called {
 			t.Errorf("Handler for UpdateChatLastMessage not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateChatMember(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateChatMember{})
+		if !called {
+			t.Errorf("Handler for UpdateChatMember not called")
 		}
 	}()
 
@@ -1195,6 +1221,19 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := false
+		h := NewUpdateMessageEdited(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateMessageEdited{})
+		if !called {
+			t.Errorf("Handler for UpdateMessageEdited not called")
+		}
+	}()
+
+	func() {
+		called := false
 		h := NewUpdateMessageFactCheck(nil, func(ctx *ext.Context) error {
 			called = true
 			return nil
@@ -1377,6 +1416,19 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := false
+		h := NewUpdateNewCallbackQuery(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateNewCallbackQuery{})
+		if !called {
+			t.Errorf("Handler for UpdateNewCallbackQuery not called")
+		}
+	}()
+
+	func() {
+		called := false
 		h := NewUpdateNewCallSignalingData(nil, func(ctx *ext.Context) error {
 			called = true
 			return nil
@@ -1398,6 +1450,32 @@ func TestGeneratedHandlers(t *testing.T) {
 		d.ProcessUpdate(&gotdbot.UpdateNewChat{})
 		if !called {
 			t.Errorf("Handler for UpdateNewChat not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateNewChatJoinRequest(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateNewChatJoinRequest{})
+		if !called {
+			t.Errorf("Handler for UpdateNewChatJoinRequest not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateNewChosenInlineResult(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateNewChosenInlineResult{})
+		if !called {
+			t.Errorf("Handler for UpdateNewChosenInlineResult not called")
 		}
 	}()
 
@@ -1463,6 +1541,58 @@ func TestGeneratedHandlers(t *testing.T) {
 		d.ProcessUpdate(&gotdbot.UpdateNewInlineCallbackQuery{})
 		if !called {
 			t.Errorf("Handler for UpdateNewInlineCallbackQuery not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateNewInlineQuery(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateNewInlineQuery{})
+		if !called {
+			t.Errorf("Handler for UpdateNewInlineQuery not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateNewMessage(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateNewMessage{})
+		if !called {
+			t.Errorf("Handler for UpdateNewMessage not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateNewPreCheckoutQuery(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateNewPreCheckoutQuery{})
+		if !called {
+			t.Errorf("Handler for UpdateNewPreCheckoutQuery not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateNewShippingQuery(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateNewShippingQuery{})
+		if !called {
+			t.Errorf("Handler for UpdateNewShippingQuery not called")
 		}
 	}()
 
@@ -1554,6 +1684,32 @@ func TestGeneratedHandlers(t *testing.T) {
 		d.ProcessUpdate(&gotdbot.UpdatePendingTextMessage{})
 		if !called {
 			t.Errorf("Handler for UpdatePendingTextMessage not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdatePoll(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdatePoll{})
+		if !called {
+			t.Errorf("Handler for UpdatePoll not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdatePollAnswer(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdatePollAnswer{})
+		if !called {
+			t.Errorf("Handler for UpdatePollAnswer not called")
 		}
 	}()
 
@@ -2040,6 +2196,19 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := false
+		h := NewUpdateUser(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateUser{})
+		if !called {
+			t.Errorf("Handler for UpdateUser not called")
+		}
+	}()
+
+	func() {
+		called := false
 		h := NewUpdateUserFullInfo(nil, func(ctx *ext.Context) error {
 			called = true
 			return nil
@@ -2061,6 +2230,19 @@ func TestGeneratedHandlers(t *testing.T) {
 		d.ProcessUpdate(&gotdbot.UpdateUserPrivacySettingRules{})
 		if !called {
 			t.Errorf("Handler for UpdateUserPrivacySettingRules not called")
+		}
+	}()
+
+	func() {
+		called := false
+		h := NewUpdateUserStatus(nil, func(ctx *ext.Context) error {
+			called = true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateUserStatus{})
+		if !called {
+			t.Errorf("Handler for UpdateUserStatus not called")
 		}
 	}()
 
