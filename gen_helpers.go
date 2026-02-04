@@ -1540,11 +1540,6 @@ func (m Message) GetEmbeddingCode(client *Client, forAlbum bool) (*Text, error) 
 	return client.GetMessageEmbeddingCode(m.ChatId, m.Id, forAlbum)
 }
 
-// GetLink is a helper method for Client.GetMessageLink
-func (m Message) GetLink(client *Client, mediaTimestamp int32, forAlbum bool, inMessageThread bool) (*MessageLink, error) {
-	return client.GetMessageLink(m.ChatId, m.Id, mediaTimestamp, forAlbum, inMessageThread)
-}
-
 // GetLocally is a helper method for Client.GetMessageLocally
 func (m Message) GetLocally(client *Client) (*Message, error) {
 	return client.GetMessageLocally(m.ChatId, m.Id)

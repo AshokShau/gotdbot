@@ -4,6 +4,49 @@ import (
 	"strings"
 )
 
+// GetLink returns the message link.
+func (m *Message) GetLink(c *Client) (*MessageLink, error) {
+	return c.GetMessageLink(m.ChatId, m.Id, 0, false, false)
+}
+
+// IsPrivate checks if the message is from a private chat.
+func (m *Message) IsPrivate() bool {
+	return m.ChatId > 0 && m.ChatId < 1e9
+}
+
+// GetText returns the message text, for both text messages and media messages
+func (m *Message) GetText() string {
+	if m.Caption() != "" {
+		return m.Caption()
+	}
+
+	return m.GetText()
+}
+
+// GetEntities returns the message entities, for both text messages and media messages.
+func (m *Message) GetEntities() []*TextEntity {
+	if len(m.CaptionEntities()) > 0 {
+		return m.CaptionEntities()
+	}
+
+	return m.Entities()
+}
+
+// IsCommand returns true if the message is a command.
+func (m *Message) IsCommand() bool {
+	entities := m.Entities()
+	if len(entities) == 0 {
+		return false
+	}
+
+	for _, entity := range entities {
+		if _, ok := entity.TypeField.(*TextEntityTypeBotCommand); ok && entity.Offset == 0 {
+			return true
+		}
+	}
+	return false
+}
+
 // FromID returns the user ID or chat ID of the sender.
 func (m *Message) FromID() int64 {
 	if m.SenderId == nil {

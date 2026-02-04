@@ -26,6 +26,7 @@ func generateHelpers(types []TLType, functions []TLType, classes map[string]*TLC
 
 	manualMethods := map[string]bool{
 		"Message.EditText": true,
+		"Message.GetLink":  true,
 	}
 
 	generatedMethods := make(map[string]bool)
