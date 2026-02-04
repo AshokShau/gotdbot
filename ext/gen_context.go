@@ -542,25 +542,61 @@ func extractGeneratedEffectiveFields(u gotdbot.TlObject, c *Context) {
 		c.EffectiveChatId = u.ChatId
 	case *gotdbot.UpdateChatAccentColors:
 		c.EffectiveChatId = u.ChatId
+	case *gotdbot.UpdateChatAction:
+		c.EffectiveChatId = u.ChatId
+		if up, ok := u.SenderId.(*gotdbot.MessageSenderUser); ok {
+			c.EffectiveChatId = up.UserId
+		}
+		if up, ok := u.SenderId.(*gotdbot.MessageSenderChat); ok {
+			c.EffectiveChatId = up.ChatId
+		}
 	case *gotdbot.UpdateChatActionBar:
 		c.EffectiveChatId = u.ChatId
 	case *gotdbot.UpdateChatAddedToList:
+		c.EffectiveChatId = u.ChatId
+	case *gotdbot.UpdateChatAvailableReactions:
+		c.EffectiveChatId = u.ChatId
+	case *gotdbot.UpdateChatBackground:
+		c.EffectiveChatId = u.ChatId
+	case *gotdbot.UpdateChatBlockList:
 		c.EffectiveChatId = u.ChatId
 	case *gotdbot.UpdateChatBoost:
 		c.EffectiveChatId = u.ChatId
 	case *gotdbot.UpdateChatBusinessBotManageBar:
 		c.EffectiveChatId = u.ChatId
+	case *gotdbot.UpdateChatDefaultDisableNotification:
+		c.EffectiveChatId = u.ChatId
+	case *gotdbot.UpdateChatDraftMessage:
+		c.EffectiveChatId = u.ChatId
 	case *gotdbot.UpdateChatEmojiStatus:
 		c.EffectiveChatId = u.ChatId
+	case *gotdbot.UpdateChatHasProtectedContent:
+		c.EffectiveChatId = u.ChatId
 	case *gotdbot.UpdateChatHasScheduledMessages:
+		c.EffectiveChatId = u.ChatId
+	case *gotdbot.UpdateChatIsMarkedAsUnread:
+		c.EffectiveChatId = u.ChatId
+	case *gotdbot.UpdateChatIsTranslatable:
+		c.EffectiveChatId = u.ChatId
+	case *gotdbot.UpdateChatLastMessage:
+		c.EffectiveChatId = u.ChatId
+	case *gotdbot.UpdateChatMember:
 		c.EffectiveChatId = u.ChatId
 	case *gotdbot.UpdateChatMessageAutoDeleteTime:
 		c.EffectiveChatId = u.ChatId
 	case *gotdbot.UpdateChatMessageSender:
 		c.EffectiveChatId = u.ChatId
+	case *gotdbot.UpdateChatNotificationSettings:
+		c.EffectiveChatId = u.ChatId
 	case *gotdbot.UpdateChatOnlineMemberCount:
 		c.EffectiveChatId = u.ChatId
 	case *gotdbot.UpdateChatPendingJoinRequests:
+		c.EffectiveChatId = u.ChatId
+	case *gotdbot.UpdateChatPermissions:
+		c.EffectiveChatId = u.ChatId
+	case *gotdbot.UpdateChatPhoto:
+		c.EffectiveChatId = u.ChatId
+	case *gotdbot.UpdateChatPosition:
 		c.EffectiveChatId = u.ChatId
 	case *gotdbot.UpdateChatReadInbox:
 		c.EffectiveChatId = u.ChatId
@@ -572,19 +608,61 @@ func extractGeneratedEffectiveFields(u gotdbot.TlObject, c *Context) {
 		c.EffectiveChatId = u.ChatId
 	case *gotdbot.UpdateChatRevenueAmount:
 		c.EffectiveChatId = u.ChatId
+	case *gotdbot.UpdateChatTheme:
+		c.EffectiveChatId = u.ChatId
+	case *gotdbot.UpdateChatTitle:
+		c.EffectiveChatId = u.ChatId
+	case *gotdbot.UpdateChatUnreadMentionCount:
+		c.EffectiveChatId = u.ChatId
+	case *gotdbot.UpdateChatUnreadReactionCount:
+		c.EffectiveChatId = u.ChatId
+	case *gotdbot.UpdateChatVideoChat:
+		c.EffectiveChatId = u.ChatId
 	case *gotdbot.UpdateChatViewAsTopics:
 		c.EffectiveChatId = u.ChatId
 	case *gotdbot.UpdateDeleteMessages:
 		c.EffectiveChatId = u.ChatId
 	case *gotdbot.UpdateForumTopic:
 		c.EffectiveChatId = u.ChatId
+	case *gotdbot.UpdateMessageContent:
+		c.EffectiveChatId = u.ChatId
+	case *gotdbot.UpdateMessageContentOpened:
+		c.EffectiveChatId = u.ChatId
+	case *gotdbot.UpdateMessageEdited:
+		c.EffectiveChatId = u.ChatId
+	case *gotdbot.UpdateMessageFactCheck:
+		c.EffectiveChatId = u.ChatId
+	case *gotdbot.UpdateMessageInteractionInfo:
+		c.EffectiveChatId = u.ChatId
+	case *gotdbot.UpdateMessageIsPinned:
+		c.EffectiveChatId = u.ChatId
+	case *gotdbot.UpdateMessageLiveLocationViewed:
+		c.EffectiveChatId = u.ChatId
 	case *gotdbot.UpdateMessageMentionRead:
+		c.EffectiveChatId = u.ChatId
+	case *gotdbot.UpdateMessageReaction:
+		c.EffectiveChatId = u.ChatId
+	case *gotdbot.UpdateMessageReactions:
 		c.EffectiveChatId = u.ChatId
 	case *gotdbot.UpdateMessageSendAcknowledged:
 		c.EffectiveChatId = u.ChatId
+	case *gotdbot.UpdateMessageSendFailed:
+		if u.Message != nil {
+			c.EffectiveMessage = u.Message
+			c.EffectiveChatId = u.Message.ChatId
+		}
+	case *gotdbot.UpdateMessageSendSucceeded:
+		if u.Message != nil {
+			c.EffectiveMessage = u.Message
+			c.EffectiveChatId = u.Message.ChatId
+		}
 	case *gotdbot.UpdateMessageSuggestedPostInfo:
 		c.EffectiveChatId = u.ChatId
 	case *gotdbot.UpdateMessageUnreadReactions:
+		c.EffectiveChatId = u.ChatId
+	case *gotdbot.UpdateNewCallbackQuery:
+		c.EffectiveChatId = u.ChatId
+	case *gotdbot.UpdateNewChatJoinRequest:
 		c.EffectiveChatId = u.ChatId
 	case *gotdbot.UpdateNewGroupCallPaidReaction:
 		if up, ok := u.SenderId.(*gotdbot.MessageSenderUser); ok {
@@ -592,6 +670,11 @@ func extractGeneratedEffectiveFields(u gotdbot.TlObject, c *Context) {
 		}
 		if up, ok := u.SenderId.(*gotdbot.MessageSenderChat); ok {
 			c.EffectiveChatId = up.ChatId
+		}
+	case *gotdbot.UpdateNewMessage:
+		if u.Message != nil {
+			c.EffectiveMessage = u.Message
+			c.EffectiveChatId = u.Message.ChatId
 		}
 	case *gotdbot.UpdateNotificationGroup:
 		c.EffectiveChatId = u.ChatId

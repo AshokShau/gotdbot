@@ -11,6 +11,41 @@ func (t *UpdateNewCallbackQuery) CallbackData() []byte {
 	return nil
 }
 
+// DataString returns the callback data payload as a string.
+func (t *UpdateNewCallbackQuery) DataString() string {
+	if t.CallbackData() != nil {
+		return string(t.CallbackData())
+	}
+	return ""
+}
+
+// CallbackDataWithPassword returns the callback data payload as bytes, along with the password if it exists.
+func (t *UpdateNewCallbackQuery) CallbackDataWithPassword() ([]byte, string) {
+	if t.Payload == nil {
+		return nil, ""
+	}
+	if p, ok := t.Payload.(*CallbackQueryPayloadDataWithPassword); ok {
+		return p.Data, p.Password
+	}
+	return nil, ""
+}
+
+// GameShortName returns the short name of the game associated with the callback query.
+func (t *UpdateNewCallbackQuery) GameShortName() string {
+	if t.Payload == nil {
+		return ""
+	}
+	if p, ok := t.Payload.(*CallbackQueryPayloadGame); ok {
+		return p.GameShortName
+	}
+	return ""
+}
+
+// IsPrivate checks if the callback query originated from a private chat.
+func (t *UpdateNewCallbackQuery) IsPrivate() bool {
+	return t.ChatId > 0 && t.ChatId < 1e9
+}
+
 // GetMessage returns the message that originated the query.
 func (t *UpdateNewCallbackQuery) GetMessage(c *Client) (*Message, error) {
 	if t.MessageId == 0 {

@@ -117,3 +117,8 @@ Contributions are welcome! Please open issues for bugs or feature requests.
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
+
+## Inspired by
+
+- [gotgbot](https://github.com/PaulSonOfLars/gotgbot)
+- [pytdbot](https://github.com/pytdbot/client)

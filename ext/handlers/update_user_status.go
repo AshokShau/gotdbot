@@ -1,0 +1,33 @@
+package handlers
+
+import (
+	"github.com/AshokShau/gotdbot/ext"
+	"github.com/AshokShau/gotdbot/ext/handlers/filters"
+)
+
+type UpdateUserStatus struct {
+	Filter   filters.UpdateUserStatus
+	Response func(ctx *ext.Context) error
+}
+
+func NewUpdateUserStatus(filter filters.UpdateUserStatus, response func(ctx *ext.Context) error) *UpdateUserStatus {
+	return &UpdateUserStatus{
+		Filter:   filter,
+		Response: response,
+	}
+}
+
+func (h *UpdateUserStatus) CheckUpdate(ctx *ext.Context) bool {
+	u := ctx.Update.UpdateUserStatus
+	if u == nil {
+		return false
+	}
+	if h.Filter == nil {
+		return true
+	}
+	return h.Filter(u)
+}
+
+func (h *UpdateUserStatus) HandleUpdate(ctx *ext.Context) error {
+	return h.Response(ctx)
+}

@@ -203,7 +203,7 @@ func main() {
 	}))
 
 	// CallbackQuery Handler
-	dispatcher.AddHandler(handlers.NewCallbackQuery(nil, func(ctx *ext.Context) error {
+	dispatcher.AddHandler(handlers.NewUpdateNewCallbackQuery(nil, func(ctx *ext.Context) error {
 		update := ctx.Update.UpdateNewCallbackQuery
 		ctx.Client.Logger.Info("Received callback query", "message_id", update.MessageId, "chat_id", update.ChatId)
 		var data string

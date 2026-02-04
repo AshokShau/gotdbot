@@ -11,72 +11,9 @@ import (
 
 func generateExtHandlers(types []TLType) []string {
 	var generatedFiles []string
-	skippedHandlers := map[string]bool{
-		"updateNewMessage":            true,
-		"updateNewCallbackQuery":      true,
-		"updateNewInlineQuery":        true,
-		"updateNewChosenInlineResult": true,
-		"updateNewShippingQuery":      true,
-		"updateNewPreCheckoutQuery":   true,
-		"updatePoll":                  true,
-		"updatePollAnswer":            true,
-		"updateChatMember":            true,
-		"updateNewChatJoinRequest":    true,
-		"updateUser":                  true,
-		"updateUserStatus":            true,
-		"updateAuthorizationState":    true,
-		"updateMessageEdited":         true,
-	}
-
-	skippedContext := map[string]bool{
-		"updateNewMessage":                     true,
-		"updateMessageContent":                 true,
-		"updateMessageEdited":                  true,
-		"updateMessageSendSucceeded":           true,
-		"updateMessageSendFailed":              true,
-		"updateMessageContentOpened":           true,
-		"updateMessageIsPinned":                true,
-		"updateMessageInteractionInfo":         true,
-		"updateMessageLiveLocationViewed":      true,
-		"updateMessageReaction":                true,
-		"updateMessageReactions":               true,
-		"updateMessageFactCheck":               true,
-		"updateNewCallbackQuery":               true,
-		"updateNewInlineCallbackQuery":         true,
-		"updateNewBusinessCallbackQuery":       true,
-		"updateNewInlineQuery":                 true,
-		"updateNewPreCheckoutQuery":            true,
-		"updateNewShippingQuery":               true,
-		"updateNewCustomQuery":                 true,
-		"updateNewChat":                        true,
-		"updateChatTitle":                      true,
-		"updateChatPhoto":                      true,
-		"updateChatPermissions":                true,
-		"updateChatLastMessage":                true,
-		"updateChatPosition":                   true,
-		"updateChatIsMarkedAsUnread":           true,
-		"updateChatBlockList":                  true,
-		"updateChatDraftMessage":               true,
-		"updateChatNotificationSettings":       true,
-		"updateChatAvailableReactions":         true,
-		"updateChatBackground":                 true,
-		"updateChatTheme":                      true,
-		"updateChatUnreadMentionCount":         true,
-		"updateChatUnreadReactionCount":        true,
-		"updateChatVideoChat":                  true,
-		"updateChatDefaultDisableNotification": true,
-		"updateChatHasProtectedContent":        true,
-		"updateChatIsTranslatable":             true,
-		"updateChatMember":                     true,
-		"updateChatAction":                     true,
-		"updateNewChatJoinRequest":             true,
-	}
 
 	for _, t := range types {
 		if t.ResultType != "Update" {
-			continue
-		}
-		if skippedHandlers[t.Name] {
 			continue
 		}
 
@@ -142,9 +79,6 @@ func generateExtHandlers(types []TLType) []string {
 		if t.ResultType != "Update" {
 			continue
 		}
-		if skippedHandlers[t.Name] {
-			continue
-		}
 		structName := toCamelCase(t.Name)
 		fmt.Fprintf(fFilters, "\t%s func(u *gotdbot.%s) bool\n", structName, structName)
 	}
@@ -195,9 +129,6 @@ func generateExtHandlers(types []TLType) []string {
 	fmt.Fprintln(fContext, "\tswitch u := u.(type) {")
 	for _, t := range types {
 		if t.ResultType != "Update" {
-			continue
-		}
-		if skippedContext[t.Name] {
 			continue
 		}
 
@@ -267,9 +198,6 @@ func generateExtHandlers(types []TLType) []string {
 
 	for _, t := range types {
 		if t.ResultType != "Update" {
-			continue
-		}
-		if skippedHandlers[t.Name] {
 			continue
 		}
 		structName := toCamelCase(t.Name)
