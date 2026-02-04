@@ -27,9 +27,10 @@ func main() {
 	dispatcher.AddHandler(handlers.NewCommand("survey", func(ctx *ext.Context) error {
 		chatId := ctx.EffectiveChatId
 		msg := ctx.EffectiveMessage
+		c := ctx.Client
 
 		// Ask Name
-		_, err := ctx.Client.SendTextMessage(chatId, "What is your name?", nil)
+		_, err := msg.ReplyText(c, "What is your name?", nil)
 		if err != nil {
 			return err
 		}
@@ -37,27 +38,43 @@ func main() {
 		// Wait for response (Name)
 		nameMsg, err := ctx.WaitForMessage(chatId, filters.Text.And(filters.SenderID(msg.FromID())), 30*time.Second)
 		if err != nil {
-			ctx.Client.SendTextMessage(chatId, "Timed out waiting for name.", nil)
+			_, _ = msg.ReplyText(c, "Timed out waiting for name.", nil)
 			return nil
 		}
 
 		name := nameMsg.Text()
 		// Ask Age
-		_, err = ctx.Client.SendTextMessage(chatId, fmt.Sprintf("Nice to meet you, %s! How old are you?", name), nil)
+		_, err = msg.ReplyText(c, fmt.Sprintf("Nice to meet you, %s! How old are you?", name), nil)
 		if err != nil {
 			return err
 		}
 
 		// Wait for response (Age)
-		ageMsg, err := ctx.WaitForMessage(chatId, filters.Text, 30*time.Second)
+		ageMsg, err := ctx.WaitForMessage(chatId, filters.Text.And(filters.SenderID(msg.FromID())), 30*time.Second)
 		if err != nil {
-			ctx.Client.SendTextMessage(chatId, "Timed out waiting for age.", nil)
+			_, _ = msg.ReplyText(c, "Timed out waiting for age.", nil)
 			return nil
 		}
 
 		age := ageMsg.Text()
+
+		// Ask Fevorite Color
+		_, err = msg.ReplyText(c, fmt.Sprintf("Great! Finally, what is your favorite color, %s?", name), &gotdbot.SendTextMessageOpts{ReplyMarkup: &gotdbot.ReplyMarkupForceReply{InputFieldPlaceholder: "Type your favorite color"}})
+		if err != nil {
+			return err
+		}
+
+		// Wait for response (Color)
+		colorMsg, err := ctx.WaitForMessage(chatId, filters.Text.And(filters.SenderID(msg.FromID())), 30*time.Second)
+		if err != nil {
+			_, _ = msg.ReplyText(c, "Timed out waiting for favorite color.", nil)
+			return nil
+		}
+
 		// Finish
-		_, err = ctx.Client.SendTextMessage(chatId, fmt.Sprintf("Got it! Name: %s, Age: %s", name, age), nil)
+		color := colorMsg.Text()
+		summary := fmt.Sprintf("Thank you for completing the survey, %s!\nAge: %s\nFavorite Color: %s", name, age, color)
+		_, err = msg.ReplyText(c, summary, nil)
 		return err
 	}))
 
