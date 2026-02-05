@@ -141,7 +141,12 @@ func main() {
 			return nil
 		}
 
-		user := val.(*User)
+		user, ok := val.(*User)
+		if !ok {
+			m.ReplyText(c, "❌ Invalid user data format.", &gotdbot.SendTextMessageOpts{ParseMode: "HTML"})
+			return nil
+		}
+		
 		msg := fmt.Sprintf("👤 <b>User Profile</b>\n"+
 			"ID: <code>%d</code>\n"+
 			"Premium: %v", user.ID, user.IsPremium)
@@ -200,9 +205,9 @@ func getAdmins(bot *gotdbot.Client, chatId int64) []int64 {
 	adminCache.RLock()
 	admins, found := adminCache.Admins[chatId]
 	adminCache.RUnlock()
-
 	if found {
-		return admins
+		out := append([]int64(nil), admins...)
+		return out
 	}
 
 	// Cache miss
@@ -215,7 +220,8 @@ func getAdmins(bot *gotdbot.Client, chatId int64) []int64 {
 	adminCache.Admins[chatId] = fetchedAdmins
 	adminCache.Unlock()
 
-	return fetchedAdmins
+	out := append([]int64(nil), fetchedAdmins...)
+	return out
 }
 
 func checkAdmin(ctx *ext.Context, userId int64) bool {
