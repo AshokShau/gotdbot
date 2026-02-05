@@ -1,6 +1,6 @@
 module userbot
 
-go 1.24.3
+go 1.24.0
 
 require (
 	github.com/AshokShau/gotdbot v1.99.99

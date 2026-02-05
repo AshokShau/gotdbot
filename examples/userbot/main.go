@@ -116,6 +116,10 @@ func main() {
 				break
 			}
 
+		case "authorizationStateWaitPremiumPurchase":
+			fmt.Println("Your account requires Telegram Premium to log in. Please purchase Telegram Premium and try again.")
+			os.Exit(1)
+
 		case "authorizationStateReady":
 			fmt.Println("Authorization successful!")
 		}

@@ -1,6 +1,6 @@
 module download
 
-go 1.25
+go 1.22
 
 require github.com/AshokShau/gotdbot v1.99.99
 

@@ -1,6 +1,6 @@
 module chatmember
 
-go 1.24.3
+go 1.22
 
 require github.com/AshokShau/gotdbot v1.99.99
 
