@@ -38,6 +38,8 @@ type ClientConfig struct {
 	ApplicationVersion      string
 	TDLibOptions            map[string]interface{}
 	Logger                  *slog.Logger
+	IsUser                  bool
+	AuthorizationTimeout    time.Duration
 }
 
 func DefaultClientConfig() *ClientConfig {
@@ -55,6 +57,8 @@ func DefaultClientConfig() *ClientConfig {
 		SystemVersion:           runtime.GOOS,
 		ApplicationVersion:      "Gotdbot " + Version,
 		Logger:                  slog.New(slog.NewTextHandler(os.Stdout, nil)),
+		IsUser:                  false,
+		AuthorizationTimeout:    60 * time.Second,
 	}
 }
 
@@ -127,6 +131,9 @@ func NewClient(apiID int32, apiHash, botToken string, config *ClientConfig) *Cli
 		if config.Logger == nil {
 			config.Logger = def.Logger
 		}
+		if config.AuthorizationTimeout == 0 {
+			config.AuthorizationTimeout = def.AuthorizationTimeout
+		}
 	}
 
 	if err := tdjson.Init(config.LibraryPath); err != nil {
@@ -169,7 +176,7 @@ func (c *Client) Start() error {
 	select {
 	case err := <-c.authErrorChan:
 		return err
-	case <-time.After(60 * time.Second):
+	case <-time.After(c.config.AuthorizationTimeout):
 		return fmt.Errorf("authorization timeout")
 	}
 }
@@ -355,6 +362,9 @@ func (c *Client) authHandler(client *Client, update TlObject) error {
 		}
 
 	case "authorizationStateWaitPhoneNumber":
+		if c.config.IsUser {
+			return nil
+		}
 		_, err := c.CheckAuthenticationBotToken(c.botToken)
 		if err != nil {
 			c.Logger.Error("Error checking bot token", "error", err)
@@ -369,10 +379,10 @@ func (c *Client) authHandler(client *Client, update TlObject) error {
 			c.authErrorChan <- err
 			return nil
 		}
+
 		c.meMu.Lock()
 		c.me = me
 		c.meMu.Unlock()
-
 		username := ""
 		if me.Usernames != nil && len(me.Usernames.ActiveUsernames) > 0 {
 			username = me.Usernames.ActiveUsernames[0]
@@ -432,11 +442,13 @@ func (c *Client) messageSendSucceededHandler(client *Client, update TlObject) er
 	if !ok {
 		return nil
 	}
+
 	key := fmt.Sprintf("%d:%d", u.Message.ChatId, u.OldMessageId)
 	if ch, ok := c.pendingMessages.Load(key); ok {
 		ch.(chan TlObject) <- u.Message
 		c.pendingMessages.Delete(key)
 	}
+	
 	return nil
 }
 
