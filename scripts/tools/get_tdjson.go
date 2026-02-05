@@ -2,68 +2,167 @@ package main
 
 import (
 	"archive/tar"
+	"archive/zip"
 	"compress/gzip"
 	"fmt"
 	"io"
 	"net/http"
 	"os"
 	"path/filepath"
+	"runtime"
 	"strings"
 )
 
-const downloadURL = "https://github.com/AshokShau/gotdbot/releases/latest/download/TDLib-tdjson-linux-x86_64.tar.gz"
+const (
+	repoOwner = "AshokShau"
+	repoName  = "gotdbot"
+	version   = "v0.2.0"
+)
 
 func main() {
-	fmt.Println("Downloading tdjson release...")
+	goos := runtime.GOOS
+	goarch := runtime.GOARCH
+
+	var filename string
+	var matchFunc func(string) bool
+
+	switch goos {
+	case "linux":
+		arch := goarch
+		if arch == "amd64" {
+			arch = "x86_64"
+		} else if arch == "arm64" {
+			arch = "aarch64"
+		}
+		filename = fmt.Sprintf("TDLib-tdjson-linux-%s.tar.gz", arch)
+		matchFunc = func(name string) bool {
+			return strings.HasPrefix(name, "libtdjson.so")
+		}
+	case "darwin":
+		arch := goarch
+		if arch == "amd64" {
+			arch = "x86_64"
+		}
+		filename = fmt.Sprintf("TDLib-tdjson-macos-%s.tar.gz", arch)
+		matchFunc = func(name string) bool {
+			return strings.HasPrefix(name, "libtdjson") && strings.HasSuffix(name, ".dylib")
+		}
+	case "windows":
+		arch := goarch
+		if arch == "amd64" {
+			arch = "x64"
+		} else if arch == "386" {
+			arch = "x86"
+		}
+		filename = fmt.Sprintf("TDLib-tdjson-windows-%s.zip", arch)
+		matchFunc = func(name string) bool {
+			return strings.HasSuffix(name, ".dll")
+		}
+	default:
+		panic("unsupported OS: " + goos + "please build TDLib manually following https://tdlib.github.io/td/build.html?language=Go")
+	}
+
+	downloadURL := fmt.Sprintf("https://github.com/%s/%s/releases/download/%s/%s", repoOwner, repoName, version, filename)
+
+	fmt.Printf("Downloading %s from %s...\n", filename, downloadURL)
 	resp, err := http.Get(downloadURL)
 	if err != nil {
 		panic(err)
 	}
-	defer resp.Body.Close()
 
+	defer resp.Body.Close()
 	if resp.StatusCode != http.StatusOK {
 		panic("failed to download: " + resp.Status)
 	}
 
-	gz, err := gzip.NewReader(resp.Body)
+	tmpFile, err := os.CreateTemp("", "tdjson-archive-*")
 	if err != nil {
 		panic(err)
 	}
-	defer gz.Close()
+	defer os.Remove(tmpFile.Name())
+	defer tmpFile.Close()
 
-	tr := tar.NewReader(gz)
+	_, err = io.Copy(tmpFile, resp.Body)
+	if err != nil {
+		panic(err)
+	}
+
+	_, err = tmpFile.Seek(0, 0)
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println("Extracting...")
 	found := false
 
-	for {
-		hdr, err := tr.Next()
-		if err == io.EOF {
-			break
+	if strings.HasSuffix(filename, ".tar.gz") {
+		gz, err := gzip.NewReader(tmpFile)
+		if err != nil {
+			panic(err)
 		}
+		defer gz.Close()
+
+		tr := tar.NewReader(gz)
+		for {
+			hdr, err := tr.Next()
+			if err == io.EOF {
+				break
+			}
+			if err != nil {
+				panic(err)
+			}
+
+			name := filepath.Base(hdr.Name)
+			if matchFunc(name) {
+				outFile, err := os.Create(name)
+				if err != nil {
+					panic(err)
+				}
+
+				_, err = io.Copy(outFile, tr)
+				outFile.Close()
+				if err != nil {
+					panic(err)
+				}
+				fmt.Println("Extracted:", name)
+				found = true
+			}
+		}
+	} else if strings.HasSuffix(filename, ".zip") {
+		stat, err := tmpFile.Stat()
+		if err != nil {
+			panic(err)
+		}
+		zr, err := zip.NewReader(tmpFile, stat.Size())
 		if err != nil {
 			panic(err)
 		}
 
-		name := filepath.Base(hdr.Name)
-		if strings.HasPrefix(name, "libtdjson.so") {
-			out, err := os.Create(name)
-			if err != nil {
-				panic(err)
-			}
+		for _, f := range zr.File {
+			name := filepath.Base(f.Name)
+			if matchFunc(name) {
+				rc, err := f.Open()
+				if err != nil {
+					panic(err)
+				}
 
-			_, err = io.Copy(out, tr)
-			out.Close()
-			if err != nil {
-				panic(err)
-			}
+				outFile, err := os.Create(name)
+				if err != nil {
+					rc.Close()
+					panic(err)
+				}
 
-			fmt.Println("Extracted:", name)
-			found = true
-			break
+				_, err = io.Copy(outFile, rc)
+				outFile.Close()
+				rc.Close()
+				fmt.Println("Extracted:", name)
+				found = true
+			}
 		}
 	}
 
 	if !found {
-		panic("libtdjson.so not found in archive")
+		panic("no matching library files found in archive")
 	}
 	fmt.Println("Done.")
 }
