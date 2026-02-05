@@ -1,4 +1,4 @@
-module chatmember
+module github.com/AshokShau/gotdbot/examples/chatmember
 
 go 1.22
 

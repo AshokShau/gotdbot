@@ -1,4 +1,4 @@
-module context_data
+module github.com/AshokShau/gotdbot/examples/context_data
 
 go 1.22
 

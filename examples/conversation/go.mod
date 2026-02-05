@@ -1,4 +1,4 @@
-module conversation
+module github.com/AshokShau/gotdbot/examples/conversation
 
 go 1.22
 

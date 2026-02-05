@@ -1,4 +1,4 @@
-module echobot
+module github.com/AshokShau/gotdbot/examples/echobot
 
 go 1.22
 

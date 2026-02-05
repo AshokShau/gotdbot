@@ -1,4 +1,4 @@
-module keyboardbot
+module github.com/AshokShau/gotdbot/examples/keyboardbot
 
 go 1.22
 

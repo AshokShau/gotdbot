@@ -1,4 +1,4 @@
-module userbot
+module github.com/AshokShau/gotdbot/examples/userbot
 
 go 1.24.0
 

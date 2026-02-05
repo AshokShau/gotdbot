@@ -1,4 +1,4 @@
-module download
+module github.com/AshokShau/gotdbot/examples/download
 
 go 1.22
 
