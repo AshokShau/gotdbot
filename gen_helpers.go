@@ -19,7 +19,7 @@ func (c *Chat) AddToList(client *Client, chatList ChatList) (*Ok, error) {
 }
 
 // AddChecklistTasks is a helper method for Client.AddChecklistTasks
-func (c *Chat) AddChecklistTasks(client *Client, messageId int64, tasks []*InputChecklistTask) (*Ok, error) {
+func (c *Chat) AddChecklistTasks(client *Client, messageId int64, tasks []InputChecklistTask) (*Ok, error) {
 	return client.AddChecklistTasks(c.Id, messageId, tasks)
 }
 
@@ -1354,7 +1354,7 @@ func (f *File) ToggleDownloadIsPaused(client *Client, isPaused bool) (*Ok, error
 }
 
 // AddChecklistTasks is a helper method for Client.AddChecklistTasks
-func (m *Message) AddChecklistTasks(client *Client, tasks []*InputChecklistTask) (*Ok, error) {
+func (m *Message) AddChecklistTasks(client *Client, tasks []InputChecklistTask) (*Ok, error) {
 	return client.AddChecklistTasks(m.ChatId, m.Id, tasks)
 }
 
@@ -1769,7 +1769,7 @@ func (u *User) CreateNewSecretChat(client *Client) (*Chat, error) {
 }
 
 // CreateNewStickerSet is a helper method for Client.CreateNewStickerSet
-func (u *User) CreateNewStickerSet(client *Client, title string, name string, stickerType StickerType, needsRepainting bool, stickers []*InputSticker, source string) (*StickerSet, error) {
+func (u *User) CreateNewStickerSet(client *Client, title string, name string, stickerType StickerType, needsRepainting bool, stickers []InputSticker, source string) (*StickerSet, error) {
 	return client.CreateNewStickerSet(u.Id, title, name, stickerType, needsRepainting, stickers, source)
 }
 
@@ -1894,7 +1894,7 @@ func (u *User) SetMenuButton(client *Client, menuButton *BotMenuButton) (*Ok, er
 }
 
 // SetPassportElementErrors is a helper method for Client.SetPassportElementErrors
-func (u *User) SetPassportElementErrors(client *Client, errors []*InputPassportElementError) (*Ok, error) {
+func (u *User) SetPassportElementErrors(client *Client, errors []InputPassportElementError) (*Ok, error) {
 	return client.SetPassportElementErrors(u.Id, errors)
 }
 

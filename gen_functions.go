@@ -194,7 +194,7 @@ type AddChecklistTasks struct {
 	// Identifier of the message containing the checklist. Use messageProperties.can_add_tasks to check whether the tasks can be added
 	MessageId int64 `json:"message_id"`
 	// List of added tasks
-	Tasks []*InputChecklistTask `json:"tasks"`
+	Tasks []InputChecklistTask `json:"tasks"`
 }
 
 func (t *AddChecklistTasks) Type() string {
@@ -949,7 +949,7 @@ type AnswerShippingQuery struct {
 	//
 	ShippingQueryId string `json:"shipping_query_id"`
 	//
-	ShippingOptions []*ShippingOption `json:"shipping_options"`
+	ShippingOptions []ShippingOption `json:"shipping_options"`
 	//
 	ErrorMessage string `json:"error_message"`
 }
@@ -1397,7 +1397,7 @@ func (t *CanTransferOwnership) MarshalJSON() ([]byte, error) {
 // ChangeImportedContacts Changes imported contacts using the list of contacts saved on the device. Imports newly added contacts and, if at least the file database is enabled, deletes recently deleted contacts.
 type ChangeImportedContacts struct {
 	// The new list of contacts to import
-	Contacts []*ImportedContact `json:"contacts"`
+	Contacts []ImportedContact `json:"contacts"`
 }
 
 func (t *ChangeImportedContacts) Type() string {
@@ -2704,7 +2704,7 @@ type CreateNewStickerSet struct {
 	// Pass true if stickers in the sticker set must be repainted; for custom emoji sticker sets only
 	NeedsRepainting bool `json:"needs_repainting"`
 	// List of stickers to be added to the set; 1-200 stickers for custom emoji sticker sets, and 1-120 stickers otherwise. For TGS stickers, uploadStickerFile must be used before the sticker is shown
-	Stickers []*InputSticker `json:"stickers"`
+	Stickers []InputSticker `json:"stickers"`
 	// Source of the sticker set; may be empty if unknown
 	Source string `json:"source"`
 }
@@ -12168,7 +12168,7 @@ func (t *HideSuggestedAction) MarshalJSON() ([]byte, error) {
 // ImportContacts Adds new contacts or edits existing contacts by their phone numbers; contacts' user identifiers are ignored
 type ImportContacts struct {
 	// The list of contacts to import or edit
-	Contacts []*ImportedContact `json:"contacts"`
+	Contacts []ImportedContact `json:"contacts"`
 }
 
 func (t *ImportContacts) Type() string {
@@ -18036,7 +18036,7 @@ type SetCommands struct {
 	// A two-letter ISO 639-1 language code. If empty, the commands will be applied to all users from the given scope, for which language there are no dedicated commands
 	LanguageCode string `json:"language_code"`
 	// List of the bot's commands
-	Commands []*BotCommand `json:"commands"`
+	Commands []BotCommand `json:"commands"`
 }
 
 func (t *SetCommands) Type() string {
@@ -18082,7 +18082,7 @@ type SetCustomLanguagePack struct {
 	// Information about the language pack. Language pack identifier must start with 'X', consist only of English letters, digits and hyphens, and must not exceed 64 characters. Can be called before authorization
 	Info *LanguagePackInfo `json:"info"`
 	// Strings of the new language pack
-	Strings []*LanguagePackString `json:"strings"`
+	Strings []LanguagePackString `json:"strings"`
 }
 
 func (t *SetCustomLanguagePack) Type() string {
@@ -18966,7 +18966,7 @@ type SetPassportElementErrors struct {
 	//
 	UserId int64 `json:"user_id"`
 	//
-	Errors []*InputPassportElementError `json:"errors"`
+	Errors []InputPassportElementError `json:"errors"`
 }
 
 func (t *SetPassportElementErrors) Type() string {
@@ -20386,7 +20386,7 @@ func (t *TestCallVectorInt) MarshalJSON() ([]byte, error) {
 // TestCallVectorIntObject Returns the received vector of objects containing a number; for testing only. This is an offline method. Can be called before authorization @x Vector of objects to return
 type TestCallVectorIntObject struct {
 	//
-	X []*TestInt `json:"x"`
+	X []TestInt `json:"x"`
 }
 
 func (t *TestCallVectorIntObject) Type() string {
@@ -20428,7 +20428,7 @@ func (t *TestCallVectorString) MarshalJSON() ([]byte, error) {
 // TestCallVectorStringObject Returns the received vector of objects containing a string; for testing only. This is an offline method. Can be called before authorization @x Vector of objects to return
 type TestCallVectorStringObject struct {
 	//
-	X []*TestString `json:"x"`
+	X []TestString `json:"x"`
 }
 
 func (t *TestCallVectorStringObject) Type() string {

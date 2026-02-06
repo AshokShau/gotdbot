@@ -106,7 +106,7 @@ func (c *Client) AddChatToList(chatId int64, chatList ChatList) (*Ok, error) {
 }
 
 // AddChecklistTasks Adds tasks to a checklist in a message
-func (c *Client) AddChecklistTasks(chatId int64, messageId int64, tasks []*InputChecklistTask) (*Ok, error) {
+func (c *Client) AddChecklistTasks(chatId int64, messageId int64, tasks []InputChecklistTask) (*Ok, error) {
 	req := &AddChecklistTasks{
 		ChatId:    chatId,
 		MessageId: messageId,
@@ -537,7 +537,7 @@ func (c *Client) AnswerPreCheckoutQuery(preCheckoutQueryId string, errorMessage 
 }
 
 // AnswerShippingQuery Sets the result of a shipping query; for bots only @shipping_query_id Identifier of the shipping query @shipping_options Available shipping options @error_message An error message, empty on success
-func (c *Client) AnswerShippingQuery(shippingQueryId string, shippingOptions []*ShippingOption, errorMessage string) (*Ok, error) {
+func (c *Client) AnswerShippingQuery(shippingQueryId string, shippingOptions []ShippingOption, errorMessage string) (*Ok, error) {
 	req := &AnswerShippingQuery{
 		ShippingQueryId: shippingQueryId,
 		ShippingOptions: shippingOptions,
@@ -789,7 +789,7 @@ func (c *Client) CanTransferOwnership() (CanTransferOwnershipResult, error) {
 }
 
 // ChangeImportedContacts Changes imported contacts using the list of contacts saved on the device. Imports newly added contacts and, if at least the file database is enabled, deletes recently deleted contacts.
-func (c *Client) ChangeImportedContacts(contacts []*ImportedContact) (*ImportedContacts, error) {
+func (c *Client) ChangeImportedContacts(contacts []ImportedContact) (*ImportedContacts, error) {
 	req := &ChangeImportedContacts{
 		Contacts: contacts,
 	}
@@ -1519,7 +1519,7 @@ func (c *Client) CreateNewSecretChat(userId int64) (*Chat, error) {
 }
 
 // CreateNewStickerSet Creates a new sticker set. Returns the newly created sticker set
-func (c *Client) CreateNewStickerSet(userId int64, title string, name string, stickerType StickerType, needsRepainting bool, stickers []*InputSticker, source string) (*StickerSet, error) {
+func (c *Client) CreateNewStickerSet(userId int64, title string, name string, stickerType StickerType, needsRepainting bool, stickers []InputSticker, source string) (*StickerSet, error) {
 	req := &CreateNewStickerSet{
 		UserId:          userId,
 		Title:           title,
@@ -6889,7 +6889,7 @@ func (c *Client) HideSuggestedAction(action SuggestedAction) (*Ok, error) {
 }
 
 // ImportContacts Adds new contacts or edits existing contacts by their phone numbers; contacts' user identifiers are ignored
-func (c *Client) ImportContacts(contacts []*ImportedContact) (*ImportedContacts, error) {
+func (c *Client) ImportContacts(contacts []ImportedContact) (*ImportedContacts, error) {
 	req := &ImportContacts{
 		Contacts: contacts,
 	}
@@ -10235,7 +10235,7 @@ func (c *Client) SetCloseFriends(userIds []int64) (*Ok, error) {
 }
 
 // SetCommands Sets the list of commands supported by the bot for the given user scope and language; for bots only
-func (c *Client) SetCommands(languageCode string, commands []*BotCommand, opts *SetCommandsOpts) (*Ok, error) {
+func (c *Client) SetCommands(languageCode string, commands []BotCommand, opts *SetCommandsOpts) (*Ok, error) {
 	req := &SetCommands{
 		LanguageCode: languageCode,
 		Commands:     commands,
@@ -10264,7 +10264,7 @@ func (c *Client) SetCustomEmojiStickerSetThumbnail(name string, customEmojiId st
 }
 
 // SetCustomLanguagePack Adds or changes a custom local language pack to the current localization target
-func (c *Client) SetCustomLanguagePack(info *LanguagePackInfo, strings []*LanguagePackString) (*Ok, error) {
+func (c *Client) SetCustomLanguagePack(info *LanguagePackInfo, strings []LanguagePackString) (*Ok, error) {
 	req := &SetCustomLanguagePack{
 		Info:    info,
 		Strings: strings,
@@ -10774,7 +10774,7 @@ func (c *Client) SetPassportElement(element InputPassportElement, password strin
 }
 
 // SetPassportElementErrors Informs the user that some of the elements in their Telegram Passport contain errors; for bots only. The user will not be able to resend the elements, until the errors are fixed @user_id User identifier @errors The errors
-func (c *Client) SetPassportElementErrors(userId int64, errors []*InputPassportElementError) (*Ok, error) {
+func (c *Client) SetPassportElementErrors(userId int64, errors []InputPassportElementError) (*Ok, error) {
 	req := &SetPassportElementErrors{
 		UserId: userId,
 		Errors: errors,
@@ -11583,7 +11583,7 @@ func (c *Client) TestCallVectorInt(x []int32) (*TestVectorInt, error) {
 }
 
 // TestCallVectorIntObject Returns the received vector of objects containing a number; for testing only. This is an offline method. Can be called before authorization @x Vector of objects to return
-func (c *Client) TestCallVectorIntObject(x []*TestInt) (*TestVectorIntObject, error) {
+func (c *Client) TestCallVectorIntObject(x []TestInt) (*TestVectorIntObject, error) {
 	req := &TestCallVectorIntObject{
 		X: x,
 	}
@@ -11607,7 +11607,7 @@ func (c *Client) TestCallVectorString(x []string) (*TestVectorString, error) {
 }
 
 // TestCallVectorStringObject Returns the received vector of objects containing a string; for testing only. This is an offline method. Can be called before authorization @x Vector of objects to return
-func (c *Client) TestCallVectorStringObject(x []*TestString) (*TestVectorStringObject, error) {
+func (c *Client) TestCallVectorStringObject(x []TestString) (*TestVectorStringObject, error) {
 	req := &TestCallVectorStringObject{
 		X: x,
 	}
