@@ -239,7 +239,7 @@ func (c *Chat) EditSubscriptionInviteLink(client *Client, inviteLink string, nam
 }
 
 // EditForumTopic is a helper method for Client.EditForumTopic
-func (c *Chat) EditForumTopic(client *Client, forumTopicId int32, name string, editIconCustomEmoji bool, iconCustomEmojiId string) (*Ok, error) {
+func (c *Chat) EditForumTopic(client *Client, forumTopicId int32, name string, editIconCustomEmoji bool, iconCustomEmojiId int64) (*Ok, error) {
 	return client.EditForumTopic(c.Id, forumTopicId, name, editIconCustomEmoji, iconCustomEmojiId)
 }
 
@@ -294,7 +294,7 @@ func (c *Chat) GetCallbackQueryAnswer(client *Client, messageId int64, payload C
 }
 
 // GetCallbackQueryMessage is a helper method for Client.GetCallbackQueryMessage
-func (c *Chat) GetCallbackQueryMessage(client *Client, messageId int64, callbackQueryId string) (*Message, error) {
+func (c *Chat) GetCallbackQueryMessage(client *Client, messageId int64, callbackQueryId int64) (*Message, error) {
 	return client.GetCallbackQueryMessage(c.Id, messageId, callbackQueryId)
 }
 
@@ -344,7 +344,7 @@ func (c *Chat) GetBoostStatus(client *Client) (*ChatBoostStatus, error) {
 }
 
 // GetEventLog is a helper method for Client.GetChatEventLog
-func (c *Chat) GetEventLog(client *Client, query string, fromEventId string, limit int32, userIds []int64, opts *GetChatEventLogOpts) (*ChatEvents, error) {
+func (c *Chat) GetEventLog(client *Client, query string, fromEventId int64, limit int32, userIds []int64, opts *GetChatEventLogOpts) (*ChatEvents, error) {
 	return client.GetChatEventLog(c.Id, query, fromEventId, limit, userIds, opts)
 }
 
@@ -914,12 +914,12 @@ func (c *Chat) SendBotStartMessage(client *Client, botUserId int64, parameter st
 }
 
 // SendBusinessMessage is a helper method for Client.SendBusinessMessage
-func (c *Chat) SendBusinessMessage(client *Client, businessConnectionId string, disableNotification bool, protectContent bool, effectId string, inputMessageContent InputMessageContent, opts *SendBusinessMessageOpts) (*BusinessMessage, error) {
+func (c *Chat) SendBusinessMessage(client *Client, businessConnectionId string, disableNotification bool, protectContent bool, effectId int64, inputMessageContent InputMessageContent, opts *SendBusinessMessageOpts) (*BusinessMessage, error) {
 	return client.SendBusinessMessage(businessConnectionId, c.Id, disableNotification, protectContent, effectId, inputMessageContent, opts)
 }
 
 // SendBusinessMessageAlbum is a helper method for Client.SendBusinessMessageAlbum
-func (c *Chat) SendBusinessMessageAlbum(client *Client, businessConnectionId string, disableNotification bool, protectContent bool, effectId string, inputMessageContents []InputMessageContent, opts *SendBusinessMessageAlbumOpts) (*BusinessMessages, error) {
+func (c *Chat) SendBusinessMessageAlbum(client *Client, businessConnectionId string, disableNotification bool, protectContent bool, effectId int64, inputMessageContents []InputMessageContent, opts *SendBusinessMessageAlbumOpts) (*BusinessMessages, error) {
 	return client.SendBusinessMessageAlbum(businessConnectionId, c.Id, disableNotification, protectContent, effectId, inputMessageContents, opts)
 }
 
@@ -929,7 +929,7 @@ func (c *Chat) SendAction(client *Client, topicId MessageTopic, businessConnecti
 }
 
 // SendInlineQueryResultMessage is a helper method for Client.SendInlineQueryResultMessage
-func (c *Chat) SendInlineQueryResultMessage(client *Client, queryId string, resultId string, hideViaBot bool, opts *SendInlineQueryResultMessageOpts) (*Message, error) {
+func (c *Chat) SendInlineQueryResultMessage(client *Client, queryId int64, resultId string, hideViaBot bool, opts *SendInlineQueryResultMessageOpts) (*Message, error) {
 	return client.SendInlineQueryResultMessage(c.Id, queryId, resultId, hideViaBot, opts)
 }
 
@@ -949,7 +949,7 @@ func (c *Chat) SendQuickReplyShortcutMessages(client *Client, shortcutId int32, 
 }
 
 // SendTextMessageDraft is a helper method for Client.SendTextMessageDraft
-func (c *Chat) SendTextMessageDraft(client *Client, forumTopicId int32, draftId string, text *FormattedText) (*Ok, error) {
+func (c *Chat) SendTextMessageDraft(client *Client, forumTopicId int32, draftId int64, text *FormattedText) (*Ok, error) {
 	return client.SendTextMessageDraft(c.Id, forumTopicId, draftId, text)
 }
 
@@ -1489,7 +1489,7 @@ func (m *Message) GetCallbackQueryAnswer(client *Client, payload CallbackQueryPa
 }
 
 // GetCallbackQuery is a helper method for Client.GetCallbackQueryMessage
-func (m *Message) GetCallbackQuery(client *Client, callbackQueryId string) (*Message, error) {
+func (m *Message) GetCallbackQuery(client *Client, callbackQueryId int64) (*Message, error) {
 	return client.GetCallbackQueryMessage(m.ChatId, m.Id, callbackQueryId)
 }
 
@@ -1854,7 +1854,7 @@ func (u *User) InviteGroupCallParticipant(client *Client, groupCallId int32, isV
 }
 
 // PlaceGiftAuctionBid is a helper method for Client.PlaceGiftAuctionBid
-func (u *User) PlaceGiftAuctionBid(client *Client, giftId string, starCount int64, text *FormattedText, isPrivate bool) (*Ok, error) {
+func (u *User) PlaceGiftAuctionBid(client *Client, giftId int64, starCount int64, text *FormattedText, isPrivate bool) (*Ok, error) {
 	return client.PlaceGiftAuctionBid(giftId, starCount, u.Id, text, isPrivate)
 }
 

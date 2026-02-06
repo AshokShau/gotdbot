@@ -586,7 +586,7 @@ type AddQuickReplyShortcutInlineQueryResultMessage struct {
 	// Identifier of a quick reply message in the same shortcut to be replied; pass 0 if none
 	ReplyToMessageId int64 `json:"reply_to_message_id"`
 	// Identifier of the inline query
-	QueryId string `json:"query_id"`
+	QueryId int64 `json:"query_id,string"`
 	// Identifier of the inline query result
 	ResultId string `json:"result_id"`
 	// Pass true to hide the bot, via which the message is sent. Can be used only for bots getOption("animation_search_bot_username"), getOption("photo_search_bot_username"), and getOption("venue_search_bot_username")
@@ -841,7 +841,7 @@ func (t *AllowUnpaidMessagesFromUser) MarshalJSON() ([]byte, error) {
 // AnswerCallbackQuery Sets the result of a callback query; for bots only
 type AnswerCallbackQuery struct {
 	// Identifier of the callback query
-	CallbackQueryId string `json:"callback_query_id"`
+	CallbackQueryId int64 `json:"callback_query_id,string"`
 	// Text of the answer
 	Text string `json:"text"`
 	// Pass true to show an alert to the user instead of a toast notification
@@ -870,7 +870,7 @@ func (t *AnswerCallbackQuery) MarshalJSON() ([]byte, error) {
 // AnswerCustomQuery Answers a custom query; for bots only @custom_query_id Identifier of a custom query @data JSON-serialized answer to the query
 type AnswerCustomQuery struct {
 	//
-	CustomQueryId string `json:"custom_query_id"`
+	CustomQueryId int64 `json:"custom_query_id,string"`
 	//
 	Data string `json:"data"`
 }
@@ -893,7 +893,7 @@ func (t *AnswerCustomQuery) MarshalJSON() ([]byte, error) {
 // AnswerInlineQuery Sets the result of an inline query; for bots only
 type AnswerInlineQuery struct {
 	// Identifier of the inline query
-	InlineQueryId string `json:"inline_query_id"`
+	InlineQueryId int64 `json:"inline_query_id,string"`
 	// Pass true if results may be cached and returned only for the user that sent the query. By default, results may be returned to any user who sends the same query
 	IsPersonal bool `json:"is_personal"`
 	// Button to be shown above inline query results; pass null if none
@@ -924,7 +924,7 @@ func (t *AnswerInlineQuery) MarshalJSON() ([]byte, error) {
 // AnswerPreCheckoutQuery Sets the result of a pre-checkout query; for bots only @pre_checkout_query_id Identifier of the pre-checkout query @error_message An error message, empty on success
 type AnswerPreCheckoutQuery struct {
 	//
-	PreCheckoutQueryId string `json:"pre_checkout_query_id"`
+	PreCheckoutQueryId int64 `json:"pre_checkout_query_id,string"`
 	//
 	ErrorMessage string `json:"error_message"`
 }
@@ -947,7 +947,7 @@ func (t *AnswerPreCheckoutQuery) MarshalJSON() ([]byte, error) {
 // AnswerShippingQuery Sets the result of a shipping query; for bots only @shipping_query_id Identifier of the shipping query @shipping_options Available shipping options @error_message An error message, empty on success
 type AnswerShippingQuery struct {
 	//
-	ShippingQueryId string `json:"shipping_query_id"`
+	ShippingQueryId int64 `json:"shipping_query_id,string"`
 	//
 	ShippingOptions []ShippingOption `json:"shipping_options"`
 	//
@@ -1093,7 +1093,7 @@ type BanGroupCallParticipants struct {
 	// Group call identifier
 	GroupCallId int32 `json:"group_call_id"`
 	// Identifiers of group call participants to ban; identifiers of unknown users from the update updateGroupCallParticipants can be also passed to the method
-	UserIds []string `json:"user_ids"`
+	UserIds Int64Slice `json:"user_ids"`
 }
 
 func (t *BanGroupCallParticipants) Type() string {
@@ -1334,7 +1334,7 @@ func (t *CanPurchaseFromStore) MarshalJSON() ([]byte, error) {
 // CanSendGift Checks whether a gift with next_send_date in the future can be sent already
 type CanSendGift struct {
 	// Identifier of the gift to send
-	GiftId string `json:"gift_id"`
+	GiftId int64 `json:"gift_id,string"`
 }
 
 func (t *CanSendGift) Type() string {
@@ -1418,7 +1418,7 @@ func (t *ChangeImportedContacts) MarshalJSON() ([]byte, error) {
 // ChangeStickerSet Installs/uninstalls or activates/archives a sticker set @set_id Identifier of the sticker set @is_installed The new value of is_installed @is_archived The new value of is_archived. A sticker set can't be installed and archived simultaneously
 type ChangeStickerSet struct {
 	//
-	SetId string `json:"set_id"`
+	SetId int64 `json:"set_id,string"`
 	//
 	IsInstalled bool `json:"is_installed"`
 	//
@@ -2188,7 +2188,7 @@ func (t *CloseChat) MarshalJSON() ([]byte, error) {
 // CloseGiftAuction Informs TDLib that a gift auction was closed by the user @gift_id Identifier of the gift, which auction was closed
 type CloseGiftAuction struct {
 	//
-	GiftId string `json:"gift_id"`
+	GiftId int64 `json:"gift_id,string"`
 }
 
 func (t *CloseGiftAuction) Type() string {
@@ -2253,7 +2253,7 @@ func (t *CloseStory) MarshalJSON() ([]byte, error) {
 // CloseWebApp Informs TDLib that a previously opened Web App was closed @web_app_launch_id Identifier of Web App launch, received from openWebApp
 type CloseWebApp struct {
 	//
-	WebAppLaunchId string `json:"web_app_launch_id"`
+	WebAppLaunchId int64 `json:"web_app_launch_id,string"`
 }
 
 func (t *CloseWebApp) Type() string {
@@ -2339,7 +2339,7 @@ func (t *ConfirmQrCodeAuthentication) MarshalJSON() ([]byte, error) {
 // ConfirmSession Confirms an unconfirmed session of the current user from another device @session_id Session identifier
 type ConfirmSession struct {
 	//
-	SessionId string `json:"session_id"`
+	SessionId int64 `json:"session_id,string"`
 }
 
 func (t *ConfirmSession) Type() string {
@@ -3623,7 +3623,7 @@ func (t *DeletePassportElement) MarshalJSON() ([]byte, error) {
 // DeleteProfilePhoto Deletes a profile photo @profile_photo_id Identifier of the profile photo to delete
 type DeleteProfilePhoto struct {
 	//
-	ProfilePhotoId string `json:"profile_photo_id"`
+	ProfilePhotoId int64 `json:"profile_photo_id,string"`
 }
 
 func (t *DeleteProfilePhoto) Type() string {
@@ -3931,7 +3931,7 @@ type DiscardCall struct {
 	// Pass true if the call was a video call
 	IsVideo bool `json:"is_video"`
 	// Identifier of the connection used during the call
-	ConnectionId string `json:"connection_id"`
+	ConnectionId int64 `json:"connection_id,string"`
 }
 
 func (t *DiscardCall) Type() string {
@@ -3994,7 +3994,7 @@ func (t *DisconnectAllWebsites) MarshalJSON() ([]byte, error) {
 // DisconnectWebsite Disconnects website from the current user's Telegram account @website_id Website identifier
 type DisconnectWebsite struct {
 	//
-	WebsiteId string `json:"website_id"`
+	WebsiteId int64 `json:"website_id,string"`
 }
 
 func (t *DisconnectWebsite) Type() string {
@@ -4463,7 +4463,7 @@ type EditForumTopic struct {
 	// Pass true to edit the icon of the topic. Icon of the General topic can't be edited
 	EditIconCustomEmoji bool `json:"edit_icon_custom_emoji"`
 	// Identifier of the new custom emoji for topic icon; pass 0 to remove the custom emoji. Ignored if edit_icon_custom_emoji is false. Telegram Premium users can use any custom emoji, other users can use only a custom emoji returned by getForumTopicDefaultIcons
-	IconCustomEmojiId string `json:"icon_custom_emoji_id"`
+	IconCustomEmojiId int64 `json:"icon_custom_emoji_id,string"`
 }
 
 func (t *EditForumTopic) Type() string {
@@ -5075,7 +5075,7 @@ func (t *EndGroupCallScreenSharing) MarshalJSON() ([]byte, error) {
 // FinishFileGeneration Finishes the file generation
 type FinishFileGeneration struct {
 	// The identifier of the generation process
-	GenerationId string `json:"generation_id"`
+	GenerationId int64 `json:"generation_id,string"`
 	// If passed, the file generation has failed and must be terminated; pass null if the file generation succeeded
 	Error *Error `json:"error,omitempty"`
 }
@@ -5297,7 +5297,7 @@ type GetArchivedStickerSets struct {
 	// Type of the sticker sets to return
 	StickerType StickerType `json:"sticker_type"`
 	// Identifier of the sticker set from which to return the result; use 0 to get results from the beginning
-	OffsetStickerSetId string `json:"offset_sticker_set_id"`
+	OffsetStickerSetId int64 `json:"offset_sticker_set_id,string"`
 	// The maximum number of sticker sets to return; up to 100
 	Limit int32 `json:"limit"`
 }
@@ -5895,7 +5895,7 @@ type GetCallbackQueryMessage struct {
 	//
 	MessageId int64 `json:"message_id"`
 	//
-	CallbackQueryId string `json:"callback_query_id"`
+	CallbackQueryId int64 `json:"callback_query_id,string"`
 }
 
 func (t *GetCallbackQueryMessage) Type() string {
@@ -6184,7 +6184,7 @@ type GetChatEventLog struct {
 	// Search query by which to filter events
 	Query string `json:"query"`
 	// Identifier of an event from which to return results. Use 0 to get results from the latest events
-	FromEventId string `json:"from_event_id"`
+	FromEventId int64 `json:"from_event_id,string"`
 	// The maximum number of events to return; up to 100
 	Limit int32 `json:"limit"`
 	// The types of events to return; pass null to get chat events of all types
@@ -7328,7 +7328,7 @@ func (t *GetCustomEmojiReactionAnimations) MarshalJSON() ([]byte, error) {
 // GetCustomEmojiStickers Returns the list of custom emoji stickers by their identifiers. Stickers are returned in arbitrary order. Only found stickers are returned
 type GetCustomEmojiStickers struct {
 	// Identifiers of custom emoji stickers. At most 200 custom emoji stickers can be received simultaneously
-	CustomEmojiIds []string `json:"custom_emoji_ids"`
+	CustomEmojiIds Int64Slice `json:"custom_emoji_ids"`
 }
 
 func (t *GetCustomEmojiStickers) Type() string {
@@ -7984,7 +7984,7 @@ func (t *GetGameHighScores) MarshalJSON() ([]byte, error) {
 // GetGiftAuctionAcquiredGifts Returns the gifts that were acquired by the current user on a gift auction @gift_id Identifier of the auctioned gift
 type GetGiftAuctionAcquiredGifts struct {
 	//
-	GiftId string `json:"gift_id"`
+	GiftId int64 `json:"gift_id,string"`
 }
 
 func (t *GetGiftAuctionAcquiredGifts) Type() string {
@@ -8070,7 +8070,7 @@ func (t *GetGiftCollections) MarshalJSON() ([]byte, error) {
 // GetGiftUpgradePreview Returns examples of possible upgraded gifts for a regular gift @gift_id Identifier of the gift
 type GetGiftUpgradePreview struct {
 	//
-	GiftId string `json:"gift_id"`
+	GiftId int64 `json:"gift_id,string"`
 }
 
 func (t *GetGiftUpgradePreview) Type() string {
@@ -8091,7 +8091,7 @@ func (t *GetGiftUpgradePreview) MarshalJSON() ([]byte, error) {
 // GetGiftUpgradeVariants Returns all possible variants of upgraded gifts for a regular gift @gift_id Identifier of the gift
 type GetGiftUpgradeVariants struct {
 	//
-	GiftId string `json:"gift_id"`
+	GiftId int64 `json:"gift_id,string"`
 }
 
 func (t *GetGiftUpgradeVariants) Type() string {
@@ -9104,7 +9104,7 @@ func (t *GetMessageAvailableReactions) MarshalJSON() ([]byte, error) {
 // GetMessageEffect Returns information about a message effect. Returns a 404 error if the effect is not found @effect_id Unique identifier of the effect
 type GetMessageEffect struct {
 	//
-	EffectId string `json:"effect_id"`
+	EffectId int64 `json:"effect_id,string"`
 }
 
 func (t *GetMessageEffect) Type() string {
@@ -9541,7 +9541,7 @@ func (t *GetOwnedBots) MarshalJSON() ([]byte, error) {
 // GetOwnedStickerSets Returns sticker sets owned by the current user
 type GetOwnedStickerSets struct {
 	// Identifier of the sticker set from which to return owned sticker sets; use 0 to get results from the beginning
-	OffsetStickerSetId string `json:"offset_sticker_set_id"`
+	OffsetStickerSetId int64 `json:"offset_sticker_set_id,string"`
 	// The maximum number of sticker sets to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned objects is chosen by TDLib and can be smaller than the specified limit
 	Limit int32 `json:"limit"`
 }
@@ -10486,7 +10486,7 @@ func (t *GetSavedMessagesTopicMessageByDate) MarshalJSON() ([]byte, error) {
 // GetSavedNotificationSound Returns saved notification sound by its identifier. Returns a 404 error if there is no saved notification sound with the specified identifier @notification_sound_id Identifier of the notification sound
 type GetSavedNotificationSound struct {
 	//
-	NotificationSoundId string `json:"notification_sound_id"`
+	NotificationSoundId int64 `json:"notification_sound_id,string"`
 }
 
 func (t *GetSavedNotificationSound) Type() string {
@@ -10953,7 +10953,7 @@ func (t *GetStickers) MarshalJSON() ([]byte, error) {
 // GetStickerSet Returns information about a sticker set by its identifier @set_id Identifier of the sticker set
 type GetStickerSet struct {
 	//
-	SetId string `json:"set_id"`
+	SetId int64 `json:"set_id,string"`
 }
 
 func (t *GetStickerSet) Type() string {
@@ -10974,7 +10974,7 @@ func (t *GetStickerSet) MarshalJSON() ([]byte, error) {
 // GetStickerSetName Returns name of a sticker set by its identifier @set_id Identifier of the sticker set
 type GetStickerSetName struct {
 	//
-	SetId string `json:"set_id"`
+	SetId int64 `json:"set_id,string"`
 }
 
 func (t *GetStickerSetName) Type() string {
@@ -12214,7 +12214,7 @@ func (t *ImportMessages) MarshalJSON() ([]byte, error) {
 // IncreaseGiftAuctionBid Increases a bid for an auction gift without changing gift text and receiver
 type IncreaseGiftAuctionBid struct {
 	// Identifier of the gift to put the bid on
-	GiftId string `json:"gift_id"`
+	GiftId int64 `json:"gift_id,string"`
 	// The number of Telegram Stars to put in the bid
 	StarCount int64 `json:"star_count"`
 }
@@ -12440,7 +12440,7 @@ func (t *JoinVideoChat) MarshalJSON() ([]byte, error) {
 // LaunchPrepaidGiveaway Launches a prepaid giveaway
 type LaunchPrepaidGiveaway struct {
 	// Unique identifier of the prepaid giveaway
-	GiveawayId string `json:"giveaway_id"`
+	GiveawayId int64 `json:"giveaway_id,string"`
 	// Giveaway parameters
 	Parameters *GiveawayParameters `json:"parameters"`
 	// The number of users to receive giveaway prize
@@ -12773,7 +12773,7 @@ func (t *OpenChatSimilarChat) MarshalJSON() ([]byte, error) {
 // OpenGiftAuction Informs TDLib that a gift auction was opened by the user @gift_id Identifier of the gift, which auction was opened
 type OpenGiftAuction struct {
 	//
-	GiftId string `json:"gift_id"`
+	GiftId int64 `json:"gift_id,string"`
 }
 
 func (t *OpenGiftAuction) Type() string {
@@ -13021,7 +13021,7 @@ func (t *PingProxy) MarshalJSON() ([]byte, error) {
 // PlaceGiftAuctionBid Places a bid on an auction gift
 type PlaceGiftAuctionBid struct {
 	// Identifier of the gift to place the bid on
-	GiftId string `json:"gift_id"`
+	GiftId int64 `json:"gift_id,string"`
 	// The number of Telegram Stars to place in the bid
 	StarCount int64 `json:"star_count"`
 	// Identifier of the user that will receive the gift
@@ -13762,7 +13762,7 @@ func (t *RemoveGiftCollectionGifts) MarshalJSON() ([]byte, error) {
 // RemoveInstalledBackground Removes background from the list of installed backgrounds @background_id The background identifier
 type RemoveInstalledBackground struct {
 	//
-	BackgroundId string `json:"background_id"`
+	BackgroundId int64 `json:"background_id,string"`
 }
 
 func (t *RemoveInstalledBackground) Type() string {
@@ -14070,7 +14070,7 @@ func (t *RemoveSavedAnimation) MarshalJSON() ([]byte, error) {
 // RemoveSavedNotificationSound Removes a notification sound from the list of saved notification sounds @notification_sound_id Identifier of the notification sound
 type RemoveSavedNotificationSound struct {
 	//
-	NotificationSoundId string `json:"notification_sound_id"`
+	NotificationSoundId int64 `json:"notification_sound_id,string"`
 }
 
 func (t *RemoveSavedNotificationSound) Type() string {
@@ -14323,7 +14323,7 @@ type ReorderInstalledStickerSets struct {
 	//
 	StickerType StickerType `json:"sticker_type"`
 	//
-	StickerSetIds []string `json:"sticker_set_ids"`
+	StickerSetIds Int64Slice `json:"sticker_set_ids"`
 }
 
 func (t *ReorderInstalledStickerSets) Type() string {
@@ -15488,7 +15488,7 @@ func (t *SearchFileDownloads) MarshalJSON() ([]byte, error) {
 // SearchGiftsForResale Returns upgraded gifts that can be bought from other owners using sendResoldGift
 type SearchGiftsForResale struct {
 	// Identifier of the regular gift that was upgraded to a unique gift
-	GiftId string `json:"gift_id"`
+	GiftId int64 `json:"gift_id,string"`
 	// Order in which the results will be sorted
 	Order GiftForResaleOrder `json:"order"`
 	// Attributes used to filter received gifts. If multiple attributes of the same type are specified, then all of them are allowed.
@@ -16154,7 +16154,7 @@ type SendBusinessMessage struct {
 	// Pass true if the content of the message must be protected from forwarding and saving
 	ProtectContent bool `json:"protect_content"`
 	// Identifier of the effect to apply to the message
-	EffectId string `json:"effect_id"`
+	EffectId int64 `json:"effect_id,string"`
 	// Markup for replying to the message; pass null if none
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
 	// The content of the message to be sent
@@ -16189,7 +16189,7 @@ type SendBusinessMessageAlbum struct {
 	// Pass true if the content of the message must be protected from forwarding and saving
 	ProtectContent bool `json:"protect_content"`
 	// Identifier of the effect to apply to the message
-	EffectId string `json:"effect_id"`
+	EffectId int64 `json:"effect_id,string"`
 	// Contents of messages to be sent. At most 10 messages can be added to an album. All messages must have the same value of show_caption_above_media
 	InputMessageContents []InputMessageContent `json:"input_message_contents"`
 }
@@ -16379,7 +16379,7 @@ func (t *SendEmailAddressVerificationCode) MarshalJSON() ([]byte, error) {
 // SendGift Sends a gift to another user or channel chat. May return an error with a message "STARGIFT_USAGE_LIMITED" if the gift was sold out
 type SendGift struct {
 	// Identifier of the gift to send
-	GiftId string `json:"gift_id"`
+	GiftId int64 `json:"gift_id,string"`
 	// Identifier of the user or the channel chat that will receive the gift; limited gifts can't be sent to channel chats
 	OwnerId MessageSender `json:"owner_id"`
 	// Text to show along with the gift; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed.
@@ -16470,7 +16470,7 @@ type SendInlineQueryResultMessage struct {
 	// Options to be used to send the message; pass null to use default options
 	Options *MessageSendOptions `json:"options,omitempty"`
 	// Identifier of the inline query
-	QueryId string `json:"query_id"`
+	QueryId int64 `json:"query_id,string"`
 	// Identifier of the inline query result
 	ResultId string `json:"result_id"`
 	// Pass true to hide the bot, via which the message is sent. Can be used only for bots getOption("animation_search_bot_username"), getOption("photo_search_bot_username"), and getOption("venue_search_bot_username")
@@ -16580,7 +16580,7 @@ type SendPaymentForm struct {
 	// The invoice
 	InputInvoice InputInvoice `json:"input_invoice"`
 	// Payment form identifier returned by getPaymentForm
-	PaymentFormId string `json:"payment_form_id"`
+	PaymentFormId int64 `json:"payment_form_id,string"`
 	// Identifier returned by validateOrderInfo, or an empty string
 	OrderInfoId string `json:"order_info_id"`
 	// Identifier of a chosen shipping option, if applicable
@@ -16709,7 +16709,7 @@ type SendTextMessageDraft struct {
 	// The forum topic identifier in which the message will be sent; pass 0 if none
 	ForumTopicId int32 `json:"forum_topic_id"`
 	// Unique identifier of the draft
-	DraftId string `json:"draft_id"`
+	DraftId int64 `json:"draft_id,string"`
 	// Draft text of the message
 	Text *FormattedText `json:"text"`
 }
@@ -16784,7 +16784,7 @@ type SetAccentColor struct {
 	// Identifier of the accent color to use
 	AccentColorId int32 `json:"accent_color_id"`
 	// Identifier of a custom emoji to be shown on the reply header and link preview background; 0 if none
-	BackgroundCustomEmojiId string `json:"background_custom_emoji_id"`
+	BackgroundCustomEmojiId int64 `json:"background_custom_emoji_id,string"`
 }
 
 func (t *SetAccentColor) Type() string {
@@ -17447,7 +17447,7 @@ type SetChatAccentColor struct {
 	// Identifier of the accent color to use. The chat must have at least accentColor.min_channel_chat_boost_level boost level to pass the corresponding color
 	AccentColorId int32 `json:"accent_color_id"`
 	// Identifier of a custom emoji to be shown on the reply header and link preview background; 0 if none. Use chatBoostLevelFeatures.can_set_background_custom_emoji to check whether a custom emoji can be set
-	BackgroundCustomEmojiId string `json:"background_custom_emoji_id"`
+	BackgroundCustomEmojiId int64 `json:"background_custom_emoji_id,string"`
 }
 
 func (t *SetChatAccentColor) Type() string {
@@ -17921,7 +17921,7 @@ type SetChatProfileAccentColor struct {
 	// Identifier of the accent color to use for profile; pass -1 if none. The chat must have at least profileAccentColor.min_supergroup_chat_boost_level for supergroups
 	ProfileAccentColorId int32 `json:"profile_accent_color_id"`
 	// Identifier of a custom emoji to be shown on the chat's profile photo background; 0 if none. Use chatBoostLevelFeatures.can_set_profile_background_custom_emoji to check whether a custom emoji can be set
-	ProfileBackgroundCustomEmojiId string `json:"profile_background_custom_emoji_id"`
+	ProfileBackgroundCustomEmojiId int64 `json:"profile_background_custom_emoji_id,string"`
 }
 
 func (t *SetChatProfileAccentColor) Type() string {
@@ -18059,7 +18059,7 @@ type SetCustomEmojiStickerSetThumbnail struct {
 	// Sticker set name. The sticker set must be owned by the current user
 	Name string `json:"name"`
 	// Identifier of the custom emoji from the sticker set, which will be set as sticker set thumbnail; pass 0 to remove the sticker set thumbnail
-	CustomEmojiId string `json:"custom_emoji_id"`
+	CustomEmojiId int64 `json:"custom_emoji_id,string"`
 }
 
 func (t *SetCustomEmojiStickerSetThumbnail) Type() string {
@@ -18302,7 +18302,7 @@ func (t *SetEmojiStatus) MarshalJSON() ([]byte, error) {
 // SetFileGenerationProgress Informs TDLib on a file generation progress
 type SetFileGenerationProgress struct {
 	// The identifier of the generation process
-	GenerationId string `json:"generation_id"`
+	GenerationId int64 `json:"generation_id,string"`
 	// Expected size of the generated file, in bytes; 0 if unknown
 	ExpectedSize int64 `json:"expected_size"`
 	// The number of bytes already generated
@@ -19154,7 +19154,7 @@ type SetProfileAccentColor struct {
 	// Identifier of the accent color to use for profile; pass -1 if none
 	ProfileAccentColorId int32 `json:"profile_accent_color_id"`
 	// Identifier of a custom emoji to be shown on the user's profile photo background; 0 if none
-	ProfileBackgroundCustomEmojiId string `json:"profile_background_custom_emoji_id"`
+	ProfileBackgroundCustomEmojiId int64 `json:"profile_background_custom_emoji_id,string"`
 }
 
 func (t *SetProfileAccentColor) Type() string {
@@ -19574,7 +19574,7 @@ type SetSupergroupCustomEmojiStickerSet struct {
 	// Identifier of the supergroup
 	SupergroupId int64 `json:"supergroup_id"`
 	// New value of the custom emoji sticker set identifier for the supergroup. Use 0 to remove the custom emoji sticker set in the supergroup
-	CustomEmojiStickerSetId string `json:"custom_emoji_sticker_set_id"`
+	CustomEmojiStickerSetId int64 `json:"custom_emoji_sticker_set_id,string"`
 }
 
 func (t *SetSupergroupCustomEmojiStickerSet) Type() string {
@@ -19620,7 +19620,7 @@ type SetSupergroupStickerSet struct {
 	//
 	SupergroupId int64 `json:"supergroup_id"`
 	//
-	StickerSetId string `json:"sticker_set_id"`
+	StickerSetId int64 `json:"sticker_set_id,string"`
 }
 
 func (t *SetSupergroupStickerSet) Type() string {
@@ -19734,7 +19734,7 @@ func (t *SetTdlibParameters) MarshalJSON() ([]byte, error) {
 // SetUpgradedGiftColors Changes color scheme for the current user based on an owned or a hosted upgraded gift; for Telegram Premium users only
 type SetUpgradedGiftColors struct {
 	// Identifier of the upgradedGiftColors scheme to use
-	UpgradedGiftColorsId string `json:"upgraded_gift_colors_id"`
+	UpgradedGiftColorsId int64 `json:"upgraded_gift_colors_id,string"`
 }
 
 func (t *SetUpgradedGiftColors) Type() string {
@@ -20283,7 +20283,7 @@ func (t *TerminateAllOtherSessions) MarshalJSON() ([]byte, error) {
 // TerminateSession Terminates a session of the current user @session_id Session identifier
 type TerminateSession struct {
 	//
-	SessionId string `json:"session_id"`
+	SessionId int64 `json:"session_id,string"`
 }
 
 func (t *TerminateSession) Type() string {
@@ -21210,7 +21210,7 @@ func (t *ToggleSavedMessagesTopicIsPinned) MarshalJSON() ([]byte, error) {
 // ToggleSessionCanAcceptCalls Toggles whether a session can accept incoming calls @session_id Session identifier @can_accept_calls Pass true to allow accepting incoming calls by the session; pass false otherwise
 type ToggleSessionCanAcceptCalls struct {
 	//
-	SessionId string `json:"session_id"`
+	SessionId int64 `json:"session_id,string"`
 	//
 	CanAcceptCalls bool `json:"can_accept_calls"`
 }
@@ -21233,7 +21233,7 @@ func (t *ToggleSessionCanAcceptCalls) MarshalJSON() ([]byte, error) {
 // ToggleSessionCanAcceptSecretChats Toggles whether a session can accept incoming secret chats @session_id Session identifier @can_accept_secret_chats Pass true to allow accepting secret chats by the session; pass false otherwise
 type ToggleSessionCanAcceptSecretChats struct {
 	//
-	SessionId string `json:"session_id"`
+	SessionId int64 `json:"session_id,string"`
 	//
 	CanAcceptSecretChats bool `json:"can_accept_secret_chats"`
 }
@@ -21987,7 +21987,7 @@ func (t *ViewSponsoredChat) MarshalJSON() ([]byte, error) {
 // ViewTrendingStickerSets Informs the server that some trending sticker sets have been viewed by the user @sticker_set_ids Identifiers of viewed trending sticker sets
 type ViewTrendingStickerSets struct {
 	//
-	StickerSetIds []string `json:"sticker_set_ids"`
+	StickerSetIds Int64Slice `json:"sticker_set_ids"`
 }
 
 func (t *ViewTrendingStickerSets) Type() string {
@@ -22029,7 +22029,7 @@ func (t *ViewVideoMessageAdvertisement) MarshalJSON() ([]byte, error) {
 // WriteGeneratedFilePart Writes a part of a generated file. This method is intended to be used only if the application has no direct access to TDLib's file system, because it is usually slower than a direct write to the destination file
 type WriteGeneratedFilePart struct {
 	// The identifier of the generation process
-	GenerationId string `json:"generation_id"`
+	GenerationId int64 `json:"generation_id,string"`
 	// The offset from which to write the data to the file
 	Offset int64 `json:"offset"`
 	// The data to write

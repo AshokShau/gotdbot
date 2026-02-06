@@ -55,7 +55,7 @@ func FromUserID(id int64) filters.UpdateNewCallbackQuery {
 }
 
 // ChatInstance checks if the callback query chat instance matches the given instance string.
-func ChatInstance(instance string) filters.UpdateNewCallbackQuery {
+func ChatInstance(instance int64) filters.UpdateNewCallbackQuery {
 	return func(u *gotdbot.UpdateNewCallbackQuery) bool {
 		return u.ChatInstance == instance
 	}

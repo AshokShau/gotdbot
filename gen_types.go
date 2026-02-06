@@ -549,7 +549,7 @@ func (t *AgeVerificationParameters) MarshalJSON() ([]byte, error) {
 // AlternativeVideo Describes an alternative re-encoded quality of a video file
 type AlternativeVideo struct {
 	// Unique identifier of the alternative video, which is used in the HLS file
-	Id string `json:"id"`
+	Id int64 `json:"id,string"`
 	// Video width
 	Width int32 `json:"width"`
 	// Video height
@@ -1994,7 +1994,7 @@ func (t *AvailableReactions) UnmarshalJSON(data []byte) error {
 // Background Describes a chat background
 type Background struct {
 	// Unique background identifier
-	Id string `json:"id"`
+	Id int64 `json:"id,string"`
 	// True, if this is one of default backgrounds
 	IsDefault bool `json:"is_default"`
 	// True, if the background is dark and is recommended to be used with dark theme
@@ -2952,7 +2952,7 @@ type BotVerification struct {
 	// Identifier of the bot that provided the verification
 	BotUserId int64 `json:"bot_user_id"`
 	// Identifier of the custom emoji that is used as the verification sign
-	IconCustomEmojiId string `json:"icon_custom_emoji_id"`
+	IconCustomEmojiId int64 `json:"icon_custom_emoji_id,string"`
 	// Custom description of verification reason set by the bot. Can contain only Mention, Hashtag, Cashtag, PhoneNumber, BankCardNumber, Url, and EmailAddress entities
 	CustomDescription *FormattedText `json:"custom_description"`
 }
@@ -2975,7 +2975,7 @@ func (t *BotVerification) MarshalJSON() ([]byte, error) {
 // BotVerificationParameters Describes parameters of verification that is provided by a bot
 type BotVerificationParameters struct {
 	// Identifier of the custom emoji that is used as the verification sign
-	IconCustomEmojiId string `json:"icon_custom_emoji_id"`
+	IconCustomEmojiId int64 `json:"icon_custom_emoji_id,string"`
 	// Name of the organization that provides verification
 	OrganizationName string `json:"organization_name"`
 	// Default custom description of verification reason to be used as placeholder in setMessageSenderBotVerification; may be null if none
@@ -4602,7 +4602,7 @@ func (t *CallProtocol) MarshalJSON() ([]byte, error) {
 // CallServer Describes a server for relaying call data
 type CallServer struct {
 	// Server identifier
-	Id string `json:"id"`
+	Id int64 `json:"id,string"`
 	// Server IPv4 address
 	IpAddress string `json:"ip_address"`
 	// Server IPv6 address
@@ -5270,13 +5270,13 @@ type Chat struct {
 	// Identifier of the accent color for message sender name, and backgrounds of chat photo, reply header, and link preview
 	AccentColorId int32 `json:"accent_color_id"`
 	// Identifier of a custom emoji to be shown on the reply header and link preview background for messages sent by the chat; 0 if none
-	BackgroundCustomEmojiId string `json:"background_custom_emoji_id"`
+	BackgroundCustomEmojiId int64 `json:"background_custom_emoji_id,string"`
 	// Color scheme based on an upgraded gift to be used for the chat instead of accent_color_id and background_custom_emoji_id; may be null if none
 	UpgradedGiftColors *UpgradedGiftColors `json:"upgraded_gift_colors,omitempty"`
 	// Identifier of the profile accent color for the chat's profile; -1 if none
 	ProfileAccentColorId int32 `json:"profile_accent_color_id"`
 	// Identifier of a custom emoji to be shown on the background of the chat's profile; 0 if none
-	ProfileBackgroundCustomEmojiId string `json:"profile_background_custom_emoji_id"`
+	ProfileBackgroundCustomEmojiId int64 `json:"profile_background_custom_emoji_id,string"`
 	// Actions that non-administrator chat members are allowed to take in the chat
 	Permissions *ChatPermissions `json:"permissions"`
 	// Last message in the chat; may be null if none or unknown
@@ -6504,7 +6504,7 @@ func (t *ChatBoostStatus) MarshalJSON() ([]byte, error) {
 // ChatEvent Represents a chat event
 type ChatEvent struct {
 	// Chat event identifier
-	Id string `json:"id"`
+	Id int64 `json:"id,string"`
 	// Point in time (Unix timestamp) when the event happened
 	Date int32 `json:"date"`
 	// Identifier of the user or chat who performed the action
@@ -6564,11 +6564,11 @@ type ChatEventAccentColorChanged struct {
 	// Previous identifier of chat accent color
 	OldAccentColorId int32 `json:"old_accent_color_id"`
 	// Previous identifier of the custom emoji; 0 if none
-	OldBackgroundCustomEmojiId string `json:"old_background_custom_emoji_id"`
+	OldBackgroundCustomEmojiId int64 `json:"old_background_custom_emoji_id,string"`
 	// New identifier of chat accent color
 	NewAccentColorId int32 `json:"new_accent_color_id"`
 	// New identifier of the custom emoji; 0 if none
-	NewBackgroundCustomEmojiId string `json:"new_background_custom_emoji_id"`
+	NewBackgroundCustomEmojiId int64 `json:"new_background_custom_emoji_id,string"`
 }
 
 func (t *ChatEventAccentColorChanged) Type() string {
@@ -6720,9 +6720,9 @@ func (t *ChatEventBackgroundChanged) MarshalJSON() ([]byte, error) {
 // ChatEventCustomEmojiStickerSetChanged The supergroup sticker set with allowed custom emoji was changed @old_sticker_set_id Previous identifier of the chat sticker set; 0 if none @new_sticker_set_id New identifier of the chat sticker set; 0 if none
 type ChatEventCustomEmojiStickerSetChanged struct {
 	//
-	OldStickerSetId string `json:"old_sticker_set_id"`
+	OldStickerSetId int64 `json:"old_sticker_set_id,string"`
 	//
-	NewStickerSetId string `json:"new_sticker_set_id"`
+	NewStickerSetId int64 `json:"new_sticker_set_id,string"`
 }
 
 func (t *ChatEventCustomEmojiStickerSetChanged) Type() string {
@@ -7738,11 +7738,11 @@ type ChatEventProfileAccentColorChanged struct {
 	// Previous identifier of chat's profile accent color; -1 if none
 	OldProfileAccentColorId int32 `json:"old_profile_accent_color_id"`
 	// Previous identifier of the custom emoji; 0 if none
-	OldProfileBackgroundCustomEmojiId string `json:"old_profile_background_custom_emoji_id"`
+	OldProfileBackgroundCustomEmojiId int64 `json:"old_profile_background_custom_emoji_id,string"`
 	// New identifier of chat's profile accent color; -1 if none
 	NewProfileAccentColorId int32 `json:"new_profile_accent_color_id"`
 	// New identifier of the custom emoji; 0 if none
-	NewProfileBackgroundCustomEmojiId string `json:"new_profile_background_custom_emoji_id"`
+	NewProfileBackgroundCustomEmojiId int64 `json:"new_profile_background_custom_emoji_id,string"`
 }
 
 func (t *ChatEventProfileAccentColorChanged) Type() string {
@@ -7857,9 +7857,9 @@ func (t *ChatEventSlowModeDelayChanged) MarshalJSON() ([]byte, error) {
 // ChatEventStickerSetChanged The supergroup sticker set was changed @old_sticker_set_id Previous identifier of the chat sticker set; 0 if none @new_sticker_set_id New identifier of the chat sticker set; 0 if none
 type ChatEventStickerSetChanged struct {
 	//
-	OldStickerSetId string `json:"old_sticker_set_id"`
+	OldStickerSetId int64 `json:"old_sticker_set_id,string"`
 	//
-	NewStickerSetId string `json:"new_sticker_set_id"`
+	NewStickerSetId int64 `json:"new_sticker_set_id,string"`
 }
 
 func (t *ChatEventStickerSetChanged) Type() string {
@@ -8530,7 +8530,7 @@ type ChatInviteLinkSubscriptionInfo struct {
 	// True, if the user has already paid for the subscription and can use joinChatByInviteLink to join the subscribed chat again
 	CanReuse bool `json:"can_reuse"`
 	// Identifier of the payment form to use for subscription payment; 0 if the subscription can't be paid
-	FormId string `json:"form_id"`
+	FormId int64 `json:"form_id,string"`
 }
 
 func (t *ChatInviteLinkSubscriptionInfo) Type() string {
@@ -9231,7 +9231,7 @@ type ChatNotificationSettings struct {
 	// If true, the value for the relevant type of chat or the forum chat is used instead of sound_id
 	UseDefaultSound bool `json:"use_default_sound"`
 	// Identifier of the notification sound to be played for messages; 0 if sound is disabled
-	SoundId string `json:"sound_id"`
+	SoundId int64 `json:"sound_id,string"`
 	// If true, the value for the relevant type of chat or the forum chat is used instead of show_preview
 	UseDefaultShowPreview bool `json:"use_default_show_preview"`
 	// True, if message content must be displayed in notifications
@@ -9243,7 +9243,7 @@ type ChatNotificationSettings struct {
 	// If true, the value for the relevant type of chat is used instead of story_sound_id
 	UseDefaultStorySound bool `json:"use_default_story_sound"`
 	// Identifier of the notification sound to be played for stories; 0 if sound is disabled
-	StorySoundId string `json:"story_sound_id"`
+	StorySoundId int64 `json:"story_sound_id,string"`
 	// If true, the value for the relevant type of chat is used instead of show_story_poster
 	UseDefaultShowStoryPoster bool `json:"use_default_show_story_poster"`
 	// True, if the chat that posted a story must be displayed in notifications
@@ -9323,7 +9323,7 @@ func (t *ChatPermissions) MarshalJSON() ([]byte, error) {
 // ChatPhoto Describes a chat or user profile photo
 type ChatPhoto struct {
 	// Unique photo identifier
-	Id string `json:"id"`
+	Id int64 `json:"id,string"`
 	// Point in time (Unix timestamp) when the photo has been added
 	AddedDate int32 `json:"added_date"`
 	// Photo minithumbnail; may be null
@@ -9462,7 +9462,7 @@ func (t *ChatPhotoSticker) UnmarshalJSON(data []byte) error {
 // ChatPhotoStickerTypeCustomEmoji Information about the custom emoji, which was used to create the chat photo
 type ChatPhotoStickerTypeCustomEmoji struct {
 	// Identifier of the custom emoji
-	CustomEmojiId string `json:"custom_emoji_id"`
+	CustomEmojiId int64 `json:"custom_emoji_id,string"`
 }
 
 func (t *ChatPhotoStickerTypeCustomEmoji) Type() string {
@@ -9485,9 +9485,9 @@ func (t *ChatPhotoStickerTypeCustomEmoji) MarshalJSON() ([]byte, error) {
 // ChatPhotoStickerTypeRegularOrMask Information about the sticker, which was used to create the chat photo
 type ChatPhotoStickerTypeRegularOrMask struct {
 	// Sticker set identifier
-	StickerSetId string `json:"sticker_set_id"`
+	StickerSetId int64 `json:"sticker_set_id,string"`
 	// Identifier of the sticker in the set
-	StickerId string `json:"sticker_id"`
+	StickerId int64 `json:"sticker_id,string"`
 }
 
 func (t *ChatPhotoStickerTypeRegularOrMask) Type() string {
@@ -9512,7 +9512,7 @@ type ChatPosition struct {
 	// The chat list
 	List ChatList `json:"list"`
 	// A parameter used to determine order of the chat in the chat list. Chats must be sorted by the pair (order, chat.id) in descending order
-	Order string `json:"order"`
+	Order int64 `json:"order,string"`
 	// True, if the chat is pinned in the chat list
 	IsPinned bool `json:"is_pinned"`
 	// Source of the chat in the chat list; may be null
@@ -9570,11 +9570,11 @@ type ChatRevenueAmount struct {
 	// Cryptocurrency in which revenue is calculated
 	Cryptocurrency string `json:"cryptocurrency"`
 	// Total amount of the cryptocurrency earned, in the smallest units of the cryptocurrency
-	TotalAmount string `json:"total_amount"`
+	TotalAmount int64 `json:"total_amount,string"`
 	// Amount of the cryptocurrency that isn't withdrawn yet, in the smallest units of the cryptocurrency
-	BalanceAmount string `json:"balance_amount"`
+	BalanceAmount int64 `json:"balance_amount,string"`
 	// Amount of the cryptocurrency available for withdrawal, in the smallest units of the cryptocurrency
-	AvailableAmount string `json:"available_amount"`
+	AvailableAmount int64 `json:"available_amount,string"`
 	// True, if Telegram Stars can be withdrawn now or later
 	WithdrawalEnabled bool `json:"withdrawal_enabled"`
 }
@@ -9657,7 +9657,7 @@ type ChatRevenueTransaction struct {
 	// Cryptocurrency in which revenue is calculated
 	Cryptocurrency string `json:"cryptocurrency"`
 	// The withdrawn amount, in the smallest units of the cryptocurrency
-	CryptocurrencyAmount string `json:"cryptocurrency_amount"`
+	CryptocurrencyAmount int64 `json:"cryptocurrency_amount,string"`
 	// Type of the transaction
 	TypeField ChatRevenueTransactionType `json:"type"`
 }
@@ -10906,7 +10906,7 @@ type CollectibleItemInfo struct {
 	// Cryptocurrency used to pay for the item
 	Cryptocurrency string `json:"cryptocurrency"`
 	// The paid amount, in the smallest units of the cryptocurrency
-	CryptocurrencyAmount string `json:"cryptocurrency_amount"`
+	CryptocurrencyAmount int64 `json:"cryptocurrency_amount,string"`
 	// Individual URL for the item on https://fragment.com
 	Url string `json:"url"`
 }
@@ -10985,7 +10985,7 @@ type ConnectedAffiliateProgram struct {
 	// True, if the program was canceled by the bot, or disconnected by the chat owner and isn't available anymore
 	IsDisconnected bool `json:"is_disconnected"`
 	// The number of users that used the affiliate program
-	UserCount string `json:"user_count"`
+	UserCount int64 `json:"user_count,string"`
 	// The number of Telegram Stars that were earned by the affiliate program
 	RevenueStarCount int64 `json:"revenue_star_count"`
 }
@@ -11033,7 +11033,7 @@ func (t *ConnectedAffiliatePrograms) MarshalJSON() ([]byte, error) {
 // ConnectedWebsite Contains information about one website the current user is logged in with Telegram
 type ConnectedWebsite struct {
 	// Website identifier
-	Id string `json:"id"`
+	Id int64 `json:"id,string"`
 	// The domain name of the website
 	DomainName string `json:"domain_name"`
 	// User identifier of a bot linked with the website
@@ -11849,7 +11849,7 @@ type DirectMessagesChatTopic struct {
 	// Identifier of the user or chat that sends the messages to the topic
 	SenderId MessageSender `json:"sender_id"`
 	// A parameter used to determine order of the topic in the topic list. Topics must be sorted by the order in descending order
-	Order string `json:"order"`
+	Order int64 `json:"order,string"`
 	// True, if the other party can send unpaid messages even if the chat has paid messages enabled
 	CanSendUnpaidMessages bool `json:"can_send_unpaid_messages"`
 	// True, if the topic is marked as unread
@@ -11988,7 +11988,7 @@ type DraftMessage struct {
 	// Content of the message draft; must be of the type inputMessageText, inputMessageVideoNote, or inputMessageVoiceNote
 	InputMessageText InputMessageContent `json:"input_message_text"`
 	// Identifier of the effect to apply to the message when it is sent; 0 if none
-	EffectId string `json:"effect_id"`
+	EffectId int64 `json:"effect_id,string"`
 	// Information about the suggested post; may be null if none
 	SuggestedPostInfo *InputSuggestedPostInfo `json:"suggested_post_info,omitempty"`
 }
@@ -12554,7 +12554,7 @@ func (t *EmojiStatus) UnmarshalJSON(data []byte) error {
 // EmojiStatusCustomEmojis Contains a list of custom emoji identifiers for emoji statuses @custom_emoji_ids The list of custom emoji identifiers
 type EmojiStatusCustomEmojis struct {
 	//
-	CustomEmojiIds []string `json:"custom_emoji_ids"`
+	CustomEmojiIds Int64Slice `json:"custom_emoji_ids"`
 }
 
 func (t *EmojiStatusCustomEmojis) Type() string {
@@ -12596,7 +12596,7 @@ func (t *EmojiStatuses) MarshalJSON() ([]byte, error) {
 // EmojiStatusTypeCustomEmoji A custom emoji set as emoji status @custom_emoji_id Identifier of the custom emoji in stickerFormatTgs format
 type EmojiStatusTypeCustomEmoji struct {
 	//
-	CustomEmojiId string `json:"custom_emoji_id"`
+	CustomEmojiId int64 `json:"custom_emoji_id,string"`
 }
 
 func (t *EmojiStatusTypeCustomEmoji) Type() string {
@@ -12619,15 +12619,15 @@ func (t *EmojiStatusTypeCustomEmoji) MarshalJSON() ([]byte, error) {
 // EmojiStatusTypeUpgradedGift An upgraded gift set as emoji status
 type EmojiStatusTypeUpgradedGift struct {
 	// Identifier of the upgraded gift
-	UpgradedGiftId string `json:"upgraded_gift_id"`
+	UpgradedGiftId int64 `json:"upgraded_gift_id,string"`
 	// The title of the upgraded gift
 	GiftTitle string `json:"gift_title"`
 	// Unique name of the upgraded gift that can be used with internalLinkTypeUpgradedGift
 	GiftName string `json:"gift_name"`
 	// Custom emoji identifier of the model of the upgraded gift
-	ModelCustomEmojiId string `json:"model_custom_emoji_id"`
+	ModelCustomEmojiId int64 `json:"model_custom_emoji_id,string"`
 	// Custom emoji identifier of the symbol of the upgraded gift
-	SymbolCustomEmojiId string `json:"symbol_custom_emoji_id"`
+	SymbolCustomEmojiId int64 `json:"symbol_custom_emoji_id,string"`
 	// Colors of the backdrop of the upgraded gift
 	BackdropColors *UpgradedGiftBackdropColors `json:"backdrop_colors"`
 }
@@ -13439,7 +13439,7 @@ type FirebaseDeviceVerificationParametersPlayIntegrity struct {
 	// Base64url-encoded nonce to pass to the Play Integrity API
 	Nonce string `json:"nonce"`
 	// Cloud project number to pass to the Play Integrity API
-	CloudProjectNumber string `json:"cloud_project_number"`
+	CloudProjectNumber int64 `json:"cloud_project_number,string"`
 }
 
 func (t *FirebaseDeviceVerificationParametersPlayIntegrity) Type() string {
@@ -13512,7 +13512,7 @@ type ForumTopic struct {
 	// Last message in the topic; may be null if unknown
 	LastMessage *Message `json:"last_message,omitempty"`
 	// A parameter used to determine order of the topic in the topic list. Topics must be sorted by the order in descending order
-	Order string `json:"order"`
+	Order int64 `json:"order,string"`
 	// True, if the topic is pinned in the topic list
 	IsPinned bool `json:"is_pinned"`
 	// Number of unread messages in the topic
@@ -13551,7 +13551,7 @@ type ForumTopicIcon struct {
 	//
 	Color int32 `json:"color"`
 	//
-	CustomEmojiId string `json:"custom_emoji_id"`
+	CustomEmojiId int64 `json:"custom_emoji_id,string"`
 }
 
 func (t *ForumTopicIcon) Type() string {
@@ -14011,7 +14011,7 @@ func (t *FoundWebApp) MarshalJSON() ([]byte, error) {
 // Game Describes a game. Use getInternalLink with internalLinkTypeGame to share the game
 type Game struct {
 	// Unique game identifier
-	Id string `json:"id"`
+	Id int64 `json:"id,string"`
 	// Game short name
 	ShortName string `json:"short_name"`
 	// Game title
@@ -14090,7 +14090,7 @@ func (t *GameHighScores) MarshalJSON() ([]byte, error) {
 // Gift Describes a gift that can be sent to another user or channel chat
 type Gift struct {
 	// Unique identifier of the gift
-	Id string `json:"id"`
+	Id int64 `json:"id,string"`
 	// Identifier of the chat that published the gift; 0 if none
 	PublisherChatId int64 `json:"publisher_chat_id"`
 	// The sticker representing the gift
@@ -16414,7 +16414,7 @@ func (t *InlineQueryResultPhoto) MarshalJSON() ([]byte, error) {
 // InlineQueryResults Represents the results of the inline query. Use sendInlineQueryResultMessage to send the result of the query
 type InlineQueryResults struct {
 	// Unique identifier of the inline query
-	InlineQueryId string `json:"inline_query_id"`
+	InlineQueryId int64 `json:"inline_query_id,string"`
 	// Button to be shown above inline query results; may be null
 	Button *InlineQueryResultsButton `json:"button,omitempty"`
 	// Results of the query
@@ -16736,7 +16736,7 @@ func (t *InputBackgroundPrevious) MarshalJSON() ([]byte, error) {
 // InputBackgroundRemote A background from the server @background_id The background identifier
 type InputBackgroundRemote struct {
 	//
-	BackgroundId string `json:"background_id"`
+	BackgroundId int64 `json:"background_id,string"`
 }
 
 func (t *InputBackgroundRemote) Type() string {
@@ -16878,7 +16878,7 @@ func (t *InputChatPhotoAnimation) UnmarshalJSON(data []byte) error {
 // InputChatPhotoPrevious A previously used profile photo of the current user @chat_photo_id Identifier of the current user's profile photo to reuse
 type InputChatPhotoPrevious struct {
 	//
-	ChatPhotoId string `json:"chat_photo_id"`
+	ChatPhotoId int64 `json:"chat_photo_id,string"`
 }
 
 func (t *InputChatPhotoPrevious) Type() string {
@@ -20154,7 +20154,7 @@ func (t *InputStoryAreas) MarshalJSON() ([]byte, error) {
 // InputStoryAreaTypeFoundVenue An area pointing to a venue found by the bot getOption("venue_search_bot_username")
 type InputStoryAreaTypeFoundVenue struct {
 	// Identifier of the inline query, used to found the venue
-	QueryId string `json:"query_id"`
+	QueryId int64 `json:"query_id,string"`
 	// Identifier of the inline query result
 	ResultId string `json:"result_id"`
 }
@@ -24657,9 +24657,9 @@ type Message struct {
 	// For channel posts and anonymous group messages, optional author signature
 	AuthorSignature string `json:"author_signature"`
 	// Unique identifier of an album this message belongs to; 0 if none. Only audios, documents, photos and videos can be grouped together in albums
-	MediaAlbumId string `json:"media_album_id"`
+	MediaAlbumId int64 `json:"media_album_id,string"`
 	// Unique identifier of the effect added to the message; 0 if none
-	EffectId string `json:"effect_id"`
+	EffectId int64 `json:"effect_id,string"`
 	// Information about the restrictions that must be applied to the message content; may be null if none
 	RestrictionInfo *RestrictionInfo `json:"restriction_info,omitempty"`
 	// IETF language tag of the message language on which it can be summarized; empty if summary isn't available for the message
@@ -25666,7 +25666,7 @@ func (t *MessageDocument) MarshalJSON() ([]byte, error) {
 // MessageEffect Contains information about an effect added to a message
 type MessageEffect struct {
 	// Unique identifier of the effect
-	Id string `json:"id"`
+	Id int64 `json:"id,string"`
 	// Static icon for the effect in WEBP format; may be null if none
 	StaticIcon *Sticker `json:"static_icon,omitempty"`
 	// Emoji corresponding to the effect that can be used if static icon isn't available
@@ -25948,7 +25948,7 @@ type MessageForumTopicEdited struct {
 	// True, if icon's custom_emoji_id is changed
 	EditIconCustomEmojiId bool `json:"edit_icon_custom_emoji_id"`
 	// New unique identifier of the custom emoji shown on the topic icon; 0 if none. Must be ignored if edit_icon_custom_emoji_id is false
-	IconCustomEmojiId string `json:"icon_custom_emoji_id"`
+	IconCustomEmojiId int64 `json:"icon_custom_emoji_id,string"`
 }
 
 func (t *MessageForumTopicEdited) Type() string {
@@ -26092,7 +26092,7 @@ type MessageGameScore struct {
 	//
 	GameMessageId int64 `json:"game_message_id"`
 	//
-	GameId string `json:"game_id"`
+	GameId int64 `json:"game_id,string"`
 	//
 	Score int32 `json:"score"`
 }
@@ -26219,7 +26219,7 @@ type MessageGiftedPremium struct {
 	// Cryptocurrency used to pay for the gift; may be empty if none
 	Cryptocurrency string `json:"cryptocurrency"`
 	// The paid amount, in the smallest units of the cryptocurrency; 0 if none
-	CryptocurrencyAmount string `json:"cryptocurrency_amount"`
+	CryptocurrencyAmount int64 `json:"cryptocurrency_amount,string"`
 	// Number of months the Telegram Premium subscription will be active after code activation; 0 if the number of months isn't integer
 	MonthCount int32 `json:"month_count"`
 	// Number of days the Telegram Premium subscription will be active
@@ -26258,7 +26258,7 @@ type MessageGiftedStars struct {
 	// Cryptocurrency used to pay for the gift; may be empty if none
 	Cryptocurrency string `json:"cryptocurrency"`
 	// The paid amount, in the smallest units of the cryptocurrency; 0 if none
-	CryptocurrencyAmount string `json:"cryptocurrency_amount"`
+	CryptocurrencyAmount int64 `json:"cryptocurrency_amount,string"`
 	// Number of Telegram Stars that were gifted
 	StarCount int64 `json:"star_count"`
 	// Identifier of the transaction for Telegram Stars purchase; for receiver only
@@ -27371,7 +27371,7 @@ type MessagePremiumGiftCode struct {
 	// Cryptocurrency used to pay for the gift; may be empty if none or unknown
 	Cryptocurrency string `json:"cryptocurrency"`
 	// The paid amount, in the smallest units of the cryptocurrency; 0 if unknown
-	CryptocurrencyAmount string `json:"cryptocurrency_amount"`
+	CryptocurrencyAmount int64 `json:"cryptocurrency_amount,string"`
 	// Number of months the Telegram Premium subscription will be active after code activation; 0 if the number of months isn't integer
 	MonthCount int32 `json:"month_count"`
 	// Number of days the Telegram Premium subscription will be active after code activation
@@ -28317,7 +28317,7 @@ type MessageSendOptions struct {
 	// Message scheduling state; pass null to send message immediately. Messages sent to a secret chat, to a chat with paid messages, to a channel direct messages chat,
 	SchedulingState MessageSchedulingState `json:"scheduling_state,omitempty"`
 	// Identifier of the effect to apply to the message; pass 0 if none; applicable only to sendMessage, sendMessageAlbum in private chats and forwardMessages with one message to private chats
-	EffectId string `json:"effect_id"`
+	EffectId int64 `json:"effect_id,string"`
 	// Non-persistent identifier, which will be returned back in messageSendingStatePending object and can be used to match sent messages and corresponding updateNewMessage updates
 	SendingId int32 `json:"sending_id"`
 	// Pass true to get a fake message instead of actually sending them
@@ -30267,7 +30267,7 @@ func (t *NotificationSettingsScopePrivateChats) MarshalJSON() ([]byte, error) {
 // NotificationSound Describes a notification sound in MP3 format
 type NotificationSound struct {
 	// Unique identifier of the notification sound
-	Id string `json:"id"`
+	Id int64 `json:"id,string"`
 	// Duration of the sound, in seconds
 	Duration int32 `json:"duration"`
 	// Point in time (Unix timestamp) when the sound was created
@@ -30513,7 +30513,7 @@ func (t *OptionValueEmpty) MarshalJSON() ([]byte, error) {
 // OptionValueInteger Represents an integer option @value The value of the option
 type OptionValueInteger struct {
 	//
-	Value string `json:"value"`
+	Value int64 `json:"value,string"`
 }
 
 func (t *OptionValueInteger) Type() string {
@@ -32357,7 +32357,7 @@ type Passkey struct {
 	// Point in time (Unix timestamp) when the passkey was used last time; 0 if never
 	LastUsageDate int32 `json:"last_usage_date"`
 	// Identifier of the custom emoji that is used as the icon of the software, which created the passkey; 0 if unknown
-	SoftwareIconCustomEmojiId string `json:"software_icon_custom_emoji_id"`
+	SoftwareIconCustomEmojiId int64 `json:"software_icon_custom_emoji_id,string"`
 }
 
 func (t *Passkey) Type() string {
@@ -33447,7 +33447,7 @@ func (t *PasswordState) MarshalJSON() ([]byte, error) {
 // PaymentForm Contains information about an invoice payment form
 type PaymentForm struct {
 	// The payment form identifier
-	Id string `json:"id"`
+	Id int64 `json:"id,string"`
 	// Type of the payment form
 	TypeField PaymentFormType `json:"type"`
 	// User identifier of the seller bot
@@ -34121,7 +34121,7 @@ func (t *Point) MarshalJSON() ([]byte, error) {
 // Poll Describes a poll
 type Poll struct {
 	// Unique poll identifier
-	Id string `json:"id"`
+	Id int64 `json:"id,string"`
 	// Poll question; 1-300 characters. Only custom emoji entities are allowed
 	Question *FormattedText `json:"question"`
 	// List of poll answer options
@@ -36016,7 +36016,7 @@ func (t *PremiumStoryFeatureVideoQuality) MarshalJSON() ([]byte, error) {
 // PrepaidGiveaway Describes a prepaid giveaway
 type PrepaidGiveaway struct {
 	// Unique identifier of the prepaid giveaway
-	Id string `json:"id"`
+	Id int64 `json:"id,string"`
 	// Number of users which will receive giveaway prize
 	WinnerCount int32 `json:"winner_count"`
 	// Prize of the giveaway
@@ -36068,7 +36068,7 @@ func (t *PrepaidGiveaway) UnmarshalJSON(data []byte) error {
 // PreparedInlineMessage Represents a ready to send inline message. Use sendInlineQueryResultMessage to send the message
 type PreparedInlineMessage struct {
 	// Unique identifier of the inline query to pass to sendInlineQueryResultMessage
-	InlineQueryId string `json:"inline_query_id"`
+	InlineQueryId int64 `json:"inline_query_id,string"`
 	// Resulted inline message of the query
 	Result InlineQueryResult `json:"result"`
 	// Types of the chats to which the message can be sent
@@ -36218,7 +36218,7 @@ func (t *ProfileAccentColors) MarshalJSON() ([]byte, error) {
 // ProfilePhoto Describes a user profile photo
 type ProfilePhoto struct {
 	// Photo identifier; 0 for an empty photo. Can be used to find a photo in a list of user profile photos
-	Id string `json:"id"`
+	Id int64 `json:"id,string"`
 	// A small (160x160) user profile photo. The file can be downloaded only before the photo is changed
 	Small *File `json:"small"`
 	// A big (640x640) user profile photo. The file can be downloaded only before the photo is changed
@@ -37851,7 +37851,7 @@ func (t *PushMessageContentVoiceNote) MarshalJSON() ([]byte, error) {
 // PushReceiverId Contains a globally unique push receiver identifier, which can be used to identify which account has received a push notification @id The globally unique identifier of push notification subscription
 type PushReceiverId struct {
 	//
-	Id string `json:"id"`
+	Id int64 `json:"id,string"`
 }
 
 func (t *PushReceiverId) Type() string {
@@ -37882,7 +37882,7 @@ type QuickReplyMessage struct {
 	// If non-zero, the user identifier of the bot through which this message was sent
 	ViaBotUserId int64 `json:"via_bot_user_id"`
 	// Unique identifier of an album this message belongs to; 0 if none. Only audios, documents, photos and videos can be grouped together in albums
-	MediaAlbumId string `json:"media_album_id"`
+	MediaAlbumId int64 `json:"media_album_id,string"`
 	// Content of the message
 	Content MessageContent `json:"content"`
 	// Inline keyboard reply markup for the message; may be null if none
@@ -37998,7 +37998,7 @@ type ReactionNotificationSettings struct {
 	// Source of story reactions for which notifications are shown
 	StoryReactionSource ReactionNotificationSource `json:"story_reaction_source"`
 	// Identifier of the notification sound to be played; 0 if sound is disabled
-	SoundId string `json:"sound_id"`
+	SoundId int64 `json:"sound_id,string"`
 	// True, if reaction sender and emoji must be displayed in notifications
 	ShowPreview bool `json:"show_preview"`
 }
@@ -38115,7 +38115,7 @@ func (t *ReactionNotificationSourceNone) MarshalJSON() ([]byte, error) {
 // ReactionTypeCustomEmoji A reaction with a custom emoji @custom_emoji_id Unique identifier of the custom emoji
 type ReactionTypeCustomEmoji struct {
 	//
-	CustomEmojiId string `json:"custom_emoji_id"`
+	CustomEmojiId int64 `json:"custom_emoji_id,string"`
 }
 
 func (t *ReactionTypeCustomEmoji) Type() string {
@@ -40127,7 +40127,7 @@ type SavedMessagesTopic struct {
 	// True, if the topic is pinned
 	IsPinned bool `json:"is_pinned"`
 	// A parameter used to determine order of the topic in the topic list. Topics must be sorted by the order in descending order
-	Order string `json:"order"`
+	Order int64 `json:"order,string"`
 	// Last message in the topic; may be null if none or unknown
 	LastMessage *Message `json:"last_message,omitempty"`
 	// A draft of a message in the topic; may be null if none
@@ -40267,7 +40267,7 @@ type ScopeNotificationSettings struct {
 	// Time left before notifications will be unmuted, in seconds
 	MuteFor int32 `json:"mute_for"`
 	// Identifier of the notification sound to be played; 0 if sound is disabled
-	SoundId string `json:"sound_id"`
+	SoundId int64 `json:"sound_id,string"`
 	// True, if message content must be displayed in notifications
 	ShowPreview bool `json:"show_preview"`
 	// If true, story notifications are received only for the first 5 chats from topChatCategoryUsers regardless of the value of mute_stories
@@ -40275,7 +40275,7 @@ type ScopeNotificationSettings struct {
 	// True, if story notifications are disabled
 	MuteStories bool `json:"mute_stories"`
 	// Identifier of the notification sound to be played for stories; 0 if sound is disabled
-	StorySoundId string `json:"story_sound_id"`
+	StorySoundId int64 `json:"story_sound_id,string"`
 	// True, if the chat that posted a story must be displayed in notifications
 	ShowStoryPoster bool `json:"show_story_poster"`
 	// True, if notifications for incoming pinned messages will be created as for an ordinary unread message
@@ -40927,7 +40927,7 @@ func (t *SentWebAppMessage) MarshalJSON() ([]byte, error) {
 // Session Contains information about one session in a Telegram application used by the current user. Sessions must be shown to the user in the returned order
 type Session struct {
 	// Session identifier
-	Id string `json:"id"`
+	Id int64 `json:"id,string"`
 	// True, if this session is the current session
 	IsCurrent bool `json:"is_current"`
 	// True, if a 2-step verification password is needed to complete authorization of the session
@@ -41599,7 +41599,7 @@ type SponsoredMessage struct {
 	// Identifier of the accent color for title, button text and message background
 	AccentColorId int32 `json:"accent_color_id"`
 	// Identifier of a custom emoji to be shown on the message background; 0 if none
-	BackgroundCustomEmojiId string `json:"background_custom_emoji_id"`
+	BackgroundCustomEmojiId int64 `json:"background_custom_emoji_id,string"`
 	// If non-empty, additional information about the sponsored message to be shown along with the message
 	AdditionalInfo string `json:"additional_info"`
 }
@@ -43779,9 +43779,9 @@ func (t *StatisticalValue) MarshalJSON() ([]byte, error) {
 // Sticker Describes a sticker
 type Sticker struct {
 	// Unique sticker identifier within the set; 0 if none
-	Id string `json:"id"`
+	Id int64 `json:"id,string"`
 	// Identifier of the sticker set to which the sticker belongs; 0 if none
-	SetId string `json:"set_id"`
+	SetId int64 `json:"set_id,string"`
 	// Sticker width; as defined by the sender
 	Width int32 `json:"width"`
 	// Sticker height; as defined by the sender
@@ -43910,7 +43910,7 @@ func (t *StickerFormatWebp) MarshalJSON() ([]byte, error) {
 // StickerFullTypeCustomEmoji The sticker is a custom emoji to be used inside message text and caption. Currently, only Telegram Premium users can use custom emoji
 type StickerFullTypeCustomEmoji struct {
 	// Identifier of the custom emoji
-	CustomEmojiId string `json:"custom_emoji_id"`
+	CustomEmojiId int64 `json:"custom_emoji_id,string"`
 	// True, if the sticker must be repainted to a text color in messages, the color of the Telegram Premium badge in emoji status, white color on chat photos, or another appropriate color in other places
 	NeedsRepainting bool `json:"needs_repainting"`
 }
@@ -44002,7 +44002,7 @@ func (t *Stickers) MarshalJSON() ([]byte, error) {
 // StickerSet Represents a sticker set
 type StickerSet struct {
 	// Identifier of the sticker set
-	Id string `json:"id"`
+	Id int64 `json:"id,string"`
 	// Title of the sticker set
 	Title string `json:"title"`
 	// Name of the sticker set
@@ -44074,7 +44074,7 @@ func (t *StickerSet) UnmarshalJSON(data []byte) error {
 // StickerSetInfo Represents short information about a sticker set
 type StickerSetInfo struct {
 	// Identifier of the sticker set
-	Id string `json:"id"`
+	Id int64 `json:"id,string"`
 	// Title of the sticker set
 	Title string `json:"title"`
 	// Name of the sticker set
@@ -46522,9 +46522,9 @@ type SupergroupFullInfo struct {
 	// Number of Telegram Stars that must be paid by the current user for each sent message to the supergroup
 	OutgoingPaidMessageStarCount int64 `json:"outgoing_paid_message_star_count"`
 	// Identifier of the supergroup sticker set that must be shown before user sticker sets; 0 if none
-	StickerSetId string `json:"sticker_set_id"`
+	StickerSetId int64 `json:"sticker_set_id,string"`
 	// Identifier of the custom emoji sticker set that can be used in the supergroup without Telegram Premium subscription; 0 if none
-	CustomEmojiStickerSetId string `json:"custom_emoji_sticker_set_id"`
+	CustomEmojiStickerSetId int64 `json:"custom_emoji_sticker_set_id,string"`
 	// Location to which the supergroup is connected; may be null if none
 	Location *ChatLocation `json:"location,omitempty"`
 	// Primary invite link for the chat; may be null. For chat administrators with can_invite_users right only
@@ -47520,7 +47520,7 @@ func (t *TextEntityTypeCode) MarshalJSON() ([]byte, error) {
 // TextEntityTypeCustomEmoji A custom emoji. The text behind a custom emoji must be an emoji. Only premium users can use premium custom emoji @custom_emoji_id Unique identifier of the custom emoji
 type TextEntityTypeCustomEmoji struct {
 	//
-	CustomEmojiId string `json:"custom_emoji_id"`
+	CustomEmojiId int64 `json:"custom_emoji_id,string"`
 }
 
 func (t *TextEntityTypeCustomEmoji) Type() string {
@@ -48379,7 +48379,7 @@ func (t *TMeUrlTypeChatInvite) MarshalJSON() ([]byte, error) {
 // TMeUrlTypeStickerSet A URL linking to a sticker set @sticker_set_id Identifier of the sticker set
 type TMeUrlTypeStickerSet struct {
 	//
-	StickerSetId string `json:"sticker_set_id"`
+	StickerSetId int64 `json:"sticker_set_id,string"`
 }
 
 func (t *TMeUrlTypeStickerSet) Type() string {
@@ -48496,11 +48496,11 @@ func (t *TonRevenueStatistics) UnmarshalJSON(data []byte) error {
 // TonRevenueStatus Contains information about Toncoins earned by the current user
 type TonRevenueStatus struct {
 	// Total Toncoin amount earned; in the smallest units of the cryptocurrency
-	TotalAmount string `json:"total_amount"`
+	TotalAmount int64 `json:"total_amount,string"`
 	// The Toncoin amount that isn't withdrawn yet; in the smallest units of the cryptocurrency
-	BalanceAmount string `json:"balance_amount"`
+	BalanceAmount int64 `json:"balance_amount,string"`
 	// The Toncoin amount that is available for withdrawal; in the smallest units of the cryptocurrency
-	AvailableAmount string `json:"available_amount"`
+	AvailableAmount int64 `json:"available_amount,string"`
 	// True, if Toncoins can be withdrawn
 	WithdrawalEnabled bool `json:"withdrawal_enabled"`
 }
@@ -49029,7 +49029,7 @@ func (t *TrendingStickerSets) MarshalJSON() ([]byte, error) {
 // UnconfirmedSession Contains information about an unconfirmed session
 type UnconfirmedSession struct {
 	// Session identifier
-	Id string `json:"id"`
+	Id int64 `json:"id,string"`
 	// Point in time (Unix timestamp) when the user has logged in
 	LogInDate int32 `json:"log_in_date"`
 	// Model of the device that was used for the session creation, as provided by the application
@@ -49335,7 +49335,7 @@ type UpdateApplicationVerificationRequired struct {
 	// Unique base64url-encoded nonce for the classic Play Integrity verification (https://developer.android.com/google/play/integrity/classic) for Android,
 	Nonce string `json:"nonce"`
 	// Cloud project number to pass to the Play Integrity API on Android
-	CloudProjectNumber string `json:"cloud_project_number"`
+	CloudProjectNumber int64 `json:"cloud_project_number,string"`
 }
 
 func (t *UpdateApplicationVerificationRequired) Type() string {
@@ -49475,9 +49475,9 @@ func (t *UpdateAutosaveSettings) UnmarshalJSON(data []byte) error {
 // UpdateAvailableMessageEffects The list of available message effects has changed
 type UpdateAvailableMessageEffects struct {
 	// The new list of available message effects from emoji reactions
-	ReactionEffectIds []string `json:"reaction_effect_ids"`
+	ReactionEffectIds Int64Slice `json:"reaction_effect_ids"`
 	// The new list of available message effects from Premium stickers
-	StickerEffectIds []string `json:"sticker_effect_ids"`
+	StickerEffectIds Int64Slice `json:"sticker_effect_ids"`
 }
 
 func (t *UpdateAvailableMessageEffects) Type() string {
@@ -49650,13 +49650,13 @@ type UpdateChatAccentColors struct {
 	// The new chat accent color identifier
 	AccentColorId int32 `json:"accent_color_id"`
 	// The new identifier of a custom emoji to be shown on the reply header and link preview background; 0 if none
-	BackgroundCustomEmojiId string `json:"background_custom_emoji_id"`
+	BackgroundCustomEmojiId int64 `json:"background_custom_emoji_id,string"`
 	// Color scheme based on an upgraded gift to be used for the chat instead of accent_color_id and background_custom_emoji_id; may be null if none
 	UpgradedGiftColors *UpgradedGiftColors `json:"upgraded_gift_colors,omitempty"`
 	// The new chat profile accent color identifier; -1 if none
 	ProfileAccentColorId int32 `json:"profile_accent_color_id"`
 	// The new identifier of a custom emoji to be shown on the profile background; 0 if none
-	ProfileBackgroundCustomEmojiId string `json:"profile_background_custom_emoji_id"`
+	ProfileBackgroundCustomEmojiId int64 `json:"profile_background_custom_emoji_id,string"`
 }
 
 func (t *UpdateChatAccentColors) Type() string {
@@ -51262,7 +51262,7 @@ func (t *UpdateFileDownloads) MarshalJSON() ([]byte, error) {
 // UpdateFileGenerationStart The file generation process needs to be started by the application. Use setFileGenerationProgress and finishFileGeneration to generate the file
 type UpdateFileGenerationStart struct {
 	// Unique identifier for the generation process
-	GenerationId string `json:"generation_id"`
+	GenerationId int64 `json:"generation_id,string"`
 	// The original path specified by the application in inputFileGenerated
 	OriginalPath string `json:"original_path"`
 	// The path to a file that must be created and where the new file must be generated by the application.
@@ -51291,7 +51291,7 @@ func (t *UpdateFileGenerationStart) MarshalJSON() ([]byte, error) {
 // UpdateFileGenerationStop File generation is no longer needed @generation_id Unique identifier for the generation process
 type UpdateFileGenerationStop struct {
 	//
-	GenerationId string `json:"generation_id"`
+	GenerationId int64 `json:"generation_id,string"`
 }
 
 func (t *UpdateFileGenerationStop) Type() string {
@@ -51578,7 +51578,7 @@ type UpdateGroupCallParticipants struct {
 	// Identifier of the group call
 	GroupCallId int32 `json:"group_call_id"`
 	// New list of group call participant user identifiers. The identifiers may be invalid or the corresponding users may be unknown.
-	ParticipantUserIds []string `json:"participant_user_ids"`
+	ParticipantUserIds Int64Slice `json:"participant_user_ids"`
 }
 
 func (t *UpdateGroupCallParticipants) Type() string {
@@ -51655,7 +51655,7 @@ type UpdateInstalledStickerSets struct {
 	//
 	StickerType StickerType `json:"sticker_type"`
 	//
-	StickerSetIds []string `json:"sticker_set_ids"`
+	StickerSetIds Int64Slice `json:"sticker_set_ids"`
 }
 
 func (t *UpdateInstalledStickerSets) Type() string {
@@ -52253,7 +52253,7 @@ func (t *UpdateMessageUnreadReactions) MarshalJSON() ([]byte, error) {
 // UpdateNewBusinessCallbackQuery A new incoming callback query from a business message; for bots only
 type UpdateNewBusinessCallbackQuery struct {
 	// Unique query identifier
-	Id string `json:"id"`
+	Id int64 `json:"id,string"`
 	// Identifier of the user who sent the query
 	SenderUserId int64 `json:"sender_user_id"`
 	// Unique identifier of the business connection
@@ -52261,7 +52261,7 @@ type UpdateNewBusinessCallbackQuery struct {
 	// The message from the business account from which the query originated
 	Message *BusinessMessage `json:"message"`
 	// An identifier uniquely corresponding to the chat a message was sent to
-	ChatInstance string `json:"chat_instance"`
+	ChatInstance int64 `json:"chat_instance,string"`
 	// Query payload
 	Payload CallbackQueryPayload `json:"payload"`
 }
@@ -52334,7 +52334,7 @@ func (t *UpdateNewBusinessMessage) MarshalJSON() ([]byte, error) {
 // UpdateNewCallbackQuery A new incoming callback query; for bots only
 type UpdateNewCallbackQuery struct {
 	// Unique query identifier
-	Id string `json:"id"`
+	Id int64 `json:"id,string"`
 	// Identifier of the user who sent the query
 	SenderUserId int64 `json:"sender_user_id"`
 	// Identifier of the chat where the query was sent
@@ -52342,7 +52342,7 @@ type UpdateNewCallbackQuery struct {
 	// Identifier of the message from which the query originated
 	MessageId int64 `json:"message_id"`
 	// Identifier that uniquely corresponds to the chat to which the message was sent
-	ChatInstance string `json:"chat_instance"`
+	ChatInstance int64 `json:"chat_instance,string"`
 	// Query payload
 	Payload CallbackQueryPayload `json:"payload"`
 }
@@ -52521,7 +52521,7 @@ func (t *UpdateNewCustomEvent) MarshalJSON() ([]byte, error) {
 // UpdateNewCustomQuery A new incoming query; for bots only @id The query identifier @data JSON-serialized query data @timeout Query timeout
 type UpdateNewCustomQuery struct {
 	//
-	Id string `json:"id"`
+	Id int64 `json:"id,string"`
 	//
 	Data string `json:"data"`
 	//
@@ -52623,13 +52623,13 @@ func (t *UpdateNewGroupCallPaidReaction) UnmarshalJSON(data []byte) error {
 // UpdateNewInlineCallbackQuery A new incoming callback query from a message sent via a bot; for bots only
 type UpdateNewInlineCallbackQuery struct {
 	// Unique query identifier
-	Id string `json:"id"`
+	Id int64 `json:"id,string"`
 	// Identifier of the user who sent the query
 	SenderUserId int64 `json:"sender_user_id"`
 	// Identifier of the inline message from which the query originated
 	InlineMessageId string `json:"inline_message_id"`
 	// An identifier uniquely corresponding to the chat a message was sent to
-	ChatInstance string `json:"chat_instance"`
+	ChatInstance int64 `json:"chat_instance,string"`
 	// Query payload
 	Payload CallbackQueryPayload `json:"payload"`
 }
@@ -52677,7 +52677,7 @@ func (t *UpdateNewInlineCallbackQuery) UnmarshalJSON(data []byte) error {
 // UpdateNewInlineQuery A new incoming inline query; for bots only
 type UpdateNewInlineQuery struct {
 	// Unique query identifier
-	Id string `json:"id"`
+	Id int64 `json:"id,string"`
 	// Identifier of the user who sent the query
 	SenderUserId int64 `json:"sender_user_id"`
 	// User location; may be null
@@ -52756,7 +52756,7 @@ func (t *UpdateNewMessage) MarshalJSON() ([]byte, error) {
 // UpdateNewPreCheckoutQuery A new incoming pre-checkout query; for bots only. Contains full information about a checkout
 type UpdateNewPreCheckoutQuery struct {
 	// Unique query identifier
-	Id string `json:"id"`
+	Id int64 `json:"id,string"`
 	// Identifier of the user who sent the query
 	SenderUserId int64 `json:"sender_user_id"`
 	// Currency for the product price
@@ -52791,7 +52791,7 @@ func (t *UpdateNewPreCheckoutQuery) MarshalJSON() ([]byte, error) {
 // UpdateNewShippingQuery A new incoming shipping query; for bots only. Only for invoices with flexible price
 type UpdateNewShippingQuery struct {
 	// Unique query identifier
-	Id string `json:"id"`
+	Id int64 `json:"id,string"`
 	// Identifier of the user who sent the query
 	SenderUserId int64 `json:"sender_user_id"`
 	// Invoice payload
@@ -52853,7 +52853,7 @@ type UpdateNotificationGroup struct {
 	// Chat identifier, which notification settings must be applied to the added notifications
 	NotificationSettingsChatId int64 `json:"notification_settings_chat_id"`
 	// Identifier of the notification sound to be played; 0 if sound is disabled
-	NotificationSoundId string `json:"notification_sound_id"`
+	NotificationSoundId int64 `json:"notification_sound_id,string"`
 	// Total number of unread notifications in the group, can be bigger than number of active notifications
 	TotalCount int32 `json:"total_count"`
 	// List of added group notifications, sorted by notification identifier
@@ -53028,7 +53028,7 @@ type UpdatePendingTextMessage struct {
 	// The forum topic identifier in which the message will be sent; 0 if none
 	ForumTopicId int32 `json:"forum_topic_id"`
 	// Unique identifier of the message draft within the message thread
-	DraftId string `json:"draft_id"`
+	DraftId int64 `json:"draft_id,string"`
 	// Text of the pending message
 	Text *FormattedText `json:"text"`
 }
@@ -53076,7 +53076,7 @@ func (t *UpdatePoll) MarshalJSON() ([]byte, error) {
 // UpdatePollAnswer A user changed the answer to a poll; for bots only
 type UpdatePollAnswer struct {
 	// Unique poll identifier
-	PollId string `json:"poll_id"`
+	PollId int64 `json:"poll_id,string"`
 	// Identifier of the message sender that changed the answer to the poll
 	VoterId MessageSender `json:"voter_id"`
 	// 0-based identifiers of answer options, chosen by the user
@@ -53434,7 +53434,7 @@ func (t *UpdateSavedMessagesTopicCount) MarshalJSON() ([]byte, error) {
 // UpdateSavedNotificationSounds The list of saved notification sounds was updated. This update may not be sent until information about a notification sound was requested for the first time @notification_sound_ids The new list of identifiers of saved notification sounds
 type UpdateSavedNotificationSounds struct {
 	//
-	NotificationSoundIds []string `json:"notification_sound_ids"`
+	NotificationSoundIds Int64Slice `json:"notification_sound_ids"`
 }
 
 func (t *UpdateSavedNotificationSounds) Type() string {
@@ -54495,7 +54495,7 @@ func (t *UpdateVideoPublished) MarshalJSON() ([]byte, error) {
 // UpdateWebAppMessageSent A message was sent by an opened Web App, so the Web App needs to be closed @web_app_launch_id Identifier of Web App launch
 type UpdateWebAppMessageSent struct {
 	//
-	WebAppLaunchId string `json:"web_app_launch_id"`
+	WebAppLaunchId int64 `json:"web_app_launch_id,string"`
 }
 
 func (t *UpdateWebAppMessageSent) Type() string {
@@ -54518,9 +54518,9 @@ func (t *UpdateWebAppMessageSent) MarshalJSON() ([]byte, error) {
 // UpgradedGift Describes an upgraded gift that can be transferred to another owner or transferred to the TON blockchain as an NFT
 type UpgradedGift struct {
 	// Unique identifier of the gift
-	Id string `json:"id"`
+	Id int64 `json:"id,string"`
 	// Unique identifier of the regular gift from which the gift was upgraded; may be 0 for short period of time for old gifts from database
-	RegularGiftId string `json:"regular_gift_id"`
+	RegularGiftId int64 `json:"regular_gift_id,string"`
 	// Identifier of the chat that published the gift; 0 if none
 	PublisherChatId int64 `json:"publisher_chat_id"`
 	// The title of the upgraded gift
@@ -54643,7 +54643,7 @@ func (t *UpgradedGiftAttributeIdBackdrop) MarshalJSON() ([]byte, error) {
 // UpgradedGiftAttributeIdModel Identifier of a gift model @sticker_id Identifier of the sticker representing the model
 type UpgradedGiftAttributeIdModel struct {
 	//
-	StickerId string `json:"sticker_id"`
+	StickerId int64 `json:"sticker_id,string"`
 }
 
 func (t *UpgradedGiftAttributeIdModel) Type() string {
@@ -54666,7 +54666,7 @@ func (t *UpgradedGiftAttributeIdModel) MarshalJSON() ([]byte, error) {
 // UpgradedGiftAttributeIdSymbol Identifier of a gift symbol @sticker_id Identifier of the sticker representing the symbol
 type UpgradedGiftAttributeIdSymbol struct {
 	//
-	StickerId string `json:"sticker_id"`
+	StickerId int64 `json:"sticker_id,string"`
 }
 
 func (t *UpgradedGiftAttributeIdSymbol) Type() string {
@@ -54766,11 +54766,11 @@ func (t *UpgradedGiftBackdropCount) MarshalJSON() ([]byte, error) {
 // UpgradedGiftColors Contains information about color scheme for user's name, background of empty chat photo, replies to messages and link previews
 type UpgradedGiftColors struct {
 	// Unique identifier of the upgraded gift colors
-	Id string `json:"id"`
+	Id int64 `json:"id,string"`
 	// Custom emoji identifier of the model of the upgraded gift
-	ModelCustomEmojiId string `json:"model_custom_emoji_id"`
+	ModelCustomEmojiId int64 `json:"model_custom_emoji_id,string"`
 	// Custom emoji identifier of the symbol of the upgraded gift
-	SymbolCustomEmojiId string `json:"symbol_custom_emoji_id"`
+	SymbolCustomEmojiId int64 `json:"symbol_custom_emoji_id,string"`
 	// Accent color to use in light themes in RGB format
 	LightThemeAccentColor int32 `json:"light_theme_accent_color"`
 	// The list of 1-3 colors in RGB format, describing the accent color, as expected to be shown in light themes
@@ -55231,13 +55231,13 @@ type User struct {
 	// Identifier of the accent color for name, and backgrounds of profile photo, reply header, and link preview
 	AccentColorId int32 `json:"accent_color_id"`
 	// Identifier of a custom emoji to be shown on the reply header and link preview background; 0 if none
-	BackgroundCustomEmojiId string `json:"background_custom_emoji_id"`
+	BackgroundCustomEmojiId int64 `json:"background_custom_emoji_id,string"`
 	// Color scheme based on an upgraded gift to be used for the user instead of accent_color_id and background_custom_emoji_id; may be null if none
 	UpgradedGiftColors *UpgradedGiftColors `json:"upgraded_gift_colors,omitempty"`
 	// Identifier of the accent color for the user's profile; -1 if none
 	ProfileAccentColorId int32 `json:"profile_accent_color_id"`
 	// Identifier of a custom emoji to be shown on the background of the user's profile; 0 if none
-	ProfileBackgroundCustomEmojiId string `json:"profile_background_custom_emoji_id"`
+	ProfileBackgroundCustomEmojiId int64 `json:"profile_background_custom_emoji_id,string"`
 	// Emoji status to be shown instead of the default Telegram Premium badge; may be null
 	EmojiStatus *EmojiStatus `json:"emoji_status,omitempty"`
 	// The user is a contact of the current user
@@ -56548,7 +56548,7 @@ type VerificationStatus struct {
 	// True, if the chat or the user is marked as fake by Telegram
 	IsFake bool `json:"is_fake"`
 	// Identifier of the custom emoji to be shown as verification sign provided by a bot for the user; 0 if none
-	BotVerificationIconCustomEmojiId string `json:"bot_verification_icon_custom_emoji_id"`
+	BotVerificationIconCustomEmojiId int64 `json:"bot_verification_icon_custom_emoji_id,string"`
 }
 
 func (t *VerificationStatus) Type() string {
@@ -56880,7 +56880,7 @@ func (t *WebApp) MarshalJSON() ([]byte, error) {
 // WebAppInfo Contains information about a Web App @launch_id Unique identifier for the Web App launch @url A Web App URL to open in a web view
 type WebAppInfo struct {
 	//
-	LaunchId string `json:"launch_id"`
+	LaunchId int64 `json:"launch_id,string"`
 	//
 	Url string `json:"url"`
 }

@@ -330,7 +330,7 @@ func (c *Client) AddProxy(server string, port int32, enable bool, typeField Prox
 }
 
 // AddQuickReplyShortcutInlineQueryResultMessage Adds a message to a quick reply shortcut via inline bot. If shortcut doesn't exist and there are less than getOption("quick_reply_shortcut_count_max") shortcuts, then a new shortcut is created.
-func (c *Client) AddQuickReplyShortcutInlineQueryResultMessage(shortcutName string, replyToMessageId int64, queryId string, resultId string, hideViaBot bool) (*QuickReplyMessage, error) {
+func (c *Client) AddQuickReplyShortcutInlineQueryResultMessage(shortcutName string, replyToMessageId int64, queryId int64, resultId string, hideViaBot bool) (*QuickReplyMessage, error) {
 	req := &AddQuickReplyShortcutInlineQueryResultMessage{
 		ShortcutName:     shortcutName,
 		ReplyToMessageId: replyToMessageId,
@@ -476,7 +476,7 @@ func (c *Client) AllowUnpaidMessagesFromUser(userId int64, refundPayments bool) 
 }
 
 // AnswerCallbackQuery Sets the result of a callback query; for bots only
-func (c *Client) AnswerCallbackQuery(callbackQueryId string, text string, showAlert bool, url string, cacheTime int32) (*Ok, error) {
+func (c *Client) AnswerCallbackQuery(callbackQueryId int64, text string, showAlert bool, url string, cacheTime int32) (*Ok, error) {
 	req := &AnswerCallbackQuery{
 		CallbackQueryId: callbackQueryId,
 		Text:            text,
@@ -492,7 +492,7 @@ func (c *Client) AnswerCallbackQuery(callbackQueryId string, text string, showAl
 }
 
 // AnswerCustomQuery Answers a custom query; for bots only @custom_query_id Identifier of a custom query @data JSON-serialized answer to the query
-func (c *Client) AnswerCustomQuery(customQueryId string, data string) (*Ok, error) {
+func (c *Client) AnswerCustomQuery(customQueryId int64, data string) (*Ok, error) {
 	req := &AnswerCustomQuery{
 		CustomQueryId: customQueryId,
 		Data:          data,
@@ -505,7 +505,7 @@ func (c *Client) AnswerCustomQuery(customQueryId string, data string) (*Ok, erro
 }
 
 // AnswerInlineQuery Sets the result of an inline query; for bots only
-func (c *Client) AnswerInlineQuery(inlineQueryId string, isPersonal bool, results []InputInlineQueryResult, cacheTime int32, nextOffset string, opts *AnswerInlineQueryOpts) (*Ok, error) {
+func (c *Client) AnswerInlineQuery(inlineQueryId int64, isPersonal bool, results []InputInlineQueryResult, cacheTime int32, nextOffset string, opts *AnswerInlineQueryOpts) (*Ok, error) {
 	req := &AnswerInlineQuery{
 		InlineQueryId: inlineQueryId,
 		IsPersonal:    isPersonal,
@@ -524,7 +524,7 @@ func (c *Client) AnswerInlineQuery(inlineQueryId string, isPersonal bool, result
 }
 
 // AnswerPreCheckoutQuery Sets the result of a pre-checkout query; for bots only @pre_checkout_query_id Identifier of the pre-checkout query @error_message An error message, empty on success
-func (c *Client) AnswerPreCheckoutQuery(preCheckoutQueryId string, errorMessage string) (*Ok, error) {
+func (c *Client) AnswerPreCheckoutQuery(preCheckoutQueryId int64, errorMessage string) (*Ok, error) {
 	req := &AnswerPreCheckoutQuery{
 		PreCheckoutQueryId: preCheckoutQueryId,
 		ErrorMessage:       errorMessage,
@@ -537,7 +537,7 @@ func (c *Client) AnswerPreCheckoutQuery(preCheckoutQueryId string, errorMessage 
 }
 
 // AnswerShippingQuery Sets the result of a shipping query; for bots only @shipping_query_id Identifier of the shipping query @shipping_options Available shipping options @error_message An error message, empty on success
-func (c *Client) AnswerShippingQuery(shippingQueryId string, shippingOptions []ShippingOption, errorMessage string) (*Ok, error) {
+func (c *Client) AnswerShippingQuery(shippingQueryId int64, shippingOptions []ShippingOption, errorMessage string) (*Ok, error) {
 	req := &AnswerShippingQuery{
 		ShippingQueryId: shippingQueryId,
 		ShippingOptions: shippingOptions,
@@ -618,7 +618,7 @@ func (c *Client) BanChatMember(chatId int64, memberId MessageSender, bannedUntil
 }
 
 // BanGroupCallParticipants Bans users from a group call not bound to a chat; requires groupCall.is_owned. Only the owner of the group call can invite the banned users back
-func (c *Client) BanGroupCallParticipants(groupCallId int32, userIds []string) (*Ok, error) {
+func (c *Client) BanGroupCallParticipants(groupCallId int32, userIds Int64Slice) (*Ok, error) {
 	req := &BanGroupCallParticipants{
 		GroupCallId: groupCallId,
 		UserIds:     userIds,
@@ -754,7 +754,7 @@ func (c *Client) CanPurchaseFromStore(purpose StorePaymentPurpose) (*Ok, error) 
 }
 
 // CanSendGift Checks whether a gift with next_send_date in the future can be sent already
-func (c *Client) CanSendGift(giftId string) (CanSendGiftResult, error) {
+func (c *Client) CanSendGift(giftId int64) (CanSendGiftResult, error) {
 	req := &CanSendGift{
 		GiftId: giftId,
 	}
@@ -801,7 +801,7 @@ func (c *Client) ChangeImportedContacts(contacts []ImportedContact) (*ImportedCo
 }
 
 // ChangeStickerSet Installs/uninstalls or activates/archives a sticker set @set_id Identifier of the sticker set @is_installed The new value of is_installed @is_archived The new value of is_archived. A sticker set can't be installed and archived simultaneously
-func (c *Client) ChangeStickerSet(setId string, isInstalled bool, isArchived bool) (*Ok, error) {
+func (c *Client) ChangeStickerSet(setId int64, isInstalled bool, isArchived bool) (*Ok, error) {
 	req := &ChangeStickerSet{
 		SetId:       setId,
 		IsInstalled: isInstalled,
@@ -1233,7 +1233,7 @@ func (c *Client) CloseChat(chatId int64) (*Ok, error) {
 }
 
 // CloseGiftAuction Informs TDLib that a gift auction was closed by the user @gift_id Identifier of the gift, which auction was closed
-func (c *Client) CloseGiftAuction(giftId string) (*Ok, error) {
+func (c *Client) CloseGiftAuction(giftId int64) (*Ok, error) {
 	req := &CloseGiftAuction{
 		GiftId: giftId,
 	}
@@ -1270,7 +1270,7 @@ func (c *Client) CloseStory(storyPosterChatId int64, storyId int32) (*Ok, error)
 }
 
 // CloseWebApp Informs TDLib that a previously opened Web App was closed @web_app_launch_id Identifier of Web App launch, received from openWebApp
-func (c *Client) CloseWebApp(webAppLaunchId string) (*Ok, error) {
+func (c *Client) CloseWebApp(webAppLaunchId int64) (*Ok, error) {
 	req := &CloseWebApp{
 		WebAppLaunchId: webAppLaunchId,
 	}
@@ -1319,7 +1319,7 @@ func (c *Client) ConfirmQrCodeAuthentication(link string) (*Session, error) {
 }
 
 // ConfirmSession Confirms an unconfirmed session of the current user from another device @session_id Session identifier
-func (c *Client) ConfirmSession(sessionId string) (*Ok, error) {
+func (c *Client) ConfirmSession(sessionId int64) (*Ok, error) {
 	req := &ConfirmSession{
 		SessionId: sessionId,
 	}
@@ -2048,7 +2048,7 @@ func (c *Client) DeletePassportElement(typeField PassportElementType) (*Ok, erro
 }
 
 // DeleteProfilePhoto Deletes a profile photo @profile_photo_id Identifier of the profile photo to delete
-func (c *Client) DeleteProfilePhoto(profilePhotoId string) (*Ok, error) {
+func (c *Client) DeleteProfilePhoto(profilePhotoId int64) (*Ok, error) {
 	req := &DeleteProfilePhoto{
 		ProfilePhotoId: profilePhotoId,
 	}
@@ -2214,7 +2214,7 @@ func (c *Client) DisableProxy() (*Ok, error) {
 }
 
 // DiscardCall Discards a call
-func (c *Client) DiscardCall(callId int32, isDisconnected bool, inviteLink string, duration int32, isVideo bool, connectionId string) (*Ok, error) {
+func (c *Client) DiscardCall(callId int32, isDisconnected bool, inviteLink string, duration int32, isVideo bool, connectionId int64) (*Ok, error) {
 	req := &DiscardCall{
 		CallId:         callId,
 		IsDisconnected: isDisconnected,
@@ -2254,7 +2254,7 @@ func (c *Client) DisconnectAllWebsites() (*Ok, error) {
 }
 
 // DisconnectWebsite Disconnects website from the current user's Telegram account @website_id Website identifier
-func (c *Client) DisconnectWebsite(websiteId string) (*Ok, error) {
+func (c *Client) DisconnectWebsite(websiteId int64) (*Ok, error) {
 	req := &DisconnectWebsite{
 		WebsiteId: websiteId,
 	}
@@ -2522,7 +2522,7 @@ func (c *Client) EditCustomLanguagePackInfo(info *LanguagePackInfo) (*Ok, error)
 }
 
 // EditForumTopic Edits title and icon of a topic in a forum supergroup chat or a chat with a bot with topics; for supergroup chats requires can_manage_topics administrator right
-func (c *Client) EditForumTopic(chatId int64, forumTopicId int32, name string, editIconCustomEmoji bool, iconCustomEmojiId string) (*Ok, error) {
+func (c *Client) EditForumTopic(chatId int64, forumTopicId int32, name string, editIconCustomEmoji bool, iconCustomEmojiId int64) (*Ok, error) {
 	req := &EditForumTopic{
 		ChatId:              chatId,
 		ForumTopicId:        forumTopicId,
@@ -2894,7 +2894,7 @@ func (c *Client) EndGroupCallScreenSharing(groupCallId int32) (*Ok, error) {
 }
 
 // FinishFileGeneration Finishes the file generation
-func (c *Client) FinishFileGeneration(generationId string, opts *FinishFileGenerationOpts) (*Ok, error) {
+func (c *Client) FinishFileGeneration(generationId int64, opts *FinishFileGenerationOpts) (*Ok, error) {
 	req := &FinishFileGeneration{
 		GenerationId: generationId,
 	}
@@ -3018,7 +3018,7 @@ func (c *Client) GetArchiveChatListSettings() (*ArchiveChatListSettings, error) 
 }
 
 // GetArchivedStickerSets Returns a list of archived sticker sets
-func (c *Client) GetArchivedStickerSets(stickerType StickerType, offsetStickerSetId string, limit int32) (*StickerSets, error) {
+func (c *Client) GetArchivedStickerSets(stickerType StickerType, offsetStickerSetId int64, limit int32) (*StickerSets, error) {
 	req := &GetArchivedStickerSets{
 		StickerType:        stickerType,
 		OffsetStickerSetId: offsetStickerSetId,
@@ -3350,7 +3350,7 @@ func (c *Client) GetCallbackQueryAnswer(chatId int64, messageId int64, payload C
 }
 
 // GetCallbackQueryMessage Returns information about a message with the callback button that originated a callback query; for bots only @chat_id Identifier of the chat the message belongs to @message_id Message identifier @callback_query_id Identifier of the callback query
-func (c *Client) GetCallbackQueryMessage(chatId int64, messageId int64, callbackQueryId string) (*Message, error) {
+func (c *Client) GetCallbackQueryMessage(chatId int64, messageId int64, callbackQueryId int64) (*Message, error) {
 	req := &GetCallbackQueryMessage{
 		ChatId:          chatId,
 		MessageId:       messageId,
@@ -3514,7 +3514,7 @@ func (c *Client) GetChatBoostStatus(chatId int64) (*ChatBoostStatus, error) {
 }
 
 // GetChatEventLog Returns a list of service actions taken by chat members and administrators in the last 48 hours. Available only for supergroups and channels. Requires administrator rights. Returns results in reverse chronological order (i.e., in order of decreasing event_id)
-func (c *Client) GetChatEventLog(chatId int64, query string, fromEventId string, limit int32, userIds []int64, opts *GetChatEventLogOpts) (*ChatEvents, error) {
+func (c *Client) GetChatEventLog(chatId int64, query string, fromEventId int64, limit int32, userIds []int64, opts *GetChatEventLogOpts) (*ChatEvents, error) {
 	req := &GetChatEventLog{
 		ChatId:      chatId,
 		Query:       query,
@@ -4175,7 +4175,7 @@ func (c *Client) GetCustomEmojiReactionAnimations() (*Stickers, error) {
 }
 
 // GetCustomEmojiStickers Returns the list of custom emoji stickers by their identifiers. Stickers are returned in arbitrary order. Only found stickers are returned
-func (c *Client) GetCustomEmojiStickers(customEmojiIds []string) (*Stickers, error) {
+func (c *Client) GetCustomEmojiStickers(customEmojiIds Int64Slice) (*Stickers, error) {
 	req := &GetCustomEmojiStickers{
 		CustomEmojiIds: customEmojiIds,
 	}
@@ -4538,7 +4538,7 @@ func (c *Client) GetGameHighScores(chatId int64, messageId int64, userId int64) 
 }
 
 // GetGiftAuctionAcquiredGifts Returns the gifts that were acquired by the current user on a gift auction @gift_id Identifier of the auctioned gift
-func (c *Client) GetGiftAuctionAcquiredGifts(giftId string) (*GiftAuctionAcquiredGifts, error) {
+func (c *Client) GetGiftAuctionAcquiredGifts(giftId int64) (*GiftAuctionAcquiredGifts, error) {
 	req := &GetGiftAuctionAcquiredGifts{
 		GiftId: giftId,
 	}
@@ -4587,7 +4587,7 @@ func (c *Client) GetGiftCollections(ownerId MessageSender) (*GiftCollections, er
 }
 
 // GetGiftUpgradePreview Returns examples of possible upgraded gifts for a regular gift @gift_id Identifier of the gift
-func (c *Client) GetGiftUpgradePreview(giftId string) (*GiftUpgradePreview, error) {
+func (c *Client) GetGiftUpgradePreview(giftId int64) (*GiftUpgradePreview, error) {
 	req := &GetGiftUpgradePreview{
 		GiftId: giftId,
 	}
@@ -4599,7 +4599,7 @@ func (c *Client) GetGiftUpgradePreview(giftId string) (*GiftUpgradePreview, erro
 }
 
 // GetGiftUpgradeVariants Returns all possible variants of upgraded gifts for a regular gift @gift_id Identifier of the gift
-func (c *Client) GetGiftUpgradeVariants(giftId string) (*GiftUpgradeVariants, error) {
+func (c *Client) GetGiftUpgradeVariants(giftId int64) (*GiftUpgradeVariants, error) {
 	req := &GetGiftUpgradeVariants{
 		GiftId: giftId,
 	}
@@ -5173,7 +5173,7 @@ func (c *Client) GetMessageAvailableReactions(chatId int64, messageId int64, row
 }
 
 // GetMessageEffect Returns information about a message effect. Returns a 404 error if the effect is not found @effect_id Unique identifier of the effect
-func (c *Client) GetMessageEffect(effectId string) (*MessageEffect, error) {
+func (c *Client) GetMessageEffect(effectId int64) (*MessageEffect, error) {
 	req := &GetMessageEffect{
 		EffectId: effectId,
 	}
@@ -5418,7 +5418,7 @@ func (c *Client) GetOwnedBots() (*Users, error) {
 }
 
 // GetOwnedStickerSets Returns sticker sets owned by the current user
-func (c *Client) GetOwnedStickerSets(offsetStickerSetId string, limit int32) (*StickerSets, error) {
+func (c *Client) GetOwnedStickerSets(offsetStickerSetId int64, limit int32) (*StickerSets, error) {
 	req := &GetOwnedStickerSets{
 		OffsetStickerSetId: offsetStickerSetId,
 		Limit:              limit,
@@ -5947,7 +5947,7 @@ func (c *Client) GetSavedMessagesTopicMessageByDate(savedMessagesTopicId int64, 
 }
 
 // GetSavedNotificationSound Returns saved notification sound by its identifier. Returns a 404 error if there is no saved notification sound with the specified identifier @notification_sound_id Identifier of the notification sound
-func (c *Client) GetSavedNotificationSound(notificationSoundId string) (*NotificationSounds, error) {
+func (c *Client) GetSavedNotificationSound(notificationSoundId int64) (*NotificationSounds, error) {
 	req := &GetSavedNotificationSound{
 		NotificationSoundId: notificationSoundId,
 	}
@@ -6209,7 +6209,7 @@ func (c *Client) GetStickers(stickerType StickerType, query string, limit int32,
 }
 
 // GetStickerSet Returns information about a sticker set by its identifier @set_id Identifier of the sticker set
-func (c *Client) GetStickerSet(setId string) (*StickerSet, error) {
+func (c *Client) GetStickerSet(setId int64) (*StickerSet, error) {
 	req := &GetStickerSet{
 		SetId: setId,
 	}
@@ -6221,7 +6221,7 @@ func (c *Client) GetStickerSet(setId string) (*StickerSet, error) {
 }
 
 // GetStickerSetName Returns name of a sticker set by its identifier @set_id Identifier of the sticker set
-func (c *Client) GetStickerSetName(setId string) (*Text, error) {
+func (c *Client) GetStickerSetName(setId int64) (*Text, error) {
 	req := &GetStickerSetName{
 		SetId: setId,
 	}
@@ -6915,7 +6915,7 @@ func (c *Client) ImportMessages(chatId int64, messageFile InputFile, attachedFil
 }
 
 // IncreaseGiftAuctionBid Increases a bid for an auction gift without changing gift text and receiver
-func (c *Client) IncreaseGiftAuctionBid(giftId string, starCount int64) (*Ok, error) {
+func (c *Client) IncreaseGiftAuctionBid(giftId int64, starCount int64) (*Ok, error) {
 	req := &IncreaseGiftAuctionBid{
 		GiftId:    giftId,
 		StarCount: starCount,
@@ -7044,7 +7044,7 @@ func (c *Client) JoinVideoChat(groupCallId int32, joinParameters *GroupCallJoinP
 }
 
 // LaunchPrepaidGiveaway Launches a prepaid giveaway
-func (c *Client) LaunchPrepaidGiveaway(giveawayId string, parameters *GiveawayParameters, winnerCount int32, starCount int64) (*Ok, error) {
+func (c *Client) LaunchPrepaidGiveaway(giveawayId int64, parameters *GiveawayParameters, winnerCount int32, starCount int64) (*Ok, error) {
 	req := &LaunchPrepaidGiveaway{
 		GiveawayId:  giveawayId,
 		Parameters:  parameters,
@@ -7233,7 +7233,7 @@ func (c *Client) OpenChatSimilarChat(chatId int64, openedChatId int64) (*Ok, err
 }
 
 // OpenGiftAuction Informs TDLib that a gift auction was opened by the user @gift_id Identifier of the gift, which auction was opened
-func (c *Client) OpenGiftAuction(giftId string) (*Ok, error) {
+func (c *Client) OpenGiftAuction(giftId int64) (*Ok, error) {
 	req := &OpenGiftAuction{
 		GiftId: giftId,
 	}
@@ -7374,7 +7374,7 @@ func (c *Client) PingProxy(proxyId int32) (*Seconds, error) {
 }
 
 // PlaceGiftAuctionBid Places a bid on an auction gift
-func (c *Client) PlaceGiftAuctionBid(giftId string, starCount int64, userId int64, text *FormattedText, isPrivate bool) (*Ok, error) {
+func (c *Client) PlaceGiftAuctionBid(giftId int64, starCount int64, userId int64, text *FormattedText, isPrivate bool) (*Ok, error) {
 	req := &PlaceGiftAuctionBid{
 		GiftId:    giftId,
 		StarCount: starCount,
@@ -7795,7 +7795,7 @@ func (c *Client) RemoveGiftCollectionGifts(ownerId MessageSender, collectionId i
 }
 
 // RemoveInstalledBackground Removes background from the list of installed backgrounds @background_id The background identifier
-func (c *Client) RemoveInstalledBackground(backgroundId string) (*Ok, error) {
+func (c *Client) RemoveInstalledBackground(backgroundId int64) (*Ok, error) {
 	req := &RemoveInstalledBackground{
 		BackgroundId: backgroundId,
 	}
@@ -7970,7 +7970,7 @@ func (c *Client) RemoveSavedAnimation(animation InputFile) (*Ok, error) {
 }
 
 // RemoveSavedNotificationSound Removes a notification sound from the list of saved notification sounds @notification_sound_id Identifier of the notification sound
-func (c *Client) RemoveSavedNotificationSound(notificationSoundId string) (*Ok, error) {
+func (c *Client) RemoveSavedNotificationSound(notificationSoundId int64) (*Ok, error) {
 	req := &RemoveSavedNotificationSound{
 		NotificationSoundId: notificationSoundId,
 	}
@@ -8112,7 +8112,7 @@ func (c *Client) ReorderGiftCollections(ownerId MessageSender, collectionIds []i
 }
 
 // ReorderInstalledStickerSets Changes the order of installed sticker sets @sticker_type Type of the sticker sets to reorder @sticker_set_ids Identifiers of installed sticker sets in the new correct order
-func (c *Client) ReorderInstalledStickerSets(stickerType StickerType, stickerSetIds []string) (*Ok, error) {
+func (c *Client) ReorderInstalledStickerSets(stickerType StickerType, stickerSetIds Int64Slice) (*Ok, error) {
 	req := &ReorderInstalledStickerSets{
 		StickerType:   stickerType,
 		StickerSetIds: stickerSetIds,
@@ -8770,7 +8770,7 @@ func (c *Client) SearchFileDownloads(query string, onlyActive bool, onlyComplete
 }
 
 // SearchGiftsForResale Returns upgraded gifts that can be bought from other owners using sendResoldGift
-func (c *Client) SearchGiftsForResale(giftId string, order GiftForResaleOrder, attributes []UpgradedGiftAttributeId, offset string, limit int32) (*GiftsForResale, error) {
+func (c *Client) SearchGiftsForResale(giftId int64, order GiftForResaleOrder, attributes []UpgradedGiftAttributeId, offset string, limit int32) (*GiftsForResale, error) {
 	req := &SearchGiftsForResale{
 		GiftId:     giftId,
 		Order:      order,
@@ -9143,7 +9143,7 @@ func (c *Client) SendBotStartMessage(botUserId int64, chatId int64, parameter st
 }
 
 // SendBusinessMessage Sends a message on behalf of a business account; for bots only. Returns the message after it was sent
-func (c *Client) SendBusinessMessage(businessConnectionId string, chatId int64, disableNotification bool, protectContent bool, effectId string, inputMessageContent InputMessageContent, opts *SendBusinessMessageOpts) (*BusinessMessage, error) {
+func (c *Client) SendBusinessMessage(businessConnectionId string, chatId int64, disableNotification bool, protectContent bool, effectId int64, inputMessageContent InputMessageContent, opts *SendBusinessMessageOpts) (*BusinessMessage, error) {
 	req := &SendBusinessMessage{
 		BusinessConnectionId: businessConnectionId,
 		ChatId:               chatId,
@@ -9164,7 +9164,7 @@ func (c *Client) SendBusinessMessage(businessConnectionId string, chatId int64, 
 }
 
 // SendBusinessMessageAlbum Sends 2-10 messages grouped together into an album on behalf of a business account; for bots only. Currently, only audio, document, photo and video messages can be grouped into an album.
-func (c *Client) SendBusinessMessageAlbum(businessConnectionId string, chatId int64, disableNotification bool, protectContent bool, effectId string, inputMessageContents []InputMessageContent, opts *SendBusinessMessageAlbumOpts) (*BusinessMessages, error) {
+func (c *Client) SendBusinessMessageAlbum(businessConnectionId string, chatId int64, disableNotification bool, protectContent bool, effectId int64, inputMessageContents []InputMessageContent, opts *SendBusinessMessageAlbumOpts) (*BusinessMessages, error) {
 	req := &SendBusinessMessageAlbum{
 		BusinessConnectionId: businessConnectionId,
 		ChatId:               chatId,
@@ -9280,7 +9280,7 @@ func (c *Client) SendEmailAddressVerificationCode(emailAddress string) (*EmailAd
 }
 
 // SendGift Sends a gift to another user or channel chat. May return an error with a message "STARGIFT_USAGE_LIMITED" if the gift was sold out
-func (c *Client) SendGift(giftId string, ownerId MessageSender, text *FormattedText, isPrivate bool, payForUpgrade bool) (*Ok, error) {
+func (c *Client) SendGift(giftId int64, ownerId MessageSender, text *FormattedText, isPrivate bool, payForUpgrade bool) (*Ok, error) {
 	req := &SendGift{
 		GiftId:        giftId,
 		OwnerId:       ownerId,
@@ -9326,7 +9326,7 @@ func (c *Client) SendGroupCallMessage(groupCallId int32, text *FormattedText, pa
 }
 
 // SendInlineQueryResultMessage Sends the result of an inline query as a message. Returns the sent message. Always clears a chat draft message
-func (c *Client) SendInlineQueryResultMessage(chatId int64, queryId string, resultId string, hideViaBot bool, opts *SendInlineQueryResultMessageOpts) (*Message, error) {
+func (c *Client) SendInlineQueryResultMessage(chatId int64, queryId int64, resultId string, hideViaBot bool, opts *SendInlineQueryResultMessageOpts) (*Message, error) {
 	req := &SendInlineQueryResultMessage{
 		ChatId:     chatId,
 		QueryId:    queryId,
@@ -9396,7 +9396,7 @@ func (c *Client) SendPassportAuthorizationForm(authorizationFormId int32, types 
 }
 
 // SendPaymentForm Sends a filled-out payment form to the bot for final verification
-func (c *Client) SendPaymentForm(inputInvoice InputInvoice, paymentFormId string, orderInfoId string, shippingOptionId string, tipAmount int64, opts *SendPaymentFormOpts) (*PaymentResult, error) {
+func (c *Client) SendPaymentForm(inputInvoice InputInvoice, paymentFormId int64, orderInfoId string, shippingOptionId string, tipAmount int64, opts *SendPaymentFormOpts) (*PaymentResult, error) {
 	req := &SendPaymentForm{
 		InputInvoice:     inputInvoice,
 		PaymentFormId:    paymentFormId,
@@ -9471,7 +9471,7 @@ func (c *Client) SendResoldGift(giftName string, ownerId MessageSender, price Gi
 }
 
 // SendTextMessageDraft Sends a draft for a being generated text message; for bots only
-func (c *Client) SendTextMessageDraft(chatId int64, forumTopicId int32, draftId string, text *FormattedText) (*Ok, error) {
+func (c *Client) SendTextMessageDraft(chatId int64, forumTopicId int32, draftId int64, text *FormattedText) (*Ok, error) {
 	req := &SendTextMessageDraft{
 		ChatId:       chatId,
 		ForumTopicId: forumTopicId,
@@ -9514,7 +9514,7 @@ func (c *Client) SendWebAppData(botUserId int64, buttonText string, data string)
 }
 
 // SetAccentColor Changes accent color and background custom emoji for the current user; for Telegram Premium users only
-func (c *Client) SetAccentColor(accentColorId int32, backgroundCustomEmojiId string) (*Ok, error) {
+func (c *Client) SetAccentColor(accentColorId int32, backgroundCustomEmojiId int64) (*Ok, error) {
 	req := &SetAccentColor{
 		AccentColorId:           accentColorId,
 		BackgroundCustomEmojiId: backgroundCustomEmojiId,
@@ -9893,7 +9893,7 @@ func (c *Client) SetBusinessStartPage(startPage *InputBusinessStartPage) (*Ok, e
 }
 
 // SetChatAccentColor Changes accent color and background custom emoji of a channel chat. Requires can_change_info administrator right
-func (c *Client) SetChatAccentColor(chatId int64, accentColorId int32, backgroundCustomEmojiId string) (*Ok, error) {
+func (c *Client) SetChatAccentColor(chatId int64, accentColorId int32, backgroundCustomEmojiId int64) (*Ok, error) {
 	req := &SetChatAccentColor{
 		ChatId:                  chatId,
 		AccentColorId:           accentColorId,
@@ -10170,7 +10170,7 @@ func (c *Client) SetChatPinnedStories(chatId int64, storyIds []int32) (*Ok, erro
 }
 
 // SetChatProfileAccentColor Changes accent color and background custom emoji for profile of a supergroup or channel chat. Requires can_change_info administrator right
-func (c *Client) SetChatProfileAccentColor(chatId int64, profileAccentColorId int32, profileBackgroundCustomEmojiId string) (*Ok, error) {
+func (c *Client) SetChatProfileAccentColor(chatId int64, profileAccentColorId int32, profileBackgroundCustomEmojiId int64) (*Ok, error) {
 	req := &SetChatProfileAccentColor{
 		ChatId:                         chatId,
 		ProfileAccentColorId:           profileAccentColorId,
@@ -10251,7 +10251,7 @@ func (c *Client) SetCommands(languageCode string, commands []BotCommand, opts *S
 }
 
 // SetCustomEmojiStickerSetThumbnail Sets a custom emoji sticker set thumbnail
-func (c *Client) SetCustomEmojiStickerSetThumbnail(name string, customEmojiId string) (*Ok, error) {
+func (c *Client) SetCustomEmojiStickerSetThumbnail(name string, customEmojiId int64) (*Ok, error) {
 	req := &SetCustomEmojiStickerSetThumbnail{
 		Name:          name,
 		CustomEmojiId: customEmojiId,
@@ -10392,7 +10392,7 @@ func (c *Client) SetEmojiStatus(emojiStatus *EmojiStatus) (*Ok, error) {
 }
 
 // SetFileGenerationProgress Informs TDLib on a file generation progress
-func (c *Client) SetFileGenerationProgress(generationId string, expectedSize int64, localPrefixSize int64) (*Ok, error) {
+func (c *Client) SetFileGenerationProgress(generationId int64, expectedSize int64, localPrefixSize int64) (*Ok, error) {
 	req := &SetFileGenerationProgress{
 		GenerationId:    generationId,
 		ExpectedSize:    expectedSize,
@@ -10880,7 +10880,7 @@ func (c *Client) SetPollAnswer(chatId int64, messageId int64, optionIds []int32)
 }
 
 // SetProfileAccentColor Changes accent color and background custom emoji for profile of the current user; for Telegram Premium users only
-func (c *Client) SetProfileAccentColor(profileAccentColorId int32, profileBackgroundCustomEmojiId string) (*Ok, error) {
+func (c *Client) SetProfileAccentColor(profileAccentColorId int32, profileBackgroundCustomEmojiId int64) (*Ok, error) {
 	req := &SetProfileAccentColor{
 		ProfileAccentColorId:           profileAccentColorId,
 		ProfileBackgroundCustomEmojiId: profileBackgroundCustomEmojiId,
@@ -11123,7 +11123,7 @@ func (c *Client) SetStoryReaction(storyPosterChatId int64, storyId int32, update
 }
 
 // SetSupergroupCustomEmojiStickerSet Changes the custom emoji sticker set of a supergroup; requires can_change_info administrator right. The chat must have at least chatBoostFeatures.min_custom_emoji_sticker_set_boost_level boost level to pass the corresponding color
-func (c *Client) SetSupergroupCustomEmojiStickerSet(supergroupId int64, customEmojiStickerSetId string) (*Ok, error) {
+func (c *Client) SetSupergroupCustomEmojiStickerSet(supergroupId int64, customEmojiStickerSetId int64) (*Ok, error) {
 	req := &SetSupergroupCustomEmojiStickerSet{
 		SupergroupId:            supergroupId,
 		CustomEmojiStickerSetId: customEmojiStickerSetId,
@@ -11149,7 +11149,7 @@ func (c *Client) SetSupergroupMainProfileTab(supergroupId int64, mainProfileTab 
 }
 
 // SetSupergroupStickerSet Changes the sticker set of a supergroup; requires can_change_info administrator right @supergroup_id Identifier of the supergroup @sticker_set_id New value of the supergroup sticker set identifier. Use 0 to remove the supergroup sticker set
-func (c *Client) SetSupergroupStickerSet(supergroupId int64, stickerSetId string) (*Ok, error) {
+func (c *Client) SetSupergroupStickerSet(supergroupId int64, stickerSetId int64) (*Ok, error) {
 	req := &SetSupergroupStickerSet{
 		SupergroupId: supergroupId,
 		StickerSetId: stickerSetId,
@@ -11213,7 +11213,7 @@ func (c *Client) SetTdlibParameters(useTestDc bool, databaseDirectory string, fi
 }
 
 // SetUpgradedGiftColors Changes color scheme for the current user based on an owned or a hosted upgraded gift; for Telegram Premium users only
-func (c *Client) SetUpgradedGiftColors(upgradedGiftColorsId string) (*Ok, error) {
+func (c *Client) SetUpgradedGiftColors(upgradedGiftColorsId int64) (*Ok, error) {
 	req := &SetUpgradedGiftColors{
 		UpgradedGiftColorsId: upgradedGiftColorsId,
 	}
@@ -11525,7 +11525,7 @@ func (c *Client) TerminateAllOtherSessions() (*Ok, error) {
 }
 
 // TerminateSession Terminates a session of the current user @session_id Session identifier
-func (c *Client) TerminateSession(sessionId string) (*Ok, error) {
+func (c *Client) TerminateSession(sessionId int64) (*Ok, error) {
 	req := &TerminateSession{
 		SessionId: sessionId,
 	}
@@ -12046,7 +12046,7 @@ func (c *Client) ToggleSavedMessagesTopicIsPinned(savedMessagesTopicId int64, is
 }
 
 // ToggleSessionCanAcceptCalls Toggles whether a session can accept incoming calls @session_id Session identifier @can_accept_calls Pass true to allow accepting incoming calls by the session; pass false otherwise
-func (c *Client) ToggleSessionCanAcceptCalls(sessionId string, canAcceptCalls bool) (*Ok, error) {
+func (c *Client) ToggleSessionCanAcceptCalls(sessionId int64, canAcceptCalls bool) (*Ok, error) {
 	req := &ToggleSessionCanAcceptCalls{
 		SessionId:      sessionId,
 		CanAcceptCalls: canAcceptCalls,
@@ -12059,7 +12059,7 @@ func (c *Client) ToggleSessionCanAcceptCalls(sessionId string, canAcceptCalls bo
 }
 
 // ToggleSessionCanAcceptSecretChats Toggles whether a session can accept incoming secret chats @session_id Session identifier @can_accept_secret_chats Pass true to allow accepting secret chats by the session; pass false otherwise
-func (c *Client) ToggleSessionCanAcceptSecretChats(sessionId string, canAcceptSecretChats bool) (*Ok, error) {
+func (c *Client) ToggleSessionCanAcceptSecretChats(sessionId int64, canAcceptSecretChats bool) (*Ok, error) {
 	req := &ToggleSessionCanAcceptSecretChats{
 		SessionId:            sessionId,
 		CanAcceptSecretChats: canAcceptSecretChats,
@@ -12488,7 +12488,7 @@ func (c *Client) ViewSponsoredChat(sponsoredChatUniqueId int64) (*Ok, error) {
 }
 
 // ViewTrendingStickerSets Informs the server that some trending sticker sets have been viewed by the user @sticker_set_ids Identifiers of viewed trending sticker sets
-func (c *Client) ViewTrendingStickerSets(stickerSetIds []string) (*Ok, error) {
+func (c *Client) ViewTrendingStickerSets(stickerSetIds Int64Slice) (*Ok, error) {
 	req := &ViewTrendingStickerSets{
 		StickerSetIds: stickerSetIds,
 	}
@@ -12512,7 +12512,7 @@ func (c *Client) ViewVideoMessageAdvertisement(advertisementUniqueId int64) (*Ok
 }
 
 // WriteGeneratedFilePart Writes a part of a generated file. This method is intended to be used only if the application has no direct access to TDLib's file system, because it is usually slower than a direct write to the destination file
-func (c *Client) WriteGeneratedFilePart(generationId string, offset int64, data []byte) (*Ok, error) {
+func (c *Client) WriteGeneratedFilePart(generationId int64, offset int64, data []byte) (*Ok, error) {
 	req := &WriteGeneratedFilePart{
 		GenerationId: generationId,
 		Offset:       offset,

@@ -54,6 +54,9 @@ func sortKeysAZ(m map[string]*TLClass) []string {
 func toGoType(tlType string, classes map[string]*TLClass) string {
 	if strings.HasPrefix(tlType, "vector<") {
 		inner := strings.TrimSuffix(strings.TrimPrefix(tlType, "vector<"), ">")
+		if inner == "int64" {
+			return "Int64Slice"
+		}
 		innerType := toGoType(inner, classes)
 		if strings.HasPrefix(innerType, "*") {
 			return "[]" + strings.TrimPrefix(innerType, "*")
@@ -66,7 +69,7 @@ func toGoType(tlType string, classes map[string]*TLClass) string {
 	case "int53":
 		return "int64"
 	case "int64":
-		return "string"
+		return "int64"
 	case "double":
 		return "float64"
 	case "string":

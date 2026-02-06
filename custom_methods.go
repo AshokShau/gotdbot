@@ -22,7 +22,7 @@ type SendTextMessageOpts struct {
 	ReplyToMessageID      int64
 	ReplyMarkup           ReplyMarkup
 	ClearDraft            bool
-	EffectId              string
+	EffectId              int64
 }
 
 // SendTextMessage sends a text message to chat
@@ -74,7 +74,7 @@ type SendPhotoOpts struct {
 	ReplyToMessageID    int64
 	ReplyMarkup         ReplyMarkup
 	Thumbnail           *InputThumbnail
-	EffectId            string
+	EffectId            int64
 }
 
 // SendPhoto sends a photo to chat
@@ -126,7 +126,7 @@ type SendVideoOpts struct {
 	ReplyToMessageID    int64
 	ReplyMarkup         ReplyMarkup
 	Thumbnail           *InputThumbnail
-	EffectId            string
+	EffectId            int64
 }
 
 // SendVideo sends a video to chat
@@ -178,7 +178,7 @@ type SendAnimationOpts struct {
 	ReplyToMessageID    int64
 	ReplyMarkup         ReplyMarkup
 	Thumbnail           *InputThumbnail
-	EffectId            string
+	EffectId            int64
 }
 
 // SendAnimation sends an animation to chat
@@ -226,7 +226,7 @@ type SendAudioOpts struct {
 	ReplyToMessageID    int64
 	ReplyMarkup         ReplyMarkup
 	AlbumCoverThumbnail *InputThumbnail
-	EffectId            string
+	EffectId            int64
 }
 
 // SendAudio sends an audio to chat
@@ -270,7 +270,7 @@ type SendDocumentOpts struct {
 	ReplyToMessageID            int64
 	ReplyMarkup                 ReplyMarkup
 	Thumbnail                   *InputThumbnail
-	EffectId                    string
+	EffectId                    int64
 }
 
 // SendDocument sends a document to chat
@@ -312,7 +312,7 @@ type SendVoiceOpts struct {
 	ReplyTo             InputMessageReplyTo
 	ReplyToMessageID    int64
 	ReplyMarkup         ReplyMarkup
-	EffectId            string
+	EffectId            int64
 }
 
 // SendVoice sends a voice note to chat
@@ -352,7 +352,7 @@ type SendVideoNoteOpts struct {
 	ReplyToMessageID    int64
 	ReplyMarkup         ReplyMarkup
 	Thumbnail           *InputThumbnail
-	EffectId            string
+	EffectId            int64
 }
 
 // SendVideoNote sends a video note to chat
@@ -392,7 +392,7 @@ type SendStickerOpts struct {
 	ReplyToMessageID    int64
 	ReplyMarkup         ReplyMarkup
 	Thumbnail           *InputThumbnail
-	EffectId            string
+	EffectId            int64
 }
 
 // SendSticker sends a sticker to chat
@@ -433,7 +433,7 @@ type SendCopyOpts struct {
 	Quote               *InputTextQuote
 	ReplyTo             InputMessageReplyTo
 	ReplyToMessageID    int64
-	EffectId            string
+	EffectId            int64
 }
 
 // SendCopy copies a message to chat
@@ -467,7 +467,7 @@ func (c *Client) SendCopy(chatId int64, fromChatId int64, messageId int64, opts 
 type ForwardMessageOpts struct {
 	InGameShare         bool
 	DisableNotification bool
-	EffectId            string
+	EffectId            int64
 }
 
 // ForwardMessage forwards a message to chat
