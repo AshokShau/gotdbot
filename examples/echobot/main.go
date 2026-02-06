@@ -28,7 +28,7 @@ func main() {
 
 	dispatcher.AddHandler(handlers.NewCommand("start", func(ctx *ext.Context) error {
 		kb := &gotdbot.ReplyMarkupInlineKeyboard{
-			Rows: [][]*gotdbot.InlineKeyboardButton{
+			Rows: [][]gotdbot.InlineKeyboardButton{
 				{
 					{
 						Text: "GoTDBot GitHub",

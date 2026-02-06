@@ -11,7 +11,7 @@ func Bool(b bool) *bool {
 	return &b
 }
 
-func GetFormattedText(c *Client, text string, entities []*TextEntity, parseMode string) *FormattedText {
+func GetFormattedText(c *Client, text string, entities []TextEntity, parseMode string) *FormattedText {
 	if len(entities) > 0 {
 		return &FormattedText{
 			Text:     text,

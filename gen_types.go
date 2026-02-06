@@ -242,7 +242,7 @@ type AddedReactions struct {
 	//
 	TotalCount int32 `json:"total_count"`
 	//
-	Reactions []*AddedReaction `json:"reactions"`
+	Reactions []AddedReaction `json:"reactions"`
 	//
 	NextOffset string `json:"next_offset"`
 }
@@ -671,7 +671,7 @@ func (t *Animation) MarshalJSON() ([]byte, error) {
 // Animations Represents a list of animations @animations List of animations
 type Animations struct {
 	//
-	Animations []*Animation `json:"animations"`
+	Animations []Animation `json:"animations"`
 }
 
 func (t *Animations) Type() string {
@@ -863,11 +863,11 @@ type AuctionStateActive struct {
 	// The minimum possible bid in the auction in Telegram Stars
 	MinBid int64 `json:"min_bid"`
 	// A sparse list of bids that were made in the auction
-	BidLevels []*AuctionBid `json:"bid_levels"`
+	BidLevels []AuctionBid `json:"bid_levels"`
 	// User identifiers of at most 3 users with the biggest bids
 	TopBidderUserIds []int64 `json:"top_bidder_user_ids"`
 	// Rounds of the auction in which their duration or extension rules are changed
-	Rounds []*AuctionRound `json:"rounds"`
+	Rounds []AuctionRound `json:"rounds"`
 	// Point in time (Unix timestamp) when the current round will end
 	CurrentRoundEndDate int32 `json:"current_round_end_date"`
 	// 1-based number of the current round
@@ -953,7 +953,7 @@ type Audio struct {
 	// The thumbnail of the album cover in JPEG format; as defined by the sender. The full size thumbnail is expected to be extracted from the downloaded audio file; may be null
 	AlbumCoverThumbnail *Thumbnail `json:"album_cover_thumbnail,omitempty"`
 	// Album cover variants to use if the downloaded audio file contains no album cover. Provided thumbnail dimensions are approximate
-	ExternalAlbumCovers []*Thumbnail `json:"external_album_covers"`
+	ExternalAlbumCovers []Thumbnail `json:"external_album_covers"`
 	// File containing the audio
 	Audio *File `json:"audio"`
 }
@@ -978,7 +978,7 @@ type Audios struct {
 	//
 	TotalCount int32 `json:"total_count"`
 	//
-	Audios []*Audio `json:"audios"`
+	Audios []Audio `json:"audios"`
 }
 
 func (t *Audios) Type() string {
@@ -1716,7 +1716,7 @@ type AutosaveSettings struct {
 	// Default autosave settings for channel chats
 	ChannelSettings *ScopeAutosaveSettings `json:"channel_settings"`
 	// Autosave settings for specific chats
-	Exceptions []*AutosaveSettingsException `json:"exceptions"`
+	Exceptions []AutosaveSettingsException `json:"exceptions"`
 }
 
 func (t *AutosaveSettings) Type() string {
@@ -1873,7 +1873,7 @@ func (t *AvailableGift) MarshalJSON() ([]byte, error) {
 // AvailableGifts Contains a list of gifts that can be sent to another user or channel chat @gifts The list of gifts
 type AvailableGifts struct {
 	//
-	Gifts []*AvailableGift `json:"gifts"`
+	Gifts []AvailableGift `json:"gifts"`
 }
 
 func (t *AvailableGifts) Type() string {
@@ -1940,11 +1940,11 @@ func (t *AvailableReaction) UnmarshalJSON(data []byte) error {
 // AvailableReactions Represents a list of reactions that can be added to a message
 type AvailableReactions struct {
 	// List of reactions to be shown at the top
-	TopReactions []*AvailableReaction `json:"top_reactions"`
+	TopReactions []AvailableReaction `json:"top_reactions"`
 	// List of recently used reactions
-	RecentReactions []*AvailableReaction `json:"recent_reactions"`
+	RecentReactions []AvailableReaction `json:"recent_reactions"`
 	// List of popular reactions
-	PopularReactions []*AvailableReaction `json:"popular_reactions"`
+	PopularReactions []AvailableReaction `json:"popular_reactions"`
 	// True, if any custom emoji reaction can be added by Telegram Premium subscribers
 	AllowCustomEmoji bool `json:"allow_custom_emoji"`
 	// True, if the reactions will be tags and the message can be found by them
@@ -2121,7 +2121,7 @@ func (t *BackgroundFillSolid) MarshalJSON() ([]byte, error) {
 // Backgrounds Contains a list of backgrounds @backgrounds A list of backgrounds
 type Backgrounds struct {
 	//
-	Backgrounds []*Background `json:"backgrounds"`
+	Backgrounds []Background `json:"backgrounds"`
 }
 
 func (t *Backgrounds) Type() string {
@@ -2313,7 +2313,7 @@ type BankCardInfo struct {
 	//
 	Title string `json:"title"`
 	//
-	Actions []*BankCardActionOpenUrl `json:"actions"`
+	Actions []BankCardActionOpenUrl `json:"actions"`
 }
 
 func (t *BankCardInfo) Type() string {
@@ -2392,7 +2392,7 @@ type BasicGroupFullInfo struct {
 	// User identifier of the creator of the group; 0 if unknown
 	CreatorUserId int64 `json:"creator_user_id"`
 	// Group members
-	Members []*ChatMember `json:"members"`
+	Members []ChatMember `json:"members"`
 	// True, if non-administrators and non-bots can be hidden in responses to getSupergroupMembers and searchChatMembers for non-administrators after upgrading the basic group to a supergroup
 	CanHideMembers bool `json:"can_hide_members"`
 	// True, if aggressive anti-spam checks can be enabled or disabled in the supergroup after upgrading the basic group to a supergroup
@@ -2400,7 +2400,7 @@ type BasicGroupFullInfo struct {
 	// Primary invite link for this group; may be null. For chat administrators with can_invite_users right only. Updated only after the basic group is opened
 	InviteLink *ChatInviteLink `json:"invite_link,omitempty"`
 	// List of commands of bots in the group
-	BotCommands []*BotCommands `json:"bot_commands"`
+	BotCommands []BotCommands `json:"bot_commands"`
 }
 
 func (t *BasicGroupFullInfo) Type() string {
@@ -2551,7 +2551,7 @@ type BotCommands struct {
 	//
 	BotUserId int64 `json:"bot_user_id"`
 	//
-	Commands []*BotCommand `json:"commands"`
+	Commands []BotCommand `json:"commands"`
 }
 
 func (t *BotCommands) Type() string {
@@ -2737,7 +2737,7 @@ type BotInfo struct {
 	// Information about a button to show instead of the bot commands menu button; may be null if ordinary bot commands menu must be shown
 	MenuButton *BotMenuButton `json:"menu_button,omitempty"`
 	// List of the bot commands
-	Commands []*BotCommand `json:"commands"`
+	Commands []BotCommand `json:"commands"`
 	// The HTTP link to the privacy policy of the bot. If empty, then /privacy command must be used if supported by the bot. If the command isn't supported, then https://telegram.org/privacy-tpa must be opened
 	PrivacyPolicyUrl string `json:"privacy_policy_url"`
 	// Default administrator rights for adding the bot to basic group and supergroup chats; may be null
@@ -2883,7 +2883,7 @@ func (t *BotMediaPreview) UnmarshalJSON(data []byte) error {
 // BotMediaPreviewInfo Contains a list of media previews of a bot for the given language and the list of languages for which the bot has dedicated previews
 type BotMediaPreviewInfo struct {
 	// List of media previews
-	Previews []*BotMediaPreview `json:"previews"`
+	Previews []BotMediaPreview `json:"previews"`
 	// List of language codes for which the bot has dedicated previews
 	LanguageCodes []string `json:"language_codes"`
 }
@@ -2906,7 +2906,7 @@ func (t *BotMediaPreviewInfo) MarshalJSON() ([]byte, error) {
 // BotMediaPreviews Contains a list of media previews of a bot @previews List of media previews
 type BotMediaPreviews struct {
 	//
-	Previews []*BotMediaPreview `json:"previews"`
+	Previews []BotMediaPreview `json:"previews"`
 }
 
 func (t *BotMediaPreviews) Type() string {
@@ -3436,7 +3436,7 @@ func (t *BusinessChatLinkInfo) MarshalJSON() ([]byte, error) {
 // BusinessChatLinks Contains a list of business chat links created by the user @links List of links
 type BusinessChatLinks struct {
 	//
-	Links []*BusinessChatLink `json:"links"`
+	Links []BusinessChatLink `json:"links"`
 }
 
 func (t *BusinessChatLinks) Type() string {
@@ -3943,7 +3943,7 @@ func (t *BusinessMessage) MarshalJSON() ([]byte, error) {
 // BusinessMessages Contains a list of messages from a business account as received by a bot @messages List of business messages
 type BusinessMessages struct {
 	//
-	Messages []*BusinessMessage `json:"messages"`
+	Messages []BusinessMessage `json:"messages"`
 }
 
 func (t *BusinessMessages) Type() string {
@@ -3966,7 +3966,7 @@ type BusinessOpeningHours struct {
 	//
 	TimeZoneId string `json:"time_zone_id"`
 	//
-	OpeningHours []*BusinessOpeningHoursInterval `json:"opening_hours"`
+	OpeningHours []BusinessOpeningHoursInterval `json:"opening_hours"`
 }
 
 func (t *BusinessOpeningHours) Type() string {
@@ -4852,7 +4852,7 @@ type CallStateReady struct {
 	// Call protocols supported by the other call participant
 	Protocol *CallProtocol `json:"protocol"`
 	// List of available call servers
-	Servers []*CallServer `json:"servers"`
+	Servers []CallServer `json:"servers"`
 	// A JSON-encoded call config
 	Config string `json:"config"`
 	// Call encryption key
@@ -5282,7 +5282,7 @@ type Chat struct {
 	// Last message in the chat; may be null if none or unknown
 	LastMessage *Message `json:"last_message,omitempty"`
 	// Positions of the chat in chat lists
-	Positions []*ChatPosition `json:"positions"`
+	Positions []ChatPosition `json:"positions"`
 	// Chat lists to which the chat belongs. A chat can have a non-zero position in a chat list even if it doesn't belong to the chat list and have no position in a chat list even if it belongs to the chat list
 	ChatLists []ChatList `json:"chat_lists"`
 	// Identifier of a user or chat that is selected to send messages in the chat; may be null if the user can't change message sender
@@ -5912,7 +5912,7 @@ type ChatActiveStories struct {
 	// Identifier of the last read active story
 	MaxReadStoryId int32 `json:"max_read_story_id"`
 	// Basic information about the stories; use getStory to get full information about the stories. The stories are in chronological order (i.e., in order of increasing story identifiers)
-	Stories []*StoryInfo `json:"stories"`
+	Stories []StoryInfo `json:"stories"`
 }
 
 func (t *ChatActiveStories) Type() string {
@@ -6032,7 +6032,7 @@ func (t *ChatAdministratorRights) MarshalJSON() ([]byte, error) {
 // ChatAdministrators Represents a list of chat administrators @administrators A list of chat administrators
 type ChatAdministrators struct {
 	//
-	Administrators []*ChatAdministrator `json:"administrators"`
+	Administrators []ChatAdministrator `json:"administrators"`
 }
 
 func (t *ChatAdministrators) Type() string {
@@ -6202,7 +6202,7 @@ func (t *ChatBoost) UnmarshalJSON(data []byte) error {
 // ChatBoostFeatures Contains a list of features available on the first chat boost levels
 type ChatBoostFeatures struct {
 	// The list of features
-	Features []*ChatBoostLevelFeatures `json:"features"`
+	Features []ChatBoostLevelFeatures `json:"features"`
 	// The minimum boost level required to set custom emoji for profile background
 	MinProfileBackgroundCustomEmojiBoostLevel int32 `json:"min_profile_background_custom_emoji_boost_level"`
 	// The minimum boost level required to set custom emoji for reply header and link preview background; for channel chats only
@@ -6365,7 +6365,7 @@ func (t *ChatBoostSlot) MarshalJSON() ([]byte, error) {
 // ChatBoostSlots Contains a list of chat boost slots @slots List of boost slots
 type ChatBoostSlots struct {
 	//
-	Slots []*ChatBoostSlot `json:"slots"`
+	Slots []ChatBoostSlot `json:"slots"`
 }
 
 func (t *ChatBoostSlots) Type() string {
@@ -6483,7 +6483,7 @@ type ChatBoostStatus struct {
 	// A percentage of Telegram Premium subscribers joined the chat; always 0 if the current user isn't an administrator in the chat
 	PremiumMemberPercentage float64 `json:"premium_member_percentage"`
 	// The list of prepaid giveaways available for the chat; only for chat administrators
-	PrepaidGiveaways []*PrepaidGiveaway `json:"prepaid_giveaways"`
+	PrepaidGiveaways []PrepaidGiveaway `json:"prepaid_giveaways"`
 }
 
 func (t *ChatBoostStatus) Type() string {
@@ -7765,7 +7765,7 @@ func (t *ChatEventProfileAccentColorChanged) MarshalJSON() ([]byte, error) {
 // ChatEvents Contains a list of chat events @events List of events
 type ChatEvents struct {
 	//
-	Events []*ChatEvent `json:"events"`
+	Events []ChatEvent `json:"events"`
 }
 
 func (t *ChatEvents) Type() string {
@@ -8248,7 +8248,7 @@ func (t *ChatFolderInviteLinkInfo) MarshalJSON() ([]byte, error) {
 // ChatFolderInviteLinks Represents a list of chat folder invite links @invite_links List of the invite links
 type ChatFolderInviteLinks struct {
 	//
-	InviteLinks []*ChatFolderInviteLink `json:"invite_links"`
+	InviteLinks []ChatFolderInviteLink `json:"invite_links"`
 }
 
 func (t *ChatFolderInviteLinks) Type() string {
@@ -8364,7 +8364,7 @@ func (t *ChatInviteLinkCount) MarshalJSON() ([]byte, error) {
 // ChatInviteLinkCounts Contains a list of chat invite link counts @invite_link_counts List of invite link counts
 type ChatInviteLinkCounts struct {
 	//
-	InviteLinkCounts []*ChatInviteLinkCount `json:"invite_link_counts"`
+	InviteLinkCounts []ChatInviteLinkCount `json:"invite_link_counts"`
 }
 
 func (t *ChatInviteLinkCounts) Type() string {
@@ -8482,7 +8482,7 @@ type ChatInviteLinkMembers struct {
 	//
 	TotalCount int32 `json:"total_count"`
 	//
-	Members []*ChatInviteLinkMember `json:"members"`
+	Members []ChatInviteLinkMember `json:"members"`
 }
 
 func (t *ChatInviteLinkMembers) Type() string {
@@ -8505,7 +8505,7 @@ type ChatInviteLinks struct {
 	//
 	TotalCount int32 `json:"total_count"`
 	//
-	InviteLinks []*ChatInviteLink `json:"invite_links"`
+	InviteLinks []ChatInviteLink `json:"invite_links"`
 }
 
 func (t *ChatInviteLinks) Type() string {
@@ -8578,7 +8578,7 @@ type ChatJoinRequests struct {
 	//
 	TotalCount int32 `json:"total_count"`
 	//
-	Requests []*ChatJoinRequest `json:"requests"`
+	Requests []ChatJoinRequest `json:"requests"`
 }
 
 func (t *ChatJoinRequests) Type() string {
@@ -8817,7 +8817,7 @@ type ChatMembers struct {
 	//
 	TotalCount int32 `json:"total_count"`
 	//
-	Members []*ChatMember `json:"members"`
+	Members []ChatMember `json:"members"`
 }
 
 func (t *ChatMembers) Type() string {
@@ -9204,7 +9204,7 @@ func (t *ChatMessageSender) UnmarshalJSON(data []byte) error {
 // ChatMessageSenders Represents a list of message senders, which can be used to send messages in a chat @senders List of available message senders
 type ChatMessageSenders struct {
 	//
-	Senders []*ChatMessageSender `json:"senders"`
+	Senders []ChatMessageSender `json:"senders"`
 }
 
 func (t *ChatMessageSenders) Type() string {
@@ -9329,7 +9329,7 @@ type ChatPhoto struct {
 	// Photo minithumbnail; may be null
 	Minithumbnail *Minithumbnail `json:"minithumbnail,omitempty"`
 	// Available variants of the photo in JPEG format, in different size
-	Sizes []*PhotoSize `json:"sizes"`
+	Sizes []PhotoSize `json:"sizes"`
 	// A big (up to 1280x1280) animated variant of the photo in MPEG4 format; may be null
 	Animation *AnimatedChatPhoto `json:"animation,omitempty"`
 	// A small (160x160) animated variant of the photo in MPEG4 format; may be null even if the big animation is available
@@ -9387,7 +9387,7 @@ type ChatPhotos struct {
 	//
 	TotalCount int32 `json:"total_count"`
 	//
-	Photos []*ChatPhoto `json:"photos"`
+	Photos []ChatPhoto `json:"photos"`
 }
 
 func (t *ChatPhotos) Type() string {
@@ -9705,7 +9705,7 @@ type ChatRevenueTransactions struct {
 	// The amount of owned Toncoins; in the smallest units of the cryptocurrency
 	TonAmount int64 `json:"ton_amount"`
 	// List of transactions
-	Transactions []*ChatRevenueTransaction `json:"transactions"`
+	Transactions []ChatRevenueTransaction `json:"transactions"`
 	// The offset for the next request. If empty, then there are no more results
 	NextOffset string `json:"next_offset"`
 }
@@ -10006,7 +10006,7 @@ type ChatStatisticsChannel struct {
 	// A graph containing number of views of associated with the chat instant views
 	InstantViewInteractionGraph StatisticalGraph `json:"instant_view_interaction_graph"`
 	// Detailed statistics about number of views and shares of recently sent messages and posted stories
-	RecentInteractions []*ChatStatisticsInteractionInfo `json:"recent_interactions"`
+	RecentInteractions []ChatStatisticsInteractionInfo `json:"recent_interactions"`
 }
 
 func (t *ChatStatisticsChannel) Type() string {
@@ -10310,11 +10310,11 @@ type ChatStatisticsSupergroup struct {
 	// A graph containing distribution of message views per day of week
 	WeekGraph StatisticalGraph `json:"week_graph"`
 	// List of users sent most messages in the last week
-	TopSenders []*ChatStatisticsMessageSenderInfo `json:"top_senders"`
+	TopSenders []ChatStatisticsMessageSenderInfo `json:"top_senders"`
 	// List of most active administrators in the last week
-	TopAdministrators []*ChatStatisticsAdministratorActionsInfo `json:"top_administrators"`
+	TopAdministrators []ChatStatisticsAdministratorActionsInfo `json:"top_administrators"`
 	// List of most active inviters of new members in the last week
-	TopInviters []*ChatStatisticsInviterInfo `json:"top_inviters"`
+	TopInviters []ChatStatisticsInviterInfo `json:"top_inviters"`
 }
 
 func (t *ChatStatisticsSupergroup) Type() string {
@@ -10686,7 +10686,7 @@ type Checklist struct {
 	// Title of the checklist; may contain only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities
 	Title *FormattedText `json:"title"`
 	// List of tasks in the checklist
-	Tasks []*ChecklistTask `json:"tasks"`
+	Tasks []ChecklistTask `json:"tasks"`
 	// True, if users other than creator of the list can add tasks to the list
 	OthersCanAddTasks bool `json:"others_can_add_tasks"`
 	// True, if the current user can add tasks to the list if they have Telegram Premium subscription
@@ -11010,7 +11010,7 @@ type ConnectedAffiliatePrograms struct {
 	// The total number of affiliate programs that were connected to the affiliate
 	TotalCount int32 `json:"total_count"`
 	// The list of connected affiliate programs
-	Programs []*ConnectedAffiliateProgram `json:"programs"`
+	Programs []ConnectedAffiliateProgram `json:"programs"`
 	// The offset for the next request. If empty, then there are no more results
 	NextOffset string `json:"next_offset"`
 }
@@ -11070,7 +11070,7 @@ func (t *ConnectedWebsite) MarshalJSON() ([]byte, error) {
 // ConnectedWebsites Contains a list of websites the current user is logged in with Telegram @websites List of connected websites
 type ConnectedWebsites struct {
 	//
-	Websites []*ConnectedWebsite `json:"websites"`
+	Websites []ConnectedWebsite `json:"websites"`
 }
 
 func (t *ConnectedWebsites) Type() string {
@@ -11246,7 +11246,7 @@ func (t *Count) MarshalJSON() ([]byte, error) {
 // Countries Contains information about countries @countries The list of countries
 type Countries struct {
 	//
-	Countries []*CountryInfo `json:"countries"`
+	Countries []CountryInfo `json:"countries"`
 }
 
 func (t *Countries) Type() string {
@@ -12180,7 +12180,7 @@ func (t *EmailAddressResetStatePending) MarshalJSON() ([]byte, error) {
 // EmojiCategories Represents a list of emoji categories @categories List of categories
 type EmojiCategories struct {
 	//
-	Categories []*EmojiCategory `json:"categories"`
+	Categories []EmojiCategory `json:"categories"`
 }
 
 func (t *EmojiCategories) Type() string {
@@ -12427,7 +12427,7 @@ func (t *EmojiKeyword) MarshalJSON() ([]byte, error) {
 // EmojiKeywords Represents a list of emojis with their keywords @emoji_keywords List of emojis with their keywords
 type EmojiKeywords struct {
 	//
-	EmojiKeywords []*EmojiKeyword `json:"emoji_keywords"`
+	EmojiKeywords []EmojiKeyword `json:"emoji_keywords"`
 }
 
 func (t *EmojiKeywords) Type() string {
@@ -12575,7 +12575,7 @@ func (t *EmojiStatusCustomEmojis) MarshalJSON() ([]byte, error) {
 // EmojiStatuses Contains a list of emoji statuses @emoji_statuses The list of emoji statuses identifiers
 type EmojiStatuses struct {
 	//
-	EmojiStatuses []*EmojiStatus `json:"emoji_statuses"`
+	EmojiStatuses []EmojiStatus `json:"emoji_statuses"`
 }
 
 func (t *EmojiStatuses) Type() string {
@@ -12687,9 +12687,9 @@ type EncryptedPassportElement struct {
 	// Selfie with the document; may be null
 	Selfie *DatedFile `json:"selfie,omitempty"`
 	// List of files containing a certified English translation of the document
-	Translation []*DatedFile `json:"translation"`
+	Translation []DatedFile `json:"translation"`
 	// List of attached files
-	Files []*DatedFile `json:"files"`
+	Files []DatedFile `json:"files"`
 	// Unencrypted data, phone number or email address
 	Value string `json:"value"`
 	// Hash of the entire element
@@ -12808,7 +12808,7 @@ func (t *FailedToAddMember) MarshalJSON() ([]byte, error) {
 // FailedToAddMembers Represents a list of users that has failed to be added to a chat @failed_to_add_members Information about users that weren't added to the chat
 type FailedToAddMembers struct {
 	//
-	FailedToAddMembers []*FailedToAddMember `json:"failed_to_add_members"`
+	FailedToAddMembers []FailedToAddMember `json:"failed_to_add_members"`
 }
 
 func (t *FailedToAddMembers) Type() string {
@@ -13487,7 +13487,7 @@ type FormattedText struct {
 	//
 	Text string `json:"text"`
 	//
-	Entities []*TextEntity `json:"entities"`
+	Entities []TextEntity `json:"entities"`
 }
 
 func (t *FormattedText) Type() string {
@@ -13638,7 +13638,7 @@ type ForumTopics struct {
 	// Approximate total number of forum topics found
 	TotalCount int32 `json:"total_count"`
 	// List of forum topics
-	Topics []*ForumTopic `json:"topics"`
+	Topics []ForumTopic `json:"topics"`
 	// Offset date for the next getForumTopics request
 	NextOffsetDate int32 `json:"next_offset_date"`
 	// Offset message identifier for the next getForumTopics request
@@ -13744,7 +13744,7 @@ type FoundAffiliatePrograms struct {
 	// The total number of found affiliate programs
 	TotalCount int32 `json:"total_count"`
 	// The list of affiliate programs
-	Programs []*FoundAffiliateProgram `json:"programs"`
+	Programs []FoundAffiliateProgram `json:"programs"`
 	// The offset for the next request. If empty, then there are no more results
 	NextOffset string `json:"next_offset"`
 }
@@ -13769,7 +13769,7 @@ type FoundChatBoosts struct {
 	// Total number of boosts applied to the chat
 	TotalCount int32 `json:"total_count"`
 	// List of boosts
-	Boosts []*ChatBoost `json:"boosts"`
+	Boosts []ChatBoost `json:"boosts"`
 	// The offset for the next request. If empty, then there are no more results
 	NextOffset string `json:"next_offset"`
 }
@@ -13794,7 +13794,7 @@ type FoundChatMessages struct {
 	//
 	TotalCount int32 `json:"total_count"`
 	//
-	Messages []*Message `json:"messages"`
+	Messages []Message `json:"messages"`
 	//
 	NextFromMessageId int64 `json:"next_from_message_id"`
 }
@@ -13819,7 +13819,7 @@ type FoundFileDownloads struct {
 	// Total number of suitable files, ignoring offset
 	TotalCounts *DownloadedFileCounts `json:"total_counts"`
 	// The list of files
-	Files []*FileDownload `json:"files"`
+	Files []FileDownload `json:"files"`
 	// The offset for the next request. If empty, then there are no more results
 	NextOffset string `json:"next_offset"`
 }
@@ -13844,7 +13844,7 @@ type FoundMessages struct {
 	//
 	TotalCount int32 `json:"total_count"`
 	//
-	Messages []*Message `json:"messages"`
+	Messages []Message `json:"messages"`
 	//
 	NextOffset string `json:"next_offset"`
 }
@@ -13911,7 +13911,7 @@ func (t *FoundPositions) MarshalJSON() ([]byte, error) {
 // FoundPublicPosts Contains a list of messages found by a public post search
 type FoundPublicPosts struct {
 	// List of found public posts
-	Messages []*Message `json:"messages"`
+	Messages []Message `json:"messages"`
 	// The offset for the next request. If empty, then there are no more results
 	NextOffset string `json:"next_offset"`
 	// Updated public post search limits after the query; repeated requests with the same query will be free; may be null if they didn't change
@@ -13940,7 +13940,7 @@ type FoundStories struct {
 	//
 	TotalCount int32 `json:"total_count"`
 	//
-	Stories []*Story `json:"stories"`
+	Stories []Story `json:"stories"`
 	//
 	NextOffset string `json:"next_offset"`
 }
@@ -14069,7 +14069,7 @@ func (t *GameHighScore) MarshalJSON() ([]byte, error) {
 // GameHighScores Contains a list of game high scores @scores A list of game high scores
 type GameHighScores struct {
 	//
-	Scores []*GameHighScore `json:"scores"`
+	Scores []GameHighScore `json:"scores"`
 }
 
 func (t *GameHighScores) Type() string {
@@ -14226,7 +14226,7 @@ func (t *GiftAuctionAcquiredGift) UnmarshalJSON(data []byte) error {
 // GiftAuctionAcquiredGifts Represents a list of gifts that were acquired by the current user on an auction @gifts The list of acquired gifts
 type GiftAuctionAcquiredGifts struct {
 	//
-	Gifts []*GiftAuctionAcquiredGift `json:"gifts"`
+	Gifts []GiftAuctionAcquiredGift `json:"gifts"`
 }
 
 func (t *GiftAuctionAcquiredGifts) Type() string {
@@ -14343,7 +14343,7 @@ func (t *GiftChatTheme) MarshalJSON() ([]byte, error) {
 // GiftChatThemes Contains a list of chat themes based on upgraded gifts
 type GiftChatThemes struct {
 	// A list of chat themes
-	Themes []*GiftChatTheme `json:"themes"`
+	Themes []GiftChatTheme `json:"themes"`
 	// The offset for the next request. If empty, then there are no more results
 	NextOffset string `json:"next_offset"`
 }
@@ -14393,7 +14393,7 @@ func (t *GiftCollection) MarshalJSON() ([]byte, error) {
 // GiftCollections Contains a list of gift collections @collections List of gift collections
 type GiftCollections struct {
 	//
-	Collections []*GiftCollection `json:"collections"`
+	Collections []GiftCollection `json:"collections"`
 }
 
 func (t *GiftCollections) Type() string {
@@ -14749,13 +14749,13 @@ type GiftsForResale struct {
 	// Total number of gifts found
 	TotalCount int32 `json:"total_count"`
 	// The gifts
-	Gifts []*GiftForResale `json:"gifts"`
+	Gifts []GiftForResale `json:"gifts"`
 	// Available models; for searchGiftsForResale requests without offset and attributes only
-	Models []*UpgradedGiftModelCount `json:"models"`
+	Models []UpgradedGiftModelCount `json:"models"`
 	// Available symbols; for searchGiftsForResale requests without offset and attributes only
-	Symbols []*UpgradedGiftSymbolCount `json:"symbols"`
+	Symbols []UpgradedGiftSymbolCount `json:"symbols"`
 	// Available backdrops; for searchGiftsForResale requests without offset and attributes only
-	Backdrops []*UpgradedGiftBackdropCount `json:"backdrops"`
+	Backdrops []UpgradedGiftBackdropCount `json:"backdrops"`
 	// The offset for the next request. If empty, then there are no more results
 	NextOffset string `json:"next_offset"`
 }
@@ -14778,15 +14778,15 @@ func (t *GiftsForResale) MarshalJSON() ([]byte, error) {
 // GiftUpgradePreview Contains examples of possible upgraded gifts for the given regular gift
 type GiftUpgradePreview struct {
 	// Examples of possible models that can be chosen for the gift after upgrade
-	Models []*UpgradedGiftModel `json:"models"`
+	Models []UpgradedGiftModel `json:"models"`
 	// Examples of possible symbols that can be chosen for the gift after upgrade
-	Symbols []*UpgradedGiftSymbol `json:"symbols"`
+	Symbols []UpgradedGiftSymbol `json:"symbols"`
 	// Examples of possible backdrops that can be chosen for the gift after upgrade
-	Backdrops []*UpgradedGiftBackdrop `json:"backdrops"`
+	Backdrops []UpgradedGiftBackdrop `json:"backdrops"`
 	// Examples of price for gift upgrade from the maximum price to the minimum price
-	Prices []*GiftUpgradePrice `json:"prices"`
+	Prices []GiftUpgradePrice `json:"prices"`
 	// Next changes for the price for gift upgrade with more granularity than in prices
-	NextPrices []*GiftUpgradePrice `json:"next_prices"`
+	NextPrices []GiftUpgradePrice `json:"next_prices"`
 }
 
 func (t *GiftUpgradePreview) Type() string {
@@ -14830,11 +14830,11 @@ func (t *GiftUpgradePrice) MarshalJSON() ([]byte, error) {
 // GiftUpgradeVariants Contains all possible variants of upgraded gifts for the given regular gift
 type GiftUpgradeVariants struct {
 	// Models that can be chosen for the gift after upgrade
-	Models []*UpgradedGiftModel `json:"models"`
+	Models []UpgradedGiftModel `json:"models"`
 	// Symbols that can be chosen for the gift after upgrade
-	Symbols []*UpgradedGiftSymbol `json:"symbols"`
+	Symbols []UpgradedGiftSymbol `json:"symbols"`
 	// Backdrops that can be chosen for the gift after upgrade
-	Backdrops []*UpgradedGiftBackdrop `json:"backdrops"`
+	Backdrops []UpgradedGiftBackdrop `json:"backdrops"`
 }
 
 func (t *GiftUpgradeVariants) Type() string {
@@ -15168,7 +15168,7 @@ type GroupCall struct {
 	// Message sender chosen to send messages to the group call; for live stories only; may be null if the call isn't a live story
 	MessageSenderId MessageSender `json:"message_sender_id,omitempty"`
 	// At most 3 recently speaking users in the group call
-	RecentSpeakers []*GroupCallRecentSpeaker `json:"recent_speakers"`
+	RecentSpeakers []GroupCallRecentSpeaker `json:"recent_speakers"`
 	// True, if the current user's video is enabled
 	IsMyVideoEnabled bool `json:"is_my_video_enabled"`
 	// True, if the current user's video is paused
@@ -15565,7 +15565,7 @@ func (t *GroupCallParticipants) UnmarshalJSON(data []byte) error {
 // GroupCallParticipantVideoInfo Contains information about a group call participant's video channel
 type GroupCallParticipantVideoInfo struct {
 	// List of synchronization source groups of the video
-	SourceGroups []*GroupCallVideoSourceGroup `json:"source_groups"`
+	SourceGroups []GroupCallVideoSourceGroup `json:"source_groups"`
 	// Video channel endpoint identifier
 	EndpointId string `json:"endpoint_id"`
 	// True, if the video is paused. This flag needs to be ignored, if new video frames are received
@@ -15661,7 +15661,7 @@ func (t *GroupCallStream) MarshalJSON() ([]byte, error) {
 // GroupCallStreams Represents a list of group call streams @streams A list of group call streams
 type GroupCallStreams struct {
 	//
-	Streams []*GroupCallStream `json:"streams"`
+	Streams []GroupCallStream `json:"streams"`
 }
 
 func (t *GroupCallStreams) Type() string {
@@ -15820,7 +15820,7 @@ type IdentityDocument struct {
 	// Selfie with the document; may be null
 	Selfie *DatedFile `json:"selfie,omitempty"`
 	// List of files containing a certified English translation of the document
-	Translation []*DatedFile `json:"translation"`
+	Translation []DatedFile `json:"translation"`
 }
 
 func (t *IdentityDocument) Type() string {
@@ -17018,7 +17018,7 @@ type InputChecklist struct {
 	// Title of the checklist; 1-getOption("checklist_title_length_max") characters. May contain only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities
 	Title *FormattedText `json:"title"`
 	// List of tasks in the checklist; 1-getOption("checklist_task_count_max") tasks
-	Tasks []*InputChecklistTask `json:"tasks"`
+	Tasks []InputChecklistTask `json:"tasks"`
 	// True, if other users can add tasks to the list
 	OthersCanAddTasks bool `json:"others_can_add_tasks"`
 	// True, if other users can mark tasks as done or not done
@@ -18664,7 +18664,7 @@ type InputMessagePaidMedia struct {
 	// The number of Telegram Stars that must be paid to see the media; 1-getOption("paid_media_message_star_count_max")
 	StarCount int64 `json:"star_count"`
 	// The content of the paid media
-	PaidMedia []*InputPaidMedia `json:"paid_media"`
+	PaidMedia []InputPaidMedia `json:"paid_media"`
 	// Message caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
 	Caption *FormattedText `json:"caption,omitempty"`
 	// True, if the caption must be shown above the media; otherwise, the caption must be shown below the media; not supported in secret chats
@@ -18765,7 +18765,7 @@ type InputMessagePoll struct {
 	// Poll question; 1-255 characters (up to 300 characters for bots). Only custom emoji entities are allowed to be added and only by Premium users
 	Question *FormattedText `json:"question"`
 	// List of poll answer options, 2-getOption("poll_answer_count_max") strings 1-100 characters each. Only custom emoji entities are allowed to be added and only by Premium users
-	Options []*FormattedText `json:"options"`
+	Options []FormattedText `json:"options"`
 	// True, if the poll voters are anonymous. Non-anonymous polls can't be sent or forwarded to channels
 	IsAnonymous bool `json:"is_anonymous"`
 	// Type of the poll
@@ -20133,7 +20133,7 @@ func (t *InputStoryArea) UnmarshalJSON(data []byte) error {
 // InputStoryAreas Contains a list of story areas to be added @areas List of input story areas. Currently, a story can have
 type InputStoryAreas struct {
 	//
-	Areas []*InputStoryArea `json:"areas"`
+	Areas []InputStoryArea `json:"areas"`
 }
 
 func (t *InputStoryAreas) Type() string {
@@ -22266,7 +22266,7 @@ type Invoice struct {
 	// ISO 4217 currency code
 	Currency string `json:"currency"`
 	// A list of objects used to calculate the total price of the product
-	PriceParts []*LabeledPricePart `json:"price_parts"`
+	PriceParts []LabeledPricePart `json:"price_parts"`
 	// The number of seconds between consecutive Telegram Star debiting for subscription invoices; 0 if the invoice doesn't create subscription
 	SubscriptionPeriod int32 `json:"subscription_period"`
 	// The maximum allowed amount of tip in the smallest units of the currency
@@ -22475,7 +22475,7 @@ func (t *JsonValueNumber) MarshalJSON() ([]byte, error) {
 // JsonValueObject Represents a JSON object @members The list of object members
 type JsonValueObject struct {
 	//
-	Members []*JsonObjectMember `json:"members"`
+	Members []JsonObjectMember `json:"members"`
 }
 
 func (t *JsonValueObject) Type() string {
@@ -22878,7 +22878,7 @@ func (t *LanguagePackString) UnmarshalJSON(data []byte) error {
 // LanguagePackStrings Contains a list of language pack strings @strings A list of language pack strings
 type LanguagePackStrings struct {
 	//
-	Strings []*LanguagePackString `json:"strings"`
+	Strings []LanguagePackString `json:"strings"`
 }
 
 func (t *LanguagePackStrings) Type() string {
@@ -23605,7 +23605,7 @@ func (t *LinkPreviewTypeGiftAuction) MarshalJSON() ([]byte, error) {
 // LinkPreviewTypeGiftCollection The link is a link to a gift collection @icons Icons for some gifts from the collection; may be empty
 type LinkPreviewTypeGiftCollection struct {
 	//
-	Icons []*Sticker `json:"icons"`
+	Icons []Sticker `json:"icons"`
 }
 
 func (t *LinkPreviewTypeGiftCollection) Type() string {
@@ -23804,7 +23804,7 @@ func (t *LinkPreviewTypeSticker) MarshalJSON() ([]byte, error) {
 // LinkPreviewTypeStickerSet The link is a link to a sticker set @stickers Up to 4 stickers from the sticker set
 type LinkPreviewTypeStickerSet struct {
 	//
-	Stickers []*Sticker `json:"stickers"`
+	Stickers []Sticker `json:"stickers"`
 }
 
 func (t *LinkPreviewTypeStickerSet) Type() string {
@@ -23900,7 +23900,7 @@ func (t *LinkPreviewTypeSupergroupBoost) MarshalJSON() ([]byte, error) {
 // LinkPreviewTypeTheme The link is a link to a cloud theme. TDLib has no theme support yet @documents The list of files with theme description @settings Settings for the cloud theme; may be null if unknown
 type LinkPreviewTypeTheme struct {
 	//
-	Documents []*Document `json:"documents"`
+	Documents []Document `json:"documents"`
 	//
 	Settings *ThemeSettings `json:"settings"`
 }
@@ -24119,7 +24119,7 @@ type LiveStoryDonors struct {
 	// Total amount of spend Telegram Stars
 	TotalStarCount int64 `json:"total_star_count"`
 	// List of top donors in the live story
-	TopDonors []*PaidReactor `json:"top_donors"`
+	TopDonors []PaidReactor `json:"top_donors"`
 }
 
 func (t *LiveStoryDonors) Type() string {
@@ -24175,7 +24175,7 @@ func (t *LocalFile) MarshalJSON() ([]byte, error) {
 // LocalizationTargetInfo Contains information about the current localization target @language_packs List of available language packs for this application
 type LocalizationTargetInfo struct {
 	//
-	LanguagePacks []*LanguagePackInfo `json:"language_packs"`
+	LanguagePacks []LanguagePackInfo `json:"language_packs"`
 }
 
 func (t *LocalizationTargetInfo) Type() string {
@@ -24631,7 +24631,7 @@ type Message struct {
 	// Information about interactions with the message; may be null if none
 	InteractionInfo *MessageInteractionInfo `json:"interaction_info,omitempty"`
 	// Information about unread reactions added to the message
-	UnreadReactions []*UnreadReaction `json:"unread_reactions"`
+	UnreadReactions []UnreadReaction `json:"unread_reactions"`
 	// Information about fact-check added to the message; may be null if none
 	FactCheck *FactCheck `json:"fact_check,omitempty"`
 	// Information about the suggested post; may be null if the message isn't a suggested post
@@ -24942,7 +24942,7 @@ type MessageCalendar struct {
 	//
 	TotalCount int32 `json:"total_count"`
 	//
-	Days []*MessageCalendarDay `json:"days"`
+	Days []MessageCalendarDay `json:"days"`
 }
 
 func (t *MessageCalendar) Type() string {
@@ -25410,7 +25410,7 @@ type MessageChecklistTasksAdded struct {
 	// Identifier of the message with the checklist; may be 0 or an identifier of a deleted message
 	ChecklistMessageId int64 `json:"checklist_message_id"`
 	// List of tasks added to the checklist
-	Tasks []*ChecklistTask `json:"tasks"`
+	Tasks []ChecklistTask `json:"tasks"`
 }
 
 func (t *MessageChecklistTasksAdded) Type() string {
@@ -27024,7 +27024,7 @@ func (t *MessagePaidMessagesRefunded) MarshalJSON() ([]byte, error) {
 // MessagePassportDataReceived Telegram Passport data has been received; for bots only @elements List of received Telegram Passport elements @credentials Encrypted data credentials
 type MessagePassportDataReceived struct {
 	//
-	Elements []*EncryptedPassportElement `json:"elements"`
+	Elements []EncryptedPassportElement `json:"elements"`
 	//
 	Credentials *EncryptedCredentials `json:"credentials"`
 }
@@ -27336,7 +27336,7 @@ type MessagePositions struct {
 	//
 	TotalCount int32 `json:"total_count"`
 	//
-	Positions []*MessagePosition `json:"positions"`
+	Positions []MessagePosition `json:"positions"`
 }
 
 func (t *MessagePositions) Type() string {
@@ -27643,11 +27643,11 @@ func (t *MessageReaction) UnmarshalJSON(data []byte) error {
 // MessageReactions Contains a list of reactions added to a message
 type MessageReactions struct {
 	// List of added reactions
-	Reactions []*MessageReaction `json:"reactions"`
+	Reactions []MessageReaction `json:"reactions"`
 	// True, if the reactions are tags and Telegram Premium users can filter messages by them
 	AreTags bool `json:"are_tags"`
 	// Information about top users that added the paid reaction
-	PaidReactors []*PaidReactor `json:"paid_reactors"`
+	PaidReactors []PaidReactor `json:"paid_reactors"`
 	// True, if the list of added reactions is available using getMessageAddedReactions
 	CanGetAddedReactions bool `json:"can_get_added_reactions"`
 }
@@ -27993,7 +27993,7 @@ type Messages struct {
 	//
 	TotalCount int32 `json:"total_count"`
 	//
-	Messages []*Message `json:"messages"`
+	Messages []Message `json:"messages"`
 }
 
 func (t *Messages) Type() string {
@@ -29066,7 +29066,7 @@ type MessageThreadInfo struct {
 	// Approximate number of unread messages in the message thread
 	UnreadMessageCount int32 `json:"unread_message_count"`
 	// The messages from which the thread starts. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id)
-	Messages []*Message `json:"messages"`
+	Messages []Message `json:"messages"`
 	// A draft of a message in the message thread; may be null if none
 	DraftMessage *DraftMessage `json:"draft_message,omitempty"`
 }
@@ -29400,7 +29400,7 @@ func (t *MessageUpgradedGiftPurchaseOfferRejected) UnmarshalJSON(data []byte) er
 // MessageUsersShared The current user shared users, which were requested by the bot @users The shared users @button_id Identifier of the keyboard button with the request
 type MessageUsersShared struct {
 	//
-	Users []*SharedUser `json:"users"`
+	Users []SharedUser `json:"users"`
 	//
 	ButtonId int32 `json:"button_id"`
 }
@@ -29450,9 +29450,9 @@ type MessageVideo struct {
 	// The video description
 	Video *Video `json:"video"`
 	// Alternative qualities of the video
-	AlternativeVideos []*AlternativeVideo `json:"alternative_videos"`
+	AlternativeVideos []AlternativeVideo `json:"alternative_videos"`
 	// Available storyboards for the video
-	Storyboards []*VideoStoryboard `json:"storyboards"`
+	Storyboards []VideoStoryboard `json:"storyboards"`
 	// Cover of the video; may be null if none
 	Cover *Photo `json:"cover,omitempty"`
 	// Timestamp from which the video playing must start, in seconds
@@ -29608,7 +29608,7 @@ func (t *MessageViewer) MarshalJSON() ([]byte, error) {
 // MessageViewers Represents a list of message viewers @viewers List of message viewers
 type MessageViewers struct {
 	//
-	Viewers []*MessageViewer `json:"viewers"`
+	Viewers []MessageViewer `json:"viewers"`
 }
 
 func (t *MessageViewers) Type() string {
@@ -30076,7 +30076,7 @@ type NotificationGroup struct {
 	// Total number of active notifications in the group
 	TotalCount int32 `json:"total_count"`
 	// The list of active notifications
-	Notifications []*Notification `json:"notifications"`
+	Notifications []Notification `json:"notifications"`
 }
 
 func (t *NotificationGroup) Type() string {
@@ -30298,7 +30298,7 @@ func (t *NotificationSound) MarshalJSON() ([]byte, error) {
 // NotificationSounds Contains a list of notification sounds @notification_sounds A list of notification sounds
 type NotificationSounds struct {
 	//
-	NotificationSounds []*NotificationSound `json:"notification_sounds"`
+	NotificationSounds []NotificationSound `json:"notification_sounds"`
 }
 
 func (t *NotificationSounds) Type() string {
@@ -30586,7 +30586,7 @@ func (t *OrderInfo) MarshalJSON() ([]byte, error) {
 // Outline Represents outline of an image @paths The list of closed vector paths
 type Outline struct {
 	//
-	Paths []*ClosedVectorPath `json:"paths"`
+	Paths []ClosedVectorPath `json:"paths"`
 }
 
 func (t *Outline) Type() string {
@@ -31345,7 +31345,7 @@ func (t *PageBlockKicker) UnmarshalJSON(data []byte) error {
 // PageBlockList A list of data blocks @items The items of the list
 type PageBlockList struct {
 	//
-	Items []*PageBlockListItem `json:"items"`
+	Items []PageBlockListItem `json:"items"`
 }
 
 func (t *PageBlockList) Type() string {
@@ -31658,7 +31658,7 @@ type PageBlockRelatedArticles struct {
 	// Block header
 	Header RichText `json:"header"`
 	// List of related articles
-	Articles []*PageBlockRelatedArticle `json:"articles"`
+	Articles []PageBlockRelatedArticle `json:"articles"`
 }
 
 func (t *PageBlockRelatedArticles) Type() string {
@@ -31849,7 +31849,7 @@ type PageBlockTable struct {
 	// Table caption
 	Caption RichText `json:"caption"`
 	// Table cells
-	Cells [][]*PageBlockTableCell `json:"cells"`
+	Cells [][]PageBlockTableCell `json:"cells"`
 	// True, if the table is bordered
 	IsBordered bool `json:"is_bordered"`
 	// True, if the table is striped
@@ -32378,7 +32378,7 @@ func (t *Passkey) MarshalJSON() ([]byte, error) {
 // Passkeys Contains a list of passkeys @passkeys List of passkeys
 type Passkeys struct {
 	//
-	Passkeys []*Passkey `json:"passkeys"`
+	Passkeys []Passkey `json:"passkeys"`
 }
 
 func (t *Passkeys) Type() string {
@@ -32401,7 +32401,7 @@ type PassportAuthorizationForm struct {
 	// Unique identifier of the authorization form
 	Id int32 `json:"id"`
 	// Telegram Passport elements that must be provided to complete the form
-	RequiredElements []*PassportRequiredElement `json:"required_elements"`
+	RequiredElements []PassportRequiredElement `json:"required_elements"`
 	// URL for the privacy policy of the service; may be empty
 	PrivacyPolicyUrl string `json:"privacy_policy_url"`
 }
@@ -32977,7 +32977,7 @@ type PassportElementsWithErrors struct {
 	//
 	Elements []PassportElement `json:"elements"`
 	//
-	Errors []*PassportElementError `json:"errors"`
+	Errors []PassportElementError `json:"errors"`
 }
 
 func (t *PassportElementsWithErrors) Type() string {
@@ -33343,7 +33343,7 @@ func (t *PassportElementUtilityBill) MarshalJSON() ([]byte, error) {
 // PassportRequiredElement Contains a description of the required Telegram Passport element that was requested by a service @suitable_elements List of Telegram Passport elements any of which is enough to provide
 type PassportRequiredElement struct {
 	//
-	SuitableElements []*PassportSuitableElement `json:"suitable_elements"`
+	SuitableElements []PassportSuitableElement `json:"suitable_elements"`
 }
 
 func (t *PassportRequiredElement) Type() string {
@@ -33503,11 +33503,11 @@ type PaymentFormTypeRegular struct {
 	// Information about the payment provider
 	PaymentProvider PaymentProvider `json:"payment_provider"`
 	// The list of additional payment options
-	AdditionalPaymentOptions []*PaymentOption `json:"additional_payment_options"`
+	AdditionalPaymentOptions []PaymentOption `json:"additional_payment_options"`
 	// Saved server-side order information; may be null
 	SavedOrderInfo *OrderInfo `json:"saved_order_info,omitempty"`
 	// The list of saved payment credentials
-	SavedCredentials []*SavedCredentials `json:"saved_credentials"`
+	SavedCredentials []SavedCredentials `json:"saved_credentials"`
 	// True, if the user can choose to save credentials
 	CanSaveCredentials bool `json:"can_save_credentials"`
 	// True, if the user will be able to save credentials, if sets up a 2-step verification password
@@ -33873,9 +33873,9 @@ func (t *PersonalDetails) MarshalJSON() ([]byte, error) {
 // PersonalDocument A personal document, containing some information about a user @files List of files containing the pages of the document @translation List of files containing a certified English translation of the document
 type PersonalDocument struct {
 	//
-	Files []*DatedFile `json:"files"`
+	Files []DatedFile `json:"files"`
 	//
-	Translation []*DatedFile `json:"translation"`
+	Translation []DatedFile `json:"translation"`
 }
 
 func (t *PersonalDocument) Type() string {
@@ -34048,7 +34048,7 @@ type Photo struct {
 	// Photo minithumbnail; may be null
 	Minithumbnail *Minithumbnail `json:"minithumbnail,omitempty"`
 	// Available variants of the photo, in different sizes
-	Sizes []*PhotoSize `json:"sizes"`
+	Sizes []PhotoSize `json:"sizes"`
 }
 
 func (t *Photo) Type() string {
@@ -34125,7 +34125,7 @@ type Poll struct {
 	// Poll question; 1-300 characters. Only custom emoji entities are allowed
 	Question *FormattedText `json:"question"`
 	// List of poll answer options
-	Options []*PollOption `json:"options"`
+	Options []PollOption `json:"options"`
 	// Total number of voters, participating in the poll
 	TotalVoterCount int32 `json:"total_voter_count"`
 	// Identifiers of recent voters, if the poll is non-anonymous
@@ -34760,7 +34760,7 @@ type PremiumFeatures struct {
 	// The list of available features
 	Features []PremiumFeature `json:"features"`
 	// The list of limits, increased for Premium users
-	Limits []*PremiumLimit `json:"limits"`
+	Limits []PremiumLimit `json:"limits"`
 	// An internal link to be opened to pay for Telegram Premium if store payment isn't possible; may be null if direct payment isn't available
 	PaymentLink InternalLinkType `json:"payment_link,omitempty"`
 }
@@ -35013,7 +35013,7 @@ func (t *PremiumGiftPaymentOption) MarshalJSON() ([]byte, error) {
 // PremiumGiftPaymentOptions Contains a list of options for gifting Telegram Premium to a user @options The list of options sorted by Telegram Premium subscription duration
 type PremiumGiftPaymentOptions struct {
 	//
-	Options []*PremiumGiftPaymentOption `json:"options"`
+	Options []PremiumGiftPaymentOption `json:"options"`
 }
 
 func (t *PremiumGiftPaymentOptions) Type() string {
@@ -35065,7 +35065,7 @@ func (t *PremiumGiveawayPaymentOption) MarshalJSON() ([]byte, error) {
 // PremiumGiveawayPaymentOptions Contains a list of options for creating of Telegram Premium giveaway or manual distribution of Telegram Premium among chat members @options The list of options
 type PremiumGiveawayPaymentOptions struct {
 	//
-	Options []*PremiumGiveawayPaymentOption `json:"options"`
+	Options []PremiumGiveawayPaymentOption `json:"options"`
 }
 
 func (t *PremiumGiveawayPaymentOptions) Type() string {
@@ -35817,11 +35817,11 @@ type PremiumState struct {
 	// Text description of the state of the current Premium subscription; may be empty if the current user has no Telegram Premium subscription
 	State *FormattedText `json:"state"`
 	// The list of available options for buying Telegram Premium
-	PaymentOptions []*PremiumStatePaymentOption `json:"payment_options"`
+	PaymentOptions []PremiumStatePaymentOption `json:"payment_options"`
 	// The list of available promotion animations for Premium features
-	Animations []*PremiumFeaturePromotionAnimation `json:"animations"`
+	Animations []PremiumFeaturePromotionAnimation `json:"animations"`
 	// The list of available promotion animations for Business features
-	BusinessAnimations []*BusinessFeaturePromotionAnimation `json:"business_animations"`
+	BusinessAnimations []BusinessFeaturePromotionAnimation `json:"business_animations"`
 }
 
 func (t *PremiumState) Type() string {
@@ -36417,7 +36417,7 @@ func (t *ProfileTabVoice) MarshalJSON() ([]byte, error) {
 // Proxies Represents a list of proxy servers @proxies List of proxy servers
 type Proxies struct {
 	//
-	Proxies []*Proxy `json:"proxies"`
+	Proxies []Proxy `json:"proxies"`
 }
 
 func (t *Proxies) Type() string {
@@ -37946,7 +37946,7 @@ func (t *QuickReplyMessage) UnmarshalJSON(data []byte) error {
 // QuickReplyMessages Contains a list of quick reply messages @messages List of quick reply messages; messages may be null
 type QuickReplyMessages struct {
 	//
-	Messages []*QuickReplyMessage `json:"messages"`
+	Messages []QuickReplyMessage `json:"messages"`
 }
 
 func (t *QuickReplyMessages) Type() string {
@@ -38341,7 +38341,7 @@ type ReceivedGifts struct {
 	// The total number of received gifts
 	TotalCount int32 `json:"total_count"`
 	// The list of gifts
-	Gifts []*ReceivedGift `json:"gifts"`
+	Gifts []ReceivedGift `json:"gifts"`
 	// True, if notifications about new gifts of the owner are enabled
 	AreNotificationsEnabled bool `json:"are_notifications_enabled"`
 	// The offset for the next request. If empty, then there are no more results
@@ -38389,7 +38389,7 @@ func (t *RecommendedChatFolder) MarshalJSON() ([]byte, error) {
 // RecommendedChatFolders Contains a list of recommended chat folders @chat_folders List of recommended chat folders
 type RecommendedChatFolders struct {
 	//
-	ChatFolders []*RecommendedChatFolder `json:"chat_folders"`
+	ChatFolders []RecommendedChatFolder `json:"chat_folders"`
 }
 
 func (t *RecommendedChatFolders) Type() string {
@@ -38485,7 +38485,7 @@ func (t *ReplyMarkupForceReply) MarshalJSON() ([]byte, error) {
 // ReplyMarkupInlineKeyboard Contains an inline keyboard layout
 type ReplyMarkupInlineKeyboard struct {
 	// A list of rows of inline keyboard buttons
-	Rows [][]*InlineKeyboardButton `json:"rows"`
+	Rows [][]InlineKeyboardButton `json:"rows"`
 }
 
 func (t *ReplyMarkupInlineKeyboard) Type() string {
@@ -38531,7 +38531,7 @@ func (t *ReplyMarkupRemoveKeyboard) MarshalJSON() ([]byte, error) {
 // ReplyMarkupShowKeyboard Contains a custom keyboard layout to quickly reply to bots
 type ReplyMarkupShowKeyboard struct {
 	// A list of rows of bot keyboard buttons
-	Rows [][]*KeyboardButton `json:"rows"`
+	Rows [][]KeyboardButton `json:"rows"`
 	// True, if the keyboard is expected to always be shown when the ordinary keyboard is hidden
 	IsPersistent bool `json:"is_persistent"`
 	// True, if the application needs to resize the keyboard vertically
@@ -38608,7 +38608,7 @@ type ReportChatResultOptionRequired struct {
 	//
 	Title string `json:"title"`
 	//
-	Options []*ReportOption `json:"options"`
+	Options []ReportOption `json:"options"`
 }
 
 func (t *ReportChatResultOptionRequired) Type() string {
@@ -38954,7 +38954,7 @@ type ReportSponsoredResultOptionRequired struct {
 	//
 	Title string `json:"title"`
 	//
-	Options []*ReportOption `json:"options"`
+	Options []ReportOption `json:"options"`
 }
 
 func (t *ReportSponsoredResultOptionRequired) Type() string {
@@ -39021,7 +39021,7 @@ type ReportStoryResultOptionRequired struct {
 	//
 	Title string `json:"title"`
 	//
-	Options []*ReportOption `json:"options"`
+	Options []ReportOption `json:"options"`
 }
 
 func (t *ReportStoryResultOptionRequired) Type() string {
@@ -40100,7 +40100,7 @@ func (t *SavedMessagesTag) UnmarshalJSON(data []byte) error {
 // SavedMessagesTags Contains a list of tags used in Saved Messages @tags List of tags
 type SavedMessagesTags struct {
 	//
-	Tags []*SavedMessagesTag `json:"tags"`
+	Tags []SavedMessagesTag `json:"tags"`
 }
 
 func (t *SavedMessagesTags) Type() string {
@@ -41005,7 +41005,7 @@ func (t *Session) UnmarshalJSON(data []byte) error {
 // Sessions Contains a list of sessions @sessions List of sessions @inactive_session_ttl_days Number of days of inactivity before sessions will automatically be terminated; 1-366 days
 type Sessions struct {
 	//
-	Sessions []*Session `json:"sessions"`
+	Sessions []Session `json:"sessions"`
 	//
 	InactiveSessionTtlDays int32 `json:"inactive_session_ttl_days"`
 }
@@ -41445,7 +41445,7 @@ type ShippingOption struct {
 	// Option title
 	Title string `json:"title"`
 	// A list of objects used to calculate the total shipping costs
-	PriceParts []*LabeledPricePart `json:"price_parts"`
+	PriceParts []LabeledPricePart `json:"price_parts"`
 }
 
 func (t *ShippingOption) Type() string {
@@ -41562,7 +41562,7 @@ func (t *SponsoredChat) MarshalJSON() ([]byte, error) {
 // SponsoredChats Contains a list of sponsored chats @chats List of sponsored chats
 type SponsoredChats struct {
 	//
-	Chats []*SponsoredChat `json:"chats"`
+	Chats []SponsoredChat `json:"chats"`
 }
 
 func (t *SponsoredChats) Type() string {
@@ -41645,7 +41645,7 @@ func (t *SponsoredMessage) UnmarshalJSON(data []byte) error {
 // SponsoredMessages Contains a list of sponsored messages @messages List of sponsored messages @messages_between The minimum number of messages between shown sponsored messages, or 0 if only one sponsored message must be shown after all ordinary messages
 type SponsoredMessages struct {
 	//
-	Messages []*SponsoredMessage `json:"messages"`
+	Messages []SponsoredMessage `json:"messages"`
 	//
 	MessagesBetween int32 `json:"messages_between"`
 }
@@ -41753,7 +41753,7 @@ type StarGiveawayPaymentOption struct {
 	// Number of times the chat will be boosted for one year if the option is chosen
 	YearlyBoostCount int32 `json:"yearly_boost_count"`
 	// Allowed options for the number of giveaway winners
-	WinnerOptions []*StarGiveawayWinnerOption `json:"winner_options"`
+	WinnerOptions []StarGiveawayWinnerOption `json:"winner_options"`
 	// True, if the option must be chosen by default
 	IsDefault bool `json:"is_default"`
 	// True, if the option must be shown only in the full list of payment options
@@ -41778,7 +41778,7 @@ func (t *StarGiveawayPaymentOption) MarshalJSON() ([]byte, error) {
 // StarGiveawayPaymentOptions Contains a list of options for creating of Telegram Star giveaway @options The list of options
 type StarGiveawayPaymentOptions struct {
 	//
-	Options []*StarGiveawayPaymentOption `json:"options"`
+	Options []StarGiveawayPaymentOption `json:"options"`
 }
 
 func (t *StarGiveawayPaymentOptions) Type() string {
@@ -41853,7 +41853,7 @@ func (t *StarPaymentOption) MarshalJSON() ([]byte, error) {
 // StarPaymentOptions Contains a list of options for buying Telegram Stars @options The list of options
 type StarPaymentOptions struct {
 	//
-	Options []*StarPaymentOption `json:"options"`
+	Options []StarPaymentOption `json:"options"`
 }
 
 func (t *StarPaymentOptions) Type() string {
@@ -42032,7 +42032,7 @@ type StarSubscriptions struct {
 	// The amount of owned Telegram Stars
 	StarAmount *StarAmount `json:"star_amount"`
 	// List of subscriptions for Telegram Stars
-	Subscriptions []*StarSubscription `json:"subscriptions"`
+	Subscriptions []StarSubscription `json:"subscriptions"`
 	// The number of Telegram Stars required to buy to extend subscriptions expiring soon
 	RequiredStarCount int64 `json:"required_star_count"`
 	// The offset for the next request. If empty, then there are no more results
@@ -42234,7 +42234,7 @@ type StarTransactions struct {
 	// The amount of owned Telegram Stars
 	StarAmount *StarAmount `json:"star_amount"`
 	// List of transactions with Telegram Stars
-	Transactions []*StarTransaction `json:"transactions"`
+	Transactions []StarTransaction `json:"transactions"`
 	// The offset for the next request. If empty, then there are no more results
 	NextOffset string `json:"next_offset"`
 }
@@ -43981,7 +43981,7 @@ func (t *StickerFullTypeRegular) MarshalJSON() ([]byte, error) {
 // Stickers Represents a list of stickers @stickers List of stickers
 type Stickers struct {
 	//
-	Stickers []*Sticker `json:"stickers"`
+	Stickers []Sticker `json:"stickers"`
 }
 
 func (t *Stickers) Type() string {
@@ -44028,9 +44028,9 @@ type StickerSet struct {
 	// True for already viewed trending sticker sets
 	IsViewed bool `json:"is_viewed"`
 	// List of stickers in this set
-	Stickers []*Sticker `json:"stickers"`
+	Stickers []Sticker `json:"stickers"`
 	// A list of emojis corresponding to the stickers in the same order. The list is only for informational purposes, because a sticker is always sent with a fixed emoji from the corresponding Sticker object
-	Emojis []*Emojis `json:"emojis"`
+	Emojis []Emojis `json:"emojis"`
 }
 
 func (t *StickerSet) Type() string {
@@ -44102,7 +44102,7 @@ type StickerSetInfo struct {
 	// Total number of stickers in the set
 	Size int32 `json:"size"`
 	// Up to the first 5 stickers from the set, depending on the context. If the application needs more stickers the full sticker set needs to be requested
-	Covers []*Sticker `json:"covers"`
+	Covers []Sticker `json:"covers"`
 }
 
 func (t *StickerSetInfo) Type() string {
@@ -44148,7 +44148,7 @@ type StickerSets struct {
 	//
 	TotalCount int32 `json:"total_count"`
 	//
-	Sets []*StickerSetInfo `json:"sets"`
+	Sets []StickerSetInfo `json:"sets"`
 }
 
 func (t *StickerSets) Type() string {
@@ -44236,7 +44236,7 @@ type StorageStatistics struct {
 	// Total number of files
 	Count int32 `json:"count"`
 	// Statistics split by chats
-	ByChat []*StorageStatisticsByChat `json:"by_chat"`
+	ByChat []StorageStatisticsByChat `json:"by_chat"`
 }
 
 func (t *StorageStatistics) Type() string {
@@ -44263,7 +44263,7 @@ type StorageStatisticsByChat struct {
 	// Total number of files in the chat
 	Count int32 `json:"count"`
 	// Statistics split by file types
-	ByFileType []*StorageStatisticsByFileType `json:"by_file_type"`
+	ByFileType []StorageStatisticsByFileType `json:"by_file_type"`
 }
 
 func (t *StorageStatisticsByChat) Type() string {
@@ -44614,7 +44614,7 @@ type Stories struct {
 	// Approximate total number of stories found
 	TotalCount int32 `json:"total_count"`
 	// The list of stories
-	Stories []*Story `json:"stories"`
+	Stories []Story `json:"stories"`
 	// Identifiers of the pinned stories; returned only in getChatPostedToChatPageStories with from_story_id == 0
 	PinnedStoryIds []int32 `json:"pinned_story_ids"`
 }
@@ -44685,7 +44685,7 @@ type Story struct {
 	// Content of the story
 	Content StoryContent `json:"content"`
 	// Clickable areas to be shown on the story content
-	Areas []*StoryArea `json:"areas"`
+	Areas []StoryArea `json:"areas"`
 	// Caption of the story
 	Caption *FormattedText `json:"caption"`
 	// Identifiers of story albums to which the story is added; only for manageable stories
@@ -44784,7 +44784,7 @@ func (t *StoryAlbum) MarshalJSON() ([]byte, error) {
 // StoryAlbums Represents a list of story albums @albums List of story albums
 type StoryAlbums struct {
 	//
-	Albums []*StoryAlbum `json:"albums"`
+	Albums []StoryAlbum `json:"albums"`
 }
 
 func (t *StoryAlbums) Type() string {
@@ -45323,7 +45323,7 @@ type StoryInteractions struct {
 	// Approximate total number of found reactions; always 0 for chat stories
 	TotalReactionCount int32 `json:"total_reaction_count"`
 	// List of story interactions
-	Interactions []*StoryInteraction `json:"interactions"`
+	Interactions []StoryInteraction `json:"interactions"`
 	// The offset for the next request. If empty, then there are no more results
 	NextOffset string `json:"next_offset"`
 }
@@ -46530,7 +46530,7 @@ type SupergroupFullInfo struct {
 	// Primary invite link for the chat; may be null. For chat administrators with can_invite_users right only
 	InviteLink *ChatInviteLink `json:"invite_link,omitempty"`
 	// List of commands of bots in the group
-	BotCommands []*BotCommands `json:"bot_commands"`
+	BotCommands []BotCommands `json:"bot_commands"`
 	// Information about verification status of the supergroup or the channel provided by a bot; may be null if none or unknown
 	BotVerification *BotVerification `json:"bot_verification,omitempty"`
 	// The main tab chosen by the administrators of the channel; may be null if not chosen manually
@@ -47241,7 +47241,7 @@ func (t *TestVectorInt) MarshalJSON() ([]byte, error) {
 // TestVectorIntObject A simple object containing a vector of objects that hold a number; for testing only @value Vector of objects
 type TestVectorIntObject struct {
 	//
-	Value []*TestInt `json:"value"`
+	Value []TestInt `json:"value"`
 }
 
 func (t *TestVectorIntObject) Type() string {
@@ -47283,7 +47283,7 @@ func (t *TestVectorString) MarshalJSON() ([]byte, error) {
 // TestVectorStringObject A simple object containing a vector of objects that hold a string; for testing only @value Vector of objects
 type TestVectorStringObject struct {
 	//
-	Value []*TestString `json:"value"`
+	Value []TestString `json:"value"`
 }
 
 func (t *TestVectorStringObject) Type() string {
@@ -47325,7 +47325,7 @@ func (t *Text) MarshalJSON() ([]byte, error) {
 // TextEntities Contains a list of text entities @entities List of text entities
 type TextEntities struct {
 	//
-	Entities []*TextEntity `json:"entities"`
+	Entities []TextEntity `json:"entities"`
 }
 
 func (t *TextEntities) Type() string {
@@ -48268,7 +48268,7 @@ func (t *TimeZone) MarshalJSON() ([]byte, error) {
 // TimeZones Contains a list of time zones @time_zones A list of time zones
 type TimeZones struct {
 	//
-	TimeZones []*TimeZone `json:"time_zones"`
+	TimeZones []TimeZone `json:"time_zones"`
 }
 
 func (t *TimeZones) Type() string {
@@ -48335,7 +48335,7 @@ func (t *TMeUrl) UnmarshalJSON(data []byte) error {
 // TMeUrls Contains a list of t.me URLs @urls List of URLs
 type TMeUrls struct {
 	//
-	Urls []*TMeUrl `json:"urls"`
+	Urls []TMeUrl `json:"urls"`
 }
 
 func (t *TMeUrls) Type() string {
@@ -48577,7 +48577,7 @@ type TonTransactions struct {
 	// The total amount of owned Toncoins
 	TonAmount int64 `json:"ton_amount"`
 	// List of Toncoin transactions
-	Transactions []*TonTransaction `json:"transactions"`
+	Transactions []TonTransaction `json:"transactions"`
 	// The offset for the next request. If empty, then there are no more results
 	NextOffset string `json:"next_offset"`
 }
@@ -49006,7 +49006,7 @@ type TrendingStickerSets struct {
 	//
 	TotalCount int32 `json:"total_count"`
 	//
-	Sets []*StickerSetInfo `json:"sets"`
+	Sets []StickerSetInfo `json:"sets"`
 	//
 	IsPremium bool `json:"is_premium"`
 }
@@ -49112,7 +49112,7 @@ func (t *UnreadReaction) UnmarshalJSON(data []byte) error {
 // UpdateAccentColors The list of supported accent colors has changed
 type UpdateAccentColors struct {
 	// Information about supported colors; colors with identifiers 0 (red), 1 (orange), 2 (purple/violet), 3 (green), 4 (cyan), 5 (blue), 6 (pink) must always be supported
-	Colors []*AccentColor `json:"colors"`
+	Colors []AccentColor `json:"colors"`
 	// The list of accent color identifiers, which can be set through setAccentColor and setChatAccentColor. The colors must be shown in the specified order
 	AvailableAccentColorIds []int32 `json:"available_accent_color_ids"`
 }
@@ -49160,7 +49160,7 @@ func (t *UpdateActiveEmojiReactions) MarshalJSON() ([]byte, error) {
 // UpdateActiveGiftAuctions The list of auctions in which participate the current user has changed @states New states of the auctions
 type UpdateActiveGiftAuctions struct {
 	//
-	States []*GiftAuctionState `json:"states"`
+	States []GiftAuctionState `json:"states"`
 }
 
 func (t *UpdateActiveGiftAuctions) Type() string {
@@ -49183,7 +49183,7 @@ func (t *UpdateActiveGiftAuctions) MarshalJSON() ([]byte, error) {
 // UpdateActiveLiveLocationMessages The list of messages with active live location that need to be updated by the application has changed. The list is persistent across application restarts only if the message database is used
 type UpdateActiveLiveLocationMessages struct {
 	// The list of messages with active live locations
-	Messages []*Message `json:"messages"`
+	Messages []Message `json:"messages"`
 }
 
 func (t *UpdateActiveLiveLocationMessages) Type() string {
@@ -49206,7 +49206,7 @@ func (t *UpdateActiveLiveLocationMessages) MarshalJSON() ([]byte, error) {
 // UpdateActiveNotifications Contains active notifications that were shown on previous application launches. This update is sent only if the message database is used. In that case it comes once before any updateNotification and updateNotificationGroup update @groups Lists of active notification groups
 type UpdateActiveNotifications struct {
 	//
-	Groups []*NotificationGroup `json:"groups"`
+	Groups []NotificationGroup `json:"groups"`
 }
 
 func (t *UpdateActiveNotifications) Type() string {
@@ -49358,7 +49358,7 @@ func (t *UpdateApplicationVerificationRequired) MarshalJSON() ([]byte, error) {
 // UpdateAttachmentMenuBots The list of bots added to attachment or side menu has changed @bots The new list of bots. The bots must not be shown on scheduled messages screen
 type UpdateAttachmentMenuBots struct {
 	//
-	Bots []*AttachmentMenuBot `json:"bots"`
+	Bots []AttachmentMenuBot `json:"bots"`
 }
 
 func (t *UpdateAttachmentMenuBots) Type() string {
@@ -50066,7 +50066,7 @@ type UpdateChatDraftMessage struct {
 	// The new draft message; may be null if none
 	DraftMessage *DraftMessage `json:"draft_message,omitempty"`
 	// The new chat positions in the chat lists
-	Positions []*ChatPosition `json:"positions"`
+	Positions []ChatPosition `json:"positions"`
 }
 
 func (t *UpdateChatDraftMessage) Type() string {
@@ -50114,7 +50114,7 @@ func (t *UpdateChatEmojiStatus) MarshalJSON() ([]byte, error) {
 // UpdateChatFolders The list of chat folders or a chat folder has changed
 type UpdateChatFolders struct {
 	// The new list of chat folders
-	ChatFolders []*ChatFolderInfo `json:"chat_folders"`
+	ChatFolders []ChatFolderInfo `json:"chat_folders"`
 	// Position of the main chat list among chat folders, 0-based
 	MainChatListPosition int32 `json:"main_chat_list_position"`
 	// True, if folder tags are enabled
@@ -50245,7 +50245,7 @@ type UpdateChatLastMessage struct {
 	// The new last message in the chat; may be null if the last message became unknown. While the last message is unknown, new messages can be added to the chat without corresponding updateNewMessage update
 	LastMessage *Message `json:"last_message,omitempty"`
 	// The new chat positions in the chat lists
-	Positions []*ChatPosition `json:"positions"`
+	Positions []ChatPosition `json:"positions"`
 }
 
 func (t *UpdateChatLastMessage) Type() string {
@@ -50897,7 +50897,7 @@ func (t *UpdateConnectionState) UnmarshalJSON(data []byte) error {
 // UpdateContactCloseBirthdays The list of contacts that had birthdays recently or will have birthday soon has changed @close_birthday_users List of contact users with close birthday
 type UpdateContactCloseBirthdays struct {
 	//
-	CloseBirthdayUsers []*CloseBirthdayUser `json:"close_birthday_users"`
+	CloseBirthdayUsers []CloseBirthdayUser `json:"close_birthday_users"`
 }
 
 func (t *UpdateContactCloseBirthdays) Type() string {
@@ -51112,7 +51112,7 @@ func (t *UpdateDirectMessagesChatTopic) MarshalJSON() ([]byte, error) {
 // UpdateEmojiChatThemes The list of available emoji chat themes has changed @chat_themes The new list of emoji chat themes
 type UpdateEmojiChatThemes struct {
 	//
-	ChatThemes []*EmojiChatTheme `json:"chat_themes"`
+	ChatThemes []EmojiChatTheme `json:"chat_themes"`
 }
 
 func (t *UpdateEmojiChatThemes) Type() string {
@@ -51476,7 +51476,7 @@ func (t *UpdateGroupCall) MarshalJSON() ([]byte, error) {
 // UpdateGroupCallMessageLevels The levels of live story group call messages have changed @levels New description of the levels in decreasing order of groupCallMessageLevel.min_star_count
 type UpdateGroupCallMessageLevels struct {
 	//
-	Levels []*GroupCallMessageLevel `json:"levels"`
+	Levels []GroupCallMessageLevel `json:"levels"`
 }
 
 func (t *UpdateGroupCallMessageLevels) Type() string {
@@ -51705,7 +51705,7 @@ type UpdateLanguagePackStrings struct {
 	//
 	LanguagePackId string `json:"language_pack_id"`
 	//
-	Strings []*LanguagePackString `json:"strings"`
+	Strings []LanguagePackString `json:"strings"`
 }
 
 func (t *UpdateLanguagePackStrings) Type() string {
@@ -52097,7 +52097,7 @@ type UpdateMessageReactions struct {
 	// Point in time (Unix timestamp) when the reactions were changed
 	Date int32 `json:"date"`
 	// The list of reactions added to the message
-	Reactions []*MessageReaction `json:"reactions"`
+	Reactions []MessageReaction `json:"reactions"`
 }
 
 func (t *UpdateMessageReactions) Type() string {
@@ -52228,7 +52228,7 @@ type UpdateMessageUnreadReactions struct {
 	// Message identifier
 	MessageId int64 `json:"message_id"`
 	// The new list of unread reactions
-	UnreadReactions []*UnreadReaction `json:"unread_reactions"`
+	UnreadReactions []UnreadReaction `json:"unread_reactions"`
 	// The new number of messages with unread reactions left in the chat
 	UnreadReactionCount int32 `json:"unread_reaction_count"`
 }
@@ -52857,7 +52857,7 @@ type UpdateNotificationGroup struct {
 	// Total number of unread notifications in the group, can be bigger than number of active notifications
 	TotalCount int32 `json:"total_count"`
 	// List of added group notifications, sorted by notification identifier
-	AddedNotifications []*Notification `json:"added_notifications"`
+	AddedNotifications []Notification `json:"added_notifications"`
 	// Identifiers of removed group notifications, sorted by notification identifier
 	RemovedNotificationIds []int32 `json:"removed_notification_ids"`
 }
@@ -53126,7 +53126,7 @@ func (t *UpdatePollAnswer) UnmarshalJSON(data []byte) error {
 // UpdateProfileAccentColors The list of supported accent colors for user profiles has changed
 type UpdateProfileAccentColors struct {
 	// Information about supported colors
-	Colors []*ProfileAccentColor `json:"colors"`
+	Colors []ProfileAccentColor `json:"colors"`
 	// The list of accent color identifiers, which can be set through setProfileAccentColor and setChatProfileAccentColor. The colors must be shown in the specified order
 	AvailableAccentColorIds []int32 `json:"available_accent_color_ids"`
 }
@@ -53199,7 +53199,7 @@ type UpdateQuickReplyShortcutMessages struct {
 	// The identifier of the shortcut
 	ShortcutId int32 `json:"shortcut_id"`
 	// The new list of quick reply messages for the shortcut in order from the first to the last sent
-	Messages []*QuickReplyMessage `json:"messages"`
+	Messages []QuickReplyMessage `json:"messages"`
 }
 
 func (t *UpdateQuickReplyShortcutMessages) Type() string {
@@ -56440,7 +56440,7 @@ type ValidatedOrderInfo struct {
 	//
 	OrderInfoId string `json:"order_info_id"`
 	//
-	ShippingOptions []*ShippingOption `json:"shipping_options"`
+	ShippingOptions []ShippingOption `json:"shipping_options"`
 }
 
 func (t *ValidatedOrderInfo) Type() string {
@@ -56691,7 +56691,7 @@ func (t *VideoMessageAdvertisement) MarshalJSON() ([]byte, error) {
 // VideoMessageAdvertisements Contains a list of advertisements to be shown while a video from a message is watched
 type VideoMessageAdvertisements struct {
 	// List of advertisements
-	Advertisements []*VideoMessageAdvertisement `json:"advertisements"`
+	Advertisements []VideoMessageAdvertisement `json:"advertisements"`
 	// Delay before the first advertisement is shown, in seconds
 	StartDelay int32 `json:"start_delay"`
 	// Delay between consecutive advertisements, in seconds

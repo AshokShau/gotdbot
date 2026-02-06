@@ -24,7 +24,7 @@ func (m *Message) GetText() string {
 }
 
 // GetEntities returns the message entities, for both text messages and media messages.
-func (m *Message) GetEntities() []*TextEntity {
+func (m *Message) GetEntities() []TextEntity {
 	if len(m.CaptionEntities()) > 0 {
 		return m.CaptionEntities()
 	}
@@ -89,7 +89,7 @@ func (m *Message) Text() string {
 }
 
 // Entities returns the entities of the message text.
-func (m *Message) Entities() []*TextEntity {
+func (m *Message) Entities() []TextEntity {
 	if m.Content == nil {
 		return nil
 	}
@@ -126,7 +126,7 @@ func (m *Message) Caption() string {
 }
 
 // CaptionEntities returns the entities of the message caption.
-func (m *Message) CaptionEntities() []*TextEntity {
+func (m *Message) CaptionEntities() []TextEntity {
 	if m.Content == nil {
 		return nil
 	}

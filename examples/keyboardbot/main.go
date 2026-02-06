@@ -62,7 +62,7 @@ func main() {
 		text := fmt.Sprintf("Hello %s! (gotdbot %s)\nHere are some bot commands:\n\n- /keyboard - show keyboard\n- /inline - show inline keyboard\n- /remove - remove keyboard\n- /force - force reply", userName, gotdbot.Version)
 
 		kb := &gotdbot.ReplyMarkupInlineKeyboard{
-			Rows: [][]*gotdbot.InlineKeyboardButton{
+			Rows: [][]gotdbot.InlineKeyboardButton{
 				{
 					{
 						Text: "GitHub",
@@ -93,7 +93,7 @@ func main() {
 	// /inline - Send message with inline keyboard buttons
 	dispatcher.AddHandler(handlers.NewCommand("inline", func(ctx *ext.Context) error {
 		kb := &gotdbot.ReplyMarkupInlineKeyboard{
-			Rows: [][]*gotdbot.InlineKeyboardButton{
+			Rows: [][]gotdbot.InlineKeyboardButton{
 				{
 					{
 						Text: "OwO",
@@ -135,7 +135,7 @@ func main() {
 	// /keyboard - Send message with reply keyboard
 	dispatcher.AddHandler(handlers.NewCommand("keyboard", func(ctx *ext.Context) error {
 		kb := &gotdbot.ReplyMarkupShowKeyboard{
-			Rows: [][]*gotdbot.KeyboardButton{
+			Rows: [][]gotdbot.KeyboardButton{
 				{
 					{
 						Text:      "OwO",
@@ -215,7 +215,7 @@ func main() {
 
 		if data != "" {
 			kb := &gotdbot.ReplyMarkupInlineKeyboard{
-				Rows: [][]*gotdbot.InlineKeyboardButton{
+				Rows: [][]gotdbot.InlineKeyboardButton{
 					{
 						{
 							Text: "GitHub",

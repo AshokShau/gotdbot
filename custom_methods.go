@@ -7,7 +7,7 @@ import (
 // SendTextMessageOpts contains optional parameters for SendTextMessage
 type SendTextMessageOpts struct {
 	ParseMode             string
-	Entities              []*TextEntity
+	Entities              []TextEntity
 	DisableWebPagePreview bool
 	Url                   string
 	ForceSmallMedia       bool
@@ -58,7 +58,7 @@ func (c *Client) SendTextMessage(chatId int64, text string, opts *SendTextMessag
 // SendPhotoOpts contains optional parameters for SendPhoto
 type SendPhotoOpts struct {
 	Caption             string
-	CaptionEntities     []*TextEntity
+	CaptionEntities     []TextEntity
 	ParseMode           string
 	AddedStickerFileIds []int32
 	Width               int32
@@ -108,7 +108,7 @@ func (c *Client) SendPhoto(chatId int64, photo string, opts *SendPhotoOpts) (*Me
 // SendVideoOpts contains optional parameters for SendVideo
 type SendVideoOpts struct {
 	Caption             string
-	CaptionEntities     []*TextEntity
+	CaptionEntities     []TextEntity
 	ParseMode           string
 	AddedStickerFileIds []int32
 	SupportsStreaming   bool
@@ -162,7 +162,7 @@ func (c *Client) SendVideo(chatId int64, video string, opts *SendVideoOpts) (*Me
 // SendAnimationOpts contains optional parameters for SendAnimation
 type SendAnimationOpts struct {
 	Caption             string
-	CaptionEntities     []*TextEntity
+	CaptionEntities     []TextEntity
 	ParseMode           string
 	AddedStickerFileIds []int32
 	Duration            int32
@@ -212,7 +212,7 @@ func (c *Client) SendAnimation(chatId int64, animation string, opts *SendAnimati
 // SendAudioOpts contains optional parameters for SendAudio
 type SendAudioOpts struct {
 	Caption             string
-	CaptionEntities     []*TextEntity
+	CaptionEntities     []TextEntity
 	ParseMode           string
 	Title               string
 	Performer           string
@@ -258,7 +258,7 @@ func (c *Client) SendAudio(chatId int64, audio string, opts *SendAudioOpts) (*Me
 // SendDocumentOpts contains optional parameters for SendDocument
 type SendDocumentOpts struct {
 	Caption                     string
-	CaptionEntities             []*TextEntity
+	CaptionEntities             []TextEntity
 	ParseMode                   string
 	DisableContentTypeDetection bool
 	DisableNotification         bool
@@ -300,7 +300,7 @@ func (c *Client) SendDocument(chatId int64, document string, opts *SendDocumentO
 // SendVoiceOpts contains optional parameters for SendVoice
 type SendVoiceOpts struct {
 	Caption             string
-	CaptionEntities     []*TextEntity
+	CaptionEntities     []TextEntity
 	ParseMode           string
 	Duration            int32
 	Waveform            []byte
@@ -424,7 +424,7 @@ type SendCopyOpts struct {
 	InGameShare         bool
 	ReplaceCaption      bool
 	NewCaption          string
-	NewCaptionEntities  []*TextEntity
+	NewCaptionEntities  []TextEntity
 	ParseMode           string
 	DisableNotification bool
 	ProtectContent      bool
@@ -491,7 +491,7 @@ func (c *Client) ForwardMessage(chatId int64, fromChatId int64, messageId int64,
 // EditTextMessageOpts contains optional parameters for EditTextMessage
 type EditTextMessageOpts struct {
 	ParseMode             string
-	Entities              []*TextEntity
+	Entities              []TextEntity
 	DisableWebPagePreview bool
 	Url                   string
 	ForceSmallMedia       bool
