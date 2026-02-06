@@ -3,6 +3,7 @@ package main
 //go:generate go run ../../scripts/tools/get_tdjson.go
 
 import (
+	"errors"
 	"fmt"
 	"log"
 	"time"
@@ -14,72 +15,66 @@ import (
 )
 
 func main() {
-	apiID := int32(12345)
-	apiHash := "YOUR_API_HASH"
-	botToken := "YOUR_BOT_TOKEN"
+	apiID := int32(6)
+	apiHash := "API_HASH"
+	botToken := "BOT_TOKEN"
 
 	bot := gotdbot.NewClient(apiID, apiHash, botToken, &gotdbot.ClientConfig{LibraryPath: "./libtdjson.so.1.8.60"})
 	gotdbot.SetTdlibLogVerbosityLevel(2)
 
 	dispatcher := ext.NewDispatcher(bot)
 
-	// Register /survey command
+	dispatcher.AddHandler(handlers.NewCommand("start", func(ctx *ext.Context) error {
+		msg := ctx.EffectiveMessage
+		c := ctx.Client
+		_, err := msg.ReplyText(c, "Welcome! Use /survey to start the survey.\nSend /cancel to stop talking to me", nil)
+		return err
+	}))
+
 	dispatcher.AddHandler(handlers.NewCommand("survey", func(ctx *ext.Context) error {
 		chatId := ctx.EffectiveChatId
 		msg := ctx.EffectiveMessage
 		c := ctx.Client
 
-		// Ask Name
+		timeOut := 30 * time.Second
+		stopFilter := filters.Text.And(filters.SenderID(msg.FromID())).And(filters.Command("cancel"))
+
 		_, err := msg.ReplyText(c, "What is your name?", nil)
 		if err != nil {
 			return err
 		}
 
-		// Wait for response (Name)
-		nameMsg, err := ctx.WaitForMessage(chatId, filters.Text.And(filters.SenderID(msg.FromID())), 30*time.Second)
+		nameMsg, err := ctx.Ask(chatId, &ext.WaitMessageOpts{Timeout: timeOut, Filter: filters.Text.And(filters.SenderID(msg.FromID())), CancellationFilter: stopFilter})
 		if err != nil {
-			_, _ = msg.ReplyText(c, "Timed out waiting for name.", nil)
+			_, _ = msg.ReplyText(c, err.Error(), nil)
 			return nil
 		}
 
-		name := nameMsg.Text()
-		// Ask Age
-		_, err = msg.ReplyText(c, fmt.Sprintf("Nice to meet you, %s! How old are you?", name), nil)
+		_, err = msg.ReplyText(c, fmt.Sprintf("I see! Please send me a photo of yourself, %s.", nameMsg.Text()), &gotdbot.SendTextMessageOpts{ReplyMarkup: &gotdbot.ReplyMarkupForceReply{InputFieldPlaceholder: "Send a picture"}})
 		if err != nil {
 			return err
 		}
 
-		// Wait for response (Age)
-		ageMsg, err := ctx.WaitForMessage(chatId, filters.Text.And(filters.SenderID(msg.FromID())), 30*time.Second)
+		picMsg, err := ctx.Ask(chatId, &ext.WaitMessageOpts{Timeout: timeOut, Filter: filters.Photo.And(filters.SenderID(msg.FromID())), CancellationFilter: stopFilter})
 		if err != nil {
-			_, _ = msg.ReplyText(c, "Timed out waiting for age.", nil)
+			if errors.Is(err, ext.ConversationCancelled) {
+				_, _ = msg.ReplyText(c, "Survey cancelled. Send /survey to start again.", nil)
+				return nil
+			}
+
+			_, _ = msg.ReplyText(c, "Timeout !", nil)
 			return nil
 		}
 
-		age := ageMsg.Text()
-
-		// Ask Fevorite Color
-		_, err = msg.ReplyText(c, fmt.Sprintf("Great! Finally, what is your favorite color, %s?", name), &gotdbot.SendTextMessageOpts{ReplyMarkup: &gotdbot.ReplyMarkupForceReply{InputFieldPlaceholder: "Type your favorite color"}})
+		_, err = msg.ReplyPhoto(c, picMsg.RemoteFileID(), &gotdbot.SendPhotoOpts{Caption: fmt.Sprintf("Nice to meet you, %s!", nameMsg.Text())})
 		if err != nil {
 			return err
 		}
 
-		// Wait for response (Color)
-		colorMsg, err := ctx.WaitForMessage(chatId, filters.Text.And(filters.SenderID(msg.FromID())), 30*time.Second)
-		if err != nil {
-			_, _ = msg.ReplyText(c, "Timed out waiting for favorite color.", nil)
-			return nil
-		}
-
-		// Finish
-		color := colorMsg.Text()
-		summary := fmt.Sprintf("Thank you for completing the survey, %s!\nAge: %s\nFavorite Color: %s", name, age, color)
-		_, err = msg.ReplyText(c, summary, nil)
-		return err
+		return nil
 	}))
 
 	dispatcher.Start()
-
 	log.Println("Starting bot...")
 	if err := bot.Start(); err != nil {
 		log.Fatalf("Failed to start bot: %v", err)

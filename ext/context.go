@@ -38,29 +38,6 @@ func (c *Context) WaitFor(filter UpdateFilter, timeout time.Duration) (gotdbot.T
 	return c.Dispatcher.WaitFor(filter, timeout)
 }
 
-// WaitForMessage waits for a new message in the specified chat.
-func (c *Context) WaitForMessage(chatId int64, filter func(*gotdbot.Message) bool, timeout time.Duration) (*gotdbot.Message, error) {
-	msgFilter := func(ctx *Context) bool {
-		if ctx.EffectiveChatId != chatId {
-			return false
-		}
-		if ctx.Update.UpdateNewMessage == nil {
-			return false
-		}
-		if filter != nil && !filter(ctx.Update.UpdateNewMessage.Message) {
-			return false
-		}
-		return true
-	}
-
-	u, err := c.WaitFor(msgFilter, timeout)
-	if err != nil {
-		return nil, err
-	}
-
-	return u.(*gotdbot.UpdateNewMessage).Message, nil
-}
-
 func (c *Context) extractEffectiveFields(u gotdbot.TlObject) {
 	switch u := u.(type) {
 	// Message updates

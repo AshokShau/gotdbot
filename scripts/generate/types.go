@@ -88,8 +88,15 @@ func generateObjects(types []TLType, classes map[string]*TLClass) {
 				fieldName = "TypeField"
 			}
 			jsonTag := fmt.Sprintf("`json:\"%s\"`", p.Name)
+			if p.Type == "int64" {
+				jsonTag = fmt.Sprintf("`json:\"%s,string\"`", p.Name)
+			}
 			if p.IsOptional {
-				jsonTag = fmt.Sprintf("`json:\"%s,omitempty\"`", p.Name)
+				if p.Type == "int64" {
+					jsonTag = fmt.Sprintf("`json:\"%s,string,omitempty\"`", p.Name)
+				} else {
+					jsonTag = fmt.Sprintf("`json:\"%s,omitempty\"`", p.Name)
+				}
 			}
 			fmt.Fprintf(&sb, "\t// %s\n", formatDesc(p.Description))
 			fmt.Fprintf(&sb, "\t%s %s %s\n", fieldName, goType, jsonTag)
@@ -235,8 +242,15 @@ func generateFunctions(functions []TLType, classes map[string]*TLClass) {
 				fieldName = "TypeField"
 			}
 			jsonTag := fmt.Sprintf("`json:\"%s\"`", p.Name)
+			if p.Type == "int64" {
+				jsonTag = fmt.Sprintf("`json:\"%s,string\"`", p.Name)
+			}
 			if p.IsOptional {
-				jsonTag = fmt.Sprintf("`json:\"%s,omitempty\"`", p.Name)
+				if p.Type == "int64" {
+					jsonTag = fmt.Sprintf("`json:\"%s,string,omitempty\"`", p.Name)
+				} else {
+					jsonTag = fmt.Sprintf("`json:\"%s,omitempty\"`", p.Name)
+				}
 			}
 			fmt.Fprintf(&sb, "\t// %s\n", formatDesc(p.Description))
 			fmt.Fprintf(&sb, "\t%s %s %s\n", fieldName, goType, jsonTag)

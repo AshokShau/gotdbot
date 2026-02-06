@@ -448,7 +448,7 @@ func (c *Client) messageSendSucceededHandler(client *Client, update TlObject) er
 		ch.(chan TlObject) <- u.Message
 		c.pendingMessages.Delete(key)
 	}
-	
+
 	return nil
 }
 
@@ -539,11 +539,11 @@ func toOptionValue(v interface{}) OptionValue {
 	case bool:
 		return &OptionValueBoolean{Value: val}
 	case int:
-		return &OptionValueInteger{Value: fmt.Sprintf("%d", val)}
+		return &OptionValueInteger{Value: int64(val)}
 	case int32:
-		return &OptionValueInteger{Value: fmt.Sprintf("%d", val)}
+		return &OptionValueInteger{Value: int64(val)}
 	case int64:
-		return &OptionValueInteger{Value: fmt.Sprintf("%d", val)}
+		return &OptionValueInteger{Value: val}
 	case string:
 		return &OptionValueString{Value: val}
 	case nil:
