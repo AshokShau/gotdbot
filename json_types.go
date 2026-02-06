@@ -31,12 +31,12 @@ func (s *Int64Slice) UnmarshalJSON(data []byte) error {
 }
 
 // MarshalJSON implements the json.Marshaler interface.
-func (s Int64Slice) MarshalJSON() ([]byte, error) {
-	if s == nil {
+func (s *Int64Slice) MarshalJSON() ([]byte, error) {
+	if s == nil || *s == nil {
 		return []byte("null"), nil
 	}
-	strSlice := make([]string, len(s))
-	for i, val := range s {
+	strSlice := make([]string, len(*s))
+	for i, val := range *s {
 		strSlice[i] = strconv.FormatInt(val, 10)
 	}
 	return json.Marshal(strSlice)

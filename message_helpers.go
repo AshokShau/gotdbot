@@ -400,7 +400,7 @@ func (m *Message) ReplyText(c *Client, text string, opts *SendTextMessageOpts) (
 	if opts == nil {
 		opts = &SendTextMessageOpts{}
 	}
-	
+
 	if opts.ReplyToMessageID == 0 {
 		opts.ReplyToMessageID = m.Id
 	}
