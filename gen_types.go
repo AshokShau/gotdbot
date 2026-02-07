@@ -64,7 +64,7 @@ func (t *AcceptedGiftTypes) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// AccountInfo Contains basic information about another user that started a chat with the current user
+// AccountInfo Contains basic information about another user who started a chat with the current user
 type AccountInfo struct {
 	// Month when the user was registered in Telegram; 0-12; may be 0 if unknown
 	RegistrationMonth int32 `json:"registration_month"`
@@ -175,6 +175,54 @@ func (t *ActiveStoryStateUnread) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "activeStoryStateUnread",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// AddedProxies Represents a list of added proxy servers @proxies List of proxy servers
+type AddedProxies struct {
+	//
+	Proxies []AddedProxy `json:"proxies"`
+}
+
+func (t *AddedProxies) Type() string {
+	return "addedProxies"
+}
+
+func (t *AddedProxies) MarshalJSON() ([]byte, error) {
+	type Alias AddedProxies
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "addedProxies",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// AddedProxy Contains information about a proxy server added to the list of proxies
+type AddedProxy struct {
+	// Unique identifier of the proxy
+	Id int32 `json:"id"`
+	// Point in time (Unix timestamp) when the proxy was last used; 0 if never
+	LastUsedDate int32 `json:"last_used_date"`
+	// True, if the proxy is enabled now
+	IsEnabled bool `json:"is_enabled"`
+	// The proxy
+	Proxy *Proxy `json:"proxy"`
+}
+
+func (t *AddedProxy) Type() string {
+	return "addedProxy"
+}
+
+func (t *AddedProxy) MarshalJSON() ([]byte, error) {
+	type Alias AddedProxy
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "addedProxy",
 		Alias:   (*Alias)(t),
 	})
 }
@@ -798,6 +846,27 @@ func (t *AttachmentMenuBotColor) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "attachmentMenuBotColor",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// AttributeCraftPersistenceProbability Describes chance of the crafted gift to have the backdrop or symbol of one of the original gifts
+type AttributeCraftPersistenceProbability struct {
+	// The 4 numbers that describe probability of the craft result to have the same attribute as one of the original gifts
+	PersistenceChancePerMille []int32 `json:"persistence_chance_per_mille"`
+}
+
+func (t *AttributeCraftPersistenceProbability) Type() string {
+	return "attributeCraftPersistenceProbability"
+}
+
+func (t *AttributeCraftPersistenceProbability) MarshalJSON() ([]byte, error) {
+	type Alias AttributeCraftPersistenceProbability
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "attributeCraftPersistenceProbability",
 		Alias:   (*Alias)(t),
 	})
 }
@@ -3483,7 +3552,7 @@ func (t *BusinessConnectedBot) MarshalJSON() ([]byte, error) {
 type BusinessConnection struct {
 	// Unique identifier of the connection
 	Id string `json:"id"`
-	// Identifier of the business user that created the connection
+	// Identifier of the business user who created the connection
 	UserId int64 `json:"user_id"`
 	// Chat identifier of the private chat with the user
 	UserChatId int64 `json:"user_chat_id"`
@@ -4065,6 +4134,90 @@ func (t *BusinessStartPage) MarshalJSON() ([]byte, error) {
 	})
 }
 
+// ButtonStyleDanger The button has red color
+type ButtonStyleDanger struct {
+}
+
+func (t *ButtonStyleDanger) Type() string {
+	return "buttonStyleDanger"
+}
+
+func (t *ButtonStyleDanger) buttonStyle() {}
+
+func (t *ButtonStyleDanger) MarshalJSON() ([]byte, error) {
+	type Alias ButtonStyleDanger
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "buttonStyleDanger",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ButtonStyleDefault The button has default style
+type ButtonStyleDefault struct {
+}
+
+func (t *ButtonStyleDefault) Type() string {
+	return "buttonStyleDefault"
+}
+
+func (t *ButtonStyleDefault) buttonStyle() {}
+
+func (t *ButtonStyleDefault) MarshalJSON() ([]byte, error) {
+	type Alias ButtonStyleDefault
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "buttonStyleDefault",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ButtonStylePrimary The button has dark blue color
+type ButtonStylePrimary struct {
+}
+
+func (t *ButtonStylePrimary) Type() string {
+	return "buttonStylePrimary"
+}
+
+func (t *ButtonStylePrimary) buttonStyle() {}
+
+func (t *ButtonStylePrimary) MarshalJSON() ([]byte, error) {
+	type Alias ButtonStylePrimary
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "buttonStylePrimary",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// ButtonStyleSuccess The button has green color
+type ButtonStyleSuccess struct {
+}
+
+func (t *ButtonStyleSuccess) Type() string {
+	return "buttonStyleSuccess"
+}
+
+func (t *ButtonStyleSuccess) buttonStyle() {}
+
+func (t *ButtonStyleSuccess) MarshalJSON() ([]byte, error) {
+	type Alias ButtonStyleSuccess
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "buttonStyleSuccess",
+		Alias:   (*Alias)(t),
+	})
+}
+
 // Bytes
 type Bytes struct {
 }
@@ -4088,6 +4241,8 @@ func (t *Bytes) MarshalJSON() ([]byte, error) {
 type Call struct {
 	// Call identifier, not persistent
 	Id int32 `json:"id"`
+	// Persistent unique call identifier; 0 if isn't assigned yet by the server
+	UniqueId int64 `json:"unique_id,string"`
 	// User identifier of the other call participant
 	UserId int64 `json:"user_id"`
 	// True, if the call is outgoing
@@ -4949,7 +5104,7 @@ func (t *CanPostStoryResultLiveStoryIsActive) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// CanPostStoryResultMonthlyLimitExceeded The monthly limit for the number of posted stories exceeded. The user needs to buy Telegram Premium or wait specified time @retry_after Time left before the user can post the next story
+// CanPostStoryResultMonthlyLimitExceeded The monthly limit for the number of posted stories exceeded. The user needs to buy Telegram Premium or wait specified time @retry_after Time left before the user can post the next story, in seconds
 type CanPostStoryResultMonthlyLimitExceeded struct {
 	//
 	RetryAfter int32 `json:"retry_after"`
@@ -5016,7 +5171,7 @@ func (t *CanPostStoryResultPremiumNeeded) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// CanPostStoryResultWeeklyLimitExceeded The weekly limit for the number of posted stories exceeded. The user needs to buy Telegram Premium or wait specified time @retry_after Time left before the user can post the next story
+// CanPostStoryResultWeeklyLimitExceeded The weekly limit for the number of posted stories exceeded. The user needs to buy Telegram Premium or wait specified time @retry_after Time left before the user can post the next story, in seconds
 type CanPostStoryResultWeeklyLimitExceeded struct {
 	//
 	RetryAfter int32 `json:"retry_after"`
@@ -6410,7 +6565,7 @@ func (t *ChatBoostSourceGiftCode) MarshalJSON() ([]byte, error) {
 
 // ChatBoostSourceGiveaway The chat created a giveaway
 type ChatBoostSourceGiveaway struct {
-	// Identifier of a user that won in the giveaway; 0 if none
+	// Identifier of a user who won in the giveaway; 0 if none
 	UserId int64 `json:"user_id"`
 	// The created Telegram Premium gift code if it was used by the user or can be claimed by the current user; an empty string otherwise; for Telegram Premium giveways only
 	GiftCode string `json:"gift_code"`
@@ -8548,7 +8703,7 @@ func (t *ChatInviteLinkSubscriptionInfo) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// ChatJoinRequest Describes a user that sent a join request and waits for administrator approval @user_id User identifier @date Point in time (Unix timestamp) when the user sent the join request @bio A short bio of the user
+// ChatJoinRequest Describes a user who sent a join request and waits for administrator approval @user_id User identifier @date Point in time (Unix timestamp) when the user sent the join request @bio A short bio of the user
 type ChatJoinRequest struct {
 	//
 	UserId int64 `json:"user_id"`
@@ -8758,7 +8913,7 @@ func (t *ChatLocation) MarshalJSON() ([]byte, error) {
 type ChatMember struct {
 	// Identifier of the chat member. Currently, other chats can be only Left or Banned. Only supergroups and channels can have other chats as Left or Banned members and these chats must be supergroups or channels
 	MemberId MessageSender `json:"member_id"`
-	// Identifier of a user that invited/promoted/banned this member in the chat; 0 if unknown
+	// Identifier of a user who invited/promoted/banned this member in the chat; 0 if unknown
 	InviterUserId int64 `json:"inviter_user_id"`
 	// Point in time (Unix timestamp) when the user joined/was promoted/was banned in the chat
 	JoinedChatDate int32 `json:"joined_chat_date"`
@@ -9821,7 +9976,7 @@ func (t *ChatRevenueTransactionTypeSponsoredMessageEarnings) MarshalJSON() ([]by
 	})
 }
 
-// ChatRevenueTransactionTypeSuggestedPostEarnings Describes earnings from a published suggested post @user_id Identifier of the user that paid for the suggested post
+// ChatRevenueTransactionTypeSuggestedPostEarnings Describes earnings from a published suggested post @user_id Identifier of the user who paid for the suggested post
 type ChatRevenueTransactionTypeSuggestedPostEarnings struct {
 	//
 	UserId int64 `json:"user_id"`
@@ -10825,7 +10980,7 @@ func (t *CheckStickerSetNameResultOk) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// CloseBirthdayUser Describes a user that had or will have a birthday soon @user_id User identifier @birthdate Birthdate of the user
+// CloseBirthdayUser Describes a user who had or will have a birthday soon @user_id User identifier @birthdate Birthdate of the user
 type CloseBirthdayUser struct {
 	//
 	UserId int64 `json:"user_id"`
@@ -11289,6 +11444,96 @@ func (t *CountryInfo) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "countryInfo",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CraftGiftResultFail Crafting has failed
+type CraftGiftResultFail struct {
+}
+
+func (t *CraftGiftResultFail) Type() string {
+	return "craftGiftResultFail"
+}
+
+func (t *CraftGiftResultFail) craftGiftResult() {}
+
+func (t *CraftGiftResultFail) MarshalJSON() ([]byte, error) {
+	type Alias CraftGiftResultFail
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "craftGiftResultFail",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CraftGiftResultInvalidGift Crafting isn't possible because one of the gifts isn't suitable for crafting
+type CraftGiftResultInvalidGift struct {
+}
+
+func (t *CraftGiftResultInvalidGift) Type() string {
+	return "craftGiftResultInvalidGift"
+}
+
+func (t *CraftGiftResultInvalidGift) craftGiftResult() {}
+
+func (t *CraftGiftResultInvalidGift) MarshalJSON() ([]byte, error) {
+	type Alias CraftGiftResultInvalidGift
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "craftGiftResultInvalidGift",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CraftGiftResultSuccess Crafting was successful
+type CraftGiftResultSuccess struct {
+	// The created gift
+	Gift *UpgradedGift `json:"gift"`
+	// Unique identifier of the received gift for the current user
+	ReceivedGiftId string `json:"received_gift_id"`
+}
+
+func (t *CraftGiftResultSuccess) Type() string {
+	return "craftGiftResultSuccess"
+}
+
+func (t *CraftGiftResultSuccess) craftGiftResult() {}
+
+func (t *CraftGiftResultSuccess) MarshalJSON() ([]byte, error) {
+	type Alias CraftGiftResultSuccess
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "craftGiftResultSuccess",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CraftGiftResultTooEarly Crafting isn't possible because one of the gifts can't be used for crafting yet @retry_after Time left before the gift can be used for crafting
+type CraftGiftResultTooEarly struct {
+	//
+	RetryAfter int32 `json:"retry_after"`
+}
+
+func (t *CraftGiftResultTooEarly) Type() string {
+	return "craftGiftResultTooEarly"
+}
+
+func (t *CraftGiftResultTooEarly) craftGiftResult() {}
+
+func (t *CraftGiftResultTooEarly) MarshalJSON() ([]byte, error) {
+	type Alias CraftGiftResultTooEarly
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "craftGiftResultTooEarly",
 		Alias:   (*Alias)(t),
 	})
 }
@@ -12780,7 +13025,7 @@ func (t *FactCheck) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// FailedToAddMember Contains information about a user that has failed to be added to a chat
+// FailedToAddMember Contains information about a user who has failed to be added to a chat
 type FailedToAddMember struct {
 	// User identifier
 	UserId int64 `json:"user_id"`
@@ -14656,6 +14901,8 @@ func (t *GiftResalePriceTon) MarshalJSON() ([]byte, error) {
 
 // GiftResaleResultOk Operation was successfully completed
 type GiftResaleResultOk struct {
+	// Unique identifier of the received gift; only for the gifts sent to the current user
+	ReceivedGiftId string `json:"received_gift_id"`
 }
 
 func (t *GiftResaleResultOk) Type() string {
@@ -14740,6 +14987,33 @@ func (t *GiftSettings) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "giftSettings",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GiftsForCrafting Represents a list of gifts received by a user or a chat
+type GiftsForCrafting struct {
+	// The total number of received gifts
+	TotalCount int32 `json:"total_count"`
+	// The list of gifts
+	Gifts []ReceivedGift `json:"gifts"`
+	// The 4 objects that describe probabilities of the crafted gift to have the backdrop or symbol of one of the original gifts
+	AttributePersistenceProbabilities []AttributeCraftPersistenceProbability `json:"attribute_persistence_probabilities"`
+	// The offset for the next request. If empty, then there are no more results
+	NextOffset string `json:"next_offset"`
+}
+
+func (t *GiftsForCrafting) Type() string {
+	return "giftsForCrafting"
+}
+
+func (t *GiftsForCrafting) MarshalJSON() ([]byte, error) {
+	type Alias GiftsForCrafting
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "giftsForCrafting",
 		Alias:   (*Alias)(t),
 	})
 }
@@ -15133,6 +15407,8 @@ func (t *GiveawayPrizeStars) MarshalJSON() ([]byte, error) {
 type GroupCall struct {
 	// Group call identifier
 	Id int32 `json:"id"`
+	// Persistent unique group call identifier
+	UniqueId int64 `json:"unique_id,string"`
 	// Group call title; for video chats only
 	Title string `json:"title"`
 	// Invite link for the group call; for group calls that aren't bound to a chat. For video chats call getVideoChatInviteLink to get the link.
@@ -15888,11 +16164,15 @@ func (t *ImportedContacts) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// InlineKeyboardButton Represents a single button in an inline keyboard @text Text of the button @type Type of the button
+// InlineKeyboardButton Represents a single button in an inline keyboard
 type InlineKeyboardButton struct {
-	//
+	// Text of the button
 	Text string `json:"text"`
-	//
+	// Identifier of the custom emoji that must be shown on the button; 0 if none
+	IconCustomEmojiId int64 `json:"icon_custom_emoji_id,string"`
+	// Style of the button
+	Style ButtonStyle `json:"style"`
+	// Type of the button
 	TypeField InlineKeyboardButtonType `json:"type"`
 }
 
@@ -15914,6 +16194,7 @@ func (t *InlineKeyboardButton) MarshalJSON() ([]byte, error) {
 func (t *InlineKeyboardButton) UnmarshalJSON(data []byte) error {
 	type Alias InlineKeyboardButton
 	aux := &struct {
+		Style     json.RawMessage `json:"style"`
 		TypeField json.RawMessage `json:"type"`
 		*Alias
 	}{
@@ -15924,6 +16205,13 @@ func (t *InlineKeyboardButton) UnmarshalJSON(data []byte) error {
 		return err
 	}
 
+	if aux.Style != nil {
+		v, err := UnmarshalButtonStyle(aux.Style)
+		if err != nil {
+			return err
+		}
+		t.Style = v
+	}
 	if aux.TypeField != nil {
 		v, err := UnmarshalInlineKeyboardButtonType(aux.TypeField)
 		if err != nil {
@@ -20650,27 +20938,6 @@ func (t *Int64) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// InternalLinkTypeActiveSessions The link is a link to the Devices section of the application. Use getActiveSessions to get the list of active sessions and show them to the user
-type InternalLinkTypeActiveSessions struct {
-}
-
-func (t *InternalLinkTypeActiveSessions) Type() string {
-	return "internalLinkTypeActiveSessions"
-}
-
-func (t *InternalLinkTypeActiveSessions) internalLinkType() {}
-
-func (t *InternalLinkTypeActiveSessions) MarshalJSON() ([]byte, error) {
-	type Alias InternalLinkTypeActiveSessions
-	return json.Marshal(&struct {
-		TypeStr string `json:"@type"`
-		*Alias
-	}{
-		TypeStr: "internalLinkTypeActiveSessions",
-		Alias:   (*Alias)(t),
-	})
-}
-
 // InternalLinkTypeAttachmentMenuBot The link is a link to an attachment menu bot to be opened in the specified or a chosen chat. Process given target_chat to open the chat.
 type InternalLinkTypeAttachmentMenuBot struct {
 	// Target chat to be opened
@@ -20869,48 +21136,25 @@ func (t *InternalLinkTypeBusinessChat) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// InternalLinkTypeBuyStars The link is a link to the Telegram Star purchase section of the application
-type InternalLinkTypeBuyStars struct {
-	// The number of Telegram Stars that must be owned by the user
-	StarCount int64 `json:"star_count"`
-	// Purpose of Telegram Star purchase. Arbitrary string specified by the server, for example, "subs" if the Telegram Stars are required to extend channel subscriptions
-	Purpose string `json:"purpose"`
+// InternalLinkTypeCallsPage The link is a link to the Call tab or page @section Section of the page; may be one of
+type InternalLinkTypeCallsPage struct {
+	//
+	Section string `json:"section"`
 }
 
-func (t *InternalLinkTypeBuyStars) Type() string {
-	return "internalLinkTypeBuyStars"
+func (t *InternalLinkTypeCallsPage) Type() string {
+	return "internalLinkTypeCallsPage"
 }
 
-func (t *InternalLinkTypeBuyStars) internalLinkType() {}
+func (t *InternalLinkTypeCallsPage) internalLinkType() {}
 
-func (t *InternalLinkTypeBuyStars) MarshalJSON() ([]byte, error) {
-	type Alias InternalLinkTypeBuyStars
+func (t *InternalLinkTypeCallsPage) MarshalJSON() ([]byte, error) {
+	type Alias InternalLinkTypeCallsPage
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
-		TypeStr: "internalLinkTypeBuyStars",
-		Alias:   (*Alias)(t),
-	})
-}
-
-// InternalLinkTypeChangePhoneNumber The link is a link to the change phone number section of the application
-type InternalLinkTypeChangePhoneNumber struct {
-}
-
-func (t *InternalLinkTypeChangePhoneNumber) Type() string {
-	return "internalLinkTypeChangePhoneNumber"
-}
-
-func (t *InternalLinkTypeChangePhoneNumber) internalLinkType() {}
-
-func (t *InternalLinkTypeChangePhoneNumber) MarshalJSON() ([]byte, error) {
-	type Alias InternalLinkTypeChangePhoneNumber
-	return json.Marshal(&struct {
-		TypeStr string `json:"@type"`
-		*Alias
-	}{
-		TypeStr: "internalLinkTypeChangePhoneNumber",
+		TypeStr: "internalLinkTypeCallsPage",
 		Alias:   (*Alias)(t),
 	})
 }
@@ -20986,27 +21230,6 @@ func (t *InternalLinkTypeChatFolderInvite) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// InternalLinkTypeChatFolderSettings The link is a link to the folder section of the application settings
-type InternalLinkTypeChatFolderSettings struct {
-}
-
-func (t *InternalLinkTypeChatFolderSettings) Type() string {
-	return "internalLinkTypeChatFolderSettings"
-}
-
-func (t *InternalLinkTypeChatFolderSettings) internalLinkType() {}
-
-func (t *InternalLinkTypeChatFolderSettings) MarshalJSON() ([]byte, error) {
-	type Alias InternalLinkTypeChatFolderSettings
-	return json.Marshal(&struct {
-		TypeStr string `json:"@type"`
-		*Alias
-	}{
-		TypeStr: "internalLinkTypeChatFolderSettings",
-		Alias:   (*Alias)(t),
-	})
-}
-
 // InternalLinkTypeChatInvite The link is a chat invite link. Call checkChatInviteLink with the given invite link to process the link.
 type InternalLinkTypeChatInvite struct {
 	// Internal representation of the invite link
@@ -21030,23 +21253,46 @@ func (t *InternalLinkTypeChatInvite) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// InternalLinkTypeDefaultMessageAutoDeleteTimerSettings The link is a link to the default message auto-delete timer settings section of the application settings
-type InternalLinkTypeDefaultMessageAutoDeleteTimerSettings struct {
+// InternalLinkTypeChatSelection The link is a link that allows to select some chats
+type InternalLinkTypeChatSelection struct {
 }
 
-func (t *InternalLinkTypeDefaultMessageAutoDeleteTimerSettings) Type() string {
-	return "internalLinkTypeDefaultMessageAutoDeleteTimerSettings"
+func (t *InternalLinkTypeChatSelection) Type() string {
+	return "internalLinkTypeChatSelection"
 }
 
-func (t *InternalLinkTypeDefaultMessageAutoDeleteTimerSettings) internalLinkType() {}
+func (t *InternalLinkTypeChatSelection) internalLinkType() {}
 
-func (t *InternalLinkTypeDefaultMessageAutoDeleteTimerSettings) MarshalJSON() ([]byte, error) {
-	type Alias InternalLinkTypeDefaultMessageAutoDeleteTimerSettings
+func (t *InternalLinkTypeChatSelection) MarshalJSON() ([]byte, error) {
+	type Alias InternalLinkTypeChatSelection
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
-		TypeStr: "internalLinkTypeDefaultMessageAutoDeleteTimerSettings",
+		TypeStr: "internalLinkTypeChatSelection",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// InternalLinkTypeContactsPage The link is a link to the Contacts tab or page @section Section of the page; may be one of
+type InternalLinkTypeContactsPage struct {
+	//
+	Section string `json:"section"`
+}
+
+func (t *InternalLinkTypeContactsPage) Type() string {
+	return "internalLinkTypeContactsPage"
+}
+
+func (t *InternalLinkTypeContactsPage) internalLinkType() {}
+
+func (t *InternalLinkTypeContactsPage) MarshalJSON() ([]byte, error) {
+	type Alias InternalLinkTypeContactsPage
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "internalLinkTypeContactsPage",
 		Alias:   (*Alias)(t),
 	})
 }
@@ -21070,27 +21316,6 @@ func (t *InternalLinkTypeDirectMessagesChat) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "internalLinkTypeDirectMessagesChat",
-		Alias:   (*Alias)(t),
-	})
-}
-
-// InternalLinkTypeEditProfileSettings The link is a link to the edit profile section of the application settings
-type InternalLinkTypeEditProfileSettings struct {
-}
-
-func (t *InternalLinkTypeEditProfileSettings) Type() string {
-	return "internalLinkTypeEditProfileSettings"
-}
-
-func (t *InternalLinkTypeEditProfileSettings) internalLinkType() {}
-
-func (t *InternalLinkTypeEditProfileSettings) MarshalJSON() ([]byte, error) {
-	type Alias InternalLinkTypeEditProfileSettings
-	return json.Marshal(&struct {
-		TypeStr string `json:"@type"`
-		*Alias
-	}{
-		TypeStr: "internalLinkTypeEditProfileSettings",
 		Alias:   (*Alias)(t),
 	})
 }
@@ -21262,27 +21487,6 @@ func (t *InternalLinkTypeLanguagePack) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// InternalLinkTypeLanguageSettings The link is a link to the language section of the application settings
-type InternalLinkTypeLanguageSettings struct {
-}
-
-func (t *InternalLinkTypeLanguageSettings) Type() string {
-	return "internalLinkTypeLanguageSettings"
-}
-
-func (t *InternalLinkTypeLanguageSettings) internalLinkType() {}
-
-func (t *InternalLinkTypeLanguageSettings) MarshalJSON() ([]byte, error) {
-	type Alias InternalLinkTypeLanguageSettings
-	return json.Marshal(&struct {
-		TypeStr string `json:"@type"`
-		*Alias
-	}{
-		TypeStr: "internalLinkTypeLanguageSettings",
-		Alias:   (*Alias)(t),
-	})
-}
-
 // InternalLinkTypeLiveStory The link is a link to a live story. Call searchPublicChat with the given chat username, then getChatActiveStories to get active stories in the chat,
 type InternalLinkTypeLiveStory struct {
 	// Username of the poster of the story
@@ -21302,27 +21506,6 @@ func (t *InternalLinkTypeLiveStory) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "internalLinkTypeLiveStory",
-		Alias:   (*Alias)(t),
-	})
-}
-
-// InternalLinkTypeLoginEmailSettings The link is a link to the login email set up section of the application settings, forcing set up of the login email
-type InternalLinkTypeLoginEmailSettings struct {
-}
-
-func (t *InternalLinkTypeLoginEmailSettings) Type() string {
-	return "internalLinkTypeLoginEmailSettings"
-}
-
-func (t *InternalLinkTypeLoginEmailSettings) internalLinkType() {}
-
-func (t *InternalLinkTypeLoginEmailSettings) MarshalJSON() ([]byte, error) {
-	type Alias InternalLinkTypeLoginEmailSettings
-	return json.Marshal(&struct {
-		TypeStr string `json:"@type"`
-		*Alias
-	}{
-		TypeStr: "internalLinkTypeLoginEmailSettings",
 		Alias:   (*Alias)(t),
 	})
 }
@@ -21425,46 +21608,136 @@ func (t *InternalLinkTypeMessageDraft) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// InternalLinkTypeMyStars The link is a link to the screen with information about Telegram Star balance and transactions of the current user
-type InternalLinkTypeMyStars struct {
+// InternalLinkTypeMyProfilePage The link is a link to the My Profile application page @section Section of the page; may be one of
+type InternalLinkTypeMyProfilePage struct {
+	//
+	Section string `json:"section"`
 }
 
-func (t *InternalLinkTypeMyStars) Type() string {
-	return "internalLinkTypeMyStars"
+func (t *InternalLinkTypeMyProfilePage) Type() string {
+	return "internalLinkTypeMyProfilePage"
 }
 
-func (t *InternalLinkTypeMyStars) internalLinkType() {}
+func (t *InternalLinkTypeMyProfilePage) internalLinkType() {}
 
-func (t *InternalLinkTypeMyStars) MarshalJSON() ([]byte, error) {
-	type Alias InternalLinkTypeMyStars
+func (t *InternalLinkTypeMyProfilePage) MarshalJSON() ([]byte, error) {
+	type Alias InternalLinkTypeMyProfilePage
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
-		TypeStr: "internalLinkTypeMyStars",
+		TypeStr: "internalLinkTypeMyProfilePage",
 		Alias:   (*Alias)(t),
 	})
 }
 
-// InternalLinkTypeMyToncoins The link is a link to the screen with information about Toncoin balance and transactions of the current user
-type InternalLinkTypeMyToncoins struct {
+// InternalLinkTypeNewChannelChat The link is a link to the screen for creating a new channel chat
+type InternalLinkTypeNewChannelChat struct {
 }
 
-func (t *InternalLinkTypeMyToncoins) Type() string {
-	return "internalLinkTypeMyToncoins"
+func (t *InternalLinkTypeNewChannelChat) Type() string {
+	return "internalLinkTypeNewChannelChat"
 }
 
-func (t *InternalLinkTypeMyToncoins) internalLinkType() {}
+func (t *InternalLinkTypeNewChannelChat) internalLinkType() {}
 
-func (t *InternalLinkTypeMyToncoins) MarshalJSON() ([]byte, error) {
-	type Alias InternalLinkTypeMyToncoins
+func (t *InternalLinkTypeNewChannelChat) MarshalJSON() ([]byte, error) {
+	type Alias InternalLinkTypeNewChannelChat
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
-		TypeStr: "internalLinkTypeMyToncoins",
+		TypeStr: "internalLinkTypeNewChannelChat",
 		Alias:   (*Alias)(t),
 	})
+}
+
+// InternalLinkTypeNewGroupChat The link is a link to the screen for creating a new group chat
+type InternalLinkTypeNewGroupChat struct {
+}
+
+func (t *InternalLinkTypeNewGroupChat) Type() string {
+	return "internalLinkTypeNewGroupChat"
+}
+
+func (t *InternalLinkTypeNewGroupChat) internalLinkType() {}
+
+func (t *InternalLinkTypeNewGroupChat) MarshalJSON() ([]byte, error) {
+	type Alias InternalLinkTypeNewGroupChat
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "internalLinkTypeNewGroupChat",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// InternalLinkTypeNewPrivateChat The link is a link to the screen for creating a new private chat with a contact
+type InternalLinkTypeNewPrivateChat struct {
+}
+
+func (t *InternalLinkTypeNewPrivateChat) Type() string {
+	return "internalLinkTypeNewPrivateChat"
+}
+
+func (t *InternalLinkTypeNewPrivateChat) internalLinkType() {}
+
+func (t *InternalLinkTypeNewPrivateChat) MarshalJSON() ([]byte, error) {
+	type Alias InternalLinkTypeNewPrivateChat
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "internalLinkTypeNewPrivateChat",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// InternalLinkTypeNewStory The link is a link to open the story posting interface @content_type The type of the content of the story to post; may be null if unspecified
+type InternalLinkTypeNewStory struct {
+	//
+	ContentType StoryContentType `json:"content_type"`
+}
+
+func (t *InternalLinkTypeNewStory) Type() string {
+	return "internalLinkTypeNewStory"
+}
+
+func (t *InternalLinkTypeNewStory) internalLinkType() {}
+
+func (t *InternalLinkTypeNewStory) MarshalJSON() ([]byte, error) {
+	type Alias InternalLinkTypeNewStory
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "internalLinkTypeNewStory",
+		Alias:   (*Alias)(t),
+	})
+}
+
+func (t *InternalLinkTypeNewStory) UnmarshalJSON(data []byte) error {
+	type Alias InternalLinkTypeNewStory
+	aux := &struct {
+		ContentType json.RawMessage `json:"content_type"`
+		*Alias
+	}{
+		Alias: (*Alias)(t),
+	}
+
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+
+	if aux.ContentType != nil {
+		v, err := UnmarshalStoryContentType(aux.ContentType)
+		if err != nil {
+			return err
+		}
+		t.ContentType = v
+	}
+	return nil
 }
 
 // InternalLinkTypePassportDataRequest The link contains a request of Telegram passport data. Call getPassportAuthorizationForm with the given parameters to process the link if the link was received from outside of the application; otherwise, ignore it
@@ -21498,27 +21771,6 @@ func (t *InternalLinkTypePassportDataRequest) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// InternalLinkTypePasswordSettings The link is a link to the password section of the application settings
-type InternalLinkTypePasswordSettings struct {
-}
-
-func (t *InternalLinkTypePasswordSettings) Type() string {
-	return "internalLinkTypePasswordSettings"
-}
-
-func (t *InternalLinkTypePasswordSettings) internalLinkType() {}
-
-func (t *InternalLinkTypePasswordSettings) MarshalJSON() ([]byte, error) {
-	type Alias InternalLinkTypePasswordSettings
-	return json.Marshal(&struct {
-		TypeStr string `json:"@type"`
-		*Alias
-	}{
-		TypeStr: "internalLinkTypePasswordSettings",
-		Alias:   (*Alias)(t),
-	})
-}
-
 // InternalLinkTypePhoneNumberConfirmation The link can be used to confirm ownership of a phone number to prevent account deletion. Call sendPhoneNumberCode with the given phone number and with phoneNumberCodeTypeConfirmOwnership with the given hash to process the link.
 type InternalLinkTypePhoneNumberConfirmation struct {
 	// Hash value from the link
@@ -21544,69 +21796,25 @@ func (t *InternalLinkTypePhoneNumberConfirmation) MarshalJSON() ([]byte, error) 
 	})
 }
 
-// InternalLinkTypePhoneNumberPrivacySettings The link is a link to the phone number privacy settings section of the application settings
-type InternalLinkTypePhoneNumberPrivacySettings struct {
-}
-
-func (t *InternalLinkTypePhoneNumberPrivacySettings) Type() string {
-	return "internalLinkTypePhoneNumberPrivacySettings"
-}
-
-func (t *InternalLinkTypePhoneNumberPrivacySettings) internalLinkType() {}
-
-func (t *InternalLinkTypePhoneNumberPrivacySettings) MarshalJSON() ([]byte, error) {
-	type Alias InternalLinkTypePhoneNumberPrivacySettings
-	return json.Marshal(&struct {
-		TypeStr string `json:"@type"`
-		*Alias
-	}{
-		TypeStr: "internalLinkTypePhoneNumberPrivacySettings",
-		Alias:   (*Alias)(t),
-	})
-}
-
-// InternalLinkTypePremiumFeatures The link is a link to the Premium features screen of the application from which the user can subscribe to Telegram Premium. Call getPremiumFeatures with the given referrer to process the link
-type InternalLinkTypePremiumFeatures struct {
+// InternalLinkTypePremiumFeaturesPage The link is a link to the Premium features screen of the application from which the user can subscribe to Telegram Premium. Call getPremiumFeatures with the given referrer to process the link
+type InternalLinkTypePremiumFeaturesPage struct {
 	// Referrer specified in the link
 	Referrer string `json:"referrer"`
 }
 
-func (t *InternalLinkTypePremiumFeatures) Type() string {
-	return "internalLinkTypePremiumFeatures"
+func (t *InternalLinkTypePremiumFeaturesPage) Type() string {
+	return "internalLinkTypePremiumFeaturesPage"
 }
 
-func (t *InternalLinkTypePremiumFeatures) internalLinkType() {}
+func (t *InternalLinkTypePremiumFeaturesPage) internalLinkType() {}
 
-func (t *InternalLinkTypePremiumFeatures) MarshalJSON() ([]byte, error) {
-	type Alias InternalLinkTypePremiumFeatures
+func (t *InternalLinkTypePremiumFeaturesPage) MarshalJSON() ([]byte, error) {
+	type Alias InternalLinkTypePremiumFeaturesPage
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
-		TypeStr: "internalLinkTypePremiumFeatures",
-		Alias:   (*Alias)(t),
-	})
-}
-
-// InternalLinkTypePremiumGift The link is a link to the screen for gifting Telegram Premium subscriptions to friends via inputInvoiceTelegram with telegramPaymentPurposePremiumGift payments or in-store purchases
-type InternalLinkTypePremiumGift struct {
-	// Referrer specified in the link
-	Referrer string `json:"referrer"`
-}
-
-func (t *InternalLinkTypePremiumGift) Type() string {
-	return "internalLinkTypePremiumGift"
-}
-
-func (t *InternalLinkTypePremiumGift) internalLinkType() {}
-
-func (t *InternalLinkTypePremiumGift) MarshalJSON() ([]byte, error) {
-	type Alias InternalLinkTypePremiumGift
-	return json.Marshal(&struct {
-		TypeStr string `json:"@type"`
-		*Alias
-	}{
-		TypeStr: "internalLinkTypePremiumGift",
+		TypeStr: "internalLinkTypePremiumFeaturesPage",
 		Alias:   (*Alias)(t),
 	})
 }
@@ -21634,35 +21842,33 @@ func (t *InternalLinkTypePremiumGiftCode) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// InternalLinkTypePrivacyAndSecuritySettings The link is a link to the privacy and security section of the application settings
-type InternalLinkTypePrivacyAndSecuritySettings struct {
+// InternalLinkTypePremiumGiftPurchase The link is a link to the screen for gifting Telegram Premium subscriptions to friends via inputInvoiceTelegram with telegramPaymentPurposePremiumGift payments or in-store purchases
+type InternalLinkTypePremiumGiftPurchase struct {
+	// Referrer specified in the link
+	Referrer string `json:"referrer"`
 }
 
-func (t *InternalLinkTypePrivacyAndSecuritySettings) Type() string {
-	return "internalLinkTypePrivacyAndSecuritySettings"
+func (t *InternalLinkTypePremiumGiftPurchase) Type() string {
+	return "internalLinkTypePremiumGiftPurchase"
 }
 
-func (t *InternalLinkTypePrivacyAndSecuritySettings) internalLinkType() {}
+func (t *InternalLinkTypePremiumGiftPurchase) internalLinkType() {}
 
-func (t *InternalLinkTypePrivacyAndSecuritySettings) MarshalJSON() ([]byte, error) {
-	type Alias InternalLinkTypePrivacyAndSecuritySettings
+func (t *InternalLinkTypePremiumGiftPurchase) MarshalJSON() ([]byte, error) {
+	type Alias InternalLinkTypePremiumGiftPurchase
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
-		TypeStr: "internalLinkTypePrivacyAndSecuritySettings",
+		TypeStr: "internalLinkTypePremiumGiftPurchase",
 		Alias:   (*Alias)(t),
 	})
 }
 
 // InternalLinkTypeProxy The link is a link to a proxy. Call addProxy with the given parameters to process the link and add the proxy
 type InternalLinkTypeProxy struct {
-	// Proxy server domain or IP address
-	Server string `json:"server"`
-	// Proxy server port
-	Port int32 `json:"port"`
-	// Type of the proxy
-	TypeField ProxyType `json:"type"`
+	// The proxy; may be null if the proxy is unsupported, in which case an alert can be shown to the user
+	Proxy *Proxy `json:"proxy,omitempty"`
 }
 
 func (t *InternalLinkTypeProxy) Type() string {
@@ -21680,29 +21886,6 @@ func (t *InternalLinkTypeProxy) MarshalJSON() ([]byte, error) {
 		TypeStr: "internalLinkTypeProxy",
 		Alias:   (*Alias)(t),
 	})
-}
-
-func (t *InternalLinkTypeProxy) UnmarshalJSON(data []byte) error {
-	type Alias InternalLinkTypeProxy
-	aux := &struct {
-		TypeField json.RawMessage `json:"type"`
-		*Alias
-	}{
-		Alias: (*Alias)(t),
-	}
-
-	if err := json.Unmarshal(data, &aux); err != nil {
-		return err
-	}
-
-	if aux.TypeField != nil {
-		v, err := UnmarshalProxyType(aux.TypeField)
-		if err != nil {
-			return err
-		}
-		t.TypeField = v
-	}
-	return nil
 }
 
 // InternalLinkTypePublicChat The link is a link to a chat by its username. Call searchPublicChat with the given chat username to process the link.
@@ -21774,8 +21957,52 @@ func (t *InternalLinkTypeRestorePurchases) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// InternalLinkTypeSettings The link is a link to application settings
+// InternalLinkTypeSavedMessages The link is a link to the Saved Messages chat. Call createPrivateChat with getOption("my_id") and open the chat
+type InternalLinkTypeSavedMessages struct {
+}
+
+func (t *InternalLinkTypeSavedMessages) Type() string {
+	return "internalLinkTypeSavedMessages"
+}
+
+func (t *InternalLinkTypeSavedMessages) internalLinkType() {}
+
+func (t *InternalLinkTypeSavedMessages) MarshalJSON() ([]byte, error) {
+	type Alias InternalLinkTypeSavedMessages
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "internalLinkTypeSavedMessages",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// InternalLinkTypeSearch The link is a link to the global chat and messages search field
+type InternalLinkTypeSearch struct {
+}
+
+func (t *InternalLinkTypeSearch) Type() string {
+	return "internalLinkTypeSearch"
+}
+
+func (t *InternalLinkTypeSearch) internalLinkType() {}
+
+func (t *InternalLinkTypeSearch) MarshalJSON() ([]byte, error) {
+	type Alias InternalLinkTypeSearch
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "internalLinkTypeSearch",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// InternalLinkTypeSettings The link is a link to application settings @section Section of the application settings to open; may be null if none
 type InternalLinkTypeSettings struct {
+	//
+	Section SettingsSection `json:"section"`
 }
 
 func (t *InternalLinkTypeSettings) Type() string {
@@ -21791,6 +22018,54 @@ func (t *InternalLinkTypeSettings) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "internalLinkTypeSettings",
+		Alias:   (*Alias)(t),
+	})
+}
+
+func (t *InternalLinkTypeSettings) UnmarshalJSON(data []byte) error {
+	type Alias InternalLinkTypeSettings
+	aux := &struct {
+		Section json.RawMessage `json:"section"`
+		*Alias
+	}{
+		Alias: (*Alias)(t),
+	}
+
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+
+	if aux.Section != nil {
+		v, err := UnmarshalSettingsSection(aux.Section)
+		if err != nil {
+			return err
+		}
+		t.Section = v
+	}
+	return nil
+}
+
+// InternalLinkTypeStarPurchase The link is a link to the Telegram Star purchase section of the application
+type InternalLinkTypeStarPurchase struct {
+	// The number of Telegram Stars that must be owned by the user
+	StarCount int64 `json:"star_count"`
+	// Purpose of Telegram Star purchase. Arbitrary string specified by the server, for example, "subs" if the Telegram Stars are required to extend channel subscriptions
+	Purpose string `json:"purpose"`
+}
+
+func (t *InternalLinkTypeStarPurchase) Type() string {
+	return "internalLinkTypeStarPurchase"
+}
+
+func (t *InternalLinkTypeStarPurchase) internalLinkType() {}
+
+func (t *InternalLinkTypeStarPurchase) MarshalJSON() ([]byte, error) {
+	type Alias InternalLinkTypeStarPurchase
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "internalLinkTypeStarPurchase",
 		Alias:   (*Alias)(t),
 	})
 }
@@ -21893,27 +22168,6 @@ func (t *InternalLinkTypeTheme) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// InternalLinkTypeThemeSettings The link is a link to the theme section of the application settings
-type InternalLinkTypeThemeSettings struct {
-}
-
-func (t *InternalLinkTypeThemeSettings) Type() string {
-	return "internalLinkTypeThemeSettings"
-}
-
-func (t *InternalLinkTypeThemeSettings) internalLinkType() {}
-
-func (t *InternalLinkTypeThemeSettings) MarshalJSON() ([]byte, error) {
-	type Alias InternalLinkTypeThemeSettings
-	return json.Marshal(&struct {
-		TypeStr string `json:"@type"`
-		*Alias
-	}{
-		TypeStr: "internalLinkTypeThemeSettings",
-		Alias:   (*Alias)(t),
-	})
-}
-
 // InternalLinkTypeUnknownDeepLink The link is an unknown tg: link. Call getDeepLinkInfo to process the link @link Link to be passed to getDeepLinkInfo
 type InternalLinkTypeUnknownDeepLink struct {
 	//
@@ -21933,27 +22187,6 @@ func (t *InternalLinkTypeUnknownDeepLink) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "internalLinkTypeUnknownDeepLink",
-		Alias:   (*Alias)(t),
-	})
-}
-
-// InternalLinkTypeUnsupportedProxy The link is a link to an unsupported proxy. An alert can be shown to the user
-type InternalLinkTypeUnsupportedProxy struct {
-}
-
-func (t *InternalLinkTypeUnsupportedProxy) Type() string {
-	return "internalLinkTypeUnsupportedProxy"
-}
-
-func (t *InternalLinkTypeUnsupportedProxy) internalLinkType() {}
-
-func (t *InternalLinkTypeUnsupportedProxy) MarshalJSON() ([]byte, error) {
-	type Alias InternalLinkTypeUnsupportedProxy
-	return json.Marshal(&struct {
-		TypeStr string `json:"@type"`
-		*Alias
-	}{
-		TypeStr: "internalLinkTypeUnsupportedProxy",
 		Alias:   (*Alias)(t),
 	})
 }
@@ -22518,11 +22751,15 @@ func (t *JsonValueString) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// KeyboardButton Represents a single button in a bot keyboard @text Text of the button @type Type of the button
+// KeyboardButton Represents a single button in a bot keyboard
 type KeyboardButton struct {
-	//
+	// Text of the button
 	Text string `json:"text"`
-	//
+	// Identifier of the custom emoji that must be shown on the button; 0 if none
+	IconCustomEmojiId int64 `json:"icon_custom_emoji_id,string"`
+	// Style of the button
+	Style ButtonStyle `json:"style"`
+	// Type of the button
 	TypeField KeyboardButtonType `json:"type"`
 }
 
@@ -22544,6 +22781,7 @@ func (t *KeyboardButton) MarshalJSON() ([]byte, error) {
 func (t *KeyboardButton) UnmarshalJSON(data []byte) error {
 	type Alias KeyboardButton
 	aux := &struct {
+		Style     json.RawMessage `json:"style"`
 		TypeField json.RawMessage `json:"type"`
 		*Alias
 	}{
@@ -22554,6 +22792,13 @@ func (t *KeyboardButton) UnmarshalJSON(data []byte) error {
 		return err
 	}
 
+	if aux.Style != nil {
+		v, err := UnmarshalButtonStyle(aux.Style)
+		if err != nil {
+			return err
+		}
+		t.Style = v
+	}
 	if aux.TypeField != nil {
 		v, err := UnmarshalKeyboardButtonType(aux.TypeField)
 		if err != nil {
@@ -24280,6 +24525,16 @@ type LoginUrlInfoRequestConfirmation struct {
 	BotUserId int64 `json:"bot_user_id"`
 	// True, if the user must be asked for the permission to the bot to send them messages
 	RequestWriteAccess bool `json:"request_write_access"`
+	// True, if the user must be asked for the permission to share their phone number
+	RequestPhoneNumberAccess bool `json:"request_phone_number_access"`
+	// The version of a browser used for the authorization; may be empty if irrelevant
+	Browser string `json:"browser"`
+	// Operating system the browser is running on; may be empty if irrelevant
+	Platform string `json:"platform"`
+	// IP address from which the authorization is performed, in human-readable format; may be empty if irrelevant
+	IpAddress string `json:"ip_address"`
+	// Human-readable description of a country and a region from which the authorization is performed, based on the IP address; may be empty if irrelevant
+	Location string `json:"location"`
 }
 
 func (t *LoginUrlInfoRequestConfirmation) Type() string {
@@ -25207,6 +25462,52 @@ func (t *MessageChatJoinByRequest) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "messageChatJoinByRequest",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// MessageChatOwnerChanged The owner of the chat has changed @new_owner_user_id Identifier of the user who is the new owner of the chat
+type MessageChatOwnerChanged struct {
+	//
+	NewOwnerUserId int64 `json:"new_owner_user_id"`
+}
+
+func (t *MessageChatOwnerChanged) Type() string {
+	return "messageChatOwnerChanged"
+}
+
+func (t *MessageChatOwnerChanged) messageContent() {}
+
+func (t *MessageChatOwnerChanged) MarshalJSON() ([]byte, error) {
+	type Alias MessageChatOwnerChanged
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "messageChatOwnerChanged",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// MessageChatOwnerLeft The owner of the chat has left @new_owner_user_id Identifier of the user who will become the new owner of the chat if the previous owner isn't return; 0 if none
+type MessageChatOwnerLeft struct {
+	//
+	NewOwnerUserId int64 `json:"new_owner_user_id"`
+}
+
+func (t *MessageChatOwnerLeft) Type() string {
+	return "messageChatOwnerLeft"
+}
+
+func (t *MessageChatOwnerLeft) messageContent() {}
+
+func (t *MessageChatOwnerLeft) MarshalJSON() ([]byte, error) {
+	type Alias MessageChatOwnerLeft
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "messageChatOwnerLeft",
 		Alias:   (*Alias)(t),
 	})
 }
@@ -26206,9 +26507,9 @@ func (t *MessageGift) UnmarshalJSON(data []byte) error {
 
 // MessageGiftedPremium Telegram Premium was gifted to a user
 type MessageGiftedPremium struct {
-	// The identifier of a user that gifted Telegram Premium; 0 if the gift was anonymous or is outgoing
+	// The identifier of a user who gifted Telegram Premium; 0 if the gift was anonymous or is outgoing
 	GifterUserId int64 `json:"gifter_user_id"`
-	// The identifier of a user that received Telegram Premium; 0 if the gift is incoming
+	// The identifier of a user who received Telegram Premium; 0 if the gift is incoming
 	ReceiverUserId int64 `json:"receiver_user_id"`
 	// Message added to the gifted Telegram Premium by the sender
 	Text *FormattedText `json:"text"`
@@ -26247,9 +26548,9 @@ func (t *MessageGiftedPremium) MarshalJSON() ([]byte, error) {
 
 // MessageGiftedStars Telegram Stars were gifted to a user
 type MessageGiftedStars struct {
-	// The identifier of a user that gifted Telegram Stars; 0 if the gift was anonymous or is outgoing
+	// The identifier of a user who gifted Telegram Stars; 0 if the gift was anonymous or is outgoing
 	GifterUserId int64 `json:"gifter_user_id"`
-	// The identifier of a user that received Telegram Stars; 0 if the gift is incoming
+	// The identifier of a user who received Telegram Stars; 0 if the gift is incoming
 	ReceiverUserId int64 `json:"receiver_user_id"`
 	// Currency for the paid amount
 	Currency string `json:"currency"`
@@ -26286,9 +26587,9 @@ func (t *MessageGiftedStars) MarshalJSON() ([]byte, error) {
 
 // MessageGiftedTon Toncoins were gifted to a user
 type MessageGiftedTon struct {
-	// The identifier of a user that gifted Toncoins; 0 if the gift was anonymous or is outgoing
+	// The identifier of a user who gifted Toncoins; 0 if the gift was anonymous or is outgoing
 	GifterUserId int64 `json:"gifter_user_id"`
-	// The identifier of a user that received Toncoins; 0 if the gift is incoming
+	// The identifier of a user who received Toncoins; 0 if the gift is incoming
 	ReceiverUserId int64 `json:"receiver_user_id"`
 	// The received Toncoin amount, in the smallest units of the cryptocurrency
 	TonAmount int64 `json:"ton_amount"`
@@ -26520,6 +26821,8 @@ func (t *MessageGiveawayWinners) UnmarshalJSON(data []byte) error {
 
 // MessageGroupCall A message with information about a group call not bound to a chat. If the message is incoming, the call isn't active, isn't missed, and has no duration,
 type MessageGroupCall struct {
+	// Persistent unique group call identifier
+	UniqueId int64 `json:"unique_id,string"`
 	// True, if the call is active, i.e. the called user joined the call
 	IsActive bool `json:"is_active"`
 	// True, if the called user missed or declined the call
@@ -26895,7 +27198,7 @@ func (t *MessageOriginHiddenUser) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// MessageOriginUser The message was originally sent by a known user @sender_user_id Identifier of the user that originally sent the message
+// MessageOriginUser The message was originally sent by a known user @sender_user_id Identifier of the user who originally sent the message
 type MessageOriginUser struct {
 	//
 	SenderUserId int64 `json:"sender_user_id"`
@@ -27356,7 +27659,7 @@ func (t *MessagePositions) MarshalJSON() ([]byte, error) {
 
 // MessagePremiumGiftCode A Telegram Premium gift code was created for the user
 type MessagePremiumGiftCode struct {
-	// Identifier of a chat or a user that created the gift code; may be null if unknown
+	// Identifier of a chat or a user who created the gift code; may be null if unknown
 	CreatorId MessageSender `json:"creator_id,omitempty"`
 	// Message added to the gift
 	Text *FormattedText `json:"text"`
@@ -28217,7 +28520,7 @@ func (t *MessageSenders) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-// MessageSenderUser The message was sent by a known user @user_id Identifier of the user that sent the message
+// MessageSenderUser The message was sent by a known user @user_id Identifier of the user who sent the message
 type MessageSenderUser struct {
 	//
 	UserId int64 `json:"user_id"`
@@ -29227,6 +29530,8 @@ type MessageUpgradedGift struct {
 	NextResaleDate int32 `json:"next_resale_date"`
 	// Point in time (Unix timestamp) when the gift can be transferred to the TON blockchain as an NFT; can be in the past; 0 if NFT export isn't possible; only for the receiver of the gift
 	ExportDate int32 `json:"export_date"`
+	// Point in time (Unix timestamp) when the gift can be used to craft another gift can be in the past; only for the receiver of the gift
+	CraftDate int32 `json:"craft_date"`
 }
 
 func (t *MessageUpgradedGift) Type() string {
@@ -32294,7 +32599,7 @@ func (t *PaidReactionTypeRegular) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// PaidReactor Contains information about a user that added paid reactions
+// PaidReactor Contains information about a user who added paid reactions
 type PaidReactor struct {
 	// Identifier of the user or chat that added the reactions; may be null for anonymous reactors that aren't the current user
 	SenderId MessageSender `json:"sender_id,omitempty"`
@@ -34921,7 +35226,7 @@ func (t *PremiumFeatureVoiceRecognition) MarshalJSON() ([]byte, error) {
 
 // PremiumGiftCodeInfo Contains information about a Telegram Premium gift code
 type PremiumGiftCodeInfo struct {
-	// Identifier of a chat or a user that created the gift code; may be null if unknown. If null and the code is from messagePremiumGiftCode message, then creator_id from the message can be used
+	// Identifier of a chat or a user who created the gift code; may be null if unknown. If null and the code is from messagePremiumGiftCode message, then creator_id from the message can be used
 	CreatorId MessageSender `json:"creator_id,omitempty"`
 	// Point in time (Unix timestamp) when the code was created
 	CreationDate int32 `json:"creation_date"`
@@ -35722,7 +36027,7 @@ func (t *PremiumSourceLimitExceeded) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-// PremiumSourceLink A user opened an internal link of the type internalLinkTypePremiumFeatures @referrer The referrer from the link
+// PremiumSourceLink A user opened an internal link of the type internalLinkTypePremiumFeaturesPage @referrer The referrer from the link
 type PremiumSourceLink struct {
 	//
 	Referrer string `json:"referrer"`
@@ -36414,39 +36719,12 @@ func (t *ProfileTabVoice) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// Proxies Represents a list of proxy servers @proxies List of proxy servers
-type Proxies struct {
-	//
-	Proxies []Proxy `json:"proxies"`
-}
-
-func (t *Proxies) Type() string {
-	return "proxies"
-}
-
-func (t *Proxies) MarshalJSON() ([]byte, error) {
-	type Alias Proxies
-	return json.Marshal(&struct {
-		TypeStr string `json:"@type"`
-		*Alias
-	}{
-		TypeStr: "proxies",
-		Alias:   (*Alias)(t),
-	})
-}
-
-// Proxy Contains information about a proxy server
+// Proxy Describes a proxy server
 type Proxy struct {
-	// Unique identifier of the proxy
-	Id int32 `json:"id"`
 	// Proxy server domain or IP address
 	Server string `json:"server"`
 	// Proxy server port
 	Port int32 `json:"port"`
-	// Point in time (Unix timestamp) when the proxy was last used; 0 if never
-	LastUsedDate int32 `json:"last_used_date"`
-	// True, if the proxy is enabled now
-	IsEnabled bool `json:"is_enabled"`
 	// Type of the proxy
 	TypeField ProxyType `json:"type"`
 }
@@ -38288,6 +38566,8 @@ type ReceivedGift struct {
 	ExportDate int32 `json:"export_date"`
 	// If non-empty, then the user can pay for an upgrade of the gift using buyGiftUpgrade
 	PrepaidUpgradeHash string `json:"prepaid_upgrade_hash"`
+	// Point in time (Unix timestamp) when the gift can be used to craft another gift can be in the past; only for the receiver of the gift
+	CraftDate int32 `json:"craft_date"`
 }
 
 func (t *ReceivedGift) Type() string {
@@ -41382,6 +41662,475 @@ func (t *SessionTypeXbox) MarshalJSON() ([]byte, error) {
 	})
 }
 
+// SettingsSectionAppearance The appearance section @subsection Subsection of the section; may be one of
+type SettingsSectionAppearance struct {
+	//
+	Subsection string `json:"subsection"`
+}
+
+func (t *SettingsSectionAppearance) Type() string {
+	return "settingsSectionAppearance"
+}
+
+func (t *SettingsSectionAppearance) settingsSection() {}
+
+func (t *SettingsSectionAppearance) MarshalJSON() ([]byte, error) {
+	type Alias SettingsSectionAppearance
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "settingsSectionAppearance",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SettingsSectionAskQuestion The "Ask a question" section
+type SettingsSectionAskQuestion struct {
+}
+
+func (t *SettingsSectionAskQuestion) Type() string {
+	return "settingsSectionAskQuestion"
+}
+
+func (t *SettingsSectionAskQuestion) settingsSection() {}
+
+func (t *SettingsSectionAskQuestion) MarshalJSON() ([]byte, error) {
+	type Alias SettingsSectionAskQuestion
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "settingsSectionAskQuestion",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SettingsSectionBusiness The "Telegram Business" section @subsection Subsection of the section; may be one of
+type SettingsSectionBusiness struct {
+	//
+	Subsection string `json:"subsection"`
+}
+
+func (t *SettingsSectionBusiness) Type() string {
+	return "settingsSectionBusiness"
+}
+
+func (t *SettingsSectionBusiness) settingsSection() {}
+
+func (t *SettingsSectionBusiness) MarshalJSON() ([]byte, error) {
+	type Alias SettingsSectionBusiness
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "settingsSectionBusiness",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SettingsSectionChatFolders The chat folder settings section @subsection Subsection of the section; may be one of
+type SettingsSectionChatFolders struct {
+	//
+	Subsection string `json:"subsection"`
+}
+
+func (t *SettingsSectionChatFolders) Type() string {
+	return "settingsSectionChatFolders"
+}
+
+func (t *SettingsSectionChatFolders) settingsSection() {}
+
+func (t *SettingsSectionChatFolders) MarshalJSON() ([]byte, error) {
+	type Alias SettingsSectionChatFolders
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "settingsSectionChatFolders",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SettingsSectionDataAndStorage The data and storage settings section @subsection Subsection of the section; may be one of
+type SettingsSectionDataAndStorage struct {
+	//
+	Subsection string `json:"subsection"`
+}
+
+func (t *SettingsSectionDataAndStorage) Type() string {
+	return "settingsSectionDataAndStorage"
+}
+
+func (t *SettingsSectionDataAndStorage) settingsSection() {}
+
+func (t *SettingsSectionDataAndStorage) MarshalJSON() ([]byte, error) {
+	type Alias SettingsSectionDataAndStorage
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "settingsSectionDataAndStorage",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SettingsSectionDevices The Devices section @subsection Subsection of the section; may be one of
+type SettingsSectionDevices struct {
+	//
+	Subsection string `json:"subsection"`
+}
+
+func (t *SettingsSectionDevices) Type() string {
+	return "settingsSectionDevices"
+}
+
+func (t *SettingsSectionDevices) settingsSection() {}
+
+func (t *SettingsSectionDevices) MarshalJSON() ([]byte, error) {
+	type Alias SettingsSectionDevices
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "settingsSectionDevices",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SettingsSectionEditProfile The profile edit section @subsection Subsection of the section; may be one of
+type SettingsSectionEditProfile struct {
+	//
+	Subsection string `json:"subsection"`
+}
+
+func (t *SettingsSectionEditProfile) Type() string {
+	return "settingsSectionEditProfile"
+}
+
+func (t *SettingsSectionEditProfile) settingsSection() {}
+
+func (t *SettingsSectionEditProfile) MarshalJSON() ([]byte, error) {
+	type Alias SettingsSectionEditProfile
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "settingsSectionEditProfile",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SettingsSectionFaq The FAQ section
+type SettingsSectionFaq struct {
+}
+
+func (t *SettingsSectionFaq) Type() string {
+	return "settingsSectionFaq"
+}
+
+func (t *SettingsSectionFaq) settingsSection() {}
+
+func (t *SettingsSectionFaq) MarshalJSON() ([]byte, error) {
+	type Alias SettingsSectionFaq
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "settingsSectionFaq",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SettingsSectionFeatures The "Telegram Features" section
+type SettingsSectionFeatures struct {
+}
+
+func (t *SettingsSectionFeatures) Type() string {
+	return "settingsSectionFeatures"
+}
+
+func (t *SettingsSectionFeatures) settingsSection() {}
+
+func (t *SettingsSectionFeatures) MarshalJSON() ([]byte, error) {
+	type Alias SettingsSectionFeatures
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "settingsSectionFeatures",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SettingsSectionInAppBrowser The in-app browser settings section @subsection Subsection of the section; may be one of
+type SettingsSectionInAppBrowser struct {
+	//
+	Subsection string `json:"subsection"`
+}
+
+func (t *SettingsSectionInAppBrowser) Type() string {
+	return "settingsSectionInAppBrowser"
+}
+
+func (t *SettingsSectionInAppBrowser) settingsSection() {}
+
+func (t *SettingsSectionInAppBrowser) MarshalJSON() ([]byte, error) {
+	type Alias SettingsSectionInAppBrowser
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "settingsSectionInAppBrowser",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SettingsSectionLanguage The application language section @subsection Subsection of the section; may be one of "", "show-button" for Show Translate Button toggle,
+type SettingsSectionLanguage struct {
+	//
+	Subsection string `json:"subsection"`
+}
+
+func (t *SettingsSectionLanguage) Type() string {
+	return "settingsSectionLanguage"
+}
+
+func (t *SettingsSectionLanguage) settingsSection() {}
+
+func (t *SettingsSectionLanguage) MarshalJSON() ([]byte, error) {
+	type Alias SettingsSectionLanguage
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "settingsSectionLanguage",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SettingsSectionMyStars The Telegram Star balance and transaction section @subsection Subsection of the section; may be one of
+type SettingsSectionMyStars struct {
+	//
+	Subsection string `json:"subsection"`
+}
+
+func (t *SettingsSectionMyStars) Type() string {
+	return "settingsSectionMyStars"
+}
+
+func (t *SettingsSectionMyStars) settingsSection() {}
+
+func (t *SettingsSectionMyStars) MarshalJSON() ([]byte, error) {
+	type Alias SettingsSectionMyStars
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "settingsSectionMyStars",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SettingsSectionMyToncoins The Toncoin balance and transaction section
+type SettingsSectionMyToncoins struct {
+}
+
+func (t *SettingsSectionMyToncoins) Type() string {
+	return "settingsSectionMyToncoins"
+}
+
+func (t *SettingsSectionMyToncoins) settingsSection() {}
+
+func (t *SettingsSectionMyToncoins) MarshalJSON() ([]byte, error) {
+	type Alias SettingsSectionMyToncoins
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "settingsSectionMyToncoins",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SettingsSectionNotifications The notification settings section @subsection Subsection of the section; may be one of
+type SettingsSectionNotifications struct {
+	//
+	Subsection string `json:"subsection"`
+}
+
+func (t *SettingsSectionNotifications) Type() string {
+	return "settingsSectionNotifications"
+}
+
+func (t *SettingsSectionNotifications) settingsSection() {}
+
+func (t *SettingsSectionNotifications) MarshalJSON() ([]byte, error) {
+	type Alias SettingsSectionNotifications
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "settingsSectionNotifications",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SettingsSectionPowerSaving The power saving settings section @subsection Subsection of the section; may be one of
+type SettingsSectionPowerSaving struct {
+	//
+	Subsection string `json:"subsection"`
+}
+
+func (t *SettingsSectionPowerSaving) Type() string {
+	return "settingsSectionPowerSaving"
+}
+
+func (t *SettingsSectionPowerSaving) settingsSection() {}
+
+func (t *SettingsSectionPowerSaving) MarshalJSON() ([]byte, error) {
+	type Alias SettingsSectionPowerSaving
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "settingsSectionPowerSaving",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SettingsSectionPremium The "Telegram Premium" section
+type SettingsSectionPremium struct {
+}
+
+func (t *SettingsSectionPremium) Type() string {
+	return "settingsSectionPremium"
+}
+
+func (t *SettingsSectionPremium) settingsSection() {}
+
+func (t *SettingsSectionPremium) MarshalJSON() ([]byte, error) {
+	type Alias SettingsSectionPremium
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "settingsSectionPremium",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SettingsSectionPrivacyAndSecurity The privacy and security section @subsection Subsection of the section; may be one of
+type SettingsSectionPrivacyAndSecurity struct {
+	//
+	Subsection string `json:"subsection"`
+}
+
+func (t *SettingsSectionPrivacyAndSecurity) Type() string {
+	return "settingsSectionPrivacyAndSecurity"
+}
+
+func (t *SettingsSectionPrivacyAndSecurity) settingsSection() {}
+
+func (t *SettingsSectionPrivacyAndSecurity) MarshalJSON() ([]byte, error) {
+	type Alias SettingsSectionPrivacyAndSecurity
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "settingsSectionPrivacyAndSecurity",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SettingsSectionPrivacyPolicy The "Privacy Policy" section
+type SettingsSectionPrivacyPolicy struct {
+}
+
+func (t *SettingsSectionPrivacyPolicy) Type() string {
+	return "settingsSectionPrivacyPolicy"
+}
+
+func (t *SettingsSectionPrivacyPolicy) settingsSection() {}
+
+func (t *SettingsSectionPrivacyPolicy) MarshalJSON() ([]byte, error) {
+	type Alias SettingsSectionPrivacyPolicy
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "settingsSectionPrivacyPolicy",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SettingsSectionQrCode The current user's QR code section @subsection Subsection of the section; may be one of
+type SettingsSectionQrCode struct {
+	//
+	Subsection string `json:"subsection"`
+}
+
+func (t *SettingsSectionQrCode) Type() string {
+	return "settingsSectionQrCode"
+}
+
+func (t *SettingsSectionQrCode) settingsSection() {}
+
+func (t *SettingsSectionQrCode) MarshalJSON() ([]byte, error) {
+	type Alias SettingsSectionQrCode
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "settingsSectionQrCode",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SettingsSectionSearch Search in Settings
+type SettingsSectionSearch struct {
+}
+
+func (t *SettingsSectionSearch) Type() string {
+	return "settingsSectionSearch"
+}
+
+func (t *SettingsSectionSearch) settingsSection() {}
+
+func (t *SettingsSectionSearch) MarshalJSON() ([]byte, error) {
+	type Alias SettingsSectionSearch
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "settingsSectionSearch",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// SettingsSectionSendGift The "Send a gift" section @subsection Subsection of the section; may be one of
+type SettingsSectionSendGift struct {
+	//
+	Subsection string `json:"subsection"`
+}
+
+func (t *SettingsSectionSendGift) Type() string {
+	return "settingsSectionSendGift"
+}
+
+func (t *SettingsSectionSendGift) settingsSection() {}
+
+func (t *SettingsSectionSendGift) MarshalJSON() ([]byte, error) {
+	type Alias SettingsSectionSendGift
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "settingsSectionSendGift",
+		Alias:   (*Alias)(t),
+	})
+}
+
 // SharedChat Contains information about a chat shared with a bot
 type SharedChat struct {
 	// Chat identifier
@@ -42302,7 +43051,7 @@ func (t *StarTransactionTypeAppStoreDeposit) MarshalJSON() ([]byte, error) {
 
 // StarTransactionTypeBotInvoicePurchase The transaction is a purchase of a product from a bot or a business account by the current user; relevant for regular users only
 type StarTransactionTypeBotInvoicePurchase struct {
-	// Identifier of the bot or the business account user that created the invoice
+	// Identifier of the bot or the business account user who created the invoice
 	UserId int64 `json:"user_id"`
 	// Information about the bought product
 	ProductInfo *ProductInfo `json:"product_info"`
@@ -42327,7 +43076,7 @@ func (t *StarTransactionTypeBotInvoicePurchase) MarshalJSON() ([]byte, error) {
 
 // StarTransactionTypeBotInvoiceSale The transaction is a sale of a product by the bot; relevant for bots only
 type StarTransactionTypeBotInvoiceSale struct {
-	// Identifier of the user that bought the product
+	// Identifier of the user who bought the product
 	UserId int64 `json:"user_id"`
 	// Information about the bought product
 	ProductInfo *ProductInfo `json:"product_info"`
@@ -42356,7 +43105,7 @@ func (t *StarTransactionTypeBotInvoiceSale) MarshalJSON() ([]byte, error) {
 
 // StarTransactionTypeBotPaidMediaPurchase The transaction is a purchase of paid media from a bot or a business account by the current user; relevant for regular users only
 type StarTransactionTypeBotPaidMediaPurchase struct {
-	// Identifier of the bot or the business account user that sent the paid media
+	// Identifier of the bot or the business account user who sent the paid media
 	UserId int64 `json:"user_id"`
 	// The bought media if the transaction wasn't refunded
 	Media []PaidMedia `json:"media"`
@@ -42407,7 +43156,7 @@ func (t *StarTransactionTypeBotPaidMediaPurchase) UnmarshalJSON(data []byte) err
 
 // StarTransactionTypeBotPaidMediaSale The transaction is a sale of paid media by the bot or a business account managed by the bot; relevant for bots only
 type StarTransactionTypeBotPaidMediaSale struct {
-	// Identifier of the user that bought the media
+	// Identifier of the user who bought the media
 	UserId int64 `json:"user_id"`
 	// The bought media
 	Media []PaidMedia `json:"media"`
@@ -42462,7 +43211,7 @@ func (t *StarTransactionTypeBotPaidMediaSale) UnmarshalJSON(data []byte) error {
 
 // StarTransactionTypeBotSubscriptionPurchase The transaction is a purchase of a subscription from a bot or a business account by the current user; relevant for regular users only
 type StarTransactionTypeBotSubscriptionPurchase struct {
-	// Identifier of the bot or the business account user that created the subscription link
+	// Identifier of the bot or the business account user who created the subscription link
 	UserId int64 `json:"user_id"`
 	// The number of seconds between consecutive Telegram Star debitings
 	SubscriptionPeriod int32 `json:"subscription_period"`
@@ -42489,7 +43238,7 @@ func (t *StarTransactionTypeBotSubscriptionPurchase) MarshalJSON() ([]byte, erro
 
 // StarTransactionTypeBotSubscriptionSale The transaction is a sale of a subscription by the bot; relevant for bots only
 type StarTransactionTypeBotSubscriptionSale struct {
-	// Identifier of the user that bought the subscription
+	// Identifier of the user who bought the subscription
 	UserId int64 `json:"user_id"`
 	// The number of seconds between consecutive Telegram Star debitings
 	SubscriptionPeriod int32 `json:"subscription_period"`
@@ -42518,7 +43267,7 @@ func (t *StarTransactionTypeBotSubscriptionSale) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// StarTransactionTypeBusinessBotTransferReceive The transaction is a transfer of Telegram Stars from a business account; relevant for bots only @user_id Identifier of the user that sent Telegram Stars
+// StarTransactionTypeBusinessBotTransferReceive The transaction is a transfer of Telegram Stars from a business account; relevant for bots only @user_id Identifier of the user who sent Telegram Stars
 type StarTransactionTypeBusinessBotTransferReceive struct {
 	//
 	UserId int64 `json:"user_id"`
@@ -42619,7 +43368,7 @@ func (t *StarTransactionTypeChannelPaidMediaPurchase) UnmarshalJSON(data []byte)
 
 // StarTransactionTypeChannelPaidMediaSale The transaction is a sale of paid media by the channel chat; relevant for channel chats only
 type StarTransactionTypeChannelPaidMediaSale struct {
-	// Identifier of the user that bought the media
+	// Identifier of the user who bought the media
 	UserId int64 `json:"user_id"`
 	// Identifier of the corresponding message with paid media; may be 0 or an identifier of a deleted message
 	MessageId int64 `json:"message_id"`
@@ -42672,7 +43421,7 @@ func (t *StarTransactionTypeChannelPaidMediaSale) UnmarshalJSON(data []byte) err
 
 // StarTransactionTypeChannelPaidReactionReceive The transaction is a receiving of a paid reaction to a message by the channel chat; relevant for channel chats only
 type StarTransactionTypeChannelPaidReactionReceive struct {
-	// Identifier of the user that added the paid reaction
+	// Identifier of the user who added the paid reaction
 	UserId int64 `json:"user_id"`
 	// Identifier of the reacted message; may be 0 or an identifier of a deleted message
 	MessageId int64 `json:"message_id"`
@@ -42747,7 +43496,7 @@ func (t *StarTransactionTypeChannelSubscriptionPurchase) MarshalJSON() ([]byte, 
 
 // StarTransactionTypeChannelSubscriptionSale The transaction is a sale of a subscription by the channel chat; relevant for channel chats only
 type StarTransactionTypeChannelSubscriptionSale struct {
-	// Identifier of the user that bought the subscription
+	// Identifier of the user who bought the subscription
 	UserId int64 `json:"user_id"`
 	// The number of seconds between consecutive Telegram Star debitings
 	SubscriptionPeriod int32 `json:"subscription_period"`
@@ -42837,7 +43586,7 @@ func (t *StarTransactionTypeFragmentWithdrawal) UnmarshalJSON(data []byte) error
 	return nil
 }
 
-// StarTransactionTypeGiftAuctionBid The transaction is a bid on a gift auction; relevant for regular users only @owner_id Identifier of the user that will receive the gift @gift The gift
+// StarTransactionTypeGiftAuctionBid The transaction is a bid on a gift auction; relevant for regular users only @owner_id Identifier of the user who will receive the gift @gift The gift
 type StarTransactionTypeGiftAuctionBid struct {
 	//
 	OwnerId MessageSender `json:"owner_id"`
@@ -43004,7 +43753,7 @@ func (t *StarTransactionTypeGiftPurchaseOffer) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// StarTransactionTypeGiftSale The transaction is a sale of a received gift; relevant for regular users and channel chats only @user_id Identifier of the user that sent the gift @gift The gift
+// StarTransactionTypeGiftSale The transaction is a sale of a received gift; relevant for regular users and channel chats only @user_id Identifier of the user who sent the gift @gift The gift
 type StarTransactionTypeGiftSale struct {
 	//
 	UserId int64 `json:"user_id"`
@@ -43077,7 +43826,7 @@ func (t *StarTransactionTypeGiftTransfer) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-// StarTransactionTypeGiftUpgrade The transaction is an upgrade of a gift; relevant for regular users only @user_id Identifier of the user that initially sent the gift @gift The upgraded gift
+// StarTransactionTypeGiftUpgrade The transaction is an upgrade of a gift; relevant for regular users only @user_id Identifier of the user who initially sent the gift @gift The upgraded gift
 type StarTransactionTypeGiftUpgrade struct {
 	//
 	UserId int64 `json:"user_id"`
@@ -43442,7 +44191,7 @@ func (t *StarTransactionTypePremiumBotDeposit) MarshalJSON() ([]byte, error) {
 
 // StarTransactionTypePremiumPurchase The transaction is a purchase of Telegram Premium subscription; relevant for regular users and bots only
 type StarTransactionTypePremiumPurchase struct {
-	// Identifier of the user that received the Telegram Premium subscription
+	// Identifier of the user who received the Telegram Premium subscription
 	UserId int64 `json:"user_id"`
 	// Number of months the Telegram Premium subscription will be active
 	MonthCount int32 `json:"month_count"`
@@ -43490,7 +44239,7 @@ func (t *StarTransactionTypePublicPostSearch) MarshalJSON() ([]byte, error) {
 
 // StarTransactionTypeSuggestedPostPaymentReceive The transaction is a receiving of a payment for a suggested post by the channel chat; relevant for channel chats only
 type StarTransactionTypeSuggestedPostPaymentReceive struct {
-	// Identifier of the user that paid for the suggested post
+	// Identifier of the user who paid for the suggested post
 	UserId int64 `json:"user_id"`
 }
 
@@ -43599,7 +44348,7 @@ func (t *StarTransactionTypeUnsupported) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// StarTransactionTypeUpgradedGiftPurchase The transaction is a purchase of an upgraded gift for some user or channel; relevant for regular users only @user_id Identifier of the user that sold the gift @gift The gift
+// StarTransactionTypeUpgradedGiftPurchase The transaction is a purchase of an upgraded gift for some user or channel; relevant for regular users only @user_id Identifier of the user who sold the gift @gift The gift
 type StarTransactionTypeUpgradedGiftPurchase struct {
 	//
 	UserId int64 `json:"user_id"`
@@ -43626,7 +44375,7 @@ func (t *StarTransactionTypeUpgradedGiftPurchase) MarshalJSON() ([]byte, error) 
 
 // StarTransactionTypeUpgradedGiftSale The transaction is a sale of an upgraded gift; relevant for regular users only
 type StarTransactionTypeUpgradedGiftSale struct {
-	// Identifier of the user that bought the gift
+	// Identifier of the user who bought the gift
 	UserId int64 `json:"user_id"`
 	// The gift
 	Gift *UpgradedGift `json:"gift"`
@@ -43657,7 +44406,7 @@ func (t *StarTransactionTypeUpgradedGiftSale) MarshalJSON() ([]byte, error) {
 
 // StarTransactionTypeUserDeposit The transaction is a deposit of Telegram Stars by another user; relevant for regular users only
 type StarTransactionTypeUserDeposit struct {
-	// Identifier of the user that gifted Telegram Stars; 0 if the user was anonymous
+	// Identifier of the user who gifted Telegram Stars; 0 if the user was anonymous
 	UserId int64 `json:"user_id"`
 	// The sticker to be shown in the transaction information; may be null if unknown
 	Sticker *Sticker `json:"sticker,omitempty"`
@@ -44662,7 +45411,7 @@ type Story struct {
 	CanBeEdited bool `json:"can_be_edited"`
 	// True, if the story can be forwarded as a message or reposted as a story. Otherwise, screenshotting and saving of the story content must be also forbidden
 	CanBeForwarded bool `json:"can_be_forwarded"`
-	// True, if the story can be replied in the chat with the user that posted the story
+	// True, if the story can be replied in the chat with the user who posted the story
 	CanBeReplied bool `json:"can_be_replied"`
 	// True, if the story privacy settings can be changed
 	CanSetPrivacySettings bool `json:"can_set_privacy_settings"`
@@ -45121,6 +45870,90 @@ func (t *StoryContentPhoto) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "storyContentPhoto",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// StoryContentTypeLive A live story
+type StoryContentTypeLive struct {
+}
+
+func (t *StoryContentTypeLive) Type() string {
+	return "storyContentTypeLive"
+}
+
+func (t *StoryContentTypeLive) storyContentType() {}
+
+func (t *StoryContentTypeLive) MarshalJSON() ([]byte, error) {
+	type Alias StoryContentTypeLive
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "storyContentTypeLive",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// StoryContentTypePhoto A photo story
+type StoryContentTypePhoto struct {
+}
+
+func (t *StoryContentTypePhoto) Type() string {
+	return "storyContentTypePhoto"
+}
+
+func (t *StoryContentTypePhoto) storyContentType() {}
+
+func (t *StoryContentTypePhoto) MarshalJSON() ([]byte, error) {
+	type Alias StoryContentTypePhoto
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "storyContentTypePhoto",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// StoryContentTypeUnsupported A story of unknown content type
+type StoryContentTypeUnsupported struct {
+}
+
+func (t *StoryContentTypeUnsupported) Type() string {
+	return "storyContentTypeUnsupported"
+}
+
+func (t *StoryContentTypeUnsupported) storyContentType() {}
+
+func (t *StoryContentTypeUnsupported) MarshalJSON() ([]byte, error) {
+	type Alias StoryContentTypeUnsupported
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "storyContentTypeUnsupported",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// StoryContentTypeVideo A video story
+type StoryContentTypeVideo struct {
+}
+
+func (t *StoryContentTypeVideo) Type() string {
+	return "storyContentTypeVideo"
+}
+
+func (t *StoryContentTypeVideo) storyContentType() {}
+
+func (t *StoryContentTypeVideo) MarshalJSON() ([]byte, error) {
+	type Alias StoryContentTypeVideo
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "storyContentTypeVideo",
 		Alias:   (*Alias)(t),
 	})
 }
@@ -48691,6 +49524,48 @@ func (t *TonTransactionTypeGiftPurchaseOffer) MarshalJSON() ([]byte, error) {
 	})
 }
 
+// TonTransactionTypeStakeDicePayout The transaction is a payment for successful stake dice throw
+type TonTransactionTypeStakeDicePayout struct {
+}
+
+func (t *TonTransactionTypeStakeDicePayout) Type() string {
+	return "tonTransactionTypeStakeDicePayout"
+}
+
+func (t *TonTransactionTypeStakeDicePayout) tonTransactionType() {}
+
+func (t *TonTransactionTypeStakeDicePayout) MarshalJSON() ([]byte, error) {
+	type Alias TonTransactionTypeStakeDicePayout
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "tonTransactionTypeStakeDicePayout",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// TonTransactionTypeStakeDiceStake The transaction is a payment for stake dice throw
+type TonTransactionTypeStakeDiceStake struct {
+}
+
+func (t *TonTransactionTypeStakeDiceStake) Type() string {
+	return "tonTransactionTypeStakeDiceStake"
+}
+
+func (t *TonTransactionTypeStakeDiceStake) tonTransactionType() {}
+
+func (t *TonTransactionTypeStakeDiceStake) MarshalJSON() ([]byte, error) {
+	type Alias TonTransactionTypeStakeDiceStake
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "tonTransactionTypeStakeDiceStake",
+		Alias:   (*Alias)(t),
+	})
+}
+
 // TonTransactionTypeSuggestedPostPayment The transaction is a payment for a suggested post @chat_id Identifier of the channel chat that posted the post
 type TonTransactionTypeSuggestedPostPayment struct {
 	//
@@ -48735,7 +49610,7 @@ func (t *TonTransactionTypeUnsupported) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// TonTransactionTypeUpgradedGiftPurchase The transaction is a purchase of an upgraded gift for some user or channel @user_id Identifier of the user that sold the gift @gift The gift
+// TonTransactionTypeUpgradedGiftPurchase The transaction is a purchase of an upgraded gift for some user or channel @user_id Identifier of the user who sold the gift @gift The gift
 type TonTransactionTypeUpgradedGiftPurchase struct {
 	//
 	UserId int64 `json:"user_id"`
@@ -48762,7 +49637,7 @@ func (t *TonTransactionTypeUpgradedGiftPurchase) MarshalJSON() ([]byte, error) {
 
 // TonTransactionTypeUpgradedGiftSale The transaction is a sale of an upgraded gift
 type TonTransactionTypeUpgradedGiftSale struct {
-	// Identifier of the user that bought the gift
+	// Identifier of the user who bought the gift
 	UserId int64 `json:"user_id"`
 	// The gift
 	Gift *UpgradedGift `json:"gift"`
@@ -54533,6 +55408,10 @@ type UpgradedGift struct {
 	TotalUpgradedCount int32 `json:"total_upgraded_count"`
 	// The maximum number of gifts that can be upgraded from the same gift
 	MaxUpgradedCount int32 `json:"max_upgraded_count"`
+	// True, if the gift was used to craft another gift
+	IsBurned bool `json:"is_burned"`
+	// True, if the gift was craft from another gifts
+	IsCrafted bool `json:"is_crafted"`
 	// True, if the original gift could have been bought only by Telegram Premium subscribers
 	IsPremium bool `json:"is_premium"`
 	// True, if the gift can be used to set a theme in a chat
@@ -54557,12 +55436,14 @@ type UpgradedGift struct {
 	Backdrop *UpgradedGiftBackdrop `json:"backdrop"`
 	// Information about the originally sent gift; may be null if unknown
 	OriginalDetails *UpgradedGiftOriginalDetails `json:"original_details,omitempty"`
-	// Colors that can be set for user's name, background of empty chat photo, replies to messages and link previews; may be null if none
+	// Colors that can be set for user's name, background of empty chat photo, replies to messages and link previews; may be null if none or unknown
 	Colors *UpgradedGiftColors `json:"colors,omitempty"`
 	// Resale parameters of the gift; may be null if resale isn't possible
 	ResaleParameters *GiftResaleParameters `json:"resale_parameters,omitempty"`
 	// True, if an offer to purchase the gift can be sent using sendGiftPurchaseOffer
 	CanSendPurchaseOffer bool `json:"can_send_purchase_offer"`
+	// Probability that the gift adds to the chance of successful crafting of a new gift; 0 if the gift can't be used for crafting
+	CraftProbabilityPerMille int32 `json:"craft_probability_per_mille"`
 	// ISO 4217 currency code of the currency in which value of the gift is represented; may be empty if unavailable
 	ValueCurrency string `json:"value_currency"`
 	// Estimated value of the gift; in the smallest units of the currency; 0 if unavailable
@@ -54686,6 +55567,113 @@ func (t *UpgradedGiftAttributeIdSymbol) MarshalJSON() ([]byte, error) {
 	})
 }
 
+// UpgradedGiftAttributeRarityEpic The attribute is epic
+type UpgradedGiftAttributeRarityEpic struct {
+}
+
+func (t *UpgradedGiftAttributeRarityEpic) Type() string {
+	return "upgradedGiftAttributeRarityEpic"
+}
+
+func (t *UpgradedGiftAttributeRarityEpic) upgradedGiftAttributeRarity() {}
+
+func (t *UpgradedGiftAttributeRarityEpic) MarshalJSON() ([]byte, error) {
+	type Alias UpgradedGiftAttributeRarityEpic
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "upgradedGiftAttributeRarityEpic",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// UpgradedGiftAttributeRarityLegendary The attribute is legendary
+type UpgradedGiftAttributeRarityLegendary struct {
+}
+
+func (t *UpgradedGiftAttributeRarityLegendary) Type() string {
+	return "upgradedGiftAttributeRarityLegendary"
+}
+
+func (t *UpgradedGiftAttributeRarityLegendary) upgradedGiftAttributeRarity() {}
+
+func (t *UpgradedGiftAttributeRarityLegendary) MarshalJSON() ([]byte, error) {
+	type Alias UpgradedGiftAttributeRarityLegendary
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "upgradedGiftAttributeRarityLegendary",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// UpgradedGiftAttributeRarityPerMille The rarity is represented as the numeric frequence of the model
+type UpgradedGiftAttributeRarityPerMille struct {
+	// The number of upgraded gifts that receive this attribute for each 1000 gifts upgraded; if 0, then it can be shown as "<0.1%"
+	PerMille int32 `json:"per_mille"`
+}
+
+func (t *UpgradedGiftAttributeRarityPerMille) Type() string {
+	return "upgradedGiftAttributeRarityPerMille"
+}
+
+func (t *UpgradedGiftAttributeRarityPerMille) upgradedGiftAttributeRarity() {}
+
+func (t *UpgradedGiftAttributeRarityPerMille) MarshalJSON() ([]byte, error) {
+	type Alias UpgradedGiftAttributeRarityPerMille
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "upgradedGiftAttributeRarityPerMille",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// UpgradedGiftAttributeRarityRare The attribute is rare
+type UpgradedGiftAttributeRarityRare struct {
+}
+
+func (t *UpgradedGiftAttributeRarityRare) Type() string {
+	return "upgradedGiftAttributeRarityRare"
+}
+
+func (t *UpgradedGiftAttributeRarityRare) upgradedGiftAttributeRarity() {}
+
+func (t *UpgradedGiftAttributeRarityRare) MarshalJSON() ([]byte, error) {
+	type Alias UpgradedGiftAttributeRarityRare
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "upgradedGiftAttributeRarityRare",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// UpgradedGiftAttributeRarityUncommon The attribute is uncommon
+type UpgradedGiftAttributeRarityUncommon struct {
+}
+
+func (t *UpgradedGiftAttributeRarityUncommon) Type() string {
+	return "upgradedGiftAttributeRarityUncommon"
+}
+
+func (t *UpgradedGiftAttributeRarityUncommon) upgradedGiftAttributeRarity() {}
+
+func (t *UpgradedGiftAttributeRarityUncommon) MarshalJSON() ([]byte, error) {
+	type Alias UpgradedGiftAttributeRarityUncommon
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "upgradedGiftAttributeRarityUncommon",
+		Alias:   (*Alias)(t),
+	})
+}
+
 // UpgradedGiftBackdrop Describes a backdrop of an upgraded gift
 type UpgradedGiftBackdrop struct {
 	// Unique identifier of the backdrop
@@ -54694,8 +55682,8 @@ type UpgradedGiftBackdrop struct {
 	Name string `json:"name"`
 	// Colors of the backdrop
 	Colors *UpgradedGiftBackdropColors `json:"colors"`
-	// The number of upgraded gifts that receive this backdrop for each 1000 gifts upgraded
-	RarityPerMille int32 `json:"rarity_per_mille"`
+	// The rarity of the backdrop
+	Rarity UpgradedGiftAttributeRarity `json:"rarity"`
 }
 
 func (t *UpgradedGiftBackdrop) Type() string {
@@ -54711,6 +55699,29 @@ func (t *UpgradedGiftBackdrop) MarshalJSON() ([]byte, error) {
 		TypeStr: "upgradedGiftBackdrop",
 		Alias:   (*Alias)(t),
 	})
+}
+
+func (t *UpgradedGiftBackdrop) UnmarshalJSON(data []byte) error {
+	type Alias UpgradedGiftBackdrop
+	aux := &struct {
+		Rarity json.RawMessage `json:"rarity"`
+		*Alias
+	}{
+		Alias: (*Alias)(t),
+	}
+
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+
+	if aux.Rarity != nil {
+		v, err := UnmarshalUpgradedGiftAttributeRarity(aux.Rarity)
+		if err != nil {
+			return err
+		}
+		t.Rarity = v
+	}
+	return nil
 }
 
 // UpgradedGiftBackdropColors Describes colors of a backdrop of an upgraded gift
@@ -54802,8 +55813,10 @@ type UpgradedGiftModel struct {
 	Name string `json:"name"`
 	// The sticker representing the upgraded gift
 	Sticker *Sticker `json:"sticker"`
-	// The number of upgraded gifts that receive this model for each 1000 gifts upgraded
-	RarityPerMille int32 `json:"rarity_per_mille"`
+	// The rarity of the model
+	Rarity UpgradedGiftAttributeRarity `json:"rarity"`
+	// True, if the model can be obtained only through gift crafting
+	IsCrafted bool `json:"is_crafted"`
 }
 
 func (t *UpgradedGiftModel) Type() string {
@@ -54819,6 +55832,29 @@ func (t *UpgradedGiftModel) MarshalJSON() ([]byte, error) {
 		TypeStr: "upgradedGiftModel",
 		Alias:   (*Alias)(t),
 	})
+}
+
+func (t *UpgradedGiftModel) UnmarshalJSON(data []byte) error {
+	type Alias UpgradedGiftModel
+	aux := &struct {
+		Rarity json.RawMessage `json:"rarity"`
+		*Alias
+	}{
+		Alias: (*Alias)(t),
+	}
+
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+
+	if aux.Rarity != nil {
+		v, err := UnmarshalUpgradedGiftAttributeRarity(aux.Rarity)
+		if err != nil {
+			return err
+		}
+		t.Rarity = v
+	}
+	return nil
 }
 
 // UpgradedGiftModelCount Describes a model of an upgraded gift with the number of gifts found @model The model @total_count Total number of gifts with the model
@@ -54919,6 +55955,27 @@ func (t *UpgradedGiftOriginBlockchain) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "upgradedGiftOriginBlockchain",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// UpgradedGiftOriginCraft The gift was crafted from other gifts
+type UpgradedGiftOriginCraft struct {
+}
+
+func (t *UpgradedGiftOriginCraft) Type() string {
+	return "upgradedGiftOriginCraft"
+}
+
+func (t *UpgradedGiftOriginCraft) upgradedGiftOrigin() {}
+
+func (t *UpgradedGiftOriginCraft) MarshalJSON() ([]byte, error) {
+	type Alias UpgradedGiftOriginCraft
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "upgradedGiftOriginCraft",
 		Alias:   (*Alias)(t),
 	})
 }
@@ -55086,8 +56143,8 @@ type UpgradedGiftSymbol struct {
 	Name string `json:"name"`
 	// The sticker representing the symbol
 	Sticker *Sticker `json:"sticker"`
-	// The number of upgraded gifts that receive this symbol for each 1000 gifts upgraded
-	RarityPerMille int32 `json:"rarity_per_mille"`
+	// The rarity of the symbol
+	Rarity UpgradedGiftAttributeRarity `json:"rarity"`
 }
 
 func (t *UpgradedGiftSymbol) Type() string {
@@ -55103,6 +56160,29 @@ func (t *UpgradedGiftSymbol) MarshalJSON() ([]byte, error) {
 		TypeStr: "upgradedGiftSymbol",
 		Alias:   (*Alias)(t),
 	})
+}
+
+func (t *UpgradedGiftSymbol) UnmarshalJSON(data []byte) error {
+	type Alias UpgradedGiftSymbol
+	aux := &struct {
+		Rarity json.RawMessage `json:"rarity"`
+		*Alias
+	}{
+		Alias: (*Alias)(t),
+	}
+
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+
+	if aux.Rarity != nil {
+		v, err := UnmarshalUpgradedGiftAttributeRarity(aux.Rarity)
+		if err != nil {
+			return err
+		}
+		t.Rarity = v
+	}
+	return nil
 }
 
 // UpgradedGiftSymbolCount Describes a symbol shown on the pattern of an upgraded gift @symbol The symbol @total_count Total number of gifts with the symbol
@@ -56341,6 +57421,8 @@ type UserTypeBot struct {
 	HasMainWebApp bool `json:"has_main_web_app"`
 	// True, if the bot has topics
 	HasTopics bool `json:"has_topics"`
+	// True, if users can create and delete topics in the chat with the bot
+	AllowsUsersToCreateTopics bool `json:"allows_users_to_create_topics"`
 	// True, if the bot supports inline queries
 	IsInline bool `json:"is_inline"`
 	// Placeholder for inline queries (displayed on the application input field)
@@ -57127,6 +58209,18 @@ func Unmarshal(data []byte) (TlObject, string, error) {
 			return nil, "", err
 		}
 		return &obj, typeObj.Extra, nil
+	case "addedProxies":
+		var obj AddedProxies
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "addedProxy":
+		var obj AddedProxy
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
 	case "addedReaction":
 		var obj AddedReaction
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -57255,6 +58349,12 @@ func Unmarshal(data []byte) (TlObject, string, error) {
 		return &obj, typeObj.Extra, nil
 	case "attachmentMenuBotColor":
 		var obj AttachmentMenuBotColor
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "attributeCraftPersistenceProbability":
+		var obj AttributeCraftPersistenceProbability
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, "", err
 		}
@@ -57963,6 +59063,30 @@ func Unmarshal(data []byte) (TlObject, string, error) {
 		return &obj, typeObj.Extra, nil
 	case "businessStartPage":
 		var obj BusinessStartPage
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "buttonStyleDanger":
+		var obj ButtonStyleDanger
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "buttonStyleDefault":
+		var obj ButtonStyleDefault
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "buttonStylePrimary":
+		var obj ButtonStylePrimary
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "buttonStyleSuccess":
+		var obj ButtonStyleSuccess
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, "", err
 		}
@@ -59455,6 +60579,30 @@ func Unmarshal(data []byte) (TlObject, string, error) {
 			return nil, "", err
 		}
 		return &obj, typeObj.Extra, nil
+	case "craftGiftResultFail":
+		var obj CraftGiftResultFail
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "craftGiftResultInvalidGift":
+		var obj CraftGiftResultInvalidGift
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "craftGiftResultSuccess":
+		var obj CraftGiftResultSuccess
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "craftGiftResultTooEarly":
+		var obj CraftGiftResultTooEarly
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
 	case "createdBasicGroupChat":
 		var obj CreatedBasicGroupChat
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -60249,6 +61397,12 @@ func Unmarshal(data []byte) (TlObject, string, error) {
 		return &obj, typeObj.Extra, nil
 	case "giftSettings":
 		var obj GiftSettings
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "giftsForCrafting":
+		var obj GiftsForCrafting
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, "", err
 		}
@@ -61291,12 +62445,6 @@ func Unmarshal(data []byte) (TlObject, string, error) {
 			return nil, "", err
 		}
 		return &obj, typeObj.Extra, nil
-	case "internalLinkTypeActiveSessions":
-		var obj InternalLinkTypeActiveSessions
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
-		}
-		return &obj, typeObj.Extra, nil
 	case "internalLinkTypeAttachmentMenuBot":
 		var obj InternalLinkTypeAttachmentMenuBot
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -61339,14 +62487,8 @@ func Unmarshal(data []byte) (TlObject, string, error) {
 			return nil, "", err
 		}
 		return &obj, typeObj.Extra, nil
-	case "internalLinkTypeBuyStars":
-		var obj InternalLinkTypeBuyStars
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
-		}
-		return &obj, typeObj.Extra, nil
-	case "internalLinkTypeChangePhoneNumber":
-		var obj InternalLinkTypeChangePhoneNumber
+	case "internalLinkTypeCallsPage":
+		var obj InternalLinkTypeCallsPage
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, "", err
 		}
@@ -61369,32 +62511,26 @@ func Unmarshal(data []byte) (TlObject, string, error) {
 			return nil, "", err
 		}
 		return &obj, typeObj.Extra, nil
-	case "internalLinkTypeChatFolderSettings":
-		var obj InternalLinkTypeChatFolderSettings
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
-		}
-		return &obj, typeObj.Extra, nil
 	case "internalLinkTypeChatInvite":
 		var obj InternalLinkTypeChatInvite
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, "", err
 		}
 		return &obj, typeObj.Extra, nil
-	case "internalLinkTypeDefaultMessageAutoDeleteTimerSettings":
-		var obj InternalLinkTypeDefaultMessageAutoDeleteTimerSettings
+	case "internalLinkTypeChatSelection":
+		var obj InternalLinkTypeChatSelection
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "internalLinkTypeContactsPage":
+		var obj InternalLinkTypeContactsPage
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, "", err
 		}
 		return &obj, typeObj.Extra, nil
 	case "internalLinkTypeDirectMessagesChat":
 		var obj InternalLinkTypeDirectMessagesChat
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
-		}
-		return &obj, typeObj.Extra, nil
-	case "internalLinkTypeEditProfileSettings":
-		var obj InternalLinkTypeEditProfileSettings
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, "", err
 		}
@@ -61441,20 +62577,8 @@ func Unmarshal(data []byte) (TlObject, string, error) {
 			return nil, "", err
 		}
 		return &obj, typeObj.Extra, nil
-	case "internalLinkTypeLanguageSettings":
-		var obj InternalLinkTypeLanguageSettings
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
-		}
-		return &obj, typeObj.Extra, nil
 	case "internalLinkTypeLiveStory":
 		var obj InternalLinkTypeLiveStory
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
-		}
-		return &obj, typeObj.Extra, nil
-	case "internalLinkTypeLoginEmailSettings":
-		var obj InternalLinkTypeLoginEmailSettings
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, "", err
 		}
@@ -61477,14 +62601,32 @@ func Unmarshal(data []byte) (TlObject, string, error) {
 			return nil, "", err
 		}
 		return &obj, typeObj.Extra, nil
-	case "internalLinkTypeMyStars":
-		var obj InternalLinkTypeMyStars
+	case "internalLinkTypeMyProfilePage":
+		var obj InternalLinkTypeMyProfilePage
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, "", err
 		}
 		return &obj, typeObj.Extra, nil
-	case "internalLinkTypeMyToncoins":
-		var obj InternalLinkTypeMyToncoins
+	case "internalLinkTypeNewChannelChat":
+		var obj InternalLinkTypeNewChannelChat
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "internalLinkTypeNewGroupChat":
+		var obj InternalLinkTypeNewGroupChat
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "internalLinkTypeNewPrivateChat":
+		var obj InternalLinkTypeNewPrivateChat
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "internalLinkTypeNewStory":
+		var obj InternalLinkTypeNewStory
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, "", err
 		}
@@ -61495,32 +62637,14 @@ func Unmarshal(data []byte) (TlObject, string, error) {
 			return nil, "", err
 		}
 		return &obj, typeObj.Extra, nil
-	case "internalLinkTypePasswordSettings":
-		var obj InternalLinkTypePasswordSettings
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
-		}
-		return &obj, typeObj.Extra, nil
 	case "internalLinkTypePhoneNumberConfirmation":
 		var obj InternalLinkTypePhoneNumberConfirmation
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, "", err
 		}
 		return &obj, typeObj.Extra, nil
-	case "internalLinkTypePhoneNumberPrivacySettings":
-		var obj InternalLinkTypePhoneNumberPrivacySettings
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
-		}
-		return &obj, typeObj.Extra, nil
-	case "internalLinkTypePremiumFeatures":
-		var obj InternalLinkTypePremiumFeatures
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
-		}
-		return &obj, typeObj.Extra, nil
-	case "internalLinkTypePremiumGift":
-		var obj InternalLinkTypePremiumGift
+	case "internalLinkTypePremiumFeaturesPage":
+		var obj InternalLinkTypePremiumFeaturesPage
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, "", err
 		}
@@ -61531,8 +62655,8 @@ func Unmarshal(data []byte) (TlObject, string, error) {
 			return nil, "", err
 		}
 		return &obj, typeObj.Extra, nil
-	case "internalLinkTypePrivacyAndSecuritySettings":
-		var obj InternalLinkTypePrivacyAndSecuritySettings
+	case "internalLinkTypePremiumGiftPurchase":
+		var obj InternalLinkTypePremiumGiftPurchase
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, "", err
 		}
@@ -61561,8 +62685,26 @@ func Unmarshal(data []byte) (TlObject, string, error) {
 			return nil, "", err
 		}
 		return &obj, typeObj.Extra, nil
+	case "internalLinkTypeSavedMessages":
+		var obj InternalLinkTypeSavedMessages
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "internalLinkTypeSearch":
+		var obj InternalLinkTypeSearch
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
 	case "internalLinkTypeSettings":
 		var obj InternalLinkTypeSettings
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "internalLinkTypeStarPurchase":
+		var obj InternalLinkTypeStarPurchase
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, "", err
 		}
@@ -61591,20 +62733,8 @@ func Unmarshal(data []byte) (TlObject, string, error) {
 			return nil, "", err
 		}
 		return &obj, typeObj.Extra, nil
-	case "internalLinkTypeThemeSettings":
-		var obj InternalLinkTypeThemeSettings
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
-		}
-		return &obj, typeObj.Extra, nil
 	case "internalLinkTypeUnknownDeepLink":
 		var obj InternalLinkTypeUnknownDeepLink
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
-		}
-		return &obj, typeObj.Extra, nil
-	case "internalLinkTypeUnsupportedProxy":
-		var obj InternalLinkTypeUnsupportedProxy
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, "", err
 		}
@@ -62283,6 +63413,18 @@ func Unmarshal(data []byte) (TlObject, string, error) {
 		return &obj, typeObj.Extra, nil
 	case "messageChatJoinByRequest":
 		var obj MessageChatJoinByRequest
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "messageChatOwnerChanged":
+		var obj MessageChatOwnerChanged
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "messageChatOwnerLeft":
+		var obj MessageChatOwnerLeft
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, "", err
 		}
@@ -64519,12 +65661,6 @@ func Unmarshal(data []byte) (TlObject, string, error) {
 			return nil, "", err
 		}
 		return &obj, typeObj.Extra, nil
-	case "proxies":
-		var obj Proxies
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
-		}
-		return &obj, typeObj.Extra, nil
 	case "proxy":
 		var obj Proxy
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -65635,6 +66771,132 @@ func Unmarshal(data []byte) (TlObject, string, error) {
 			return nil, "", err
 		}
 		return &obj, typeObj.Extra, nil
+	case "settingsSectionAppearance":
+		var obj SettingsSectionAppearance
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "settingsSectionAskQuestion":
+		var obj SettingsSectionAskQuestion
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "settingsSectionBusiness":
+		var obj SettingsSectionBusiness
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "settingsSectionChatFolders":
+		var obj SettingsSectionChatFolders
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "settingsSectionDataAndStorage":
+		var obj SettingsSectionDataAndStorage
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "settingsSectionDevices":
+		var obj SettingsSectionDevices
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "settingsSectionEditProfile":
+		var obj SettingsSectionEditProfile
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "settingsSectionFaq":
+		var obj SettingsSectionFaq
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "settingsSectionFeatures":
+		var obj SettingsSectionFeatures
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "settingsSectionInAppBrowser":
+		var obj SettingsSectionInAppBrowser
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "settingsSectionLanguage":
+		var obj SettingsSectionLanguage
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "settingsSectionMyStars":
+		var obj SettingsSectionMyStars
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "settingsSectionMyToncoins":
+		var obj SettingsSectionMyToncoins
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "settingsSectionNotifications":
+		var obj SettingsSectionNotifications
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "settingsSectionPowerSaving":
+		var obj SettingsSectionPowerSaving
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "settingsSectionPremium":
+		var obj SettingsSectionPremium
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "settingsSectionPrivacyAndSecurity":
+		var obj SettingsSectionPrivacyAndSecurity
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "settingsSectionPrivacyPolicy":
+		var obj SettingsSectionPrivacyPolicy
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "settingsSectionQrCode":
+		var obj SettingsSectionQrCode
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "settingsSectionSearch":
+		var obj SettingsSectionSearch
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "settingsSectionSendGift":
+		var obj SettingsSectionSendGift
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
 	case "sharedChat":
 		var obj SharedChat
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -66351,6 +67613,30 @@ func Unmarshal(data []byte) (TlObject, string, error) {
 		return &obj, typeObj.Extra, nil
 	case "storyContentPhoto":
 		var obj StoryContentPhoto
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "storyContentTypeLive":
+		var obj StoryContentTypeLive
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "storyContentTypePhoto":
+		var obj StoryContentTypePhoto
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "storyContentTypeUnsupported":
+		var obj StoryContentTypeUnsupported
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "storyContentTypeVideo":
+		var obj StoryContentTypeVideo
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, "", err
 		}
@@ -67131,6 +68417,18 @@ func Unmarshal(data []byte) (TlObject, string, error) {
 		return &obj, typeObj.Extra, nil
 	case "tonTransactionTypeGiftPurchaseOffer":
 		var obj TonTransactionTypeGiftPurchaseOffer
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "tonTransactionTypeStakeDicePayout":
+		var obj TonTransactionTypeStakeDicePayout
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "tonTransactionTypeStakeDiceStake":
+		var obj TonTransactionTypeStakeDiceStake
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, "", err
 		}
@@ -68311,6 +69609,36 @@ func Unmarshal(data []byte) (TlObject, string, error) {
 			return nil, "", err
 		}
 		return &obj, typeObj.Extra, nil
+	case "upgradedGiftAttributeRarityEpic":
+		var obj UpgradedGiftAttributeRarityEpic
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "upgradedGiftAttributeRarityLegendary":
+		var obj UpgradedGiftAttributeRarityLegendary
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "upgradedGiftAttributeRarityPerMille":
+		var obj UpgradedGiftAttributeRarityPerMille
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "upgradedGiftAttributeRarityRare":
+		var obj UpgradedGiftAttributeRarityRare
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "upgradedGiftAttributeRarityUncommon":
+		var obj UpgradedGiftAttributeRarityUncommon
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
 	case "upgradedGiftBackdrop":
 		var obj UpgradedGiftBackdrop
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -68355,6 +69683,12 @@ func Unmarshal(data []byte) (TlObject, string, error) {
 		return &obj, typeObj.Extra, nil
 	case "upgradedGiftOriginBlockchain":
 		var obj UpgradedGiftOriginBlockchain
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "upgradedGiftOriginCraft":
+		var obj UpgradedGiftOriginCraft
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, "", err
 		}

@@ -865,6 +865,55 @@ func UnmarshalBusinessFeature(data []byte) (BusinessFeature, error) {
 	}
 }
 
+// ButtonStyle Describes style of a button
+// Implemented by:
+// ButtonStyleDanger
+// ButtonStyleDefault
+// ButtonStylePrimary
+// ButtonStyleSuccess
+type ButtonStyle interface {
+	TlObject
+	buttonStyle()
+}
+
+// UnmarshalButtonStyle unmarshals the JSON into the correct concrete implementation of ButtonStyle
+func UnmarshalButtonStyle(data []byte) (ButtonStyle, error) {
+	var typeObj struct {
+		Type string `json:"@type"`
+	}
+	if err := json.Unmarshal(data, &typeObj); err != nil {
+		return nil, err
+	}
+	switch typeObj.Type {
+	case "buttonStyleDanger":
+		var obj ButtonStyleDanger
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "buttonStyleDefault":
+		var obj ButtonStyleDefault
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "buttonStylePrimary":
+		var obj ButtonStylePrimary
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "buttonStyleSuccess":
+		var obj ButtonStyleSuccess
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	default:
+		return nil, fmt.Errorf("unknown type: %s", typeObj.Type)
+	}
+}
+
 // CallbackQueryPayload Represents a payload of a callback query
 // Implemented by:
 // CallbackQueryPayloadData
@@ -2648,6 +2697,55 @@ func UnmarshalConnectionState(data []byte) (ConnectionState, error) {
 		return &obj, nil
 	case "connectionStateWaitingForNetwork":
 		var obj ConnectionStateWaitingForNetwork
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	default:
+		return nil, fmt.Errorf("unknown type: %s", typeObj.Type)
+	}
+}
+
+// CraftGiftResult Contains result of gift crafting
+// Implemented by:
+// CraftGiftResultFail
+// CraftGiftResultInvalidGift
+// CraftGiftResultSuccess
+// CraftGiftResultTooEarly
+type CraftGiftResult interface {
+	TlObject
+	craftGiftResult()
+}
+
+// UnmarshalCraftGiftResult unmarshals the JSON into the correct concrete implementation of CraftGiftResult
+func UnmarshalCraftGiftResult(data []byte) (CraftGiftResult, error) {
+	var typeObj struct {
+		Type string `json:"@type"`
+	}
+	if err := json.Unmarshal(data, &typeObj); err != nil {
+		return nil, err
+	}
+	switch typeObj.Type {
+	case "craftGiftResultFail":
+		var obj CraftGiftResultFail
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "craftGiftResultInvalidGift":
+		var obj CraftGiftResultInvalidGift
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "craftGiftResultSuccess":
+		var obj CraftGiftResultSuccess
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "craftGiftResultTooEarly":
+		var obj CraftGiftResultTooEarly
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -4794,7 +4892,6 @@ func UnmarshalInputStoryContent(data []byte) (InputStoryContent, error) {
 
 // InternalLinkType Describes an internal https://t.me or tg: link, which must be processed by the application in a special way
 // Implemented by:
-// InternalLinkTypeActiveSessions
 // InternalLinkTypeAttachmentMenuBot
 // InternalLinkTypeAuthenticationCode
 // InternalLinkTypeBackground
@@ -4802,16 +4899,14 @@ func UnmarshalInputStoryContent(data []byte) (InputStoryContent, error) {
 // InternalLinkTypeBotStart
 // InternalLinkTypeBotStartInGroup
 // InternalLinkTypeBusinessChat
-// InternalLinkTypeBuyStars
-// InternalLinkTypeChangePhoneNumber
+// InternalLinkTypeCallsPage
 // InternalLinkTypeChatAffiliateProgram
 // InternalLinkTypeChatBoost
 // InternalLinkTypeChatFolderInvite
-// InternalLinkTypeChatFolderSettings
 // InternalLinkTypeChatInvite
-// InternalLinkTypeDefaultMessageAutoDeleteTimerSettings
+// InternalLinkTypeChatSelection
+// InternalLinkTypeContactsPage
 // InternalLinkTypeDirectMessagesChat
-// InternalLinkTypeEditProfileSettings
 // InternalLinkTypeGame
 // InternalLinkTypeGiftAuction
 // InternalLinkTypeGiftCollection
@@ -4819,34 +4914,33 @@ func UnmarshalInputStoryContent(data []byte) (InputStoryContent, error) {
 // InternalLinkTypeInstantView
 // InternalLinkTypeInvoice
 // InternalLinkTypeLanguagePack
-// InternalLinkTypeLanguageSettings
 // InternalLinkTypeLiveStory
-// InternalLinkTypeLoginEmailSettings
 // InternalLinkTypeMainWebApp
 // InternalLinkTypeMessage
 // InternalLinkTypeMessageDraft
-// InternalLinkTypeMyStars
-// InternalLinkTypeMyToncoins
+// InternalLinkTypeMyProfilePage
+// InternalLinkTypeNewChannelChat
+// InternalLinkTypeNewGroupChat
+// InternalLinkTypeNewPrivateChat
+// InternalLinkTypeNewStory
 // InternalLinkTypePassportDataRequest
-// InternalLinkTypePasswordSettings
 // InternalLinkTypePhoneNumberConfirmation
-// InternalLinkTypePhoneNumberPrivacySettings
-// InternalLinkTypePremiumFeatures
-// InternalLinkTypePremiumGift
+// InternalLinkTypePremiumFeaturesPage
 // InternalLinkTypePremiumGiftCode
-// InternalLinkTypePrivacyAndSecuritySettings
+// InternalLinkTypePremiumGiftPurchase
 // InternalLinkTypeProxy
 // InternalLinkTypePublicChat
 // InternalLinkTypeQrCodeAuthentication
 // InternalLinkTypeRestorePurchases
+// InternalLinkTypeSavedMessages
+// InternalLinkTypeSearch
 // InternalLinkTypeSettings
+// InternalLinkTypeStarPurchase
 // InternalLinkTypeStickerSet
 // InternalLinkTypeStory
 // InternalLinkTypeStoryAlbum
 // InternalLinkTypeTheme
-// InternalLinkTypeThemeSettings
 // InternalLinkTypeUnknownDeepLink
-// InternalLinkTypeUnsupportedProxy
 // InternalLinkTypeUpgradedGift
 // InternalLinkTypeUserPhoneNumber
 // InternalLinkTypeUserToken
@@ -4866,12 +4960,6 @@ func UnmarshalInternalLinkType(data []byte) (InternalLinkType, error) {
 		return nil, err
 	}
 	switch typeObj.Type {
-	case "internalLinkTypeActiveSessions":
-		var obj InternalLinkTypeActiveSessions
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, err
-		}
-		return &obj, nil
 	case "internalLinkTypeAttachmentMenuBot":
 		var obj InternalLinkTypeAttachmentMenuBot
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -4914,14 +5002,8 @@ func UnmarshalInternalLinkType(data []byte) (InternalLinkType, error) {
 			return nil, err
 		}
 		return &obj, nil
-	case "internalLinkTypeBuyStars":
-		var obj InternalLinkTypeBuyStars
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, err
-		}
-		return &obj, nil
-	case "internalLinkTypeChangePhoneNumber":
-		var obj InternalLinkTypeChangePhoneNumber
+	case "internalLinkTypeCallsPage":
+		var obj InternalLinkTypeCallsPage
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -4944,32 +5026,26 @@ func UnmarshalInternalLinkType(data []byte) (InternalLinkType, error) {
 			return nil, err
 		}
 		return &obj, nil
-	case "internalLinkTypeChatFolderSettings":
-		var obj InternalLinkTypeChatFolderSettings
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, err
-		}
-		return &obj, nil
 	case "internalLinkTypeChatInvite":
 		var obj InternalLinkTypeChatInvite
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
 		return &obj, nil
-	case "internalLinkTypeDefaultMessageAutoDeleteTimerSettings":
-		var obj InternalLinkTypeDefaultMessageAutoDeleteTimerSettings
+	case "internalLinkTypeChatSelection":
+		var obj InternalLinkTypeChatSelection
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "internalLinkTypeContactsPage":
+		var obj InternalLinkTypeContactsPage
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
 		return &obj, nil
 	case "internalLinkTypeDirectMessagesChat":
 		var obj InternalLinkTypeDirectMessagesChat
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, err
-		}
-		return &obj, nil
-	case "internalLinkTypeEditProfileSettings":
-		var obj InternalLinkTypeEditProfileSettings
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -5016,20 +5092,8 @@ func UnmarshalInternalLinkType(data []byte) (InternalLinkType, error) {
 			return nil, err
 		}
 		return &obj, nil
-	case "internalLinkTypeLanguageSettings":
-		var obj InternalLinkTypeLanguageSettings
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, err
-		}
-		return &obj, nil
 	case "internalLinkTypeLiveStory":
 		var obj InternalLinkTypeLiveStory
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, err
-		}
-		return &obj, nil
-	case "internalLinkTypeLoginEmailSettings":
-		var obj InternalLinkTypeLoginEmailSettings
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -5052,14 +5116,32 @@ func UnmarshalInternalLinkType(data []byte) (InternalLinkType, error) {
 			return nil, err
 		}
 		return &obj, nil
-	case "internalLinkTypeMyStars":
-		var obj InternalLinkTypeMyStars
+	case "internalLinkTypeMyProfilePage":
+		var obj InternalLinkTypeMyProfilePage
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
 		return &obj, nil
-	case "internalLinkTypeMyToncoins":
-		var obj InternalLinkTypeMyToncoins
+	case "internalLinkTypeNewChannelChat":
+		var obj InternalLinkTypeNewChannelChat
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "internalLinkTypeNewGroupChat":
+		var obj InternalLinkTypeNewGroupChat
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "internalLinkTypeNewPrivateChat":
+		var obj InternalLinkTypeNewPrivateChat
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "internalLinkTypeNewStory":
+		var obj InternalLinkTypeNewStory
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -5070,32 +5152,14 @@ func UnmarshalInternalLinkType(data []byte) (InternalLinkType, error) {
 			return nil, err
 		}
 		return &obj, nil
-	case "internalLinkTypePasswordSettings":
-		var obj InternalLinkTypePasswordSettings
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, err
-		}
-		return &obj, nil
 	case "internalLinkTypePhoneNumberConfirmation":
 		var obj InternalLinkTypePhoneNumberConfirmation
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
 		return &obj, nil
-	case "internalLinkTypePhoneNumberPrivacySettings":
-		var obj InternalLinkTypePhoneNumberPrivacySettings
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, err
-		}
-		return &obj, nil
-	case "internalLinkTypePremiumFeatures":
-		var obj InternalLinkTypePremiumFeatures
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, err
-		}
-		return &obj, nil
-	case "internalLinkTypePremiumGift":
-		var obj InternalLinkTypePremiumGift
+	case "internalLinkTypePremiumFeaturesPage":
+		var obj InternalLinkTypePremiumFeaturesPage
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -5106,8 +5170,8 @@ func UnmarshalInternalLinkType(data []byte) (InternalLinkType, error) {
 			return nil, err
 		}
 		return &obj, nil
-	case "internalLinkTypePrivacyAndSecuritySettings":
-		var obj InternalLinkTypePrivacyAndSecuritySettings
+	case "internalLinkTypePremiumGiftPurchase":
+		var obj InternalLinkTypePremiumGiftPurchase
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -5136,8 +5200,26 @@ func UnmarshalInternalLinkType(data []byte) (InternalLinkType, error) {
 			return nil, err
 		}
 		return &obj, nil
+	case "internalLinkTypeSavedMessages":
+		var obj InternalLinkTypeSavedMessages
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "internalLinkTypeSearch":
+		var obj InternalLinkTypeSearch
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
 	case "internalLinkTypeSettings":
 		var obj InternalLinkTypeSettings
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "internalLinkTypeStarPurchase":
+		var obj InternalLinkTypeStarPurchase
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -5166,20 +5248,8 @@ func UnmarshalInternalLinkType(data []byte) (InternalLinkType, error) {
 			return nil, err
 		}
 		return &obj, nil
-	case "internalLinkTypeThemeSettings":
-		var obj InternalLinkTypeThemeSettings
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, err
-		}
-		return &obj, nil
 	case "internalLinkTypeUnknownDeepLink":
 		var obj InternalLinkTypeUnknownDeepLink
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, err
-		}
-		return &obj, nil
-	case "internalLinkTypeUnsupportedProxy":
-		var obj InternalLinkTypeUnsupportedProxy
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -5949,6 +6019,8 @@ func UnmarshalMaskPoint(data []byte) (MaskPoint, error) {
 // MessageChatDeletePhoto
 // MessageChatJoinByLink
 // MessageChatJoinByRequest
+// MessageChatOwnerChanged
+// MessageChatOwnerLeft
 // MessageChatSetBackground
 // MessageChatSetMessageAutoDeleteTime
 // MessageChatSetTheme
@@ -6122,6 +6194,18 @@ func UnmarshalMessageContent(data []byte) (MessageContent, error) {
 		return &obj, nil
 	case "messageChatJoinByRequest":
 		var obj MessageChatJoinByRequest
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "messageChatOwnerChanged":
+		var obj MessageChatOwnerChanged
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "messageChatOwnerLeft":
+		var obj MessageChatOwnerLeft
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -10420,6 +10504,174 @@ func UnmarshalSessionType(data []byte) (SessionType, error) {
 	}
 }
 
+// SettingsSection Describes a section of the application settings
+// Implemented by:
+// SettingsSectionAppearance
+// SettingsSectionAskQuestion
+// SettingsSectionBusiness
+// SettingsSectionChatFolders
+// SettingsSectionDataAndStorage
+// SettingsSectionDevices
+// SettingsSectionEditProfile
+// SettingsSectionFaq
+// SettingsSectionFeatures
+// SettingsSectionInAppBrowser
+// SettingsSectionLanguage
+// SettingsSectionMyStars
+// SettingsSectionMyToncoins
+// SettingsSectionNotifications
+// SettingsSectionPowerSaving
+// SettingsSectionPremium
+// SettingsSectionPrivacyAndSecurity
+// SettingsSectionPrivacyPolicy
+// SettingsSectionQrCode
+// SettingsSectionSearch
+// SettingsSectionSendGift
+type SettingsSection interface {
+	TlObject
+	settingsSection()
+}
+
+// UnmarshalSettingsSection unmarshals the JSON into the correct concrete implementation of SettingsSection
+func UnmarshalSettingsSection(data []byte) (SettingsSection, error) {
+	var typeObj struct {
+		Type string `json:"@type"`
+	}
+	if err := json.Unmarshal(data, &typeObj); err != nil {
+		return nil, err
+	}
+	switch typeObj.Type {
+	case "settingsSectionAppearance":
+		var obj SettingsSectionAppearance
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "settingsSectionAskQuestion":
+		var obj SettingsSectionAskQuestion
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "settingsSectionBusiness":
+		var obj SettingsSectionBusiness
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "settingsSectionChatFolders":
+		var obj SettingsSectionChatFolders
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "settingsSectionDataAndStorage":
+		var obj SettingsSectionDataAndStorage
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "settingsSectionDevices":
+		var obj SettingsSectionDevices
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "settingsSectionEditProfile":
+		var obj SettingsSectionEditProfile
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "settingsSectionFaq":
+		var obj SettingsSectionFaq
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "settingsSectionFeatures":
+		var obj SettingsSectionFeatures
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "settingsSectionInAppBrowser":
+		var obj SettingsSectionInAppBrowser
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "settingsSectionLanguage":
+		var obj SettingsSectionLanguage
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "settingsSectionMyStars":
+		var obj SettingsSectionMyStars
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "settingsSectionMyToncoins":
+		var obj SettingsSectionMyToncoins
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "settingsSectionNotifications":
+		var obj SettingsSectionNotifications
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "settingsSectionPowerSaving":
+		var obj SettingsSectionPowerSaving
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "settingsSectionPremium":
+		var obj SettingsSectionPremium
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "settingsSectionPrivacyAndSecurity":
+		var obj SettingsSectionPrivacyAndSecurity
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "settingsSectionPrivacyPolicy":
+		var obj SettingsSectionPrivacyPolicy
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "settingsSectionQrCode":
+		var obj SettingsSectionQrCode
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "settingsSectionSearch":
+		var obj SettingsSectionSearch
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "settingsSectionSendGift":
+		var obj SettingsSectionSendGift
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	default:
+		return nil, fmt.Errorf("unknown type: %s", typeObj.Type)
+	}
+}
+
 // SpeechRecognitionResult Describes result of speech recognition in a voice note
 // Implemented by:
 // SpeechRecognitionResultError
@@ -11251,6 +11503,55 @@ func UnmarshalStoryContent(data []byte) (StoryContent, error) {
 		return &obj, nil
 	case "storyContentVideo":
 		var obj StoryContentVideo
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	default:
+		return nil, fmt.Errorf("unknown type: %s", typeObj.Type)
+	}
+}
+
+// StoryContentType Contains the type of the content of a story
+// Implemented by:
+// StoryContentTypeLive
+// StoryContentTypePhoto
+// StoryContentTypeUnsupported
+// StoryContentTypeVideo
+type StoryContentType interface {
+	TlObject
+	storyContentType()
+}
+
+// UnmarshalStoryContentType unmarshals the JSON into the correct concrete implementation of StoryContentType
+func UnmarshalStoryContentType(data []byte) (StoryContentType, error) {
+	var typeObj struct {
+		Type string `json:"@type"`
+	}
+	if err := json.Unmarshal(data, &typeObj); err != nil {
+		return nil, err
+	}
+	switch typeObj.Type {
+	case "storyContentTypeLive":
+		var obj StoryContentTypeLive
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "storyContentTypePhoto":
+		var obj StoryContentTypePhoto
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "storyContentTypeUnsupported":
+		var obj StoryContentTypeUnsupported
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "storyContentTypeVideo":
+		var obj StoryContentTypeVideo
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -12196,6 +12497,8 @@ func UnmarshalTMeUrlType(data []byte) (TMeUrlType, error) {
 // TonTransactionTypeFragmentDeposit
 // TonTransactionTypeFragmentWithdrawal
 // TonTransactionTypeGiftPurchaseOffer
+// TonTransactionTypeStakeDicePayout
+// TonTransactionTypeStakeDiceStake
 // TonTransactionTypeSuggestedPostPayment
 // TonTransactionTypeUnsupported
 // TonTransactionTypeUpgradedGiftPurchase
@@ -12228,6 +12531,18 @@ func UnmarshalTonTransactionType(data []byte) (TonTransactionType, error) {
 		return &obj, nil
 	case "tonTransactionTypeGiftPurchaseOffer":
 		var obj TonTransactionTypeGiftPurchaseOffer
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "tonTransactionTypeStakeDicePayout":
+		var obj TonTransactionTypeStakeDicePayout
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "tonTransactionTypeStakeDiceStake":
+		var obj TonTransactionTypeStakeDiceStake
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -13654,9 +13969,66 @@ func UnmarshalUpgradedGiftAttributeId(data []byte) (UpgradedGiftAttributeId, err
 	}
 }
 
+// UpgradedGiftAttributeRarity Describes rarity of an upgraded gift attribute
+// Implemented by:
+// UpgradedGiftAttributeRarityEpic
+// UpgradedGiftAttributeRarityLegendary
+// UpgradedGiftAttributeRarityPerMille
+// UpgradedGiftAttributeRarityRare
+// UpgradedGiftAttributeRarityUncommon
+type UpgradedGiftAttributeRarity interface {
+	TlObject
+	upgradedGiftAttributeRarity()
+}
+
+// UnmarshalUpgradedGiftAttributeRarity unmarshals the JSON into the correct concrete implementation of UpgradedGiftAttributeRarity
+func UnmarshalUpgradedGiftAttributeRarity(data []byte) (UpgradedGiftAttributeRarity, error) {
+	var typeObj struct {
+		Type string `json:"@type"`
+	}
+	if err := json.Unmarshal(data, &typeObj); err != nil {
+		return nil, err
+	}
+	switch typeObj.Type {
+	case "upgradedGiftAttributeRarityEpic":
+		var obj UpgradedGiftAttributeRarityEpic
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "upgradedGiftAttributeRarityLegendary":
+		var obj UpgradedGiftAttributeRarityLegendary
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "upgradedGiftAttributeRarityPerMille":
+		var obj UpgradedGiftAttributeRarityPerMille
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "upgradedGiftAttributeRarityRare":
+		var obj UpgradedGiftAttributeRarityRare
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "upgradedGiftAttributeRarityUncommon":
+		var obj UpgradedGiftAttributeRarityUncommon
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	default:
+		return nil, fmt.Errorf("unknown type: %s", typeObj.Type)
+	}
+}
+
 // UpgradedGiftOrigin Describes origin from which the upgraded gift was obtained
 // Implemented by:
 // UpgradedGiftOriginBlockchain
+// UpgradedGiftOriginCraft
 // UpgradedGiftOriginOffer
 // UpgradedGiftOriginPrepaidUpgrade
 // UpgradedGiftOriginResale
@@ -13678,6 +14050,12 @@ func UnmarshalUpgradedGiftOrigin(data []byte) (UpgradedGiftOrigin, error) {
 	switch typeObj.Type {
 	case "upgradedGiftOriginBlockchain":
 		var obj UpgradedGiftOriginBlockchain
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "upgradedGiftOriginCraft":
+		var obj UpgradedGiftOriginCraft
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}

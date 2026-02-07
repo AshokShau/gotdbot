@@ -408,6 +408,11 @@ func (c *Chat) GetMessagePosition(client *Client, filter SearchMessagesFilter, m
 	return client.GetChatMessagePosition(c.Id, filter, messageId, opts)
 }
 
+// GetOwnerAfterLeaving is a helper method for Client.GetChatOwnerAfterLeaving
+func (c *Chat) GetOwnerAfterLeaving(client *Client) (*User, error) {
+	return client.GetChatOwnerAfterLeaving(c.Id)
+}
+
 // GetPinnedMessage is a helper method for Client.GetChatPinnedMessage
 func (c *Chat) GetPinnedMessage(client *Client) (*Message, error) {
 	return client.GetChatPinnedMessage(c.Id)
@@ -924,8 +929,8 @@ func (c *Chat) SendBusinessMessageAlbum(client *Client, businessConnectionId str
 }
 
 // SendAction is a helper method for Client.SendChatAction
-func (c *Chat) SendAction(client *Client, topicId MessageTopic, businessConnectionId string, opts *SendChatActionOpts) (*Ok, error) {
-	return client.SendChatAction(c.Id, topicId, businessConnectionId, opts)
+func (c *Chat) SendAction(client *Client, businessConnectionId string, opts *SendChatActionOpts) (*Ok, error) {
+	return client.SendChatAction(c.Id, businessConnectionId, opts)
 }
 
 // SendInlineQueryResultMessage is a helper method for Client.SendInlineQueryResultMessage

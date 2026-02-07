@@ -554,14 +554,10 @@ func (t *AddProfileAudio) MarshalJSON() ([]byte, error) {
 
 // AddProxy Adds a proxy server for network requests. Can be called before authorization
 type AddProxy struct {
-	// Proxy server domain or IP address
-	Server string `json:"server"`
-	// Proxy server port
-	Port int32 `json:"port"`
+	// The proxy to add
+	Proxy *Proxy `json:"proxy"`
 	// Pass true to immediately enable the proxy
 	Enable bool `json:"enable"`
-	// Proxy type
-	TypeField ProxyType `json:"type"`
 }
 
 func (t *AddProxy) Type() string {
@@ -894,7 +890,7 @@ func (t *AnswerCustomQuery) MarshalJSON() ([]byte, error) {
 type AnswerInlineQuery struct {
 	// Identifier of the inline query
 	InlineQueryId int64 `json:"inline_query_id,string"`
-	// Pass true if results may be cached and returned only for the user that sent the query. By default, results may be returned to any user who sends the same query
+	// Pass true if results may be cached and returned only for the user who sent the query. By default, results may be returned to any user who sends the same query
 	IsPersonal bool `json:"is_personal"`
 	// Button to be shown above inline query results; pass null if none
 	Button *InlineQueryResultsButton `json:"button,omitempty"`
@@ -1069,7 +1065,7 @@ type BanChatMember struct {
 	MemberId MessageSender `json:"member_id"`
 	// Point in time (Unix timestamp) when the user will be unbanned; 0 if never. If the user is banned for more than 366 days or for less than 30 seconds from the current time, the user is considered to be banned forever. Ignored in basic groups and if a chat is banned
 	BannedUntilDate int32 `json:"banned_until_date"`
-	// Pass true to delete all messages in the chat for the user that is being removed. Always true for supergroups and channels
+	// Pass true to delete all messages in the chat for the user who is being removed. Always true for supergroups and channels
 	RevokeMessages bool `json:"revoke_messages"`
 }
 
@@ -2376,6 +2372,27 @@ func (t *ConnectAffiliateProgram) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "connectAffiliateProgram",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// CraftGift Crafts a new gift from other gifts that will be permanently lost
+type CraftGift struct {
+	// Identifier of the gifts to use for crafting
+	ReceivedGiftIds []string `json:"received_gift_ids"`
+}
+
+func (t *CraftGift) Type() string {
+	return "craftGift"
+}
+
+func (t *CraftGift) MarshalJSON() ([]byte, error) {
+	type Alias CraftGift
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "craftGift",
 		Alias:   (*Alias)(t),
 	})
 }
@@ -4809,14 +4826,10 @@ func (t *EditMessageText) MarshalJSON() ([]byte, error) {
 type EditProxy struct {
 	// Proxy identifier
 	ProxyId int32 `json:"proxy_id"`
-	// Proxy server domain or IP address
-	Server string `json:"server"`
-	// Proxy server port
-	Port int32 `json:"port"`
+	// The new information about the proxy
+	Proxy *Proxy `json:"proxy"`
 	// Pass true to immediately enable the proxy
 	Enable bool `json:"enable"`
-	// Proxy type
-	TypeField ProxyType `json:"type"`
 }
 
 func (t *EditProxy) Type() string {
@@ -6667,6 +6680,27 @@ func (t *GetChatNotificationSettingsExceptions) MarshalJSON() ([]byte, error) {
 	})
 }
 
+// GetChatOwnerAfterLeaving Returns the user who will become the owner of the chat after 7 days if the current user does not return to the chat during that period; requires owner privileges in the chat.
+type GetChatOwnerAfterLeaving struct {
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+}
+
+func (t *GetChatOwnerAfterLeaving) Type() string {
+	return "getChatOwnerAfterLeaving"
+}
+
+func (t *GetChatOwnerAfterLeaving) MarshalJSON() ([]byte, error) {
+	type Alias GetChatOwnerAfterLeaving
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getChatOwnerAfterLeaving",
+		Alias:   (*Alias)(t),
+	})
+}
+
 // GetChatPinnedMessage Returns information about a newest pinned message in the chat. Returns a 404 error if the message doesn't exist @chat_id Identifier of the chat the message belongs to
 type GetChatPinnedMessage struct {
 	//
@@ -7682,12 +7716,14 @@ func (t *GetEmojiSuggestionsUrl) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// GetExternalLink Returns an HTTP URL which can be used to automatically authorize the current user on a website after clicking an HTTP link. Use the method getExternalLinkInfo to find whether a prior user confirmation is needed
+// GetExternalLink Returns an HTTP URL which can be used to automatically authorize the current user on a website after clicking an HTTP link.
 type GetExternalLink struct {
 	// The HTTP link
 	Link string `json:"link"`
-	// Pass true if the current user allowed the bot, returned in getExternalLinkInfo, to send them messages
+	// Pass true if the current user allowed the bot that was returned in getExternalLinkInfo, to send them messages
 	AllowWriteAccess bool `json:"allow_write_access"`
+	// Pass true if the current user allowed the bot that was returned in getExternalLinkInfo, to access their phone number
+	AllowPhoneNumberAccess bool `json:"allow_phone_number_access"`
 }
 
 func (t *GetExternalLink) Type() string {
@@ -8067,10 +8103,35 @@ func (t *GetGiftCollections) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// GetGiftUpgradePreview Returns examples of possible upgraded gifts for a regular gift @gift_id Identifier of the gift
+// GetGiftsForCrafting Returns upgraded gifts of the current user who can be used to craft another gifts
+type GetGiftsForCrafting struct {
+	// Identifier of the regular gift that will be used for crafting
+	RegularGiftId int64 `json:"regular_gift_id,string"`
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
+	// The maximum number of gifts to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned objects is chosen by TDLib and can be smaller than the specified limit
+	Limit int32 `json:"limit"`
+}
+
+func (t *GetGiftsForCrafting) Type() string {
+	return "getGiftsForCrafting"
+}
+
+func (t *GetGiftsForCrafting) MarshalJSON() ([]byte, error) {
+	type Alias GetGiftsForCrafting
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getGiftsForCrafting",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetGiftUpgradePreview Returns examples of possible upgraded gifts for a regular gift @regular_gift_id Identifier of the regular gift
 type GetGiftUpgradePreview struct {
 	//
-	GiftId int64 `json:"gift_id,string"`
+	RegularGiftId int64 `json:"regular_gift_id,string"`
 }
 
 func (t *GetGiftUpgradePreview) Type() string {
@@ -8084,27 +8145,6 @@ func (t *GetGiftUpgradePreview) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "getGiftUpgradePreview",
-		Alias:   (*Alias)(t),
-	})
-}
-
-// GetGiftUpgradeVariants Returns all possible variants of upgraded gifts for a regular gift @gift_id Identifier of the gift
-type GetGiftUpgradeVariants struct {
-	//
-	GiftId int64 `json:"gift_id,string"`
-}
-
-func (t *GetGiftUpgradeVariants) Type() string {
-	return "getGiftUpgradeVariants"
-}
-
-func (t *GetGiftUpgradeVariants) MarshalJSON() ([]byte, error) {
-	type Alias GetGiftUpgradeVariants
-	return json.Marshal(&struct {
-		TypeStr string `json:"@type"`
-		*Alias
-	}{
-		TypeStr: "getGiftUpgradeVariants",
 		Alias:   (*Alias)(t),
 	})
 }
@@ -8760,7 +8800,7 @@ type GetLoginUrl struct {
 	MessageId int64 `json:"message_id"`
 	// Button identifier
 	ButtonId int64 `json:"button_id"`
-	// Pass true to allow the bot to send messages to the current user
+	// Pass true to allow the bot to send messages to the current user. Phone number access can't be requested using the button
 	AllowWriteAccess bool `json:"allow_write_access"`
 }
 
@@ -10037,27 +10077,6 @@ func (t *GetProxies) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// GetProxyLink Returns an HTTPS link, which can be used to add a proxy. Available only for SOCKS5 and MTProto proxies. Can be called before authorization @proxy_id Proxy identifier
-type GetProxyLink struct {
-	//
-	ProxyId int32 `json:"proxy_id"`
-}
-
-func (t *GetProxyLink) Type() string {
-	return "getProxyLink"
-}
-
-func (t *GetProxyLink) MarshalJSON() ([]byte, error) {
-	type Alias GetProxyLink
-	return json.Marshal(&struct {
-		TypeStr string `json:"@type"`
-		*Alias
-	}{
-		TypeStr: "getProxyLink",
-		Alias:   (*Alias)(t),
-	})
-}
-
 // GetPublicPostSearchLimits Checks public post search limits without actually performing the search @query Query that will be searched for
 type GetPublicPostSearchLimits struct {
 	//
@@ -10668,7 +10687,7 @@ func (t *GetStarAdAccountUrl) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// GetStarGiftPaymentOptions Returns available options for Telegram Stars gifting @user_id Identifier of the user that will receive Telegram Stars; pass 0 to get options for an unspecified user
+// GetStarGiftPaymentOptions Returns available options for Telegram Stars gifting @user_id Identifier of the user who will receive Telegram Stars; pass 0 to get options for an unspecified user
 type GetStarGiftPaymentOptions struct {
 	//
 	UserId int64 `json:"user_id"`
@@ -11379,7 +11398,7 @@ func (t *GetSupportName) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// GetSupportUser Returns a user that can be contacted to get support
+// GetSupportUser Returns a user who can be contacted to get support
 type GetSupportUser struct {
 }
 
@@ -11707,6 +11726,31 @@ func (t *GetUpgradedGiftValueInfo) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "getUpgradedGiftValueInfo",
+		Alias:   (*Alias)(t),
+	})
+}
+
+// GetUpgradedGiftVariants Returns all possible variants of upgraded gifts for a regular gift
+type GetUpgradedGiftVariants struct {
+	// Identifier of the regular gift
+	RegularGiftId int64 `json:"regular_gift_id,string"`
+	// Pass true to get models that can be obtained by upgrading a regular gift
+	ReturnUpgradeModels bool `json:"return_upgrade_models"`
+	// Pass true to get models that can be obtained by crafting a gift from upgraded gifts
+	ReturnCraftModels bool `json:"return_craft_models"`
+}
+
+func (t *GetUpgradedGiftVariants) Type() string {
+	return "getUpgradedGiftVariants"
+}
+
+func (t *GetUpgradedGiftVariants) MarshalJSON() ([]byte, error) {
+	type Alias GetUpgradedGiftVariants
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getUpgradedGiftVariants",
 		Alias:   (*Alias)(t),
 	})
 }
@@ -12997,10 +13041,10 @@ func (t *PinChatMessage) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// PingProxy Computes time needed to receive a response from a Telegram server through a proxy. Can be called before authorization @proxy_id Proxy identifier. Use 0 to ping a Telegram server without a proxy
+// PingProxy Computes time needed to receive a response from a Telegram server through a proxy. Can be called before authorization
 type PingProxy struct {
-	//
-	ProxyId int32 `json:"proxy_id"`
+	// The proxy to test; pass null to ping a Telegram server without a proxy
+	Proxy *Proxy `json:"proxy,omitempty"`
 }
 
 func (t *PingProxy) Type() string {
@@ -13024,7 +13068,7 @@ type PlaceGiftAuctionBid struct {
 	GiftId int64 `json:"gift_id,string"`
 	// The number of Telegram Stars to place in the bid
 	StarCount int64 `json:"star_count"`
-	// Identifier of the user that will receive the gift
+	// Identifier of the user who will receive the gift
 	UserId int64 `json:"user_id"`
 	// Text to show along with the gift; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed.
 	Text *FormattedText `json:"text"`
@@ -13134,7 +13178,7 @@ func (t *ProcessChatFolderNewChats) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// ProcessChatJoinRequest Handles a pending join request in a chat @chat_id Chat identifier @user_id Identifier of the user that sent the request @approve Pass true to approve the request; pass false to decline it
+// ProcessChatJoinRequest Handles a pending join request in a chat @chat_id Chat identifier @user_id Identifier of the user who sent the request @approve Pass true to approve the request; pass false to decline it
 type ProcessChatJoinRequest struct {
 	//
 	ChatId int64 `json:"chat_id"`
@@ -13533,7 +13577,7 @@ func (t *RecoverPassword) MarshalJSON() ([]byte, error) {
 
 // RefundStarPayment Refunds a previously done payment in Telegram Stars; for bots only
 type RefundStarPayment struct {
-	// Identifier of the user that did the payment
+	// Identifier of the user who did the payment
 	UserId int64 `json:"user_id"`
 	// Telegram payment identifier
 	TelegramPaymentChargeId string `json:"telegram_payment_charge_id"`
@@ -15491,6 +15535,8 @@ type SearchGiftsForResale struct {
 	GiftId int64 `json:"gift_id,string"`
 	// Order in which the results will be sorted
 	Order GiftForResaleOrder `json:"order"`
+	// Pass true to get only gifts suitable for crafting
+	ForCrafting bool `json:"for_crafting"`
 	// Attributes used to filter received gifts. If multiple attributes of the same type are specified, then all of them are allowed.
 	Attributes []UpgradedGiftAttributeId `json:"attributes"`
 	// Offset of the first entry to return as received from the previous request with the same order and attributes; use empty string to get the first chunk of results
@@ -16309,8 +16355,8 @@ func (t *SendCallSignalingData) MarshalJSON() ([]byte, error) {
 type SendChatAction struct {
 	// Chat identifier
 	ChatId int64 `json:"chat_id"`
-	// Identifier of the topic in which the action is performed
-	TopicId MessageTopic `json:"topic_id"`
+	// Identifier of the topic in which the action is performed; pass null if none
+	TopicId MessageTopic `json:"topic_id,omitempty"`
 	// Unique identifier of business connection on behalf of which to send the request; for bots only
 	BusinessConnectionId string `json:"business_connection_id"`
 	// The action description; pass null to cancel the currently active action
@@ -18961,7 +19007,7 @@ func (t *SetPassportElement) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// SetPassportElementErrors Informs the user that some of the elements in their Telegram Passport contain errors; for bots only. The user will not be able to resend the elements, until the errors are fixed @user_id User identifier @errors The errors
+// SetPassportElementErrors Informs the user who some of the elements in their Telegram Passport contain errors; for bots only. The user will not be able to resend the elements, until the errors are fixed @user_id User identifier @errors The errors
 type SetPassportElementErrors struct {
 	//
 	UserId int64 `json:"user_id"`
@@ -20486,12 +20532,8 @@ func (t *TestNetwork) MarshalJSON() ([]byte, error) {
 
 // TestProxy Sends a simple network request to the Telegram servers via proxy; for testing only. Can be called before authorization
 type TestProxy struct {
-	// Proxy server domain or IP address
-	Server string `json:"server"`
-	// Proxy server port
-	Port int32 `json:"port"`
-	// Proxy type
-	TypeField ProxyType `json:"type"`
+	// The proxy to test
+	Proxy *Proxy `json:"proxy"`
 	// Identifier of a datacenter with which to test connection
 	DcId int32 `json:"dc_id"`
 	// The maximum overall timeout for the request

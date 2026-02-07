@@ -315,18 +315,16 @@ func (c *Client) AddProfileAudio(fileId int32) (*Ok, error) {
 }
 
 // AddProxy Adds a proxy server for network requests. Can be called before authorization
-func (c *Client) AddProxy(server string, port int32, enable bool, typeField ProxyType) (*Proxy, error) {
+func (c *Client) AddProxy(proxy *Proxy, enable bool) (*AddedProxy, error) {
 	req := &AddProxy{
-		Server:    server,
-		Port:      port,
-		Enable:    enable,
-		TypeField: typeField,
+		Proxy:  proxy,
+		Enable: enable,
 	}
 	resp, err := c.Send(req)
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Proxy), nil
+	return resp.(*AddedProxy), nil
 }
 
 // AddQuickReplyShortcutInlineQueryResultMessage Adds a message to a quick reply shortcut via inline bot. If shortcut doesn't exist and there are less than getOption("quick_reply_shortcut_count_max") shortcuts, then a new shortcut is created.
@@ -1341,6 +1339,18 @@ func (c *Client) ConnectAffiliateProgram(affiliate AffiliateType, botUserId int6
 		return nil, err
 	}
 	return resp.(*ConnectedAffiliateProgram), nil
+}
+
+// CraftGift Crafts a new gift from other gifts that will be permanently lost
+func (c *Client) CraftGift(receivedGiftIds []string) (CraftGiftResult, error) {
+	req := &CraftGift{
+		ReceivedGiftIds: receivedGiftIds,
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(CraftGiftResult), nil
 }
 
 // CreateBasicGroupChat Returns an existing chat corresponding to a known basic group @basic_group_id Basic group identifier @force Pass true to create the chat without a network request. In this case all information about the chat except its type, title and photo can be incorrect
@@ -2742,19 +2752,17 @@ func (c *Client) EditMessageText(chatId int64, messageId int64, inputMessageCont
 }
 
 // EditProxy Edits an existing proxy server for network requests. Can be called before authorization
-func (c *Client) EditProxy(proxyId int32, server string, port int32, enable bool, typeField ProxyType) (*Proxy, error) {
+func (c *Client) EditProxy(proxyId int32, proxy *Proxy, enable bool) (*AddedProxy, error) {
 	req := &EditProxy{
-		ProxyId:   proxyId,
-		Server:    server,
-		Port:      port,
-		Enable:    enable,
-		TypeField: typeField,
+		ProxyId: proxyId,
+		Proxy:   proxy,
+		Enable:  enable,
 	}
 	resp, err := c.Send(req)
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Proxy), nil
+	return resp.(*AddedProxy), nil
 }
 
 // EditQuickReplyMessage Asynchronously edits the text, media or caption of a quick reply message. Use quickReplyMessage.can_be_edited to check whether a message can be edited.
@@ -3802,6 +3810,18 @@ func (c *Client) GetChatNotificationSettingsExceptions(compareSound bool, opts *
 	return resp.(*Chats), nil
 }
 
+// GetChatOwnerAfterLeaving Returns the user who will become the owner of the chat after 7 days if the current user does not return to the chat during that period; requires owner privileges in the chat.
+func (c *Client) GetChatOwnerAfterLeaving(chatId int64) (*User, error) {
+	req := &GetChatOwnerAfterLeaving{
+		ChatId: chatId,
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*User), nil
+}
+
 // GetChatPinnedMessage Returns information about a newest pinned message in the chat. Returns a 404 error if the message doesn't exist @chat_id Identifier of the chat the message belongs to
 func (c *Client) GetChatPinnedMessage(chatId int64) (*Message, error) {
 	req := &GetChatPinnedMessage{
@@ -4370,11 +4390,12 @@ func (c *Client) GetEmojiSuggestionsUrl(languageCode string) (*HttpUrl, error) {
 	return resp.(*HttpUrl), nil
 }
 
-// GetExternalLink Returns an HTTP URL which can be used to automatically authorize the current user on a website after clicking an HTTP link. Use the method getExternalLinkInfo to find whether a prior user confirmation is needed
-func (c *Client) GetExternalLink(link string, allowWriteAccess bool) (*HttpUrl, error) {
+// GetExternalLink Returns an HTTP URL which can be used to automatically authorize the current user on a website after clicking an HTTP link.
+func (c *Client) GetExternalLink(link string, allowWriteAccess bool, allowPhoneNumberAccess bool) (*HttpUrl, error) {
 	req := &GetExternalLink{
-		Link:             link,
-		AllowWriteAccess: allowWriteAccess,
+		Link:                   link,
+		AllowWriteAccess:       allowWriteAccess,
+		AllowPhoneNumberAccess: allowPhoneNumberAccess,
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -4586,28 +4607,30 @@ func (c *Client) GetGiftCollections(ownerId MessageSender) (*GiftCollections, er
 	return resp.(*GiftCollections), nil
 }
 
-// GetGiftUpgradePreview Returns examples of possible upgraded gifts for a regular gift @gift_id Identifier of the gift
-func (c *Client) GetGiftUpgradePreview(giftId int64) (*GiftUpgradePreview, error) {
+// GetGiftsForCrafting Returns upgraded gifts of the current user who can be used to craft another gifts
+func (c *Client) GetGiftsForCrafting(regularGiftId int64, offset string, limit int32) (*GiftsForCrafting, error) {
+	req := &GetGiftsForCrafting{
+		RegularGiftId: regularGiftId,
+		Offset:        offset,
+		Limit:         limit,
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*GiftsForCrafting), nil
+}
+
+// GetGiftUpgradePreview Returns examples of possible upgraded gifts for a regular gift @regular_gift_id Identifier of the regular gift
+func (c *Client) GetGiftUpgradePreview(regularGiftId int64) (*GiftUpgradePreview, error) {
 	req := &GetGiftUpgradePreview{
-		GiftId: giftId,
+		RegularGiftId: regularGiftId,
 	}
 	resp, err := c.Send(req)
 	if err != nil {
 		return nil, err
 	}
 	return resp.(*GiftUpgradePreview), nil
-}
-
-// GetGiftUpgradeVariants Returns all possible variants of upgraded gifts for a regular gift @gift_id Identifier of the gift
-func (c *Client) GetGiftUpgradeVariants(giftId int64) (*GiftUpgradeVariants, error) {
-	req := &GetGiftUpgradeVariants{
-		GiftId: giftId,
-	}
-	resp, err := c.Send(req)
-	if err != nil {
-		return nil, err
-	}
-	return resp.(*GiftUpgradeVariants), nil
 }
 
 // GetGiveawayInfo Returns information about a giveaway
@@ -5688,25 +5711,13 @@ func (c *Client) GetPreparedInlineMessage(botUserId int64, preparedMessageId str
 }
 
 // GetProxies Returns the list of proxies that are currently set up. Can be called before authorization
-func (c *Client) GetProxies() (*Proxies, error) {
+func (c *Client) GetProxies() (*AddedProxies, error) {
 	req := &GetProxies{}
 	resp, err := c.Send(req)
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Proxies), nil
-}
-
-// GetProxyLink Returns an HTTPS link, which can be used to add a proxy. Available only for SOCKS5 and MTProto proxies. Can be called before authorization @proxy_id Proxy identifier
-func (c *Client) GetProxyLink(proxyId int32) (*HttpUrl, error) {
-	req := &GetProxyLink{
-		ProxyId: proxyId,
-	}
-	resp, err := c.Send(req)
-	if err != nil {
-		return nil, err
-	}
-	return resp.(*HttpUrl), nil
+	return resp.(*AddedProxies), nil
 }
 
 // GetPublicPostSearchLimits Checks public post search limits without actually performing the search @query Query that will be searched for
@@ -6049,7 +6060,7 @@ func (c *Client) GetStarAdAccountUrl(ownerId MessageSender) (*HttpUrl, error) {
 	return resp.(*HttpUrl), nil
 }
 
-// GetStarGiftPaymentOptions Returns available options for Telegram Stars gifting @user_id Identifier of the user that will receive Telegram Stars; pass 0 to get options for an unspecified user
+// GetStarGiftPaymentOptions Returns available options for Telegram Stars gifting @user_id Identifier of the user who will receive Telegram Stars; pass 0 to get options for an unspecified user
 func (c *Client) GetStarGiftPaymentOptions(userId int64) (*StarPaymentOptions, error) {
 	req := &GetStarGiftPaymentOptions{
 		UserId: userId,
@@ -6448,7 +6459,7 @@ func (c *Client) GetSupportName() (*Text, error) {
 	return resp.(*Text), nil
 }
 
-// GetSupportUser Returns a user that can be contacted to get support
+// GetSupportUser Returns a user who can be contacted to get support
 func (c *Client) GetSupportUser() (*User, error) {
 	req := &GetSupportUser{}
 	resp, err := c.Send(req)
@@ -6631,6 +6642,20 @@ func (c *Client) GetUpgradedGiftValueInfo(name string) (*UpgradedGiftValueInfo, 
 		return nil, err
 	}
 	return resp.(*UpgradedGiftValueInfo), nil
+}
+
+// GetUpgradedGiftVariants Returns all possible variants of upgraded gifts for a regular gift
+func (c *Client) GetUpgradedGiftVariants(regularGiftId int64, returnUpgradeModels bool, returnCraftModels bool) (*GiftUpgradeVariants, error) {
+	req := &GetUpgradedGiftVariants{
+		RegularGiftId:       regularGiftId,
+		ReturnUpgradeModels: returnUpgradeModels,
+		ReturnCraftModels:   returnCraftModels,
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*GiftUpgradeVariants), nil
 }
 
 // GetUpgradedGiftWithdrawalUrl Returns a URL for upgraded gift withdrawal in the TON blockchain as an NFT; requires owner privileges for gifts owned by a chat
@@ -7361,10 +7386,11 @@ func (c *Client) PinChatMessage(chatId int64, messageId int64, disableNotificati
 	return resp.(*Ok), nil
 }
 
-// PingProxy Computes time needed to receive a response from a Telegram server through a proxy. Can be called before authorization @proxy_id Proxy identifier. Use 0 to ping a Telegram server without a proxy
-func (c *Client) PingProxy(proxyId int32) (*Seconds, error) {
-	req := &PingProxy{
-		ProxyId: proxyId,
+// PingProxy Computes time needed to receive a response from a Telegram server through a proxy. Can be called before authorization
+func (c *Client) PingProxy(opts *PingProxyOpts) (*Seconds, error) {
+	req := &PingProxy{}
+	if opts != nil {
+		req.Proxy = opts.Proxy
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -7441,7 +7467,7 @@ func (c *Client) ProcessChatFolderNewChats(chatFolderId int32, addedChatIds []in
 	return resp.(*Ok), nil
 }
 
-// ProcessChatJoinRequest Handles a pending join request in a chat @chat_id Chat identifier @user_id Identifier of the user that sent the request @approve Pass true to approve the request; pass false to decline it
+// ProcessChatJoinRequest Handles a pending join request in a chat @chat_id Chat identifier @user_id Identifier of the user who sent the request @approve Pass true to approve the request; pass false to decline it
 func (c *Client) ProcessChatJoinRequest(chatId int64, userId int64, approve bool) (*Ok, error) {
 	req := &ProcessChatJoinRequest{
 		ChatId:  chatId,
@@ -8770,13 +8796,14 @@ func (c *Client) SearchFileDownloads(query string, onlyActive bool, onlyComplete
 }
 
 // SearchGiftsForResale Returns upgraded gifts that can be bought from other owners using sendResoldGift
-func (c *Client) SearchGiftsForResale(giftId int64, order GiftForResaleOrder, attributes []UpgradedGiftAttributeId, offset string, limit int32) (*GiftsForResale, error) {
+func (c *Client) SearchGiftsForResale(giftId int64, order GiftForResaleOrder, forCrafting bool, attributes []UpgradedGiftAttributeId, offset string, limit int32) (*GiftsForResale, error) {
 	req := &SearchGiftsForResale{
-		GiftId:     giftId,
-		Order:      order,
-		Attributes: attributes,
-		Offset:     offset,
-		Limit:      limit,
+		GiftId:      giftId,
+		Order:       order,
+		ForCrafting: forCrafting,
+		Attributes:  attributes,
+		Offset:      offset,
+		Limit:       limit,
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -9238,13 +9265,13 @@ func (c *Client) SendCallSignalingData(callId int32, data []byte) (*Ok, error) {
 }
 
 // SendChatAction Sends a notification about user activity in a chat
-func (c *Client) SendChatAction(chatId int64, topicId MessageTopic, businessConnectionId string, opts *SendChatActionOpts) (*Ok, error) {
+func (c *Client) SendChatAction(chatId int64, businessConnectionId string, opts *SendChatActionOpts) (*Ok, error) {
 	req := &SendChatAction{
 		ChatId:               chatId,
-		TopicId:              topicId,
 		BusinessConnectionId: businessConnectionId,
 	}
 	if opts != nil {
+		req.TopicId = opts.TopicId
 		req.Action = opts.Action
 	}
 	resp, err := c.Send(req)
@@ -10773,7 +10800,7 @@ func (c *Client) SetPassportElement(element InputPassportElement, password strin
 	return resp.(PassportElement), nil
 }
 
-// SetPassportElementErrors Informs the user that some of the elements in their Telegram Passport contain errors; for bots only. The user will not be able to resend the elements, until the errors are fixed @user_id User identifier @errors The errors
+// SetPassportElementErrors Informs the user who some of the elements in their Telegram Passport contain errors; for bots only. The user will not be able to resend the elements, until the errors are fixed @user_id User identifier @errors The errors
 func (c *Client) SetPassportElementErrors(userId int64, errors []InputPassportElementError) (*Ok, error) {
 	req := &SetPassportElementErrors{
 		UserId: userId,
@@ -11639,13 +11666,11 @@ func (c *Client) TestNetwork() (*Ok, error) {
 }
 
 // TestProxy Sends a simple network request to the Telegram servers via proxy; for testing only. Can be called before authorization
-func (c *Client) TestProxy(server string, port int32, typeField ProxyType, dcId int32, timeout float64) (*Ok, error) {
+func (c *Client) TestProxy(proxy *Proxy, dcId int32, timeout float64) (*Ok, error) {
 	req := &TestProxy{
-		Server:    server,
-		Port:      port,
-		TypeField: typeField,
-		DcId:      dcId,
-		Timeout:   timeout,
+		Proxy:   proxy,
+		DcId:    dcId,
+		Timeout: timeout,
 	}
 	resp, err := c.Send(req)
 	if err != nil {

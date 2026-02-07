@@ -21,7 +21,7 @@ func main() {
 	apiHash := "API_HASH"
 
 	bot := gotdbot.NewClient(apiID, apiHash, "", &gotdbot.ClientConfig{
-		LibraryPath:           "./libtdjson.so.1.8.60",
+		LibraryPath:           "./libtdjson.so.1.8.61",
 		IsUser:                true,
 		UseFileDatabase:       gotdbot.Bool(true),
 		FilesDirectory:        "UserBot",

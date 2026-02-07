@@ -19,7 +19,7 @@ func main() {
 	apiHash := "API_HASH"
 	botToken := "BOT_TOKEN"
 
-	bot := gotdbot.NewClient(apiID, apiHash, botToken, &gotdbot.ClientConfig{LibraryPath: "./libtdjson.so.1.8.60"})
+	bot := gotdbot.NewClient(apiID, apiHash, botToken, &gotdbot.ClientConfig{LibraryPath: "./libtdjson.so.1.8.61"})
 	gotdbot.SetTdlibLogVerbosityLevel(2)
 
 	dispatcher := ext.NewDispatcher(bot)
