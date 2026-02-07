@@ -27,7 +27,7 @@ func main() {
 		botToken = envToken
 	}
 
-	bot := gotdbot.NewClient(apiID, apiHash, botToken, &gotdbot.ClientConfig{LibraryPath: "./libtdjson.so.1.8.60"})
+	bot := gotdbot.NewClient(apiID, apiHash, botToken, &gotdbot.ClientConfig{LibraryPath: "./libtdjson.so.1.8.61"})
 	gotdbot.SetTdlibLogVerbosityLevel(2)
 
 	dispatcher := ext.NewDispatcher(bot)
@@ -69,6 +69,7 @@ func main() {
 						TypeField: &gotdbot.InlineKeyboardButtonTypeUrl{
 							Url: "https://github.com/AshokShau/gotdbot",
 						},
+						Style: &gotdbot.ButtonStyleSuccess{},
 					},
 				},
 			},

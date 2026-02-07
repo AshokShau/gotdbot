@@ -55,7 +55,7 @@ func main() {
 	apiHash := ""
 	botToken := ""
 
-	bot := gotdbot.NewClient(apiID, apiHash, botToken, &gotdbot.ClientConfig{LibraryPath: "./libtdjson.so.1.8.60"})
+	bot := gotdbot.NewClient(apiID, apiHash, botToken, &gotdbot.ClientConfig{LibraryPath: "./libtdjson.so.1.8.61"})
 	gotdbot.SetTdlibLogVerbosityLevel(2)
 
 	dispatcher := ext.NewDispatcher(bot)
@@ -146,7 +146,7 @@ func main() {
 			m.ReplyText(c, "❌ Invalid user data format.", &gotdbot.SendTextMessageOpts{ParseMode: "HTML"})
 			return nil
 		}
-		
+
 		msg := fmt.Sprintf("👤 <b>User Profile</b>\n"+
 			"ID: <code>%d</code>\n"+
 			"Premium: %v", user.ID, user.IsPremium)

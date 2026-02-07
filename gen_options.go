@@ -258,6 +258,11 @@ type OpenWebAppOpts struct {
 	ReplyTo InputMessageReplyTo
 }
 
+// PingProxyOpts contains optional parameters for PingProxy
+type PingProxyOpts struct {
+	Proxy *Proxy
+}
+
 // PostStoryOpts contains optional parameters for PostStory
 type PostStoryOpts struct {
 	Areas           *InputStoryAreas
@@ -327,7 +332,8 @@ type SendBusinessMessageAlbumOpts struct {
 
 // SendChatActionOpts contains optional parameters for SendChatAction
 type SendChatActionOpts struct {
-	Action ChatAction
+	TopicId MessageTopic
+	Action  ChatAction
 }
 
 // SendInlineQueryResultMessageOpts contains optional parameters for SendInlineQueryResultMessage

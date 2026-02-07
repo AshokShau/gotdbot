@@ -54,7 +54,7 @@ func (ca *ChatActionSender) sendAction() {
 	ca.mu.Lock()
 	action := ca.action
 	ca.mu.Unlock()
-	ca.client.SendChatAction(ca.chatId, ca.topicId, "", &SendChatActionOpts{Action: action})
+	ca.client.SendChatAction(ca.chatId, "", &SendChatActionOpts{Action: action, TopicId: ca.topicId})
 }
 
 func (ca *ChatActionSender) setAction(action string) error {
