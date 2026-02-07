@@ -69,6 +69,7 @@ func main() {
 						TypeField: &gotdbot.InlineKeyboardButtonTypeUrl{
 							Url: "https://github.com/AshokShau/gotdbot",
 						},
+						Style: &gotdbot.ButtonStyleSuccess{},
 					},
 				},
 			},
