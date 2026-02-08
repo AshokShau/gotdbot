@@ -34,13 +34,9 @@ func main() {
 
 	// /start - Send welcome message with inline keyboard
 	dispatcher.AddHandler(handlers.NewCommand("start", func(ctx *ext.Context) error {
-		var userId int64
-		if u, ok := ctx.EffectiveMessage.SenderId.(*gotdbot.MessageSenderUser); ok {
-			userId = u.UserId
-		}
-
 		msg := ctx.EffectiveMessage
 		c := ctx.Client
+		userId := msg.FromID()
 
 		action, err := msg.Action(c, "typing", nil)
 		if err != nil {
@@ -49,6 +45,7 @@ func main() {
 		}
 
 		//action.Start() // Start sending action in loop
+		//defer action.Stop()
 		action.Send() // Send once
 
 		ctx.Client.Logger.Info("Received /start command", "user_id", userId)
@@ -59,7 +56,7 @@ func main() {
 			userName = user.FirstName
 		}
 
-		text := fmt.Sprintf("Hello %s! (gotdbot %s)\nHere are some bot commands:\n\n- /keyboard - show keyboard\n- /inline - show inline keyboard\n- /remove - remove keyboard\n- /force - force reply", userName, gotdbot.Version)
+		text := fmt.Sprintf("Hello %s! (gotdbot %s) <tg-emoji emoji-id='5346181118884331907'>🤖</tg-emoji>\nHere are some bot commands:\n\n- /keyboard - show keyboard\n- /inline - show inline keyboard\n- /remove - remove keyboard\n- /force - force reply", userName, gotdbot.Version)
 
 		kb := &gotdbot.ReplyMarkupInlineKeyboard{
 			Rows: [][]gotdbot.InlineKeyboardButton{
@@ -69,25 +66,18 @@ func main() {
 						TypeField: &gotdbot.InlineKeyboardButtonTypeUrl{
 							Url: "https://github.com/AshokShau/gotdbot",
 						},
-						Style: &gotdbot.ButtonStyleSuccess{},
+						IconCustomEmojiId: 5271604874419647061,
+						Style:             &gotdbot.ButtonStylePrimary{},
 					},
 				},
 			},
 		}
 
-		content := &gotdbot.InputMessageText{
-			Text: &gotdbot.FormattedText{
-				Text: text,
-			},
-		}
-
-		opts := &gotdbot.SendMessageOpts{
+		_, err = msg.ReplyText(c, text, &gotdbot.SendTextMessageOpts{
 			ReplyMarkup: kb,
-		}
+			ParseMode:   "HTML",
+		})
 
-		_, err = ctx.Client.SendMessage(ctx.EffectiveChatId, content, opts)
-
-		// action.Stop()
 		return err
 	}))
 
@@ -101,12 +91,14 @@ func main() {
 						TypeField: &gotdbot.InlineKeyboardButtonTypeCallback{
 							Data: []byte("OwO"),
 						},
+						Style: &gotdbot.ButtonStylePrimary{},
 					},
 					{
 						Text: "UwU",
 						TypeField: &gotdbot.InlineKeyboardButtonTypeCallback{
 							Data: []byte("UwU"),
 						},
+						Style: &gotdbot.ButtonStyleDanger{},
 					},
 				},
 			},
@@ -200,6 +192,8 @@ func main() {
 		}
 
 		_, err := ctx.Client.SendMessage(ctx.EffectiveChatId, content, opts)
+
+		// _, err = ctx.EffectiveMessage.ReplyText(ctx.Client, "This is a force reply", &gotdbot.SendTextMessageOpts{ReplyMarkup: &gotdbot.ReplyMarkupForceReply{}})
 		return err
 	}))
 
@@ -223,6 +217,8 @@ func main() {
 							TypeField: &gotdbot.InlineKeyboardButtonTypeUrl{
 								Url: "https://github.com/AshokShau/gotdbot",
 							},
+							IconCustomEmojiId: 5330237710655306682,
+							Style:             &gotdbot.ButtonStyleSuccess{},
 						},
 					},
 				},

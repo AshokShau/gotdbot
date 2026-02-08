@@ -38,6 +38,50 @@ func main() {
 
 	dispatcher := ext.NewDispatcher(bot)
 
+	dispatcher.AddHandler(handlers.NewCommand("saved", func(ctx *ext.Context) error {
+		message := ctx.EffectiveMessage
+		client := ctx.Client
+		userId := message.FromID()
+		if message.ReplyToMessageID() != 0 {
+			replyMsg, err := message.GetRepliedMessage(client)
+			if err != nil {
+				_, _ = message.ReplyText(client, fmt.Sprintf("Failed to get replied message: %v", err), nil)
+				return err
+			}
+			userId = replyMsg.FromID()
+		}
+
+		// Tg allow Sends 2-10 messages grouped together into an album
+		const maxAudiosToSend int32 = 10
+
+		profileAudios, err := client.GetUserProfileAudios(userId, 0, maxAudiosToSend)
+		if err != nil {
+			_, _ = message.ReplyText(client, fmt.Sprintf("Failed to get saved audios: %v", err), nil)
+			return err
+		}
+
+		if len(profileAudios.Audios) == 0 {
+			_, _ = message.ReplyText(client, "No saved audios found.", &gotdbot.SendTextMessageOpts{ParseMode: "HTML"})
+			return nil
+		}
+
+		inputMessages := make([]gotdbot.InputMessageContent, 0, len(profileAudios.Audios))
+		for _, audioItem := range profileAudios.Audios {
+			if audioItem.Audio == nil ||
+				audioItem.Audio.Remote == nil ||
+				audioItem.Audio.Remote.Id == "" {
+				continue
+			}
+
+			inputMessages = append(inputMessages, &gotdbot.InputMessageAudio{
+				Audio: &gotdbot.InputFileRemote{Id: audioItem.Audio.Remote.Id},
+			})
+		}
+
+		_, err = client.SendMessageAlbum(ctx.EffectiveChatId, inputMessages, nil)
+		return err
+	}))
+
 	// Register /download command
 	dispatcher.AddHandler(handlers.NewCommand("download", downloadCmd))
 
