@@ -49,13 +49,13 @@ func main() {
 				}
 
 				if strings.ToLower(input) == "qr" {
-					_, err := ctx.Client.RequestQrCodeAuthentication(nil)
+					err := ctx.Client.RequestQrCodeAuthentication(nil)
 					if err != nil {
 						fmt.Printf("Error requesting QR code: %v\n", err)
 						continue
 					}
 				} else {
-					_, err := ctx.Client.SetAuthenticationPhoneNumber(input, nil)
+					err := ctx.Client.SetAuthenticationPhoneNumber(input, nil)
 					if err != nil {
 						fmt.Printf("Error setting phone number: %v\n", err)
 						continue
@@ -88,7 +88,7 @@ func main() {
 					continue
 				}
 
-				_, err := ctx.Client.CheckAuthenticationCode(input)
+				err := ctx.Client.CheckAuthenticationCode(input)
 				if err != nil {
 					fmt.Printf("Error checking code: %v\n", err)
 					continue
@@ -108,7 +108,7 @@ func main() {
 					continue
 				}
 
-				_, err := ctx.Client.CheckAuthenticationPassword(input)
+				err := ctx.Client.CheckAuthenticationPassword(input)
 				if err != nil {
 					fmt.Printf("Error checking password: %v\n", err)
 					continue

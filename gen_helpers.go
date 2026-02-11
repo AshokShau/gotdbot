@@ -14,12 +14,12 @@ func (c *Chat) AddMembers(client *Client, userIds []int64) (*FailedToAddMembers,
 }
 
 // AddToList is a helper method for Client.AddChatToList
-func (c *Chat) AddToList(client *Client, chatList ChatList) (*Ok, error) {
+func (c *Chat) AddToList(client *Client, chatList ChatList) error {
 	return client.AddChatToList(c.Id, chatList)
 }
 
 // AddChecklistTasks is a helper method for Client.AddChecklistTasks
-func (c *Chat) AddChecklistTasks(client *Client, messageId int64, tasks []InputChecklistTask) (*Ok, error) {
+func (c *Chat) AddChecklistTasks(client *Client, messageId int64, tasks []InputChecklistTask) error {
 	return client.AddChecklistTasks(c.Id, messageId, tasks)
 }
 
@@ -34,7 +34,7 @@ func (c *Chat) AddLocalMessage(client *Client, senderId MessageSender, disableNo
 }
 
 // AddMessageReaction is a helper method for Client.AddMessageReaction
-func (c *Chat) AddMessageReaction(client *Client, messageId int64, reactionType ReactionType, isBig bool, updateRecentReactions bool) (*Ok, error) {
+func (c *Chat) AddMessageReaction(client *Client, messageId int64, reactionType ReactionType, isBig bool, updateRecentReactions bool) error {
 	return client.AddMessageReaction(c.Id, messageId, reactionType, isBig, updateRecentReactions)
 }
 
@@ -44,12 +44,12 @@ func (c *Chat) AddOffer(client *Client, messageId int64, options *MessageSendOpt
 }
 
 // AddPendingPaidMessageReaction is a helper method for Client.AddPendingPaidMessageReaction
-func (c *Chat) AddPendingPaidMessageReaction(client *Client, messageId int64, starCount int64, opts *AddPendingPaidMessageReactionOpts) (*Ok, error) {
+func (c *Chat) AddPendingPaidMessageReaction(client *Client, messageId int64, starCount int64, opts *AddPendingPaidMessageReactionOpts) error {
 	return client.AddPendingPaidMessageReaction(c.Id, messageId, starCount, opts)
 }
 
 // AddRecentlyFound is a helper method for Client.AddRecentlyFoundChat
-func (c *Chat) AddRecentlyFound(client *Client) (*Ok, error) {
+func (c *Chat) AddRecentlyFound(client *Client) error {
 	return client.AddRecentlyFoundChat(c.Id)
 }
 
@@ -59,12 +59,12 @@ func (c *Chat) AddStoryAlbumStories(client *Client, storyAlbumId int32, storyIds
 }
 
 // ApproveSuggestedPost is a helper method for Client.ApproveSuggestedPost
-func (c *Chat) ApproveSuggestedPost(client *Client, messageId int64, sendDate int32) (*Ok, error) {
+func (c *Chat) ApproveSuggestedPost(client *Client, messageId int64, sendDate int32) error {
 	return client.ApproveSuggestedPost(c.Id, messageId, sendDate)
 }
 
 // BanMember is a helper method for Client.BanChatMember
-func (c *Chat) BanMember(client *Client, memberId MessageSender, bannedUntilDate int32, revokeMessages bool) (*Ok, error) {
+func (c *Chat) BanMember(client *Client, memberId MessageSender, bannedUntilDate int32, revokeMessages bool) error {
 	return client.BanChatMember(c.Id, memberId, bannedUntilDate, revokeMessages)
 }
 
@@ -89,17 +89,17 @@ func (c *Chat) ClickAnimatedEmojiMessage(client *Client, messageId int64) (*Stic
 }
 
 // ClickSponsoredMessage is a helper method for Client.ClickChatSponsoredMessage
-func (c *Chat) ClickSponsoredMessage(client *Client, messageId int64, isMediaClick bool, fromFullscreen bool) (*Ok, error) {
+func (c *Chat) ClickSponsoredMessage(client *Client, messageId int64, isMediaClick bool, fromFullscreen bool) error {
 	return client.ClickChatSponsoredMessage(c.Id, messageId, isMediaClick, fromFullscreen)
 }
 
 // Close is a helper method for Client.CloseChat
-func (c *Chat) Close(client *Client) (*Ok, error) {
+func (c *Chat) Close(client *Client) error {
 	return client.CloseChat(c.Id)
 }
 
 // CommitPendingPaidMessageReactions is a helper method for Client.CommitPendingPaidMessageReactions
-func (c *Chat) CommitPendingPaidMessageReactions(client *Client, messageId int64) (*Ok, error) {
+func (c *Chat) CommitPendingPaidMessageReactions(client *Client, messageId int64) error {
 	return client.CommitPendingPaidMessageReactions(c.Id, messageId)
 }
 
@@ -124,77 +124,77 @@ func (c *Chat) CreateVideo(client *Client, startDate int32, isRtmpStream bool) (
 }
 
 // DeclineGroupCallInvitation is a helper method for Client.DeclineGroupCallInvitation
-func (c *Chat) DeclineGroupCallInvitation(client *Client, messageId int64) (*Ok, error) {
+func (c *Chat) DeclineGroupCallInvitation(client *Client, messageId int64) error {
 	return client.DeclineGroupCallInvitation(c.Id, messageId)
 }
 
 // DeclineSuggestedPost is a helper method for Client.DeclineSuggestedPost
-func (c *Chat) DeclineSuggestedPost(client *Client, messageId int64, comment string) (*Ok, error) {
+func (c *Chat) DeclineSuggestedPost(client *Client, messageId int64, comment string) error {
 	return client.DeclineSuggestedPost(c.Id, messageId, comment)
 }
 
 // DeleteAllRevokedInviteLinks is a helper method for Client.DeleteAllRevokedChatInviteLinks
-func (c *Chat) DeleteAllRevokedInviteLinks(client *Client, creatorUserId int64) (*Ok, error) {
+func (c *Chat) DeleteAllRevokedInviteLinks(client *Client, creatorUserId int64) error {
 	return client.DeleteAllRevokedChatInviteLinks(c.Id, creatorUserId)
 }
 
 // Delete is a helper method for Client.DeleteChat
-func (c *Chat) Delete(client *Client) (*Ok, error) {
+func (c *Chat) Delete(client *Client) error {
 	return client.DeleteChat(c.Id)
 }
 
 // DeleteBackground is a helper method for Client.DeleteChatBackground
-func (c *Chat) DeleteBackground(client *Client, restorePrevious bool) (*Ok, error) {
+func (c *Chat) DeleteBackground(client *Client, restorePrevious bool) error {
 	return client.DeleteChatBackground(c.Id, restorePrevious)
 }
 
 // DeleteHistory is a helper method for Client.DeleteChatHistory
-func (c *Chat) DeleteHistory(client *Client, removeFromChatList bool, revoke bool) (*Ok, error) {
+func (c *Chat) DeleteHistory(client *Client, removeFromChatList bool, revoke bool) error {
 	return client.DeleteChatHistory(c.Id, removeFromChatList, revoke)
 }
 
 // DeleteMessagesByDate is a helper method for Client.DeleteChatMessagesByDate
-func (c *Chat) DeleteMessagesByDate(client *Client, minDate int32, maxDate int32, revoke bool) (*Ok, error) {
+func (c *Chat) DeleteMessagesByDate(client *Client, minDate int32, maxDate int32, revoke bool) error {
 	return client.DeleteChatMessagesByDate(c.Id, minDate, maxDate, revoke)
 }
 
 // DeleteMessagesBySender is a helper method for Client.DeleteChatMessagesBySender
-func (c *Chat) DeleteMessagesBySender(client *Client, senderId MessageSender) (*Ok, error) {
+func (c *Chat) DeleteMessagesBySender(client *Client, senderId MessageSender) error {
 	return client.DeleteChatMessagesBySender(c.Id, senderId)
 }
 
 // DeleteReplyMarkup is a helper method for Client.DeleteChatReplyMarkup
-func (c *Chat) DeleteReplyMarkup(client *Client, messageId int64) (*Ok, error) {
+func (c *Chat) DeleteReplyMarkup(client *Client, messageId int64) error {
 	return client.DeleteChatReplyMarkup(c.Id, messageId)
 }
 
 // DeleteDirectMessagesTopicHistory is a helper method for Client.DeleteDirectMessagesChatTopicHistory
-func (c *Chat) DeleteDirectMessagesTopicHistory(client *Client, topicId int64) (*Ok, error) {
+func (c *Chat) DeleteDirectMessagesTopicHistory(client *Client, topicId int64) error {
 	return client.DeleteDirectMessagesChatTopicHistory(c.Id, topicId)
 }
 
 // DeleteDirectMessagesTopicMessagesByDate is a helper method for Client.DeleteDirectMessagesChatTopicMessagesByDate
-func (c *Chat) DeleteDirectMessagesTopicMessagesByDate(client *Client, topicId int64, minDate int32, maxDate int32) (*Ok, error) {
+func (c *Chat) DeleteDirectMessagesTopicMessagesByDate(client *Client, topicId int64, minDate int32, maxDate int32) error {
 	return client.DeleteDirectMessagesChatTopicMessagesByDate(c.Id, topicId, minDate, maxDate)
 }
 
 // DeleteForumTopic is a helper method for Client.DeleteForumTopic
-func (c *Chat) DeleteForumTopic(client *Client, forumTopicId int32) (*Ok, error) {
+func (c *Chat) DeleteForumTopic(client *Client, forumTopicId int32) error {
 	return client.DeleteForumTopic(c.Id, forumTopicId)
 }
 
 // DeleteMessages is a helper method for Client.DeleteMessages
-func (c *Chat) DeleteMessages(client *Client, messageIds []int64, revoke bool) (*Ok, error) {
+func (c *Chat) DeleteMessages(client *Client, messageIds []int64, revoke bool) error {
 	return client.DeleteMessages(c.Id, messageIds, revoke)
 }
 
 // DeleteRevokedInviteLink is a helper method for Client.DeleteRevokedChatInviteLink
-func (c *Chat) DeleteRevokedInviteLink(client *Client, inviteLink string) (*Ok, error) {
+func (c *Chat) DeleteRevokedInviteLink(client *Client, inviteLink string) error {
 	return client.DeleteRevokedChatInviteLink(c.Id, inviteLink)
 }
 
 // DeleteStoryAlbum is a helper method for Client.DeleteStoryAlbum
-func (c *Chat) DeleteStoryAlbum(client *Client, storyAlbumId int32) (*Ok, error) {
+func (c *Chat) DeleteStoryAlbum(client *Client, storyAlbumId int32) error {
 	return client.DeleteStoryAlbum(c.Id, storyAlbumId)
 }
 
@@ -239,7 +239,7 @@ func (c *Chat) EditSubscriptionInviteLink(client *Client, inviteLink string, nam
 }
 
 // EditForumTopic is a helper method for Client.EditForumTopic
-func (c *Chat) EditForumTopic(client *Client, forumTopicId int32, name string, editIconCustomEmoji bool, iconCustomEmojiId int64) (*Ok, error) {
+func (c *Chat) EditForumTopic(client *Client, forumTopicId int32, name string, editIconCustomEmoji bool, iconCustomEmojiId int64) error {
 	return client.EditForumTopic(c.Id, forumTopicId, name, editIconCustomEmoji, iconCustomEmojiId)
 }
 
@@ -269,7 +269,7 @@ func (c *Chat) EditMessageReplyMarkup(client *Client, messageId int64, opts *Edi
 }
 
 // EditMessageSchedulingState is a helper method for Client.EditMessageSchedulingState
-func (c *Chat) EditMessageSchedulingState(client *Client, messageId int64, opts *EditMessageSchedulingStateOpts) (*Ok, error) {
+func (c *Chat) EditMessageSchedulingState(client *Client, messageId int64, opts *EditMessageSchedulingStateOpts) error {
 	return client.EditMessageSchedulingState(c.Id, messageId, opts)
 }
 
@@ -694,42 +694,42 @@ func (c *Chat) GetWebAppLinkUrl(client *Client, botUserId int64, webAppShortName
 }
 
 // ImportMessages is a helper method for Client.ImportMessages
-func (c *Chat) ImportMessages(client *Client, messageFile InputFile, attachedFiles []InputFile) (*Ok, error) {
+func (c *Chat) ImportMessages(client *Client, messageFile InputFile, attachedFiles []InputFile) error {
 	return client.ImportMessages(c.Id, messageFile, attachedFiles)
 }
 
 // Join is a helper method for Client.JoinChat
-func (c *Chat) Join(client *Client) (*Ok, error) {
+func (c *Chat) Join(client *Client) error {
 	return client.JoinChat(c.Id)
 }
 
 // Leave is a helper method for Client.LeaveChat
-func (c *Chat) Leave(client *Client) (*Ok, error) {
+func (c *Chat) Leave(client *Client) error {
 	return client.LeaveChat(c.Id)
 }
 
 // LoadDirectMessagesTopics is a helper method for Client.LoadDirectMessagesChatTopics
-func (c *Chat) LoadDirectMessagesTopics(client *Client, limit int32) (*Ok, error) {
+func (c *Chat) LoadDirectMessagesTopics(client *Client, limit int32) error {
 	return client.LoadDirectMessagesChatTopics(c.Id, limit)
 }
 
 // MarkChecklistTasksAsDone is a helper method for Client.MarkChecklistTasksAsDone
-func (c *Chat) MarkChecklistTasksAsDone(client *Client, messageId int64, markedAsDoneTaskIds []int32, markedAsNotDoneTaskIds []int32) (*Ok, error) {
+func (c *Chat) MarkChecklistTasksAsDone(client *Client, messageId int64, markedAsDoneTaskIds []int32, markedAsNotDoneTaskIds []int32) error {
 	return client.MarkChecklistTasksAsDone(c.Id, messageId, markedAsDoneTaskIds, markedAsNotDoneTaskIds)
 }
 
 // Open is a helper method for Client.OpenChat
-func (c *Chat) Open(client *Client) (*Ok, error) {
+func (c *Chat) Open(client *Client) error {
 	return client.OpenChat(c.Id)
 }
 
 // OpenSimilarChat is a helper method for Client.OpenChatSimilarChat
-func (c *Chat) OpenSimilarChat(client *Client, openedChatId int64) (*Ok, error) {
+func (c *Chat) OpenSimilarChat(client *Client, openedChatId int64) error {
 	return client.OpenChatSimilarChat(c.Id, openedChatId)
 }
 
 // OpenMessageContent is a helper method for Client.OpenMessageContent
-func (c *Chat) OpenMessageContent(client *Client, messageId int64) (*Ok, error) {
+func (c *Chat) OpenMessageContent(client *Client, messageId int64) error {
 	return client.OpenMessageContent(c.Id, messageId)
 }
 
@@ -739,7 +739,7 @@ func (c *Chat) OpenWebApp(client *Client, botUserId int64, url string, parameter
 }
 
 // PinMessage is a helper method for Client.PinChatMessage
-func (c *Chat) PinMessage(client *Client, messageId int64, disableNotification bool, onlyForSelf bool) (*Ok, error) {
+func (c *Chat) PinMessage(client *Client, messageId int64, disableNotification bool, onlyForSelf bool) error {
 	return client.PinChatMessage(c.Id, messageId, disableNotification, onlyForSelf)
 }
 
@@ -749,77 +749,77 @@ func (c *Chat) PostStory(client *Client, content InputStoryContent, privacySetti
 }
 
 // ProcessJoinRequest is a helper method for Client.ProcessChatJoinRequest
-func (c *Chat) ProcessJoinRequest(client *Client, userId int64, approve bool) (*Ok, error) {
+func (c *Chat) ProcessJoinRequest(client *Client, userId int64, approve bool) error {
 	return client.ProcessChatJoinRequest(c.Id, userId, approve)
 }
 
 // ProcessJoinRequests is a helper method for Client.ProcessChatJoinRequests
-func (c *Chat) ProcessJoinRequests(client *Client, inviteLink string, approve bool) (*Ok, error) {
+func (c *Chat) ProcessJoinRequests(client *Client, inviteLink string, approve bool) error {
 	return client.ProcessChatJoinRequests(c.Id, inviteLink, approve)
 }
 
 // RateSpeechRecognition is a helper method for Client.RateSpeechRecognition
-func (c *Chat) RateSpeechRecognition(client *Client, messageId int64, isGood bool) (*Ok, error) {
+func (c *Chat) RateSpeechRecognition(client *Client, messageId int64, isGood bool) error {
 	return client.RateSpeechRecognition(c.Id, messageId, isGood)
 }
 
 // ReadAllMentions is a helper method for Client.ReadAllChatMentions
-func (c *Chat) ReadAllMentions(client *Client) (*Ok, error) {
+func (c *Chat) ReadAllMentions(client *Client) error {
 	return client.ReadAllChatMentions(c.Id)
 }
 
 // ReadAllReactions is a helper method for Client.ReadAllChatReactions
-func (c *Chat) ReadAllReactions(client *Client) (*Ok, error) {
+func (c *Chat) ReadAllReactions(client *Client) error {
 	return client.ReadAllChatReactions(c.Id)
 }
 
 // ReadAllDirectMessagesTopicReactions is a helper method for Client.ReadAllDirectMessagesChatTopicReactions
-func (c *Chat) ReadAllDirectMessagesTopicReactions(client *Client, topicId int64) (*Ok, error) {
+func (c *Chat) ReadAllDirectMessagesTopicReactions(client *Client, topicId int64) error {
 	return client.ReadAllDirectMessagesChatTopicReactions(c.Id, topicId)
 }
 
 // ReadAllForumTopicMentions is a helper method for Client.ReadAllForumTopicMentions
-func (c *Chat) ReadAllForumTopicMentions(client *Client, forumTopicId int32) (*Ok, error) {
+func (c *Chat) ReadAllForumTopicMentions(client *Client, forumTopicId int32) error {
 	return client.ReadAllForumTopicMentions(c.Id, forumTopicId)
 }
 
 // ReadAllForumTopicReactions is a helper method for Client.ReadAllForumTopicReactions
-func (c *Chat) ReadAllForumTopicReactions(client *Client, forumTopicId int32) (*Ok, error) {
+func (c *Chat) ReadAllForumTopicReactions(client *Client, forumTopicId int32) error {
 	return client.ReadAllForumTopicReactions(c.Id, forumTopicId)
 }
 
 // ReadBusinessMessage is a helper method for Client.ReadBusinessMessage
-func (c *Chat) ReadBusinessMessage(client *Client, businessConnectionId string, messageId int64) (*Ok, error) {
+func (c *Chat) ReadBusinessMessage(client *Client, businessConnectionId string, messageId int64) error {
 	return client.ReadBusinessMessage(businessConnectionId, c.Id, messageId)
 }
 
 // RecognizeSpeech is a helper method for Client.RecognizeSpeech
-func (c *Chat) RecognizeSpeech(client *Client, messageId int64) (*Ok, error) {
+func (c *Chat) RecognizeSpeech(client *Client, messageId int64) error {
 	return client.RecognizeSpeech(c.Id, messageId)
 }
 
 // RemoveBusinessConnectedBotFrom is a helper method for Client.RemoveBusinessConnectedBotFromChat
-func (c *Chat) RemoveBusinessConnectedBotFrom(client *Client) (*Ok, error) {
+func (c *Chat) RemoveBusinessConnectedBotFrom(client *Client) error {
 	return client.RemoveBusinessConnectedBotFromChat(c.Id)
 }
 
 // RemoveActionBar is a helper method for Client.RemoveChatActionBar
-func (c *Chat) RemoveActionBar(client *Client) (*Ok, error) {
+func (c *Chat) RemoveActionBar(client *Client) error {
 	return client.RemoveChatActionBar(c.Id)
 }
 
 // RemoveMessageReaction is a helper method for Client.RemoveMessageReaction
-func (c *Chat) RemoveMessageReaction(client *Client, messageId int64, reactionType ReactionType) (*Ok, error) {
+func (c *Chat) RemoveMessageReaction(client *Client, messageId int64, reactionType ReactionType) error {
 	return client.RemoveMessageReaction(c.Id, messageId, reactionType)
 }
 
 // RemovePendingPaidMessageReactions is a helper method for Client.RemovePendingPaidMessageReactions
-func (c *Chat) RemovePendingPaidMessageReactions(client *Client, messageId int64) (*Ok, error) {
+func (c *Chat) RemovePendingPaidMessageReactions(client *Client, messageId int64) error {
 	return client.RemovePendingPaidMessageReactions(c.Id, messageId)
 }
 
 // RemoveRecentlyFound is a helper method for Client.RemoveRecentlyFoundChat
-func (c *Chat) RemoveRecentlyFound(client *Client) (*Ok, error) {
+func (c *Chat) RemoveRecentlyFound(client *Client) error {
 	return client.RemoveRecentlyFoundChat(c.Id)
 }
 
@@ -829,12 +829,12 @@ func (c *Chat) RemoveStoryAlbumStories(client *Client, storyAlbumId int32, story
 }
 
 // RemoveTop is a helper method for Client.RemoveTopChat
-func (c *Chat) RemoveTop(client *Client, category TopChatCategory) (*Ok, error) {
+func (c *Chat) RemoveTop(client *Client, category TopChatCategory) error {
 	return client.RemoveTopChat(category, c.Id)
 }
 
 // ReorderStoryAlbums is a helper method for Client.ReorderStoryAlbums
-func (c *Chat) ReorderStoryAlbums(client *Client, storyAlbumIds []int32) (*Ok, error) {
+func (c *Chat) ReorderStoryAlbums(client *Client, storyAlbumIds []int32) error {
 	return client.ReorderStoryAlbums(c.Id, storyAlbumIds)
 }
 
@@ -864,7 +864,7 @@ func (c *Chat) Report(client *Client, optionId []byte, messageIds []int64, text 
 }
 
 // ReportPhoto is a helper method for Client.ReportChatPhoto
-func (c *Chat) ReportPhoto(client *Client, fileId int32, reason ReportReason, text string) (*Ok, error) {
+func (c *Chat) ReportPhoto(client *Client, fileId int32, reason ReportReason, text string) error {
 	return client.ReportChatPhoto(c.Id, fileId, reason, text)
 }
 
@@ -874,7 +874,7 @@ func (c *Chat) ReportSponsoredMessage(client *Client, messageId int64, optionId 
 }
 
 // ReportMessageReactions is a helper method for Client.ReportMessageReactions
-func (c *Chat) ReportMessageReactions(client *Client, messageId int64, senderId MessageSender) (*Ok, error) {
+func (c *Chat) ReportMessageReactions(client *Client, messageId int64, senderId MessageSender) error {
 	return client.ReportMessageReactions(c.Id, messageId, senderId)
 }
 
@@ -889,7 +889,7 @@ func (c *Chat) RevokeInviteLink(client *Client, inviteLink string) (*ChatInviteL
 }
 
 // SaveApplicationLogEvent is a helper method for Client.SaveApplicationLogEvent
-func (c *Chat) SaveApplicationLogEvent(client *Client, typeField string, data JsonValue) (*Ok, error) {
+func (c *Chat) SaveApplicationLogEvent(client *Client, typeField string, data JsonValue) error {
 	return client.SaveApplicationLogEvent(typeField, c.Id, data)
 }
 
@@ -929,7 +929,7 @@ func (c *Chat) SendBusinessMessageAlbum(client *Client, businessConnectionId str
 }
 
 // SendAction is a helper method for Client.SendChatAction
-func (c *Chat) SendAction(client *Client, businessConnectionId string, opts *SendChatActionOpts) (*Ok, error) {
+func (c *Chat) SendAction(client *Client, businessConnectionId string, opts *SendChatActionOpts) error {
 	return client.SendChatAction(c.Id, businessConnectionId, opts)
 }
 
@@ -954,142 +954,142 @@ func (c *Chat) SendQuickReplyShortcutMessages(client *Client, shortcutId int32, 
 }
 
 // SendTextMessageDraft is a helper method for Client.SendTextMessageDraft
-func (c *Chat) SendTextMessageDraft(client *Client, forumTopicId int32, draftId int64, text *FormattedText) (*Ok, error) {
+func (c *Chat) SendTextMessageDraft(client *Client, forumTopicId int32, draftId int64, text *FormattedText) error {
 	return client.SendTextMessageDraft(c.Id, forumTopicId, draftId, text)
 }
 
 // SetBusinessMessageIsPinned is a helper method for Client.SetBusinessMessageIsPinned
-func (c *Chat) SetBusinessMessageIsPinned(client *Client, businessConnectionId string, messageId int64, isPinned bool) (*Ok, error) {
+func (c *Chat) SetBusinessMessageIsPinned(client *Client, businessConnectionId string, messageId int64, isPinned bool) error {
 	return client.SetBusinessMessageIsPinned(businessConnectionId, c.Id, messageId, isPinned)
 }
 
 // SetAccentColor is a helper method for Client.SetChatAccentColor
-func (c *Chat) SetAccentColor(client *Client) (*Ok, error) {
+func (c *Chat) SetAccentColor(client *Client) error {
 	return client.SetChatAccentColor(c.Id, c.AccentColorId, c.BackgroundCustomEmojiId)
 }
 
 // SetActiveStoriesList is a helper method for Client.SetChatActiveStoriesList
-func (c *Chat) SetActiveStoriesList(client *Client, storyList StoryList) (*Ok, error) {
+func (c *Chat) SetActiveStoriesList(client *Client, storyList StoryList) error {
 	return client.SetChatActiveStoriesList(c.Id, storyList)
 }
 
 // SetAffiliateProgram is a helper method for Client.SetChatAffiliateProgram
-func (c *Chat) SetAffiliateProgram(client *Client, opts *SetChatAffiliateProgramOpts) (*Ok, error) {
+func (c *Chat) SetAffiliateProgram(client *Client, opts *SetChatAffiliateProgramOpts) error {
 	return client.SetChatAffiliateProgram(c.Id, opts)
 }
 
 // SetAvailableReactions is a helper method for Client.SetChatAvailableReactions
-func (c *Chat) SetAvailableReactions(client *Client) (*Ok, error) {
+func (c *Chat) SetAvailableReactions(client *Client) error {
 	return client.SetChatAvailableReactions(c.Id, c.AvailableReactions)
 }
 
 // SetBackground is a helper method for Client.SetChatBackground
-func (c *Chat) SetBackground(client *Client, darkThemeDimming int32, onlyForSelf bool, opts *SetChatBackgroundOpts) (*Ok, error) {
+func (c *Chat) SetBackground(client *Client, darkThemeDimming int32, onlyForSelf bool, opts *SetChatBackgroundOpts) error {
 	return client.SetChatBackground(c.Id, darkThemeDimming, onlyForSelf, opts)
 }
 
 // SetClientData is a helper method for Client.SetChatClientData
-func (c *Chat) SetClientData(client *Client) (*Ok, error) {
+func (c *Chat) SetClientData(client *Client) error {
 	return client.SetChatClientData(c.Id, c.ClientData)
 }
 
 // SetDescription is a helper method for Client.SetChatDescription
-func (c *Chat) SetDescription(client *Client, description string) (*Ok, error) {
+func (c *Chat) SetDescription(client *Client, description string) error {
 	return client.SetChatDescription(c.Id, description)
 }
 
 // SetDirectMessagesGroup is a helper method for Client.SetChatDirectMessagesGroup
-func (c *Chat) SetDirectMessagesGroup(client *Client, isEnabled bool, paidMessageStarCount int64) (*Ok, error) {
+func (c *Chat) SetDirectMessagesGroup(client *Client, isEnabled bool, paidMessageStarCount int64) error {
 	return client.SetChatDirectMessagesGroup(c.Id, isEnabled, paidMessageStarCount)
 }
 
 // SetDiscussionGroup is a helper method for Client.SetChatDiscussionGroup
-func (c *Chat) SetDiscussionGroup(client *Client, discussionChatId int64) (*Ok, error) {
+func (c *Chat) SetDiscussionGroup(client *Client, discussionChatId int64) error {
 	return client.SetChatDiscussionGroup(c.Id, discussionChatId)
 }
 
 // SetDraftMessage is a helper method for Client.SetChatDraftMessage
-func (c *Chat) SetDraftMessage(client *Client, opts *SetChatDraftMessageOpts) (*Ok, error) {
+func (c *Chat) SetDraftMessage(client *Client, opts *SetChatDraftMessageOpts) error {
 	return client.SetChatDraftMessage(c.Id, opts)
 }
 
 // SetEmojiStatus is a helper method for Client.SetChatEmojiStatus
-func (c *Chat) SetEmojiStatus(client *Client, opts *SetChatEmojiStatusOpts) (*Ok, error) {
+func (c *Chat) SetEmojiStatus(client *Client, opts *SetChatEmojiStatusOpts) error {
 	return client.SetChatEmojiStatus(c.Id, opts)
 }
 
 // SetLocation is a helper method for Client.SetChatLocation
-func (c *Chat) SetLocation(client *Client, location *ChatLocation) (*Ok, error) {
+func (c *Chat) SetLocation(client *Client, location *ChatLocation) error {
 	return client.SetChatLocation(c.Id, location)
 }
 
 // SetMemberStatus is a helper method for Client.SetChatMemberStatus
-func (c *Chat) SetMemberStatus(client *Client, memberId MessageSender, status ChatMemberStatus) (*Ok, error) {
+func (c *Chat) SetMemberStatus(client *Client, memberId MessageSender, status ChatMemberStatus) error {
 	return client.SetChatMemberStatus(c.Id, memberId, status)
 }
 
 // SetMessageAutoDeleteTime is a helper method for Client.SetChatMessageAutoDeleteTime
-func (c *Chat) SetMessageAutoDeleteTime(client *Client) (*Ok, error) {
+func (c *Chat) SetMessageAutoDeleteTime(client *Client) error {
 	return client.SetChatMessageAutoDeleteTime(c.Id, c.MessageAutoDeleteTime)
 }
 
 // SetMessageSender is a helper method for Client.SetChatMessageSender
-func (c *Chat) SetMessageSender(client *Client) (*Ok, error) {
+func (c *Chat) SetMessageSender(client *Client) error {
 	return client.SetChatMessageSender(c.Id, c.MessageSenderId)
 }
 
 // SetNotificationSettings is a helper method for Client.SetChatNotificationSettings
-func (c *Chat) SetNotificationSettings(client *Client) (*Ok, error) {
+func (c *Chat) SetNotificationSettings(client *Client) error {
 	return client.SetChatNotificationSettings(c.Id, c.NotificationSettings)
 }
 
 // SetPaidMessageStarCount is a helper method for Client.SetChatPaidMessageStarCount
-func (c *Chat) SetPaidMessageStarCount(client *Client, paidMessageStarCount int64) (*Ok, error) {
+func (c *Chat) SetPaidMessageStarCount(client *Client, paidMessageStarCount int64) error {
 	return client.SetChatPaidMessageStarCount(c.Id, paidMessageStarCount)
 }
 
 // SetPermissions is a helper method for Client.SetChatPermissions
-func (c *Chat) SetPermissions(client *Client) (*Ok, error) {
+func (c *Chat) SetPermissions(client *Client) error {
 	return client.SetChatPermissions(c.Id, c.Permissions)
 }
 
 // SetPhoto is a helper method for Client.SetChatPhoto
-func (c *Chat) SetPhoto(client *Client, opts *SetChatPhotoOpts) (*Ok, error) {
+func (c *Chat) SetPhoto(client *Client, opts *SetChatPhotoOpts) error {
 	return client.SetChatPhoto(c.Id, opts)
 }
 
 // SetPinnedStories is a helper method for Client.SetChatPinnedStories
-func (c *Chat) SetPinnedStories(client *Client, storyIds []int32) (*Ok, error) {
+func (c *Chat) SetPinnedStories(client *Client, storyIds []int32) error {
 	return client.SetChatPinnedStories(c.Id, storyIds)
 }
 
 // SetProfileAccentColor is a helper method for Client.SetChatProfileAccentColor
-func (c *Chat) SetProfileAccentColor(client *Client) (*Ok, error) {
+func (c *Chat) SetProfileAccentColor(client *Client) error {
 	return client.SetChatProfileAccentColor(c.Id, c.ProfileAccentColorId, c.ProfileBackgroundCustomEmojiId)
 }
 
 // SetSlowModeDelay is a helper method for Client.SetChatSlowModeDelay
-func (c *Chat) SetSlowModeDelay(client *Client, slowModeDelay int32) (*Ok, error) {
+func (c *Chat) SetSlowModeDelay(client *Client, slowModeDelay int32) error {
 	return client.SetChatSlowModeDelay(c.Id, slowModeDelay)
 }
 
 // SetTheme is a helper method for Client.SetChatTheme
-func (c *Chat) SetTheme(client *Client, theme InputChatTheme) (*Ok, error) {
+func (c *Chat) SetTheme(client *Client, theme InputChatTheme) error {
 	return client.SetChatTheme(c.Id, theme)
 }
 
 // SetTitle is a helper method for Client.SetChatTitle
-func (c *Chat) SetTitle(client *Client) (*Ok, error) {
+func (c *Chat) SetTitle(client *Client) error {
 	return client.SetChatTitle(c.Id, c.Title)
 }
 
 // SetDirectMessagesTopicIsMarkedAsUnread is a helper method for Client.SetDirectMessagesChatTopicIsMarkedAsUnread
-func (c *Chat) SetDirectMessagesTopicIsMarkedAsUnread(client *Client, topicId int64) (*Ok, error) {
+func (c *Chat) SetDirectMessagesTopicIsMarkedAsUnread(client *Client, topicId int64) error {
 	return client.SetDirectMessagesChatTopicIsMarkedAsUnread(c.Id, topicId, c.IsMarkedAsUnread)
 }
 
 // SetForumTopicNotificationSettings is a helper method for Client.SetForumTopicNotificationSettings
-func (c *Chat) SetForumTopicNotificationSettings(client *Client, forumTopicId int32) (*Ok, error) {
+func (c *Chat) SetForumTopicNotificationSettings(client *Client, forumTopicId int32) error {
 	return client.SetForumTopicNotificationSettings(c.Id, forumTopicId, c.NotificationSettings)
 }
 
@@ -1099,32 +1099,32 @@ func (c *Chat) SetGameScore(client *Client, messageId int64, editMessage bool, u
 }
 
 // SetMessageFactCheck is a helper method for Client.SetMessageFactCheck
-func (c *Chat) SetMessageFactCheck(client *Client, messageId int64, opts *SetMessageFactCheckOpts) (*Ok, error) {
+func (c *Chat) SetMessageFactCheck(client *Client, messageId int64, opts *SetMessageFactCheckOpts) error {
 	return client.SetMessageFactCheck(c.Id, messageId, opts)
 }
 
 // SetMessageReactions is a helper method for Client.SetMessageReactions
-func (c *Chat) SetMessageReactions(client *Client, messageId int64, reactionTypes []ReactionType, isBig bool) (*Ok, error) {
+func (c *Chat) SetMessageReactions(client *Client, messageId int64, reactionTypes []ReactionType, isBig bool) error {
 	return client.SetMessageReactions(c.Id, messageId, reactionTypes, isBig)
 }
 
 // SetPaidMessageReactionType is a helper method for Client.SetPaidMessageReactionType
-func (c *Chat) SetPaidMessageReactionType(client *Client, messageId int64, typeField PaidReactionType) (*Ok, error) {
+func (c *Chat) SetPaidMessageReactionType(client *Client, messageId int64, typeField PaidReactionType) error {
 	return client.SetPaidMessageReactionType(c.Id, messageId, typeField)
 }
 
 // SetPersonal is a helper method for Client.SetPersonalChat
-func (c *Chat) SetPersonal(client *Client) (*Ok, error) {
+func (c *Chat) SetPersonal(client *Client) error {
 	return client.SetPersonalChat(c.Id)
 }
 
 // SetPinnedForumTopics is a helper method for Client.SetPinnedForumTopics
-func (c *Chat) SetPinnedForumTopics(client *Client, forumTopicIds []int32) (*Ok, error) {
+func (c *Chat) SetPinnedForumTopics(client *Client, forumTopicIds []int32) error {
 	return client.SetPinnedForumTopics(c.Id, forumTopicIds)
 }
 
 // SetPollAnswer is a helper method for Client.SetPollAnswer
-func (c *Chat) SetPollAnswer(client *Client, messageId int64, optionIds []int32) (*Ok, error) {
+func (c *Chat) SetPollAnswer(client *Client, messageId int64, optionIds []int32) error {
 	return client.SetPollAnswer(c.Id, messageId, optionIds)
 }
 
@@ -1134,17 +1134,17 @@ func (c *Chat) SetStoryAlbumName(client *Client, storyAlbumId int32, name string
 }
 
 // SetVideoDefaultParticipant is a helper method for Client.SetVideoChatDefaultParticipant
-func (c *Chat) SetVideoDefaultParticipant(client *Client, defaultParticipantId MessageSender) (*Ok, error) {
+func (c *Chat) SetVideoDefaultParticipant(client *Client, defaultParticipantId MessageSender) error {
 	return client.SetVideoChatDefaultParticipant(c.Id, defaultParticipantId)
 }
 
 // ShareWithBot is a helper method for Client.ShareChatWithBot
-func (c *Chat) ShareWithBot(client *Client, messageId int64, buttonId int32, sharedChatId int64, onlyCheck bool) (*Ok, error) {
+func (c *Chat) ShareWithBot(client *Client, messageId int64, buttonId int32, sharedChatId int64, onlyCheck bool) error {
 	return client.ShareChatWithBot(c.Id, messageId, buttonId, sharedChatId, onlyCheck)
 }
 
 // ShareUsersWithBot is a helper method for Client.ShareUsersWithBot
-func (c *Chat) ShareUsersWithBot(client *Client, messageId int64, buttonId int32, sharedUserIds []int64, onlyCheck bool) (*Ok, error) {
+func (c *Chat) ShareUsersWithBot(client *Client, messageId int64, buttonId int32, sharedUserIds []int64, onlyCheck bool) error {
 	return client.ShareUsersWithBot(c.Id, messageId, buttonId, sharedUserIds, onlyCheck)
 }
 
@@ -1159,7 +1159,7 @@ func (c *Chat) StopBusinessPoll(client *Client, businessConnectionId string, mes
 }
 
 // StopPoll is a helper method for Client.StopPoll
-func (c *Chat) StopPoll(client *Client, messageId int64, opts *StopPollOpts) (*Ok, error) {
+func (c *Chat) StopPoll(client *Client, messageId int64, opts *StopPollOpts) error {
 	return client.StopPoll(c.Id, messageId, opts)
 }
 
@@ -1169,67 +1169,67 @@ func (c *Chat) SummarizeMessage(client *Client, messageId int64, translateToLang
 }
 
 // ToggleBusinessConnectedBotIsPaused is a helper method for Client.ToggleBusinessConnectedBotChatIsPaused
-func (c *Chat) ToggleBusinessConnectedBotIsPaused(client *Client, isPaused bool) (*Ok, error) {
+func (c *Chat) ToggleBusinessConnectedBotIsPaused(client *Client, isPaused bool) error {
 	return client.ToggleBusinessConnectedBotChatIsPaused(c.Id, isPaused)
 }
 
 // ToggleDefaultDisableNotification is a helper method for Client.ToggleChatDefaultDisableNotification
-func (c *Chat) ToggleDefaultDisableNotification(client *Client) (*Ok, error) {
+func (c *Chat) ToggleDefaultDisableNotification(client *Client) error {
 	return client.ToggleChatDefaultDisableNotification(c.Id, c.DefaultDisableNotification)
 }
 
 // ToggleGiftNotifications is a helper method for Client.ToggleChatGiftNotifications
-func (c *Chat) ToggleGiftNotifications(client *Client, areEnabled bool) (*Ok, error) {
+func (c *Chat) ToggleGiftNotifications(client *Client, areEnabled bool) error {
 	return client.ToggleChatGiftNotifications(c.Id, areEnabled)
 }
 
 // ToggleHasProtectedContent is a helper method for Client.ToggleChatHasProtectedContent
-func (c *Chat) ToggleHasProtectedContent(client *Client) (*Ok, error) {
+func (c *Chat) ToggleHasProtectedContent(client *Client) error {
 	return client.ToggleChatHasProtectedContent(c.Id, c.HasProtectedContent)
 }
 
 // ToggleIsMarkedAsUnread is a helper method for Client.ToggleChatIsMarkedAsUnread
-func (c *Chat) ToggleIsMarkedAsUnread(client *Client) (*Ok, error) {
+func (c *Chat) ToggleIsMarkedAsUnread(client *Client) error {
 	return client.ToggleChatIsMarkedAsUnread(c.Id, c.IsMarkedAsUnread)
 }
 
 // ToggleIsPinned is a helper method for Client.ToggleChatIsPinned
-func (c *Chat) ToggleIsPinned(client *Client, chatList ChatList, isPinned bool) (*Ok, error) {
+func (c *Chat) ToggleIsPinned(client *Client, chatList ChatList, isPinned bool) error {
 	return client.ToggleChatIsPinned(chatList, c.Id, isPinned)
 }
 
 // ToggleIsTranslatable is a helper method for Client.ToggleChatIsTranslatable
-func (c *Chat) ToggleIsTranslatable(client *Client) (*Ok, error) {
+func (c *Chat) ToggleIsTranslatable(client *Client) error {
 	return client.ToggleChatIsTranslatable(c.Id, c.IsTranslatable)
 }
 
 // ToggleViewAsTopics is a helper method for Client.ToggleChatViewAsTopics
-func (c *Chat) ToggleViewAsTopics(client *Client) (*Ok, error) {
+func (c *Chat) ToggleViewAsTopics(client *Client) error {
 	return client.ToggleChatViewAsTopics(c.Id, c.ViewAsTopics)
 }
 
 // ToggleDirectMessagesTopicCanSendUnpaidMessages is a helper method for Client.ToggleDirectMessagesChatTopicCanSendUnpaidMessages
-func (c *Chat) ToggleDirectMessagesTopicCanSendUnpaidMessages(client *Client, topicId int64, canSendUnpaidMessages bool, refundPayments bool) (*Ok, error) {
+func (c *Chat) ToggleDirectMessagesTopicCanSendUnpaidMessages(client *Client, topicId int64, canSendUnpaidMessages bool, refundPayments bool) error {
 	return client.ToggleDirectMessagesChatTopicCanSendUnpaidMessages(c.Id, topicId, canSendUnpaidMessages, refundPayments)
 }
 
 // ToggleForumTopicIsClosed is a helper method for Client.ToggleForumTopicIsClosed
-func (c *Chat) ToggleForumTopicIsClosed(client *Client, forumTopicId int32, isClosed bool) (*Ok, error) {
+func (c *Chat) ToggleForumTopicIsClosed(client *Client, forumTopicId int32, isClosed bool) error {
 	return client.ToggleForumTopicIsClosed(c.Id, forumTopicId, isClosed)
 }
 
 // ToggleForumTopicIsPinned is a helper method for Client.ToggleForumTopicIsPinned
-func (c *Chat) ToggleForumTopicIsPinned(client *Client, forumTopicId int32, isPinned bool) (*Ok, error) {
+func (c *Chat) ToggleForumTopicIsPinned(client *Client, forumTopicId int32, isPinned bool) error {
 	return client.ToggleForumTopicIsPinned(c.Id, forumTopicId, isPinned)
 }
 
 // ToggleGeneralForumTopicIsHidden is a helper method for Client.ToggleGeneralForumTopicIsHidden
-func (c *Chat) ToggleGeneralForumTopicIsHidden(client *Client, isHidden bool) (*Ok, error) {
+func (c *Chat) ToggleGeneralForumTopicIsHidden(client *Client, isHidden bool) error {
 	return client.ToggleGeneralForumTopicIsHidden(c.Id, isHidden)
 }
 
 // TransferOwnership is a helper method for Client.TransferChatOwnership
-func (c *Chat) TransferOwnership(client *Client, userId int64, password string) (*Ok, error) {
+func (c *Chat) TransferOwnership(client *Client, userId int64, password string) error {
 	return client.TransferChatOwnership(c.Id, userId, password)
 }
 
@@ -1239,22 +1239,22 @@ func (c *Chat) TranslateMessageText(client *Client, messageId int64, toLanguageC
 }
 
 // UnpinAllMessages is a helper method for Client.UnpinAllChatMessages
-func (c *Chat) UnpinAllMessages(client *Client) (*Ok, error) {
+func (c *Chat) UnpinAllMessages(client *Client) error {
 	return client.UnpinAllChatMessages(c.Id)
 }
 
 // UnpinAllDirectMessagesTopicMessages is a helper method for Client.UnpinAllDirectMessagesChatTopicMessages
-func (c *Chat) UnpinAllDirectMessagesTopicMessages(client *Client, topicId int64) (*Ok, error) {
+func (c *Chat) UnpinAllDirectMessagesTopicMessages(client *Client, topicId int64) error {
 	return client.UnpinAllDirectMessagesChatTopicMessages(c.Id, topicId)
 }
 
 // UnpinAllForumTopicMessages is a helper method for Client.UnpinAllForumTopicMessages
-func (c *Chat) UnpinAllForumTopicMessages(client *Client, forumTopicId int32) (*Ok, error) {
+func (c *Chat) UnpinAllForumTopicMessages(client *Client, forumTopicId int32) error {
 	return client.UnpinAllForumTopicMessages(c.Id, forumTopicId)
 }
 
 // UnpinMessage is a helper method for Client.UnpinChatMessage
-func (c *Chat) UnpinMessage(client *Client, messageId int64) (*Ok, error) {
+func (c *Chat) UnpinMessage(client *Client, messageId int64) error {
 	return client.UnpinChatMessage(c.Id, messageId)
 }
 
@@ -1264,7 +1264,7 @@ func (c *Chat) UpgradeBasicGroupToSupergroupChat(client *Client) (*Chat, error) 
 }
 
 // ViewMessages is a helper method for Client.ViewMessages
-func (c *Chat) ViewMessages(client *Client, messageIds []int64, forceRead bool, opts *ViewMessagesOpts) (*Ok, error) {
+func (c *Chat) ViewMessages(client *Client, messageIds []int64, forceRead bool, opts *ViewMessagesOpts) error {
 	return client.ViewMessages(c.Id, messageIds, forceRead, opts)
 }
 
@@ -1274,22 +1274,22 @@ func (f *File) AddToDownloads(client *Client, chatId int64, messageId int64, pri
 }
 
 // AddProfileAudio is a helper method for Client.AddProfileAudio
-func (f *File) AddProfileAudio(client *Client) (*Ok, error) {
+func (f *File) AddProfileAudio(client *Client) error {
 	return client.AddProfileAudio(f.Id)
 }
 
 // CancelDownload is a helper method for Client.CancelDownloadFile
-func (f *File) CancelDownload(client *Client, onlyIfPending bool) (*Ok, error) {
+func (f *File) CancelDownload(client *Client, onlyIfPending bool) error {
 	return client.CancelDownloadFile(f.Id, onlyIfPending)
 }
 
 // CancelPreliminaryUpload is a helper method for Client.CancelPreliminaryUploadFile
-func (f *File) CancelPreliminaryUpload(client *Client) (*Ok, error) {
+func (f *File) CancelPreliminaryUpload(client *Client) error {
 	return client.CancelPreliminaryUploadFile(f.Id)
 }
 
 // Delete is a helper method for Client.DeleteFile
-func (f *File) Delete(client *Client) (*Ok, error) {
+func (f *File) Delete(client *Client) error {
 	return client.DeleteFile(f.Id)
 }
 
@@ -1324,7 +1324,7 @@ func (f *File) GetSuggestedName(client *Client, directory string) (*Text, error)
 }
 
 // IsProfileAudio is a helper method for Client.IsProfileAudio
-func (f *File) IsProfileAudio(client *Client) (*Ok, error) {
+func (f *File) IsProfileAudio(client *Client) error {
 	return client.IsProfileAudio(f.Id)
 }
 
@@ -1334,32 +1334,32 @@ func (f *File) ReadPart(client *Client, offset int64, count int64) (*Data, error
 }
 
 // RemoveFromDownloads is a helper method for Client.RemoveFileFromDownloads
-func (f *File) RemoveFromDownloads(client *Client, deleteFromCache bool) (*Ok, error) {
+func (f *File) RemoveFromDownloads(client *Client, deleteFromCache bool) error {
 	return client.RemoveFileFromDownloads(f.Id, deleteFromCache)
 }
 
 // RemoveProfileAudio is a helper method for Client.RemoveProfileAudio
-func (f *File) RemoveProfileAudio(client *Client) (*Ok, error) {
+func (f *File) RemoveProfileAudio(client *Client) error {
 	return client.RemoveProfileAudio(f.Id)
 }
 
 // ReportChatPhoto is a helper method for Client.ReportChatPhoto
-func (f *File) ReportChatPhoto(client *Client, chatId int64, reason ReportReason, text string) (*Ok, error) {
+func (f *File) ReportChatPhoto(client *Client, chatId int64, reason ReportReason, text string) error {
 	return client.ReportChatPhoto(chatId, f.Id, reason, text)
 }
 
 // SetProfileAudioPosition is a helper method for Client.SetProfileAudioPosition
-func (f *File) SetProfileAudioPosition(client *Client, afterFileId int32) (*Ok, error) {
+func (f *File) SetProfileAudioPosition(client *Client, afterFileId int32) error {
 	return client.SetProfileAudioPosition(f.Id, afterFileId)
 }
 
 // ToggleDownloadIsPaused is a helper method for Client.ToggleDownloadIsPaused
-func (f *File) ToggleDownloadIsPaused(client *Client, isPaused bool) (*Ok, error) {
+func (f *File) ToggleDownloadIsPaused(client *Client, isPaused bool) error {
 	return client.ToggleDownloadIsPaused(f.Id, isPaused)
 }
 
 // AddChecklistTasks is a helper method for Client.AddChecklistTasks
-func (m *Message) AddChecklistTasks(client *Client, tasks []InputChecklistTask) (*Ok, error) {
+func (m *Message) AddChecklistTasks(client *Client, tasks []InputChecklistTask) error {
 	return client.AddChecklistTasks(m.ChatId, m.Id, tasks)
 }
 
@@ -1369,7 +1369,7 @@ func (m *Message) AddFileToDownloads(client *Client, fileId int32, priority int3
 }
 
 // AddReaction is a helper method for Client.AddMessageReaction
-func (m *Message) AddReaction(client *Client, reactionType ReactionType, isBig bool, updateRecentReactions bool) (*Ok, error) {
+func (m *Message) AddReaction(client *Client, reactionType ReactionType, isBig bool, updateRecentReactions bool) error {
 	return client.AddMessageReaction(m.ChatId, m.Id, reactionType, isBig, updateRecentReactions)
 }
 
@@ -1379,17 +1379,17 @@ func (m *Message) AddOffer(client *Client, options *MessageSendOptions) (*Messag
 }
 
 // AddPendingPaidReaction is a helper method for Client.AddPendingPaidMessageReaction
-func (m *Message) AddPendingPaidReaction(client *Client, starCount int64, opts *AddPendingPaidMessageReactionOpts) (*Ok, error) {
+func (m *Message) AddPendingPaidReaction(client *Client, starCount int64, opts *AddPendingPaidMessageReactionOpts) error {
 	return client.AddPendingPaidMessageReaction(m.ChatId, m.Id, starCount, opts)
 }
 
 // ApproveSuggestedPost is a helper method for Client.ApproveSuggestedPost
-func (m *Message) ApproveSuggestedPost(client *Client, sendDate int32) (*Ok, error) {
+func (m *Message) ApproveSuggestedPost(client *Client, sendDate int32) error {
 	return client.ApproveSuggestedPost(m.ChatId, m.Id, sendDate)
 }
 
 // BlockSenderFromReplies is a helper method for Client.BlockMessageSenderFromReplies
-func (m *Message) BlockSenderFromReplies(client *Client, deleteMessage bool, deleteAllMessages bool, reportSpam bool) (*Ok, error) {
+func (m *Message) BlockSenderFromReplies(client *Client, deleteMessage bool, deleteAllMessages bool, reportSpam bool) error {
 	return client.BlockMessageSenderFromReplies(m.Id, deleteMessage, deleteAllMessages, reportSpam)
 }
 
@@ -1399,27 +1399,27 @@ func (m *Message) ClickAnimatedEmoji(client *Client) (*Sticker, error) {
 }
 
 // ClickChatSponsored is a helper method for Client.ClickChatSponsoredMessage
-func (m *Message) ClickChatSponsored(client *Client, isMediaClick bool, fromFullscreen bool) (*Ok, error) {
+func (m *Message) ClickChatSponsored(client *Client, isMediaClick bool, fromFullscreen bool) error {
 	return client.ClickChatSponsoredMessage(m.ChatId, m.Id, isMediaClick, fromFullscreen)
 }
 
 // CommitPendingPaidReactions is a helper method for Client.CommitPendingPaidMessageReactions
-func (m *Message) CommitPendingPaidReactions(client *Client) (*Ok, error) {
+func (m *Message) CommitPendingPaidReactions(client *Client) error {
 	return client.CommitPendingPaidMessageReactions(m.ChatId, m.Id)
 }
 
 // DeclineGroupCallInvitation is a helper method for Client.DeclineGroupCallInvitation
-func (m *Message) DeclineGroupCallInvitation(client *Client) (*Ok, error) {
+func (m *Message) DeclineGroupCallInvitation(client *Client) error {
 	return client.DeclineGroupCallInvitation(m.ChatId, m.Id)
 }
 
 // DeclineSuggestedPost is a helper method for Client.DeclineSuggestedPost
-func (m *Message) DeclineSuggestedPost(client *Client, comment string) (*Ok, error) {
+func (m *Message) DeclineSuggestedPost(client *Client, comment string) error {
 	return client.DeclineSuggestedPost(m.ChatId, m.Id, comment)
 }
 
 // DeleteChatReplyMarkup is a helper method for Client.DeleteChatReplyMarkup
-func (m *Message) DeleteChatReplyMarkup(client *Client) (*Ok, error) {
+func (m *Message) DeleteChatReplyMarkup(client *Client) error {
 	return client.DeleteChatReplyMarkup(m.ChatId, m.Id)
 }
 
@@ -1479,12 +1479,12 @@ func (m *Message) EditReplyMarkup(client *Client, opts *EditMessageReplyMarkupOp
 }
 
 // EditSchedulingState is a helper method for Client.EditMessageSchedulingState
-func (m *Message) EditSchedulingState(client *Client, opts *EditMessageSchedulingStateOpts) (*Ok, error) {
+func (m *Message) EditSchedulingState(client *Client, opts *EditMessageSchedulingStateOpts) error {
 	return client.EditMessageSchedulingState(m.ChatId, m.Id, opts)
 }
 
 // EditQuickReply is a helper method for Client.EditQuickReplyMessage
-func (m *Message) EditQuickReply(client *Client, shortcutId int32, inputMessageContent InputMessageContent) (*Ok, error) {
+func (m *Message) EditQuickReply(client *Client, shortcutId int32, inputMessageContent InputMessageContent) error {
 	return client.EditQuickReplyMessage(shortcutId, m.Id, inputMessageContent)
 }
 
@@ -1609,47 +1609,47 @@ func (m *Message) GetVideoAdvertisements(client *Client) (*VideoMessageAdvertise
 }
 
 // MarkChecklistTasksAsDone is a helper method for Client.MarkChecklistTasksAsDone
-func (m *Message) MarkChecklistTasksAsDone(client *Client, markedAsDoneTaskIds []int32, markedAsNotDoneTaskIds []int32) (*Ok, error) {
+func (m *Message) MarkChecklistTasksAsDone(client *Client, markedAsDoneTaskIds []int32, markedAsNotDoneTaskIds []int32) error {
 	return client.MarkChecklistTasksAsDone(m.ChatId, m.Id, markedAsDoneTaskIds, markedAsNotDoneTaskIds)
 }
 
 // OpenContent is a helper method for Client.OpenMessageContent
-func (m *Message) OpenContent(client *Client) (*Ok, error) {
+func (m *Message) OpenContent(client *Client) error {
 	return client.OpenMessageContent(m.ChatId, m.Id)
 }
 
 // PinChat is a helper method for Client.PinChatMessage
-func (m *Message) PinChat(client *Client, disableNotification bool, onlyForSelf bool) (*Ok, error) {
+func (m *Message) PinChat(client *Client, disableNotification bool, onlyForSelf bool) error {
 	return client.PinChatMessage(m.ChatId, m.Id, disableNotification, onlyForSelf)
 }
 
 // ProcessGiftPurchaseOffer is a helper method for Client.ProcessGiftPurchaseOffer
-func (m *Message) ProcessGiftPurchaseOffer(client *Client, accept bool) (*Ok, error) {
+func (m *Message) ProcessGiftPurchaseOffer(client *Client, accept bool) error {
 	return client.ProcessGiftPurchaseOffer(m.Id, accept)
 }
 
 // RateSpeechRecognition is a helper method for Client.RateSpeechRecognition
-func (m *Message) RateSpeechRecognition(client *Client, isGood bool) (*Ok, error) {
+func (m *Message) RateSpeechRecognition(client *Client, isGood bool) error {
 	return client.RateSpeechRecognition(m.ChatId, m.Id, isGood)
 }
 
 // ReadBusiness is a helper method for Client.ReadBusinessMessage
-func (m *Message) ReadBusiness(client *Client, businessConnectionId string) (*Ok, error) {
+func (m *Message) ReadBusiness(client *Client, businessConnectionId string) error {
 	return client.ReadBusinessMessage(businessConnectionId, m.ChatId, m.Id)
 }
 
 // RecognizeSpeech is a helper method for Client.RecognizeSpeech
-func (m *Message) RecognizeSpeech(client *Client) (*Ok, error) {
+func (m *Message) RecognizeSpeech(client *Client) error {
 	return client.RecognizeSpeech(m.ChatId, m.Id)
 }
 
 // RemoveReaction is a helper method for Client.RemoveMessageReaction
-func (m *Message) RemoveReaction(client *Client, reactionType ReactionType) (*Ok, error) {
+func (m *Message) RemoveReaction(client *Client, reactionType ReactionType) error {
 	return client.RemoveMessageReaction(m.ChatId, m.Id, reactionType)
 }
 
 // RemovePendingPaidReactions is a helper method for Client.RemovePendingPaidMessageReactions
-func (m *Message) RemovePendingPaidReactions(client *Client) (*Ok, error) {
+func (m *Message) RemovePendingPaidReactions(client *Client) error {
 	return client.RemovePendingPaidMessageReactions(m.ChatId, m.Id)
 }
 
@@ -1659,17 +1659,17 @@ func (m *Message) ReportChatSponsored(client *Client, optionId []byte) (ReportSp
 }
 
 // ReportReactions is a helper method for Client.ReportMessageReactions
-func (m *Message) ReportReactions(client *Client) (*Ok, error) {
+func (m *Message) ReportReactions(client *Client) error {
 	return client.ReportMessageReactions(m.ChatId, m.Id, m.SenderId)
 }
 
 // ReportSupergroupAntiSpamFalsePositive is a helper method for Client.ReportSupergroupAntiSpamFalsePositive
-func (m *Message) ReportSupergroupAntiSpamFalsePositive(client *Client, supergroupId int64) (*Ok, error) {
+func (m *Message) ReportSupergroupAntiSpamFalsePositive(client *Client, supergroupId int64) error {
 	return client.ReportSupergroupAntiSpamFalsePositive(supergroupId, m.Id)
 }
 
 // SetBusinessIsPinned is a helper method for Client.SetBusinessMessageIsPinned
-func (m *Message) SetBusinessIsPinned(client *Client, businessConnectionId string) (*Ok, error) {
+func (m *Message) SetBusinessIsPinned(client *Client, businessConnectionId string) error {
 	return client.SetBusinessMessageIsPinned(businessConnectionId, m.ChatId, m.Id, m.IsPinned)
 }
 
@@ -1679,32 +1679,32 @@ func (m *Message) SetGameScore(client *Client, editMessage bool, userId int64, s
 }
 
 // SetFactCheck is a helper method for Client.SetMessageFactCheck
-func (m *Message) SetFactCheck(client *Client, opts *SetMessageFactCheckOpts) (*Ok, error) {
+func (m *Message) SetFactCheck(client *Client, opts *SetMessageFactCheckOpts) error {
 	return client.SetMessageFactCheck(m.ChatId, m.Id, opts)
 }
 
 // SetReactions is a helper method for Client.SetMessageReactions
-func (m *Message) SetReactions(client *Client, reactionTypes []ReactionType, isBig bool) (*Ok, error) {
+func (m *Message) SetReactions(client *Client, reactionTypes []ReactionType, isBig bool) error {
 	return client.SetMessageReactions(m.ChatId, m.Id, reactionTypes, isBig)
 }
 
 // SetPaidReactionType is a helper method for Client.SetPaidMessageReactionType
-func (m *Message) SetPaidReactionType(client *Client, typeField PaidReactionType) (*Ok, error) {
+func (m *Message) SetPaidReactionType(client *Client, typeField PaidReactionType) error {
 	return client.SetPaidMessageReactionType(m.ChatId, m.Id, typeField)
 }
 
 // SetPollAnswer is a helper method for Client.SetPollAnswer
-func (m *Message) SetPollAnswer(client *Client, optionIds []int32) (*Ok, error) {
+func (m *Message) SetPollAnswer(client *Client, optionIds []int32) error {
 	return client.SetPollAnswer(m.ChatId, m.Id, optionIds)
 }
 
 // ShareChatWithBot is a helper method for Client.ShareChatWithBot
-func (m *Message) ShareChatWithBot(client *Client, buttonId int32, sharedChatId int64, onlyCheck bool) (*Ok, error) {
+func (m *Message) ShareChatWithBot(client *Client, buttonId int32, sharedChatId int64, onlyCheck bool) error {
 	return client.ShareChatWithBot(m.ChatId, m.Id, buttonId, sharedChatId, onlyCheck)
 }
 
 // ShareUsersWithBot is a helper method for Client.ShareUsersWithBot
-func (m *Message) ShareUsersWithBot(client *Client, buttonId int32, sharedUserIds []int64, onlyCheck bool) (*Ok, error) {
+func (m *Message) ShareUsersWithBot(client *Client, buttonId int32, sharedUserIds []int64, onlyCheck bool) error {
 	return client.ShareUsersWithBot(m.ChatId, m.Id, buttonId, sharedUserIds, onlyCheck)
 }
 
@@ -1714,7 +1714,7 @@ func (m *Message) StopBusinessPoll(client *Client, businessConnectionId string, 
 }
 
 // StopPoll is a helper method for Client.StopPoll
-func (m *Message) StopPoll(client *Client, opts *StopPollOpts) (*Ok, error) {
+func (m *Message) StopPoll(client *Client, opts *StopPollOpts) error {
 	return client.StopPoll(m.ChatId, m.Id, opts)
 }
 
@@ -1729,7 +1729,7 @@ func (m *Message) TranslateText(client *Client, toLanguageCode string) (*Formatt
 }
 
 // UnpinChat is a helper method for Client.UnpinChatMessage
-func (m *Message) UnpinChat(client *Client) (*Ok, error) {
+func (m *Message) UnpinChat(client *Client) error {
 	return client.UnpinChatMessage(m.ChatId, m.Id)
 }
 
@@ -1744,17 +1744,17 @@ func (u *User) AddChatMember(client *Client, chatId int64, forwardLimit int32) (
 }
 
 // AddContact is a helper method for Client.AddContact
-func (u *User) AddContact(client *Client, contact *ImportedContact, sharePhoneNumber bool) (*Ok, error) {
+func (u *User) AddContact(client *Client, contact *ImportedContact, sharePhoneNumber bool) error {
 	return client.AddContact(u.Id, contact, sharePhoneNumber)
 }
 
 // AddStickerToSet is a helper method for Client.AddStickerToSet
-func (u *User) AddStickerToSet(client *Client, name string, sticker *InputSticker) (*Ok, error) {
+func (u *User) AddStickerToSet(client *Client, name string, sticker *InputSticker) error {
 	return client.AddStickerToSet(u.Id, name, sticker)
 }
 
 // AllowUnpaidMessagesFrom is a helper method for Client.AllowUnpaidMessagesFromUser
-func (u *User) AllowUnpaidMessagesFrom(client *Client, refundPayments bool) (*Ok, error) {
+func (u *User) AllowUnpaidMessagesFrom(client *Client, refundPayments bool) error {
 	return client.AllowUnpaidMessagesFromUser(u.Id, refundPayments)
 }
 
@@ -1784,7 +1784,7 @@ func (u *User) CreatePrivateChat(client *Client, force bool) (*Chat, error) {
 }
 
 // EditStarSubscription is a helper method for Client.EditUserStarSubscription
-func (u *User) EditStarSubscription(client *Client, telegramPaymentChargeId string, isCanceled bool) (*Ok, error) {
+func (u *User) EditStarSubscription(client *Client, telegramPaymentChargeId string, isCanceled bool) error {
 	return client.EditUserStarSubscription(u.Id, telegramPaymentChargeId, isCanceled)
 }
 
@@ -1849,7 +1849,7 @@ func (u *User) GetSupportInfo(client *Client) (*UserSupportInfo, error) {
 }
 
 // GiftPremiumWithStars is a helper method for Client.GiftPremiumWithStars
-func (u *User) GiftPremiumWithStars(client *Client, starCount int64, monthCount int32, text *FormattedText) (*Ok, error) {
+func (u *User) GiftPremiumWithStars(client *Client, starCount int64, monthCount int32, text *FormattedText) error {
 	return client.GiftPremiumWithStars(u.Id, starCount, monthCount, text)
 }
 
@@ -1859,22 +1859,22 @@ func (u *User) InviteGroupCallParticipant(client *Client, groupCallId int32, isV
 }
 
 // PlaceGiftAuctionBid is a helper method for Client.PlaceGiftAuctionBid
-func (u *User) PlaceGiftAuctionBid(client *Client, giftId int64, starCount int64, text *FormattedText, isPrivate bool) (*Ok, error) {
+func (u *User) PlaceGiftAuctionBid(client *Client, giftId int64, starCount int64, text *FormattedText, isPrivate bool) error {
 	return client.PlaceGiftAuctionBid(giftId, starCount, u.Id, text, isPrivate)
 }
 
 // ProcessChatJoinRequest is a helper method for Client.ProcessChatJoinRequest
-func (u *User) ProcessChatJoinRequest(client *Client, chatId int64, approve bool) (*Ok, error) {
+func (u *User) ProcessChatJoinRequest(client *Client, chatId int64, approve bool) error {
 	return client.ProcessChatJoinRequest(chatId, u.Id, approve)
 }
 
 // RefundStarPayment is a helper method for Client.RefundStarPayment
-func (u *User) RefundStarPayment(client *Client, telegramPaymentChargeId string) (*Ok, error) {
+func (u *User) RefundStarPayment(client *Client, telegramPaymentChargeId string) error {
 	return client.RefundStarPayment(u.Id, telegramPaymentChargeId)
 }
 
 // ReplaceStickerInSet is a helper method for Client.ReplaceStickerInSet
-func (u *User) ReplaceStickerInSet(client *Client, name string, oldSticker InputFile, newSticker *InputSticker) (*Ok, error) {
+func (u *User) ReplaceStickerInSet(client *Client, name string, oldSticker InputFile, newSticker *InputSticker) error {
 	return client.ReplaceStickerInSet(u.Id, name, oldSticker, newSticker)
 }
 
@@ -1889,37 +1889,37 @@ func (u *User) SetGameScore(client *Client, chatId int64, messageId int64, editM
 }
 
 // SetInlineGameScore is a helper method for Client.SetInlineGameScore
-func (u *User) SetInlineGameScore(client *Client, inlineMessageId string, editMessage bool, score int32, force bool) (*Ok, error) {
+func (u *User) SetInlineGameScore(client *Client, inlineMessageId string, editMessage bool, score int32, force bool) error {
 	return client.SetInlineGameScore(inlineMessageId, editMessage, u.Id, score, force)
 }
 
 // SetMenuButton is a helper method for Client.SetMenuButton
-func (u *User) SetMenuButton(client *Client, menuButton *BotMenuButton) (*Ok, error) {
+func (u *User) SetMenuButton(client *Client, menuButton *BotMenuButton) error {
 	return client.SetMenuButton(u.Id, menuButton)
 }
 
 // SetPassportElementErrors is a helper method for Client.SetPassportElementErrors
-func (u *User) SetPassportElementErrors(client *Client, errors []InputPassportElementError) (*Ok, error) {
+func (u *User) SetPassportElementErrors(client *Client, errors []InputPassportElementError) error {
 	return client.SetPassportElementErrors(u.Id, errors)
 }
 
 // SetStickerSetThumbnail is a helper method for Client.SetStickerSetThumbnail
-func (u *User) SetStickerSetThumbnail(client *Client, name string, opts *SetStickerSetThumbnailOpts) (*Ok, error) {
+func (u *User) SetStickerSetThumbnail(client *Client, name string, opts *SetStickerSetThumbnailOpts) error {
 	return client.SetStickerSetThumbnail(u.Id, name, opts)
 }
 
 // SetEmojiStatus is a helper method for Client.SetUserEmojiStatus
-func (u *User) SetEmojiStatus(client *Client) (*Ok, error) {
+func (u *User) SetEmojiStatus(client *Client) error {
 	return client.SetUserEmojiStatus(u.Id, u.EmojiStatus)
 }
 
 // SetNote is a helper method for Client.SetUserNote
-func (u *User) SetNote(client *Client, note *FormattedText) (*Ok, error) {
+func (u *User) SetNote(client *Client, note *FormattedText) error {
 	return client.SetUserNote(u.Id, note)
 }
 
 // SetPersonalProfilePhoto is a helper method for Client.SetUserPersonalProfilePhoto
-func (u *User) SetPersonalProfilePhoto(client *Client, photo InputChatPhoto) (*Ok, error) {
+func (u *User) SetPersonalProfilePhoto(client *Client, photo InputChatPhoto) error {
 	return client.SetUserPersonalProfilePhoto(u.Id, photo)
 }
 
@@ -1929,22 +1929,22 @@ func (u *User) SetSupportInfo(client *Client, message *FormattedText) (*UserSupp
 }
 
 // SharePhoneNumber is a helper method for Client.SharePhoneNumber
-func (u *User) SharePhoneNumber(client *Client) (*Ok, error) {
+func (u *User) SharePhoneNumber(client *Client) error {
 	return client.SharePhoneNumber(u.Id)
 }
 
 // SuggestBirthdate is a helper method for Client.SuggestUserBirthdate
-func (u *User) SuggestBirthdate(client *Client, birthdate *Birthdate) (*Ok, error) {
+func (u *User) SuggestBirthdate(client *Client, birthdate *Birthdate) error {
 	return client.SuggestUserBirthdate(u.Id, birthdate)
 }
 
 // SuggestProfilePhoto is a helper method for Client.SuggestUserProfilePhoto
-func (u *User) SuggestProfilePhoto(client *Client, photo InputChatPhoto) (*Ok, error) {
+func (u *User) SuggestProfilePhoto(client *Client, photo InputChatPhoto) error {
 	return client.SuggestUserProfilePhoto(u.Id, photo)
 }
 
 // TransferChatOwnership is a helper method for Client.TransferChatOwnership
-func (u *User) TransferChatOwnership(client *Client, chatId int64, password string) (*Ok, error) {
+func (u *User) TransferChatOwnership(client *Client, chatId int64, password string) error {
 	return client.TransferChatOwnership(chatId, u.Id, password)
 }
 

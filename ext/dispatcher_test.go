@@ -74,7 +74,7 @@ func TestDispatcher_InlineQuery(t *testing.T) {
 	d.AddHandler(h)
 
 	update := &gotdbot.UpdateNewInlineQuery{
-		Id:    "1",
+		Id:    1,
 		Query: "test",
 	}
 

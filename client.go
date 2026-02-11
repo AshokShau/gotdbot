@@ -317,7 +317,7 @@ func (c *Client) authHandler(client *Client, update TlObject) error {
 		if len(c.config.TDLibOptions) > 0 {
 			for k, v := range c.config.TDLibOptions {
 				if opt := toOptionValue(v); opt != nil {
-					_, err := c.SetOption(k, &SetOptionOpts{Value: opt})
+					err := c.SetOption(k, &SetOptionOpts{Value: opt})
 					if err != nil {
 						c.Logger.Error("Error setting option", "option", k, "error", err)
 					}
@@ -340,7 +340,7 @@ func (c *Client) authHandler(client *Client, update TlObject) error {
 			"application_version", c.config.ApplicationVersion,
 		)
 
-		_, err := c.SetTdlibParameters(
+		err := c.SetTdlibParameters(
 			c.config.UseTestDC,
 			c.config.DatabaseDirectory,
 			c.config.FilesDirectory,
@@ -365,7 +365,7 @@ func (c *Client) authHandler(client *Client, update TlObject) error {
 		if c.config.IsUser {
 			return nil
 		}
-		_, err := c.CheckAuthenticationBotToken(c.botToken)
+		err := c.CheckAuthenticationBotToken(c.botToken)
 		if err != nil {
 			c.Logger.Error("Error checking bot token", "error", err)
 			c.authErrorChan <- err
