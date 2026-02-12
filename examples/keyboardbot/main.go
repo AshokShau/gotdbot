@@ -27,8 +27,10 @@ func main() {
 		botToken = envToken
 	}
 
-	bot := gotdbot.NewClient(apiID, apiHash, botToken, &gotdbot.ClientConfig{LibraryPath: "./libtdjson.so.1.8.61"})
-	gotdbot.SetTdlibLogVerbosityLevel(2)
+	bot, err := gotdbot.NewClient(apiID, apiHash, botToken, &gotdbot.ClientConfig{LibraryPath: "./libtdjson.so.1.8.61"})
+	if err != nil {
+		panic(err)
+	}
 
 	dispatcher := ext.NewDispatcher(bot)
 

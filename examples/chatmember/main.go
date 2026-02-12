@@ -16,9 +16,13 @@ func main() {
 	apiHash := ""
 	botToken := ""
 
-	bot := gotdbot.NewClient(apiID, apiHash, botToken, &gotdbot.ClientConfig{
+	bot, err := gotdbot.NewClient(apiID, apiHash, botToken, &gotdbot.ClientConfig{
 		LibraryPath: "./libtdjson.so.1.8.61",
 	})
+
+	if err != nil {
+		panic(err)
+	}
 
 	gotdbot.SetTdlibLogVerbosityLevel(2)
 

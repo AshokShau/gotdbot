@@ -93,7 +93,7 @@ type Client struct {
 	isAuthorized  bool
 }
 
-func NewClient(apiID int32, apiHash, botToken string, config *ClientConfig) *Client {
+func NewClient(apiID int32, apiHash, botToken string, config *ClientConfig) (*Client, error) {
 	if config == nil {
 		config = DefaultClientConfig()
 	} else {
@@ -137,8 +137,7 @@ func NewClient(apiID int32, apiHash, botToken string, config *ClientConfig) *Cli
 	}
 
 	if err := tdjson.Init(config.LibraryPath); err != nil {
-		config.Logger.Error("Failed to initialize TDLib", "error", err)
-		os.Exit(1)
+		return nil, err
 	}
 
 	c := &Client{
@@ -160,7 +159,7 @@ func NewClient(apiID int32, apiHash, botToken string, config *ClientConfig) *Cli
 	c.AddHandler("updateConnectionState", c.connectionStateHandler, nil, 0)
 	c.AddHandler("updateMessageSendSucceeded", c.messageSendSucceededHandler, nil, 0)
 	c.AddHandler("updateMessageSendFailed", c.messageSendFailedHandler, nil, 0)
-	return c
+	return c, nil
 }
 
 // Start initializes the client and blocks until authorization is successful or fails.
@@ -183,11 +182,9 @@ func (c *Client) Start() error {
 
 // Idle blocks the current goroutine until a SIGINT or SIGTERM signal is received.
 func (c *Client) Idle() {
-	c.Logger.Info("Bot is running. Press Ctrl+C to stop.")
 	sig := make(chan os.Signal, 1)
 	signal.Notify(sig, syscall.SIGINT, syscall.SIGTERM)
 	<-sig
-	c.Logger.Info("Stopping...")
 	c.Stop()
 }
 

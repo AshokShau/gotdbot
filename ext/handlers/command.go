@@ -3,7 +3,6 @@ package handlers
 import (
 	"strings"
 
-	"github.com/AshokShau/gotdbot"
 	"github.com/AshokShau/gotdbot/ext"
 )
 
@@ -31,16 +30,11 @@ func (c *Command) CheckUpdate(ctx *ext.Context) bool {
 		return false
 	}
 
-	msgText, ok := ctx.EffectiveMessage.Content.(*gotdbot.MessageText)
-	if !ok || msgText.Text == nil {
-		return false
-	}
-
 	if ctx.EffectiveMessage.IsOutgoing {
 		return false
 	}
 
-	text := msgText.Text.Text
+	text := ctx.EffectiveMessage.Text()
 	if text == "" {
 		return false
 	}

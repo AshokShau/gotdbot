@@ -20,14 +20,17 @@ func main() {
 	apiID := int32(6)
 	apiHash := "API_HASH"
 
-	bot := gotdbot.NewClient(apiID, apiHash, "", &gotdbot.ClientConfig{
+	bot, err := gotdbot.NewClient(apiID, apiHash, "", &gotdbot.ClientConfig{
 		LibraryPath:           "./libtdjson.so.1.8.61",
 		IsUser:                true,
 		UseFileDatabase:       gotdbot.Bool(true),
-		FilesDirectory:        "UserBot",
 		AuthorizationTimeout:  2 * time.Minute,
 		DatabaseEncryptionKey: "my_secret_key_29", // Optional: Set a key to encrypt the local database
 	})
+
+	if err != nil {
+		panic(err)
+	}
 
 	gotdbot.SetTdlibLogStreamEmpty()
 	dispatcher := ext.NewDispatcher(bot)
