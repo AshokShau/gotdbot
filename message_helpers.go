@@ -6,7 +6,7 @@ import (
 
 // GetLink returns the message link.
 func (m *Message) GetLink(c *Client) (*MessageLink, error) {
-	return c.GetMessageLink(m.ChatId, m.Id, 0, false, false)
+	return c.GetMessageLink(m.ChatId, false, false, 0, m.Id)
 }
 
 // IsPrivate checks if the message is from a private chat.
@@ -159,7 +159,7 @@ func (m *Message) Delete(c *Client, revoke bool) error {
 
 // Pin pins the message.
 func (m *Message) Pin(c *Client, disableNotification bool, onlyForSelf bool) error {
-	err := c.PinChatMessage(m.ChatId, m.Id, disableNotification, onlyForSelf)
+	err := c.PinChatMessage(m.ChatId, disableNotification, m.Id, onlyForSelf)
 	return err
 }
 
@@ -318,7 +318,7 @@ func (m *Message) Download(c *Client, priority int32, offset int64, limit int64,
 		return nil, nil
 	}
 
-	return fileInfo.Download(c, priority, offset, limit, synchronous)
+	return fileInfo.Download(c, limit, offset, priority, synchronous)
 }
 
 // Mention returns the text mention of the message sender.
@@ -337,8 +337,8 @@ func (m *Message) GetMessageProperties(c *Client) (*MessageProperties, error) {
 }
 
 // GetMessageLink returns the message link.
-func (m *Message) GetMessageLink(c *Client, mediaTimestamp int32, forAlbum bool, inMessageThread bool) (*MessageLink, error) {
-	return c.GetMessageLink(m.ChatId, m.Id, mediaTimestamp, forAlbum, inMessageThread)
+func (m *Message) GetMessageLink(c *Client, forAlbum bool, inMessageThread bool, mediaTimestamp int32) (*MessageLink, error) {
+	return c.GetMessageLink(m.ChatId, forAlbum, inMessageThread, mediaTimestamp, m.Id)
 }
 
 // GetRepliedMessage returns the replied message.
@@ -378,7 +378,7 @@ func (m *Message) Restrict(c *Client, permissions *ChatPermissions, restrictedUn
 }
 
 // React reacts to the current message.
-func (m *Message) React(c *Client, emoji string, isBig bool) error {
+func (m *Message) React(c *Client, isBig bool, emoji string) error {
 	var reactionTypes []ReactionType
 	if emoji != "" {
 		reactionTypes = []ReactionType{
@@ -387,7 +387,7 @@ func (m *Message) React(c *Client, emoji string, isBig bool) error {
 			},
 		}
 	}
-	return c.SetMessageReactions(m.ChatId, m.Id, reactionTypes, isBig)
+	return c.SetMessageReactions(m.ChatId, isBig, m.Id, reactionTypes)
 }
 
 // Action sends a chat action to a specific chat.

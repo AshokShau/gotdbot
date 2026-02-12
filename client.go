@@ -338,20 +338,20 @@ func (c *Client) authHandler(client *Client, update TlObject) error {
 		)
 
 		err := c.SetTdlibParameters(
-			c.config.UseTestDC,
+			c.apiHash,
+			c.apiID,
+			c.config.ApplicationVersion,
 			c.config.DatabaseDirectory,
-			c.config.FilesDirectory,
 			[]byte(c.config.DatabaseEncryptionKey),
-			*c.config.UseFileDatabase,
+			c.config.DeviceModel,
+			c.config.FilesDirectory,
+			c.config.SystemLanguageCode,
+			c.config.SystemVersion,
 			*c.config.UseChatInfoDatabase,
+			*c.config.UseFileDatabase,
 			*c.config.UseMessageDatabase,
 			*c.config.UseSecretChats,
-			c.apiID,
-			c.apiHash,
-			c.config.SystemLanguageCode,
-			c.config.DeviceModel,
-			c.config.SystemVersion,
-			c.config.ApplicationVersion,
+			c.config.UseTestDC,
 		)
 		if err != nil {
 			c.Logger.Error("Error setting tdlib parameters", "error", err)
