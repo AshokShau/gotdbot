@@ -3,6 +3,11 @@
 
 package gotdbot
 
+// AddContactOpts contains optional parameters for AddContact
+type AddContactOpts struct {
+	Contact *ImportedContact
+}
+
 // AddLocalMessageOpts contains optional parameters for AddLocalMessage
 type AddLocalMessageOpts struct {
 	ReplyTo InputMessageReplyTo
@@ -16,6 +21,16 @@ type AddPendingPaidMessageReactionOpts struct {
 // AnswerInlineQueryOpts contains optional parameters for AnswerInlineQuery
 type AnswerInlineQueryOpts struct {
 	Button *InlineQueryResultsButton
+}
+
+// CreateNewBasicGroupChatOpts contains optional parameters for CreateNewBasicGroupChat
+type CreateNewBasicGroupChatOpts struct {
+	UserIds []int64
+}
+
+// CreateNewStickerSetOpts contains optional parameters for CreateNewStickerSet
+type CreateNewStickerSetOpts struct {
+	Source string
 }
 
 // CreateNewSupergroupChatOpts contains optional parameters for CreateNewSupergroupChat
@@ -35,8 +50,8 @@ type DeleteCommandsOpts struct {
 
 // EditBusinessMessageCaptionOpts contains optional parameters for EditBusinessMessageCaption
 type EditBusinessMessageCaptionOpts struct {
-	ReplyMarkup ReplyMarkup
 	Caption     *FormattedText
+	ReplyMarkup ReplyMarkup
 }
 
 // EditBusinessMessageChecklistOpts contains optional parameters for EditBusinessMessageChecklist
@@ -46,8 +61,8 @@ type EditBusinessMessageChecklistOpts struct {
 
 // EditBusinessMessageLiveLocationOpts contains optional parameters for EditBusinessMessageLiveLocation
 type EditBusinessMessageLiveLocationOpts struct {
-	ReplyMarkup ReplyMarkup
 	Location    *Location
+	ReplyMarkup ReplyMarkup
 }
 
 // EditBusinessMessageMediaOpts contains optional parameters for EditBusinessMessageMedia
@@ -67,14 +82,14 @@ type EditBusinessMessageTextOpts struct {
 
 // EditInlineMessageCaptionOpts contains optional parameters for EditInlineMessageCaption
 type EditInlineMessageCaptionOpts struct {
-	ReplyMarkup ReplyMarkup
 	Caption     *FormattedText
+	ReplyMarkup ReplyMarkup
 }
 
 // EditInlineMessageLiveLocationOpts contains optional parameters for EditInlineMessageLiveLocation
 type EditInlineMessageLiveLocationOpts struct {
-	ReplyMarkup ReplyMarkup
 	Location    *Location
+	ReplyMarkup ReplyMarkup
 }
 
 // EditInlineMessageMediaOpts contains optional parameters for EditInlineMessageMedia
@@ -94,8 +109,8 @@ type EditInlineMessageTextOpts struct {
 
 // EditMessageCaptionOpts contains optional parameters for EditMessageCaption
 type EditMessageCaptionOpts struct {
-	ReplyMarkup ReplyMarkup
 	Caption     *FormattedText
+	ReplyMarkup ReplyMarkup
 }
 
 // EditMessageChecklistOpts contains optional parameters for EditMessageChecklist
@@ -105,8 +120,8 @@ type EditMessageChecklistOpts struct {
 
 // EditMessageLiveLocationOpts contains optional parameters for EditMessageLiveLocation
 type EditMessageLiveLocationOpts struct {
-	ReplyMarkup ReplyMarkup
 	Location    *Location
+	ReplyMarkup ReplyMarkup
 }
 
 // EditMessageMediaOpts contains optional parameters for EditMessageMedia
@@ -131,9 +146,9 @@ type EditMessageTextOpts struct {
 
 // EditStoryOpts contains optional parameters for EditStory
 type EditStoryOpts struct {
-	Content InputStoryContent
 	Areas   *InputStoryAreas
 	Caption *FormattedText
+	Content InputStoryContent
 }
 
 // FinishFileGenerationOpts contains optional parameters for FinishFileGeneration
@@ -143,8 +158,8 @@ type FinishFileGenerationOpts struct {
 
 // ForwardMessagesOpts contains optional parameters for ForwardMessages
 type ForwardMessagesOpts struct {
-	TopicId MessageTopic
 	Options *MessageSendOptions
+	TopicId MessageTopic
 }
 
 // GetChatEventLogOpts contains optional parameters for GetChatEventLog
@@ -207,6 +222,11 @@ type GetInlineQueryResultsOpts struct {
 	UserLocation *Location
 }
 
+// GetKeywordEmojisOpts contains optional parameters for GetKeywordEmojis
+type GetKeywordEmojisOpts struct {
+	InputLanguageCodes []string
+}
+
 // GetLinkPreviewOpts contains optional parameters for GetLinkPreview
 type GetLinkPreviewOpts struct {
 	LinkPreviewOptions *LinkPreviewOptions
@@ -229,7 +249,13 @@ type GetRemoteFileOpts struct {
 
 // GetStarTransactionsOpts contains optional parameters for GetStarTransactions
 type GetStarTransactionsOpts struct {
-	Direction TransactionDirection
+	Direction      TransactionDirection
+	SubscriptionId string
+}
+
+// GetStoryInteractionsOpts contains optional parameters for GetStoryInteractions
+type GetStoryInteractionsOpts struct {
+	Query string
 }
 
 // GetSupergroupMembersOpts contains optional parameters for GetSupergroupMembers
@@ -254,8 +280,15 @@ type LoadChatsOpts struct {
 
 // OpenWebAppOpts contains optional parameters for OpenWebApp
 type OpenWebAppOpts struct {
-	TopicId MessageTopic
 	ReplyTo InputMessageReplyTo
+	TopicId MessageTopic
+}
+
+// OptimizeStorageOpts contains optional parameters for OptimizeStorage
+type OptimizeStorageOpts struct {
+	ChatIds        []int64
+	ExcludeChatIds []int64
+	FileTypes      []FileType
 }
 
 // PingProxyOpts contains optional parameters for PingProxy
@@ -273,6 +306,18 @@ type PostStoryOpts struct {
 // PreliminaryUploadFileOpts contains optional parameters for PreliminaryUploadFile
 type PreliminaryUploadFileOpts struct {
 	FileType FileType
+}
+
+// RecoverAuthenticationPasswordOpts contains optional parameters for RecoverAuthenticationPassword
+type RecoverAuthenticationPasswordOpts struct {
+	NewHint     string
+	NewPassword string
+}
+
+// RecoverPasswordOpts contains optional parameters for RecoverPassword
+type RecoverPasswordOpts struct {
+	NewHint     string
+	NewPassword string
 }
 
 // ResendAuthenticationCodeOpts contains optional parameters for ResendAuthenticationCode
@@ -297,16 +342,31 @@ type SearchChatMembersOpts struct {
 
 // SearchChatMessagesOpts contains optional parameters for SearchChatMessages
 type SearchChatMessagesOpts struct {
-	TopicId  MessageTopic
-	SenderId MessageSender
 	Filter   SearchMessagesFilter
+	SenderId MessageSender
+	TopicId  MessageTopic
+}
+
+// SearchContactsOpts contains optional parameters for SearchContacts
+type SearchContactsOpts struct {
+	Query string
+}
+
+// SearchEmojisOpts contains optional parameters for SearchEmojis
+type SearchEmojisOpts struct {
+	InputLanguageCodes []string
+}
+
+// SearchFileDownloadsOpts contains optional parameters for SearchFileDownloads
+type SearchFileDownloadsOpts struct {
+	Query string
 }
 
 // SearchMessagesOpts contains optional parameters for SearchMessages
 type SearchMessagesOpts struct {
 	ChatList       ChatList
-	Filter         SearchMessagesFilter
 	ChatTypeFilter SearchMessagesChatTypeFilter
+	Filter         SearchMessagesFilter
 }
 
 // SearchSavedMessagesOpts contains optional parameters for SearchSavedMessages
@@ -319,10 +379,16 @@ type SearchSecretMessagesOpts struct {
 	Filter SearchMessagesFilter
 }
 
+// SearchStickersOpts contains optional parameters for SearchStickers
+type SearchStickersOpts struct {
+	InputLanguageCodes []string
+	Query              string
+}
+
 // SendBusinessMessageOpts contains optional parameters for SendBusinessMessage
 type SendBusinessMessageOpts struct {
-	ReplyTo     InputMessageReplyTo
 	ReplyMarkup ReplyMarkup
+	ReplyTo     InputMessageReplyTo
 }
 
 // SendBusinessMessageAlbumOpts contains optional parameters for SendBusinessMessageAlbum
@@ -332,30 +398,30 @@ type SendBusinessMessageAlbumOpts struct {
 
 // SendChatActionOpts contains optional parameters for SendChatAction
 type SendChatActionOpts struct {
-	TopicId MessageTopic
 	Action  ChatAction
+	TopicId MessageTopic
 }
 
 // SendInlineQueryResultMessageOpts contains optional parameters for SendInlineQueryResultMessage
 type SendInlineQueryResultMessageOpts struct {
-	TopicId MessageTopic
-	ReplyTo InputMessageReplyTo
 	Options *MessageSendOptions
+	ReplyTo InputMessageReplyTo
+	TopicId MessageTopic
 }
 
 // SendMessageOpts contains optional parameters for SendMessage
 type SendMessageOpts struct {
-	TopicId     MessageTopic
-	ReplyTo     InputMessageReplyTo
 	Options     *MessageSendOptions
 	ReplyMarkup ReplyMarkup
+	ReplyTo     InputMessageReplyTo
+	TopicId     MessageTopic
 }
 
 // SendMessageAlbumOpts contains optional parameters for SendMessageAlbum
 type SendMessageAlbumOpts struct {
-	TopicId MessageTopic
-	ReplyTo InputMessageReplyTo
 	Options *MessageSendOptions
+	ReplyTo InputMessageReplyTo
+	TopicId MessageTopic
 }
 
 // SendPaymentFormOpts contains optional parameters for SendPaymentForm
@@ -396,8 +462,8 @@ type SetChatBackgroundOpts struct {
 
 // SetChatDraftMessageOpts contains optional parameters for SetChatDraftMessage
 type SetChatDraftMessageOpts struct {
-	TopicId      MessageTopic
 	DraftMessage *DraftMessage
+	TopicId      MessageTopic
 }
 
 // SetChatEmojiStatusOpts contains optional parameters for SetChatEmojiStatus
@@ -446,6 +512,13 @@ type SetOptionOpts struct {
 	Value OptionValue
 }
 
+// SetPasswordOpts contains optional parameters for SetPassword
+type SetPasswordOpts struct {
+	NewHint                 string
+	NewPassword             string
+	NewRecoveryEmailAddress string
+}
+
 // SetStickerMaskPositionOpts contains optional parameters for SetStickerMaskPosition
 type SetStickerMaskPositionOpts struct {
 	MaskPosition *MaskPosition
@@ -453,8 +526,8 @@ type SetStickerMaskPositionOpts struct {
 
 // SetStickerSetThumbnailOpts contains optional parameters for SetStickerSetThumbnail
 type SetStickerSetThumbnailOpts struct {
-	Thumbnail InputFile
 	Format    StickerFormat
+	Thumbnail InputFile
 }
 
 // SetStoryReactionOpts contains optional parameters for SetStoryReaction
@@ -470,6 +543,11 @@ type StopBusinessPollOpts struct {
 // StopPollOpts contains optional parameters for StopPoll
 type StopPollOpts struct {
 	ReplyMarkup ReplyMarkup
+}
+
+// SummarizeMessageOpts contains optional parameters for SummarizeMessage
+type SummarizeMessageOpts struct {
+	TranslateToLanguageCode string
 }
 
 // ValidateOrderInfoOpts contains optional parameters for ValidateOrderInfo

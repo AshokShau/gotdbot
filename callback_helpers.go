@@ -55,8 +55,8 @@ func (t *UpdateNewCallbackQuery) GetMessage(c *Client) (*Message, error) {
 }
 
 // Answer sends an answer to the callback query.
-func (t *UpdateNewCallbackQuery) Answer(c *Client, text string, showAlert bool, url string, cacheTime int32) error {
-	_, err := c.AnswerCallbackQuery(t.Id, text, showAlert, url, cacheTime)
+func (t *UpdateNewCallbackQuery) Answer(c *Client, cacheTime int32, showAlert bool, text string, url string) error {
+	err := c.AnswerCallbackQuery(cacheTime, t.Id, showAlert, text, url)
 	return err
 }
 

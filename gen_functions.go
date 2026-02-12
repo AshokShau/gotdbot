@@ -72,10 +72,10 @@ func (t *ActivateStoryStealthMode) MarshalJSON() ([]byte, error) {
 type AddBotMediaPreview struct {
 	// Identifier of the target bot. The bot must be owned and must have the main Web App
 	BotUserId int64 `json:"bot_user_id"`
-	// A two-letter ISO 639-1 language code for which preview is added. If empty, then the preview will be shown to all users for whose languages there are no dedicated previews.
-	LanguageCode string `json:"language_code"`
 	// Content of the added preview
 	Content InputStoryContent `json:"content"`
+	// A two-letter ISO 639-1 language code for which preview is added. If empty, then the preview will be shown to all users for whose languages there are no dedicated previews.
+	LanguageCode string `json:"language_code"`
 }
 
 func (t *AddBotMediaPreview) Type() string {
@@ -96,9 +96,9 @@ func (t *AddBotMediaPreview) MarshalJSON() ([]byte, error) {
 // AddChatFolderByInviteLink Adds a chat folder by an invite link @invite_link Invite link for the chat folder @chat_ids Identifiers of the chats added to the chat folder. The chats are automatically joined if they aren't joined yet
 type AddChatFolderByInviteLink struct {
 	//
-	InviteLink string `json:"invite_link"`
-	//
 	ChatIds []int64 `json:"chat_ids"`
+	//
+	InviteLink string `json:"invite_link"`
 }
 
 func (t *AddChatFolderByInviteLink) Type() string {
@@ -120,10 +120,10 @@ func (t *AddChatFolderByInviteLink) MarshalJSON() ([]byte, error) {
 type AddChatMember struct {
 	// Chat identifier
 	ChatId int64 `json:"chat_id"`
-	// Identifier of the user
-	UserId int64 `json:"user_id"`
 	// The number of earlier messages from the chat to be forwarded to the new member; up to 100. Ignored for supergroups and channels, or if the added user is a bot
 	ForwardLimit int32 `json:"forward_limit"`
+	// Identifier of the user
+	UserId int64 `json:"user_id"`
 }
 
 func (t *AddChatMember) Type() string {
@@ -214,12 +214,12 @@ func (t *AddChecklistTasks) MarshalJSON() ([]byte, error) {
 
 // AddContact Adds a user to the contact list or edits an existing contact by their user identifier
 type AddContact struct {
-	// Identifier of the user
-	UserId int64 `json:"user_id"`
 	// The contact to add or edit; phone number may be empty and needs to be specified only if known
-	Contact *ImportedContact `json:"contact"`
+	Contact *ImportedContact `json:"contact,omitempty"`
 	// Pass true to share the current user's phone number with the new contact. A corresponding rule to userPrivacySettingShowPhoneNumber will be added if needed.
 	SharePhoneNumber bool `json:"share_phone_number"`
+	// Identifier of the user
+	UserId int64 `json:"user_id"`
 }
 
 func (t *AddContact) Type() string {
@@ -281,10 +281,10 @@ func (t *AddFavoriteSticker) MarshalJSON() ([]byte, error) {
 
 // AddFileToDownloads Adds a file from a message to the list of file downloads. Download progress and completion of the download will be notified through updateFile updates.
 type AddFileToDownloads struct {
-	// Identifier of the file to download
-	FileId int32 `json:"file_id"`
 	// Chat identifier of the message with the file
 	ChatId int64 `json:"chat_id"`
+	// Identifier of the file to download
+	FileId int32 `json:"file_id"`
 	// Message identifier
 	MessageId int64 `json:"message_id"`
 	// Priority of the download (1-32). The higher the priority, the earlier the file will be downloaded. If the priorities of two files are equal, then the last one for which downloadFile/addFileToDownloads was called will be downloaded first
@@ -308,10 +308,10 @@ func (t *AddFileToDownloads) MarshalJSON() ([]byte, error) {
 
 // AddGiftCollectionGifts Adds gifts to the beginning of a previously created collection. If the collection is owned by a channel chat, then requires can_post_messages administrator right in the channel chat. Returns the changed collection
 type AddGiftCollectionGifts struct {
-	// Identifier of the user or the channel chat that owns the collection
-	OwnerId MessageSender `json:"owner_id"`
 	// Identifier of the gift collection
 	CollectionId int32 `json:"collection_id"`
+	// Identifier of the user or the channel chat that owns the collection
+	OwnerId MessageSender `json:"owner_id"`
 	// Identifier of the gifts to add to the collection; 1-getOption("gift_collection_size_max") identifiers.
 	ReceivedGiftIds []string `json:"received_gift_ids"`
 }
@@ -335,14 +335,14 @@ func (t *AddGiftCollectionGifts) MarshalJSON() ([]byte, error) {
 type AddLocalMessage struct {
 	// Target chat; channel direct messages chats aren't supported
 	ChatId int64 `json:"chat_id"`
-	// Identifier of the sender of the message
-	SenderId MessageSender `json:"sender_id"`
-	// Information about the message or story to be replied; pass null if none
-	ReplyTo InputMessageReplyTo `json:"reply_to,omitempty"`
 	// Pass true to disable notification for the message
 	DisableNotification bool `json:"disable_notification"`
 	// The content of the message to be added
 	InputMessageContent InputMessageContent `json:"input_message_content"`
+	// Information about the message or story to be replied; pass null if none
+	ReplyTo InputMessageReplyTo `json:"reply_to,omitempty"`
+	// Identifier of the sender of the message
+	SenderId MessageSender `json:"sender_id"`
 }
 
 func (t *AddLocalMessage) Type() string {
@@ -362,10 +362,10 @@ func (t *AddLocalMessage) MarshalJSON() ([]byte, error) {
 
 // AddLoginPasskey Adds a passkey allowed to be used for the login by the current user and returns the added passkey. Call getPasskeyParameters to get parameters for creating of the passkey
 type AddLoginPasskey struct {
-	// JSON-encoded client data
-	ClientData string `json:"client_data"`
 	// Passkey attestation object
 	AttestationObject []byte `json:"attestation_object"`
+	// JSON-encoded client data
+	ClientData string `json:"client_data"`
 }
 
 func (t *AddLoginPasskey) Type() string {
@@ -385,10 +385,10 @@ func (t *AddLoginPasskey) MarshalJSON() ([]byte, error) {
 
 // AddLogMessage Adds a message to TDLib internal log. Can be called synchronously
 type AddLogMessage struct {
-	// The minimum verbosity level needed for the message to be logged; 0-1023
-	VerbosityLevel int32 `json:"verbosity_level"`
 	// Text of a message to log
 	Text string `json:"text"`
+	// The minimum verbosity level needed for the message to be logged; 0-1023
+	VerbosityLevel int32 `json:"verbosity_level"`
 }
 
 func (t *AddLogMessage) Type() string {
@@ -410,12 +410,12 @@ func (t *AddLogMessage) MarshalJSON() ([]byte, error) {
 type AddMessageReaction struct {
 	// Identifier of the chat to which the message belongs
 	ChatId int64 `json:"chat_id"`
+	// Pass true if the reaction is added with a big animation
+	IsBig bool `json:"is_big"`
 	// Identifier of the message
 	MessageId int64 `json:"message_id"`
 	// Type of the reaction to add. Use addPendingPaidMessageReaction instead to add the paid reaction
 	ReactionType ReactionType `json:"reaction_type"`
-	// Pass true if the reaction is added with a big animation
-	IsBig bool `json:"is_big"`
 	// Pass true if the reaction needs to be added to recent reactions; tags are never added to the list of recent reactions
 	UpdateRecentReactions bool `json:"update_recent_reactions"`
 }
@@ -554,10 +554,10 @@ func (t *AddProfileAudio) MarshalJSON() ([]byte, error) {
 
 // AddProxy Adds a proxy server for network requests. Can be called before authorization
 type AddProxy struct {
-	// The proxy to add
-	Proxy *Proxy `json:"proxy"`
 	// Pass true to immediately enable the proxy
 	Enable bool `json:"enable"`
+	// The proxy to add
+	Proxy *Proxy `json:"proxy"`
 }
 
 func (t *AddProxy) Type() string {
@@ -577,16 +577,16 @@ func (t *AddProxy) MarshalJSON() ([]byte, error) {
 
 // AddQuickReplyShortcutInlineQueryResultMessage Adds a message to a quick reply shortcut via inline bot. If shortcut doesn't exist and there are less than getOption("quick_reply_shortcut_count_max") shortcuts, then a new shortcut is created.
 type AddQuickReplyShortcutInlineQueryResultMessage struct {
-	// Name of the target shortcut
-	ShortcutName string `json:"shortcut_name"`
-	// Identifier of a quick reply message in the same shortcut to be replied; pass 0 if none
-	ReplyToMessageId int64 `json:"reply_to_message_id"`
-	// Identifier of the inline query
-	QueryId int64 `json:"query_id,string"`
-	// Identifier of the inline query result
-	ResultId string `json:"result_id"`
 	// Pass true to hide the bot, via which the message is sent. Can be used only for bots getOption("animation_search_bot_username"), getOption("photo_search_bot_username"), and getOption("venue_search_bot_username")
 	HideViaBot bool `json:"hide_via_bot"`
+	// Identifier of the inline query
+	QueryId int64 `json:"query_id,string"`
+	// Identifier of a quick reply message in the same shortcut to be replied; pass 0 if none
+	ReplyToMessageId int64 `json:"reply_to_message_id"`
+	// Identifier of the inline query result
+	ResultId string `json:"result_id"`
+	// Name of the target shortcut
+	ShortcutName string `json:"shortcut_name"`
 }
 
 func (t *AddQuickReplyShortcutInlineQueryResultMessage) Type() string {
@@ -606,12 +606,12 @@ func (t *AddQuickReplyShortcutInlineQueryResultMessage) MarshalJSON() ([]byte, e
 
 // AddQuickReplyShortcutMessage Adds a message to a quick reply shortcut. If shortcut doesn't exist and there are less than getOption("quick_reply_shortcut_count_max") shortcuts, then a new shortcut is created.
 type AddQuickReplyShortcutMessage struct {
-	// Name of the target shortcut
-	ShortcutName string `json:"shortcut_name"`
-	// Identifier of a quick reply message in the same shortcut to be replied; pass 0 if none
-	ReplyToMessageId int64 `json:"reply_to_message_id"`
 	// The content of the message to be added; inputMessagePaidMedia, inputMessageForwarded and inputMessageLocation with live_period aren't supported
 	InputMessageContent InputMessageContent `json:"input_message_content"`
+	// Identifier of a quick reply message in the same shortcut to be replied; pass 0 if none
+	ReplyToMessageId int64 `json:"reply_to_message_id"`
+	// Name of the target shortcut
+	ShortcutName string `json:"shortcut_name"`
 }
 
 func (t *AddQuickReplyShortcutMessage) Type() string {
@@ -631,12 +631,12 @@ func (t *AddQuickReplyShortcutMessage) MarshalJSON() ([]byte, error) {
 
 // AddQuickReplyShortcutMessageAlbum Adds 2-10 messages grouped together into an album to a quick reply shortcut. Currently, only audio, document, photo and video messages can be grouped into an album.
 type AddQuickReplyShortcutMessageAlbum struct {
-	// Name of the target shortcut
-	ShortcutName string `json:"shortcut_name"`
-	// Identifier of a quick reply message in the same shortcut to be replied; pass 0 if none
-	ReplyToMessageId int64 `json:"reply_to_message_id"`
 	// Contents of messages to be sent. At most 10 messages can be added to an album. All messages must have the same value of show_caption_above_media
 	InputMessageContents []InputMessageContent `json:"input_message_contents"`
+	// Identifier of a quick reply message in the same shortcut to be replied; pass 0 if none
+	ReplyToMessageId int64 `json:"reply_to_message_id"`
+	// Name of the target shortcut
+	ShortcutName string `json:"shortcut_name"`
 }
 
 func (t *AddQuickReplyShortcutMessageAlbum) Type() string {
@@ -742,12 +742,12 @@ func (t *AddSavedNotificationSound) MarshalJSON() ([]byte, error) {
 
 // AddStickerToSet Adds a new sticker to a set
 type AddStickerToSet struct {
-	// Sticker set owner; ignored for regular users
-	UserId int64 `json:"user_id"`
 	// Sticker set name. The sticker set must be owned by the current user, and contain less than 200 stickers for custom emoji sticker sets and less than 120 otherwise
 	Name string `json:"name"`
 	// Sticker to add to the set
 	Sticker *InputSticker `json:"sticker"`
+	// Sticker set owner; ignored for regular users
+	UserId int64 `json:"user_id"`
 }
 
 func (t *AddStickerToSet) Type() string {
@@ -813,10 +813,10 @@ func (t *AllowBotToSendMessages) MarshalJSON() ([]byte, error) {
 
 // AllowUnpaidMessagesFromUser Allows the specified user to send unpaid private messages to the current user by adding a rule to userPrivacySettingAllowUnpaidMessages
 type AllowUnpaidMessagesFromUser struct {
-	// Identifier of the user
-	UserId int64 `json:"user_id"`
 	// Pass true to refund the user previously paid messages
 	RefundPayments bool `json:"refund_payments"`
+	// Identifier of the user
+	UserId int64 `json:"user_id"`
 }
 
 func (t *AllowUnpaidMessagesFromUser) Type() string {
@@ -836,16 +836,16 @@ func (t *AllowUnpaidMessagesFromUser) MarshalJSON() ([]byte, error) {
 
 // AnswerCallbackQuery Sets the result of a callback query; for bots only
 type AnswerCallbackQuery struct {
-	// Identifier of the callback query
-	CallbackQueryId int64 `json:"callback_query_id,string"`
-	// Text of the answer
-	Text string `json:"text"`
-	// Pass true to show an alert to the user instead of a toast notification
-	ShowAlert bool `json:"show_alert"`
-	// URL to be opened
-	Url string `json:"url"`
 	// Time during which the result of the query can be cached, in seconds
 	CacheTime int32 `json:"cache_time"`
+	// Identifier of the callback query
+	CallbackQueryId int64 `json:"callback_query_id,string"`
+	// Pass true to show an alert to the user instead of a toast notification
+	ShowAlert bool `json:"show_alert"`
+	// Text of the answer
+	Text string `json:"text"`
+	// URL to be opened
+	Url string `json:"url"`
 }
 
 func (t *AnswerCallbackQuery) Type() string {
@@ -888,18 +888,18 @@ func (t *AnswerCustomQuery) MarshalJSON() ([]byte, error) {
 
 // AnswerInlineQuery Sets the result of an inline query; for bots only
 type AnswerInlineQuery struct {
+	// Button to be shown above inline query results; pass null if none
+	Button *InlineQueryResultsButton `json:"button,omitempty"`
+	// Allowed time to cache the results of the query, in seconds
+	CacheTime int32 `json:"cache_time"`
 	// Identifier of the inline query
 	InlineQueryId int64 `json:"inline_query_id,string"`
 	// Pass true if results may be cached and returned only for the user who sent the query. By default, results may be returned to any user who sends the same query
 	IsPersonal bool `json:"is_personal"`
-	// Button to be shown above inline query results; pass null if none
-	Button *InlineQueryResultsButton `json:"button,omitempty"`
-	// The results of the query
-	Results []InputInlineQueryResult `json:"results"`
-	// Allowed time to cache the results of the query, in seconds
-	CacheTime int32 `json:"cache_time"`
 	// Offset for the next inline query; pass an empty string if there are no more results
 	NextOffset string `json:"next_offset"`
+	// The results of the query
+	Results []InputInlineQueryResult `json:"results"`
 }
 
 func (t *AnswerInlineQuery) Type() string {
@@ -920,9 +920,9 @@ func (t *AnswerInlineQuery) MarshalJSON() ([]byte, error) {
 // AnswerPreCheckoutQuery Sets the result of a pre-checkout query; for bots only @pre_checkout_query_id Identifier of the pre-checkout query @error_message An error message, empty on success
 type AnswerPreCheckoutQuery struct {
 	//
-	PreCheckoutQueryId int64 `json:"pre_checkout_query_id,string"`
-	//
 	ErrorMessage string `json:"error_message"`
+	//
+	PreCheckoutQueryId int64 `json:"pre_checkout_query_id,string"`
 }
 
 func (t *AnswerPreCheckoutQuery) Type() string {
@@ -943,11 +943,11 @@ func (t *AnswerPreCheckoutQuery) MarshalJSON() ([]byte, error) {
 // AnswerShippingQuery Sets the result of a shipping query; for bots only @shipping_query_id Identifier of the shipping query @shipping_options Available shipping options @error_message An error message, empty on success
 type AnswerShippingQuery struct {
 	//
-	ShippingQueryId int64 `json:"shipping_query_id,string"`
+	ErrorMessage string `json:"error_message"`
 	//
 	ShippingOptions []ShippingOption `json:"shipping_options"`
 	//
-	ErrorMessage string `json:"error_message"`
+	ShippingQueryId int64 `json:"shipping_query_id,string"`
 }
 
 func (t *AnswerShippingQuery) Type() string {
@@ -967,10 +967,10 @@ func (t *AnswerShippingQuery) MarshalJSON() ([]byte, error) {
 
 // AnswerWebAppQuery Sets the result of interaction with a Web App and sends corresponding message on behalf of the user to the chat from which the query originated; for bots only
 type AnswerWebAppQuery struct {
-	// Identifier of the Web App query
-	WebAppQueryId string `json:"web_app_query_id"`
 	// The result of the query
 	Result InputInlineQueryResult `json:"result"`
+	// Identifier of the Web App query
+	WebAppQueryId string `json:"web_app_query_id"`
 }
 
 func (t *AnswerWebAppQuery) Type() string {
@@ -1037,9 +1037,9 @@ func (t *ApproveSuggestedPost) MarshalJSON() ([]byte, error) {
 // AssignStoreTransaction Informs server about an in-store purchase. For official applications only @transaction Information about the transaction @purpose Transaction purpose
 type AssignStoreTransaction struct {
 	//
-	Transaction StoreTransaction `json:"transaction"`
-	//
 	Purpose StorePaymentPurpose `json:"purpose"`
+	//
+	Transaction StoreTransaction `json:"transaction"`
 }
 
 func (t *AssignStoreTransaction) Type() string {
@@ -1059,12 +1059,12 @@ func (t *AssignStoreTransaction) MarshalJSON() ([]byte, error) {
 
 // BanChatMember Bans a member in a chat; requires can_restrict_members administrator right. Members can't be banned in private or secret chats. In supergroups and channels, the user will not be able to return to the group on their own using invite links, etc., unless unbanned first
 type BanChatMember struct {
+	// Point in time (Unix timestamp) when the user will be unbanned; 0 if never. If the user is banned for more than 366 days or for less than 30 seconds from the current time, the user is considered to be banned forever. Ignored in basic groups and if a chat is banned
+	BannedUntilDate int32 `json:"banned_until_date"`
 	// Chat identifier
 	ChatId int64 `json:"chat_id"`
 	// Member identifier
 	MemberId MessageSender `json:"member_id"`
-	// Point in time (Unix timestamp) when the user will be unbanned; 0 if never. If the user is banned for more than 366 days or for less than 30 seconds from the current time, the user is considered to be banned forever. Ignored in basic groups and if a chat is banned
-	BannedUntilDate int32 `json:"banned_until_date"`
 	// Pass true to delete all messages in the chat for the user who is being removed. Always true for supergroups and channels
 	RevokeMessages bool `json:"revoke_messages"`
 }
@@ -1109,12 +1109,12 @@ func (t *BanGroupCallParticipants) MarshalJSON() ([]byte, error) {
 
 // BlockMessageSenderFromReplies Blocks an original sender of a message in the Replies chat
 type BlockMessageSenderFromReplies struct {
-	// The identifier of an incoming message in the Replies chat
-	MessageId int64 `json:"message_id"`
-	// Pass true to delete the message
-	DeleteMessage bool `json:"delete_message"`
 	// Pass true to delete all messages from the same sender
 	DeleteAllMessages bool `json:"delete_all_messages"`
+	// Pass true to delete the message
+	DeleteMessage bool `json:"delete_message"`
+	// The identifier of an incoming message in the Replies chat
+	MessageId int64 `json:"message_id"`
 	// Pass true to report the sender to the Telegram moderators
 	ReportSpam bool `json:"report_spam"`
 }
@@ -1350,10 +1350,10 @@ func (t *CanSendGift) MarshalJSON() ([]byte, error) {
 
 // CanSendMessageToUser Checks whether the current user can message another user or try to create a chat with them
 type CanSendMessageToUser struct {
-	// Identifier of the other user
-	UserId int64 `json:"user_id"`
 	// Pass true to get only locally available information without sending network requests
 	OnlyLocal bool `json:"only_local"`
+	// Identifier of the other user
+	UserId int64 `json:"user_id"`
 }
 
 func (t *CanSendMessageToUser) Type() string {
@@ -1414,11 +1414,11 @@ func (t *ChangeImportedContacts) MarshalJSON() ([]byte, error) {
 // ChangeStickerSet Installs/uninstalls or activates/archives a sticker set @set_id Identifier of the sticker set @is_installed The new value of is_installed @is_archived The new value of is_archived. A sticker set can't be installed and archived simultaneously
 type ChangeStickerSet struct {
 	//
-	SetId int64 `json:"set_id,string"`
+	IsArchived bool `json:"is_archived"`
 	//
 	IsInstalled bool `json:"is_installed"`
 	//
-	IsArchived bool `json:"is_archived"`
+	SetId int64 `json:"set_id,string"`
 }
 
 func (t *ChangeStickerSet) Type() string {
@@ -1501,12 +1501,12 @@ func (t *CheckAuthenticationEmailCode) MarshalJSON() ([]byte, error) {
 
 // CheckAuthenticationPasskey Checks a passkey to log in to the corresponding account. Call getAuthenticationPasskeyParameters to get parameters for the passkey. Works only when the current authorization state is
 type CheckAuthenticationPasskey struct {
-	// Base64url-encoded identifier of the credential
-	CredentialId string `json:"credential_id"`
-	// JSON-encoded client data
-	ClientData string `json:"client_data"`
 	// Authenticator data of the application that created the credential
 	AuthenticatorData []byte `json:"authenticator_data"`
+	// JSON-encoded client data
+	ClientData string `json:"client_data"`
+	// Base64url-encoded identifier of the credential
+	CredentialId string `json:"credential_id"`
 	// Cryptographic signature of the credential
 	Signature []byte `json:"signature"`
 	// User handle of the passkey
@@ -1572,10 +1572,10 @@ func (t *CheckAuthenticationPasswordRecoveryCode) MarshalJSON() ([]byte, error) 
 
 // CheckAuthenticationPremiumPurchase Checks whether an in-store purchase of Telegram Premium is possible before authorization. Works only when the current authorization state is authorizationStateWaitPremiumPurchase
 type CheckAuthenticationPremiumPurchase struct {
-	// ISO 4217 currency code of the payment currency
-	Currency string `json:"currency"`
 	// Paid amount, in the smallest units of the currency
 	Amount int64 `json:"amount"`
+	// ISO 4217 currency code of the payment currency
+	Currency string `json:"currency"`
 }
 
 func (t *CheckAuthenticationPremiumPurchase) Type() string {
@@ -2078,12 +2078,12 @@ func (t *ClickAnimatedEmojiMessage) MarshalJSON() ([]byte, error) {
 type ClickChatSponsoredMessage struct {
 	// Chat identifier of the sponsored message
 	ChatId int64 `json:"chat_id"`
-	// Identifier of the sponsored message
-	MessageId int64 `json:"message_id"`
-	// Pass true if the media was clicked in the sponsored message
-	IsMediaClick bool `json:"is_media_click"`
 	// Pass true if the user expanded the video from the sponsored message fullscreen before the click
 	FromFullscreen bool `json:"from_fullscreen"`
+	// Pass true if the media was clicked in the sponsored message
+	IsMediaClick bool `json:"is_media_click"`
+	// Identifier of the sponsored message
+	MessageId int64 `json:"message_id"`
 }
 
 func (t *ClickChatSponsoredMessage) Type() string {
@@ -2225,10 +2225,10 @@ func (t *CloseSecretChat) MarshalJSON() ([]byte, error) {
 
 // CloseStory Informs TDLib that a story is closed by the user
 type CloseStory struct {
-	// The identifier of the poster of the story to close
-	StoryPosterChatId int64 `json:"story_poster_chat_id"`
 	// The identifier of the story
 	StoryId int32 `json:"story_id"`
+	// The identifier of the poster of the story to close
+	StoryPosterChatId int64 `json:"story_poster_chat_id"`
 }
 
 func (t *CloseStory) Type() string {
@@ -2443,12 +2443,12 @@ func (t *CreateBusinessChatLink) MarshalJSON() ([]byte, error) {
 
 // CreateCall Creates a new call
 type CreateCall struct {
-	// Identifier of the user to be called
-	UserId int64 `json:"user_id"`
-	// The call protocols supported by the application
-	Protocol *CallProtocol `json:"protocol"`
 	// Pass true to create a video call
 	IsVideo bool `json:"is_video"`
+	// The call protocols supported by the application
+	Protocol *CallProtocol `json:"protocol"`
+	// Identifier of the user to be called
+	UserId int64 `json:"user_id"`
 }
 
 func (t *CreateCall) Type() string {
@@ -2491,10 +2491,10 @@ func (t *CreateChatFolder) MarshalJSON() ([]byte, error) {
 type CreateChatFolderInviteLink struct {
 	// Chat folder identifier
 	ChatFolderId int32 `json:"chat_folder_id"`
-	// Name of the link; 0-32 characters
-	Name string `json:"name"`
 	// Identifiers of chats to be accessible by the invite link. Use getChatsForChatFolderInviteLink to get suitable chats. Basic groups will be automatically converted to supergroups before link creation
 	ChatIds []int64 `json:"chat_ids"`
+	// Name of the link; 0-32 characters
+	Name string `json:"name"`
 }
 
 func (t *CreateChatFolderInviteLink) Type() string {
@@ -2516,14 +2516,14 @@ func (t *CreateChatFolderInviteLink) MarshalJSON() ([]byte, error) {
 type CreateChatInviteLink struct {
 	// Chat identifier
 	ChatId int64 `json:"chat_id"`
-	// Invite link name; 0-32 characters
-	Name string `json:"name"`
+	// Pass true if users joining the chat via the link need to be approved by chat administrators. In this case, member_limit must be 0
+	CreatesJoinRequest bool `json:"creates_join_request"`
 	// Point in time (Unix timestamp) when the link will expire; pass 0 if never
 	ExpirationDate int32 `json:"expiration_date"`
 	// The maximum number of chat members that can join the chat via the link simultaneously; 0-99999; pass 0 if not limited
 	MemberLimit int32 `json:"member_limit"`
-	// Pass true if users joining the chat via the link need to be approved by chat administrators. In this case, member_limit must be 0
-	CreatesJoinRequest bool `json:"creates_join_request"`
+	// Invite link name; 0-32 characters
+	Name string `json:"name"`
 }
 
 func (t *CreateChatInviteLink) Type() string {
@@ -2570,12 +2570,12 @@ func (t *CreateChatSubscriptionInviteLink) MarshalJSON() ([]byte, error) {
 type CreateForumTopic struct {
 	// Identifier of the chat
 	ChatId int64 `json:"chat_id"`
-	// Name of the topic; 1-128 characters
-	Name string `json:"name"`
-	// Pass true if the name of the topic wasn't entered explicitly; for chats with bots only
-	IsNameImplicit bool `json:"is_name_implicit"`
 	// Icon of the topic. Icon color must be one of 0x6FB9F0, 0xFFD67E, 0xCB86DB, 0x8EEE98, 0xFF93B2, or 0xFB6F5F. Telegram Premium users can use any custom emoji as topic icon, other users can use only a custom emoji returned by getForumTopicDefaultIcons
 	Icon *ForumTopicIcon `json:"icon"`
+	// Pass true if the name of the topic wasn't entered explicitly; for chats with bots only
+	IsNameImplicit bool `json:"is_name_implicit"`
+	// Name of the topic; 1-128 characters
+	Name string `json:"name"`
 }
 
 func (t *CreateForumTopic) Type() string {
@@ -2595,10 +2595,10 @@ func (t *CreateForumTopic) MarshalJSON() ([]byte, error) {
 
 // CreateGiftCollection Creates a collection from gifts on the current user's or a channel's profile page; requires can_post_messages administrator right in the channel chat.
 type CreateGiftCollection struct {
-	// Identifier of the user or the channel chat that received the gifts
-	OwnerId MessageSender `json:"owner_id"`
 	// Name of the collection; 1-12 characters
 	Name string `json:"name"`
+	// Identifier of the user or the channel chat that received the gifts
+	OwnerId MessageSender `json:"owner_id"`
 	// Identifier of the gifts to add to the collection; 0-getOption("gift_collection_size_max") identifiers
 	ReceivedGiftIds []string `json:"received_gift_ids"`
 }
@@ -2664,12 +2664,12 @@ func (t *CreateInvoiceLink) MarshalJSON() ([]byte, error) {
 
 // CreateNewBasicGroupChat Creates a new basic group and sends a corresponding messageBasicGroupChatCreate. Returns information about the newly created chat
 type CreateNewBasicGroupChat struct {
-	// Identifiers of users to be added to the basic group; may be empty to create a basic group without other members
-	UserIds []int64 `json:"user_ids"`
-	// Title of the new basic group; 1-128 characters
-	Title string `json:"title"`
 	// Message auto-delete time value, in seconds; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
 	MessageAutoDeleteTime int32 `json:"message_auto_delete_time"`
+	// Title of the new basic group; 1-128 characters
+	Title string `json:"title"`
+	// Identifiers of users to be added to the basic group; may be empty to create a basic group without other members
+	UserIds []int64 `json:"user_ids,omitempty"`
 }
 
 func (t *CreateNewBasicGroupChat) Type() string {
@@ -2710,20 +2710,20 @@ func (t *CreateNewSecretChat) MarshalJSON() ([]byte, error) {
 
 // CreateNewStickerSet Creates a new sticker set. Returns the newly created sticker set
 type CreateNewStickerSet struct {
-	// Sticker set owner; ignored for regular users
-	UserId int64 `json:"user_id"`
-	// Sticker set title; 1-64 characters
-	Title string `json:"title"`
 	// Sticker set name. Can contain only English letters, digits and underscores. Must end with *"_by_<bot username>"* (*<bot_username>* is case insensitive) for bots; 0-64 characters.
 	Name string `json:"name"`
-	// Type of the stickers in the set
-	StickerType StickerType `json:"sticker_type"`
 	// Pass true if stickers in the sticker set must be repainted; for custom emoji sticker sets only
 	NeedsRepainting bool `json:"needs_repainting"`
+	// Source of the sticker set; may be empty if unknown
+	Source string `json:"source,omitempty"`
+	// Type of the stickers in the set
+	StickerType StickerType `json:"sticker_type"`
 	// List of stickers to be added to the set; 1-200 stickers for custom emoji sticker sets, and 1-120 stickers otherwise. For TGS stickers, uploadStickerFile must be used before the sticker is shown
 	Stickers []InputSticker `json:"stickers"`
-	// Source of the sticker set; may be empty if unknown
-	Source string `json:"source"`
+	// Sticker set title; 1-64 characters
+	Title string `json:"title"`
+	// Sticker set owner; ignored for regular users
+	UserId int64 `json:"user_id"`
 }
 
 func (t *CreateNewStickerSet) Type() string {
@@ -2743,20 +2743,20 @@ func (t *CreateNewStickerSet) MarshalJSON() ([]byte, error) {
 
 // CreateNewSupergroupChat Creates a new supergroup or channel and sends a corresponding messageSupergroupChatCreate. Returns the newly created chat
 type CreateNewSupergroupChat struct {
-	// Title of the new chat; 1-128 characters
-	Title string `json:"title"`
-	// Pass true to create a forum supergroup chat
-	IsForum bool `json:"is_forum"`
+	// Chat description; 0-255 characters
+	Description string `json:"description"`
+	// Pass true to create a supergroup for importing messages using importMessages
+	ForImport bool `json:"for_import"`
 	// Pass true to create a channel chat; ignored if a forum is created
 	IsChannel bool `json:"is_channel"`
-	//
-	Description string `json:"description"`
+	// Pass true to create a forum supergroup chat
+	IsForum bool `json:"is_forum"`
 	// Chat location if a location-based supergroup is being created; pass null to create an ordinary supergroup chat
 	Location *ChatLocation `json:"location,omitempty"`
 	// Message auto-delete time value, in seconds; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
 	MessageAutoDeleteTime int32 `json:"message_auto_delete_time"`
-	// Pass true to create a supergroup for importing messages using importMessages
-	ForImport bool `json:"for_import"`
+	// Title of the new chat; 1-128 characters
+	Title string `json:"title"`
 }
 
 func (t *CreateNewSupergroupChat) Type() string {
@@ -2777,9 +2777,9 @@ func (t *CreateNewSupergroupChat) MarshalJSON() ([]byte, error) {
 // CreatePrivateChat Returns an existing chat corresponding to a given user @user_id User identifier @force Pass true to create the chat without a network request. In this case all information about the chat except its type, title and photo can be incorrect
 type CreatePrivateChat struct {
 	//
-	UserId int64 `json:"user_id"`
-	//
 	Force bool `json:"force"`
+	//
+	UserId int64 `json:"user_id"`
 }
 
 func (t *CreatePrivateChat) Type() string {
@@ -2820,12 +2820,12 @@ func (t *CreateSecretChat) MarshalJSON() ([]byte, error) {
 
 // CreateStoryAlbum Creates an album of stories; requires can_edit_stories administrator right for supergroup and channel chats
 type CreateStoryAlbum struct {
-	// Identifier of the chat that posted the stories
-	StoryPosterChatId int64 `json:"story_poster_chat_id"`
 	// Name of the album; 1-12 characters
 	Name string `json:"name"`
 	// Identifiers of stories to add to the album; 0-getOption("story_album_size_max") identifiers
 	StoryIds []int32 `json:"story_ids"`
+	// Identifier of the chat that posted the stories
+	StoryPosterChatId int64 `json:"story_poster_chat_id"`
 }
 
 func (t *CreateStoryAlbum) Type() string {
@@ -2846,9 +2846,9 @@ func (t *CreateStoryAlbum) MarshalJSON() ([]byte, error) {
 // CreateSupergroupChat Returns an existing chat corresponding to a known supergroup or channel @supergroup_id Supergroup or channel identifier @force Pass true to create the chat without a network request. In this case all information about the chat except its type, title and photo can be incorrect
 type CreateSupergroupChat struct {
 	//
-	SupergroupId int64 `json:"supergroup_id"`
-	//
 	Force bool `json:"force"`
+	//
+	SupergroupId int64 `json:"supergroup_id"`
 }
 
 func (t *CreateSupergroupChat) Type() string {
@@ -2893,12 +2893,12 @@ func (t *CreateTemporaryPassword) MarshalJSON() ([]byte, error) {
 type CreateVideoChat struct {
 	// Identifier of a chat in which the video chat will be created
 	ChatId int64 `json:"chat_id"`
-	// Group call title; if empty, chat title will be used
-	Title string `json:"title"`
-	// Point in time (Unix timestamp) when the group call is expected to be started by an administrator; 0 to start the video chat immediately. The date must be at least 10 seconds and at most 8 days in the future
-	StartDate int32 `json:"start_date"`
 	// Pass true to create an RTMP stream instead of an ordinary video chat
 	IsRtmpStream bool `json:"is_rtmp_stream"`
+	// Point in time (Unix timestamp) when the group call is expected to be started by an administrator; 0 to start the video chat immediately. The date must be at least 10 seconds and at most 8 days in the future
+	StartDate int32 `json:"start_date"`
+	// Group call title; if empty, chat title will be used
+	Title string `json:"title"`
 }
 
 func (t *CreateVideoChat) Type() string {
@@ -2943,10 +2943,10 @@ func (t *DeclineGroupCallInvitation) MarshalJSON() ([]byte, error) {
 type DeclineSuggestedPost struct {
 	// Chat identifier of the channel direct messages chat
 	ChatId int64 `json:"chat_id"`
-	// Identifier of the message with the suggested post. Use messageProperties.can_be_declined to check whether the suggested post can be declined
-	MessageId int64 `json:"message_id"`
 	// Comment for the creator of the suggested post; 0-128 characters
 	Comment string `json:"comment"`
+	// Identifier of the message with the suggested post. Use messageProperties.can_be_declined to check whether the suggested post can be declined
+	MessageId int64 `json:"message_id"`
 }
 
 func (t *DeclineSuggestedPost) Type() string {
@@ -2966,14 +2966,14 @@ func (t *DeclineSuggestedPost) MarshalJSON() ([]byte, error) {
 
 // DecryptGroupCallData Decrypts group call data received by tgcalls
 type DecryptGroupCallData struct {
+	// Data to decrypt
+	Data []byte `json:"data"`
+	// Data channel for which data was encrypted; pass null if unknown
+	DataChannel GroupCallDataChannel `json:"data_channel,omitempty"`
 	// Group call identifier. The call must not be a video chat
 	GroupCallId int32 `json:"group_call_id"`
 	// Identifier of the group call participant, which sent the data
 	ParticipantId MessageSender `json:"participant_id"`
-	// Data channel for which data was encrypted; pass null if unknown
-	DataChannel GroupCallDataChannel `json:"data_channel,omitempty"`
-	// Data to decrypt
-	Data []byte `json:"data"`
 }
 
 func (t *DecryptGroupCallData) Type() string {
@@ -2993,10 +2993,10 @@ func (t *DecryptGroupCallData) MarshalJSON() ([]byte, error) {
 
 // DeleteAccount Deletes the account of the current user, deleting all information associated with the user from the server. The phone number of the account can be used to create a new account.
 type DeleteAccount struct {
-	// The reason why the account was deleted; optional
-	Reason string `json:"reason"`
 	// The 2-step verification password of the current user. If the current user isn't authorized, then an empty string can be passed and account deletion can be canceled within one week
 	Password string `json:"password"`
+	// The reason why the account was deleted; optional
+	Reason string `json:"reason"`
 }
 
 func (t *DeleteAccount) Type() string {
@@ -3062,10 +3062,10 @@ func (t *DeleteAllRevokedChatInviteLinks) MarshalJSON() ([]byte, error) {
 type DeleteBotMediaPreviews struct {
 	// Identifier of the target bot. The bot must be owned and must have the main Web App
 	BotUserId int64 `json:"bot_user_id"`
-	// Language code of the media previews to delete
-	LanguageCode string `json:"language_code"`
 	// File identifiers of the media to delete
 	FileIds []int32 `json:"file_ids"`
+	// Language code of the media previews to delete
+	LanguageCode string `json:"language_code"`
 }
 
 func (t *DeleteBotMediaPreviews) Type() string {
@@ -3290,10 +3290,10 @@ func (t *DeleteChatHistory) MarshalJSON() ([]byte, error) {
 type DeleteChatMessagesByDate struct {
 	// Chat identifier
 	ChatId int64 `json:"chat_id"`
-	// The minimum date of the messages to delete
-	MinDate int32 `json:"min_date"`
 	// The maximum date of the messages to delete
 	MaxDate int32 `json:"max_date"`
+	// The minimum date of the messages to delete
+	MinDate int32 `json:"min_date"`
 	// Pass true to delete chat messages for all users; private chats only
 	Revoke bool `json:"revoke"`
 }
@@ -3361,10 +3361,10 @@ func (t *DeleteChatReplyMarkup) MarshalJSON() ([]byte, error) {
 
 // DeleteCommands Deletes commands supported by the bot for the given user scope and language; for bots only
 type DeleteCommands struct {
-	// The scope to which the commands are relevant; pass null to delete commands in the default bot command scope
-	Scope BotCommandScope `json:"scope,omitempty"`
 	// A two-letter ISO 639-1 language code or an empty string
 	LanguageCode string `json:"language_code"`
+	// The scope to which the commands are relevant; pass null to delete commands in the default bot command scope
+	Scope BotCommandScope `json:"scope,omitempty"`
 }
 
 func (t *DeleteCommands) Type() string {
@@ -3430,12 +3430,12 @@ func (t *DeleteDirectMessagesChatTopicHistory) MarshalJSON() ([]byte, error) {
 type DeleteDirectMessagesChatTopicMessagesByDate struct {
 	// Chat identifier of the channel direct messages chat
 	ChatId int64 `json:"chat_id"`
-	// Identifier of the topic which messages will be deleted
-	TopicId int64 `json:"topic_id"`
-	// The minimum date of the messages to delete
-	MinDate int32 `json:"min_date"`
 	// The maximum date of the messages to delete
 	MaxDate int32 `json:"max_date"`
+	// The minimum date of the messages to delete
+	MinDate int32 `json:"min_date"`
+	// Identifier of the topic which messages will be deleted
+	TopicId int64 `json:"topic_id"`
 }
 
 func (t *DeleteDirectMessagesChatTopicMessagesByDate) Type() string {
@@ -3499,10 +3499,10 @@ func (t *DeleteForumTopic) MarshalJSON() ([]byte, error) {
 
 // DeleteGiftCollection Deletes a gift collection. If the collection is owned by a channel chat, then requires can_post_messages administrator right in the channel chat
 type DeleteGiftCollection struct {
-	// Identifier of the user or the channel chat that owns the collection
-	OwnerId MessageSender `json:"owner_id"`
 	// Identifier of the gift collection
 	CollectionId int32 `json:"collection_id"`
+	// Identifier of the user or the channel chat that owns the collection
+	OwnerId MessageSender `json:"owner_id"`
 }
 
 func (t *DeleteGiftCollection) Type() string {
@@ -3549,10 +3549,10 @@ func (t *DeleteGroupCallMessages) MarshalJSON() ([]byte, error) {
 type DeleteGroupCallMessagesBySender struct {
 	// Group call identifier
 	GroupCallId int32 `json:"group_call_id"`
-	// Identifier of the sender of messages to delete
-	SenderId MessageSender `json:"sender_id"`
 	// Pass true to report the messages as spam
 	ReportSpam bool `json:"report_spam"`
+	// Identifier of the sender of messages to delete
+	SenderId MessageSender `json:"sender_id"`
 }
 
 func (t *DeleteGroupCallMessagesBySender) Type() string {
@@ -3681,10 +3681,10 @@ func (t *DeleteQuickReplyShortcut) MarshalJSON() ([]byte, error) {
 
 // DeleteQuickReplyShortcutMessages Deletes specified quick reply messages
 type DeleteQuickReplyShortcutMessages struct {
-	// Unique identifier of the quick reply shortcut to which the messages belong
-	ShortcutId int32 `json:"shortcut_id"`
 	// Unique identifiers of the messages
 	MessageIds []int64 `json:"message_ids"`
+	// Unique identifier of the quick reply shortcut to which the messages belong
+	ShortcutId int32 `json:"shortcut_id"`
 }
 
 func (t *DeleteQuickReplyShortcutMessages) Type() string {
@@ -3767,12 +3767,12 @@ func (t *DeleteSavedMessagesTopicHistory) MarshalJSON() ([]byte, error) {
 
 // DeleteSavedMessagesTopicMessagesByDate Deletes all messages between the specified dates in a Saved Messages topic. Messages sent in the last 30 seconds will not be deleted
 type DeleteSavedMessagesTopicMessagesByDate struct {
-	// Identifier of Saved Messages topic which messages will be deleted
-	SavedMessagesTopicId int64 `json:"saved_messages_topic_id"`
-	// The minimum date of the messages to delete
-	MinDate int32 `json:"min_date"`
 	// The maximum date of the messages to delete
 	MaxDate int32 `json:"max_date"`
+	// The minimum date of the messages to delete
+	MinDate int32 `json:"min_date"`
+	// Identifier of Saved Messages topic which messages will be deleted
+	SavedMessagesTopicId int64 `json:"saved_messages_topic_id"`
 }
 
 func (t *DeleteSavedMessagesTopicMessagesByDate) Type() string {
@@ -3832,10 +3832,10 @@ func (t *DeleteStickerSet) MarshalJSON() ([]byte, error) {
 
 // DeleteStory Deletes a previously posted story. Can be called only if story.can_be_deleted == true
 type DeleteStory struct {
-	// Identifier of the chat that posted the story
-	StoryPosterChatId int64 `json:"story_poster_chat_id"`
 	// Identifier of the story to delete
 	StoryId int32 `json:"story_id"`
+	// Identifier of the chat that posted the story
+	StoryPosterChatId int64 `json:"story_poster_chat_id"`
 }
 
 func (t *DeleteStory) Type() string {
@@ -3939,16 +3939,16 @@ func (t *DisableProxy) MarshalJSON() ([]byte, error) {
 type DiscardCall struct {
 	// Call identifier
 	CallId int32 `json:"call_id"`
-	// Pass true if the user was disconnected
-	IsDisconnected bool `json:"is_disconnected"`
-	// If the call was upgraded to a group call, pass invite link to the group call
-	InviteLink string `json:"invite_link"`
-	// The call duration, in seconds
-	Duration int32 `json:"duration"`
-	// Pass true if the call was a video call
-	IsVideo bool `json:"is_video"`
 	// Identifier of the connection used during the call
 	ConnectionId int64 `json:"connection_id,string"`
+	// The call duration, in seconds
+	Duration int32 `json:"duration"`
+	// If the call was upgraded to a group call, pass invite link to the group call
+	InviteLink string `json:"invite_link"`
+	// Pass true if the user was disconnected
+	IsDisconnected bool `json:"is_disconnected"`
+	// Pass true if the call was a video call
+	IsVideo bool `json:"is_video"`
 }
 
 func (t *DiscardCall) Type() string {
@@ -4033,12 +4033,12 @@ func (t *DisconnectWebsite) MarshalJSON() ([]byte, error) {
 type DownloadFile struct {
 	// Identifier of the file to download
 	FileId int32 `json:"file_id"`
-	// Priority of the download (1-32). The higher the priority, the earlier the file will be downloaded. If the priorities of two files are equal, then the last one for which downloadFile/addFileToDownloads was called will be downloaded first
-	Priority int32 `json:"priority"`
-	// The starting position from which the file needs to be downloaded
-	Offset int64 `json:"offset"`
 	// Number of bytes which need to be downloaded starting from the "offset" position before the download will automatically be canceled; use 0 to download without a limit
 	Limit int64 `json:"limit"`
+	// The starting position from which the file needs to be downloaded
+	Offset int64 `json:"offset"`
+	// Priority of the download (1-32). The higher the priority, the earlier the file will be downloaded. If the priorities of two files are equal, then the last one for which downloadFile/addFileToDownloads was called will be downloaded first
+	Priority int32 `json:"priority"`
 	// Pass true to return response only after the file download has succeeded, has failed, has been canceled, or a new downloadFile request with different offset/limit parameters was sent; pass false to return file state immediately, just after the download has been started
 	Synchronous bool `json:"synchronous"`
 }
@@ -4085,12 +4085,12 @@ func (t *DropGiftOriginalDetails) MarshalJSON() ([]byte, error) {
 type EditBotMediaPreview struct {
 	// Identifier of the target bot. The bot must be owned and must have the main Web App
 	BotUserId int64 `json:"bot_user_id"`
-	// Language code of the media preview to edit
-	LanguageCode string `json:"language_code"`
-	// File identifier of the media to replace
-	FileId int32 `json:"file_id"`
 	// Content of the new preview
 	Content InputStoryContent `json:"content"`
+	// File identifier of the media to replace
+	FileId int32 `json:"file_id"`
+	// Language code of the media preview to edit
+	LanguageCode string `json:"language_code"`
 }
 
 func (t *EditBotMediaPreview) Type() string {
@@ -4135,14 +4135,14 @@ func (t *EditBusinessChatLink) MarshalJSON() ([]byte, error) {
 type EditBusinessMessageCaption struct {
 	// Unique identifier of business connection on behalf of which the message was sent
 	BusinessConnectionId string `json:"business_connection_id"`
+	// New message content caption; pass null to remove caption; 0-getOption("message_caption_length_max") characters
+	Caption *FormattedText `json:"caption,omitempty"`
 	// The chat the message belongs to
 	ChatId int64 `json:"chat_id"`
 	// Identifier of the message
 	MessageId int64 `json:"message_id"`
 	// The new message reply markup; pass null if none
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
-	// New message content caption; pass null to remove caption; 0-getOption("message_caption_length_max") characters
-	Caption *FormattedText `json:"caption,omitempty"`
 	// Pass true to show the caption above the media; otherwise, the caption will be shown below the media. May be true only for animation, photo, and video messages
 	ShowCaptionAboveMedia bool `json:"show_caption_above_media"`
 }
@@ -4168,12 +4168,12 @@ type EditBusinessMessageChecklist struct {
 	BusinessConnectionId string `json:"business_connection_id"`
 	// The chat the message belongs to
 	ChatId int64 `json:"chat_id"`
+	// The new checklist. If some tasks were completed, this information will be kept
+	Checklist *InputChecklist `json:"checklist"`
 	// Identifier of the message
 	MessageId int64 `json:"message_id"`
 	// The new message reply markup; pass null if none
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
-	// The new checklist. If some tasks were completed, this information will be kept
-	Checklist *InputChecklist `json:"checklist"`
 }
 
 func (t *EditBusinessMessageChecklist) Type() string {
@@ -4197,18 +4197,18 @@ type EditBusinessMessageLiveLocation struct {
 	BusinessConnectionId string `json:"business_connection_id"`
 	// The chat the message belongs to
 	ChatId int64 `json:"chat_id"`
-	// Identifier of the message
-	MessageId int64 `json:"message_id"`
-	// The new message reply markup; pass null if none
-	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
-	// New location content of the message; pass null to stop sharing the live location
-	Location *Location `json:"location,omitempty"`
-	// New time relative to the message send date, for which the location can be updated, in seconds. If 0x7FFFFFFF specified, then the location can be updated forever.
-	LivePeriod int32 `json:"live_period"`
 	// The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
 	Heading int32 `json:"heading"`
+	// New time relative to the message send date, for which the location can be updated, in seconds. If 0x7FFFFFFF specified, then the location can be updated forever.
+	LivePeriod int32 `json:"live_period"`
+	// New location content of the message; pass null to stop sharing the live location
+	Location *Location `json:"location,omitempty"`
+	// Identifier of the message
+	MessageId int64 `json:"message_id"`
 	// The new maximum distance for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled
 	ProximityAlertRadius int32 `json:"proximity_alert_radius"`
+	// The new message reply markup; pass null if none
+	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
 }
 
 func (t *EditBusinessMessageLiveLocation) Type() string {
@@ -4232,12 +4232,12 @@ type EditBusinessMessageMedia struct {
 	BusinessConnectionId string `json:"business_connection_id"`
 	// The chat the message belongs to
 	ChatId int64 `json:"chat_id"`
+	// New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo
+	InputMessageContent InputMessageContent `json:"input_message_content"`
 	// Identifier of the message
 	MessageId int64 `json:"message_id"`
 	// The new message reply markup; pass null if none; for bots only
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
-	// New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo
-	InputMessageContent InputMessageContent `json:"input_message_content"`
 }
 
 func (t *EditBusinessMessageMedia) Type() string {
@@ -4288,12 +4288,12 @@ type EditBusinessMessageText struct {
 	BusinessConnectionId string `json:"business_connection_id"`
 	// The chat the message belongs to
 	ChatId int64 `json:"chat_id"`
+	// New text content of the message. Must be of type inputMessageText
+	InputMessageContent InputMessageContent `json:"input_message_content"`
 	// Identifier of the message
 	MessageId int64 `json:"message_id"`
 	// The new message reply markup; pass null if none
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
-	// New text content of the message. Must be of type inputMessageText
-	InputMessageContent InputMessageContent `json:"input_message_content"`
 }
 
 func (t *EditBusinessMessageText) Type() string {
@@ -4313,18 +4313,18 @@ func (t *EditBusinessMessageText) MarshalJSON() ([]byte, error) {
 
 // EditBusinessStory Changes a story posted by the bot on behalf of a business account; for bots only
 type EditBusinessStory struct {
-	// Identifier of the chat that posted the story
-	StoryPosterChatId int64 `json:"story_poster_chat_id"`
-	// Identifier of the story to edit
-	StoryId int32 `json:"story_id"`
-	// New content of the story
-	Content InputStoryContent `json:"content"`
 	// New clickable rectangle areas to be shown on the story media
 	Areas *InputStoryAreas `json:"areas"`
 	// New story caption
 	Caption *FormattedText `json:"caption"`
+	// New content of the story
+	Content InputStoryContent `json:"content"`
 	// The new privacy settings for the story
 	PrivacySettings StoryPrivacySettings `json:"privacy_settings"`
+	// Identifier of the story to edit
+	StoryId int32 `json:"story_id"`
+	// Identifier of the chat that posted the story
+	StoryPosterChatId int64 `json:"story_poster_chat_id"`
 }
 
 func (t *EditBusinessStory) Type() string {
@@ -4369,12 +4369,12 @@ func (t *EditChatFolder) MarshalJSON() ([]byte, error) {
 type EditChatFolderInviteLink struct {
 	// Chat folder identifier
 	ChatFolderId int32 `json:"chat_folder_id"`
+	// New identifiers of chats to be accessible by the invite link. Use getChatsForChatFolderInviteLink to get suitable chats. Basic groups will be automatically converted to supergroups before link editing
+	ChatIds []int64 `json:"chat_ids"`
 	// Invite link to be edited
 	InviteLink string `json:"invite_link"`
 	// New name of the link; 0-32 characters
 	Name string `json:"name"`
-	// New identifiers of chats to be accessible by the invite link. Use getChatsForChatFolderInviteLink to get suitable chats. Basic groups will be automatically converted to supergroups before link editing
-	ChatIds []int64 `json:"chat_ids"`
 }
 
 func (t *EditChatFolderInviteLink) Type() string {
@@ -4396,16 +4396,16 @@ func (t *EditChatFolderInviteLink) MarshalJSON() ([]byte, error) {
 type EditChatInviteLink struct {
 	// Chat identifier
 	ChatId int64 `json:"chat_id"`
-	// Invite link to be edited
-	InviteLink string `json:"invite_link"`
-	// Invite link name; 0-32 characters
-	Name string `json:"name"`
-	// Point in time (Unix timestamp) when the link will expire; pass 0 if never
-	ExpirationDate int32 `json:"expiration_date"`
-	// The maximum number of chat members that can join the chat via the link simultaneously; 0-99999; pass 0 if not limited
-	MemberLimit int32 `json:"member_limit"`
 	// Pass true if users joining the chat via the link need to be approved by chat administrators. In this case, member_limit must be 0
 	CreatesJoinRequest bool `json:"creates_join_request"`
+	// Point in time (Unix timestamp) when the link will expire; pass 0 if never
+	ExpirationDate int32 `json:"expiration_date"`
+	// Invite link to be edited
+	InviteLink string `json:"invite_link"`
+	// The maximum number of chat members that can join the chat via the link simultaneously; 0-99999; pass 0 if not limited
+	MemberLimit int32 `json:"member_limit"`
+	// Invite link name; 0-32 characters
+	Name string `json:"name"`
 }
 
 func (t *EditChatInviteLink) Type() string {
@@ -4473,14 +4473,14 @@ func (t *EditCustomLanguagePackInfo) MarshalJSON() ([]byte, error) {
 type EditForumTopic struct {
 	// Identifier of the chat
 	ChatId int64 `json:"chat_id"`
-	// Forum topic identifier
-	ForumTopicId int32 `json:"forum_topic_id"`
-	// New name of the topic; 0-128 characters. If empty, the previous topic name is kept
-	Name string `json:"name"`
 	// Pass true to edit the icon of the topic. Icon of the General topic can't be edited
 	EditIconCustomEmoji bool `json:"edit_icon_custom_emoji"`
+	// Forum topic identifier
+	ForumTopicId int32 `json:"forum_topic_id"`
 	// Identifier of the new custom emoji for topic icon; pass 0 to remove the custom emoji. Ignored if edit_icon_custom_emoji is false. Telegram Premium users can use any custom emoji, other users can use only a custom emoji returned by getForumTopicDefaultIcons
 	IconCustomEmojiId int64 `json:"icon_custom_emoji_id,string"`
+	// New name of the topic; 0-128 characters. If empty, the previous topic name is kept
+	Name string `json:"name"`
 }
 
 func (t *EditForumTopic) Type() string {
@@ -4500,12 +4500,12 @@ func (t *EditForumTopic) MarshalJSON() ([]byte, error) {
 
 // EditInlineMessageCaption Edits the caption of an inline message sent via a bot; for bots only
 type EditInlineMessageCaption struct {
+	// New message content caption; pass null to remove caption; 0-getOption("message_caption_length_max") characters
+	Caption *FormattedText `json:"caption,omitempty"`
 	// Inline message identifier
 	InlineMessageId string `json:"inline_message_id"`
 	// The new message reply markup; pass null if none
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
-	// New message content caption; pass null to remove caption; 0-getOption("message_caption_length_max") characters
-	Caption *FormattedText `json:"caption,omitempty"`
 	// Pass true to show the caption above the media; otherwise, the caption will be shown below the media. May be true only for animation, photo, and video messages
 	ShowCaptionAboveMedia bool `json:"show_caption_above_media"`
 }
@@ -4527,18 +4527,18 @@ func (t *EditInlineMessageCaption) MarshalJSON() ([]byte, error) {
 
 // EditInlineMessageLiveLocation Edits the content of a live location in an inline message sent via a bot; for bots only
 type EditInlineMessageLiveLocation struct {
-	// Inline message identifier
-	InlineMessageId string `json:"inline_message_id"`
-	// The new message reply markup; pass null if none
-	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
-	// New location content of the message; pass null to stop sharing the live location
-	Location *Location `json:"location,omitempty"`
-	// New time relative to the message send date, for which the location can be updated, in seconds. If 0x7FFFFFFF specified, then the location can be updated forever.
-	LivePeriod int32 `json:"live_period"`
 	// The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
 	Heading int32 `json:"heading"`
+	// Inline message identifier
+	InlineMessageId string `json:"inline_message_id"`
+	// New time relative to the message send date, for which the location can be updated, in seconds. If 0x7FFFFFFF specified, then the location can be updated forever.
+	LivePeriod int32 `json:"live_period"`
+	// New location content of the message; pass null to stop sharing the live location
+	Location *Location `json:"location,omitempty"`
 	// The new maximum distance for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled
 	ProximityAlertRadius int32 `json:"proximity_alert_radius"`
+	// The new message reply markup; pass null if none
+	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
 }
 
 func (t *EditInlineMessageLiveLocation) Type() string {
@@ -4560,10 +4560,10 @@ func (t *EditInlineMessageLiveLocation) MarshalJSON() ([]byte, error) {
 type EditInlineMessageMedia struct {
 	// Inline message identifier
 	InlineMessageId string `json:"inline_message_id"`
-	// The new message reply markup; pass null if none; for bots only
-	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
 	// New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo
 	InputMessageContent InputMessageContent `json:"input_message_content"`
+	// The new message reply markup; pass null if none; for bots only
+	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
 }
 
 func (t *EditInlineMessageMedia) Type() string {
@@ -4608,10 +4608,10 @@ func (t *EditInlineMessageReplyMarkup) MarshalJSON() ([]byte, error) {
 type EditInlineMessageText struct {
 	// Inline message identifier
 	InlineMessageId string `json:"inline_message_id"`
-	// The new message reply markup; pass null if none
-	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
 	// New text content of the message. Must be of type inputMessageText
 	InputMessageContent InputMessageContent `json:"input_message_content"`
+	// The new message reply markup; pass null if none
+	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
 }
 
 func (t *EditInlineMessageText) Type() string {
@@ -4631,14 +4631,14 @@ func (t *EditInlineMessageText) MarshalJSON() ([]byte, error) {
 
 // EditMessageCaption Edits the message content caption. Returns the edited message after the edit is completed on the server side
 type EditMessageCaption struct {
+	// New message content caption; 0-getOption("message_caption_length_max") characters; pass null to remove caption
+	Caption *FormattedText `json:"caption,omitempty"`
 	// The chat the message belongs to
 	ChatId int64 `json:"chat_id"`
 	// Identifier of the message. Use messageProperties.can_be_edited to check whether the message can be edited
 	MessageId int64 `json:"message_id"`
 	// The new message reply markup; pass null if none; for bots only
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
-	// New message content caption; 0-getOption("message_caption_length_max") characters; pass null to remove caption
-	Caption *FormattedText `json:"caption,omitempty"`
 	// Pass true to show the caption above the media; otherwise, the caption will be shown below the media. May be true only for animation, photo, and video messages
 	ShowCaptionAboveMedia bool `json:"show_caption_above_media"`
 }
@@ -4662,12 +4662,12 @@ func (t *EditMessageCaption) MarshalJSON() ([]byte, error) {
 type EditMessageChecklist struct {
 	// The chat the message belongs to
 	ChatId int64 `json:"chat_id"`
+	// The new checklist. If some tasks were completed, this information will be kept
+	Checklist *InputChecklist `json:"checklist"`
 	// Identifier of the message. Use messageProperties.can_be_edited to check whether the message can be edited
 	MessageId int64 `json:"message_id"`
 	// The new message reply markup; pass null if none; for bots only
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
-	// The new checklist. If some tasks were completed, this information will be kept
-	Checklist *InputChecklist `json:"checklist"`
 }
 
 func (t *EditMessageChecklist) Type() string {
@@ -4689,18 +4689,18 @@ func (t *EditMessageChecklist) MarshalJSON() ([]byte, error) {
 type EditMessageLiveLocation struct {
 	// The chat the message belongs to
 	ChatId int64 `json:"chat_id"`
-	// Identifier of the message. Use messageProperties.can_be_edited to check whether the message can be edited
-	MessageId int64 `json:"message_id"`
-	// The new message reply markup; pass null if none; for bots only
-	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
-	// New location content of the message; pass null to stop sharing the live location
-	Location *Location `json:"location,omitempty"`
-	// New time relative to the message send date, for which the location can be updated, in seconds. If 0x7FFFFFFF specified, then the location can be updated forever.
-	LivePeriod int32 `json:"live_period"`
 	// The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
 	Heading int32 `json:"heading"`
+	// New time relative to the message send date, for which the location can be updated, in seconds. If 0x7FFFFFFF specified, then the location can be updated forever.
+	LivePeriod int32 `json:"live_period"`
+	// New location content of the message; pass null to stop sharing the live location
+	Location *Location `json:"location,omitempty"`
+	// Identifier of the message. Use messageProperties.can_be_edited to check whether the message can be edited
+	MessageId int64 `json:"message_id"`
 	// The new maximum distance for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled
 	ProximityAlertRadius int32 `json:"proximity_alert_radius"`
+	// The new message reply markup; pass null if none; for bots only
+	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
 }
 
 func (t *EditMessageLiveLocation) Type() string {
@@ -4722,12 +4722,12 @@ func (t *EditMessageLiveLocation) MarshalJSON() ([]byte, error) {
 type EditMessageMedia struct {
 	// The chat the message belongs to
 	ChatId int64 `json:"chat_id"`
+	// New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo
+	InputMessageContent InputMessageContent `json:"input_message_content"`
 	// Identifier of the message. Use messageProperties.can_edit_media to check whether the message can be edited
 	MessageId int64 `json:"message_id"`
 	// The new message reply markup; pass null if none; for bots only
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
-	// New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo
-	InputMessageContent InputMessageContent `json:"input_message_content"`
 }
 
 func (t *EditMessageMedia) Type() string {
@@ -4799,12 +4799,12 @@ func (t *EditMessageSchedulingState) MarshalJSON() ([]byte, error) {
 type EditMessageText struct {
 	// The chat the message belongs to
 	ChatId int64 `json:"chat_id"`
+	// New text content of the message. Must be of type inputMessageText
+	InputMessageContent InputMessageContent `json:"input_message_content"`
 	// Identifier of the message. Use messageProperties.can_be_edited to check whether the message can be edited
 	MessageId int64 `json:"message_id"`
 	// The new message reply markup; pass null if none; for bots only
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
-	// New text content of the message. Must be of type inputMessageText
-	InputMessageContent InputMessageContent `json:"input_message_content"`
 }
 
 func (t *EditMessageText) Type() string {
@@ -4824,12 +4824,12 @@ func (t *EditMessageText) MarshalJSON() ([]byte, error) {
 
 // EditProxy Edits an existing proxy server for network requests. Can be called before authorization
 type EditProxy struct {
-	// Proxy identifier
-	ProxyId int32 `json:"proxy_id"`
-	// The new information about the proxy
-	Proxy *Proxy `json:"proxy"`
 	// Pass true to immediately enable the proxy
 	Enable bool `json:"enable"`
+	// The new information about the proxy
+	Proxy *Proxy `json:"proxy"`
+	// Proxy identifier
+	ProxyId int32 `json:"proxy_id"`
 }
 
 func (t *EditProxy) Type() string {
@@ -4849,12 +4849,12 @@ func (t *EditProxy) MarshalJSON() ([]byte, error) {
 
 // EditQuickReplyMessage Asynchronously edits the text, media or caption of a quick reply message. Use quickReplyMessage.can_be_edited to check whether a message can be edited.
 type EditQuickReplyMessage struct {
-	// Unique identifier of the quick reply shortcut with the message
-	ShortcutId int32 `json:"shortcut_id"`
-	// Identifier of the message
-	MessageId int64 `json:"message_id"`
 	// New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageChecklist, inputMessageDocument, inputMessagePhoto, inputMessageText, or inputMessageVideo
 	InputMessageContent InputMessageContent `json:"input_message_content"`
+	// Identifier of the message
+	MessageId int64 `json:"message_id"`
+	// Unique identifier of the quick reply shortcut with the message
+	ShortcutId int32 `json:"shortcut_id"`
 }
 
 func (t *EditQuickReplyMessage) Type() string {
@@ -4874,10 +4874,10 @@ func (t *EditQuickReplyMessage) MarshalJSON() ([]byte, error) {
 
 // EditStarSubscription Cancels or re-enables Telegram Star subscription
 type EditStarSubscription struct {
-	// Identifier of the subscription to change
-	SubscriptionId string `json:"subscription_id"`
 	// New value of is_canceled
 	IsCanceled bool `json:"is_canceled"`
+	// Identifier of the subscription to change
+	SubscriptionId string `json:"subscription_id"`
 }
 
 func (t *EditStarSubscription) Type() string {
@@ -4897,16 +4897,16 @@ func (t *EditStarSubscription) MarshalJSON() ([]byte, error) {
 
 // EditStory Changes content and caption of a story. Can be called only if story.can_be_edited == true
 type EditStory struct {
-	// Identifier of the chat that posted the story
-	StoryPosterChatId int64 `json:"story_poster_chat_id"`
-	// Identifier of the story to edit
-	StoryId int32 `json:"story_id"`
-	// New content of the story; pass null to keep the current content
-	Content InputStoryContent `json:"content,omitempty"`
 	// New clickable rectangle areas to be shown on the story media; pass null to keep the current areas. Areas can't be edited if story content isn't changed
 	Areas *InputStoryAreas `json:"areas,omitempty"`
 	// New story caption; pass null to keep the current caption
 	Caption *FormattedText `json:"caption,omitempty"`
+	// New content of the story; pass null to keep the current content
+	Content InputStoryContent `json:"content,omitempty"`
+	// Identifier of the story to edit
+	StoryId int32 `json:"story_id"`
+	// Identifier of the chat that posted the story
+	StoryPosterChatId int64 `json:"story_poster_chat_id"`
 }
 
 func (t *EditStory) Type() string {
@@ -4926,12 +4926,12 @@ func (t *EditStory) MarshalJSON() ([]byte, error) {
 
 // EditStoryCover Changes cover of a video story. Can be called only if story.can_be_edited == true and the story isn't being edited now
 type EditStoryCover struct {
-	// Identifier of the chat that posted the story
-	StoryPosterChatId int64 `json:"story_poster_chat_id"`
-	// Identifier of the story to edit
-	StoryId int32 `json:"story_id"`
 	// New timestamp of the frame, which will be used as video thumbnail
 	CoverFrameTimestamp float64 `json:"cover_frame_timestamp"`
+	// Identifier of the story to edit
+	StoryId int32 `json:"story_id"`
+	// Identifier of the chat that posted the story
+	StoryPosterChatId int64 `json:"story_poster_chat_id"`
 }
 
 func (t *EditStoryCover) Type() string {
@@ -4951,12 +4951,12 @@ func (t *EditStoryCover) MarshalJSON() ([]byte, error) {
 
 // EditUserStarSubscription Cancels or re-enables Telegram Star subscription for a user; for bots only
 type EditUserStarSubscription struct {
-	// User identifier
-	UserId int64 `json:"user_id"`
-	// Telegram payment identifier of the subscription
-	TelegramPaymentChargeId string `json:"telegram_payment_charge_id"`
 	// Pass true to cancel the subscription; pass false to allow the user to enable it
 	IsCanceled bool `json:"is_canceled"`
+	// Telegram payment identifier of the subscription
+	TelegramPaymentChargeId string `json:"telegram_payment_charge_id"`
+	// User identifier
+	UserId int64 `json:"user_id"`
 }
 
 func (t *EditUserStarSubscription) Type() string {
@@ -4997,12 +4997,12 @@ func (t *EnableProxy) MarshalJSON() ([]byte, error) {
 
 // EncryptGroupCallData Encrypts group call data before sending them over network using tgcalls
 type EncryptGroupCallData struct {
-	// Group call identifier. The call must not be a video chat
-	GroupCallId int32 `json:"group_call_id"`
-	// Data channel for which data is encrypted
-	DataChannel GroupCallDataChannel `json:"data_channel"`
 	// Data to encrypt
 	Data []byte `json:"data"`
+	// Data channel for which data is encrypted
+	DataChannel GroupCallDataChannel `json:"data_channel"`
+	// Group call identifier. The call must not be a video chat
+	GroupCallId int32 `json:"group_call_id"`
 	// Size of data prefix that must be kept unencrypted
 	UnencryptedPrefixSize int32 `json:"unencrypted_prefix_size"`
 }
@@ -5087,10 +5087,10 @@ func (t *EndGroupCallScreenSharing) MarshalJSON() ([]byte, error) {
 
 // FinishFileGeneration Finishes the file generation
 type FinishFileGeneration struct {
-	// The identifier of the generation process
-	GenerationId int64 `json:"generation_id,string"`
 	// If passed, the file generation has failed and must be terminated; pass null if the file generation succeeded
 	Error *Error `json:"error,omitempty"`
+	// The identifier of the generation process
+	GenerationId int64 `json:"generation_id,string"`
 }
 
 func (t *FinishFileGeneration) Type() string {
@@ -5112,18 +5112,18 @@ func (t *FinishFileGeneration) MarshalJSON() ([]byte, error) {
 type ForwardMessages struct {
 	// Identifier of the chat to which to forward messages
 	ChatId int64 `json:"chat_id"`
-	// Topic in which the messages will be forwarded; message threads aren't supported; pass null if none
-	TopicId MessageTopic `json:"topic_id,omitempty"`
 	// Identifier of the chat from which to forward messages
 	FromChatId int64 `json:"from_chat_id"`
 	// Identifiers of the messages to forward. Message identifiers must be in a strictly increasing order. At most 100 messages can be forwarded simultaneously. A message can be forwarded only if messageProperties.can_be_forwarded
 	MessageIds []int64 `json:"message_ids"`
 	// Options to be used to send the messages; pass null to use default options
 	Options *MessageSendOptions `json:"options,omitempty"`
-	// Pass true to copy content of the messages without reference to the original sender. Always true if the messages are forwarded to a secret chat or are local.
-	SendCopy bool `json:"send_copy"`
 	// Pass true to remove media captions of message copies. Ignored if send_copy is false
 	RemoveCaption bool `json:"remove_caption"`
+	// Pass true to copy content of the messages without reference to the original sender. Always true if the messages are forwarded to a secret chat or are local.
+	SendCopy bool `json:"send_copy"`
+	// Topic in which the messages will be forwarded; message threads aren't supported; pass null if none
+	TopicId MessageTopic `json:"topic_id,omitempty"`
 }
 
 func (t *ForwardMessages) Type() string {
@@ -5202,14 +5202,14 @@ func (t *GetAllPassportElements) MarshalJSON() ([]byte, error) {
 
 // GetAllStickerEmojis Returns unique emoji that correspond to stickers to be found by the getStickers(sticker_type, query, 1000000, chat_id)
 type GetAllStickerEmojis struct {
-	// Type of the stickers to search for
-	StickerType StickerType `json:"sticker_type"`
-	// Search query
-	Query string `json:"query"`
 	// Chat identifier for which to find stickers
 	ChatId int64 `json:"chat_id"`
+	// Search query
+	Query string `json:"query"`
 	// Pass true if only main emoji for each found sticker must be included in the result
 	ReturnOnlyMainEmoji bool `json:"return_only_main_emoji"`
+	// Type of the stickers to search for
+	StickerType StickerType `json:"sticker_type"`
 }
 
 func (t *GetAllStickerEmojis) Type() string {
@@ -5307,12 +5307,12 @@ func (t *GetArchiveChatListSettings) MarshalJSON() ([]byte, error) {
 
 // GetArchivedStickerSets Returns a list of archived sticker sets
 type GetArchivedStickerSets struct {
-	// Type of the sticker sets to return
-	StickerType StickerType `json:"sticker_type"`
-	// Identifier of the sticker set from which to return the result; use 0 to get results from the beginning
-	OffsetStickerSetId int64 `json:"offset_sticker_set_id,string"`
 	// The maximum number of sticker sets to return; up to 100
 	Limit int32 `json:"limit"`
+	// Identifier of the sticker set from which to return the result; use 0 to get results from the beginning
+	OffsetStickerSetId int64 `json:"offset_sticker_set_id,string"`
+	// Type of the sticker sets to return
+	StickerType StickerType `json:"sticker_type"`
 }
 
 func (t *GetArchivedStickerSets) Type() string {
@@ -5576,10 +5576,10 @@ func (t *GetBasicGroupFullInfo) MarshalJSON() ([]byte, error) {
 type GetBlockedMessageSenders struct {
 	// Block list from which to return users
 	BlockList BlockList `json:"block_list"`
-	// Number of users and chats to skip in the result; must be non-negative
-	Offset int32 `json:"offset"`
 	// The maximum number of users and chats to return; up to 100
 	Limit int32 `json:"limit"`
+	// Number of users and chats to skip in the result; must be non-negative
+	Offset int32 `json:"offset"`
 }
 
 func (t *GetBlockedMessageSenders) Type() string {
@@ -5904,11 +5904,11 @@ func (t *GetCallbackQueryAnswer) MarshalJSON() ([]byte, error) {
 // GetCallbackQueryMessage Returns information about a message with the callback button that originated a callback query; for bots only @chat_id Identifier of the chat the message belongs to @message_id Message identifier @callback_query_id Identifier of the callback query
 type GetCallbackQueryMessage struct {
 	//
+	CallbackQueryId int64 `json:"callback_query_id,string"`
+	//
 	ChatId int64 `json:"chat_id"`
 	//
 	MessageId int64 `json:"message_id"`
-	//
-	CallbackQueryId int64 `json:"callback_query_id,string"`
 }
 
 func (t *GetCallbackQueryMessage) Type() string {
@@ -6146,12 +6146,12 @@ func (t *GetChatBoostLinkInfo) MarshalJSON() ([]byte, error) {
 type GetChatBoosts struct {
 	// Identifier of the chat
 	ChatId int64 `json:"chat_id"`
-	// Pass true to receive only boosts received from gift codes and giveaways created by the chat
-	OnlyGiftCodes bool `json:"only_gift_codes"`
-	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
-	Offset string `json:"offset"`
 	// The maximum number of boosts to be returned; up to 100. For optimal performance, the number of returned boosts can be smaller than the specified limit
 	Limit int32 `json:"limit"`
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
+	// Pass true to receive only boosts received from gift codes and giveaways created by the chat
+	OnlyGiftCodes bool `json:"only_gift_codes"`
 }
 
 func (t *GetChatBoosts) Type() string {
@@ -6194,14 +6194,14 @@ func (t *GetChatBoostStatus) MarshalJSON() ([]byte, error) {
 type GetChatEventLog struct {
 	// Chat identifier
 	ChatId int64 `json:"chat_id"`
-	// Search query by which to filter events
-	Query string `json:"query"`
+	// The types of events to return; pass null to get chat events of all types
+	Filters *ChatEventLogFilters `json:"filters,omitempty"`
 	// Identifier of an event from which to return results. Use 0 to get results from the latest events
 	FromEventId int64 `json:"from_event_id,string"`
 	// The maximum number of events to return; up to 100
 	Limit int32 `json:"limit"`
-	// The types of events to return; pass null to get chat events of all types
-	Filters *ChatEventLogFilters `json:"filters,omitempty"`
+	// Search query by which to filter events
+	Query string `json:"query"`
 	// User identifiers by which to filter events. By default, events relating to all users will be returned
 	UserIds []int64 `json:"user_ids"`
 }
@@ -6353,10 +6353,10 @@ type GetChatHistory struct {
 	ChatId int64 `json:"chat_id"`
 	// Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
 	FromMessageId int64 `json:"from_message_id"`
-	// Specify 0 to get results from exactly the message from_message_id or a negative number from -99 to -1 to get additionally -offset newer messages
-	Offset int32 `json:"offset"`
 	// The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, then the limit must be greater than or equal to -offset.
 	Limit int32 `json:"limit"`
+	// Specify 0 to get results from exactly the message from_message_id or a negative number from -99 to -1 to get additionally -offset newer messages
+	Offset int32 `json:"offset"`
 	// Pass true to get only messages that are available without sending network requests
 	OnlyLocal bool `json:"only_local"`
 }
@@ -6426,12 +6426,12 @@ type GetChatInviteLinkMembers struct {
 	ChatId int64 `json:"chat_id"`
 	// Invite link for which to return chat members
 	InviteLink string `json:"invite_link"`
-	// Pass true if the link is a subscription link and only members with expired subscription must be returned
-	OnlyWithExpiredSubscription bool `json:"only_with_expired_subscription"`
-	// A chat member from which to return next chat members; pass null to get results from the beginning
-	OffsetMember *ChatInviteLinkMember `json:"offset_member,omitempty"`
 	// The maximum number of chat members to return; up to 100
 	Limit int32 `json:"limit"`
+	// A chat member from which to return next chat members; pass null to get results from the beginning
+	OffsetMember *ChatInviteLinkMember `json:"offset_member,omitempty"`
+	// Pass true if the link is a subscription link and only members with expired subscription must be returned
+	OnlyWithExpiredSubscription bool `json:"only_with_expired_subscription"`
 }
 
 func (t *GetChatInviteLinkMembers) Type() string {
@@ -6457,12 +6457,12 @@ type GetChatInviteLinks struct {
 	CreatorUserId int64 `json:"creator_user_id"`
 	// Pass true if revoked links needs to be returned instead of active or expired
 	IsRevoked bool `json:"is_revoked"`
+	// The maximum number of invite links to return; up to 100
+	Limit int32 `json:"limit"`
 	// Creation date of an invite link starting after which to return invite links; use 0 to get results from the beginning
 	OffsetDate int32 `json:"offset_date"`
 	// Invite link starting after which to return invite links; use empty string to get results from the beginning
 	OffsetInviteLink string `json:"offset_invite_link"`
-	// The maximum number of invite links to return; up to 100
-	Limit int32 `json:"limit"`
 }
 
 func (t *GetChatInviteLinks) Type() string {
@@ -6486,12 +6486,12 @@ type GetChatJoinRequests struct {
 	ChatId int64 `json:"chat_id"`
 	// Invite link for which to return join requests. If empty, all join requests will be returned. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
 	InviteLink string `json:"invite_link"`
-	// A query to search for in the first names, last names and usernames of the users to return
-	Query string `json:"query"`
-	// A chat join request from which to return next requests; pass null to get results from the beginning
-	OffsetRequest *ChatJoinRequest `json:"offset_request,omitempty"`
 	// The maximum number of requests to join the chat to return
 	Limit int32 `json:"limit"`
+	// A chat join request from which to return next requests; pass null to get results from the beginning
+	OffsetRequest *ChatJoinRequest `json:"offset_request,omitempty"`
+	// A query to search for in the first names, last names and usernames of the users to return
+	Query string `json:"query"`
 }
 
 func (t *GetChatJoinRequests) Type() string {
@@ -6580,12 +6580,12 @@ func (t *GetChatMessageByDate) MarshalJSON() ([]byte, error) {
 type GetChatMessageCalendar struct {
 	// Identifier of the chat in which to return information about messages
 	ChatId int64 `json:"chat_id"`
-	// Pass topic identifier to get the result only in specific topic; pass null to get the result in all topics; forum topics and message threads aren't supported
-	TopicId MessageTopic `json:"topic_id,omitempty"`
 	// Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, and searchMessagesFilterUnreadReaction are unsupported in this function
 	Filter SearchMessagesFilter `json:"filter"`
 	// The message identifier from which to return information about messages; use 0 to get results from the last message
 	FromMessageId int64 `json:"from_message_id"`
+	// Pass topic identifier to get the result only in specific topic; pass null to get the result in all topics; forum topics and message threads aren't supported
+	TopicId MessageTopic `json:"topic_id,omitempty"`
 }
 
 func (t *GetChatMessageCalendar) Type() string {
@@ -6607,12 +6607,12 @@ func (t *GetChatMessageCalendar) MarshalJSON() ([]byte, error) {
 type GetChatMessageCount struct {
 	// Identifier of the chat in which to count messages
 	ChatId int64 `json:"chat_id"`
-	// Pass topic identifier to get number of messages only in specific topic; pass null to get number of messages in all topics; message threads aren't supported
-	TopicId MessageTopic `json:"topic_id,omitempty"`
 	// Filter for message content; searchMessagesFilterEmpty is unsupported in this function
 	Filter SearchMessagesFilter `json:"filter"`
 	// Pass true to get the number of messages without sending network requests, or -1 if the number of messages is unknown locally
 	ReturnLocal bool `json:"return_local"`
+	// Pass topic identifier to get number of messages only in specific topic; pass null to get number of messages in all topics; message threads aren't supported
+	TopicId MessageTopic `json:"topic_id,omitempty"`
 }
 
 func (t *GetChatMessageCount) Type() string {
@@ -6634,12 +6634,12 @@ func (t *GetChatMessageCount) MarshalJSON() ([]byte, error) {
 type GetChatMessagePosition struct {
 	// Identifier of the chat in which to find message position
 	ChatId int64 `json:"chat_id"`
-	// Pass topic identifier to get position among messages only in specific topic; pass null to get position among all chat messages; message threads aren't supported
-	TopicId MessageTopic `json:"topic_id,omitempty"`
 	// Filter for message content; searchMessagesFilterEmpty, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, and searchMessagesFilterFailedToSend are unsupported in this function
 	Filter SearchMessagesFilter `json:"filter"`
 	// Message identifier
 	MessageId int64 `json:"message_id"`
+	// Pass topic identifier to get position among messages only in specific topic; pass null to get position among all chat messages; message threads aren't supported
+	TopicId MessageTopic `json:"topic_id,omitempty"`
 }
 
 func (t *GetChatMessagePosition) Type() string {
@@ -6659,10 +6659,10 @@ func (t *GetChatMessagePosition) MarshalJSON() ([]byte, error) {
 
 // GetChatNotificationSettingsExceptions Returns the list of chats with non-default notification settings for new messages
 type GetChatNotificationSettingsExceptions struct {
-	// If specified, only chats from the scope will be returned; pass null to return chats from all scopes
-	Scope NotificationSettingsScope `json:"scope,omitempty"`
 	// Pass true to include in the response chats with only non-default sound
 	CompareSound bool `json:"compare_sound"`
+	// If specified, only chats from the scope will be returned; pass null to return chats from all scopes
+	Scope NotificationSettingsScope `json:"scope,omitempty"`
 }
 
 func (t *GetChatNotificationSettingsExceptions) Type() string {
@@ -6774,10 +6774,10 @@ func (t *GetChatRevenueStatistics) MarshalJSON() ([]byte, error) {
 type GetChatRevenueTransactions struct {
 	// Chat identifier
 	ChatId int64 `json:"chat_id"`
-	// Offset of the first transaction to return as received from the previous request; use empty string to get the first chunk of results
-	Offset string `json:"offset"`
 	// The maximum number of transactions to be returned; up to 100
 	Limit int32 `json:"limit"`
+	// Offset of the first transaction to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
 }
 
 func (t *GetChatRevenueTransactions) Type() string {
@@ -7042,18 +7042,18 @@ func (t *GetChatStoryAlbums) MarshalJSON() ([]byte, error) {
 
 // GetChatStoryInteractions Returns interactions with a story posted in a chat. Can be used only if story is posted on behalf of a chat and the user is an administrator in the chat
 type GetChatStoryInteractions struct {
-	// The identifier of the poster of the story
-	StoryPosterChatId int64 `json:"story_poster_chat_id"`
-	// Story identifier
-	StoryId int32 `json:"story_id"`
-	// Pass the default heart reaction or a suggested reaction type to receive only interactions with the specified reaction type; pass null to receive all interactions; reactionTypePaid isn't supported
-	ReactionType ReactionType `json:"reaction_type,omitempty"`
-	// Pass true to get forwards and reposts first, then reactions, then other views; pass false to get interactions sorted just by interaction date
-	PreferForwards bool `json:"prefer_forwards"`
-	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
-	Offset string `json:"offset"`
 	// The maximum number of story interactions to return
 	Limit int32 `json:"limit"`
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
+	// Pass true to get forwards and reposts first, then reactions, then other views; pass false to get interactions sorted just by interaction date
+	PreferForwards bool `json:"prefer_forwards"`
+	// Pass the default heart reaction or a suggested reaction type to receive only interactions with the specified reaction type; pass null to receive all interactions; reactionTypePaid isn't supported
+	ReactionType ReactionType `json:"reaction_type,omitempty"`
+	// Story identifier
+	StoryId int32 `json:"story_id"`
+	// The identifier of the poster of the story
+	StoryPosterChatId int64 `json:"story_poster_chat_id"`
 }
 
 func (t *GetChatStoryInteractions) Type() string {
@@ -7113,10 +7113,10 @@ func (t *GetCollectibleItemInfo) MarshalJSON() ([]byte, error) {
 
 // GetCommands Returns the list of commands supported by the bot for the given user scope and language; for bots only
 type GetCommands struct {
-	// The scope to which the commands are relevant; pass null to get commands in the default bot command scope
-	Scope BotCommandScope `json:"scope,omitempty"`
 	// A two-letter ISO 639-1 language code or an empty string
 	LanguageCode string `json:"language_code"`
+	// The scope to which the commands are relevant; pass null to get commands in the default bot command scope
+	Scope BotCommandScope `json:"scope,omitempty"`
 }
 
 func (t *GetCommands) Type() string {
@@ -7161,10 +7161,10 @@ func (t *GetConnectedAffiliateProgram) MarshalJSON() ([]byte, error) {
 type GetConnectedAffiliatePrograms struct {
 	// The affiliate to which the affiliate program were connected
 	Affiliate AffiliateType `json:"affiliate"`
-	// Offset of the first affiliate program to return as received from the previous request; use empty string to get the first chunk of results
-	Offset string `json:"offset"`
 	// The maximum number of affiliate programs to return
 	Limit int32 `json:"limit"`
+	// Offset of the first affiliate program to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
 }
 
 func (t *GetConnectedAffiliatePrograms) Type() string {
@@ -7561,14 +7561,14 @@ func (t *GetDirectMessagesChatTopic) MarshalJSON() ([]byte, error) {
 type GetDirectMessagesChatTopicHistory struct {
 	// Chat identifier of the channel direct messages chat
 	ChatId int64 `json:"chat_id"`
-	// Identifier of the topic which messages will be fetched
-	TopicId int64 `json:"topic_id"`
 	// Identifier of the message starting from which messages must be fetched; use 0 to get results from the last message
 	FromMessageId int64 `json:"from_message_id"`
-	// Specify 0 to get results from exactly the message from_message_id or a negative number from -99 to -1 to get additionally -offset newer messages
-	Offset int32 `json:"offset"`
 	// The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, then the limit must be greater than or equal to -offset.
 	Limit int32 `json:"limit"`
+	// Specify 0 to get results from exactly the message from_message_id or a negative number from -99 to -1 to get additionally -offset newer messages
+	Offset int32 `json:"offset"`
+	// Identifier of the topic which messages will be fetched
+	TopicId int64 `json:"topic_id"`
 }
 
 func (t *GetDirectMessagesChatTopicHistory) Type() string {
@@ -7590,10 +7590,10 @@ func (t *GetDirectMessagesChatTopicHistory) MarshalJSON() ([]byte, error) {
 type GetDirectMessagesChatTopicMessageByDate struct {
 	// Chat identifier of the channel direct messages chat
 	ChatId int64 `json:"chat_id"`
-	// Identifier of the topic which messages will be fetched
-	TopicId int64 `json:"topic_id"`
 	// Point in time (Unix timestamp) relative to which to search for messages
 	Date int32 `json:"date"`
+	// Identifier of the topic which messages will be fetched
+	TopicId int64 `json:"topic_id"`
 }
 
 func (t *GetDirectMessagesChatTopicMessageByDate) Type() string {
@@ -7718,12 +7718,12 @@ func (t *GetEmojiSuggestionsUrl) MarshalJSON() ([]byte, error) {
 
 // GetExternalLink Returns an HTTP URL which can be used to automatically authorize the current user on a website after clicking an HTTP link.
 type GetExternalLink struct {
-	// The HTTP link
-	Link string `json:"link"`
-	// Pass true if the current user allowed the bot that was returned in getExternalLinkInfo, to send them messages
-	AllowWriteAccess bool `json:"allow_write_access"`
 	// Pass true if the current user allowed the bot that was returned in getExternalLinkInfo, to access their phone number
 	AllowPhoneNumberAccess bool `json:"allow_phone_number_access"`
+	// Pass true if the current user allowed the bot that was returned in getExternalLinkInfo, to send them messages
+	AllowWriteAccess bool `json:"allow_write_access"`
+	// The HTTP link
+	Link string `json:"link"`
 }
 
 func (t *GetExternalLink) Type() string {
@@ -7917,10 +7917,10 @@ type GetForumTopicHistory struct {
 	ForumTopicId int32 `json:"forum_topic_id"`
 	// Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
 	FromMessageId int64 `json:"from_message_id"`
-	// Specify 0 to get results from exactly the message from_message_id or a negative number from -99 to -1 to get additionally -offset newer messages
-	Offset int32 `json:"offset"`
 	// The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, then the limit must be greater than or equal to -offset.
 	Limit int32 `json:"limit"`
+	// Specify 0 to get results from exactly the message from_message_id or a negative number from -99 to -1 to get additionally -offset newer messages
+	Offset int32 `json:"offset"`
 }
 
 func (t *GetForumTopicHistory) Type() string {
@@ -7965,16 +7965,16 @@ func (t *GetForumTopicLink) MarshalJSON() ([]byte, error) {
 type GetForumTopics struct {
 	// Identifier of the chat
 	ChatId int64 `json:"chat_id"`
-	// Query to search for in the forum topic's name
-	Query string `json:"query"`
-	// The date starting from which the results need to be fetched. Use 0 or any date in the future to get results from the last topic
-	OffsetDate int32 `json:"offset_date"`
-	// The message identifier of the last message in the last found topic, or 0 for the first request
-	OffsetMessageId int64 `json:"offset_message_id"`
-	// The forum topic identifier of the last found topic, or 0 for the first request
-	OffsetForumTopicId int32 `json:"offset_forum_topic_id"`
 	// The maximum number of forum topics to be returned; up to 100. For optimal performance, the number of returned forum topics is chosen by TDLib and can be smaller than the specified limit
 	Limit int32 `json:"limit"`
+	// The date starting from which the results need to be fetched. Use 0 or any date in the future to get results from the last topic
+	OffsetDate int32 `json:"offset_date"`
+	// The forum topic identifier of the last found topic, or 0 for the first request
+	OffsetForumTopicId int32 `json:"offset_forum_topic_id"`
+	// The message identifier of the last message in the last found topic, or 0 for the first request
+	OffsetMessageId int64 `json:"offset_message_id"`
+	// Query to search for in the forum topic's name
+	Query string `json:"query"`
 }
 
 func (t *GetForumTopics) Type() string {
@@ -8061,10 +8061,10 @@ func (t *GetGiftAuctionState) MarshalJSON() ([]byte, error) {
 
 // GetGiftChatThemes Returns available to the current user gift chat themes
 type GetGiftChatThemes struct {
-	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
-	Offset string `json:"offset"`
 	// The maximum number of chat themes to return
 	Limit int32 `json:"limit"`
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
 }
 
 func (t *GetGiftChatThemes) Type() string {
@@ -8105,12 +8105,12 @@ func (t *GetGiftCollections) MarshalJSON() ([]byte, error) {
 
 // GetGiftsForCrafting Returns upgraded gifts of the current user who can be used to craft another gifts
 type GetGiftsForCrafting struct {
-	// Identifier of the regular gift that will be used for crafting
-	RegularGiftId int64 `json:"regular_gift_id,string"`
-	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
-	Offset string `json:"offset"`
 	// The maximum number of gifts to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned objects is chosen by TDLib and can be smaller than the specified limit
 	Limit int32 `json:"limit"`
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
+	// Identifier of the regular gift that will be used for crafting
+	RegularGiftId int64 `json:"regular_gift_id,string"`
 }
 
 func (t *GetGiftsForCrafting) Type() string {
@@ -8193,10 +8193,10 @@ func (t *GetGreetingStickers) MarshalJSON() ([]byte, error) {
 
 // GetGrossingWebAppBots Returns the most grossing Web App bots
 type GetGrossingWebAppBots struct {
-	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
-	Offset string `json:"offset"`
 	// The maximum number of bots to be returned; up to 100
 	Limit int32 `json:"limit"`
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
 }
 
 func (t *GetGrossingWebAppBots) Type() string {
@@ -8281,14 +8281,14 @@ func (t *GetGroupCallStreams) MarshalJSON() ([]byte, error) {
 
 // GetGroupCallStreamSegment Returns a file with a segment of a video chat or live story in a modified OGG format for audio or MPEG-4 format for video
 type GetGroupCallStreamSegment struct {
-	// Group call identifier
-	GroupCallId int32 `json:"group_call_id"`
-	// Point in time when the stream segment begins; Unix timestamp in milliseconds
-	TimeOffset int64 `json:"time_offset"`
-	// Segment duration scale; 0-1. Segment's duration is 1000/(2**scale) milliseconds
-	Scale int32 `json:"scale"`
 	// Identifier of an audio/video channel to get as received from tgcalls
 	ChannelId int32 `json:"channel_id"`
+	// Group call identifier
+	GroupCallId int32 `json:"group_call_id"`
+	// Segment duration scale; 0-1. Segment's duration is 1000/(2**scale) milliseconds
+	Scale int32 `json:"scale"`
+	// Point in time when the stream segment begins; Unix timestamp in milliseconds
+	TimeOffset int64 `json:"time_offset"`
 	// Video quality as received from tgcalls; pass null to get the worst available quality
 	VideoQuality GroupCallVideoQuality `json:"video_quality,omitempty"`
 }
@@ -8310,12 +8310,12 @@ func (t *GetGroupCallStreamSegment) MarshalJSON() ([]byte, error) {
 
 // GetGroupsInCommon Returns a list of common group chats with a given user. Chats are sorted by their type and creation date
 type GetGroupsInCommon struct {
-	// User identifier
-	UserId int64 `json:"user_id"`
-	// Chat identifier starting from which to return chats; use 0 for the first request
-	OffsetChatId int64 `json:"offset_chat_id"`
 	// The maximum number of chats to be returned; up to 100
 	Limit int32 `json:"limit"`
+	// Chat identifier starting from which to return chats; use 0 for the first request
+	OffsetChatId int64 `json:"offset_chat_id"`
+	// User identifier
+	UserId int64 `json:"user_id"`
 }
 
 func (t *GetGroupsInCommon) Type() string {
@@ -8400,12 +8400,12 @@ type GetInlineQueryResults struct {
 	BotUserId int64 `json:"bot_user_id"`
 	// Identifier of the chat where the query was sent
 	ChatId int64 `json:"chat_id"`
-	// Location of the user; pass null if unknown or the bot doesn't need user's location
-	UserLocation *Location `json:"user_location,omitempty"`
-	// Text of the query
-	Query string `json:"query"`
 	// Offset of the first entry to return; use empty string to get the first chunk of results
 	Offset string `json:"offset"`
+	// Text of the query
+	Query string `json:"query"`
+	// Location of the user; pass null if unknown or the bot doesn't need user's location
+	UserLocation *Location `json:"user_location,omitempty"`
 }
 
 func (t *GetInlineQueryResults) Type() string {
@@ -8468,9 +8468,9 @@ func (t *GetInstalledStickerSets) MarshalJSON() ([]byte, error) {
 // GetInternalLink Returns an HTTPS or a tg: link with the given type. Can be called before authorization @type Expected type of the link @is_http Pass true to create an HTTPS link (only available for some link types); pass false to create a tg: link
 type GetInternalLink struct {
 	//
-	TypeField InternalLinkType `json:"type"`
-	//
 	IsHttp bool `json:"is_http"`
+	//
+	TypeField InternalLinkType `json:"type"`
 }
 
 func (t *GetInternalLink) Type() string {
@@ -8553,10 +8553,10 @@ func (t *GetJsonValue) MarshalJSON() ([]byte, error) {
 
 // GetKeywordEmojis Returns emojis matching the keyword. Supported only if the file database is enabled. Order of results is unspecified
 type GetKeywordEmojis struct {
+	// List of possible IETF language tags of the user's input language; may be empty if unknown
+	InputLanguageCodes []string `json:"input_language_codes,omitempty"`
 	// Text to search for
 	Text string `json:"text"`
-	// List of possible IETF language tags of the user's input language; may be empty if unknown
-	InputLanguageCodes []string `json:"input_language_codes"`
 }
 
 func (t *GetKeywordEmojis) Type() string {
@@ -8597,14 +8597,14 @@ func (t *GetLanguagePackInfo) MarshalJSON() ([]byte, error) {
 
 // GetLanguagePackString Returns a string stored in the local database from the specified localization target and language pack by its key. Returns a 404 error if the string is not found. Can be called synchronously
 type GetLanguagePackString struct {
-	// Path to the language pack database in which strings are stored
-	LanguagePackDatabasePath string `json:"language_pack_database_path"`
-	// Localization target to which the language pack belongs
-	LocalizationTarget string `json:"localization_target"`
-	// Language pack identifier
-	LanguagePackId string `json:"language_pack_id"`
 	// Language pack key of the string to be returned
 	Key string `json:"key"`
+	// Path to the language pack database in which strings are stored
+	LanguagePackDatabasePath string `json:"language_pack_database_path"`
+	// Language pack identifier
+	LanguagePackId string `json:"language_pack_id"`
+	// Localization target to which the language pack belongs
+	LocalizationTarget string `json:"localization_target"`
 }
 
 func (t *GetLanguagePackString) Type() string {
@@ -8624,10 +8624,10 @@ func (t *GetLanguagePackString) MarshalJSON() ([]byte, error) {
 
 // GetLanguagePackStrings Returns strings from a language pack in the current localization target by their keys. Can be called before authorization
 type GetLanguagePackStrings struct {
-	// Language pack identifier of the strings to be returned
-	LanguagePackId string `json:"language_pack_id"`
 	// Language pack keys of the strings to be returned; leave empty to request all available strings
 	Keys []string `json:"keys"`
+	// Language pack identifier of the strings to be returned
+	LanguagePackId string `json:"language_pack_id"`
 }
 
 func (t *GetLanguagePackStrings) Type() string {
@@ -8647,10 +8647,10 @@ func (t *GetLanguagePackStrings) MarshalJSON() ([]byte, error) {
 
 // GetLinkPreview Returns a link preview by the text of a message. Do not call this function too often. Returns a 404 error if the text has no link preview
 type GetLinkPreview struct {
-	// Message text with formatting
-	Text *FormattedText `json:"text"`
 	// Options to be used for generation of the link preview; pass null to use default link preview options
 	LinkPreviewOptions *LinkPreviewOptions `json:"link_preview_options,omitempty"`
+	// Message text with formatting
+	Text *FormattedText `json:"text"`
 }
 
 func (t *GetLinkPreview) Type() string {
@@ -8794,14 +8794,14 @@ func (t *GetLoginPasskeys) MarshalJSON() ([]byte, error) {
 
 // GetLoginUrl Returns an HTTP URL which can be used to automatically authorize the user on a website after clicking an inline button of type inlineKeyboardButtonTypeLoginUrl.
 type GetLoginUrl struct {
+	// Pass true to allow the bot to send messages to the current user. Phone number access can't be requested using the button
+	AllowWriteAccess bool `json:"allow_write_access"`
+	// Button identifier
+	ButtonId int64 `json:"button_id"`
 	// Chat identifier of the message with the button
 	ChatId int64 `json:"chat_id"`
 	// Message identifier of the message with the button
 	MessageId int64 `json:"message_id"`
-	// Button identifier
-	ButtonId int64 `json:"button_id"`
-	// Pass true to allow the bot to send messages to the current user. Phone number access can't be requested using the button
-	AllowWriteAccess bool `json:"allow_write_access"`
 }
 
 func (t *GetLoginUrl) Type() string {
@@ -8821,12 +8821,12 @@ func (t *GetLoginUrl) MarshalJSON() ([]byte, error) {
 
 // GetLoginUrlInfo Returns information about a button of type inlineKeyboardButtonTypeLoginUrl. The method needs to be called when the user presses the button
 type GetLoginUrlInfo struct {
+	// Button identifier
+	ButtonId int64 `json:"button_id"`
 	// Chat identifier of the message with the button
 	ChatId int64 `json:"chat_id"`
 	// Message identifier of the message with the button. The message must not be scheduled
 	MessageId int64 `json:"message_id"`
-	// Button identifier
-	ButtonId int64 `json:"button_id"`
 }
 
 func (t *GetLoginUrlInfo) Type() string {
@@ -8924,14 +8924,14 @@ func (t *GetLogVerbosityLevel) MarshalJSON() ([]byte, error) {
 
 // GetMainWebApp Returns information needed to open the main Web App of a bot
 type GetMainWebApp struct {
-	// Identifier of the chat in which the Web App is opened; pass 0 if none
-	ChatId int64 `json:"chat_id"`
 	// Identifier of the target bot. If the bot is restricted for the current user, then show an error instead of calling the method
 	BotUserId int64 `json:"bot_user_id"`
-	// Start parameter from internalLinkTypeMainWebApp
-	StartParameter string `json:"start_parameter"`
+	// Identifier of the chat in which the Web App is opened; pass 0 if none
+	ChatId int64 `json:"chat_id"`
 	// Parameters to use to open the Web App
 	Parameters *WebAppOpenParameters `json:"parameters"`
+	// Start parameter from internalLinkTypeMainWebApp
+	StartParameter string `json:"start_parameter"`
 }
 
 func (t *GetMainWebApp) Type() string {
@@ -8951,18 +8951,18 @@ func (t *GetMainWebApp) MarshalJSON() ([]byte, error) {
 
 // GetMapThumbnailFile Returns information about a file with a map thumbnail in PNG format. Only map thumbnail files with size less than 1MB can be downloaded
 type GetMapThumbnailFile struct {
-	// Location of the map center
-	Location *Location `json:"location"`
-	// Map zoom level; 13-20
-	Zoom int32 `json:"zoom"`
-	// Map width in pixels before applying scale; 16-1024
-	Width int32 `json:"width"`
-	// Map height in pixels before applying scale; 16-1024
-	Height int32 `json:"height"`
-	// Map scale; 1-3
-	Scale int32 `json:"scale"`
 	// Identifier of a chat in which the thumbnail will be shown. Use 0 if unknown
 	ChatId int64 `json:"chat_id"`
+	// Map height in pixels before applying scale; 16-1024
+	Height int32 `json:"height"`
+	// Location of the map center
+	Location *Location `json:"location"`
+	// Map scale; 1-3
+	Scale int32 `json:"scale"`
+	// Map width in pixels before applying scale; 16-1024
+	Width int32 `json:"width"`
+	// Map zoom level; 13-20
+	Zoom int32 `json:"zoom"`
 }
 
 func (t *GetMapThumbnailFile) Type() string {
@@ -9068,14 +9068,14 @@ func (t *GetMessage) MarshalJSON() ([]byte, error) {
 type GetMessageAddedReactions struct {
 	// Identifier of the chat to which the message belongs
 	ChatId int64 `json:"chat_id"`
-	// Identifier of the message. Use message.interaction_info.reactions.can_get_added_reactions to check whether added reactions can be received for the message
-	MessageId int64 `json:"message_id"`
-	// Type of the reactions to return; pass null to return all added reactions; reactionTypePaid isn't supported
-	ReactionType ReactionType `json:"reaction_type,omitempty"`
-	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
-	Offset string `json:"offset"`
 	// The maximum number of reactions to be returned; must be positive and can't be greater than 100
 	Limit int32 `json:"limit"`
+	// Identifier of the message. Use message.interaction_info.reactions.can_get_added_reactions to check whether added reactions can be received for the message
+	MessageId int64 `json:"message_id"`
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
+	// Type of the reactions to return; pass null to return all added reactions; reactionTypePaid isn't supported
+	ReactionType ReactionType `json:"reaction_type,omitempty"`
 }
 
 func (t *GetMessageAddedReactions) Type() string {
@@ -9166,10 +9166,10 @@ func (t *GetMessageEffect) MarshalJSON() ([]byte, error) {
 type GetMessageEmbeddingCode struct {
 	// Identifier of the chat to which the message belongs
 	ChatId int64 `json:"chat_id"`
-	// Identifier of the message
-	MessageId int64 `json:"message_id"`
 	// Pass true to return an HTML code for embedding of the whole media album
 	ForAlbum bool `json:"for_album"`
+	// Identifier of the message
+	MessageId int64 `json:"message_id"`
 }
 
 func (t *GetMessageEmbeddingCode) Type() string {
@@ -9233,14 +9233,14 @@ func (t *GetMessageImportConfirmationText) MarshalJSON() ([]byte, error) {
 type GetMessageLink struct {
 	// Identifier of the chat to which the message belongs
 	ChatId int64 `json:"chat_id"`
-	// Identifier of the message
-	MessageId int64 `json:"message_id"`
-	// If not 0, timestamp from which the video/audio/video note/voice note/story playing must start, in seconds. The media can be in the message content or in its link preview
-	MediaTimestamp int32 `json:"media_timestamp"`
 	// Pass true to create a link for the whole media album
 	ForAlbum bool `json:"for_album"`
 	// Pass true to create a link to the message as a channel post comment, in a message thread, or a forum topic
 	InMessageThread bool `json:"in_message_thread"`
+	// If not 0, timestamp from which the video/audio/video note/voice note/story playing must start, in seconds. The media can be in the message content or in its link preview
+	MediaTimestamp int32 `json:"media_timestamp"`
+	// Identifier of the message
+	MessageId int64 `json:"message_id"`
 }
 
 func (t *GetMessageLink) Type() string {
@@ -9329,12 +9329,12 @@ func (t *GetMessageProperties) MarshalJSON() ([]byte, error) {
 type GetMessagePublicForwards struct {
 	// Chat identifier of the message
 	ChatId int64 `json:"chat_id"`
+	// The maximum number of messages and stories to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned objects is chosen by TDLib and can be smaller than the specified limit
+	Limit int32 `json:"limit"`
 	// Message identifier
 	MessageId int64 `json:"message_id"`
 	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
 	Offset string `json:"offset"`
-	// The maximum number of messages and stories to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned objects is chosen by TDLib and can be smaller than the specified limit
-	Limit int32 `json:"limit"`
 }
 
 func (t *GetMessagePublicForwards) Type() string {
@@ -9403,9 +9403,9 @@ type GetMessageStatistics struct {
 	//
 	ChatId int64 `json:"chat_id"`
 	//
-	MessageId int64 `json:"message_id"`
-	//
 	IsDark bool `json:"is_dark"`
+	//
+	MessageId int64 `json:"message_id"`
 }
 
 func (t *GetMessageStatistics) Type() string {
@@ -9450,14 +9450,14 @@ func (t *GetMessageThread) MarshalJSON() ([]byte, error) {
 type GetMessageThreadHistory struct {
 	// Chat identifier
 	ChatId int64 `json:"chat_id"`
-	// Message identifier, which thread history needs to be returned
-	MessageId int64 `json:"message_id"`
 	// Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
 	FromMessageId int64 `json:"from_message_id"`
-	// Specify 0 to get results from exactly the message from_message_id or a negative number from -99 to -1 to get additionally -offset newer messages
-	Offset int32 `json:"offset"`
 	// The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, then the limit must be greater than or equal to -offset.
 	Limit int32 `json:"limit"`
+	// Message identifier, which thread history needs to be returned
+	MessageId int64 `json:"message_id"`
+	// Specify 0 to get results from exactly the message from_message_id or a negative number from -99 to -1 to get additionally -offset newer messages
+	Offset int32 `json:"offset"`
 }
 
 func (t *GetMessageThreadHistory) Type() string {
@@ -9580,10 +9580,10 @@ func (t *GetOwnedBots) MarshalJSON() ([]byte, error) {
 
 // GetOwnedStickerSets Returns sticker sets owned by the current user
 type GetOwnedStickerSets struct {
-	// Identifier of the sticker set from which to return owned sticker sets; use 0 to get results from the beginning
-	OffsetStickerSetId int64 `json:"offset_sticker_set_id,string"`
 	// The maximum number of sticker sets to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned objects is chosen by TDLib and can be smaller than the specified limit
 	Limit int32 `json:"limit"`
+	// Identifier of the sticker set from which to return owned sticker sets; use 0 to get results from the beginning
+	OffsetStickerSetId int64 `json:"offset_sticker_set_id,string"`
 }
 
 func (t *GetOwnedStickerSets) Type() string {
@@ -9645,12 +9645,12 @@ func (t *GetPasskeyParameters) MarshalJSON() ([]byte, error) {
 type GetPassportAuthorizationForm struct {
 	// User identifier of the service's bot
 	BotUserId int64 `json:"bot_user_id"`
-	// Telegram Passport element types requested by the service
-	Scope string `json:"scope"`
-	// Service's public key
-	PublicKey string `json:"public_key"`
 	// Unique request identifier provided by the service
 	Nonce string `json:"nonce"`
+	// Service's public key
+	PublicKey string `json:"public_key"`
+	// Telegram Passport element types requested by the service
+	Scope string `json:"scope"`
 }
 
 func (t *GetPassportAuthorizationForm) Type() string {
@@ -9694,9 +9694,9 @@ func (t *GetPassportAuthorizationFormAvailableElements) MarshalJSON() ([]byte, e
 // GetPassportElement Returns one of the available Telegram Passport elements @type Telegram Passport element type @password The 2-step verification password of the current user
 type GetPassportElement struct {
 	//
-	TypeField PassportElementType `json:"type"`
-	//
 	Password string `json:"password"`
+	//
+	TypeField PassportElementType `json:"type"`
 }
 
 func (t *GetPassportElement) Type() string {
@@ -9827,14 +9827,14 @@ func (t *GetPhoneNumberInfoSync) MarshalJSON() ([]byte, error) {
 type GetPollVoters struct {
 	// Identifier of the chat to which the poll belongs
 	ChatId int64 `json:"chat_id"`
-	// Identifier of the message containing the poll
-	MessageId int64 `json:"message_id"`
-	// 0-based identifier of the answer option
-	OptionId int32 `json:"option_id"`
-	// Number of voters to skip in the result; must be non-negative
-	Offset int32 `json:"offset"`
 	// The maximum number of voters to be returned; must be positive and can't be greater than 50. For optimal performance, the number of returned voters is chosen by TDLib and can be smaller than the specified limit, even if the end of the voter list has not been reached
 	Limit int32 `json:"limit"`
+	// Identifier of the message containing the poll
+	MessageId int64 `json:"message_id"`
+	// Number of voters to skip in the result; must be non-negative
+	Offset int32 `json:"offset"`
+	// 0-based identifier of the answer option
+	OptionId int32 `json:"option_id"`
 }
 
 func (t *GetPollVoters) Type() string {
@@ -10163,32 +10163,32 @@ func (t *GetReceivedGift) MarshalJSON() ([]byte, error) {
 type GetReceivedGifts struct {
 	// Unique identifier of business connection on behalf of which to send the request; for bots only
 	BusinessConnectionId string `json:"business_connection_id"`
-	// Identifier of the gift receiver
-	OwnerId MessageSender `json:"owner_id"`
 	// Pass collection identifier to get gifts only from the specified collection; pass 0 to get gifts regardless of collections
 	CollectionId int32 `json:"collection_id"`
-	// Pass true to exclude gifts that aren't saved to the chat's profile page. Always true for gifts received by other users and channel chats without can_post_messages administrator right
-	ExcludeUnsaved bool `json:"exclude_unsaved"`
+	// Pass true to exclude gifts that are just hosted and are not owned by the owner
+	ExcludeHosted bool `json:"exclude_hosted"`
+	// Pass true to exclude gifts that can be purchased limited number of times and can't be upgraded
+	ExcludeNonUpgradable bool `json:"exclude_non_upgradable"`
 	// Pass true to exclude gifts that are saved to the chat's profile page. Always false for gifts received by other users and channel chats without can_post_messages administrator right
 	ExcludeSaved bool `json:"exclude_saved"`
 	// Pass true to exclude gifts that can be purchased unlimited number of times
 	ExcludeUnlimited bool `json:"exclude_unlimited"`
+	// Pass true to exclude gifts that aren't saved to the chat's profile page. Always true for gifts received by other users and channel chats without can_post_messages administrator right
+	ExcludeUnsaved bool `json:"exclude_unsaved"`
 	// Pass true to exclude gifts that can be purchased limited number of times and can be upgraded
 	ExcludeUpgradable bool `json:"exclude_upgradable"`
-	// Pass true to exclude gifts that can be purchased limited number of times and can't be upgraded
-	ExcludeNonUpgradable bool `json:"exclude_non_upgradable"`
 	// Pass true to exclude upgraded gifts
 	ExcludeUpgraded bool `json:"exclude_upgraded"`
 	// Pass true to exclude gifts that can't be used in setUpgradedGiftColors
 	ExcludeWithoutColors bool `json:"exclude_without_colors"`
-	// Pass true to exclude gifts that are just hosted and are not owned by the owner
-	ExcludeHosted bool `json:"exclude_hosted"`
-	// Pass true to sort results by gift price instead of send date
-	SortByPrice bool `json:"sort_by_price"`
-	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
-	Offset string `json:"offset"`
 	// The maximum number of gifts to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned objects is chosen by TDLib and can be smaller than the specified limit
 	Limit int32 `json:"limit"`
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
+	// Identifier of the gift receiver
+	OwnerId MessageSender `json:"owner_id"`
+	// Pass true to sort results by gift price instead of send date
+	SortByPrice bool `json:"sort_by_price"`
 }
 
 func (t *GetReceivedGifts) Type() string {
@@ -10368,10 +10368,10 @@ func (t *GetRecoveryEmailAddress) MarshalJSON() ([]byte, error) {
 
 // GetRemoteFile Returns information about a file by its remote identifier. This is an offline method. Can be used to register a URL as a file for further uploading, or sending as a message. Even the request succeeds, the file can be used only if it is still accessible to the user.
 type GetRemoteFile struct {
-	// Remote identifier of the file to get
-	RemoteFileId string `json:"remote_file_id"`
 	// File type; pass null if unknown
 	FileType FileType `json:"file_type,omitempty"`
+	// Remote identifier of the file to get
+	RemoteFileId string `json:"remote_file_id"`
 }
 
 func (t *GetRemoteFile) Type() string {
@@ -10454,14 +10454,14 @@ func (t *GetSavedMessagesTags) MarshalJSON() ([]byte, error) {
 
 // GetSavedMessagesTopicHistory Returns messages in a Saved Messages topic. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id)
 type GetSavedMessagesTopicHistory struct {
-	// Identifier of Saved Messages topic which messages will be fetched
-	SavedMessagesTopicId int64 `json:"saved_messages_topic_id"`
 	// Identifier of the message starting from which messages must be fetched; use 0 to get results from the last message
 	FromMessageId int64 `json:"from_message_id"`
-	// Specify 0 to get results from exactly the message from_message_id or a negative number from -99 to -1 to get additionally -offset newer messages
-	Offset int32 `json:"offset"`
 	// The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, then the limit must be greater than or equal to -offset.
 	Limit int32 `json:"limit"`
+	// Specify 0 to get results from exactly the message from_message_id or a negative number from -99 to -1 to get additionally -offset newer messages
+	Offset int32 `json:"offset"`
+	// Identifier of Saved Messages topic which messages will be fetched
+	SavedMessagesTopicId int64 `json:"saved_messages_topic_id"`
 }
 
 func (t *GetSavedMessagesTopicHistory) Type() string {
@@ -10481,10 +10481,10 @@ func (t *GetSavedMessagesTopicHistory) MarshalJSON() ([]byte, error) {
 
 // GetSavedMessagesTopicMessageByDate Returns the last message sent in a Saved Messages topic no later than the specified date
 type GetSavedMessagesTopicMessageByDate struct {
-	// Identifier of Saved Messages topic which message will be returned
-	SavedMessagesTopicId int64 `json:"saved_messages_topic_id"`
 	// Point in time (Unix timestamp) relative to which to search for messages
 	Date int32 `json:"date"`
+	// Identifier of Saved Messages topic which message will be returned
+	SavedMessagesTopicId int64 `json:"saved_messages_topic_id"`
 }
 
 func (t *GetSavedMessagesTopicMessageByDate) Type() string {
@@ -10585,9 +10585,9 @@ func (t *GetScopeNotificationSettings) MarshalJSON() ([]byte, error) {
 // GetSearchedForTags Returns recently searched for hashtags or cashtags by their prefix @tag_prefix Prefix of hashtags or cashtags to return @limit The maximum number of items to be returned
 type GetSearchedForTags struct {
 	//
-	TagPrefix string `json:"tag_prefix"`
-	//
 	Limit int32 `json:"limit"`
+	//
+	TagPrefix string `json:"tag_prefix"`
 }
 
 func (t *GetSearchedForTags) Type() string {
@@ -10748,10 +10748,10 @@ func (t *GetStarPaymentOptions) MarshalJSON() ([]byte, error) {
 
 // GetStarRevenueStatistics Returns detailed Telegram Star revenue statistics
 type GetStarRevenueStatistics struct {
-	// Identifier of the owner of the Telegram Stars; can be identifier of the current user, an owned bot, or a supergroup or a channel chat with supergroupFullInfo.can_get_star_revenue_statistics == true
-	OwnerId MessageSender `json:"owner_id"`
 	// Pass true if a dark theme is used by the application
 	IsDark bool `json:"is_dark"`
+	// Identifier of the owner of the Telegram Stars; can be identifier of the current user, an owned bot, or a supergroup or a channel chat with supergroupFullInfo.can_get_star_revenue_statistics == true
+	OwnerId MessageSender `json:"owner_id"`
 }
 
 func (t *GetStarRevenueStatistics) Type() string {
@@ -10771,10 +10771,10 @@ func (t *GetStarRevenueStatistics) MarshalJSON() ([]byte, error) {
 
 // GetStarSubscriptions Returns the list of Telegram Star subscriptions for the current user
 type GetStarSubscriptions struct {
-	// Pass true to receive only expiring subscriptions for which there are no enough Telegram Stars to extend
-	OnlyExpiring bool `json:"only_expiring"`
 	// Offset of the first subscription to return as received from the previous request; use empty string to get the first chunk of results
 	Offset string `json:"offset"`
+	// Pass true to receive only expiring subscriptions for which there are no enough Telegram Stars to extend
+	OnlyExpiring bool `json:"only_expiring"`
 }
 
 func (t *GetStarSubscriptions) Type() string {
@@ -10794,16 +10794,16 @@ func (t *GetStarSubscriptions) MarshalJSON() ([]byte, error) {
 
 // GetStarTransactions Returns the list of Telegram Star transactions for the specified owner
 type GetStarTransactions struct {
+	// Direction of the transactions to receive; pass null to get all transactions
+	Direction TransactionDirection `json:"direction,omitempty"`
+	// The maximum number of transactions to return
+	Limit int32 `json:"limit"`
+	// Offset of the first transaction to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
 	// Identifier of the owner of the Telegram Stars; can be the identifier of the current user, identifier of an owned bot,
 	OwnerId MessageSender `json:"owner_id"`
 	// If non-empty, only transactions related to the Star Subscription will be returned
-	SubscriptionId string `json:"subscription_id"`
-	// Direction of the transactions to receive; pass null to get all transactions
-	Direction TransactionDirection `json:"direction,omitempty"`
-	// Offset of the first transaction to return as received from the previous request; use empty string to get the first chunk of results
-	Offset string `json:"offset"`
-	// The maximum number of transactions to return
-	Limit int32 `json:"limit"`
+	SubscriptionId string `json:"subscription_id,omitempty"`
 }
 
 func (t *GetStarTransactions) Type() string {
@@ -10825,10 +10825,10 @@ func (t *GetStarTransactions) MarshalJSON() ([]byte, error) {
 type GetStarWithdrawalUrl struct {
 	// Identifier of the owner of the Telegram Stars; can be identifier of the current user, an owned bot, or an owned supergroup or channel chat
 	OwnerId MessageSender `json:"owner_id"`
-	// The number of Telegram Stars to withdraw; must be between getOption("star_withdrawal_count_min") and getOption("star_withdrawal_count_max")
-	StarCount int64 `json:"star_count"`
 	// The 2-step verification password of the current user
 	Password string `json:"password"`
+	// The number of Telegram Stars to withdraw; must be between getOption("star_withdrawal_count_min") and getOption("star_withdrawal_count_max")
+	StarCount int64 `json:"star_count"`
 }
 
 func (t *GetStarWithdrawalUrl) Type() string {
@@ -10894,12 +10894,12 @@ func (t *GetStickerEmojis) MarshalJSON() ([]byte, error) {
 
 // GetStickerOutline Returns outline of a sticker. This is an offline method. Returns a 404 error if the outline isn't known
 type GetStickerOutline struct {
-	// File identifier of the sticker
-	StickerFileId int32 `json:"sticker_file_id"`
 	// Pass true to get the outline scaled for animated emoji
 	ForAnimatedEmoji bool `json:"for_animated_emoji"`
 	// Pass true to get the outline scaled for clicked animated emoji message
 	ForClickedAnimatedEmojiMessage bool `json:"for_clicked_animated_emoji_message"`
+	// File identifier of the sticker
+	StickerFileId int32 `json:"sticker_file_id"`
 }
 
 func (t *GetStickerOutline) Type() string {
@@ -10919,12 +10919,12 @@ func (t *GetStickerOutline) MarshalJSON() ([]byte, error) {
 
 // GetStickerOutlineSvgPath Returns outline of a sticker as an SVG path. This is an offline method. Returns an empty string if the outline isn't known
 type GetStickerOutlineSvgPath struct {
-	// File identifier of the sticker
-	StickerFileId int32 `json:"sticker_file_id"`
 	// Pass true to get the outline scaled for animated emoji
 	ForAnimatedEmoji bool `json:"for_animated_emoji"`
 	// Pass true to get the outline scaled for clicked animated emoji message
 	ForClickedAnimatedEmojiMessage bool `json:"for_clicked_animated_emoji_message"`
+	// File identifier of the sticker
+	StickerFileId int32 `json:"sticker_file_id"`
 }
 
 func (t *GetStickerOutlineSvgPath) Type() string {
@@ -10944,14 +10944,14 @@ func (t *GetStickerOutlineSvgPath) MarshalJSON() ([]byte, error) {
 
 // GetStickers Returns stickers from the installed sticker sets that correspond to any of the given emoji or can be found by sticker-specific keywords. If the query is non-empty, then favorite, recently used or trending stickers may also be returned
 type GetStickers struct {
-	// Type of the stickers to return
-	StickerType StickerType `json:"sticker_type"`
-	// Search query; a space-separated list of emojis or a keyword prefix. If empty, returns all known installed stickers
-	Query string `json:"query"`
-	// The maximum number of stickers to be returned
-	Limit int32 `json:"limit"`
 	// Chat identifier for which to return stickers. Available custom emoji stickers may be different for different chats
 	ChatId int64 `json:"chat_id"`
+	// The maximum number of stickers to be returned
+	Limit int32 `json:"limit"`
+	// Search query; a space-separated list of emojis or a keyword prefix. If empty, returns all known installed stickers
+	Query string `json:"query"`
+	// Type of the stickers to return
+	StickerType StickerType `json:"sticker_type"`
 }
 
 func (t *GetStickers) Type() string {
@@ -11053,12 +11053,12 @@ func (t *GetStorageStatisticsFast) MarshalJSON() ([]byte, error) {
 
 // GetStory Returns a story
 type GetStory struct {
-	// Identifier of the chat that posted the story
-	StoryPosterChatId int64 `json:"story_poster_chat_id"`
-	// Story identifier
-	StoryId int32 `json:"story_id"`
 	// Pass true to get only locally available information without sending network requests
 	OnlyLocal bool `json:"only_local"`
+	// Story identifier
+	StoryId int32 `json:"story_id"`
+	// Identifier of the chat that posted the story
+	StoryPosterChatId int64 `json:"story_poster_chat_id"`
 }
 
 func (t *GetStory) Type() string {
@@ -11080,12 +11080,12 @@ func (t *GetStory) MarshalJSON() ([]byte, error) {
 type GetStoryAlbumStories struct {
 	// Chat identifier
 	ChatId int64 `json:"chat_id"`
-	// Story album identifier
-	StoryAlbumId int32 `json:"story_album_id"`
-	// Offset of the first entry to return; use 0 to get results from the first album story
-	Offset int32 `json:"offset"`
 	// The maximum number of stories to be returned. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
 	Limit int32 `json:"limit"`
+	// Offset of the first entry to return; use 0 to get results from the first album story
+	Offset int32 `json:"offset"`
+	// Story album identifier
+	StoryAlbumId int32 `json:"story_album_id"`
 }
 
 func (t *GetStoryAlbumStories) Type() string {
@@ -11126,20 +11126,20 @@ func (t *GetStoryAvailableReactions) MarshalJSON() ([]byte, error) {
 
 // GetStoryInteractions Returns interactions with a story. The method can be called only for stories posted on behalf of the current user
 type GetStoryInteractions struct {
-	// Story identifier
-	StoryId int32 `json:"story_id"`
-	// Query to search for in names, usernames and titles; may be empty to get all relevant interactions
-	Query string `json:"query"`
+	// The maximum number of story interactions to return
+	Limit int32 `json:"limit"`
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
 	// Pass true to get only interactions by contacts; pass false to get all relevant interactions
 	OnlyContacts bool `json:"only_contacts"`
 	// Pass true to get forwards and reposts first, then reactions, then other views; pass false to get interactions sorted just by interaction date
 	PreferForwards bool `json:"prefer_forwards"`
 	// Pass true to get interactions with reaction first; pass false to get interactions sorted just by interaction date. Ignored if prefer_forwards == true
 	PreferWithReaction bool `json:"prefer_with_reaction"`
-	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
-	Offset string `json:"offset"`
-	// The maximum number of story interactions to return
-	Limit int32 `json:"limit"`
+	// Query to search for in names, usernames and titles; may be empty to get all relevant interactions
+	Query string `json:"query,omitempty"`
+	// Story identifier
+	StoryId int32 `json:"story_id"`
 }
 
 func (t *GetStoryInteractions) Type() string {
@@ -11178,14 +11178,14 @@ func (t *GetStoryNotificationSettingsExceptions) MarshalJSON() ([]byte, error) {
 
 // GetStoryPublicForwards Returns forwards of a story as a message to public chats and reposts by public channels. Can be used only if the story is posted on behalf of the current user or story.can_get_statistics == true.
 type GetStoryPublicForwards struct {
-	// The identifier of the poster of the story
-	StoryPosterChatId int64 `json:"story_poster_chat_id"`
-	// The identifier of the story
-	StoryId int32 `json:"story_id"`
-	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
-	Offset string `json:"offset"`
 	// The maximum number of messages and stories to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned objects is chosen by TDLib and can be smaller than the specified limit
 	Limit int32 `json:"limit"`
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
+	// The identifier of the story
+	StoryId int32 `json:"story_id"`
+	// The identifier of the poster of the story
+	StoryPosterChatId int64 `json:"story_poster_chat_id"`
 }
 
 func (t *GetStoryPublicForwards) Type() string {
@@ -11208,9 +11208,9 @@ type GetStoryStatistics struct {
 	//
 	ChatId int64 `json:"chat_id"`
 	//
-	StoryId int32 `json:"story_id"`
-	//
 	IsDark bool `json:"is_dark"`
+	//
+	StoryId int32 `json:"story_id"`
 }
 
 func (t *GetStoryStatistics) Type() string {
@@ -11231,9 +11231,9 @@ func (t *GetStoryStatistics) MarshalJSON() ([]byte, error) {
 // GetSuggestedFileName Returns suggested name for saving a file in a given directory @file_id Identifier of the file @directory Directory in which the file is expected to be saved
 type GetSuggestedFileName struct {
 	//
-	FileId int32 `json:"file_id"`
-	//
 	Directory string `json:"directory"`
+	//
+	FileId int32 `json:"file_id"`
 }
 
 func (t *GetSuggestedFileName) Type() string {
@@ -11354,14 +11354,14 @@ func (t *GetSupergroupFullInfo) MarshalJSON() ([]byte, error) {
 
 // GetSupergroupMembers Returns information about members or banned users in a supergroup or channel. Can be used only if supergroupFullInfo.can_get_members == true; additionally, administrator privileges may be required for some filters
 type GetSupergroupMembers struct {
-	// Identifier of the supergroup or channel
-	SupergroupId int64 `json:"supergroup_id"`
 	// The type of users to return; pass null to use supergroupMembersFilterRecent
 	Filter SupergroupMembersFilter `json:"filter,omitempty"`
-	// Number of users to skip
-	Offset int32 `json:"offset"`
 	// The maximum number of users to be returned; up to 200
 	Limit int32 `json:"limit"`
+	// Number of users to skip
+	Offset int32 `json:"offset"`
+	// Identifier of the supergroup or channel
+	SupergroupId int64 `json:"supergroup_id"`
 }
 
 func (t *GetSupergroupMembers) Type() string {
@@ -11560,10 +11560,10 @@ func (t *GetTonRevenueStatistics) MarshalJSON() ([]byte, error) {
 type GetTonTransactions struct {
 	// Direction of the transactions to receive; pass null to get all transactions
 	Direction TransactionDirection `json:"direction,omitempty"`
-	// Offset of the first transaction to return as received from the previous request; use empty string to get the first chunk of results
-	Offset string `json:"offset"`
 	// The maximum number of transactions to return
 	Limit int32 `json:"limit"`
+	// Offset of the first transaction to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
 }
 
 func (t *GetTonTransactions) Type() string {
@@ -11627,12 +11627,12 @@ func (t *GetTopChats) MarshalJSON() ([]byte, error) {
 
 // GetTrendingStickerSets Returns a list of trending sticker sets. For optimal performance, the number of returned sticker sets is chosen by TDLib
 type GetTrendingStickerSets struct {
-	// Type of the sticker sets to return
-	StickerType StickerType `json:"sticker_type"`
-	// The offset from which to return the sticker sets; must be non-negative
-	Offset int32 `json:"offset"`
 	// The maximum number of sticker sets to be returned; up to 100. For optimal performance, the number of returned sticker sets is chosen by TDLib and can be smaller than the specified limit, even if the end of the list has not been reached
 	Limit int32 `json:"limit"`
+	// The offset from which to return the sticker sets; must be non-negative
+	Offset int32 `json:"offset"`
+	// Type of the sticker sets to return
+	StickerType StickerType `json:"sticker_type"`
 }
 
 func (t *GetTrendingStickerSets) Type() string {
@@ -11734,10 +11734,10 @@ func (t *GetUpgradedGiftValueInfo) MarshalJSON() ([]byte, error) {
 type GetUpgradedGiftVariants struct {
 	// Identifier of the regular gift
 	RegularGiftId int64 `json:"regular_gift_id,string"`
-	// Pass true to get models that can be obtained by upgrading a regular gift
-	ReturnUpgradeModels bool `json:"return_upgrade_models"`
 	// Pass true to get models that can be obtained by crafting a gift from upgraded gifts
 	ReturnCraftModels bool `json:"return_craft_models"`
+	// Pass true to get models that can be obtained by upgrading a regular gift
+	ReturnUpgradeModels bool `json:"return_upgrade_models"`
 }
 
 func (t *GetUpgradedGiftVariants) Type() string {
@@ -11757,10 +11757,10 @@ func (t *GetUpgradedGiftVariants) MarshalJSON() ([]byte, error) {
 
 // GetUpgradedGiftWithdrawalUrl Returns a URL for upgraded gift withdrawal in the TON blockchain as an NFT; requires owner privileges for gifts owned by a chat
 type GetUpgradedGiftWithdrawalUrl struct {
-	// Identifier of the gift
-	ReceivedGiftId string `json:"received_gift_id"`
 	// The 2-step verification password of the current user
 	Password string `json:"password"`
+	// Identifier of the gift
+	ReceivedGiftId string `json:"received_gift_id"`
 }
 
 func (t *GetUpgradedGiftWithdrawalUrl) Type() string {
@@ -11885,12 +11885,12 @@ func (t *GetUserPrivacySettingRules) MarshalJSON() ([]byte, error) {
 
 // GetUserProfileAudios Returns the list of profile audio files of a user
 type GetUserProfileAudios struct {
-	// User identifier
-	UserId int64 `json:"user_id"`
-	// The number of audio files to skip; must be non-negative
-	Offset int32 `json:"offset"`
 	// The maximum number of audio files to be returned; up to 100
 	Limit int32 `json:"limit"`
+	// The number of audio files to skip; must be non-negative
+	Offset int32 `json:"offset"`
+	// User identifier
+	UserId int64 `json:"user_id"`
 }
 
 func (t *GetUserProfileAudios) Type() string {
@@ -11910,12 +11910,12 @@ func (t *GetUserProfileAudios) MarshalJSON() ([]byte, error) {
 
 // GetUserProfilePhotos Returns the profile photos of a user. Personal and public photo aren't returned
 type GetUserProfilePhotos struct {
-	// User identifier
-	UserId int64 `json:"user_id"`
-	// The number of photos to skip; must be non-negative
-	Offset int32 `json:"offset"`
 	// The maximum number of photos to be returned; up to 100
 	Limit int32 `json:"limit"`
+	// The number of photos to skip; must be non-negative
+	Offset int32 `json:"offset"`
+	// User identifier
+	UserId int64 `json:"user_id"`
 }
 
 func (t *GetUserProfilePhotos) Type() string {
@@ -11977,10 +11977,10 @@ func (t *GetVideoChatAvailableParticipants) MarshalJSON() ([]byte, error) {
 
 // GetVideoChatInviteLink Returns invite link to a video chat in a public chat
 type GetVideoChatInviteLink struct {
-	// Group call identifier
-	GroupCallId int32 `json:"group_call_id"`
 	// Pass true if the invite link needs to contain an invite hash, passing which to joinVideoChat would allow the invited user to unmute themselves. Requires groupCall.can_be_managed right
 	CanSelfUnmute bool `json:"can_self_unmute"`
+	// Group call identifier
+	GroupCallId int32 `json:"group_call_id"`
 }
 
 func (t *GetVideoChatInviteLink) Type() string {
@@ -12044,18 +12044,18 @@ func (t *GetVideoMessageAdvertisements) MarshalJSON() ([]byte, error) {
 
 // GetWebAppLinkUrl Returns an HTTPS URL of a Web App to open after a link of the type internalLinkTypeWebApp is clicked
 type GetWebAppLinkUrl struct {
-	// Identifier of the chat in which the link was clicked; pass 0 if none
-	ChatId int64 `json:"chat_id"`
-	// Identifier of the target bot
-	BotUserId int64 `json:"bot_user_id"`
-	// Short name of the Web App
-	WebAppShortName string `json:"web_app_short_name"`
-	// Start parameter from internalLinkTypeWebApp
-	StartParameter string `json:"start_parameter"`
 	// Pass true if the current user allowed the bot to send them messages
 	AllowWriteAccess bool `json:"allow_write_access"`
+	// Identifier of the target bot
+	BotUserId int64 `json:"bot_user_id"`
+	// Identifier of the chat in which the link was clicked; pass 0 if none
+	ChatId int64 `json:"chat_id"`
 	// Parameters to use to open the Web App
 	Parameters *WebAppOpenParameters `json:"parameters"`
+	// Start parameter from internalLinkTypeWebApp
+	StartParameter string `json:"start_parameter"`
+	// Short name of the Web App
+	WebAppShortName string `json:"web_app_short_name"`
 }
 
 func (t *GetWebAppLinkUrl) Type() string {
@@ -12098,10 +12098,10 @@ func (t *GetWebAppPlaceholder) MarshalJSON() ([]byte, error) {
 type GetWebAppUrl struct {
 	// Identifier of the target bot. If the bot is restricted for the current user, then show an error instead of calling the method
 	BotUserId int64 `json:"bot_user_id"`
-	// The URL from a keyboardButtonTypeWebApp button, inlineQueryResultsButtonTypeWebApp button, or an empty string when the bot is opened from the side menu
-	Url string `json:"url"`
 	// Parameters to use to open the Web App
 	Parameters *WebAppOpenParameters `json:"parameters"`
+	// The URL from a keyboardButtonTypeWebApp button, inlineQueryResultsButtonTypeWebApp button, or an empty string when the bot is opened from the side menu
+	Url string `json:"url"`
 }
 
 func (t *GetWebAppUrl) Type() string {
@@ -12121,10 +12121,10 @@ func (t *GetWebAppUrl) MarshalJSON() ([]byte, error) {
 
 // GetWebPageInstantView Returns an instant view version of a web page if available. This is an offline method if only_local is true. Returns a 404 error if the web page has no instant view page
 type GetWebPageInstantView struct {
-	// The web page URL
-	Url string `json:"url"`
 	// Pass true to get only locally available information without sending network requests
 	OnlyLocal bool `json:"only_local"`
+	// The web page URL
+	Url string `json:"url"`
 }
 
 func (t *GetWebPageInstantView) Type() string {
@@ -12144,14 +12144,14 @@ func (t *GetWebPageInstantView) MarshalJSON() ([]byte, error) {
 
 // GiftPremiumWithStars Allows to buy a Telegram Premium subscription for another user with payment in Telegram Stars; for bots only
 type GiftPremiumWithStars struct {
-	// Identifier of the user which will receive Telegram Premium
-	UserId int64 `json:"user_id"`
-	// The number of Telegram Stars to pay for subscription
-	StarCount int64 `json:"star_count"`
 	// Number of months the Telegram Premium subscription will be active for the user
 	MonthCount int32 `json:"month_count"`
+	// The number of Telegram Stars to pay for subscription
+	StarCount int64 `json:"star_count"`
 	// Text to show to the user receiving Telegram Premium; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed
 	Text *FormattedText `json:"text"`
+	// Identifier of the user which will receive Telegram Premium
+	UserId int64 `json:"user_id"`
 }
 
 func (t *GiftPremiumWithStars) Type() string {
@@ -12232,12 +12232,12 @@ func (t *ImportContacts) MarshalJSON() ([]byte, error) {
 
 // ImportMessages Imports messages exported from another app
 type ImportMessages struct {
+	// Files used in the imported messages. Only inputFileLocal and inputFileGenerated are supported. The files must not be previously uploaded
+	AttachedFiles []InputFile `json:"attached_files"`
 	// Identifier of a chat to which the messages will be imported. It must be an identifier of a private chat with a mutual contact or an identifier of a supergroup chat with can_change_info member right
 	ChatId int64 `json:"chat_id"`
 	// File with messages to import. Only inputFileLocal and inputFileGenerated are supported. The file must not be previously uploaded
 	MessageFile InputFile `json:"message_file"`
-	// Files used in the imported messages. Only inputFileLocal and inputFileGenerated are supported. The files must not be previously uploaded
-	AttachedFiles []InputFile `json:"attached_files"`
 }
 
 func (t *ImportMessages) Type() string {
@@ -12282,10 +12282,10 @@ func (t *IncreaseGiftAuctionBid) MarshalJSON() ([]byte, error) {
 type InviteGroupCallParticipant struct {
 	// Group call identifier
 	GroupCallId int32 `json:"group_call_id"`
-	// User identifier
-	UserId int64 `json:"user_id"`
 	// Pass true if the group call is a video call
 	IsVideo bool `json:"is_video"`
+	// User identifier
+	UserId int64 `json:"user_id"`
 }
 
 func (t *InviteGroupCallParticipant) Type() string {
@@ -12458,12 +12458,12 @@ func (t *JoinLiveStory) MarshalJSON() ([]byte, error) {
 type JoinVideoChat struct {
 	// Group call identifier
 	GroupCallId int32 `json:"group_call_id"`
-	// Identifier of a group call participant, which will be used to join the call; pass null to join as self
-	ParticipantId MessageSender `json:"participant_id,omitempty"`
-	// Parameters to join the call
-	JoinParameters *GroupCallJoinParameters `json:"join_parameters"`
 	// Invite hash as received from internalLinkTypeVideoChat
 	InviteHash string `json:"invite_hash"`
+	// Parameters to join the call
+	JoinParameters *GroupCallJoinParameters `json:"join_parameters"`
+	// Identifier of a group call participant, which will be used to join the call; pass null to join as self
+	ParticipantId MessageSender `json:"participant_id,omitempty"`
 }
 
 func (t *JoinVideoChat) Type() string {
@@ -12487,10 +12487,10 @@ type LaunchPrepaidGiveaway struct {
 	GiveawayId int64 `json:"giveaway_id,string"`
 	// Giveaway parameters
 	Parameters *GiveawayParameters `json:"parameters"`
-	// The number of users to receive giveaway prize
-	WinnerCount int32 `json:"winner_count"`
 	// The number of Telegram Stars to be distributed through the giveaway; pass 0 for Telegram Premium giveaways
 	StarCount int64 `json:"star_count"`
+	// The number of users to receive giveaway prize
+	WinnerCount int32 `json:"winner_count"`
 }
 
 func (t *LaunchPrepaidGiveaway) Type() string {
@@ -12724,12 +12724,12 @@ func (t *LogOut) MarshalJSON() ([]byte, error) {
 type MarkChecklistTasksAsDone struct {
 	// Identifier of the chat with the message
 	ChatId int64 `json:"chat_id"`
-	// Identifier of the message containing the checklist. Use messageProperties.can_mark_tasks_as_done to check whether the tasks can be marked as done or not done
-	MessageId int64 `json:"message_id"`
 	// Identifiers of tasks that were marked as done
 	MarkedAsDoneTaskIds []int32 `json:"marked_as_done_task_ids"`
 	// Identifiers of tasks that were marked as not done
 	MarkedAsNotDoneTaskIds []int32 `json:"marked_as_not_done_task_ids"`
+	// Identifier of the message containing the checklist. Use messageProperties.can_mark_tasks_as_done to check whether the tasks can be marked as done or not done
+	MessageId int64 `json:"message_id"`
 }
 
 func (t *MarkChecklistTasksAsDone) Type() string {
@@ -12881,10 +12881,10 @@ func (t *OpenSponsoredChat) MarshalJSON() ([]byte, error) {
 
 // OpenStory Informs TDLib that a story is opened and is being viewed by the user
 type OpenStory struct {
-	// The identifier of the chat that posted the opened story
-	StoryPosterChatId int64 `json:"story_poster_chat_id"`
 	// The identifier of the story
 	StoryId int32 `json:"story_id"`
+	// The identifier of the chat that posted the opened story
+	StoryPosterChatId int64 `json:"story_poster_chat_id"`
 }
 
 func (t *OpenStory) Type() string {
@@ -12904,18 +12904,18 @@ func (t *OpenStory) MarshalJSON() ([]byte, error) {
 
 // OpenWebApp Informs TDLib that a Web App is being opened from the attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button.
 type OpenWebApp struct {
-	// Identifier of the chat in which the Web App is opened. The Web App can't be opened in secret chats
-	ChatId int64 `json:"chat_id"`
 	// Identifier of the bot, providing the Web App. If the bot is restricted for the current user, then show an error instead of calling the method
 	BotUserId int64 `json:"bot_user_id"`
-	// The URL from an inlineKeyboardButtonTypeWebApp button, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an empty string otherwise
-	Url string `json:"url"`
-	// Topic in which the message will be sent; pass null if none
-	TopicId MessageTopic `json:"topic_id,omitempty"`
-	// Information about the message or story to be replied in the message sent by the Web App; pass null if none
-	ReplyTo InputMessageReplyTo `json:"reply_to,omitempty"`
+	// Identifier of the chat in which the Web App is opened. The Web App can't be opened in secret chats
+	ChatId int64 `json:"chat_id"`
 	// Parameters to use to open the Web App
 	Parameters *WebAppOpenParameters `json:"parameters"`
+	// Information about the message or story to be replied in the message sent by the Web App; pass null if none
+	ReplyTo InputMessageReplyTo `json:"reply_to,omitempty"`
+	// Topic in which the message will be sent; pass null if none
+	TopicId MessageTopic `json:"topic_id,omitempty"`
+	// The URL from an inlineKeyboardButtonTypeWebApp button, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an empty string otherwise
+	Url string `json:"url"`
 }
 
 func (t *OpenWebApp) Type() string {
@@ -12935,24 +12935,24 @@ func (t *OpenWebApp) MarshalJSON() ([]byte, error) {
 
 // OptimizeStorage Optimizes storage usage, i.e. deletes some files and returns new storage usage statistics. Secret thumbnails can't be deleted
 type OptimizeStorage struct {
+	// If non-empty, only files from the given chats are considered. Use 0 as chat identifier to delete files not belonging to any chat (e.g., profile photos)
+	ChatIds []int64 `json:"chat_ids,omitempty"`
+	// Same as in getStorageStatistics. Affects only returned statistics
+	ChatLimit int32 `json:"chat_limit"`
+	// Limit on the total number of files after deletion. Pass -1 to use the default limit
+	Count int32 `json:"count"`
+	// If non-empty, files from the given chats are excluded. Use 0 as chat identifier to exclude all files not belonging to any chat (e.g., profile photos)
+	ExcludeChatIds []int64 `json:"exclude_chat_ids,omitempty"`
+	// If non-empty, only files with the given types are considered. By default, all types except thumbnails, profile photos, stickers and wallpapers are deleted
+	FileTypes []FileType `json:"file_types,omitempty"`
+	// The amount of time after the creation of a file during which it can't be deleted, in seconds. Pass -1 to use the default value
+	ImmunityDelay int32 `json:"immunity_delay"`
+	// Pass true if statistics about the files that were deleted must be returned instead of the whole storage usage statistics. Affects only returned statistics
+	ReturnDeletedFileStatistics bool `json:"return_deleted_file_statistics"`
 	// Limit on the total size of files after deletion, in bytes. Pass -1 to use the default limit
 	Size int64 `json:"size"`
 	// Limit on the time that has passed since the last time a file was accessed (or creation time for some filesystems). Pass -1 to use the default limit
 	Ttl int32 `json:"ttl"`
-	// Limit on the total number of files after deletion. Pass -1 to use the default limit
-	Count int32 `json:"count"`
-	// The amount of time after the creation of a file during which it can't be deleted, in seconds. Pass -1 to use the default value
-	ImmunityDelay int32 `json:"immunity_delay"`
-	// If non-empty, only files with the given types are considered. By default, all types except thumbnails, profile photos, stickers and wallpapers are deleted
-	FileTypes []FileType `json:"file_types"`
-	// If non-empty, only files from the given chats are considered. Use 0 as chat identifier to delete files not belonging to any chat (e.g., profile photos)
-	ChatIds []int64 `json:"chat_ids"`
-	// If non-empty, files from the given chats are excluded. Use 0 as chat identifier to exclude all files not belonging to any chat (e.g., profile photos)
-	ExcludeChatIds []int64 `json:"exclude_chat_ids"`
-	// Pass true if statistics about the files that were deleted must be returned instead of the whole storage usage statistics. Affects only returned statistics
-	ReturnDeletedFileStatistics bool `json:"return_deleted_file_statistics"`
-	// Same as in getStorageStatistics. Affects only returned statistics
-	ChatLimit int32 `json:"chat_limit"`
 }
 
 func (t *OptimizeStorage) Type() string {
@@ -12993,10 +12993,10 @@ func (t *ParseMarkdown) MarshalJSON() ([]byte, error) {
 
 // ParseTextEntities Parses Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, BlockQuote, ExpandableBlockQuote, Code, Pre, PreCode, TextUrl
 type ParseTextEntities struct {
-	// The text to parse
-	Text string `json:"text"`
 	// Text parse mode
 	ParseMode TextParseMode `json:"parse_mode"`
+	// The text to parse
+	Text string `json:"text"`
 }
 
 func (t *ParseTextEntities) Type() string {
@@ -13018,10 +13018,10 @@ func (t *ParseTextEntities) MarshalJSON() ([]byte, error) {
 type PinChatMessage struct {
 	// Identifier of the chat
 	ChatId int64 `json:"chat_id"`
-	// Identifier of the new pinned message
-	MessageId int64 `json:"message_id"`
 	// Pass true to disable notification about the pinned message. Notifications are always disabled in channels and private chats
 	DisableNotification bool `json:"disable_notification"`
+	// Identifier of the new pinned message
+	MessageId int64 `json:"message_id"`
 	// Pass true to pin the message only for self; private chats only
 	OnlyForSelf bool `json:"only_for_self"`
 }
@@ -13066,14 +13066,14 @@ func (t *PingProxy) MarshalJSON() ([]byte, error) {
 type PlaceGiftAuctionBid struct {
 	// Identifier of the gift to place the bid on
 	GiftId int64 `json:"gift_id,string"`
-	// The number of Telegram Stars to place in the bid
-	StarCount int64 `json:"star_count"`
-	// Identifier of the user who will receive the gift
-	UserId int64 `json:"user_id"`
-	// Text to show along with the gift; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed.
-	Text *FormattedText `json:"text"`
 	// Pass true to show gift text and sender only to the gift receiver; otherwise, everyone will be able to see them
 	IsPrivate bool `json:"is_private"`
+	// The number of Telegram Stars to place in the bid
+	StarCount int64 `json:"star_count"`
+	// Text to show along with the gift; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed.
+	Text *FormattedText `json:"text"`
+	// Identifier of the user who will receive the gift
+	UserId int64 `json:"user_id"`
 }
 
 func (t *PlaceGiftAuctionBid) Type() string {
@@ -13093,24 +13093,24 @@ func (t *PlaceGiftAuctionBid) MarshalJSON() ([]byte, error) {
 
 // PostStory Posts a new story on behalf of a chat; requires can_post_stories administrator right for supergroup and channel chats. Returns a temporary story
 type PostStory struct {
-	// Identifier of the chat that will post the story. Pass Saved Messages chat identifier when posting a story on behalf of the current user
-	ChatId int64 `json:"chat_id"`
-	// Content of the story
-	Content InputStoryContent `json:"content"`
+	// Period after which the story is moved to archive, in seconds; must be one of 6 * 3600, 12 * 3600, 86400, or 2 * 86400 for Telegram Premium users, and 86400 otherwise
+	ActivePeriod int32 `json:"active_period"`
+	// Identifiers of story albums to which the story will be added upon posting. An album can have up to getOption("story_album_size_max") stories
+	AlbumIds []int32 `json:"album_ids"`
 	// Clickable rectangle areas to be shown on the story media; pass null if none
 	Areas *InputStoryAreas `json:"areas,omitempty"`
 	// Story caption; pass null to use an empty caption; 0-getOption("story_caption_length_max") characters; can have entities only if getOption("can_use_text_entities_in_story_caption")
 	Caption *FormattedText `json:"caption,omitempty"`
-	// The privacy settings for the story; ignored for stories posted on behalf of supergroup and channel chats
-	PrivacySettings StoryPrivacySettings `json:"privacy_settings"`
-	// Identifiers of story albums to which the story will be added upon posting. An album can have up to getOption("story_album_size_max") stories
-	AlbumIds []int32 `json:"album_ids"`
-	// Period after which the story is moved to archive, in seconds; must be one of 6 * 3600, 12 * 3600, 86400, or 2 * 86400 for Telegram Premium users, and 86400 otherwise
-	ActivePeriod int32 `json:"active_period"`
+	// Identifier of the chat that will post the story. Pass Saved Messages chat identifier when posting a story on behalf of the current user
+	ChatId int64 `json:"chat_id"`
+	// Content of the story
+	Content InputStoryContent `json:"content"`
 	// Full identifier of the original story, which content was used to create the story; pass null if the story isn't repost of another story
 	FromStoryFullId *StoryFullId `json:"from_story_full_id,omitempty"`
 	// Pass true to keep the story accessible after expiration
 	IsPostedToChatPage bool `json:"is_posted_to_chat_page"`
+	// The privacy settings for the story; ignored for stories posted on behalf of supergroup and channel chats
+	PrivacySettings StoryPrivacySettings `json:"privacy_settings"`
 	// Pass true if the content of the story must be protected from forwarding and screenshotting
 	ProtectContent bool `json:"protect_content"`
 }
@@ -13158,9 +13158,9 @@ func (t *PreliminaryUploadFile) MarshalJSON() ([]byte, error) {
 // ProcessChatFolderNewChats Process new chats added to a shareable chat folder by its owner @chat_folder_id Chat folder identifier @added_chat_ids Identifiers of the new chats, which are added to the chat folder. The chats are automatically joined if they aren't joined yet
 type ProcessChatFolderNewChats struct {
 	//
-	ChatFolderId int32 `json:"chat_folder_id"`
-	//
 	AddedChatIds []int64 `json:"added_chat_ids"`
+	//
+	ChatFolderId int32 `json:"chat_folder_id"`
 }
 
 func (t *ProcessChatFolderNewChats) Type() string {
@@ -13181,11 +13181,11 @@ func (t *ProcessChatFolderNewChats) MarshalJSON() ([]byte, error) {
 // ProcessChatJoinRequest Handles a pending join request in a chat @chat_id Chat identifier @user_id Identifier of the user who sent the request @approve Pass true to approve the request; pass false to decline it
 type ProcessChatJoinRequest struct {
 	//
+	Approve bool `json:"approve"`
+	//
 	ChatId int64 `json:"chat_id"`
 	//
 	UserId int64 `json:"user_id"`
-	//
-	Approve bool `json:"approve"`
 }
 
 func (t *ProcessChatJoinRequest) Type() string {
@@ -13205,12 +13205,12 @@ func (t *ProcessChatJoinRequest) MarshalJSON() ([]byte, error) {
 
 // ProcessChatJoinRequests Handles all pending join requests for a given link in a chat
 type ProcessChatJoinRequests struct {
+	// Pass true to approve all requests; pass false to decline them
+	Approve bool `json:"approve"`
 	// Chat identifier
 	ChatId int64 `json:"chat_id"`
 	// Invite link for which to process join requests. If empty, all join requests will be processed. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
 	InviteLink string `json:"invite_link"`
-	// Pass true to approve all requests; pass false to decline them
-	Approve bool `json:"approve"`
 }
 
 func (t *ProcessChatJoinRequests) Type() string {
@@ -13230,10 +13230,10 @@ func (t *ProcessChatJoinRequests) MarshalJSON() ([]byte, error) {
 
 // ProcessGiftPurchaseOffer Handles a pending gift purchase offer
 type ProcessGiftPurchaseOffer struct {
-	// Identifier of the message with the gift purchase offer
-	MessageId int64 `json:"message_id"`
 	// Pass true to accept the request; pass false to reject it
 	Accept bool `json:"accept"`
+	// Identifier of the message with the gift purchase offer
+	MessageId int64 `json:"message_id"`
 }
 
 func (t *ProcessGiftPurchaseOffer) Type() string {
@@ -13277,9 +13277,9 @@ type RateSpeechRecognition struct {
 	//
 	ChatId int64 `json:"chat_id"`
 	//
-	MessageId int64 `json:"message_id"`
-	//
 	IsGood bool `json:"is_good"`
+	//
+	MessageId int64 `json:"message_id"`
 }
 
 func (t *RateSpeechRecognition) Type() string {
@@ -13456,10 +13456,10 @@ func (t *ReadChatList) MarshalJSON() ([]byte, error) {
 
 // ReaddQuickReplyShortcutMessages Readds quick reply messages which failed to add. Can be called only for messages for which messageSendingStateFailed.can_retry is true and after specified in messageSendingStateFailed.retry_after time passed.
 type ReaddQuickReplyShortcutMessages struct {
-	// Name of the target shortcut
-	ShortcutName string `json:"shortcut_name"`
 	// Identifiers of the quick reply messages to readd. Message identifiers must be in a strictly increasing order
 	MessageIds []int64 `json:"message_ids"`
+	// Name of the target shortcut
+	ShortcutName string `json:"shortcut_name"`
 }
 
 func (t *ReaddQuickReplyShortcutMessages) Type() string {
@@ -13479,12 +13479,12 @@ func (t *ReaddQuickReplyShortcutMessages) MarshalJSON() ([]byte, error) {
 
 // ReadFilePart Reads a part of a file from the TDLib file cache and returns read bytes. This method is intended to be used only if the application has no direct access to TDLib's file system, because it is usually slower than a direct read from the file
 type ReadFilePart struct {
+	// Number of bytes to read. An error will be returned if there are not enough bytes available in the file from the specified position. Pass 0 to read all available data from the specified position
+	Count int64 `json:"count"`
 	// Identifier of the file. The file must be located in the TDLib file cache
 	FileId int32 `json:"file_id"`
 	// The offset from which to read the file
 	Offset int64 `json:"offset"`
-	// Number of bytes to read. An error will be returned if there are not enough bytes available in the file from the specified position. Pass 0 to read all available data from the specified position
-	Count int64 `json:"count"`
 }
 
 func (t *ReadFilePart) Type() string {
@@ -13527,12 +13527,12 @@ func (t *RecognizeSpeech) MarshalJSON() ([]byte, error) {
 
 // RecoverAuthenticationPassword Recovers the 2-step verification password with a password recovery code sent to an email address that was previously set up. Works only when the current authorization state is authorizationStateWaitPassword
 type RecoverAuthenticationPassword struct {
+	// New password hint; may be empty
+	NewHint string `json:"new_hint,omitempty"`
+	// New 2-step verification password of the user; may be empty to remove the password
+	NewPassword string `json:"new_password,omitempty"`
 	// Recovery code to check
 	RecoveryCode string `json:"recovery_code"`
-	// New 2-step verification password of the user; may be empty to remove the password
-	NewPassword string `json:"new_password"`
-	// New password hint; may be empty
-	NewHint string `json:"new_hint"`
 }
 
 func (t *RecoverAuthenticationPassword) Type() string {
@@ -13552,12 +13552,12 @@ func (t *RecoverAuthenticationPassword) MarshalJSON() ([]byte, error) {
 
 // RecoverPassword Recovers the 2-step verification password using a recovery code sent to an email address that was previously set up
 type RecoverPassword struct {
+	// New password hint; may be empty
+	NewHint string `json:"new_hint,omitempty"`
+	// New 2-step verification password of the user; may be empty to remove the password
+	NewPassword string `json:"new_password,omitempty"`
 	// Recovery code to check
 	RecoveryCode string `json:"recovery_code"`
-	// New 2-step verification password of the user; may be empty to remove the password
-	NewPassword string `json:"new_password"`
-	// New password hint; may be empty
-	NewHint string `json:"new_hint"`
 }
 
 func (t *RecoverPassword) Type() string {
@@ -13577,10 +13577,10 @@ func (t *RecoverPassword) MarshalJSON() ([]byte, error) {
 
 // RefundStarPayment Refunds a previously done payment in Telegram Stars; for bots only
 type RefundStarPayment struct {
-	// Identifier of the user who did the payment
-	UserId int64 `json:"user_id"`
 	// Telegram payment identifier
 	TelegramPaymentChargeId string `json:"telegram_payment_charge_id"`
+	// Identifier of the user who did the payment
+	UserId int64 `json:"user_id"`
 }
 
 func (t *RefundStarPayment) Type() string {
@@ -13623,12 +13623,12 @@ func (t *RegisterDevice) MarshalJSON() ([]byte, error) {
 
 // RegisterUser Finishes user registration. Works only when the current authorization state is authorizationStateWaitRegistration
 type RegisterUser struct {
+	// Pass true to disable notification about the current user joining Telegram for other users that added them to contact list
+	DisableNotification bool `json:"disable_notification"`
 	// The first name of the user; 1-64 characters
 	FirstName string `json:"first_name"`
 	// The last name of the user; 0-64 characters
 	LastName string `json:"last_name"`
-	// Pass true to disable notification about the current user joining Telegram for other users that added them to contact list
-	DisableNotification bool `json:"disable_notification"`
 }
 
 func (t *RegisterUser) Type() string {
@@ -13648,12 +13648,12 @@ func (t *RegisterUser) MarshalJSON() ([]byte, error) {
 
 // RemoveAllFilesFromDownloads Removes all files from the file download list
 type RemoveAllFilesFromDownloads struct {
+	// Pass true to delete the file from the TDLib file cache
+	DeleteFromCache bool `json:"delete_from_cache"`
 	// Pass true to remove only active downloads, including paused
 	OnlyActive bool `json:"only_active"`
 	// Pass true to remove only completed downloads
 	OnlyCompleted bool `json:"only_completed"`
-	// Pass true to delete the file from the TDLib file cache
-	DeleteFromCache bool `json:"delete_from_cache"`
 }
 
 func (t *RemoveAllFilesFromDownloads) Type() string {
@@ -13758,9 +13758,9 @@ func (t *RemoveFavoriteSticker) MarshalJSON() ([]byte, error) {
 // RemoveFileFromDownloads Removes a file from the file download list @file_id Identifier of the downloaded file @delete_from_cache Pass true to delete the file from the TDLib file cache
 type RemoveFileFromDownloads struct {
 	//
-	FileId int32 `json:"file_id"`
-	//
 	DeleteFromCache bool `json:"delete_from_cache"`
+	//
+	FileId int32 `json:"file_id"`
 }
 
 func (t *RemoveFileFromDownloads) Type() string {
@@ -13780,10 +13780,10 @@ func (t *RemoveFileFromDownloads) MarshalJSON() ([]byte, error) {
 
 // RemoveGiftCollectionGifts Removes gifts from a collection. If the collection is owned by a channel chat, then requires can_post_messages administrator right in the channel chat. Returns the changed collection
 type RemoveGiftCollectionGifts struct {
-	// Identifier of the user or the channel chat that owns the collection
-	OwnerId MessageSender `json:"owner_id"`
 	// Identifier of the gift collection
 	CollectionId int32 `json:"collection_id"`
+	// Identifier of the user or the channel chat that owns the collection
+	OwnerId MessageSender `json:"owner_id"`
 	// Identifier of the gifts to remove from the collection
 	ReceivedGiftIds []string `json:"received_gift_ids"`
 }
@@ -13919,9 +13919,9 @@ func (t *RemoveNotification) MarshalJSON() ([]byte, error) {
 // RemoveNotificationGroup Removes a group of active notifications. Needs to be called only if the notification group is removed by the current user @notification_group_id Notification group identifier @max_notification_id The maximum identifier of removed notifications
 type RemoveNotificationGroup struct {
 	//
-	NotificationGroupId int32 `json:"notification_group_id"`
-	//
 	MaxNotificationId int32 `json:"max_notification_id"`
+	//
+	NotificationGroupId int32 `json:"notification_group_id"`
 }
 
 func (t *RemoveNotificationGroup) Type() string {
@@ -14270,10 +14270,10 @@ func (t *ReorderBotActiveUsernames) MarshalJSON() ([]byte, error) {
 type ReorderBotMediaPreviews struct {
 	// Identifier of the target bot. The bot must be owned and must have the main Web App
 	BotUserId int64 `json:"bot_user_id"`
-	// Language code of the media previews to reorder
-	LanguageCode string `json:"language_code"`
 	// File identifiers of the media in the new order
 	FileIds []int32 `json:"file_ids"`
+	// Language code of the media previews to reorder
+	LanguageCode string `json:"language_code"`
 }
 
 func (t *ReorderBotMediaPreviews) Type() string {
@@ -14316,10 +14316,10 @@ func (t *ReorderChatFolders) MarshalJSON() ([]byte, error) {
 
 // ReorderGiftCollectionGifts Changes order of gifts in a collection. If the collection is owned by a channel chat, then requires can_post_messages administrator right in the channel chat. Returns the changed collection
 type ReorderGiftCollectionGifts struct {
-	// Identifier of the user or the channel chat that owns the collection
-	OwnerId MessageSender `json:"owner_id"`
 	// Identifier of the gift collection
 	CollectionId int32 `json:"collection_id"`
+	// Identifier of the user or the channel chat that owns the collection
+	OwnerId MessageSender `json:"owner_id"`
 	// Identifier of the gifts to move to the beginning of the collection. All other gifts are placed in the current order after the specified gifts
 	ReceivedGiftIds []string `json:"received_gift_ids"`
 }
@@ -14341,10 +14341,10 @@ func (t *ReorderGiftCollectionGifts) MarshalJSON() ([]byte, error) {
 
 // ReorderGiftCollections Changes order of gift collections. If the collections are owned by a channel chat, then requires can_post_messages administrator right in the channel chat
 type ReorderGiftCollections struct {
-	// Identifier of the user or the channel chat that owns the collection
-	OwnerId MessageSender `json:"owner_id"`
 	// New order of gift collections
 	CollectionIds []int32 `json:"collection_ids"`
+	// Identifier of the user or the channel chat that owns the collection
+	OwnerId MessageSender `json:"owner_id"`
 }
 
 func (t *ReorderGiftCollections) Type() string {
@@ -14365,9 +14365,9 @@ func (t *ReorderGiftCollections) MarshalJSON() ([]byte, error) {
 // ReorderInstalledStickerSets Changes the order of installed sticker sets @sticker_type Type of the sticker sets to reorder @sticker_set_ids Identifiers of installed sticker sets in the new correct order
 type ReorderInstalledStickerSets struct {
 	//
-	StickerType StickerType `json:"sticker_type"`
-	//
 	StickerSetIds Int64Slice `json:"sticker_set_ids"`
+	//
+	StickerType StickerType `json:"sticker_type"`
 }
 
 func (t *ReorderInstalledStickerSets) Type() string {
@@ -14521,14 +14521,14 @@ func (t *ReplacePrimaryChatInviteLink) MarshalJSON() ([]byte, error) {
 
 // ReplaceStickerInSet Replaces existing sticker in a set. The function is equivalent to removeStickerFromSet, then addStickerToSet, then setStickerPositionInSet
 type ReplaceStickerInSet struct {
-	// Sticker set owner; ignored for regular users
-	UserId int64 `json:"user_id"`
 	// Sticker set name. The sticker set must be owned by the current user
 	Name string `json:"name"`
-	// Sticker to remove from the set
-	OldSticker InputFile `json:"old_sticker"`
 	// Sticker to add to the set
 	NewSticker *InputSticker `json:"new_sticker"`
+	// Sticker to remove from the set
+	OldSticker InputFile `json:"old_sticker"`
+	// Sticker set owner; ignored for regular users
+	UserId int64 `json:"user_id"`
 }
 
 func (t *ReplaceStickerInSet) Type() string {
@@ -14592,10 +14592,10 @@ func (t *ReportAuthenticationCodeMissing) MarshalJSON() ([]byte, error) {
 type ReportChat struct {
 	// Chat identifier
 	ChatId int64 `json:"chat_id"`
-	// Option identifier chosen by the user; leave empty for the initial request
-	OptionId []byte `json:"option_id"`
 	// Identifiers of reported messages. Use messageProperties.can_report_chat to check whether the message can be reported
 	MessageIds []int64 `json:"message_ids"`
+	// Option identifier chosen by the user; leave empty for the initial request
+	OptionId []byte `json:"option_id"`
 	// Additional report details if asked by the server; 0-1024 characters; leave empty for the initial request
 	Text string `json:"text"`
 }
@@ -14715,10 +14715,10 @@ func (t *ReportPhoneNumberCodeMissing) MarshalJSON() ([]byte, error) {
 
 // ReportSponsoredChat Reports a sponsored chat to Telegram moderators
 type ReportSponsoredChat struct {
-	// Unique identifier of the sponsored chat
-	SponsoredChatUniqueId int64 `json:"sponsored_chat_unique_id"`
 	// Option identifier chosen by the user; leave empty for the initial request
 	OptionId []byte `json:"option_id"`
+	// Unique identifier of the sponsored chat
+	SponsoredChatUniqueId int64 `json:"sponsored_chat_unique_id"`
 }
 
 func (t *ReportSponsoredChat) Type() string {
@@ -14738,12 +14738,12 @@ func (t *ReportSponsoredChat) MarshalJSON() ([]byte, error) {
 
 // ReportStory Reports a story to the Telegram moderators
 type ReportStory struct {
-	// The identifier of the poster of the story to report
-	StoryPosterChatId int64 `json:"story_poster_chat_id"`
-	// The identifier of the story to report
-	StoryId int32 `json:"story_id"`
 	// Option identifier chosen by the user; leave empty for the initial request
 	OptionId []byte `json:"option_id"`
+	// The identifier of the story to report
+	StoryId int32 `json:"story_id"`
+	// The identifier of the poster of the story to report
+	StoryPosterChatId int64 `json:"story_poster_chat_id"`
 	// Additional report details; 0-1024 characters; leave empty for the initial request
 	Text string `json:"text"`
 }
@@ -14765,10 +14765,10 @@ func (t *ReportStory) MarshalJSON() ([]byte, error) {
 
 // ReportSupergroupAntiSpamFalsePositive Reports a false deletion of a message by aggressive anti-spam checks; requires administrator rights in the supergroup. Can be called only for messages from chatEventMessageDeleted with can_report_anti_spam_false_positive == true
 type ReportSupergroupAntiSpamFalsePositive struct {
-	// Supergroup identifier
-	SupergroupId int64 `json:"supergroup_id"`
 	// Identifier of the erroneously deleted message from chatEventMessageDeleted
 	MessageId int64 `json:"message_id"`
+	// Supergroup identifier
+	SupergroupId int64 `json:"supergroup_id"`
 }
 
 func (t *ReportSupergroupAntiSpamFalsePositive) Type() string {
@@ -14788,10 +14788,10 @@ func (t *ReportSupergroupAntiSpamFalsePositive) MarshalJSON() ([]byte, error) {
 
 // ReportSupergroupSpam Reports messages in a supergroup as spam; requires administrator rights in the supergroup
 type ReportSupergroupSpam struct {
-	// Supergroup identifier
-	SupergroupId int64 `json:"supergroup_id"`
 	// Identifiers of messages to report. Use messageProperties.can_report_supergroup_spam to check whether the message can be reported
 	MessageIds []int64 `json:"message_ids"`
+	// Supergroup identifier
+	SupergroupId int64 `json:"supergroup_id"`
 }
 
 func (t *ReportSupergroupSpam) Type() string {
@@ -14956,10 +14956,10 @@ type ResendMessages struct {
 	ChatId int64 `json:"chat_id"`
 	// Identifiers of the messages to resend. Message identifiers must be in a strictly increasing order
 	MessageIds []int64 `json:"message_ids"`
-	// New manually chosen quote from the message to be replied; pass null if none. Ignored if more than one message is re-sent, or if messageSendingStateFailed.need_another_reply_quote == false
-	Quote *InputTextQuote `json:"quote,omitempty"`
 	// The number of Telegram Stars the user agreed to pay to send the messages. Ignored if messageSendingStateFailed.required_paid_message_star_count == 0
 	PaidMessageStarCount int64 `json:"paid_message_star_count"`
+	// New manually chosen quote from the message to be replied; pass null if none. Ignored if more than one message is re-sent, or if messageSendingStateFailed.need_another_reply_quote == false
+	Quote *InputTextQuote `json:"quote,omitempty"`
 }
 
 func (t *ResendMessages) Type() string {
@@ -15180,11 +15180,11 @@ func (t *RevokeGroupCallInviteLink) MarshalJSON() ([]byte, error) {
 // SaveApplicationLogEvent Saves application log event on the server. Can be called before authorization @type Event type @chat_id Optional chat identifier, associated with the event @data The log event data
 type SaveApplicationLogEvent struct {
 	//
-	TypeField string `json:"type"`
-	//
 	ChatId int64 `json:"chat_id"`
 	//
 	Data JsonValue `json:"data"`
+	//
+	TypeField string `json:"type"`
 }
 
 func (t *SaveApplicationLogEvent) Type() string {
@@ -15204,12 +15204,12 @@ func (t *SaveApplicationLogEvent) MarshalJSON() ([]byte, error) {
 
 // SavePreparedInlineMessage Saves an inline message to be sent by the given user; for bots only
 type SavePreparedInlineMessage struct {
-	// Identifier of the user
-	UserId int64 `json:"user_id"`
-	// The description of the message
-	Result InputInlineQueryResult `json:"result"`
 	// Types of the chats to which the message can be sent
 	ChatTypes *TargetChatTypes `json:"chat_types"`
+	// The description of the message
+	Result InputInlineQueryResult `json:"result"`
+	// Identifier of the user
+	UserId int64 `json:"user_id"`
 }
 
 func (t *SavePreparedInlineMessage) Type() string {
@@ -15231,12 +15231,12 @@ func (t *SavePreparedInlineMessage) MarshalJSON() ([]byte, error) {
 type SearchAffiliatePrograms struct {
 	// The affiliate for which affiliate programs are searched for
 	Affiliate AffiliateType `json:"affiliate"`
-	// Sort order for the results
-	SortOrder AffiliateProgramSortOrder `json:"sort_order"`
-	// Offset of the first affiliate program to return as received from the previous request; use empty string to get the first chunk of results
-	Offset string `json:"offset"`
 	// The maximum number of affiliate programs to return
 	Limit int32 `json:"limit"`
+	// Offset of the first affiliate program to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
+	// Sort order for the results
+	SortOrder AffiliateProgramSortOrder `json:"sort_order"`
 }
 
 func (t *SearchAffiliatePrograms) Type() string {
@@ -15277,10 +15277,10 @@ func (t *SearchBackground) MarshalJSON() ([]byte, error) {
 
 // SearchCallMessages Searches for call and group call messages. Returns the results in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
 type SearchCallMessages struct {
-	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
-	Offset string `json:"offset"`
 	// The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
 	Limit int32 `json:"limit"`
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
 	// Pass true to search only for messages with missed/declined calls
 	OnlyMissed bool `json:"only_missed"`
 }
@@ -15302,10 +15302,10 @@ func (t *SearchCallMessages) MarshalJSON() ([]byte, error) {
 
 // SearchChatAffiliateProgram Searches a chat with an affiliate program. Returns the chat if found and the program is active
 type SearchChatAffiliateProgram struct {
-	// Username of the chat
-	Username string `json:"username"`
 	// The referrer from an internalLinkTypeChatAffiliateProgram link
 	Referrer string `json:"referrer"`
+	// Username of the chat
+	Username string `json:"username"`
 }
 
 func (t *SearchChatAffiliateProgram) Type() string {
@@ -15327,12 +15327,12 @@ func (t *SearchChatAffiliateProgram) MarshalJSON() ([]byte, error) {
 type SearchChatMembers struct {
 	// Chat identifier
 	ChatId int64 `json:"chat_id"`
-	// Query to search for
-	Query string `json:"query"`
-	// The maximum number of users to be returned; up to 200
-	Limit int32 `json:"limit"`
 	// The type of users to search for; pass null to search among all chat members
 	Filter ChatMembersFilter `json:"filter,omitempty"`
+	// The maximum number of users to be returned; up to 200
+	Limit int32 `json:"limit"`
+	// Query to search for
+	Query string `json:"query"`
 }
 
 func (t *SearchChatMembers) Type() string {
@@ -15354,20 +15354,20 @@ func (t *SearchChatMembers) MarshalJSON() ([]byte, error) {
 type SearchChatMessages struct {
 	// Identifier of the chat in which to search messages
 	ChatId int64 `json:"chat_id"`
-	// Pass topic identifier to search messages only in specific topic; pass null to search for messages in all topics
-	TopicId MessageTopic `json:"topic_id,omitempty"`
+	// Additional filter for messages to search; pass null to search for all messages
+	Filter SearchMessagesFilter `json:"filter,omitempty"`
+	// Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
+	FromMessageId int64 `json:"from_message_id"`
+	// The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, then the limit must be greater than -offset.
+	Limit int32 `json:"limit"`
+	// Specify 0 to get results from exactly the message from_message_id or a negative number to get the specified message and some newer messages
+	Offset int32 `json:"offset"`
 	// Query to search for
 	Query string `json:"query"`
 	// Identifier of the sender of messages to search for; pass null to search for messages from any sender. Not supported in secret chats
 	SenderId MessageSender `json:"sender_id,omitempty"`
-	// Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
-	FromMessageId int64 `json:"from_message_id"`
-	// Specify 0 to get results from exactly the message from_message_id or a negative number to get the specified message and some newer messages
-	Offset int32 `json:"offset"`
-	// The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, then the limit must be greater than -offset.
-	Limit int32 `json:"limit"`
-	// Additional filter for messages to search; pass null to search for all messages
-	Filter SearchMessagesFilter `json:"filter,omitempty"`
+	// Pass topic identifier to search messages only in specific topic; pass null to search for messages in all topics
+	TopicId MessageTopic `json:"topic_id,omitempty"`
 }
 
 func (t *SearchChatMessages) Type() string {
@@ -15410,10 +15410,10 @@ func (t *SearchChatRecentLocationMessages) MarshalJSON() ([]byte, error) {
 
 // SearchChats Searches for the specified query in the title and username of already known chats. This is an offline method. Returns chats in the order seen in the main chat list
 type SearchChats struct {
-	// Query to search for. If the query is empty, returns up to 50 recently found chats
-	Query string `json:"query"`
 	// The maximum number of chats to be returned
 	Limit int32 `json:"limit"`
+	// Query to search for. If the query is empty, returns up to 50 recently found chats
+	Query string `json:"query"`
 }
 
 func (t *SearchChats) Type() string {
@@ -15434,9 +15434,9 @@ func (t *SearchChats) MarshalJSON() ([]byte, error) {
 // SearchChatsOnServer Searches for the specified query in the title and username of already known chats via request to the server. Returns chats in the order seen in the main chat list @query Query to search for @limit The maximum number of chats to be returned
 type SearchChatsOnServer struct {
 	//
-	Query string `json:"query"`
-	//
 	Limit int32 `json:"limit"`
+	//
+	Query string `json:"query"`
 }
 
 func (t *SearchChatsOnServer) Type() string {
@@ -15456,10 +15456,10 @@ func (t *SearchChatsOnServer) MarshalJSON() ([]byte, error) {
 
 // SearchContacts Searches for the specified query in the first names, last names and usernames of the known user contacts
 type SearchContacts struct {
-	// Query to search for; may be empty to return all contacts
-	Query string `json:"query"`
 	// The maximum number of users to be returned
 	Limit int32 `json:"limit"`
+	// Query to search for; may be empty to return all contacts
+	Query string `json:"query,omitempty"`
 }
 
 func (t *SearchContacts) Type() string {
@@ -15479,10 +15479,10 @@ func (t *SearchContacts) MarshalJSON() ([]byte, error) {
 
 // SearchEmojis Searches for emojis by keywords. Supported only if the file database is enabled. Order of results is unspecified
 type SearchEmojis struct {
+	// List of possible IETF language tags of the user's input language; may be empty if unknown
+	InputLanguageCodes []string `json:"input_language_codes,omitempty"`
 	// Text to search for
 	Text string `json:"text"`
-	// List of possible IETF language tags of the user's input language; may be empty if unknown
-	InputLanguageCodes []string `json:"input_language_codes"`
 }
 
 func (t *SearchEmojis) Type() string {
@@ -15502,16 +15502,16 @@ func (t *SearchEmojis) MarshalJSON() ([]byte, error) {
 
 // SearchFileDownloads Searches for files in the file download list or recently downloaded files from the list
 type SearchFileDownloads struct {
-	// Query to search for; may be empty to return all downloaded files
-	Query string `json:"query"`
+	// The maximum number of files to be returned
+	Limit int32 `json:"limit"`
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
 	// Pass true to search only for active downloads, including paused
 	OnlyActive bool `json:"only_active"`
 	// Pass true to search only for completed downloads
 	OnlyCompleted bool `json:"only_completed"`
-	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
-	Offset string `json:"offset"`
-	// The maximum number of files to be returned
-	Limit int32 `json:"limit"`
+	// Query to search for; may be empty to return all downloaded files
+	Query string `json:"query,omitempty"`
 }
 
 func (t *SearchFileDownloads) Type() string {
@@ -15531,18 +15531,18 @@ func (t *SearchFileDownloads) MarshalJSON() ([]byte, error) {
 
 // SearchGiftsForResale Returns upgraded gifts that can be bought from other owners using sendResoldGift
 type SearchGiftsForResale struct {
-	// Identifier of the regular gift that was upgraded to a unique gift
-	GiftId int64 `json:"gift_id,string"`
-	// Order in which the results will be sorted
-	Order GiftForResaleOrder `json:"order"`
-	// Pass true to get only gifts suitable for crafting
-	ForCrafting bool `json:"for_crafting"`
 	// Attributes used to filter received gifts. If multiple attributes of the same type are specified, then all of them are allowed.
 	Attributes []UpgradedGiftAttributeId `json:"attributes"`
-	// Offset of the first entry to return as received from the previous request with the same order and attributes; use empty string to get the first chunk of results
-	Offset string `json:"offset"`
+	// Pass true to get only gifts suitable for crafting
+	ForCrafting bool `json:"for_crafting"`
+	// Identifier of the regular gift that was upgraded to a unique gift
+	GiftId int64 `json:"gift_id,string"`
 	// The maximum number of gifts to return
 	Limit int32 `json:"limit"`
+	// Offset of the first entry to return as received from the previous request with the same order and attributes; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
+	// Order in which the results will be sorted
+	Order GiftForResaleOrder `json:"order"`
 }
 
 func (t *SearchGiftsForResale) Type() string {
@@ -15563,9 +15563,9 @@ func (t *SearchGiftsForResale) MarshalJSON() ([]byte, error) {
 // SearchHashtags Searches for recently used hashtags by their prefix @prefix Hashtag prefix to search for @limit The maximum number of hashtags to be returned
 type SearchHashtags struct {
 	//
-	Prefix string `json:"prefix"`
-	//
 	Limit int32 `json:"limit"`
+	//
+	Prefix string `json:"prefix"`
 }
 
 func (t *SearchHashtags) Type() string {
@@ -15586,11 +15586,11 @@ func (t *SearchHashtags) MarshalJSON() ([]byte, error) {
 // SearchInstalledStickerSets Searches for installed sticker sets by looking for specified query in their title and name @sticker_type Type of the sticker sets to search for @query Query to search for @limit The maximum number of sticker sets to return
 type SearchInstalledStickerSets struct {
 	//
-	StickerType StickerType `json:"sticker_type"`
+	Limit int32 `json:"limit"`
 	//
 	Query string `json:"query"`
 	//
-	Limit int32 `json:"limit"`
+	StickerType StickerType `json:"sticker_type"`
 }
 
 func (t *SearchInstalledStickerSets) Type() string {
@@ -15612,20 +15612,20 @@ func (t *SearchInstalledStickerSets) MarshalJSON() ([]byte, error) {
 type SearchMessages struct {
 	// Chat list in which to search messages; pass null to search in all chats regardless of their chat list. Only Main and Archive chat lists are supported
 	ChatList ChatList `json:"chat_list,omitempty"`
-	// Query to search for
-	Query string `json:"query"`
-	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
-	Offset string `json:"offset"`
-	// The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
-	Limit int32 `json:"limit"`
-	// Additional filter for messages to search; pass null to search for all messages. Filters searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, searchMessagesFilterFailedToSend, and searchMessagesFilterPinned are unsupported in this function
-	Filter SearchMessagesFilter `json:"filter,omitempty"`
 	// Additional filter for type of the chat of the searched messages; pass null to search for messages in all chats
 	ChatTypeFilter SearchMessagesChatTypeFilter `json:"chat_type_filter,omitempty"`
-	// If not 0, the minimum date of the messages to return
-	MinDate int32 `json:"min_date"`
+	// Additional filter for messages to search; pass null to search for all messages. Filters searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, searchMessagesFilterFailedToSend, and searchMessagesFilterPinned are unsupported in this function
+	Filter SearchMessagesFilter `json:"filter,omitempty"`
+	// The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+	Limit int32 `json:"limit"`
 	// If not 0, the maximum date of the messages to return
 	MaxDate int32 `json:"max_date"`
+	// If not 0, the minimum date of the messages to return
+	MinDate int32 `json:"min_date"`
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
+	// Query to search for
+	Query string `json:"query"`
 }
 
 func (t *SearchMessages) Type() string {
@@ -15645,10 +15645,10 @@ func (t *SearchMessages) MarshalJSON() ([]byte, error) {
 
 // SearchOutgoingDocumentMessages Searches for outgoing messages with content of the type messageDocument in all chats except secret chats. Returns the results in reverse chronological order
 type SearchOutgoingDocumentMessages struct {
-	// Query to search for in document file name and message caption
-	Query string `json:"query"`
 	// The maximum number of messages to be returned; up to 100
 	Limit int32 `json:"limit"`
+	// Query to search for in document file name and message caption
+	Query string `json:"query"`
 }
 
 func (t *SearchOutgoingDocumentMessages) Type() string {
@@ -15710,12 +15710,12 @@ func (t *SearchPublicChats) MarshalJSON() ([]byte, error) {
 
 // SearchPublicMessagesByTag Searches for public channel posts containing the given hashtag or cashtag. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
 type SearchPublicMessagesByTag struct {
-	// Hashtag or cashtag to search for
-	Tag string `json:"tag"`
-	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
-	Offset string `json:"offset"`
 	// The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
 	Limit int32 `json:"limit"`
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
+	// Hashtag or cashtag to search for
+	Tag string `json:"tag"`
 }
 
 func (t *SearchPublicMessagesByTag) Type() string {
@@ -15735,12 +15735,12 @@ func (t *SearchPublicMessagesByTag) MarshalJSON() ([]byte, error) {
 
 // SearchPublicPosts Searches for public channel posts using the given query. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
 type SearchPublicPosts struct {
-	// Query to search for
-	Query string `json:"query"`
-	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
-	Offset string `json:"offset"`
 	// The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
 	Limit int32 `json:"limit"`
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
+	// Query to search for
+	Query string `json:"query"`
 	// The Telegram Star amount the user agreed to pay for the search; pass 0 for free searches
 	StarCount int64 `json:"star_count"`
 }
@@ -15764,10 +15764,10 @@ func (t *SearchPublicPosts) MarshalJSON() ([]byte, error) {
 type SearchPublicStoriesByLocation struct {
 	// Address of the location
 	Address *LocationAddress `json:"address"`
-	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
-	Offset string `json:"offset"`
 	// The maximum number of stories to be returned; up to 100. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
 	Limit int32 `json:"limit"`
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
 }
 
 func (t *SearchPublicStoriesByLocation) Type() string {
@@ -15787,14 +15787,14 @@ func (t *SearchPublicStoriesByLocation) MarshalJSON() ([]byte, error) {
 
 // SearchPublicStoriesByTag Searches for public stories containing the given hashtag or cashtag. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
 type SearchPublicStoriesByTag struct {
+	// The maximum number of stories to be returned; up to 100. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
+	Limit int32 `json:"limit"`
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
 	// Identifier of the chat that posted the stories to search for; pass 0 to search stories in all chats
 	StoryPosterChatId int64 `json:"story_poster_chat_id"`
 	// Hashtag or cashtag to search for
 	Tag string `json:"tag"`
-	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
-	Offset string `json:"offset"`
-	// The maximum number of stories to be returned; up to 100. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
-	Limit int32 `json:"limit"`
 }
 
 func (t *SearchPublicStoriesByTag) Type() string {
@@ -15814,14 +15814,14 @@ func (t *SearchPublicStoriesByTag) MarshalJSON() ([]byte, error) {
 
 // SearchPublicStoriesByVenue Searches for public stories from the given venue. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
 type SearchPublicStoriesByVenue struct {
-	// Provider of the venue
-	VenueProvider string `json:"venue_provider"`
-	// Identifier of the venue in the provider database
-	VenueId string `json:"venue_id"`
-	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
-	Offset string `json:"offset"`
 	// The maximum number of stories to be returned; up to 100. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
 	Limit int32 `json:"limit"`
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
+	// Identifier of the venue in the provider database
+	VenueId string `json:"venue_id"`
+	// Provider of the venue
+	VenueProvider string `json:"venue_provider"`
 }
 
 func (t *SearchPublicStoriesByVenue) Type() string {
@@ -15841,12 +15841,12 @@ func (t *SearchPublicStoriesByVenue) MarshalJSON() ([]byte, error) {
 
 // SearchQuote Searches for a given quote in a text. Returns found quote start position in UTF-16 code units. Returns a 404 error if the quote is not found. Can be called synchronously
 type SearchQuote struct {
-	// Text in which to search for the quote
-	Text *FormattedText `json:"text"`
 	// Quote to search for
 	Quote *FormattedText `json:"quote"`
 	// Approximate quote position in UTF-16 code units
 	QuotePosition int32 `json:"quote_position"`
+	// Text in which to search for the quote
+	Text *FormattedText `json:"text"`
 }
 
 func (t *SearchQuote) Type() string {
@@ -15866,10 +15866,10 @@ func (t *SearchQuote) MarshalJSON() ([]byte, error) {
 
 // SearchRecentlyFoundChats Searches for the specified query in the title and username of up to 50 recently found chats. This is an offline method
 type SearchRecentlyFoundChats struct {
-	// Query to search for
-	Query string `json:"query"`
 	// The maximum number of chats to be returned
 	Limit int32 `json:"limit"`
+	// Query to search for
+	Query string `json:"query"`
 }
 
 func (t *SearchRecentlyFoundChats) Type() string {
@@ -15889,18 +15889,18 @@ func (t *SearchRecentlyFoundChats) MarshalJSON() ([]byte, error) {
 
 // SearchSavedMessages Searches for messages tagged by the given reaction and with the given words in the Saved Messages chat; for Telegram Premium users only.
 type SearchSavedMessages struct {
+	// Identifier of the message starting from which messages must be fetched; use 0 to get results from the last message
+	FromMessageId int64 `json:"from_message_id"`
+	// The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, then the limit must be greater than -offset.
+	Limit int32 `json:"limit"`
+	// Specify 0 to get results from exactly the message from_message_id or a negative number to get the specified message and some newer messages
+	Offset int32 `json:"offset"`
+	// Query to search for
+	Query string `json:"query"`
 	// If not 0, only messages in the specified Saved Messages topic will be considered; pass 0 to consider all messages
 	SavedMessagesTopicId int64 `json:"saved_messages_topic_id"`
 	// Tag to search for; pass null to return all suitable messages
 	Tag ReactionType `json:"tag,omitempty"`
-	// Query to search for
-	Query string `json:"query"`
-	// Identifier of the message starting from which messages must be fetched; use 0 to get results from the last message
-	FromMessageId int64 `json:"from_message_id"`
-	// Specify 0 to get results from exactly the message from_message_id or a negative number to get the specified message and some newer messages
-	Offset int32 `json:"offset"`
-	// The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, then the limit must be greater than -offset.
-	Limit int32 `json:"limit"`
 }
 
 func (t *SearchSavedMessages) Type() string {
@@ -15922,14 +15922,14 @@ func (t *SearchSavedMessages) MarshalJSON() ([]byte, error) {
 type SearchSecretMessages struct {
 	// Identifier of the chat in which to search. Specify 0 to search in all secret chats
 	ChatId int64 `json:"chat_id"`
-	// Query to search for. If empty, searchChatMessages must be used instead
-	Query string `json:"query"`
-	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
-	Offset string `json:"offset"`
-	// The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
-	Limit int32 `json:"limit"`
 	// Additional filter for messages to search; pass null to search for all messages
 	Filter SearchMessagesFilter `json:"filter,omitempty"`
+	// The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+	Limit int32 `json:"limit"`
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
+	// Query to search for. If empty, searchChatMessages must be used instead
+	Query string `json:"query"`
 }
 
 func (t *SearchSecretMessages) Type() string {
@@ -15949,18 +15949,18 @@ func (t *SearchSecretMessages) MarshalJSON() ([]byte, error) {
 
 // SearchStickers Searches for stickers from public sticker sets that correspond to any of the given emoji
 type SearchStickers struct {
-	// Type of the stickers to return
-	StickerType StickerType `json:"sticker_type"`
 	// Space-separated list of emojis to search for
 	Emojis string `json:"emojis"`
-	// Query to search for; may be empty to search for emoji only
-	Query string `json:"query"`
 	// List of possible IETF language tags of the user's input language; may be empty if unknown
-	InputLanguageCodes []string `json:"input_language_codes"`
-	// The offset from which to return the stickers; must be non-negative
-	Offset int32 `json:"offset"`
+	InputLanguageCodes []string `json:"input_language_codes,omitempty"`
 	// The maximum number of stickers to be returned; 0-100
 	Limit int32 `json:"limit"`
+	// The offset from which to return the stickers; must be non-negative
+	Offset int32 `json:"offset"`
+	// Query to search for; may be empty to search for emoji only
+	Query string `json:"query,omitempty"`
+	// Type of the stickers to return
+	StickerType StickerType `json:"sticker_type"`
 }
 
 func (t *SearchStickers) Type() string {
@@ -15981,9 +15981,9 @@ func (t *SearchStickers) MarshalJSON() ([]byte, error) {
 // SearchStickerSet Searches for a sticker set by its name @name Name of the sticker set @ignore_cache Pass true to ignore local cache of sticker sets and always send a network request
 type SearchStickerSet struct {
 	//
-	Name string `json:"name"`
-	//
 	IgnoreCache bool `json:"ignore_cache"`
+	//
+	Name string `json:"name"`
 }
 
 func (t *SearchStickerSet) Type() string {
@@ -16003,10 +16003,10 @@ func (t *SearchStickerSet) MarshalJSON() ([]byte, error) {
 
 // SearchStickerSets Searches for sticker sets by looking for specified query in their title and name. Excludes installed sticker sets from the results
 type SearchStickerSets struct {
-	// Type of the sticker sets to return
-	StickerType StickerType `json:"sticker_type"`
 	// Query to search for
 	Query string `json:"query"`
+	// Type of the sticker sets to return
+	StickerType StickerType `json:"sticker_type"`
 }
 
 func (t *SearchStickerSets) Type() string {
@@ -16026,14 +16026,14 @@ func (t *SearchStickerSets) MarshalJSON() ([]byte, error) {
 
 // SearchStringsByPrefix Searches specified query by word prefixes in the provided strings. Returns 0-based positions of strings that matched. Can be called synchronously
 type SearchStringsByPrefix struct {
-	// The strings to search in for the query
-	Strings []string `json:"strings"`
-	// Query to search for
-	Query string `json:"query"`
 	// The maximum number of objects to return
 	Limit int32 `json:"limit"`
+	// Query to search for
+	Query string `json:"query"`
 	// Pass true to receive no results for an empty query
 	ReturnNoneForEmptyQuery bool `json:"return_none_for_empty_query"`
+	// The strings to search in for the query
+	Strings []string `json:"strings"`
 }
 
 func (t *SearchStringsByPrefix) Type() string {
@@ -16053,10 +16053,10 @@ func (t *SearchStringsByPrefix) MarshalJSON() ([]byte, error) {
 
 // SearchUserByPhoneNumber Searches a user by their phone number. Returns a 404 error if the user can't be found
 type SearchUserByPhoneNumber struct {
-	// Phone number to search for
-	PhoneNumber string `json:"phone_number"`
 	// Pass true to get only locally available information without sending network requests
 	OnlyLocal bool `json:"only_local"`
+	// Phone number to search for
+	PhoneNumber string `json:"phone_number"`
 }
 
 func (t *SearchUserByPhoneNumber) Type() string {
@@ -16193,18 +16193,18 @@ type SendBusinessMessage struct {
 	BusinessConnectionId string `json:"business_connection_id"`
 	// Target chat
 	ChatId int64 `json:"chat_id"`
-	// Information about the message to be replied; pass null if none
-	ReplyTo InputMessageReplyTo `json:"reply_to,omitempty"`
 	// Pass true to disable notification for the message
 	DisableNotification bool `json:"disable_notification"`
-	// Pass true if the content of the message must be protected from forwarding and saving
-	ProtectContent bool `json:"protect_content"`
 	// Identifier of the effect to apply to the message
 	EffectId int64 `json:"effect_id,string"`
-	// Markup for replying to the message; pass null if none
-	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
 	// The content of the message to be sent
 	InputMessageContent InputMessageContent `json:"input_message_content"`
+	// Pass true if the content of the message must be protected from forwarding and saving
+	ProtectContent bool `json:"protect_content"`
+	// Markup for replying to the message; pass null if none
+	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
+	// Information about the message to be replied; pass null if none
+	ReplyTo InputMessageReplyTo `json:"reply_to,omitempty"`
 }
 
 func (t *SendBusinessMessage) Type() string {
@@ -16228,16 +16228,16 @@ type SendBusinessMessageAlbum struct {
 	BusinessConnectionId string `json:"business_connection_id"`
 	// Target chat
 	ChatId int64 `json:"chat_id"`
-	// Information about the message to be replied; pass null if none
-	ReplyTo InputMessageReplyTo `json:"reply_to,omitempty"`
 	// Pass true to disable notification for the message
 	DisableNotification bool `json:"disable_notification"`
-	// Pass true if the content of the message must be protected from forwarding and saving
-	ProtectContent bool `json:"protect_content"`
 	// Identifier of the effect to apply to the message
 	EffectId int64 `json:"effect_id,string"`
 	// Contents of messages to be sent. At most 10 messages can be added to an album. All messages must have the same value of show_caption_above_media
 	InputMessageContents []InputMessageContent `json:"input_message_contents"`
+	// Pass true if the content of the message must be protected from forwarding and saving
+	ProtectContent bool `json:"protect_content"`
+	// Information about the message to be replied; pass null if none
+	ReplyTo InputMessageReplyTo `json:"reply_to,omitempty"`
 }
 
 func (t *SendBusinessMessageAlbum) Type() string {
@@ -16305,12 +16305,12 @@ func (t *SendCallLog) MarshalJSON() ([]byte, error) {
 type SendCallRating struct {
 	// Call identifier
 	CallId int32 `json:"call_id"`
-	// Call rating; 1-5
-	Rating int32 `json:"rating"`
 	// An optional user comment if the rating is less than 5
 	Comment string `json:"comment"`
 	// List of the exact types of problems with the call, specified by the user
 	Problems []CallProblem `json:"problems"`
+	// Call rating; 1-5
+	Rating int32 `json:"rating"`
 }
 
 func (t *SendCallRating) Type() string {
@@ -16353,14 +16353,14 @@ func (t *SendCallSignalingData) MarshalJSON() ([]byte, error) {
 
 // SendChatAction Sends a notification about user activity in a chat
 type SendChatAction struct {
+	// The action description; pass null to cancel the currently active action
+	Action ChatAction `json:"action,omitempty"`
+	// Unique identifier of business connection on behalf of which to send the request; for bots only
+	BusinessConnectionId string `json:"business_connection_id"`
 	// Chat identifier
 	ChatId int64 `json:"chat_id"`
 	// Identifier of the topic in which the action is performed; pass null if none
 	TopicId MessageTopic `json:"topic_id,omitempty"`
-	// Unique identifier of business connection on behalf of which to send the request; for bots only
-	BusinessConnectionId string `json:"business_connection_id"`
-	// The action description; pass null to cancel the currently active action
-	Action ChatAction `json:"action,omitempty"`
 }
 
 func (t *SendChatAction) Type() string {
@@ -16426,14 +16426,14 @@ func (t *SendEmailAddressVerificationCode) MarshalJSON() ([]byte, error) {
 type SendGift struct {
 	// Identifier of the gift to send
 	GiftId int64 `json:"gift_id,string"`
-	// Identifier of the user or the channel chat that will receive the gift; limited gifts can't be sent to channel chats
-	OwnerId MessageSender `json:"owner_id"`
-	// Text to show along with the gift; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed.
-	Text *FormattedText `json:"text"`
 	// Pass true to show gift text and sender only to the gift receiver; otherwise, everyone will be able to see them
 	IsPrivate bool `json:"is_private"`
+	// Identifier of the user or the channel chat that will receive the gift; limited gifts can't be sent to channel chats
+	OwnerId MessageSender `json:"owner_id"`
 	// Pass true to additionally pay for the gift upgrade and allow the receiver to upgrade it for free
 	PayForUpgrade bool `json:"pay_for_upgrade"`
+	// Text to show along with the gift; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed.
+	Text *FormattedText `json:"text"`
 }
 
 func (t *SendGift) Type() string {
@@ -16453,16 +16453,16 @@ func (t *SendGift) MarshalJSON() ([]byte, error) {
 
 // SendGiftPurchaseOffer Sends an offer to purchase an upgraded gift
 type SendGiftPurchaseOffer struct {
-	// Identifier of the user or the channel chat that currently owns the gift and will receive the offer
-	OwnerId MessageSender `json:"owner_id"`
-	// Name of the upgraded gift
-	GiftName string `json:"gift_name"`
-	// The price that the user agreed to pay for the gift
-	Price GiftResalePrice `json:"price"`
 	// Duration of the offer, in seconds; must be one of 21600, 43200, 86400, 129600, 172800, or 259200. Can also be 120 if Telegram test environment is used
 	Duration int32 `json:"duration"`
+	// Name of the upgraded gift
+	GiftName string `json:"gift_name"`
+	// Identifier of the user or the channel chat that currently owns the gift and will receive the offer
+	OwnerId MessageSender `json:"owner_id"`
 	// The number of Telegram Stars the user agreed to pay additionally for sending of the offer message to the current gift owner; pass userFullInfo.outgoing_paid_message_star_count for users and 0 otherwise
 	PaidMessageStarCount int64 `json:"paid_message_star_count"`
+	// The price that the user agreed to pay for the gift
+	Price GiftResalePrice `json:"price"`
 }
 
 func (t *SendGiftPurchaseOffer) Type() string {
@@ -16484,10 +16484,10 @@ func (t *SendGiftPurchaseOffer) MarshalJSON() ([]byte, error) {
 type SendGroupCallMessage struct {
 	// Group call identifier
 	GroupCallId int32 `json:"group_call_id"`
-	// Text of the message to send; 1-getOption("group_call_message_text_length_max") characters for non-live-stories; see updateGroupCallMessageLevels for live story restrictions,
-	Text *FormattedText `json:"text"`
 	// The number of Telegram Stars the user agreed to pay to send the message; for live stories only; 0-getOption("paid_group_call_message_star_count_max").
 	PaidMessageStarCount int64 `json:"paid_message_star_count"`
+	// Text of the message to send; 1-getOption("group_call_message_text_length_max") characters for non-live-stories; see updateGroupCallMessageLevels for live story restrictions,
+	Text *FormattedText `json:"text"`
 }
 
 func (t *SendGroupCallMessage) Type() string {
@@ -16509,18 +16509,18 @@ func (t *SendGroupCallMessage) MarshalJSON() ([]byte, error) {
 type SendInlineQueryResultMessage struct {
 	// Target chat
 	ChatId int64 `json:"chat_id"`
-	// Topic in which the message will be sent; pass null if none
-	TopicId MessageTopic `json:"topic_id,omitempty"`
-	// Information about the message or story to be replied; pass null if none
-	ReplyTo InputMessageReplyTo `json:"reply_to,omitempty"`
+	// Pass true to hide the bot, via which the message is sent. Can be used only for bots getOption("animation_search_bot_username"), getOption("photo_search_bot_username"), and getOption("venue_search_bot_username")
+	HideViaBot bool `json:"hide_via_bot"`
 	// Options to be used to send the message; pass null to use default options
 	Options *MessageSendOptions `json:"options,omitempty"`
 	// Identifier of the inline query
 	QueryId int64 `json:"query_id,string"`
+	// Information about the message or story to be replied; pass null if none
+	ReplyTo InputMessageReplyTo `json:"reply_to,omitempty"`
 	// Identifier of the inline query result
 	ResultId string `json:"result_id"`
-	// Pass true to hide the bot, via which the message is sent. Can be used only for bots getOption("animation_search_bot_username"), getOption("photo_search_bot_username"), and getOption("venue_search_bot_username")
-	HideViaBot bool `json:"hide_via_bot"`
+	// Topic in which the message will be sent; pass null if none
+	TopicId MessageTopic `json:"topic_id,omitempty"`
 }
 
 func (t *SendInlineQueryResultMessage) Type() string {
@@ -16542,16 +16542,16 @@ func (t *SendInlineQueryResultMessage) MarshalJSON() ([]byte, error) {
 type SendMessage struct {
 	// Target chat
 	ChatId int64 `json:"chat_id"`
-	// Topic in which the message will be sent; pass null if none
-	TopicId MessageTopic `json:"topic_id,omitempty"`
-	// Information about the message or story to be replied; pass null if none
-	ReplyTo InputMessageReplyTo `json:"reply_to,omitempty"`
+	// The content of the message to be sent
+	InputMessageContent InputMessageContent `json:"input_message_content"`
 	// Options to be used to send the message; pass null to use default options
 	Options *MessageSendOptions `json:"options,omitempty"`
 	// Markup for replying to the message; pass null if none; for bots only
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
-	// The content of the message to be sent
-	InputMessageContent InputMessageContent `json:"input_message_content"`
+	// Information about the message or story to be replied; pass null if none
+	ReplyTo InputMessageReplyTo `json:"reply_to,omitempty"`
+	// Topic in which the message will be sent; pass null if none
+	TopicId MessageTopic `json:"topic_id,omitempty"`
 }
 
 func (t *SendMessage) Type() string {
@@ -16573,14 +16573,14 @@ func (t *SendMessage) MarshalJSON() ([]byte, error) {
 type SendMessageAlbum struct {
 	// Target chat
 	ChatId int64 `json:"chat_id"`
-	// Topic in which the messages will be sent; pass null if none
-	TopicId MessageTopic `json:"topic_id,omitempty"`
-	// Information about the message or story to be replied; pass null if none
-	ReplyTo InputMessageReplyTo `json:"reply_to,omitempty"`
-	// Options to be used to send the messages; pass null to use default options
-	Options *MessageSendOptions `json:"options,omitempty"`
 	// Contents of messages to be sent. At most 10 messages can be added to an album. All messages must have the same value of show_caption_above_media
 	InputMessageContents []InputMessageContent `json:"input_message_contents"`
+	// Options to be used to send the messages; pass null to use default options
+	Options *MessageSendOptions `json:"options,omitempty"`
+	// Information about the message or story to be replied; pass null if none
+	ReplyTo InputMessageReplyTo `json:"reply_to,omitempty"`
+	// Topic in which the messages will be sent; pass null if none
+	TopicId MessageTopic `json:"topic_id,omitempty"`
 }
 
 func (t *SendMessageAlbum) Type() string {
@@ -16623,16 +16623,16 @@ func (t *SendPassportAuthorizationForm) MarshalJSON() ([]byte, error) {
 
 // SendPaymentForm Sends a filled-out payment form to the bot for final verification
 type SendPaymentForm struct {
-	// The invoice
-	InputInvoice InputInvoice `json:"input_invoice"`
-	// Payment form identifier returned by getPaymentForm
-	PaymentFormId int64 `json:"payment_form_id,string"`
-	// Identifier returned by validateOrderInfo, or an empty string
-	OrderInfoId string `json:"order_info_id"`
-	// Identifier of a chosen shipping option, if applicable
-	ShippingOptionId string `json:"shipping_option_id"`
 	// The credentials chosen by user for payment; pass null for a payment in Telegram Stars
 	Credentials InputCredentials `json:"credentials,omitempty"`
+	// The invoice
+	InputInvoice InputInvoice `json:"input_invoice"`
+	// Identifier returned by validateOrderInfo, or an empty string
+	OrderInfoId string `json:"order_info_id"`
+	// Payment form identifier returned by getPaymentForm
+	PaymentFormId int64 `json:"payment_form_id,string"`
+	// Identifier of a chosen shipping option, if applicable
+	ShippingOptionId string `json:"shipping_option_id"`
 	// Chosen by the user amount of tip in the smallest units of the currency
 	TipAmount int64 `json:"tip_amount"`
 }
@@ -16702,10 +16702,10 @@ func (t *SendPhoneNumberFirebaseSms) MarshalJSON() ([]byte, error) {
 type SendQuickReplyShortcutMessages struct {
 	// Identifier of the chat to which to send messages. The chat must be a private chat with a regular user
 	ChatId int64 `json:"chat_id"`
-	// Unique identifier of the quick reply shortcut
-	ShortcutId int32 `json:"shortcut_id"`
 	// Non-persistent identifier, which will be returned back in messageSendingStatePending object and can be used to match sent messages and corresponding updateNewMessage updates
 	SendingId int32 `json:"sending_id"`
+	// Unique identifier of the quick reply shortcut
+	ShortcutId int32 `json:"shortcut_id"`
 }
 
 func (t *SendQuickReplyShortcutMessages) Type() string {
@@ -16752,10 +16752,10 @@ func (t *SendResoldGift) MarshalJSON() ([]byte, error) {
 type SendTextMessageDraft struct {
 	// Chat identifier
 	ChatId int64 `json:"chat_id"`
-	// The forum topic identifier in which the message will be sent; pass 0 if none
-	ForumTopicId int32 `json:"forum_topic_id"`
 	// Unique identifier of the draft
 	DraftId int64 `json:"draft_id,string"`
+	// The forum topic identifier in which the message will be sent; pass 0 if none
+	ForumTopicId int32 `json:"forum_topic_id"`
 	// Draft text of the message
 	Text *FormattedText `json:"text"`
 }
@@ -16892,10 +16892,10 @@ func (t *SetAlarm) MarshalJSON() ([]byte, error) {
 
 // SetApplicationVerificationToken Informs TDLib that application or reCAPTCHA verification has been completed. Can be called before authorization
 type SetApplicationVerificationToken struct {
-	// Unique identifier for the verification process as received from updateApplicationVerificationRequired or updateApplicationRecaptchaVerificationRequired
-	VerificationId int64 `json:"verification_id"`
 	// Play Integrity API token for the Android application, or secret from push notification for the iOS application for application verification, or reCAPTCHA token for reCAPTCHA verifications;
 	Token string `json:"token"`
+	// Unique identifier for the verification process as received from updateApplicationVerificationRequired or updateApplicationRecaptchaVerificationRequired
+	VerificationId int64 `json:"verification_id"`
 }
 
 func (t *SetApplicationVerificationToken) Type() string {
@@ -16980,14 +16980,14 @@ func (t *SetAuthenticationPhoneNumber) MarshalJSON() ([]byte, error) {
 
 // SetAuthenticationPremiumPurchaseTransaction Informs server about an in-store purchase of Telegram Premium before authorization. Works only when the current authorization state is authorizationStateWaitPremiumPurchase
 type SetAuthenticationPremiumPurchaseTransaction struct {
-	// Information about the transaction
-	Transaction StoreTransaction `json:"transaction"`
-	// Pass true if this is a restore of a Telegram Premium purchase; only for App Store
-	IsRestore bool `json:"is_restore"`
-	// ISO 4217 currency code of the payment currency
-	Currency string `json:"currency"`
 	// Paid amount, in the smallest units of the currency
 	Amount int64 `json:"amount"`
+	// ISO 4217 currency code of the payment currency
+	Currency string `json:"currency"`
+	// Pass true if this is a restore of a Telegram Premium purchase; only for App Store
+	IsRestore bool `json:"is_restore"`
+	// Information about the transaction
+	Transaction StoreTransaction `json:"transaction"`
 }
 
 func (t *SetAuthenticationPremiumPurchaseTransaction) Type() string {
@@ -17097,10 +17097,10 @@ func (t *SetBirthdate) MarshalJSON() ([]byte, error) {
 type SetBotInfoDescription struct {
 	// Identifier of the target bot
 	BotUserId int64 `json:"bot_user_id"`
+	// New bot's description on the specified language
+	Description string `json:"description"`
 	// A two-letter ISO 639-1 language code. If empty, the description will be shown to all users for whose languages there is no dedicated description
 	LanguageCode string `json:"language_code"`
-	//
-	Description string `json:"description"`
 }
 
 func (t *SetBotInfoDescription) Type() string {
@@ -17194,9 +17194,9 @@ func (t *SetBotProfilePhoto) MarshalJSON() ([]byte, error) {
 // SetBotUpdatesStatus Informs the server about the number of pending bot updates if they haven't been processed for a long time; for bots only @pending_update_count The number of pending updates @error_message The last error message
 type SetBotUpdatesStatus struct {
 	//
-	PendingUpdateCount int32 `json:"pending_update_count"`
-	//
 	ErrorMessage string `json:"error_message"`
+	//
+	PendingUpdateCount int32 `json:"pending_update_count"`
 }
 
 func (t *SetBotUpdatesStatus) Type() string {
@@ -17216,10 +17216,10 @@ func (t *SetBotUpdatesStatus) MarshalJSON() ([]byte, error) {
 
 // SetBusinessAccountBio Changes the bio of a business account; for bots only
 type SetBusinessAccountBio struct {
-	// Unique identifier of business connection
-	BusinessConnectionId string `json:"business_connection_id"`
 	// The new value of the bio; 0-getOption("bio_length_max") characters without line feeds
 	Bio string `json:"bio"`
+	// Unique identifier of business connection
+	BusinessConnectionId string `json:"business_connection_id"`
 }
 
 func (t *SetBusinessAccountBio) Type() string {
@@ -17289,10 +17289,10 @@ func (t *SetBusinessAccountName) MarshalJSON() ([]byte, error) {
 type SetBusinessAccountProfilePhoto struct {
 	// Unique identifier of business connection
 	BusinessConnectionId string `json:"business_connection_id"`
-	// Profile photo to set; pass null to remove the photo
-	Photo InputChatPhoto `json:"photo,omitempty"`
 	// Pass true to set the public photo, which will be visible even if the main photo is hidden by privacy settings
 	IsPublic bool `json:"is_public"`
+	// Profile photo to set; pass null to remove the photo
+	Photo InputChatPhoto `json:"photo,omitempty"`
 }
 
 func (t *SetBusinessAccountProfilePhoto) Type() string {
@@ -17423,10 +17423,10 @@ type SetBusinessMessageIsPinned struct {
 	BusinessConnectionId string `json:"business_connection_id"`
 	// The chat the message belongs to
 	ChatId int64 `json:"chat_id"`
-	// Identifier of the message
-	MessageId int64 `json:"message_id"`
 	// Pass true to pin the message, pass false to unpin it
 	IsPinned bool `json:"is_pinned"`
+	// Identifier of the message
+	MessageId int64 `json:"message_id"`
 }
 
 func (t *SetBusinessMessageIsPinned) Type() string {
@@ -17488,12 +17488,12 @@ func (t *SetBusinessStartPage) MarshalJSON() ([]byte, error) {
 
 // SetChatAccentColor Changes accent color and background custom emoji of a channel chat. Requires can_change_info administrator right
 type SetChatAccentColor struct {
-	// Chat identifier
-	ChatId int64 `json:"chat_id"`
 	// Identifier of the accent color to use. The chat must have at least accentColor.min_channel_chat_boost_level boost level to pass the corresponding color
 	AccentColorId int32 `json:"accent_color_id"`
 	// Identifier of a custom emoji to be shown on the reply header and link preview background; 0 if none. Use chatBoostLevelFeatures.can_set_background_custom_emoji to check whether a custom emoji can be set
 	BackgroundCustomEmojiId int64 `json:"background_custom_emoji_id,string"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
 }
 
 func (t *SetChatAccentColor) Type() string {
@@ -17559,10 +17559,10 @@ func (t *SetChatAffiliateProgram) MarshalJSON() ([]byte, error) {
 
 // SetChatAvailableReactions Changes reactions, available in a chat. Available for basic groups, supergroups, and channels. Requires can_change_info member right
 type SetChatAvailableReactions struct {
-	// Identifier of the chat
-	ChatId int64 `json:"chat_id"`
 	// Reactions available in the chat. All explicitly specified emoji reactions must be active. In channel chats up to the chat's boost level custom emoji reactions can be explicitly specified
 	AvailableReactions ChatAvailableReactions `json:"available_reactions"`
+	// Identifier of the chat
+	ChatId int64 `json:"chat_id"`
 }
 
 func (t *SetChatAvailableReactions) Type() string {
@@ -17582,16 +17582,16 @@ func (t *SetChatAvailableReactions) MarshalJSON() ([]byte, error) {
 
 // SetChatBackground Sets the background in a specific chat. Supported only in private and secret chats with non-deleted users, and in chats with sufficient boost level and can_change_info administrator right
 type SetChatBackground struct {
-	// Chat identifier
-	ChatId int64 `json:"chat_id"`
 	// The input background to use; pass null to create a new filled or chat theme background
 	Background InputBackground `json:"background,omitempty"`
-	// Background type; pass null to use default background type for the chosen background; backgroundTypeChatTheme isn't supported for private and secret chats.
-	TypeField BackgroundType `json:"type,omitempty"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
 	// Dimming of the background in dark themes, as a percentage; 0-100. Applied only to Wallpaper and Fill types of background
 	DarkThemeDimming int32 `json:"dark_theme_dimming"`
 	// Pass true to set background only for self; pass false to set background for all chat users. Always false for backgrounds set in boosted chats. Background can be set for both users only by Telegram Premium users and if set background isn't of the type inputBackgroundPrevious
 	OnlyForSelf bool `json:"only_for_self"`
+	// Background type; pass null to use default background type for the chosen background; backgroundTypeChatTheme isn't supported for private and secret chats.
+	TypeField BackgroundType `json:"type,omitempty"`
 }
 
 func (t *SetChatBackground) Type() string {
@@ -17707,10 +17707,10 @@ func (t *SetChatDiscussionGroup) MarshalJSON() ([]byte, error) {
 type SetChatDraftMessage struct {
 	// Chat identifier
 	ChatId int64 `json:"chat_id"`
-	// Topic in which the draft will be changed; pass null to change the draft for the chat itself
-	TopicId MessageTopic `json:"topic_id,omitempty"`
 	// New draft message; pass null to remove the draft. All files in draft message content must be of the type inputFileLocal. Media thumbnails and captions are ignored
 	DraftMessage *DraftMessage `json:"draft_message,omitempty"`
+	// Topic in which the draft will be changed; pass null to change the draft for the chat itself
+	TopicId MessageTopic `json:"topic_id,omitempty"`
 }
 
 func (t *SetChatDraftMessage) Type() string {
@@ -18077,12 +18077,12 @@ func (t *SetCloseFriends) MarshalJSON() ([]byte, error) {
 
 // SetCommands Sets the list of commands supported by the bot for the given user scope and language; for bots only
 type SetCommands struct {
-	// The scope to which the commands are relevant; pass null to change commands in the default bot command scope
-	Scope BotCommandScope `json:"scope,omitempty"`
-	// A two-letter ISO 639-1 language code. If empty, the commands will be applied to all users from the given scope, for which language there are no dedicated commands
-	LanguageCode string `json:"language_code"`
 	// List of the bot's commands
 	Commands []BotCommand `json:"commands"`
+	// A two-letter ISO 639-1 language code. If empty, the commands will be applied to all users from the given scope, for which language there are no dedicated commands
+	LanguageCode string `json:"language_code"`
+	// The scope to which the commands are relevant; pass null to change commands in the default bot command scope
+	Scope BotCommandScope `json:"scope,omitempty"`
 }
 
 func (t *SetCommands) Type() string {
@@ -18102,10 +18102,10 @@ func (t *SetCommands) MarshalJSON() ([]byte, error) {
 
 // SetCustomEmojiStickerSetThumbnail Sets a custom emoji sticker set thumbnail
 type SetCustomEmojiStickerSetThumbnail struct {
-	// Sticker set name. The sticker set must be owned by the current user
-	Name string `json:"name"`
 	// Identifier of the custom emoji from the sticker set, which will be set as sticker set thumbnail; pass 0 to remove the sticker set thumbnail
 	CustomEmojiId int64 `json:"custom_emoji_id,string"`
+	// Sticker set name. The sticker set must be owned by the current user
+	Name string `json:"name"`
 }
 
 func (t *SetCustomEmojiStickerSetThumbnail) Type() string {
@@ -18194,10 +18194,10 @@ func (t *SetDatabaseEncryptionKey) MarshalJSON() ([]byte, error) {
 type SetDefaultBackground struct {
 	// The input background to use; pass null to create a new filled background
 	Background InputBackground `json:"background,omitempty"`
-	// Background type; pass null to use the default type of the remote background; backgroundTypeChatTheme isn't supported
-	TypeField BackgroundType `json:"type,omitempty"`
 	// Pass true if the background is set for a dark theme
 	ForDarkTheme bool `json:"for_dark_theme"`
+	// Background type; pass null to use the default type of the remote background; backgroundTypeChatTheme isn't supported
+	TypeField BackgroundType `json:"type,omitempty"`
 }
 
 func (t *SetDefaultBackground) Type() string {
@@ -18303,10 +18303,10 @@ func (t *SetDefaultReactionType) MarshalJSON() ([]byte, error) {
 type SetDirectMessagesChatTopicIsMarkedAsUnread struct {
 	// Chat identifier of the channel direct messages chat
 	ChatId int64 `json:"chat_id"`
-	// Topic identifier
-	TopicId int64 `json:"topic_id"`
 	// New value of is_marked_as_unread
 	IsMarkedAsUnread bool `json:"is_marked_as_unread"`
+	// Topic identifier
+	TopicId int64 `json:"topic_id"`
 }
 
 func (t *SetDirectMessagesChatTopicIsMarkedAsUnread) Type() string {
@@ -18347,10 +18347,10 @@ func (t *SetEmojiStatus) MarshalJSON() ([]byte, error) {
 
 // SetFileGenerationProgress Informs TDLib on a file generation progress
 type SetFileGenerationProgress struct {
-	// The identifier of the generation process
-	GenerationId int64 `json:"generation_id,string"`
 	// Expected size of the generated file, in bytes; 0 if unknown
 	ExpectedSize int64 `json:"expected_size"`
+	// The identifier of the generation process
+	GenerationId int64 `json:"generation_id,string"`
 	// The number of bytes already generated
 	LocalPrefixSize int64 `json:"local_prefix_size"`
 }
@@ -18399,16 +18399,16 @@ func (t *SetForumTopicNotificationSettings) MarshalJSON() ([]byte, error) {
 type SetGameScore struct {
 	// The chat to which the message with the game belongs
 	ChatId int64 `json:"chat_id"`
-	// Identifier of the message
-	MessageId int64 `json:"message_id"`
 	// Pass true to edit the game message to include the current scoreboard
 	EditMessage bool `json:"edit_message"`
-	// User identifier
-	UserId int64 `json:"user_id"`
-	// The new score
-	Score int32 `json:"score"`
 	// Pass true to update the score even if it decreases. If the score is 0, the user will be deleted from the high score table
 	Force bool `json:"force"`
+	// Identifier of the message
+	MessageId int64 `json:"message_id"`
+	// The new score
+	Score int32 `json:"score"`
+	// User identifier
+	UserId int64 `json:"user_id"`
 }
 
 func (t *SetGameScore) Type() string {
@@ -18428,12 +18428,12 @@ func (t *SetGameScore) MarshalJSON() ([]byte, error) {
 
 // SetGiftCollectionName Changes name of a gift collection. If the collection is owned by a channel chat, then requires can_post_messages administrator right in the channel chat. Returns the changed collection
 type SetGiftCollectionName struct {
-	// Identifier of the user or the channel chat that owns the collection
-	OwnerId MessageSender `json:"owner_id"`
 	// Identifier of the gift collection
 	CollectionId int32 `json:"collection_id"`
 	// New name of the collection; 1-12 characters
 	Name string `json:"name"`
+	// Identifier of the user or the channel chat that owns the collection
+	OwnerId MessageSender `json:"owner_id"`
 }
 
 func (t *SetGiftCollectionName) Type() string {
@@ -18453,10 +18453,10 @@ func (t *SetGiftCollectionName) MarshalJSON() ([]byte, error) {
 
 // SetGiftResalePrice Changes resale price of a unique gift owned by the current user
 type SetGiftResalePrice struct {
-	// Identifier of the unique gift
-	ReceivedGiftId string `json:"received_gift_id"`
 	// The new price for the unique gift; pass null to disallow gift resale. The current user will receive
 	Price GiftResalePrice `json:"price,omitempty"`
+	// Identifier of the unique gift
+	ReceivedGiftId string `json:"received_gift_id"`
 }
 
 func (t *SetGiftResalePrice) Type() string {
@@ -18520,10 +18520,10 @@ func (t *SetGroupCallPaidMessageStarCount) MarshalJSON() ([]byte, error) {
 
 // SetGroupCallParticipantIsSpeaking Informs TDLib that speaking state of a participant of an active group call has changed. Returns identifier of the participant if it is found
 type SetGroupCallParticipantIsSpeaking struct {
-	// Group call identifier
-	GroupCallId int32 `json:"group_call_id"`
 	// Group call participant's synchronization audio source identifier, or 0 for the current user
 	AudioSource int32 `json:"audio_source"`
+	// Group call identifier
+	GroupCallId int32 `json:"group_call_id"`
 	// Pass true if the user is speaking
 	IsSpeaking bool `json:"is_speaking"`
 }
@@ -18591,16 +18591,16 @@ func (t *SetInactiveSessionTtl) MarshalJSON() ([]byte, error) {
 
 // SetInlineGameScore Updates the game score of the specified user in a game; for bots only
 type SetInlineGameScore struct {
-	// Inline message identifier
-	InlineMessageId string `json:"inline_message_id"`
 	// Pass true to edit the game message to include the current scoreboard
 	EditMessage bool `json:"edit_message"`
-	// User identifier
-	UserId int64 `json:"user_id"`
-	// The new score
-	Score int32 `json:"score"`
 	// Pass true to update the score even if it decreases. If the score is 0, the user will be deleted from the high score table
 	Force bool `json:"force"`
+	// Inline message identifier
+	InlineMessageId string `json:"inline_message_id"`
+	// The new score
+	Score int32 `json:"score"`
+	// User identifier
+	UserId int64 `json:"user_id"`
 }
 
 func (t *SetInlineGameScore) Type() string {
@@ -18685,10 +18685,10 @@ func (t *SetLogStream) MarshalJSON() ([]byte, error) {
 
 // SetLogTagVerbosityLevel Sets the verbosity level for a specified TDLib internal log tag. Can be called synchronously
 type SetLogTagVerbosityLevel struct {
-	// Logging tag to change verbosity level
-	Tag string `json:"tag"`
 	// New verbosity level; 1-1024
 	NewVerbosityLevel int32 `json:"new_verbosity_level"`
+	// Logging tag to change verbosity level
+	Tag string `json:"tag"`
 }
 
 func (t *SetLogTagVerbosityLevel) Type() string {
@@ -18750,10 +18750,10 @@ func (t *SetMainProfileTab) MarshalJSON() ([]byte, error) {
 
 // SetMenuButton Sets menu button for the given user or for all users; for bots only
 type SetMenuButton struct {
-	// Identifier of the user or 0 to set menu button for all users
-	UserId int64 `json:"user_id"`
 	// New menu button
 	MenuButton *BotMenuButton `json:"menu_button"`
+	// Identifier of the user or 0 to set menu button for all users
+	UserId int64 `json:"user_id"`
 }
 
 func (t *SetMenuButton) Type() string {
@@ -18800,12 +18800,12 @@ func (t *SetMessageFactCheck) MarshalJSON() ([]byte, error) {
 type SetMessageReactions struct {
 	// Identifier of the chat to which the message belongs
 	ChatId int64 `json:"chat_id"`
+	// Pass true if the reactions are added with a big animation
+	IsBig bool `json:"is_big"`
 	// Identifier of the message
 	MessageId int64 `json:"message_id"`
 	// Types of the reaction to set; pass an empty list to remove the reactions
 	ReactionTypes []ReactionType `json:"reaction_types"`
-	// Pass true if the reactions are added with a big animation
-	IsBig bool `json:"is_big"`
 }
 
 func (t *SetMessageReactions) Type() string {
@@ -18825,10 +18825,10 @@ func (t *SetMessageReactions) MarshalJSON() ([]byte, error) {
 
 // SetMessageSenderBlockList Changes the block list of a message sender. Currently, only users and supergroup chats can be blocked
 type SetMessageSenderBlockList struct {
-	// Identifier of a message sender to block/unblock
-	SenderId MessageSender `json:"sender_id"`
 	// New block list for the message sender; pass null to unblock the message sender
 	BlockList BlockList `json:"block_list,omitempty"`
+	// Identifier of a message sender to block/unblock
+	SenderId MessageSender `json:"sender_id"`
 }
 
 func (t *SetMessageSenderBlockList) Type() string {
@@ -18850,10 +18850,10 @@ func (t *SetMessageSenderBlockList) MarshalJSON() ([]byte, error) {
 type SetMessageSenderBotVerification struct {
 	// Identifier of the owned bot, which will verify the user or the chat
 	BotUserId int64 `json:"bot_user_id"`
-	// Identifier of the user or the supergroup or channel chat, which will be verified by the bot
-	VerifiedId MessageSender `json:"verified_id"`
 	// Custom description of verification reason; 0-getOption("bot_verification_custom_description_length_max").
 	CustomDescription string `json:"custom_description"`
+	// Identifier of the user or the supergroup or channel chat, which will be verified by the bot
+	VerifiedId MessageSender `json:"verified_id"`
 }
 
 func (t *SetMessageSenderBotVerification) Type() string {
@@ -19010,9 +19010,9 @@ func (t *SetPassportElement) MarshalJSON() ([]byte, error) {
 // SetPassportElementErrors Informs the user who some of the elements in their Telegram Passport contain errors; for bots only. The user will not be able to resend the elements, until the errors are fixed @user_id User identifier @errors The errors
 type SetPassportElementErrors struct {
 	//
-	UserId int64 `json:"user_id"`
-	//
 	Errors []InputPassportElementError `json:"errors"`
+	//
+	UserId int64 `json:"user_id"`
 }
 
 func (t *SetPassportElementErrors) Type() string {
@@ -19032,16 +19032,16 @@ func (t *SetPassportElementErrors) MarshalJSON() ([]byte, error) {
 
 // SetPassword Changes the 2-step verification password for the current user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed
 type SetPassword struct {
+	// New password hint; may be empty
+	NewHint string `json:"new_hint,omitempty"`
+	// New 2-step verification password of the user; may be empty to remove the password
+	NewPassword string `json:"new_password,omitempty"`
+	// New recovery email address; may be empty
+	NewRecoveryEmailAddress string `json:"new_recovery_email_address,omitempty"`
 	// Previous 2-step verification password of the user
 	OldPassword string `json:"old_password"`
-	// New 2-step verification password of the user; may be empty to remove the password
-	NewPassword string `json:"new_password"`
-	// New password hint; may be empty
-	NewHint string `json:"new_hint"`
 	// Pass true to change also the recovery email address
 	SetRecoveryEmailAddress bool `json:"set_recovery_email_address"`
-	// New recovery email address; may be empty
-	NewRecoveryEmailAddress string `json:"new_recovery_email_address"`
 }
 
 func (t *SetPassword) Type() string {
@@ -19083,9 +19083,9 @@ func (t *SetPersonalChat) MarshalJSON() ([]byte, error) {
 // SetPinnedChats Changes the order of pinned chats @chat_list Chat list in which to change the order of pinned chats @chat_ids The new list of pinned chats
 type SetPinnedChats struct {
 	//
-	ChatList ChatList `json:"chat_list"`
-	//
 	ChatIds []int64 `json:"chat_ids"`
+	//
+	ChatList ChatList `json:"chat_list"`
 }
 
 func (t *SetPinnedChats) Type() string {
@@ -19220,10 +19220,10 @@ func (t *SetProfileAccentColor) MarshalJSON() ([]byte, error) {
 
 // SetProfileAudioPosition Changes position of an audio file in the profile audio files of the current user
 type SetProfileAudioPosition struct {
-	// Identifier of the file from profile audio files, which position will be changed
-	FileId int32 `json:"file_id"`
 	// Identifier of the file from profile audio files after which the file will be positioned; pass 0 to move the file to the beginning of the list
 	AfterFileId int32 `json:"after_file_id"`
+	// Identifier of the file from profile audio files, which position will be changed
+	FileId int32 `json:"file_id"`
 }
 
 func (t *SetProfileAudioPosition) Type() string {
@@ -19243,10 +19243,10 @@ func (t *SetProfileAudioPosition) MarshalJSON() ([]byte, error) {
 
 // SetProfilePhoto Changes a profile photo for the current user
 type SetProfilePhoto struct {
-	// Profile photo to set
-	Photo InputChatPhoto `json:"photo"`
 	// Pass true to set the public photo, which will be visible even if the main photo is hidden by privacy settings
 	IsPublic bool `json:"is_public"`
+	// Profile photo to set
+	Photo InputChatPhoto `json:"photo"`
 }
 
 func (t *SetProfilePhoto) Type() string {
@@ -19267,9 +19267,9 @@ func (t *SetProfilePhoto) MarshalJSON() ([]byte, error) {
 // SetQuickReplyShortcutName Changes name of a quick reply shortcut @shortcut_id Unique identifier of the quick reply shortcut @name New name for the shortcut. Use checkQuickReplyShortcutName to check its validness
 type SetQuickReplyShortcutName struct {
 	//
-	ShortcutId int32 `json:"shortcut_id"`
-	//
 	Name string `json:"name"`
+	//
+	ShortcutId int32 `json:"shortcut_id"`
 }
 
 func (t *SetQuickReplyShortcutName) Type() string {
@@ -19331,10 +19331,10 @@ func (t *SetReadDatePrivacySettings) MarshalJSON() ([]byte, error) {
 
 // SetRecoveryEmailAddress Changes the 2-step verification recovery email address of the user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed.
 type SetRecoveryEmailAddress struct {
-	// The 2-step verification password of the current user
-	Password string `json:"password"`
 	// New recovery email address
 	NewRecoveryEmailAddress string `json:"new_recovery_email_address"`
+	// The 2-step verification password of the current user
+	Password string `json:"password"`
 }
 
 func (t *SetRecoveryEmailAddress) Type() string {
@@ -19355,9 +19355,9 @@ func (t *SetRecoveryEmailAddress) MarshalJSON() ([]byte, error) {
 // SetSavedMessagesTagLabel Changes label of a Saved Messages tag; for Telegram Premium users only @tag The tag which label will be changed @label New label for the tag; 0-12 characters
 type SetSavedMessagesTagLabel struct {
 	//
-	Tag ReactionType `json:"tag"`
-	//
 	Label string `json:"label"`
+	//
+	Tag ReactionType `json:"tag"`
 }
 
 func (t *SetSavedMessagesTagLabel) Type() string {
@@ -19378,9 +19378,9 @@ func (t *SetSavedMessagesTagLabel) MarshalJSON() ([]byte, error) {
 // SetScopeNotificationSettings Changes notification settings for chats of a given type @scope Types of chats for which to change the notification settings @notification_settings The new notification settings for the given scope
 type SetScopeNotificationSettings struct {
 	//
-	Scope NotificationSettingsScope `json:"scope"`
-	//
 	NotificationSettings *ScopeNotificationSettings `json:"notification_settings"`
+	//
+	Scope NotificationSettingsScope `json:"scope"`
 }
 
 func (t *SetScopeNotificationSettings) Type() string {
@@ -19400,10 +19400,10 @@ func (t *SetScopeNotificationSettings) MarshalJSON() ([]byte, error) {
 
 // SetStickerEmojis Changes the list of emojis corresponding to a sticker. The sticker must belong to a regular or custom emoji sticker set that is owned by the current user
 type SetStickerEmojis struct {
-	// Sticker
-	Sticker InputFile `json:"sticker"`
 	// New string with 1-20 emoji corresponding to the sticker
 	Emojis string `json:"emojis"`
+	// Sticker
+	Sticker InputFile `json:"sticker"`
 }
 
 func (t *SetStickerEmojis) Type() string {
@@ -19423,10 +19423,10 @@ func (t *SetStickerEmojis) MarshalJSON() ([]byte, error) {
 
 // SetStickerKeywords Changes the list of keywords of a sticker. The sticker must belong to a regular or custom emoji sticker set that is owned by the current user
 type SetStickerKeywords struct {
-	// Sticker
-	Sticker InputFile `json:"sticker"`
 	// List of up to 20 keywords with total length up to 64 characters, which can be used to find the sticker
 	Keywords []string `json:"keywords"`
+	// Sticker
+	Sticker InputFile `json:"sticker"`
 }
 
 func (t *SetStickerKeywords) Type() string {
@@ -19446,10 +19446,10 @@ func (t *SetStickerKeywords) MarshalJSON() ([]byte, error) {
 
 // SetStickerMaskPosition Changes the mask position of a mask sticker. The sticker must belong to a mask sticker set that is owned by the current user
 type SetStickerMaskPosition struct {
-	// Sticker
-	Sticker InputFile `json:"sticker"`
 	// Position where the mask is placed; pass null to remove mask position
 	MaskPosition *MaskPosition `json:"mask_position,omitempty"`
+	// Sticker
+	Sticker InputFile `json:"sticker"`
 }
 
 func (t *SetStickerMaskPosition) Type() string {
@@ -19469,10 +19469,10 @@ func (t *SetStickerMaskPosition) MarshalJSON() ([]byte, error) {
 
 // SetStickerPositionInSet Changes the position of a sticker in the set to which it belongs. The sticker set must be owned by the current user
 type SetStickerPositionInSet struct {
-	// Sticker
-	Sticker InputFile `json:"sticker"`
 	// New position of the sticker in the set, 0-based
 	Position int32 `json:"position"`
+	// Sticker
+	Sticker InputFile `json:"sticker"`
 }
 
 func (t *SetStickerPositionInSet) Type() string {
@@ -19492,14 +19492,14 @@ func (t *SetStickerPositionInSet) MarshalJSON() ([]byte, error) {
 
 // SetStickerSetThumbnail Sets a sticker set thumbnail
 type SetStickerSetThumbnail struct {
-	// Sticker set owner; ignored for regular users
-	UserId int64 `json:"user_id"`
+	// Format of the thumbnail; pass null if thumbnail is removed
+	Format StickerFormat `json:"format,omitempty"`
 	// Sticker set name. The sticker set must be owned by the current user
 	Name string `json:"name"`
 	// Thumbnail to set; pass null to remove the sticker set thumbnail
 	Thumbnail InputFile `json:"thumbnail,omitempty"`
-	// Format of the thumbnail; pass null if thumbnail is removed
-	Format StickerFormat `json:"format,omitempty"`
+	// Sticker set owner; ignored for regular users
+	UserId int64 `json:"user_id"`
 }
 
 func (t *SetStickerSetThumbnail) Type() string {
@@ -19544,10 +19544,10 @@ func (t *SetStickerSetTitle) MarshalJSON() ([]byte, error) {
 type SetStoryAlbumName struct {
 	// Identifier of the chat that owns the stories
 	ChatId int64 `json:"chat_id"`
-	// Identifier of the story album
-	StoryAlbumId int32 `json:"story_album_id"`
 	// New name of the album; 1-12 characters
 	Name string `json:"name"`
+	// Identifier of the story album
+	StoryAlbumId int32 `json:"story_album_id"`
 }
 
 func (t *SetStoryAlbumName) Type() string {
@@ -19567,10 +19567,10 @@ func (t *SetStoryAlbumName) MarshalJSON() ([]byte, error) {
 
 // SetStoryPrivacySettings Changes privacy settings of a story. The method can be called only for stories posted on behalf of the current user and if story.can_set_privacy_settings == true
 type SetStoryPrivacySettings struct {
-	// Identifier of the story
-	StoryId int32 `json:"story_id"`
 	// The new privacy settings for the story
 	PrivacySettings StoryPrivacySettings `json:"privacy_settings"`
+	// Identifier of the story
+	StoryId int32 `json:"story_id"`
 }
 
 func (t *SetStoryPrivacySettings) Type() string {
@@ -19590,12 +19590,12 @@ func (t *SetStoryPrivacySettings) MarshalJSON() ([]byte, error) {
 
 // SetStoryReaction Changes chosen reaction on a story that has already been sent; not supported for live stories
 type SetStoryReaction struct {
-	// The identifier of the poster of the story
-	StoryPosterChatId int64 `json:"story_poster_chat_id"`
-	// The identifier of the story
-	StoryId int32 `json:"story_id"`
 	// Type of the reaction to set; pass null to remove the reaction. Custom emoji reactions can be used only by Telegram Premium users. Paid reactions can't be set
 	ReactionType ReactionType `json:"reaction_type,omitempty"`
+	// The identifier of the story
+	StoryId int32 `json:"story_id"`
+	// The identifier of the poster of the story
+	StoryPosterChatId int64 `json:"story_poster_chat_id"`
 	// Pass true if the reaction needs to be added to recent reactions
 	UpdateRecentReactions bool `json:"update_recent_reactions"`
 }
@@ -19617,10 +19617,10 @@ func (t *SetStoryReaction) MarshalJSON() ([]byte, error) {
 
 // SetSupergroupCustomEmojiStickerSet Changes the custom emoji sticker set of a supergroup; requires can_change_info administrator right. The chat must have at least chatBoostFeatures.min_custom_emoji_sticker_set_boost_level boost level to pass the corresponding color
 type SetSupergroupCustomEmojiStickerSet struct {
-	// Identifier of the supergroup
-	SupergroupId int64 `json:"supergroup_id"`
 	// New value of the custom emoji sticker set identifier for the supergroup. Use 0 to remove the custom emoji sticker set in the supergroup
 	CustomEmojiStickerSetId int64 `json:"custom_emoji_sticker_set_id,string"`
+	// Identifier of the supergroup
+	SupergroupId int64 `json:"supergroup_id"`
 }
 
 func (t *SetSupergroupCustomEmojiStickerSet) Type() string {
@@ -19640,10 +19640,10 @@ func (t *SetSupergroupCustomEmojiStickerSet) MarshalJSON() ([]byte, error) {
 
 // SetSupergroupMainProfileTab Changes the main profile tab of the channel; requires can_change_info administrator right
 type SetSupergroupMainProfileTab struct {
-	// Identifier of the channel
-	SupergroupId int64 `json:"supergroup_id"`
 	// The new value of the main profile tab
 	MainProfileTab ProfileTab `json:"main_profile_tab"`
+	// Identifier of the channel
+	SupergroupId int64 `json:"supergroup_id"`
 }
 
 func (t *SetSupergroupMainProfileTab) Type() string {
@@ -19664,9 +19664,9 @@ func (t *SetSupergroupMainProfileTab) MarshalJSON() ([]byte, error) {
 // SetSupergroupStickerSet Changes the sticker set of a supergroup; requires can_change_info administrator right @supergroup_id Identifier of the supergroup @sticker_set_id New value of the supergroup sticker set identifier. Use 0 to remove the supergroup sticker set
 type SetSupergroupStickerSet struct {
 	//
-	SupergroupId int64 `json:"supergroup_id"`
-	//
 	StickerSetId int64 `json:"sticker_set_id,string"`
+	//
+	SupergroupId int64 `json:"supergroup_id"`
 }
 
 func (t *SetSupergroupStickerSet) Type() string {
@@ -19732,34 +19732,34 @@ func (t *SetSupergroupUsername) MarshalJSON() ([]byte, error) {
 
 // SetTdlibParameters Sets the parameters for TDLib initialization. Works only when the current authorization state is authorizationStateWaitTdlibParameters
 type SetTdlibParameters struct {
-	// Pass true to use Telegram test environment instead of the production environment
-	UseTestDc bool `json:"use_test_dc"`
+	// Application identifier hash for Telegram API access, which can be obtained at https://my.telegram.org
+	ApiHash string `json:"api_hash"`
+	// Application identifier for Telegram API access, which can be obtained at https://my.telegram.org
+	ApiId int32 `json:"api_id"`
+	// Application version; must be non-empty
+	ApplicationVersion string `json:"application_version"`
 	// The path to the directory for the persistent database; if empty, the current working directory will be used
 	DatabaseDirectory string `json:"database_directory"`
-	// The path to the directory for storing files; if empty, database_directory will be used
-	FilesDirectory string `json:"files_directory"`
 	// Encryption key for the database. If the encryption key is invalid, then an error with code 401 will be returned
 	DatabaseEncryptionKey []byte `json:"database_encryption_key"`
-	// Pass true to keep information about downloaded and uploaded files between application restarts
-	UseFileDatabase bool `json:"use_file_database"`
+	// Model of the device the application is being run on; must be non-empty
+	DeviceModel string `json:"device_model"`
+	// The path to the directory for storing files; if empty, database_directory will be used
+	FilesDirectory string `json:"files_directory"`
+	// IETF language tag of the user's operating system language; must be non-empty
+	SystemLanguageCode string `json:"system_language_code"`
+	// Version of the operating system the application is being run on. If empty, the version is automatically detected by TDLib
+	SystemVersion string `json:"system_version"`
 	// Pass true to keep cache of users, basic groups, supergroups, channels and secret chats between restarts. Implies use_file_database
 	UseChatInfoDatabase bool `json:"use_chat_info_database"`
+	// Pass true to keep information about downloaded and uploaded files between application restarts
+	UseFileDatabase bool `json:"use_file_database"`
 	// Pass true to keep cache of chats and messages between restarts. Implies use_chat_info_database
 	UseMessageDatabase bool `json:"use_message_database"`
 	// Pass true to enable support for secret chats
 	UseSecretChats bool `json:"use_secret_chats"`
-	// Application identifier for Telegram API access, which can be obtained at https://my.telegram.org
-	ApiId int32 `json:"api_id"`
-	// Application identifier hash for Telegram API access, which can be obtained at https://my.telegram.org
-	ApiHash string `json:"api_hash"`
-	// IETF language tag of the user's operating system language; must be non-empty
-	SystemLanguageCode string `json:"system_language_code"`
-	// Model of the device the application is being run on; must be non-empty
-	DeviceModel string `json:"device_model"`
-	// Version of the operating system the application is being run on. If empty, the version is automatically detected by TDLib
-	SystemVersion string `json:"system_version"`
-	// Application version; must be non-empty
-	ApplicationVersion string `json:"application_version"`
+	// Pass true to use Telegram test environment instead of the production environment
+	UseTestDc bool `json:"use_test_dc"`
 }
 
 func (t *SetTdlibParameters) Type() string {
@@ -19801,9 +19801,9 @@ func (t *SetUpgradedGiftColors) MarshalJSON() ([]byte, error) {
 // SetUserEmojiStatus Changes the emoji status of a user; for bots only @user_id Identifier of the user @emoji_status New emoji status; pass null to switch to the default badge
 type SetUserEmojiStatus struct {
 	//
-	UserId int64 `json:"user_id"`
-	//
 	EmojiStatus *EmojiStatus `json:"emoji_status"`
+	//
+	UserId int64 `json:"user_id"`
 }
 
 func (t *SetUserEmojiStatus) Type() string {
@@ -19844,10 +19844,10 @@ func (t *SetUsername) MarshalJSON() ([]byte, error) {
 
 // SetUserNote Changes a note of a contact user
 type SetUserNote struct {
-	// User identifier
-	UserId int64 `json:"user_id"`
 	// Note to set for the user; 0-getOption("user_note_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed
 	Note *FormattedText `json:"note"`
+	// User identifier
+	UserId int64 `json:"user_id"`
 }
 
 func (t *SetUserNote) Type() string {
@@ -19868,9 +19868,9 @@ func (t *SetUserNote) MarshalJSON() ([]byte, error) {
 // SetUserPersonalProfilePhoto Changes a personal profile photo of a contact user @user_id User identifier @photo Profile photo to set; pass null to delete the photo; inputChatPhotoPrevious isn't supported in this function
 type SetUserPersonalProfilePhoto struct {
 	//
-	UserId int64 `json:"user_id"`
-	//
 	Photo InputChatPhoto `json:"photo"`
+	//
+	UserId int64 `json:"user_id"`
 }
 
 func (t *SetUserPersonalProfilePhoto) Type() string {
@@ -19891,9 +19891,9 @@ func (t *SetUserPersonalProfilePhoto) MarshalJSON() ([]byte, error) {
 // SetUserPrivacySettingRules Changes user privacy settings @setting The privacy setting @rules The new privacy rules
 type SetUserPrivacySettingRules struct {
 	//
-	Setting UserPrivacySetting `json:"setting"`
-	//
 	Rules *UserPrivacySettingRules `json:"rules"`
+	//
+	Setting UserPrivacySetting `json:"setting"`
 }
 
 func (t *SetUserPrivacySettingRules) Type() string {
@@ -19914,9 +19914,9 @@ func (t *SetUserPrivacySettingRules) MarshalJSON() ([]byte, error) {
 // SetUserSupportInfo Sets support information for the given user; for Telegram support only @user_id User identifier @message New information message
 type SetUserSupportInfo struct {
 	//
-	UserId int64 `json:"user_id"`
-	//
 	Message *FormattedText `json:"message"`
+	//
+	UserId int64 `json:"user_id"`
 }
 
 func (t *SetUserSupportInfo) Type() string {
@@ -19982,16 +19982,16 @@ func (t *SetVideoChatTitle) MarshalJSON() ([]byte, error) {
 
 // ShareChatWithBot Shares a chat after pressing a keyboardButtonTypeRequestChat button with the bot
 type ShareChatWithBot struct {
+	// Identifier of the button
+	ButtonId int32 `json:"button_id"`
 	// Identifier of the chat with the bot
 	ChatId int64 `json:"chat_id"`
 	// Identifier of the message with the button
 	MessageId int64 `json:"message_id"`
-	// Identifier of the button
-	ButtonId int32 `json:"button_id"`
-	// Identifier of the shared chat
-	SharedChatId int64 `json:"shared_chat_id"`
 	// Pass true to check that the chat can be shared by the button instead of actually sharing it. Doesn't check bot_is_member and bot_administrator_rights restrictions.
 	OnlyCheck bool `json:"only_check"`
+	// Identifier of the shared chat
+	SharedChatId int64 `json:"shared_chat_id"`
 }
 
 func (t *ShareChatWithBot) Type() string {
@@ -20032,16 +20032,16 @@ func (t *SharePhoneNumber) MarshalJSON() ([]byte, error) {
 
 // ShareUsersWithBot Shares users after pressing a keyboardButtonTypeRequestUsers button with the bot
 type ShareUsersWithBot struct {
+	// Identifier of the button
+	ButtonId int32 `json:"button_id"`
 	// Identifier of the chat with the bot
 	ChatId int64 `json:"chat_id"`
 	// Identifier of the message with the button
 	MessageId int64 `json:"message_id"`
-	// Identifier of the button
-	ButtonId int32 `json:"button_id"`
-	// Identifiers of the shared users
-	SharedUserIds []int64 `json:"shared_user_ids"`
 	// Pass true to check that the users can be shared by the button instead of actually sharing them
 	OnlyCheck bool `json:"only_check"`
+	// Identifiers of the shared users
+	SharedUserIds []int64 `json:"shared_user_ids"`
 }
 
 func (t *ShareUsersWithBot) Type() string {
@@ -20063,10 +20063,10 @@ func (t *ShareUsersWithBot) MarshalJSON() ([]byte, error) {
 type StartGroupCallRecording struct {
 	// Group call identifier
 	GroupCallId int32 `json:"group_call_id"`
-	// Group call recording title; 0-64 characters
-	Title string `json:"title"`
 	// Pass true to record a video file instead of an audio file
 	RecordVideo bool `json:"record_video"`
+	// Group call recording title; 0-64 characters
+	Title string `json:"title"`
 	// Pass true to use portrait orientation for video instead of landscape one
 	UsePortraitOrientation bool `json:"use_portrait_orientation"`
 }
@@ -20088,10 +20088,10 @@ func (t *StartGroupCallRecording) MarshalJSON() ([]byte, error) {
 
 // StartGroupCallScreenSharing Starts screen sharing in a joined group call; not supported in live stories. Returns join response payload for tgcalls
 type StartGroupCallScreenSharing struct {
-	// Group call identifier
-	GroupCallId int32 `json:"group_call_id"`
 	// Screen sharing audio channel synchronization source identifier; received from tgcalls
 	AudioSourceId int32 `json:"audio_source_id"`
+	// Group call identifier
+	GroupCallId int32 `json:"group_call_id"`
 	// Group call join payload; received from tgcalls
 	Payload string `json:"payload"`
 }
@@ -20115,16 +20115,16 @@ func (t *StartGroupCallScreenSharing) MarshalJSON() ([]byte, error) {
 type StartLiveStory struct {
 	// Identifier of the chat that will start the live story. Pass Saved Messages chat identifier when starting a live story on behalf of the current user, or a channel chat identifier
 	ChatId int64 `json:"chat_id"`
+	// Pass true to allow viewers of the story to send messages
+	EnableMessages bool `json:"enable_messages"`
+	// Pass true to create an RTMP stream instead of an ordinary group call
+	IsRtmpStream bool `json:"is_rtmp_stream"`
+	// The minimum number of Telegram Stars that must be paid by viewers for each sent message to the call; 0-getOption("paid_group_call_message_star_count_max")
+	PaidMessageStarCount int64 `json:"paid_message_star_count"`
 	// The privacy settings for the story; ignored for stories posted on behalf of channel chats
 	PrivacySettings StoryPrivacySettings `json:"privacy_settings"`
 	// Pass true if the content of the story must be protected from screenshotting
 	ProtectContent bool `json:"protect_content"`
-	// Pass true to create an RTMP stream instead of an ordinary group call
-	IsRtmpStream bool `json:"is_rtmp_stream"`
-	// Pass true to allow viewers of the story to send messages
-	EnableMessages bool `json:"enable_messages"`
-	// The minimum number of Telegram Stars that must be paid by viewers for each sent message to the call; 0-getOption("paid_group_call_message_star_count_max")
-	PaidMessageStarCount int64 `json:"paid_message_star_count"`
 }
 
 func (t *StartLiveStory) Type() string {
@@ -20217,10 +20217,10 @@ func (t *StopPoll) MarshalJSON() ([]byte, error) {
 
 // SuggestUserBirthdate Suggests a birthdate to another regular user with common messages and allowing non-paid messages
 type SuggestUserBirthdate struct {
-	// User identifier
-	UserId int64 `json:"user_id"`
 	// Birthdate to suggest
 	Birthdate *Birthdate `json:"birthdate"`
+	// User identifier
+	UserId int64 `json:"user_id"`
 }
 
 func (t *SuggestUserBirthdate) Type() string {
@@ -20240,10 +20240,10 @@ func (t *SuggestUserBirthdate) MarshalJSON() ([]byte, error) {
 
 // SuggestUserProfilePhoto Suggests a profile photo to another regular user with common messages and allowing non-paid messages
 type SuggestUserProfilePhoto struct {
-	// User identifier
-	UserId int64 `json:"user_id"`
 	// Profile photo to suggest; inputChatPhotoPrevious isn't supported in this function
 	Photo InputChatPhoto `json:"photo"`
+	// User identifier
+	UserId int64 `json:"user_id"`
 }
 
 func (t *SuggestUserProfilePhoto) Type() string {
@@ -20268,7 +20268,7 @@ type SummarizeMessage struct {
 	// Identifier of the message
 	MessageId int64 `json:"message_id"`
 	// Pass a language code to which the summary will be translated; may be empty if translation isn't needed. See translateText.to_language_code for the list of supported values
-	TranslateToLanguageCode string `json:"translate_to_language_code"`
+	TranslateToLanguageCode string `json:"translate_to_language_code,omitempty"`
 }
 
 func (t *SummarizeMessage) Type() string {
@@ -20532,10 +20532,10 @@ func (t *TestNetwork) MarshalJSON() ([]byte, error) {
 
 // TestProxy Sends a simple network request to the Telegram servers via proxy; for testing only. Can be called before authorization
 type TestProxy struct {
-	// The proxy to test
-	Proxy *Proxy `json:"proxy"`
 	// Identifier of a datacenter with which to test connection
 	DcId int32 `json:"dc_id"`
+	// The proxy to test
+	Proxy *Proxy `json:"proxy"`
 	// The maximum overall timeout for the request
 	Timeout float64 `json:"timeout"`
 }
@@ -20662,12 +20662,12 @@ func (t *ToggleBotCanManageEmojiStatus) MarshalJSON() ([]byte, error) {
 
 // ToggleBotIsAddedToAttachmentMenu Adds or removes a bot to attachment and side menu. Bot can be added to the menu, only if userTypeBot.can_be_added_to_attachment_menu == true
 type ToggleBotIsAddedToAttachmentMenu struct {
+	// Pass true if the current user allowed the bot to send them messages. Ignored if is_added is false
+	AllowWriteAccess bool `json:"allow_write_access"`
 	// Bot's user identifier
 	BotUserId int64 `json:"bot_user_id"`
 	// Pass true to add the bot to attachment menu; pass false to remove the bot from attachment menu
 	IsAdded bool `json:"is_added"`
-	// Pass true if the current user allowed the bot to send them messages. Ignored if is_added is false
-	AllowWriteAccess bool `json:"allow_write_access"`
 }
 
 func (t *ToggleBotIsAddedToAttachmentMenu) Type() string {
@@ -20689,10 +20689,10 @@ func (t *ToggleBotIsAddedToAttachmentMenu) MarshalJSON() ([]byte, error) {
 type ToggleBotUsernameIsActive struct {
 	// Identifier of the target bot
 	BotUserId int64 `json:"bot_user_id"`
-	// The username to change
-	Username string `json:"username"`
 	// Pass true to activate the username; pass false to disable it
 	IsActive bool `json:"is_active"`
+	// The username to change
+	Username string `json:"username"`
 }
 
 func (t *ToggleBotUsernameIsActive) Type() string {
@@ -20779,10 +20779,10 @@ func (t *ToggleChatFolderTags) MarshalJSON() ([]byte, error) {
 
 // ToggleChatGiftNotifications Toggles whether notifications for new gifts received by a channel chat are sent to the current user; requires can_post_messages administrator right in the chat
 type ToggleChatGiftNotifications struct {
-	// Identifier of the channel chat
-	ChatId int64 `json:"chat_id"`
 	// Pass true to enable notifications about new gifts owned by the channel chat; pass false to disable the notifications
 	AreEnabled bool `json:"are_enabled"`
+	// Identifier of the channel chat
+	ChatId int64 `json:"chat_id"`
 }
 
 func (t *ToggleChatGiftNotifications) Type() string {
@@ -20848,10 +20848,10 @@ func (t *ToggleChatIsMarkedAsUnread) MarshalJSON() ([]byte, error) {
 
 // ToggleChatIsPinned Changes the pinned state of a chat. There can be up to getOption("pinned_chat_count_max")/getOption("pinned_archived_chat_count_max") pinned non-secret chats and the same number of secret chats in the main/archive chat list. The limit can be increased with Telegram Premium
 type ToggleChatIsPinned struct {
-	// Chat list in which to change the pinned state of the chat
-	ChatList ChatList `json:"chat_list"`
 	// Chat identifier
 	ChatId int64 `json:"chat_id"`
+	// Chat list in which to change the pinned state of the chat
+	ChatList ChatList `json:"chat_list"`
 	// Pass true to pin the chat; pass false to unpin it
 	IsPinned bool `json:"is_pinned"`
 }
@@ -20919,14 +20919,14 @@ func (t *ToggleChatViewAsTopics) MarshalJSON() ([]byte, error) {
 
 // ToggleDirectMessagesChatTopicCanSendUnpaidMessages Allows to send unpaid messages to the given topic of the channel direct messages chat administered by the current user
 type ToggleDirectMessagesChatTopicCanSendUnpaidMessages struct {
-	// Chat identifier
-	ChatId int64 `json:"chat_id"`
-	// Identifier of the topic
-	TopicId int64 `json:"topic_id"`
 	// Pass true to allow unpaid messages; pass false to disallow unpaid messages
 	CanSendUnpaidMessages bool `json:"can_send_unpaid_messages"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
 	// Pass true to refund the user previously paid messages
 	RefundPayments bool `json:"refund_payments"`
+	// Identifier of the topic
+	TopicId int64 `json:"topic_id"`
 }
 
 func (t *ToggleDirectMessagesChatTopicCanSendUnpaidMessages) Type() string {
@@ -21042,10 +21042,10 @@ func (t *ToggleGeneralForumTopicIsHidden) MarshalJSON() ([]byte, error) {
 
 // ToggleGiftIsSaved Toggles whether a gift is shown on the current user's or the channel's profile page; requires can_post_messages administrator right in the channel chat
 type ToggleGiftIsSaved struct {
-	// Identifier of the gift
-	ReceivedGiftId string `json:"received_gift_id"`
 	// Pass true to display the gift on the user's or the channel's profile page; pass false to remove it from the profile page
 	IsSaved bool `json:"is_saved"`
+	// Identifier of the gift
+	ReceivedGiftId string `json:"received_gift_id"`
 }
 
 func (t *ToggleGiftIsSaved) Type() string {
@@ -21065,10 +21065,10 @@ func (t *ToggleGiftIsSaved) MarshalJSON() ([]byte, error) {
 
 // ToggleGroupCallAreMessagesAllowed Toggles whether participants of a group call can send messages there. Requires groupCall.can_toggle_are_messages_allowed right
 type ToggleGroupCallAreMessagesAllowed struct {
-	// Group call identifier
-	GroupCallId int32 `json:"group_call_id"`
 	// New value of the are_messages_allowed setting
 	AreMessagesAllowed bool `json:"are_messages_allowed"`
+	// Group call identifier
+	GroupCallId int32 `json:"group_call_id"`
 }
 
 func (t *ToggleGroupCallAreMessagesAllowed) Type() string {
@@ -21136,10 +21136,10 @@ func (t *ToggleGroupCallIsMyVideoPaused) MarshalJSON() ([]byte, error) {
 type ToggleGroupCallParticipantIsHandRaised struct {
 	// Group call identifier
 	GroupCallId int32 `json:"group_call_id"`
-	// Participant identifier
-	ParticipantId MessageSender `json:"participant_id"`
 	// Pass true if the user's hand needs to be raised. Only self hand can be raised. Requires groupCall.can_be_managed right to lower other's hand
 	IsHandRaised bool `json:"is_hand_raised"`
+	// Participant identifier
+	ParticipantId MessageSender `json:"participant_id"`
 }
 
 func (t *ToggleGroupCallParticipantIsHandRaised) Type() string {
@@ -21161,10 +21161,10 @@ func (t *ToggleGroupCallParticipantIsHandRaised) MarshalJSON() ([]byte, error) {
 type ToggleGroupCallParticipantIsMuted struct {
 	// Group call identifier
 	GroupCallId int32 `json:"group_call_id"`
-	// Participant identifier
-	ParticipantId MessageSender `json:"participant_id"`
 	// Pass true to mute the user; pass false to unmute them
 	IsMuted bool `json:"is_muted"`
+	// Participant identifier
+	ParticipantId MessageSender `json:"participant_id"`
 }
 
 func (t *ToggleGroupCallParticipantIsMuted) Type() string {
@@ -21228,10 +21228,10 @@ func (t *ToggleHasSponsoredMessagesEnabled) MarshalJSON() ([]byte, error) {
 
 // ToggleSavedMessagesTopicIsPinned Changes the pinned state of a Saved Messages topic. There can be up to getOption("pinned_saved_messages_topic_count_max") pinned topics. The limit can be increased with Telegram Premium
 type ToggleSavedMessagesTopicIsPinned struct {
-	// Identifier of Saved Messages topic to pin or unpin
-	SavedMessagesTopicId int64 `json:"saved_messages_topic_id"`
 	// Pass true to pin the topic; pass false to unpin it
 	IsPinned bool `json:"is_pinned"`
+	// Identifier of Saved Messages topic to pin or unpin
+	SavedMessagesTopicId int64 `json:"saved_messages_topic_id"`
 }
 
 func (t *ToggleSavedMessagesTopicIsPinned) Type() string {
@@ -21252,9 +21252,9 @@ func (t *ToggleSavedMessagesTopicIsPinned) MarshalJSON() ([]byte, error) {
 // ToggleSessionCanAcceptCalls Toggles whether a session can accept incoming calls @session_id Session identifier @can_accept_calls Pass true to allow accepting incoming calls by the session; pass false otherwise
 type ToggleSessionCanAcceptCalls struct {
 	//
-	SessionId int64 `json:"session_id,string"`
-	//
 	CanAcceptCalls bool `json:"can_accept_calls"`
+	//
+	SessionId int64 `json:"session_id,string"`
 }
 
 func (t *ToggleSessionCanAcceptCalls) Type() string {
@@ -21275,9 +21275,9 @@ func (t *ToggleSessionCanAcceptCalls) MarshalJSON() ([]byte, error) {
 // ToggleSessionCanAcceptSecretChats Toggles whether a session can accept incoming secret chats @session_id Session identifier @can_accept_secret_chats Pass true to allow accepting secret chats by the session; pass false otherwise
 type ToggleSessionCanAcceptSecretChats struct {
 	//
-	SessionId int64 `json:"session_id,string"`
-	//
 	CanAcceptSecretChats bool `json:"can_accept_secret_chats"`
+	//
+	SessionId int64 `json:"session_id,string"`
 }
 
 func (t *ToggleSessionCanAcceptSecretChats) Type() string {
@@ -21297,12 +21297,12 @@ func (t *ToggleSessionCanAcceptSecretChats) MarshalJSON() ([]byte, error) {
 
 // ToggleStoryIsPostedToChatPage Toggles whether a story is accessible after expiration. Can be called only if story.can_toggle_is_posted_to_chat_page == true
 type ToggleStoryIsPostedToChatPage struct {
-	// Identifier of the chat that posted the story
-	StoryPosterChatId int64 `json:"story_poster_chat_id"`
-	// Identifier of the story
-	StoryId int32 `json:"story_id"`
 	// Pass true to make the story accessible after expiration; pass false to make it private
 	IsPostedToChatPage bool `json:"is_posted_to_chat_page"`
+	// Identifier of the story
+	StoryId int32 `json:"story_id"`
+	// Identifier of the chat that posted the story
+	StoryPosterChatId int64 `json:"story_poster_chat_id"`
 }
 
 func (t *ToggleStoryIsPostedToChatPage) Type() string {
@@ -21322,10 +21322,10 @@ func (t *ToggleStoryIsPostedToChatPage) MarshalJSON() ([]byte, error) {
 
 // ToggleSupergroupCanHaveSponsoredMessages Toggles whether sponsored messages are shown in the channel chat; requires owner privileges in the channel. The chat must have at least chatBoostFeatures.min_sponsored_message_disable_boost_level boost level to disable sponsored messages
 type ToggleSupergroupCanHaveSponsoredMessages struct {
-	// The identifier of the channel
-	SupergroupId int64 `json:"supergroup_id"`
 	// The new value of can_have_sponsored_messages
 	CanHaveSponsoredMessages bool `json:"can_have_sponsored_messages"`
+	// The identifier of the channel
+	SupergroupId int64 `json:"supergroup_id"`
 }
 
 func (t *ToggleSupergroupCanHaveSponsoredMessages) Type() string {
@@ -21345,10 +21345,10 @@ func (t *ToggleSupergroupCanHaveSponsoredMessages) MarshalJSON() ([]byte, error)
 
 // ToggleSupergroupHasAggressiveAntiSpamEnabled Toggles whether aggressive anti-spam checks are enabled in the supergroup. Can be called only if supergroupFullInfo.can_toggle_aggressive_anti_spam == true
 type ToggleSupergroupHasAggressiveAntiSpamEnabled struct {
-	// The identifier of the supergroup, which isn't a broadcast group
-	SupergroupId int64 `json:"supergroup_id"`
 	// The new value of has_aggressive_anti_spam_enabled
 	HasAggressiveAntiSpamEnabled bool `json:"has_aggressive_anti_spam_enabled"`
+	// The identifier of the supergroup, which isn't a broadcast group
+	SupergroupId int64 `json:"supergroup_id"`
 }
 
 func (t *ToggleSupergroupHasAggressiveAntiSpamEnabled) Type() string {
@@ -21368,10 +21368,10 @@ func (t *ToggleSupergroupHasAggressiveAntiSpamEnabled) MarshalJSON() ([]byte, er
 
 // ToggleSupergroupHasAutomaticTranslation Toggles whether messages are automatically translated in the channel chat; requires can_change_info administrator right in the channel.
 type ToggleSupergroupHasAutomaticTranslation struct {
-	// The identifier of the channel
-	SupergroupId int64 `json:"supergroup_id"`
 	// The new value of has_automatic_translation
 	HasAutomaticTranslation bool `json:"has_automatic_translation"`
+	// The identifier of the channel
+	SupergroupId int64 `json:"supergroup_id"`
 }
 
 func (t *ToggleSupergroupHasAutomaticTranslation) Type() string {
@@ -21391,10 +21391,10 @@ func (t *ToggleSupergroupHasAutomaticTranslation) MarshalJSON() ([]byte, error) 
 
 // ToggleSupergroupHasHiddenMembers Toggles whether non-administrators can receive only administrators and bots using getSupergroupMembers or searchChatMembers. Can be called only if supergroupFullInfo.can_hide_members == true
 type ToggleSupergroupHasHiddenMembers struct {
-	// Identifier of the supergroup
-	SupergroupId int64 `json:"supergroup_id"`
 	// New value of has_hidden_members
 	HasHiddenMembers bool `json:"has_hidden_members"`
+	// Identifier of the supergroup
+	SupergroupId int64 `json:"supergroup_id"`
 }
 
 func (t *ToggleSupergroupHasHiddenMembers) Type() string {
@@ -21415,9 +21415,9 @@ func (t *ToggleSupergroupHasHiddenMembers) MarshalJSON() ([]byte, error) {
 // ToggleSupergroupIsAllHistoryAvailable Toggles whether the message history of a supergroup is available to new members; requires can_change_info member right @supergroup_id The identifier of the supergroup @is_all_history_available The new value of is_all_history_available
 type ToggleSupergroupIsAllHistoryAvailable struct {
 	//
-	SupergroupId int64 `json:"supergroup_id"`
-	//
 	IsAllHistoryAvailable bool `json:"is_all_history_available"`
+	//
+	SupergroupId int64 `json:"supergroup_id"`
 }
 
 func (t *ToggleSupergroupIsAllHistoryAvailable) Type() string {
@@ -21458,12 +21458,12 @@ func (t *ToggleSupergroupIsBroadcastGroup) MarshalJSON() ([]byte, error) {
 
 // ToggleSupergroupIsForum Toggles whether the supergroup is a forum; requires owner privileges in the supergroup. Discussion supergroups can't be converted to forums
 type ToggleSupergroupIsForum struct {
-	// Identifier of the supergroup
-	SupergroupId int64 `json:"supergroup_id"`
-	// New value of is_forum
-	IsForum bool `json:"is_forum"`
 	// New value of has_forum_tabs; ignored if is_forum is false
 	HasForumTabs bool `json:"has_forum_tabs"`
+	// New value of is_forum
+	IsForum bool `json:"is_forum"`
+	// Identifier of the supergroup
+	SupergroupId int64 `json:"supergroup_id"`
 }
 
 func (t *ToggleSupergroupIsForum) Type() string {
@@ -21483,10 +21483,10 @@ func (t *ToggleSupergroupIsForum) MarshalJSON() ([]byte, error) {
 
 // ToggleSupergroupJoinByRequest Toggles whether all users directly joining the supergroup need to be approved by supergroup administrators; requires can_restrict_members administrator right
 type ToggleSupergroupJoinByRequest struct {
-	// Identifier of the supergroup that isn't a broadcast group and isn't a channel direct message group
-	SupergroupId int64 `json:"supergroup_id"`
 	// New value of join_by_request
 	JoinByRequest bool `json:"join_by_request"`
+	// Identifier of the supergroup that isn't a broadcast group and isn't a channel direct message group
+	SupergroupId int64 `json:"supergroup_id"`
 }
 
 func (t *ToggleSupergroupJoinByRequest) Type() string {
@@ -21506,10 +21506,10 @@ func (t *ToggleSupergroupJoinByRequest) MarshalJSON() ([]byte, error) {
 
 // ToggleSupergroupJoinToSendMessages Toggles whether joining is mandatory to send messages to a discussion supergroup; requires can_restrict_members administrator right
 type ToggleSupergroupJoinToSendMessages struct {
-	// Identifier of the supergroup that isn't a broadcast group
-	SupergroupId int64 `json:"supergroup_id"`
 	// New value of join_to_send_messages
 	JoinToSendMessages bool `json:"join_to_send_messages"`
+	// Identifier of the supergroup that isn't a broadcast group
+	SupergroupId int64 `json:"supergroup_id"`
 }
 
 func (t *ToggleSupergroupJoinToSendMessages) Type() string {
@@ -21529,12 +21529,12 @@ func (t *ToggleSupergroupJoinToSendMessages) MarshalJSON() ([]byte, error) {
 
 // ToggleSupergroupSignMessages Toggles whether sender signature or link to the account is added to sent messages in a channel; requires can_change_info member right
 type ToggleSupergroupSignMessages struct {
-	// Identifier of the channel
-	SupergroupId int64 `json:"supergroup_id"`
-	// New value of sign_messages
-	SignMessages bool `json:"sign_messages"`
 	// New value of show_message_sender
 	ShowMessageSender bool `json:"show_message_sender"`
+	// New value of sign_messages
+	SignMessages bool `json:"sign_messages"`
+	// Identifier of the channel
+	SupergroupId int64 `json:"supergroup_id"`
 }
 
 func (t *ToggleSupergroupSignMessages) Type() string {
@@ -21554,12 +21554,12 @@ func (t *ToggleSupergroupSignMessages) MarshalJSON() ([]byte, error) {
 
 // ToggleSupergroupUsernameIsActive Changes active state for a username of a supergroup or channel, requires owner privileges in the supergroup or channel. The editable username can't be disabled.
 type ToggleSupergroupUsernameIsActive struct {
+	// Pass true to activate the username; pass false to disable it
+	IsActive bool `json:"is_active"`
 	// Identifier of the supergroup or channel
 	SupergroupId int64 `json:"supergroup_id"`
 	// The username to change
 	Username string `json:"username"`
-	// Pass true to activate the username; pass false to disable it
-	IsActive bool `json:"is_active"`
 }
 
 func (t *ToggleSupergroupUsernameIsActive) Type() string {
@@ -21579,10 +21579,10 @@ func (t *ToggleSupergroupUsernameIsActive) MarshalJSON() ([]byte, error) {
 
 // ToggleUsernameIsActive Changes active state for a username of the current user. The editable username can't be disabled. May return an error with a message "USERNAMES_ACTIVE_TOO_MUCH" if the maximum number of active usernames has been reached
 type ToggleUsernameIsActive struct {
-	// The username to change
-	Username string `json:"username"`
 	// Pass true to activate the username; pass false to disable it
 	IsActive bool `json:"is_active"`
+	// The username to change
+	Username string `json:"username"`
 }
 
 func (t *ToggleUsernameIsActive) Type() string {
@@ -21602,10 +21602,10 @@ func (t *ToggleUsernameIsActive) MarshalJSON() ([]byte, error) {
 
 // ToggleVideoChatEnabledStartNotification Toggles whether the current user will receive a notification when the video chat starts; for scheduled video chats only
 type ToggleVideoChatEnabledStartNotification struct {
-	// Group call identifier
-	GroupCallId int32 `json:"group_call_id"`
 	// New value of the enabled_start_notification setting
 	EnabledStartNotification bool `json:"enabled_start_notification"`
+	// Group call identifier
+	GroupCallId int32 `json:"group_call_id"`
 }
 
 func (t *ToggleVideoChatEnabledStartNotification) Type() string {
@@ -21673,10 +21673,10 @@ func (t *TransferBusinessAccountStars) MarshalJSON() ([]byte, error) {
 type TransferChatOwnership struct {
 	// Chat identifier
 	ChatId int64 `json:"chat_id"`
-	// Identifier of the user to which transfer the ownership. The ownership can't be transferred to a bot or to a deleted user
-	UserId int64 `json:"user_id"`
 	// The 2-step verification password of the current user
 	Password string `json:"password"`
+	// Identifier of the user to which transfer the ownership. The ownership can't be transferred to a bot or to a deleted user
+	UserId int64 `json:"user_id"`
 }
 
 func (t *TransferChatOwnership) Type() string {
@@ -21698,10 +21698,10 @@ func (t *TransferChatOwnership) MarshalJSON() ([]byte, error) {
 type TransferGift struct {
 	// Unique identifier of business connection on behalf of which to send the request; for bots only
 	BusinessConnectionId string `json:"business_connection_id"`
-	// Identifier of the gift
-	ReceivedGiftId string `json:"received_gift_id"`
 	// Identifier of the user or the channel chat that will receive the gift
 	NewOwnerId MessageSender `json:"new_owner_id"`
+	// Identifier of the gift
+	ReceivedGiftId string `json:"received_gift_id"`
 	// The Telegram Star amount required to pay for the transfer
 	StarCount int64 `json:"star_count"`
 }
@@ -21884,10 +21884,10 @@ func (t *UpgradeBasicGroupChatToSupergroupChat) MarshalJSON() ([]byte, error) {
 type UpgradeGift struct {
 	// Unique identifier of business connection on behalf of which to send the request; for bots only
 	BusinessConnectionId string `json:"business_connection_id"`
-	// Identifier of the gift
-	ReceivedGiftId string `json:"received_gift_id"`
 	// Pass true to keep the original gift text, sender and receiver in the upgraded gift
 	KeepOriginalDetails bool `json:"keep_original_details"`
+	// Identifier of the gift
+	ReceivedGiftId string `json:"received_gift_id"`
 	// The Telegram Star amount required to pay for the upgrade. It the gift has prepaid_upgrade_star_count > 0, then pass 0, otherwise, pass gift.upgrade_star_count
 	StarCount int64 `json:"star_count"`
 }
@@ -21909,12 +21909,12 @@ func (t *UpgradeGift) MarshalJSON() ([]byte, error) {
 
 // UploadStickerFile Uploads a file with a sticker; returns the uploaded file
 type UploadStickerFile struct {
-	// Sticker file owner; ignored for regular users
-	UserId int64 `json:"user_id"`
-	// Sticker format
-	StickerFormat StickerFormat `json:"sticker_format"`
 	// File file to upload; must fit in a 512x512 square. For WEBP stickers the file must be in WEBP or PNG format, which will be converted to WEBP server-side.
 	Sticker InputFile `json:"sticker"`
+	// Sticker format
+	StickerFormat StickerFormat `json:"sticker_format"`
+	// Sticker file owner; ignored for regular users
+	UserId int64 `json:"user_id"`
 }
 
 func (t *UploadStickerFile) Type() string {
@@ -21934,12 +21934,12 @@ func (t *UploadStickerFile) MarshalJSON() ([]byte, error) {
 
 // ValidateOrderInfo Validates the order information provided by a user and returns the available shipping options for a flexible invoice
 type ValidateOrderInfo struct {
+	// Pass true to save the order information
+	AllowSave bool `json:"allow_save"`
 	// The invoice
 	InputInvoice InputInvoice `json:"input_invoice"`
 	// The order information, provided by the user; pass null if empty
 	OrderInfo *OrderInfo `json:"order_info,omitempty"`
-	// Pass true to save the order information
-	AllowSave bool `json:"allow_save"`
 }
 
 func (t *ValidateOrderInfo) Type() string {
@@ -21961,12 +21961,12 @@ func (t *ValidateOrderInfo) MarshalJSON() ([]byte, error) {
 type ViewMessages struct {
 	// Chat identifier
 	ChatId int64 `json:"chat_id"`
+	// Pass true to mark as read the specified messages even if the chat is closed
+	ForceRead bool `json:"force_read"`
 	// The identifiers of the messages being viewed
 	MessageIds []int64 `json:"message_ids"`
 	// Source of the message view; pass null to guess the source based on chat open state
 	Source MessageSource `json:"source,omitempty"`
-	// Pass true to mark as read the specified messages even if the chat is closed
-	ForceRead bool `json:"force_read"`
 }
 
 func (t *ViewMessages) Type() string {
@@ -22070,12 +22070,12 @@ func (t *ViewVideoMessageAdvertisement) MarshalJSON() ([]byte, error) {
 
 // WriteGeneratedFilePart Writes a part of a generated file. This method is intended to be used only if the application has no direct access to TDLib's file system, because it is usually slower than a direct write to the destination file
 type WriteGeneratedFilePart struct {
+	// The data to write
+	Data []byte `json:"data"`
 	// The identifier of the generation process
 	GenerationId int64 `json:"generation_id,string"`
 	// The offset from which to write the data to the file
 	Offset int64 `json:"offset"`
-	// The data to write
-	Data []byte `json:"data"`
 }
 
 func (t *WriteGeneratedFilePart) Type() string {

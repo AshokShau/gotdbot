@@ -93,7 +93,7 @@ type Client struct {
 	isAuthorized  bool
 }
 
-func NewClient(apiID int32, apiHash, botToken string, config *ClientConfig) *Client {
+func NewClient(apiID int32, apiHash, botToken string, config *ClientConfig) (*Client, error) {
 	if config == nil {
 		config = DefaultClientConfig()
 	} else {
@@ -137,8 +137,7 @@ func NewClient(apiID int32, apiHash, botToken string, config *ClientConfig) *Cli
 	}
 
 	if err := tdjson.Init(config.LibraryPath); err != nil {
-		config.Logger.Error("Failed to initialize TDLib", "error", err)
-		os.Exit(1)
+		return nil, err
 	}
 
 	c := &Client{
@@ -160,7 +159,7 @@ func NewClient(apiID int32, apiHash, botToken string, config *ClientConfig) *Cli
 	c.AddHandler("updateConnectionState", c.connectionStateHandler, nil, 0)
 	c.AddHandler("updateMessageSendSucceeded", c.messageSendSucceededHandler, nil, 0)
 	c.AddHandler("updateMessageSendFailed", c.messageSendFailedHandler, nil, 0)
-	return c
+	return c, nil
 }
 
 // Start initializes the client and blocks until authorization is successful or fails.
@@ -183,11 +182,9 @@ func (c *Client) Start() error {
 
 // Idle blocks the current goroutine until a SIGINT or SIGTERM signal is received.
 func (c *Client) Idle() {
-	c.Logger.Info("Bot is running. Press Ctrl+C to stop.")
 	sig := make(chan os.Signal, 1)
 	signal.Notify(sig, syscall.SIGINT, syscall.SIGTERM)
 	<-sig
-	c.Logger.Info("Stopping...")
 	c.Stop()
 }
 
@@ -317,7 +314,7 @@ func (c *Client) authHandler(client *Client, update TlObject) error {
 		if len(c.config.TDLibOptions) > 0 {
 			for k, v := range c.config.TDLibOptions {
 				if opt := toOptionValue(v); opt != nil {
-					_, err := c.SetOption(k, &SetOptionOpts{Value: opt})
+					err := c.SetOption(k, &SetOptionOpts{Value: opt})
 					if err != nil {
 						c.Logger.Error("Error setting option", "option", k, "error", err)
 					}
@@ -340,21 +337,21 @@ func (c *Client) authHandler(client *Client, update TlObject) error {
 			"application_version", c.config.ApplicationVersion,
 		)
 
-		_, err := c.SetTdlibParameters(
-			c.config.UseTestDC,
+		err := c.SetTdlibParameters(
+			c.apiHash,
+			c.apiID,
+			c.config.ApplicationVersion,
 			c.config.DatabaseDirectory,
-			c.config.FilesDirectory,
 			[]byte(c.config.DatabaseEncryptionKey),
-			*c.config.UseFileDatabase,
+			c.config.DeviceModel,
+			c.config.FilesDirectory,
+			c.config.SystemLanguageCode,
+			c.config.SystemVersion,
 			*c.config.UseChatInfoDatabase,
+			*c.config.UseFileDatabase,
 			*c.config.UseMessageDatabase,
 			*c.config.UseSecretChats,
-			c.apiID,
-			c.apiHash,
-			c.config.SystemLanguageCode,
-			c.config.DeviceModel,
-			c.config.SystemVersion,
-			c.config.ApplicationVersion,
+			c.config.UseTestDC,
 		)
 		if err != nil {
 			c.Logger.Error("Error setting tdlib parameters", "error", err)
@@ -365,7 +362,7 @@ func (c *Client) authHandler(client *Client, update TlObject) error {
 		if c.config.IsUser {
 			return nil
 		}
-		_, err := c.CheckAuthenticationBotToken(c.botToken)
+		err := c.CheckAuthenticationBotToken(c.botToken)
 		if err != nil {
 			c.Logger.Error("Error checking bot token", "error", err)
 			c.authErrorChan <- err

@@ -527,7 +527,7 @@ func (c *Client) EditTextMessage(chatId int64, messageId int64, text string, opt
 		LinkPreviewOptions: linkPreviewOptions,
 	}
 
-	return c.EditMessageText(chatId, messageId, content, &EditMessageTextOpts{
+	return c.EditMessageText(chatId, content, messageId, &EditMessageTextOpts{
 		ReplyMarkup: opts.ReplyMarkup,
 	})
 }
@@ -595,5 +595,5 @@ func (c *Client) ParseText(text string, parseMode string) (*FormattedText, error
 		return &FormattedText{Text: text}, nil
 	}
 
-	return c.ParseTextEntities(text, mode)
+	return c.ParseTextEntities(mode, text)
 }

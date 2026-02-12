@@ -26,8 +26,9 @@ func generateMethods(functions []TLType, classes map[string]*TLClass) {
 
 		optsStructName := methodName + "Opts"
 
+		isOk := fn.ResultType == "ok" || fn.ResultType == "Ok"
 		resultType := toCamelCase(fn.ResultType)
-		if fn.ResultType == "ok" {
+		if isOk {
 			resultType = "Ok"
 		}
 
@@ -64,7 +65,12 @@ func generateMethods(functions []TLType, classes map[string]*TLClass) {
 		}
 
 		fmt.Fprintf(&sb, "%s", strings.Join(args, ", "))
-		fmt.Fprintf(&sb, ") (%s, error) {\n", retTypeStr)
+
+		if isOk {
+			fmt.Fprintf(&sb, ") error {\n")
+		} else {
+			fmt.Fprintf(&sb, ") (%s, error) {\n", retTypeStr)
+		}
 
 		fmt.Fprintf(&sb, "\treq := &%s{\n", structName)
 		for _, p := range fn.Params {
@@ -102,13 +108,18 @@ func generateMethods(functions []TLType, classes map[string]*TLClass) {
 			sb.WriteString("\t}\n")
 		}
 
-		sb.WriteString("\tresp, err := c.Send(req)\n")
-		sb.WriteString("\tif err != nil {\n\t\treturn nil, err\n\t}\n")
-
-		if methodName == "SendMessage" {
-			sb.WriteString("\treturn c.WaitMessage(resp.(*Message))\n")
+		if isOk {
+			sb.WriteString("\t_, err := c.Send(req)\n")
+			sb.WriteString("\treturn err\n")
 		} else {
-			fmt.Fprintf(&sb, "\treturn resp.(%s), nil\n", retTypeStr)
+			sb.WriteString("\tresp, err := c.Send(req)\n")
+			sb.WriteString("\tif err != nil {\n\t\treturn nil, err\n\t}\n")
+
+			if methodName == "SendMessage" {
+				sb.WriteString("\treturn c.WaitMessage(resp.(*Message))\n")
+			} else {
+				fmt.Fprintf(&sb, "\treturn resp.(%s), nil\n", retTypeStr)
+			}
 		}
 		sb.WriteString("}\n\n")
 	}

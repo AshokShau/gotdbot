@@ -139,28 +139,33 @@ func generateHelperMethod(sb *strings.Builder, t TLType, fn TLType, matches map[
 	var funcArgs []string
 	var callArgs []string
 
-	hasOptional := false
 	for _, p := range fn.Params {
 		if p.IsOptional {
-			hasOptional = true
 			continue
-		}
-
-		fieldName := toCamelCase(p.Name)
-		argName := strings.ToLower(fieldName[:1]) + fieldName[1:]
-		if argName == "type" {
-			argName = "typeField"
-		}
-		if argName == "func" {
-			argName = "funcArg"
 		}
 
 		if receiverField, ok := matches[p.Name]; ok {
 			callArgs = append(callArgs, fmt.Sprintf("%s.%s", strings.ToLower(structName[:1]), receiverField))
 		} else {
 			goType := toGoType(p.Type, classes)
+			fieldName := toCamelCase(p.Name)
+			argName := strings.ToLower(fieldName[:1]) + fieldName[1:]
+			if argName == "type" {
+				argName = "typeField"
+			}
+			if argName == "func" {
+				argName = "funcArg"
+			}
 			funcArgs = append(funcArgs, fmt.Sprintf("%s %s", argName, goType))
 			callArgs = append(callArgs, argName)
+		}
+	}
+
+	hasOptional := false
+	for _, p := range fn.Params {
+		if p.IsOptional {
+			hasOptional = true
+			break
 		}
 	}
 
@@ -170,8 +175,9 @@ func generateHelperMethod(sb *strings.Builder, t TLType, fn TLType, matches map[
 		callArgs = append(callArgs, "opts")
 	}
 
+	isOk := fn.ResultType == "ok" || fn.ResultType == "Ok"
 	resultType := toCamelCase(fn.ResultType)
-	if fn.ResultType == "ok" {
+	if isOk {
 		resultType = "Ok"
 	}
 	retTypeStr := "*" + resultType
@@ -183,8 +189,13 @@ func generateHelperMethod(sb *strings.Builder, t TLType, fn TLType, matches map[
 
 	fmt.Fprintf(sb, "// %s is a helper method for Client.%s\n", helperName, clientMethodName)
 
-	fmt.Fprintf(sb, "func (%s *%s) %s(client *Client, %s) (%s, error) {\n",
-		receiverVar, structName, helperName, strings.Join(funcArgs, ", "), retTypeStr)
+	if isOk {
+		fmt.Fprintf(sb, "func (%s *%s) %s(client *Client, %s) error {\n",
+			receiverVar, structName, helperName, strings.Join(funcArgs, ", "))
+	} else {
+		fmt.Fprintf(sb, "func (%s *%s) %s(client *Client, %s) (%s, error) {\n",
+			receiverVar, structName, helperName, strings.Join(funcArgs, ", "), retTypeStr)
+	}
 
 	fmt.Fprintf(sb, "\treturn client.%s(%s)\n", clientMethodName, strings.Join(callArgs, ", "))
 	sb.WriteString("}\n\n")

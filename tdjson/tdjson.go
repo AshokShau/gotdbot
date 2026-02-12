@@ -17,8 +17,6 @@ var (
 )
 
 // Init initializes the TDLib JSON interface by loading the library.
-// If libPath is empty, it attempts to load the library from the default system paths
-// or the current directory using the default name (libtdjson.so, libtdjson.dylib, tdjson.dll).
 func Init(libPath string) error {
 	if libLoaded {
 		return nil
@@ -47,24 +45,19 @@ func getDefaultLibName() string {
 }
 
 // CreateClientID returns an opaque identifier of a new TDLib instance.
-// The TDLib instance will not send updates until the first request is sent to it.
 func CreateClientID() int {
-	ensureInitialized()
 	return int(tdCreateClientId())
 }
 
 // Send sends request to the TDLib client. May be called from any thread.
 func Send(clientID int, request string) {
-	ensureInitialized()
 	reqBytes := append([]byte(request), 0)
 	tdSend(int32(clientID), &reqBytes[0])
 }
 
 // Receive receives incoming updates and request responses.
-// Must not be called simultaneously from two different threads.
 // Returns a JSON-serialized update or request response, or an empty string if the timeout expires.
 func Receive(timeout float64) string {
-	ensureInitialized()
 	ptr := tdReceive(timeout)
 	if ptr == 0 {
 		return ""
@@ -73,24 +66,14 @@ func Receive(timeout float64) string {
 }
 
 // Execute synchronously executes a TDLib request.
-// Only a few requests can be executed synchronously.
 // Returns a JSON-serialized request response.
 func Execute(request string) string {
-	ensureInitialized()
 	reqBytes := append([]byte(request), 0)
 	ptr := tdExecute(&reqBytes[0])
 	if ptr == 0 {
 		return ""
 	}
 	return goString(ptr)
-}
-
-func ensureInitialized() {
-	if !libLoaded {
-		if err := Init(""); err != nil {
-			panic(fmt.Sprintf("tdjson not initialized: %v", err))
-		}
-	}
 }
 
 func goString(ptr uintptr) string {
