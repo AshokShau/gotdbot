@@ -201,7 +201,7 @@ func uploadCmd(ctx *ext.Context) error {
 		LocalBase:  base,
 	})
 
-	_, err = c.SendDocument(ctx.EffectiveChatId, filePath, &gotdbot.SendDocumentOpts{
+	_, err = c.SendDocument(ctx.EffectiveChatId, &gotdbot.InputFileLocal{Path: filePath}, &gotdbot.SendDocumentOpts{
 		Caption: "Uploaded",
 	})
 
@@ -247,7 +247,7 @@ func sendWithFileID(ctx *ext.Context) error {
 		return err
 	}
 
-	_, err := c.SendDocument(ctx.EffectiveChatId, args[0], &gotdbot.SendDocumentOpts{
+	_, err := c.SendDocument(ctx.EffectiveChatId, &gotdbot.InputFileRemote{Id: args[0]}, &gotdbot.SendDocumentOpts{
 		Caption: "Here is your file",
 	})
 

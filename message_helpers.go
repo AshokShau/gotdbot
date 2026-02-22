@@ -417,7 +417,7 @@ func (m *Message) ReplyText(c *Client, text string, opts *SendTextMessageOpts) (
 }
 
 // ReplyAnimation replies to the message with animation.
-func (m *Message) ReplyAnimation(c *Client, animation string, opts *SendAnimationOpts) (*Message, error) {
+func (m *Message) ReplyAnimation(c *Client, animation InputFile, opts *SendAnimationOpts) (*Message, error) {
 	if opts == nil {
 		opts = &SendAnimationOpts{}
 	}
@@ -428,7 +428,7 @@ func (m *Message) ReplyAnimation(c *Client, animation string, opts *SendAnimatio
 }
 
 // ReplyAudio replies to the message with audio.
-func (m *Message) ReplyAudio(c *Client, audio string, opts *SendAudioOpts) (*Message, error) {
+func (m *Message) ReplyAudio(c *Client, audio InputFile, opts *SendAudioOpts) (*Message, error) {
 	if opts == nil {
 		opts = &SendAudioOpts{}
 	}
@@ -439,7 +439,7 @@ func (m *Message) ReplyAudio(c *Client, audio string, opts *SendAudioOpts) (*Mes
 }
 
 // ReplyDocument replies to the message with a document.
-func (m *Message) ReplyDocument(c *Client, document string, opts *SendDocumentOpts) (*Message, error) {
+func (m *Message) ReplyDocument(c *Client, document InputFile, opts *SendDocumentOpts) (*Message, error) {
 	if opts == nil {
 		opts = &SendDocumentOpts{}
 	}
@@ -450,7 +450,7 @@ func (m *Message) ReplyDocument(c *Client, document string, opts *SendDocumentOp
 }
 
 // ReplyPhoto replies to the message with a photo.
-func (m *Message) ReplyPhoto(c *Client, photo string, opts *SendPhotoOpts) (*Message, error) {
+func (m *Message) ReplyPhoto(c *Client, photo InputFile, opts *SendPhotoOpts) (*Message, error) {
 	if opts == nil {
 		opts = &SendPhotoOpts{}
 	}
@@ -461,7 +461,7 @@ func (m *Message) ReplyPhoto(c *Client, photo string, opts *SendPhotoOpts) (*Mes
 }
 
 // ReplyVideo replies to the message with a video.
-func (m *Message) ReplyVideo(c *Client, video string, opts *SendVideoOpts) (*Message, error) {
+func (m *Message) ReplyVideo(c *Client, video InputFile, opts *SendVideoOpts) (*Message, error) {
 	if opts == nil {
 		opts = &SendVideoOpts{}
 	}
@@ -472,7 +472,7 @@ func (m *Message) ReplyVideo(c *Client, video string, opts *SendVideoOpts) (*Mes
 }
 
 // ReplyVideoNote replies to the message with a video note.
-func (m *Message) ReplyVideoNote(c *Client, videoNote string, opts *SendVideoNoteOpts) (*Message, error) {
+func (m *Message) ReplyVideoNote(c *Client, videoNote InputFile, opts *SendVideoNoteOpts) (*Message, error) {
 	if opts == nil {
 		opts = &SendVideoNoteOpts{}
 	}
@@ -483,7 +483,7 @@ func (m *Message) ReplyVideoNote(c *Client, videoNote string, opts *SendVideoNot
 }
 
 // ReplyVoice replies to the message with a voice note.
-func (m *Message) ReplyVoice(c *Client, voice string, opts *SendVoiceOpts) (*Message, error) {
+func (m *Message) ReplyVoice(c *Client, voice InputFile, opts *SendVoiceOpts) (*Message, error) {
 	if opts == nil {
 		opts = &SendVoiceOpts{}
 	}
@@ -494,7 +494,7 @@ func (m *Message) ReplyVoice(c *Client, voice string, opts *SendVoiceOpts) (*Mes
 }
 
 // ReplySticker replies to the message with a sticker.
-func (m *Message) ReplySticker(c *Client, sticker string, opts *SendStickerOpts) (*Message, error) {
+func (m *Message) ReplySticker(c *Client, sticker InputFile, opts *SendStickerOpts) (*Message, error) {
 	if opts == nil {
 		opts = &SendStickerOpts{}
 	}

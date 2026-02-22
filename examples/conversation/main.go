@@ -70,7 +70,7 @@ func main() {
 			return nil
 		}
 
-		_, err = msg.ReplyPhoto(c, picMsg.RemoteFileID(), &gotdbot.SendPhotoOpts{Caption: fmt.Sprintf("Nice to meet you, %s!", nameMsg.Text())})
+		_, err = msg.ReplyPhoto(c, &gotdbot.InputFileRemote{Id: picMsg.RemoteFileID()}, &gotdbot.SendPhotoOpts{Caption: fmt.Sprintf("Nice to meet you, %s!", nameMsg.Text())})
 		if err != nil {
 			return err
 		}

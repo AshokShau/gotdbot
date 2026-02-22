@@ -1,6 +1,9 @@
 package gotdbot
 
 import (
+	"fmt"
+	"html"
+	"os"
 	"strings"
 )
 
@@ -78,16 +81,15 @@ type SendPhotoOpts struct {
 }
 
 // SendPhoto sends a photo to chat
-func (c *Client) SendPhoto(chatId int64, photo string, opts *SendPhotoOpts) (*Message, error) {
+func (c *Client) SendPhoto(chatId int64, photo InputFile, opts *SendPhotoOpts) (*Message, error) {
 	if opts == nil {
 		opts = &SendPhotoOpts{}
 	}
 
 	caption := GetFormattedText(c, opts.Caption, opts.CaptionEntities, opts.ParseMode)
-	inputFile := GetInputFile(photo)
 
 	content := &InputMessagePhoto{
-		Photo:               inputFile,
+		Photo:               photo,
 		Thumbnail:           opts.Thumbnail,
 		AddedStickerFileIds: opts.AddedStickerFileIds,
 		Width:               opts.Width,
@@ -130,16 +132,15 @@ type SendVideoOpts struct {
 }
 
 // SendVideo sends a video to chat
-func (c *Client) SendVideo(chatId int64, video string, opts *SendVideoOpts) (*Message, error) {
+func (c *Client) SendVideo(chatId int64, video InputFile, opts *SendVideoOpts) (*Message, error) {
 	if opts == nil {
 		opts = &SendVideoOpts{}
 	}
 
 	caption := GetFormattedText(c, opts.Caption, opts.CaptionEntities, opts.ParseMode)
-	inputFile := GetInputFile(video)
 
 	content := &InputMessageVideo{
-		Video:               inputFile,
+		Video:               video,
 		Thumbnail:           opts.Thumbnail,
 		AddedStickerFileIds: opts.AddedStickerFileIds,
 		Duration:            opts.Duration,
@@ -182,16 +183,15 @@ type SendAnimationOpts struct {
 }
 
 // SendAnimation sends an animation to chat
-func (c *Client) SendAnimation(chatId int64, animation string, opts *SendAnimationOpts) (*Message, error) {
+func (c *Client) SendAnimation(chatId int64, animation InputFile, opts *SendAnimationOpts) (*Message, error) {
 	if opts == nil {
 		opts = &SendAnimationOpts{}
 	}
 
 	caption := GetFormattedText(c, opts.Caption, opts.CaptionEntities, opts.ParseMode)
-	inputFile := GetInputFile(animation)
 
 	content := &InputMessageAnimation{
-		Animation:           inputFile,
+		Animation:           animation,
 		Thumbnail:           opts.Thumbnail,
 		AddedStickerFileIds: opts.AddedStickerFileIds,
 		Duration:            opts.Duration,
@@ -230,16 +230,15 @@ type SendAudioOpts struct {
 }
 
 // SendAudio sends an audio to chat
-func (c *Client) SendAudio(chatId int64, audio string, opts *SendAudioOpts) (*Message, error) {
+func (c *Client) SendAudio(chatId int64, audio InputFile, opts *SendAudioOpts) (*Message, error) {
 	if opts == nil {
 		opts = &SendAudioOpts{}
 	}
 
 	caption := GetFormattedText(c, opts.Caption, opts.CaptionEntities, opts.ParseMode)
-	inputFile := GetInputFile(audio)
 
 	content := &InputMessageAudio{
-		Audio:               inputFile,
+		Audio:               audio,
 		AlbumCoverThumbnail: opts.AlbumCoverThumbnail,
 		Title:               opts.Title,
 		Performer:           opts.Performer,
@@ -274,16 +273,15 @@ type SendDocumentOpts struct {
 }
 
 // SendDocument sends a document to chat
-func (c *Client) SendDocument(chatId int64, document string, opts *SendDocumentOpts) (*Message, error) {
+func (c *Client) SendDocument(chatId int64, document InputFile, opts *SendDocumentOpts) (*Message, error) {
 	if opts == nil {
 		opts = &SendDocumentOpts{}
 	}
 
 	caption := GetFormattedText(c, opts.Caption, opts.CaptionEntities, opts.ParseMode)
-	inputFile := GetInputFile(document)
 
 	content := &InputMessageDocument{
-		Document:                    inputFile,
+		Document:                    document,
 		Thumbnail:                   opts.Thumbnail,
 		DisableContentTypeDetection: opts.DisableContentTypeDetection,
 		Caption:                     caption,
@@ -316,16 +314,15 @@ type SendVoiceOpts struct {
 }
 
 // SendVoice sends a voice note to chat
-func (c *Client) SendVoice(chatId int64, voice string, opts *SendVoiceOpts) (*Message, error) {
+func (c *Client) SendVoice(chatId int64, voice InputFile, opts *SendVoiceOpts) (*Message, error) {
 	if opts == nil {
 		opts = &SendVoiceOpts{}
 	}
 
 	caption := GetFormattedText(c, opts.Caption, opts.CaptionEntities, opts.ParseMode)
-	inputFile := GetInputFile(voice)
 
 	content := &InputMessageVoiceNote{
-		VoiceNote: inputFile,
+		VoiceNote: voice,
 		Waveform:  opts.Waveform,
 		Duration:  opts.Duration,
 		Caption:   caption,
@@ -356,15 +353,13 @@ type SendVideoNoteOpts struct {
 }
 
 // SendVideoNote sends a video note to chat
-func (c *Client) SendVideoNote(chatId int64, videoNote string, opts *SendVideoNoteOpts) (*Message, error) {
+func (c *Client) SendVideoNote(chatId int64, videoNote InputFile, opts *SendVideoNoteOpts) (*Message, error) {
 	if opts == nil {
 		opts = &SendVideoNoteOpts{}
 	}
 
-	inputFile := GetInputFile(videoNote)
-
 	content := &InputMessageVideoNote{
-		VideoNote: inputFile,
+		VideoNote: videoNote,
 		Thumbnail: opts.Thumbnail,
 		Duration:  opts.Duration,
 		Length:    opts.Length,
@@ -396,15 +391,13 @@ type SendStickerOpts struct {
 }
 
 // SendSticker sends a sticker to chat
-func (c *Client) SendSticker(chatId int64, sticker string, opts *SendStickerOpts) (*Message, error) {
+func (c *Client) SendSticker(chatId int64, sticker InputFile, opts *SendStickerOpts) (*Message, error) {
 	if opts == nil {
 		opts = &SendStickerOpts{}
 	}
 
-	inputFile := GetInputFile(sticker)
-
 	content := &InputMessageSticker{
-		Sticker:   inputFile,
+		Sticker:   sticker,
 		Thumbnail: opts.Thumbnail,
 		Width:     opts.Width,
 		Height:    opts.Height,
@@ -596,4 +589,69 @@ func (c *Client) ParseText(text string, parseMode string) (*FormattedText, error
 	}
 
 	return c.ParseTextEntities(mode, text)
+}
+
+func Bool(b bool) *bool {
+	return &b
+}
+
+func GetFormattedText(c *Client, text string, entities []TextEntity, parseMode string) *FormattedText {
+	if len(entities) > 0 {
+		return &FormattedText{
+			Text:     text,
+			Entities: entities,
+		}
+	} else if parseMode != "" {
+		ft, err := c.ParseText(text, parseMode)
+		if err == nil {
+			return ft
+		}
+	}
+	return &FormattedText{Text: text}
+}
+
+func GetInputFile(path string) InputFile {
+	if _, err := os.Stat(path); err == nil {
+		return &InputFileLocal{Path: path}
+	}
+
+	return &InputFileRemote{Id: path}
+}
+
+// EscapeHTML escapes HTML characters in the given text.
+func EscapeHTML(text string) string {
+	return html.EscapeString(text)
+}
+
+// EscapeMarkdown escapes Markdown characters in the given text.
+func EscapeMarkdown(text string, version int) string {
+	var chars string
+	if version == 1 {
+		chars = "_*`[\\"
+	} else {
+		chars = "_*[]()~`>#+-=|{}.!\\"
+	}
+	var b strings.Builder
+	for _, c := range text {
+		if strings.ContainsRune(chars, c) {
+			b.WriteRune('\\')
+		}
+		b.WriteRune(c)
+	}
+	return b.String()
+}
+
+// Mention returns a text mention for the given user ID.
+func Mention(text string, userId int64, isHtml bool, escape bool) string {
+	if escape {
+		if isHtml {
+			text = EscapeHTML(text)
+		} else {
+			text = EscapeMarkdown(text, 2)
+		}
+	}
+	if isHtml {
+		return fmt.Sprintf("<a href=\"tg://user?id=%d\">%s</a>", userId, text)
+	}
+	return fmt.Sprintf("[%s](tg://user?id=%d)", text, userId)
 }
