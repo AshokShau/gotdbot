@@ -432,6 +432,7 @@ type SendCopyOpts struct {
 	TopicId             MessageTopic
 	Quote               *InputTextQuote
 	ReplyTo             InputMessageReplyTo
+	ReplyMarkup         ReplyMarkup
 	ReplyToMessageID    int64
 	EffectId            int64
 }
@@ -443,7 +444,6 @@ func (c *Client) SendCopy(chatId int64, fromChatId int64, messageId int64, opts 
 	}
 
 	caption := GetFormattedText(c, opts.NewCaption, opts.NewCaptionEntities, opts.ParseMode)
-
 	content := &InputMessageForwarded{
 		FromChatId:  fromChatId,
 		MessageId:   messageId,
@@ -460,7 +460,7 @@ func (c *Client) SendCopy(chatId int64, fromChatId int64, messageId int64, opts 
 		ProtectContent:      opts.ProtectContent,
 		AllowPaidBroadcast:  opts.AllowPaidBroadcast,
 		EffectId:            opts.EffectId,
-	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, nil)
+	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
 }
 
 // ForwardMessageOpts contains optional parameters for ForwardMessage

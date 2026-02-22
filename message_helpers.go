@@ -6,12 +6,29 @@ import (
 
 // GetLink returns the message link.
 func (m *Message) GetLink(c *Client) (*MessageLink, error) {
-	return c.GetMessageLink(m.ChatId, false, false, 0, m.Id)
+	return c.GetMessageLink(m.ChatId, 0, m.Id, nil)
 }
 
-// IsPrivate checks if the message is from a private chat.
+// IsPrivate checks if the message is from a private chat (user).
 func (m *Message) IsPrivate() bool {
-	return m.ChatId > 0 && m.ChatId < 1e9
+	return m.ChatId > 0
+}
+
+// IsGroup checks if the message is from a basic group.
+func (m *Message) IsGroup() bool {
+	// basic groups are negative, but NOT -100xxxx...
+	return m.ChatId < 0 && !isSupergroupOrChannelID(m.ChatId)
+}
+
+// IsSupergroupOrChannel checks if the message is from a supergroup or channel.
+func (m *Message) IsSupergroupOrChannel() bool {
+	return isSupergroupOrChannelID(m.ChatId)
+}
+
+func isSupergroupOrChannelID(id int64) bool {
+	// Supergroups and channels have IDs that start with -100
+	// (e.g. -1002166934878)
+	return id <= -1000000000000
 }
 
 // GetText returns the message text, for both text messages and media messages
@@ -47,8 +64,8 @@ func (m *Message) IsCommand() bool {
 	return false
 }
 
-// FromID returns the user ID or chat ID of the sender.
-func (m *Message) FromID() int64 {
+// SenderID returns the user ID or chat ID of the sender.
+func (m *Message) SenderID() int64 {
 	if m.SenderId == nil {
 		return 0
 	}
@@ -153,13 +170,13 @@ func (m *Message) CaptionEntities() []TextEntity {
 
 // Delete deletes the message.
 func (m *Message) Delete(c *Client, revoke bool) error {
-	err := c.DeleteMessages(m.ChatId, []int64{m.Id}, revoke)
+	err := c.DeleteMessages(m.ChatId, []int64{m.Id}, &DeleteMessagesOpts{Revoke: revoke})
 	return err
 }
 
 // Pin pins the message.
 func (m *Message) Pin(c *Client, disableNotification bool, onlyForSelf bool) error {
-	err := c.PinChatMessage(m.ChatId, disableNotification, m.Id, onlyForSelf)
+	err := c.PinChatMessage(m.ChatId, m.Id, &PinChatMessageOpts{DisableNotification: disableNotification, OnlyForSelf: onlyForSelf})
 	return err
 }
 
@@ -176,7 +193,7 @@ func (m *Message) GetChat(c *Client) (*Chat, error) {
 
 // GetUser returns information about the sender of the message.
 func (m *Message) GetUser(c *Client) (*User, error) {
-	userId := m.FromID()
+	userId := m.SenderID()
 	if userId == 0 {
 		return nil, nil
 	}
@@ -279,7 +296,7 @@ func (m *Message) Download(c *Client, priority int32, offset int64, limit int64,
 			return nil, nil
 		}
 		if f.Remote != nil {
-			fi, err := c.GetRemoteFile(f.Remote.Id, nil)
+			fi, err := c.GetRemoteFile(f.Remote.Id, &GetRemoteFileOpts{})
 			if err != nil {
 				return nil, err
 			}
@@ -318,17 +335,17 @@ func (m *Message) Download(c *Client, priority int32, offset int64, limit int64,
 		return nil, nil
 	}
 
-	return fileInfo.Download(c, limit, offset, priority, synchronous)
+	return fileInfo.Download(c, limit, offset, priority, &DownloadFileOpts{Synchronous: synchronous})
 }
 
 // Mention returns the text mention of the message sender.
 func (m *Message) Mention(c *Client, parseMode string) (string, error) {
-	chat, err := c.GetChat(m.FromID())
+	chat, err := c.GetChat(m.SenderID())
 	if err != nil {
 		return "", err
 	}
 	html := strings.ToLower(parseMode) == "html"
-	return Mention(chat.Title, m.FromID(), html, true), nil
+	return Mention(chat.Title, m.SenderID(), html, true), nil
 }
 
 // GetMessageProperties returns the message properties.
@@ -338,7 +355,7 @@ func (m *Message) GetMessageProperties(c *Client) (*MessageProperties, error) {
 
 // GetMessageLink returns the message link.
 func (m *Message) GetMessageLink(c *Client, forAlbum bool, inMessageThread bool, mediaTimestamp int32) (*MessageLink, error) {
-	return c.GetMessageLink(m.ChatId, forAlbum, inMessageThread, mediaTimestamp, m.Id)
+	return c.GetMessageLink(m.ChatId, mediaTimestamp, m.Id, &GetMessageLinkOpts{ForAlbum: forAlbum, InMessageThread: inMessageThread})
 }
 
 // GetRepliedMessage returns the replied message.
@@ -378,16 +395,8 @@ func (m *Message) Restrict(c *Client, permissions *ChatPermissions, restrictedUn
 }
 
 // React reacts to the current message.
-func (m *Message) React(c *Client, isBig bool, emoji string) error {
-	var reactionTypes []ReactionType
-	if emoji != "" {
-		reactionTypes = []ReactionType{
-			&ReactionTypeEmoji{
-				Emoji: emoji,
-			},
-		}
-	}
-	return c.SetMessageReactions(m.ChatId, isBig, m.Id, reactionTypes)
+func (m *Message) React(c *Client, reactionTypes []ReactionType, opts *SetMessageReactionsOpts) error {
+	return c.SetMessageReactions(m.ChatId, m.Id, reactionTypes, opts)
 }
 
 // Action sends a chat action to a specific chat.

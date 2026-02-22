@@ -18,7 +18,7 @@ func generateMethods(functions []TLType, classes map[string]*TLClass) {
 
 		hasOptional := false
 		for _, p := range fn.Params {
-			if p.IsOptional {
+			if p.IsOptional || p.Type == "Bool" {
 				hasOptional = true
 				break
 			}
@@ -43,7 +43,7 @@ func generateMethods(functions []TLType, classes map[string]*TLClass) {
 		// Args
 		var args []string
 		for _, p := range fn.Params {
-			if p.IsOptional {
+			if p.IsOptional || p.Type == "Bool" {
 				continue
 			}
 			goType := toGoType(p.Type, classes)
@@ -74,7 +74,7 @@ func generateMethods(functions []TLType, classes map[string]*TLClass) {
 
 		fmt.Fprintf(&sb, "\treq := &%s{\n", structName)
 		for _, p := range fn.Params {
-			if p.IsOptional {
+			if p.IsOptional || p.Type == "Bool" {
 				continue
 			}
 			fieldName := toCamelCase(p.Name)
@@ -96,7 +96,7 @@ func generateMethods(functions []TLType, classes map[string]*TLClass) {
 		if hasOptional {
 			sb.WriteString("\tif opts != nil {\n")
 			for _, p := range fn.Params {
-				if !p.IsOptional {
+				if !p.IsOptional && p.Type != "Bool" {
 					continue
 				}
 				fieldName := toCamelCase(p.Name)
