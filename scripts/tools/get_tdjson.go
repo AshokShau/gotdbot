@@ -14,9 +14,9 @@ import (
 )
 
 const (
-	repoOwner = "AshokShau"
-	repoName  = "gotdbot"
-	version   = "v0.4.0"
+	repoOwner = "FallenProjects"
+	repoName  = "tdlib-build"
+	version   = "v1.8.61"
 )
 
 func main() {
