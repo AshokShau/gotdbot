@@ -44,20 +44,20 @@ func main() {
 	dispatcher.AddHandler(handlers.NewCommand("saved", func(ctx *ext.Context) error {
 		message := ctx.EffectiveMessage
 		client := ctx.Client
-		userId := message.FromID()
+		userId := message.SenderID()
 		if message.ReplyToMessageID() != 0 {
 			replyMsg, err := message.GetRepliedMessage(client)
 			if err != nil {
 				_, _ = message.ReplyText(client, fmt.Sprintf("Failed to get replied message: %v", err), nil)
 				return err
 			}
-			userId = replyMsg.FromID()
+			userId = replyMsg.SenderID()
 		}
 
 		// Tg allow Sends 2-10 messages grouped together into an album
 		const maxAudiosToSend int32 = 10
 
-		profileAudios, err := client.GetUserProfileAudios(userId, 0, maxAudiosToSend)
+		profileAudios, err := client.GetUserProfileAudios(0, maxAudiosToSend, userId)
 		if err != nil {
 			_, _ = message.ReplyText(client, fmt.Sprintf("Failed to get saved audios: %v", err), nil)
 			return err
@@ -146,7 +146,7 @@ func downloadCmd(ctx *ext.Context) error {
 		TotalSize:  size,
 	})
 
-	dFile, err := c.DownloadFile(fileId, 1, 0, 0, false)
+	dFile, err := c.DownloadFile(fileId, 0, 0, 1, &gotdbot.DownloadFileOpts{Synchronous: true})
 	if err != nil {
 		activeTasks.Delete(int64(fileId))
 		_, _ = sentMsg.EditText(c, fmt.Sprintf("Failed to start download: %v", err), nil)

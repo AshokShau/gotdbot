@@ -33,12 +33,12 @@ func main() {
 	}
 
 	dispatcher := ext.NewDispatcher(bot)
-
+	gotdbot.SetTdlibLogVerbosityLevel(2)
 	// /start - Send welcome message with inline keyboard
 	dispatcher.AddHandler(handlers.NewCommand("start", func(ctx *ext.Context) error {
 		msg := ctx.EffectiveMessage
 		c := ctx.Client
-		userId := msg.FromID()
+		userId := msg.SenderID()
 
 		action, err := msg.Action(c, "typing", nil)
 		if err != nil {
@@ -75,12 +75,22 @@ func main() {
 			},
 		}
 
-		_, err = msg.ReplyText(c, text, &gotdbot.SendTextMessageOpts{
+		msg, err = msg.ReplyText(c, text, &gotdbot.SendTextMessageOpts{
 			ReplyMarkup: kb,
 			ParseMode:   "HTML",
 		})
+		if err != nil {
+			ctx.Client.Logger.Error("Failed to send welcome message", "err", err)
+			return err
+		}
 
-		return err
+		link, err := msg.GetLink(c)
+		if err != nil {
+			ctx.Client.Logger.Error("Failed to get message link", "err", err)
+		} else {
+			ctx.Client.Logger.Info("Sent welcome message", "link", link.Link)
+		}
+		return nil
 	}))
 
 	// /inline - Send message with inline keyboard buttons
@@ -232,9 +242,10 @@ func main() {
 				},
 			}
 
-			_, err := ctx.Client.EditMessageText(update.ChatId, update.MessageId, inputContent, &gotdbot.EditMessageTextOpts{
+			_, err = ctx.Client.EditMessageText(update.ChatId, inputContent, update.MessageId, &gotdbot.EditMessageTextOpts{
 				ReplyMarkup: kb,
 			})
+
 			if err != nil {
 				ctx.Client.Logger.Error("Failed to edit message", "error", err)
 			}

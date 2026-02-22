@@ -41,14 +41,14 @@ func main() {
 		c := ctx.Client
 
 		timeOut := 30 * time.Second
-		stopFilter := filters.Text.And(filters.SenderID(msg.FromID())).And(filters.Command("cancel"))
+		stopFilter := filters.Text.And(filters.SenderID(msg.SenderID())).And(filters.Command("cancel"))
 
 		_, err := msg.ReplyText(c, "What is your name?", nil)
 		if err != nil {
 			return err
 		}
 
-		nameMsg, err := ctx.Ask(chatId, &ext.WaitMessageOpts{Timeout: timeOut, Filter: filters.Text.And(filters.SenderID(msg.FromID())), CancellationFilter: stopFilter})
+		nameMsg, err := ctx.Ask(chatId, &ext.WaitMessageOpts{Timeout: timeOut, Filter: filters.Text.And(filters.SenderID(msg.SenderID())), CancellationFilter: stopFilter})
 		if err != nil {
 			_, _ = msg.ReplyText(c, err.Error(), nil)
 			return nil
@@ -59,7 +59,7 @@ func main() {
 			return err
 		}
 
-		picMsg, err := ctx.Ask(chatId, &ext.WaitMessageOpts{Timeout: timeOut, Filter: filters.Photo.And(filters.SenderID(msg.FromID())), CancellationFilter: stopFilter})
+		picMsg, err := ctx.Ask(chatId, &ext.WaitMessageOpts{Timeout: timeOut, Filter: filters.Photo.And(filters.SenderID(msg.SenderID())), CancellationFilter: stopFilter})
 		if err != nil {
 			if errors.Is(err, ext.ConversationCancelled) {
 				_, _ = msg.ReplyText(c, "Survey cancelled. Send /survey to start again.", nil)

@@ -101,12 +101,11 @@ func main() {
 	}))
 
 	dispatcher.AddHandler(handlers.NewMessage(filters.Text.And(filters.Incoming), func(ctx *ext.Context) error {
-		_, err := ctx.Client.ForwardMessages(ctx.EffectiveChatId, ctx.EffectiveChatId, []int64{ctx.EffectiveMessage.Id}, true, false, nil)
+		_, err := ctx.Client.ForwardMessages(ctx.EffectiveChatId, ctx.EffectiveChatId, []int64{ctx.EffectiveMessage.Id}, &gotdbot.ForwardMessagesOpts{SendCopy: true})
 		return err
 	}))
 
 	dispatcher.Start()
-
 	log.Println("Starting bot...")
 	if err := bot.Start(); err != nil {
 		log.Fatalf("Failed to start bot: %v", err)
