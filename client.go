@@ -576,3 +576,7 @@ func toOptionValue(v interface{}) OptionValue {
 		return nil
 	}
 }
+
+func Bool(b bool) *bool {
+	return &b
+}

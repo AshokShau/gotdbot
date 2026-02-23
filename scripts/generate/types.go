@@ -121,25 +121,25 @@ func generateObjects(types []TLType, classes map[string]*TLClass) {
 		}
 		sb.WriteString("}\n\n")
 
-		fmt.Fprintf(&sb, "func (t *%s) Type() string {\n", structName)
+		fmt.Fprintf(&sb, "func (t %s) Type() string {\n", structName)
 		fmt.Fprintf(&sb, "\treturn \"%s\"\n", t.Name)
 		sb.WriteString("}\n\n")
 
 		// Implement interface dummy method if this type belongs to a class
 		if cls, ok := classes[t.ResultType]; ok {
 			methodName := toLowerCamelCase(cls.Name)
-			fmt.Fprintf(&sb, "func (t *%s) %s() {}\n\n", structName, methodName)
+			fmt.Fprintf(&sb, "func (t %s) %s() {}\n\n", structName, methodName)
 		}
 
 		// MarshalJSON (only @type)
-		fmt.Fprintf(&sb, "func (t *%s) MarshalJSON() ([]byte, error) {\n", structName)
+		fmt.Fprintf(&sb, "func (t %s) MarshalJSON() ([]byte, error) {\n", structName)
 		fmt.Fprintf(&sb, "\ttype Alias %s\n", structName)
 		sb.WriteString("\treturn json.Marshal(&struct {\n")
 		sb.WriteString("\t\tTypeStr string `json:\"@type\"`\n")
 		sb.WriteString("\t\t*Alias\n")
 		sb.WriteString("\t}{\n")
 		fmt.Fprintf(&sb, "\t\tTypeStr: \"%s\",\n", t.Name)
-		sb.WriteString("\t\tAlias:   (*Alias)(t),\n")
+		sb.WriteString("\t\tAlias:   (*Alias)(&t),\n")
 		sb.WriteString("\t})\n")
 		sb.WriteString("}\n\n")
 
@@ -261,21 +261,21 @@ func generateFunctions(functions []TLType, classes map[string]*TLClass) {
 		}
 		sb.WriteString("}\n\n")
 
-		fmt.Fprintf(&sb, "func (t *%s) Type() string {\n", structName)
+		fmt.Fprintf(&sb, "func (t %s) Type() string {\n", structName)
 		fmt.Fprintf(&sb, "\treturn \"%s\"\n", t.Name)
 		sb.WriteString("}\n\n")
 
 		// Functions do not implement class interfaces usually, they return objects.
 
 		// MarshalJSON (only @type)
-		fmt.Fprintf(&sb, "func (t *%s) MarshalJSON() ([]byte, error) {\n", structName)
+		fmt.Fprintf(&sb, "func (t %s) MarshalJSON() ([]byte, error) {\n", structName)
 		fmt.Fprintf(&sb, "\ttype Alias %s\n", structName)
 		sb.WriteString("\treturn json.Marshal(&struct {\n")
 		sb.WriteString("\t\tTypeStr string `json:\"@type\"`\n")
 		sb.WriteString("\t\t*Alias\n")
 		sb.WriteString("\t}{\n")
 		fmt.Fprintf(&sb, "\t\tTypeStr: \"%s\",\n", t.Name)
-		sb.WriteString("\t\tAlias:   (*Alias)(t),\n")
+		sb.WriteString("\t\tAlias:   (*Alias)(&t),\n")
 		sb.WriteString("\t})\n")
 		sb.WriteString("}\n\n")
 	}

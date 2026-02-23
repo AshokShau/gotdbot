@@ -591,10 +591,6 @@ func (c *Client) ParseText(text string, parseMode string) (*FormattedText, error
 	return c.ParseTextEntities(mode, text)
 }
 
-func Bool(b bool) *bool {
-	return &b
-}
-
 func GetFormattedText(c *Client, text string, entities []TextEntity, parseMode string) *FormattedText {
 	if len(entities) > 0 {
 		return &FormattedText{
@@ -612,10 +608,10 @@ func GetFormattedText(c *Client, text string, entities []TextEntity, parseMode s
 
 func GetInputFile(path string) InputFile {
 	if _, err := os.Stat(path); err == nil {
-		return &InputFileLocal{Path: path}
+		return InputFileLocal{Path: path}
 	}
 
-	return &InputFileRemote{Id: path}
+	return InputFileRemote{Id: path}
 }
 
 // EscapeHTML escapes HTML characters in the given text.

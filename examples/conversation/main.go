@@ -43,7 +43,7 @@ func main() {
 		timeOut := 30 * time.Second
 		stopFilter := filters.Text.And(filters.SenderID(msg.SenderID())).And(filters.Command("cancel"))
 
-		_, err := msg.ReplyText(c, "What is your name?", nil)
+		_, err = msg.ReplyText(c, "What is your name?", nil)
 		if err != nil {
 			return err
 		}
@@ -70,7 +70,7 @@ func main() {
 			return nil
 		}
 
-		_, err = msg.ReplyPhoto(c, &gotdbot.InputFileRemote{Id: picMsg.RemoteFileID()}, &gotdbot.SendPhotoOpts{Caption: fmt.Sprintf("Nice to meet you, %s!", nameMsg.Text())})
+		_, err = msg.ReplyPhoto(c, gotdbot.InputFileRemote{Id: picMsg.RemoteFileID()}, &gotdbot.SendPhotoOpts{Caption: fmt.Sprintf("Nice to meet you, %s!", nameMsg.Text())})
 		if err != nil {
 			return err
 		}

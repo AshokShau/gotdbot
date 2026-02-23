@@ -13,18 +13,18 @@ type AcceptCall struct {
 	Protocol *CallProtocol `json:"protocol"`
 }
 
-func (t *AcceptCall) Type() string {
+func (t AcceptCall) Type() string {
 	return "acceptCall"
 }
 
-func (t *AcceptCall) MarshalJSON() ([]byte, error) {
+func (t AcceptCall) MarshalJSON() ([]byte, error) {
 	type Alias AcceptCall
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "acceptCall",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -34,18 +34,18 @@ type AcceptTermsOfService struct {
 	TermsOfServiceId string `json:"terms_of_service_id"`
 }
 
-func (t *AcceptTermsOfService) Type() string {
+func (t AcceptTermsOfService) Type() string {
 	return "acceptTermsOfService"
 }
 
-func (t *AcceptTermsOfService) MarshalJSON() ([]byte, error) {
+func (t AcceptTermsOfService) MarshalJSON() ([]byte, error) {
 	type Alias AcceptTermsOfService
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "acceptTermsOfService",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -53,18 +53,18 @@ func (t *AcceptTermsOfService) MarshalJSON() ([]byte, error) {
 type ActivateStoryStealthMode struct {
 }
 
-func (t *ActivateStoryStealthMode) Type() string {
+func (t ActivateStoryStealthMode) Type() string {
 	return "activateStoryStealthMode"
 }
 
-func (t *ActivateStoryStealthMode) MarshalJSON() ([]byte, error) {
+func (t ActivateStoryStealthMode) MarshalJSON() ([]byte, error) {
 	type Alias ActivateStoryStealthMode
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "activateStoryStealthMode",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -78,18 +78,18 @@ type AddBotMediaPreview struct {
 	LanguageCode string `json:"language_code"`
 }
 
-func (t *AddBotMediaPreview) Type() string {
+func (t AddBotMediaPreview) Type() string {
 	return "addBotMediaPreview"
 }
 
-func (t *AddBotMediaPreview) MarshalJSON() ([]byte, error) {
+func (t AddBotMediaPreview) MarshalJSON() ([]byte, error) {
 	type Alias AddBotMediaPreview
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "addBotMediaPreview",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -101,18 +101,18 @@ type AddChatFolderByInviteLink struct {
 	InviteLink string `json:"invite_link"`
 }
 
-func (t *AddChatFolderByInviteLink) Type() string {
+func (t AddChatFolderByInviteLink) Type() string {
 	return "addChatFolderByInviteLink"
 }
 
-func (t *AddChatFolderByInviteLink) MarshalJSON() ([]byte, error) {
+func (t AddChatFolderByInviteLink) MarshalJSON() ([]byte, error) {
 	type Alias AddChatFolderByInviteLink
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "addChatFolderByInviteLink",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -126,18 +126,18 @@ type AddChatMember struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t *AddChatMember) Type() string {
+func (t AddChatMember) Type() string {
 	return "addChatMember"
 }
 
-func (t *AddChatMember) MarshalJSON() ([]byte, error) {
+func (t AddChatMember) MarshalJSON() ([]byte, error) {
 	type Alias AddChatMember
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "addChatMember",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -149,18 +149,18 @@ type AddChatMembers struct {
 	UserIds []int64 `json:"user_ids"`
 }
 
-func (t *AddChatMembers) Type() string {
+func (t AddChatMembers) Type() string {
 	return "addChatMembers"
 }
 
-func (t *AddChatMembers) MarshalJSON() ([]byte, error) {
+func (t AddChatMembers) MarshalJSON() ([]byte, error) {
 	type Alias AddChatMembers
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "addChatMembers",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -172,18 +172,18 @@ type AddChatToList struct {
 	ChatList ChatList `json:"chat_list"`
 }
 
-func (t *AddChatToList) Type() string {
+func (t AddChatToList) Type() string {
 	return "addChatToList"
 }
 
-func (t *AddChatToList) MarshalJSON() ([]byte, error) {
+func (t AddChatToList) MarshalJSON() ([]byte, error) {
 	type Alias AddChatToList
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "addChatToList",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -197,18 +197,18 @@ type AddChecklistTasks struct {
 	Tasks []InputChecklistTask `json:"tasks"`
 }
 
-func (t *AddChecklistTasks) Type() string {
+func (t AddChecklistTasks) Type() string {
 	return "addChecklistTasks"
 }
 
-func (t *AddChecklistTasks) MarshalJSON() ([]byte, error) {
+func (t AddChecklistTasks) MarshalJSON() ([]byte, error) {
 	type Alias AddChecklistTasks
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "addChecklistTasks",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -222,18 +222,18 @@ type AddContact struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t *AddContact) Type() string {
+func (t AddContact) Type() string {
 	return "addContact"
 }
 
-func (t *AddContact) MarshalJSON() ([]byte, error) {
+func (t AddContact) MarshalJSON() ([]byte, error) {
 	type Alias AddContact
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "addContact",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -243,18 +243,18 @@ type AddCustomServerLanguagePack struct {
 	LanguagePackId string `json:"language_pack_id"`
 }
 
-func (t *AddCustomServerLanguagePack) Type() string {
+func (t AddCustomServerLanguagePack) Type() string {
 	return "addCustomServerLanguagePack"
 }
 
-func (t *AddCustomServerLanguagePack) MarshalJSON() ([]byte, error) {
+func (t AddCustomServerLanguagePack) MarshalJSON() ([]byte, error) {
 	type Alias AddCustomServerLanguagePack
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "addCustomServerLanguagePack",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -264,18 +264,18 @@ type AddFavoriteSticker struct {
 	Sticker InputFile `json:"sticker"`
 }
 
-func (t *AddFavoriteSticker) Type() string {
+func (t AddFavoriteSticker) Type() string {
 	return "addFavoriteSticker"
 }
 
-func (t *AddFavoriteSticker) MarshalJSON() ([]byte, error) {
+func (t AddFavoriteSticker) MarshalJSON() ([]byte, error) {
 	type Alias AddFavoriteSticker
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "addFavoriteSticker",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -291,18 +291,18 @@ type AddFileToDownloads struct {
 	Priority int32 `json:"priority"`
 }
 
-func (t *AddFileToDownloads) Type() string {
+func (t AddFileToDownloads) Type() string {
 	return "addFileToDownloads"
 }
 
-func (t *AddFileToDownloads) MarshalJSON() ([]byte, error) {
+func (t AddFileToDownloads) MarshalJSON() ([]byte, error) {
 	type Alias AddFileToDownloads
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "addFileToDownloads",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -316,18 +316,18 @@ type AddGiftCollectionGifts struct {
 	ReceivedGiftIds []string `json:"received_gift_ids"`
 }
 
-func (t *AddGiftCollectionGifts) Type() string {
+func (t AddGiftCollectionGifts) Type() string {
 	return "addGiftCollectionGifts"
 }
 
-func (t *AddGiftCollectionGifts) MarshalJSON() ([]byte, error) {
+func (t AddGiftCollectionGifts) MarshalJSON() ([]byte, error) {
 	type Alias AddGiftCollectionGifts
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "addGiftCollectionGifts",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -345,18 +345,18 @@ type AddLocalMessage struct {
 	SenderId MessageSender `json:"sender_id"`
 }
 
-func (t *AddLocalMessage) Type() string {
+func (t AddLocalMessage) Type() string {
 	return "addLocalMessage"
 }
 
-func (t *AddLocalMessage) MarshalJSON() ([]byte, error) {
+func (t AddLocalMessage) MarshalJSON() ([]byte, error) {
 	type Alias AddLocalMessage
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "addLocalMessage",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -368,18 +368,18 @@ type AddLoginPasskey struct {
 	ClientData string `json:"client_data"`
 }
 
-func (t *AddLoginPasskey) Type() string {
+func (t AddLoginPasskey) Type() string {
 	return "addLoginPasskey"
 }
 
-func (t *AddLoginPasskey) MarshalJSON() ([]byte, error) {
+func (t AddLoginPasskey) MarshalJSON() ([]byte, error) {
 	type Alias AddLoginPasskey
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "addLoginPasskey",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -391,18 +391,18 @@ type AddLogMessage struct {
 	VerbosityLevel int32 `json:"verbosity_level"`
 }
 
-func (t *AddLogMessage) Type() string {
+func (t AddLogMessage) Type() string {
 	return "addLogMessage"
 }
 
-func (t *AddLogMessage) MarshalJSON() ([]byte, error) {
+func (t AddLogMessage) MarshalJSON() ([]byte, error) {
 	type Alias AddLogMessage
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "addLogMessage",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -420,18 +420,18 @@ type AddMessageReaction struct {
 	UpdateRecentReactions bool `json:"update_recent_reactions"`
 }
 
-func (t *AddMessageReaction) Type() string {
+func (t AddMessageReaction) Type() string {
 	return "addMessageReaction"
 }
 
-func (t *AddMessageReaction) MarshalJSON() ([]byte, error) {
+func (t AddMessageReaction) MarshalJSON() ([]byte, error) {
 	type Alias AddMessageReaction
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "addMessageReaction",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -441,18 +441,18 @@ type AddNetworkStatistics struct {
 	Entry NetworkStatisticsEntry `json:"entry"`
 }
 
-func (t *AddNetworkStatistics) Type() string {
+func (t AddNetworkStatistics) Type() string {
 	return "addNetworkStatistics"
 }
 
-func (t *AddNetworkStatistics) MarshalJSON() ([]byte, error) {
+func (t AddNetworkStatistics) MarshalJSON() ([]byte, error) {
 	type Alias AddNetworkStatistics
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "addNetworkStatistics",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -466,18 +466,18 @@ type AddOffer struct {
 	Options *MessageSendOptions `json:"options"`
 }
 
-func (t *AddOffer) Type() string {
+func (t AddOffer) Type() string {
 	return "addOffer"
 }
 
-func (t *AddOffer) MarshalJSON() ([]byte, error) {
+func (t AddOffer) MarshalJSON() ([]byte, error) {
 	type Alias AddOffer
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "addOffer",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -489,18 +489,18 @@ type AddPendingLiveStoryReaction struct {
 	StarCount int64 `json:"star_count"`
 }
 
-func (t *AddPendingLiveStoryReaction) Type() string {
+func (t AddPendingLiveStoryReaction) Type() string {
 	return "addPendingLiveStoryReaction"
 }
 
-func (t *AddPendingLiveStoryReaction) MarshalJSON() ([]byte, error) {
+func (t AddPendingLiveStoryReaction) MarshalJSON() ([]byte, error) {
 	type Alias AddPendingLiveStoryReaction
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "addPendingLiveStoryReaction",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -516,18 +516,18 @@ type AddPendingPaidMessageReaction struct {
 	TypeField PaidReactionType `json:"type,omitempty"`
 }
 
-func (t *AddPendingPaidMessageReaction) Type() string {
+func (t AddPendingPaidMessageReaction) Type() string {
 	return "addPendingPaidMessageReaction"
 }
 
-func (t *AddPendingPaidMessageReaction) MarshalJSON() ([]byte, error) {
+func (t AddPendingPaidMessageReaction) MarshalJSON() ([]byte, error) {
 	type Alias AddPendingPaidMessageReaction
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "addPendingPaidMessageReaction",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -537,18 +537,18 @@ type AddProfileAudio struct {
 	FileId int32 `json:"file_id"`
 }
 
-func (t *AddProfileAudio) Type() string {
+func (t AddProfileAudio) Type() string {
 	return "addProfileAudio"
 }
 
-func (t *AddProfileAudio) MarshalJSON() ([]byte, error) {
+func (t AddProfileAudio) MarshalJSON() ([]byte, error) {
 	type Alias AddProfileAudio
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "addProfileAudio",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -560,18 +560,18 @@ type AddProxy struct {
 	Proxy *Proxy `json:"proxy"`
 }
 
-func (t *AddProxy) Type() string {
+func (t AddProxy) Type() string {
 	return "addProxy"
 }
 
-func (t *AddProxy) MarshalJSON() ([]byte, error) {
+func (t AddProxy) MarshalJSON() ([]byte, error) {
 	type Alias AddProxy
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "addProxy",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -589,18 +589,18 @@ type AddQuickReplyShortcutInlineQueryResultMessage struct {
 	ShortcutName string `json:"shortcut_name"`
 }
 
-func (t *AddQuickReplyShortcutInlineQueryResultMessage) Type() string {
+func (t AddQuickReplyShortcutInlineQueryResultMessage) Type() string {
 	return "addQuickReplyShortcutInlineQueryResultMessage"
 }
 
-func (t *AddQuickReplyShortcutInlineQueryResultMessage) MarshalJSON() ([]byte, error) {
+func (t AddQuickReplyShortcutInlineQueryResultMessage) MarshalJSON() ([]byte, error) {
 	type Alias AddQuickReplyShortcutInlineQueryResultMessage
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "addQuickReplyShortcutInlineQueryResultMessage",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -614,18 +614,18 @@ type AddQuickReplyShortcutMessage struct {
 	ShortcutName string `json:"shortcut_name"`
 }
 
-func (t *AddQuickReplyShortcutMessage) Type() string {
+func (t AddQuickReplyShortcutMessage) Type() string {
 	return "addQuickReplyShortcutMessage"
 }
 
-func (t *AddQuickReplyShortcutMessage) MarshalJSON() ([]byte, error) {
+func (t AddQuickReplyShortcutMessage) MarshalJSON() ([]byte, error) {
 	type Alias AddQuickReplyShortcutMessage
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "addQuickReplyShortcutMessage",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -639,18 +639,18 @@ type AddQuickReplyShortcutMessageAlbum struct {
 	ShortcutName string `json:"shortcut_name"`
 }
 
-func (t *AddQuickReplyShortcutMessageAlbum) Type() string {
+func (t AddQuickReplyShortcutMessageAlbum) Type() string {
 	return "addQuickReplyShortcutMessageAlbum"
 }
 
-func (t *AddQuickReplyShortcutMessageAlbum) MarshalJSON() ([]byte, error) {
+func (t AddQuickReplyShortcutMessageAlbum) MarshalJSON() ([]byte, error) {
 	type Alias AddQuickReplyShortcutMessageAlbum
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "addQuickReplyShortcutMessageAlbum",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -660,18 +660,18 @@ type AddRecentlyFoundChat struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t *AddRecentlyFoundChat) Type() string {
+func (t AddRecentlyFoundChat) Type() string {
 	return "addRecentlyFoundChat"
 }
 
-func (t *AddRecentlyFoundChat) MarshalJSON() ([]byte, error) {
+func (t AddRecentlyFoundChat) MarshalJSON() ([]byte, error) {
 	type Alias AddRecentlyFoundChat
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "addRecentlyFoundChat",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -683,18 +683,18 @@ type AddRecentSticker struct {
 	Sticker InputFile `json:"sticker"`
 }
 
-func (t *AddRecentSticker) Type() string {
+func (t AddRecentSticker) Type() string {
 	return "addRecentSticker"
 }
 
-func (t *AddRecentSticker) MarshalJSON() ([]byte, error) {
+func (t AddRecentSticker) MarshalJSON() ([]byte, error) {
 	type Alias AddRecentSticker
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "addRecentSticker",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -704,18 +704,18 @@ type AddSavedAnimation struct {
 	Animation InputFile `json:"animation"`
 }
 
-func (t *AddSavedAnimation) Type() string {
+func (t AddSavedAnimation) Type() string {
 	return "addSavedAnimation"
 }
 
-func (t *AddSavedAnimation) MarshalJSON() ([]byte, error) {
+func (t AddSavedAnimation) MarshalJSON() ([]byte, error) {
 	type Alias AddSavedAnimation
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "addSavedAnimation",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -725,18 +725,18 @@ type AddSavedNotificationSound struct {
 	Sound InputFile `json:"sound"`
 }
 
-func (t *AddSavedNotificationSound) Type() string {
+func (t AddSavedNotificationSound) Type() string {
 	return "addSavedNotificationSound"
 }
 
-func (t *AddSavedNotificationSound) MarshalJSON() ([]byte, error) {
+func (t AddSavedNotificationSound) MarshalJSON() ([]byte, error) {
 	type Alias AddSavedNotificationSound
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "addSavedNotificationSound",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -750,18 +750,18 @@ type AddStickerToSet struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t *AddStickerToSet) Type() string {
+func (t AddStickerToSet) Type() string {
 	return "addStickerToSet"
 }
 
-func (t *AddStickerToSet) MarshalJSON() ([]byte, error) {
+func (t AddStickerToSet) MarshalJSON() ([]byte, error) {
 	type Alias AddStickerToSet
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "addStickerToSet",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -775,18 +775,18 @@ type AddStoryAlbumStories struct {
 	StoryIds []int32 `json:"story_ids"`
 }
 
-func (t *AddStoryAlbumStories) Type() string {
+func (t AddStoryAlbumStories) Type() string {
 	return "addStoryAlbumStories"
 }
 
-func (t *AddStoryAlbumStories) MarshalJSON() ([]byte, error) {
+func (t AddStoryAlbumStories) MarshalJSON() ([]byte, error) {
 	type Alias AddStoryAlbumStories
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "addStoryAlbumStories",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -796,18 +796,18 @@ type AllowBotToSendMessages struct {
 	BotUserId int64 `json:"bot_user_id"`
 }
 
-func (t *AllowBotToSendMessages) Type() string {
+func (t AllowBotToSendMessages) Type() string {
 	return "allowBotToSendMessages"
 }
 
-func (t *AllowBotToSendMessages) MarshalJSON() ([]byte, error) {
+func (t AllowBotToSendMessages) MarshalJSON() ([]byte, error) {
 	type Alias AllowBotToSendMessages
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "allowBotToSendMessages",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -819,18 +819,18 @@ type AllowUnpaidMessagesFromUser struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t *AllowUnpaidMessagesFromUser) Type() string {
+func (t AllowUnpaidMessagesFromUser) Type() string {
 	return "allowUnpaidMessagesFromUser"
 }
 
-func (t *AllowUnpaidMessagesFromUser) MarshalJSON() ([]byte, error) {
+func (t AllowUnpaidMessagesFromUser) MarshalJSON() ([]byte, error) {
 	type Alias AllowUnpaidMessagesFromUser
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "allowUnpaidMessagesFromUser",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -848,18 +848,18 @@ type AnswerCallbackQuery struct {
 	Url string `json:"url"`
 }
 
-func (t *AnswerCallbackQuery) Type() string {
+func (t AnswerCallbackQuery) Type() string {
 	return "answerCallbackQuery"
 }
 
-func (t *AnswerCallbackQuery) MarshalJSON() ([]byte, error) {
+func (t AnswerCallbackQuery) MarshalJSON() ([]byte, error) {
 	type Alias AnswerCallbackQuery
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "answerCallbackQuery",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -871,18 +871,18 @@ type AnswerCustomQuery struct {
 	Data string `json:"data"`
 }
 
-func (t *AnswerCustomQuery) Type() string {
+func (t AnswerCustomQuery) Type() string {
 	return "answerCustomQuery"
 }
 
-func (t *AnswerCustomQuery) MarshalJSON() ([]byte, error) {
+func (t AnswerCustomQuery) MarshalJSON() ([]byte, error) {
 	type Alias AnswerCustomQuery
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "answerCustomQuery",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -902,18 +902,18 @@ type AnswerInlineQuery struct {
 	Results []InputInlineQueryResult `json:"results"`
 }
 
-func (t *AnswerInlineQuery) Type() string {
+func (t AnswerInlineQuery) Type() string {
 	return "answerInlineQuery"
 }
 
-func (t *AnswerInlineQuery) MarshalJSON() ([]byte, error) {
+func (t AnswerInlineQuery) MarshalJSON() ([]byte, error) {
 	type Alias AnswerInlineQuery
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "answerInlineQuery",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -925,18 +925,18 @@ type AnswerPreCheckoutQuery struct {
 	PreCheckoutQueryId int64 `json:"pre_checkout_query_id,string"`
 }
 
-func (t *AnswerPreCheckoutQuery) Type() string {
+func (t AnswerPreCheckoutQuery) Type() string {
 	return "answerPreCheckoutQuery"
 }
 
-func (t *AnswerPreCheckoutQuery) MarshalJSON() ([]byte, error) {
+func (t AnswerPreCheckoutQuery) MarshalJSON() ([]byte, error) {
 	type Alias AnswerPreCheckoutQuery
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "answerPreCheckoutQuery",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -950,18 +950,18 @@ type AnswerShippingQuery struct {
 	ShippingQueryId int64 `json:"shipping_query_id,string"`
 }
 
-func (t *AnswerShippingQuery) Type() string {
+func (t AnswerShippingQuery) Type() string {
 	return "answerShippingQuery"
 }
 
-func (t *AnswerShippingQuery) MarshalJSON() ([]byte, error) {
+func (t AnswerShippingQuery) MarshalJSON() ([]byte, error) {
 	type Alias AnswerShippingQuery
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "answerShippingQuery",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -973,18 +973,18 @@ type AnswerWebAppQuery struct {
 	WebAppQueryId string `json:"web_app_query_id"`
 }
 
-func (t *AnswerWebAppQuery) Type() string {
+func (t AnswerWebAppQuery) Type() string {
 	return "answerWebAppQuery"
 }
 
-func (t *AnswerWebAppQuery) MarshalJSON() ([]byte, error) {
+func (t AnswerWebAppQuery) MarshalJSON() ([]byte, error) {
 	type Alias AnswerWebAppQuery
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "answerWebAppQuery",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -994,18 +994,18 @@ type ApplyPremiumGiftCode struct {
 	Code string `json:"code"`
 }
 
-func (t *ApplyPremiumGiftCode) Type() string {
+func (t ApplyPremiumGiftCode) Type() string {
 	return "applyPremiumGiftCode"
 }
 
-func (t *ApplyPremiumGiftCode) MarshalJSON() ([]byte, error) {
+func (t ApplyPremiumGiftCode) MarshalJSON() ([]byte, error) {
 	type Alias ApplyPremiumGiftCode
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "applyPremiumGiftCode",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -1019,18 +1019,18 @@ type ApproveSuggestedPost struct {
 	SendDate int32 `json:"send_date"`
 }
 
-func (t *ApproveSuggestedPost) Type() string {
+func (t ApproveSuggestedPost) Type() string {
 	return "approveSuggestedPost"
 }
 
-func (t *ApproveSuggestedPost) MarshalJSON() ([]byte, error) {
+func (t ApproveSuggestedPost) MarshalJSON() ([]byte, error) {
 	type Alias ApproveSuggestedPost
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "approveSuggestedPost",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -1042,18 +1042,18 @@ type AssignStoreTransaction struct {
 	Transaction StoreTransaction `json:"transaction"`
 }
 
-func (t *AssignStoreTransaction) Type() string {
+func (t AssignStoreTransaction) Type() string {
 	return "assignStoreTransaction"
 }
 
-func (t *AssignStoreTransaction) MarshalJSON() ([]byte, error) {
+func (t AssignStoreTransaction) MarshalJSON() ([]byte, error) {
 	type Alias AssignStoreTransaction
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "assignStoreTransaction",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -1069,18 +1069,18 @@ type BanChatMember struct {
 	RevokeMessages bool `json:"revoke_messages"`
 }
 
-func (t *BanChatMember) Type() string {
+func (t BanChatMember) Type() string {
 	return "banChatMember"
 }
 
-func (t *BanChatMember) MarshalJSON() ([]byte, error) {
+func (t BanChatMember) MarshalJSON() ([]byte, error) {
 	type Alias BanChatMember
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "banChatMember",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -1092,18 +1092,18 @@ type BanGroupCallParticipants struct {
 	UserIds Int64Slice `json:"user_ids"`
 }
 
-func (t *BanGroupCallParticipants) Type() string {
+func (t BanGroupCallParticipants) Type() string {
 	return "banGroupCallParticipants"
 }
 
-func (t *BanGroupCallParticipants) MarshalJSON() ([]byte, error) {
+func (t BanGroupCallParticipants) MarshalJSON() ([]byte, error) {
 	type Alias BanGroupCallParticipants
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "banGroupCallParticipants",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -1119,18 +1119,18 @@ type BlockMessageSenderFromReplies struct {
 	ReportSpam bool `json:"report_spam"`
 }
 
-func (t *BlockMessageSenderFromReplies) Type() string {
+func (t BlockMessageSenderFromReplies) Type() string {
 	return "blockMessageSenderFromReplies"
 }
 
-func (t *BlockMessageSenderFromReplies) MarshalJSON() ([]byte, error) {
+func (t BlockMessageSenderFromReplies) MarshalJSON() ([]byte, error) {
 	type Alias BlockMessageSenderFromReplies
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "blockMessageSenderFromReplies",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -1142,18 +1142,18 @@ type BoostChat struct {
 	SlotIds []int32 `json:"slot_ids"`
 }
 
-func (t *BoostChat) Type() string {
+func (t BoostChat) Type() string {
 	return "boostChat"
 }
 
-func (t *BoostChat) MarshalJSON() ([]byte, error) {
+func (t BoostChat) MarshalJSON() ([]byte, error) {
 	type Alias BoostChat
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "boostChat",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -1167,18 +1167,18 @@ type BuyGiftUpgrade struct {
 	StarCount int64 `json:"star_count"`
 }
 
-func (t *BuyGiftUpgrade) Type() string {
+func (t BuyGiftUpgrade) Type() string {
 	return "buyGiftUpgrade"
 }
 
-func (t *BuyGiftUpgrade) MarshalJSON() ([]byte, error) {
+func (t BuyGiftUpgrade) MarshalJSON() ([]byte, error) {
 	type Alias BuyGiftUpgrade
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "buyGiftUpgrade",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -1188,18 +1188,18 @@ type CanBotSendMessages struct {
 	BotUserId int64 `json:"bot_user_id"`
 }
 
-func (t *CanBotSendMessages) Type() string {
+func (t CanBotSendMessages) Type() string {
 	return "canBotSendMessages"
 }
 
-func (t *CanBotSendMessages) MarshalJSON() ([]byte, error) {
+func (t CanBotSendMessages) MarshalJSON() ([]byte, error) {
 	type Alias CanBotSendMessages
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "canBotSendMessages",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -1211,18 +1211,18 @@ type CancelDownloadFile struct {
 	OnlyIfPending bool `json:"only_if_pending"`
 }
 
-func (t *CancelDownloadFile) Type() string {
+func (t CancelDownloadFile) Type() string {
 	return "cancelDownloadFile"
 }
 
-func (t *CancelDownloadFile) MarshalJSON() ([]byte, error) {
+func (t CancelDownloadFile) MarshalJSON() ([]byte, error) {
 	type Alias CancelDownloadFile
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "cancelDownloadFile",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -1230,18 +1230,18 @@ func (t *CancelDownloadFile) MarshalJSON() ([]byte, error) {
 type CancelPasswordReset struct {
 }
 
-func (t *CancelPasswordReset) Type() string {
+func (t CancelPasswordReset) Type() string {
 	return "cancelPasswordReset"
 }
 
-func (t *CancelPasswordReset) MarshalJSON() ([]byte, error) {
+func (t CancelPasswordReset) MarshalJSON() ([]byte, error) {
 	type Alias CancelPasswordReset
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "cancelPasswordReset",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -1251,18 +1251,18 @@ type CancelPreliminaryUploadFile struct {
 	FileId int32 `json:"file_id"`
 }
 
-func (t *CancelPreliminaryUploadFile) Type() string {
+func (t CancelPreliminaryUploadFile) Type() string {
 	return "cancelPreliminaryUploadFile"
 }
 
-func (t *CancelPreliminaryUploadFile) MarshalJSON() ([]byte, error) {
+func (t CancelPreliminaryUploadFile) MarshalJSON() ([]byte, error) {
 	type Alias CancelPreliminaryUploadFile
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "cancelPreliminaryUploadFile",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -1270,18 +1270,18 @@ func (t *CancelPreliminaryUploadFile) MarshalJSON() ([]byte, error) {
 type CancelRecoveryEmailAddressVerification struct {
 }
 
-func (t *CancelRecoveryEmailAddressVerification) Type() string {
+func (t CancelRecoveryEmailAddressVerification) Type() string {
 	return "cancelRecoveryEmailAddressVerification"
 }
 
-func (t *CancelRecoveryEmailAddressVerification) MarshalJSON() ([]byte, error) {
+func (t CancelRecoveryEmailAddressVerification) MarshalJSON() ([]byte, error) {
 	type Alias CancelRecoveryEmailAddressVerification
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "cancelRecoveryEmailAddressVerification",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -1291,18 +1291,18 @@ type CanPostStory struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t *CanPostStory) Type() string {
+func (t CanPostStory) Type() string {
 	return "canPostStory"
 }
 
-func (t *CanPostStory) MarshalJSON() ([]byte, error) {
+func (t CanPostStory) MarshalJSON() ([]byte, error) {
 	type Alias CanPostStory
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "canPostStory",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -1312,18 +1312,18 @@ type CanPurchaseFromStore struct {
 	Purpose StorePaymentPurpose `json:"purpose"`
 }
 
-func (t *CanPurchaseFromStore) Type() string {
+func (t CanPurchaseFromStore) Type() string {
 	return "canPurchaseFromStore"
 }
 
-func (t *CanPurchaseFromStore) MarshalJSON() ([]byte, error) {
+func (t CanPurchaseFromStore) MarshalJSON() ([]byte, error) {
 	type Alias CanPurchaseFromStore
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "canPurchaseFromStore",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -1333,18 +1333,18 @@ type CanSendGift struct {
 	GiftId int64 `json:"gift_id,string"`
 }
 
-func (t *CanSendGift) Type() string {
+func (t CanSendGift) Type() string {
 	return "canSendGift"
 }
 
-func (t *CanSendGift) MarshalJSON() ([]byte, error) {
+func (t CanSendGift) MarshalJSON() ([]byte, error) {
 	type Alias CanSendGift
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "canSendGift",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -1356,18 +1356,18 @@ type CanSendMessageToUser struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t *CanSendMessageToUser) Type() string {
+func (t CanSendMessageToUser) Type() string {
 	return "canSendMessageToUser"
 }
 
-func (t *CanSendMessageToUser) MarshalJSON() ([]byte, error) {
+func (t CanSendMessageToUser) MarshalJSON() ([]byte, error) {
 	type Alias CanSendMessageToUser
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "canSendMessageToUser",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -1375,18 +1375,18 @@ func (t *CanSendMessageToUser) MarshalJSON() ([]byte, error) {
 type CanTransferOwnership struct {
 }
 
-func (t *CanTransferOwnership) Type() string {
+func (t CanTransferOwnership) Type() string {
 	return "canTransferOwnership"
 }
 
-func (t *CanTransferOwnership) MarshalJSON() ([]byte, error) {
+func (t CanTransferOwnership) MarshalJSON() ([]byte, error) {
 	type Alias CanTransferOwnership
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "canTransferOwnership",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -1396,18 +1396,18 @@ type ChangeImportedContacts struct {
 	Contacts []ImportedContact `json:"contacts"`
 }
 
-func (t *ChangeImportedContacts) Type() string {
+func (t ChangeImportedContacts) Type() string {
 	return "changeImportedContacts"
 }
 
-func (t *ChangeImportedContacts) MarshalJSON() ([]byte, error) {
+func (t ChangeImportedContacts) MarshalJSON() ([]byte, error) {
 	type Alias ChangeImportedContacts
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "changeImportedContacts",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -1421,18 +1421,18 @@ type ChangeStickerSet struct {
 	SetId int64 `json:"set_id,string"`
 }
 
-func (t *ChangeStickerSet) Type() string {
+func (t ChangeStickerSet) Type() string {
 	return "changeStickerSet"
 }
 
-func (t *ChangeStickerSet) MarshalJSON() ([]byte, error) {
+func (t ChangeStickerSet) MarshalJSON() ([]byte, error) {
 	type Alias ChangeStickerSet
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "changeStickerSet",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -1442,18 +1442,18 @@ type CheckAuthenticationBotToken struct {
 	Token string `json:"token"`
 }
 
-func (t *CheckAuthenticationBotToken) Type() string {
+func (t CheckAuthenticationBotToken) Type() string {
 	return "checkAuthenticationBotToken"
 }
 
-func (t *CheckAuthenticationBotToken) MarshalJSON() ([]byte, error) {
+func (t CheckAuthenticationBotToken) MarshalJSON() ([]byte, error) {
 	type Alias CheckAuthenticationBotToken
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "checkAuthenticationBotToken",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -1463,18 +1463,18 @@ type CheckAuthenticationCode struct {
 	Code string `json:"code"`
 }
 
-func (t *CheckAuthenticationCode) Type() string {
+func (t CheckAuthenticationCode) Type() string {
 	return "checkAuthenticationCode"
 }
 
-func (t *CheckAuthenticationCode) MarshalJSON() ([]byte, error) {
+func (t CheckAuthenticationCode) MarshalJSON() ([]byte, error) {
 	type Alias CheckAuthenticationCode
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "checkAuthenticationCode",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -1484,18 +1484,18 @@ type CheckAuthenticationEmailCode struct {
 	Code EmailAddressAuthentication `json:"code"`
 }
 
-func (t *CheckAuthenticationEmailCode) Type() string {
+func (t CheckAuthenticationEmailCode) Type() string {
 	return "checkAuthenticationEmailCode"
 }
 
-func (t *CheckAuthenticationEmailCode) MarshalJSON() ([]byte, error) {
+func (t CheckAuthenticationEmailCode) MarshalJSON() ([]byte, error) {
 	type Alias CheckAuthenticationEmailCode
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "checkAuthenticationEmailCode",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -1513,18 +1513,18 @@ type CheckAuthenticationPasskey struct {
 	UserHandle []byte `json:"user_handle"`
 }
 
-func (t *CheckAuthenticationPasskey) Type() string {
+func (t CheckAuthenticationPasskey) Type() string {
 	return "checkAuthenticationPasskey"
 }
 
-func (t *CheckAuthenticationPasskey) MarshalJSON() ([]byte, error) {
+func (t CheckAuthenticationPasskey) MarshalJSON() ([]byte, error) {
 	type Alias CheckAuthenticationPasskey
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "checkAuthenticationPasskey",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -1534,18 +1534,18 @@ type CheckAuthenticationPassword struct {
 	Password string `json:"password"`
 }
 
-func (t *CheckAuthenticationPassword) Type() string {
+func (t CheckAuthenticationPassword) Type() string {
 	return "checkAuthenticationPassword"
 }
 
-func (t *CheckAuthenticationPassword) MarshalJSON() ([]byte, error) {
+func (t CheckAuthenticationPassword) MarshalJSON() ([]byte, error) {
 	type Alias CheckAuthenticationPassword
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "checkAuthenticationPassword",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -1555,18 +1555,18 @@ type CheckAuthenticationPasswordRecoveryCode struct {
 	RecoveryCode string `json:"recovery_code"`
 }
 
-func (t *CheckAuthenticationPasswordRecoveryCode) Type() string {
+func (t CheckAuthenticationPasswordRecoveryCode) Type() string {
 	return "checkAuthenticationPasswordRecoveryCode"
 }
 
-func (t *CheckAuthenticationPasswordRecoveryCode) MarshalJSON() ([]byte, error) {
+func (t CheckAuthenticationPasswordRecoveryCode) MarshalJSON() ([]byte, error) {
 	type Alias CheckAuthenticationPasswordRecoveryCode
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "checkAuthenticationPasswordRecoveryCode",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -1578,18 +1578,18 @@ type CheckAuthenticationPremiumPurchase struct {
 	Currency string `json:"currency"`
 }
 
-func (t *CheckAuthenticationPremiumPurchase) Type() string {
+func (t CheckAuthenticationPremiumPurchase) Type() string {
 	return "checkAuthenticationPremiumPurchase"
 }
 
-func (t *CheckAuthenticationPremiumPurchase) MarshalJSON() ([]byte, error) {
+func (t CheckAuthenticationPremiumPurchase) MarshalJSON() ([]byte, error) {
 	type Alias CheckAuthenticationPremiumPurchase
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "checkAuthenticationPremiumPurchase",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -1599,18 +1599,18 @@ type CheckChatFolderInviteLink struct {
 	InviteLink string `json:"invite_link"`
 }
 
-func (t *CheckChatFolderInviteLink) Type() string {
+func (t CheckChatFolderInviteLink) Type() string {
 	return "checkChatFolderInviteLink"
 }
 
-func (t *CheckChatFolderInviteLink) MarshalJSON() ([]byte, error) {
+func (t CheckChatFolderInviteLink) MarshalJSON() ([]byte, error) {
 	type Alias CheckChatFolderInviteLink
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "checkChatFolderInviteLink",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -1620,18 +1620,18 @@ type CheckChatInviteLink struct {
 	InviteLink string `json:"invite_link"`
 }
 
-func (t *CheckChatInviteLink) Type() string {
+func (t CheckChatInviteLink) Type() string {
 	return "checkChatInviteLink"
 }
 
-func (t *CheckChatInviteLink) MarshalJSON() ([]byte, error) {
+func (t CheckChatInviteLink) MarshalJSON() ([]byte, error) {
 	type Alias CheckChatInviteLink
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "checkChatInviteLink",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -1643,18 +1643,18 @@ type CheckChatUsername struct {
 	Username string `json:"username"`
 }
 
-func (t *CheckChatUsername) Type() string {
+func (t CheckChatUsername) Type() string {
 	return "checkChatUsername"
 }
 
-func (t *CheckChatUsername) MarshalJSON() ([]byte, error) {
+func (t CheckChatUsername) MarshalJSON() ([]byte, error) {
 	type Alias CheckChatUsername
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "checkChatUsername",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -1664,18 +1664,18 @@ type CheckCreatedPublicChatsLimit struct {
 	TypeField PublicChatType `json:"type"`
 }
 
-func (t *CheckCreatedPublicChatsLimit) Type() string {
+func (t CheckCreatedPublicChatsLimit) Type() string {
 	return "checkCreatedPublicChatsLimit"
 }
 
-func (t *CheckCreatedPublicChatsLimit) MarshalJSON() ([]byte, error) {
+func (t CheckCreatedPublicChatsLimit) MarshalJSON() ([]byte, error) {
 	type Alias CheckCreatedPublicChatsLimit
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "checkCreatedPublicChatsLimit",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -1685,18 +1685,18 @@ type CheckEmailAddressVerificationCode struct {
 	Code string `json:"code"`
 }
 
-func (t *CheckEmailAddressVerificationCode) Type() string {
+func (t CheckEmailAddressVerificationCode) Type() string {
 	return "checkEmailAddressVerificationCode"
 }
 
-func (t *CheckEmailAddressVerificationCode) MarshalJSON() ([]byte, error) {
+func (t CheckEmailAddressVerificationCode) MarshalJSON() ([]byte, error) {
 	type Alias CheckEmailAddressVerificationCode
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "checkEmailAddressVerificationCode",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -1706,18 +1706,18 @@ type CheckLoginEmailAddressCode struct {
 	Code EmailAddressAuthentication `json:"code"`
 }
 
-func (t *CheckLoginEmailAddressCode) Type() string {
+func (t CheckLoginEmailAddressCode) Type() string {
 	return "checkLoginEmailAddressCode"
 }
 
-func (t *CheckLoginEmailAddressCode) MarshalJSON() ([]byte, error) {
+func (t CheckLoginEmailAddressCode) MarshalJSON() ([]byte, error) {
 	type Alias CheckLoginEmailAddressCode
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "checkLoginEmailAddressCode",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -1727,18 +1727,18 @@ type CheckPasswordRecoveryCode struct {
 	RecoveryCode string `json:"recovery_code"`
 }
 
-func (t *CheckPasswordRecoveryCode) Type() string {
+func (t CheckPasswordRecoveryCode) Type() string {
 	return "checkPasswordRecoveryCode"
 }
 
-func (t *CheckPasswordRecoveryCode) MarshalJSON() ([]byte, error) {
+func (t CheckPasswordRecoveryCode) MarshalJSON() ([]byte, error) {
 	type Alias CheckPasswordRecoveryCode
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "checkPasswordRecoveryCode",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -1748,18 +1748,18 @@ type CheckPhoneNumberCode struct {
 	Code string `json:"code"`
 }
 
-func (t *CheckPhoneNumberCode) Type() string {
+func (t CheckPhoneNumberCode) Type() string {
 	return "checkPhoneNumberCode"
 }
 
-func (t *CheckPhoneNumberCode) MarshalJSON() ([]byte, error) {
+func (t CheckPhoneNumberCode) MarshalJSON() ([]byte, error) {
 	type Alias CheckPhoneNumberCode
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "checkPhoneNumberCode",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -1769,18 +1769,18 @@ type CheckPremiumGiftCode struct {
 	Code string `json:"code"`
 }
 
-func (t *CheckPremiumGiftCode) Type() string {
+func (t CheckPremiumGiftCode) Type() string {
 	return "checkPremiumGiftCode"
 }
 
-func (t *CheckPremiumGiftCode) MarshalJSON() ([]byte, error) {
+func (t CheckPremiumGiftCode) MarshalJSON() ([]byte, error) {
 	type Alias CheckPremiumGiftCode
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "checkPremiumGiftCode",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -1790,18 +1790,18 @@ type CheckQuickReplyShortcutName struct {
 	Name string `json:"name"`
 }
 
-func (t *CheckQuickReplyShortcutName) Type() string {
+func (t CheckQuickReplyShortcutName) Type() string {
 	return "checkQuickReplyShortcutName"
 }
 
-func (t *CheckQuickReplyShortcutName) MarshalJSON() ([]byte, error) {
+func (t CheckQuickReplyShortcutName) MarshalJSON() ([]byte, error) {
 	type Alias CheckQuickReplyShortcutName
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "checkQuickReplyShortcutName",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -1811,18 +1811,18 @@ type CheckRecoveryEmailAddressCode struct {
 	Code string `json:"code"`
 }
 
-func (t *CheckRecoveryEmailAddressCode) Type() string {
+func (t CheckRecoveryEmailAddressCode) Type() string {
 	return "checkRecoveryEmailAddressCode"
 }
 
-func (t *CheckRecoveryEmailAddressCode) MarshalJSON() ([]byte, error) {
+func (t CheckRecoveryEmailAddressCode) MarshalJSON() ([]byte, error) {
 	type Alias CheckRecoveryEmailAddressCode
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "checkRecoveryEmailAddressCode",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -1832,18 +1832,18 @@ type CheckStickerSetName struct {
 	Name string `json:"name"`
 }
 
-func (t *CheckStickerSetName) Type() string {
+func (t CheckStickerSetName) Type() string {
 	return "checkStickerSetName"
 }
 
-func (t *CheckStickerSetName) MarshalJSON() ([]byte, error) {
+func (t CheckStickerSetName) MarshalJSON() ([]byte, error) {
 	type Alias CheckStickerSetName
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "checkStickerSetName",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -1857,18 +1857,18 @@ type CheckWebAppFileDownload struct {
 	Url string `json:"url"`
 }
 
-func (t *CheckWebAppFileDownload) Type() string {
+func (t CheckWebAppFileDownload) Type() string {
 	return "checkWebAppFileDownload"
 }
 
-func (t *CheckWebAppFileDownload) MarshalJSON() ([]byte, error) {
+func (t CheckWebAppFileDownload) MarshalJSON() ([]byte, error) {
 	type Alias CheckWebAppFileDownload
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "checkWebAppFileDownload",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -1878,18 +1878,18 @@ type CleanFileName struct {
 	FileName string `json:"file_name"`
 }
 
-func (t *CleanFileName) Type() string {
+func (t CleanFileName) Type() string {
 	return "cleanFileName"
 }
 
-func (t *CleanFileName) MarshalJSON() ([]byte, error) {
+func (t CleanFileName) MarshalJSON() ([]byte, error) {
 	type Alias CleanFileName
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "cleanFileName",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -1899,18 +1899,18 @@ type ClearAllDraftMessages struct {
 	ExcludeSecretChats bool `json:"exclude_secret_chats"`
 }
 
-func (t *ClearAllDraftMessages) Type() string {
+func (t ClearAllDraftMessages) Type() string {
 	return "clearAllDraftMessages"
 }
 
-func (t *ClearAllDraftMessages) MarshalJSON() ([]byte, error) {
+func (t ClearAllDraftMessages) MarshalJSON() ([]byte, error) {
 	type Alias ClearAllDraftMessages
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "clearAllDraftMessages",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -1918,18 +1918,18 @@ func (t *ClearAllDraftMessages) MarshalJSON() ([]byte, error) {
 type ClearAutosaveSettingsExceptions struct {
 }
 
-func (t *ClearAutosaveSettingsExceptions) Type() string {
+func (t ClearAutosaveSettingsExceptions) Type() string {
 	return "clearAutosaveSettingsExceptions"
 }
 
-func (t *ClearAutosaveSettingsExceptions) MarshalJSON() ([]byte, error) {
+func (t ClearAutosaveSettingsExceptions) MarshalJSON() ([]byte, error) {
 	type Alias ClearAutosaveSettingsExceptions
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "clearAutosaveSettingsExceptions",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -1937,18 +1937,18 @@ func (t *ClearAutosaveSettingsExceptions) MarshalJSON() ([]byte, error) {
 type ClearImportedContacts struct {
 }
 
-func (t *ClearImportedContacts) Type() string {
+func (t ClearImportedContacts) Type() string {
 	return "clearImportedContacts"
 }
 
-func (t *ClearImportedContacts) MarshalJSON() ([]byte, error) {
+func (t ClearImportedContacts) MarshalJSON() ([]byte, error) {
 	type Alias ClearImportedContacts
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "clearImportedContacts",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -1956,18 +1956,18 @@ func (t *ClearImportedContacts) MarshalJSON() ([]byte, error) {
 type ClearRecentEmojiStatuses struct {
 }
 
-func (t *ClearRecentEmojiStatuses) Type() string {
+func (t ClearRecentEmojiStatuses) Type() string {
 	return "clearRecentEmojiStatuses"
 }
 
-func (t *ClearRecentEmojiStatuses) MarshalJSON() ([]byte, error) {
+func (t ClearRecentEmojiStatuses) MarshalJSON() ([]byte, error) {
 	type Alias ClearRecentEmojiStatuses
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "clearRecentEmojiStatuses",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -1975,18 +1975,18 @@ func (t *ClearRecentEmojiStatuses) MarshalJSON() ([]byte, error) {
 type ClearRecentlyFoundChats struct {
 }
 
-func (t *ClearRecentlyFoundChats) Type() string {
+func (t ClearRecentlyFoundChats) Type() string {
 	return "clearRecentlyFoundChats"
 }
 
-func (t *ClearRecentlyFoundChats) MarshalJSON() ([]byte, error) {
+func (t ClearRecentlyFoundChats) MarshalJSON() ([]byte, error) {
 	type Alias ClearRecentlyFoundChats
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "clearRecentlyFoundChats",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -1994,18 +1994,18 @@ func (t *ClearRecentlyFoundChats) MarshalJSON() ([]byte, error) {
 type ClearRecentReactions struct {
 }
 
-func (t *ClearRecentReactions) Type() string {
+func (t ClearRecentReactions) Type() string {
 	return "clearRecentReactions"
 }
 
-func (t *ClearRecentReactions) MarshalJSON() ([]byte, error) {
+func (t ClearRecentReactions) MarshalJSON() ([]byte, error) {
 	type Alias ClearRecentReactions
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "clearRecentReactions",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -2015,18 +2015,18 @@ type ClearRecentStickers struct {
 	IsAttached bool `json:"is_attached"`
 }
 
-func (t *ClearRecentStickers) Type() string {
+func (t ClearRecentStickers) Type() string {
 	return "clearRecentStickers"
 }
 
-func (t *ClearRecentStickers) MarshalJSON() ([]byte, error) {
+func (t ClearRecentStickers) MarshalJSON() ([]byte, error) {
 	type Alias ClearRecentStickers
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "clearRecentStickers",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -2036,18 +2036,18 @@ type ClearSearchedForTags struct {
 	ClearCashtags bool `json:"clear_cashtags"`
 }
 
-func (t *ClearSearchedForTags) Type() string {
+func (t ClearSearchedForTags) Type() string {
 	return "clearSearchedForTags"
 }
 
-func (t *ClearSearchedForTags) MarshalJSON() ([]byte, error) {
+func (t ClearSearchedForTags) MarshalJSON() ([]byte, error) {
 	type Alias ClearSearchedForTags
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "clearSearchedForTags",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -2059,18 +2059,18 @@ type ClickAnimatedEmojiMessage struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t *ClickAnimatedEmojiMessage) Type() string {
+func (t ClickAnimatedEmojiMessage) Type() string {
 	return "clickAnimatedEmojiMessage"
 }
 
-func (t *ClickAnimatedEmojiMessage) MarshalJSON() ([]byte, error) {
+func (t ClickAnimatedEmojiMessage) MarshalJSON() ([]byte, error) {
 	type Alias ClickAnimatedEmojiMessage
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "clickAnimatedEmojiMessage",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -2086,18 +2086,18 @@ type ClickChatSponsoredMessage struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t *ClickChatSponsoredMessage) Type() string {
+func (t ClickChatSponsoredMessage) Type() string {
 	return "clickChatSponsoredMessage"
 }
 
-func (t *ClickChatSponsoredMessage) MarshalJSON() ([]byte, error) {
+func (t ClickChatSponsoredMessage) MarshalJSON() ([]byte, error) {
 	type Alias ClickChatSponsoredMessage
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "clickChatSponsoredMessage",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -2105,18 +2105,18 @@ func (t *ClickChatSponsoredMessage) MarshalJSON() ([]byte, error) {
 type ClickPremiumSubscriptionButton struct {
 }
 
-func (t *ClickPremiumSubscriptionButton) Type() string {
+func (t ClickPremiumSubscriptionButton) Type() string {
 	return "clickPremiumSubscriptionButton"
 }
 
-func (t *ClickPremiumSubscriptionButton) MarshalJSON() ([]byte, error) {
+func (t ClickPremiumSubscriptionButton) MarshalJSON() ([]byte, error) {
 	type Alias ClickPremiumSubscriptionButton
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "clickPremiumSubscriptionButton",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -2126,18 +2126,18 @@ type ClickVideoMessageAdvertisement struct {
 	AdvertisementUniqueId int64 `json:"advertisement_unique_id"`
 }
 
-func (t *ClickVideoMessageAdvertisement) Type() string {
+func (t ClickVideoMessageAdvertisement) Type() string {
 	return "clickVideoMessageAdvertisement"
 }
 
-func (t *ClickVideoMessageAdvertisement) MarshalJSON() ([]byte, error) {
+func (t ClickVideoMessageAdvertisement) MarshalJSON() ([]byte, error) {
 	type Alias ClickVideoMessageAdvertisement
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "clickVideoMessageAdvertisement",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -2145,18 +2145,18 @@ func (t *ClickVideoMessageAdvertisement) MarshalJSON() ([]byte, error) {
 type Close struct {
 }
 
-func (t *Close) Type() string {
+func (t Close) Type() string {
 	return "close"
 }
 
-func (t *Close) MarshalJSON() ([]byte, error) {
+func (t Close) MarshalJSON() ([]byte, error) {
 	type Alias Close
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "close",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -2166,18 +2166,18 @@ type CloseChat struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t *CloseChat) Type() string {
+func (t CloseChat) Type() string {
 	return "closeChat"
 }
 
-func (t *CloseChat) MarshalJSON() ([]byte, error) {
+func (t CloseChat) MarshalJSON() ([]byte, error) {
 	type Alias CloseChat
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "closeChat",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -2187,18 +2187,18 @@ type CloseGiftAuction struct {
 	GiftId int64 `json:"gift_id,string"`
 }
 
-func (t *CloseGiftAuction) Type() string {
+func (t CloseGiftAuction) Type() string {
 	return "closeGiftAuction"
 }
 
-func (t *CloseGiftAuction) MarshalJSON() ([]byte, error) {
+func (t CloseGiftAuction) MarshalJSON() ([]byte, error) {
 	type Alias CloseGiftAuction
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "closeGiftAuction",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -2208,18 +2208,18 @@ type CloseSecretChat struct {
 	SecretChatId int32 `json:"secret_chat_id"`
 }
 
-func (t *CloseSecretChat) Type() string {
+func (t CloseSecretChat) Type() string {
 	return "closeSecretChat"
 }
 
-func (t *CloseSecretChat) MarshalJSON() ([]byte, error) {
+func (t CloseSecretChat) MarshalJSON() ([]byte, error) {
 	type Alias CloseSecretChat
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "closeSecretChat",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -2231,18 +2231,18 @@ type CloseStory struct {
 	StoryPosterChatId int64 `json:"story_poster_chat_id"`
 }
 
-func (t *CloseStory) Type() string {
+func (t CloseStory) Type() string {
 	return "closeStory"
 }
 
-func (t *CloseStory) MarshalJSON() ([]byte, error) {
+func (t CloseStory) MarshalJSON() ([]byte, error) {
 	type Alias CloseStory
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "closeStory",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -2252,18 +2252,18 @@ type CloseWebApp struct {
 	WebAppLaunchId int64 `json:"web_app_launch_id,string"`
 }
 
-func (t *CloseWebApp) Type() string {
+func (t CloseWebApp) Type() string {
 	return "closeWebApp"
 }
 
-func (t *CloseWebApp) MarshalJSON() ([]byte, error) {
+func (t CloseWebApp) MarshalJSON() ([]byte, error) {
 	type Alias CloseWebApp
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "closeWebApp",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -2273,18 +2273,18 @@ type CommitPendingLiveStoryReactions struct {
 	GroupCallId int32 `json:"group_call_id"`
 }
 
-func (t *CommitPendingLiveStoryReactions) Type() string {
+func (t CommitPendingLiveStoryReactions) Type() string {
 	return "commitPendingLiveStoryReactions"
 }
 
-func (t *CommitPendingLiveStoryReactions) MarshalJSON() ([]byte, error) {
+func (t CommitPendingLiveStoryReactions) MarshalJSON() ([]byte, error) {
 	type Alias CommitPendingLiveStoryReactions
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "commitPendingLiveStoryReactions",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -2296,18 +2296,18 @@ type CommitPendingPaidMessageReactions struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t *CommitPendingPaidMessageReactions) Type() string {
+func (t CommitPendingPaidMessageReactions) Type() string {
 	return "commitPendingPaidMessageReactions"
 }
 
-func (t *CommitPendingPaidMessageReactions) MarshalJSON() ([]byte, error) {
+func (t CommitPendingPaidMessageReactions) MarshalJSON() ([]byte, error) {
 	type Alias CommitPendingPaidMessageReactions
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "commitPendingPaidMessageReactions",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -2317,18 +2317,18 @@ type ConfirmQrCodeAuthentication struct {
 	Link string `json:"link"`
 }
 
-func (t *ConfirmQrCodeAuthentication) Type() string {
+func (t ConfirmQrCodeAuthentication) Type() string {
 	return "confirmQrCodeAuthentication"
 }
 
-func (t *ConfirmQrCodeAuthentication) MarshalJSON() ([]byte, error) {
+func (t ConfirmQrCodeAuthentication) MarshalJSON() ([]byte, error) {
 	type Alias ConfirmQrCodeAuthentication
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "confirmQrCodeAuthentication",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -2338,18 +2338,18 @@ type ConfirmSession struct {
 	SessionId int64 `json:"session_id,string"`
 }
 
-func (t *ConfirmSession) Type() string {
+func (t ConfirmSession) Type() string {
 	return "confirmSession"
 }
 
-func (t *ConfirmSession) MarshalJSON() ([]byte, error) {
+func (t ConfirmSession) MarshalJSON() ([]byte, error) {
 	type Alias ConfirmSession
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "confirmSession",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -2361,18 +2361,18 @@ type ConnectAffiliateProgram struct {
 	BotUserId int64 `json:"bot_user_id"`
 }
 
-func (t *ConnectAffiliateProgram) Type() string {
+func (t ConnectAffiliateProgram) Type() string {
 	return "connectAffiliateProgram"
 }
 
-func (t *ConnectAffiliateProgram) MarshalJSON() ([]byte, error) {
+func (t ConnectAffiliateProgram) MarshalJSON() ([]byte, error) {
 	type Alias ConnectAffiliateProgram
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "connectAffiliateProgram",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -2382,18 +2382,18 @@ type CraftGift struct {
 	ReceivedGiftIds []string `json:"received_gift_ids"`
 }
 
-func (t *CraftGift) Type() string {
+func (t CraftGift) Type() string {
 	return "craftGift"
 }
 
-func (t *CraftGift) MarshalJSON() ([]byte, error) {
+func (t CraftGift) MarshalJSON() ([]byte, error) {
 	type Alias CraftGift
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "craftGift",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -2405,18 +2405,18 @@ type CreateBasicGroupChat struct {
 	Force bool `json:"force"`
 }
 
-func (t *CreateBasicGroupChat) Type() string {
+func (t CreateBasicGroupChat) Type() string {
 	return "createBasicGroupChat"
 }
 
-func (t *CreateBasicGroupChat) MarshalJSON() ([]byte, error) {
+func (t CreateBasicGroupChat) MarshalJSON() ([]byte, error) {
 	type Alias CreateBasicGroupChat
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "createBasicGroupChat",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -2426,18 +2426,18 @@ type CreateBusinessChatLink struct {
 	LinkInfo *InputBusinessChatLink `json:"link_info"`
 }
 
-func (t *CreateBusinessChatLink) Type() string {
+func (t CreateBusinessChatLink) Type() string {
 	return "createBusinessChatLink"
 }
 
-func (t *CreateBusinessChatLink) MarshalJSON() ([]byte, error) {
+func (t CreateBusinessChatLink) MarshalJSON() ([]byte, error) {
 	type Alias CreateBusinessChatLink
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "createBusinessChatLink",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -2451,18 +2451,18 @@ type CreateCall struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t *CreateCall) Type() string {
+func (t CreateCall) Type() string {
 	return "createCall"
 }
 
-func (t *CreateCall) MarshalJSON() ([]byte, error) {
+func (t CreateCall) MarshalJSON() ([]byte, error) {
 	type Alias CreateCall
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "createCall",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -2472,18 +2472,18 @@ type CreateChatFolder struct {
 	Folder *ChatFolder `json:"folder"`
 }
 
-func (t *CreateChatFolder) Type() string {
+func (t CreateChatFolder) Type() string {
 	return "createChatFolder"
 }
 
-func (t *CreateChatFolder) MarshalJSON() ([]byte, error) {
+func (t CreateChatFolder) MarshalJSON() ([]byte, error) {
 	type Alias CreateChatFolder
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "createChatFolder",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -2497,18 +2497,18 @@ type CreateChatFolderInviteLink struct {
 	Name string `json:"name"`
 }
 
-func (t *CreateChatFolderInviteLink) Type() string {
+func (t CreateChatFolderInviteLink) Type() string {
 	return "createChatFolderInviteLink"
 }
 
-func (t *CreateChatFolderInviteLink) MarshalJSON() ([]byte, error) {
+func (t CreateChatFolderInviteLink) MarshalJSON() ([]byte, error) {
 	type Alias CreateChatFolderInviteLink
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "createChatFolderInviteLink",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -2526,18 +2526,18 @@ type CreateChatInviteLink struct {
 	Name string `json:"name"`
 }
 
-func (t *CreateChatInviteLink) Type() string {
+func (t CreateChatInviteLink) Type() string {
 	return "createChatInviteLink"
 }
 
-func (t *CreateChatInviteLink) MarshalJSON() ([]byte, error) {
+func (t CreateChatInviteLink) MarshalJSON() ([]byte, error) {
 	type Alias CreateChatInviteLink
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "createChatInviteLink",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -2551,18 +2551,18 @@ type CreateChatSubscriptionInviteLink struct {
 	SubscriptionPricing *StarSubscriptionPricing `json:"subscription_pricing"`
 }
 
-func (t *CreateChatSubscriptionInviteLink) Type() string {
+func (t CreateChatSubscriptionInviteLink) Type() string {
 	return "createChatSubscriptionInviteLink"
 }
 
-func (t *CreateChatSubscriptionInviteLink) MarshalJSON() ([]byte, error) {
+func (t CreateChatSubscriptionInviteLink) MarshalJSON() ([]byte, error) {
 	type Alias CreateChatSubscriptionInviteLink
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "createChatSubscriptionInviteLink",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -2578,18 +2578,18 @@ type CreateForumTopic struct {
 	Name string `json:"name"`
 }
 
-func (t *CreateForumTopic) Type() string {
+func (t CreateForumTopic) Type() string {
 	return "createForumTopic"
 }
 
-func (t *CreateForumTopic) MarshalJSON() ([]byte, error) {
+func (t CreateForumTopic) MarshalJSON() ([]byte, error) {
 	type Alias CreateForumTopic
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "createForumTopic",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -2603,18 +2603,18 @@ type CreateGiftCollection struct {
 	ReceivedGiftIds []string `json:"received_gift_ids"`
 }
 
-func (t *CreateGiftCollection) Type() string {
+func (t CreateGiftCollection) Type() string {
 	return "createGiftCollection"
 }
 
-func (t *CreateGiftCollection) MarshalJSON() ([]byte, error) {
+func (t CreateGiftCollection) MarshalJSON() ([]byte, error) {
 	type Alias CreateGiftCollection
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "createGiftCollection",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -2624,18 +2624,18 @@ type CreateGroupCall struct {
 	JoinParameters *GroupCallJoinParameters `json:"join_parameters"`
 }
 
-func (t *CreateGroupCall) Type() string {
+func (t CreateGroupCall) Type() string {
 	return "createGroupCall"
 }
 
-func (t *CreateGroupCall) MarshalJSON() ([]byte, error) {
+func (t CreateGroupCall) MarshalJSON() ([]byte, error) {
 	type Alias CreateGroupCall
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "createGroupCall",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -2647,18 +2647,18 @@ type CreateInvoiceLink struct {
 	Invoice InputMessageContent `json:"invoice"`
 }
 
-func (t *CreateInvoiceLink) Type() string {
+func (t CreateInvoiceLink) Type() string {
 	return "createInvoiceLink"
 }
 
-func (t *CreateInvoiceLink) MarshalJSON() ([]byte, error) {
+func (t CreateInvoiceLink) MarshalJSON() ([]byte, error) {
 	type Alias CreateInvoiceLink
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "createInvoiceLink",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -2672,18 +2672,18 @@ type CreateNewBasicGroupChat struct {
 	UserIds []int64 `json:"user_ids,omitempty"`
 }
 
-func (t *CreateNewBasicGroupChat) Type() string {
+func (t CreateNewBasicGroupChat) Type() string {
 	return "createNewBasicGroupChat"
 }
 
-func (t *CreateNewBasicGroupChat) MarshalJSON() ([]byte, error) {
+func (t CreateNewBasicGroupChat) MarshalJSON() ([]byte, error) {
 	type Alias CreateNewBasicGroupChat
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "createNewBasicGroupChat",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -2693,18 +2693,18 @@ type CreateNewSecretChat struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t *CreateNewSecretChat) Type() string {
+func (t CreateNewSecretChat) Type() string {
 	return "createNewSecretChat"
 }
 
-func (t *CreateNewSecretChat) MarshalJSON() ([]byte, error) {
+func (t CreateNewSecretChat) MarshalJSON() ([]byte, error) {
 	type Alias CreateNewSecretChat
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "createNewSecretChat",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -2726,18 +2726,18 @@ type CreateNewStickerSet struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t *CreateNewStickerSet) Type() string {
+func (t CreateNewStickerSet) Type() string {
 	return "createNewStickerSet"
 }
 
-func (t *CreateNewStickerSet) MarshalJSON() ([]byte, error) {
+func (t CreateNewStickerSet) MarshalJSON() ([]byte, error) {
 	type Alias CreateNewStickerSet
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "createNewStickerSet",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -2759,18 +2759,18 @@ type CreateNewSupergroupChat struct {
 	Title string `json:"title"`
 }
 
-func (t *CreateNewSupergroupChat) Type() string {
+func (t CreateNewSupergroupChat) Type() string {
 	return "createNewSupergroupChat"
 }
 
-func (t *CreateNewSupergroupChat) MarshalJSON() ([]byte, error) {
+func (t CreateNewSupergroupChat) MarshalJSON() ([]byte, error) {
 	type Alias CreateNewSupergroupChat
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "createNewSupergroupChat",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -2782,18 +2782,18 @@ type CreatePrivateChat struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t *CreatePrivateChat) Type() string {
+func (t CreatePrivateChat) Type() string {
 	return "createPrivateChat"
 }
 
-func (t *CreatePrivateChat) MarshalJSON() ([]byte, error) {
+func (t CreatePrivateChat) MarshalJSON() ([]byte, error) {
 	type Alias CreatePrivateChat
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "createPrivateChat",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -2803,18 +2803,18 @@ type CreateSecretChat struct {
 	SecretChatId int32 `json:"secret_chat_id"`
 }
 
-func (t *CreateSecretChat) Type() string {
+func (t CreateSecretChat) Type() string {
 	return "createSecretChat"
 }
 
-func (t *CreateSecretChat) MarshalJSON() ([]byte, error) {
+func (t CreateSecretChat) MarshalJSON() ([]byte, error) {
 	type Alias CreateSecretChat
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "createSecretChat",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -2828,18 +2828,18 @@ type CreateStoryAlbum struct {
 	StoryPosterChatId int64 `json:"story_poster_chat_id"`
 }
 
-func (t *CreateStoryAlbum) Type() string {
+func (t CreateStoryAlbum) Type() string {
 	return "createStoryAlbum"
 }
 
-func (t *CreateStoryAlbum) MarshalJSON() ([]byte, error) {
+func (t CreateStoryAlbum) MarshalJSON() ([]byte, error) {
 	type Alias CreateStoryAlbum
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "createStoryAlbum",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -2851,18 +2851,18 @@ type CreateSupergroupChat struct {
 	SupergroupId int64 `json:"supergroup_id"`
 }
 
-func (t *CreateSupergroupChat) Type() string {
+func (t CreateSupergroupChat) Type() string {
 	return "createSupergroupChat"
 }
 
-func (t *CreateSupergroupChat) MarshalJSON() ([]byte, error) {
+func (t CreateSupergroupChat) MarshalJSON() ([]byte, error) {
 	type Alias CreateSupergroupChat
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "createSupergroupChat",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -2874,18 +2874,18 @@ type CreateTemporaryPassword struct {
 	ValidFor int32 `json:"valid_for"`
 }
 
-func (t *CreateTemporaryPassword) Type() string {
+func (t CreateTemporaryPassword) Type() string {
 	return "createTemporaryPassword"
 }
 
-func (t *CreateTemporaryPassword) MarshalJSON() ([]byte, error) {
+func (t CreateTemporaryPassword) MarshalJSON() ([]byte, error) {
 	type Alias CreateTemporaryPassword
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "createTemporaryPassword",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -2901,18 +2901,18 @@ type CreateVideoChat struct {
 	Title string `json:"title"`
 }
 
-func (t *CreateVideoChat) Type() string {
+func (t CreateVideoChat) Type() string {
 	return "createVideoChat"
 }
 
-func (t *CreateVideoChat) MarshalJSON() ([]byte, error) {
+func (t CreateVideoChat) MarshalJSON() ([]byte, error) {
 	type Alias CreateVideoChat
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "createVideoChat",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -2924,18 +2924,18 @@ type DeclineGroupCallInvitation struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t *DeclineGroupCallInvitation) Type() string {
+func (t DeclineGroupCallInvitation) Type() string {
 	return "declineGroupCallInvitation"
 }
 
-func (t *DeclineGroupCallInvitation) MarshalJSON() ([]byte, error) {
+func (t DeclineGroupCallInvitation) MarshalJSON() ([]byte, error) {
 	type Alias DeclineGroupCallInvitation
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "declineGroupCallInvitation",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -2949,18 +2949,18 @@ type DeclineSuggestedPost struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t *DeclineSuggestedPost) Type() string {
+func (t DeclineSuggestedPost) Type() string {
 	return "declineSuggestedPost"
 }
 
-func (t *DeclineSuggestedPost) MarshalJSON() ([]byte, error) {
+func (t DeclineSuggestedPost) MarshalJSON() ([]byte, error) {
 	type Alias DeclineSuggestedPost
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "declineSuggestedPost",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -2976,18 +2976,18 @@ type DecryptGroupCallData struct {
 	ParticipantId MessageSender `json:"participant_id"`
 }
 
-func (t *DecryptGroupCallData) Type() string {
+func (t DecryptGroupCallData) Type() string {
 	return "decryptGroupCallData"
 }
 
-func (t *DecryptGroupCallData) MarshalJSON() ([]byte, error) {
+func (t DecryptGroupCallData) MarshalJSON() ([]byte, error) {
 	type Alias DecryptGroupCallData
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "decryptGroupCallData",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -2999,18 +2999,18 @@ type DeleteAccount struct {
 	Reason string `json:"reason"`
 }
 
-func (t *DeleteAccount) Type() string {
+func (t DeleteAccount) Type() string {
 	return "deleteAccount"
 }
 
-func (t *DeleteAccount) MarshalJSON() ([]byte, error) {
+func (t DeleteAccount) MarshalJSON() ([]byte, error) {
 	type Alias DeleteAccount
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "deleteAccount",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -3020,18 +3020,18 @@ type DeleteAllCallMessages struct {
 	Revoke bool `json:"revoke"`
 }
 
-func (t *DeleteAllCallMessages) Type() string {
+func (t DeleteAllCallMessages) Type() string {
 	return "deleteAllCallMessages"
 }
 
-func (t *DeleteAllCallMessages) MarshalJSON() ([]byte, error) {
+func (t DeleteAllCallMessages) MarshalJSON() ([]byte, error) {
 	type Alias DeleteAllCallMessages
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "deleteAllCallMessages",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -3043,18 +3043,18 @@ type DeleteAllRevokedChatInviteLinks struct {
 	CreatorUserId int64 `json:"creator_user_id"`
 }
 
-func (t *DeleteAllRevokedChatInviteLinks) Type() string {
+func (t DeleteAllRevokedChatInviteLinks) Type() string {
 	return "deleteAllRevokedChatInviteLinks"
 }
 
-func (t *DeleteAllRevokedChatInviteLinks) MarshalJSON() ([]byte, error) {
+func (t DeleteAllRevokedChatInviteLinks) MarshalJSON() ([]byte, error) {
 	type Alias DeleteAllRevokedChatInviteLinks
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "deleteAllRevokedChatInviteLinks",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -3068,18 +3068,18 @@ type DeleteBotMediaPreviews struct {
 	LanguageCode string `json:"language_code"`
 }
 
-func (t *DeleteBotMediaPreviews) Type() string {
+func (t DeleteBotMediaPreviews) Type() string {
 	return "deleteBotMediaPreviews"
 }
 
-func (t *DeleteBotMediaPreviews) MarshalJSON() ([]byte, error) {
+func (t DeleteBotMediaPreviews) MarshalJSON() ([]byte, error) {
 	type Alias DeleteBotMediaPreviews
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "deleteBotMediaPreviews",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -3089,18 +3089,18 @@ type DeleteBusinessChatLink struct {
 	Link string `json:"link"`
 }
 
-func (t *DeleteBusinessChatLink) Type() string {
+func (t DeleteBusinessChatLink) Type() string {
 	return "deleteBusinessChatLink"
 }
 
-func (t *DeleteBusinessChatLink) MarshalJSON() ([]byte, error) {
+func (t DeleteBusinessChatLink) MarshalJSON() ([]byte, error) {
 	type Alias DeleteBusinessChatLink
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "deleteBusinessChatLink",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -3110,18 +3110,18 @@ type DeleteBusinessConnectedBot struct {
 	BotUserId int64 `json:"bot_user_id"`
 }
 
-func (t *DeleteBusinessConnectedBot) Type() string {
+func (t DeleteBusinessConnectedBot) Type() string {
 	return "deleteBusinessConnectedBot"
 }
 
-func (t *DeleteBusinessConnectedBot) MarshalJSON() ([]byte, error) {
+func (t DeleteBusinessConnectedBot) MarshalJSON() ([]byte, error) {
 	type Alias DeleteBusinessConnectedBot
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "deleteBusinessConnectedBot",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -3133,18 +3133,18 @@ type DeleteBusinessMessages struct {
 	MessageIds []int64 `json:"message_ids"`
 }
 
-func (t *DeleteBusinessMessages) Type() string {
+func (t DeleteBusinessMessages) Type() string {
 	return "deleteBusinessMessages"
 }
 
-func (t *DeleteBusinessMessages) MarshalJSON() ([]byte, error) {
+func (t DeleteBusinessMessages) MarshalJSON() ([]byte, error) {
 	type Alias DeleteBusinessMessages
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "deleteBusinessMessages",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -3156,18 +3156,18 @@ type DeleteBusinessStory struct {
 	StoryId int32 `json:"story_id"`
 }
 
-func (t *DeleteBusinessStory) Type() string {
+func (t DeleteBusinessStory) Type() string {
 	return "deleteBusinessStory"
 }
 
-func (t *DeleteBusinessStory) MarshalJSON() ([]byte, error) {
+func (t DeleteBusinessStory) MarshalJSON() ([]byte, error) {
 	type Alias DeleteBusinessStory
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "deleteBusinessStory",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -3177,18 +3177,18 @@ type DeleteChat struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t *DeleteChat) Type() string {
+func (t DeleteChat) Type() string {
 	return "deleteChat"
 }
 
-func (t *DeleteChat) MarshalJSON() ([]byte, error) {
+func (t DeleteChat) MarshalJSON() ([]byte, error) {
 	type Alias DeleteChat
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "deleteChat",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -3200,18 +3200,18 @@ type DeleteChatBackground struct {
 	RestorePrevious bool `json:"restore_previous"`
 }
 
-func (t *DeleteChatBackground) Type() string {
+func (t DeleteChatBackground) Type() string {
 	return "deleteChatBackground"
 }
 
-func (t *DeleteChatBackground) MarshalJSON() ([]byte, error) {
+func (t DeleteChatBackground) MarshalJSON() ([]byte, error) {
 	type Alias DeleteChatBackground
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "deleteChatBackground",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -3223,18 +3223,18 @@ type DeleteChatFolder struct {
 	LeaveChatIds []int64 `json:"leave_chat_ids"`
 }
 
-func (t *DeleteChatFolder) Type() string {
+func (t DeleteChatFolder) Type() string {
 	return "deleteChatFolder"
 }
 
-func (t *DeleteChatFolder) MarshalJSON() ([]byte, error) {
+func (t DeleteChatFolder) MarshalJSON() ([]byte, error) {
 	type Alias DeleteChatFolder
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "deleteChatFolder",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -3246,18 +3246,18 @@ type DeleteChatFolderInviteLink struct {
 	InviteLink string `json:"invite_link"`
 }
 
-func (t *DeleteChatFolderInviteLink) Type() string {
+func (t DeleteChatFolderInviteLink) Type() string {
 	return "deleteChatFolderInviteLink"
 }
 
-func (t *DeleteChatFolderInviteLink) MarshalJSON() ([]byte, error) {
+func (t DeleteChatFolderInviteLink) MarshalJSON() ([]byte, error) {
 	type Alias DeleteChatFolderInviteLink
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "deleteChatFolderInviteLink",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -3271,18 +3271,18 @@ type DeleteChatHistory struct {
 	Revoke bool `json:"revoke"`
 }
 
-func (t *DeleteChatHistory) Type() string {
+func (t DeleteChatHistory) Type() string {
 	return "deleteChatHistory"
 }
 
-func (t *DeleteChatHistory) MarshalJSON() ([]byte, error) {
+func (t DeleteChatHistory) MarshalJSON() ([]byte, error) {
 	type Alias DeleteChatHistory
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "deleteChatHistory",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -3298,18 +3298,18 @@ type DeleteChatMessagesByDate struct {
 	Revoke bool `json:"revoke"`
 }
 
-func (t *DeleteChatMessagesByDate) Type() string {
+func (t DeleteChatMessagesByDate) Type() string {
 	return "deleteChatMessagesByDate"
 }
 
-func (t *DeleteChatMessagesByDate) MarshalJSON() ([]byte, error) {
+func (t DeleteChatMessagesByDate) MarshalJSON() ([]byte, error) {
 	type Alias DeleteChatMessagesByDate
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "deleteChatMessagesByDate",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -3321,18 +3321,18 @@ type DeleteChatMessagesBySender struct {
 	SenderId MessageSender `json:"sender_id"`
 }
 
-func (t *DeleteChatMessagesBySender) Type() string {
+func (t DeleteChatMessagesBySender) Type() string {
 	return "deleteChatMessagesBySender"
 }
 
-func (t *DeleteChatMessagesBySender) MarshalJSON() ([]byte, error) {
+func (t DeleteChatMessagesBySender) MarshalJSON() ([]byte, error) {
 	type Alias DeleteChatMessagesBySender
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "deleteChatMessagesBySender",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -3344,18 +3344,18 @@ type DeleteChatReplyMarkup struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t *DeleteChatReplyMarkup) Type() string {
+func (t DeleteChatReplyMarkup) Type() string {
 	return "deleteChatReplyMarkup"
 }
 
-func (t *DeleteChatReplyMarkup) MarshalJSON() ([]byte, error) {
+func (t DeleteChatReplyMarkup) MarshalJSON() ([]byte, error) {
 	type Alias DeleteChatReplyMarkup
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "deleteChatReplyMarkup",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -3367,18 +3367,18 @@ type DeleteCommands struct {
 	Scope BotCommandScope `json:"scope,omitempty"`
 }
 
-func (t *DeleteCommands) Type() string {
+func (t DeleteCommands) Type() string {
 	return "deleteCommands"
 }
 
-func (t *DeleteCommands) MarshalJSON() ([]byte, error) {
+func (t DeleteCommands) MarshalJSON() ([]byte, error) {
 	type Alias DeleteCommands
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "deleteCommands",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -3388,18 +3388,18 @@ type DeleteDefaultBackground struct {
 	ForDarkTheme bool `json:"for_dark_theme"`
 }
 
-func (t *DeleteDefaultBackground) Type() string {
+func (t DeleteDefaultBackground) Type() string {
 	return "deleteDefaultBackground"
 }
 
-func (t *DeleteDefaultBackground) MarshalJSON() ([]byte, error) {
+func (t DeleteDefaultBackground) MarshalJSON() ([]byte, error) {
 	type Alias DeleteDefaultBackground
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "deleteDefaultBackground",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -3411,18 +3411,18 @@ type DeleteDirectMessagesChatTopicHistory struct {
 	TopicId int64 `json:"topic_id"`
 }
 
-func (t *DeleteDirectMessagesChatTopicHistory) Type() string {
+func (t DeleteDirectMessagesChatTopicHistory) Type() string {
 	return "deleteDirectMessagesChatTopicHistory"
 }
 
-func (t *DeleteDirectMessagesChatTopicHistory) MarshalJSON() ([]byte, error) {
+func (t DeleteDirectMessagesChatTopicHistory) MarshalJSON() ([]byte, error) {
 	type Alias DeleteDirectMessagesChatTopicHistory
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "deleteDirectMessagesChatTopicHistory",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -3438,18 +3438,18 @@ type DeleteDirectMessagesChatTopicMessagesByDate struct {
 	TopicId int64 `json:"topic_id"`
 }
 
-func (t *DeleteDirectMessagesChatTopicMessagesByDate) Type() string {
+func (t DeleteDirectMessagesChatTopicMessagesByDate) Type() string {
 	return "deleteDirectMessagesChatTopicMessagesByDate"
 }
 
-func (t *DeleteDirectMessagesChatTopicMessagesByDate) MarshalJSON() ([]byte, error) {
+func (t DeleteDirectMessagesChatTopicMessagesByDate) MarshalJSON() ([]byte, error) {
 	type Alias DeleteDirectMessagesChatTopicMessagesByDate
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "deleteDirectMessagesChatTopicMessagesByDate",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -3459,18 +3459,18 @@ type DeleteFile struct {
 	FileId int32 `json:"file_id"`
 }
 
-func (t *DeleteFile) Type() string {
+func (t DeleteFile) Type() string {
 	return "deleteFile"
 }
 
-func (t *DeleteFile) MarshalJSON() ([]byte, error) {
+func (t DeleteFile) MarshalJSON() ([]byte, error) {
 	type Alias DeleteFile
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "deleteFile",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -3482,18 +3482,18 @@ type DeleteForumTopic struct {
 	ForumTopicId int32 `json:"forum_topic_id"`
 }
 
-func (t *DeleteForumTopic) Type() string {
+func (t DeleteForumTopic) Type() string {
 	return "deleteForumTopic"
 }
 
-func (t *DeleteForumTopic) MarshalJSON() ([]byte, error) {
+func (t DeleteForumTopic) MarshalJSON() ([]byte, error) {
 	type Alias DeleteForumTopic
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "deleteForumTopic",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -3505,18 +3505,18 @@ type DeleteGiftCollection struct {
 	OwnerId MessageSender `json:"owner_id"`
 }
 
-func (t *DeleteGiftCollection) Type() string {
+func (t DeleteGiftCollection) Type() string {
 	return "deleteGiftCollection"
 }
 
-func (t *DeleteGiftCollection) MarshalJSON() ([]byte, error) {
+func (t DeleteGiftCollection) MarshalJSON() ([]byte, error) {
 	type Alias DeleteGiftCollection
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "deleteGiftCollection",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -3530,18 +3530,18 @@ type DeleteGroupCallMessages struct {
 	ReportSpam bool `json:"report_spam"`
 }
 
-func (t *DeleteGroupCallMessages) Type() string {
+func (t DeleteGroupCallMessages) Type() string {
 	return "deleteGroupCallMessages"
 }
 
-func (t *DeleteGroupCallMessages) MarshalJSON() ([]byte, error) {
+func (t DeleteGroupCallMessages) MarshalJSON() ([]byte, error) {
 	type Alias DeleteGroupCallMessages
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "deleteGroupCallMessages",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -3555,18 +3555,18 @@ type DeleteGroupCallMessagesBySender struct {
 	SenderId MessageSender `json:"sender_id"`
 }
 
-func (t *DeleteGroupCallMessagesBySender) Type() string {
+func (t DeleteGroupCallMessagesBySender) Type() string {
 	return "deleteGroupCallMessagesBySender"
 }
 
-func (t *DeleteGroupCallMessagesBySender) MarshalJSON() ([]byte, error) {
+func (t DeleteGroupCallMessagesBySender) MarshalJSON() ([]byte, error) {
 	type Alias DeleteGroupCallMessagesBySender
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "deleteGroupCallMessagesBySender",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -3576,18 +3576,18 @@ type DeleteLanguagePack struct {
 	LanguagePackId string `json:"language_pack_id"`
 }
 
-func (t *DeleteLanguagePack) Type() string {
+func (t DeleteLanguagePack) Type() string {
 	return "deleteLanguagePack"
 }
 
-func (t *DeleteLanguagePack) MarshalJSON() ([]byte, error) {
+func (t DeleteLanguagePack) MarshalJSON() ([]byte, error) {
 	type Alias DeleteLanguagePack
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "deleteLanguagePack",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -3601,18 +3601,18 @@ type DeleteMessages struct {
 	Revoke bool `json:"revoke"`
 }
 
-func (t *DeleteMessages) Type() string {
+func (t DeleteMessages) Type() string {
 	return "deleteMessages"
 }
 
-func (t *DeleteMessages) MarshalJSON() ([]byte, error) {
+func (t DeleteMessages) MarshalJSON() ([]byte, error) {
 	type Alias DeleteMessages
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "deleteMessages",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -3622,18 +3622,18 @@ type DeletePassportElement struct {
 	TypeField PassportElementType `json:"type"`
 }
 
-func (t *DeletePassportElement) Type() string {
+func (t DeletePassportElement) Type() string {
 	return "deletePassportElement"
 }
 
-func (t *DeletePassportElement) MarshalJSON() ([]byte, error) {
+func (t DeletePassportElement) MarshalJSON() ([]byte, error) {
 	type Alias DeletePassportElement
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "deletePassportElement",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -3643,18 +3643,18 @@ type DeleteProfilePhoto struct {
 	ProfilePhotoId int64 `json:"profile_photo_id,string"`
 }
 
-func (t *DeleteProfilePhoto) Type() string {
+func (t DeleteProfilePhoto) Type() string {
 	return "deleteProfilePhoto"
 }
 
-func (t *DeleteProfilePhoto) MarshalJSON() ([]byte, error) {
+func (t DeleteProfilePhoto) MarshalJSON() ([]byte, error) {
 	type Alias DeleteProfilePhoto
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "deleteProfilePhoto",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -3664,18 +3664,18 @@ type DeleteQuickReplyShortcut struct {
 	ShortcutId int32 `json:"shortcut_id"`
 }
 
-func (t *DeleteQuickReplyShortcut) Type() string {
+func (t DeleteQuickReplyShortcut) Type() string {
 	return "deleteQuickReplyShortcut"
 }
 
-func (t *DeleteQuickReplyShortcut) MarshalJSON() ([]byte, error) {
+func (t DeleteQuickReplyShortcut) MarshalJSON() ([]byte, error) {
 	type Alias DeleteQuickReplyShortcut
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "deleteQuickReplyShortcut",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -3687,18 +3687,18 @@ type DeleteQuickReplyShortcutMessages struct {
 	ShortcutId int32 `json:"shortcut_id"`
 }
 
-func (t *DeleteQuickReplyShortcutMessages) Type() string {
+func (t DeleteQuickReplyShortcutMessages) Type() string {
 	return "deleteQuickReplyShortcutMessages"
 }
 
-func (t *DeleteQuickReplyShortcutMessages) MarshalJSON() ([]byte, error) {
+func (t DeleteQuickReplyShortcutMessages) MarshalJSON() ([]byte, error) {
 	type Alias DeleteQuickReplyShortcutMessages
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "deleteQuickReplyShortcutMessages",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -3710,18 +3710,18 @@ type DeleteRevokedChatInviteLink struct {
 	InviteLink string `json:"invite_link"`
 }
 
-func (t *DeleteRevokedChatInviteLink) Type() string {
+func (t DeleteRevokedChatInviteLink) Type() string {
 	return "deleteRevokedChatInviteLink"
 }
 
-func (t *DeleteRevokedChatInviteLink) MarshalJSON() ([]byte, error) {
+func (t DeleteRevokedChatInviteLink) MarshalJSON() ([]byte, error) {
 	type Alias DeleteRevokedChatInviteLink
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "deleteRevokedChatInviteLink",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -3729,18 +3729,18 @@ func (t *DeleteRevokedChatInviteLink) MarshalJSON() ([]byte, error) {
 type DeleteSavedCredentials struct {
 }
 
-func (t *DeleteSavedCredentials) Type() string {
+func (t DeleteSavedCredentials) Type() string {
 	return "deleteSavedCredentials"
 }
 
-func (t *DeleteSavedCredentials) MarshalJSON() ([]byte, error) {
+func (t DeleteSavedCredentials) MarshalJSON() ([]byte, error) {
 	type Alias DeleteSavedCredentials
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "deleteSavedCredentials",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -3750,18 +3750,18 @@ type DeleteSavedMessagesTopicHistory struct {
 	SavedMessagesTopicId int64 `json:"saved_messages_topic_id"`
 }
 
-func (t *DeleteSavedMessagesTopicHistory) Type() string {
+func (t DeleteSavedMessagesTopicHistory) Type() string {
 	return "deleteSavedMessagesTopicHistory"
 }
 
-func (t *DeleteSavedMessagesTopicHistory) MarshalJSON() ([]byte, error) {
+func (t DeleteSavedMessagesTopicHistory) MarshalJSON() ([]byte, error) {
 	type Alias DeleteSavedMessagesTopicHistory
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "deleteSavedMessagesTopicHistory",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -3775,18 +3775,18 @@ type DeleteSavedMessagesTopicMessagesByDate struct {
 	SavedMessagesTopicId int64 `json:"saved_messages_topic_id"`
 }
 
-func (t *DeleteSavedMessagesTopicMessagesByDate) Type() string {
+func (t DeleteSavedMessagesTopicMessagesByDate) Type() string {
 	return "deleteSavedMessagesTopicMessagesByDate"
 }
 
-func (t *DeleteSavedMessagesTopicMessagesByDate) MarshalJSON() ([]byte, error) {
+func (t DeleteSavedMessagesTopicMessagesByDate) MarshalJSON() ([]byte, error) {
 	type Alias DeleteSavedMessagesTopicMessagesByDate
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "deleteSavedMessagesTopicMessagesByDate",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -3794,18 +3794,18 @@ func (t *DeleteSavedMessagesTopicMessagesByDate) MarshalJSON() ([]byte, error) {
 type DeleteSavedOrderInfo struct {
 }
 
-func (t *DeleteSavedOrderInfo) Type() string {
+func (t DeleteSavedOrderInfo) Type() string {
 	return "deleteSavedOrderInfo"
 }
 
-func (t *DeleteSavedOrderInfo) MarshalJSON() ([]byte, error) {
+func (t DeleteSavedOrderInfo) MarshalJSON() ([]byte, error) {
 	type Alias DeleteSavedOrderInfo
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "deleteSavedOrderInfo",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -3815,18 +3815,18 @@ type DeleteStickerSet struct {
 	Name string `json:"name"`
 }
 
-func (t *DeleteStickerSet) Type() string {
+func (t DeleteStickerSet) Type() string {
 	return "deleteStickerSet"
 }
 
-func (t *DeleteStickerSet) MarshalJSON() ([]byte, error) {
+func (t DeleteStickerSet) MarshalJSON() ([]byte, error) {
 	type Alias DeleteStickerSet
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "deleteStickerSet",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -3838,18 +3838,18 @@ type DeleteStory struct {
 	StoryPosterChatId int64 `json:"story_poster_chat_id"`
 }
 
-func (t *DeleteStory) Type() string {
+func (t DeleteStory) Type() string {
 	return "deleteStory"
 }
 
-func (t *DeleteStory) MarshalJSON() ([]byte, error) {
+func (t DeleteStory) MarshalJSON() ([]byte, error) {
 	type Alias DeleteStory
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "deleteStory",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -3861,18 +3861,18 @@ type DeleteStoryAlbum struct {
 	StoryAlbumId int32 `json:"story_album_id"`
 }
 
-func (t *DeleteStoryAlbum) Type() string {
+func (t DeleteStoryAlbum) Type() string {
 	return "deleteStoryAlbum"
 }
 
-func (t *DeleteStoryAlbum) MarshalJSON() ([]byte, error) {
+func (t DeleteStoryAlbum) MarshalJSON() ([]byte, error) {
 	type Alias DeleteStoryAlbum
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "deleteStoryAlbum",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -3880,18 +3880,18 @@ func (t *DeleteStoryAlbum) MarshalJSON() ([]byte, error) {
 type Destroy struct {
 }
 
-func (t *Destroy) Type() string {
+func (t Destroy) Type() string {
 	return "destroy"
 }
 
-func (t *Destroy) MarshalJSON() ([]byte, error) {
+func (t Destroy) MarshalJSON() ([]byte, error) {
 	type Alias Destroy
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "destroy",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -3901,18 +3901,18 @@ type DisableAllSupergroupUsernames struct {
 	SupergroupId int64 `json:"supergroup_id"`
 }
 
-func (t *DisableAllSupergroupUsernames) Type() string {
+func (t DisableAllSupergroupUsernames) Type() string {
 	return "disableAllSupergroupUsernames"
 }
 
-func (t *DisableAllSupergroupUsernames) MarshalJSON() ([]byte, error) {
+func (t DisableAllSupergroupUsernames) MarshalJSON() ([]byte, error) {
 	type Alias DisableAllSupergroupUsernames
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "disableAllSupergroupUsernames",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -3920,18 +3920,18 @@ func (t *DisableAllSupergroupUsernames) MarshalJSON() ([]byte, error) {
 type DisableProxy struct {
 }
 
-func (t *DisableProxy) Type() string {
+func (t DisableProxy) Type() string {
 	return "disableProxy"
 }
 
-func (t *DisableProxy) MarshalJSON() ([]byte, error) {
+func (t DisableProxy) MarshalJSON() ([]byte, error) {
 	type Alias DisableProxy
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "disableProxy",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -3951,18 +3951,18 @@ type DiscardCall struct {
 	IsVideo bool `json:"is_video"`
 }
 
-func (t *DiscardCall) Type() string {
+func (t DiscardCall) Type() string {
 	return "discardCall"
 }
 
-func (t *DiscardCall) MarshalJSON() ([]byte, error) {
+func (t DiscardCall) MarshalJSON() ([]byte, error) {
 	type Alias DiscardCall
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "discardCall",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -3974,18 +3974,18 @@ type DisconnectAffiliateProgram struct {
 	Url string `json:"url"`
 }
 
-func (t *DisconnectAffiliateProgram) Type() string {
+func (t DisconnectAffiliateProgram) Type() string {
 	return "disconnectAffiliateProgram"
 }
 
-func (t *DisconnectAffiliateProgram) MarshalJSON() ([]byte, error) {
+func (t DisconnectAffiliateProgram) MarshalJSON() ([]byte, error) {
 	type Alias DisconnectAffiliateProgram
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "disconnectAffiliateProgram",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -3993,18 +3993,18 @@ func (t *DisconnectAffiliateProgram) MarshalJSON() ([]byte, error) {
 type DisconnectAllWebsites struct {
 }
 
-func (t *DisconnectAllWebsites) Type() string {
+func (t DisconnectAllWebsites) Type() string {
 	return "disconnectAllWebsites"
 }
 
-func (t *DisconnectAllWebsites) MarshalJSON() ([]byte, error) {
+func (t DisconnectAllWebsites) MarshalJSON() ([]byte, error) {
 	type Alias DisconnectAllWebsites
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "disconnectAllWebsites",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -4014,18 +4014,18 @@ type DisconnectWebsite struct {
 	WebsiteId int64 `json:"website_id,string"`
 }
 
-func (t *DisconnectWebsite) Type() string {
+func (t DisconnectWebsite) Type() string {
 	return "disconnectWebsite"
 }
 
-func (t *DisconnectWebsite) MarshalJSON() ([]byte, error) {
+func (t DisconnectWebsite) MarshalJSON() ([]byte, error) {
 	type Alias DisconnectWebsite
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "disconnectWebsite",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -4043,18 +4043,18 @@ type DownloadFile struct {
 	Synchronous bool `json:"synchronous"`
 }
 
-func (t *DownloadFile) Type() string {
+func (t DownloadFile) Type() string {
 	return "downloadFile"
 }
 
-func (t *DownloadFile) MarshalJSON() ([]byte, error) {
+func (t DownloadFile) MarshalJSON() ([]byte, error) {
 	type Alias DownloadFile
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "downloadFile",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -4066,18 +4066,18 @@ type DropGiftOriginalDetails struct {
 	StarCount int64 `json:"star_count"`
 }
 
-func (t *DropGiftOriginalDetails) Type() string {
+func (t DropGiftOriginalDetails) Type() string {
 	return "dropGiftOriginalDetails"
 }
 
-func (t *DropGiftOriginalDetails) MarshalJSON() ([]byte, error) {
+func (t DropGiftOriginalDetails) MarshalJSON() ([]byte, error) {
 	type Alias DropGiftOriginalDetails
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "dropGiftOriginalDetails",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -4093,18 +4093,18 @@ type EditBotMediaPreview struct {
 	LanguageCode string `json:"language_code"`
 }
 
-func (t *EditBotMediaPreview) Type() string {
+func (t EditBotMediaPreview) Type() string {
 	return "editBotMediaPreview"
 }
 
-func (t *EditBotMediaPreview) MarshalJSON() ([]byte, error) {
+func (t EditBotMediaPreview) MarshalJSON() ([]byte, error) {
 	type Alias EditBotMediaPreview
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "editBotMediaPreview",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -4116,18 +4116,18 @@ type EditBusinessChatLink struct {
 	LinkInfo *InputBusinessChatLink `json:"link_info"`
 }
 
-func (t *EditBusinessChatLink) Type() string {
+func (t EditBusinessChatLink) Type() string {
 	return "editBusinessChatLink"
 }
 
-func (t *EditBusinessChatLink) MarshalJSON() ([]byte, error) {
+func (t EditBusinessChatLink) MarshalJSON() ([]byte, error) {
 	type Alias EditBusinessChatLink
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "editBusinessChatLink",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -4147,18 +4147,18 @@ type EditBusinessMessageCaption struct {
 	ShowCaptionAboveMedia bool `json:"show_caption_above_media"`
 }
 
-func (t *EditBusinessMessageCaption) Type() string {
+func (t EditBusinessMessageCaption) Type() string {
 	return "editBusinessMessageCaption"
 }
 
-func (t *EditBusinessMessageCaption) MarshalJSON() ([]byte, error) {
+func (t EditBusinessMessageCaption) MarshalJSON() ([]byte, error) {
 	type Alias EditBusinessMessageCaption
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "editBusinessMessageCaption",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -4176,18 +4176,18 @@ type EditBusinessMessageChecklist struct {
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
 }
 
-func (t *EditBusinessMessageChecklist) Type() string {
+func (t EditBusinessMessageChecklist) Type() string {
 	return "editBusinessMessageChecklist"
 }
 
-func (t *EditBusinessMessageChecklist) MarshalJSON() ([]byte, error) {
+func (t EditBusinessMessageChecklist) MarshalJSON() ([]byte, error) {
 	type Alias EditBusinessMessageChecklist
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "editBusinessMessageChecklist",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -4211,18 +4211,18 @@ type EditBusinessMessageLiveLocation struct {
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
 }
 
-func (t *EditBusinessMessageLiveLocation) Type() string {
+func (t EditBusinessMessageLiveLocation) Type() string {
 	return "editBusinessMessageLiveLocation"
 }
 
-func (t *EditBusinessMessageLiveLocation) MarshalJSON() ([]byte, error) {
+func (t EditBusinessMessageLiveLocation) MarshalJSON() ([]byte, error) {
 	type Alias EditBusinessMessageLiveLocation
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "editBusinessMessageLiveLocation",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -4240,18 +4240,18 @@ type EditBusinessMessageMedia struct {
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
 }
 
-func (t *EditBusinessMessageMedia) Type() string {
+func (t EditBusinessMessageMedia) Type() string {
 	return "editBusinessMessageMedia"
 }
 
-func (t *EditBusinessMessageMedia) MarshalJSON() ([]byte, error) {
+func (t EditBusinessMessageMedia) MarshalJSON() ([]byte, error) {
 	type Alias EditBusinessMessageMedia
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "editBusinessMessageMedia",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -4267,18 +4267,18 @@ type EditBusinessMessageReplyMarkup struct {
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
 }
 
-func (t *EditBusinessMessageReplyMarkup) Type() string {
+func (t EditBusinessMessageReplyMarkup) Type() string {
 	return "editBusinessMessageReplyMarkup"
 }
 
-func (t *EditBusinessMessageReplyMarkup) MarshalJSON() ([]byte, error) {
+func (t EditBusinessMessageReplyMarkup) MarshalJSON() ([]byte, error) {
 	type Alias EditBusinessMessageReplyMarkup
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "editBusinessMessageReplyMarkup",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -4296,18 +4296,18 @@ type EditBusinessMessageText struct {
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
 }
 
-func (t *EditBusinessMessageText) Type() string {
+func (t EditBusinessMessageText) Type() string {
 	return "editBusinessMessageText"
 }
 
-func (t *EditBusinessMessageText) MarshalJSON() ([]byte, error) {
+func (t EditBusinessMessageText) MarshalJSON() ([]byte, error) {
 	type Alias EditBusinessMessageText
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "editBusinessMessageText",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -4327,18 +4327,18 @@ type EditBusinessStory struct {
 	StoryPosterChatId int64 `json:"story_poster_chat_id"`
 }
 
-func (t *EditBusinessStory) Type() string {
+func (t EditBusinessStory) Type() string {
 	return "editBusinessStory"
 }
 
-func (t *EditBusinessStory) MarshalJSON() ([]byte, error) {
+func (t EditBusinessStory) MarshalJSON() ([]byte, error) {
 	type Alias EditBusinessStory
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "editBusinessStory",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -4350,18 +4350,18 @@ type EditChatFolder struct {
 	Folder *ChatFolder `json:"folder"`
 }
 
-func (t *EditChatFolder) Type() string {
+func (t EditChatFolder) Type() string {
 	return "editChatFolder"
 }
 
-func (t *EditChatFolder) MarshalJSON() ([]byte, error) {
+func (t EditChatFolder) MarshalJSON() ([]byte, error) {
 	type Alias EditChatFolder
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "editChatFolder",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -4377,18 +4377,18 @@ type EditChatFolderInviteLink struct {
 	Name string `json:"name"`
 }
 
-func (t *EditChatFolderInviteLink) Type() string {
+func (t EditChatFolderInviteLink) Type() string {
 	return "editChatFolderInviteLink"
 }
 
-func (t *EditChatFolderInviteLink) MarshalJSON() ([]byte, error) {
+func (t EditChatFolderInviteLink) MarshalJSON() ([]byte, error) {
 	type Alias EditChatFolderInviteLink
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "editChatFolderInviteLink",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -4408,18 +4408,18 @@ type EditChatInviteLink struct {
 	Name string `json:"name"`
 }
 
-func (t *EditChatInviteLink) Type() string {
+func (t EditChatInviteLink) Type() string {
 	return "editChatInviteLink"
 }
 
-func (t *EditChatInviteLink) MarshalJSON() ([]byte, error) {
+func (t EditChatInviteLink) MarshalJSON() ([]byte, error) {
 	type Alias EditChatInviteLink
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "editChatInviteLink",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -4433,18 +4433,18 @@ type EditChatSubscriptionInviteLink struct {
 	Name string `json:"name"`
 }
 
-func (t *EditChatSubscriptionInviteLink) Type() string {
+func (t EditChatSubscriptionInviteLink) Type() string {
 	return "editChatSubscriptionInviteLink"
 }
 
-func (t *EditChatSubscriptionInviteLink) MarshalJSON() ([]byte, error) {
+func (t EditChatSubscriptionInviteLink) MarshalJSON() ([]byte, error) {
 	type Alias EditChatSubscriptionInviteLink
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "editChatSubscriptionInviteLink",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -4454,18 +4454,18 @@ type EditCustomLanguagePackInfo struct {
 	Info *LanguagePackInfo `json:"info"`
 }
 
-func (t *EditCustomLanguagePackInfo) Type() string {
+func (t EditCustomLanguagePackInfo) Type() string {
 	return "editCustomLanguagePackInfo"
 }
 
-func (t *EditCustomLanguagePackInfo) MarshalJSON() ([]byte, error) {
+func (t EditCustomLanguagePackInfo) MarshalJSON() ([]byte, error) {
 	type Alias EditCustomLanguagePackInfo
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "editCustomLanguagePackInfo",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -4483,18 +4483,18 @@ type EditForumTopic struct {
 	Name string `json:"name"`
 }
 
-func (t *EditForumTopic) Type() string {
+func (t EditForumTopic) Type() string {
 	return "editForumTopic"
 }
 
-func (t *EditForumTopic) MarshalJSON() ([]byte, error) {
+func (t EditForumTopic) MarshalJSON() ([]byte, error) {
 	type Alias EditForumTopic
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "editForumTopic",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -4510,18 +4510,18 @@ type EditInlineMessageCaption struct {
 	ShowCaptionAboveMedia bool `json:"show_caption_above_media"`
 }
 
-func (t *EditInlineMessageCaption) Type() string {
+func (t EditInlineMessageCaption) Type() string {
 	return "editInlineMessageCaption"
 }
 
-func (t *EditInlineMessageCaption) MarshalJSON() ([]byte, error) {
+func (t EditInlineMessageCaption) MarshalJSON() ([]byte, error) {
 	type Alias EditInlineMessageCaption
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "editInlineMessageCaption",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -4541,18 +4541,18 @@ type EditInlineMessageLiveLocation struct {
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
 }
 
-func (t *EditInlineMessageLiveLocation) Type() string {
+func (t EditInlineMessageLiveLocation) Type() string {
 	return "editInlineMessageLiveLocation"
 }
 
-func (t *EditInlineMessageLiveLocation) MarshalJSON() ([]byte, error) {
+func (t EditInlineMessageLiveLocation) MarshalJSON() ([]byte, error) {
 	type Alias EditInlineMessageLiveLocation
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "editInlineMessageLiveLocation",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -4566,18 +4566,18 @@ type EditInlineMessageMedia struct {
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
 }
 
-func (t *EditInlineMessageMedia) Type() string {
+func (t EditInlineMessageMedia) Type() string {
 	return "editInlineMessageMedia"
 }
 
-func (t *EditInlineMessageMedia) MarshalJSON() ([]byte, error) {
+func (t EditInlineMessageMedia) MarshalJSON() ([]byte, error) {
 	type Alias EditInlineMessageMedia
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "editInlineMessageMedia",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -4589,18 +4589,18 @@ type EditInlineMessageReplyMarkup struct {
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
 }
 
-func (t *EditInlineMessageReplyMarkup) Type() string {
+func (t EditInlineMessageReplyMarkup) Type() string {
 	return "editInlineMessageReplyMarkup"
 }
 
-func (t *EditInlineMessageReplyMarkup) MarshalJSON() ([]byte, error) {
+func (t EditInlineMessageReplyMarkup) MarshalJSON() ([]byte, error) {
 	type Alias EditInlineMessageReplyMarkup
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "editInlineMessageReplyMarkup",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -4614,18 +4614,18 @@ type EditInlineMessageText struct {
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
 }
 
-func (t *EditInlineMessageText) Type() string {
+func (t EditInlineMessageText) Type() string {
 	return "editInlineMessageText"
 }
 
-func (t *EditInlineMessageText) MarshalJSON() ([]byte, error) {
+func (t EditInlineMessageText) MarshalJSON() ([]byte, error) {
 	type Alias EditInlineMessageText
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "editInlineMessageText",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -4643,18 +4643,18 @@ type EditMessageCaption struct {
 	ShowCaptionAboveMedia bool `json:"show_caption_above_media"`
 }
 
-func (t *EditMessageCaption) Type() string {
+func (t EditMessageCaption) Type() string {
 	return "editMessageCaption"
 }
 
-func (t *EditMessageCaption) MarshalJSON() ([]byte, error) {
+func (t EditMessageCaption) MarshalJSON() ([]byte, error) {
 	type Alias EditMessageCaption
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "editMessageCaption",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -4670,18 +4670,18 @@ type EditMessageChecklist struct {
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
 }
 
-func (t *EditMessageChecklist) Type() string {
+func (t EditMessageChecklist) Type() string {
 	return "editMessageChecklist"
 }
 
-func (t *EditMessageChecklist) MarshalJSON() ([]byte, error) {
+func (t EditMessageChecklist) MarshalJSON() ([]byte, error) {
 	type Alias EditMessageChecklist
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "editMessageChecklist",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -4703,18 +4703,18 @@ type EditMessageLiveLocation struct {
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
 }
 
-func (t *EditMessageLiveLocation) Type() string {
+func (t EditMessageLiveLocation) Type() string {
 	return "editMessageLiveLocation"
 }
 
-func (t *EditMessageLiveLocation) MarshalJSON() ([]byte, error) {
+func (t EditMessageLiveLocation) MarshalJSON() ([]byte, error) {
 	type Alias EditMessageLiveLocation
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "editMessageLiveLocation",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -4730,18 +4730,18 @@ type EditMessageMedia struct {
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
 }
 
-func (t *EditMessageMedia) Type() string {
+func (t EditMessageMedia) Type() string {
 	return "editMessageMedia"
 }
 
-func (t *EditMessageMedia) MarshalJSON() ([]byte, error) {
+func (t EditMessageMedia) MarshalJSON() ([]byte, error) {
 	type Alias EditMessageMedia
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "editMessageMedia",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -4755,18 +4755,18 @@ type EditMessageReplyMarkup struct {
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
 }
 
-func (t *EditMessageReplyMarkup) Type() string {
+func (t EditMessageReplyMarkup) Type() string {
 	return "editMessageReplyMarkup"
 }
 
-func (t *EditMessageReplyMarkup) MarshalJSON() ([]byte, error) {
+func (t EditMessageReplyMarkup) MarshalJSON() ([]byte, error) {
 	type Alias EditMessageReplyMarkup
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "editMessageReplyMarkup",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -4780,18 +4780,18 @@ type EditMessageSchedulingState struct {
 	SchedulingState MessageSchedulingState `json:"scheduling_state,omitempty"`
 }
 
-func (t *EditMessageSchedulingState) Type() string {
+func (t EditMessageSchedulingState) Type() string {
 	return "editMessageSchedulingState"
 }
 
-func (t *EditMessageSchedulingState) MarshalJSON() ([]byte, error) {
+func (t EditMessageSchedulingState) MarshalJSON() ([]byte, error) {
 	type Alias EditMessageSchedulingState
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "editMessageSchedulingState",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -4807,18 +4807,18 @@ type EditMessageText struct {
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
 }
 
-func (t *EditMessageText) Type() string {
+func (t EditMessageText) Type() string {
 	return "editMessageText"
 }
 
-func (t *EditMessageText) MarshalJSON() ([]byte, error) {
+func (t EditMessageText) MarshalJSON() ([]byte, error) {
 	type Alias EditMessageText
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "editMessageText",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -4832,18 +4832,18 @@ type EditProxy struct {
 	ProxyId int32 `json:"proxy_id"`
 }
 
-func (t *EditProxy) Type() string {
+func (t EditProxy) Type() string {
 	return "editProxy"
 }
 
-func (t *EditProxy) MarshalJSON() ([]byte, error) {
+func (t EditProxy) MarshalJSON() ([]byte, error) {
 	type Alias EditProxy
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "editProxy",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -4857,18 +4857,18 @@ type EditQuickReplyMessage struct {
 	ShortcutId int32 `json:"shortcut_id"`
 }
 
-func (t *EditQuickReplyMessage) Type() string {
+func (t EditQuickReplyMessage) Type() string {
 	return "editQuickReplyMessage"
 }
 
-func (t *EditQuickReplyMessage) MarshalJSON() ([]byte, error) {
+func (t EditQuickReplyMessage) MarshalJSON() ([]byte, error) {
 	type Alias EditQuickReplyMessage
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "editQuickReplyMessage",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -4880,18 +4880,18 @@ type EditStarSubscription struct {
 	SubscriptionId string `json:"subscription_id"`
 }
 
-func (t *EditStarSubscription) Type() string {
+func (t EditStarSubscription) Type() string {
 	return "editStarSubscription"
 }
 
-func (t *EditStarSubscription) MarshalJSON() ([]byte, error) {
+func (t EditStarSubscription) MarshalJSON() ([]byte, error) {
 	type Alias EditStarSubscription
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "editStarSubscription",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -4909,18 +4909,18 @@ type EditStory struct {
 	StoryPosterChatId int64 `json:"story_poster_chat_id"`
 }
 
-func (t *EditStory) Type() string {
+func (t EditStory) Type() string {
 	return "editStory"
 }
 
-func (t *EditStory) MarshalJSON() ([]byte, error) {
+func (t EditStory) MarshalJSON() ([]byte, error) {
 	type Alias EditStory
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "editStory",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -4934,18 +4934,18 @@ type EditStoryCover struct {
 	StoryPosterChatId int64 `json:"story_poster_chat_id"`
 }
 
-func (t *EditStoryCover) Type() string {
+func (t EditStoryCover) Type() string {
 	return "editStoryCover"
 }
 
-func (t *EditStoryCover) MarshalJSON() ([]byte, error) {
+func (t EditStoryCover) MarshalJSON() ([]byte, error) {
 	type Alias EditStoryCover
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "editStoryCover",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -4959,18 +4959,18 @@ type EditUserStarSubscription struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t *EditUserStarSubscription) Type() string {
+func (t EditUserStarSubscription) Type() string {
 	return "editUserStarSubscription"
 }
 
-func (t *EditUserStarSubscription) MarshalJSON() ([]byte, error) {
+func (t EditUserStarSubscription) MarshalJSON() ([]byte, error) {
 	type Alias EditUserStarSubscription
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "editUserStarSubscription",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -4980,18 +4980,18 @@ type EnableProxy struct {
 	ProxyId int32 `json:"proxy_id"`
 }
 
-func (t *EnableProxy) Type() string {
+func (t EnableProxy) Type() string {
 	return "enableProxy"
 }
 
-func (t *EnableProxy) MarshalJSON() ([]byte, error) {
+func (t EnableProxy) MarshalJSON() ([]byte, error) {
 	type Alias EnableProxy
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "enableProxy",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -5007,18 +5007,18 @@ type EncryptGroupCallData struct {
 	UnencryptedPrefixSize int32 `json:"unencrypted_prefix_size"`
 }
 
-func (t *EncryptGroupCallData) Type() string {
+func (t EncryptGroupCallData) Type() string {
 	return "encryptGroupCallData"
 }
 
-func (t *EncryptGroupCallData) MarshalJSON() ([]byte, error) {
+func (t EncryptGroupCallData) MarshalJSON() ([]byte, error) {
 	type Alias EncryptGroupCallData
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "encryptGroupCallData",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -5028,18 +5028,18 @@ type EndGroupCall struct {
 	GroupCallId int32 `json:"group_call_id"`
 }
 
-func (t *EndGroupCall) Type() string {
+func (t EndGroupCall) Type() string {
 	return "endGroupCall"
 }
 
-func (t *EndGroupCall) MarshalJSON() ([]byte, error) {
+func (t EndGroupCall) MarshalJSON() ([]byte, error) {
 	type Alias EndGroupCall
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "endGroupCall",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -5049,18 +5049,18 @@ type EndGroupCallRecording struct {
 	GroupCallId int32 `json:"group_call_id"`
 }
 
-func (t *EndGroupCallRecording) Type() string {
+func (t EndGroupCallRecording) Type() string {
 	return "endGroupCallRecording"
 }
 
-func (t *EndGroupCallRecording) MarshalJSON() ([]byte, error) {
+func (t EndGroupCallRecording) MarshalJSON() ([]byte, error) {
 	type Alias EndGroupCallRecording
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "endGroupCallRecording",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -5070,18 +5070,18 @@ type EndGroupCallScreenSharing struct {
 	GroupCallId int32 `json:"group_call_id"`
 }
 
-func (t *EndGroupCallScreenSharing) Type() string {
+func (t EndGroupCallScreenSharing) Type() string {
 	return "endGroupCallScreenSharing"
 }
 
-func (t *EndGroupCallScreenSharing) MarshalJSON() ([]byte, error) {
+func (t EndGroupCallScreenSharing) MarshalJSON() ([]byte, error) {
 	type Alias EndGroupCallScreenSharing
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "endGroupCallScreenSharing",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -5093,18 +5093,18 @@ type FinishFileGeneration struct {
 	GenerationId int64 `json:"generation_id,string"`
 }
 
-func (t *FinishFileGeneration) Type() string {
+func (t FinishFileGeneration) Type() string {
 	return "finishFileGeneration"
 }
 
-func (t *FinishFileGeneration) MarshalJSON() ([]byte, error) {
+func (t FinishFileGeneration) MarshalJSON() ([]byte, error) {
 	type Alias FinishFileGeneration
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "finishFileGeneration",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -5126,18 +5126,18 @@ type ForwardMessages struct {
 	TopicId MessageTopic `json:"topic_id,omitempty"`
 }
 
-func (t *ForwardMessages) Type() string {
+func (t ForwardMessages) Type() string {
 	return "forwardMessages"
 }
 
-func (t *ForwardMessages) MarshalJSON() ([]byte, error) {
+func (t ForwardMessages) MarshalJSON() ([]byte, error) {
 	type Alias ForwardMessages
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "forwardMessages",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -5145,18 +5145,18 @@ func (t *ForwardMessages) MarshalJSON() ([]byte, error) {
 type GetAccountTtl struct {
 }
 
-func (t *GetAccountTtl) Type() string {
+func (t GetAccountTtl) Type() string {
 	return "getAccountTtl"
 }
 
-func (t *GetAccountTtl) MarshalJSON() ([]byte, error) {
+func (t GetAccountTtl) MarshalJSON() ([]byte, error) {
 	type Alias GetAccountTtl
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getAccountTtl",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -5164,18 +5164,18 @@ func (t *GetAccountTtl) MarshalJSON() ([]byte, error) {
 type GetActiveSessions struct {
 }
 
-func (t *GetActiveSessions) Type() string {
+func (t GetActiveSessions) Type() string {
 	return "getActiveSessions"
 }
 
-func (t *GetActiveSessions) MarshalJSON() ([]byte, error) {
+func (t GetActiveSessions) MarshalJSON() ([]byte, error) {
 	type Alias GetActiveSessions
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getActiveSessions",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -5185,18 +5185,18 @@ type GetAllPassportElements struct {
 	Password string `json:"password"`
 }
 
-func (t *GetAllPassportElements) Type() string {
+func (t GetAllPassportElements) Type() string {
 	return "getAllPassportElements"
 }
 
-func (t *GetAllPassportElements) MarshalJSON() ([]byte, error) {
+func (t GetAllPassportElements) MarshalJSON() ([]byte, error) {
 	type Alias GetAllPassportElements
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getAllPassportElements",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -5212,18 +5212,18 @@ type GetAllStickerEmojis struct {
 	StickerType StickerType `json:"sticker_type"`
 }
 
-func (t *GetAllStickerEmojis) Type() string {
+func (t GetAllStickerEmojis) Type() string {
 	return "getAllStickerEmojis"
 }
 
-func (t *GetAllStickerEmojis) MarshalJSON() ([]byte, error) {
+func (t GetAllStickerEmojis) MarshalJSON() ([]byte, error) {
 	type Alias GetAllStickerEmojis
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getAllStickerEmojis",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -5233,18 +5233,18 @@ type GetAnimatedEmoji struct {
 	Emoji string `json:"emoji"`
 }
 
-func (t *GetAnimatedEmoji) Type() string {
+func (t GetAnimatedEmoji) Type() string {
 	return "getAnimatedEmoji"
 }
 
-func (t *GetAnimatedEmoji) MarshalJSON() ([]byte, error) {
+func (t GetAnimatedEmoji) MarshalJSON() ([]byte, error) {
 	type Alias GetAnimatedEmoji
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getAnimatedEmoji",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -5252,18 +5252,18 @@ func (t *GetAnimatedEmoji) MarshalJSON() ([]byte, error) {
 type GetApplicationConfig struct {
 }
 
-func (t *GetApplicationConfig) Type() string {
+func (t GetApplicationConfig) Type() string {
 	return "getApplicationConfig"
 }
 
-func (t *GetApplicationConfig) MarshalJSON() ([]byte, error) {
+func (t GetApplicationConfig) MarshalJSON() ([]byte, error) {
 	type Alias GetApplicationConfig
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getApplicationConfig",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -5271,18 +5271,18 @@ func (t *GetApplicationConfig) MarshalJSON() ([]byte, error) {
 type GetApplicationDownloadLink struct {
 }
 
-func (t *GetApplicationDownloadLink) Type() string {
+func (t GetApplicationDownloadLink) Type() string {
 	return "getApplicationDownloadLink"
 }
 
-func (t *GetApplicationDownloadLink) MarshalJSON() ([]byte, error) {
+func (t GetApplicationDownloadLink) MarshalJSON() ([]byte, error) {
 	type Alias GetApplicationDownloadLink
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getApplicationDownloadLink",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -5290,18 +5290,18 @@ func (t *GetApplicationDownloadLink) MarshalJSON() ([]byte, error) {
 type GetArchiveChatListSettings struct {
 }
 
-func (t *GetArchiveChatListSettings) Type() string {
+func (t GetArchiveChatListSettings) Type() string {
 	return "getArchiveChatListSettings"
 }
 
-func (t *GetArchiveChatListSettings) MarshalJSON() ([]byte, error) {
+func (t GetArchiveChatListSettings) MarshalJSON() ([]byte, error) {
 	type Alias GetArchiveChatListSettings
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getArchiveChatListSettings",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -5315,18 +5315,18 @@ type GetArchivedStickerSets struct {
 	StickerType StickerType `json:"sticker_type"`
 }
 
-func (t *GetArchivedStickerSets) Type() string {
+func (t GetArchivedStickerSets) Type() string {
 	return "getArchivedStickerSets"
 }
 
-func (t *GetArchivedStickerSets) MarshalJSON() ([]byte, error) {
+func (t GetArchivedStickerSets) MarshalJSON() ([]byte, error) {
 	type Alias GetArchivedStickerSets
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getArchivedStickerSets",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -5336,18 +5336,18 @@ type GetAttachedStickerSets struct {
 	FileId int32 `json:"file_id"`
 }
 
-func (t *GetAttachedStickerSets) Type() string {
+func (t GetAttachedStickerSets) Type() string {
 	return "getAttachedStickerSets"
 }
 
-func (t *GetAttachedStickerSets) MarshalJSON() ([]byte, error) {
+func (t GetAttachedStickerSets) MarshalJSON() ([]byte, error) {
 	type Alias GetAttachedStickerSets
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getAttachedStickerSets",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -5357,18 +5357,18 @@ type GetAttachmentMenuBot struct {
 	BotUserId int64 `json:"bot_user_id"`
 }
 
-func (t *GetAttachmentMenuBot) Type() string {
+func (t GetAttachmentMenuBot) Type() string {
 	return "getAttachmentMenuBot"
 }
 
-func (t *GetAttachmentMenuBot) MarshalJSON() ([]byte, error) {
+func (t GetAttachmentMenuBot) MarshalJSON() ([]byte, error) {
 	type Alias GetAttachmentMenuBot
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getAttachmentMenuBot",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -5376,18 +5376,18 @@ func (t *GetAttachmentMenuBot) MarshalJSON() ([]byte, error) {
 type GetAuthenticationPasskeyParameters struct {
 }
 
-func (t *GetAuthenticationPasskeyParameters) Type() string {
+func (t GetAuthenticationPasskeyParameters) Type() string {
 	return "getAuthenticationPasskeyParameters"
 }
 
-func (t *GetAuthenticationPasskeyParameters) MarshalJSON() ([]byte, error) {
+func (t GetAuthenticationPasskeyParameters) MarshalJSON() ([]byte, error) {
 	type Alias GetAuthenticationPasskeyParameters
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getAuthenticationPasskeyParameters",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -5395,18 +5395,18 @@ func (t *GetAuthenticationPasskeyParameters) MarshalJSON() ([]byte, error) {
 type GetAuthorizationState struct {
 }
 
-func (t *GetAuthorizationState) Type() string {
+func (t GetAuthorizationState) Type() string {
 	return "getAuthorizationState"
 }
 
-func (t *GetAuthorizationState) MarshalJSON() ([]byte, error) {
+func (t GetAuthorizationState) MarshalJSON() ([]byte, error) {
 	type Alias GetAuthorizationState
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getAuthorizationState",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -5414,18 +5414,18 @@ func (t *GetAuthorizationState) MarshalJSON() ([]byte, error) {
 type GetAutoDownloadSettingsPresets struct {
 }
 
-func (t *GetAutoDownloadSettingsPresets) Type() string {
+func (t GetAutoDownloadSettingsPresets) Type() string {
 	return "getAutoDownloadSettingsPresets"
 }
 
-func (t *GetAutoDownloadSettingsPresets) MarshalJSON() ([]byte, error) {
+func (t GetAutoDownloadSettingsPresets) MarshalJSON() ([]byte, error) {
 	type Alias GetAutoDownloadSettingsPresets
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getAutoDownloadSettingsPresets",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -5433,18 +5433,18 @@ func (t *GetAutoDownloadSettingsPresets) MarshalJSON() ([]byte, error) {
 type GetAutosaveSettings struct {
 }
 
-func (t *GetAutosaveSettings) Type() string {
+func (t GetAutosaveSettings) Type() string {
 	return "getAutosaveSettings"
 }
 
-func (t *GetAutosaveSettings) MarshalJSON() ([]byte, error) {
+func (t GetAutosaveSettings) MarshalJSON() ([]byte, error) {
 	type Alias GetAutosaveSettings
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getAutosaveSettings",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -5452,18 +5452,18 @@ func (t *GetAutosaveSettings) MarshalJSON() ([]byte, error) {
 type GetAvailableChatBoostSlots struct {
 }
 
-func (t *GetAvailableChatBoostSlots) Type() string {
+func (t GetAvailableChatBoostSlots) Type() string {
 	return "getAvailableChatBoostSlots"
 }
 
-func (t *GetAvailableChatBoostSlots) MarshalJSON() ([]byte, error) {
+func (t GetAvailableChatBoostSlots) MarshalJSON() ([]byte, error) {
 	type Alias GetAvailableChatBoostSlots
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getAvailableChatBoostSlots",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -5471,18 +5471,18 @@ func (t *GetAvailableChatBoostSlots) MarshalJSON() ([]byte, error) {
 type GetAvailableGifts struct {
 }
 
-func (t *GetAvailableGifts) Type() string {
+func (t GetAvailableGifts) Type() string {
 	return "getAvailableGifts"
 }
 
-func (t *GetAvailableGifts) MarshalJSON() ([]byte, error) {
+func (t GetAvailableGifts) MarshalJSON() ([]byte, error) {
 	type Alias GetAvailableGifts
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getAvailableGifts",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -5494,18 +5494,18 @@ type GetBackgroundUrl struct {
 	TypeField BackgroundType `json:"type"`
 }
 
-func (t *GetBackgroundUrl) Type() string {
+func (t GetBackgroundUrl) Type() string {
 	return "getBackgroundUrl"
 }
 
-func (t *GetBackgroundUrl) MarshalJSON() ([]byte, error) {
+func (t GetBackgroundUrl) MarshalJSON() ([]byte, error) {
 	type Alias GetBackgroundUrl
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getBackgroundUrl",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -5515,18 +5515,18 @@ type GetBankCardInfo struct {
 	BankCardNumber string `json:"bank_card_number"`
 }
 
-func (t *GetBankCardInfo) Type() string {
+func (t GetBankCardInfo) Type() string {
 	return "getBankCardInfo"
 }
 
-func (t *GetBankCardInfo) MarshalJSON() ([]byte, error) {
+func (t GetBankCardInfo) MarshalJSON() ([]byte, error) {
 	type Alias GetBankCardInfo
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getBankCardInfo",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -5536,18 +5536,18 @@ type GetBasicGroup struct {
 	BasicGroupId int64 `json:"basic_group_id"`
 }
 
-func (t *GetBasicGroup) Type() string {
+func (t GetBasicGroup) Type() string {
 	return "getBasicGroup"
 }
 
-func (t *GetBasicGroup) MarshalJSON() ([]byte, error) {
+func (t GetBasicGroup) MarshalJSON() ([]byte, error) {
 	type Alias GetBasicGroup
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getBasicGroup",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -5557,18 +5557,18 @@ type GetBasicGroupFullInfo struct {
 	BasicGroupId int64 `json:"basic_group_id"`
 }
 
-func (t *GetBasicGroupFullInfo) Type() string {
+func (t GetBasicGroupFullInfo) Type() string {
 	return "getBasicGroupFullInfo"
 }
 
-func (t *GetBasicGroupFullInfo) MarshalJSON() ([]byte, error) {
+func (t GetBasicGroupFullInfo) MarshalJSON() ([]byte, error) {
 	type Alias GetBasicGroupFullInfo
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getBasicGroupFullInfo",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -5582,18 +5582,18 @@ type GetBlockedMessageSenders struct {
 	Offset int32 `json:"offset"`
 }
 
-func (t *GetBlockedMessageSenders) Type() string {
+func (t GetBlockedMessageSenders) Type() string {
 	return "getBlockedMessageSenders"
 }
 
-func (t *GetBlockedMessageSenders) MarshalJSON() ([]byte, error) {
+func (t GetBlockedMessageSenders) MarshalJSON() ([]byte, error) {
 	type Alias GetBlockedMessageSenders
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getBlockedMessageSenders",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -5605,18 +5605,18 @@ type GetBotInfoDescription struct {
 	LanguageCode string `json:"language_code"`
 }
 
-func (t *GetBotInfoDescription) Type() string {
+func (t GetBotInfoDescription) Type() string {
 	return "getBotInfoDescription"
 }
 
-func (t *GetBotInfoDescription) MarshalJSON() ([]byte, error) {
+func (t GetBotInfoDescription) MarshalJSON() ([]byte, error) {
 	type Alias GetBotInfoDescription
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getBotInfoDescription",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -5628,18 +5628,18 @@ type GetBotInfoShortDescription struct {
 	LanguageCode string `json:"language_code"`
 }
 
-func (t *GetBotInfoShortDescription) Type() string {
+func (t GetBotInfoShortDescription) Type() string {
 	return "getBotInfoShortDescription"
 }
 
-func (t *GetBotInfoShortDescription) MarshalJSON() ([]byte, error) {
+func (t GetBotInfoShortDescription) MarshalJSON() ([]byte, error) {
 	type Alias GetBotInfoShortDescription
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getBotInfoShortDescription",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -5651,18 +5651,18 @@ type GetBotMediaPreviewInfo struct {
 	LanguageCode string `json:"language_code"`
 }
 
-func (t *GetBotMediaPreviewInfo) Type() string {
+func (t GetBotMediaPreviewInfo) Type() string {
 	return "getBotMediaPreviewInfo"
 }
 
-func (t *GetBotMediaPreviewInfo) MarshalJSON() ([]byte, error) {
+func (t GetBotMediaPreviewInfo) MarshalJSON() ([]byte, error) {
 	type Alias GetBotMediaPreviewInfo
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getBotMediaPreviewInfo",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -5672,18 +5672,18 @@ type GetBotMediaPreviews struct {
 	BotUserId int64 `json:"bot_user_id"`
 }
 
-func (t *GetBotMediaPreviews) Type() string {
+func (t GetBotMediaPreviews) Type() string {
 	return "getBotMediaPreviews"
 }
 
-func (t *GetBotMediaPreviews) MarshalJSON() ([]byte, error) {
+func (t GetBotMediaPreviews) MarshalJSON() ([]byte, error) {
 	type Alias GetBotMediaPreviews
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getBotMediaPreviews",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -5695,18 +5695,18 @@ type GetBotName struct {
 	LanguageCode string `json:"language_code"`
 }
 
-func (t *GetBotName) Type() string {
+func (t GetBotName) Type() string {
 	return "getBotName"
 }
 
-func (t *GetBotName) MarshalJSON() ([]byte, error) {
+func (t GetBotName) MarshalJSON() ([]byte, error) {
 	type Alias GetBotName
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getBotName",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -5718,18 +5718,18 @@ type GetBotSimilarBotCount struct {
 	ReturnLocal bool `json:"return_local"`
 }
 
-func (t *GetBotSimilarBotCount) Type() string {
+func (t GetBotSimilarBotCount) Type() string {
 	return "getBotSimilarBotCount"
 }
 
-func (t *GetBotSimilarBotCount) MarshalJSON() ([]byte, error) {
+func (t GetBotSimilarBotCount) MarshalJSON() ([]byte, error) {
 	type Alias GetBotSimilarBotCount
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getBotSimilarBotCount",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -5739,18 +5739,18 @@ type GetBotSimilarBots struct {
 	BotUserId int64 `json:"bot_user_id"`
 }
 
-func (t *GetBotSimilarBots) Type() string {
+func (t GetBotSimilarBots) Type() string {
 	return "getBotSimilarBots"
 }
 
-func (t *GetBotSimilarBots) MarshalJSON() ([]byte, error) {
+func (t GetBotSimilarBots) MarshalJSON() ([]byte, error) {
 	type Alias GetBotSimilarBots
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getBotSimilarBots",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -5760,18 +5760,18 @@ type GetBusinessAccountStarAmount struct {
 	BusinessConnectionId string `json:"business_connection_id"`
 }
 
-func (t *GetBusinessAccountStarAmount) Type() string {
+func (t GetBusinessAccountStarAmount) Type() string {
 	return "getBusinessAccountStarAmount"
 }
 
-func (t *GetBusinessAccountStarAmount) MarshalJSON() ([]byte, error) {
+func (t GetBusinessAccountStarAmount) MarshalJSON() ([]byte, error) {
 	type Alias GetBusinessAccountStarAmount
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getBusinessAccountStarAmount",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -5781,18 +5781,18 @@ type GetBusinessChatLinkInfo struct {
 	LinkName string `json:"link_name"`
 }
 
-func (t *GetBusinessChatLinkInfo) Type() string {
+func (t GetBusinessChatLinkInfo) Type() string {
 	return "getBusinessChatLinkInfo"
 }
 
-func (t *GetBusinessChatLinkInfo) MarshalJSON() ([]byte, error) {
+func (t GetBusinessChatLinkInfo) MarshalJSON() ([]byte, error) {
 	type Alias GetBusinessChatLinkInfo
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getBusinessChatLinkInfo",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -5800,18 +5800,18 @@ func (t *GetBusinessChatLinkInfo) MarshalJSON() ([]byte, error) {
 type GetBusinessChatLinks struct {
 }
 
-func (t *GetBusinessChatLinks) Type() string {
+func (t GetBusinessChatLinks) Type() string {
 	return "getBusinessChatLinks"
 }
 
-func (t *GetBusinessChatLinks) MarshalJSON() ([]byte, error) {
+func (t GetBusinessChatLinks) MarshalJSON() ([]byte, error) {
 	type Alias GetBusinessChatLinks
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getBusinessChatLinks",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -5819,18 +5819,18 @@ func (t *GetBusinessChatLinks) MarshalJSON() ([]byte, error) {
 type GetBusinessConnectedBot struct {
 }
 
-func (t *GetBusinessConnectedBot) Type() string {
+func (t GetBusinessConnectedBot) Type() string {
 	return "getBusinessConnectedBot"
 }
 
-func (t *GetBusinessConnectedBot) MarshalJSON() ([]byte, error) {
+func (t GetBusinessConnectedBot) MarshalJSON() ([]byte, error) {
 	type Alias GetBusinessConnectedBot
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getBusinessConnectedBot",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -5840,18 +5840,18 @@ type GetBusinessConnection struct {
 	ConnectionId string `json:"connection_id"`
 }
 
-func (t *GetBusinessConnection) Type() string {
+func (t GetBusinessConnection) Type() string {
 	return "getBusinessConnection"
 }
 
-func (t *GetBusinessConnection) MarshalJSON() ([]byte, error) {
+func (t GetBusinessConnection) MarshalJSON() ([]byte, error) {
 	type Alias GetBusinessConnection
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getBusinessConnection",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -5861,18 +5861,18 @@ type GetBusinessFeatures struct {
 	Source BusinessFeature `json:"source"`
 }
 
-func (t *GetBusinessFeatures) Type() string {
+func (t GetBusinessFeatures) Type() string {
 	return "getBusinessFeatures"
 }
 
-func (t *GetBusinessFeatures) MarshalJSON() ([]byte, error) {
+func (t GetBusinessFeatures) MarshalJSON() ([]byte, error) {
 	type Alias GetBusinessFeatures
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getBusinessFeatures",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -5886,18 +5886,18 @@ type GetCallbackQueryAnswer struct {
 	Payload CallbackQueryPayload `json:"payload"`
 }
 
-func (t *GetCallbackQueryAnswer) Type() string {
+func (t GetCallbackQueryAnswer) Type() string {
 	return "getCallbackQueryAnswer"
 }
 
-func (t *GetCallbackQueryAnswer) MarshalJSON() ([]byte, error) {
+func (t GetCallbackQueryAnswer) MarshalJSON() ([]byte, error) {
 	type Alias GetCallbackQueryAnswer
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getCallbackQueryAnswer",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -5911,18 +5911,18 @@ type GetCallbackQueryMessage struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t *GetCallbackQueryMessage) Type() string {
+func (t GetCallbackQueryMessage) Type() string {
 	return "getCallbackQueryMessage"
 }
 
-func (t *GetCallbackQueryMessage) MarshalJSON() ([]byte, error) {
+func (t GetCallbackQueryMessage) MarshalJSON() ([]byte, error) {
 	type Alias GetCallbackQueryMessage
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getCallbackQueryMessage",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -5932,18 +5932,18 @@ type GetChat struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t *GetChat) Type() string {
+func (t GetChat) Type() string {
 	return "getChat"
 }
 
-func (t *GetChat) MarshalJSON() ([]byte, error) {
+func (t GetChat) MarshalJSON() ([]byte, error) {
 	type Alias GetChat
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getChat",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -5953,18 +5953,18 @@ type GetChatActiveStories struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t *GetChatActiveStories) Type() string {
+func (t GetChatActiveStories) Type() string {
 	return "getChatActiveStories"
 }
 
-func (t *GetChatActiveStories) MarshalJSON() ([]byte, error) {
+func (t GetChatActiveStories) MarshalJSON() ([]byte, error) {
 	type Alias GetChatActiveStories
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getChatActiveStories",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -5974,18 +5974,18 @@ type GetChatAdministrators struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t *GetChatAdministrators) Type() string {
+func (t GetChatAdministrators) Type() string {
 	return "getChatAdministrators"
 }
 
-func (t *GetChatAdministrators) MarshalJSON() ([]byte, error) {
+func (t GetChatAdministrators) MarshalJSON() ([]byte, error) {
 	type Alias GetChatAdministrators
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getChatAdministrators",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -5999,18 +5999,18 @@ type GetChatArchivedStories struct {
 	Limit int32 `json:"limit"`
 }
 
-func (t *GetChatArchivedStories) Type() string {
+func (t GetChatArchivedStories) Type() string {
 	return "getChatArchivedStories"
 }
 
-func (t *GetChatArchivedStories) MarshalJSON() ([]byte, error) {
+func (t GetChatArchivedStories) MarshalJSON() ([]byte, error) {
 	type Alias GetChatArchivedStories
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getChatArchivedStories",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -6020,18 +6020,18 @@ type GetChatAvailableMessageSenders struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t *GetChatAvailableMessageSenders) Type() string {
+func (t GetChatAvailableMessageSenders) Type() string {
 	return "getChatAvailableMessageSenders"
 }
 
-func (t *GetChatAvailableMessageSenders) MarshalJSON() ([]byte, error) {
+func (t GetChatAvailableMessageSenders) MarshalJSON() ([]byte, error) {
 	type Alias GetChatAvailableMessageSenders
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getChatAvailableMessageSenders",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -6041,18 +6041,18 @@ type GetChatAvailablePaidMessageReactionSenders struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t *GetChatAvailablePaidMessageReactionSenders) Type() string {
+func (t GetChatAvailablePaidMessageReactionSenders) Type() string {
 	return "getChatAvailablePaidMessageReactionSenders"
 }
 
-func (t *GetChatAvailablePaidMessageReactionSenders) MarshalJSON() ([]byte, error) {
+func (t GetChatAvailablePaidMessageReactionSenders) MarshalJSON() ([]byte, error) {
 	type Alias GetChatAvailablePaidMessageReactionSenders
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getChatAvailablePaidMessageReactionSenders",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -6062,18 +6062,18 @@ type GetChatBoostFeatures struct {
 	IsChannel bool `json:"is_channel"`
 }
 
-func (t *GetChatBoostFeatures) Type() string {
+func (t GetChatBoostFeatures) Type() string {
 	return "getChatBoostFeatures"
 }
 
-func (t *GetChatBoostFeatures) MarshalJSON() ([]byte, error) {
+func (t GetChatBoostFeatures) MarshalJSON() ([]byte, error) {
 	type Alias GetChatBoostFeatures
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getChatBoostFeatures",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -6085,18 +6085,18 @@ type GetChatBoostLevelFeatures struct {
 	Level int32 `json:"level"`
 }
 
-func (t *GetChatBoostLevelFeatures) Type() string {
+func (t GetChatBoostLevelFeatures) Type() string {
 	return "getChatBoostLevelFeatures"
 }
 
-func (t *GetChatBoostLevelFeatures) MarshalJSON() ([]byte, error) {
+func (t GetChatBoostLevelFeatures) MarshalJSON() ([]byte, error) {
 	type Alias GetChatBoostLevelFeatures
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getChatBoostLevelFeatures",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -6106,18 +6106,18 @@ type GetChatBoostLink struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t *GetChatBoostLink) Type() string {
+func (t GetChatBoostLink) Type() string {
 	return "getChatBoostLink"
 }
 
-func (t *GetChatBoostLink) MarshalJSON() ([]byte, error) {
+func (t GetChatBoostLink) MarshalJSON() ([]byte, error) {
 	type Alias GetChatBoostLink
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getChatBoostLink",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -6127,18 +6127,18 @@ type GetChatBoostLinkInfo struct {
 	Url string `json:"url"`
 }
 
-func (t *GetChatBoostLinkInfo) Type() string {
+func (t GetChatBoostLinkInfo) Type() string {
 	return "getChatBoostLinkInfo"
 }
 
-func (t *GetChatBoostLinkInfo) MarshalJSON() ([]byte, error) {
+func (t GetChatBoostLinkInfo) MarshalJSON() ([]byte, error) {
 	type Alias GetChatBoostLinkInfo
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getChatBoostLinkInfo",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -6154,18 +6154,18 @@ type GetChatBoosts struct {
 	OnlyGiftCodes bool `json:"only_gift_codes"`
 }
 
-func (t *GetChatBoosts) Type() string {
+func (t GetChatBoosts) Type() string {
 	return "getChatBoosts"
 }
 
-func (t *GetChatBoosts) MarshalJSON() ([]byte, error) {
+func (t GetChatBoosts) MarshalJSON() ([]byte, error) {
 	type Alias GetChatBoosts
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getChatBoosts",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -6175,18 +6175,18 @@ type GetChatBoostStatus struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t *GetChatBoostStatus) Type() string {
+func (t GetChatBoostStatus) Type() string {
 	return "getChatBoostStatus"
 }
 
-func (t *GetChatBoostStatus) MarshalJSON() ([]byte, error) {
+func (t GetChatBoostStatus) MarshalJSON() ([]byte, error) {
 	type Alias GetChatBoostStatus
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getChatBoostStatus",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -6206,18 +6206,18 @@ type GetChatEventLog struct {
 	UserIds []int64 `json:"user_ids"`
 }
 
-func (t *GetChatEventLog) Type() string {
+func (t GetChatEventLog) Type() string {
 	return "getChatEventLog"
 }
 
-func (t *GetChatEventLog) MarshalJSON() ([]byte, error) {
+func (t GetChatEventLog) MarshalJSON() ([]byte, error) {
 	type Alias GetChatEventLog
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getChatEventLog",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -6227,18 +6227,18 @@ type GetChatFolder struct {
 	ChatFolderId int32 `json:"chat_folder_id"`
 }
 
-func (t *GetChatFolder) Type() string {
+func (t GetChatFolder) Type() string {
 	return "getChatFolder"
 }
 
-func (t *GetChatFolder) MarshalJSON() ([]byte, error) {
+func (t GetChatFolder) MarshalJSON() ([]byte, error) {
 	type Alias GetChatFolder
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getChatFolder",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -6248,18 +6248,18 @@ type GetChatFolderChatCount struct {
 	Folder *ChatFolder `json:"folder"`
 }
 
-func (t *GetChatFolderChatCount) Type() string {
+func (t GetChatFolderChatCount) Type() string {
 	return "getChatFolderChatCount"
 }
 
-func (t *GetChatFolderChatCount) MarshalJSON() ([]byte, error) {
+func (t GetChatFolderChatCount) MarshalJSON() ([]byte, error) {
 	type Alias GetChatFolderChatCount
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getChatFolderChatCount",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -6269,18 +6269,18 @@ type GetChatFolderChatsToLeave struct {
 	ChatFolderId int32 `json:"chat_folder_id"`
 }
 
-func (t *GetChatFolderChatsToLeave) Type() string {
+func (t GetChatFolderChatsToLeave) Type() string {
 	return "getChatFolderChatsToLeave"
 }
 
-func (t *GetChatFolderChatsToLeave) MarshalJSON() ([]byte, error) {
+func (t GetChatFolderChatsToLeave) MarshalJSON() ([]byte, error) {
 	type Alias GetChatFolderChatsToLeave
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getChatFolderChatsToLeave",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -6290,18 +6290,18 @@ type GetChatFolderDefaultIconName struct {
 	Folder *ChatFolder `json:"folder"`
 }
 
-func (t *GetChatFolderDefaultIconName) Type() string {
+func (t GetChatFolderDefaultIconName) Type() string {
 	return "getChatFolderDefaultIconName"
 }
 
-func (t *GetChatFolderDefaultIconName) MarshalJSON() ([]byte, error) {
+func (t GetChatFolderDefaultIconName) MarshalJSON() ([]byte, error) {
 	type Alias GetChatFolderDefaultIconName
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getChatFolderDefaultIconName",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -6311,18 +6311,18 @@ type GetChatFolderInviteLinks struct {
 	ChatFolderId int32 `json:"chat_folder_id"`
 }
 
-func (t *GetChatFolderInviteLinks) Type() string {
+func (t GetChatFolderInviteLinks) Type() string {
 	return "getChatFolderInviteLinks"
 }
 
-func (t *GetChatFolderInviteLinks) MarshalJSON() ([]byte, error) {
+func (t GetChatFolderInviteLinks) MarshalJSON() ([]byte, error) {
 	type Alias GetChatFolderInviteLinks
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getChatFolderInviteLinks",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -6332,18 +6332,18 @@ type GetChatFolderNewChats struct {
 	ChatFolderId int32 `json:"chat_folder_id"`
 }
 
-func (t *GetChatFolderNewChats) Type() string {
+func (t GetChatFolderNewChats) Type() string {
 	return "getChatFolderNewChats"
 }
 
-func (t *GetChatFolderNewChats) MarshalJSON() ([]byte, error) {
+func (t GetChatFolderNewChats) MarshalJSON() ([]byte, error) {
 	type Alias GetChatFolderNewChats
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getChatFolderNewChats",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -6361,18 +6361,18 @@ type GetChatHistory struct {
 	OnlyLocal bool `json:"only_local"`
 }
 
-func (t *GetChatHistory) Type() string {
+func (t GetChatHistory) Type() string {
 	return "getChatHistory"
 }
 
-func (t *GetChatHistory) MarshalJSON() ([]byte, error) {
+func (t GetChatHistory) MarshalJSON() ([]byte, error) {
 	type Alias GetChatHistory
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getChatHistory",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -6384,18 +6384,18 @@ type GetChatInviteLink struct {
 	InviteLink string `json:"invite_link"`
 }
 
-func (t *GetChatInviteLink) Type() string {
+func (t GetChatInviteLink) Type() string {
 	return "getChatInviteLink"
 }
 
-func (t *GetChatInviteLink) MarshalJSON() ([]byte, error) {
+func (t GetChatInviteLink) MarshalJSON() ([]byte, error) {
 	type Alias GetChatInviteLink
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getChatInviteLink",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -6405,18 +6405,18 @@ type GetChatInviteLinkCounts struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t *GetChatInviteLinkCounts) Type() string {
+func (t GetChatInviteLinkCounts) Type() string {
 	return "getChatInviteLinkCounts"
 }
 
-func (t *GetChatInviteLinkCounts) MarshalJSON() ([]byte, error) {
+func (t GetChatInviteLinkCounts) MarshalJSON() ([]byte, error) {
 	type Alias GetChatInviteLinkCounts
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getChatInviteLinkCounts",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -6434,18 +6434,18 @@ type GetChatInviteLinkMembers struct {
 	OnlyWithExpiredSubscription bool `json:"only_with_expired_subscription"`
 }
 
-func (t *GetChatInviteLinkMembers) Type() string {
+func (t GetChatInviteLinkMembers) Type() string {
 	return "getChatInviteLinkMembers"
 }
 
-func (t *GetChatInviteLinkMembers) MarshalJSON() ([]byte, error) {
+func (t GetChatInviteLinkMembers) MarshalJSON() ([]byte, error) {
 	type Alias GetChatInviteLinkMembers
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getChatInviteLinkMembers",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -6465,18 +6465,18 @@ type GetChatInviteLinks struct {
 	OffsetInviteLink string `json:"offset_invite_link"`
 }
 
-func (t *GetChatInviteLinks) Type() string {
+func (t GetChatInviteLinks) Type() string {
 	return "getChatInviteLinks"
 }
 
-func (t *GetChatInviteLinks) MarshalJSON() ([]byte, error) {
+func (t GetChatInviteLinks) MarshalJSON() ([]byte, error) {
 	type Alias GetChatInviteLinks
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getChatInviteLinks",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -6494,18 +6494,18 @@ type GetChatJoinRequests struct {
 	Query string `json:"query"`
 }
 
-func (t *GetChatJoinRequests) Type() string {
+func (t GetChatJoinRequests) Type() string {
 	return "getChatJoinRequests"
 }
 
-func (t *GetChatJoinRequests) MarshalJSON() ([]byte, error) {
+func (t GetChatJoinRequests) MarshalJSON() ([]byte, error) {
 	type Alias GetChatJoinRequests
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getChatJoinRequests",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -6515,18 +6515,18 @@ type GetChatListsToAddChat struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t *GetChatListsToAddChat) Type() string {
+func (t GetChatListsToAddChat) Type() string {
 	return "getChatListsToAddChat"
 }
 
-func (t *GetChatListsToAddChat) MarshalJSON() ([]byte, error) {
+func (t GetChatListsToAddChat) MarshalJSON() ([]byte, error) {
 	type Alias GetChatListsToAddChat
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getChatListsToAddChat",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -6538,18 +6538,18 @@ type GetChatMember struct {
 	MemberId MessageSender `json:"member_id"`
 }
 
-func (t *GetChatMember) Type() string {
+func (t GetChatMember) Type() string {
 	return "getChatMember"
 }
 
-func (t *GetChatMember) MarshalJSON() ([]byte, error) {
+func (t GetChatMember) MarshalJSON() ([]byte, error) {
 	type Alias GetChatMember
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getChatMember",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -6561,18 +6561,18 @@ type GetChatMessageByDate struct {
 	Date int32 `json:"date"`
 }
 
-func (t *GetChatMessageByDate) Type() string {
+func (t GetChatMessageByDate) Type() string {
 	return "getChatMessageByDate"
 }
 
-func (t *GetChatMessageByDate) MarshalJSON() ([]byte, error) {
+func (t GetChatMessageByDate) MarshalJSON() ([]byte, error) {
 	type Alias GetChatMessageByDate
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getChatMessageByDate",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -6588,18 +6588,18 @@ type GetChatMessageCalendar struct {
 	TopicId MessageTopic `json:"topic_id,omitempty"`
 }
 
-func (t *GetChatMessageCalendar) Type() string {
+func (t GetChatMessageCalendar) Type() string {
 	return "getChatMessageCalendar"
 }
 
-func (t *GetChatMessageCalendar) MarshalJSON() ([]byte, error) {
+func (t GetChatMessageCalendar) MarshalJSON() ([]byte, error) {
 	type Alias GetChatMessageCalendar
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getChatMessageCalendar",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -6615,18 +6615,18 @@ type GetChatMessageCount struct {
 	TopicId MessageTopic `json:"topic_id,omitempty"`
 }
 
-func (t *GetChatMessageCount) Type() string {
+func (t GetChatMessageCount) Type() string {
 	return "getChatMessageCount"
 }
 
-func (t *GetChatMessageCount) MarshalJSON() ([]byte, error) {
+func (t GetChatMessageCount) MarshalJSON() ([]byte, error) {
 	type Alias GetChatMessageCount
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getChatMessageCount",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -6642,18 +6642,18 @@ type GetChatMessagePosition struct {
 	TopicId MessageTopic `json:"topic_id,omitempty"`
 }
 
-func (t *GetChatMessagePosition) Type() string {
+func (t GetChatMessagePosition) Type() string {
 	return "getChatMessagePosition"
 }
 
-func (t *GetChatMessagePosition) MarshalJSON() ([]byte, error) {
+func (t GetChatMessagePosition) MarshalJSON() ([]byte, error) {
 	type Alias GetChatMessagePosition
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getChatMessagePosition",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -6665,18 +6665,18 @@ type GetChatNotificationSettingsExceptions struct {
 	Scope NotificationSettingsScope `json:"scope,omitempty"`
 }
 
-func (t *GetChatNotificationSettingsExceptions) Type() string {
+func (t GetChatNotificationSettingsExceptions) Type() string {
 	return "getChatNotificationSettingsExceptions"
 }
 
-func (t *GetChatNotificationSettingsExceptions) MarshalJSON() ([]byte, error) {
+func (t GetChatNotificationSettingsExceptions) MarshalJSON() ([]byte, error) {
 	type Alias GetChatNotificationSettingsExceptions
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getChatNotificationSettingsExceptions",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -6686,18 +6686,18 @@ type GetChatOwnerAfterLeaving struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t *GetChatOwnerAfterLeaving) Type() string {
+func (t GetChatOwnerAfterLeaving) Type() string {
 	return "getChatOwnerAfterLeaving"
 }
 
-func (t *GetChatOwnerAfterLeaving) MarshalJSON() ([]byte, error) {
+func (t GetChatOwnerAfterLeaving) MarshalJSON() ([]byte, error) {
 	type Alias GetChatOwnerAfterLeaving
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getChatOwnerAfterLeaving",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -6707,18 +6707,18 @@ type GetChatPinnedMessage struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t *GetChatPinnedMessage) Type() string {
+func (t GetChatPinnedMessage) Type() string {
 	return "getChatPinnedMessage"
 }
 
-func (t *GetChatPinnedMessage) MarshalJSON() ([]byte, error) {
+func (t GetChatPinnedMessage) MarshalJSON() ([]byte, error) {
 	type Alias GetChatPinnedMessage
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getChatPinnedMessage",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -6732,18 +6732,18 @@ type GetChatPostedToChatPageStories struct {
 	Limit int32 `json:"limit"`
 }
 
-func (t *GetChatPostedToChatPageStories) Type() string {
+func (t GetChatPostedToChatPageStories) Type() string {
 	return "getChatPostedToChatPageStories"
 }
 
-func (t *GetChatPostedToChatPageStories) MarshalJSON() ([]byte, error) {
+func (t GetChatPostedToChatPageStories) MarshalJSON() ([]byte, error) {
 	type Alias GetChatPostedToChatPageStories
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getChatPostedToChatPageStories",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -6755,18 +6755,18 @@ type GetChatRevenueStatistics struct {
 	IsDark bool `json:"is_dark"`
 }
 
-func (t *GetChatRevenueStatistics) Type() string {
+func (t GetChatRevenueStatistics) Type() string {
 	return "getChatRevenueStatistics"
 }
 
-func (t *GetChatRevenueStatistics) MarshalJSON() ([]byte, error) {
+func (t GetChatRevenueStatistics) MarshalJSON() ([]byte, error) {
 	type Alias GetChatRevenueStatistics
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getChatRevenueStatistics",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -6780,18 +6780,18 @@ type GetChatRevenueTransactions struct {
 	Offset string `json:"offset"`
 }
 
-func (t *GetChatRevenueTransactions) Type() string {
+func (t GetChatRevenueTransactions) Type() string {
 	return "getChatRevenueTransactions"
 }
 
-func (t *GetChatRevenueTransactions) MarshalJSON() ([]byte, error) {
+func (t GetChatRevenueTransactions) MarshalJSON() ([]byte, error) {
 	type Alias GetChatRevenueTransactions
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getChatRevenueTransactions",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -6803,18 +6803,18 @@ type GetChatRevenueWithdrawalUrl struct {
 	Password string `json:"password"`
 }
 
-func (t *GetChatRevenueWithdrawalUrl) Type() string {
+func (t GetChatRevenueWithdrawalUrl) Type() string {
 	return "getChatRevenueWithdrawalUrl"
 }
 
-func (t *GetChatRevenueWithdrawalUrl) MarshalJSON() ([]byte, error) {
+func (t GetChatRevenueWithdrawalUrl) MarshalJSON() ([]byte, error) {
 	type Alias GetChatRevenueWithdrawalUrl
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getChatRevenueWithdrawalUrl",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -6826,18 +6826,18 @@ type GetChats struct {
 	Limit int32 `json:"limit"`
 }
 
-func (t *GetChats) Type() string {
+func (t GetChats) Type() string {
 	return "getChats"
 }
 
-func (t *GetChats) MarshalJSON() ([]byte, error) {
+func (t GetChats) MarshalJSON() ([]byte, error) {
 	type Alias GetChats
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getChats",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -6847,18 +6847,18 @@ type GetChatScheduledMessages struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t *GetChatScheduledMessages) Type() string {
+func (t GetChatScheduledMessages) Type() string {
 	return "getChatScheduledMessages"
 }
 
-func (t *GetChatScheduledMessages) MarshalJSON() ([]byte, error) {
+func (t GetChatScheduledMessages) MarshalJSON() ([]byte, error) {
 	type Alias GetChatScheduledMessages
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getChatScheduledMessages",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -6868,18 +6868,18 @@ type GetChatsForChatFolderInviteLink struct {
 	ChatFolderId int32 `json:"chat_folder_id"`
 }
 
-func (t *GetChatsForChatFolderInviteLink) Type() string {
+func (t GetChatsForChatFolderInviteLink) Type() string {
 	return "getChatsForChatFolderInviteLink"
 }
 
-func (t *GetChatsForChatFolderInviteLink) MarshalJSON() ([]byte, error) {
+func (t GetChatsForChatFolderInviteLink) MarshalJSON() ([]byte, error) {
 	type Alias GetChatsForChatFolderInviteLink
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getChatsForChatFolderInviteLink",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -6891,18 +6891,18 @@ type GetChatSimilarChatCount struct {
 	ReturnLocal bool `json:"return_local"`
 }
 
-func (t *GetChatSimilarChatCount) Type() string {
+func (t GetChatSimilarChatCount) Type() string {
 	return "getChatSimilarChatCount"
 }
 
-func (t *GetChatSimilarChatCount) MarshalJSON() ([]byte, error) {
+func (t GetChatSimilarChatCount) MarshalJSON() ([]byte, error) {
 	type Alias GetChatSimilarChatCount
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getChatSimilarChatCount",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -6912,18 +6912,18 @@ type GetChatSimilarChats struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t *GetChatSimilarChats) Type() string {
+func (t GetChatSimilarChats) Type() string {
 	return "getChatSimilarChats"
 }
 
-func (t *GetChatSimilarChats) MarshalJSON() ([]byte, error) {
+func (t GetChatSimilarChats) MarshalJSON() ([]byte, error) {
 	type Alias GetChatSimilarChats
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getChatSimilarChats",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -6941,18 +6941,18 @@ type GetChatSparseMessagePositions struct {
 	SavedMessagesTopicId int64 `json:"saved_messages_topic_id"`
 }
 
-func (t *GetChatSparseMessagePositions) Type() string {
+func (t GetChatSparseMessagePositions) Type() string {
 	return "getChatSparseMessagePositions"
 }
 
-func (t *GetChatSparseMessagePositions) MarshalJSON() ([]byte, error) {
+func (t GetChatSparseMessagePositions) MarshalJSON() ([]byte, error) {
 	type Alias GetChatSparseMessagePositions
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getChatSparseMessagePositions",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -6962,18 +6962,18 @@ type GetChatSponsoredMessages struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t *GetChatSponsoredMessages) Type() string {
+func (t GetChatSponsoredMessages) Type() string {
 	return "getChatSponsoredMessages"
 }
 
-func (t *GetChatSponsoredMessages) MarshalJSON() ([]byte, error) {
+func (t GetChatSponsoredMessages) MarshalJSON() ([]byte, error) {
 	type Alias GetChatSponsoredMessages
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getChatSponsoredMessages",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -6985,18 +6985,18 @@ type GetChatStatistics struct {
 	IsDark bool `json:"is_dark"`
 }
 
-func (t *GetChatStatistics) Type() string {
+func (t GetChatStatistics) Type() string {
 	return "getChatStatistics"
 }
 
-func (t *GetChatStatistics) MarshalJSON() ([]byte, error) {
+func (t GetChatStatistics) MarshalJSON() ([]byte, error) {
 	type Alias GetChatStatistics
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getChatStatistics",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -7004,18 +7004,18 @@ func (t *GetChatStatistics) MarshalJSON() ([]byte, error) {
 type GetChatsToPostStories struct {
 }
 
-func (t *GetChatsToPostStories) Type() string {
+func (t GetChatsToPostStories) Type() string {
 	return "getChatsToPostStories"
 }
 
-func (t *GetChatsToPostStories) MarshalJSON() ([]byte, error) {
+func (t GetChatsToPostStories) MarshalJSON() ([]byte, error) {
 	type Alias GetChatsToPostStories
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getChatsToPostStories",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -7025,18 +7025,18 @@ type GetChatStoryAlbums struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t *GetChatStoryAlbums) Type() string {
+func (t GetChatStoryAlbums) Type() string {
 	return "getChatStoryAlbums"
 }
 
-func (t *GetChatStoryAlbums) MarshalJSON() ([]byte, error) {
+func (t GetChatStoryAlbums) MarshalJSON() ([]byte, error) {
 	type Alias GetChatStoryAlbums
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getChatStoryAlbums",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -7056,18 +7056,18 @@ type GetChatStoryInteractions struct {
 	StoryPosterChatId int64 `json:"story_poster_chat_id"`
 }
 
-func (t *GetChatStoryInteractions) Type() string {
+func (t GetChatStoryInteractions) Type() string {
 	return "getChatStoryInteractions"
 }
 
-func (t *GetChatStoryInteractions) MarshalJSON() ([]byte, error) {
+func (t GetChatStoryInteractions) MarshalJSON() ([]byte, error) {
 	type Alias GetChatStoryInteractions
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getChatStoryInteractions",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -7075,18 +7075,18 @@ func (t *GetChatStoryInteractions) MarshalJSON() ([]byte, error) {
 type GetCloseFriends struct {
 }
 
-func (t *GetCloseFriends) Type() string {
+func (t GetCloseFriends) Type() string {
 	return "getCloseFriends"
 }
 
-func (t *GetCloseFriends) MarshalJSON() ([]byte, error) {
+func (t GetCloseFriends) MarshalJSON() ([]byte, error) {
 	type Alias GetCloseFriends
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getCloseFriends",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -7096,18 +7096,18 @@ type GetCollectibleItemInfo struct {
 	TypeField CollectibleItemType `json:"type"`
 }
 
-func (t *GetCollectibleItemInfo) Type() string {
+func (t GetCollectibleItemInfo) Type() string {
 	return "getCollectibleItemInfo"
 }
 
-func (t *GetCollectibleItemInfo) MarshalJSON() ([]byte, error) {
+func (t GetCollectibleItemInfo) MarshalJSON() ([]byte, error) {
 	type Alias GetCollectibleItemInfo
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getCollectibleItemInfo",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -7119,18 +7119,18 @@ type GetCommands struct {
 	Scope BotCommandScope `json:"scope,omitempty"`
 }
 
-func (t *GetCommands) Type() string {
+func (t GetCommands) Type() string {
 	return "getCommands"
 }
 
-func (t *GetCommands) MarshalJSON() ([]byte, error) {
+func (t GetCommands) MarshalJSON() ([]byte, error) {
 	type Alias GetCommands
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getCommands",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -7142,18 +7142,18 @@ type GetConnectedAffiliateProgram struct {
 	BotUserId int64 `json:"bot_user_id"`
 }
 
-func (t *GetConnectedAffiliateProgram) Type() string {
+func (t GetConnectedAffiliateProgram) Type() string {
 	return "getConnectedAffiliateProgram"
 }
 
-func (t *GetConnectedAffiliateProgram) MarshalJSON() ([]byte, error) {
+func (t GetConnectedAffiliateProgram) MarshalJSON() ([]byte, error) {
 	type Alias GetConnectedAffiliateProgram
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getConnectedAffiliateProgram",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -7167,18 +7167,18 @@ type GetConnectedAffiliatePrograms struct {
 	Offset string `json:"offset"`
 }
 
-func (t *GetConnectedAffiliatePrograms) Type() string {
+func (t GetConnectedAffiliatePrograms) Type() string {
 	return "getConnectedAffiliatePrograms"
 }
 
-func (t *GetConnectedAffiliatePrograms) MarshalJSON() ([]byte, error) {
+func (t GetConnectedAffiliatePrograms) MarshalJSON() ([]byte, error) {
 	type Alias GetConnectedAffiliatePrograms
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getConnectedAffiliatePrograms",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -7186,18 +7186,18 @@ func (t *GetConnectedAffiliatePrograms) MarshalJSON() ([]byte, error) {
 type GetConnectedWebsites struct {
 }
 
-func (t *GetConnectedWebsites) Type() string {
+func (t GetConnectedWebsites) Type() string {
 	return "getConnectedWebsites"
 }
 
-func (t *GetConnectedWebsites) MarshalJSON() ([]byte, error) {
+func (t GetConnectedWebsites) MarshalJSON() ([]byte, error) {
 	type Alias GetConnectedWebsites
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getConnectedWebsites",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -7205,18 +7205,18 @@ func (t *GetConnectedWebsites) MarshalJSON() ([]byte, error) {
 type GetContacts struct {
 }
 
-func (t *GetContacts) Type() string {
+func (t GetContacts) Type() string {
 	return "getContacts"
 }
 
-func (t *GetContacts) MarshalJSON() ([]byte, error) {
+func (t GetContacts) MarshalJSON() ([]byte, error) {
 	type Alias GetContacts
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getContacts",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -7224,18 +7224,18 @@ func (t *GetContacts) MarshalJSON() ([]byte, error) {
 type GetCountries struct {
 }
 
-func (t *GetCountries) Type() string {
+func (t GetCountries) Type() string {
 	return "getCountries"
 }
 
-func (t *GetCountries) MarshalJSON() ([]byte, error) {
+func (t GetCountries) MarshalJSON() ([]byte, error) {
 	type Alias GetCountries
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getCountries",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -7243,18 +7243,18 @@ func (t *GetCountries) MarshalJSON() ([]byte, error) {
 type GetCountryCode struct {
 }
 
-func (t *GetCountryCode) Type() string {
+func (t GetCountryCode) Type() string {
 	return "getCountryCode"
 }
 
-func (t *GetCountryCode) MarshalJSON() ([]byte, error) {
+func (t GetCountryCode) MarshalJSON() ([]byte, error) {
 	type Alias GetCountryCode
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getCountryCode",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -7264,18 +7264,18 @@ type GetCountryFlagEmoji struct {
 	CountryCode string `json:"country_code"`
 }
 
-func (t *GetCountryFlagEmoji) Type() string {
+func (t GetCountryFlagEmoji) Type() string {
 	return "getCountryFlagEmoji"
 }
 
-func (t *GetCountryFlagEmoji) MarshalJSON() ([]byte, error) {
+func (t GetCountryFlagEmoji) MarshalJSON() ([]byte, error) {
 	type Alias GetCountryFlagEmoji
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getCountryFlagEmoji",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -7285,18 +7285,18 @@ type GetCreatedPublicChats struct {
 	TypeField PublicChatType `json:"type"`
 }
 
-func (t *GetCreatedPublicChats) Type() string {
+func (t GetCreatedPublicChats) Type() string {
 	return "getCreatedPublicChats"
 }
 
-func (t *GetCreatedPublicChats) MarshalJSON() ([]byte, error) {
+func (t GetCreatedPublicChats) MarshalJSON() ([]byte, error) {
 	type Alias GetCreatedPublicChats
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getCreatedPublicChats",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -7304,18 +7304,18 @@ func (t *GetCreatedPublicChats) MarshalJSON() ([]byte, error) {
 type GetCurrentState struct {
 }
 
-func (t *GetCurrentState) Type() string {
+func (t GetCurrentState) Type() string {
 	return "getCurrentState"
 }
 
-func (t *GetCurrentState) MarshalJSON() ([]byte, error) {
+func (t GetCurrentState) MarshalJSON() ([]byte, error) {
 	type Alias GetCurrentState
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getCurrentState",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -7325,18 +7325,18 @@ type GetCurrentWeather struct {
 	Location *Location `json:"location"`
 }
 
-func (t *GetCurrentWeather) Type() string {
+func (t GetCurrentWeather) Type() string {
 	return "getCurrentWeather"
 }
 
-func (t *GetCurrentWeather) MarshalJSON() ([]byte, error) {
+func (t GetCurrentWeather) MarshalJSON() ([]byte, error) {
 	type Alias GetCurrentWeather
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getCurrentWeather",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -7344,18 +7344,18 @@ func (t *GetCurrentWeather) MarshalJSON() ([]byte, error) {
 type GetCustomEmojiReactionAnimations struct {
 }
 
-func (t *GetCustomEmojiReactionAnimations) Type() string {
+func (t GetCustomEmojiReactionAnimations) Type() string {
 	return "getCustomEmojiReactionAnimations"
 }
 
-func (t *GetCustomEmojiReactionAnimations) MarshalJSON() ([]byte, error) {
+func (t GetCustomEmojiReactionAnimations) MarshalJSON() ([]byte, error) {
 	type Alias GetCustomEmojiReactionAnimations
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getCustomEmojiReactionAnimations",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -7365,18 +7365,18 @@ type GetCustomEmojiStickers struct {
 	CustomEmojiIds Int64Slice `json:"custom_emoji_ids"`
 }
 
-func (t *GetCustomEmojiStickers) Type() string {
+func (t GetCustomEmojiStickers) Type() string {
 	return "getCustomEmojiStickers"
 }
 
-func (t *GetCustomEmojiStickers) MarshalJSON() ([]byte, error) {
+func (t GetCustomEmojiStickers) MarshalJSON() ([]byte, error) {
 	type Alias GetCustomEmojiStickers
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getCustomEmojiStickers",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -7384,18 +7384,18 @@ func (t *GetCustomEmojiStickers) MarshalJSON() ([]byte, error) {
 type GetDatabaseStatistics struct {
 }
 
-func (t *GetDatabaseStatistics) Type() string {
+func (t GetDatabaseStatistics) Type() string {
 	return "getDatabaseStatistics"
 }
 
-func (t *GetDatabaseStatistics) MarshalJSON() ([]byte, error) {
+func (t GetDatabaseStatistics) MarshalJSON() ([]byte, error) {
 	type Alias GetDatabaseStatistics
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getDatabaseStatistics",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -7405,18 +7405,18 @@ type GetDeepLinkInfo struct {
 	Link string `json:"link"`
 }
 
-func (t *GetDeepLinkInfo) Type() string {
+func (t GetDeepLinkInfo) Type() string {
 	return "getDeepLinkInfo"
 }
 
-func (t *GetDeepLinkInfo) MarshalJSON() ([]byte, error) {
+func (t GetDeepLinkInfo) MarshalJSON() ([]byte, error) {
 	type Alias GetDeepLinkInfo
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getDeepLinkInfo",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -7424,18 +7424,18 @@ func (t *GetDeepLinkInfo) MarshalJSON() ([]byte, error) {
 type GetDefaultBackgroundCustomEmojiStickers struct {
 }
 
-func (t *GetDefaultBackgroundCustomEmojiStickers) Type() string {
+func (t GetDefaultBackgroundCustomEmojiStickers) Type() string {
 	return "getDefaultBackgroundCustomEmojiStickers"
 }
 
-func (t *GetDefaultBackgroundCustomEmojiStickers) MarshalJSON() ([]byte, error) {
+func (t GetDefaultBackgroundCustomEmojiStickers) MarshalJSON() ([]byte, error) {
 	type Alias GetDefaultBackgroundCustomEmojiStickers
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getDefaultBackgroundCustomEmojiStickers",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -7443,18 +7443,18 @@ func (t *GetDefaultBackgroundCustomEmojiStickers) MarshalJSON() ([]byte, error) 
 type GetDefaultChatEmojiStatuses struct {
 }
 
-func (t *GetDefaultChatEmojiStatuses) Type() string {
+func (t GetDefaultChatEmojiStatuses) Type() string {
 	return "getDefaultChatEmojiStatuses"
 }
 
-func (t *GetDefaultChatEmojiStatuses) MarshalJSON() ([]byte, error) {
+func (t GetDefaultChatEmojiStatuses) MarshalJSON() ([]byte, error) {
 	type Alias GetDefaultChatEmojiStatuses
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getDefaultChatEmojiStatuses",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -7462,18 +7462,18 @@ func (t *GetDefaultChatEmojiStatuses) MarshalJSON() ([]byte, error) {
 type GetDefaultChatPhotoCustomEmojiStickers struct {
 }
 
-func (t *GetDefaultChatPhotoCustomEmojiStickers) Type() string {
+func (t GetDefaultChatPhotoCustomEmojiStickers) Type() string {
 	return "getDefaultChatPhotoCustomEmojiStickers"
 }
 
-func (t *GetDefaultChatPhotoCustomEmojiStickers) MarshalJSON() ([]byte, error) {
+func (t GetDefaultChatPhotoCustomEmojiStickers) MarshalJSON() ([]byte, error) {
 	type Alias GetDefaultChatPhotoCustomEmojiStickers
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getDefaultChatPhotoCustomEmojiStickers",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -7481,18 +7481,18 @@ func (t *GetDefaultChatPhotoCustomEmojiStickers) MarshalJSON() ([]byte, error) {
 type GetDefaultEmojiStatuses struct {
 }
 
-func (t *GetDefaultEmojiStatuses) Type() string {
+func (t GetDefaultEmojiStatuses) Type() string {
 	return "getDefaultEmojiStatuses"
 }
 
-func (t *GetDefaultEmojiStatuses) MarshalJSON() ([]byte, error) {
+func (t GetDefaultEmojiStatuses) MarshalJSON() ([]byte, error) {
 	type Alias GetDefaultEmojiStatuses
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getDefaultEmojiStatuses",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -7500,18 +7500,18 @@ func (t *GetDefaultEmojiStatuses) MarshalJSON() ([]byte, error) {
 type GetDefaultMessageAutoDeleteTime struct {
 }
 
-func (t *GetDefaultMessageAutoDeleteTime) Type() string {
+func (t GetDefaultMessageAutoDeleteTime) Type() string {
 	return "getDefaultMessageAutoDeleteTime"
 }
 
-func (t *GetDefaultMessageAutoDeleteTime) MarshalJSON() ([]byte, error) {
+func (t GetDefaultMessageAutoDeleteTime) MarshalJSON() ([]byte, error) {
 	type Alias GetDefaultMessageAutoDeleteTime
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getDefaultMessageAutoDeleteTime",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -7519,18 +7519,18 @@ func (t *GetDefaultMessageAutoDeleteTime) MarshalJSON() ([]byte, error) {
 type GetDefaultProfilePhotoCustomEmojiStickers struct {
 }
 
-func (t *GetDefaultProfilePhotoCustomEmojiStickers) Type() string {
+func (t GetDefaultProfilePhotoCustomEmojiStickers) Type() string {
 	return "getDefaultProfilePhotoCustomEmojiStickers"
 }
 
-func (t *GetDefaultProfilePhotoCustomEmojiStickers) MarshalJSON() ([]byte, error) {
+func (t GetDefaultProfilePhotoCustomEmojiStickers) MarshalJSON() ([]byte, error) {
 	type Alias GetDefaultProfilePhotoCustomEmojiStickers
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getDefaultProfilePhotoCustomEmojiStickers",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -7542,18 +7542,18 @@ type GetDirectMessagesChatTopic struct {
 	TopicId int64 `json:"topic_id"`
 }
 
-func (t *GetDirectMessagesChatTopic) Type() string {
+func (t GetDirectMessagesChatTopic) Type() string {
 	return "getDirectMessagesChatTopic"
 }
 
-func (t *GetDirectMessagesChatTopic) MarshalJSON() ([]byte, error) {
+func (t GetDirectMessagesChatTopic) MarshalJSON() ([]byte, error) {
 	type Alias GetDirectMessagesChatTopic
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getDirectMessagesChatTopic",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -7571,18 +7571,18 @@ type GetDirectMessagesChatTopicHistory struct {
 	TopicId int64 `json:"topic_id"`
 }
 
-func (t *GetDirectMessagesChatTopicHistory) Type() string {
+func (t GetDirectMessagesChatTopicHistory) Type() string {
 	return "getDirectMessagesChatTopicHistory"
 }
 
-func (t *GetDirectMessagesChatTopicHistory) MarshalJSON() ([]byte, error) {
+func (t GetDirectMessagesChatTopicHistory) MarshalJSON() ([]byte, error) {
 	type Alias GetDirectMessagesChatTopicHistory
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getDirectMessagesChatTopicHistory",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -7596,18 +7596,18 @@ type GetDirectMessagesChatTopicMessageByDate struct {
 	TopicId int64 `json:"topic_id"`
 }
 
-func (t *GetDirectMessagesChatTopicMessageByDate) Type() string {
+func (t GetDirectMessagesChatTopicMessageByDate) Type() string {
 	return "getDirectMessagesChatTopicMessageByDate"
 }
 
-func (t *GetDirectMessagesChatTopicMessageByDate) MarshalJSON() ([]byte, error) {
+func (t GetDirectMessagesChatTopicMessageByDate) MarshalJSON() ([]byte, error) {
 	type Alias GetDirectMessagesChatTopicMessageByDate
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getDirectMessagesChatTopicMessageByDate",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -7619,18 +7619,18 @@ type GetDirectMessagesChatTopicRevenue struct {
 	TopicId int64 `json:"topic_id"`
 }
 
-func (t *GetDirectMessagesChatTopicRevenue) Type() string {
+func (t GetDirectMessagesChatTopicRevenue) Type() string {
 	return "getDirectMessagesChatTopicRevenue"
 }
 
-func (t *GetDirectMessagesChatTopicRevenue) MarshalJSON() ([]byte, error) {
+func (t GetDirectMessagesChatTopicRevenue) MarshalJSON() ([]byte, error) {
 	type Alias GetDirectMessagesChatTopicRevenue
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getDirectMessagesChatTopicRevenue",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -7638,18 +7638,18 @@ func (t *GetDirectMessagesChatTopicRevenue) MarshalJSON() ([]byte, error) {
 type GetDisallowedChatEmojiStatuses struct {
 }
 
-func (t *GetDisallowedChatEmojiStatuses) Type() string {
+func (t GetDisallowedChatEmojiStatuses) Type() string {
 	return "getDisallowedChatEmojiStatuses"
 }
 
-func (t *GetDisallowedChatEmojiStatuses) MarshalJSON() ([]byte, error) {
+func (t GetDisallowedChatEmojiStatuses) MarshalJSON() ([]byte, error) {
 	type Alias GetDisallowedChatEmojiStatuses
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getDisallowedChatEmojiStatuses",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -7659,18 +7659,18 @@ type GetEmojiCategories struct {
 	TypeField EmojiCategoryType `json:"type"`
 }
 
-func (t *GetEmojiCategories) Type() string {
+func (t GetEmojiCategories) Type() string {
 	return "getEmojiCategories"
 }
 
-func (t *GetEmojiCategories) MarshalJSON() ([]byte, error) {
+func (t GetEmojiCategories) MarshalJSON() ([]byte, error) {
 	type Alias GetEmojiCategories
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getEmojiCategories",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -7680,18 +7680,18 @@ type GetEmojiReaction struct {
 	Emoji string `json:"emoji"`
 }
 
-func (t *GetEmojiReaction) Type() string {
+func (t GetEmojiReaction) Type() string {
 	return "getEmojiReaction"
 }
 
-func (t *GetEmojiReaction) MarshalJSON() ([]byte, error) {
+func (t GetEmojiReaction) MarshalJSON() ([]byte, error) {
 	type Alias GetEmojiReaction
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getEmojiReaction",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -7701,18 +7701,18 @@ type GetEmojiSuggestionsUrl struct {
 	LanguageCode string `json:"language_code"`
 }
 
-func (t *GetEmojiSuggestionsUrl) Type() string {
+func (t GetEmojiSuggestionsUrl) Type() string {
 	return "getEmojiSuggestionsUrl"
 }
 
-func (t *GetEmojiSuggestionsUrl) MarshalJSON() ([]byte, error) {
+func (t GetEmojiSuggestionsUrl) MarshalJSON() ([]byte, error) {
 	type Alias GetEmojiSuggestionsUrl
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getEmojiSuggestionsUrl",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -7726,18 +7726,18 @@ type GetExternalLink struct {
 	Link string `json:"link"`
 }
 
-func (t *GetExternalLink) Type() string {
+func (t GetExternalLink) Type() string {
 	return "getExternalLink"
 }
 
-func (t *GetExternalLink) MarshalJSON() ([]byte, error) {
+func (t GetExternalLink) MarshalJSON() ([]byte, error) {
 	type Alias GetExternalLink
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getExternalLink",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -7747,18 +7747,18 @@ type GetExternalLinkInfo struct {
 	Link string `json:"link"`
 }
 
-func (t *GetExternalLinkInfo) Type() string {
+func (t GetExternalLinkInfo) Type() string {
 	return "getExternalLinkInfo"
 }
 
-func (t *GetExternalLinkInfo) MarshalJSON() ([]byte, error) {
+func (t GetExternalLinkInfo) MarshalJSON() ([]byte, error) {
 	type Alias GetExternalLinkInfo
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getExternalLinkInfo",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -7766,18 +7766,18 @@ func (t *GetExternalLinkInfo) MarshalJSON() ([]byte, error) {
 type GetFavoriteStickers struct {
 }
 
-func (t *GetFavoriteStickers) Type() string {
+func (t GetFavoriteStickers) Type() string {
 	return "getFavoriteStickers"
 }
 
-func (t *GetFavoriteStickers) MarshalJSON() ([]byte, error) {
+func (t GetFavoriteStickers) MarshalJSON() ([]byte, error) {
 	type Alias GetFavoriteStickers
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getFavoriteStickers",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -7787,18 +7787,18 @@ type GetFile struct {
 	FileId int32 `json:"file_id"`
 }
 
-func (t *GetFile) Type() string {
+func (t GetFile) Type() string {
 	return "getFile"
 }
 
-func (t *GetFile) MarshalJSON() ([]byte, error) {
+func (t GetFile) MarshalJSON() ([]byte, error) {
 	type Alias GetFile
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getFile",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -7810,18 +7810,18 @@ type GetFileDownloadedPrefixSize struct {
 	Offset int64 `json:"offset"`
 }
 
-func (t *GetFileDownloadedPrefixSize) Type() string {
+func (t GetFileDownloadedPrefixSize) Type() string {
 	return "getFileDownloadedPrefixSize"
 }
 
-func (t *GetFileDownloadedPrefixSize) MarshalJSON() ([]byte, error) {
+func (t GetFileDownloadedPrefixSize) MarshalJSON() ([]byte, error) {
 	type Alias GetFileDownloadedPrefixSize
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getFileDownloadedPrefixSize",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -7831,18 +7831,18 @@ type GetFileExtension struct {
 	MimeType string `json:"mime_type"`
 }
 
-func (t *GetFileExtension) Type() string {
+func (t GetFileExtension) Type() string {
 	return "getFileExtension"
 }
 
-func (t *GetFileExtension) MarshalJSON() ([]byte, error) {
+func (t GetFileExtension) MarshalJSON() ([]byte, error) {
 	type Alias GetFileExtension
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getFileExtension",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -7852,18 +7852,18 @@ type GetFileMimeType struct {
 	FileName string `json:"file_name"`
 }
 
-func (t *GetFileMimeType) Type() string {
+func (t GetFileMimeType) Type() string {
 	return "getFileMimeType"
 }
 
-func (t *GetFileMimeType) MarshalJSON() ([]byte, error) {
+func (t GetFileMimeType) MarshalJSON() ([]byte, error) {
 	type Alias GetFileMimeType
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getFileMimeType",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -7875,18 +7875,18 @@ type GetForumTopic struct {
 	ForumTopicId int32 `json:"forum_topic_id"`
 }
 
-func (t *GetForumTopic) Type() string {
+func (t GetForumTopic) Type() string {
 	return "getForumTopic"
 }
 
-func (t *GetForumTopic) MarshalJSON() ([]byte, error) {
+func (t GetForumTopic) MarshalJSON() ([]byte, error) {
 	type Alias GetForumTopic
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getForumTopic",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -7894,18 +7894,18 @@ func (t *GetForumTopic) MarshalJSON() ([]byte, error) {
 type GetForumTopicDefaultIcons struct {
 }
 
-func (t *GetForumTopicDefaultIcons) Type() string {
+func (t GetForumTopicDefaultIcons) Type() string {
 	return "getForumTopicDefaultIcons"
 }
 
-func (t *GetForumTopicDefaultIcons) MarshalJSON() ([]byte, error) {
+func (t GetForumTopicDefaultIcons) MarshalJSON() ([]byte, error) {
 	type Alias GetForumTopicDefaultIcons
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getForumTopicDefaultIcons",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -7923,18 +7923,18 @@ type GetForumTopicHistory struct {
 	Offset int32 `json:"offset"`
 }
 
-func (t *GetForumTopicHistory) Type() string {
+func (t GetForumTopicHistory) Type() string {
 	return "getForumTopicHistory"
 }
 
-func (t *GetForumTopicHistory) MarshalJSON() ([]byte, error) {
+func (t GetForumTopicHistory) MarshalJSON() ([]byte, error) {
 	type Alias GetForumTopicHistory
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getForumTopicHistory",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -7946,18 +7946,18 @@ type GetForumTopicLink struct {
 	ForumTopicId int32 `json:"forum_topic_id"`
 }
 
-func (t *GetForumTopicLink) Type() string {
+func (t GetForumTopicLink) Type() string {
 	return "getForumTopicLink"
 }
 
-func (t *GetForumTopicLink) MarshalJSON() ([]byte, error) {
+func (t GetForumTopicLink) MarshalJSON() ([]byte, error) {
 	type Alias GetForumTopicLink
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getForumTopicLink",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -7977,18 +7977,18 @@ type GetForumTopics struct {
 	Query string `json:"query"`
 }
 
-func (t *GetForumTopics) Type() string {
+func (t GetForumTopics) Type() string {
 	return "getForumTopics"
 }
 
-func (t *GetForumTopics) MarshalJSON() ([]byte, error) {
+func (t GetForumTopics) MarshalJSON() ([]byte, error) {
 	type Alias GetForumTopics
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getForumTopics",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -8002,18 +8002,18 @@ type GetGameHighScores struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t *GetGameHighScores) Type() string {
+func (t GetGameHighScores) Type() string {
 	return "getGameHighScores"
 }
 
-func (t *GetGameHighScores) MarshalJSON() ([]byte, error) {
+func (t GetGameHighScores) MarshalJSON() ([]byte, error) {
 	type Alias GetGameHighScores
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getGameHighScores",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -8023,18 +8023,18 @@ type GetGiftAuctionAcquiredGifts struct {
 	GiftId int64 `json:"gift_id,string"`
 }
 
-func (t *GetGiftAuctionAcquiredGifts) Type() string {
+func (t GetGiftAuctionAcquiredGifts) Type() string {
 	return "getGiftAuctionAcquiredGifts"
 }
 
-func (t *GetGiftAuctionAcquiredGifts) MarshalJSON() ([]byte, error) {
+func (t GetGiftAuctionAcquiredGifts) MarshalJSON() ([]byte, error) {
 	type Alias GetGiftAuctionAcquiredGifts
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getGiftAuctionAcquiredGifts",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -8044,18 +8044,18 @@ type GetGiftAuctionState struct {
 	AuctionId string `json:"auction_id"`
 }
 
-func (t *GetGiftAuctionState) Type() string {
+func (t GetGiftAuctionState) Type() string {
 	return "getGiftAuctionState"
 }
 
-func (t *GetGiftAuctionState) MarshalJSON() ([]byte, error) {
+func (t GetGiftAuctionState) MarshalJSON() ([]byte, error) {
 	type Alias GetGiftAuctionState
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getGiftAuctionState",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -8067,18 +8067,18 @@ type GetGiftChatThemes struct {
 	Offset string `json:"offset"`
 }
 
-func (t *GetGiftChatThemes) Type() string {
+func (t GetGiftChatThemes) Type() string {
 	return "getGiftChatThemes"
 }
 
-func (t *GetGiftChatThemes) MarshalJSON() ([]byte, error) {
+func (t GetGiftChatThemes) MarshalJSON() ([]byte, error) {
 	type Alias GetGiftChatThemes
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getGiftChatThemes",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -8088,18 +8088,18 @@ type GetGiftCollections struct {
 	OwnerId MessageSender `json:"owner_id"`
 }
 
-func (t *GetGiftCollections) Type() string {
+func (t GetGiftCollections) Type() string {
 	return "getGiftCollections"
 }
 
-func (t *GetGiftCollections) MarshalJSON() ([]byte, error) {
+func (t GetGiftCollections) MarshalJSON() ([]byte, error) {
 	type Alias GetGiftCollections
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getGiftCollections",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -8113,18 +8113,18 @@ type GetGiftsForCrafting struct {
 	RegularGiftId int64 `json:"regular_gift_id,string"`
 }
 
-func (t *GetGiftsForCrafting) Type() string {
+func (t GetGiftsForCrafting) Type() string {
 	return "getGiftsForCrafting"
 }
 
-func (t *GetGiftsForCrafting) MarshalJSON() ([]byte, error) {
+func (t GetGiftsForCrafting) MarshalJSON() ([]byte, error) {
 	type Alias GetGiftsForCrafting
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getGiftsForCrafting",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -8134,18 +8134,18 @@ type GetGiftUpgradePreview struct {
 	RegularGiftId int64 `json:"regular_gift_id,string"`
 }
 
-func (t *GetGiftUpgradePreview) Type() string {
+func (t GetGiftUpgradePreview) Type() string {
 	return "getGiftUpgradePreview"
 }
 
-func (t *GetGiftUpgradePreview) MarshalJSON() ([]byte, error) {
+func (t GetGiftUpgradePreview) MarshalJSON() ([]byte, error) {
 	type Alias GetGiftUpgradePreview
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getGiftUpgradePreview",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -8157,18 +8157,18 @@ type GetGiveawayInfo struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t *GetGiveawayInfo) Type() string {
+func (t GetGiveawayInfo) Type() string {
 	return "getGiveawayInfo"
 }
 
-func (t *GetGiveawayInfo) MarshalJSON() ([]byte, error) {
+func (t GetGiveawayInfo) MarshalJSON() ([]byte, error) {
 	type Alias GetGiveawayInfo
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getGiveawayInfo",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -8176,18 +8176,18 @@ func (t *GetGiveawayInfo) MarshalJSON() ([]byte, error) {
 type GetGreetingStickers struct {
 }
 
-func (t *GetGreetingStickers) Type() string {
+func (t GetGreetingStickers) Type() string {
 	return "getGreetingStickers"
 }
 
-func (t *GetGreetingStickers) MarshalJSON() ([]byte, error) {
+func (t GetGreetingStickers) MarshalJSON() ([]byte, error) {
 	type Alias GetGreetingStickers
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getGreetingStickers",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -8199,18 +8199,18 @@ type GetGrossingWebAppBots struct {
 	Offset string `json:"offset"`
 }
 
-func (t *GetGrossingWebAppBots) Type() string {
+func (t GetGrossingWebAppBots) Type() string {
 	return "getGrossingWebAppBots"
 }
 
-func (t *GetGrossingWebAppBots) MarshalJSON() ([]byte, error) {
+func (t GetGrossingWebAppBots) MarshalJSON() ([]byte, error) {
 	type Alias GetGrossingWebAppBots
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getGrossingWebAppBots",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -8220,18 +8220,18 @@ type GetGroupCall struct {
 	GroupCallId int32 `json:"group_call_id"`
 }
 
-func (t *GetGroupCall) Type() string {
+func (t GetGroupCall) Type() string {
 	return "getGroupCall"
 }
 
-func (t *GetGroupCall) MarshalJSON() ([]byte, error) {
+func (t GetGroupCall) MarshalJSON() ([]byte, error) {
 	type Alias GetGroupCall
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getGroupCall",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -8243,18 +8243,18 @@ type GetGroupCallParticipants struct {
 	Limit int32 `json:"limit"`
 }
 
-func (t *GetGroupCallParticipants) Type() string {
+func (t GetGroupCallParticipants) Type() string {
 	return "getGroupCallParticipants"
 }
 
-func (t *GetGroupCallParticipants) MarshalJSON() ([]byte, error) {
+func (t GetGroupCallParticipants) MarshalJSON() ([]byte, error) {
 	type Alias GetGroupCallParticipants
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getGroupCallParticipants",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -8264,18 +8264,18 @@ type GetGroupCallStreams struct {
 	GroupCallId int32 `json:"group_call_id"`
 }
 
-func (t *GetGroupCallStreams) Type() string {
+func (t GetGroupCallStreams) Type() string {
 	return "getGroupCallStreams"
 }
 
-func (t *GetGroupCallStreams) MarshalJSON() ([]byte, error) {
+func (t GetGroupCallStreams) MarshalJSON() ([]byte, error) {
 	type Alias GetGroupCallStreams
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getGroupCallStreams",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -8293,18 +8293,18 @@ type GetGroupCallStreamSegment struct {
 	VideoQuality GroupCallVideoQuality `json:"video_quality,omitempty"`
 }
 
-func (t *GetGroupCallStreamSegment) Type() string {
+func (t GetGroupCallStreamSegment) Type() string {
 	return "getGroupCallStreamSegment"
 }
 
-func (t *GetGroupCallStreamSegment) MarshalJSON() ([]byte, error) {
+func (t GetGroupCallStreamSegment) MarshalJSON() ([]byte, error) {
 	type Alias GetGroupCallStreamSegment
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getGroupCallStreamSegment",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -8318,18 +8318,18 @@ type GetGroupsInCommon struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t *GetGroupsInCommon) Type() string {
+func (t GetGroupsInCommon) Type() string {
 	return "getGroupsInCommon"
 }
 
-func (t *GetGroupsInCommon) MarshalJSON() ([]byte, error) {
+func (t GetGroupsInCommon) MarshalJSON() ([]byte, error) {
 	type Alias GetGroupsInCommon
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getGroupsInCommon",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -8337,18 +8337,18 @@ func (t *GetGroupsInCommon) MarshalJSON() ([]byte, error) {
 type GetImportedContactCount struct {
 }
 
-func (t *GetImportedContactCount) Type() string {
+func (t GetImportedContactCount) Type() string {
 	return "getImportedContactCount"
 }
 
-func (t *GetImportedContactCount) MarshalJSON() ([]byte, error) {
+func (t GetImportedContactCount) MarshalJSON() ([]byte, error) {
 	type Alias GetImportedContactCount
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getImportedContactCount",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -8356,18 +8356,18 @@ func (t *GetImportedContactCount) MarshalJSON() ([]byte, error) {
 type GetInactiveSupergroupChats struct {
 }
 
-func (t *GetInactiveSupergroupChats) Type() string {
+func (t GetInactiveSupergroupChats) Type() string {
 	return "getInactiveSupergroupChats"
 }
 
-func (t *GetInactiveSupergroupChats) MarshalJSON() ([]byte, error) {
+func (t GetInactiveSupergroupChats) MarshalJSON() ([]byte, error) {
 	type Alias GetInactiveSupergroupChats
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getInactiveSupergroupChats",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -8379,18 +8379,18 @@ type GetInlineGameHighScores struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t *GetInlineGameHighScores) Type() string {
+func (t GetInlineGameHighScores) Type() string {
 	return "getInlineGameHighScores"
 }
 
-func (t *GetInlineGameHighScores) MarshalJSON() ([]byte, error) {
+func (t GetInlineGameHighScores) MarshalJSON() ([]byte, error) {
 	type Alias GetInlineGameHighScores
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getInlineGameHighScores",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -8408,18 +8408,18 @@ type GetInlineQueryResults struct {
 	UserLocation *Location `json:"user_location,omitempty"`
 }
 
-func (t *GetInlineQueryResults) Type() string {
+func (t GetInlineQueryResults) Type() string {
 	return "getInlineQueryResults"
 }
 
-func (t *GetInlineQueryResults) MarshalJSON() ([]byte, error) {
+func (t GetInlineQueryResults) MarshalJSON() ([]byte, error) {
 	type Alias GetInlineQueryResults
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getInlineQueryResults",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -8429,18 +8429,18 @@ type GetInstalledBackgrounds struct {
 	ForDarkTheme bool `json:"for_dark_theme"`
 }
 
-func (t *GetInstalledBackgrounds) Type() string {
+func (t GetInstalledBackgrounds) Type() string {
 	return "getInstalledBackgrounds"
 }
 
-func (t *GetInstalledBackgrounds) MarshalJSON() ([]byte, error) {
+func (t GetInstalledBackgrounds) MarshalJSON() ([]byte, error) {
 	type Alias GetInstalledBackgrounds
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getInstalledBackgrounds",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -8450,18 +8450,18 @@ type GetInstalledStickerSets struct {
 	StickerType StickerType `json:"sticker_type"`
 }
 
-func (t *GetInstalledStickerSets) Type() string {
+func (t GetInstalledStickerSets) Type() string {
 	return "getInstalledStickerSets"
 }
 
-func (t *GetInstalledStickerSets) MarshalJSON() ([]byte, error) {
+func (t GetInstalledStickerSets) MarshalJSON() ([]byte, error) {
 	type Alias GetInstalledStickerSets
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getInstalledStickerSets",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -8473,18 +8473,18 @@ type GetInternalLink struct {
 	TypeField InternalLinkType `json:"type"`
 }
 
-func (t *GetInternalLink) Type() string {
+func (t GetInternalLink) Type() string {
 	return "getInternalLink"
 }
 
-func (t *GetInternalLink) MarshalJSON() ([]byte, error) {
+func (t GetInternalLink) MarshalJSON() ([]byte, error) {
 	type Alias GetInternalLink
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getInternalLink",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -8494,18 +8494,18 @@ type GetInternalLinkType struct {
 	Link string `json:"link"`
 }
 
-func (t *GetInternalLinkType) Type() string {
+func (t GetInternalLinkType) Type() string {
 	return "getInternalLinkType"
 }
 
-func (t *GetInternalLinkType) MarshalJSON() ([]byte, error) {
+func (t GetInternalLinkType) MarshalJSON() ([]byte, error) {
 	type Alias GetInternalLinkType
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getInternalLinkType",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -8515,18 +8515,18 @@ type GetJsonString struct {
 	JsonValue JsonValue `json:"json_value"`
 }
 
-func (t *GetJsonString) Type() string {
+func (t GetJsonString) Type() string {
 	return "getJsonString"
 }
 
-func (t *GetJsonString) MarshalJSON() ([]byte, error) {
+func (t GetJsonString) MarshalJSON() ([]byte, error) {
 	type Alias GetJsonString
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getJsonString",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -8536,18 +8536,18 @@ type GetJsonValue struct {
 	Json string `json:"json"`
 }
 
-func (t *GetJsonValue) Type() string {
+func (t GetJsonValue) Type() string {
 	return "getJsonValue"
 }
 
-func (t *GetJsonValue) MarshalJSON() ([]byte, error) {
+func (t GetJsonValue) MarshalJSON() ([]byte, error) {
 	type Alias GetJsonValue
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getJsonValue",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -8559,18 +8559,18 @@ type GetKeywordEmojis struct {
 	Text string `json:"text"`
 }
 
-func (t *GetKeywordEmojis) Type() string {
+func (t GetKeywordEmojis) Type() string {
 	return "getKeywordEmojis"
 }
 
-func (t *GetKeywordEmojis) MarshalJSON() ([]byte, error) {
+func (t GetKeywordEmojis) MarshalJSON() ([]byte, error) {
 	type Alias GetKeywordEmojis
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getKeywordEmojis",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -8580,18 +8580,18 @@ type GetLanguagePackInfo struct {
 	LanguagePackId string `json:"language_pack_id"`
 }
 
-func (t *GetLanguagePackInfo) Type() string {
+func (t GetLanguagePackInfo) Type() string {
 	return "getLanguagePackInfo"
 }
 
-func (t *GetLanguagePackInfo) MarshalJSON() ([]byte, error) {
+func (t GetLanguagePackInfo) MarshalJSON() ([]byte, error) {
 	type Alias GetLanguagePackInfo
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getLanguagePackInfo",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -8607,18 +8607,18 @@ type GetLanguagePackString struct {
 	LocalizationTarget string `json:"localization_target"`
 }
 
-func (t *GetLanguagePackString) Type() string {
+func (t GetLanguagePackString) Type() string {
 	return "getLanguagePackString"
 }
 
-func (t *GetLanguagePackString) MarshalJSON() ([]byte, error) {
+func (t GetLanguagePackString) MarshalJSON() ([]byte, error) {
 	type Alias GetLanguagePackString
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getLanguagePackString",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -8630,18 +8630,18 @@ type GetLanguagePackStrings struct {
 	LanguagePackId string `json:"language_pack_id"`
 }
 
-func (t *GetLanguagePackStrings) Type() string {
+func (t GetLanguagePackStrings) Type() string {
 	return "getLanguagePackStrings"
 }
 
-func (t *GetLanguagePackStrings) MarshalJSON() ([]byte, error) {
+func (t GetLanguagePackStrings) MarshalJSON() ([]byte, error) {
 	type Alias GetLanguagePackStrings
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getLanguagePackStrings",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -8653,18 +8653,18 @@ type GetLinkPreview struct {
 	Text *FormattedText `json:"text"`
 }
 
-func (t *GetLinkPreview) Type() string {
+func (t GetLinkPreview) Type() string {
 	return "getLinkPreview"
 }
 
-func (t *GetLinkPreview) MarshalJSON() ([]byte, error) {
+func (t GetLinkPreview) MarshalJSON() ([]byte, error) {
 	type Alias GetLinkPreview
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getLinkPreview",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -8674,18 +8674,18 @@ type GetLiveStoryAvailableMessageSenders struct {
 	GroupCallId int32 `json:"group_call_id"`
 }
 
-func (t *GetLiveStoryAvailableMessageSenders) Type() string {
+func (t GetLiveStoryAvailableMessageSenders) Type() string {
 	return "getLiveStoryAvailableMessageSenders"
 }
 
-func (t *GetLiveStoryAvailableMessageSenders) MarshalJSON() ([]byte, error) {
+func (t GetLiveStoryAvailableMessageSenders) MarshalJSON() ([]byte, error) {
 	type Alias GetLiveStoryAvailableMessageSenders
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getLiveStoryAvailableMessageSenders",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -8695,18 +8695,18 @@ type GetLiveStoryRtmpUrl struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t *GetLiveStoryRtmpUrl) Type() string {
+func (t GetLiveStoryRtmpUrl) Type() string {
 	return "getLiveStoryRtmpUrl"
 }
 
-func (t *GetLiveStoryRtmpUrl) MarshalJSON() ([]byte, error) {
+func (t GetLiveStoryRtmpUrl) MarshalJSON() ([]byte, error) {
 	type Alias GetLiveStoryRtmpUrl
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getLiveStoryRtmpUrl",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -8716,18 +8716,18 @@ type GetLiveStoryStreamer struct {
 	GroupCallId int32 `json:"group_call_id"`
 }
 
-func (t *GetLiveStoryStreamer) Type() string {
+func (t GetLiveStoryStreamer) Type() string {
 	return "getLiveStoryStreamer"
 }
 
-func (t *GetLiveStoryStreamer) MarshalJSON() ([]byte, error) {
+func (t GetLiveStoryStreamer) MarshalJSON() ([]byte, error) {
 	type Alias GetLiveStoryStreamer
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getLiveStoryStreamer",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -8737,18 +8737,18 @@ type GetLiveStoryTopDonors struct {
 	GroupCallId int32 `json:"group_call_id"`
 }
 
-func (t *GetLiveStoryTopDonors) Type() string {
+func (t GetLiveStoryTopDonors) Type() string {
 	return "getLiveStoryTopDonors"
 }
 
-func (t *GetLiveStoryTopDonors) MarshalJSON() ([]byte, error) {
+func (t GetLiveStoryTopDonors) MarshalJSON() ([]byte, error) {
 	type Alias GetLiveStoryTopDonors
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getLiveStoryTopDonors",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -8758,18 +8758,18 @@ type GetLocalizationTargetInfo struct {
 	OnlyLocal bool `json:"only_local"`
 }
 
-func (t *GetLocalizationTargetInfo) Type() string {
+func (t GetLocalizationTargetInfo) Type() string {
 	return "getLocalizationTargetInfo"
 }
 
-func (t *GetLocalizationTargetInfo) MarshalJSON() ([]byte, error) {
+func (t GetLocalizationTargetInfo) MarshalJSON() ([]byte, error) {
 	type Alias GetLocalizationTargetInfo
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getLocalizationTargetInfo",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -8777,18 +8777,18 @@ func (t *GetLocalizationTargetInfo) MarshalJSON() ([]byte, error) {
 type GetLoginPasskeys struct {
 }
 
-func (t *GetLoginPasskeys) Type() string {
+func (t GetLoginPasskeys) Type() string {
 	return "getLoginPasskeys"
 }
 
-func (t *GetLoginPasskeys) MarshalJSON() ([]byte, error) {
+func (t GetLoginPasskeys) MarshalJSON() ([]byte, error) {
 	type Alias GetLoginPasskeys
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getLoginPasskeys",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -8804,18 +8804,18 @@ type GetLoginUrl struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t *GetLoginUrl) Type() string {
+func (t GetLoginUrl) Type() string {
 	return "getLoginUrl"
 }
 
-func (t *GetLoginUrl) MarshalJSON() ([]byte, error) {
+func (t GetLoginUrl) MarshalJSON() ([]byte, error) {
 	type Alias GetLoginUrl
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getLoginUrl",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -8829,18 +8829,18 @@ type GetLoginUrlInfo struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t *GetLoginUrlInfo) Type() string {
+func (t GetLoginUrlInfo) Type() string {
 	return "getLoginUrlInfo"
 }
 
-func (t *GetLoginUrlInfo) MarshalJSON() ([]byte, error) {
+func (t GetLoginUrlInfo) MarshalJSON() ([]byte, error) {
 	type Alias GetLoginUrlInfo
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getLoginUrlInfo",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -8848,18 +8848,18 @@ func (t *GetLoginUrlInfo) MarshalJSON() ([]byte, error) {
 type GetLogStream struct {
 }
 
-func (t *GetLogStream) Type() string {
+func (t GetLogStream) Type() string {
 	return "getLogStream"
 }
 
-func (t *GetLogStream) MarshalJSON() ([]byte, error) {
+func (t GetLogStream) MarshalJSON() ([]byte, error) {
 	type Alias GetLogStream
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getLogStream",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -8867,18 +8867,18 @@ func (t *GetLogStream) MarshalJSON() ([]byte, error) {
 type GetLogTags struct {
 }
 
-func (t *GetLogTags) Type() string {
+func (t GetLogTags) Type() string {
 	return "getLogTags"
 }
 
-func (t *GetLogTags) MarshalJSON() ([]byte, error) {
+func (t GetLogTags) MarshalJSON() ([]byte, error) {
 	type Alias GetLogTags
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getLogTags",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -8888,18 +8888,18 @@ type GetLogTagVerbosityLevel struct {
 	Tag string `json:"tag"`
 }
 
-func (t *GetLogTagVerbosityLevel) Type() string {
+func (t GetLogTagVerbosityLevel) Type() string {
 	return "getLogTagVerbosityLevel"
 }
 
-func (t *GetLogTagVerbosityLevel) MarshalJSON() ([]byte, error) {
+func (t GetLogTagVerbosityLevel) MarshalJSON() ([]byte, error) {
 	type Alias GetLogTagVerbosityLevel
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getLogTagVerbosityLevel",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -8907,18 +8907,18 @@ func (t *GetLogTagVerbosityLevel) MarshalJSON() ([]byte, error) {
 type GetLogVerbosityLevel struct {
 }
 
-func (t *GetLogVerbosityLevel) Type() string {
+func (t GetLogVerbosityLevel) Type() string {
 	return "getLogVerbosityLevel"
 }
 
-func (t *GetLogVerbosityLevel) MarshalJSON() ([]byte, error) {
+func (t GetLogVerbosityLevel) MarshalJSON() ([]byte, error) {
 	type Alias GetLogVerbosityLevel
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getLogVerbosityLevel",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -8934,18 +8934,18 @@ type GetMainWebApp struct {
 	StartParameter string `json:"start_parameter"`
 }
 
-func (t *GetMainWebApp) Type() string {
+func (t GetMainWebApp) Type() string {
 	return "getMainWebApp"
 }
 
-func (t *GetMainWebApp) MarshalJSON() ([]byte, error) {
+func (t GetMainWebApp) MarshalJSON() ([]byte, error) {
 	type Alias GetMainWebApp
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getMainWebApp",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -8965,18 +8965,18 @@ type GetMapThumbnailFile struct {
 	Zoom int32 `json:"zoom"`
 }
 
-func (t *GetMapThumbnailFile) Type() string {
+func (t GetMapThumbnailFile) Type() string {
 	return "getMapThumbnailFile"
 }
 
-func (t *GetMapThumbnailFile) MarshalJSON() ([]byte, error) {
+func (t GetMapThumbnailFile) MarshalJSON() ([]byte, error) {
 	type Alias GetMapThumbnailFile
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getMapThumbnailFile",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -8986,18 +8986,18 @@ type GetMarkdownText struct {
 	Text *FormattedText `json:"text"`
 }
 
-func (t *GetMarkdownText) Type() string {
+func (t GetMarkdownText) Type() string {
 	return "getMarkdownText"
 }
 
-func (t *GetMarkdownText) MarshalJSON() ([]byte, error) {
+func (t GetMarkdownText) MarshalJSON() ([]byte, error) {
 	type Alias GetMarkdownText
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getMarkdownText",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -9005,18 +9005,18 @@ func (t *GetMarkdownText) MarshalJSON() ([]byte, error) {
 type GetMe struct {
 }
 
-func (t *GetMe) Type() string {
+func (t GetMe) Type() string {
 	return "getMe"
 }
 
-func (t *GetMe) MarshalJSON() ([]byte, error) {
+func (t GetMe) MarshalJSON() ([]byte, error) {
 	type Alias GetMe
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getMe",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -9026,18 +9026,18 @@ type GetMenuButton struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t *GetMenuButton) Type() string {
+func (t GetMenuButton) Type() string {
 	return "getMenuButton"
 }
 
-func (t *GetMenuButton) MarshalJSON() ([]byte, error) {
+func (t GetMenuButton) MarshalJSON() ([]byte, error) {
 	type Alias GetMenuButton
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getMenuButton",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -9049,18 +9049,18 @@ type GetMessage struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t *GetMessage) Type() string {
+func (t GetMessage) Type() string {
 	return "getMessage"
 }
 
-func (t *GetMessage) MarshalJSON() ([]byte, error) {
+func (t GetMessage) MarshalJSON() ([]byte, error) {
 	type Alias GetMessage
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getMessage",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -9078,18 +9078,18 @@ type GetMessageAddedReactions struct {
 	ReactionType ReactionType `json:"reaction_type,omitempty"`
 }
 
-func (t *GetMessageAddedReactions) Type() string {
+func (t GetMessageAddedReactions) Type() string {
 	return "getMessageAddedReactions"
 }
 
-func (t *GetMessageAddedReactions) MarshalJSON() ([]byte, error) {
+func (t GetMessageAddedReactions) MarshalJSON() ([]byte, error) {
 	type Alias GetMessageAddedReactions
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getMessageAddedReactions",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -9101,18 +9101,18 @@ type GetMessageAuthor struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t *GetMessageAuthor) Type() string {
+func (t GetMessageAuthor) Type() string {
 	return "getMessageAuthor"
 }
 
-func (t *GetMessageAuthor) MarshalJSON() ([]byte, error) {
+func (t GetMessageAuthor) MarshalJSON() ([]byte, error) {
 	type Alias GetMessageAuthor
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getMessageAuthor",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -9126,18 +9126,18 @@ type GetMessageAvailableReactions struct {
 	RowSize int32 `json:"row_size"`
 }
 
-func (t *GetMessageAvailableReactions) Type() string {
+func (t GetMessageAvailableReactions) Type() string {
 	return "getMessageAvailableReactions"
 }
 
-func (t *GetMessageAvailableReactions) MarshalJSON() ([]byte, error) {
+func (t GetMessageAvailableReactions) MarshalJSON() ([]byte, error) {
 	type Alias GetMessageAvailableReactions
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getMessageAvailableReactions",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -9147,18 +9147,18 @@ type GetMessageEffect struct {
 	EffectId int64 `json:"effect_id,string"`
 }
 
-func (t *GetMessageEffect) Type() string {
+func (t GetMessageEffect) Type() string {
 	return "getMessageEffect"
 }
 
-func (t *GetMessageEffect) MarshalJSON() ([]byte, error) {
+func (t GetMessageEffect) MarshalJSON() ([]byte, error) {
 	type Alias GetMessageEffect
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getMessageEffect",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -9172,18 +9172,18 @@ type GetMessageEmbeddingCode struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t *GetMessageEmbeddingCode) Type() string {
+func (t GetMessageEmbeddingCode) Type() string {
 	return "getMessageEmbeddingCode"
 }
 
-func (t *GetMessageEmbeddingCode) MarshalJSON() ([]byte, error) {
+func (t GetMessageEmbeddingCode) MarshalJSON() ([]byte, error) {
 	type Alias GetMessageEmbeddingCode
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getMessageEmbeddingCode",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -9193,18 +9193,18 @@ type GetMessageFileType struct {
 	MessageFileHead string `json:"message_file_head"`
 }
 
-func (t *GetMessageFileType) Type() string {
+func (t GetMessageFileType) Type() string {
 	return "getMessageFileType"
 }
 
-func (t *GetMessageFileType) MarshalJSON() ([]byte, error) {
+func (t GetMessageFileType) MarshalJSON() ([]byte, error) {
 	type Alias GetMessageFileType
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getMessageFileType",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -9214,18 +9214,18 @@ type GetMessageImportConfirmationText struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t *GetMessageImportConfirmationText) Type() string {
+func (t GetMessageImportConfirmationText) Type() string {
 	return "getMessageImportConfirmationText"
 }
 
-func (t *GetMessageImportConfirmationText) MarshalJSON() ([]byte, error) {
+func (t GetMessageImportConfirmationText) MarshalJSON() ([]byte, error) {
 	type Alias GetMessageImportConfirmationText
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getMessageImportConfirmationText",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -9243,18 +9243,18 @@ type GetMessageLink struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t *GetMessageLink) Type() string {
+func (t GetMessageLink) Type() string {
 	return "getMessageLink"
 }
 
-func (t *GetMessageLink) MarshalJSON() ([]byte, error) {
+func (t GetMessageLink) MarshalJSON() ([]byte, error) {
 	type Alias GetMessageLink
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getMessageLink",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -9264,18 +9264,18 @@ type GetMessageLinkInfo struct {
 	Url string `json:"url"`
 }
 
-func (t *GetMessageLinkInfo) Type() string {
+func (t GetMessageLinkInfo) Type() string {
 	return "getMessageLinkInfo"
 }
 
-func (t *GetMessageLinkInfo) MarshalJSON() ([]byte, error) {
+func (t GetMessageLinkInfo) MarshalJSON() ([]byte, error) {
 	type Alias GetMessageLinkInfo
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getMessageLinkInfo",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -9287,18 +9287,18 @@ type GetMessageLocally struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t *GetMessageLocally) Type() string {
+func (t GetMessageLocally) Type() string {
 	return "getMessageLocally"
 }
 
-func (t *GetMessageLocally) MarshalJSON() ([]byte, error) {
+func (t GetMessageLocally) MarshalJSON() ([]byte, error) {
 	type Alias GetMessageLocally
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getMessageLocally",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -9310,18 +9310,18 @@ type GetMessageProperties struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t *GetMessageProperties) Type() string {
+func (t GetMessageProperties) Type() string {
 	return "getMessageProperties"
 }
 
-func (t *GetMessageProperties) MarshalJSON() ([]byte, error) {
+func (t GetMessageProperties) MarshalJSON() ([]byte, error) {
 	type Alias GetMessageProperties
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getMessageProperties",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -9337,18 +9337,18 @@ type GetMessagePublicForwards struct {
 	Offset string `json:"offset"`
 }
 
-func (t *GetMessagePublicForwards) Type() string {
+func (t GetMessagePublicForwards) Type() string {
 	return "getMessagePublicForwards"
 }
 
-func (t *GetMessagePublicForwards) MarshalJSON() ([]byte, error) {
+func (t GetMessagePublicForwards) MarshalJSON() ([]byte, error) {
 	type Alias GetMessagePublicForwards
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getMessagePublicForwards",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -9360,18 +9360,18 @@ type GetMessageReadDate struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t *GetMessageReadDate) Type() string {
+func (t GetMessageReadDate) Type() string {
 	return "getMessageReadDate"
 }
 
-func (t *GetMessageReadDate) MarshalJSON() ([]byte, error) {
+func (t GetMessageReadDate) MarshalJSON() ([]byte, error) {
 	type Alias GetMessageReadDate
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getMessageReadDate",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -9383,18 +9383,18 @@ type GetMessages struct {
 	MessageIds []int64 `json:"message_ids"`
 }
 
-func (t *GetMessages) Type() string {
+func (t GetMessages) Type() string {
 	return "getMessages"
 }
 
-func (t *GetMessages) MarshalJSON() ([]byte, error) {
+func (t GetMessages) MarshalJSON() ([]byte, error) {
 	type Alias GetMessages
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getMessages",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -9408,18 +9408,18 @@ type GetMessageStatistics struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t *GetMessageStatistics) Type() string {
+func (t GetMessageStatistics) Type() string {
 	return "getMessageStatistics"
 }
 
-func (t *GetMessageStatistics) MarshalJSON() ([]byte, error) {
+func (t GetMessageStatistics) MarshalJSON() ([]byte, error) {
 	type Alias GetMessageStatistics
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getMessageStatistics",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -9431,18 +9431,18 @@ type GetMessageThread struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t *GetMessageThread) Type() string {
+func (t GetMessageThread) Type() string {
 	return "getMessageThread"
 }
 
-func (t *GetMessageThread) MarshalJSON() ([]byte, error) {
+func (t GetMessageThread) MarshalJSON() ([]byte, error) {
 	type Alias GetMessageThread
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getMessageThread",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -9460,18 +9460,18 @@ type GetMessageThreadHistory struct {
 	Offset int32 `json:"offset"`
 }
 
-func (t *GetMessageThreadHistory) Type() string {
+func (t GetMessageThreadHistory) Type() string {
 	return "getMessageThreadHistory"
 }
 
-func (t *GetMessageThreadHistory) MarshalJSON() ([]byte, error) {
+func (t GetMessageThreadHistory) MarshalJSON() ([]byte, error) {
 	type Alias GetMessageThreadHistory
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getMessageThreadHistory",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -9483,18 +9483,18 @@ type GetMessageViewers struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t *GetMessageViewers) Type() string {
+func (t GetMessageViewers) Type() string {
 	return "getMessageViewers"
 }
 
-func (t *GetMessageViewers) MarshalJSON() ([]byte, error) {
+func (t GetMessageViewers) MarshalJSON() ([]byte, error) {
 	type Alias GetMessageViewers
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getMessageViewers",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -9504,18 +9504,18 @@ type GetNetworkStatistics struct {
 	OnlyCurrent bool `json:"only_current"`
 }
 
-func (t *GetNetworkStatistics) Type() string {
+func (t GetNetworkStatistics) Type() string {
 	return "getNetworkStatistics"
 }
 
-func (t *GetNetworkStatistics) MarshalJSON() ([]byte, error) {
+func (t GetNetworkStatistics) MarshalJSON() ([]byte, error) {
 	type Alias GetNetworkStatistics
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getNetworkStatistics",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -9523,18 +9523,18 @@ func (t *GetNetworkStatistics) MarshalJSON() ([]byte, error) {
 type GetNewChatPrivacySettings struct {
 }
 
-func (t *GetNewChatPrivacySettings) Type() string {
+func (t GetNewChatPrivacySettings) Type() string {
 	return "getNewChatPrivacySettings"
 }
 
-func (t *GetNewChatPrivacySettings) MarshalJSON() ([]byte, error) {
+func (t GetNewChatPrivacySettings) MarshalJSON() ([]byte, error) {
 	type Alias GetNewChatPrivacySettings
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getNewChatPrivacySettings",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -9544,18 +9544,18 @@ type GetOption struct {
 	Name string `json:"name"`
 }
 
-func (t *GetOption) Type() string {
+func (t GetOption) Type() string {
 	return "getOption"
 }
 
-func (t *GetOption) MarshalJSON() ([]byte, error) {
+func (t GetOption) MarshalJSON() ([]byte, error) {
 	type Alias GetOption
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getOption",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -9563,18 +9563,18 @@ func (t *GetOption) MarshalJSON() ([]byte, error) {
 type GetOwnedBots struct {
 }
 
-func (t *GetOwnedBots) Type() string {
+func (t GetOwnedBots) Type() string {
 	return "getOwnedBots"
 }
 
-func (t *GetOwnedBots) MarshalJSON() ([]byte, error) {
+func (t GetOwnedBots) MarshalJSON() ([]byte, error) {
 	type Alias GetOwnedBots
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getOwnedBots",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -9586,18 +9586,18 @@ type GetOwnedStickerSets struct {
 	OffsetStickerSetId int64 `json:"offset_sticker_set_id,string"`
 }
 
-func (t *GetOwnedStickerSets) Type() string {
+func (t GetOwnedStickerSets) Type() string {
 	return "getOwnedStickerSets"
 }
 
-func (t *GetOwnedStickerSets) MarshalJSON() ([]byte, error) {
+func (t GetOwnedStickerSets) MarshalJSON() ([]byte, error) {
 	type Alias GetOwnedStickerSets
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getOwnedStickerSets",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -9607,18 +9607,18 @@ type GetPaidMessageRevenue struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t *GetPaidMessageRevenue) Type() string {
+func (t GetPaidMessageRevenue) Type() string {
 	return "getPaidMessageRevenue"
 }
 
-func (t *GetPaidMessageRevenue) MarshalJSON() ([]byte, error) {
+func (t GetPaidMessageRevenue) MarshalJSON() ([]byte, error) {
 	type Alias GetPaidMessageRevenue
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getPaidMessageRevenue",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -9626,18 +9626,18 @@ func (t *GetPaidMessageRevenue) MarshalJSON() ([]byte, error) {
 type GetPasskeyParameters struct {
 }
 
-func (t *GetPasskeyParameters) Type() string {
+func (t GetPasskeyParameters) Type() string {
 	return "getPasskeyParameters"
 }
 
-func (t *GetPasskeyParameters) MarshalJSON() ([]byte, error) {
+func (t GetPasskeyParameters) MarshalJSON() ([]byte, error) {
 	type Alias GetPasskeyParameters
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getPasskeyParameters",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -9653,18 +9653,18 @@ type GetPassportAuthorizationForm struct {
 	Scope string `json:"scope"`
 }
 
-func (t *GetPassportAuthorizationForm) Type() string {
+func (t GetPassportAuthorizationForm) Type() string {
 	return "getPassportAuthorizationForm"
 }
 
-func (t *GetPassportAuthorizationForm) MarshalJSON() ([]byte, error) {
+func (t GetPassportAuthorizationForm) MarshalJSON() ([]byte, error) {
 	type Alias GetPassportAuthorizationForm
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getPassportAuthorizationForm",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -9676,18 +9676,18 @@ type GetPassportAuthorizationFormAvailableElements struct {
 	Password string `json:"password"`
 }
 
-func (t *GetPassportAuthorizationFormAvailableElements) Type() string {
+func (t GetPassportAuthorizationFormAvailableElements) Type() string {
 	return "getPassportAuthorizationFormAvailableElements"
 }
 
-func (t *GetPassportAuthorizationFormAvailableElements) MarshalJSON() ([]byte, error) {
+func (t GetPassportAuthorizationFormAvailableElements) MarshalJSON() ([]byte, error) {
 	type Alias GetPassportAuthorizationFormAvailableElements
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getPassportAuthorizationFormAvailableElements",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -9699,18 +9699,18 @@ type GetPassportElement struct {
 	TypeField PassportElementType `json:"type"`
 }
 
-func (t *GetPassportElement) Type() string {
+func (t GetPassportElement) Type() string {
 	return "getPassportElement"
 }
 
-func (t *GetPassportElement) MarshalJSON() ([]byte, error) {
+func (t GetPassportElement) MarshalJSON() ([]byte, error) {
 	type Alias GetPassportElement
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getPassportElement",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -9718,18 +9718,18 @@ func (t *GetPassportElement) MarshalJSON() ([]byte, error) {
 type GetPasswordState struct {
 }
 
-func (t *GetPasswordState) Type() string {
+func (t GetPasswordState) Type() string {
 	return "getPasswordState"
 }
 
-func (t *GetPasswordState) MarshalJSON() ([]byte, error) {
+func (t GetPasswordState) MarshalJSON() ([]byte, error) {
 	type Alias GetPasswordState
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getPasswordState",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -9741,18 +9741,18 @@ type GetPaymentForm struct {
 	Theme *ThemeParameters `json:"theme,omitempty"`
 }
 
-func (t *GetPaymentForm) Type() string {
+func (t GetPaymentForm) Type() string {
 	return "getPaymentForm"
 }
 
-func (t *GetPaymentForm) MarshalJSON() ([]byte, error) {
+func (t GetPaymentForm) MarshalJSON() ([]byte, error) {
 	type Alias GetPaymentForm
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getPaymentForm",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -9764,18 +9764,18 @@ type GetPaymentReceipt struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t *GetPaymentReceipt) Type() string {
+func (t GetPaymentReceipt) Type() string {
 	return "getPaymentReceipt"
 }
 
-func (t *GetPaymentReceipt) MarshalJSON() ([]byte, error) {
+func (t GetPaymentReceipt) MarshalJSON() ([]byte, error) {
 	type Alias GetPaymentReceipt
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getPaymentReceipt",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -9785,18 +9785,18 @@ type GetPhoneNumberInfo struct {
 	PhoneNumberPrefix string `json:"phone_number_prefix"`
 }
 
-func (t *GetPhoneNumberInfo) Type() string {
+func (t GetPhoneNumberInfo) Type() string {
 	return "getPhoneNumberInfo"
 }
 
-func (t *GetPhoneNumberInfo) MarshalJSON() ([]byte, error) {
+func (t GetPhoneNumberInfo) MarshalJSON() ([]byte, error) {
 	type Alias GetPhoneNumberInfo
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getPhoneNumberInfo",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -9808,18 +9808,18 @@ type GetPhoneNumberInfoSync struct {
 	PhoneNumberPrefix string `json:"phone_number_prefix"`
 }
 
-func (t *GetPhoneNumberInfoSync) Type() string {
+func (t GetPhoneNumberInfoSync) Type() string {
 	return "getPhoneNumberInfoSync"
 }
 
-func (t *GetPhoneNumberInfoSync) MarshalJSON() ([]byte, error) {
+func (t GetPhoneNumberInfoSync) MarshalJSON() ([]byte, error) {
 	type Alias GetPhoneNumberInfoSync
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getPhoneNumberInfoSync",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -9837,18 +9837,18 @@ type GetPollVoters struct {
 	OptionId int32 `json:"option_id"`
 }
 
-func (t *GetPollVoters) Type() string {
+func (t GetPollVoters) Type() string {
 	return "getPollVoters"
 }
 
-func (t *GetPollVoters) MarshalJSON() ([]byte, error) {
+func (t GetPollVoters) MarshalJSON() ([]byte, error) {
 	type Alias GetPollVoters
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getPollVoters",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -9858,18 +9858,18 @@ type GetPreferredCountryLanguage struct {
 	CountryCode string `json:"country_code"`
 }
 
-func (t *GetPreferredCountryLanguage) Type() string {
+func (t GetPreferredCountryLanguage) Type() string {
 	return "getPreferredCountryLanguage"
 }
 
-func (t *GetPreferredCountryLanguage) MarshalJSON() ([]byte, error) {
+func (t GetPreferredCountryLanguage) MarshalJSON() ([]byte, error) {
 	type Alias GetPreferredCountryLanguage
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getPreferredCountryLanguage",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -9879,18 +9879,18 @@ type GetPremiumFeatures struct {
 	Source PremiumSource `json:"source"`
 }
 
-func (t *GetPremiumFeatures) Type() string {
+func (t GetPremiumFeatures) Type() string {
 	return "getPremiumFeatures"
 }
 
-func (t *GetPremiumFeatures) MarshalJSON() ([]byte, error) {
+func (t GetPremiumFeatures) MarshalJSON() ([]byte, error) {
 	type Alias GetPremiumFeatures
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getPremiumFeatures",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -9898,18 +9898,18 @@ func (t *GetPremiumFeatures) MarshalJSON() ([]byte, error) {
 type GetPremiumGiftPaymentOptions struct {
 }
 
-func (t *GetPremiumGiftPaymentOptions) Type() string {
+func (t GetPremiumGiftPaymentOptions) Type() string {
 	return "getPremiumGiftPaymentOptions"
 }
 
-func (t *GetPremiumGiftPaymentOptions) MarshalJSON() ([]byte, error) {
+func (t GetPremiumGiftPaymentOptions) MarshalJSON() ([]byte, error) {
 	type Alias GetPremiumGiftPaymentOptions
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getPremiumGiftPaymentOptions",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -9919,18 +9919,18 @@ type GetPremiumGiveawayPaymentOptions struct {
 	BoostedChatId int64 `json:"boosted_chat_id"`
 }
 
-func (t *GetPremiumGiveawayPaymentOptions) Type() string {
+func (t GetPremiumGiveawayPaymentOptions) Type() string {
 	return "getPremiumGiveawayPaymentOptions"
 }
 
-func (t *GetPremiumGiveawayPaymentOptions) MarshalJSON() ([]byte, error) {
+func (t GetPremiumGiveawayPaymentOptions) MarshalJSON() ([]byte, error) {
 	type Alias GetPremiumGiveawayPaymentOptions
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getPremiumGiveawayPaymentOptions",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -9940,18 +9940,18 @@ type GetPremiumInfoSticker struct {
 	MonthCount int32 `json:"month_count"`
 }
 
-func (t *GetPremiumInfoSticker) Type() string {
+func (t GetPremiumInfoSticker) Type() string {
 	return "getPremiumInfoSticker"
 }
 
-func (t *GetPremiumInfoSticker) MarshalJSON() ([]byte, error) {
+func (t GetPremiumInfoSticker) MarshalJSON() ([]byte, error) {
 	type Alias GetPremiumInfoSticker
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getPremiumInfoSticker",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -9961,18 +9961,18 @@ type GetPremiumLimit struct {
 	LimitType PremiumLimitType `json:"limit_type"`
 }
 
-func (t *GetPremiumLimit) Type() string {
+func (t GetPremiumLimit) Type() string {
 	return "getPremiumLimit"
 }
 
-func (t *GetPremiumLimit) MarshalJSON() ([]byte, error) {
+func (t GetPremiumLimit) MarshalJSON() ([]byte, error) {
 	type Alias GetPremiumLimit
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getPremiumLimit",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -9980,18 +9980,18 @@ func (t *GetPremiumLimit) MarshalJSON() ([]byte, error) {
 type GetPremiumState struct {
 }
 
-func (t *GetPremiumState) Type() string {
+func (t GetPremiumState) Type() string {
 	return "getPremiumState"
 }
 
-func (t *GetPremiumState) MarshalJSON() ([]byte, error) {
+func (t GetPremiumState) MarshalJSON() ([]byte, error) {
 	type Alias GetPremiumState
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getPremiumState",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -9999,18 +9999,18 @@ func (t *GetPremiumState) MarshalJSON() ([]byte, error) {
 type GetPremiumStickerExamples struct {
 }
 
-func (t *GetPremiumStickerExamples) Type() string {
+func (t GetPremiumStickerExamples) Type() string {
 	return "getPremiumStickerExamples"
 }
 
-func (t *GetPremiumStickerExamples) MarshalJSON() ([]byte, error) {
+func (t GetPremiumStickerExamples) MarshalJSON() ([]byte, error) {
 	type Alias GetPremiumStickerExamples
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getPremiumStickerExamples",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -10020,18 +10020,18 @@ type GetPremiumStickers struct {
 	Limit int32 `json:"limit"`
 }
 
-func (t *GetPremiumStickers) Type() string {
+func (t GetPremiumStickers) Type() string {
 	return "getPremiumStickers"
 }
 
-func (t *GetPremiumStickers) MarshalJSON() ([]byte, error) {
+func (t GetPremiumStickers) MarshalJSON() ([]byte, error) {
 	type Alias GetPremiumStickers
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getPremiumStickers",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -10043,18 +10043,18 @@ type GetPreparedInlineMessage struct {
 	PreparedMessageId string `json:"prepared_message_id"`
 }
 
-func (t *GetPreparedInlineMessage) Type() string {
+func (t GetPreparedInlineMessage) Type() string {
 	return "getPreparedInlineMessage"
 }
 
-func (t *GetPreparedInlineMessage) MarshalJSON() ([]byte, error) {
+func (t GetPreparedInlineMessage) MarshalJSON() ([]byte, error) {
 	type Alias GetPreparedInlineMessage
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getPreparedInlineMessage",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -10062,18 +10062,18 @@ func (t *GetPreparedInlineMessage) MarshalJSON() ([]byte, error) {
 type GetProxies struct {
 }
 
-func (t *GetProxies) Type() string {
+func (t GetProxies) Type() string {
 	return "getProxies"
 }
 
-func (t *GetProxies) MarshalJSON() ([]byte, error) {
+func (t GetProxies) MarshalJSON() ([]byte, error) {
 	type Alias GetProxies
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getProxies",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -10083,18 +10083,18 @@ type GetPublicPostSearchLimits struct {
 	Query string `json:"query"`
 }
 
-func (t *GetPublicPostSearchLimits) Type() string {
+func (t GetPublicPostSearchLimits) Type() string {
 	return "getPublicPostSearchLimits"
 }
 
-func (t *GetPublicPostSearchLimits) MarshalJSON() ([]byte, error) {
+func (t GetPublicPostSearchLimits) MarshalJSON() ([]byte, error) {
 	type Alias GetPublicPostSearchLimits
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getPublicPostSearchLimits",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -10104,18 +10104,18 @@ type GetPushReceiverId struct {
 	Payload string `json:"payload"`
 }
 
-func (t *GetPushReceiverId) Type() string {
+func (t GetPushReceiverId) Type() string {
 	return "getPushReceiverId"
 }
 
-func (t *GetPushReceiverId) MarshalJSON() ([]byte, error) {
+func (t GetPushReceiverId) MarshalJSON() ([]byte, error) {
 	type Alias GetPushReceiverId
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getPushReceiverId",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -10123,18 +10123,18 @@ func (t *GetPushReceiverId) MarshalJSON() ([]byte, error) {
 type GetReadDatePrivacySettings struct {
 }
 
-func (t *GetReadDatePrivacySettings) Type() string {
+func (t GetReadDatePrivacySettings) Type() string {
 	return "getReadDatePrivacySettings"
 }
 
-func (t *GetReadDatePrivacySettings) MarshalJSON() ([]byte, error) {
+func (t GetReadDatePrivacySettings) MarshalJSON() ([]byte, error) {
 	type Alias GetReadDatePrivacySettings
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getReadDatePrivacySettings",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -10144,18 +10144,18 @@ type GetReceivedGift struct {
 	ReceivedGiftId string `json:"received_gift_id"`
 }
 
-func (t *GetReceivedGift) Type() string {
+func (t GetReceivedGift) Type() string {
 	return "getReceivedGift"
 }
 
-func (t *GetReceivedGift) MarshalJSON() ([]byte, error) {
+func (t GetReceivedGift) MarshalJSON() ([]byte, error) {
 	type Alias GetReceivedGift
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getReceivedGift",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -10191,18 +10191,18 @@ type GetReceivedGifts struct {
 	SortByPrice bool `json:"sort_by_price"`
 }
 
-func (t *GetReceivedGifts) Type() string {
+func (t GetReceivedGifts) Type() string {
 	return "getReceivedGifts"
 }
 
-func (t *GetReceivedGifts) MarshalJSON() ([]byte, error) {
+func (t GetReceivedGifts) MarshalJSON() ([]byte, error) {
 	type Alias GetReceivedGifts
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getReceivedGifts",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -10210,18 +10210,18 @@ func (t *GetReceivedGifts) MarshalJSON() ([]byte, error) {
 type GetRecentEmojiStatuses struct {
 }
 
-func (t *GetRecentEmojiStatuses) Type() string {
+func (t GetRecentEmojiStatuses) Type() string {
 	return "getRecentEmojiStatuses"
 }
 
-func (t *GetRecentEmojiStatuses) MarshalJSON() ([]byte, error) {
+func (t GetRecentEmojiStatuses) MarshalJSON() ([]byte, error) {
 	type Alias GetRecentEmojiStatuses
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getRecentEmojiStatuses",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -10229,18 +10229,18 @@ func (t *GetRecentEmojiStatuses) MarshalJSON() ([]byte, error) {
 type GetRecentInlineBots struct {
 }
 
-func (t *GetRecentInlineBots) Type() string {
+func (t GetRecentInlineBots) Type() string {
 	return "getRecentInlineBots"
 }
 
-func (t *GetRecentInlineBots) MarshalJSON() ([]byte, error) {
+func (t GetRecentInlineBots) MarshalJSON() ([]byte, error) {
 	type Alias GetRecentInlineBots
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getRecentInlineBots",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -10250,18 +10250,18 @@ type GetRecentlyOpenedChats struct {
 	Limit int32 `json:"limit"`
 }
 
-func (t *GetRecentlyOpenedChats) Type() string {
+func (t GetRecentlyOpenedChats) Type() string {
 	return "getRecentlyOpenedChats"
 }
 
-func (t *GetRecentlyOpenedChats) MarshalJSON() ([]byte, error) {
+func (t GetRecentlyOpenedChats) MarshalJSON() ([]byte, error) {
 	type Alias GetRecentlyOpenedChats
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getRecentlyOpenedChats",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -10271,18 +10271,18 @@ type GetRecentlyVisitedTMeUrls struct {
 	Referrer string `json:"referrer"`
 }
 
-func (t *GetRecentlyVisitedTMeUrls) Type() string {
+func (t GetRecentlyVisitedTMeUrls) Type() string {
 	return "getRecentlyVisitedTMeUrls"
 }
 
-func (t *GetRecentlyVisitedTMeUrls) MarshalJSON() ([]byte, error) {
+func (t GetRecentlyVisitedTMeUrls) MarshalJSON() ([]byte, error) {
 	type Alias GetRecentlyVisitedTMeUrls
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getRecentlyVisitedTMeUrls",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -10292,18 +10292,18 @@ type GetRecentStickers struct {
 	IsAttached bool `json:"is_attached"`
 }
 
-func (t *GetRecentStickers) Type() string {
+func (t GetRecentStickers) Type() string {
 	return "getRecentStickers"
 }
 
-func (t *GetRecentStickers) MarshalJSON() ([]byte, error) {
+func (t GetRecentStickers) MarshalJSON() ([]byte, error) {
 	type Alias GetRecentStickers
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getRecentStickers",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -10311,18 +10311,18 @@ func (t *GetRecentStickers) MarshalJSON() ([]byte, error) {
 type GetRecommendedChatFolders struct {
 }
 
-func (t *GetRecommendedChatFolders) Type() string {
+func (t GetRecommendedChatFolders) Type() string {
 	return "getRecommendedChatFolders"
 }
 
-func (t *GetRecommendedChatFolders) MarshalJSON() ([]byte, error) {
+func (t GetRecommendedChatFolders) MarshalJSON() ([]byte, error) {
 	type Alias GetRecommendedChatFolders
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getRecommendedChatFolders",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -10330,18 +10330,18 @@ func (t *GetRecommendedChatFolders) MarshalJSON() ([]byte, error) {
 type GetRecommendedChats struct {
 }
 
-func (t *GetRecommendedChats) Type() string {
+func (t GetRecommendedChats) Type() string {
 	return "getRecommendedChats"
 }
 
-func (t *GetRecommendedChats) MarshalJSON() ([]byte, error) {
+func (t GetRecommendedChats) MarshalJSON() ([]byte, error) {
 	type Alias GetRecommendedChats
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getRecommendedChats",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -10351,18 +10351,18 @@ type GetRecoveryEmailAddress struct {
 	Password string `json:"password"`
 }
 
-func (t *GetRecoveryEmailAddress) Type() string {
+func (t GetRecoveryEmailAddress) Type() string {
 	return "getRecoveryEmailAddress"
 }
 
-func (t *GetRecoveryEmailAddress) MarshalJSON() ([]byte, error) {
+func (t GetRecoveryEmailAddress) MarshalJSON() ([]byte, error) {
 	type Alias GetRecoveryEmailAddress
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getRecoveryEmailAddress",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -10374,18 +10374,18 @@ type GetRemoteFile struct {
 	RemoteFileId string `json:"remote_file_id"`
 }
 
-func (t *GetRemoteFile) Type() string {
+func (t GetRemoteFile) Type() string {
 	return "getRemoteFile"
 }
 
-func (t *GetRemoteFile) MarshalJSON() ([]byte, error) {
+func (t GetRemoteFile) MarshalJSON() ([]byte, error) {
 	type Alias GetRemoteFile
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getRemoteFile",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -10397,18 +10397,18 @@ type GetRepliedMessage struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t *GetRepliedMessage) Type() string {
+func (t GetRepliedMessage) Type() string {
 	return "getRepliedMessage"
 }
 
-func (t *GetRepliedMessage) MarshalJSON() ([]byte, error) {
+func (t GetRepliedMessage) MarshalJSON() ([]byte, error) {
 	type Alias GetRepliedMessage
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getRepliedMessage",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -10416,18 +10416,18 @@ func (t *GetRepliedMessage) MarshalJSON() ([]byte, error) {
 type GetSavedAnimations struct {
 }
 
-func (t *GetSavedAnimations) Type() string {
+func (t GetSavedAnimations) Type() string {
 	return "getSavedAnimations"
 }
 
-func (t *GetSavedAnimations) MarshalJSON() ([]byte, error) {
+func (t GetSavedAnimations) MarshalJSON() ([]byte, error) {
 	type Alias GetSavedAnimations
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getSavedAnimations",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -10437,18 +10437,18 @@ type GetSavedMessagesTags struct {
 	SavedMessagesTopicId int64 `json:"saved_messages_topic_id"`
 }
 
-func (t *GetSavedMessagesTags) Type() string {
+func (t GetSavedMessagesTags) Type() string {
 	return "getSavedMessagesTags"
 }
 
-func (t *GetSavedMessagesTags) MarshalJSON() ([]byte, error) {
+func (t GetSavedMessagesTags) MarshalJSON() ([]byte, error) {
 	type Alias GetSavedMessagesTags
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getSavedMessagesTags",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -10464,18 +10464,18 @@ type GetSavedMessagesTopicHistory struct {
 	SavedMessagesTopicId int64 `json:"saved_messages_topic_id"`
 }
 
-func (t *GetSavedMessagesTopicHistory) Type() string {
+func (t GetSavedMessagesTopicHistory) Type() string {
 	return "getSavedMessagesTopicHistory"
 }
 
-func (t *GetSavedMessagesTopicHistory) MarshalJSON() ([]byte, error) {
+func (t GetSavedMessagesTopicHistory) MarshalJSON() ([]byte, error) {
 	type Alias GetSavedMessagesTopicHistory
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getSavedMessagesTopicHistory",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -10487,18 +10487,18 @@ type GetSavedMessagesTopicMessageByDate struct {
 	SavedMessagesTopicId int64 `json:"saved_messages_topic_id"`
 }
 
-func (t *GetSavedMessagesTopicMessageByDate) Type() string {
+func (t GetSavedMessagesTopicMessageByDate) Type() string {
 	return "getSavedMessagesTopicMessageByDate"
 }
 
-func (t *GetSavedMessagesTopicMessageByDate) MarshalJSON() ([]byte, error) {
+func (t GetSavedMessagesTopicMessageByDate) MarshalJSON() ([]byte, error) {
 	type Alias GetSavedMessagesTopicMessageByDate
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getSavedMessagesTopicMessageByDate",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -10508,18 +10508,18 @@ type GetSavedNotificationSound struct {
 	NotificationSoundId int64 `json:"notification_sound_id,string"`
 }
 
-func (t *GetSavedNotificationSound) Type() string {
+func (t GetSavedNotificationSound) Type() string {
 	return "getSavedNotificationSound"
 }
 
-func (t *GetSavedNotificationSound) MarshalJSON() ([]byte, error) {
+func (t GetSavedNotificationSound) MarshalJSON() ([]byte, error) {
 	type Alias GetSavedNotificationSound
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getSavedNotificationSound",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -10527,18 +10527,18 @@ func (t *GetSavedNotificationSound) MarshalJSON() ([]byte, error) {
 type GetSavedNotificationSounds struct {
 }
 
-func (t *GetSavedNotificationSounds) Type() string {
+func (t GetSavedNotificationSounds) Type() string {
 	return "getSavedNotificationSounds"
 }
 
-func (t *GetSavedNotificationSounds) MarshalJSON() ([]byte, error) {
+func (t GetSavedNotificationSounds) MarshalJSON() ([]byte, error) {
 	type Alias GetSavedNotificationSounds
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getSavedNotificationSounds",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -10546,18 +10546,18 @@ func (t *GetSavedNotificationSounds) MarshalJSON() ([]byte, error) {
 type GetSavedOrderInfo struct {
 }
 
-func (t *GetSavedOrderInfo) Type() string {
+func (t GetSavedOrderInfo) Type() string {
 	return "getSavedOrderInfo"
 }
 
-func (t *GetSavedOrderInfo) MarshalJSON() ([]byte, error) {
+func (t GetSavedOrderInfo) MarshalJSON() ([]byte, error) {
 	type Alias GetSavedOrderInfo
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getSavedOrderInfo",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -10567,18 +10567,18 @@ type GetScopeNotificationSettings struct {
 	Scope NotificationSettingsScope `json:"scope"`
 }
 
-func (t *GetScopeNotificationSettings) Type() string {
+func (t GetScopeNotificationSettings) Type() string {
 	return "getScopeNotificationSettings"
 }
 
-func (t *GetScopeNotificationSettings) MarshalJSON() ([]byte, error) {
+func (t GetScopeNotificationSettings) MarshalJSON() ([]byte, error) {
 	type Alias GetScopeNotificationSettings
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getScopeNotificationSettings",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -10590,18 +10590,18 @@ type GetSearchedForTags struct {
 	TagPrefix string `json:"tag_prefix"`
 }
 
-func (t *GetSearchedForTags) Type() string {
+func (t GetSearchedForTags) Type() string {
 	return "getSearchedForTags"
 }
 
-func (t *GetSearchedForTags) MarshalJSON() ([]byte, error) {
+func (t GetSearchedForTags) MarshalJSON() ([]byte, error) {
 	type Alias GetSearchedForTags
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getSearchedForTags",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -10611,18 +10611,18 @@ type GetSearchSponsoredChats struct {
 	Query string `json:"query"`
 }
 
-func (t *GetSearchSponsoredChats) Type() string {
+func (t GetSearchSponsoredChats) Type() string {
 	return "getSearchSponsoredChats"
 }
 
-func (t *GetSearchSponsoredChats) MarshalJSON() ([]byte, error) {
+func (t GetSearchSponsoredChats) MarshalJSON() ([]byte, error) {
 	type Alias GetSearchSponsoredChats
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getSearchSponsoredChats",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -10632,18 +10632,18 @@ type GetSecretChat struct {
 	SecretChatId int32 `json:"secret_chat_id"`
 }
 
-func (t *GetSecretChat) Type() string {
+func (t GetSecretChat) Type() string {
 	return "getSecretChat"
 }
 
-func (t *GetSecretChat) MarshalJSON() ([]byte, error) {
+func (t GetSecretChat) MarshalJSON() ([]byte, error) {
 	type Alias GetSecretChat
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getSecretChat",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -10651,18 +10651,18 @@ func (t *GetSecretChat) MarshalJSON() ([]byte, error) {
 type GetStakeDiceState struct {
 }
 
-func (t *GetStakeDiceState) Type() string {
+func (t GetStakeDiceState) Type() string {
 	return "getStakeDiceState"
 }
 
-func (t *GetStakeDiceState) MarshalJSON() ([]byte, error) {
+func (t GetStakeDiceState) MarshalJSON() ([]byte, error) {
 	type Alias GetStakeDiceState
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getStakeDiceState",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -10672,18 +10672,18 @@ type GetStarAdAccountUrl struct {
 	OwnerId MessageSender `json:"owner_id"`
 }
 
-func (t *GetStarAdAccountUrl) Type() string {
+func (t GetStarAdAccountUrl) Type() string {
 	return "getStarAdAccountUrl"
 }
 
-func (t *GetStarAdAccountUrl) MarshalJSON() ([]byte, error) {
+func (t GetStarAdAccountUrl) MarshalJSON() ([]byte, error) {
 	type Alias GetStarAdAccountUrl
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getStarAdAccountUrl",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -10693,18 +10693,18 @@ type GetStarGiftPaymentOptions struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t *GetStarGiftPaymentOptions) Type() string {
+func (t GetStarGiftPaymentOptions) Type() string {
 	return "getStarGiftPaymentOptions"
 }
 
-func (t *GetStarGiftPaymentOptions) MarshalJSON() ([]byte, error) {
+func (t GetStarGiftPaymentOptions) MarshalJSON() ([]byte, error) {
 	type Alias GetStarGiftPaymentOptions
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getStarGiftPaymentOptions",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -10712,18 +10712,18 @@ func (t *GetStarGiftPaymentOptions) MarshalJSON() ([]byte, error) {
 type GetStarGiveawayPaymentOptions struct {
 }
 
-func (t *GetStarGiveawayPaymentOptions) Type() string {
+func (t GetStarGiveawayPaymentOptions) Type() string {
 	return "getStarGiveawayPaymentOptions"
 }
 
-func (t *GetStarGiveawayPaymentOptions) MarshalJSON() ([]byte, error) {
+func (t GetStarGiveawayPaymentOptions) MarshalJSON() ([]byte, error) {
 	type Alias GetStarGiveawayPaymentOptions
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getStarGiveawayPaymentOptions",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -10731,18 +10731,18 @@ func (t *GetStarGiveawayPaymentOptions) MarshalJSON() ([]byte, error) {
 type GetStarPaymentOptions struct {
 }
 
-func (t *GetStarPaymentOptions) Type() string {
+func (t GetStarPaymentOptions) Type() string {
 	return "getStarPaymentOptions"
 }
 
-func (t *GetStarPaymentOptions) MarshalJSON() ([]byte, error) {
+func (t GetStarPaymentOptions) MarshalJSON() ([]byte, error) {
 	type Alias GetStarPaymentOptions
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getStarPaymentOptions",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -10754,18 +10754,18 @@ type GetStarRevenueStatistics struct {
 	OwnerId MessageSender `json:"owner_id"`
 }
 
-func (t *GetStarRevenueStatistics) Type() string {
+func (t GetStarRevenueStatistics) Type() string {
 	return "getStarRevenueStatistics"
 }
 
-func (t *GetStarRevenueStatistics) MarshalJSON() ([]byte, error) {
+func (t GetStarRevenueStatistics) MarshalJSON() ([]byte, error) {
 	type Alias GetStarRevenueStatistics
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getStarRevenueStatistics",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -10777,18 +10777,18 @@ type GetStarSubscriptions struct {
 	OnlyExpiring bool `json:"only_expiring"`
 }
 
-func (t *GetStarSubscriptions) Type() string {
+func (t GetStarSubscriptions) Type() string {
 	return "getStarSubscriptions"
 }
 
-func (t *GetStarSubscriptions) MarshalJSON() ([]byte, error) {
+func (t GetStarSubscriptions) MarshalJSON() ([]byte, error) {
 	type Alias GetStarSubscriptions
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getStarSubscriptions",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -10806,18 +10806,18 @@ type GetStarTransactions struct {
 	SubscriptionId string `json:"subscription_id,omitempty"`
 }
 
-func (t *GetStarTransactions) Type() string {
+func (t GetStarTransactions) Type() string {
 	return "getStarTransactions"
 }
 
-func (t *GetStarTransactions) MarshalJSON() ([]byte, error) {
+func (t GetStarTransactions) MarshalJSON() ([]byte, error) {
 	type Alias GetStarTransactions
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getStarTransactions",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -10831,18 +10831,18 @@ type GetStarWithdrawalUrl struct {
 	StarCount int64 `json:"star_count"`
 }
 
-func (t *GetStarWithdrawalUrl) Type() string {
+func (t GetStarWithdrawalUrl) Type() string {
 	return "getStarWithdrawalUrl"
 }
 
-func (t *GetStarWithdrawalUrl) MarshalJSON() ([]byte, error) {
+func (t GetStarWithdrawalUrl) MarshalJSON() ([]byte, error) {
 	type Alias GetStarWithdrawalUrl
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getStarWithdrawalUrl",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -10856,18 +10856,18 @@ type GetStatisticalGraph struct {
 	X int64 `json:"x"`
 }
 
-func (t *GetStatisticalGraph) Type() string {
+func (t GetStatisticalGraph) Type() string {
 	return "getStatisticalGraph"
 }
 
-func (t *GetStatisticalGraph) MarshalJSON() ([]byte, error) {
+func (t GetStatisticalGraph) MarshalJSON() ([]byte, error) {
 	type Alias GetStatisticalGraph
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getStatisticalGraph",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -10877,18 +10877,18 @@ type GetStickerEmojis struct {
 	Sticker InputFile `json:"sticker"`
 }
 
-func (t *GetStickerEmojis) Type() string {
+func (t GetStickerEmojis) Type() string {
 	return "getStickerEmojis"
 }
 
-func (t *GetStickerEmojis) MarshalJSON() ([]byte, error) {
+func (t GetStickerEmojis) MarshalJSON() ([]byte, error) {
 	type Alias GetStickerEmojis
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getStickerEmojis",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -10902,18 +10902,18 @@ type GetStickerOutline struct {
 	StickerFileId int32 `json:"sticker_file_id"`
 }
 
-func (t *GetStickerOutline) Type() string {
+func (t GetStickerOutline) Type() string {
 	return "getStickerOutline"
 }
 
-func (t *GetStickerOutline) MarshalJSON() ([]byte, error) {
+func (t GetStickerOutline) MarshalJSON() ([]byte, error) {
 	type Alias GetStickerOutline
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getStickerOutline",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -10927,18 +10927,18 @@ type GetStickerOutlineSvgPath struct {
 	StickerFileId int32 `json:"sticker_file_id"`
 }
 
-func (t *GetStickerOutlineSvgPath) Type() string {
+func (t GetStickerOutlineSvgPath) Type() string {
 	return "getStickerOutlineSvgPath"
 }
 
-func (t *GetStickerOutlineSvgPath) MarshalJSON() ([]byte, error) {
+func (t GetStickerOutlineSvgPath) MarshalJSON() ([]byte, error) {
 	type Alias GetStickerOutlineSvgPath
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getStickerOutlineSvgPath",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -10954,18 +10954,18 @@ type GetStickers struct {
 	StickerType StickerType `json:"sticker_type"`
 }
 
-func (t *GetStickers) Type() string {
+func (t GetStickers) Type() string {
 	return "getStickers"
 }
 
-func (t *GetStickers) MarshalJSON() ([]byte, error) {
+func (t GetStickers) MarshalJSON() ([]byte, error) {
 	type Alias GetStickers
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getStickers",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -10975,18 +10975,18 @@ type GetStickerSet struct {
 	SetId int64 `json:"set_id,string"`
 }
 
-func (t *GetStickerSet) Type() string {
+func (t GetStickerSet) Type() string {
 	return "getStickerSet"
 }
 
-func (t *GetStickerSet) MarshalJSON() ([]byte, error) {
+func (t GetStickerSet) MarshalJSON() ([]byte, error) {
 	type Alias GetStickerSet
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getStickerSet",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -10996,18 +10996,18 @@ type GetStickerSetName struct {
 	SetId int64 `json:"set_id,string"`
 }
 
-func (t *GetStickerSetName) Type() string {
+func (t GetStickerSetName) Type() string {
 	return "getStickerSetName"
 }
 
-func (t *GetStickerSetName) MarshalJSON() ([]byte, error) {
+func (t GetStickerSetName) MarshalJSON() ([]byte, error) {
 	type Alias GetStickerSetName
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getStickerSetName",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -11017,18 +11017,18 @@ type GetStorageStatistics struct {
 	ChatLimit int32 `json:"chat_limit"`
 }
 
-func (t *GetStorageStatistics) Type() string {
+func (t GetStorageStatistics) Type() string {
 	return "getStorageStatistics"
 }
 
-func (t *GetStorageStatistics) MarshalJSON() ([]byte, error) {
+func (t GetStorageStatistics) MarshalJSON() ([]byte, error) {
 	type Alias GetStorageStatistics
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getStorageStatistics",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -11036,18 +11036,18 @@ func (t *GetStorageStatistics) MarshalJSON() ([]byte, error) {
 type GetStorageStatisticsFast struct {
 }
 
-func (t *GetStorageStatisticsFast) Type() string {
+func (t GetStorageStatisticsFast) Type() string {
 	return "getStorageStatisticsFast"
 }
 
-func (t *GetStorageStatisticsFast) MarshalJSON() ([]byte, error) {
+func (t GetStorageStatisticsFast) MarshalJSON() ([]byte, error) {
 	type Alias GetStorageStatisticsFast
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getStorageStatisticsFast",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -11061,18 +11061,18 @@ type GetStory struct {
 	StoryPosterChatId int64 `json:"story_poster_chat_id"`
 }
 
-func (t *GetStory) Type() string {
+func (t GetStory) Type() string {
 	return "getStory"
 }
 
-func (t *GetStory) MarshalJSON() ([]byte, error) {
+func (t GetStory) MarshalJSON() ([]byte, error) {
 	type Alias GetStory
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getStory",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -11088,18 +11088,18 @@ type GetStoryAlbumStories struct {
 	StoryAlbumId int32 `json:"story_album_id"`
 }
 
-func (t *GetStoryAlbumStories) Type() string {
+func (t GetStoryAlbumStories) Type() string {
 	return "getStoryAlbumStories"
 }
 
-func (t *GetStoryAlbumStories) MarshalJSON() ([]byte, error) {
+func (t GetStoryAlbumStories) MarshalJSON() ([]byte, error) {
 	type Alias GetStoryAlbumStories
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getStoryAlbumStories",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -11109,18 +11109,18 @@ type GetStoryAvailableReactions struct {
 	RowSize int32 `json:"row_size"`
 }
 
-func (t *GetStoryAvailableReactions) Type() string {
+func (t GetStoryAvailableReactions) Type() string {
 	return "getStoryAvailableReactions"
 }
 
-func (t *GetStoryAvailableReactions) MarshalJSON() ([]byte, error) {
+func (t GetStoryAvailableReactions) MarshalJSON() ([]byte, error) {
 	type Alias GetStoryAvailableReactions
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getStoryAvailableReactions",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -11142,18 +11142,18 @@ type GetStoryInteractions struct {
 	StoryId int32 `json:"story_id"`
 }
 
-func (t *GetStoryInteractions) Type() string {
+func (t GetStoryInteractions) Type() string {
 	return "getStoryInteractions"
 }
 
-func (t *GetStoryInteractions) MarshalJSON() ([]byte, error) {
+func (t GetStoryInteractions) MarshalJSON() ([]byte, error) {
 	type Alias GetStoryInteractions
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getStoryInteractions",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -11161,18 +11161,18 @@ func (t *GetStoryInteractions) MarshalJSON() ([]byte, error) {
 type GetStoryNotificationSettingsExceptions struct {
 }
 
-func (t *GetStoryNotificationSettingsExceptions) Type() string {
+func (t GetStoryNotificationSettingsExceptions) Type() string {
 	return "getStoryNotificationSettingsExceptions"
 }
 
-func (t *GetStoryNotificationSettingsExceptions) MarshalJSON() ([]byte, error) {
+func (t GetStoryNotificationSettingsExceptions) MarshalJSON() ([]byte, error) {
 	type Alias GetStoryNotificationSettingsExceptions
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getStoryNotificationSettingsExceptions",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -11188,18 +11188,18 @@ type GetStoryPublicForwards struct {
 	StoryPosterChatId int64 `json:"story_poster_chat_id"`
 }
 
-func (t *GetStoryPublicForwards) Type() string {
+func (t GetStoryPublicForwards) Type() string {
 	return "getStoryPublicForwards"
 }
 
-func (t *GetStoryPublicForwards) MarshalJSON() ([]byte, error) {
+func (t GetStoryPublicForwards) MarshalJSON() ([]byte, error) {
 	type Alias GetStoryPublicForwards
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getStoryPublicForwards",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -11213,18 +11213,18 @@ type GetStoryStatistics struct {
 	StoryId int32 `json:"story_id"`
 }
 
-func (t *GetStoryStatistics) Type() string {
+func (t GetStoryStatistics) Type() string {
 	return "getStoryStatistics"
 }
 
-func (t *GetStoryStatistics) MarshalJSON() ([]byte, error) {
+func (t GetStoryStatistics) MarshalJSON() ([]byte, error) {
 	type Alias GetStoryStatistics
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getStoryStatistics",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -11236,18 +11236,18 @@ type GetSuggestedFileName struct {
 	FileId int32 `json:"file_id"`
 }
 
-func (t *GetSuggestedFileName) Type() string {
+func (t GetSuggestedFileName) Type() string {
 	return "getSuggestedFileName"
 }
 
-func (t *GetSuggestedFileName) MarshalJSON() ([]byte, error) {
+func (t GetSuggestedFileName) MarshalJSON() ([]byte, error) {
 	type Alias GetSuggestedFileName
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getSuggestedFileName",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -11257,18 +11257,18 @@ type GetSuggestedStickerSetName struct {
 	Title string `json:"title"`
 }
 
-func (t *GetSuggestedStickerSetName) Type() string {
+func (t GetSuggestedStickerSetName) Type() string {
 	return "getSuggestedStickerSetName"
 }
 
-func (t *GetSuggestedStickerSetName) MarshalJSON() ([]byte, error) {
+func (t GetSuggestedStickerSetName) MarshalJSON() ([]byte, error) {
 	type Alias GetSuggestedStickerSetName
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getSuggestedStickerSetName",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -11276,18 +11276,18 @@ func (t *GetSuggestedStickerSetName) MarshalJSON() ([]byte, error) {
 type GetSuitableDiscussionChats struct {
 }
 
-func (t *GetSuitableDiscussionChats) Type() string {
+func (t GetSuitableDiscussionChats) Type() string {
 	return "getSuitableDiscussionChats"
 }
 
-func (t *GetSuitableDiscussionChats) MarshalJSON() ([]byte, error) {
+func (t GetSuitableDiscussionChats) MarshalJSON() ([]byte, error) {
 	type Alias GetSuitableDiscussionChats
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getSuitableDiscussionChats",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -11295,18 +11295,18 @@ func (t *GetSuitableDiscussionChats) MarshalJSON() ([]byte, error) {
 type GetSuitablePersonalChats struct {
 }
 
-func (t *GetSuitablePersonalChats) Type() string {
+func (t GetSuitablePersonalChats) Type() string {
 	return "getSuitablePersonalChats"
 }
 
-func (t *GetSuitablePersonalChats) MarshalJSON() ([]byte, error) {
+func (t GetSuitablePersonalChats) MarshalJSON() ([]byte, error) {
 	type Alias GetSuitablePersonalChats
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getSuitablePersonalChats",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -11316,18 +11316,18 @@ type GetSupergroup struct {
 	SupergroupId int64 `json:"supergroup_id"`
 }
 
-func (t *GetSupergroup) Type() string {
+func (t GetSupergroup) Type() string {
 	return "getSupergroup"
 }
 
-func (t *GetSupergroup) MarshalJSON() ([]byte, error) {
+func (t GetSupergroup) MarshalJSON() ([]byte, error) {
 	type Alias GetSupergroup
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getSupergroup",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -11337,18 +11337,18 @@ type GetSupergroupFullInfo struct {
 	SupergroupId int64 `json:"supergroup_id"`
 }
 
-func (t *GetSupergroupFullInfo) Type() string {
+func (t GetSupergroupFullInfo) Type() string {
 	return "getSupergroupFullInfo"
 }
 
-func (t *GetSupergroupFullInfo) MarshalJSON() ([]byte, error) {
+func (t GetSupergroupFullInfo) MarshalJSON() ([]byte, error) {
 	type Alias GetSupergroupFullInfo
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getSupergroupFullInfo",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -11364,18 +11364,18 @@ type GetSupergroupMembers struct {
 	SupergroupId int64 `json:"supergroup_id"`
 }
 
-func (t *GetSupergroupMembers) Type() string {
+func (t GetSupergroupMembers) Type() string {
 	return "getSupergroupMembers"
 }
 
-func (t *GetSupergroupMembers) MarshalJSON() ([]byte, error) {
+func (t GetSupergroupMembers) MarshalJSON() ([]byte, error) {
 	type Alias GetSupergroupMembers
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getSupergroupMembers",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -11383,18 +11383,18 @@ func (t *GetSupergroupMembers) MarshalJSON() ([]byte, error) {
 type GetSupportName struct {
 }
 
-func (t *GetSupportName) Type() string {
+func (t GetSupportName) Type() string {
 	return "getSupportName"
 }
 
-func (t *GetSupportName) MarshalJSON() ([]byte, error) {
+func (t GetSupportName) MarshalJSON() ([]byte, error) {
 	type Alias GetSupportName
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getSupportName",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -11402,18 +11402,18 @@ func (t *GetSupportName) MarshalJSON() ([]byte, error) {
 type GetSupportUser struct {
 }
 
-func (t *GetSupportUser) Type() string {
+func (t GetSupportUser) Type() string {
 	return "getSupportUser"
 }
 
-func (t *GetSupportUser) MarshalJSON() ([]byte, error) {
+func (t GetSupportUser) MarshalJSON() ([]byte, error) {
 	type Alias GetSupportUser
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getSupportUser",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -11421,18 +11421,18 @@ func (t *GetSupportUser) MarshalJSON() ([]byte, error) {
 type GetTemporaryPasswordState struct {
 }
 
-func (t *GetTemporaryPasswordState) Type() string {
+func (t GetTemporaryPasswordState) Type() string {
 	return "getTemporaryPasswordState"
 }
 
-func (t *GetTemporaryPasswordState) MarshalJSON() ([]byte, error) {
+func (t GetTemporaryPasswordState) MarshalJSON() ([]byte, error) {
 	type Alias GetTemporaryPasswordState
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getTemporaryPasswordState",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -11442,18 +11442,18 @@ type GetTextEntities struct {
 	Text string `json:"text"`
 }
 
-func (t *GetTextEntities) Type() string {
+func (t GetTextEntities) Type() string {
 	return "getTextEntities"
 }
 
-func (t *GetTextEntities) MarshalJSON() ([]byte, error) {
+func (t GetTextEntities) MarshalJSON() ([]byte, error) {
 	type Alias GetTextEntities
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getTextEntities",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -11461,18 +11461,18 @@ func (t *GetTextEntities) MarshalJSON() ([]byte, error) {
 type GetThemedChatEmojiStatuses struct {
 }
 
-func (t *GetThemedChatEmojiStatuses) Type() string {
+func (t GetThemedChatEmojiStatuses) Type() string {
 	return "getThemedChatEmojiStatuses"
 }
 
-func (t *GetThemedChatEmojiStatuses) MarshalJSON() ([]byte, error) {
+func (t GetThemedChatEmojiStatuses) MarshalJSON() ([]byte, error) {
 	type Alias GetThemedChatEmojiStatuses
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getThemedChatEmojiStatuses",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -11480,18 +11480,18 @@ func (t *GetThemedChatEmojiStatuses) MarshalJSON() ([]byte, error) {
 type GetThemedEmojiStatuses struct {
 }
 
-func (t *GetThemedEmojiStatuses) Type() string {
+func (t GetThemedEmojiStatuses) Type() string {
 	return "getThemedEmojiStatuses"
 }
 
-func (t *GetThemedEmojiStatuses) MarshalJSON() ([]byte, error) {
+func (t GetThemedEmojiStatuses) MarshalJSON() ([]byte, error) {
 	type Alias GetThemedEmojiStatuses
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getThemedEmojiStatuses",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -11501,18 +11501,18 @@ type GetThemeParametersJsonString struct {
 	Theme *ThemeParameters `json:"theme"`
 }
 
-func (t *GetThemeParametersJsonString) Type() string {
+func (t GetThemeParametersJsonString) Type() string {
 	return "getThemeParametersJsonString"
 }
 
-func (t *GetThemeParametersJsonString) MarshalJSON() ([]byte, error) {
+func (t GetThemeParametersJsonString) MarshalJSON() ([]byte, error) {
 	type Alias GetThemeParametersJsonString
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getThemeParametersJsonString",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -11520,18 +11520,18 @@ func (t *GetThemeParametersJsonString) MarshalJSON() ([]byte, error) {
 type GetTimeZones struct {
 }
 
-func (t *GetTimeZones) Type() string {
+func (t GetTimeZones) Type() string {
 	return "getTimeZones"
 }
 
-func (t *GetTimeZones) MarshalJSON() ([]byte, error) {
+func (t GetTimeZones) MarshalJSON() ([]byte, error) {
 	type Alias GetTimeZones
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getTimeZones",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -11541,18 +11541,18 @@ type GetTonRevenueStatistics struct {
 	IsDark bool `json:"is_dark"`
 }
 
-func (t *GetTonRevenueStatistics) Type() string {
+func (t GetTonRevenueStatistics) Type() string {
 	return "getTonRevenueStatistics"
 }
 
-func (t *GetTonRevenueStatistics) MarshalJSON() ([]byte, error) {
+func (t GetTonRevenueStatistics) MarshalJSON() ([]byte, error) {
 	type Alias GetTonRevenueStatistics
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getTonRevenueStatistics",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -11566,18 +11566,18 @@ type GetTonTransactions struct {
 	Offset string `json:"offset"`
 }
 
-func (t *GetTonTransactions) Type() string {
+func (t GetTonTransactions) Type() string {
 	return "getTonTransactions"
 }
 
-func (t *GetTonTransactions) MarshalJSON() ([]byte, error) {
+func (t GetTonTransactions) MarshalJSON() ([]byte, error) {
 	type Alias GetTonTransactions
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getTonTransactions",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -11587,18 +11587,18 @@ type GetTonWithdrawalUrl struct {
 	Password string `json:"password"`
 }
 
-func (t *GetTonWithdrawalUrl) Type() string {
+func (t GetTonWithdrawalUrl) Type() string {
 	return "getTonWithdrawalUrl"
 }
 
-func (t *GetTonWithdrawalUrl) MarshalJSON() ([]byte, error) {
+func (t GetTonWithdrawalUrl) MarshalJSON() ([]byte, error) {
 	type Alias GetTonWithdrawalUrl
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getTonWithdrawalUrl",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -11610,18 +11610,18 @@ type GetTopChats struct {
 	Limit int32 `json:"limit"`
 }
 
-func (t *GetTopChats) Type() string {
+func (t GetTopChats) Type() string {
 	return "getTopChats"
 }
 
-func (t *GetTopChats) MarshalJSON() ([]byte, error) {
+func (t GetTopChats) MarshalJSON() ([]byte, error) {
 	type Alias GetTopChats
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getTopChats",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -11635,18 +11635,18 @@ type GetTrendingStickerSets struct {
 	StickerType StickerType `json:"sticker_type"`
 }
 
-func (t *GetTrendingStickerSets) Type() string {
+func (t GetTrendingStickerSets) Type() string {
 	return "getTrendingStickerSets"
 }
 
-func (t *GetTrendingStickerSets) MarshalJSON() ([]byte, error) {
+func (t GetTrendingStickerSets) MarshalJSON() ([]byte, error) {
 	type Alias GetTrendingStickerSets
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getTrendingStickerSets",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -11656,18 +11656,18 @@ type GetUpgradedGift struct {
 	Name string `json:"name"`
 }
 
-func (t *GetUpgradedGift) Type() string {
+func (t GetUpgradedGift) Type() string {
 	return "getUpgradedGift"
 }
 
-func (t *GetUpgradedGift) MarshalJSON() ([]byte, error) {
+func (t GetUpgradedGift) MarshalJSON() ([]byte, error) {
 	type Alias GetUpgradedGift
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getUpgradedGift",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -11675,18 +11675,18 @@ func (t *GetUpgradedGift) MarshalJSON() ([]byte, error) {
 type GetUpgradedGiftEmojiStatuses struct {
 }
 
-func (t *GetUpgradedGiftEmojiStatuses) Type() string {
+func (t GetUpgradedGiftEmojiStatuses) Type() string {
 	return "getUpgradedGiftEmojiStatuses"
 }
 
-func (t *GetUpgradedGiftEmojiStatuses) MarshalJSON() ([]byte, error) {
+func (t GetUpgradedGiftEmojiStatuses) MarshalJSON() ([]byte, error) {
 	type Alias GetUpgradedGiftEmojiStatuses
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getUpgradedGiftEmojiStatuses",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -11694,18 +11694,18 @@ func (t *GetUpgradedGiftEmojiStatuses) MarshalJSON() ([]byte, error) {
 type GetUpgradedGiftsPromotionalAnimation struct {
 }
 
-func (t *GetUpgradedGiftsPromotionalAnimation) Type() string {
+func (t GetUpgradedGiftsPromotionalAnimation) Type() string {
 	return "getUpgradedGiftsPromotionalAnimation"
 }
 
-func (t *GetUpgradedGiftsPromotionalAnimation) MarshalJSON() ([]byte, error) {
+func (t GetUpgradedGiftsPromotionalAnimation) MarshalJSON() ([]byte, error) {
 	type Alias GetUpgradedGiftsPromotionalAnimation
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getUpgradedGiftsPromotionalAnimation",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -11715,18 +11715,18 @@ type GetUpgradedGiftValueInfo struct {
 	Name string `json:"name"`
 }
 
-func (t *GetUpgradedGiftValueInfo) Type() string {
+func (t GetUpgradedGiftValueInfo) Type() string {
 	return "getUpgradedGiftValueInfo"
 }
 
-func (t *GetUpgradedGiftValueInfo) MarshalJSON() ([]byte, error) {
+func (t GetUpgradedGiftValueInfo) MarshalJSON() ([]byte, error) {
 	type Alias GetUpgradedGiftValueInfo
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getUpgradedGiftValueInfo",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -11740,18 +11740,18 @@ type GetUpgradedGiftVariants struct {
 	ReturnUpgradeModels bool `json:"return_upgrade_models"`
 }
 
-func (t *GetUpgradedGiftVariants) Type() string {
+func (t GetUpgradedGiftVariants) Type() string {
 	return "getUpgradedGiftVariants"
 }
 
-func (t *GetUpgradedGiftVariants) MarshalJSON() ([]byte, error) {
+func (t GetUpgradedGiftVariants) MarshalJSON() ([]byte, error) {
 	type Alias GetUpgradedGiftVariants
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getUpgradedGiftVariants",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -11763,18 +11763,18 @@ type GetUpgradedGiftWithdrawalUrl struct {
 	ReceivedGiftId string `json:"received_gift_id"`
 }
 
-func (t *GetUpgradedGiftWithdrawalUrl) Type() string {
+func (t GetUpgradedGiftWithdrawalUrl) Type() string {
 	return "getUpgradedGiftWithdrawalUrl"
 }
 
-func (t *GetUpgradedGiftWithdrawalUrl) MarshalJSON() ([]byte, error) {
+func (t GetUpgradedGiftWithdrawalUrl) MarshalJSON() ([]byte, error) {
 	type Alias GetUpgradedGiftWithdrawalUrl
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getUpgradedGiftWithdrawalUrl",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -11784,18 +11784,18 @@ type GetUser struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t *GetUser) Type() string {
+func (t GetUser) Type() string {
 	return "getUser"
 }
 
-func (t *GetUser) MarshalJSON() ([]byte, error) {
+func (t GetUser) MarshalJSON() ([]byte, error) {
 	type Alias GetUser
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getUser",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -11807,18 +11807,18 @@ type GetUserChatBoosts struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t *GetUserChatBoosts) Type() string {
+func (t GetUserChatBoosts) Type() string {
 	return "getUserChatBoosts"
 }
 
-func (t *GetUserChatBoosts) MarshalJSON() ([]byte, error) {
+func (t GetUserChatBoosts) MarshalJSON() ([]byte, error) {
 	type Alias GetUserChatBoosts
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getUserChatBoosts",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -11828,18 +11828,18 @@ type GetUserFullInfo struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t *GetUserFullInfo) Type() string {
+func (t GetUserFullInfo) Type() string {
 	return "getUserFullInfo"
 }
 
-func (t *GetUserFullInfo) MarshalJSON() ([]byte, error) {
+func (t GetUserFullInfo) MarshalJSON() ([]byte, error) {
 	type Alias GetUserFullInfo
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getUserFullInfo",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -11847,18 +11847,18 @@ func (t *GetUserFullInfo) MarshalJSON() ([]byte, error) {
 type GetUserLink struct {
 }
 
-func (t *GetUserLink) Type() string {
+func (t GetUserLink) Type() string {
 	return "getUserLink"
 }
 
-func (t *GetUserLink) MarshalJSON() ([]byte, error) {
+func (t GetUserLink) MarshalJSON() ([]byte, error) {
 	type Alias GetUserLink
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getUserLink",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -11868,18 +11868,18 @@ type GetUserPrivacySettingRules struct {
 	Setting UserPrivacySetting `json:"setting"`
 }
 
-func (t *GetUserPrivacySettingRules) Type() string {
+func (t GetUserPrivacySettingRules) Type() string {
 	return "getUserPrivacySettingRules"
 }
 
-func (t *GetUserPrivacySettingRules) MarshalJSON() ([]byte, error) {
+func (t GetUserPrivacySettingRules) MarshalJSON() ([]byte, error) {
 	type Alias GetUserPrivacySettingRules
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getUserPrivacySettingRules",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -11893,18 +11893,18 @@ type GetUserProfileAudios struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t *GetUserProfileAudios) Type() string {
+func (t GetUserProfileAudios) Type() string {
 	return "getUserProfileAudios"
 }
 
-func (t *GetUserProfileAudios) MarshalJSON() ([]byte, error) {
+func (t GetUserProfileAudios) MarshalJSON() ([]byte, error) {
 	type Alias GetUserProfileAudios
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getUserProfileAudios",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -11918,18 +11918,18 @@ type GetUserProfilePhotos struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t *GetUserProfilePhotos) Type() string {
+func (t GetUserProfilePhotos) Type() string {
 	return "getUserProfilePhotos"
 }
 
-func (t *GetUserProfilePhotos) MarshalJSON() ([]byte, error) {
+func (t GetUserProfilePhotos) MarshalJSON() ([]byte, error) {
 	type Alias GetUserProfilePhotos
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getUserProfilePhotos",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -11939,18 +11939,18 @@ type GetUserSupportInfo struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t *GetUserSupportInfo) Type() string {
+func (t GetUserSupportInfo) Type() string {
 	return "getUserSupportInfo"
 }
 
-func (t *GetUserSupportInfo) MarshalJSON() ([]byte, error) {
+func (t GetUserSupportInfo) MarshalJSON() ([]byte, error) {
 	type Alias GetUserSupportInfo
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getUserSupportInfo",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -11960,18 +11960,18 @@ type GetVideoChatAvailableParticipants struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t *GetVideoChatAvailableParticipants) Type() string {
+func (t GetVideoChatAvailableParticipants) Type() string {
 	return "getVideoChatAvailableParticipants"
 }
 
-func (t *GetVideoChatAvailableParticipants) MarshalJSON() ([]byte, error) {
+func (t GetVideoChatAvailableParticipants) MarshalJSON() ([]byte, error) {
 	type Alias GetVideoChatAvailableParticipants
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getVideoChatAvailableParticipants",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -11983,18 +11983,18 @@ type GetVideoChatInviteLink struct {
 	GroupCallId int32 `json:"group_call_id"`
 }
 
-func (t *GetVideoChatInviteLink) Type() string {
+func (t GetVideoChatInviteLink) Type() string {
 	return "getVideoChatInviteLink"
 }
 
-func (t *GetVideoChatInviteLink) MarshalJSON() ([]byte, error) {
+func (t GetVideoChatInviteLink) MarshalJSON() ([]byte, error) {
 	type Alias GetVideoChatInviteLink
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getVideoChatInviteLink",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -12004,18 +12004,18 @@ type GetVideoChatRtmpUrl struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t *GetVideoChatRtmpUrl) Type() string {
+func (t GetVideoChatRtmpUrl) Type() string {
 	return "getVideoChatRtmpUrl"
 }
 
-func (t *GetVideoChatRtmpUrl) MarshalJSON() ([]byte, error) {
+func (t GetVideoChatRtmpUrl) MarshalJSON() ([]byte, error) {
 	type Alias GetVideoChatRtmpUrl
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getVideoChatRtmpUrl",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -12027,18 +12027,18 @@ type GetVideoMessageAdvertisements struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t *GetVideoMessageAdvertisements) Type() string {
+func (t GetVideoMessageAdvertisements) Type() string {
 	return "getVideoMessageAdvertisements"
 }
 
-func (t *GetVideoMessageAdvertisements) MarshalJSON() ([]byte, error) {
+func (t GetVideoMessageAdvertisements) MarshalJSON() ([]byte, error) {
 	type Alias GetVideoMessageAdvertisements
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getVideoMessageAdvertisements",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -12058,18 +12058,18 @@ type GetWebAppLinkUrl struct {
 	WebAppShortName string `json:"web_app_short_name"`
 }
 
-func (t *GetWebAppLinkUrl) Type() string {
+func (t GetWebAppLinkUrl) Type() string {
 	return "getWebAppLinkUrl"
 }
 
-func (t *GetWebAppLinkUrl) MarshalJSON() ([]byte, error) {
+func (t GetWebAppLinkUrl) MarshalJSON() ([]byte, error) {
 	type Alias GetWebAppLinkUrl
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getWebAppLinkUrl",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -12079,18 +12079,18 @@ type GetWebAppPlaceholder struct {
 	BotUserId int64 `json:"bot_user_id"`
 }
 
-func (t *GetWebAppPlaceholder) Type() string {
+func (t GetWebAppPlaceholder) Type() string {
 	return "getWebAppPlaceholder"
 }
 
-func (t *GetWebAppPlaceholder) MarshalJSON() ([]byte, error) {
+func (t GetWebAppPlaceholder) MarshalJSON() ([]byte, error) {
 	type Alias GetWebAppPlaceholder
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getWebAppPlaceholder",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -12104,18 +12104,18 @@ type GetWebAppUrl struct {
 	Url string `json:"url"`
 }
 
-func (t *GetWebAppUrl) Type() string {
+func (t GetWebAppUrl) Type() string {
 	return "getWebAppUrl"
 }
 
-func (t *GetWebAppUrl) MarshalJSON() ([]byte, error) {
+func (t GetWebAppUrl) MarshalJSON() ([]byte, error) {
 	type Alias GetWebAppUrl
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getWebAppUrl",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -12127,18 +12127,18 @@ type GetWebPageInstantView struct {
 	Url string `json:"url"`
 }
 
-func (t *GetWebPageInstantView) Type() string {
+func (t GetWebPageInstantView) Type() string {
 	return "getWebPageInstantView"
 }
 
-func (t *GetWebPageInstantView) MarshalJSON() ([]byte, error) {
+func (t GetWebPageInstantView) MarshalJSON() ([]byte, error) {
 	type Alias GetWebPageInstantView
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "getWebPageInstantView",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -12154,18 +12154,18 @@ type GiftPremiumWithStars struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t *GiftPremiumWithStars) Type() string {
+func (t GiftPremiumWithStars) Type() string {
 	return "giftPremiumWithStars"
 }
 
-func (t *GiftPremiumWithStars) MarshalJSON() ([]byte, error) {
+func (t GiftPremiumWithStars) MarshalJSON() ([]byte, error) {
 	type Alias GiftPremiumWithStars
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "giftPremiumWithStars",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -12173,18 +12173,18 @@ func (t *GiftPremiumWithStars) MarshalJSON() ([]byte, error) {
 type HideContactCloseBirthdays struct {
 }
 
-func (t *HideContactCloseBirthdays) Type() string {
+func (t HideContactCloseBirthdays) Type() string {
 	return "hideContactCloseBirthdays"
 }
 
-func (t *HideContactCloseBirthdays) MarshalJSON() ([]byte, error) {
+func (t HideContactCloseBirthdays) MarshalJSON() ([]byte, error) {
 	type Alias HideContactCloseBirthdays
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "hideContactCloseBirthdays",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -12194,18 +12194,18 @@ type HideSuggestedAction struct {
 	Action SuggestedAction `json:"action"`
 }
 
-func (t *HideSuggestedAction) Type() string {
+func (t HideSuggestedAction) Type() string {
 	return "hideSuggestedAction"
 }
 
-func (t *HideSuggestedAction) MarshalJSON() ([]byte, error) {
+func (t HideSuggestedAction) MarshalJSON() ([]byte, error) {
 	type Alias HideSuggestedAction
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "hideSuggestedAction",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -12215,18 +12215,18 @@ type ImportContacts struct {
 	Contacts []ImportedContact `json:"contacts"`
 }
 
-func (t *ImportContacts) Type() string {
+func (t ImportContacts) Type() string {
 	return "importContacts"
 }
 
-func (t *ImportContacts) MarshalJSON() ([]byte, error) {
+func (t ImportContacts) MarshalJSON() ([]byte, error) {
 	type Alias ImportContacts
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "importContacts",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -12240,18 +12240,18 @@ type ImportMessages struct {
 	MessageFile InputFile `json:"message_file"`
 }
 
-func (t *ImportMessages) Type() string {
+func (t ImportMessages) Type() string {
 	return "importMessages"
 }
 
-func (t *ImportMessages) MarshalJSON() ([]byte, error) {
+func (t ImportMessages) MarshalJSON() ([]byte, error) {
 	type Alias ImportMessages
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "importMessages",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -12263,18 +12263,18 @@ type IncreaseGiftAuctionBid struct {
 	StarCount int64 `json:"star_count"`
 }
 
-func (t *IncreaseGiftAuctionBid) Type() string {
+func (t IncreaseGiftAuctionBid) Type() string {
 	return "increaseGiftAuctionBid"
 }
 
-func (t *IncreaseGiftAuctionBid) MarshalJSON() ([]byte, error) {
+func (t IncreaseGiftAuctionBid) MarshalJSON() ([]byte, error) {
 	type Alias IncreaseGiftAuctionBid
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "increaseGiftAuctionBid",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -12288,18 +12288,18 @@ type InviteGroupCallParticipant struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t *InviteGroupCallParticipant) Type() string {
+func (t InviteGroupCallParticipant) Type() string {
 	return "inviteGroupCallParticipant"
 }
 
-func (t *InviteGroupCallParticipant) MarshalJSON() ([]byte, error) {
+func (t InviteGroupCallParticipant) MarshalJSON() ([]byte, error) {
 	type Alias InviteGroupCallParticipant
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "inviteGroupCallParticipant",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -12311,18 +12311,18 @@ type InviteVideoChatParticipants struct {
 	UserIds []int64 `json:"user_ids"`
 }
 
-func (t *InviteVideoChatParticipants) Type() string {
+func (t InviteVideoChatParticipants) Type() string {
 	return "inviteVideoChatParticipants"
 }
 
-func (t *InviteVideoChatParticipants) MarshalJSON() ([]byte, error) {
+func (t InviteVideoChatParticipants) MarshalJSON() ([]byte, error) {
 	type Alias InviteVideoChatParticipants
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "inviteVideoChatParticipants",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -12330,18 +12330,18 @@ func (t *InviteVideoChatParticipants) MarshalJSON() ([]byte, error) {
 type IsLoginEmailAddressRequired struct {
 }
 
-func (t *IsLoginEmailAddressRequired) Type() string {
+func (t IsLoginEmailAddressRequired) Type() string {
 	return "isLoginEmailAddressRequired"
 }
 
-func (t *IsLoginEmailAddressRequired) MarshalJSON() ([]byte, error) {
+func (t IsLoginEmailAddressRequired) MarshalJSON() ([]byte, error) {
 	type Alias IsLoginEmailAddressRequired
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "isLoginEmailAddressRequired",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -12351,18 +12351,18 @@ type IsProfileAudio struct {
 	FileId int32 `json:"file_id"`
 }
 
-func (t *IsProfileAudio) Type() string {
+func (t IsProfileAudio) Type() string {
 	return "isProfileAudio"
 }
 
-func (t *IsProfileAudio) MarshalJSON() ([]byte, error) {
+func (t IsProfileAudio) MarshalJSON() ([]byte, error) {
 	type Alias IsProfileAudio
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "isProfileAudio",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -12372,18 +12372,18 @@ type JoinChat struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t *JoinChat) Type() string {
+func (t JoinChat) Type() string {
 	return "joinChat"
 }
 
-func (t *JoinChat) MarshalJSON() ([]byte, error) {
+func (t JoinChat) MarshalJSON() ([]byte, error) {
 	type Alias JoinChat
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "joinChat",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -12393,18 +12393,18 @@ type JoinChatByInviteLink struct {
 	InviteLink string `json:"invite_link"`
 }
 
-func (t *JoinChatByInviteLink) Type() string {
+func (t JoinChatByInviteLink) Type() string {
 	return "joinChatByInviteLink"
 }
 
-func (t *JoinChatByInviteLink) MarshalJSON() ([]byte, error) {
+func (t JoinChatByInviteLink) MarshalJSON() ([]byte, error) {
 	type Alias JoinChatByInviteLink
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "joinChatByInviteLink",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -12416,18 +12416,18 @@ type JoinGroupCall struct {
 	JoinParameters *GroupCallJoinParameters `json:"join_parameters"`
 }
 
-func (t *JoinGroupCall) Type() string {
+func (t JoinGroupCall) Type() string {
 	return "joinGroupCall"
 }
 
-func (t *JoinGroupCall) MarshalJSON() ([]byte, error) {
+func (t JoinGroupCall) MarshalJSON() ([]byte, error) {
 	type Alias JoinGroupCall
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "joinGroupCall",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -12439,18 +12439,18 @@ type JoinLiveStory struct {
 	JoinParameters *GroupCallJoinParameters `json:"join_parameters"`
 }
 
-func (t *JoinLiveStory) Type() string {
+func (t JoinLiveStory) Type() string {
 	return "joinLiveStory"
 }
 
-func (t *JoinLiveStory) MarshalJSON() ([]byte, error) {
+func (t JoinLiveStory) MarshalJSON() ([]byte, error) {
 	type Alias JoinLiveStory
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "joinLiveStory",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -12466,18 +12466,18 @@ type JoinVideoChat struct {
 	ParticipantId MessageSender `json:"participant_id,omitempty"`
 }
 
-func (t *JoinVideoChat) Type() string {
+func (t JoinVideoChat) Type() string {
 	return "joinVideoChat"
 }
 
-func (t *JoinVideoChat) MarshalJSON() ([]byte, error) {
+func (t JoinVideoChat) MarshalJSON() ([]byte, error) {
 	type Alias JoinVideoChat
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "joinVideoChat",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -12493,18 +12493,18 @@ type LaunchPrepaidGiveaway struct {
 	WinnerCount int32 `json:"winner_count"`
 }
 
-func (t *LaunchPrepaidGiveaway) Type() string {
+func (t LaunchPrepaidGiveaway) Type() string {
 	return "launchPrepaidGiveaway"
 }
 
-func (t *LaunchPrepaidGiveaway) MarshalJSON() ([]byte, error) {
+func (t LaunchPrepaidGiveaway) MarshalJSON() ([]byte, error) {
 	type Alias LaunchPrepaidGiveaway
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "launchPrepaidGiveaway",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -12514,18 +12514,18 @@ type LeaveChat struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t *LeaveChat) Type() string {
+func (t LeaveChat) Type() string {
 	return "leaveChat"
 }
 
-func (t *LeaveChat) MarshalJSON() ([]byte, error) {
+func (t LeaveChat) MarshalJSON() ([]byte, error) {
 	type Alias LeaveChat
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "leaveChat",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -12535,18 +12535,18 @@ type LeaveGroupCall struct {
 	GroupCallId int32 `json:"group_call_id"`
 }
 
-func (t *LeaveGroupCall) Type() string {
+func (t LeaveGroupCall) Type() string {
 	return "leaveGroupCall"
 }
 
-func (t *LeaveGroupCall) MarshalJSON() ([]byte, error) {
+func (t LeaveGroupCall) MarshalJSON() ([]byte, error) {
 	type Alias LeaveGroupCall
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "leaveGroupCall",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -12556,18 +12556,18 @@ type LoadActiveStories struct {
 	StoryList StoryList `json:"story_list"`
 }
 
-func (t *LoadActiveStories) Type() string {
+func (t LoadActiveStories) Type() string {
 	return "loadActiveStories"
 }
 
-func (t *LoadActiveStories) MarshalJSON() ([]byte, error) {
+func (t LoadActiveStories) MarshalJSON() ([]byte, error) {
 	type Alias LoadActiveStories
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "loadActiveStories",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -12579,18 +12579,18 @@ type LoadChats struct {
 	Limit int32 `json:"limit"`
 }
 
-func (t *LoadChats) Type() string {
+func (t LoadChats) Type() string {
 	return "loadChats"
 }
 
-func (t *LoadChats) MarshalJSON() ([]byte, error) {
+func (t LoadChats) MarshalJSON() ([]byte, error) {
 	type Alias LoadChats
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "loadChats",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -12602,18 +12602,18 @@ type LoadDirectMessagesChatTopics struct {
 	Limit int32 `json:"limit"`
 }
 
-func (t *LoadDirectMessagesChatTopics) Type() string {
+func (t LoadDirectMessagesChatTopics) Type() string {
 	return "loadDirectMessagesChatTopics"
 }
 
-func (t *LoadDirectMessagesChatTopics) MarshalJSON() ([]byte, error) {
+func (t LoadDirectMessagesChatTopics) MarshalJSON() ([]byte, error) {
 	type Alias LoadDirectMessagesChatTopics
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "loadDirectMessagesChatTopics",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -12625,18 +12625,18 @@ type LoadGroupCallParticipants struct {
 	Limit int32 `json:"limit"`
 }
 
-func (t *LoadGroupCallParticipants) Type() string {
+func (t LoadGroupCallParticipants) Type() string {
 	return "loadGroupCallParticipants"
 }
 
-func (t *LoadGroupCallParticipants) MarshalJSON() ([]byte, error) {
+func (t LoadGroupCallParticipants) MarshalJSON() ([]byte, error) {
 	type Alias LoadGroupCallParticipants
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "loadGroupCallParticipants",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -12646,18 +12646,18 @@ type LoadQuickReplyShortcutMessages struct {
 	ShortcutId int32 `json:"shortcut_id"`
 }
 
-func (t *LoadQuickReplyShortcutMessages) Type() string {
+func (t LoadQuickReplyShortcutMessages) Type() string {
 	return "loadQuickReplyShortcutMessages"
 }
 
-func (t *LoadQuickReplyShortcutMessages) MarshalJSON() ([]byte, error) {
+func (t LoadQuickReplyShortcutMessages) MarshalJSON() ([]byte, error) {
 	type Alias LoadQuickReplyShortcutMessages
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "loadQuickReplyShortcutMessages",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -12665,18 +12665,18 @@ func (t *LoadQuickReplyShortcutMessages) MarshalJSON() ([]byte, error) {
 type LoadQuickReplyShortcuts struct {
 }
 
-func (t *LoadQuickReplyShortcuts) Type() string {
+func (t LoadQuickReplyShortcuts) Type() string {
 	return "loadQuickReplyShortcuts"
 }
 
-func (t *LoadQuickReplyShortcuts) MarshalJSON() ([]byte, error) {
+func (t LoadQuickReplyShortcuts) MarshalJSON() ([]byte, error) {
 	type Alias LoadQuickReplyShortcuts
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "loadQuickReplyShortcuts",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -12686,18 +12686,18 @@ type LoadSavedMessagesTopics struct {
 	Limit int32 `json:"limit"`
 }
 
-func (t *LoadSavedMessagesTopics) Type() string {
+func (t LoadSavedMessagesTopics) Type() string {
 	return "loadSavedMessagesTopics"
 }
 
-func (t *LoadSavedMessagesTopics) MarshalJSON() ([]byte, error) {
+func (t LoadSavedMessagesTopics) MarshalJSON() ([]byte, error) {
 	type Alias LoadSavedMessagesTopics
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "loadSavedMessagesTopics",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -12705,18 +12705,18 @@ func (t *LoadSavedMessagesTopics) MarshalJSON() ([]byte, error) {
 type LogOut struct {
 }
 
-func (t *LogOut) Type() string {
+func (t LogOut) Type() string {
 	return "logOut"
 }
 
-func (t *LogOut) MarshalJSON() ([]byte, error) {
+func (t LogOut) MarshalJSON() ([]byte, error) {
 	type Alias LogOut
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "logOut",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -12732,18 +12732,18 @@ type MarkChecklistTasksAsDone struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t *MarkChecklistTasksAsDone) Type() string {
+func (t MarkChecklistTasksAsDone) Type() string {
 	return "markChecklistTasksAsDone"
 }
 
-func (t *MarkChecklistTasksAsDone) MarshalJSON() ([]byte, error) {
+func (t MarkChecklistTasksAsDone) MarshalJSON() ([]byte, error) {
 	type Alias MarkChecklistTasksAsDone
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "markChecklistTasksAsDone",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -12755,18 +12755,18 @@ type OpenBotSimilarBot struct {
 	OpenedBotUserId int64 `json:"opened_bot_user_id"`
 }
 
-func (t *OpenBotSimilarBot) Type() string {
+func (t OpenBotSimilarBot) Type() string {
 	return "openBotSimilarBot"
 }
 
-func (t *OpenBotSimilarBot) MarshalJSON() ([]byte, error) {
+func (t OpenBotSimilarBot) MarshalJSON() ([]byte, error) {
 	type Alias OpenBotSimilarBot
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "openBotSimilarBot",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -12776,18 +12776,18 @@ type OpenChat struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t *OpenChat) Type() string {
+func (t OpenChat) Type() string {
 	return "openChat"
 }
 
-func (t *OpenChat) MarshalJSON() ([]byte, error) {
+func (t OpenChat) MarshalJSON() ([]byte, error) {
 	type Alias OpenChat
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "openChat",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -12799,18 +12799,18 @@ type OpenChatSimilarChat struct {
 	OpenedChatId int64 `json:"opened_chat_id"`
 }
 
-func (t *OpenChatSimilarChat) Type() string {
+func (t OpenChatSimilarChat) Type() string {
 	return "openChatSimilarChat"
 }
 
-func (t *OpenChatSimilarChat) MarshalJSON() ([]byte, error) {
+func (t OpenChatSimilarChat) MarshalJSON() ([]byte, error) {
 	type Alias OpenChatSimilarChat
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "openChatSimilarChat",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -12820,18 +12820,18 @@ type OpenGiftAuction struct {
 	GiftId int64 `json:"gift_id,string"`
 }
 
-func (t *OpenGiftAuction) Type() string {
+func (t OpenGiftAuction) Type() string {
 	return "openGiftAuction"
 }
 
-func (t *OpenGiftAuction) MarshalJSON() ([]byte, error) {
+func (t OpenGiftAuction) MarshalJSON() ([]byte, error) {
 	type Alias OpenGiftAuction
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "openGiftAuction",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -12843,18 +12843,18 @@ type OpenMessageContent struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t *OpenMessageContent) Type() string {
+func (t OpenMessageContent) Type() string {
 	return "openMessageContent"
 }
 
-func (t *OpenMessageContent) MarshalJSON() ([]byte, error) {
+func (t OpenMessageContent) MarshalJSON() ([]byte, error) {
 	type Alias OpenMessageContent
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "openMessageContent",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -12864,18 +12864,18 @@ type OpenSponsoredChat struct {
 	SponsoredChatUniqueId int64 `json:"sponsored_chat_unique_id"`
 }
 
-func (t *OpenSponsoredChat) Type() string {
+func (t OpenSponsoredChat) Type() string {
 	return "openSponsoredChat"
 }
 
-func (t *OpenSponsoredChat) MarshalJSON() ([]byte, error) {
+func (t OpenSponsoredChat) MarshalJSON() ([]byte, error) {
 	type Alias OpenSponsoredChat
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "openSponsoredChat",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -12887,18 +12887,18 @@ type OpenStory struct {
 	StoryPosterChatId int64 `json:"story_poster_chat_id"`
 }
 
-func (t *OpenStory) Type() string {
+func (t OpenStory) Type() string {
 	return "openStory"
 }
 
-func (t *OpenStory) MarshalJSON() ([]byte, error) {
+func (t OpenStory) MarshalJSON() ([]byte, error) {
 	type Alias OpenStory
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "openStory",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -12918,18 +12918,18 @@ type OpenWebApp struct {
 	Url string `json:"url"`
 }
 
-func (t *OpenWebApp) Type() string {
+func (t OpenWebApp) Type() string {
 	return "openWebApp"
 }
 
-func (t *OpenWebApp) MarshalJSON() ([]byte, error) {
+func (t OpenWebApp) MarshalJSON() ([]byte, error) {
 	type Alias OpenWebApp
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "openWebApp",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -12955,18 +12955,18 @@ type OptimizeStorage struct {
 	Ttl int32 `json:"ttl"`
 }
 
-func (t *OptimizeStorage) Type() string {
+func (t OptimizeStorage) Type() string {
 	return "optimizeStorage"
 }
 
-func (t *OptimizeStorage) MarshalJSON() ([]byte, error) {
+func (t OptimizeStorage) MarshalJSON() ([]byte, error) {
 	type Alias OptimizeStorage
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "optimizeStorage",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -12976,18 +12976,18 @@ type ParseMarkdown struct {
 	Text *FormattedText `json:"text"`
 }
 
-func (t *ParseMarkdown) Type() string {
+func (t ParseMarkdown) Type() string {
 	return "parseMarkdown"
 }
 
-func (t *ParseMarkdown) MarshalJSON() ([]byte, error) {
+func (t ParseMarkdown) MarshalJSON() ([]byte, error) {
 	type Alias ParseMarkdown
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "parseMarkdown",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -12999,18 +12999,18 @@ type ParseTextEntities struct {
 	Text string `json:"text"`
 }
 
-func (t *ParseTextEntities) Type() string {
+func (t ParseTextEntities) Type() string {
 	return "parseTextEntities"
 }
 
-func (t *ParseTextEntities) MarshalJSON() ([]byte, error) {
+func (t ParseTextEntities) MarshalJSON() ([]byte, error) {
 	type Alias ParseTextEntities
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "parseTextEntities",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -13026,18 +13026,18 @@ type PinChatMessage struct {
 	OnlyForSelf bool `json:"only_for_self"`
 }
 
-func (t *PinChatMessage) Type() string {
+func (t PinChatMessage) Type() string {
 	return "pinChatMessage"
 }
 
-func (t *PinChatMessage) MarshalJSON() ([]byte, error) {
+func (t PinChatMessage) MarshalJSON() ([]byte, error) {
 	type Alias PinChatMessage
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "pinChatMessage",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -13047,18 +13047,18 @@ type PingProxy struct {
 	Proxy *Proxy `json:"proxy,omitempty"`
 }
 
-func (t *PingProxy) Type() string {
+func (t PingProxy) Type() string {
 	return "pingProxy"
 }
 
-func (t *PingProxy) MarshalJSON() ([]byte, error) {
+func (t PingProxy) MarshalJSON() ([]byte, error) {
 	type Alias PingProxy
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "pingProxy",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -13076,18 +13076,18 @@ type PlaceGiftAuctionBid struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t *PlaceGiftAuctionBid) Type() string {
+func (t PlaceGiftAuctionBid) Type() string {
 	return "placeGiftAuctionBid"
 }
 
-func (t *PlaceGiftAuctionBid) MarshalJSON() ([]byte, error) {
+func (t PlaceGiftAuctionBid) MarshalJSON() ([]byte, error) {
 	type Alias PlaceGiftAuctionBid
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "placeGiftAuctionBid",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -13115,18 +13115,18 @@ type PostStory struct {
 	ProtectContent bool `json:"protect_content"`
 }
 
-func (t *PostStory) Type() string {
+func (t PostStory) Type() string {
 	return "postStory"
 }
 
-func (t *PostStory) MarshalJSON() ([]byte, error) {
+func (t PostStory) MarshalJSON() ([]byte, error) {
 	type Alias PostStory
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "postStory",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -13140,18 +13140,18 @@ type PreliminaryUploadFile struct {
 	Priority int32 `json:"priority"`
 }
 
-func (t *PreliminaryUploadFile) Type() string {
+func (t PreliminaryUploadFile) Type() string {
 	return "preliminaryUploadFile"
 }
 
-func (t *PreliminaryUploadFile) MarshalJSON() ([]byte, error) {
+func (t PreliminaryUploadFile) MarshalJSON() ([]byte, error) {
 	type Alias PreliminaryUploadFile
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "preliminaryUploadFile",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -13163,18 +13163,18 @@ type ProcessChatFolderNewChats struct {
 	ChatFolderId int32 `json:"chat_folder_id"`
 }
 
-func (t *ProcessChatFolderNewChats) Type() string {
+func (t ProcessChatFolderNewChats) Type() string {
 	return "processChatFolderNewChats"
 }
 
-func (t *ProcessChatFolderNewChats) MarshalJSON() ([]byte, error) {
+func (t ProcessChatFolderNewChats) MarshalJSON() ([]byte, error) {
 	type Alias ProcessChatFolderNewChats
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "processChatFolderNewChats",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -13188,18 +13188,18 @@ type ProcessChatJoinRequest struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t *ProcessChatJoinRequest) Type() string {
+func (t ProcessChatJoinRequest) Type() string {
 	return "processChatJoinRequest"
 }
 
-func (t *ProcessChatJoinRequest) MarshalJSON() ([]byte, error) {
+func (t ProcessChatJoinRequest) MarshalJSON() ([]byte, error) {
 	type Alias ProcessChatJoinRequest
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "processChatJoinRequest",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -13213,18 +13213,18 @@ type ProcessChatJoinRequests struct {
 	InviteLink string `json:"invite_link"`
 }
 
-func (t *ProcessChatJoinRequests) Type() string {
+func (t ProcessChatJoinRequests) Type() string {
 	return "processChatJoinRequests"
 }
 
-func (t *ProcessChatJoinRequests) MarshalJSON() ([]byte, error) {
+func (t ProcessChatJoinRequests) MarshalJSON() ([]byte, error) {
 	type Alias ProcessChatJoinRequests
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "processChatJoinRequests",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -13236,18 +13236,18 @@ type ProcessGiftPurchaseOffer struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t *ProcessGiftPurchaseOffer) Type() string {
+func (t ProcessGiftPurchaseOffer) Type() string {
 	return "processGiftPurchaseOffer"
 }
 
-func (t *ProcessGiftPurchaseOffer) MarshalJSON() ([]byte, error) {
+func (t ProcessGiftPurchaseOffer) MarshalJSON() ([]byte, error) {
 	type Alias ProcessGiftPurchaseOffer
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "processGiftPurchaseOffer",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -13257,18 +13257,18 @@ type ProcessPushNotification struct {
 	Payload string `json:"payload"`
 }
 
-func (t *ProcessPushNotification) Type() string {
+func (t ProcessPushNotification) Type() string {
 	return "processPushNotification"
 }
 
-func (t *ProcessPushNotification) MarshalJSON() ([]byte, error) {
+func (t ProcessPushNotification) MarshalJSON() ([]byte, error) {
 	type Alias ProcessPushNotification
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "processPushNotification",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -13282,18 +13282,18 @@ type RateSpeechRecognition struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t *RateSpeechRecognition) Type() string {
+func (t RateSpeechRecognition) Type() string {
 	return "rateSpeechRecognition"
 }
 
-func (t *RateSpeechRecognition) MarshalJSON() ([]byte, error) {
+func (t RateSpeechRecognition) MarshalJSON() ([]byte, error) {
 	type Alias RateSpeechRecognition
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "rateSpeechRecognition",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -13303,18 +13303,18 @@ type ReadAllChatMentions struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t *ReadAllChatMentions) Type() string {
+func (t ReadAllChatMentions) Type() string {
 	return "readAllChatMentions"
 }
 
-func (t *ReadAllChatMentions) MarshalJSON() ([]byte, error) {
+func (t ReadAllChatMentions) MarshalJSON() ([]byte, error) {
 	type Alias ReadAllChatMentions
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "readAllChatMentions",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -13324,18 +13324,18 @@ type ReadAllChatReactions struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t *ReadAllChatReactions) Type() string {
+func (t ReadAllChatReactions) Type() string {
 	return "readAllChatReactions"
 }
 
-func (t *ReadAllChatReactions) MarshalJSON() ([]byte, error) {
+func (t ReadAllChatReactions) MarshalJSON() ([]byte, error) {
 	type Alias ReadAllChatReactions
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "readAllChatReactions",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -13347,18 +13347,18 @@ type ReadAllDirectMessagesChatTopicReactions struct {
 	TopicId int64 `json:"topic_id"`
 }
 
-func (t *ReadAllDirectMessagesChatTopicReactions) Type() string {
+func (t ReadAllDirectMessagesChatTopicReactions) Type() string {
 	return "readAllDirectMessagesChatTopicReactions"
 }
 
-func (t *ReadAllDirectMessagesChatTopicReactions) MarshalJSON() ([]byte, error) {
+func (t ReadAllDirectMessagesChatTopicReactions) MarshalJSON() ([]byte, error) {
 	type Alias ReadAllDirectMessagesChatTopicReactions
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "readAllDirectMessagesChatTopicReactions",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -13370,18 +13370,18 @@ type ReadAllForumTopicMentions struct {
 	ForumTopicId int32 `json:"forum_topic_id"`
 }
 
-func (t *ReadAllForumTopicMentions) Type() string {
+func (t ReadAllForumTopicMentions) Type() string {
 	return "readAllForumTopicMentions"
 }
 
-func (t *ReadAllForumTopicMentions) MarshalJSON() ([]byte, error) {
+func (t ReadAllForumTopicMentions) MarshalJSON() ([]byte, error) {
 	type Alias ReadAllForumTopicMentions
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "readAllForumTopicMentions",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -13393,18 +13393,18 @@ type ReadAllForumTopicReactions struct {
 	ForumTopicId int32 `json:"forum_topic_id"`
 }
 
-func (t *ReadAllForumTopicReactions) Type() string {
+func (t ReadAllForumTopicReactions) Type() string {
 	return "readAllForumTopicReactions"
 }
 
-func (t *ReadAllForumTopicReactions) MarshalJSON() ([]byte, error) {
+func (t ReadAllForumTopicReactions) MarshalJSON() ([]byte, error) {
 	type Alias ReadAllForumTopicReactions
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "readAllForumTopicReactions",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -13418,18 +13418,18 @@ type ReadBusinessMessage struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t *ReadBusinessMessage) Type() string {
+func (t ReadBusinessMessage) Type() string {
 	return "readBusinessMessage"
 }
 
-func (t *ReadBusinessMessage) MarshalJSON() ([]byte, error) {
+func (t ReadBusinessMessage) MarshalJSON() ([]byte, error) {
 	type Alias ReadBusinessMessage
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "readBusinessMessage",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -13439,18 +13439,18 @@ type ReadChatList struct {
 	ChatList ChatList `json:"chat_list"`
 }
 
-func (t *ReadChatList) Type() string {
+func (t ReadChatList) Type() string {
 	return "readChatList"
 }
 
-func (t *ReadChatList) MarshalJSON() ([]byte, error) {
+func (t ReadChatList) MarshalJSON() ([]byte, error) {
 	type Alias ReadChatList
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "readChatList",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -13462,18 +13462,18 @@ type ReaddQuickReplyShortcutMessages struct {
 	ShortcutName string `json:"shortcut_name"`
 }
 
-func (t *ReaddQuickReplyShortcutMessages) Type() string {
+func (t ReaddQuickReplyShortcutMessages) Type() string {
 	return "readdQuickReplyShortcutMessages"
 }
 
-func (t *ReaddQuickReplyShortcutMessages) MarshalJSON() ([]byte, error) {
+func (t ReaddQuickReplyShortcutMessages) MarshalJSON() ([]byte, error) {
 	type Alias ReaddQuickReplyShortcutMessages
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "readdQuickReplyShortcutMessages",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -13487,18 +13487,18 @@ type ReadFilePart struct {
 	Offset int64 `json:"offset"`
 }
 
-func (t *ReadFilePart) Type() string {
+func (t ReadFilePart) Type() string {
 	return "readFilePart"
 }
 
-func (t *ReadFilePart) MarshalJSON() ([]byte, error) {
+func (t ReadFilePart) MarshalJSON() ([]byte, error) {
 	type Alias ReadFilePart
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "readFilePart",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -13510,18 +13510,18 @@ type RecognizeSpeech struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t *RecognizeSpeech) Type() string {
+func (t RecognizeSpeech) Type() string {
 	return "recognizeSpeech"
 }
 
-func (t *RecognizeSpeech) MarshalJSON() ([]byte, error) {
+func (t RecognizeSpeech) MarshalJSON() ([]byte, error) {
 	type Alias RecognizeSpeech
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "recognizeSpeech",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -13535,18 +13535,18 @@ type RecoverAuthenticationPassword struct {
 	RecoveryCode string `json:"recovery_code"`
 }
 
-func (t *RecoverAuthenticationPassword) Type() string {
+func (t RecoverAuthenticationPassword) Type() string {
 	return "recoverAuthenticationPassword"
 }
 
-func (t *RecoverAuthenticationPassword) MarshalJSON() ([]byte, error) {
+func (t RecoverAuthenticationPassword) MarshalJSON() ([]byte, error) {
 	type Alias RecoverAuthenticationPassword
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "recoverAuthenticationPassword",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -13560,18 +13560,18 @@ type RecoverPassword struct {
 	RecoveryCode string `json:"recovery_code"`
 }
 
-func (t *RecoverPassword) Type() string {
+func (t RecoverPassword) Type() string {
 	return "recoverPassword"
 }
 
-func (t *RecoverPassword) MarshalJSON() ([]byte, error) {
+func (t RecoverPassword) MarshalJSON() ([]byte, error) {
 	type Alias RecoverPassword
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "recoverPassword",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -13583,18 +13583,18 @@ type RefundStarPayment struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t *RefundStarPayment) Type() string {
+func (t RefundStarPayment) Type() string {
 	return "refundStarPayment"
 }
 
-func (t *RefundStarPayment) MarshalJSON() ([]byte, error) {
+func (t RefundStarPayment) MarshalJSON() ([]byte, error) {
 	type Alias RefundStarPayment
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "refundStarPayment",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -13606,18 +13606,18 @@ type RegisterDevice struct {
 	OtherUserIds []int64 `json:"other_user_ids"`
 }
 
-func (t *RegisterDevice) Type() string {
+func (t RegisterDevice) Type() string {
 	return "registerDevice"
 }
 
-func (t *RegisterDevice) MarshalJSON() ([]byte, error) {
+func (t RegisterDevice) MarshalJSON() ([]byte, error) {
 	type Alias RegisterDevice
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "registerDevice",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -13631,18 +13631,18 @@ type RegisterUser struct {
 	LastName string `json:"last_name"`
 }
 
-func (t *RegisterUser) Type() string {
+func (t RegisterUser) Type() string {
 	return "registerUser"
 }
 
-func (t *RegisterUser) MarshalJSON() ([]byte, error) {
+func (t RegisterUser) MarshalJSON() ([]byte, error) {
 	type Alias RegisterUser
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "registerUser",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -13656,18 +13656,18 @@ type RemoveAllFilesFromDownloads struct {
 	OnlyCompleted bool `json:"only_completed"`
 }
 
-func (t *RemoveAllFilesFromDownloads) Type() string {
+func (t RemoveAllFilesFromDownloads) Type() string {
 	return "removeAllFilesFromDownloads"
 }
 
-func (t *RemoveAllFilesFromDownloads) MarshalJSON() ([]byte, error) {
+func (t RemoveAllFilesFromDownloads) MarshalJSON() ([]byte, error) {
 	type Alias RemoveAllFilesFromDownloads
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "removeAllFilesFromDownloads",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -13677,18 +13677,18 @@ type RemoveBusinessConnectedBotFromChat struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t *RemoveBusinessConnectedBotFromChat) Type() string {
+func (t RemoveBusinessConnectedBotFromChat) Type() string {
 	return "removeBusinessConnectedBotFromChat"
 }
 
-func (t *RemoveBusinessConnectedBotFromChat) MarshalJSON() ([]byte, error) {
+func (t RemoveBusinessConnectedBotFromChat) MarshalJSON() ([]byte, error) {
 	type Alias RemoveBusinessConnectedBotFromChat
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "removeBusinessConnectedBotFromChat",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -13698,18 +13698,18 @@ type RemoveChatActionBar struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t *RemoveChatActionBar) Type() string {
+func (t RemoveChatActionBar) Type() string {
 	return "removeChatActionBar"
 }
 
-func (t *RemoveChatActionBar) MarshalJSON() ([]byte, error) {
+func (t RemoveChatActionBar) MarshalJSON() ([]byte, error) {
 	type Alias RemoveChatActionBar
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "removeChatActionBar",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -13719,18 +13719,18 @@ type RemoveContacts struct {
 	UserIds []int64 `json:"user_ids"`
 }
 
-func (t *RemoveContacts) Type() string {
+func (t RemoveContacts) Type() string {
 	return "removeContacts"
 }
 
-func (t *RemoveContacts) MarshalJSON() ([]byte, error) {
+func (t RemoveContacts) MarshalJSON() ([]byte, error) {
 	type Alias RemoveContacts
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "removeContacts",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -13740,18 +13740,18 @@ type RemoveFavoriteSticker struct {
 	Sticker InputFile `json:"sticker"`
 }
 
-func (t *RemoveFavoriteSticker) Type() string {
+func (t RemoveFavoriteSticker) Type() string {
 	return "removeFavoriteSticker"
 }
 
-func (t *RemoveFavoriteSticker) MarshalJSON() ([]byte, error) {
+func (t RemoveFavoriteSticker) MarshalJSON() ([]byte, error) {
 	type Alias RemoveFavoriteSticker
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "removeFavoriteSticker",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -13763,18 +13763,18 @@ type RemoveFileFromDownloads struct {
 	FileId int32 `json:"file_id"`
 }
 
-func (t *RemoveFileFromDownloads) Type() string {
+func (t RemoveFileFromDownloads) Type() string {
 	return "removeFileFromDownloads"
 }
 
-func (t *RemoveFileFromDownloads) MarshalJSON() ([]byte, error) {
+func (t RemoveFileFromDownloads) MarshalJSON() ([]byte, error) {
 	type Alias RemoveFileFromDownloads
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "removeFileFromDownloads",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -13788,18 +13788,18 @@ type RemoveGiftCollectionGifts struct {
 	ReceivedGiftIds []string `json:"received_gift_ids"`
 }
 
-func (t *RemoveGiftCollectionGifts) Type() string {
+func (t RemoveGiftCollectionGifts) Type() string {
 	return "removeGiftCollectionGifts"
 }
 
-func (t *RemoveGiftCollectionGifts) MarshalJSON() ([]byte, error) {
+func (t RemoveGiftCollectionGifts) MarshalJSON() ([]byte, error) {
 	type Alias RemoveGiftCollectionGifts
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "removeGiftCollectionGifts",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -13809,18 +13809,18 @@ type RemoveInstalledBackground struct {
 	BackgroundId int64 `json:"background_id,string"`
 }
 
-func (t *RemoveInstalledBackground) Type() string {
+func (t RemoveInstalledBackground) Type() string {
 	return "removeInstalledBackground"
 }
 
-func (t *RemoveInstalledBackground) MarshalJSON() ([]byte, error) {
+func (t RemoveInstalledBackground) MarshalJSON() ([]byte, error) {
 	type Alias RemoveInstalledBackground
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "removeInstalledBackground",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -13830,18 +13830,18 @@ type RemoveLoginPasskey struct {
 	PasskeyId string `json:"passkey_id"`
 }
 
-func (t *RemoveLoginPasskey) Type() string {
+func (t RemoveLoginPasskey) Type() string {
 	return "removeLoginPasskey"
 }
 
-func (t *RemoveLoginPasskey) MarshalJSON() ([]byte, error) {
+func (t RemoveLoginPasskey) MarshalJSON() ([]byte, error) {
 	type Alias RemoveLoginPasskey
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "removeLoginPasskey",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -13855,18 +13855,18 @@ type RemoveMessageReaction struct {
 	ReactionType ReactionType `json:"reaction_type"`
 }
 
-func (t *RemoveMessageReaction) Type() string {
+func (t RemoveMessageReaction) Type() string {
 	return "removeMessageReaction"
 }
 
-func (t *RemoveMessageReaction) MarshalJSON() ([]byte, error) {
+func (t RemoveMessageReaction) MarshalJSON() ([]byte, error) {
 	type Alias RemoveMessageReaction
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "removeMessageReaction",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -13878,18 +13878,18 @@ type RemoveMessageSenderBotVerification struct {
 	VerifiedId MessageSender `json:"verified_id"`
 }
 
-func (t *RemoveMessageSenderBotVerification) Type() string {
+func (t RemoveMessageSenderBotVerification) Type() string {
 	return "removeMessageSenderBotVerification"
 }
 
-func (t *RemoveMessageSenderBotVerification) MarshalJSON() ([]byte, error) {
+func (t RemoveMessageSenderBotVerification) MarshalJSON() ([]byte, error) {
 	type Alias RemoveMessageSenderBotVerification
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "removeMessageSenderBotVerification",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -13901,18 +13901,18 @@ type RemoveNotification struct {
 	NotificationId int32 `json:"notification_id"`
 }
 
-func (t *RemoveNotification) Type() string {
+func (t RemoveNotification) Type() string {
 	return "removeNotification"
 }
 
-func (t *RemoveNotification) MarshalJSON() ([]byte, error) {
+func (t RemoveNotification) MarshalJSON() ([]byte, error) {
 	type Alias RemoveNotification
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "removeNotification",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -13924,18 +13924,18 @@ type RemoveNotificationGroup struct {
 	NotificationGroupId int32 `json:"notification_group_id"`
 }
 
-func (t *RemoveNotificationGroup) Type() string {
+func (t RemoveNotificationGroup) Type() string {
 	return "removeNotificationGroup"
 }
 
-func (t *RemoveNotificationGroup) MarshalJSON() ([]byte, error) {
+func (t RemoveNotificationGroup) MarshalJSON() ([]byte, error) {
 	type Alias RemoveNotificationGroup
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "removeNotificationGroup",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -13945,18 +13945,18 @@ type RemovePendingLiveStoryReactions struct {
 	GroupCallId int32 `json:"group_call_id"`
 }
 
-func (t *RemovePendingLiveStoryReactions) Type() string {
+func (t RemovePendingLiveStoryReactions) Type() string {
 	return "removePendingLiveStoryReactions"
 }
 
-func (t *RemovePendingLiveStoryReactions) MarshalJSON() ([]byte, error) {
+func (t RemovePendingLiveStoryReactions) MarshalJSON() ([]byte, error) {
 	type Alias RemovePendingLiveStoryReactions
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "removePendingLiveStoryReactions",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -13968,18 +13968,18 @@ type RemovePendingPaidMessageReactions struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t *RemovePendingPaidMessageReactions) Type() string {
+func (t RemovePendingPaidMessageReactions) Type() string {
 	return "removePendingPaidMessageReactions"
 }
 
-func (t *RemovePendingPaidMessageReactions) MarshalJSON() ([]byte, error) {
+func (t RemovePendingPaidMessageReactions) MarshalJSON() ([]byte, error) {
 	type Alias RemovePendingPaidMessageReactions
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "removePendingPaidMessageReactions",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -13989,18 +13989,18 @@ type RemoveProfileAudio struct {
 	FileId int32 `json:"file_id"`
 }
 
-func (t *RemoveProfileAudio) Type() string {
+func (t RemoveProfileAudio) Type() string {
 	return "removeProfileAudio"
 }
 
-func (t *RemoveProfileAudio) MarshalJSON() ([]byte, error) {
+func (t RemoveProfileAudio) MarshalJSON() ([]byte, error) {
 	type Alias RemoveProfileAudio
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "removeProfileAudio",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -14010,18 +14010,18 @@ type RemoveProxy struct {
 	ProxyId int32 `json:"proxy_id"`
 }
 
-func (t *RemoveProxy) Type() string {
+func (t RemoveProxy) Type() string {
 	return "removeProxy"
 }
 
-func (t *RemoveProxy) MarshalJSON() ([]byte, error) {
+func (t RemoveProxy) MarshalJSON() ([]byte, error) {
 	type Alias RemoveProxy
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "removeProxy",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -14031,18 +14031,18 @@ type RemoveRecentHashtag struct {
 	Hashtag string `json:"hashtag"`
 }
 
-func (t *RemoveRecentHashtag) Type() string {
+func (t RemoveRecentHashtag) Type() string {
 	return "removeRecentHashtag"
 }
 
-func (t *RemoveRecentHashtag) MarshalJSON() ([]byte, error) {
+func (t RemoveRecentHashtag) MarshalJSON() ([]byte, error) {
 	type Alias RemoveRecentHashtag
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "removeRecentHashtag",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -14052,18 +14052,18 @@ type RemoveRecentlyFoundChat struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t *RemoveRecentlyFoundChat) Type() string {
+func (t RemoveRecentlyFoundChat) Type() string {
 	return "removeRecentlyFoundChat"
 }
 
-func (t *RemoveRecentlyFoundChat) MarshalJSON() ([]byte, error) {
+func (t RemoveRecentlyFoundChat) MarshalJSON() ([]byte, error) {
 	type Alias RemoveRecentlyFoundChat
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "removeRecentlyFoundChat",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -14075,18 +14075,18 @@ type RemoveRecentSticker struct {
 	Sticker InputFile `json:"sticker"`
 }
 
-func (t *RemoveRecentSticker) Type() string {
+func (t RemoveRecentSticker) Type() string {
 	return "removeRecentSticker"
 }
 
-func (t *RemoveRecentSticker) MarshalJSON() ([]byte, error) {
+func (t RemoveRecentSticker) MarshalJSON() ([]byte, error) {
 	type Alias RemoveRecentSticker
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "removeRecentSticker",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -14096,18 +14096,18 @@ type RemoveSavedAnimation struct {
 	Animation InputFile `json:"animation"`
 }
 
-func (t *RemoveSavedAnimation) Type() string {
+func (t RemoveSavedAnimation) Type() string {
 	return "removeSavedAnimation"
 }
 
-func (t *RemoveSavedAnimation) MarshalJSON() ([]byte, error) {
+func (t RemoveSavedAnimation) MarshalJSON() ([]byte, error) {
 	type Alias RemoveSavedAnimation
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "removeSavedAnimation",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -14117,18 +14117,18 @@ type RemoveSavedNotificationSound struct {
 	NotificationSoundId int64 `json:"notification_sound_id,string"`
 }
 
-func (t *RemoveSavedNotificationSound) Type() string {
+func (t RemoveSavedNotificationSound) Type() string {
 	return "removeSavedNotificationSound"
 }
 
-func (t *RemoveSavedNotificationSound) MarshalJSON() ([]byte, error) {
+func (t RemoveSavedNotificationSound) MarshalJSON() ([]byte, error) {
 	type Alias RemoveSavedNotificationSound
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "removeSavedNotificationSound",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -14138,18 +14138,18 @@ type RemoveSearchedForTag struct {
 	Tag string `json:"tag"`
 }
 
-func (t *RemoveSearchedForTag) Type() string {
+func (t RemoveSearchedForTag) Type() string {
 	return "removeSearchedForTag"
 }
 
-func (t *RemoveSearchedForTag) MarshalJSON() ([]byte, error) {
+func (t RemoveSearchedForTag) MarshalJSON() ([]byte, error) {
 	type Alias RemoveSearchedForTag
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "removeSearchedForTag",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -14159,18 +14159,18 @@ type RemoveStickerFromSet struct {
 	Sticker InputFile `json:"sticker"`
 }
 
-func (t *RemoveStickerFromSet) Type() string {
+func (t RemoveStickerFromSet) Type() string {
 	return "removeStickerFromSet"
 }
 
-func (t *RemoveStickerFromSet) MarshalJSON() ([]byte, error) {
+func (t RemoveStickerFromSet) MarshalJSON() ([]byte, error) {
 	type Alias RemoveStickerFromSet
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "removeStickerFromSet",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -14184,18 +14184,18 @@ type RemoveStoryAlbumStories struct {
 	StoryIds []int32 `json:"story_ids"`
 }
 
-func (t *RemoveStoryAlbumStories) Type() string {
+func (t RemoveStoryAlbumStories) Type() string {
 	return "removeStoryAlbumStories"
 }
 
-func (t *RemoveStoryAlbumStories) MarshalJSON() ([]byte, error) {
+func (t RemoveStoryAlbumStories) MarshalJSON() ([]byte, error) {
 	type Alias RemoveStoryAlbumStories
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "removeStoryAlbumStories",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -14207,18 +14207,18 @@ type RemoveTopChat struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t *RemoveTopChat) Type() string {
+func (t RemoveTopChat) Type() string {
 	return "removeTopChat"
 }
 
-func (t *RemoveTopChat) MarshalJSON() ([]byte, error) {
+func (t RemoveTopChat) MarshalJSON() ([]byte, error) {
 	type Alias RemoveTopChat
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "removeTopChat",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -14228,18 +14228,18 @@ type ReorderActiveUsernames struct {
 	Usernames []string `json:"usernames"`
 }
 
-func (t *ReorderActiveUsernames) Type() string {
+func (t ReorderActiveUsernames) Type() string {
 	return "reorderActiveUsernames"
 }
 
-func (t *ReorderActiveUsernames) MarshalJSON() ([]byte, error) {
+func (t ReorderActiveUsernames) MarshalJSON() ([]byte, error) {
 	type Alias ReorderActiveUsernames
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "reorderActiveUsernames",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -14251,18 +14251,18 @@ type ReorderBotActiveUsernames struct {
 	Usernames []string `json:"usernames"`
 }
 
-func (t *ReorderBotActiveUsernames) Type() string {
+func (t ReorderBotActiveUsernames) Type() string {
 	return "reorderBotActiveUsernames"
 }
 
-func (t *ReorderBotActiveUsernames) MarshalJSON() ([]byte, error) {
+func (t ReorderBotActiveUsernames) MarshalJSON() ([]byte, error) {
 	type Alias ReorderBotActiveUsernames
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "reorderBotActiveUsernames",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -14276,18 +14276,18 @@ type ReorderBotMediaPreviews struct {
 	LanguageCode string `json:"language_code"`
 }
 
-func (t *ReorderBotMediaPreviews) Type() string {
+func (t ReorderBotMediaPreviews) Type() string {
 	return "reorderBotMediaPreviews"
 }
 
-func (t *ReorderBotMediaPreviews) MarshalJSON() ([]byte, error) {
+func (t ReorderBotMediaPreviews) MarshalJSON() ([]byte, error) {
 	type Alias ReorderBotMediaPreviews
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "reorderBotMediaPreviews",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -14299,18 +14299,18 @@ type ReorderChatFolders struct {
 	MainChatListPosition int32 `json:"main_chat_list_position"`
 }
 
-func (t *ReorderChatFolders) Type() string {
+func (t ReorderChatFolders) Type() string {
 	return "reorderChatFolders"
 }
 
-func (t *ReorderChatFolders) MarshalJSON() ([]byte, error) {
+func (t ReorderChatFolders) MarshalJSON() ([]byte, error) {
 	type Alias ReorderChatFolders
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "reorderChatFolders",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -14324,18 +14324,18 @@ type ReorderGiftCollectionGifts struct {
 	ReceivedGiftIds []string `json:"received_gift_ids"`
 }
 
-func (t *ReorderGiftCollectionGifts) Type() string {
+func (t ReorderGiftCollectionGifts) Type() string {
 	return "reorderGiftCollectionGifts"
 }
 
-func (t *ReorderGiftCollectionGifts) MarshalJSON() ([]byte, error) {
+func (t ReorderGiftCollectionGifts) MarshalJSON() ([]byte, error) {
 	type Alias ReorderGiftCollectionGifts
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "reorderGiftCollectionGifts",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -14347,18 +14347,18 @@ type ReorderGiftCollections struct {
 	OwnerId MessageSender `json:"owner_id"`
 }
 
-func (t *ReorderGiftCollections) Type() string {
+func (t ReorderGiftCollections) Type() string {
 	return "reorderGiftCollections"
 }
 
-func (t *ReorderGiftCollections) MarshalJSON() ([]byte, error) {
+func (t ReorderGiftCollections) MarshalJSON() ([]byte, error) {
 	type Alias ReorderGiftCollections
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "reorderGiftCollections",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -14370,18 +14370,18 @@ type ReorderInstalledStickerSets struct {
 	StickerType StickerType `json:"sticker_type"`
 }
 
-func (t *ReorderInstalledStickerSets) Type() string {
+func (t ReorderInstalledStickerSets) Type() string {
 	return "reorderInstalledStickerSets"
 }
 
-func (t *ReorderInstalledStickerSets) MarshalJSON() ([]byte, error) {
+func (t ReorderInstalledStickerSets) MarshalJSON() ([]byte, error) {
 	type Alias ReorderInstalledStickerSets
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "reorderInstalledStickerSets",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -14391,18 +14391,18 @@ type ReorderQuickReplyShortcuts struct {
 	ShortcutIds []int32 `json:"shortcut_ids"`
 }
 
-func (t *ReorderQuickReplyShortcuts) Type() string {
+func (t ReorderQuickReplyShortcuts) Type() string {
 	return "reorderQuickReplyShortcuts"
 }
 
-func (t *ReorderQuickReplyShortcuts) MarshalJSON() ([]byte, error) {
+func (t ReorderQuickReplyShortcuts) MarshalJSON() ([]byte, error) {
 	type Alias ReorderQuickReplyShortcuts
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "reorderQuickReplyShortcuts",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -14414,18 +14414,18 @@ type ReorderStoryAlbums struct {
 	StoryAlbumIds []int32 `json:"story_album_ids"`
 }
 
-func (t *ReorderStoryAlbums) Type() string {
+func (t ReorderStoryAlbums) Type() string {
 	return "reorderStoryAlbums"
 }
 
-func (t *ReorderStoryAlbums) MarshalJSON() ([]byte, error) {
+func (t ReorderStoryAlbums) MarshalJSON() ([]byte, error) {
 	type Alias ReorderStoryAlbums
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "reorderStoryAlbums",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -14439,18 +14439,18 @@ type ReorderStoryAlbumStories struct {
 	StoryIds []int32 `json:"story_ids"`
 }
 
-func (t *ReorderStoryAlbumStories) Type() string {
+func (t ReorderStoryAlbumStories) Type() string {
 	return "reorderStoryAlbumStories"
 }
 
-func (t *ReorderStoryAlbumStories) MarshalJSON() ([]byte, error) {
+func (t ReorderStoryAlbumStories) MarshalJSON() ([]byte, error) {
 	type Alias ReorderStoryAlbumStories
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "reorderStoryAlbumStories",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -14462,18 +14462,18 @@ type ReorderSupergroupActiveUsernames struct {
 	Usernames []string `json:"usernames"`
 }
 
-func (t *ReorderSupergroupActiveUsernames) Type() string {
+func (t ReorderSupergroupActiveUsernames) Type() string {
 	return "reorderSupergroupActiveUsernames"
 }
 
-func (t *ReorderSupergroupActiveUsernames) MarshalJSON() ([]byte, error) {
+func (t ReorderSupergroupActiveUsernames) MarshalJSON() ([]byte, error) {
 	type Alias ReorderSupergroupActiveUsernames
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "reorderSupergroupActiveUsernames",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -14483,18 +14483,18 @@ type ReplaceLiveStoryRtmpUrl struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t *ReplaceLiveStoryRtmpUrl) Type() string {
+func (t ReplaceLiveStoryRtmpUrl) Type() string {
 	return "replaceLiveStoryRtmpUrl"
 }
 
-func (t *ReplaceLiveStoryRtmpUrl) MarshalJSON() ([]byte, error) {
+func (t ReplaceLiveStoryRtmpUrl) MarshalJSON() ([]byte, error) {
 	type Alias ReplaceLiveStoryRtmpUrl
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "replaceLiveStoryRtmpUrl",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -14504,18 +14504,18 @@ type ReplacePrimaryChatInviteLink struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t *ReplacePrimaryChatInviteLink) Type() string {
+func (t ReplacePrimaryChatInviteLink) Type() string {
 	return "replacePrimaryChatInviteLink"
 }
 
-func (t *ReplacePrimaryChatInviteLink) MarshalJSON() ([]byte, error) {
+func (t ReplacePrimaryChatInviteLink) MarshalJSON() ([]byte, error) {
 	type Alias ReplacePrimaryChatInviteLink
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "replacePrimaryChatInviteLink",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -14531,18 +14531,18 @@ type ReplaceStickerInSet struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t *ReplaceStickerInSet) Type() string {
+func (t ReplaceStickerInSet) Type() string {
 	return "replaceStickerInSet"
 }
 
-func (t *ReplaceStickerInSet) MarshalJSON() ([]byte, error) {
+func (t ReplaceStickerInSet) MarshalJSON() ([]byte, error) {
 	type Alias ReplaceStickerInSet
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "replaceStickerInSet",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -14552,18 +14552,18 @@ type ReplaceVideoChatRtmpUrl struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t *ReplaceVideoChatRtmpUrl) Type() string {
+func (t ReplaceVideoChatRtmpUrl) Type() string {
 	return "replaceVideoChatRtmpUrl"
 }
 
-func (t *ReplaceVideoChatRtmpUrl) MarshalJSON() ([]byte, error) {
+func (t ReplaceVideoChatRtmpUrl) MarshalJSON() ([]byte, error) {
 	type Alias ReplaceVideoChatRtmpUrl
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "replaceVideoChatRtmpUrl",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -14573,18 +14573,18 @@ type ReportAuthenticationCodeMissing struct {
 	MobileNetworkCode string `json:"mobile_network_code"`
 }
 
-func (t *ReportAuthenticationCodeMissing) Type() string {
+func (t ReportAuthenticationCodeMissing) Type() string {
 	return "reportAuthenticationCodeMissing"
 }
 
-func (t *ReportAuthenticationCodeMissing) MarshalJSON() ([]byte, error) {
+func (t ReportAuthenticationCodeMissing) MarshalJSON() ([]byte, error) {
 	type Alias ReportAuthenticationCodeMissing
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "reportAuthenticationCodeMissing",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -14600,18 +14600,18 @@ type ReportChat struct {
 	Text string `json:"text"`
 }
 
-func (t *ReportChat) Type() string {
+func (t ReportChat) Type() string {
 	return "reportChat"
 }
 
-func (t *ReportChat) MarshalJSON() ([]byte, error) {
+func (t ReportChat) MarshalJSON() ([]byte, error) {
 	type Alias ReportChat
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "reportChat",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -14627,18 +14627,18 @@ type ReportChatPhoto struct {
 	Text string `json:"text"`
 }
 
-func (t *ReportChatPhoto) Type() string {
+func (t ReportChatPhoto) Type() string {
 	return "reportChatPhoto"
 }
 
-func (t *ReportChatPhoto) MarshalJSON() ([]byte, error) {
+func (t ReportChatPhoto) MarshalJSON() ([]byte, error) {
 	type Alias ReportChatPhoto
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "reportChatPhoto",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -14652,18 +14652,18 @@ type ReportChatSponsoredMessage struct {
 	OptionId []byte `json:"option_id"`
 }
 
-func (t *ReportChatSponsoredMessage) Type() string {
+func (t ReportChatSponsoredMessage) Type() string {
 	return "reportChatSponsoredMessage"
 }
 
-func (t *ReportChatSponsoredMessage) MarshalJSON() ([]byte, error) {
+func (t ReportChatSponsoredMessage) MarshalJSON() ([]byte, error) {
 	type Alias ReportChatSponsoredMessage
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "reportChatSponsoredMessage",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -14677,18 +14677,18 @@ type ReportMessageReactions struct {
 	SenderId MessageSender `json:"sender_id"`
 }
 
-func (t *ReportMessageReactions) Type() string {
+func (t ReportMessageReactions) Type() string {
 	return "reportMessageReactions"
 }
 
-func (t *ReportMessageReactions) MarshalJSON() ([]byte, error) {
+func (t ReportMessageReactions) MarshalJSON() ([]byte, error) {
 	type Alias ReportMessageReactions
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "reportMessageReactions",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -14698,18 +14698,18 @@ type ReportPhoneNumberCodeMissing struct {
 	MobileNetworkCode string `json:"mobile_network_code"`
 }
 
-func (t *ReportPhoneNumberCodeMissing) Type() string {
+func (t ReportPhoneNumberCodeMissing) Type() string {
 	return "reportPhoneNumberCodeMissing"
 }
 
-func (t *ReportPhoneNumberCodeMissing) MarshalJSON() ([]byte, error) {
+func (t ReportPhoneNumberCodeMissing) MarshalJSON() ([]byte, error) {
 	type Alias ReportPhoneNumberCodeMissing
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "reportPhoneNumberCodeMissing",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -14721,18 +14721,18 @@ type ReportSponsoredChat struct {
 	SponsoredChatUniqueId int64 `json:"sponsored_chat_unique_id"`
 }
 
-func (t *ReportSponsoredChat) Type() string {
+func (t ReportSponsoredChat) Type() string {
 	return "reportSponsoredChat"
 }
 
-func (t *ReportSponsoredChat) MarshalJSON() ([]byte, error) {
+func (t ReportSponsoredChat) MarshalJSON() ([]byte, error) {
 	type Alias ReportSponsoredChat
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "reportSponsoredChat",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -14748,18 +14748,18 @@ type ReportStory struct {
 	Text string `json:"text"`
 }
 
-func (t *ReportStory) Type() string {
+func (t ReportStory) Type() string {
 	return "reportStory"
 }
 
-func (t *ReportStory) MarshalJSON() ([]byte, error) {
+func (t ReportStory) MarshalJSON() ([]byte, error) {
 	type Alias ReportStory
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "reportStory",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -14771,18 +14771,18 @@ type ReportSupergroupAntiSpamFalsePositive struct {
 	SupergroupId int64 `json:"supergroup_id"`
 }
 
-func (t *ReportSupergroupAntiSpamFalsePositive) Type() string {
+func (t ReportSupergroupAntiSpamFalsePositive) Type() string {
 	return "reportSupergroupAntiSpamFalsePositive"
 }
 
-func (t *ReportSupergroupAntiSpamFalsePositive) MarshalJSON() ([]byte, error) {
+func (t ReportSupergroupAntiSpamFalsePositive) MarshalJSON() ([]byte, error) {
 	type Alias ReportSupergroupAntiSpamFalsePositive
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "reportSupergroupAntiSpamFalsePositive",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -14794,18 +14794,18 @@ type ReportSupergroupSpam struct {
 	SupergroupId int64 `json:"supergroup_id"`
 }
 
-func (t *ReportSupergroupSpam) Type() string {
+func (t ReportSupergroupSpam) Type() string {
 	return "reportSupergroupSpam"
 }
 
-func (t *ReportSupergroupSpam) MarshalJSON() ([]byte, error) {
+func (t ReportSupergroupSpam) MarshalJSON() ([]byte, error) {
 	type Alias ReportSupergroupSpam
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "reportSupergroupSpam",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -14817,18 +14817,18 @@ type ReportVideoMessageAdvertisement struct {
 	OptionId []byte `json:"option_id"`
 }
 
-func (t *ReportVideoMessageAdvertisement) Type() string {
+func (t ReportVideoMessageAdvertisement) Type() string {
 	return "reportVideoMessageAdvertisement"
 }
 
-func (t *ReportVideoMessageAdvertisement) MarshalJSON() ([]byte, error) {
+func (t ReportVideoMessageAdvertisement) MarshalJSON() ([]byte, error) {
 	type Alias ReportVideoMessageAdvertisement
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "reportVideoMessageAdvertisement",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -14836,18 +14836,18 @@ func (t *ReportVideoMessageAdvertisement) MarshalJSON() ([]byte, error) {
 type RequestAuthenticationPasswordRecovery struct {
 }
 
-func (t *RequestAuthenticationPasswordRecovery) Type() string {
+func (t RequestAuthenticationPasswordRecovery) Type() string {
 	return "requestAuthenticationPasswordRecovery"
 }
 
-func (t *RequestAuthenticationPasswordRecovery) MarshalJSON() ([]byte, error) {
+func (t RequestAuthenticationPasswordRecovery) MarshalJSON() ([]byte, error) {
 	type Alias RequestAuthenticationPasswordRecovery
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "requestAuthenticationPasswordRecovery",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -14855,18 +14855,18 @@ func (t *RequestAuthenticationPasswordRecovery) MarshalJSON() ([]byte, error) {
 type RequestPasswordRecovery struct {
 }
 
-func (t *RequestPasswordRecovery) Type() string {
+func (t RequestPasswordRecovery) Type() string {
 	return "requestPasswordRecovery"
 }
 
-func (t *RequestPasswordRecovery) MarshalJSON() ([]byte, error) {
+func (t RequestPasswordRecovery) MarshalJSON() ([]byte, error) {
 	type Alias RequestPasswordRecovery
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "requestPasswordRecovery",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -14876,18 +14876,18 @@ type RequestQrCodeAuthentication struct {
 	OtherUserIds []int64 `json:"other_user_ids"`
 }
 
-func (t *RequestQrCodeAuthentication) Type() string {
+func (t RequestQrCodeAuthentication) Type() string {
 	return "requestQrCodeAuthentication"
 }
 
-func (t *RequestQrCodeAuthentication) MarshalJSON() ([]byte, error) {
+func (t RequestQrCodeAuthentication) MarshalJSON() ([]byte, error) {
 	type Alias RequestQrCodeAuthentication
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "requestQrCodeAuthentication",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -14897,18 +14897,18 @@ type ResendAuthenticationCode struct {
 	Reason ResendCodeReason `json:"reason,omitempty"`
 }
 
-func (t *ResendAuthenticationCode) Type() string {
+func (t ResendAuthenticationCode) Type() string {
 	return "resendAuthenticationCode"
 }
 
-func (t *ResendAuthenticationCode) MarshalJSON() ([]byte, error) {
+func (t ResendAuthenticationCode) MarshalJSON() ([]byte, error) {
 	type Alias ResendAuthenticationCode
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "resendAuthenticationCode",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -14916,18 +14916,18 @@ func (t *ResendAuthenticationCode) MarshalJSON() ([]byte, error) {
 type ResendEmailAddressVerificationCode struct {
 }
 
-func (t *ResendEmailAddressVerificationCode) Type() string {
+func (t ResendEmailAddressVerificationCode) Type() string {
 	return "resendEmailAddressVerificationCode"
 }
 
-func (t *ResendEmailAddressVerificationCode) MarshalJSON() ([]byte, error) {
+func (t ResendEmailAddressVerificationCode) MarshalJSON() ([]byte, error) {
 	type Alias ResendEmailAddressVerificationCode
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "resendEmailAddressVerificationCode",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -14935,18 +14935,18 @@ func (t *ResendEmailAddressVerificationCode) MarshalJSON() ([]byte, error) {
 type ResendLoginEmailAddressCode struct {
 }
 
-func (t *ResendLoginEmailAddressCode) Type() string {
+func (t ResendLoginEmailAddressCode) Type() string {
 	return "resendLoginEmailAddressCode"
 }
 
-func (t *ResendLoginEmailAddressCode) MarshalJSON() ([]byte, error) {
+func (t ResendLoginEmailAddressCode) MarshalJSON() ([]byte, error) {
 	type Alias ResendLoginEmailAddressCode
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "resendLoginEmailAddressCode",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -14962,18 +14962,18 @@ type ResendMessages struct {
 	Quote *InputTextQuote `json:"quote,omitempty"`
 }
 
-func (t *ResendMessages) Type() string {
+func (t ResendMessages) Type() string {
 	return "resendMessages"
 }
 
-func (t *ResendMessages) MarshalJSON() ([]byte, error) {
+func (t ResendMessages) MarshalJSON() ([]byte, error) {
 	type Alias ResendMessages
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "resendMessages",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -14983,18 +14983,18 @@ type ResendPhoneNumberCode struct {
 	Reason ResendCodeReason `json:"reason,omitempty"`
 }
 
-func (t *ResendPhoneNumberCode) Type() string {
+func (t ResendPhoneNumberCode) Type() string {
 	return "resendPhoneNumberCode"
 }
 
-func (t *ResendPhoneNumberCode) MarshalJSON() ([]byte, error) {
+func (t ResendPhoneNumberCode) MarshalJSON() ([]byte, error) {
 	type Alias ResendPhoneNumberCode
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "resendPhoneNumberCode",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -15002,18 +15002,18 @@ func (t *ResendPhoneNumberCode) MarshalJSON() ([]byte, error) {
 type ResendRecoveryEmailAddressCode struct {
 }
 
-func (t *ResendRecoveryEmailAddressCode) Type() string {
+func (t ResendRecoveryEmailAddressCode) Type() string {
 	return "resendRecoveryEmailAddressCode"
 }
 
-func (t *ResendRecoveryEmailAddressCode) MarshalJSON() ([]byte, error) {
+func (t ResendRecoveryEmailAddressCode) MarshalJSON() ([]byte, error) {
 	type Alias ResendRecoveryEmailAddressCode
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "resendRecoveryEmailAddressCode",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -15021,18 +15021,18 @@ func (t *ResendRecoveryEmailAddressCode) MarshalJSON() ([]byte, error) {
 type ResetAllNotificationSettings struct {
 }
 
-func (t *ResetAllNotificationSettings) Type() string {
+func (t ResetAllNotificationSettings) Type() string {
 	return "resetAllNotificationSettings"
 }
 
-func (t *ResetAllNotificationSettings) MarshalJSON() ([]byte, error) {
+func (t ResetAllNotificationSettings) MarshalJSON() ([]byte, error) {
 	type Alias ResetAllNotificationSettings
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "resetAllNotificationSettings",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -15040,18 +15040,18 @@ func (t *ResetAllNotificationSettings) MarshalJSON() ([]byte, error) {
 type ResetAuthenticationEmailAddress struct {
 }
 
-func (t *ResetAuthenticationEmailAddress) Type() string {
+func (t ResetAuthenticationEmailAddress) Type() string {
 	return "resetAuthenticationEmailAddress"
 }
 
-func (t *ResetAuthenticationEmailAddress) MarshalJSON() ([]byte, error) {
+func (t ResetAuthenticationEmailAddress) MarshalJSON() ([]byte, error) {
 	type Alias ResetAuthenticationEmailAddress
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "resetAuthenticationEmailAddress",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -15059,18 +15059,18 @@ func (t *ResetAuthenticationEmailAddress) MarshalJSON() ([]byte, error) {
 type ResetInstalledBackgrounds struct {
 }
 
-func (t *ResetInstalledBackgrounds) Type() string {
+func (t ResetInstalledBackgrounds) Type() string {
 	return "resetInstalledBackgrounds"
 }
 
-func (t *ResetInstalledBackgrounds) MarshalJSON() ([]byte, error) {
+func (t ResetInstalledBackgrounds) MarshalJSON() ([]byte, error) {
 	type Alias ResetInstalledBackgrounds
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "resetInstalledBackgrounds",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -15078,18 +15078,18 @@ func (t *ResetInstalledBackgrounds) MarshalJSON() ([]byte, error) {
 type ResetNetworkStatistics struct {
 }
 
-func (t *ResetNetworkStatistics) Type() string {
+func (t ResetNetworkStatistics) Type() string {
 	return "resetNetworkStatistics"
 }
 
-func (t *ResetNetworkStatistics) MarshalJSON() ([]byte, error) {
+func (t ResetNetworkStatistics) MarshalJSON() ([]byte, error) {
 	type Alias ResetNetworkStatistics
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "resetNetworkStatistics",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -15097,18 +15097,18 @@ func (t *ResetNetworkStatistics) MarshalJSON() ([]byte, error) {
 type ResetPassword struct {
 }
 
-func (t *ResetPassword) Type() string {
+func (t ResetPassword) Type() string {
 	return "resetPassword"
 }
 
-func (t *ResetPassword) MarshalJSON() ([]byte, error) {
+func (t ResetPassword) MarshalJSON() ([]byte, error) {
 	type Alias ResetPassword
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "resetPassword",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -15118,18 +15118,18 @@ type ReuseStarSubscription struct {
 	SubscriptionId string `json:"subscription_id"`
 }
 
-func (t *ReuseStarSubscription) Type() string {
+func (t ReuseStarSubscription) Type() string {
 	return "reuseStarSubscription"
 }
 
-func (t *ReuseStarSubscription) MarshalJSON() ([]byte, error) {
+func (t ReuseStarSubscription) MarshalJSON() ([]byte, error) {
 	type Alias ReuseStarSubscription
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "reuseStarSubscription",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -15141,18 +15141,18 @@ type RevokeChatInviteLink struct {
 	InviteLink string `json:"invite_link"`
 }
 
-func (t *RevokeChatInviteLink) Type() string {
+func (t RevokeChatInviteLink) Type() string {
 	return "revokeChatInviteLink"
 }
 
-func (t *RevokeChatInviteLink) MarshalJSON() ([]byte, error) {
+func (t RevokeChatInviteLink) MarshalJSON() ([]byte, error) {
 	type Alias RevokeChatInviteLink
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "revokeChatInviteLink",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -15162,18 +15162,18 @@ type RevokeGroupCallInviteLink struct {
 	GroupCallId int32 `json:"group_call_id"`
 }
 
-func (t *RevokeGroupCallInviteLink) Type() string {
+func (t RevokeGroupCallInviteLink) Type() string {
 	return "revokeGroupCallInviteLink"
 }
 
-func (t *RevokeGroupCallInviteLink) MarshalJSON() ([]byte, error) {
+func (t RevokeGroupCallInviteLink) MarshalJSON() ([]byte, error) {
 	type Alias RevokeGroupCallInviteLink
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "revokeGroupCallInviteLink",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -15187,18 +15187,18 @@ type SaveApplicationLogEvent struct {
 	TypeField string `json:"type"`
 }
 
-func (t *SaveApplicationLogEvent) Type() string {
+func (t SaveApplicationLogEvent) Type() string {
 	return "saveApplicationLogEvent"
 }
 
-func (t *SaveApplicationLogEvent) MarshalJSON() ([]byte, error) {
+func (t SaveApplicationLogEvent) MarshalJSON() ([]byte, error) {
 	type Alias SaveApplicationLogEvent
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "saveApplicationLogEvent",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -15212,18 +15212,18 @@ type SavePreparedInlineMessage struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t *SavePreparedInlineMessage) Type() string {
+func (t SavePreparedInlineMessage) Type() string {
 	return "savePreparedInlineMessage"
 }
 
-func (t *SavePreparedInlineMessage) MarshalJSON() ([]byte, error) {
+func (t SavePreparedInlineMessage) MarshalJSON() ([]byte, error) {
 	type Alias SavePreparedInlineMessage
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "savePreparedInlineMessage",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -15239,18 +15239,18 @@ type SearchAffiliatePrograms struct {
 	SortOrder AffiliateProgramSortOrder `json:"sort_order"`
 }
 
-func (t *SearchAffiliatePrograms) Type() string {
+func (t SearchAffiliatePrograms) Type() string {
 	return "searchAffiliatePrograms"
 }
 
-func (t *SearchAffiliatePrograms) MarshalJSON() ([]byte, error) {
+func (t SearchAffiliatePrograms) MarshalJSON() ([]byte, error) {
 	type Alias SearchAffiliatePrograms
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "searchAffiliatePrograms",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -15260,18 +15260,18 @@ type SearchBackground struct {
 	Name string `json:"name"`
 }
 
-func (t *SearchBackground) Type() string {
+func (t SearchBackground) Type() string {
 	return "searchBackground"
 }
 
-func (t *SearchBackground) MarshalJSON() ([]byte, error) {
+func (t SearchBackground) MarshalJSON() ([]byte, error) {
 	type Alias SearchBackground
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "searchBackground",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -15285,18 +15285,18 @@ type SearchCallMessages struct {
 	OnlyMissed bool `json:"only_missed"`
 }
 
-func (t *SearchCallMessages) Type() string {
+func (t SearchCallMessages) Type() string {
 	return "searchCallMessages"
 }
 
-func (t *SearchCallMessages) MarshalJSON() ([]byte, error) {
+func (t SearchCallMessages) MarshalJSON() ([]byte, error) {
 	type Alias SearchCallMessages
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "searchCallMessages",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -15308,18 +15308,18 @@ type SearchChatAffiliateProgram struct {
 	Username string `json:"username"`
 }
 
-func (t *SearchChatAffiliateProgram) Type() string {
+func (t SearchChatAffiliateProgram) Type() string {
 	return "searchChatAffiliateProgram"
 }
 
-func (t *SearchChatAffiliateProgram) MarshalJSON() ([]byte, error) {
+func (t SearchChatAffiliateProgram) MarshalJSON() ([]byte, error) {
 	type Alias SearchChatAffiliateProgram
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "searchChatAffiliateProgram",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -15335,18 +15335,18 @@ type SearchChatMembers struct {
 	Query string `json:"query"`
 }
 
-func (t *SearchChatMembers) Type() string {
+func (t SearchChatMembers) Type() string {
 	return "searchChatMembers"
 }
 
-func (t *SearchChatMembers) MarshalJSON() ([]byte, error) {
+func (t SearchChatMembers) MarshalJSON() ([]byte, error) {
 	type Alias SearchChatMembers
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "searchChatMembers",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -15370,18 +15370,18 @@ type SearchChatMessages struct {
 	TopicId MessageTopic `json:"topic_id,omitempty"`
 }
 
-func (t *SearchChatMessages) Type() string {
+func (t SearchChatMessages) Type() string {
 	return "searchChatMessages"
 }
 
-func (t *SearchChatMessages) MarshalJSON() ([]byte, error) {
+func (t SearchChatMessages) MarshalJSON() ([]byte, error) {
 	type Alias SearchChatMessages
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "searchChatMessages",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -15393,18 +15393,18 @@ type SearchChatRecentLocationMessages struct {
 	Limit int32 `json:"limit"`
 }
 
-func (t *SearchChatRecentLocationMessages) Type() string {
+func (t SearchChatRecentLocationMessages) Type() string {
 	return "searchChatRecentLocationMessages"
 }
 
-func (t *SearchChatRecentLocationMessages) MarshalJSON() ([]byte, error) {
+func (t SearchChatRecentLocationMessages) MarshalJSON() ([]byte, error) {
 	type Alias SearchChatRecentLocationMessages
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "searchChatRecentLocationMessages",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -15416,18 +15416,18 @@ type SearchChats struct {
 	Query string `json:"query"`
 }
 
-func (t *SearchChats) Type() string {
+func (t SearchChats) Type() string {
 	return "searchChats"
 }
 
-func (t *SearchChats) MarshalJSON() ([]byte, error) {
+func (t SearchChats) MarshalJSON() ([]byte, error) {
 	type Alias SearchChats
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "searchChats",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -15439,18 +15439,18 @@ type SearchChatsOnServer struct {
 	Query string `json:"query"`
 }
 
-func (t *SearchChatsOnServer) Type() string {
+func (t SearchChatsOnServer) Type() string {
 	return "searchChatsOnServer"
 }
 
-func (t *SearchChatsOnServer) MarshalJSON() ([]byte, error) {
+func (t SearchChatsOnServer) MarshalJSON() ([]byte, error) {
 	type Alias SearchChatsOnServer
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "searchChatsOnServer",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -15462,18 +15462,18 @@ type SearchContacts struct {
 	Query string `json:"query,omitempty"`
 }
 
-func (t *SearchContacts) Type() string {
+func (t SearchContacts) Type() string {
 	return "searchContacts"
 }
 
-func (t *SearchContacts) MarshalJSON() ([]byte, error) {
+func (t SearchContacts) MarshalJSON() ([]byte, error) {
 	type Alias SearchContacts
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "searchContacts",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -15485,18 +15485,18 @@ type SearchEmojis struct {
 	Text string `json:"text"`
 }
 
-func (t *SearchEmojis) Type() string {
+func (t SearchEmojis) Type() string {
 	return "searchEmojis"
 }
 
-func (t *SearchEmojis) MarshalJSON() ([]byte, error) {
+func (t SearchEmojis) MarshalJSON() ([]byte, error) {
 	type Alias SearchEmojis
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "searchEmojis",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -15514,18 +15514,18 @@ type SearchFileDownloads struct {
 	Query string `json:"query,omitempty"`
 }
 
-func (t *SearchFileDownloads) Type() string {
+func (t SearchFileDownloads) Type() string {
 	return "searchFileDownloads"
 }
 
-func (t *SearchFileDownloads) MarshalJSON() ([]byte, error) {
+func (t SearchFileDownloads) MarshalJSON() ([]byte, error) {
 	type Alias SearchFileDownloads
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "searchFileDownloads",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -15545,18 +15545,18 @@ type SearchGiftsForResale struct {
 	Order GiftForResaleOrder `json:"order"`
 }
 
-func (t *SearchGiftsForResale) Type() string {
+func (t SearchGiftsForResale) Type() string {
 	return "searchGiftsForResale"
 }
 
-func (t *SearchGiftsForResale) MarshalJSON() ([]byte, error) {
+func (t SearchGiftsForResale) MarshalJSON() ([]byte, error) {
 	type Alias SearchGiftsForResale
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "searchGiftsForResale",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -15568,18 +15568,18 @@ type SearchHashtags struct {
 	Prefix string `json:"prefix"`
 }
 
-func (t *SearchHashtags) Type() string {
+func (t SearchHashtags) Type() string {
 	return "searchHashtags"
 }
 
-func (t *SearchHashtags) MarshalJSON() ([]byte, error) {
+func (t SearchHashtags) MarshalJSON() ([]byte, error) {
 	type Alias SearchHashtags
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "searchHashtags",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -15593,18 +15593,18 @@ type SearchInstalledStickerSets struct {
 	StickerType StickerType `json:"sticker_type"`
 }
 
-func (t *SearchInstalledStickerSets) Type() string {
+func (t SearchInstalledStickerSets) Type() string {
 	return "searchInstalledStickerSets"
 }
 
-func (t *SearchInstalledStickerSets) MarshalJSON() ([]byte, error) {
+func (t SearchInstalledStickerSets) MarshalJSON() ([]byte, error) {
 	type Alias SearchInstalledStickerSets
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "searchInstalledStickerSets",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -15628,18 +15628,18 @@ type SearchMessages struct {
 	Query string `json:"query"`
 }
 
-func (t *SearchMessages) Type() string {
+func (t SearchMessages) Type() string {
 	return "searchMessages"
 }
 
-func (t *SearchMessages) MarshalJSON() ([]byte, error) {
+func (t SearchMessages) MarshalJSON() ([]byte, error) {
 	type Alias SearchMessages
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "searchMessages",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -15651,18 +15651,18 @@ type SearchOutgoingDocumentMessages struct {
 	Query string `json:"query"`
 }
 
-func (t *SearchOutgoingDocumentMessages) Type() string {
+func (t SearchOutgoingDocumentMessages) Type() string {
 	return "searchOutgoingDocumentMessages"
 }
 
-func (t *SearchOutgoingDocumentMessages) MarshalJSON() ([]byte, error) {
+func (t SearchOutgoingDocumentMessages) MarshalJSON() ([]byte, error) {
 	type Alias SearchOutgoingDocumentMessages
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "searchOutgoingDocumentMessages",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -15672,18 +15672,18 @@ type SearchPublicChat struct {
 	Username string `json:"username"`
 }
 
-func (t *SearchPublicChat) Type() string {
+func (t SearchPublicChat) Type() string {
 	return "searchPublicChat"
 }
 
-func (t *SearchPublicChat) MarshalJSON() ([]byte, error) {
+func (t SearchPublicChat) MarshalJSON() ([]byte, error) {
 	type Alias SearchPublicChat
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "searchPublicChat",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -15693,18 +15693,18 @@ type SearchPublicChats struct {
 	Query string `json:"query"`
 }
 
-func (t *SearchPublicChats) Type() string {
+func (t SearchPublicChats) Type() string {
 	return "searchPublicChats"
 }
 
-func (t *SearchPublicChats) MarshalJSON() ([]byte, error) {
+func (t SearchPublicChats) MarshalJSON() ([]byte, error) {
 	type Alias SearchPublicChats
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "searchPublicChats",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -15718,18 +15718,18 @@ type SearchPublicMessagesByTag struct {
 	Tag string `json:"tag"`
 }
 
-func (t *SearchPublicMessagesByTag) Type() string {
+func (t SearchPublicMessagesByTag) Type() string {
 	return "searchPublicMessagesByTag"
 }
 
-func (t *SearchPublicMessagesByTag) MarshalJSON() ([]byte, error) {
+func (t SearchPublicMessagesByTag) MarshalJSON() ([]byte, error) {
 	type Alias SearchPublicMessagesByTag
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "searchPublicMessagesByTag",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -15745,18 +15745,18 @@ type SearchPublicPosts struct {
 	StarCount int64 `json:"star_count"`
 }
 
-func (t *SearchPublicPosts) Type() string {
+func (t SearchPublicPosts) Type() string {
 	return "searchPublicPosts"
 }
 
-func (t *SearchPublicPosts) MarshalJSON() ([]byte, error) {
+func (t SearchPublicPosts) MarshalJSON() ([]byte, error) {
 	type Alias SearchPublicPosts
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "searchPublicPosts",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -15770,18 +15770,18 @@ type SearchPublicStoriesByLocation struct {
 	Offset string `json:"offset"`
 }
 
-func (t *SearchPublicStoriesByLocation) Type() string {
+func (t SearchPublicStoriesByLocation) Type() string {
 	return "searchPublicStoriesByLocation"
 }
 
-func (t *SearchPublicStoriesByLocation) MarshalJSON() ([]byte, error) {
+func (t SearchPublicStoriesByLocation) MarshalJSON() ([]byte, error) {
 	type Alias SearchPublicStoriesByLocation
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "searchPublicStoriesByLocation",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -15797,18 +15797,18 @@ type SearchPublicStoriesByTag struct {
 	Tag string `json:"tag"`
 }
 
-func (t *SearchPublicStoriesByTag) Type() string {
+func (t SearchPublicStoriesByTag) Type() string {
 	return "searchPublicStoriesByTag"
 }
 
-func (t *SearchPublicStoriesByTag) MarshalJSON() ([]byte, error) {
+func (t SearchPublicStoriesByTag) MarshalJSON() ([]byte, error) {
 	type Alias SearchPublicStoriesByTag
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "searchPublicStoriesByTag",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -15824,18 +15824,18 @@ type SearchPublicStoriesByVenue struct {
 	VenueProvider string `json:"venue_provider"`
 }
 
-func (t *SearchPublicStoriesByVenue) Type() string {
+func (t SearchPublicStoriesByVenue) Type() string {
 	return "searchPublicStoriesByVenue"
 }
 
-func (t *SearchPublicStoriesByVenue) MarshalJSON() ([]byte, error) {
+func (t SearchPublicStoriesByVenue) MarshalJSON() ([]byte, error) {
 	type Alias SearchPublicStoriesByVenue
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "searchPublicStoriesByVenue",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -15849,18 +15849,18 @@ type SearchQuote struct {
 	Text *FormattedText `json:"text"`
 }
 
-func (t *SearchQuote) Type() string {
+func (t SearchQuote) Type() string {
 	return "searchQuote"
 }
 
-func (t *SearchQuote) MarshalJSON() ([]byte, error) {
+func (t SearchQuote) MarshalJSON() ([]byte, error) {
 	type Alias SearchQuote
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "searchQuote",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -15872,18 +15872,18 @@ type SearchRecentlyFoundChats struct {
 	Query string `json:"query"`
 }
 
-func (t *SearchRecentlyFoundChats) Type() string {
+func (t SearchRecentlyFoundChats) Type() string {
 	return "searchRecentlyFoundChats"
 }
 
-func (t *SearchRecentlyFoundChats) MarshalJSON() ([]byte, error) {
+func (t SearchRecentlyFoundChats) MarshalJSON() ([]byte, error) {
 	type Alias SearchRecentlyFoundChats
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "searchRecentlyFoundChats",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -15903,18 +15903,18 @@ type SearchSavedMessages struct {
 	Tag ReactionType `json:"tag,omitempty"`
 }
 
-func (t *SearchSavedMessages) Type() string {
+func (t SearchSavedMessages) Type() string {
 	return "searchSavedMessages"
 }
 
-func (t *SearchSavedMessages) MarshalJSON() ([]byte, error) {
+func (t SearchSavedMessages) MarshalJSON() ([]byte, error) {
 	type Alias SearchSavedMessages
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "searchSavedMessages",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -15932,18 +15932,18 @@ type SearchSecretMessages struct {
 	Query string `json:"query"`
 }
 
-func (t *SearchSecretMessages) Type() string {
+func (t SearchSecretMessages) Type() string {
 	return "searchSecretMessages"
 }
 
-func (t *SearchSecretMessages) MarshalJSON() ([]byte, error) {
+func (t SearchSecretMessages) MarshalJSON() ([]byte, error) {
 	type Alias SearchSecretMessages
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "searchSecretMessages",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -15963,18 +15963,18 @@ type SearchStickers struct {
 	StickerType StickerType `json:"sticker_type"`
 }
 
-func (t *SearchStickers) Type() string {
+func (t SearchStickers) Type() string {
 	return "searchStickers"
 }
 
-func (t *SearchStickers) MarshalJSON() ([]byte, error) {
+func (t SearchStickers) MarshalJSON() ([]byte, error) {
 	type Alias SearchStickers
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "searchStickers",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -15986,18 +15986,18 @@ type SearchStickerSet struct {
 	Name string `json:"name"`
 }
 
-func (t *SearchStickerSet) Type() string {
+func (t SearchStickerSet) Type() string {
 	return "searchStickerSet"
 }
 
-func (t *SearchStickerSet) MarshalJSON() ([]byte, error) {
+func (t SearchStickerSet) MarshalJSON() ([]byte, error) {
 	type Alias SearchStickerSet
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "searchStickerSet",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -16009,18 +16009,18 @@ type SearchStickerSets struct {
 	StickerType StickerType `json:"sticker_type"`
 }
 
-func (t *SearchStickerSets) Type() string {
+func (t SearchStickerSets) Type() string {
 	return "searchStickerSets"
 }
 
-func (t *SearchStickerSets) MarshalJSON() ([]byte, error) {
+func (t SearchStickerSets) MarshalJSON() ([]byte, error) {
 	type Alias SearchStickerSets
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "searchStickerSets",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -16036,18 +16036,18 @@ type SearchStringsByPrefix struct {
 	Strings []string `json:"strings"`
 }
 
-func (t *SearchStringsByPrefix) Type() string {
+func (t SearchStringsByPrefix) Type() string {
 	return "searchStringsByPrefix"
 }
 
-func (t *SearchStringsByPrefix) MarshalJSON() ([]byte, error) {
+func (t SearchStringsByPrefix) MarshalJSON() ([]byte, error) {
 	type Alias SearchStringsByPrefix
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "searchStringsByPrefix",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -16059,18 +16059,18 @@ type SearchUserByPhoneNumber struct {
 	PhoneNumber string `json:"phone_number"`
 }
 
-func (t *SearchUserByPhoneNumber) Type() string {
+func (t SearchUserByPhoneNumber) Type() string {
 	return "searchUserByPhoneNumber"
 }
 
-func (t *SearchUserByPhoneNumber) MarshalJSON() ([]byte, error) {
+func (t SearchUserByPhoneNumber) MarshalJSON() ([]byte, error) {
 	type Alias SearchUserByPhoneNumber
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "searchUserByPhoneNumber",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -16080,18 +16080,18 @@ type SearchUserByToken struct {
 	Token string `json:"token"`
 }
 
-func (t *SearchUserByToken) Type() string {
+func (t SearchUserByToken) Type() string {
 	return "searchUserByToken"
 }
 
-func (t *SearchUserByToken) MarshalJSON() ([]byte, error) {
+func (t SearchUserByToken) MarshalJSON() ([]byte, error) {
 	type Alias SearchUserByToken
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "searchUserByToken",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -16103,18 +16103,18 @@ type SearchWebApp struct {
 	WebAppShortName string `json:"web_app_short_name"`
 }
 
-func (t *SearchWebApp) Type() string {
+func (t SearchWebApp) Type() string {
 	return "searchWebApp"
 }
 
-func (t *SearchWebApp) MarshalJSON() ([]byte, error) {
+func (t SearchWebApp) MarshalJSON() ([]byte, error) {
 	type Alias SearchWebApp
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "searchWebApp",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -16126,18 +16126,18 @@ type SellGift struct {
 	ReceivedGiftId string `json:"received_gift_id"`
 }
 
-func (t *SellGift) Type() string {
+func (t SellGift) Type() string {
 	return "sellGift"
 }
 
-func (t *SellGift) MarshalJSON() ([]byte, error) {
+func (t SellGift) MarshalJSON() ([]byte, error) {
 	type Alias SellGift
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "sellGift",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -16147,18 +16147,18 @@ type SendAuthenticationFirebaseSms struct {
 	Token string `json:"token"`
 }
 
-func (t *SendAuthenticationFirebaseSms) Type() string {
+func (t SendAuthenticationFirebaseSms) Type() string {
 	return "sendAuthenticationFirebaseSms"
 }
 
-func (t *SendAuthenticationFirebaseSms) MarshalJSON() ([]byte, error) {
+func (t SendAuthenticationFirebaseSms) MarshalJSON() ([]byte, error) {
 	type Alias SendAuthenticationFirebaseSms
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "sendAuthenticationFirebaseSms",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -16172,18 +16172,18 @@ type SendBotStartMessage struct {
 	Parameter string `json:"parameter"`
 }
 
-func (t *SendBotStartMessage) Type() string {
+func (t SendBotStartMessage) Type() string {
 	return "sendBotStartMessage"
 }
 
-func (t *SendBotStartMessage) MarshalJSON() ([]byte, error) {
+func (t SendBotStartMessage) MarshalJSON() ([]byte, error) {
 	type Alias SendBotStartMessage
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "sendBotStartMessage",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -16207,18 +16207,18 @@ type SendBusinessMessage struct {
 	ReplyTo InputMessageReplyTo `json:"reply_to,omitempty"`
 }
 
-func (t *SendBusinessMessage) Type() string {
+func (t SendBusinessMessage) Type() string {
 	return "sendBusinessMessage"
 }
 
-func (t *SendBusinessMessage) MarshalJSON() ([]byte, error) {
+func (t SendBusinessMessage) MarshalJSON() ([]byte, error) {
 	type Alias SendBusinessMessage
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "sendBusinessMessage",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -16240,18 +16240,18 @@ type SendBusinessMessageAlbum struct {
 	ReplyTo InputMessageReplyTo `json:"reply_to,omitempty"`
 }
 
-func (t *SendBusinessMessageAlbum) Type() string {
+func (t SendBusinessMessageAlbum) Type() string {
 	return "sendBusinessMessageAlbum"
 }
 
-func (t *SendBusinessMessageAlbum) MarshalJSON() ([]byte, error) {
+func (t SendBusinessMessageAlbum) MarshalJSON() ([]byte, error) {
 	type Alias SendBusinessMessageAlbum
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "sendBusinessMessageAlbum",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -16263,18 +16263,18 @@ type SendCallDebugInformation struct {
 	DebugInformation string `json:"debug_information"`
 }
 
-func (t *SendCallDebugInformation) Type() string {
+func (t SendCallDebugInformation) Type() string {
 	return "sendCallDebugInformation"
 }
 
-func (t *SendCallDebugInformation) MarshalJSON() ([]byte, error) {
+func (t SendCallDebugInformation) MarshalJSON() ([]byte, error) {
 	type Alias SendCallDebugInformation
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "sendCallDebugInformation",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -16286,18 +16286,18 @@ type SendCallLog struct {
 	LogFile InputFile `json:"log_file"`
 }
 
-func (t *SendCallLog) Type() string {
+func (t SendCallLog) Type() string {
 	return "sendCallLog"
 }
 
-func (t *SendCallLog) MarshalJSON() ([]byte, error) {
+func (t SendCallLog) MarshalJSON() ([]byte, error) {
 	type Alias SendCallLog
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "sendCallLog",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -16313,18 +16313,18 @@ type SendCallRating struct {
 	Rating int32 `json:"rating"`
 }
 
-func (t *SendCallRating) Type() string {
+func (t SendCallRating) Type() string {
 	return "sendCallRating"
 }
 
-func (t *SendCallRating) MarshalJSON() ([]byte, error) {
+func (t SendCallRating) MarshalJSON() ([]byte, error) {
 	type Alias SendCallRating
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "sendCallRating",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -16336,18 +16336,18 @@ type SendCallSignalingData struct {
 	Data []byte `json:"data"`
 }
 
-func (t *SendCallSignalingData) Type() string {
+func (t SendCallSignalingData) Type() string {
 	return "sendCallSignalingData"
 }
 
-func (t *SendCallSignalingData) MarshalJSON() ([]byte, error) {
+func (t SendCallSignalingData) MarshalJSON() ([]byte, error) {
 	type Alias SendCallSignalingData
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "sendCallSignalingData",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -16363,18 +16363,18 @@ type SendChatAction struct {
 	TopicId MessageTopic `json:"topic_id,omitempty"`
 }
 
-func (t *SendChatAction) Type() string {
+func (t SendChatAction) Type() string {
 	return "sendChatAction"
 }
 
-func (t *SendChatAction) MarshalJSON() ([]byte, error) {
+func (t SendChatAction) MarshalJSON() ([]byte, error) {
 	type Alias SendChatAction
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "sendChatAction",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -16386,18 +16386,18 @@ type SendCustomRequest struct {
 	Parameters string `json:"parameters"`
 }
 
-func (t *SendCustomRequest) Type() string {
+func (t SendCustomRequest) Type() string {
 	return "sendCustomRequest"
 }
 
-func (t *SendCustomRequest) MarshalJSON() ([]byte, error) {
+func (t SendCustomRequest) MarshalJSON() ([]byte, error) {
 	type Alias SendCustomRequest
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "sendCustomRequest",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -16407,18 +16407,18 @@ type SendEmailAddressVerificationCode struct {
 	EmailAddress string `json:"email_address"`
 }
 
-func (t *SendEmailAddressVerificationCode) Type() string {
+func (t SendEmailAddressVerificationCode) Type() string {
 	return "sendEmailAddressVerificationCode"
 }
 
-func (t *SendEmailAddressVerificationCode) MarshalJSON() ([]byte, error) {
+func (t SendEmailAddressVerificationCode) MarshalJSON() ([]byte, error) {
 	type Alias SendEmailAddressVerificationCode
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "sendEmailAddressVerificationCode",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -16436,18 +16436,18 @@ type SendGift struct {
 	Text *FormattedText `json:"text"`
 }
 
-func (t *SendGift) Type() string {
+func (t SendGift) Type() string {
 	return "sendGift"
 }
 
-func (t *SendGift) MarshalJSON() ([]byte, error) {
+func (t SendGift) MarshalJSON() ([]byte, error) {
 	type Alias SendGift
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "sendGift",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -16465,18 +16465,18 @@ type SendGiftPurchaseOffer struct {
 	Price GiftResalePrice `json:"price"`
 }
 
-func (t *SendGiftPurchaseOffer) Type() string {
+func (t SendGiftPurchaseOffer) Type() string {
 	return "sendGiftPurchaseOffer"
 }
 
-func (t *SendGiftPurchaseOffer) MarshalJSON() ([]byte, error) {
+func (t SendGiftPurchaseOffer) MarshalJSON() ([]byte, error) {
 	type Alias SendGiftPurchaseOffer
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "sendGiftPurchaseOffer",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -16490,18 +16490,18 @@ type SendGroupCallMessage struct {
 	Text *FormattedText `json:"text"`
 }
 
-func (t *SendGroupCallMessage) Type() string {
+func (t SendGroupCallMessage) Type() string {
 	return "sendGroupCallMessage"
 }
 
-func (t *SendGroupCallMessage) MarshalJSON() ([]byte, error) {
+func (t SendGroupCallMessage) MarshalJSON() ([]byte, error) {
 	type Alias SendGroupCallMessage
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "sendGroupCallMessage",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -16523,18 +16523,18 @@ type SendInlineQueryResultMessage struct {
 	TopicId MessageTopic `json:"topic_id,omitempty"`
 }
 
-func (t *SendInlineQueryResultMessage) Type() string {
+func (t SendInlineQueryResultMessage) Type() string {
 	return "sendInlineQueryResultMessage"
 }
 
-func (t *SendInlineQueryResultMessage) MarshalJSON() ([]byte, error) {
+func (t SendInlineQueryResultMessage) MarshalJSON() ([]byte, error) {
 	type Alias SendInlineQueryResultMessage
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "sendInlineQueryResultMessage",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -16554,18 +16554,18 @@ type SendMessage struct {
 	TopicId MessageTopic `json:"topic_id,omitempty"`
 }
 
-func (t *SendMessage) Type() string {
+func (t SendMessage) Type() string {
 	return "sendMessage"
 }
 
-func (t *SendMessage) MarshalJSON() ([]byte, error) {
+func (t SendMessage) MarshalJSON() ([]byte, error) {
 	type Alias SendMessage
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "sendMessage",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -16583,18 +16583,18 @@ type SendMessageAlbum struct {
 	TopicId MessageTopic `json:"topic_id,omitempty"`
 }
 
-func (t *SendMessageAlbum) Type() string {
+func (t SendMessageAlbum) Type() string {
 	return "sendMessageAlbum"
 }
 
-func (t *SendMessageAlbum) MarshalJSON() ([]byte, error) {
+func (t SendMessageAlbum) MarshalJSON() ([]byte, error) {
 	type Alias SendMessageAlbum
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "sendMessageAlbum",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -16606,18 +16606,18 @@ type SendPassportAuthorizationForm struct {
 	Types []PassportElementType `json:"types"`
 }
 
-func (t *SendPassportAuthorizationForm) Type() string {
+func (t SendPassportAuthorizationForm) Type() string {
 	return "sendPassportAuthorizationForm"
 }
 
-func (t *SendPassportAuthorizationForm) MarshalJSON() ([]byte, error) {
+func (t SendPassportAuthorizationForm) MarshalJSON() ([]byte, error) {
 	type Alias SendPassportAuthorizationForm
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "sendPassportAuthorizationForm",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -16637,18 +16637,18 @@ type SendPaymentForm struct {
 	TipAmount int64 `json:"tip_amount"`
 }
 
-func (t *SendPaymentForm) Type() string {
+func (t SendPaymentForm) Type() string {
 	return "sendPaymentForm"
 }
 
-func (t *SendPaymentForm) MarshalJSON() ([]byte, error) {
+func (t SendPaymentForm) MarshalJSON() ([]byte, error) {
 	type Alias SendPaymentForm
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "sendPaymentForm",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -16662,18 +16662,18 @@ type SendPhoneNumberCode struct {
 	TypeField PhoneNumberCodeType `json:"type"`
 }
 
-func (t *SendPhoneNumberCode) Type() string {
+func (t SendPhoneNumberCode) Type() string {
 	return "sendPhoneNumberCode"
 }
 
-func (t *SendPhoneNumberCode) MarshalJSON() ([]byte, error) {
+func (t SendPhoneNumberCode) MarshalJSON() ([]byte, error) {
 	type Alias SendPhoneNumberCode
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "sendPhoneNumberCode",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -16683,18 +16683,18 @@ type SendPhoneNumberFirebaseSms struct {
 	Token string `json:"token"`
 }
 
-func (t *SendPhoneNumberFirebaseSms) Type() string {
+func (t SendPhoneNumberFirebaseSms) Type() string {
 	return "sendPhoneNumberFirebaseSms"
 }
 
-func (t *SendPhoneNumberFirebaseSms) MarshalJSON() ([]byte, error) {
+func (t SendPhoneNumberFirebaseSms) MarshalJSON() ([]byte, error) {
 	type Alias SendPhoneNumberFirebaseSms
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "sendPhoneNumberFirebaseSms",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -16708,18 +16708,18 @@ type SendQuickReplyShortcutMessages struct {
 	ShortcutId int32 `json:"shortcut_id"`
 }
 
-func (t *SendQuickReplyShortcutMessages) Type() string {
+func (t SendQuickReplyShortcutMessages) Type() string {
 	return "sendQuickReplyShortcutMessages"
 }
 
-func (t *SendQuickReplyShortcutMessages) MarshalJSON() ([]byte, error) {
+func (t SendQuickReplyShortcutMessages) MarshalJSON() ([]byte, error) {
 	type Alias SendQuickReplyShortcutMessages
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "sendQuickReplyShortcutMessages",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -16733,18 +16733,18 @@ type SendResoldGift struct {
 	Price GiftResalePrice `json:"price"`
 }
 
-func (t *SendResoldGift) Type() string {
+func (t SendResoldGift) Type() string {
 	return "sendResoldGift"
 }
 
-func (t *SendResoldGift) MarshalJSON() ([]byte, error) {
+func (t SendResoldGift) MarshalJSON() ([]byte, error) {
 	type Alias SendResoldGift
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "sendResoldGift",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -16760,18 +16760,18 @@ type SendTextMessageDraft struct {
 	Text *FormattedText `json:"text"`
 }
 
-func (t *SendTextMessageDraft) Type() string {
+func (t SendTextMessageDraft) Type() string {
 	return "sendTextMessageDraft"
 }
 
-func (t *SendTextMessageDraft) MarshalJSON() ([]byte, error) {
+func (t SendTextMessageDraft) MarshalJSON() ([]byte, error) {
 	type Alias SendTextMessageDraft
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "sendTextMessageDraft",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -16785,18 +16785,18 @@ type SendWebAppCustomRequest struct {
 	Parameters string `json:"parameters"`
 }
 
-func (t *SendWebAppCustomRequest) Type() string {
+func (t SendWebAppCustomRequest) Type() string {
 	return "sendWebAppCustomRequest"
 }
 
-func (t *SendWebAppCustomRequest) MarshalJSON() ([]byte, error) {
+func (t SendWebAppCustomRequest) MarshalJSON() ([]byte, error) {
 	type Alias SendWebAppCustomRequest
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "sendWebAppCustomRequest",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -16810,18 +16810,18 @@ type SendWebAppData struct {
 	Data string `json:"data"`
 }
 
-func (t *SendWebAppData) Type() string {
+func (t SendWebAppData) Type() string {
 	return "sendWebAppData"
 }
 
-func (t *SendWebAppData) MarshalJSON() ([]byte, error) {
+func (t SendWebAppData) MarshalJSON() ([]byte, error) {
 	type Alias SendWebAppData
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "sendWebAppData",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -16833,18 +16833,18 @@ type SetAccentColor struct {
 	BackgroundCustomEmojiId int64 `json:"background_custom_emoji_id,string"`
 }
 
-func (t *SetAccentColor) Type() string {
+func (t SetAccentColor) Type() string {
 	return "setAccentColor"
 }
 
-func (t *SetAccentColor) MarshalJSON() ([]byte, error) {
+func (t SetAccentColor) MarshalJSON() ([]byte, error) {
 	type Alias SetAccentColor
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setAccentColor",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -16854,18 +16854,18 @@ type SetAccountTtl struct {
 	Ttl *AccountTtl `json:"ttl"`
 }
 
-func (t *SetAccountTtl) Type() string {
+func (t SetAccountTtl) Type() string {
 	return "setAccountTtl"
 }
 
-func (t *SetAccountTtl) MarshalJSON() ([]byte, error) {
+func (t SetAccountTtl) MarshalJSON() ([]byte, error) {
 	type Alias SetAccountTtl
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setAccountTtl",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -16875,18 +16875,18 @@ type SetAlarm struct {
 	Seconds float64 `json:"seconds"`
 }
 
-func (t *SetAlarm) Type() string {
+func (t SetAlarm) Type() string {
 	return "setAlarm"
 }
 
-func (t *SetAlarm) MarshalJSON() ([]byte, error) {
+func (t SetAlarm) MarshalJSON() ([]byte, error) {
 	type Alias SetAlarm
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setAlarm",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -16898,18 +16898,18 @@ type SetApplicationVerificationToken struct {
 	VerificationId int64 `json:"verification_id"`
 }
 
-func (t *SetApplicationVerificationToken) Type() string {
+func (t SetApplicationVerificationToken) Type() string {
 	return "setApplicationVerificationToken"
 }
 
-func (t *SetApplicationVerificationToken) MarshalJSON() ([]byte, error) {
+func (t SetApplicationVerificationToken) MarshalJSON() ([]byte, error) {
 	type Alias SetApplicationVerificationToken
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setApplicationVerificationToken",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -16919,18 +16919,18 @@ type SetArchiveChatListSettings struct {
 	Settings *ArchiveChatListSettings `json:"settings"`
 }
 
-func (t *SetArchiveChatListSettings) Type() string {
+func (t SetArchiveChatListSettings) Type() string {
 	return "setArchiveChatListSettings"
 }
 
-func (t *SetArchiveChatListSettings) MarshalJSON() ([]byte, error) {
+func (t SetArchiveChatListSettings) MarshalJSON() ([]byte, error) {
 	type Alias SetArchiveChatListSettings
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setArchiveChatListSettings",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -16940,18 +16940,18 @@ type SetAuthenticationEmailAddress struct {
 	EmailAddress string `json:"email_address"`
 }
 
-func (t *SetAuthenticationEmailAddress) Type() string {
+func (t SetAuthenticationEmailAddress) Type() string {
 	return "setAuthenticationEmailAddress"
 }
 
-func (t *SetAuthenticationEmailAddress) MarshalJSON() ([]byte, error) {
+func (t SetAuthenticationEmailAddress) MarshalJSON() ([]byte, error) {
 	type Alias SetAuthenticationEmailAddress
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setAuthenticationEmailAddress",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -16963,18 +16963,18 @@ type SetAuthenticationPhoneNumber struct {
 	Settings *PhoneNumberAuthenticationSettings `json:"settings,omitempty"`
 }
 
-func (t *SetAuthenticationPhoneNumber) Type() string {
+func (t SetAuthenticationPhoneNumber) Type() string {
 	return "setAuthenticationPhoneNumber"
 }
 
-func (t *SetAuthenticationPhoneNumber) MarshalJSON() ([]byte, error) {
+func (t SetAuthenticationPhoneNumber) MarshalJSON() ([]byte, error) {
 	type Alias SetAuthenticationPhoneNumber
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setAuthenticationPhoneNumber",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -16990,18 +16990,18 @@ type SetAuthenticationPremiumPurchaseTransaction struct {
 	Transaction StoreTransaction `json:"transaction"`
 }
 
-func (t *SetAuthenticationPremiumPurchaseTransaction) Type() string {
+func (t SetAuthenticationPremiumPurchaseTransaction) Type() string {
 	return "setAuthenticationPremiumPurchaseTransaction"
 }
 
-func (t *SetAuthenticationPremiumPurchaseTransaction) MarshalJSON() ([]byte, error) {
+func (t SetAuthenticationPremiumPurchaseTransaction) MarshalJSON() ([]byte, error) {
 	type Alias SetAuthenticationPremiumPurchaseTransaction
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setAuthenticationPremiumPurchaseTransaction",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -17013,18 +17013,18 @@ type SetAutoDownloadSettings struct {
 	TypeField NetworkType `json:"type"`
 }
 
-func (t *SetAutoDownloadSettings) Type() string {
+func (t SetAutoDownloadSettings) Type() string {
 	return "setAutoDownloadSettings"
 }
 
-func (t *SetAutoDownloadSettings) MarshalJSON() ([]byte, error) {
+func (t SetAutoDownloadSettings) MarshalJSON() ([]byte, error) {
 	type Alias SetAutoDownloadSettings
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setAutoDownloadSettings",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -17036,18 +17036,18 @@ type SetAutosaveSettings struct {
 	Settings *ScopeAutosaveSettings `json:"settings"`
 }
 
-func (t *SetAutosaveSettings) Type() string {
+func (t SetAutosaveSettings) Type() string {
 	return "setAutosaveSettings"
 }
 
-func (t *SetAutosaveSettings) MarshalJSON() ([]byte, error) {
+func (t SetAutosaveSettings) MarshalJSON() ([]byte, error) {
 	type Alias SetAutosaveSettings
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setAutosaveSettings",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -17057,18 +17057,18 @@ type SetBio struct {
 	Bio string `json:"bio"`
 }
 
-func (t *SetBio) Type() string {
+func (t SetBio) Type() string {
 	return "setBio"
 }
 
-func (t *SetBio) MarshalJSON() ([]byte, error) {
+func (t SetBio) MarshalJSON() ([]byte, error) {
 	type Alias SetBio
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setBio",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -17078,18 +17078,18 @@ type SetBirthdate struct {
 	Birthdate *Birthdate `json:"birthdate"`
 }
 
-func (t *SetBirthdate) Type() string {
+func (t SetBirthdate) Type() string {
 	return "setBirthdate"
 }
 
-func (t *SetBirthdate) MarshalJSON() ([]byte, error) {
+func (t SetBirthdate) MarshalJSON() ([]byte, error) {
 	type Alias SetBirthdate
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setBirthdate",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -17103,18 +17103,18 @@ type SetBotInfoDescription struct {
 	LanguageCode string `json:"language_code"`
 }
 
-func (t *SetBotInfoDescription) Type() string {
+func (t SetBotInfoDescription) Type() string {
 	return "setBotInfoDescription"
 }
 
-func (t *SetBotInfoDescription) MarshalJSON() ([]byte, error) {
+func (t SetBotInfoDescription) MarshalJSON() ([]byte, error) {
 	type Alias SetBotInfoDescription
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setBotInfoDescription",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -17128,18 +17128,18 @@ type SetBotInfoShortDescription struct {
 	ShortDescription string `json:"short_description"`
 }
 
-func (t *SetBotInfoShortDescription) Type() string {
+func (t SetBotInfoShortDescription) Type() string {
 	return "setBotInfoShortDescription"
 }
 
-func (t *SetBotInfoShortDescription) MarshalJSON() ([]byte, error) {
+func (t SetBotInfoShortDescription) MarshalJSON() ([]byte, error) {
 	type Alias SetBotInfoShortDescription
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setBotInfoShortDescription",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -17153,18 +17153,18 @@ type SetBotName struct {
 	Name string `json:"name"`
 }
 
-func (t *SetBotName) Type() string {
+func (t SetBotName) Type() string {
 	return "setBotName"
 }
 
-func (t *SetBotName) MarshalJSON() ([]byte, error) {
+func (t SetBotName) MarshalJSON() ([]byte, error) {
 	type Alias SetBotName
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setBotName",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -17176,18 +17176,18 @@ type SetBotProfilePhoto struct {
 	Photo InputChatPhoto `json:"photo"`
 }
 
-func (t *SetBotProfilePhoto) Type() string {
+func (t SetBotProfilePhoto) Type() string {
 	return "setBotProfilePhoto"
 }
 
-func (t *SetBotProfilePhoto) MarshalJSON() ([]byte, error) {
+func (t SetBotProfilePhoto) MarshalJSON() ([]byte, error) {
 	type Alias SetBotProfilePhoto
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setBotProfilePhoto",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -17199,18 +17199,18 @@ type SetBotUpdatesStatus struct {
 	PendingUpdateCount int32 `json:"pending_update_count"`
 }
 
-func (t *SetBotUpdatesStatus) Type() string {
+func (t SetBotUpdatesStatus) Type() string {
 	return "setBotUpdatesStatus"
 }
 
-func (t *SetBotUpdatesStatus) MarshalJSON() ([]byte, error) {
+func (t SetBotUpdatesStatus) MarshalJSON() ([]byte, error) {
 	type Alias SetBotUpdatesStatus
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setBotUpdatesStatus",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -17222,18 +17222,18 @@ type SetBusinessAccountBio struct {
 	BusinessConnectionId string `json:"business_connection_id"`
 }
 
-func (t *SetBusinessAccountBio) Type() string {
+func (t SetBusinessAccountBio) Type() string {
 	return "setBusinessAccountBio"
 }
 
-func (t *SetBusinessAccountBio) MarshalJSON() ([]byte, error) {
+func (t SetBusinessAccountBio) MarshalJSON() ([]byte, error) {
 	type Alias SetBusinessAccountBio
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setBusinessAccountBio",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -17245,18 +17245,18 @@ type SetBusinessAccountGiftSettings struct {
 	Settings *GiftSettings `json:"settings"`
 }
 
-func (t *SetBusinessAccountGiftSettings) Type() string {
+func (t SetBusinessAccountGiftSettings) Type() string {
 	return "setBusinessAccountGiftSettings"
 }
 
-func (t *SetBusinessAccountGiftSettings) MarshalJSON() ([]byte, error) {
+func (t SetBusinessAccountGiftSettings) MarshalJSON() ([]byte, error) {
 	type Alias SetBusinessAccountGiftSettings
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setBusinessAccountGiftSettings",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -17270,18 +17270,18 @@ type SetBusinessAccountName struct {
 	LastName string `json:"last_name"`
 }
 
-func (t *SetBusinessAccountName) Type() string {
+func (t SetBusinessAccountName) Type() string {
 	return "setBusinessAccountName"
 }
 
-func (t *SetBusinessAccountName) MarshalJSON() ([]byte, error) {
+func (t SetBusinessAccountName) MarshalJSON() ([]byte, error) {
 	type Alias SetBusinessAccountName
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setBusinessAccountName",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -17295,18 +17295,18 @@ type SetBusinessAccountProfilePhoto struct {
 	Photo InputChatPhoto `json:"photo,omitempty"`
 }
 
-func (t *SetBusinessAccountProfilePhoto) Type() string {
+func (t SetBusinessAccountProfilePhoto) Type() string {
 	return "setBusinessAccountProfilePhoto"
 }
 
-func (t *SetBusinessAccountProfilePhoto) MarshalJSON() ([]byte, error) {
+func (t SetBusinessAccountProfilePhoto) MarshalJSON() ([]byte, error) {
 	type Alias SetBusinessAccountProfilePhoto
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setBusinessAccountProfilePhoto",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -17318,18 +17318,18 @@ type SetBusinessAccountUsername struct {
 	Username string `json:"username"`
 }
 
-func (t *SetBusinessAccountUsername) Type() string {
+func (t SetBusinessAccountUsername) Type() string {
 	return "setBusinessAccountUsername"
 }
 
-func (t *SetBusinessAccountUsername) MarshalJSON() ([]byte, error) {
+func (t SetBusinessAccountUsername) MarshalJSON() ([]byte, error) {
 	type Alias SetBusinessAccountUsername
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setBusinessAccountUsername",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -17339,18 +17339,18 @@ type SetBusinessAwayMessageSettings struct {
 	AwayMessageSettings *BusinessAwayMessageSettings `json:"away_message_settings"`
 }
 
-func (t *SetBusinessAwayMessageSettings) Type() string {
+func (t SetBusinessAwayMessageSettings) Type() string {
 	return "setBusinessAwayMessageSettings"
 }
 
-func (t *SetBusinessAwayMessageSettings) MarshalJSON() ([]byte, error) {
+func (t SetBusinessAwayMessageSettings) MarshalJSON() ([]byte, error) {
 	type Alias SetBusinessAwayMessageSettings
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setBusinessAwayMessageSettings",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -17360,18 +17360,18 @@ type SetBusinessConnectedBot struct {
 	Bot *BusinessConnectedBot `json:"bot"`
 }
 
-func (t *SetBusinessConnectedBot) Type() string {
+func (t SetBusinessConnectedBot) Type() string {
 	return "setBusinessConnectedBot"
 }
 
-func (t *SetBusinessConnectedBot) MarshalJSON() ([]byte, error) {
+func (t SetBusinessConnectedBot) MarshalJSON() ([]byte, error) {
 	type Alias SetBusinessConnectedBot
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setBusinessConnectedBot",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -17381,18 +17381,18 @@ type SetBusinessGreetingMessageSettings struct {
 	GreetingMessageSettings *BusinessGreetingMessageSettings `json:"greeting_message_settings"`
 }
 
-func (t *SetBusinessGreetingMessageSettings) Type() string {
+func (t SetBusinessGreetingMessageSettings) Type() string {
 	return "setBusinessGreetingMessageSettings"
 }
 
-func (t *SetBusinessGreetingMessageSettings) MarshalJSON() ([]byte, error) {
+func (t SetBusinessGreetingMessageSettings) MarshalJSON() ([]byte, error) {
 	type Alias SetBusinessGreetingMessageSettings
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setBusinessGreetingMessageSettings",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -17402,18 +17402,18 @@ type SetBusinessLocation struct {
 	Location *BusinessLocation `json:"location"`
 }
 
-func (t *SetBusinessLocation) Type() string {
+func (t SetBusinessLocation) Type() string {
 	return "setBusinessLocation"
 }
 
-func (t *SetBusinessLocation) MarshalJSON() ([]byte, error) {
+func (t SetBusinessLocation) MarshalJSON() ([]byte, error) {
 	type Alias SetBusinessLocation
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setBusinessLocation",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -17429,18 +17429,18 @@ type SetBusinessMessageIsPinned struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t *SetBusinessMessageIsPinned) Type() string {
+func (t SetBusinessMessageIsPinned) Type() string {
 	return "setBusinessMessageIsPinned"
 }
 
-func (t *SetBusinessMessageIsPinned) MarshalJSON() ([]byte, error) {
+func (t SetBusinessMessageIsPinned) MarshalJSON() ([]byte, error) {
 	type Alias SetBusinessMessageIsPinned
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setBusinessMessageIsPinned",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -17450,18 +17450,18 @@ type SetBusinessOpeningHours struct {
 	OpeningHours *BusinessOpeningHours `json:"opening_hours,omitempty"`
 }
 
-func (t *SetBusinessOpeningHours) Type() string {
+func (t SetBusinessOpeningHours) Type() string {
 	return "setBusinessOpeningHours"
 }
 
-func (t *SetBusinessOpeningHours) MarshalJSON() ([]byte, error) {
+func (t SetBusinessOpeningHours) MarshalJSON() ([]byte, error) {
 	type Alias SetBusinessOpeningHours
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setBusinessOpeningHours",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -17471,18 +17471,18 @@ type SetBusinessStartPage struct {
 	StartPage *InputBusinessStartPage `json:"start_page"`
 }
 
-func (t *SetBusinessStartPage) Type() string {
+func (t SetBusinessStartPage) Type() string {
 	return "setBusinessStartPage"
 }
 
-func (t *SetBusinessStartPage) MarshalJSON() ([]byte, error) {
+func (t SetBusinessStartPage) MarshalJSON() ([]byte, error) {
 	type Alias SetBusinessStartPage
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setBusinessStartPage",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -17496,18 +17496,18 @@ type SetChatAccentColor struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t *SetChatAccentColor) Type() string {
+func (t SetChatAccentColor) Type() string {
 	return "setChatAccentColor"
 }
 
-func (t *SetChatAccentColor) MarshalJSON() ([]byte, error) {
+func (t SetChatAccentColor) MarshalJSON() ([]byte, error) {
 	type Alias SetChatAccentColor
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setChatAccentColor",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -17519,18 +17519,18 @@ type SetChatActiveStoriesList struct {
 	StoryList StoryList `json:"story_list"`
 }
 
-func (t *SetChatActiveStoriesList) Type() string {
+func (t SetChatActiveStoriesList) Type() string {
 	return "setChatActiveStoriesList"
 }
 
-func (t *SetChatActiveStoriesList) MarshalJSON() ([]byte, error) {
+func (t SetChatActiveStoriesList) MarshalJSON() ([]byte, error) {
 	type Alias SetChatActiveStoriesList
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setChatActiveStoriesList",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -17542,18 +17542,18 @@ type SetChatAffiliateProgram struct {
 	Parameters *AffiliateProgramParameters `json:"parameters,omitempty"`
 }
 
-func (t *SetChatAffiliateProgram) Type() string {
+func (t SetChatAffiliateProgram) Type() string {
 	return "setChatAffiliateProgram"
 }
 
-func (t *SetChatAffiliateProgram) MarshalJSON() ([]byte, error) {
+func (t SetChatAffiliateProgram) MarshalJSON() ([]byte, error) {
 	type Alias SetChatAffiliateProgram
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setChatAffiliateProgram",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -17565,18 +17565,18 @@ type SetChatAvailableReactions struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t *SetChatAvailableReactions) Type() string {
+func (t SetChatAvailableReactions) Type() string {
 	return "setChatAvailableReactions"
 }
 
-func (t *SetChatAvailableReactions) MarshalJSON() ([]byte, error) {
+func (t SetChatAvailableReactions) MarshalJSON() ([]byte, error) {
 	type Alias SetChatAvailableReactions
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setChatAvailableReactions",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -17594,18 +17594,18 @@ type SetChatBackground struct {
 	TypeField BackgroundType `json:"type,omitempty"`
 }
 
-func (t *SetChatBackground) Type() string {
+func (t SetChatBackground) Type() string {
 	return "setChatBackground"
 }
 
-func (t *SetChatBackground) MarshalJSON() ([]byte, error) {
+func (t SetChatBackground) MarshalJSON() ([]byte, error) {
 	type Alias SetChatBackground
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setChatBackground",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -17617,18 +17617,18 @@ type SetChatClientData struct {
 	ClientData string `json:"client_data"`
 }
 
-func (t *SetChatClientData) Type() string {
+func (t SetChatClientData) Type() string {
 	return "setChatClientData"
 }
 
-func (t *SetChatClientData) MarshalJSON() ([]byte, error) {
+func (t SetChatClientData) MarshalJSON() ([]byte, error) {
 	type Alias SetChatClientData
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setChatClientData",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -17640,18 +17640,18 @@ type SetChatDescription struct {
 	Description string `json:"description"`
 }
 
-func (t *SetChatDescription) Type() string {
+func (t SetChatDescription) Type() string {
 	return "setChatDescription"
 }
 
-func (t *SetChatDescription) MarshalJSON() ([]byte, error) {
+func (t SetChatDescription) MarshalJSON() ([]byte, error) {
 	type Alias SetChatDescription
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setChatDescription",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -17665,18 +17665,18 @@ type SetChatDirectMessagesGroup struct {
 	PaidMessageStarCount int64 `json:"paid_message_star_count"`
 }
 
-func (t *SetChatDirectMessagesGroup) Type() string {
+func (t SetChatDirectMessagesGroup) Type() string {
 	return "setChatDirectMessagesGroup"
 }
 
-func (t *SetChatDirectMessagesGroup) MarshalJSON() ([]byte, error) {
+func (t SetChatDirectMessagesGroup) MarshalJSON() ([]byte, error) {
 	type Alias SetChatDirectMessagesGroup
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setChatDirectMessagesGroup",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -17688,18 +17688,18 @@ type SetChatDiscussionGroup struct {
 	DiscussionChatId int64 `json:"discussion_chat_id"`
 }
 
-func (t *SetChatDiscussionGroup) Type() string {
+func (t SetChatDiscussionGroup) Type() string {
 	return "setChatDiscussionGroup"
 }
 
-func (t *SetChatDiscussionGroup) MarshalJSON() ([]byte, error) {
+func (t SetChatDiscussionGroup) MarshalJSON() ([]byte, error) {
 	type Alias SetChatDiscussionGroup
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setChatDiscussionGroup",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -17713,18 +17713,18 @@ type SetChatDraftMessage struct {
 	TopicId MessageTopic `json:"topic_id,omitempty"`
 }
 
-func (t *SetChatDraftMessage) Type() string {
+func (t SetChatDraftMessage) Type() string {
 	return "setChatDraftMessage"
 }
 
-func (t *SetChatDraftMessage) MarshalJSON() ([]byte, error) {
+func (t SetChatDraftMessage) MarshalJSON() ([]byte, error) {
 	type Alias SetChatDraftMessage
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setChatDraftMessage",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -17736,18 +17736,18 @@ type SetChatEmojiStatus struct {
 	EmojiStatus *EmojiStatus `json:"emoji_status,omitempty"`
 }
 
-func (t *SetChatEmojiStatus) Type() string {
+func (t SetChatEmojiStatus) Type() string {
 	return "setChatEmojiStatus"
 }
 
-func (t *SetChatEmojiStatus) MarshalJSON() ([]byte, error) {
+func (t SetChatEmojiStatus) MarshalJSON() ([]byte, error) {
 	type Alias SetChatEmojiStatus
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setChatEmojiStatus",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -17759,18 +17759,18 @@ type SetChatLocation struct {
 	Location *ChatLocation `json:"location"`
 }
 
-func (t *SetChatLocation) Type() string {
+func (t SetChatLocation) Type() string {
 	return "setChatLocation"
 }
 
-func (t *SetChatLocation) MarshalJSON() ([]byte, error) {
+func (t SetChatLocation) MarshalJSON() ([]byte, error) {
 	type Alias SetChatLocation
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setChatLocation",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -17784,18 +17784,18 @@ type SetChatMemberStatus struct {
 	Status ChatMemberStatus `json:"status"`
 }
 
-func (t *SetChatMemberStatus) Type() string {
+func (t SetChatMemberStatus) Type() string {
 	return "setChatMemberStatus"
 }
 
-func (t *SetChatMemberStatus) MarshalJSON() ([]byte, error) {
+func (t SetChatMemberStatus) MarshalJSON() ([]byte, error) {
 	type Alias SetChatMemberStatus
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setChatMemberStatus",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -17807,18 +17807,18 @@ type SetChatMessageAutoDeleteTime struct {
 	MessageAutoDeleteTime int32 `json:"message_auto_delete_time"`
 }
 
-func (t *SetChatMessageAutoDeleteTime) Type() string {
+func (t SetChatMessageAutoDeleteTime) Type() string {
 	return "setChatMessageAutoDeleteTime"
 }
 
-func (t *SetChatMessageAutoDeleteTime) MarshalJSON() ([]byte, error) {
+func (t SetChatMessageAutoDeleteTime) MarshalJSON() ([]byte, error) {
 	type Alias SetChatMessageAutoDeleteTime
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setChatMessageAutoDeleteTime",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -17830,18 +17830,18 @@ type SetChatMessageSender struct {
 	MessageSenderId MessageSender `json:"message_sender_id"`
 }
 
-func (t *SetChatMessageSender) Type() string {
+func (t SetChatMessageSender) Type() string {
 	return "setChatMessageSender"
 }
 
-func (t *SetChatMessageSender) MarshalJSON() ([]byte, error) {
+func (t SetChatMessageSender) MarshalJSON() ([]byte, error) {
 	type Alias SetChatMessageSender
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setChatMessageSender",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -17853,18 +17853,18 @@ type SetChatNotificationSettings struct {
 	NotificationSettings *ChatNotificationSettings `json:"notification_settings"`
 }
 
-func (t *SetChatNotificationSettings) Type() string {
+func (t SetChatNotificationSettings) Type() string {
 	return "setChatNotificationSettings"
 }
 
-func (t *SetChatNotificationSettings) MarshalJSON() ([]byte, error) {
+func (t SetChatNotificationSettings) MarshalJSON() ([]byte, error) {
 	type Alias SetChatNotificationSettings
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setChatNotificationSettings",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -17876,18 +17876,18 @@ type SetChatPaidMessageStarCount struct {
 	PaidMessageStarCount int64 `json:"paid_message_star_count"`
 }
 
-func (t *SetChatPaidMessageStarCount) Type() string {
+func (t SetChatPaidMessageStarCount) Type() string {
 	return "setChatPaidMessageStarCount"
 }
 
-func (t *SetChatPaidMessageStarCount) MarshalJSON() ([]byte, error) {
+func (t SetChatPaidMessageStarCount) MarshalJSON() ([]byte, error) {
 	type Alias SetChatPaidMessageStarCount
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setChatPaidMessageStarCount",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -17899,18 +17899,18 @@ type SetChatPermissions struct {
 	Permissions *ChatPermissions `json:"permissions"`
 }
 
-func (t *SetChatPermissions) Type() string {
+func (t SetChatPermissions) Type() string {
 	return "setChatPermissions"
 }
 
-func (t *SetChatPermissions) MarshalJSON() ([]byte, error) {
+func (t SetChatPermissions) MarshalJSON() ([]byte, error) {
 	type Alias SetChatPermissions
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setChatPermissions",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -17922,18 +17922,18 @@ type SetChatPhoto struct {
 	Photo InputChatPhoto `json:"photo,omitempty"`
 }
 
-func (t *SetChatPhoto) Type() string {
+func (t SetChatPhoto) Type() string {
 	return "setChatPhoto"
 }
 
-func (t *SetChatPhoto) MarshalJSON() ([]byte, error) {
+func (t SetChatPhoto) MarshalJSON() ([]byte, error) {
 	type Alias SetChatPhoto
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setChatPhoto",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -17945,18 +17945,18 @@ type SetChatPinnedStories struct {
 	StoryIds []int32 `json:"story_ids"`
 }
 
-func (t *SetChatPinnedStories) Type() string {
+func (t SetChatPinnedStories) Type() string {
 	return "setChatPinnedStories"
 }
 
-func (t *SetChatPinnedStories) MarshalJSON() ([]byte, error) {
+func (t SetChatPinnedStories) MarshalJSON() ([]byte, error) {
 	type Alias SetChatPinnedStories
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setChatPinnedStories",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -17970,18 +17970,18 @@ type SetChatProfileAccentColor struct {
 	ProfileBackgroundCustomEmojiId int64 `json:"profile_background_custom_emoji_id,string"`
 }
 
-func (t *SetChatProfileAccentColor) Type() string {
+func (t SetChatProfileAccentColor) Type() string {
 	return "setChatProfileAccentColor"
 }
 
-func (t *SetChatProfileAccentColor) MarshalJSON() ([]byte, error) {
+func (t SetChatProfileAccentColor) MarshalJSON() ([]byte, error) {
 	type Alias SetChatProfileAccentColor
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setChatProfileAccentColor",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -17993,18 +17993,18 @@ type SetChatSlowModeDelay struct {
 	SlowModeDelay int32 `json:"slow_mode_delay"`
 }
 
-func (t *SetChatSlowModeDelay) Type() string {
+func (t SetChatSlowModeDelay) Type() string {
 	return "setChatSlowModeDelay"
 }
 
-func (t *SetChatSlowModeDelay) MarshalJSON() ([]byte, error) {
+func (t SetChatSlowModeDelay) MarshalJSON() ([]byte, error) {
 	type Alias SetChatSlowModeDelay
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setChatSlowModeDelay",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -18016,18 +18016,18 @@ type SetChatTheme struct {
 	Theme InputChatTheme `json:"theme"`
 }
 
-func (t *SetChatTheme) Type() string {
+func (t SetChatTheme) Type() string {
 	return "setChatTheme"
 }
 
-func (t *SetChatTheme) MarshalJSON() ([]byte, error) {
+func (t SetChatTheme) MarshalJSON() ([]byte, error) {
 	type Alias SetChatTheme
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setChatTheme",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -18039,18 +18039,18 @@ type SetChatTitle struct {
 	Title string `json:"title"`
 }
 
-func (t *SetChatTitle) Type() string {
+func (t SetChatTitle) Type() string {
 	return "setChatTitle"
 }
 
-func (t *SetChatTitle) MarshalJSON() ([]byte, error) {
+func (t SetChatTitle) MarshalJSON() ([]byte, error) {
 	type Alias SetChatTitle
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setChatTitle",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -18060,18 +18060,18 @@ type SetCloseFriends struct {
 	UserIds []int64 `json:"user_ids"`
 }
 
-func (t *SetCloseFriends) Type() string {
+func (t SetCloseFriends) Type() string {
 	return "setCloseFriends"
 }
 
-func (t *SetCloseFriends) MarshalJSON() ([]byte, error) {
+func (t SetCloseFriends) MarshalJSON() ([]byte, error) {
 	type Alias SetCloseFriends
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setCloseFriends",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -18085,18 +18085,18 @@ type SetCommands struct {
 	Scope BotCommandScope `json:"scope,omitempty"`
 }
 
-func (t *SetCommands) Type() string {
+func (t SetCommands) Type() string {
 	return "setCommands"
 }
 
-func (t *SetCommands) MarshalJSON() ([]byte, error) {
+func (t SetCommands) MarshalJSON() ([]byte, error) {
 	type Alias SetCommands
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setCommands",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -18108,18 +18108,18 @@ type SetCustomEmojiStickerSetThumbnail struct {
 	Name string `json:"name"`
 }
 
-func (t *SetCustomEmojiStickerSetThumbnail) Type() string {
+func (t SetCustomEmojiStickerSetThumbnail) Type() string {
 	return "setCustomEmojiStickerSetThumbnail"
 }
 
-func (t *SetCustomEmojiStickerSetThumbnail) MarshalJSON() ([]byte, error) {
+func (t SetCustomEmojiStickerSetThumbnail) MarshalJSON() ([]byte, error) {
 	type Alias SetCustomEmojiStickerSetThumbnail
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setCustomEmojiStickerSetThumbnail",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -18131,18 +18131,18 @@ type SetCustomLanguagePack struct {
 	Strings []LanguagePackString `json:"strings"`
 }
 
-func (t *SetCustomLanguagePack) Type() string {
+func (t SetCustomLanguagePack) Type() string {
 	return "setCustomLanguagePack"
 }
 
-func (t *SetCustomLanguagePack) MarshalJSON() ([]byte, error) {
+func (t SetCustomLanguagePack) MarshalJSON() ([]byte, error) {
 	type Alias SetCustomLanguagePack
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setCustomLanguagePack",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -18154,18 +18154,18 @@ type SetCustomLanguagePackString struct {
 	NewString *LanguagePackString `json:"new_string"`
 }
 
-func (t *SetCustomLanguagePackString) Type() string {
+func (t SetCustomLanguagePackString) Type() string {
 	return "setCustomLanguagePackString"
 }
 
-func (t *SetCustomLanguagePackString) MarshalJSON() ([]byte, error) {
+func (t SetCustomLanguagePackString) MarshalJSON() ([]byte, error) {
 	type Alias SetCustomLanguagePackString
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setCustomLanguagePackString",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -18175,18 +18175,18 @@ type SetDatabaseEncryptionKey struct {
 	NewEncryptionKey []byte `json:"new_encryption_key"`
 }
 
-func (t *SetDatabaseEncryptionKey) Type() string {
+func (t SetDatabaseEncryptionKey) Type() string {
 	return "setDatabaseEncryptionKey"
 }
 
-func (t *SetDatabaseEncryptionKey) MarshalJSON() ([]byte, error) {
+func (t SetDatabaseEncryptionKey) MarshalJSON() ([]byte, error) {
 	type Alias SetDatabaseEncryptionKey
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setDatabaseEncryptionKey",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -18200,18 +18200,18 @@ type SetDefaultBackground struct {
 	TypeField BackgroundType `json:"type,omitempty"`
 }
 
-func (t *SetDefaultBackground) Type() string {
+func (t SetDefaultBackground) Type() string {
 	return "setDefaultBackground"
 }
 
-func (t *SetDefaultBackground) MarshalJSON() ([]byte, error) {
+func (t SetDefaultBackground) MarshalJSON() ([]byte, error) {
 	type Alias SetDefaultBackground
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setDefaultBackground",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -18221,18 +18221,18 @@ type SetDefaultChannelAdministratorRights struct {
 	DefaultChannelAdministratorRights *ChatAdministratorRights `json:"default_channel_administrator_rights"`
 }
 
-func (t *SetDefaultChannelAdministratorRights) Type() string {
+func (t SetDefaultChannelAdministratorRights) Type() string {
 	return "setDefaultChannelAdministratorRights"
 }
 
-func (t *SetDefaultChannelAdministratorRights) MarshalJSON() ([]byte, error) {
+func (t SetDefaultChannelAdministratorRights) MarshalJSON() ([]byte, error) {
 	type Alias SetDefaultChannelAdministratorRights
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setDefaultChannelAdministratorRights",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -18242,18 +18242,18 @@ type SetDefaultGroupAdministratorRights struct {
 	DefaultGroupAdministratorRights *ChatAdministratorRights `json:"default_group_administrator_rights"`
 }
 
-func (t *SetDefaultGroupAdministratorRights) Type() string {
+func (t SetDefaultGroupAdministratorRights) Type() string {
 	return "setDefaultGroupAdministratorRights"
 }
 
-func (t *SetDefaultGroupAdministratorRights) MarshalJSON() ([]byte, error) {
+func (t SetDefaultGroupAdministratorRights) MarshalJSON() ([]byte, error) {
 	type Alias SetDefaultGroupAdministratorRights
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setDefaultGroupAdministratorRights",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -18263,18 +18263,18 @@ type SetDefaultMessageAutoDeleteTime struct {
 	MessageAutoDeleteTime *MessageAutoDeleteTime `json:"message_auto_delete_time"`
 }
 
-func (t *SetDefaultMessageAutoDeleteTime) Type() string {
+func (t SetDefaultMessageAutoDeleteTime) Type() string {
 	return "setDefaultMessageAutoDeleteTime"
 }
 
-func (t *SetDefaultMessageAutoDeleteTime) MarshalJSON() ([]byte, error) {
+func (t SetDefaultMessageAutoDeleteTime) MarshalJSON() ([]byte, error) {
 	type Alias SetDefaultMessageAutoDeleteTime
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setDefaultMessageAutoDeleteTime",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -18284,18 +18284,18 @@ type SetDefaultReactionType struct {
 	ReactionType ReactionType `json:"reaction_type"`
 }
 
-func (t *SetDefaultReactionType) Type() string {
+func (t SetDefaultReactionType) Type() string {
 	return "setDefaultReactionType"
 }
 
-func (t *SetDefaultReactionType) MarshalJSON() ([]byte, error) {
+func (t SetDefaultReactionType) MarshalJSON() ([]byte, error) {
 	type Alias SetDefaultReactionType
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setDefaultReactionType",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -18309,18 +18309,18 @@ type SetDirectMessagesChatTopicIsMarkedAsUnread struct {
 	TopicId int64 `json:"topic_id"`
 }
 
-func (t *SetDirectMessagesChatTopicIsMarkedAsUnread) Type() string {
+func (t SetDirectMessagesChatTopicIsMarkedAsUnread) Type() string {
 	return "setDirectMessagesChatTopicIsMarkedAsUnread"
 }
 
-func (t *SetDirectMessagesChatTopicIsMarkedAsUnread) MarshalJSON() ([]byte, error) {
+func (t SetDirectMessagesChatTopicIsMarkedAsUnread) MarshalJSON() ([]byte, error) {
 	type Alias SetDirectMessagesChatTopicIsMarkedAsUnread
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setDirectMessagesChatTopicIsMarkedAsUnread",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -18330,18 +18330,18 @@ type SetEmojiStatus struct {
 	EmojiStatus *EmojiStatus `json:"emoji_status"`
 }
 
-func (t *SetEmojiStatus) Type() string {
+func (t SetEmojiStatus) Type() string {
 	return "setEmojiStatus"
 }
 
-func (t *SetEmojiStatus) MarshalJSON() ([]byte, error) {
+func (t SetEmojiStatus) MarshalJSON() ([]byte, error) {
 	type Alias SetEmojiStatus
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setEmojiStatus",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -18355,18 +18355,18 @@ type SetFileGenerationProgress struct {
 	LocalPrefixSize int64 `json:"local_prefix_size"`
 }
 
-func (t *SetFileGenerationProgress) Type() string {
+func (t SetFileGenerationProgress) Type() string {
 	return "setFileGenerationProgress"
 }
 
-func (t *SetFileGenerationProgress) MarshalJSON() ([]byte, error) {
+func (t SetFileGenerationProgress) MarshalJSON() ([]byte, error) {
 	type Alias SetFileGenerationProgress
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setFileGenerationProgress",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -18380,18 +18380,18 @@ type SetForumTopicNotificationSettings struct {
 	NotificationSettings *ChatNotificationSettings `json:"notification_settings"`
 }
 
-func (t *SetForumTopicNotificationSettings) Type() string {
+func (t SetForumTopicNotificationSettings) Type() string {
 	return "setForumTopicNotificationSettings"
 }
 
-func (t *SetForumTopicNotificationSettings) MarshalJSON() ([]byte, error) {
+func (t SetForumTopicNotificationSettings) MarshalJSON() ([]byte, error) {
 	type Alias SetForumTopicNotificationSettings
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setForumTopicNotificationSettings",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -18411,18 +18411,18 @@ type SetGameScore struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t *SetGameScore) Type() string {
+func (t SetGameScore) Type() string {
 	return "setGameScore"
 }
 
-func (t *SetGameScore) MarshalJSON() ([]byte, error) {
+func (t SetGameScore) MarshalJSON() ([]byte, error) {
 	type Alias SetGameScore
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setGameScore",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -18436,18 +18436,18 @@ type SetGiftCollectionName struct {
 	OwnerId MessageSender `json:"owner_id"`
 }
 
-func (t *SetGiftCollectionName) Type() string {
+func (t SetGiftCollectionName) Type() string {
 	return "setGiftCollectionName"
 }
 
-func (t *SetGiftCollectionName) MarshalJSON() ([]byte, error) {
+func (t SetGiftCollectionName) MarshalJSON() ([]byte, error) {
 	type Alias SetGiftCollectionName
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setGiftCollectionName",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -18459,18 +18459,18 @@ type SetGiftResalePrice struct {
 	ReceivedGiftId string `json:"received_gift_id"`
 }
 
-func (t *SetGiftResalePrice) Type() string {
+func (t SetGiftResalePrice) Type() string {
 	return "setGiftResalePrice"
 }
 
-func (t *SetGiftResalePrice) MarshalJSON() ([]byte, error) {
+func (t SetGiftResalePrice) MarshalJSON() ([]byte, error) {
 	type Alias SetGiftResalePrice
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setGiftResalePrice",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -18480,18 +18480,18 @@ type SetGiftSettings struct {
 	Settings *GiftSettings `json:"settings"`
 }
 
-func (t *SetGiftSettings) Type() string {
+func (t SetGiftSettings) Type() string {
 	return "setGiftSettings"
 }
 
-func (t *SetGiftSettings) MarshalJSON() ([]byte, error) {
+func (t SetGiftSettings) MarshalJSON() ([]byte, error) {
 	type Alias SetGiftSettings
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setGiftSettings",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -18503,18 +18503,18 @@ type SetGroupCallPaidMessageStarCount struct {
 	PaidMessageStarCount int64 `json:"paid_message_star_count"`
 }
 
-func (t *SetGroupCallPaidMessageStarCount) Type() string {
+func (t SetGroupCallPaidMessageStarCount) Type() string {
 	return "setGroupCallPaidMessageStarCount"
 }
 
-func (t *SetGroupCallPaidMessageStarCount) MarshalJSON() ([]byte, error) {
+func (t SetGroupCallPaidMessageStarCount) MarshalJSON() ([]byte, error) {
 	type Alias SetGroupCallPaidMessageStarCount
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setGroupCallPaidMessageStarCount",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -18528,18 +18528,18 @@ type SetGroupCallParticipantIsSpeaking struct {
 	IsSpeaking bool `json:"is_speaking"`
 }
 
-func (t *SetGroupCallParticipantIsSpeaking) Type() string {
+func (t SetGroupCallParticipantIsSpeaking) Type() string {
 	return "setGroupCallParticipantIsSpeaking"
 }
 
-func (t *SetGroupCallParticipantIsSpeaking) MarshalJSON() ([]byte, error) {
+func (t SetGroupCallParticipantIsSpeaking) MarshalJSON() ([]byte, error) {
 	type Alias SetGroupCallParticipantIsSpeaking
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setGroupCallParticipantIsSpeaking",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -18553,18 +18553,18 @@ type SetGroupCallParticipantVolumeLevel struct {
 	VolumeLevel int32 `json:"volume_level"`
 }
 
-func (t *SetGroupCallParticipantVolumeLevel) Type() string {
+func (t SetGroupCallParticipantVolumeLevel) Type() string {
 	return "setGroupCallParticipantVolumeLevel"
 }
 
-func (t *SetGroupCallParticipantVolumeLevel) MarshalJSON() ([]byte, error) {
+func (t SetGroupCallParticipantVolumeLevel) MarshalJSON() ([]byte, error) {
 	type Alias SetGroupCallParticipantVolumeLevel
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setGroupCallParticipantVolumeLevel",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -18574,18 +18574,18 @@ type SetInactiveSessionTtl struct {
 	InactiveSessionTtlDays int32 `json:"inactive_session_ttl_days"`
 }
 
-func (t *SetInactiveSessionTtl) Type() string {
+func (t SetInactiveSessionTtl) Type() string {
 	return "setInactiveSessionTtl"
 }
 
-func (t *SetInactiveSessionTtl) MarshalJSON() ([]byte, error) {
+func (t SetInactiveSessionTtl) MarshalJSON() ([]byte, error) {
 	type Alias SetInactiveSessionTtl
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setInactiveSessionTtl",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -18603,18 +18603,18 @@ type SetInlineGameScore struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t *SetInlineGameScore) Type() string {
+func (t SetInlineGameScore) Type() string {
 	return "setInlineGameScore"
 }
 
-func (t *SetInlineGameScore) MarshalJSON() ([]byte, error) {
+func (t SetInlineGameScore) MarshalJSON() ([]byte, error) {
 	type Alias SetInlineGameScore
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setInlineGameScore",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -18626,18 +18626,18 @@ type SetLiveStoryMessageSender struct {
 	MessageSenderId MessageSender `json:"message_sender_id"`
 }
 
-func (t *SetLiveStoryMessageSender) Type() string {
+func (t SetLiveStoryMessageSender) Type() string {
 	return "setLiveStoryMessageSender"
 }
 
-func (t *SetLiveStoryMessageSender) MarshalJSON() ([]byte, error) {
+func (t SetLiveStoryMessageSender) MarshalJSON() ([]byte, error) {
 	type Alias SetLiveStoryMessageSender
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setLiveStoryMessageSender",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -18647,18 +18647,18 @@ type SetLoginEmailAddress struct {
 	NewLoginEmailAddress string `json:"new_login_email_address"`
 }
 
-func (t *SetLoginEmailAddress) Type() string {
+func (t SetLoginEmailAddress) Type() string {
 	return "setLoginEmailAddress"
 }
 
-func (t *SetLoginEmailAddress) MarshalJSON() ([]byte, error) {
+func (t SetLoginEmailAddress) MarshalJSON() ([]byte, error) {
 	type Alias SetLoginEmailAddress
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setLoginEmailAddress",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -18668,18 +18668,18 @@ type SetLogStream struct {
 	LogStream LogStream `json:"log_stream"`
 }
 
-func (t *SetLogStream) Type() string {
+func (t SetLogStream) Type() string {
 	return "setLogStream"
 }
 
-func (t *SetLogStream) MarshalJSON() ([]byte, error) {
+func (t SetLogStream) MarshalJSON() ([]byte, error) {
 	type Alias SetLogStream
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setLogStream",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -18691,18 +18691,18 @@ type SetLogTagVerbosityLevel struct {
 	Tag string `json:"tag"`
 }
 
-func (t *SetLogTagVerbosityLevel) Type() string {
+func (t SetLogTagVerbosityLevel) Type() string {
 	return "setLogTagVerbosityLevel"
 }
 
-func (t *SetLogTagVerbosityLevel) MarshalJSON() ([]byte, error) {
+func (t SetLogTagVerbosityLevel) MarshalJSON() ([]byte, error) {
 	type Alias SetLogTagVerbosityLevel
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setLogTagVerbosityLevel",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -18712,18 +18712,18 @@ type SetLogVerbosityLevel struct {
 	NewVerbosityLevel int32 `json:"new_verbosity_level"`
 }
 
-func (t *SetLogVerbosityLevel) Type() string {
+func (t SetLogVerbosityLevel) Type() string {
 	return "setLogVerbosityLevel"
 }
 
-func (t *SetLogVerbosityLevel) MarshalJSON() ([]byte, error) {
+func (t SetLogVerbosityLevel) MarshalJSON() ([]byte, error) {
 	type Alias SetLogVerbosityLevel
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setLogVerbosityLevel",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -18733,18 +18733,18 @@ type SetMainProfileTab struct {
 	MainProfileTab ProfileTab `json:"main_profile_tab"`
 }
 
-func (t *SetMainProfileTab) Type() string {
+func (t SetMainProfileTab) Type() string {
 	return "setMainProfileTab"
 }
 
-func (t *SetMainProfileTab) MarshalJSON() ([]byte, error) {
+func (t SetMainProfileTab) MarshalJSON() ([]byte, error) {
 	type Alias SetMainProfileTab
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setMainProfileTab",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -18756,18 +18756,18 @@ type SetMenuButton struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t *SetMenuButton) Type() string {
+func (t SetMenuButton) Type() string {
 	return "setMenuButton"
 }
 
-func (t *SetMenuButton) MarshalJSON() ([]byte, error) {
+func (t SetMenuButton) MarshalJSON() ([]byte, error) {
 	type Alias SetMenuButton
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setMenuButton",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -18781,18 +18781,18 @@ type SetMessageFactCheck struct {
 	Text *FormattedText `json:"text,omitempty"`
 }
 
-func (t *SetMessageFactCheck) Type() string {
+func (t SetMessageFactCheck) Type() string {
 	return "setMessageFactCheck"
 }
 
-func (t *SetMessageFactCheck) MarshalJSON() ([]byte, error) {
+func (t SetMessageFactCheck) MarshalJSON() ([]byte, error) {
 	type Alias SetMessageFactCheck
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setMessageFactCheck",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -18808,18 +18808,18 @@ type SetMessageReactions struct {
 	ReactionTypes []ReactionType `json:"reaction_types"`
 }
 
-func (t *SetMessageReactions) Type() string {
+func (t SetMessageReactions) Type() string {
 	return "setMessageReactions"
 }
 
-func (t *SetMessageReactions) MarshalJSON() ([]byte, error) {
+func (t SetMessageReactions) MarshalJSON() ([]byte, error) {
 	type Alias SetMessageReactions
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setMessageReactions",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -18831,18 +18831,18 @@ type SetMessageSenderBlockList struct {
 	SenderId MessageSender `json:"sender_id"`
 }
 
-func (t *SetMessageSenderBlockList) Type() string {
+func (t SetMessageSenderBlockList) Type() string {
 	return "setMessageSenderBlockList"
 }
 
-func (t *SetMessageSenderBlockList) MarshalJSON() ([]byte, error) {
+func (t SetMessageSenderBlockList) MarshalJSON() ([]byte, error) {
 	type Alias SetMessageSenderBlockList
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setMessageSenderBlockList",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -18856,18 +18856,18 @@ type SetMessageSenderBotVerification struct {
 	VerifiedId MessageSender `json:"verified_id"`
 }
 
-func (t *SetMessageSenderBotVerification) Type() string {
+func (t SetMessageSenderBotVerification) Type() string {
 	return "setMessageSenderBotVerification"
 }
 
-func (t *SetMessageSenderBotVerification) MarshalJSON() ([]byte, error) {
+func (t SetMessageSenderBotVerification) MarshalJSON() ([]byte, error) {
 	type Alias SetMessageSenderBotVerification
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setMessageSenderBotVerification",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -18879,18 +18879,18 @@ type SetName struct {
 	LastName string `json:"last_name"`
 }
 
-func (t *SetName) Type() string {
+func (t SetName) Type() string {
 	return "setName"
 }
 
-func (t *SetName) MarshalJSON() ([]byte, error) {
+func (t SetName) MarshalJSON() ([]byte, error) {
 	type Alias SetName
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setName",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -18900,18 +18900,18 @@ type SetNetworkType struct {
 	TypeField NetworkType `json:"type,omitempty"`
 }
 
-func (t *SetNetworkType) Type() string {
+func (t SetNetworkType) Type() string {
 	return "setNetworkType"
 }
 
-func (t *SetNetworkType) MarshalJSON() ([]byte, error) {
+func (t SetNetworkType) MarshalJSON() ([]byte, error) {
 	type Alias SetNetworkType
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setNetworkType",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -18921,18 +18921,18 @@ type SetNewChatPrivacySettings struct {
 	Settings *NewChatPrivacySettings `json:"settings"`
 }
 
-func (t *SetNewChatPrivacySettings) Type() string {
+func (t SetNewChatPrivacySettings) Type() string {
 	return "setNewChatPrivacySettings"
 }
 
-func (t *SetNewChatPrivacySettings) MarshalJSON() ([]byte, error) {
+func (t SetNewChatPrivacySettings) MarshalJSON() ([]byte, error) {
 	type Alias SetNewChatPrivacySettings
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setNewChatPrivacySettings",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -18944,18 +18944,18 @@ type SetOption struct {
 	Value OptionValue `json:"value,omitempty"`
 }
 
-func (t *SetOption) Type() string {
+func (t SetOption) Type() string {
 	return "setOption"
 }
 
-func (t *SetOption) MarshalJSON() ([]byte, error) {
+func (t SetOption) MarshalJSON() ([]byte, error) {
 	type Alias SetOption
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setOption",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -18969,18 +18969,18 @@ type SetPaidMessageReactionType struct {
 	TypeField PaidReactionType `json:"type"`
 }
 
-func (t *SetPaidMessageReactionType) Type() string {
+func (t SetPaidMessageReactionType) Type() string {
 	return "setPaidMessageReactionType"
 }
 
-func (t *SetPaidMessageReactionType) MarshalJSON() ([]byte, error) {
+func (t SetPaidMessageReactionType) MarshalJSON() ([]byte, error) {
 	type Alias SetPaidMessageReactionType
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setPaidMessageReactionType",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -18992,18 +18992,18 @@ type SetPassportElement struct {
 	Password string `json:"password"`
 }
 
-func (t *SetPassportElement) Type() string {
+func (t SetPassportElement) Type() string {
 	return "setPassportElement"
 }
 
-func (t *SetPassportElement) MarshalJSON() ([]byte, error) {
+func (t SetPassportElement) MarshalJSON() ([]byte, error) {
 	type Alias SetPassportElement
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setPassportElement",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -19015,18 +19015,18 @@ type SetPassportElementErrors struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t *SetPassportElementErrors) Type() string {
+func (t SetPassportElementErrors) Type() string {
 	return "setPassportElementErrors"
 }
 
-func (t *SetPassportElementErrors) MarshalJSON() ([]byte, error) {
+func (t SetPassportElementErrors) MarshalJSON() ([]byte, error) {
 	type Alias SetPassportElementErrors
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setPassportElementErrors",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -19044,18 +19044,18 @@ type SetPassword struct {
 	SetRecoveryEmailAddress bool `json:"set_recovery_email_address"`
 }
 
-func (t *SetPassword) Type() string {
+func (t SetPassword) Type() string {
 	return "setPassword"
 }
 
-func (t *SetPassword) MarshalJSON() ([]byte, error) {
+func (t SetPassword) MarshalJSON() ([]byte, error) {
 	type Alias SetPassword
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setPassword",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -19065,18 +19065,18 @@ type SetPersonalChat struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t *SetPersonalChat) Type() string {
+func (t SetPersonalChat) Type() string {
 	return "setPersonalChat"
 }
 
-func (t *SetPersonalChat) MarshalJSON() ([]byte, error) {
+func (t SetPersonalChat) MarshalJSON() ([]byte, error) {
 	type Alias SetPersonalChat
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setPersonalChat",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -19088,18 +19088,18 @@ type SetPinnedChats struct {
 	ChatList ChatList `json:"chat_list"`
 }
 
-func (t *SetPinnedChats) Type() string {
+func (t SetPinnedChats) Type() string {
 	return "setPinnedChats"
 }
 
-func (t *SetPinnedChats) MarshalJSON() ([]byte, error) {
+func (t SetPinnedChats) MarshalJSON() ([]byte, error) {
 	type Alias SetPinnedChats
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setPinnedChats",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -19111,18 +19111,18 @@ type SetPinnedForumTopics struct {
 	ForumTopicIds []int32 `json:"forum_topic_ids"`
 }
 
-func (t *SetPinnedForumTopics) Type() string {
+func (t SetPinnedForumTopics) Type() string {
 	return "setPinnedForumTopics"
 }
 
-func (t *SetPinnedForumTopics) MarshalJSON() ([]byte, error) {
+func (t SetPinnedForumTopics) MarshalJSON() ([]byte, error) {
 	type Alias SetPinnedForumTopics
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setPinnedForumTopics",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -19134,18 +19134,18 @@ type SetPinnedGifts struct {
 	ReceivedGiftIds []string `json:"received_gift_ids"`
 }
 
-func (t *SetPinnedGifts) Type() string {
+func (t SetPinnedGifts) Type() string {
 	return "setPinnedGifts"
 }
 
-func (t *SetPinnedGifts) MarshalJSON() ([]byte, error) {
+func (t SetPinnedGifts) MarshalJSON() ([]byte, error) {
 	type Alias SetPinnedGifts
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setPinnedGifts",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -19155,18 +19155,18 @@ type SetPinnedSavedMessagesTopics struct {
 	SavedMessagesTopicIds []int64 `json:"saved_messages_topic_ids"`
 }
 
-func (t *SetPinnedSavedMessagesTopics) Type() string {
+func (t SetPinnedSavedMessagesTopics) Type() string {
 	return "setPinnedSavedMessagesTopics"
 }
 
-func (t *SetPinnedSavedMessagesTopics) MarshalJSON() ([]byte, error) {
+func (t SetPinnedSavedMessagesTopics) MarshalJSON() ([]byte, error) {
 	type Alias SetPinnedSavedMessagesTopics
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setPinnedSavedMessagesTopics",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -19180,18 +19180,18 @@ type SetPollAnswer struct {
 	OptionIds []int32 `json:"option_ids"`
 }
 
-func (t *SetPollAnswer) Type() string {
+func (t SetPollAnswer) Type() string {
 	return "setPollAnswer"
 }
 
-func (t *SetPollAnswer) MarshalJSON() ([]byte, error) {
+func (t SetPollAnswer) MarshalJSON() ([]byte, error) {
 	type Alias SetPollAnswer
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setPollAnswer",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -19203,18 +19203,18 @@ type SetProfileAccentColor struct {
 	ProfileBackgroundCustomEmojiId int64 `json:"profile_background_custom_emoji_id,string"`
 }
 
-func (t *SetProfileAccentColor) Type() string {
+func (t SetProfileAccentColor) Type() string {
 	return "setProfileAccentColor"
 }
 
-func (t *SetProfileAccentColor) MarshalJSON() ([]byte, error) {
+func (t SetProfileAccentColor) MarshalJSON() ([]byte, error) {
 	type Alias SetProfileAccentColor
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setProfileAccentColor",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -19226,18 +19226,18 @@ type SetProfileAudioPosition struct {
 	FileId int32 `json:"file_id"`
 }
 
-func (t *SetProfileAudioPosition) Type() string {
+func (t SetProfileAudioPosition) Type() string {
 	return "setProfileAudioPosition"
 }
 
-func (t *SetProfileAudioPosition) MarshalJSON() ([]byte, error) {
+func (t SetProfileAudioPosition) MarshalJSON() ([]byte, error) {
 	type Alias SetProfileAudioPosition
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setProfileAudioPosition",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -19249,18 +19249,18 @@ type SetProfilePhoto struct {
 	Photo InputChatPhoto `json:"photo"`
 }
 
-func (t *SetProfilePhoto) Type() string {
+func (t SetProfilePhoto) Type() string {
 	return "setProfilePhoto"
 }
 
-func (t *SetProfilePhoto) MarshalJSON() ([]byte, error) {
+func (t SetProfilePhoto) MarshalJSON() ([]byte, error) {
 	type Alias SetProfilePhoto
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setProfilePhoto",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -19272,18 +19272,18 @@ type SetQuickReplyShortcutName struct {
 	ShortcutId int32 `json:"shortcut_id"`
 }
 
-func (t *SetQuickReplyShortcutName) Type() string {
+func (t SetQuickReplyShortcutName) Type() string {
 	return "setQuickReplyShortcutName"
 }
 
-func (t *SetQuickReplyShortcutName) MarshalJSON() ([]byte, error) {
+func (t SetQuickReplyShortcutName) MarshalJSON() ([]byte, error) {
 	type Alias SetQuickReplyShortcutName
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setQuickReplyShortcutName",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -19293,18 +19293,18 @@ type SetReactionNotificationSettings struct {
 	NotificationSettings *ReactionNotificationSettings `json:"notification_settings"`
 }
 
-func (t *SetReactionNotificationSettings) Type() string {
+func (t SetReactionNotificationSettings) Type() string {
 	return "setReactionNotificationSettings"
 }
 
-func (t *SetReactionNotificationSettings) MarshalJSON() ([]byte, error) {
+func (t SetReactionNotificationSettings) MarshalJSON() ([]byte, error) {
 	type Alias SetReactionNotificationSettings
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setReactionNotificationSettings",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -19314,18 +19314,18 @@ type SetReadDatePrivacySettings struct {
 	Settings *ReadDatePrivacySettings `json:"settings"`
 }
 
-func (t *SetReadDatePrivacySettings) Type() string {
+func (t SetReadDatePrivacySettings) Type() string {
 	return "setReadDatePrivacySettings"
 }
 
-func (t *SetReadDatePrivacySettings) MarshalJSON() ([]byte, error) {
+func (t SetReadDatePrivacySettings) MarshalJSON() ([]byte, error) {
 	type Alias SetReadDatePrivacySettings
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setReadDatePrivacySettings",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -19337,18 +19337,18 @@ type SetRecoveryEmailAddress struct {
 	Password string `json:"password"`
 }
 
-func (t *SetRecoveryEmailAddress) Type() string {
+func (t SetRecoveryEmailAddress) Type() string {
 	return "setRecoveryEmailAddress"
 }
 
-func (t *SetRecoveryEmailAddress) MarshalJSON() ([]byte, error) {
+func (t SetRecoveryEmailAddress) MarshalJSON() ([]byte, error) {
 	type Alias SetRecoveryEmailAddress
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setRecoveryEmailAddress",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -19360,18 +19360,18 @@ type SetSavedMessagesTagLabel struct {
 	Tag ReactionType `json:"tag"`
 }
 
-func (t *SetSavedMessagesTagLabel) Type() string {
+func (t SetSavedMessagesTagLabel) Type() string {
 	return "setSavedMessagesTagLabel"
 }
 
-func (t *SetSavedMessagesTagLabel) MarshalJSON() ([]byte, error) {
+func (t SetSavedMessagesTagLabel) MarshalJSON() ([]byte, error) {
 	type Alias SetSavedMessagesTagLabel
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setSavedMessagesTagLabel",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -19383,18 +19383,18 @@ type SetScopeNotificationSettings struct {
 	Scope NotificationSettingsScope `json:"scope"`
 }
 
-func (t *SetScopeNotificationSettings) Type() string {
+func (t SetScopeNotificationSettings) Type() string {
 	return "setScopeNotificationSettings"
 }
 
-func (t *SetScopeNotificationSettings) MarshalJSON() ([]byte, error) {
+func (t SetScopeNotificationSettings) MarshalJSON() ([]byte, error) {
 	type Alias SetScopeNotificationSettings
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setScopeNotificationSettings",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -19406,18 +19406,18 @@ type SetStickerEmojis struct {
 	Sticker InputFile `json:"sticker"`
 }
 
-func (t *SetStickerEmojis) Type() string {
+func (t SetStickerEmojis) Type() string {
 	return "setStickerEmojis"
 }
 
-func (t *SetStickerEmojis) MarshalJSON() ([]byte, error) {
+func (t SetStickerEmojis) MarshalJSON() ([]byte, error) {
 	type Alias SetStickerEmojis
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setStickerEmojis",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -19429,18 +19429,18 @@ type SetStickerKeywords struct {
 	Sticker InputFile `json:"sticker"`
 }
 
-func (t *SetStickerKeywords) Type() string {
+func (t SetStickerKeywords) Type() string {
 	return "setStickerKeywords"
 }
 
-func (t *SetStickerKeywords) MarshalJSON() ([]byte, error) {
+func (t SetStickerKeywords) MarshalJSON() ([]byte, error) {
 	type Alias SetStickerKeywords
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setStickerKeywords",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -19452,18 +19452,18 @@ type SetStickerMaskPosition struct {
 	Sticker InputFile `json:"sticker"`
 }
 
-func (t *SetStickerMaskPosition) Type() string {
+func (t SetStickerMaskPosition) Type() string {
 	return "setStickerMaskPosition"
 }
 
-func (t *SetStickerMaskPosition) MarshalJSON() ([]byte, error) {
+func (t SetStickerMaskPosition) MarshalJSON() ([]byte, error) {
 	type Alias SetStickerMaskPosition
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setStickerMaskPosition",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -19475,18 +19475,18 @@ type SetStickerPositionInSet struct {
 	Sticker InputFile `json:"sticker"`
 }
 
-func (t *SetStickerPositionInSet) Type() string {
+func (t SetStickerPositionInSet) Type() string {
 	return "setStickerPositionInSet"
 }
 
-func (t *SetStickerPositionInSet) MarshalJSON() ([]byte, error) {
+func (t SetStickerPositionInSet) MarshalJSON() ([]byte, error) {
 	type Alias SetStickerPositionInSet
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setStickerPositionInSet",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -19502,18 +19502,18 @@ type SetStickerSetThumbnail struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t *SetStickerSetThumbnail) Type() string {
+func (t SetStickerSetThumbnail) Type() string {
 	return "setStickerSetThumbnail"
 }
 
-func (t *SetStickerSetThumbnail) MarshalJSON() ([]byte, error) {
+func (t SetStickerSetThumbnail) MarshalJSON() ([]byte, error) {
 	type Alias SetStickerSetThumbnail
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setStickerSetThumbnail",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -19525,18 +19525,18 @@ type SetStickerSetTitle struct {
 	Title string `json:"title"`
 }
 
-func (t *SetStickerSetTitle) Type() string {
+func (t SetStickerSetTitle) Type() string {
 	return "setStickerSetTitle"
 }
 
-func (t *SetStickerSetTitle) MarshalJSON() ([]byte, error) {
+func (t SetStickerSetTitle) MarshalJSON() ([]byte, error) {
 	type Alias SetStickerSetTitle
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setStickerSetTitle",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -19550,18 +19550,18 @@ type SetStoryAlbumName struct {
 	StoryAlbumId int32 `json:"story_album_id"`
 }
 
-func (t *SetStoryAlbumName) Type() string {
+func (t SetStoryAlbumName) Type() string {
 	return "setStoryAlbumName"
 }
 
-func (t *SetStoryAlbumName) MarshalJSON() ([]byte, error) {
+func (t SetStoryAlbumName) MarshalJSON() ([]byte, error) {
 	type Alias SetStoryAlbumName
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setStoryAlbumName",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -19573,18 +19573,18 @@ type SetStoryPrivacySettings struct {
 	StoryId int32 `json:"story_id"`
 }
 
-func (t *SetStoryPrivacySettings) Type() string {
+func (t SetStoryPrivacySettings) Type() string {
 	return "setStoryPrivacySettings"
 }
 
-func (t *SetStoryPrivacySettings) MarshalJSON() ([]byte, error) {
+func (t SetStoryPrivacySettings) MarshalJSON() ([]byte, error) {
 	type Alias SetStoryPrivacySettings
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setStoryPrivacySettings",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -19600,18 +19600,18 @@ type SetStoryReaction struct {
 	UpdateRecentReactions bool `json:"update_recent_reactions"`
 }
 
-func (t *SetStoryReaction) Type() string {
+func (t SetStoryReaction) Type() string {
 	return "setStoryReaction"
 }
 
-func (t *SetStoryReaction) MarshalJSON() ([]byte, error) {
+func (t SetStoryReaction) MarshalJSON() ([]byte, error) {
 	type Alias SetStoryReaction
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setStoryReaction",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -19623,18 +19623,18 @@ type SetSupergroupCustomEmojiStickerSet struct {
 	SupergroupId int64 `json:"supergroup_id"`
 }
 
-func (t *SetSupergroupCustomEmojiStickerSet) Type() string {
+func (t SetSupergroupCustomEmojiStickerSet) Type() string {
 	return "setSupergroupCustomEmojiStickerSet"
 }
 
-func (t *SetSupergroupCustomEmojiStickerSet) MarshalJSON() ([]byte, error) {
+func (t SetSupergroupCustomEmojiStickerSet) MarshalJSON() ([]byte, error) {
 	type Alias SetSupergroupCustomEmojiStickerSet
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setSupergroupCustomEmojiStickerSet",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -19646,18 +19646,18 @@ type SetSupergroupMainProfileTab struct {
 	SupergroupId int64 `json:"supergroup_id"`
 }
 
-func (t *SetSupergroupMainProfileTab) Type() string {
+func (t SetSupergroupMainProfileTab) Type() string {
 	return "setSupergroupMainProfileTab"
 }
 
-func (t *SetSupergroupMainProfileTab) MarshalJSON() ([]byte, error) {
+func (t SetSupergroupMainProfileTab) MarshalJSON() ([]byte, error) {
 	type Alias SetSupergroupMainProfileTab
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setSupergroupMainProfileTab",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -19669,18 +19669,18 @@ type SetSupergroupStickerSet struct {
 	SupergroupId int64 `json:"supergroup_id"`
 }
 
-func (t *SetSupergroupStickerSet) Type() string {
+func (t SetSupergroupStickerSet) Type() string {
 	return "setSupergroupStickerSet"
 }
 
-func (t *SetSupergroupStickerSet) MarshalJSON() ([]byte, error) {
+func (t SetSupergroupStickerSet) MarshalJSON() ([]byte, error) {
 	type Alias SetSupergroupStickerSet
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setSupergroupStickerSet",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -19692,18 +19692,18 @@ type SetSupergroupUnrestrictBoostCount struct {
 	UnrestrictBoostCount int32 `json:"unrestrict_boost_count"`
 }
 
-func (t *SetSupergroupUnrestrictBoostCount) Type() string {
+func (t SetSupergroupUnrestrictBoostCount) Type() string {
 	return "setSupergroupUnrestrictBoostCount"
 }
 
-func (t *SetSupergroupUnrestrictBoostCount) MarshalJSON() ([]byte, error) {
+func (t SetSupergroupUnrestrictBoostCount) MarshalJSON() ([]byte, error) {
 	type Alias SetSupergroupUnrestrictBoostCount
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setSupergroupUnrestrictBoostCount",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -19715,18 +19715,18 @@ type SetSupergroupUsername struct {
 	Username string `json:"username"`
 }
 
-func (t *SetSupergroupUsername) Type() string {
+func (t SetSupergroupUsername) Type() string {
 	return "setSupergroupUsername"
 }
 
-func (t *SetSupergroupUsername) MarshalJSON() ([]byte, error) {
+func (t SetSupergroupUsername) MarshalJSON() ([]byte, error) {
 	type Alias SetSupergroupUsername
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setSupergroupUsername",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -19762,18 +19762,18 @@ type SetTdlibParameters struct {
 	UseTestDc bool `json:"use_test_dc"`
 }
 
-func (t *SetTdlibParameters) Type() string {
+func (t SetTdlibParameters) Type() string {
 	return "setTdlibParameters"
 }
 
-func (t *SetTdlibParameters) MarshalJSON() ([]byte, error) {
+func (t SetTdlibParameters) MarshalJSON() ([]byte, error) {
 	type Alias SetTdlibParameters
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setTdlibParameters",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -19783,18 +19783,18 @@ type SetUpgradedGiftColors struct {
 	UpgradedGiftColorsId int64 `json:"upgraded_gift_colors_id,string"`
 }
 
-func (t *SetUpgradedGiftColors) Type() string {
+func (t SetUpgradedGiftColors) Type() string {
 	return "setUpgradedGiftColors"
 }
 
-func (t *SetUpgradedGiftColors) MarshalJSON() ([]byte, error) {
+func (t SetUpgradedGiftColors) MarshalJSON() ([]byte, error) {
 	type Alias SetUpgradedGiftColors
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setUpgradedGiftColors",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -19806,18 +19806,18 @@ type SetUserEmojiStatus struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t *SetUserEmojiStatus) Type() string {
+func (t SetUserEmojiStatus) Type() string {
 	return "setUserEmojiStatus"
 }
 
-func (t *SetUserEmojiStatus) MarshalJSON() ([]byte, error) {
+func (t SetUserEmojiStatus) MarshalJSON() ([]byte, error) {
 	type Alias SetUserEmojiStatus
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setUserEmojiStatus",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -19827,18 +19827,18 @@ type SetUsername struct {
 	Username string `json:"username"`
 }
 
-func (t *SetUsername) Type() string {
+func (t SetUsername) Type() string {
 	return "setUsername"
 }
 
-func (t *SetUsername) MarshalJSON() ([]byte, error) {
+func (t SetUsername) MarshalJSON() ([]byte, error) {
 	type Alias SetUsername
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setUsername",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -19850,18 +19850,18 @@ type SetUserNote struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t *SetUserNote) Type() string {
+func (t SetUserNote) Type() string {
 	return "setUserNote"
 }
 
-func (t *SetUserNote) MarshalJSON() ([]byte, error) {
+func (t SetUserNote) MarshalJSON() ([]byte, error) {
 	type Alias SetUserNote
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setUserNote",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -19873,18 +19873,18 @@ type SetUserPersonalProfilePhoto struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t *SetUserPersonalProfilePhoto) Type() string {
+func (t SetUserPersonalProfilePhoto) Type() string {
 	return "setUserPersonalProfilePhoto"
 }
 
-func (t *SetUserPersonalProfilePhoto) MarshalJSON() ([]byte, error) {
+func (t SetUserPersonalProfilePhoto) MarshalJSON() ([]byte, error) {
 	type Alias SetUserPersonalProfilePhoto
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setUserPersonalProfilePhoto",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -19896,18 +19896,18 @@ type SetUserPrivacySettingRules struct {
 	Setting UserPrivacySetting `json:"setting"`
 }
 
-func (t *SetUserPrivacySettingRules) Type() string {
+func (t SetUserPrivacySettingRules) Type() string {
 	return "setUserPrivacySettingRules"
 }
 
-func (t *SetUserPrivacySettingRules) MarshalJSON() ([]byte, error) {
+func (t SetUserPrivacySettingRules) MarshalJSON() ([]byte, error) {
 	type Alias SetUserPrivacySettingRules
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setUserPrivacySettingRules",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -19919,18 +19919,18 @@ type SetUserSupportInfo struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t *SetUserSupportInfo) Type() string {
+func (t SetUserSupportInfo) Type() string {
 	return "setUserSupportInfo"
 }
 
-func (t *SetUserSupportInfo) MarshalJSON() ([]byte, error) {
+func (t SetUserSupportInfo) MarshalJSON() ([]byte, error) {
 	type Alias SetUserSupportInfo
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setUserSupportInfo",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -19942,18 +19942,18 @@ type SetVideoChatDefaultParticipant struct {
 	DefaultParticipantId MessageSender `json:"default_participant_id"`
 }
 
-func (t *SetVideoChatDefaultParticipant) Type() string {
+func (t SetVideoChatDefaultParticipant) Type() string {
 	return "setVideoChatDefaultParticipant"
 }
 
-func (t *SetVideoChatDefaultParticipant) MarshalJSON() ([]byte, error) {
+func (t SetVideoChatDefaultParticipant) MarshalJSON() ([]byte, error) {
 	type Alias SetVideoChatDefaultParticipant
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setVideoChatDefaultParticipant",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -19965,18 +19965,18 @@ type SetVideoChatTitle struct {
 	Title string `json:"title"`
 }
 
-func (t *SetVideoChatTitle) Type() string {
+func (t SetVideoChatTitle) Type() string {
 	return "setVideoChatTitle"
 }
 
-func (t *SetVideoChatTitle) MarshalJSON() ([]byte, error) {
+func (t SetVideoChatTitle) MarshalJSON() ([]byte, error) {
 	type Alias SetVideoChatTitle
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "setVideoChatTitle",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -19994,18 +19994,18 @@ type ShareChatWithBot struct {
 	SharedChatId int64 `json:"shared_chat_id"`
 }
 
-func (t *ShareChatWithBot) Type() string {
+func (t ShareChatWithBot) Type() string {
 	return "shareChatWithBot"
 }
 
-func (t *ShareChatWithBot) MarshalJSON() ([]byte, error) {
+func (t ShareChatWithBot) MarshalJSON() ([]byte, error) {
 	type Alias ShareChatWithBot
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "shareChatWithBot",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -20015,18 +20015,18 @@ type SharePhoneNumber struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t *SharePhoneNumber) Type() string {
+func (t SharePhoneNumber) Type() string {
 	return "sharePhoneNumber"
 }
 
-func (t *SharePhoneNumber) MarshalJSON() ([]byte, error) {
+func (t SharePhoneNumber) MarshalJSON() ([]byte, error) {
 	type Alias SharePhoneNumber
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "sharePhoneNumber",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -20044,18 +20044,18 @@ type ShareUsersWithBot struct {
 	SharedUserIds []int64 `json:"shared_user_ids"`
 }
 
-func (t *ShareUsersWithBot) Type() string {
+func (t ShareUsersWithBot) Type() string {
 	return "shareUsersWithBot"
 }
 
-func (t *ShareUsersWithBot) MarshalJSON() ([]byte, error) {
+func (t ShareUsersWithBot) MarshalJSON() ([]byte, error) {
 	type Alias ShareUsersWithBot
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "shareUsersWithBot",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -20071,18 +20071,18 @@ type StartGroupCallRecording struct {
 	UsePortraitOrientation bool `json:"use_portrait_orientation"`
 }
 
-func (t *StartGroupCallRecording) Type() string {
+func (t StartGroupCallRecording) Type() string {
 	return "startGroupCallRecording"
 }
 
-func (t *StartGroupCallRecording) MarshalJSON() ([]byte, error) {
+func (t StartGroupCallRecording) MarshalJSON() ([]byte, error) {
 	type Alias StartGroupCallRecording
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "startGroupCallRecording",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -20096,18 +20096,18 @@ type StartGroupCallScreenSharing struct {
 	Payload string `json:"payload"`
 }
 
-func (t *StartGroupCallScreenSharing) Type() string {
+func (t StartGroupCallScreenSharing) Type() string {
 	return "startGroupCallScreenSharing"
 }
 
-func (t *StartGroupCallScreenSharing) MarshalJSON() ([]byte, error) {
+func (t StartGroupCallScreenSharing) MarshalJSON() ([]byte, error) {
 	type Alias StartGroupCallScreenSharing
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "startGroupCallScreenSharing",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -20127,18 +20127,18 @@ type StartLiveStory struct {
 	ProtectContent bool `json:"protect_content"`
 }
 
-func (t *StartLiveStory) Type() string {
+func (t StartLiveStory) Type() string {
 	return "startLiveStory"
 }
 
-func (t *StartLiveStory) MarshalJSON() ([]byte, error) {
+func (t StartLiveStory) MarshalJSON() ([]byte, error) {
 	type Alias StartLiveStory
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "startLiveStory",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -20148,18 +20148,18 @@ type StartScheduledVideoChat struct {
 	GroupCallId int32 `json:"group_call_id"`
 }
 
-func (t *StartScheduledVideoChat) Type() string {
+func (t StartScheduledVideoChat) Type() string {
 	return "startScheduledVideoChat"
 }
 
-func (t *StartScheduledVideoChat) MarshalJSON() ([]byte, error) {
+func (t StartScheduledVideoChat) MarshalJSON() ([]byte, error) {
 	type Alias StartScheduledVideoChat
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "startScheduledVideoChat",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -20175,18 +20175,18 @@ type StopBusinessPoll struct {
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
 }
 
-func (t *StopBusinessPoll) Type() string {
+func (t StopBusinessPoll) Type() string {
 	return "stopBusinessPoll"
 }
 
-func (t *StopBusinessPoll) MarshalJSON() ([]byte, error) {
+func (t StopBusinessPoll) MarshalJSON() ([]byte, error) {
 	type Alias StopBusinessPoll
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "stopBusinessPoll",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -20200,18 +20200,18 @@ type StopPoll struct {
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
 }
 
-func (t *StopPoll) Type() string {
+func (t StopPoll) Type() string {
 	return "stopPoll"
 }
 
-func (t *StopPoll) MarshalJSON() ([]byte, error) {
+func (t StopPoll) MarshalJSON() ([]byte, error) {
 	type Alias StopPoll
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "stopPoll",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -20223,18 +20223,18 @@ type SuggestUserBirthdate struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t *SuggestUserBirthdate) Type() string {
+func (t SuggestUserBirthdate) Type() string {
 	return "suggestUserBirthdate"
 }
 
-func (t *SuggestUserBirthdate) MarshalJSON() ([]byte, error) {
+func (t SuggestUserBirthdate) MarshalJSON() ([]byte, error) {
 	type Alias SuggestUserBirthdate
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "suggestUserBirthdate",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -20246,18 +20246,18 @@ type SuggestUserProfilePhoto struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t *SuggestUserProfilePhoto) Type() string {
+func (t SuggestUserProfilePhoto) Type() string {
 	return "suggestUserProfilePhoto"
 }
 
-func (t *SuggestUserProfilePhoto) MarshalJSON() ([]byte, error) {
+func (t SuggestUserProfilePhoto) MarshalJSON() ([]byte, error) {
 	type Alias SuggestUserProfilePhoto
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "suggestUserProfilePhoto",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -20271,18 +20271,18 @@ type SummarizeMessage struct {
 	TranslateToLanguageCode string `json:"translate_to_language_code,omitempty"`
 }
 
-func (t *SummarizeMessage) Type() string {
+func (t SummarizeMessage) Type() string {
 	return "summarizeMessage"
 }
 
-func (t *SummarizeMessage) MarshalJSON() ([]byte, error) {
+func (t SummarizeMessage) MarshalJSON() ([]byte, error) {
 	type Alias SummarizeMessage
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "summarizeMessage",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -20292,18 +20292,18 @@ type SynchronizeLanguagePack struct {
 	LanguagePackId string `json:"language_pack_id"`
 }
 
-func (t *SynchronizeLanguagePack) Type() string {
+func (t SynchronizeLanguagePack) Type() string {
 	return "synchronizeLanguagePack"
 }
 
-func (t *SynchronizeLanguagePack) MarshalJSON() ([]byte, error) {
+func (t SynchronizeLanguagePack) MarshalJSON() ([]byte, error) {
 	type Alias SynchronizeLanguagePack
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "synchronizeLanguagePack",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -20311,18 +20311,18 @@ func (t *SynchronizeLanguagePack) MarshalJSON() ([]byte, error) {
 type TerminateAllOtherSessions struct {
 }
 
-func (t *TerminateAllOtherSessions) Type() string {
+func (t TerminateAllOtherSessions) Type() string {
 	return "terminateAllOtherSessions"
 }
 
-func (t *TerminateAllOtherSessions) MarshalJSON() ([]byte, error) {
+func (t TerminateAllOtherSessions) MarshalJSON() ([]byte, error) {
 	type Alias TerminateAllOtherSessions
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "terminateAllOtherSessions",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -20332,18 +20332,18 @@ type TerminateSession struct {
 	SessionId int64 `json:"session_id,string"`
 }
 
-func (t *TerminateSession) Type() string {
+func (t TerminateSession) Type() string {
 	return "terminateSession"
 }
 
-func (t *TerminateSession) MarshalJSON() ([]byte, error) {
+func (t TerminateSession) MarshalJSON() ([]byte, error) {
 	type Alias TerminateSession
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "terminateSession",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -20353,18 +20353,18 @@ type TestCallBytes struct {
 	X []byte `json:"x"`
 }
 
-func (t *TestCallBytes) Type() string {
+func (t TestCallBytes) Type() string {
 	return "testCallBytes"
 }
 
-func (t *TestCallBytes) MarshalJSON() ([]byte, error) {
+func (t TestCallBytes) MarshalJSON() ([]byte, error) {
 	type Alias TestCallBytes
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "testCallBytes",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -20372,18 +20372,18 @@ func (t *TestCallBytes) MarshalJSON() ([]byte, error) {
 type TestCallEmpty struct {
 }
 
-func (t *TestCallEmpty) Type() string {
+func (t TestCallEmpty) Type() string {
 	return "testCallEmpty"
 }
 
-func (t *TestCallEmpty) MarshalJSON() ([]byte, error) {
+func (t TestCallEmpty) MarshalJSON() ([]byte, error) {
 	type Alias TestCallEmpty
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "testCallEmpty",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -20393,18 +20393,18 @@ type TestCallString struct {
 	X string `json:"x"`
 }
 
-func (t *TestCallString) Type() string {
+func (t TestCallString) Type() string {
 	return "testCallString"
 }
 
-func (t *TestCallString) MarshalJSON() ([]byte, error) {
+func (t TestCallString) MarshalJSON() ([]byte, error) {
 	type Alias TestCallString
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "testCallString",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -20414,18 +20414,18 @@ type TestCallVectorInt struct {
 	X []int32 `json:"x"`
 }
 
-func (t *TestCallVectorInt) Type() string {
+func (t TestCallVectorInt) Type() string {
 	return "testCallVectorInt"
 }
 
-func (t *TestCallVectorInt) MarshalJSON() ([]byte, error) {
+func (t TestCallVectorInt) MarshalJSON() ([]byte, error) {
 	type Alias TestCallVectorInt
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "testCallVectorInt",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -20435,18 +20435,18 @@ type TestCallVectorIntObject struct {
 	X []TestInt `json:"x"`
 }
 
-func (t *TestCallVectorIntObject) Type() string {
+func (t TestCallVectorIntObject) Type() string {
 	return "testCallVectorIntObject"
 }
 
-func (t *TestCallVectorIntObject) MarshalJSON() ([]byte, error) {
+func (t TestCallVectorIntObject) MarshalJSON() ([]byte, error) {
 	type Alias TestCallVectorIntObject
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "testCallVectorIntObject",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -20456,18 +20456,18 @@ type TestCallVectorString struct {
 	X []string `json:"x"`
 }
 
-func (t *TestCallVectorString) Type() string {
+func (t TestCallVectorString) Type() string {
 	return "testCallVectorString"
 }
 
-func (t *TestCallVectorString) MarshalJSON() ([]byte, error) {
+func (t TestCallVectorString) MarshalJSON() ([]byte, error) {
 	type Alias TestCallVectorString
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "testCallVectorString",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -20477,18 +20477,18 @@ type TestCallVectorStringObject struct {
 	X []TestString `json:"x"`
 }
 
-func (t *TestCallVectorStringObject) Type() string {
+func (t TestCallVectorStringObject) Type() string {
 	return "testCallVectorStringObject"
 }
 
-func (t *TestCallVectorStringObject) MarshalJSON() ([]byte, error) {
+func (t TestCallVectorStringObject) MarshalJSON() ([]byte, error) {
 	type Alias TestCallVectorStringObject
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "testCallVectorStringObject",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -20496,18 +20496,18 @@ func (t *TestCallVectorStringObject) MarshalJSON() ([]byte, error) {
 type TestGetDifference struct {
 }
 
-func (t *TestGetDifference) Type() string {
+func (t TestGetDifference) Type() string {
 	return "testGetDifference"
 }
 
-func (t *TestGetDifference) MarshalJSON() ([]byte, error) {
+func (t TestGetDifference) MarshalJSON() ([]byte, error) {
 	type Alias TestGetDifference
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "testGetDifference",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -20515,18 +20515,18 @@ func (t *TestGetDifference) MarshalJSON() ([]byte, error) {
 type TestNetwork struct {
 }
 
-func (t *TestNetwork) Type() string {
+func (t TestNetwork) Type() string {
 	return "testNetwork"
 }
 
-func (t *TestNetwork) MarshalJSON() ([]byte, error) {
+func (t TestNetwork) MarshalJSON() ([]byte, error) {
 	type Alias TestNetwork
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "testNetwork",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -20540,18 +20540,18 @@ type TestProxy struct {
 	Timeout float64 `json:"timeout"`
 }
 
-func (t *TestProxy) Type() string {
+func (t TestProxy) Type() string {
 	return "testProxy"
 }
 
-func (t *TestProxy) MarshalJSON() ([]byte, error) {
+func (t TestProxy) MarshalJSON() ([]byte, error) {
 	type Alias TestProxy
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "testProxy",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -20561,18 +20561,18 @@ type TestReturnError struct {
 	Error *Error `json:"error"`
 }
 
-func (t *TestReturnError) Type() string {
+func (t TestReturnError) Type() string {
 	return "testReturnError"
 }
 
-func (t *TestReturnError) MarshalJSON() ([]byte, error) {
+func (t TestReturnError) MarshalJSON() ([]byte, error) {
 	type Alias TestReturnError
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "testReturnError",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -20582,18 +20582,18 @@ type TestSquareInt struct {
 	X int32 `json:"x"`
 }
 
-func (t *TestSquareInt) Type() string {
+func (t TestSquareInt) Type() string {
 	return "testSquareInt"
 }
 
-func (t *TestSquareInt) MarshalJSON() ([]byte, error) {
+func (t TestSquareInt) MarshalJSON() ([]byte, error) {
 	type Alias TestSquareInt
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "testSquareInt",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -20601,18 +20601,18 @@ func (t *TestSquareInt) MarshalJSON() ([]byte, error) {
 type TestUseUpdate struct {
 }
 
-func (t *TestUseUpdate) Type() string {
+func (t TestUseUpdate) Type() string {
 	return "testUseUpdate"
 }
 
-func (t *TestUseUpdate) MarshalJSON() ([]byte, error) {
+func (t TestUseUpdate) MarshalJSON() ([]byte, error) {
 	type Alias TestUseUpdate
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "testUseUpdate",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -20622,18 +20622,18 @@ type ToggleAllDownloadsArePaused struct {
 	ArePaused bool `json:"are_paused"`
 }
 
-func (t *ToggleAllDownloadsArePaused) Type() string {
+func (t ToggleAllDownloadsArePaused) Type() string {
 	return "toggleAllDownloadsArePaused"
 }
 
-func (t *ToggleAllDownloadsArePaused) MarshalJSON() ([]byte, error) {
+func (t ToggleAllDownloadsArePaused) MarshalJSON() ([]byte, error) {
 	type Alias ToggleAllDownloadsArePaused
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "toggleAllDownloadsArePaused",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -20645,18 +20645,18 @@ type ToggleBotCanManageEmojiStatus struct {
 	CanManageEmojiStatus bool `json:"can_manage_emoji_status"`
 }
 
-func (t *ToggleBotCanManageEmojiStatus) Type() string {
+func (t ToggleBotCanManageEmojiStatus) Type() string {
 	return "toggleBotCanManageEmojiStatus"
 }
 
-func (t *ToggleBotCanManageEmojiStatus) MarshalJSON() ([]byte, error) {
+func (t ToggleBotCanManageEmojiStatus) MarshalJSON() ([]byte, error) {
 	type Alias ToggleBotCanManageEmojiStatus
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "toggleBotCanManageEmojiStatus",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -20670,18 +20670,18 @@ type ToggleBotIsAddedToAttachmentMenu struct {
 	IsAdded bool `json:"is_added"`
 }
 
-func (t *ToggleBotIsAddedToAttachmentMenu) Type() string {
+func (t ToggleBotIsAddedToAttachmentMenu) Type() string {
 	return "toggleBotIsAddedToAttachmentMenu"
 }
 
-func (t *ToggleBotIsAddedToAttachmentMenu) MarshalJSON() ([]byte, error) {
+func (t ToggleBotIsAddedToAttachmentMenu) MarshalJSON() ([]byte, error) {
 	type Alias ToggleBotIsAddedToAttachmentMenu
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "toggleBotIsAddedToAttachmentMenu",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -20695,18 +20695,18 @@ type ToggleBotUsernameIsActive struct {
 	Username string `json:"username"`
 }
 
-func (t *ToggleBotUsernameIsActive) Type() string {
+func (t ToggleBotUsernameIsActive) Type() string {
 	return "toggleBotUsernameIsActive"
 }
 
-func (t *ToggleBotUsernameIsActive) MarshalJSON() ([]byte, error) {
+func (t ToggleBotUsernameIsActive) MarshalJSON() ([]byte, error) {
 	type Alias ToggleBotUsernameIsActive
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "toggleBotUsernameIsActive",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -20718,18 +20718,18 @@ type ToggleBusinessConnectedBotChatIsPaused struct {
 	IsPaused bool `json:"is_paused"`
 }
 
-func (t *ToggleBusinessConnectedBotChatIsPaused) Type() string {
+func (t ToggleBusinessConnectedBotChatIsPaused) Type() string {
 	return "toggleBusinessConnectedBotChatIsPaused"
 }
 
-func (t *ToggleBusinessConnectedBotChatIsPaused) MarshalJSON() ([]byte, error) {
+func (t ToggleBusinessConnectedBotChatIsPaused) MarshalJSON() ([]byte, error) {
 	type Alias ToggleBusinessConnectedBotChatIsPaused
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "toggleBusinessConnectedBotChatIsPaused",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -20741,18 +20741,18 @@ type ToggleChatDefaultDisableNotification struct {
 	DefaultDisableNotification bool `json:"default_disable_notification"`
 }
 
-func (t *ToggleChatDefaultDisableNotification) Type() string {
+func (t ToggleChatDefaultDisableNotification) Type() string {
 	return "toggleChatDefaultDisableNotification"
 }
 
-func (t *ToggleChatDefaultDisableNotification) MarshalJSON() ([]byte, error) {
+func (t ToggleChatDefaultDisableNotification) MarshalJSON() ([]byte, error) {
 	type Alias ToggleChatDefaultDisableNotification
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "toggleChatDefaultDisableNotification",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -20762,18 +20762,18 @@ type ToggleChatFolderTags struct {
 	AreTagsEnabled bool `json:"are_tags_enabled"`
 }
 
-func (t *ToggleChatFolderTags) Type() string {
+func (t ToggleChatFolderTags) Type() string {
 	return "toggleChatFolderTags"
 }
 
-func (t *ToggleChatFolderTags) MarshalJSON() ([]byte, error) {
+func (t ToggleChatFolderTags) MarshalJSON() ([]byte, error) {
 	type Alias ToggleChatFolderTags
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "toggleChatFolderTags",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -20785,18 +20785,18 @@ type ToggleChatGiftNotifications struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t *ToggleChatGiftNotifications) Type() string {
+func (t ToggleChatGiftNotifications) Type() string {
 	return "toggleChatGiftNotifications"
 }
 
-func (t *ToggleChatGiftNotifications) MarshalJSON() ([]byte, error) {
+func (t ToggleChatGiftNotifications) MarshalJSON() ([]byte, error) {
 	type Alias ToggleChatGiftNotifications
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "toggleChatGiftNotifications",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -20808,18 +20808,18 @@ type ToggleChatHasProtectedContent struct {
 	HasProtectedContent bool `json:"has_protected_content"`
 }
 
-func (t *ToggleChatHasProtectedContent) Type() string {
+func (t ToggleChatHasProtectedContent) Type() string {
 	return "toggleChatHasProtectedContent"
 }
 
-func (t *ToggleChatHasProtectedContent) MarshalJSON() ([]byte, error) {
+func (t ToggleChatHasProtectedContent) MarshalJSON() ([]byte, error) {
 	type Alias ToggleChatHasProtectedContent
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "toggleChatHasProtectedContent",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -20831,18 +20831,18 @@ type ToggleChatIsMarkedAsUnread struct {
 	IsMarkedAsUnread bool `json:"is_marked_as_unread"`
 }
 
-func (t *ToggleChatIsMarkedAsUnread) Type() string {
+func (t ToggleChatIsMarkedAsUnread) Type() string {
 	return "toggleChatIsMarkedAsUnread"
 }
 
-func (t *ToggleChatIsMarkedAsUnread) MarshalJSON() ([]byte, error) {
+func (t ToggleChatIsMarkedAsUnread) MarshalJSON() ([]byte, error) {
 	type Alias ToggleChatIsMarkedAsUnread
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "toggleChatIsMarkedAsUnread",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -20856,18 +20856,18 @@ type ToggleChatIsPinned struct {
 	IsPinned bool `json:"is_pinned"`
 }
 
-func (t *ToggleChatIsPinned) Type() string {
+func (t ToggleChatIsPinned) Type() string {
 	return "toggleChatIsPinned"
 }
 
-func (t *ToggleChatIsPinned) MarshalJSON() ([]byte, error) {
+func (t ToggleChatIsPinned) MarshalJSON() ([]byte, error) {
 	type Alias ToggleChatIsPinned
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "toggleChatIsPinned",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -20879,18 +20879,18 @@ type ToggleChatIsTranslatable struct {
 	IsTranslatable bool `json:"is_translatable"`
 }
 
-func (t *ToggleChatIsTranslatable) Type() string {
+func (t ToggleChatIsTranslatable) Type() string {
 	return "toggleChatIsTranslatable"
 }
 
-func (t *ToggleChatIsTranslatable) MarshalJSON() ([]byte, error) {
+func (t ToggleChatIsTranslatable) MarshalJSON() ([]byte, error) {
 	type Alias ToggleChatIsTranslatable
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "toggleChatIsTranslatable",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -20902,18 +20902,18 @@ type ToggleChatViewAsTopics struct {
 	ViewAsTopics bool `json:"view_as_topics"`
 }
 
-func (t *ToggleChatViewAsTopics) Type() string {
+func (t ToggleChatViewAsTopics) Type() string {
 	return "toggleChatViewAsTopics"
 }
 
-func (t *ToggleChatViewAsTopics) MarshalJSON() ([]byte, error) {
+func (t ToggleChatViewAsTopics) MarshalJSON() ([]byte, error) {
 	type Alias ToggleChatViewAsTopics
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "toggleChatViewAsTopics",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -20929,18 +20929,18 @@ type ToggleDirectMessagesChatTopicCanSendUnpaidMessages struct {
 	TopicId int64 `json:"topic_id"`
 }
 
-func (t *ToggleDirectMessagesChatTopicCanSendUnpaidMessages) Type() string {
+func (t ToggleDirectMessagesChatTopicCanSendUnpaidMessages) Type() string {
 	return "toggleDirectMessagesChatTopicCanSendUnpaidMessages"
 }
 
-func (t *ToggleDirectMessagesChatTopicCanSendUnpaidMessages) MarshalJSON() ([]byte, error) {
+func (t ToggleDirectMessagesChatTopicCanSendUnpaidMessages) MarshalJSON() ([]byte, error) {
 	type Alias ToggleDirectMessagesChatTopicCanSendUnpaidMessages
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "toggleDirectMessagesChatTopicCanSendUnpaidMessages",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -20952,18 +20952,18 @@ type ToggleDownloadIsPaused struct {
 	IsPaused bool `json:"is_paused"`
 }
 
-func (t *ToggleDownloadIsPaused) Type() string {
+func (t ToggleDownloadIsPaused) Type() string {
 	return "toggleDownloadIsPaused"
 }
 
-func (t *ToggleDownloadIsPaused) MarshalJSON() ([]byte, error) {
+func (t ToggleDownloadIsPaused) MarshalJSON() ([]byte, error) {
 	type Alias ToggleDownloadIsPaused
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "toggleDownloadIsPaused",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -20977,18 +20977,18 @@ type ToggleForumTopicIsClosed struct {
 	IsClosed bool `json:"is_closed"`
 }
 
-func (t *ToggleForumTopicIsClosed) Type() string {
+func (t ToggleForumTopicIsClosed) Type() string {
 	return "toggleForumTopicIsClosed"
 }
 
-func (t *ToggleForumTopicIsClosed) MarshalJSON() ([]byte, error) {
+func (t ToggleForumTopicIsClosed) MarshalJSON() ([]byte, error) {
 	type Alias ToggleForumTopicIsClosed
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "toggleForumTopicIsClosed",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -21002,18 +21002,18 @@ type ToggleForumTopicIsPinned struct {
 	IsPinned bool `json:"is_pinned"`
 }
 
-func (t *ToggleForumTopicIsPinned) Type() string {
+func (t ToggleForumTopicIsPinned) Type() string {
 	return "toggleForumTopicIsPinned"
 }
 
-func (t *ToggleForumTopicIsPinned) MarshalJSON() ([]byte, error) {
+func (t ToggleForumTopicIsPinned) MarshalJSON() ([]byte, error) {
 	type Alias ToggleForumTopicIsPinned
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "toggleForumTopicIsPinned",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -21025,18 +21025,18 @@ type ToggleGeneralForumTopicIsHidden struct {
 	IsHidden bool `json:"is_hidden"`
 }
 
-func (t *ToggleGeneralForumTopicIsHidden) Type() string {
+func (t ToggleGeneralForumTopicIsHidden) Type() string {
 	return "toggleGeneralForumTopicIsHidden"
 }
 
-func (t *ToggleGeneralForumTopicIsHidden) MarshalJSON() ([]byte, error) {
+func (t ToggleGeneralForumTopicIsHidden) MarshalJSON() ([]byte, error) {
 	type Alias ToggleGeneralForumTopicIsHidden
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "toggleGeneralForumTopicIsHidden",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -21048,18 +21048,18 @@ type ToggleGiftIsSaved struct {
 	ReceivedGiftId string `json:"received_gift_id"`
 }
 
-func (t *ToggleGiftIsSaved) Type() string {
+func (t ToggleGiftIsSaved) Type() string {
 	return "toggleGiftIsSaved"
 }
 
-func (t *ToggleGiftIsSaved) MarshalJSON() ([]byte, error) {
+func (t ToggleGiftIsSaved) MarshalJSON() ([]byte, error) {
 	type Alias ToggleGiftIsSaved
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "toggleGiftIsSaved",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -21071,18 +21071,18 @@ type ToggleGroupCallAreMessagesAllowed struct {
 	GroupCallId int32 `json:"group_call_id"`
 }
 
-func (t *ToggleGroupCallAreMessagesAllowed) Type() string {
+func (t ToggleGroupCallAreMessagesAllowed) Type() string {
 	return "toggleGroupCallAreMessagesAllowed"
 }
 
-func (t *ToggleGroupCallAreMessagesAllowed) MarshalJSON() ([]byte, error) {
+func (t ToggleGroupCallAreMessagesAllowed) MarshalJSON() ([]byte, error) {
 	type Alias ToggleGroupCallAreMessagesAllowed
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "toggleGroupCallAreMessagesAllowed",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -21094,18 +21094,18 @@ type ToggleGroupCallIsMyVideoEnabled struct {
 	IsMyVideoEnabled bool `json:"is_my_video_enabled"`
 }
 
-func (t *ToggleGroupCallIsMyVideoEnabled) Type() string {
+func (t ToggleGroupCallIsMyVideoEnabled) Type() string {
 	return "toggleGroupCallIsMyVideoEnabled"
 }
 
-func (t *ToggleGroupCallIsMyVideoEnabled) MarshalJSON() ([]byte, error) {
+func (t ToggleGroupCallIsMyVideoEnabled) MarshalJSON() ([]byte, error) {
 	type Alias ToggleGroupCallIsMyVideoEnabled
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "toggleGroupCallIsMyVideoEnabled",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -21117,18 +21117,18 @@ type ToggleGroupCallIsMyVideoPaused struct {
 	IsMyVideoPaused bool `json:"is_my_video_paused"`
 }
 
-func (t *ToggleGroupCallIsMyVideoPaused) Type() string {
+func (t ToggleGroupCallIsMyVideoPaused) Type() string {
 	return "toggleGroupCallIsMyVideoPaused"
 }
 
-func (t *ToggleGroupCallIsMyVideoPaused) MarshalJSON() ([]byte, error) {
+func (t ToggleGroupCallIsMyVideoPaused) MarshalJSON() ([]byte, error) {
 	type Alias ToggleGroupCallIsMyVideoPaused
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "toggleGroupCallIsMyVideoPaused",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -21142,18 +21142,18 @@ type ToggleGroupCallParticipantIsHandRaised struct {
 	ParticipantId MessageSender `json:"participant_id"`
 }
 
-func (t *ToggleGroupCallParticipantIsHandRaised) Type() string {
+func (t ToggleGroupCallParticipantIsHandRaised) Type() string {
 	return "toggleGroupCallParticipantIsHandRaised"
 }
 
-func (t *ToggleGroupCallParticipantIsHandRaised) MarshalJSON() ([]byte, error) {
+func (t ToggleGroupCallParticipantIsHandRaised) MarshalJSON() ([]byte, error) {
 	type Alias ToggleGroupCallParticipantIsHandRaised
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "toggleGroupCallParticipantIsHandRaised",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -21167,18 +21167,18 @@ type ToggleGroupCallParticipantIsMuted struct {
 	ParticipantId MessageSender `json:"participant_id"`
 }
 
-func (t *ToggleGroupCallParticipantIsMuted) Type() string {
+func (t ToggleGroupCallParticipantIsMuted) Type() string {
 	return "toggleGroupCallParticipantIsMuted"
 }
 
-func (t *ToggleGroupCallParticipantIsMuted) MarshalJSON() ([]byte, error) {
+func (t ToggleGroupCallParticipantIsMuted) MarshalJSON() ([]byte, error) {
 	type Alias ToggleGroupCallParticipantIsMuted
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "toggleGroupCallParticipantIsMuted",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -21190,18 +21190,18 @@ type ToggleGroupCallScreenSharingIsPaused struct {
 	IsPaused bool `json:"is_paused"`
 }
 
-func (t *ToggleGroupCallScreenSharingIsPaused) Type() string {
+func (t ToggleGroupCallScreenSharingIsPaused) Type() string {
 	return "toggleGroupCallScreenSharingIsPaused"
 }
 
-func (t *ToggleGroupCallScreenSharingIsPaused) MarshalJSON() ([]byte, error) {
+func (t ToggleGroupCallScreenSharingIsPaused) MarshalJSON() ([]byte, error) {
 	type Alias ToggleGroupCallScreenSharingIsPaused
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "toggleGroupCallScreenSharingIsPaused",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -21211,18 +21211,18 @@ type ToggleHasSponsoredMessagesEnabled struct {
 	HasSponsoredMessagesEnabled bool `json:"has_sponsored_messages_enabled"`
 }
 
-func (t *ToggleHasSponsoredMessagesEnabled) Type() string {
+func (t ToggleHasSponsoredMessagesEnabled) Type() string {
 	return "toggleHasSponsoredMessagesEnabled"
 }
 
-func (t *ToggleHasSponsoredMessagesEnabled) MarshalJSON() ([]byte, error) {
+func (t ToggleHasSponsoredMessagesEnabled) MarshalJSON() ([]byte, error) {
 	type Alias ToggleHasSponsoredMessagesEnabled
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "toggleHasSponsoredMessagesEnabled",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -21234,18 +21234,18 @@ type ToggleSavedMessagesTopicIsPinned struct {
 	SavedMessagesTopicId int64 `json:"saved_messages_topic_id"`
 }
 
-func (t *ToggleSavedMessagesTopicIsPinned) Type() string {
+func (t ToggleSavedMessagesTopicIsPinned) Type() string {
 	return "toggleSavedMessagesTopicIsPinned"
 }
 
-func (t *ToggleSavedMessagesTopicIsPinned) MarshalJSON() ([]byte, error) {
+func (t ToggleSavedMessagesTopicIsPinned) MarshalJSON() ([]byte, error) {
 	type Alias ToggleSavedMessagesTopicIsPinned
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "toggleSavedMessagesTopicIsPinned",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -21257,18 +21257,18 @@ type ToggleSessionCanAcceptCalls struct {
 	SessionId int64 `json:"session_id,string"`
 }
 
-func (t *ToggleSessionCanAcceptCalls) Type() string {
+func (t ToggleSessionCanAcceptCalls) Type() string {
 	return "toggleSessionCanAcceptCalls"
 }
 
-func (t *ToggleSessionCanAcceptCalls) MarshalJSON() ([]byte, error) {
+func (t ToggleSessionCanAcceptCalls) MarshalJSON() ([]byte, error) {
 	type Alias ToggleSessionCanAcceptCalls
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "toggleSessionCanAcceptCalls",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -21280,18 +21280,18 @@ type ToggleSessionCanAcceptSecretChats struct {
 	SessionId int64 `json:"session_id,string"`
 }
 
-func (t *ToggleSessionCanAcceptSecretChats) Type() string {
+func (t ToggleSessionCanAcceptSecretChats) Type() string {
 	return "toggleSessionCanAcceptSecretChats"
 }
 
-func (t *ToggleSessionCanAcceptSecretChats) MarshalJSON() ([]byte, error) {
+func (t ToggleSessionCanAcceptSecretChats) MarshalJSON() ([]byte, error) {
 	type Alias ToggleSessionCanAcceptSecretChats
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "toggleSessionCanAcceptSecretChats",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -21305,18 +21305,18 @@ type ToggleStoryIsPostedToChatPage struct {
 	StoryPosterChatId int64 `json:"story_poster_chat_id"`
 }
 
-func (t *ToggleStoryIsPostedToChatPage) Type() string {
+func (t ToggleStoryIsPostedToChatPage) Type() string {
 	return "toggleStoryIsPostedToChatPage"
 }
 
-func (t *ToggleStoryIsPostedToChatPage) MarshalJSON() ([]byte, error) {
+func (t ToggleStoryIsPostedToChatPage) MarshalJSON() ([]byte, error) {
 	type Alias ToggleStoryIsPostedToChatPage
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "toggleStoryIsPostedToChatPage",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -21328,18 +21328,18 @@ type ToggleSupergroupCanHaveSponsoredMessages struct {
 	SupergroupId int64 `json:"supergroup_id"`
 }
 
-func (t *ToggleSupergroupCanHaveSponsoredMessages) Type() string {
+func (t ToggleSupergroupCanHaveSponsoredMessages) Type() string {
 	return "toggleSupergroupCanHaveSponsoredMessages"
 }
 
-func (t *ToggleSupergroupCanHaveSponsoredMessages) MarshalJSON() ([]byte, error) {
+func (t ToggleSupergroupCanHaveSponsoredMessages) MarshalJSON() ([]byte, error) {
 	type Alias ToggleSupergroupCanHaveSponsoredMessages
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "toggleSupergroupCanHaveSponsoredMessages",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -21351,18 +21351,18 @@ type ToggleSupergroupHasAggressiveAntiSpamEnabled struct {
 	SupergroupId int64 `json:"supergroup_id"`
 }
 
-func (t *ToggleSupergroupHasAggressiveAntiSpamEnabled) Type() string {
+func (t ToggleSupergroupHasAggressiveAntiSpamEnabled) Type() string {
 	return "toggleSupergroupHasAggressiveAntiSpamEnabled"
 }
 
-func (t *ToggleSupergroupHasAggressiveAntiSpamEnabled) MarshalJSON() ([]byte, error) {
+func (t ToggleSupergroupHasAggressiveAntiSpamEnabled) MarshalJSON() ([]byte, error) {
 	type Alias ToggleSupergroupHasAggressiveAntiSpamEnabled
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "toggleSupergroupHasAggressiveAntiSpamEnabled",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -21374,18 +21374,18 @@ type ToggleSupergroupHasAutomaticTranslation struct {
 	SupergroupId int64 `json:"supergroup_id"`
 }
 
-func (t *ToggleSupergroupHasAutomaticTranslation) Type() string {
+func (t ToggleSupergroupHasAutomaticTranslation) Type() string {
 	return "toggleSupergroupHasAutomaticTranslation"
 }
 
-func (t *ToggleSupergroupHasAutomaticTranslation) MarshalJSON() ([]byte, error) {
+func (t ToggleSupergroupHasAutomaticTranslation) MarshalJSON() ([]byte, error) {
 	type Alias ToggleSupergroupHasAutomaticTranslation
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "toggleSupergroupHasAutomaticTranslation",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -21397,18 +21397,18 @@ type ToggleSupergroupHasHiddenMembers struct {
 	SupergroupId int64 `json:"supergroup_id"`
 }
 
-func (t *ToggleSupergroupHasHiddenMembers) Type() string {
+func (t ToggleSupergroupHasHiddenMembers) Type() string {
 	return "toggleSupergroupHasHiddenMembers"
 }
 
-func (t *ToggleSupergroupHasHiddenMembers) MarshalJSON() ([]byte, error) {
+func (t ToggleSupergroupHasHiddenMembers) MarshalJSON() ([]byte, error) {
 	type Alias ToggleSupergroupHasHiddenMembers
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "toggleSupergroupHasHiddenMembers",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -21420,18 +21420,18 @@ type ToggleSupergroupIsAllHistoryAvailable struct {
 	SupergroupId int64 `json:"supergroup_id"`
 }
 
-func (t *ToggleSupergroupIsAllHistoryAvailable) Type() string {
+func (t ToggleSupergroupIsAllHistoryAvailable) Type() string {
 	return "toggleSupergroupIsAllHistoryAvailable"
 }
 
-func (t *ToggleSupergroupIsAllHistoryAvailable) MarshalJSON() ([]byte, error) {
+func (t ToggleSupergroupIsAllHistoryAvailable) MarshalJSON() ([]byte, error) {
 	type Alias ToggleSupergroupIsAllHistoryAvailable
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "toggleSupergroupIsAllHistoryAvailable",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -21441,18 +21441,18 @@ type ToggleSupergroupIsBroadcastGroup struct {
 	SupergroupId int64 `json:"supergroup_id"`
 }
 
-func (t *ToggleSupergroupIsBroadcastGroup) Type() string {
+func (t ToggleSupergroupIsBroadcastGroup) Type() string {
 	return "toggleSupergroupIsBroadcastGroup"
 }
 
-func (t *ToggleSupergroupIsBroadcastGroup) MarshalJSON() ([]byte, error) {
+func (t ToggleSupergroupIsBroadcastGroup) MarshalJSON() ([]byte, error) {
 	type Alias ToggleSupergroupIsBroadcastGroup
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "toggleSupergroupIsBroadcastGroup",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -21466,18 +21466,18 @@ type ToggleSupergroupIsForum struct {
 	SupergroupId int64 `json:"supergroup_id"`
 }
 
-func (t *ToggleSupergroupIsForum) Type() string {
+func (t ToggleSupergroupIsForum) Type() string {
 	return "toggleSupergroupIsForum"
 }
 
-func (t *ToggleSupergroupIsForum) MarshalJSON() ([]byte, error) {
+func (t ToggleSupergroupIsForum) MarshalJSON() ([]byte, error) {
 	type Alias ToggleSupergroupIsForum
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "toggleSupergroupIsForum",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -21489,18 +21489,18 @@ type ToggleSupergroupJoinByRequest struct {
 	SupergroupId int64 `json:"supergroup_id"`
 }
 
-func (t *ToggleSupergroupJoinByRequest) Type() string {
+func (t ToggleSupergroupJoinByRequest) Type() string {
 	return "toggleSupergroupJoinByRequest"
 }
 
-func (t *ToggleSupergroupJoinByRequest) MarshalJSON() ([]byte, error) {
+func (t ToggleSupergroupJoinByRequest) MarshalJSON() ([]byte, error) {
 	type Alias ToggleSupergroupJoinByRequest
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "toggleSupergroupJoinByRequest",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -21512,18 +21512,18 @@ type ToggleSupergroupJoinToSendMessages struct {
 	SupergroupId int64 `json:"supergroup_id"`
 }
 
-func (t *ToggleSupergroupJoinToSendMessages) Type() string {
+func (t ToggleSupergroupJoinToSendMessages) Type() string {
 	return "toggleSupergroupJoinToSendMessages"
 }
 
-func (t *ToggleSupergroupJoinToSendMessages) MarshalJSON() ([]byte, error) {
+func (t ToggleSupergroupJoinToSendMessages) MarshalJSON() ([]byte, error) {
 	type Alias ToggleSupergroupJoinToSendMessages
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "toggleSupergroupJoinToSendMessages",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -21537,18 +21537,18 @@ type ToggleSupergroupSignMessages struct {
 	SupergroupId int64 `json:"supergroup_id"`
 }
 
-func (t *ToggleSupergroupSignMessages) Type() string {
+func (t ToggleSupergroupSignMessages) Type() string {
 	return "toggleSupergroupSignMessages"
 }
 
-func (t *ToggleSupergroupSignMessages) MarshalJSON() ([]byte, error) {
+func (t ToggleSupergroupSignMessages) MarshalJSON() ([]byte, error) {
 	type Alias ToggleSupergroupSignMessages
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "toggleSupergroupSignMessages",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -21562,18 +21562,18 @@ type ToggleSupergroupUsernameIsActive struct {
 	Username string `json:"username"`
 }
 
-func (t *ToggleSupergroupUsernameIsActive) Type() string {
+func (t ToggleSupergroupUsernameIsActive) Type() string {
 	return "toggleSupergroupUsernameIsActive"
 }
 
-func (t *ToggleSupergroupUsernameIsActive) MarshalJSON() ([]byte, error) {
+func (t ToggleSupergroupUsernameIsActive) MarshalJSON() ([]byte, error) {
 	type Alias ToggleSupergroupUsernameIsActive
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "toggleSupergroupUsernameIsActive",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -21585,18 +21585,18 @@ type ToggleUsernameIsActive struct {
 	Username string `json:"username"`
 }
 
-func (t *ToggleUsernameIsActive) Type() string {
+func (t ToggleUsernameIsActive) Type() string {
 	return "toggleUsernameIsActive"
 }
 
-func (t *ToggleUsernameIsActive) MarshalJSON() ([]byte, error) {
+func (t ToggleUsernameIsActive) MarshalJSON() ([]byte, error) {
 	type Alias ToggleUsernameIsActive
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "toggleUsernameIsActive",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -21608,18 +21608,18 @@ type ToggleVideoChatEnabledStartNotification struct {
 	GroupCallId int32 `json:"group_call_id"`
 }
 
-func (t *ToggleVideoChatEnabledStartNotification) Type() string {
+func (t ToggleVideoChatEnabledStartNotification) Type() string {
 	return "toggleVideoChatEnabledStartNotification"
 }
 
-func (t *ToggleVideoChatEnabledStartNotification) MarshalJSON() ([]byte, error) {
+func (t ToggleVideoChatEnabledStartNotification) MarshalJSON() ([]byte, error) {
 	type Alias ToggleVideoChatEnabledStartNotification
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "toggleVideoChatEnabledStartNotification",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -21631,18 +21631,18 @@ type ToggleVideoChatMuteNewParticipants struct {
 	MuteNewParticipants bool `json:"mute_new_participants"`
 }
 
-func (t *ToggleVideoChatMuteNewParticipants) Type() string {
+func (t ToggleVideoChatMuteNewParticipants) Type() string {
 	return "toggleVideoChatMuteNewParticipants"
 }
 
-func (t *ToggleVideoChatMuteNewParticipants) MarshalJSON() ([]byte, error) {
+func (t ToggleVideoChatMuteNewParticipants) MarshalJSON() ([]byte, error) {
 	type Alias ToggleVideoChatMuteNewParticipants
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "toggleVideoChatMuteNewParticipants",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -21654,18 +21654,18 @@ type TransferBusinessAccountStars struct {
 	StarCount int64 `json:"star_count"`
 }
 
-func (t *TransferBusinessAccountStars) Type() string {
+func (t TransferBusinessAccountStars) Type() string {
 	return "transferBusinessAccountStars"
 }
 
-func (t *TransferBusinessAccountStars) MarshalJSON() ([]byte, error) {
+func (t TransferBusinessAccountStars) MarshalJSON() ([]byte, error) {
 	type Alias TransferBusinessAccountStars
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "transferBusinessAccountStars",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -21679,18 +21679,18 @@ type TransferChatOwnership struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t *TransferChatOwnership) Type() string {
+func (t TransferChatOwnership) Type() string {
 	return "transferChatOwnership"
 }
 
-func (t *TransferChatOwnership) MarshalJSON() ([]byte, error) {
+func (t TransferChatOwnership) MarshalJSON() ([]byte, error) {
 	type Alias TransferChatOwnership
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "transferChatOwnership",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -21706,18 +21706,18 @@ type TransferGift struct {
 	StarCount int64 `json:"star_count"`
 }
 
-func (t *TransferGift) Type() string {
+func (t TransferGift) Type() string {
 	return "transferGift"
 }
 
-func (t *TransferGift) MarshalJSON() ([]byte, error) {
+func (t TransferGift) MarshalJSON() ([]byte, error) {
 	type Alias TransferGift
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "transferGift",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -21731,18 +21731,18 @@ type TranslateMessageText struct {
 	ToLanguageCode string `json:"to_language_code"`
 }
 
-func (t *TranslateMessageText) Type() string {
+func (t TranslateMessageText) Type() string {
 	return "translateMessageText"
 }
 
-func (t *TranslateMessageText) MarshalJSON() ([]byte, error) {
+func (t TranslateMessageText) MarshalJSON() ([]byte, error) {
 	type Alias TranslateMessageText
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "translateMessageText",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -21754,18 +21754,18 @@ type TranslateText struct {
 	ToLanguageCode string `json:"to_language_code"`
 }
 
-func (t *TranslateText) Type() string {
+func (t TranslateText) Type() string {
 	return "translateText"
 }
 
-func (t *TranslateText) MarshalJSON() ([]byte, error) {
+func (t TranslateText) MarshalJSON() ([]byte, error) {
 	type Alias TranslateText
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "translateText",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -21775,18 +21775,18 @@ type UnpinAllChatMessages struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t *UnpinAllChatMessages) Type() string {
+func (t UnpinAllChatMessages) Type() string {
 	return "unpinAllChatMessages"
 }
 
-func (t *UnpinAllChatMessages) MarshalJSON() ([]byte, error) {
+func (t UnpinAllChatMessages) MarshalJSON() ([]byte, error) {
 	type Alias UnpinAllChatMessages
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "unpinAllChatMessages",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -21798,18 +21798,18 @@ type UnpinAllDirectMessagesChatTopicMessages struct {
 	TopicId int64 `json:"topic_id"`
 }
 
-func (t *UnpinAllDirectMessagesChatTopicMessages) Type() string {
+func (t UnpinAllDirectMessagesChatTopicMessages) Type() string {
 	return "unpinAllDirectMessagesChatTopicMessages"
 }
 
-func (t *UnpinAllDirectMessagesChatTopicMessages) MarshalJSON() ([]byte, error) {
+func (t UnpinAllDirectMessagesChatTopicMessages) MarshalJSON() ([]byte, error) {
 	type Alias UnpinAllDirectMessagesChatTopicMessages
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "unpinAllDirectMessagesChatTopicMessages",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -21821,18 +21821,18 @@ type UnpinAllForumTopicMessages struct {
 	ForumTopicId int32 `json:"forum_topic_id"`
 }
 
-func (t *UnpinAllForumTopicMessages) Type() string {
+func (t UnpinAllForumTopicMessages) Type() string {
 	return "unpinAllForumTopicMessages"
 }
 
-func (t *UnpinAllForumTopicMessages) MarshalJSON() ([]byte, error) {
+func (t UnpinAllForumTopicMessages) MarshalJSON() ([]byte, error) {
 	type Alias UnpinAllForumTopicMessages
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "unpinAllForumTopicMessages",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -21844,18 +21844,18 @@ type UnpinChatMessage struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t *UnpinChatMessage) Type() string {
+func (t UnpinChatMessage) Type() string {
 	return "unpinChatMessage"
 }
 
-func (t *UnpinChatMessage) MarshalJSON() ([]byte, error) {
+func (t UnpinChatMessage) MarshalJSON() ([]byte, error) {
 	type Alias UnpinChatMessage
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "unpinChatMessage",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -21865,18 +21865,18 @@ type UpgradeBasicGroupChatToSupergroupChat struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t *UpgradeBasicGroupChatToSupergroupChat) Type() string {
+func (t UpgradeBasicGroupChatToSupergroupChat) Type() string {
 	return "upgradeBasicGroupChatToSupergroupChat"
 }
 
-func (t *UpgradeBasicGroupChatToSupergroupChat) MarshalJSON() ([]byte, error) {
+func (t UpgradeBasicGroupChatToSupergroupChat) MarshalJSON() ([]byte, error) {
 	type Alias UpgradeBasicGroupChatToSupergroupChat
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "upgradeBasicGroupChatToSupergroupChat",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -21892,18 +21892,18 @@ type UpgradeGift struct {
 	StarCount int64 `json:"star_count"`
 }
 
-func (t *UpgradeGift) Type() string {
+func (t UpgradeGift) Type() string {
 	return "upgradeGift"
 }
 
-func (t *UpgradeGift) MarshalJSON() ([]byte, error) {
+func (t UpgradeGift) MarshalJSON() ([]byte, error) {
 	type Alias UpgradeGift
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "upgradeGift",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -21917,18 +21917,18 @@ type UploadStickerFile struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t *UploadStickerFile) Type() string {
+func (t UploadStickerFile) Type() string {
 	return "uploadStickerFile"
 }
 
-func (t *UploadStickerFile) MarshalJSON() ([]byte, error) {
+func (t UploadStickerFile) MarshalJSON() ([]byte, error) {
 	type Alias UploadStickerFile
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "uploadStickerFile",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -21942,18 +21942,18 @@ type ValidateOrderInfo struct {
 	OrderInfo *OrderInfo `json:"order_info,omitempty"`
 }
 
-func (t *ValidateOrderInfo) Type() string {
+func (t ValidateOrderInfo) Type() string {
 	return "validateOrderInfo"
 }
 
-func (t *ValidateOrderInfo) MarshalJSON() ([]byte, error) {
+func (t ValidateOrderInfo) MarshalJSON() ([]byte, error) {
 	type Alias ValidateOrderInfo
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "validateOrderInfo",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -21969,18 +21969,18 @@ type ViewMessages struct {
 	Source MessageSource `json:"source,omitempty"`
 }
 
-func (t *ViewMessages) Type() string {
+func (t ViewMessages) Type() string {
 	return "viewMessages"
 }
 
-func (t *ViewMessages) MarshalJSON() ([]byte, error) {
+func (t ViewMessages) MarshalJSON() ([]byte, error) {
 	type Alias ViewMessages
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "viewMessages",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -21990,18 +21990,18 @@ type ViewPremiumFeature struct {
 	Feature PremiumFeature `json:"feature"`
 }
 
-func (t *ViewPremiumFeature) Type() string {
+func (t ViewPremiumFeature) Type() string {
 	return "viewPremiumFeature"
 }
 
-func (t *ViewPremiumFeature) MarshalJSON() ([]byte, error) {
+func (t ViewPremiumFeature) MarshalJSON() ([]byte, error) {
 	type Alias ViewPremiumFeature
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "viewPremiumFeature",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -22011,18 +22011,18 @@ type ViewSponsoredChat struct {
 	SponsoredChatUniqueId int64 `json:"sponsored_chat_unique_id"`
 }
 
-func (t *ViewSponsoredChat) Type() string {
+func (t ViewSponsoredChat) Type() string {
 	return "viewSponsoredChat"
 }
 
-func (t *ViewSponsoredChat) MarshalJSON() ([]byte, error) {
+func (t ViewSponsoredChat) MarshalJSON() ([]byte, error) {
 	type Alias ViewSponsoredChat
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "viewSponsoredChat",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -22032,18 +22032,18 @@ type ViewTrendingStickerSets struct {
 	StickerSetIds Int64Slice `json:"sticker_set_ids"`
 }
 
-func (t *ViewTrendingStickerSets) Type() string {
+func (t ViewTrendingStickerSets) Type() string {
 	return "viewTrendingStickerSets"
 }
 
-func (t *ViewTrendingStickerSets) MarshalJSON() ([]byte, error) {
+func (t ViewTrendingStickerSets) MarshalJSON() ([]byte, error) {
 	type Alias ViewTrendingStickerSets
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "viewTrendingStickerSets",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -22053,18 +22053,18 @@ type ViewVideoMessageAdvertisement struct {
 	AdvertisementUniqueId int64 `json:"advertisement_unique_id"`
 }
 
-func (t *ViewVideoMessageAdvertisement) Type() string {
+func (t ViewVideoMessageAdvertisement) Type() string {
 	return "viewVideoMessageAdvertisement"
 }
 
-func (t *ViewVideoMessageAdvertisement) MarshalJSON() ([]byte, error) {
+func (t ViewVideoMessageAdvertisement) MarshalJSON() ([]byte, error) {
 	type Alias ViewVideoMessageAdvertisement
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "viewVideoMessageAdvertisement",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
 
@@ -22078,17 +22078,17 @@ type WriteGeneratedFilePart struct {
 	Offset int64 `json:"offset"`
 }
 
-func (t *WriteGeneratedFilePart) Type() string {
+func (t WriteGeneratedFilePart) Type() string {
 	return "writeGeneratedFilePart"
 }
 
-func (t *WriteGeneratedFilePart) MarshalJSON() ([]byte, error) {
+func (t WriteGeneratedFilePart) MarshalJSON() ([]byte, error) {
 	type Alias WriteGeneratedFilePart
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
 		TypeStr: "writeGeneratedFilePart",
-		Alias:   (*Alias)(t),
+		Alias:   (*Alias)(&t),
 	})
 }
