@@ -46,7 +46,6 @@ func main() {
 			return err
 		}
 
-		//action.Start() // Start sending action in loop
 		//defer action.Stop()
 		action.Send() // Send once
 
@@ -254,12 +253,11 @@ func main() {
 		return nil
 	}))
 
-	dispatcher.Start()
-	log.Println("Starting bot...")
-	if err := bot.Start(); err != nil {
+	err = dispatcher.Start()
+	if err != nil {
 		log.Fatalf("Failed to start bot: %v", err)
 	}
-
+	
 	me := bot.Me()
 	if me != nil {
 		username := ""

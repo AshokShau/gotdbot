@@ -154,16 +154,16 @@ func NewClient(apiID int32, apiHash, botToken string, config *ClientConfig) (*Cl
 		authErrorChan: make(chan error, 1),
 	}
 
-	c.AddHandler("updateAuthorizationState", c.authHandler, nil, 0)
-	c.AddHandler("updateUser", c.userHandler, nil, 0)
-	c.AddHandler("updateConnectionState", c.connectionStateHandler, nil, 0)
-	c.AddHandler("updateMessageSendSucceeded", c.messageSendSucceededHandler, nil, 0)
-	c.AddHandler("updateMessageSendFailed", c.messageSendFailedHandler, nil, 0)
+	c.AddHandler("updateAuthorizationState", c.authHandler, 0)
+	c.AddHandler("updateUser", c.userHandler, 0)
+	c.AddHandler("updateConnectionState", c.connectionStateHandler, 0)
+	c.AddHandler("updateMessageSendSucceeded", c.messageSendSucceededHandler, 0)
+	c.AddHandler("updateMessageSendFailed", c.messageSendFailedHandler, 0)
 	return c, nil
 }
 
-// Start initializes the client and blocks until authorization is successful or fails.
-func (c *Client) Start() error {
+// Connect initializes the client and blocks until authorization is successful or fails.
+func (c *Client) Connect() error {
 	c.wg.Add(1)
 	go c.receiver()
 
@@ -270,9 +270,6 @@ func (c *Client) handleUpdate(update TlObject) {
 
 	// Initializers
 	for _, h := range c.initializers {
-		if h.Filter != nil && !h.Filter(update) {
-			continue
-		}
 		if err := h.Func(c, update); errors.Is(err, StopHandlers) {
 			return
 		}
@@ -281,9 +278,6 @@ func (c *Client) handleUpdate(update TlObject) {
 	// Main Handlers
 	if typeHandlers, ok := c.handlers[update.Type()]; ok {
 		for _, h := range typeHandlers {
-			if h.Filter != nil && !h.Filter(update) {
-				continue
-			}
 			if err := h.Func(c, update); errors.Is(err, StopHandlers) {
 				return
 			}
@@ -292,9 +286,6 @@ func (c *Client) handleUpdate(update TlObject) {
 
 	// Finalizers
 	for _, h := range c.finalizers {
-		if h.Filter != nil && !h.Filter(update) {
-			continue
-		}
 		if err := h.Func(c, update); errors.Is(err, StopHandlers) {
 			return
 		}
@@ -502,11 +493,11 @@ func (c *Client) Send(req TlObject) (TlObject, error) {
 }
 
 // AddHandler registers a handler for updates.
-func (c *Client) AddHandler(updateType string, fn HandlerFunc, filter FilterFunc, position int) {
+func (c *Client) AddHandler(updateType string, fn HandlerFunc, position int) {
 	c.hMu.Lock()
 	defer c.hMu.Unlock()
 
-	h := &Handler{Func: fn, UpdateType: updateType, Filter: filter, Position: position}
+	h := &Handler{Func: fn, UpdateType: updateType, Position: position}
 
 	if updateType == "initializer" {
 		c.initializers = append(c.initializers, h)

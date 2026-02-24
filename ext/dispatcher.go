@@ -134,10 +134,12 @@ func (d *Dispatcher) ProcessUpdate(update gotdbot.TlObject) {
 
 // Start registers the dispatcher with the client to receive updates.
 // It adds itself as an "initializer" to the client, which ensures it sees all updates.
-func (d *Dispatcher) Start() {
+func (d *Dispatcher) Start() error {
 	// The client's AddHandler for "initializer" expects a HandlerFunc and FilterFunc.
 	d.Client.AddHandler("initializer", func(c *gotdbot.Client, u gotdbot.TlObject) error {
 		d.ProcessUpdate(u)
 		return nil
-	}, nil, 0)
+	}, 0)
+
+	return d.Client.Connect()
 }

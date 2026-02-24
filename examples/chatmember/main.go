@@ -29,10 +29,6 @@ func main() {
 	// Create Dispatcher
 	dispatcher := ext.NewDispatcher(bot)
 	log.Println("Starting bot...")
-	if err := bot.Start(); err != nil {
-		log.Fatalf("Failed to start bot: %v", err)
-	}
-
 	// Register the UpdateChatMember handler
 	// This will trigger on any change in chat/user membership (join, leave, promote, demote, etc.)
 	dispatcher.AddHandler(handlers.NewUpdateChatMember(nil, func(ctx *ext.Context) error {
@@ -106,7 +102,10 @@ func main() {
 		return nil
 	}))
 
-	dispatcher.Start()
+	err = dispatcher.Start()
+	if err != nil {
+		log.Fatalf("Failed to start bot: %v", err)
+	}
 	bot.Idle()
 }
 

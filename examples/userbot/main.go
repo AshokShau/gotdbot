@@ -134,12 +134,11 @@ func main() {
 		return err
 	}))
 
-	dispatcher.Start()
-	log.Println("Starting userbot...")
-	if err := bot.Start(); err != nil {
+	err = dispatcher.Start()
+	if err != nil {
 		log.Fatalf("Failed to start bot: %v", err)
 	}
-
+	
 	me := bot.Me()
 	if me != nil {
 		fmt.Printf("Current user: %s (ID: %d)\n", me.FirstName, me.Id)

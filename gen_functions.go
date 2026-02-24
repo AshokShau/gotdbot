@@ -8930,7 +8930,7 @@ type GetMainWebApp struct {
 	ChatId int64 `json:"chat_id"`
 	// Parameters to use to open the Web App
 	Parameters *WebAppOpenParameters `json:"parameters"`
-	// Start parameter from internalLinkTypeMainWebApp
+	// Connect parameter from internalLinkTypeMainWebApp
 	StartParameter string `json:"start_parameter"`
 }
 
@@ -12052,7 +12052,7 @@ type GetWebAppLinkUrl struct {
 	ChatId int64 `json:"chat_id"`
 	// Parameters to use to open the Web App
 	Parameters *WebAppOpenParameters `json:"parameters"`
-	// Start parameter from internalLinkTypeWebApp
+	// Connect parameter from internalLinkTypeWebApp
 	StartParameter string `json:"start_parameter"`
 	// Short name of the Web App
 	WebAppShortName string `json:"web_app_short_name"`

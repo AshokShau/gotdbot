@@ -101,13 +101,10 @@ func main() {
 	dispatcher.AddHandler(handlers.NewUpdateFile(nil, progressHandler))
 
 	log.Println("Starting bot...")
-	dispatcher.Start()
-
-	// Start bot
-	if err := bot.Start(); err != nil {
+	err = dispatcher.Start()
+	if err != nil {
 		log.Fatalf("Failed to start bot: %v", err)
 	}
-
 	bot.Idle()
 }
 

@@ -24,8 +24,7 @@ func main() {
 		panic(err)
 	}
 
-	gotdbot.SetTdlibLogVerbosityLevel(2)
-
+	gotdbot.SetTdlibLogVerbosityLevel(1)
 	dispatcher := ext.NewDispatcher(bot)
 
 	var startTime = time.Now()
@@ -100,14 +99,13 @@ func main() {
 		return err
 	}))
 
-	dispatcher.AddHandler(handlers.NewMessage(filters.Text.And(filters.Incoming), func(ctx *ext.Context) error {
+	dispatcher.AddHandler(handlers.NewMessage(filters.Incoming, func(ctx *ext.Context) error {
 		_, err := ctx.Client.ForwardMessages(ctx.EffectiveChatId, ctx.EffectiveChatId, []int64{ctx.EffectiveMessage.Id}, &gotdbot.ForwardMessagesOpts{SendCopy: true})
 		return err
 	}))
 
-	dispatcher.Start()
-	log.Println("Starting bot...")
-	if err := bot.Start(); err != nil {
+	err = dispatcher.Start()
+	if err != nil {
 		log.Fatalf("Failed to start bot: %v", err)
 	}
 
