@@ -11,8 +11,7 @@ import (
 	"time"
 
 	"github.com/AshokShau/gotdbot"
-	"github.com/AshokShau/gotdbot/ext"
-	"github.com/AshokShau/gotdbot/ext/handlers"
+	"github.com/AshokShau/gotdbot/handlers"
 	"github.com/mdp/qrterminal/v3"
 )
 
@@ -33,10 +32,10 @@ func main() {
 	}
 
 	gotdbot.SetTdlibLogStreamEmpty()
-	dispatcher := ext.NewDispatcher(bot)
+	dispatcher := bot.Dispatcher
 
 	// Auth handler
-	dispatcher.AddHandler(handlers.NewUpdateAuthorizationState(nil, func(ctx *ext.Context) error {
+	dispatcher.AddHandler(handlers.NewUpdateAuthorizationState(nil, func(ctx *gotdbot.Context) error {
 		authState := ctx.Update.UpdateAuthorizationState.AuthorizationState
 
 		switch authState.Type() {
@@ -129,14 +128,13 @@ func main() {
 		return nil
 	}))
 
-	dispatcher.AddHandler(handlers.NewCommand("hi", func(ctx *ext.Context) error {
+	dispatcher.AddHandler(handlers.NewCommand("hi", func(ctx *gotdbot.Context) error {
 		_, err := ctx.EffectiveMessage.ReplyText(ctx.Client, "Hi, this is from gotdbot!", nil)
 		return err
 	}))
 
-	dispatcher.Start()
-	log.Println("Starting userbot...")
-	if err := bot.Start(); err != nil {
+	err = bot.Start()
+	if err != nil {
 		log.Fatalf("Failed to start bot: %v", err)
 	}
 

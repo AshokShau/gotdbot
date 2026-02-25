@@ -45,7 +45,7 @@ func generateHelpers(types []TLType, functions []TLType, classes map[string]*TLC
 			matchedCount := 0
 
 			for _, param := range fn.Params {
-				if param.IsOptional {
+				if param.IsOptional || param.Type == "Bool" {
 					continue
 				}
 
@@ -140,7 +140,7 @@ func generateHelperMethod(sb *strings.Builder, t TLType, fn TLType, matches map[
 	var callArgs []string
 
 	for _, p := range fn.Params {
-		if p.IsOptional {
+		if p.IsOptional || p.Type == "Bool" {
 			continue
 		}
 
@@ -163,7 +163,7 @@ func generateHelperMethod(sb *strings.Builder, t TLType, fn TLType, matches map[
 
 	hasOptional := false
 	for _, p := range fn.Params {
-		if p.IsOptional {
+		if p.IsOptional || p.Type == "Bool" {
 			hasOptional = true
 			break
 		}

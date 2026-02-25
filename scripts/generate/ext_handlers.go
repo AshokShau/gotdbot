@@ -19,30 +19,30 @@ func generateExtHandlers(types []TLType) []string {
 
 		structName := toCamelCase(t.Name)
 		fileName := camelToSnake(t.Name) + ".go"
-		filePath := filepath.Join("ext", "handlers", fileName)
+		filePath := filepath.Join("handlers", fileName)
 
 		var sb strings.Builder
 		sb.WriteString(header)
 		sb.WriteString("package handlers\n\n")
 		sb.WriteString("import (\n")
-		sb.WriteString("\t\"github.com/AshokShau/gotdbot/ext\"\n")
-		sb.WriteString("\t\"github.com/AshokShau/gotdbot/ext/handlers/filters\"\n")
+		sb.WriteString("\t\"github.com/AshokShau/gotdbot\"\n")
+		sb.WriteString("\t\"github.com/AshokShau/gotdbot/handlers/filters\"\n")
 		sb.WriteString(")\n\n")
 
-		fmt.Fprintf(&sb, "type %s struct {\n", structName)
-		fmt.Fprintf(&sb, "\tFilter   filters.%s\n", structName)
-		sb.WriteString("\tResponse func(ctx *ext.Context) error\n")
+		sb.WriteString(fmt.Sprintf("type %s struct {\n", structName))
+		sb.WriteString(fmt.Sprintf("\tFilter   filters.%s\n", structName))
+		sb.WriteString("\tResponse func(ctx *gotdbot.Context) error\n")
 		sb.WriteString("}\n\n")
 
-		fmt.Fprintf(&sb, "func New%s(filter filters.%s, response func(ctx *ext.Context) error) *%s {\n", structName, structName, structName)
-		fmt.Fprintf(&sb, "\treturn &%s{\n", structName)
+		sb.WriteString(fmt.Sprintf("func New%s(filter filters.%s, response func(ctx *gotdbot.Context) error) *%s {\n", structName, structName, structName))
+		sb.WriteString(fmt.Sprintf("\treturn &%s{\n", structName))
 		sb.WriteString("\t\tFilter:   filter,\n")
 		sb.WriteString("\t\tResponse: response,\n")
 		sb.WriteString("\t}\n")
 		sb.WriteString("}\n\n")
 
-		fmt.Fprintf(&sb, "func (h *%s) CheckUpdate(ctx *ext.Context) bool {\n", structName)
-		fmt.Fprintf(&sb, "\tu := ctx.Update.%s\n", structName)
+		sb.WriteString(fmt.Sprintf("func (h *%s) CheckUpdate(ctx *gotdbot.Context) bool {\n", structName))
+		sb.WriteString(fmt.Sprintf("\tu := ctx.Update.%s\n", structName))
 		sb.WriteString("\tif u == nil {\n")
 		sb.WriteString("\t\treturn false\n")
 		sb.WriteString("\t}\n")
@@ -52,7 +52,7 @@ func generateExtHandlers(types []TLType) []string {
 		sb.WriteString("\treturn h.Filter(u)\n")
 		sb.WriteString("}\n\n")
 
-		fmt.Fprintf(&sb, "func (h *%s) HandleUpdate(ctx *ext.Context) error {\n", structName)
+		sb.WriteString(fmt.Sprintf("func (h *%s) HandleUpdate(ctx *gotdbot.Context) error {\n", structName))
 		sb.WriteString("\treturn h.Response(ctx)\n")
 		sb.WriteString("}\n")
 
@@ -62,59 +62,62 @@ func generateExtHandlers(types []TLType) []string {
 		generatedFiles = append(generatedFiles, filePath)
 	}
 
-	filtersPath := filepath.Join("ext", "handlers", "filters", "gen_filters.go")
+	filtersPath := filepath.Join("handlers", "filters", "gen_filters.go")
 	var sbFilters strings.Builder
 	sbFilters.WriteString(header)
 	sbFilters.WriteString("package filters\n\n")
 	sbFilters.WriteString("import \"github.com/AshokShau/gotdbot\"\n\n")
 	sbFilters.WriteString("type (\n")
+
 	for _, t := range types {
 		if t.ResultType != "Update" {
 			continue
 		}
 		structName := toCamelCase(t.Name)
-		fmt.Fprintf(&sbFilters, "\t%s func(u *gotdbot.%s) bool\n", structName, structName)
+		sbFilters.WriteString(fmt.Sprintf("\t%s func(u *gotdbot.%s) bool\n", structName, structName))
 	}
+
+	sbFilters.WriteString("\tMessage func(msg *gotdbot.Message) bool\n")
+
 	sbFilters.WriteString(")\n")
 	if err := os.WriteFile(filtersPath, []byte(sbFilters.String()), 0644); err != nil {
 		log.Fatal(err)
 	}
 	generatedFiles = append(generatedFiles, filtersPath)
 
-	contextPath := filepath.Join("ext", "gen_context.go")
+	contextPath := filepath.Join("gen_context.go")
 	var sbContext strings.Builder
 	sbContext.WriteString(header)
-	sbContext.WriteString("package ext\n\n")
-	sbContext.WriteString("import \"github.com/AshokShau/gotdbot\"\n\n")
+	sbContext.WriteString("package gotdbot\n\n")
 
 	// Updates Struct
-	sbContext.WriteString("type Updates struct {\n")
+	sbContext.WriteString("type ContextUpdates struct {\n")
 	for _, t := range types {
 		if t.ResultType != "Update" {
 			continue
 		}
 		structName := toCamelCase(t.Name)
-		fmt.Fprintf(&sbContext, "\t%s *gotdbot.%s\n", structName, structName)
+		sbContext.WriteString(fmt.Sprintf("\t%s *%s\n", structName, structName))
 	}
 	sbContext.WriteString("}\n\n")
 
 	// NewUpdates Function
-	sbContext.WriteString("func NewUpdates(u gotdbot.TlObject) *Updates {\n")
-	sbContext.WriteString("\tup := &Updates{}\n")
+	sbContext.WriteString("func NewContextUpdates(u TlObject) *ContextUpdates {\n")
+	sbContext.WriteString("\tup := &ContextUpdates{}\n")
 	sbContext.WriteString("\tswitch u := u.(type) {\n")
 	for _, t := range types {
 		if t.ResultType != "Update" {
 			continue
 		}
 		structName := toCamelCase(t.Name)
-		fmt.Fprintf(&sbContext, "\tcase *gotdbot.%s:\n", structName)
-		fmt.Fprintf(&sbContext, "\t\tup.%s = u\n", structName)
+		sbContext.WriteString(fmt.Sprintf("\tcase *%s:\n", structName))
+		sbContext.WriteString(fmt.Sprintf("\t\tup.%s = u\n", structName))
 	}
 	sbContext.WriteString("\t}\n")
 	sbContext.WriteString("\treturn up\n")
 	sbContext.WriteString("}\n\n")
 
-	sbContext.WriteString("func extractGeneratedEffectiveFields(u gotdbot.TlObject, c *Context) {\n")
+	sbContext.WriteString("func extractGeneratedEffectiveFields(u TlObject, c *Context) {\n")
 	sbContext.WriteString("\tswitch u := u.(type) {\n")
 	for _, t := range types {
 		if t.ResultType != "Update" {
@@ -142,7 +145,7 @@ func generateExtHandlers(types []TLType) []string {
 			continue
 		}
 
-		fmt.Fprintf(&sbContext, "\tcase *gotdbot.%s:\n", structName)
+		sbContext.WriteString(fmt.Sprintf("\tcase *%s:\n", structName))
 		for _, p := range t.Params {
 			if p.Name == "chat_id" {
 				sbContext.WriteString("\t\tc.EffectiveChatId = u.ChatId\n")
@@ -152,10 +155,10 @@ func generateExtHandlers(types []TLType) []string {
 				sbContext.WriteString("\t\t\tc.EffectiveChatId = u.Message.ChatId\n")
 				sbContext.WriteString("\t\t}\n")
 			} else if p.Name == "sender_id" {
-				sbContext.WriteString("\t\tif up, ok := u.SenderId.(*gotdbot.MessageSenderUser); ok {\n")
+				sbContext.WriteString("\t\tif up, ok := u.SenderId.(*MessageSenderUser); ok {\n")
 				sbContext.WriteString("\t\t\tc.EffectiveChatId = up.UserId\n")
 				sbContext.WriteString("\t\t}\n")
-				sbContext.WriteString("\t\tif up, ok := u.SenderId.(*gotdbot.MessageSenderChat); ok {\n")
+				sbContext.WriteString("\t\tif up, ok := u.SenderId.(*MessageSenderChat); ok {\n")
 				sbContext.WriteString("\t\t\tc.EffectiveChatId = up.ChatId\n")
 				sbContext.WriteString("\t\t}\n")
 			}
@@ -168,18 +171,18 @@ func generateExtHandlers(types []TLType) []string {
 	}
 	generatedFiles = append(generatedFiles, contextPath)
 
-	testPath := filepath.Join("ext", "handlers", "gen_handlers_test.go")
+	testPath := filepath.Join("handlers", "gen_handlers_test.go")
 	var sbTest strings.Builder
 	sbTest.WriteString(header)
 	sbTest.WriteString("package handlers\n\n")
 	sbTest.WriteString("import (\n")
-	sbTest.WriteString("\t\"testing\"\n\n")
+	sbTest.WriteString("\t\"testing\"\n")
+	sbTest.WriteString("\t\"time\"\n\n")
 	sbTest.WriteString("\t\"github.com/AshokShau/gotdbot\"\n")
-	sbTest.WriteString("\t\"github.com/AshokShau/gotdbot/ext\"\n")
 	sbTest.WriteString(")\n\n")
 
 	sbTest.WriteString("func TestGeneratedHandlers(t *testing.T) {\n")
-	sbTest.WriteString("\td := ext.NewDispatcher(&gotdbot.Client{})\n\n")
+	sbTest.WriteString("\td := gotdbot.NewDispatcher(&gotdbot.Client{})\n\n")
 
 	for _, t := range types {
 		if t.ResultType != "Update" {
@@ -188,15 +191,17 @@ func generateExtHandlers(types []TLType) []string {
 		structName := toCamelCase(t.Name)
 
 		sbTest.WriteString("\tfunc() {\n")
-		sbTest.WriteString("\t\tcalled := false\n")
-		fmt.Fprintf(&sbTest, "\t\th := New%s(nil, func(ctx *ext.Context) error {\n", structName)
-		sbTest.WriteString("\t\t\tcalled = true\n")
+		sbTest.WriteString("\t\tcalled := make(chan bool, 1)\n")
+		sbTest.WriteString(fmt.Sprintf("\t\th := New%s(nil, func(ctx *gotdbot.Context) error {\n", structName))
+		sbTest.WriteString("\t\t\tcalled <- true\n")
 		sbTest.WriteString("\t\t\treturn nil\n")
 		sbTest.WriteString("\t\t})\n")
 		sbTest.WriteString("\t\td.AddHandler(h)\n")
-		fmt.Fprintf(&sbTest, "\t\td.ProcessUpdate(&gotdbot.%s{})\n", structName)
-		sbTest.WriteString("\t\tif !called {\n")
-		fmt.Fprintf(&sbTest, "\t\t\tt.Errorf(\"Handler for %s not called\")\n", structName)
+		sbTest.WriteString(fmt.Sprintf("\t\td.ProcessUpdate(&gotdbot.%s{})\n", structName))
+		sbTest.WriteString("\t\tselect {\n")
+		sbTest.WriteString("\t\tcase <-called:\n")
+		sbTest.WriteString("\t\tcase <-time.After(100 * time.Millisecond):\n")
+		sbTest.WriteString(fmt.Sprintf("\t\t\tt.Errorf(\"Handler for %s not called\")\n", structName))
 		sbTest.WriteString("\t\t}\n")
 		sbTest.WriteString("\t}()\n\n")
 	}

@@ -5,12 +5,20 @@ package gotdbot
 
 // AddContactOpts contains optional parameters for AddContact
 type AddContactOpts struct {
-	Contact *ImportedContact
+	Contact          *ImportedContact
+	SharePhoneNumber bool
 }
 
 // AddLocalMessageOpts contains optional parameters for AddLocalMessage
 type AddLocalMessageOpts struct {
-	ReplyTo InputMessageReplyTo
+	DisableNotification bool
+	ReplyTo             InputMessageReplyTo
+}
+
+// AddMessageReactionOpts contains optional parameters for AddMessageReaction
+type AddMessageReactionOpts struct {
+	IsBig                 bool
+	UpdateRecentReactions bool
 }
 
 // AddPendingPaidMessageReactionOpts contains optional parameters for AddPendingPaidMessageReaction
@@ -18,9 +26,104 @@ type AddPendingPaidMessageReactionOpts struct {
 	TypeField PaidReactionType
 }
 
+// AddProxyOpts contains optional parameters for AddProxy
+type AddProxyOpts struct {
+	Enable bool
+}
+
+// AddQuickReplyShortcutInlineQueryResultMessageOpts contains optional parameters for AddQuickReplyShortcutInlineQueryResultMessage
+type AddQuickReplyShortcutInlineQueryResultMessageOpts struct {
+	HideViaBot bool
+}
+
+// AddRecentStickerOpts contains optional parameters for AddRecentSticker
+type AddRecentStickerOpts struct {
+	IsAttached bool
+}
+
+// AllowUnpaidMessagesFromUserOpts contains optional parameters for AllowUnpaidMessagesFromUser
+type AllowUnpaidMessagesFromUserOpts struct {
+	RefundPayments bool
+}
+
+// AnswerCallbackQueryOpts contains optional parameters for AnswerCallbackQuery
+type AnswerCallbackQueryOpts struct {
+	ShowAlert bool
+}
+
 // AnswerInlineQueryOpts contains optional parameters for AnswerInlineQuery
 type AnswerInlineQueryOpts struct {
-	Button *InlineQueryResultsButton
+	Button     *InlineQueryResultsButton
+	IsPersonal bool
+}
+
+// BanChatMemberOpts contains optional parameters for BanChatMember
+type BanChatMemberOpts struct {
+	RevokeMessages bool
+}
+
+// BlockMessageSenderFromRepliesOpts contains optional parameters for BlockMessageSenderFromReplies
+type BlockMessageSenderFromRepliesOpts struct {
+	DeleteAllMessages bool
+	DeleteMessage     bool
+	ReportSpam        bool
+}
+
+// CancelDownloadFileOpts contains optional parameters for CancelDownloadFile
+type CancelDownloadFileOpts struct {
+	OnlyIfPending bool
+}
+
+// CanSendMessageToUserOpts contains optional parameters for CanSendMessageToUser
+type CanSendMessageToUserOpts struct {
+	OnlyLocal bool
+}
+
+// ChangeStickerSetOpts contains optional parameters for ChangeStickerSet
+type ChangeStickerSetOpts struct {
+	IsArchived  bool
+	IsInstalled bool
+}
+
+// ClearAllDraftMessagesOpts contains optional parameters for ClearAllDraftMessages
+type ClearAllDraftMessagesOpts struct {
+	ExcludeSecretChats bool
+}
+
+// ClearRecentStickersOpts contains optional parameters for ClearRecentStickers
+type ClearRecentStickersOpts struct {
+	IsAttached bool
+}
+
+// ClearSearchedForTagsOpts contains optional parameters for ClearSearchedForTags
+type ClearSearchedForTagsOpts struct {
+	ClearCashtags bool
+}
+
+// ClickChatSponsoredMessageOpts contains optional parameters for ClickChatSponsoredMessage
+type ClickChatSponsoredMessageOpts struct {
+	FromFullscreen bool
+	IsMediaClick   bool
+}
+
+// CreateBasicGroupChatOpts contains optional parameters for CreateBasicGroupChat
+type CreateBasicGroupChatOpts struct {
+	Force bool
+}
+
+// CreateCallOpts contains optional parameters for CreateCall
+type CreateCallOpts struct {
+	IsVideo bool
+}
+
+// CreateChatInviteLinkOpts contains optional parameters for CreateChatInviteLink
+type CreateChatInviteLinkOpts struct {
+	CreatesJoinRequest bool
+}
+
+// CreateForumTopicOpts contains optional parameters for CreateForumTopic
+type CreateForumTopicOpts struct {
+	IsNameImplicit bool
 }
 
 // CreateNewBasicGroupChatOpts contains optional parameters for CreateNewBasicGroupChat
@@ -30,12 +133,31 @@ type CreateNewBasicGroupChatOpts struct {
 
 // CreateNewStickerSetOpts contains optional parameters for CreateNewStickerSet
 type CreateNewStickerSetOpts struct {
-	Source string
+	NeedsRepainting bool
+	Source          string
 }
 
 // CreateNewSupergroupChatOpts contains optional parameters for CreateNewSupergroupChat
 type CreateNewSupergroupChatOpts struct {
-	Location *ChatLocation
+	ForImport bool
+	IsChannel bool
+	IsForum   bool
+	Location  *ChatLocation
+}
+
+// CreatePrivateChatOpts contains optional parameters for CreatePrivateChat
+type CreatePrivateChatOpts struct {
+	Force bool
+}
+
+// CreateSupergroupChatOpts contains optional parameters for CreateSupergroupChat
+type CreateSupergroupChatOpts struct {
+	Force bool
+}
+
+// CreateVideoChatOpts contains optional parameters for CreateVideoChat
+type CreateVideoChatOpts struct {
+	IsRtmpStream bool
 }
 
 // DecryptGroupCallDataOpts contains optional parameters for DecryptGroupCallData
@@ -43,15 +165,68 @@ type DecryptGroupCallDataOpts struct {
 	DataChannel GroupCallDataChannel
 }
 
+// DeleteAllCallMessagesOpts contains optional parameters for DeleteAllCallMessages
+type DeleteAllCallMessagesOpts struct {
+	Revoke bool
+}
+
+// DeleteChatBackgroundOpts contains optional parameters for DeleteChatBackground
+type DeleteChatBackgroundOpts struct {
+	RestorePrevious bool
+}
+
+// DeleteChatHistoryOpts contains optional parameters for DeleteChatHistory
+type DeleteChatHistoryOpts struct {
+	RemoveFromChatList bool
+	Revoke             bool
+}
+
+// DeleteChatMessagesByDateOpts contains optional parameters for DeleteChatMessagesByDate
+type DeleteChatMessagesByDateOpts struct {
+	Revoke bool
+}
+
 // DeleteCommandsOpts contains optional parameters for DeleteCommands
 type DeleteCommandsOpts struct {
 	Scope BotCommandScope
 }
 
+// DeleteDefaultBackgroundOpts contains optional parameters for DeleteDefaultBackground
+type DeleteDefaultBackgroundOpts struct {
+	ForDarkTheme bool
+}
+
+// DeleteGroupCallMessagesOpts contains optional parameters for DeleteGroupCallMessages
+type DeleteGroupCallMessagesOpts struct {
+	ReportSpam bool
+}
+
+// DeleteGroupCallMessagesBySenderOpts contains optional parameters for DeleteGroupCallMessagesBySender
+type DeleteGroupCallMessagesBySenderOpts struct {
+	ReportSpam bool
+}
+
+// DeleteMessagesOpts contains optional parameters for DeleteMessages
+type DeleteMessagesOpts struct {
+	Revoke bool
+}
+
+// DiscardCallOpts contains optional parameters for DiscardCall
+type DiscardCallOpts struct {
+	IsDisconnected bool
+	IsVideo        bool
+}
+
+// DownloadFileOpts contains optional parameters for DownloadFile
+type DownloadFileOpts struct {
+	Synchronous bool
+}
+
 // EditBusinessMessageCaptionOpts contains optional parameters for EditBusinessMessageCaption
 type EditBusinessMessageCaptionOpts struct {
-	Caption     *FormattedText
-	ReplyMarkup ReplyMarkup
+	Caption               *FormattedText
+	ReplyMarkup           ReplyMarkup
+	ShowCaptionAboveMedia bool
 }
 
 // EditBusinessMessageChecklistOpts contains optional parameters for EditBusinessMessageChecklist
@@ -80,10 +255,21 @@ type EditBusinessMessageTextOpts struct {
 	ReplyMarkup ReplyMarkup
 }
 
+// EditChatInviteLinkOpts contains optional parameters for EditChatInviteLink
+type EditChatInviteLinkOpts struct {
+	CreatesJoinRequest bool
+}
+
+// EditForumTopicOpts contains optional parameters for EditForumTopic
+type EditForumTopicOpts struct {
+	EditIconCustomEmoji bool
+}
+
 // EditInlineMessageCaptionOpts contains optional parameters for EditInlineMessageCaption
 type EditInlineMessageCaptionOpts struct {
-	Caption     *FormattedText
-	ReplyMarkup ReplyMarkup
+	Caption               *FormattedText
+	ReplyMarkup           ReplyMarkup
+	ShowCaptionAboveMedia bool
 }
 
 // EditInlineMessageLiveLocationOpts contains optional parameters for EditInlineMessageLiveLocation
@@ -109,8 +295,9 @@ type EditInlineMessageTextOpts struct {
 
 // EditMessageCaptionOpts contains optional parameters for EditMessageCaption
 type EditMessageCaptionOpts struct {
-	Caption     *FormattedText
-	ReplyMarkup ReplyMarkup
+	Caption               *FormattedText
+	ReplyMarkup           ReplyMarkup
+	ShowCaptionAboveMedia bool
 }
 
 // EditMessageChecklistOpts contains optional parameters for EditMessageChecklist
@@ -144,11 +331,26 @@ type EditMessageTextOpts struct {
 	ReplyMarkup ReplyMarkup
 }
 
+// EditProxyOpts contains optional parameters for EditProxy
+type EditProxyOpts struct {
+	Enable bool
+}
+
+// EditStarSubscriptionOpts contains optional parameters for EditStarSubscription
+type EditStarSubscriptionOpts struct {
+	IsCanceled bool
+}
+
 // EditStoryOpts contains optional parameters for EditStory
 type EditStoryOpts struct {
 	Areas   *InputStoryAreas
 	Caption *FormattedText
 	Content InputStoryContent
+}
+
+// EditUserStarSubscriptionOpts contains optional parameters for EditUserStarSubscription
+type EditUserStarSubscriptionOpts struct {
+	IsCanceled bool
 }
 
 // FinishFileGenerationOpts contains optional parameters for FinishFileGeneration
@@ -158,8 +360,35 @@ type FinishFileGenerationOpts struct {
 
 // ForwardMessagesOpts contains optional parameters for ForwardMessages
 type ForwardMessagesOpts struct {
-	Options *MessageSendOptions
-	TopicId MessageTopic
+	Options       *MessageSendOptions
+	RemoveCaption bool
+	SendCopy      bool
+	TopicId       MessageTopic
+}
+
+// GetAllStickerEmojisOpts contains optional parameters for GetAllStickerEmojis
+type GetAllStickerEmojisOpts struct {
+	ReturnOnlyMainEmoji bool
+}
+
+// GetBotSimilarBotCountOpts contains optional parameters for GetBotSimilarBotCount
+type GetBotSimilarBotCountOpts struct {
+	ReturnLocal bool
+}
+
+// GetChatBoostFeaturesOpts contains optional parameters for GetChatBoostFeatures
+type GetChatBoostFeaturesOpts struct {
+	IsChannel bool
+}
+
+// GetChatBoostLevelFeaturesOpts contains optional parameters for GetChatBoostLevelFeatures
+type GetChatBoostLevelFeaturesOpts struct {
+	IsChannel bool
+}
+
+// GetChatBoostsOpts contains optional parameters for GetChatBoosts
+type GetChatBoostsOpts struct {
+	OnlyGiftCodes bool
 }
 
 // GetChatEventLogOpts contains optional parameters for GetChatEventLog
@@ -167,9 +396,20 @@ type GetChatEventLogOpts struct {
 	Filters *ChatEventLogFilters
 }
 
+// GetChatHistoryOpts contains optional parameters for GetChatHistory
+type GetChatHistoryOpts struct {
+	OnlyLocal bool
+}
+
 // GetChatInviteLinkMembersOpts contains optional parameters for GetChatInviteLinkMembers
 type GetChatInviteLinkMembersOpts struct {
-	OffsetMember *ChatInviteLinkMember
+	OffsetMember                *ChatInviteLinkMember
+	OnlyWithExpiredSubscription bool
+}
+
+// GetChatInviteLinksOpts contains optional parameters for GetChatInviteLinks
+type GetChatInviteLinksOpts struct {
+	IsRevoked bool
 }
 
 // GetChatJoinRequestsOpts contains optional parameters for GetChatJoinRequests
@@ -184,7 +424,8 @@ type GetChatMessageCalendarOpts struct {
 
 // GetChatMessageCountOpts contains optional parameters for GetChatMessageCount
 type GetChatMessageCountOpts struct {
-	TopicId MessageTopic
+	ReturnLocal bool
+	TopicId     MessageTopic
 }
 
 // GetChatMessagePositionOpts contains optional parameters for GetChatMessagePosition
@@ -194,7 +435,13 @@ type GetChatMessagePositionOpts struct {
 
 // GetChatNotificationSettingsExceptionsOpts contains optional parameters for GetChatNotificationSettingsExceptions
 type GetChatNotificationSettingsExceptionsOpts struct {
-	Scope NotificationSettingsScope
+	CompareSound bool
+	Scope        NotificationSettingsScope
+}
+
+// GetChatRevenueStatisticsOpts contains optional parameters for GetChatRevenueStatistics
+type GetChatRevenueStatisticsOpts struct {
+	IsDark bool
 }
 
 // GetChatsOpts contains optional parameters for GetChats
@@ -202,14 +449,31 @@ type GetChatsOpts struct {
 	ChatList ChatList
 }
 
+// GetChatSimilarChatCountOpts contains optional parameters for GetChatSimilarChatCount
+type GetChatSimilarChatCountOpts struct {
+	ReturnLocal bool
+}
+
+// GetChatStatisticsOpts contains optional parameters for GetChatStatistics
+type GetChatStatisticsOpts struct {
+	IsDark bool
+}
+
 // GetChatStoryInteractionsOpts contains optional parameters for GetChatStoryInteractions
 type GetChatStoryInteractionsOpts struct {
-	ReactionType ReactionType
+	PreferForwards bool
+	ReactionType   ReactionType
 }
 
 // GetCommandsOpts contains optional parameters for GetCommands
 type GetCommandsOpts struct {
 	Scope BotCommandScope
+}
+
+// GetExternalLinkOpts contains optional parameters for GetExternalLink
+type GetExternalLinkOpts struct {
+	AllowPhoneNumberAccess bool
+	AllowWriteAccess       bool
 }
 
 // GetGroupCallStreamSegmentOpts contains optional parameters for GetGroupCallStreamSegment
@@ -222,6 +486,16 @@ type GetInlineQueryResultsOpts struct {
 	UserLocation *Location
 }
 
+// GetInstalledBackgroundsOpts contains optional parameters for GetInstalledBackgrounds
+type GetInstalledBackgroundsOpts struct {
+	ForDarkTheme bool
+}
+
+// GetInternalLinkOpts contains optional parameters for GetInternalLink
+type GetInternalLinkOpts struct {
+	IsHttp bool
+}
+
 // GetKeywordEmojisOpts contains optional parameters for GetKeywordEmojis
 type GetKeywordEmojisOpts struct {
 	InputLanguageCodes []string
@@ -232,9 +506,40 @@ type GetLinkPreviewOpts struct {
 	LinkPreviewOptions *LinkPreviewOptions
 }
 
+// GetLocalizationTargetInfoOpts contains optional parameters for GetLocalizationTargetInfo
+type GetLocalizationTargetInfoOpts struct {
+	OnlyLocal bool
+}
+
+// GetLoginUrlOpts contains optional parameters for GetLoginUrl
+type GetLoginUrlOpts struct {
+	AllowWriteAccess bool
+}
+
 // GetMessageAddedReactionsOpts contains optional parameters for GetMessageAddedReactions
 type GetMessageAddedReactionsOpts struct {
 	ReactionType ReactionType
+}
+
+// GetMessageEmbeddingCodeOpts contains optional parameters for GetMessageEmbeddingCode
+type GetMessageEmbeddingCodeOpts struct {
+	ForAlbum bool
+}
+
+// GetMessageLinkOpts contains optional parameters for GetMessageLink
+type GetMessageLinkOpts struct {
+	ForAlbum        bool
+	InMessageThread bool
+}
+
+// GetMessageStatisticsOpts contains optional parameters for GetMessageStatistics
+type GetMessageStatisticsOpts struct {
+	IsDark bool
+}
+
+// GetNetworkStatisticsOpts contains optional parameters for GetNetworkStatistics
+type GetNetworkStatisticsOpts struct {
+	OnlyCurrent bool
 }
 
 // GetPaymentFormOpts contains optional parameters for GetPaymentForm
@@ -242,9 +547,37 @@ type GetPaymentFormOpts struct {
 	Theme *ThemeParameters
 }
 
+// GetReceivedGiftsOpts contains optional parameters for GetReceivedGifts
+type GetReceivedGiftsOpts struct {
+	ExcludeHosted        bool
+	ExcludeNonUpgradable bool
+	ExcludeSaved         bool
+	ExcludeUnlimited     bool
+	ExcludeUnsaved       bool
+	ExcludeUpgradable    bool
+	ExcludeUpgraded      bool
+	ExcludeWithoutColors bool
+	SortByPrice          bool
+}
+
+// GetRecentStickersOpts contains optional parameters for GetRecentStickers
+type GetRecentStickersOpts struct {
+	IsAttached bool
+}
+
 // GetRemoteFileOpts contains optional parameters for GetRemoteFile
 type GetRemoteFileOpts struct {
 	FileType FileType
+}
+
+// GetStarRevenueStatisticsOpts contains optional parameters for GetStarRevenueStatistics
+type GetStarRevenueStatisticsOpts struct {
+	IsDark bool
+}
+
+// GetStarSubscriptionsOpts contains optional parameters for GetStarSubscriptions
+type GetStarSubscriptionsOpts struct {
+	OnlyExpiring bool
 }
 
 // GetStarTransactionsOpts contains optional parameters for GetStarTransactions
@@ -253,9 +586,34 @@ type GetStarTransactionsOpts struct {
 	SubscriptionId string
 }
 
+// GetStickerOutlineOpts contains optional parameters for GetStickerOutline
+type GetStickerOutlineOpts struct {
+	ForAnimatedEmoji               bool
+	ForClickedAnimatedEmojiMessage bool
+}
+
+// GetStickerOutlineSvgPathOpts contains optional parameters for GetStickerOutlineSvgPath
+type GetStickerOutlineSvgPathOpts struct {
+	ForAnimatedEmoji               bool
+	ForClickedAnimatedEmojiMessage bool
+}
+
+// GetStoryOpts contains optional parameters for GetStory
+type GetStoryOpts struct {
+	OnlyLocal bool
+}
+
 // GetStoryInteractionsOpts contains optional parameters for GetStoryInteractions
 type GetStoryInteractionsOpts struct {
-	Query string
+	OnlyContacts       bool
+	PreferForwards     bool
+	PreferWithReaction bool
+	Query              string
+}
+
+// GetStoryStatisticsOpts contains optional parameters for GetStoryStatistics
+type GetStoryStatisticsOpts struct {
+	IsDark bool
 }
 
 // GetSupergroupMembersOpts contains optional parameters for GetSupergroupMembers
@@ -263,9 +621,40 @@ type GetSupergroupMembersOpts struct {
 	Filter SupergroupMembersFilter
 }
 
+// GetTonRevenueStatisticsOpts contains optional parameters for GetTonRevenueStatistics
+type GetTonRevenueStatisticsOpts struct {
+	IsDark bool
+}
+
 // GetTonTransactionsOpts contains optional parameters for GetTonTransactions
 type GetTonTransactionsOpts struct {
 	Direction TransactionDirection
+}
+
+// GetUpgradedGiftVariantsOpts contains optional parameters for GetUpgradedGiftVariants
+type GetUpgradedGiftVariantsOpts struct {
+	ReturnCraftModels   bool
+	ReturnUpgradeModels bool
+}
+
+// GetVideoChatInviteLinkOpts contains optional parameters for GetVideoChatInviteLink
+type GetVideoChatInviteLinkOpts struct {
+	CanSelfUnmute bool
+}
+
+// GetWebAppLinkUrlOpts contains optional parameters for GetWebAppLinkUrl
+type GetWebAppLinkUrlOpts struct {
+	AllowWriteAccess bool
+}
+
+// GetWebPageInstantViewOpts contains optional parameters for GetWebPageInstantView
+type GetWebPageInstantViewOpts struct {
+	OnlyLocal bool
+}
+
+// InviteGroupCallParticipantOpts contains optional parameters for InviteGroupCallParticipant
+type InviteGroupCallParticipantOpts struct {
+	IsVideo bool
 }
 
 // JoinVideoChatOpts contains optional parameters for JoinVideoChat
@@ -286,9 +675,16 @@ type OpenWebAppOpts struct {
 
 // OptimizeStorageOpts contains optional parameters for OptimizeStorage
 type OptimizeStorageOpts struct {
-	ChatIds        []int64
-	ExcludeChatIds []int64
-	FileTypes      []FileType
+	ChatIds                     []int64
+	ExcludeChatIds              []int64
+	FileTypes                   []FileType
+	ReturnDeletedFileStatistics bool
+}
+
+// PinChatMessageOpts contains optional parameters for PinChatMessage
+type PinChatMessageOpts struct {
+	DisableNotification bool
+	OnlyForSelf         bool
 }
 
 // PingProxyOpts contains optional parameters for PingProxy
@@ -296,16 +692,43 @@ type PingProxyOpts struct {
 	Proxy *Proxy
 }
 
+// PlaceGiftAuctionBidOpts contains optional parameters for PlaceGiftAuctionBid
+type PlaceGiftAuctionBidOpts struct {
+	IsPrivate bool
+}
+
 // PostStoryOpts contains optional parameters for PostStory
 type PostStoryOpts struct {
-	Areas           *InputStoryAreas
-	Caption         *FormattedText
-	FromStoryFullId *StoryFullId
+	Areas              *InputStoryAreas
+	Caption            *FormattedText
+	FromStoryFullId    *StoryFullId
+	IsPostedToChatPage bool
+	ProtectContent     bool
 }
 
 // PreliminaryUploadFileOpts contains optional parameters for PreliminaryUploadFile
 type PreliminaryUploadFileOpts struct {
 	FileType FileType
+}
+
+// ProcessChatJoinRequestOpts contains optional parameters for ProcessChatJoinRequest
+type ProcessChatJoinRequestOpts struct {
+	Approve bool
+}
+
+// ProcessChatJoinRequestsOpts contains optional parameters for ProcessChatJoinRequests
+type ProcessChatJoinRequestsOpts struct {
+	Approve bool
+}
+
+// ProcessGiftPurchaseOfferOpts contains optional parameters for ProcessGiftPurchaseOffer
+type ProcessGiftPurchaseOfferOpts struct {
+	Accept bool
+}
+
+// RateSpeechRecognitionOpts contains optional parameters for RateSpeechRecognition
+type RateSpeechRecognitionOpts struct {
+	IsGood bool
 }
 
 // RecoverAuthenticationPasswordOpts contains optional parameters for RecoverAuthenticationPassword
@@ -318,6 +741,28 @@ type RecoverAuthenticationPasswordOpts struct {
 type RecoverPasswordOpts struct {
 	NewHint     string
 	NewPassword string
+}
+
+// RegisterUserOpts contains optional parameters for RegisterUser
+type RegisterUserOpts struct {
+	DisableNotification bool
+}
+
+// RemoveAllFilesFromDownloadsOpts contains optional parameters for RemoveAllFilesFromDownloads
+type RemoveAllFilesFromDownloadsOpts struct {
+	DeleteFromCache bool
+	OnlyActive      bool
+	OnlyCompleted   bool
+}
+
+// RemoveFileFromDownloadsOpts contains optional parameters for RemoveFileFromDownloads
+type RemoveFileFromDownloadsOpts struct {
+	DeleteFromCache bool
+}
+
+// RemoveRecentStickerOpts contains optional parameters for RemoveRecentSticker
+type RemoveRecentStickerOpts struct {
+	IsAttached bool
 }
 
 // ResendAuthenticationCodeOpts contains optional parameters for ResendAuthenticationCode
@@ -333,6 +778,11 @@ type ResendMessagesOpts struct {
 // ResendPhoneNumberCodeOpts contains optional parameters for ResendPhoneNumberCode
 type ResendPhoneNumberCodeOpts struct {
 	Reason ResendCodeReason
+}
+
+// SearchCallMessagesOpts contains optional parameters for SearchCallMessages
+type SearchCallMessagesOpts struct {
+	OnlyMissed bool
 }
 
 // SearchChatMembersOpts contains optional parameters for SearchChatMembers
@@ -359,7 +809,14 @@ type SearchEmojisOpts struct {
 
 // SearchFileDownloadsOpts contains optional parameters for SearchFileDownloads
 type SearchFileDownloadsOpts struct {
-	Query string
+	OnlyActive    bool
+	OnlyCompleted bool
+	Query         string
+}
+
+// SearchGiftsForResaleOpts contains optional parameters for SearchGiftsForResale
+type SearchGiftsForResaleOpts struct {
+	ForCrafting bool
 }
 
 // SearchMessagesOpts contains optional parameters for SearchMessages
@@ -385,15 +842,34 @@ type SearchStickersOpts struct {
 	Query              string
 }
 
+// SearchStickerSetOpts contains optional parameters for SearchStickerSet
+type SearchStickerSetOpts struct {
+	IgnoreCache bool
+}
+
+// SearchStringsByPrefixOpts contains optional parameters for SearchStringsByPrefix
+type SearchStringsByPrefixOpts struct {
+	ReturnNoneForEmptyQuery bool
+}
+
+// SearchUserByPhoneNumberOpts contains optional parameters for SearchUserByPhoneNumber
+type SearchUserByPhoneNumberOpts struct {
+	OnlyLocal bool
+}
+
 // SendBusinessMessageOpts contains optional parameters for SendBusinessMessage
 type SendBusinessMessageOpts struct {
-	ReplyMarkup ReplyMarkup
-	ReplyTo     InputMessageReplyTo
+	DisableNotification bool
+	ProtectContent      bool
+	ReplyMarkup         ReplyMarkup
+	ReplyTo             InputMessageReplyTo
 }
 
 // SendBusinessMessageAlbumOpts contains optional parameters for SendBusinessMessageAlbum
 type SendBusinessMessageAlbumOpts struct {
-	ReplyTo InputMessageReplyTo
+	DisableNotification bool
+	ProtectContent      bool
+	ReplyTo             InputMessageReplyTo
 }
 
 // SendChatActionOpts contains optional parameters for SendChatAction
@@ -402,11 +878,18 @@ type SendChatActionOpts struct {
 	TopicId MessageTopic
 }
 
+// SendGiftOpts contains optional parameters for SendGift
+type SendGiftOpts struct {
+	IsPrivate     bool
+	PayForUpgrade bool
+}
+
 // SendInlineQueryResultMessageOpts contains optional parameters for SendInlineQueryResultMessage
 type SendInlineQueryResultMessageOpts struct {
-	Options *MessageSendOptions
-	ReplyTo InputMessageReplyTo
-	TopicId MessageTopic
+	HideViaBot bool
+	Options    *MessageSendOptions
+	ReplyTo    InputMessageReplyTo
+	TopicId    MessageTopic
 }
 
 // SendMessageOpts contains optional parameters for SendMessage
@@ -439,9 +922,20 @@ type SetAuthenticationPhoneNumberOpts struct {
 	Settings *PhoneNumberAuthenticationSettings
 }
 
+// SetAuthenticationPremiumPurchaseTransactionOpts contains optional parameters for SetAuthenticationPremiumPurchaseTransaction
+type SetAuthenticationPremiumPurchaseTransactionOpts struct {
+	IsRestore bool
+}
+
 // SetBusinessAccountProfilePhotoOpts contains optional parameters for SetBusinessAccountProfilePhoto
 type SetBusinessAccountProfilePhotoOpts struct {
-	Photo InputChatPhoto
+	IsPublic bool
+	Photo    InputChatPhoto
+}
+
+// SetBusinessMessageIsPinnedOpts contains optional parameters for SetBusinessMessageIsPinned
+type SetBusinessMessageIsPinnedOpts struct {
+	IsPinned bool
 }
 
 // SetBusinessOpeningHoursOpts contains optional parameters for SetBusinessOpeningHours
@@ -456,8 +950,14 @@ type SetChatAffiliateProgramOpts struct {
 
 // SetChatBackgroundOpts contains optional parameters for SetChatBackground
 type SetChatBackgroundOpts struct {
-	Background InputBackground
-	TypeField  BackgroundType
+	Background  InputBackground
+	OnlyForSelf bool
+	TypeField   BackgroundType
+}
+
+// SetChatDirectMessagesGroupOpts contains optional parameters for SetChatDirectMessagesGroup
+type SetChatDirectMessagesGroupOpts struct {
+	IsEnabled bool
 }
 
 // SetChatDraftMessageOpts contains optional parameters for SetChatDraftMessage
@@ -483,8 +983,20 @@ type SetCommandsOpts struct {
 
 // SetDefaultBackgroundOpts contains optional parameters for SetDefaultBackground
 type SetDefaultBackgroundOpts struct {
-	Background InputBackground
-	TypeField  BackgroundType
+	Background   InputBackground
+	ForDarkTheme bool
+	TypeField    BackgroundType
+}
+
+// SetDirectMessagesChatTopicIsMarkedAsUnreadOpts contains optional parameters for SetDirectMessagesChatTopicIsMarkedAsUnread
+type SetDirectMessagesChatTopicIsMarkedAsUnreadOpts struct {
+	IsMarkedAsUnread bool
+}
+
+// SetGameScoreOpts contains optional parameters for SetGameScore
+type SetGameScoreOpts struct {
+	EditMessage bool
+	Force       bool
 }
 
 // SetGiftResalePriceOpts contains optional parameters for SetGiftResalePrice
@@ -492,9 +1004,25 @@ type SetGiftResalePriceOpts struct {
 	Price GiftResalePrice
 }
 
+// SetGroupCallParticipantIsSpeakingOpts contains optional parameters for SetGroupCallParticipantIsSpeaking
+type SetGroupCallParticipantIsSpeakingOpts struct {
+	IsSpeaking bool
+}
+
+// SetInlineGameScoreOpts contains optional parameters for SetInlineGameScore
+type SetInlineGameScoreOpts struct {
+	EditMessage bool
+	Force       bool
+}
+
 // SetMessageFactCheckOpts contains optional parameters for SetMessageFactCheck
 type SetMessageFactCheckOpts struct {
 	Text *FormattedText
+}
+
+// SetMessageReactionsOpts contains optional parameters for SetMessageReactions
+type SetMessageReactionsOpts struct {
+	IsBig bool
 }
 
 // SetMessageSenderBlockListOpts contains optional parameters for SetMessageSenderBlockList
@@ -517,6 +1045,12 @@ type SetPasswordOpts struct {
 	NewHint                 string
 	NewPassword             string
 	NewRecoveryEmailAddress string
+	SetRecoveryEmailAddress bool
+}
+
+// SetProfilePhotoOpts contains optional parameters for SetProfilePhoto
+type SetProfilePhotoOpts struct {
+	IsPublic bool
 }
 
 // SetStickerMaskPositionOpts contains optional parameters for SetStickerMaskPosition
@@ -532,7 +1066,40 @@ type SetStickerSetThumbnailOpts struct {
 
 // SetStoryReactionOpts contains optional parameters for SetStoryReaction
 type SetStoryReactionOpts struct {
-	ReactionType ReactionType
+	ReactionType          ReactionType
+	UpdateRecentReactions bool
+}
+
+// SetTdlibParametersOpts contains optional parameters for SetTdlibParameters
+type SetTdlibParametersOpts struct {
+	UseChatInfoDatabase bool
+	UseFileDatabase     bool
+	UseMessageDatabase  bool
+	UseSecretChats      bool
+	UseTestDc           bool
+}
+
+// ShareChatWithBotOpts contains optional parameters for ShareChatWithBot
+type ShareChatWithBotOpts struct {
+	OnlyCheck bool
+}
+
+// ShareUsersWithBotOpts contains optional parameters for ShareUsersWithBot
+type ShareUsersWithBotOpts struct {
+	OnlyCheck bool
+}
+
+// StartGroupCallRecordingOpts contains optional parameters for StartGroupCallRecording
+type StartGroupCallRecordingOpts struct {
+	RecordVideo            bool
+	UsePortraitOrientation bool
+}
+
+// StartLiveStoryOpts contains optional parameters for StartLiveStory
+type StartLiveStoryOpts struct {
+	EnableMessages bool
+	IsRtmpStream   bool
+	ProtectContent bool
 }
 
 // StopBusinessPollOpts contains optional parameters for StopBusinessPoll
@@ -550,12 +1117,238 @@ type SummarizeMessageOpts struct {
 	TranslateToLanguageCode string
 }
 
+// ToggleAllDownloadsArePausedOpts contains optional parameters for ToggleAllDownloadsArePaused
+type ToggleAllDownloadsArePausedOpts struct {
+	ArePaused bool
+}
+
+// ToggleBotCanManageEmojiStatusOpts contains optional parameters for ToggleBotCanManageEmojiStatus
+type ToggleBotCanManageEmojiStatusOpts struct {
+	CanManageEmojiStatus bool
+}
+
+// ToggleBotIsAddedToAttachmentMenuOpts contains optional parameters for ToggleBotIsAddedToAttachmentMenu
+type ToggleBotIsAddedToAttachmentMenuOpts struct {
+	AllowWriteAccess bool
+	IsAdded          bool
+}
+
+// ToggleBotUsernameIsActiveOpts contains optional parameters for ToggleBotUsernameIsActive
+type ToggleBotUsernameIsActiveOpts struct {
+	IsActive bool
+}
+
+// ToggleBusinessConnectedBotChatIsPausedOpts contains optional parameters for ToggleBusinessConnectedBotChatIsPaused
+type ToggleBusinessConnectedBotChatIsPausedOpts struct {
+	IsPaused bool
+}
+
+// ToggleChatDefaultDisableNotificationOpts contains optional parameters for ToggleChatDefaultDisableNotification
+type ToggleChatDefaultDisableNotificationOpts struct {
+	DefaultDisableNotification bool
+}
+
+// ToggleChatFolderTagsOpts contains optional parameters for ToggleChatFolderTags
+type ToggleChatFolderTagsOpts struct {
+	AreTagsEnabled bool
+}
+
+// ToggleChatGiftNotificationsOpts contains optional parameters for ToggleChatGiftNotifications
+type ToggleChatGiftNotificationsOpts struct {
+	AreEnabled bool
+}
+
+// ToggleChatHasProtectedContentOpts contains optional parameters for ToggleChatHasProtectedContent
+type ToggleChatHasProtectedContentOpts struct {
+	HasProtectedContent bool
+}
+
+// ToggleChatIsMarkedAsUnreadOpts contains optional parameters for ToggleChatIsMarkedAsUnread
+type ToggleChatIsMarkedAsUnreadOpts struct {
+	IsMarkedAsUnread bool
+}
+
+// ToggleChatIsPinnedOpts contains optional parameters for ToggleChatIsPinned
+type ToggleChatIsPinnedOpts struct {
+	IsPinned bool
+}
+
+// ToggleChatIsTranslatableOpts contains optional parameters for ToggleChatIsTranslatable
+type ToggleChatIsTranslatableOpts struct {
+	IsTranslatable bool
+}
+
+// ToggleChatViewAsTopicsOpts contains optional parameters for ToggleChatViewAsTopics
+type ToggleChatViewAsTopicsOpts struct {
+	ViewAsTopics bool
+}
+
+// ToggleDirectMessagesChatTopicCanSendUnpaidMessagesOpts contains optional parameters for ToggleDirectMessagesChatTopicCanSendUnpaidMessages
+type ToggleDirectMessagesChatTopicCanSendUnpaidMessagesOpts struct {
+	CanSendUnpaidMessages bool
+	RefundPayments        bool
+}
+
+// ToggleDownloadIsPausedOpts contains optional parameters for ToggleDownloadIsPaused
+type ToggleDownloadIsPausedOpts struct {
+	IsPaused bool
+}
+
+// ToggleForumTopicIsClosedOpts contains optional parameters for ToggleForumTopicIsClosed
+type ToggleForumTopicIsClosedOpts struct {
+	IsClosed bool
+}
+
+// ToggleForumTopicIsPinnedOpts contains optional parameters for ToggleForumTopicIsPinned
+type ToggleForumTopicIsPinnedOpts struct {
+	IsPinned bool
+}
+
+// ToggleGeneralForumTopicIsHiddenOpts contains optional parameters for ToggleGeneralForumTopicIsHidden
+type ToggleGeneralForumTopicIsHiddenOpts struct {
+	IsHidden bool
+}
+
+// ToggleGiftIsSavedOpts contains optional parameters for ToggleGiftIsSaved
+type ToggleGiftIsSavedOpts struct {
+	IsSaved bool
+}
+
+// ToggleGroupCallAreMessagesAllowedOpts contains optional parameters for ToggleGroupCallAreMessagesAllowed
+type ToggleGroupCallAreMessagesAllowedOpts struct {
+	AreMessagesAllowed bool
+}
+
+// ToggleGroupCallIsMyVideoEnabledOpts contains optional parameters for ToggleGroupCallIsMyVideoEnabled
+type ToggleGroupCallIsMyVideoEnabledOpts struct {
+	IsMyVideoEnabled bool
+}
+
+// ToggleGroupCallIsMyVideoPausedOpts contains optional parameters for ToggleGroupCallIsMyVideoPaused
+type ToggleGroupCallIsMyVideoPausedOpts struct {
+	IsMyVideoPaused bool
+}
+
+// ToggleGroupCallParticipantIsHandRaisedOpts contains optional parameters for ToggleGroupCallParticipantIsHandRaised
+type ToggleGroupCallParticipantIsHandRaisedOpts struct {
+	IsHandRaised bool
+}
+
+// ToggleGroupCallParticipantIsMutedOpts contains optional parameters for ToggleGroupCallParticipantIsMuted
+type ToggleGroupCallParticipantIsMutedOpts struct {
+	IsMuted bool
+}
+
+// ToggleGroupCallScreenSharingIsPausedOpts contains optional parameters for ToggleGroupCallScreenSharingIsPaused
+type ToggleGroupCallScreenSharingIsPausedOpts struct {
+	IsPaused bool
+}
+
+// ToggleHasSponsoredMessagesEnabledOpts contains optional parameters for ToggleHasSponsoredMessagesEnabled
+type ToggleHasSponsoredMessagesEnabledOpts struct {
+	HasSponsoredMessagesEnabled bool
+}
+
+// ToggleSavedMessagesTopicIsPinnedOpts contains optional parameters for ToggleSavedMessagesTopicIsPinned
+type ToggleSavedMessagesTopicIsPinnedOpts struct {
+	IsPinned bool
+}
+
+// ToggleSessionCanAcceptCallsOpts contains optional parameters for ToggleSessionCanAcceptCalls
+type ToggleSessionCanAcceptCallsOpts struct {
+	CanAcceptCalls bool
+}
+
+// ToggleSessionCanAcceptSecretChatsOpts contains optional parameters for ToggleSessionCanAcceptSecretChats
+type ToggleSessionCanAcceptSecretChatsOpts struct {
+	CanAcceptSecretChats bool
+}
+
+// ToggleStoryIsPostedToChatPageOpts contains optional parameters for ToggleStoryIsPostedToChatPage
+type ToggleStoryIsPostedToChatPageOpts struct {
+	IsPostedToChatPage bool
+}
+
+// ToggleSupergroupCanHaveSponsoredMessagesOpts contains optional parameters for ToggleSupergroupCanHaveSponsoredMessages
+type ToggleSupergroupCanHaveSponsoredMessagesOpts struct {
+	CanHaveSponsoredMessages bool
+}
+
+// ToggleSupergroupHasAggressiveAntiSpamEnabledOpts contains optional parameters for ToggleSupergroupHasAggressiveAntiSpamEnabled
+type ToggleSupergroupHasAggressiveAntiSpamEnabledOpts struct {
+	HasAggressiveAntiSpamEnabled bool
+}
+
+// ToggleSupergroupHasAutomaticTranslationOpts contains optional parameters for ToggleSupergroupHasAutomaticTranslation
+type ToggleSupergroupHasAutomaticTranslationOpts struct {
+	HasAutomaticTranslation bool
+}
+
+// ToggleSupergroupHasHiddenMembersOpts contains optional parameters for ToggleSupergroupHasHiddenMembers
+type ToggleSupergroupHasHiddenMembersOpts struct {
+	HasHiddenMembers bool
+}
+
+// ToggleSupergroupIsAllHistoryAvailableOpts contains optional parameters for ToggleSupergroupIsAllHistoryAvailable
+type ToggleSupergroupIsAllHistoryAvailableOpts struct {
+	IsAllHistoryAvailable bool
+}
+
+// ToggleSupergroupIsForumOpts contains optional parameters for ToggleSupergroupIsForum
+type ToggleSupergroupIsForumOpts struct {
+	HasForumTabs bool
+	IsForum      bool
+}
+
+// ToggleSupergroupJoinByRequestOpts contains optional parameters for ToggleSupergroupJoinByRequest
+type ToggleSupergroupJoinByRequestOpts struct {
+	JoinByRequest bool
+}
+
+// ToggleSupergroupJoinToSendMessagesOpts contains optional parameters for ToggleSupergroupJoinToSendMessages
+type ToggleSupergroupJoinToSendMessagesOpts struct {
+	JoinToSendMessages bool
+}
+
+// ToggleSupergroupSignMessagesOpts contains optional parameters for ToggleSupergroupSignMessages
+type ToggleSupergroupSignMessagesOpts struct {
+	ShowMessageSender bool
+	SignMessages      bool
+}
+
+// ToggleSupergroupUsernameIsActiveOpts contains optional parameters for ToggleSupergroupUsernameIsActive
+type ToggleSupergroupUsernameIsActiveOpts struct {
+	IsActive bool
+}
+
+// ToggleUsernameIsActiveOpts contains optional parameters for ToggleUsernameIsActive
+type ToggleUsernameIsActiveOpts struct {
+	IsActive bool
+}
+
+// ToggleVideoChatEnabledStartNotificationOpts contains optional parameters for ToggleVideoChatEnabledStartNotification
+type ToggleVideoChatEnabledStartNotificationOpts struct {
+	EnabledStartNotification bool
+}
+
+// ToggleVideoChatMuteNewParticipantsOpts contains optional parameters for ToggleVideoChatMuteNewParticipants
+type ToggleVideoChatMuteNewParticipantsOpts struct {
+	MuteNewParticipants bool
+}
+
+// UpgradeGiftOpts contains optional parameters for UpgradeGift
+type UpgradeGiftOpts struct {
+	KeepOriginalDetails bool
+}
+
 // ValidateOrderInfoOpts contains optional parameters for ValidateOrderInfo
 type ValidateOrderInfoOpts struct {
+	AllowSave bool
 	OrderInfo *OrderInfo
 }
 
 // ViewMessagesOpts contains optional parameters for ViewMessages
 type ViewMessagesOpts struct {
-	Source MessageSource
+	ForceRead bool
+	Source    MessageSource
 }

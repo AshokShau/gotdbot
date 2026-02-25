@@ -13,8 +13,7 @@ import (
 	"time"
 
 	"github.com/AshokShau/gotdbot"
-	"github.com/AshokShau/gotdbot/ext"
-	"github.com/AshokShau/gotdbot/ext/handlers"
+	"github.com/AshokShau/gotdbot/handlers"
 )
 
 var (
@@ -39,25 +38,25 @@ func main() {
 	gotdbot.SetTdlibLogVerbosityLevel(2)
 	// gotdbot.SetTdlibLogStreamFile("tdlib.log", 10*1024*1024, false)
 
-	dispatcher := ext.NewDispatcher(bot)
+	dispatcher := bot.Dispatcher
 
-	dispatcher.AddHandler(handlers.NewCommand("saved", func(ctx *ext.Context) error {
+	dispatcher.AddHandler(handlers.NewCommand("saved", func(ctx *gotdbot.Context) error {
 		message := ctx.EffectiveMessage
 		client := ctx.Client
-		userId := message.FromID()
+		userId := message.SenderID()
 		if message.ReplyToMessageID() != 0 {
 			replyMsg, err := message.GetRepliedMessage(client)
 			if err != nil {
 				_, _ = message.ReplyText(client, fmt.Sprintf("Failed to get replied message: %v", err), nil)
 				return err
 			}
-			userId = replyMsg.FromID()
+			userId = replyMsg.SenderID()
 		}
 
 		// Tg allow Sends 2-10 messages grouped together into an album
 		const maxAudiosToSend int32 = 10
 
-		profileAudios, err := client.GetUserProfileAudios(userId, 0, maxAudiosToSend)
+		profileAudios, err := client.GetUserProfileAudios(0, maxAudiosToSend, userId)
 		if err != nil {
 			_, _ = message.ReplyText(client, fmt.Sprintf("Failed to get saved audios: %v", err), nil)
 			return err
@@ -77,7 +76,7 @@ func main() {
 			}
 
 			inputMessages = append(inputMessages, &gotdbot.InputMessageAudio{
-				Audio: &gotdbot.InputFileRemote{Id: audioItem.Audio.Remote.Id},
+				Audio: gotdbot.InputFileRemote{Id: audioItem.Audio.Remote.Id},
 			})
 		}
 
@@ -101,17 +100,14 @@ func main() {
 	dispatcher.AddHandler(handlers.NewUpdateFile(nil, progressHandler))
 
 	log.Println("Starting bot...")
-	dispatcher.Start()
-
-	// Start bot
-	if err := bot.Start(); err != nil {
+	err = bot.Start()
+	if err != nil {
 		log.Fatalf("Failed to start bot: %v", err)
 	}
-
 	bot.Idle()
 }
 
-func downloadCmd(ctx *ext.Context) error {
+func downloadCmd(ctx *gotdbot.Context) error {
 	msg := ctx.EffectiveMessage
 	c := ctx.Client
 	if msg.ReplyToMessageID() == 0 {
@@ -146,7 +142,7 @@ func downloadCmd(ctx *ext.Context) error {
 		TotalSize:  size,
 	})
 
-	dFile, err := c.DownloadFile(fileId, 1, 0, 0, false)
+	dFile, err := c.DownloadFile(fileId, 0, 0, 1, &gotdbot.DownloadFileOpts{Synchronous: true})
 	if err != nil {
 		activeTasks.Delete(int64(fileId))
 		_, _ = sentMsg.EditText(c, fmt.Sprintf("Failed to start download: %v", err), nil)
@@ -162,7 +158,7 @@ func downloadCmd(ctx *ext.Context) error {
 	return nil
 }
 
-func uploadCmd(ctx *ext.Context) error {
+func uploadCmd(ctx *gotdbot.Context) error {
 	args := getArgs(ctx)
 	msg := ctx.EffectiveMessage
 	c := ctx.Client
@@ -201,7 +197,7 @@ func uploadCmd(ctx *ext.Context) error {
 		LocalBase:  base,
 	})
 
-	_, err = c.SendDocument(ctx.EffectiveChatId, filePath, &gotdbot.SendDocumentOpts{
+	_, err = c.SendDocument(ctx.EffectiveChatId, gotdbot.InputFileLocal{Path: filePath}, &gotdbot.SendDocumentOpts{
 		Caption: "Uploaded",
 	})
 
@@ -213,7 +209,7 @@ func uploadCmd(ctx *ext.Context) error {
 	return nil
 }
 
-func getFileID(ctx *ext.Context) error {
+func getFileID(ctx *gotdbot.Context) error {
 	msg := ctx.EffectiveMessage
 	c := ctx.Client
 	if msg.ReplyToMessageID() == 0 {
@@ -237,7 +233,7 @@ func getFileID(ctx *ext.Context) error {
 	return err
 }
 
-func sendWithFileID(ctx *ext.Context) error {
+func sendWithFileID(ctx *gotdbot.Context) error {
 	args := getArgs(ctx)
 	msg := ctx.EffectiveMessage
 	c := ctx.Client
@@ -247,7 +243,7 @@ func sendWithFileID(ctx *ext.Context) error {
 		return err
 	}
 
-	_, err := c.SendDocument(ctx.EffectiveChatId, args[0], &gotdbot.SendDocumentOpts{
+	_, err := c.SendDocument(ctx.EffectiveChatId, gotdbot.InputFileRemote{Id: args[0]}, &gotdbot.SendDocumentOpts{
 		Caption: "Here is your file",
 	})
 
@@ -258,7 +254,7 @@ func sendWithFileID(ctx *ext.Context) error {
 	return nil
 }
 
-func progressHandler(ctx *ext.Context) error {
+func progressHandler(ctx *gotdbot.Context) error {
 	update := ctx.Update.UpdateFile
 	//jsonData, _ := json.MarshalIndent(update, "", "  ")
 	//log.Println(string(jsonData))

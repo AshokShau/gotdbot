@@ -2,6 +2,8 @@ package main
 
 type TDLibJSON struct {
 	Name      string               `json:"name"`
+	Version   string               `json:"version"`
+	Commit    string               `json:"commit"`
 	Classes   map[string]*ClassDef `json:"classes"`
 	Types     map[string]*TypeDef  `json:"types"`
 	Updates   map[string]*TypeDef  `json:"updates"`

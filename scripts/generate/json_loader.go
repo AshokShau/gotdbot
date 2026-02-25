@@ -2,23 +2,29 @@ package main
 
 import (
 	"encoding/json"
-	"os"
+	"fmt"
+	"net/http"
 	"sort"
 )
 
 // LoadTDLibJSON reads the JSON file and returns the TDLibJSON structure.
-func LoadTDLibJSON(filename string) (*TDLibJSON, error) {
-	file, err := os.Open(filename)
+func LoadTDLibJSON(url string) (*TDLibJSON, error) {
+	resp, err := http.Get(url)
 	if err != nil {
 		return nil, err
 	}
-	defer file.Close()
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		return nil, fmt.Errorf("failed to fetch json: %s", resp.Status)
+	}
 
 	var data TDLibJSON
-	decoder := json.NewDecoder(file)
+	decoder := json.NewDecoder(resp.Body)
 	if err := decoder.Decode(&data); err != nil {
 		return nil, err
 	}
+
 	return &data, nil
 }
 

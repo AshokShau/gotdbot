@@ -8,8 +8,7 @@ import (
 	"os"
 
 	"github.com/AshokShau/gotdbot"
-	"github.com/AshokShau/gotdbot/ext"
-	"github.com/AshokShau/gotdbot/ext/handlers"
+	"github.com/AshokShau/gotdbot/handlers"
 )
 
 func main() {
@@ -32,13 +31,14 @@ func main() {
 		panic(err)
 	}
 
-	dispatcher := ext.NewDispatcher(bot)
+	dispatcher := bot.Dispatcher
 
+	gotdbot.SetTdlibLogVerbosityLevel(3)
 	// /start - Send welcome message with inline keyboard
-	dispatcher.AddHandler(handlers.NewCommand("start", func(ctx *ext.Context) error {
+	dispatcher.AddHandler(handlers.NewCommand("start", func(ctx *gotdbot.Context) error {
 		msg := ctx.EffectiveMessage
 		c := ctx.Client
-		userId := msg.FromID()
+		userId := msg.SenderID()
 
 		action, err := msg.Action(c, "typing", nil)
 		if err != nil {
@@ -46,7 +46,6 @@ func main() {
 			return err
 		}
 
-		//action.Start() // Start sending action in loop
 		//defer action.Stop()
 		action.Send() // Send once
 
@@ -75,16 +74,26 @@ func main() {
 			},
 		}
 
-		_, err = msg.ReplyText(c, text, &gotdbot.SendTextMessageOpts{
+		msg, err = msg.ReplyText(c, text, &gotdbot.SendTextMessageOpts{
 			ReplyMarkup: kb,
 			ParseMode:   "HTML",
 		})
+		if err != nil {
+			ctx.Client.Logger.Error("Failed to send welcome message", "err", err)
+			return err
+		}
 
-		return err
+		link, err := msg.GetLink(c)
+		if err != nil {
+			ctx.Client.Logger.Error("Failed to get message link", "err", err)
+		} else {
+			ctx.Client.Logger.Info("Sent welcome message", "link", link.Link)
+		}
+		return nil
 	}))
 
 	// /inline - Send message with inline keyboard buttons
-	dispatcher.AddHandler(handlers.NewCommand("inline", func(ctx *ext.Context) error {
+	dispatcher.AddHandler(handlers.NewCommand("inline", func(ctx *gotdbot.Context) error {
 		kb := &gotdbot.ReplyMarkupInlineKeyboard{
 			Rows: [][]gotdbot.InlineKeyboardButton{
 				{
@@ -128,7 +137,7 @@ func main() {
 	}))
 
 	// /keyboard - Send message with reply keyboard
-	dispatcher.AddHandler(handlers.NewCommand("keyboard", func(ctx *ext.Context) error {
+	dispatcher.AddHandler(handlers.NewCommand("keyboard", func(ctx *gotdbot.Context) error {
 		kb := &gotdbot.ReplyMarkupShowKeyboard{
 			Rows: [][]gotdbot.KeyboardButton{
 				{
@@ -166,7 +175,7 @@ func main() {
 	}))
 
 	// /remove - Remove keyboard
-	dispatcher.AddHandler(handlers.NewCommand("remove", func(ctx *ext.Context) error {
+	dispatcher.AddHandler(handlers.NewCommand("remove", func(ctx *gotdbot.Context) error {
 		content := &gotdbot.InputMessageText{
 			Text: &gotdbot.FormattedText{
 				Text: "Keyboards removed",
@@ -182,7 +191,7 @@ func main() {
 	}))
 
 	// /force - Force reply
-	dispatcher.AddHandler(handlers.NewCommand("force", func(ctx *ext.Context) error {
+	dispatcher.AddHandler(handlers.NewCommand("force", func(ctx *gotdbot.Context) error {
 		content := &gotdbot.InputMessageText{
 			Text: &gotdbot.FormattedText{
 				Text: "This is a force reply",
@@ -200,7 +209,7 @@ func main() {
 	}))
 
 	// CallbackQuery Handler
-	dispatcher.AddHandler(handlers.NewUpdateNewCallbackQuery(nil, func(ctx *ext.Context) error {
+	dispatcher.AddHandler(handlers.NewUpdateNewCallbackQuery(nil, func(ctx *gotdbot.Context) error {
 		update := ctx.Update.UpdateNewCallbackQuery
 		ctx.Client.Logger.Info("Received callback query", "message_id", update.MessageId, "chat_id", update.ChatId)
 		var data string
@@ -232,9 +241,10 @@ func main() {
 				},
 			}
 
-			_, err := ctx.Client.EditMessageText(update.ChatId, update.MessageId, inputContent, &gotdbot.EditMessageTextOpts{
+			_, err = ctx.Client.EditMessageText(update.ChatId, inputContent, update.MessageId, &gotdbot.EditMessageTextOpts{
 				ReplyMarkup: kb,
 			})
+
 			if err != nil {
 				ctx.Client.Logger.Error("Failed to edit message", "error", err)
 			}
@@ -243,9 +253,8 @@ func main() {
 		return nil
 	}))
 
-	dispatcher.Start()
-	log.Println("Starting bot...")
-	if err := bot.Start(); err != nil {
+	err = bot.Start()
+	if err != nil {
 		log.Fatalf("Failed to start bot: %v", err)
 	}
 

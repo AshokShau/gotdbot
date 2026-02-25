@@ -1,42 +1,17 @@
 package main
 
 import (
-	"flag"
 	"log"
-	"os"
 	"sort"
 )
 
 func main() {
-	download := flag.Bool("download", false, "Download TL schema and generate tdlib.json")
-	jsonPath := flag.String("json", "scripts/generate/tdlib.json", "Path to tdlib.json")
-	tlUrl := flag.String("url", "https://raw.githubusercontent.com/tdlib/td/refs/heads/master/td/generate/scheme/td_api.tl", "URL to fetch TL schema from")
-	flag.Parse()
-
-	if *download {
-		log.Printf("Fetching TL schema from %s...", *tlUrl)
-		data, err := FetchAndParseTL(*tlUrl)
-		if err != nil {
-			log.Fatalf("Failed to fetch/parse TL: %v", err)
-		}
-
-		log.Printf("Saving JSON to %s...", *jsonPath)
-		if err := SaveTDLibJSON(data, *jsonPath); err != nil {
-			log.Fatalf("Failed to save JSON: %v", err)
-		}
-		log.Println("Done.")
-		return
-	}
-
-	log.Printf("Loading JSON from %s...", *jsonPath)
-	if _, err := os.Stat(*jsonPath); os.IsNotExist(err) {
-		log.Fatalf("JSON file not found at %s. Run with --download to generate it.", *jsonPath)
-	}
-
-	data, err := LoadTDLibJSON(*jsonPath)
+	data, err := LoadTDLibJSON("https://raw.githubusercontent.com/FallenProjects/tdlib-build/refs/heads/master/tdlib.json")
 	if err != nil {
 		log.Fatalf("Failed to load JSON: %v", err)
 	}
+
+	log.Printf("Loaded TDLib-%s with %d types, %d functions, and %d classes", data.Version, len(data.Types), len(data.Functions), len(data.Classes))
 
 	types, functions, classes := ConvertJSONToGen(data)
 
