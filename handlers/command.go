@@ -9,10 +9,10 @@ import (
 type Command struct {
 	Triggers []rune
 	Command  string
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewCommand(command string, response func(ctx *gotdbot.Context) error) *Command {
+func NewCommand(command string, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *Command {
 	return &Command{
 		Triggers: []rune{'/'},
 		Command:  strings.ToLower(command),
@@ -25,7 +25,7 @@ func (c *Command) SetTriggers(triggers []rune) *Command {
 	return c
 }
 
-func (c *Command) CheckUpdate(ctx *gotdbot.Context) bool {
+func (c *Command) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	if ctx.EffectiveMessage == nil || ctx.EffectiveMessage.Content == nil {
 		return false
 	}
@@ -69,7 +69,7 @@ func (c *Command) CheckUpdate(ctx *gotdbot.Context) bool {
 		}
 
 		if mentionedBot != "" {
-			me := ctx.Client.Me()
+			me := b.Me()
 			if me == nil {
 				return false
 			}
@@ -92,6 +92,6 @@ func (c *Command) CheckUpdate(ctx *gotdbot.Context) bool {
 	return false
 }
 
-func (c *Command) HandleUpdate(ctx *gotdbot.Context) error {
-	return c.Response(ctx)
+func (c *Command) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return c.Response(b, ctx)
 }

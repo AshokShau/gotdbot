@@ -10,17 +10,17 @@ import (
 
 type UpdateMessageSuggestedPostInfo struct {
 	Filter   filters.UpdateMessageSuggestedPostInfo
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateMessageSuggestedPostInfo(filter filters.UpdateMessageSuggestedPostInfo, response func(ctx *gotdbot.Context) error) *UpdateMessageSuggestedPostInfo {
+func NewUpdateMessageSuggestedPostInfo(filter filters.UpdateMessageSuggestedPostInfo, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateMessageSuggestedPostInfo {
 	return &UpdateMessageSuggestedPostInfo{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateMessageSuggestedPostInfo) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateMessageSuggestedPostInfo) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateMessageSuggestedPostInfo
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateMessageSuggestedPostInfo) CheckUpdate(ctx *gotdbot.Context) bool 
 	return h.Filter(u)
 }
 
-func (h *UpdateMessageSuggestedPostInfo) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateMessageSuggestedPostInfo) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

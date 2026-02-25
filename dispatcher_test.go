@@ -16,7 +16,7 @@ func TestDispatcher_Message(t *testing.T) {
 	var wg sync.WaitGroup
 	wg.Add(1)
 	called := false
-	h := handlers.NewMessage(filters.Text, func(ctx *gotdbot.Context) error {
+	h := handlers.NewMessage(filters.Text, func(client *gotdbot.Client, ctx *gotdbot.Context) error {
 		called = true
 		wg.Done()
 		return nil
@@ -50,7 +50,7 @@ func TestDispatcher_Command(t *testing.T) {
 	var wg sync.WaitGroup
 	wg.Add(1)
 	called := false
-	cmd := handlers.NewCommand("start", func(ctx *gotdbot.Context) error {
+	cmd := handlers.NewCommand("start", func(client *gotdbot.Client, ctx *gotdbot.Context) error {
 		called = true
 		wg.Done()
 		return nil
@@ -82,7 +82,7 @@ func TestDispatcher_InlineQuery(t *testing.T) {
 	var wg sync.WaitGroup
 	wg.Add(1)
 	called := false
-	h := handlers.NewUpdateNewInlineQuery(nil, func(ctx *gotdbot.Context) error {
+	h := handlers.NewUpdateNewInlineQuery(nil, func(client *gotdbot.Client, ctx *gotdbot.Context) error {
 		called = true
 		wg.Done()
 		return nil

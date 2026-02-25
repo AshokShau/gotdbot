@@ -10,17 +10,17 @@ import (
 
 type UpdatePendingTextMessage struct {
 	Filter   filters.UpdatePendingTextMessage
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdatePendingTextMessage(filter filters.UpdatePendingTextMessage, response func(ctx *gotdbot.Context) error) *UpdatePendingTextMessage {
+func NewUpdatePendingTextMessage(filter filters.UpdatePendingTextMessage, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdatePendingTextMessage {
 	return &UpdatePendingTextMessage{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdatePendingTextMessage) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdatePendingTextMessage) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdatePendingTextMessage
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdatePendingTextMessage) CheckUpdate(ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdatePendingTextMessage) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdatePendingTextMessage) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

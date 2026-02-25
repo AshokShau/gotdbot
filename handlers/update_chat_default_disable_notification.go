@@ -10,17 +10,17 @@ import (
 
 type UpdateChatDefaultDisableNotification struct {
 	Filter   filters.UpdateChatDefaultDisableNotification
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateChatDefaultDisableNotification(filter filters.UpdateChatDefaultDisableNotification, response func(ctx *gotdbot.Context) error) *UpdateChatDefaultDisableNotification {
+func NewUpdateChatDefaultDisableNotification(filter filters.UpdateChatDefaultDisableNotification, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatDefaultDisableNotification {
 	return &UpdateChatDefaultDisableNotification{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateChatDefaultDisableNotification) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateChatDefaultDisableNotification) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateChatDefaultDisableNotification
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateChatDefaultDisableNotification) CheckUpdate(ctx *gotdbot.Context)
 	return h.Filter(u)
 }
 
-func (h *UpdateChatDefaultDisableNotification) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateChatDefaultDisableNotification) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

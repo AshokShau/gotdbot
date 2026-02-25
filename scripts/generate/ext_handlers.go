@@ -31,17 +31,17 @@ func generateExtHandlers(types []TLType) []string {
 
 		sb.WriteString(fmt.Sprintf("type %s struct {\n", structName))
 		sb.WriteString(fmt.Sprintf("\tFilter   filters.%s\n", structName))
-		sb.WriteString("\tResponse func(ctx *gotdbot.Context) error\n")
+		sb.WriteString("\tResponse func(b *gotdbot.Client, ctx *gotdbot.Context) error\n")
 		sb.WriteString("}\n\n")
 
-		sb.WriteString(fmt.Sprintf("func New%s(filter filters.%s, response func(ctx *gotdbot.Context) error) *%s {\n", structName, structName, structName))
+		sb.WriteString(fmt.Sprintf("func New%s(filter filters.%s, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *%s {\n", structName, structName, structName))
 		sb.WriteString(fmt.Sprintf("\treturn &%s{\n", structName))
 		sb.WriteString("\t\tFilter:   filter,\n")
 		sb.WriteString("\t\tResponse: response,\n")
 		sb.WriteString("\t}\n")
 		sb.WriteString("}\n\n")
 
-		sb.WriteString(fmt.Sprintf("func (h *%s) CheckUpdate(ctx *gotdbot.Context) bool {\n", structName))
+		sb.WriteString(fmt.Sprintf("func (h *%s) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {\n", structName))
 		sb.WriteString(fmt.Sprintf("\tu := ctx.Update.%s\n", structName))
 		sb.WriteString("\tif u == nil {\n")
 		sb.WriteString("\t\treturn false\n")
@@ -52,8 +52,8 @@ func generateExtHandlers(types []TLType) []string {
 		sb.WriteString("\treturn h.Filter(u)\n")
 		sb.WriteString("}\n\n")
 
-		sb.WriteString(fmt.Sprintf("func (h *%s) HandleUpdate(ctx *gotdbot.Context) error {\n", structName))
-		sb.WriteString("\treturn h.Response(ctx)\n")
+		sb.WriteString(fmt.Sprintf("func (h *%s) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {\n", structName))
+		sb.WriteString("\treturn h.Response(b, ctx)\n")
 		sb.WriteString("}\n")
 
 		if err := os.WriteFile(filePath, []byte(sb.String()), 0644); err != nil {
@@ -192,7 +192,7 @@ func generateExtHandlers(types []TLType) []string {
 
 		sbTest.WriteString("\tfunc() {\n")
 		sbTest.WriteString("\t\tcalled := make(chan bool, 1)\n")
-		sbTest.WriteString(fmt.Sprintf("\t\th := New%s(nil, func(ctx *gotdbot.Context) error {\n", structName))
+		sbTest.WriteString(fmt.Sprintf("\t\th := New%s(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {\n", structName))
 		sbTest.WriteString("\t\t\tcalled <- true\n")
 		sbTest.WriteString("\t\t\treturn nil\n")
 		sbTest.WriteString("\t\t})\n")

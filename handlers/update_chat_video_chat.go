@@ -10,17 +10,17 @@ import (
 
 type UpdateChatVideoChat struct {
 	Filter   filters.UpdateChatVideoChat
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateChatVideoChat(filter filters.UpdateChatVideoChat, response func(ctx *gotdbot.Context) error) *UpdateChatVideoChat {
+func NewUpdateChatVideoChat(filter filters.UpdateChatVideoChat, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatVideoChat {
 	return &UpdateChatVideoChat{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateChatVideoChat) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateChatVideoChat) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateChatVideoChat
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateChatVideoChat) CheckUpdate(ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdateChatVideoChat) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateChatVideoChat) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

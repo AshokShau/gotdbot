@@ -10,17 +10,17 @@ import (
 
 type UpdateAttachmentMenuBots struct {
 	Filter   filters.UpdateAttachmentMenuBots
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateAttachmentMenuBots(filter filters.UpdateAttachmentMenuBots, response func(ctx *gotdbot.Context) error) *UpdateAttachmentMenuBots {
+func NewUpdateAttachmentMenuBots(filter filters.UpdateAttachmentMenuBots, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateAttachmentMenuBots {
 	return &UpdateAttachmentMenuBots{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateAttachmentMenuBots) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateAttachmentMenuBots) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateAttachmentMenuBots
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateAttachmentMenuBots) CheckUpdate(ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdateAttachmentMenuBots) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateAttachmentMenuBots) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

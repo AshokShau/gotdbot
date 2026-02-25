@@ -10,17 +10,17 @@ import (
 
 type UpdateChatMember struct {
 	Filter   filters.UpdateChatMember
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateChatMember(filter filters.UpdateChatMember, response func(ctx *gotdbot.Context) error) *UpdateChatMember {
+func NewUpdateChatMember(filter filters.UpdateChatMember, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatMember {
 	return &UpdateChatMember{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateChatMember) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateChatMember) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateChatMember
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateChatMember) CheckUpdate(ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdateChatMember) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateChatMember) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

@@ -40,9 +40,8 @@ func main() {
 
 	dispatcher := bot.Dispatcher
 
-	dispatcher.AddHandler(handlers.NewCommand("saved", func(ctx *gotdbot.Context) error {
+	dispatcher.AddHandler(handlers.NewCommand("saved", func(client *gotdbot.Client, ctx *gotdbot.Context) error {
 		message := ctx.EffectiveMessage
-		client := ctx.Client
 		userId := message.SenderID()
 		if message.ReplyToMessageID() != 0 {
 			replyMsg, err := message.GetRepliedMessage(client)
@@ -107,9 +106,8 @@ func main() {
 	bot.Idle()
 }
 
-func downloadCmd(ctx *gotdbot.Context) error {
+func downloadCmd(c *gotdbot.Client, ctx *gotdbot.Context) error {
 	msg := ctx.EffectiveMessage
-	c := ctx.Client
 	if msg.ReplyToMessageID() == 0 {
 		_, err := msg.ReplyText(c, "Please reply to a message with a file to download.", &gotdbot.SendTextMessageOpts{ParseMode: "HTML"})
 		return err
@@ -158,10 +156,9 @@ func downloadCmd(ctx *gotdbot.Context) error {
 	return nil
 }
 
-func uploadCmd(ctx *gotdbot.Context) error {
+func uploadCmd(c *gotdbot.Client, ctx *gotdbot.Context) error {
 	args := getArgs(ctx)
 	msg := ctx.EffectiveMessage
-	c := ctx.Client
 
 	if len(args) == 0 {
 		_, err := msg.ReplyText(c, "Please provide a file path to upload. Usage: /upload <path>", &gotdbot.SendTextMessageOpts{ParseMode: "HTML"})
@@ -209,9 +206,8 @@ func uploadCmd(ctx *gotdbot.Context) error {
 	return nil
 }
 
-func getFileID(ctx *gotdbot.Context) error {
+func getFileID(c *gotdbot.Client, ctx *gotdbot.Context) error {
 	msg := ctx.EffectiveMessage
-	c := ctx.Client
 	if msg.ReplyToMessageID() == 0 {
 		_, err := msg.ReplyText(c, "Please reply to a message with a file to get its File ID.", &gotdbot.SendTextMessageOpts{ParseMode: "HTML"})
 		return err
@@ -233,10 +229,9 @@ func getFileID(ctx *gotdbot.Context) error {
 	return err
 }
 
-func sendWithFileID(ctx *gotdbot.Context) error {
+func sendWithFileID(c *gotdbot.Client, ctx *gotdbot.Context) error {
 	args := getArgs(ctx)
 	msg := ctx.EffectiveMessage
-	c := ctx.Client
 
 	if len(args) == 0 {
 		_, err := msg.ReplyText(c, "Please provide a File ID to send. Usage: /file <file_id>", &gotdbot.SendTextMessageOpts{ParseMode: "HTML"})
@@ -254,13 +249,12 @@ func sendWithFileID(ctx *gotdbot.Context) error {
 	return nil
 }
 
-func progressHandler(ctx *gotdbot.Context) error {
+func progressHandler(c *gotdbot.Client, ctx *gotdbot.Context) error {
 	update := ctx.Update.UpdateFile
 	//jsonData, _ := json.MarshalIndent(update, "", "  ")
 	//log.Println(string(jsonData))
 
 	file := update.File
-	c := ctx.Client
 
 	val, ok := activeTasks.Load(int64(file.Id))
 	var prog *Progress

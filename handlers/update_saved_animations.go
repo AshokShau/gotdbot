@@ -10,17 +10,17 @@ import (
 
 type UpdateSavedAnimations struct {
 	Filter   filters.UpdateSavedAnimations
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateSavedAnimations(filter filters.UpdateSavedAnimations, response func(ctx *gotdbot.Context) error) *UpdateSavedAnimations {
+func NewUpdateSavedAnimations(filter filters.UpdateSavedAnimations, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateSavedAnimations {
 	return &UpdateSavedAnimations{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateSavedAnimations) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateSavedAnimations) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateSavedAnimations
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateSavedAnimations) CheckUpdate(ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdateSavedAnimations) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateSavedAnimations) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

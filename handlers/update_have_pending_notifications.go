@@ -10,17 +10,17 @@ import (
 
 type UpdateHavePendingNotifications struct {
 	Filter   filters.UpdateHavePendingNotifications
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateHavePendingNotifications(filter filters.UpdateHavePendingNotifications, response func(ctx *gotdbot.Context) error) *UpdateHavePendingNotifications {
+func NewUpdateHavePendingNotifications(filter filters.UpdateHavePendingNotifications, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateHavePendingNotifications {
 	return &UpdateHavePendingNotifications{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateHavePendingNotifications) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateHavePendingNotifications) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateHavePendingNotifications
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateHavePendingNotifications) CheckUpdate(ctx *gotdbot.Context) bool 
 	return h.Filter(u)
 }
 
-func (h *UpdateHavePendingNotifications) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateHavePendingNotifications) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

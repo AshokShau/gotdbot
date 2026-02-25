@@ -10,17 +10,17 @@ import (
 
 type UpdateQuickReplyShortcutMessages struct {
 	Filter   filters.UpdateQuickReplyShortcutMessages
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateQuickReplyShortcutMessages(filter filters.UpdateQuickReplyShortcutMessages, response func(ctx *gotdbot.Context) error) *UpdateQuickReplyShortcutMessages {
+func NewUpdateQuickReplyShortcutMessages(filter filters.UpdateQuickReplyShortcutMessages, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateQuickReplyShortcutMessages {
 	return &UpdateQuickReplyShortcutMessages{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateQuickReplyShortcutMessages) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateQuickReplyShortcutMessages) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateQuickReplyShortcutMessages
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateQuickReplyShortcutMessages) CheckUpdate(ctx *gotdbot.Context) boo
 	return h.Filter(u)
 }
 
-func (h *UpdateQuickReplyShortcutMessages) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateQuickReplyShortcutMessages) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

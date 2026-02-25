@@ -10,17 +10,17 @@ import (
 
 type UpdateChatMessageAutoDeleteTime struct {
 	Filter   filters.UpdateChatMessageAutoDeleteTime
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateChatMessageAutoDeleteTime(filter filters.UpdateChatMessageAutoDeleteTime, response func(ctx *gotdbot.Context) error) *UpdateChatMessageAutoDeleteTime {
+func NewUpdateChatMessageAutoDeleteTime(filter filters.UpdateChatMessageAutoDeleteTime, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatMessageAutoDeleteTime {
 	return &UpdateChatMessageAutoDeleteTime{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateChatMessageAutoDeleteTime) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateChatMessageAutoDeleteTime) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateChatMessageAutoDeleteTime
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateChatMessageAutoDeleteTime) CheckUpdate(ctx *gotdbot.Context) bool
 	return h.Filter(u)
 }
 
-func (h *UpdateChatMessageAutoDeleteTime) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateChatMessageAutoDeleteTime) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

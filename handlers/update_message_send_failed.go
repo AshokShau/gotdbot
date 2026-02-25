@@ -10,17 +10,17 @@ import (
 
 type UpdateMessageSendFailed struct {
 	Filter   filters.UpdateMessageSendFailed
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateMessageSendFailed(filter filters.UpdateMessageSendFailed, response func(ctx *gotdbot.Context) error) *UpdateMessageSendFailed {
+func NewUpdateMessageSendFailed(filter filters.UpdateMessageSendFailed, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateMessageSendFailed {
 	return &UpdateMessageSendFailed{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateMessageSendFailed) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateMessageSendFailed) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateMessageSendFailed
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateMessageSendFailed) CheckUpdate(ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdateMessageSendFailed) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateMessageSendFailed) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

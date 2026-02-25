@@ -2,7 +2,6 @@ package gotdbot
 
 import (
 	"time"
-
 )
 
 type Context struct {
@@ -10,8 +9,6 @@ type Context struct {
 	RawUpdate TlObject
 	// Update contains pointers to all possible update types.
 	Update *ContextUpdates
-	// Client is the gotdbot client.
-	Client *Client
 	// Dispatcher is the dispatcher that created this context.
 	Dispatcher *Dispatcher
 
@@ -23,11 +20,10 @@ type Context struct {
 	EffectiveChatId  int64
 }
 
-func NewContext(client *Client, update TlObject, dispatcher *Dispatcher) *Context {
+func NewContext(update TlObject, dispatcher *Dispatcher) *Context {
 	ctx := &Context{
 		RawUpdate:  update,
 		Update:     NewContextUpdates(update),
-		Client:     client,
 		Dispatcher: dispatcher,
 		Data:       make(map[string]interface{}),
 	}

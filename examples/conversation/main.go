@@ -25,17 +25,15 @@ func main() {
 
 	dispatcher := bot.Dispatcher
 	gotdbot.SetTdlibLogVerbosityLevel(2)
-	dispatcher.AddHandler(handlers.NewCommand("start", func(ctx *gotdbot.Context) error {
+	dispatcher.AddHandler(handlers.NewCommand("start", func(c *gotdbot.Client, ctx *gotdbot.Context) error {
 		msg := ctx.EffectiveMessage
-		c := ctx.Client
 		_, err := msg.ReplyText(c, "Welcome! Use /survey to start the survey.\nSend /cancel to stop talking to me", nil)
 		return err
 	}))
 
-	dispatcher.AddHandler(handlers.NewCommand("survey", func(ctx *gotdbot.Context) error {
+	dispatcher.AddHandler(handlers.NewCommand("survey", func(c *gotdbot.Client, ctx *gotdbot.Context) error {
 		chatId := ctx.EffectiveChatId
 		msg := ctx.EffectiveMessage
-		c := ctx.Client
 
 		timeOut := 30 * time.Second
 		stopFilter := filters.Text.And(filters.SenderID(msg.SenderID())).And(filters.Command("cancel"))

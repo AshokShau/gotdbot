@@ -10,17 +10,17 @@ import (
 
 type UpdateForumTopicInfo struct {
 	Filter   filters.UpdateForumTopicInfo
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateForumTopicInfo(filter filters.UpdateForumTopicInfo, response func(ctx *gotdbot.Context) error) *UpdateForumTopicInfo {
+func NewUpdateForumTopicInfo(filter filters.UpdateForumTopicInfo, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateForumTopicInfo {
 	return &UpdateForumTopicInfo{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateForumTopicInfo) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateForumTopicInfo) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateForumTopicInfo
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateForumTopicInfo) CheckUpdate(ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdateForumTopicInfo) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateForumTopicInfo) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

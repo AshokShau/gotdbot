@@ -10,17 +10,17 @@ import (
 
 type UpdateContactCloseBirthdays struct {
 	Filter   filters.UpdateContactCloseBirthdays
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateContactCloseBirthdays(filter filters.UpdateContactCloseBirthdays, response func(ctx *gotdbot.Context) error) *UpdateContactCloseBirthdays {
+func NewUpdateContactCloseBirthdays(filter filters.UpdateContactCloseBirthdays, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateContactCloseBirthdays {
 	return &UpdateContactCloseBirthdays{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateContactCloseBirthdays) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateContactCloseBirthdays) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateContactCloseBirthdays
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateContactCloseBirthdays) CheckUpdate(ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdateContactCloseBirthdays) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateContactCloseBirthdays) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

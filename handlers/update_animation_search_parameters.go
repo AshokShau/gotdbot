@@ -10,17 +10,17 @@ import (
 
 type UpdateAnimationSearchParameters struct {
 	Filter   filters.UpdateAnimationSearchParameters
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateAnimationSearchParameters(filter filters.UpdateAnimationSearchParameters, response func(ctx *gotdbot.Context) error) *UpdateAnimationSearchParameters {
+func NewUpdateAnimationSearchParameters(filter filters.UpdateAnimationSearchParameters, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateAnimationSearchParameters {
 	return &UpdateAnimationSearchParameters{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateAnimationSearchParameters) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateAnimationSearchParameters) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateAnimationSearchParameters
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateAnimationSearchParameters) CheckUpdate(ctx *gotdbot.Context) bool
 	return h.Filter(u)
 }
 
-func (h *UpdateAnimationSearchParameters) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateAnimationSearchParameters) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

@@ -10,17 +10,17 @@ import (
 
 type UpdateLanguagePackStrings struct {
 	Filter   filters.UpdateLanguagePackStrings
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateLanguagePackStrings(filter filters.UpdateLanguagePackStrings, response func(ctx *gotdbot.Context) error) *UpdateLanguagePackStrings {
+func NewUpdateLanguagePackStrings(filter filters.UpdateLanguagePackStrings, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateLanguagePackStrings {
 	return &UpdateLanguagePackStrings{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateLanguagePackStrings) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateLanguagePackStrings) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateLanguagePackStrings
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateLanguagePackStrings) CheckUpdate(ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdateLanguagePackStrings) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateLanguagePackStrings) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

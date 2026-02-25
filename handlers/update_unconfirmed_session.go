@@ -10,17 +10,17 @@ import (
 
 type UpdateUnconfirmedSession struct {
 	Filter   filters.UpdateUnconfirmedSession
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateUnconfirmedSession(filter filters.UpdateUnconfirmedSession, response func(ctx *gotdbot.Context) error) *UpdateUnconfirmedSession {
+func NewUpdateUnconfirmedSession(filter filters.UpdateUnconfirmedSession, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateUnconfirmedSession {
 	return &UpdateUnconfirmedSession{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateUnconfirmedSession) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateUnconfirmedSession) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateUnconfirmedSession
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateUnconfirmedSession) CheckUpdate(ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdateUnconfirmedSession) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateUnconfirmedSession) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }
