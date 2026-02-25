@@ -3,17 +3,20 @@ package gotdbot
 //go:generate go run ./scripts/generate
 
 import (
+	"bufio"
 	"encoding/json"
 	"fmt"
 	"log/slog"
 	"os"
 	"os/signal"
+	"regexp"
 	"runtime"
 	"strings"
 	"sync"
 	"syscall"
 	"time"
 
+	"github.com/AshokShau/gotdbot/internal/qrcode"
 	"github.com/AshokShau/gotdbot/tdjson"
 )
 
@@ -34,7 +37,7 @@ type ClientConfig struct {
 	ApplicationVersion      string
 	TDLibOptions            map[string]interface{}
 	Logger                  *slog.Logger
-	IsUser                  bool
+	QrMode                  bool
 	AuthorizationTimeout    time.Duration
 	LogCallback             func(verbosity int32, message string)
 }
@@ -54,7 +57,7 @@ func DefaultClientConfig() *ClientConfig {
 		SystemVersion:           runtime.GOOS,
 		ApplicationVersion:      "Gotdbot " + Version,
 		Logger:                  slog.New(slog.NewTextHandler(os.Stdout, nil)),
-		IsUser:                  false,
+		QrMode:                  false,
 		AuthorizationTimeout:    60 * time.Second,
 	}
 }
@@ -65,8 +68,10 @@ type Client struct {
 	apiID    int32
 	apiHash  string
 	botToken string
-	config   *ClientConfig
-	Logger   *slog.Logger
+	// phoneNumber is set if the user is logging in with a phone number.
+	phoneNumber string
+	config      *ClientConfig
+	Logger      *slog.Logger
 
 	updates chan TlObject
 	stop    chan struct{}
@@ -87,7 +92,7 @@ type Client struct {
 	isAuthorized  bool
 }
 
-func NewClient(apiID int32, apiHash, botToken string, config *ClientConfig) (*Client, error) {
+func NewClient(apiID int32, apiHash, tokenOrPhone string, config *ClientConfig) (*Client, error) {
 	if config == nil {
 		config = DefaultClientConfig()
 	} else {
@@ -138,11 +143,20 @@ func NewClient(apiID int32, apiHash, botToken string, config *ClientConfig) (*Cl
 		tdjson.SetLogMessageCallback(5, config.LogCallback)
 	}
 
+	botTokenRegex := regexp.MustCompile(`^\d+:[a-zA-Z0-9_-]+$`)
+	var botToken, phoneNumber string
+	if botTokenRegex.MatchString(tokenOrPhone) {
+		botToken = tokenOrPhone
+	} else {
+		phoneNumber = tokenOrPhone
+	}
+
 	c := &Client{
 		clientID:      tdjson.CreateClientID(),
 		apiID:         apiID,
 		apiHash:       apiHash,
 		botToken:      botToken,
+		phoneNumber:   phoneNumber,
 		config:        config,
 		Logger:        config.Logger,
 		updates:       make(chan TlObject, 1000),
@@ -323,15 +337,104 @@ func (c *Client) authHandler(client *Client, update TlObject) error {
 		}
 
 	case "authorizationStateWaitPhoneNumber":
-		if c.config.IsUser {
-			return nil
-		}
-		err := c.CheckAuthenticationBotToken(c.botToken)
-		if err != nil {
-			c.Logger.Error("Error checking bot token", "error", err)
-			c.authErrorChan <- err
+		if c.botToken != "" {
+			err := c.CheckAuthenticationBotToken(c.botToken)
+			if err != nil {
+				c.Logger.Error("Error checking bot token", "error", err)
+				c.authErrorChan <- err
+			}
+		} else {
+			// User login
+			if c.config.QrMode {
+				err := c.RequestQrCodeAuthentication(nil)
+				if err != nil {
+					c.Logger.Error("Error requesting QR code", "error", err)
+					c.authErrorChan <- err
+				}
+			} else if c.phoneNumber != "" {
+				err := c.SetAuthenticationPhoneNumber(c.phoneNumber, nil)
+				if err != nil {
+					c.Logger.Error("Error setting phone number", "error", err)
+					c.authErrorChan <- err
+				}
+			} else {
+				fmt.Print("Enter phone number: ")
+				reader := bufio.NewReader(os.Stdin)
+				phone, _ := reader.ReadString('\n')
+				phone = strings.TrimSpace(phone)
+				err := c.SetAuthenticationPhoneNumber(phone, nil)
+				if err != nil {
+					c.Logger.Error("Error setting phone number", "error", err)
+					c.authErrorChan <- err
+				}
+			}
 		}
 
+	case "authorizationStateWaitOtherDeviceConfirmation":
+		link := authState.AuthorizationState.(*AuthorizationStateWaitOtherDeviceConfirmation).Link
+		fmt.Printf("Scan the QR code below: or open the link in Telegram: %s\n", link)
+		q, err := qrcode.NewQRCode(link)
+		if err != nil {
+			fmt.Printf("Failed to generate QR: %v\nLink: %s\n", err, link)
+		} else {
+			fmt.Println(q.ToSmallString(false))
+		}
+
+	case "authorizationStateWaitCode":
+		codeInfo := authState.AuthorizationState.(*AuthorizationStateWaitCode).CodeInfo
+		codeType := codeInfo.TypeField.Type()
+		codeType = strings.TrimPrefix(codeType, "authenticationCodeType")
+		reader := bufio.NewReader(os.Stdin)
+		for {
+			fmt.Printf("Enter the code received via %s: ", codeType)
+			code, _ := reader.ReadString('\n')
+			code = strings.TrimSpace(code)
+			if code == "" {
+				continue
+			}
+			err := c.CheckAuthenticationCode(code)
+			if err != nil {
+				fmt.Printf("Error checking code: %v\n", err)
+				continue
+			}
+			break
+		}
+
+	case "authorizationStateWaitPassword":
+		hint := authState.AuthorizationState.(*AuthorizationStateWaitPassword).PasswordHint
+		reader := bufio.NewReader(os.Stdin)
+		for {
+			fmt.Printf("Enter your 2FA password (hint: %s): ", hint)
+			password, _ := reader.ReadString('\n')
+			password = strings.TrimSpace(password)
+			if password == "" {
+				continue
+			}
+			err := c.CheckAuthenticationPassword(password)
+			if err != nil {
+				fmt.Printf("Error checking password: %v\n", err)
+				continue
+			}
+			break
+		}
+
+	case "authorizationStateWaitRegistration":
+		reader := bufio.NewReader(os.Stdin)
+		fmt.Print("Enter first name: ")
+		firstName, _ := reader.ReadString('\n')
+		firstName = strings.TrimSpace(firstName)
+		fmt.Print("Enter last name: ")
+		lastName, _ := reader.ReadString('\n')
+		lastName = strings.TrimSpace(lastName)
+
+		err := c.RegisterUser(firstName, lastName, nil)
+		if err != nil {
+			c.Logger.Error("Error registering user", "error", err)
+			c.authErrorChan <- err
+		}
+	case "authorizationStateWaitPremiumPurchase":
+		c.Logger.Info("Account is limited and requires Telegram Premium. Please purchase Telegram Premium to continue.")
+		c.authErrorChan <- WaitPremiumPurchase
 	case "authorizationStateReady":
 		c.isAuthorized = true
 		me, err := c.GetMe()
@@ -466,7 +569,6 @@ func (c *Client) Send(req TlObject) (TlObject, error) {
 // AddHandler registers a handler for updates.
 // Deprecated: Use c.Dispatcher.AddHandler or similar.
 func (c *Client) AddHandler(updateType string, fn HandlerFunc, position int) {
-
 	h := &LegacyHandler{Func: fn, UpdateType: updateType, Position: position}
 
 	if updateType == "initializer" {
