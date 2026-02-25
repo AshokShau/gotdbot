@@ -10,17 +10,17 @@ import (
 
 type UpdateConnectionState struct {
 	Filter   filters.UpdateConnectionState
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateConnectionState(filter filters.UpdateConnectionState, response func(ctx *gotdbot.Context) error) *UpdateConnectionState {
+func NewUpdateConnectionState(filter filters.UpdateConnectionState, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateConnectionState {
 	return &UpdateConnectionState{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateConnectionState) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateConnectionState) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateConnectionState
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateConnectionState) CheckUpdate(ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdateConnectionState) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateConnectionState) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

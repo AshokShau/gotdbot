@@ -10,17 +10,17 @@ import (
 
 type UpdateSupergroupFullInfo struct {
 	Filter   filters.UpdateSupergroupFullInfo
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateSupergroupFullInfo(filter filters.UpdateSupergroupFullInfo, response func(ctx *gotdbot.Context) error) *UpdateSupergroupFullInfo {
+func NewUpdateSupergroupFullInfo(filter filters.UpdateSupergroupFullInfo, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateSupergroupFullInfo {
 	return &UpdateSupergroupFullInfo{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateSupergroupFullInfo) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateSupergroupFullInfo) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateSupergroupFullInfo
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateSupergroupFullInfo) CheckUpdate(ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdateSupergroupFullInfo) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateSupergroupFullInfo) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

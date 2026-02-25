@@ -107,7 +107,7 @@ func (d *Dispatcher) WaitFor(filter UpdateFilter, timeout time.Duration) (TlObje
 // It launches a goroutine to prevent blocking the main update loop.
 func (d *Dispatcher) ProcessUpdate(update TlObject) {
 	go func() {
-		ctx := NewContext(d.Client, update, d)
+		ctx := NewContext(update, d)
 
 		defer func() {
 			if r := recover(); r != nil {
@@ -122,7 +122,7 @@ func (d *Dispatcher) ProcessUpdate(update TlObject) {
 		d.wMu.RLock()
 		var matchedWaiters []*Waiter
 		for _, w := range d.waiters {
-			if w.Filter(ctx) {
+			if w.Filter(d.Client, ctx) {
 				matchedWaiters = append(matchedWaiters, w)
 			}
 		}
@@ -140,8 +140,8 @@ func (d *Dispatcher) ProcessUpdate(update TlObject) {
 
 		// Initializers
 		for _, h := range d.Initializers {
-			if h.CheckUpdate(ctx) {
-				if err := h.HandleUpdate(ctx); errors.Is(err, EndGroups) {
+			if h.CheckUpdate(d.Client, ctx) {
+				if err := h.HandleUpdate(d.Client, ctx); errors.Is(err, EndGroups) {
 					return
 				}
 			}
@@ -151,8 +151,8 @@ func (d *Dispatcher) ProcessUpdate(update TlObject) {
 		for _, group := range d.groups {
 			groupHandlers := d.handlers[group]
 			for _, h := range groupHandlers {
-				if h.CheckUpdate(ctx) {
-					err := h.HandleUpdate(ctx)
+				if h.CheckUpdate(d.Client, ctx) {
+					err := h.HandleUpdate(d.Client, ctx)
 					if errors.Is(err, EndGroups) {
 						return
 					}
@@ -171,8 +171,8 @@ func (d *Dispatcher) ProcessUpdate(update TlObject) {
 
 		// Finalizers
 		for _, h := range d.Finalizers {
-			if h.CheckUpdate(ctx) {
-				if err := h.HandleUpdate(ctx); errors.Is(err, EndGroups) {
+			if h.CheckUpdate(d.Client, ctx) {
+				if err := h.HandleUpdate(d.Client, ctx); errors.Is(err, EndGroups) {
 					return
 				}
 			}

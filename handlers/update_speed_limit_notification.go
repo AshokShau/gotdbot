@@ -10,17 +10,17 @@ import (
 
 type UpdateSpeedLimitNotification struct {
 	Filter   filters.UpdateSpeedLimitNotification
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateSpeedLimitNotification(filter filters.UpdateSpeedLimitNotification, response func(ctx *gotdbot.Context) error) *UpdateSpeedLimitNotification {
+func NewUpdateSpeedLimitNotification(filter filters.UpdateSpeedLimitNotification, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateSpeedLimitNotification {
 	return &UpdateSpeedLimitNotification{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateSpeedLimitNotification) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateSpeedLimitNotification) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateSpeedLimitNotification
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateSpeedLimitNotification) CheckUpdate(ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdateSpeedLimitNotification) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateSpeedLimitNotification) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

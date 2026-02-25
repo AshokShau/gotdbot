@@ -10,17 +10,17 @@ import (
 
 type UpdateChatReplyMarkup struct {
 	Filter   filters.UpdateChatReplyMarkup
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateChatReplyMarkup(filter filters.UpdateChatReplyMarkup, response func(ctx *gotdbot.Context) error) *UpdateChatReplyMarkup {
+func NewUpdateChatReplyMarkup(filter filters.UpdateChatReplyMarkup, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatReplyMarkup {
 	return &UpdateChatReplyMarkup{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateChatReplyMarkup) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateChatReplyMarkup) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateChatReplyMarkup
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateChatReplyMarkup) CheckUpdate(ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdateChatReplyMarkup) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateChatReplyMarkup) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

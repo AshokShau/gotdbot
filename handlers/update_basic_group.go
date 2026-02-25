@@ -10,17 +10,17 @@ import (
 
 type UpdateBasicGroup struct {
 	Filter   filters.UpdateBasicGroup
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateBasicGroup(filter filters.UpdateBasicGroup, response func(ctx *gotdbot.Context) error) *UpdateBasicGroup {
+func NewUpdateBasicGroup(filter filters.UpdateBasicGroup, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateBasicGroup {
 	return &UpdateBasicGroup{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateBasicGroup) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateBasicGroup) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateBasicGroup
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateBasicGroup) CheckUpdate(ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdateBasicGroup) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateBasicGroup) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

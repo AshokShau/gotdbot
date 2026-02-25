@@ -10,17 +10,17 @@ import (
 
 type UpdateAutosaveSettings struct {
 	Filter   filters.UpdateAutosaveSettings
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateAutosaveSettings(filter filters.UpdateAutosaveSettings, response func(ctx *gotdbot.Context) error) *UpdateAutosaveSettings {
+func NewUpdateAutosaveSettings(filter filters.UpdateAutosaveSettings, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateAutosaveSettings {
 	return &UpdateAutosaveSettings{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateAutosaveSettings) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateAutosaveSettings) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateAutosaveSettings
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateAutosaveSettings) CheckUpdate(ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdateAutosaveSettings) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateAutosaveSettings) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

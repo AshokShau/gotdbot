@@ -10,17 +10,17 @@ import (
 
 type UpdateProfileAccentColors struct {
 	Filter   filters.UpdateProfileAccentColors
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateProfileAccentColors(filter filters.UpdateProfileAccentColors, response func(ctx *gotdbot.Context) error) *UpdateProfileAccentColors {
+func NewUpdateProfileAccentColors(filter filters.UpdateProfileAccentColors, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateProfileAccentColors {
 	return &UpdateProfileAccentColors{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateProfileAccentColors) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateProfileAccentColors) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateProfileAccentColors
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateProfileAccentColors) CheckUpdate(ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdateProfileAccentColors) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateProfileAccentColors) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

@@ -10,17 +10,17 @@ import (
 
 type UpdateActiveNotifications struct {
 	Filter   filters.UpdateActiveNotifications
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateActiveNotifications(filter filters.UpdateActiveNotifications, response func(ctx *gotdbot.Context) error) *UpdateActiveNotifications {
+func NewUpdateActiveNotifications(filter filters.UpdateActiveNotifications, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateActiveNotifications {
 	return &UpdateActiveNotifications{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateActiveNotifications) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateActiveNotifications) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateActiveNotifications
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateActiveNotifications) CheckUpdate(ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdateActiveNotifications) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateActiveNotifications) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

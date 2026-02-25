@@ -10,17 +10,17 @@ import (
 
 type UpdateChatIsMarkedAsUnread struct {
 	Filter   filters.UpdateChatIsMarkedAsUnread
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateChatIsMarkedAsUnread(filter filters.UpdateChatIsMarkedAsUnread, response func(ctx *gotdbot.Context) error) *UpdateChatIsMarkedAsUnread {
+func NewUpdateChatIsMarkedAsUnread(filter filters.UpdateChatIsMarkedAsUnread, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatIsMarkedAsUnread {
 	return &UpdateChatIsMarkedAsUnread{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateChatIsMarkedAsUnread) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateChatIsMarkedAsUnread) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateChatIsMarkedAsUnread
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateChatIsMarkedAsUnread) CheckUpdate(ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdateChatIsMarkedAsUnread) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateChatIsMarkedAsUnread) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

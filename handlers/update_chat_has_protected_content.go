@@ -10,17 +10,17 @@ import (
 
 type UpdateChatHasProtectedContent struct {
 	Filter   filters.UpdateChatHasProtectedContent
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateChatHasProtectedContent(filter filters.UpdateChatHasProtectedContent, response func(ctx *gotdbot.Context) error) *UpdateChatHasProtectedContent {
+func NewUpdateChatHasProtectedContent(filter filters.UpdateChatHasProtectedContent, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatHasProtectedContent {
 	return &UpdateChatHasProtectedContent{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateChatHasProtectedContent) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateChatHasProtectedContent) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateChatHasProtectedContent
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateChatHasProtectedContent) CheckUpdate(ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdateChatHasProtectedContent) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateChatHasProtectedContent) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

@@ -10,17 +10,17 @@ import (
 
 type UpdateChatViewAsTopics struct {
 	Filter   filters.UpdateChatViewAsTopics
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateChatViewAsTopics(filter filters.UpdateChatViewAsTopics, response func(ctx *gotdbot.Context) error) *UpdateChatViewAsTopics {
+func NewUpdateChatViewAsTopics(filter filters.UpdateChatViewAsTopics, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatViewAsTopics {
 	return &UpdateChatViewAsTopics{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateChatViewAsTopics) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateChatViewAsTopics) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateChatViewAsTopics
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateChatViewAsTopics) CheckUpdate(ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdateChatViewAsTopics) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateChatViewAsTopics) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

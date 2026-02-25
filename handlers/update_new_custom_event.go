@@ -10,17 +10,17 @@ import (
 
 type UpdateNewCustomEvent struct {
 	Filter   filters.UpdateNewCustomEvent
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateNewCustomEvent(filter filters.UpdateNewCustomEvent, response func(ctx *gotdbot.Context) error) *UpdateNewCustomEvent {
+func NewUpdateNewCustomEvent(filter filters.UpdateNewCustomEvent, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateNewCustomEvent {
 	return &UpdateNewCustomEvent{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateNewCustomEvent) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateNewCustomEvent) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateNewCustomEvent
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateNewCustomEvent) CheckUpdate(ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdateNewCustomEvent) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateNewCustomEvent) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

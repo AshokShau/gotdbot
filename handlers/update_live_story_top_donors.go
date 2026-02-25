@@ -10,17 +10,17 @@ import (
 
 type UpdateLiveStoryTopDonors struct {
 	Filter   filters.UpdateLiveStoryTopDonors
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateLiveStoryTopDonors(filter filters.UpdateLiveStoryTopDonors, response func(ctx *gotdbot.Context) error) *UpdateLiveStoryTopDonors {
+func NewUpdateLiveStoryTopDonors(filter filters.UpdateLiveStoryTopDonors, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateLiveStoryTopDonors {
 	return &UpdateLiveStoryTopDonors{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateLiveStoryTopDonors) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateLiveStoryTopDonors) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateLiveStoryTopDonors
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateLiveStoryTopDonors) CheckUpdate(ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdateLiveStoryTopDonors) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateLiveStoryTopDonors) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

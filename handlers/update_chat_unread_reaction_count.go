@@ -10,17 +10,17 @@ import (
 
 type UpdateChatUnreadReactionCount struct {
 	Filter   filters.UpdateChatUnreadReactionCount
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateChatUnreadReactionCount(filter filters.UpdateChatUnreadReactionCount, response func(ctx *gotdbot.Context) error) *UpdateChatUnreadReactionCount {
+func NewUpdateChatUnreadReactionCount(filter filters.UpdateChatUnreadReactionCount, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatUnreadReactionCount {
 	return &UpdateChatUnreadReactionCount{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateChatUnreadReactionCount) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateChatUnreadReactionCount) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateChatUnreadReactionCount
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateChatUnreadReactionCount) CheckUpdate(ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdateChatUnreadReactionCount) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateChatUnreadReactionCount) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

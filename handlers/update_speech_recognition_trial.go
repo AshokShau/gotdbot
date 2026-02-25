@@ -10,17 +10,17 @@ import (
 
 type UpdateSpeechRecognitionTrial struct {
 	Filter   filters.UpdateSpeechRecognitionTrial
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateSpeechRecognitionTrial(filter filters.UpdateSpeechRecognitionTrial, response func(ctx *gotdbot.Context) error) *UpdateSpeechRecognitionTrial {
+func NewUpdateSpeechRecognitionTrial(filter filters.UpdateSpeechRecognitionTrial, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateSpeechRecognitionTrial {
 	return &UpdateSpeechRecognitionTrial{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateSpeechRecognitionTrial) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateSpeechRecognitionTrial) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateSpeechRecognitionTrial
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateSpeechRecognitionTrial) CheckUpdate(ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdateSpeechRecognitionTrial) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateSpeechRecognitionTrial) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

@@ -10,17 +10,17 @@ import (
 
 type UpdateStoryDeleted struct {
 	Filter   filters.UpdateStoryDeleted
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateStoryDeleted(filter filters.UpdateStoryDeleted, response func(ctx *gotdbot.Context) error) *UpdateStoryDeleted {
+func NewUpdateStoryDeleted(filter filters.UpdateStoryDeleted, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateStoryDeleted {
 	return &UpdateStoryDeleted{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateStoryDeleted) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateStoryDeleted) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateStoryDeleted
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateStoryDeleted) CheckUpdate(ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdateStoryDeleted) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateStoryDeleted) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

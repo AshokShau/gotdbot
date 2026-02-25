@@ -10,17 +10,17 @@ import (
 
 type UpdateApplicationRecaptchaVerificationRequired struct {
 	Filter   filters.UpdateApplicationRecaptchaVerificationRequired
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateApplicationRecaptchaVerificationRequired(filter filters.UpdateApplicationRecaptchaVerificationRequired, response func(ctx *gotdbot.Context) error) *UpdateApplicationRecaptchaVerificationRequired {
+func NewUpdateApplicationRecaptchaVerificationRequired(filter filters.UpdateApplicationRecaptchaVerificationRequired, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateApplicationRecaptchaVerificationRequired {
 	return &UpdateApplicationRecaptchaVerificationRequired{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateApplicationRecaptchaVerificationRequired) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateApplicationRecaptchaVerificationRequired) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateApplicationRecaptchaVerificationRequired
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateApplicationRecaptchaVerificationRequired) CheckUpdate(ctx *gotdbo
 	return h.Filter(u)
 }
 
-func (h *UpdateApplicationRecaptchaVerificationRequired) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateApplicationRecaptchaVerificationRequired) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

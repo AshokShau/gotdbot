@@ -11,10 +11,10 @@ type LegacyHandler struct {
 	Position   int
 }
 
-func (h *LegacyHandler) CheckUpdate(ctx *Context) bool {
+func (h *LegacyHandler) CheckUpdate(client *Client, ctx *Context) bool {
 	return ctx.RawUpdate.Type() == h.UpdateType
 }
 
-func (h *LegacyHandler) HandleUpdate(ctx *Context) error {
-	return h.Func(ctx.Client, ctx.RawUpdate)
+func (h *LegacyHandler) HandleUpdate(client *Client, ctx *Context) error {
+	return h.Func(client, ctx.RawUpdate)
 }

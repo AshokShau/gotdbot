@@ -10,17 +10,17 @@ import (
 
 type UpdateFileRemovedFromDownloads struct {
 	Filter   filters.UpdateFileRemovedFromDownloads
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateFileRemovedFromDownloads(filter filters.UpdateFileRemovedFromDownloads, response func(ctx *gotdbot.Context) error) *UpdateFileRemovedFromDownloads {
+func NewUpdateFileRemovedFromDownloads(filter filters.UpdateFileRemovedFromDownloads, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateFileRemovedFromDownloads {
 	return &UpdateFileRemovedFromDownloads{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateFileRemovedFromDownloads) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateFileRemovedFromDownloads) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateFileRemovedFromDownloads
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateFileRemovedFromDownloads) CheckUpdate(ctx *gotdbot.Context) bool 
 	return h.Filter(u)
 }
 
-func (h *UpdateFileRemovedFromDownloads) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateFileRemovedFromDownloads) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

@@ -10,17 +10,17 @@ import (
 
 type UpdateWebAppMessageSent struct {
 	Filter   filters.UpdateWebAppMessageSent
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateWebAppMessageSent(filter filters.UpdateWebAppMessageSent, response func(ctx *gotdbot.Context) error) *UpdateWebAppMessageSent {
+func NewUpdateWebAppMessageSent(filter filters.UpdateWebAppMessageSent, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateWebAppMessageSent {
 	return &UpdateWebAppMessageSent{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateWebAppMessageSent) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateWebAppMessageSent) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateWebAppMessageSent
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateWebAppMessageSent) CheckUpdate(ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdateWebAppMessageSent) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateWebAppMessageSent) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

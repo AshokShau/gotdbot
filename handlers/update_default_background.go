@@ -10,17 +10,17 @@ import (
 
 type UpdateDefaultBackground struct {
 	Filter   filters.UpdateDefaultBackground
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateDefaultBackground(filter filters.UpdateDefaultBackground, response func(ctx *gotdbot.Context) error) *UpdateDefaultBackground {
+func NewUpdateDefaultBackground(filter filters.UpdateDefaultBackground, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateDefaultBackground {
 	return &UpdateDefaultBackground{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateDefaultBackground) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateDefaultBackground) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateDefaultBackground
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateDefaultBackground) CheckUpdate(ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdateDefaultBackground) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateDefaultBackground) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

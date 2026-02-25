@@ -10,17 +10,17 @@ import (
 
 type UpdateFavoriteStickers struct {
 	Filter   filters.UpdateFavoriteStickers
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateFavoriteStickers(filter filters.UpdateFavoriteStickers, response func(ctx *gotdbot.Context) error) *UpdateFavoriteStickers {
+func NewUpdateFavoriteStickers(filter filters.UpdateFavoriteStickers, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateFavoriteStickers {
 	return &UpdateFavoriteStickers{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateFavoriteStickers) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateFavoriteStickers) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateFavoriteStickers
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateFavoriteStickers) CheckUpdate(ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdateFavoriteStickers) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateFavoriteStickers) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

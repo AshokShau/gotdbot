@@ -27,7 +27,7 @@ func main() {
 	gotdbot.SetTdlibLogVerbosityLevel(2)
 	var startTime = time.Now()
 
-	dispatcher.AddHandler(handlers.NewCommand("start", func(ctx *gotdbot.Context) error {
+	dispatcher.AddHandler(handlers.NewCommand("start", func(c *gotdbot.Client, ctx *gotdbot.Context) error {
 		kb := &gotdbot.ReplyMarkupInlineKeyboard{
 			Rows: [][]gotdbot.InlineKeyboardButton{
 				{
@@ -54,20 +54,20 @@ func main() {
 			ReplyMarkup: kb,
 		}
 
-		_, err := ctx.Client.SendMessage(ctx.EffectiveChatId, content, opts)
+		_, err := c.SendMessage(ctx.EffectiveChatId, content, opts)
 		if err != nil {
 			log.Printf("Error sending message: %v", err)
 		}
 		return nil
 	}))
 
-	dispatcher.AddHandler(handlers.NewUpdateDeleteMessages(nil, func(ctx *gotdbot.Context) error {
+	dispatcher.AddHandler(handlers.NewUpdateDeleteMessages(nil, func(c *gotdbot.Client, ctx *gotdbot.Context) error {
 		update := ctx.Update.UpdateDeleteMessages
 		log.Printf("Messages deleted: %v (ChatID %d)", update.MessageIds, update.ChatId)
 		return nil
 	}))
 
-	dispatcher.AddHandler(handlers.NewCommand("go", func(ctx *gotdbot.Context) error {
+	dispatcher.AddHandler(handlers.NewCommand("go", func(c *gotdbot.Client, ctx *gotdbot.Context) error {
 		var m runtime.MemStats
 		runtime.ReadMemStats(&m)
 
@@ -93,12 +93,12 @@ func main() {
 			m.NumGC,
 		)
 
-		_, err := ctx.Client.SendTextMessage(ctx.EffectiveChatId, reply, &gotdbot.SendTextMessageOpts{ReplyToMessageID: ctx.EffectiveMessage.Id})
+		_, err := c.SendTextMessage(ctx.EffectiveChatId, reply, &gotdbot.SendTextMessageOpts{ReplyToMessageID: ctx.EffectiveMessage.Id})
 		return err
 	}))
 
-	dispatcher.AddHandler(handlers.NewMessage(filters.Incoming, func(ctx *gotdbot.Context) error {
-		_, err := ctx.Client.ForwardMessages(ctx.EffectiveChatId, ctx.EffectiveChatId, []int64{ctx.EffectiveMessage.Id}, &gotdbot.ForwardMessagesOpts{SendCopy: true})
+	dispatcher.AddHandler(handlers.NewMessage(filters.Incoming, func(c *gotdbot.Client, ctx *gotdbot.Context) error {
+		_, err := c.ForwardMessages(ctx.EffectiveChatId, ctx.EffectiveChatId, []int64{ctx.EffectiveMessage.Id}, &gotdbot.ForwardMessagesOpts{SendCopy: true})
 		return err
 	}))
 

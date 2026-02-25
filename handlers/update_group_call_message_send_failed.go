@@ -10,17 +10,17 @@ import (
 
 type UpdateGroupCallMessageSendFailed struct {
 	Filter   filters.UpdateGroupCallMessageSendFailed
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateGroupCallMessageSendFailed(filter filters.UpdateGroupCallMessageSendFailed, response func(ctx *gotdbot.Context) error) *UpdateGroupCallMessageSendFailed {
+func NewUpdateGroupCallMessageSendFailed(filter filters.UpdateGroupCallMessageSendFailed, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateGroupCallMessageSendFailed {
 	return &UpdateGroupCallMessageSendFailed{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateGroupCallMessageSendFailed) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateGroupCallMessageSendFailed) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateGroupCallMessageSendFailed
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateGroupCallMessageSendFailed) CheckUpdate(ctx *gotdbot.Context) boo
 	return h.Filter(u)
 }
 
-func (h *UpdateGroupCallMessageSendFailed) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateGroupCallMessageSendFailed) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

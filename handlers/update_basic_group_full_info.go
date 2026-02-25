@@ -10,17 +10,17 @@ import (
 
 type UpdateBasicGroupFullInfo struct {
 	Filter   filters.UpdateBasicGroupFullInfo
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateBasicGroupFullInfo(filter filters.UpdateBasicGroupFullInfo, response func(ctx *gotdbot.Context) error) *UpdateBasicGroupFullInfo {
+func NewUpdateBasicGroupFullInfo(filter filters.UpdateBasicGroupFullInfo, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateBasicGroupFullInfo {
 	return &UpdateBasicGroupFullInfo{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateBasicGroupFullInfo) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateBasicGroupFullInfo) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateBasicGroupFullInfo
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateBasicGroupFullInfo) CheckUpdate(ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdateBasicGroupFullInfo) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateBasicGroupFullInfo) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

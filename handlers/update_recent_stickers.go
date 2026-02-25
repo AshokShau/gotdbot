@@ -10,17 +10,17 @@ import (
 
 type UpdateRecentStickers struct {
 	Filter   filters.UpdateRecentStickers
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateRecentStickers(filter filters.UpdateRecentStickers, response func(ctx *gotdbot.Context) error) *UpdateRecentStickers {
+func NewUpdateRecentStickers(filter filters.UpdateRecentStickers, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateRecentStickers {
 	return &UpdateRecentStickers{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateRecentStickers) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateRecentStickers) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateRecentStickers
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateRecentStickers) CheckUpdate(ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdateRecentStickers) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateRecentStickers) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

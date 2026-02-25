@@ -10,17 +10,17 @@ import (
 
 type UpdateStoryStealthMode struct {
 	Filter   filters.UpdateStoryStealthMode
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateStoryStealthMode(filter filters.UpdateStoryStealthMode, response func(ctx *gotdbot.Context) error) *UpdateStoryStealthMode {
+func NewUpdateStoryStealthMode(filter filters.UpdateStoryStealthMode, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateStoryStealthMode {
 	return &UpdateStoryStealthMode{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateStoryStealthMode) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateStoryStealthMode) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateStoryStealthMode
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateStoryStealthMode) CheckUpdate(ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdateStoryStealthMode) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateStoryStealthMode) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

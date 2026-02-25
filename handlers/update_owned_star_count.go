@@ -10,17 +10,17 @@ import (
 
 type UpdateOwnedStarCount struct {
 	Filter   filters.UpdateOwnedStarCount
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateOwnedStarCount(filter filters.UpdateOwnedStarCount, response func(ctx *gotdbot.Context) error) *UpdateOwnedStarCount {
+func NewUpdateOwnedStarCount(filter filters.UpdateOwnedStarCount, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateOwnedStarCount {
 	return &UpdateOwnedStarCount{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateOwnedStarCount) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateOwnedStarCount) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateOwnedStarCount
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateOwnedStarCount) CheckUpdate(ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdateOwnedStarCount) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateOwnedStarCount) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

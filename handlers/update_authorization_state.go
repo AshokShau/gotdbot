@@ -10,17 +10,17 @@ import (
 
 type UpdateAuthorizationState struct {
 	Filter   filters.UpdateAuthorizationState
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateAuthorizationState(filter filters.UpdateAuthorizationState, response func(ctx *gotdbot.Context) error) *UpdateAuthorizationState {
+func NewUpdateAuthorizationState(filter filters.UpdateAuthorizationState, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateAuthorizationState {
 	return &UpdateAuthorizationState{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateAuthorizationState) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateAuthorizationState) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateAuthorizationState
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateAuthorizationState) CheckUpdate(ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdateAuthorizationState) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateAuthorizationState) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

@@ -10,17 +10,17 @@ import (
 
 type UpdateMessageInteractionInfo struct {
 	Filter   filters.UpdateMessageInteractionInfo
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateMessageInteractionInfo(filter filters.UpdateMessageInteractionInfo, response func(ctx *gotdbot.Context) error) *UpdateMessageInteractionInfo {
+func NewUpdateMessageInteractionInfo(filter filters.UpdateMessageInteractionInfo, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateMessageInteractionInfo {
 	return &UpdateMessageInteractionInfo{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateMessageInteractionInfo) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateMessageInteractionInfo) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateMessageInteractionInfo
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateMessageInteractionInfo) CheckUpdate(ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdateMessageInteractionInfo) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateMessageInteractionInfo) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

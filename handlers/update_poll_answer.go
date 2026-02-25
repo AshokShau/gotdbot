@@ -10,17 +10,17 @@ import (
 
 type UpdatePollAnswer struct {
 	Filter   filters.UpdatePollAnswer
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdatePollAnswer(filter filters.UpdatePollAnswer, response func(ctx *gotdbot.Context) error) *UpdatePollAnswer {
+func NewUpdatePollAnswer(filter filters.UpdatePollAnswer, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdatePollAnswer {
 	return &UpdatePollAnswer{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdatePollAnswer) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdatePollAnswer) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdatePollAnswer
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdatePollAnswer) CheckUpdate(ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdatePollAnswer) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdatePollAnswer) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

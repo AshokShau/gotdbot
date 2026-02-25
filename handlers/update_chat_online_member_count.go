@@ -10,17 +10,17 @@ import (
 
 type UpdateChatOnlineMemberCount struct {
 	Filter   filters.UpdateChatOnlineMemberCount
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateChatOnlineMemberCount(filter filters.UpdateChatOnlineMemberCount, response func(ctx *gotdbot.Context) error) *UpdateChatOnlineMemberCount {
+func NewUpdateChatOnlineMemberCount(filter filters.UpdateChatOnlineMemberCount, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatOnlineMemberCount {
 	return &UpdateChatOnlineMemberCount{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateChatOnlineMemberCount) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateChatOnlineMemberCount) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateChatOnlineMemberCount
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateChatOnlineMemberCount) CheckUpdate(ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdateChatOnlineMemberCount) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateChatOnlineMemberCount) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

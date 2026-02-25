@@ -10,17 +10,17 @@ import (
 
 type UpdateSavedNotificationSounds struct {
 	Filter   filters.UpdateSavedNotificationSounds
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateSavedNotificationSounds(filter filters.UpdateSavedNotificationSounds, response func(ctx *gotdbot.Context) error) *UpdateSavedNotificationSounds {
+func NewUpdateSavedNotificationSounds(filter filters.UpdateSavedNotificationSounds, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateSavedNotificationSounds {
 	return &UpdateSavedNotificationSounds{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateSavedNotificationSounds) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateSavedNotificationSounds) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateSavedNotificationSounds
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateSavedNotificationSounds) CheckUpdate(ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdateSavedNotificationSounds) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateSavedNotificationSounds) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

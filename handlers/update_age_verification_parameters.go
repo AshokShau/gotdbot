@@ -10,17 +10,17 @@ import (
 
 type UpdateAgeVerificationParameters struct {
 	Filter   filters.UpdateAgeVerificationParameters
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateAgeVerificationParameters(filter filters.UpdateAgeVerificationParameters, response func(ctx *gotdbot.Context) error) *UpdateAgeVerificationParameters {
+func NewUpdateAgeVerificationParameters(filter filters.UpdateAgeVerificationParameters, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateAgeVerificationParameters {
 	return &UpdateAgeVerificationParameters{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateAgeVerificationParameters) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateAgeVerificationParameters) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateAgeVerificationParameters
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateAgeVerificationParameters) CheckUpdate(ctx *gotdbot.Context) bool
 	return h.Filter(u)
 }
 
-func (h *UpdateAgeVerificationParameters) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateAgeVerificationParameters) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

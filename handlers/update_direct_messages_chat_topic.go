@@ -10,17 +10,17 @@ import (
 
 type UpdateDirectMessagesChatTopic struct {
 	Filter   filters.UpdateDirectMessagesChatTopic
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateDirectMessagesChatTopic(filter filters.UpdateDirectMessagesChatTopic, response func(ctx *gotdbot.Context) error) *UpdateDirectMessagesChatTopic {
+func NewUpdateDirectMessagesChatTopic(filter filters.UpdateDirectMessagesChatTopic, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateDirectMessagesChatTopic {
 	return &UpdateDirectMessagesChatTopic{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateDirectMessagesChatTopic) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateDirectMessagesChatTopic) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateDirectMessagesChatTopic
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateDirectMessagesChatTopic) CheckUpdate(ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdateDirectMessagesChatTopic) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateDirectMessagesChatTopic) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

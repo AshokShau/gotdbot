@@ -10,17 +10,17 @@ import (
 
 type UpdateDefaultReactionType struct {
 	Filter   filters.UpdateDefaultReactionType
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateDefaultReactionType(filter filters.UpdateDefaultReactionType, response func(ctx *gotdbot.Context) error) *UpdateDefaultReactionType {
+func NewUpdateDefaultReactionType(filter filters.UpdateDefaultReactionType, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateDefaultReactionType {
 	return &UpdateDefaultReactionType{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateDefaultReactionType) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateDefaultReactionType) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateDefaultReactionType
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateDefaultReactionType) CheckUpdate(ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdateDefaultReactionType) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateDefaultReactionType) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

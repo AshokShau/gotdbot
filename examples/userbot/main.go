@@ -30,8 +30,8 @@ func main() {
 	gotdbot.SetTdlibLogStreamEmpty()
 	dispatcher := bot.Dispatcher
 
-	dispatcher.AddHandler(handlers.NewCommand("hi", func(ctx *gotdbot.Context) error {
-		_, err := ctx.EffectiveMessage.ReplyText(ctx.Client, "Hi, this is from gotdbot!", nil)
+	dispatcher.AddHandler(handlers.NewCommand("hi", func(c *gotdbot.Client, ctx *gotdbot.Context) error {
+		_, err := ctx.EffectiveMessage.ReplyText(c, "Hi, this is from gotdbot!", nil)
 		return err
 	}))
 

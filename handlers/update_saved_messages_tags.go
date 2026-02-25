@@ -10,17 +10,17 @@ import (
 
 type UpdateSavedMessagesTags struct {
 	Filter   filters.UpdateSavedMessagesTags
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateSavedMessagesTags(filter filters.UpdateSavedMessagesTags, response func(ctx *gotdbot.Context) error) *UpdateSavedMessagesTags {
+func NewUpdateSavedMessagesTags(filter filters.UpdateSavedMessagesTags, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateSavedMessagesTags {
 	return &UpdateSavedMessagesTags{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateSavedMessagesTags) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateSavedMessagesTags) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateSavedMessagesTags
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateSavedMessagesTags) CheckUpdate(ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdateSavedMessagesTags) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateSavedMessagesTags) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

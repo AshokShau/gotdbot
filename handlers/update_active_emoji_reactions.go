@@ -10,17 +10,17 @@ import (
 
 type UpdateActiveEmojiReactions struct {
 	Filter   filters.UpdateActiveEmojiReactions
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateActiveEmojiReactions(filter filters.UpdateActiveEmojiReactions, response func(ctx *gotdbot.Context) error) *UpdateActiveEmojiReactions {
+func NewUpdateActiveEmojiReactions(filter filters.UpdateActiveEmojiReactions, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateActiveEmojiReactions {
 	return &UpdateActiveEmojiReactions{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateActiveEmojiReactions) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateActiveEmojiReactions) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateActiveEmojiReactions
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateActiveEmojiReactions) CheckUpdate(ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdateActiveEmojiReactions) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateActiveEmojiReactions) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

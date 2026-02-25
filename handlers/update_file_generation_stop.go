@@ -10,17 +10,17 @@ import (
 
 type UpdateFileGenerationStop struct {
 	Filter   filters.UpdateFileGenerationStop
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateFileGenerationStop(filter filters.UpdateFileGenerationStop, response func(ctx *gotdbot.Context) error) *UpdateFileGenerationStop {
+func NewUpdateFileGenerationStop(filter filters.UpdateFileGenerationStop, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateFileGenerationStop {
 	return &UpdateFileGenerationStop{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateFileGenerationStop) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateFileGenerationStop) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateFileGenerationStop
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateFileGenerationStop) CheckUpdate(ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdateFileGenerationStop) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateFileGenerationStop) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

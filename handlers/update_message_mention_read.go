@@ -10,17 +10,17 @@ import (
 
 type UpdateMessageMentionRead struct {
 	Filter   filters.UpdateMessageMentionRead
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateMessageMentionRead(filter filters.UpdateMessageMentionRead, response func(ctx *gotdbot.Context) error) *UpdateMessageMentionRead {
+func NewUpdateMessageMentionRead(filter filters.UpdateMessageMentionRead, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateMessageMentionRead {
 	return &UpdateMessageMentionRead{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateMessageMentionRead) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateMessageMentionRead) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateMessageMentionRead
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateMessageMentionRead) CheckUpdate(ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdateMessageMentionRead) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateMessageMentionRead) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

@@ -10,17 +10,17 @@ import (
 
 type UpdateGroupCall struct {
 	Filter   filters.UpdateGroupCall
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateGroupCall(filter filters.UpdateGroupCall, response func(ctx *gotdbot.Context) error) *UpdateGroupCall {
+func NewUpdateGroupCall(filter filters.UpdateGroupCall, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateGroupCall {
 	return &UpdateGroupCall{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateGroupCall) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateGroupCall) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateGroupCall
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateGroupCall) CheckUpdate(ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdateGroupCall) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateGroupCall) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

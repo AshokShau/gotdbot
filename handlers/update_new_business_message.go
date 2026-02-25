@@ -10,17 +10,17 @@ import (
 
 type UpdateNewBusinessMessage struct {
 	Filter   filters.UpdateNewBusinessMessage
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateNewBusinessMessage(filter filters.UpdateNewBusinessMessage, response func(ctx *gotdbot.Context) error) *UpdateNewBusinessMessage {
+func NewUpdateNewBusinessMessage(filter filters.UpdateNewBusinessMessage, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateNewBusinessMessage {
 	return &UpdateNewBusinessMessage{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateNewBusinessMessage) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateNewBusinessMessage) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateNewBusinessMessage
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateNewBusinessMessage) CheckUpdate(ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdateNewBusinessMessage) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateNewBusinessMessage) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

@@ -10,17 +10,17 @@ import (
 
 type UpdateActiveGiftAuctions struct {
 	Filter   filters.UpdateActiveGiftAuctions
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateActiveGiftAuctions(filter filters.UpdateActiveGiftAuctions, response func(ctx *gotdbot.Context) error) *UpdateActiveGiftAuctions {
+func NewUpdateActiveGiftAuctions(filter filters.UpdateActiveGiftAuctions, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateActiveGiftAuctions {
 	return &UpdateActiveGiftAuctions{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateActiveGiftAuctions) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateActiveGiftAuctions) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateActiveGiftAuctions
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateActiveGiftAuctions) CheckUpdate(ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdateActiveGiftAuctions) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateActiveGiftAuctions) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

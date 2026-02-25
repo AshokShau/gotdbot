@@ -28,10 +28,10 @@ func main() {
 	log.Println("Starting bot...")
 	// Register the UpdateChatMember handler
 	// This will trigger on any change in chat/user membership (join, leave, promote, demote, etc.)
-	dispatcher.AddHandler(handlers.NewUpdateChatMember(nil, func(ctx *gotdbot.Context) error {
+	dispatcher.AddHandler(handlers.NewUpdateChatMember(nil, func(c *gotdbot.Client, ctx *gotdbot.Context) error {
 		update := ctx.Update.UpdateChatMember
 		chatId := ctx.EffectiveChatId
-		me := ctx.Client.Me()
+		me := c.Me()
 
 		var userId int64
 		var memberName string
@@ -88,7 +88,7 @@ func main() {
 		}
 
 		log.Printf("[Chat %d] %s", chatId, text)
-		_, err := ctx.Client.SendTextMessage(chatId, text, &gotdbot.SendTextMessageOpts{
+		_, err := c.SendTextMessage(chatId, text, &gotdbot.SendTextMessageOpts{
 			ParseMode: "HTML",
 		})
 

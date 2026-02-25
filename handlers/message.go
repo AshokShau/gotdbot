@@ -7,23 +7,23 @@ import (
 
 type Message struct {
 	Filter   filters.Message
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewMessage(filter filters.Message, response func(ctx *gotdbot.Context) error) *Message {
+func NewMessage(filter filters.Message, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *Message {
 	return &Message{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (m *Message) CheckUpdate(ctx *gotdbot.Context) bool {
+func (m *Message) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	if ctx.EffectiveMessage == nil {
 		return false
 	}
 	return m.Filter(ctx.EffectiveMessage)
 }
 
-func (m *Message) HandleUpdate(ctx *gotdbot.Context) error {
-	return m.Response(ctx)
+func (m *Message) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return m.Response(b, ctx)
 }

@@ -10,17 +10,17 @@ import (
 
 type UpdateTermsOfService struct {
 	Filter   filters.UpdateTermsOfService
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateTermsOfService(filter filters.UpdateTermsOfService, response func(ctx *gotdbot.Context) error) *UpdateTermsOfService {
+func NewUpdateTermsOfService(filter filters.UpdateTermsOfService, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateTermsOfService {
 	return &UpdateTermsOfService{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateTermsOfService) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateTermsOfService) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateTermsOfService
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateTermsOfService) CheckUpdate(ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdateTermsOfService) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateTermsOfService) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

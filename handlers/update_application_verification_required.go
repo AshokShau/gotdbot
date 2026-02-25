@@ -10,17 +10,17 @@ import (
 
 type UpdateApplicationVerificationRequired struct {
 	Filter   filters.UpdateApplicationVerificationRequired
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateApplicationVerificationRequired(filter filters.UpdateApplicationVerificationRequired, response func(ctx *gotdbot.Context) error) *UpdateApplicationVerificationRequired {
+func NewUpdateApplicationVerificationRequired(filter filters.UpdateApplicationVerificationRequired, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateApplicationVerificationRequired {
 	return &UpdateApplicationVerificationRequired{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateApplicationVerificationRequired) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateApplicationVerificationRequired) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateApplicationVerificationRequired
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateApplicationVerificationRequired) CheckUpdate(ctx *gotdbot.Context
 	return h.Filter(u)
 }
 
-func (h *UpdateApplicationVerificationRequired) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateApplicationVerificationRequired) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

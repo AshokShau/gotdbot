@@ -10,17 +10,17 @@ import (
 
 type UpdateAvailableMessageEffects struct {
 	Filter   filters.UpdateAvailableMessageEffects
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateAvailableMessageEffects(filter filters.UpdateAvailableMessageEffects, response func(ctx *gotdbot.Context) error) *UpdateAvailableMessageEffects {
+func NewUpdateAvailableMessageEffects(filter filters.UpdateAvailableMessageEffects, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateAvailableMessageEffects {
 	return &UpdateAvailableMessageEffects{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateAvailableMessageEffects) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateAvailableMessageEffects) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateAvailableMessageEffects
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateAvailableMessageEffects) CheckUpdate(ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdateAvailableMessageEffects) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateAvailableMessageEffects) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

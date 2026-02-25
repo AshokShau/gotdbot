@@ -10,17 +10,17 @@ import (
 
 type UpdateNewInlineCallbackQuery struct {
 	Filter   filters.UpdateNewInlineCallbackQuery
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateNewInlineCallbackQuery(filter filters.UpdateNewInlineCallbackQuery, response func(ctx *gotdbot.Context) error) *UpdateNewInlineCallbackQuery {
+func NewUpdateNewInlineCallbackQuery(filter filters.UpdateNewInlineCallbackQuery, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateNewInlineCallbackQuery {
 	return &UpdateNewInlineCallbackQuery{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateNewInlineCallbackQuery) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateNewInlineCallbackQuery) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateNewInlineCallbackQuery
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateNewInlineCallbackQuery) CheckUpdate(ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdateNewInlineCallbackQuery) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateNewInlineCallbackQuery) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

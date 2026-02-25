@@ -10,17 +10,17 @@ import (
 
 type UpdateStickerSet struct {
 	Filter   filters.UpdateStickerSet
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateStickerSet(filter filters.UpdateStickerSet, response func(ctx *gotdbot.Context) error) *UpdateStickerSet {
+func NewUpdateStickerSet(filter filters.UpdateStickerSet, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateStickerSet {
 	return &UpdateStickerSet{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateStickerSet) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateStickerSet) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateStickerSet
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateStickerSet) CheckUpdate(ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdateStickerSet) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateStickerSet) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }

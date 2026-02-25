@@ -2,7 +2,6 @@ package gotdbot
 
 import (
 	"time"
-
 )
 
 // WaitMessageOpts holds optional parameters for Ask.
@@ -22,7 +21,7 @@ func (c *Context) Ask(chatId int64, opts *WaitMessageOpts) (*Message, error) {
 	cancellationFilter := opts.CancellationFilter
 	timeout := opts.Timeout
 
-	msgFilter := func(ctx *Context) bool {
+	msgFilter := func(client *Client, ctx *Context) bool {
 		if ctx.EffectiveChatId != chatId {
 			return false
 		}

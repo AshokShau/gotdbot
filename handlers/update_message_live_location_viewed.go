@@ -10,17 +10,17 @@ import (
 
 type UpdateMessageLiveLocationViewed struct {
 	Filter   filters.UpdateMessageLiveLocationViewed
-	Response func(ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
-func NewUpdateMessageLiveLocationViewed(filter filters.UpdateMessageLiveLocationViewed, response func(ctx *gotdbot.Context) error) *UpdateMessageLiveLocationViewed {
+func NewUpdateMessageLiveLocationViewed(filter filters.UpdateMessageLiveLocationViewed, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateMessageLiveLocationViewed {
 	return &UpdateMessageLiveLocationViewed{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateMessageLiveLocationViewed) CheckUpdate(ctx *gotdbot.Context) bool {
+func (h *UpdateMessageLiveLocationViewed) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	u := ctx.Update.UpdateMessageLiveLocationViewed
 	if u == nil {
 		return false
@@ -31,6 +31,6 @@ func (h *UpdateMessageLiveLocationViewed) CheckUpdate(ctx *gotdbot.Context) bool
 	return h.Filter(u)
 }
 
-func (h *UpdateMessageLiveLocationViewed) HandleUpdate(ctx *gotdbot.Context) error {
-	return h.Response(ctx)
+func (h *UpdateMessageLiveLocationViewed) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
+	return h.Response(b, ctx)
 }
