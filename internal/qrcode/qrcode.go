@@ -261,10 +261,6 @@ func encodeData(data []byte) (*Bitset, error) {
 		return nil, fmt.Errorf("no data to encode")
 	}
 
-	if len(data) > 80 {
-		return nil, fmt.Errorf("data too long to encode in byte mode: %d bytes", len(data))
-	}
-
 	encoded := NewBitset()
 	encoded.AppendBools(b0, b1, b0, b0) // byte mode indicator
 	encoded.AppendByte(byte(len(data)), 8)
@@ -840,7 +836,7 @@ func (e gfPoly) equals(other gfPoly) bool {
 	}
 	numMinTerms := minPoly.numTerms()
 	numMaxTerms := maxPoly.numTerms()
-	for i := range numMinTerms {
+	for i := 0; i < numMinTerms; i++ {
 		if e.term[i] != other.term[i] {
 			return false
 		}
