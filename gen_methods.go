@@ -1048,13 +1048,6 @@ func (c *Client) ClickVideoMessageAdvertisement(advertisementUniqueId int64) err
 	return err
 }
 
-// Close Closes the TDLib instance. All databases will be flushed to disk and properly closed. After the close completes, updateAuthorizationState with authorizationStateClosed will be sent. Can be called before initialization
-func (c *Client) Close() error {
-	req := &Close{}
-	_, err := c.Send(req)
-	return err
-}
-
 // CloseChat Informs TDLib that the chat is closed by the user. Many useful activities depend on the chat being opened or closed @chat_id Chat identifier
 func (c *Client) CloseChat(chatId int64) error {
 	req := &CloseChat{

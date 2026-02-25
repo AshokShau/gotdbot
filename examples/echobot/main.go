@@ -9,9 +9,8 @@ import (
 	"time"
 
 	"github.com/AshokShau/gotdbot"
-	"github.com/AshokShau/gotdbot/ext"
-	"github.com/AshokShau/gotdbot/ext/handlers"
-	"github.com/AshokShau/gotdbot/ext/handlers/filters"
+	"github.com/AshokShau/gotdbot/handlers"
+	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
 func main() {
@@ -24,12 +23,11 @@ func main() {
 		panic(err)
 	}
 
-	gotdbot.SetTdlibLogVerbosityLevel(1)
-	dispatcher := ext.NewDispatcher(bot)
-
+	dispatcher := bot.Dispatcher
+	gotdbot.SetTdlibLogVerbosityLevel(2)
 	var startTime = time.Now()
 
-	dispatcher.AddHandler(handlers.NewCommand("start", func(ctx *ext.Context) error {
+	dispatcher.AddHandler(handlers.NewCommand("start", func(ctx *gotdbot.Context) error {
 		kb := &gotdbot.ReplyMarkupInlineKeyboard{
 			Rows: [][]gotdbot.InlineKeyboardButton{
 				{
@@ -63,13 +61,13 @@ func main() {
 		return nil
 	}))
 
-	dispatcher.AddHandler(handlers.NewUpdateDeleteMessages(nil, func(ctx *ext.Context) error {
+	dispatcher.AddHandler(handlers.NewUpdateDeleteMessages(nil, func(ctx *gotdbot.Context) error {
 		update := ctx.Update.UpdateDeleteMessages
 		log.Printf("Messages deleted: %v (ChatID %d)", update.MessageIds, update.ChatId)
 		return nil
 	}))
 
-	dispatcher.AddHandler(handlers.NewCommand("go", func(ctx *ext.Context) error {
+	dispatcher.AddHandler(handlers.NewCommand("go", func(ctx *gotdbot.Context) error {
 		var m runtime.MemStats
 		runtime.ReadMemStats(&m)
 
@@ -99,24 +97,21 @@ func main() {
 		return err
 	}))
 
-	dispatcher.AddHandler(handlers.NewMessage(filters.Incoming, func(ctx *ext.Context) error {
+	dispatcher.AddHandler(handlers.NewMessage(filters.Incoming, func(ctx *gotdbot.Context) error {
 		_, err := ctx.Client.ForwardMessages(ctx.EffectiveChatId, ctx.EffectiveChatId, []int64{ctx.EffectiveMessage.Id}, &gotdbot.ForwardMessagesOpts{SendCopy: true})
 		return err
 	}))
 
-	err = dispatcher.Start()
+	err = bot.Start()
 	if err != nil {
 		log.Fatalf("Failed to start bot: %v", err)
 	}
 
 	me := bot.Me()
-	if me != nil {
-		username := ""
-		if me.Usernames != nil && len(me.Usernames.ActiveUsernames) > 0 {
-			username = me.Usernames.ActiveUsernames[0]
-		}
-		log.Printf("Logged in as @%s (%d)", username, me.Id)
+	username := ""
+	if me.Usernames != nil && len(me.Usernames.ActiveUsernames) > 0 {
+		username = me.Usernames.ActiveUsernames[0]
 	}
-
+	bot.Logger.Info("Logged in", "username", username, "id", me.Id)
 	bot.Idle()
 }

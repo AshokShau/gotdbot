@@ -7,8 +7,7 @@ import (
 	"log"
 
 	"github.com/AshokShau/gotdbot"
-	"github.com/AshokShau/gotdbot/ext"
-	"github.com/AshokShau/gotdbot/ext/handlers"
+	"github.com/AshokShau/gotdbot/handlers"
 )
 
 func main() {
@@ -25,13 +24,11 @@ func main() {
 	}
 
 	gotdbot.SetTdlibLogVerbosityLevel(2)
-
-	// Create Dispatcher
-	dispatcher := ext.NewDispatcher(bot)
+	dispatcher := bot.Dispatcher
 	log.Println("Starting bot...")
 	// Register the UpdateChatMember handler
 	// This will trigger on any change in chat/user membership (join, leave, promote, demote, etc.)
-	dispatcher.AddHandler(handlers.NewUpdateChatMember(nil, func(ctx *ext.Context) error {
+	dispatcher.AddHandler(handlers.NewUpdateChatMember(nil, func(ctx *gotdbot.Context) error {
 		update := ctx.Update.UpdateChatMember
 		chatId := ctx.EffectiveChatId
 		me := ctx.Client.Me()
@@ -102,7 +99,7 @@ func main() {
 		return nil
 	}))
 
-	err = dispatcher.Start()
+	err = bot.Start()
 	if err != nil {
 		log.Fatalf("Failed to start bot: %v", err)
 	}

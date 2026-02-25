@@ -13,8 +13,7 @@ import (
 	"time"
 
 	"github.com/AshokShau/gotdbot"
-	"github.com/AshokShau/gotdbot/ext"
-	"github.com/AshokShau/gotdbot/ext/handlers"
+	"github.com/AshokShau/gotdbot/handlers"
 )
 
 var (
@@ -39,9 +38,9 @@ func main() {
 	gotdbot.SetTdlibLogVerbosityLevel(2)
 	// gotdbot.SetTdlibLogStreamFile("tdlib.log", 10*1024*1024, false)
 
-	dispatcher := ext.NewDispatcher(bot)
+	dispatcher := bot.Dispatcher
 
-	dispatcher.AddHandler(handlers.NewCommand("saved", func(ctx *ext.Context) error {
+	dispatcher.AddHandler(handlers.NewCommand("saved", func(ctx *gotdbot.Context) error {
 		message := ctx.EffectiveMessage
 		client := ctx.Client
 		userId := message.SenderID()
@@ -101,14 +100,14 @@ func main() {
 	dispatcher.AddHandler(handlers.NewUpdateFile(nil, progressHandler))
 
 	log.Println("Starting bot...")
-	err = dispatcher.Start()
+	err = bot.Start()
 	if err != nil {
 		log.Fatalf("Failed to start bot: %v", err)
 	}
 	bot.Idle()
 }
 
-func downloadCmd(ctx *ext.Context) error {
+func downloadCmd(ctx *gotdbot.Context) error {
 	msg := ctx.EffectiveMessage
 	c := ctx.Client
 	if msg.ReplyToMessageID() == 0 {
@@ -159,7 +158,7 @@ func downloadCmd(ctx *ext.Context) error {
 	return nil
 }
 
-func uploadCmd(ctx *ext.Context) error {
+func uploadCmd(ctx *gotdbot.Context) error {
 	args := getArgs(ctx)
 	msg := ctx.EffectiveMessage
 	c := ctx.Client
@@ -210,7 +209,7 @@ func uploadCmd(ctx *ext.Context) error {
 	return nil
 }
 
-func getFileID(ctx *ext.Context) error {
+func getFileID(ctx *gotdbot.Context) error {
 	msg := ctx.EffectiveMessage
 	c := ctx.Client
 	if msg.ReplyToMessageID() == 0 {
@@ -234,7 +233,7 @@ func getFileID(ctx *ext.Context) error {
 	return err
 }
 
-func sendWithFileID(ctx *ext.Context) error {
+func sendWithFileID(ctx *gotdbot.Context) error {
 	args := getArgs(ctx)
 	msg := ctx.EffectiveMessage
 	c := ctx.Client
@@ -255,7 +254,7 @@ func sendWithFileID(ctx *ext.Context) error {
 	return nil
 }
 
-func progressHandler(ctx *ext.Context) error {
+func progressHandler(ctx *gotdbot.Context) error {
 	update := ctx.Update.UpdateFile
 	//jsonData, _ := json.MarshalIndent(update, "", "  ")
 	//log.Println(string(jsonData))

@@ -7,7 +7,6 @@ import (
 	"time"
 
 	"github.com/AshokShau/gotdbot"
-	"github.com/AshokShau/gotdbot/ext"
 )
 
 // Progress tracks the state of a download or upload
@@ -23,7 +22,7 @@ type Progress struct {
 	LocalBase  string
 }
 
-func getArgs(ctx *ext.Context) []string {
+func getArgs(ctx *gotdbot.Context) []string {
 	if ctx.EffectiveMessage == nil {
 		return nil
 	}

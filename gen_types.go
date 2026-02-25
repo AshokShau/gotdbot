@@ -21383,7 +21383,7 @@ type InternalLinkTypeMainWebApp struct {
 	BotUsername string `json:"bot_username"`
 	// The mode to be passed to getMainWebApp
 	Mode WebAppOpenMode `json:"mode"`
-	// Connect parameter to be passed to getMainWebApp
+	// Start parameter to be passed to getMainWebApp
 	StartParameter string `json:"start_parameter"`
 }
 
@@ -22164,7 +22164,7 @@ type InternalLinkTypeWebApp struct {
 	BotUsername string `json:"bot_username"`
 	// The mode in which the Web App must be opened
 	Mode WebAppOpenMode `json:"mode"`
-	// Connect parameter to be passed to getWebAppLinkUrl
+	// Start parameter to be passed to getWebAppLinkUrl
 	StartParameter string `json:"start_parameter"`
 	// Short name of the Web App
 	WebAppShortName string `json:"web_app_short_name"`

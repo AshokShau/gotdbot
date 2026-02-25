@@ -4,13 +4,11 @@ package gotdbot
 
 import (
 	"encoding/json"
-	"errors"
 	"fmt"
 	"log/slog"
 	"os"
 	"os/signal"
 	"runtime"
-	"sort"
 	"strings"
 	"sync"
 	"syscall"
@@ -18,8 +16,6 @@ import (
 
 	"github.com/AshokShau/gotdbot/tdjson"
 )
-
-var StopHandlers = fmt.Errorf("stop handlers")
 
 type ClientConfig struct {
 	LibraryPath             string
@@ -40,6 +36,7 @@ type ClientConfig struct {
 	Logger                  *slog.Logger
 	IsUser                  bool
 	AuthorizationTimeout    time.Duration
+	LogCallback             func(verbosity int32, message string)
 }
 
 func DefaultClientConfig() *ClientConfig {
@@ -76,10 +73,7 @@ type Client struct {
 	closed  chan struct{}
 	wg      sync.WaitGroup
 
-	handlers     map[string][]*Handler
-	initializers []*Handler
-	finalizers   []*Handler
-	hMu          sync.RWMutex
+	Dispatcher *Dispatcher
 
 	pendingRequests sync.Map // map[string]chan TlObject
 	pendingMessages sync.Map // map[string]chan TlObject
@@ -140,6 +134,10 @@ func NewClient(apiID int32, apiHash, botToken string, config *ClientConfig) (*Cl
 		return nil, err
 	}
 
+	if config.LogCallback != nil {
+		tdjson.SetLogMessageCallback(5, config.LogCallback)
+	}
+
 	c := &Client{
 		clientID:      tdjson.CreateClientID(),
 		apiID:         apiID,
@@ -150,20 +148,20 @@ func NewClient(apiID int32, apiHash, botToken string, config *ClientConfig) (*Cl
 		updates:       make(chan TlObject, 1000),
 		stop:          make(chan struct{}),
 		closed:        make(chan struct{}),
-		handlers:      make(map[string][]*Handler),
 		authErrorChan: make(chan error, 1),
 	}
+	c.Dispatcher = NewDispatcher(c)
 
-	c.AddHandler("updateAuthorizationState", c.authHandler, 0)
-	c.AddHandler("updateUser", c.userHandler, 0)
-	c.AddHandler("updateConnectionState", c.connectionStateHandler, 0)
-	c.AddHandler("updateMessageSendSucceeded", c.messageSendSucceededHandler, 0)
-	c.AddHandler("updateMessageSendFailed", c.messageSendFailedHandler, 0)
+	c.AddHandler("updateAuthorizationState", c.authHandler, -1)
+	c.AddHandler("updateUser", c.userHandler, -1)
+	c.AddHandler("updateConnectionState", c.connectionStateHandler, -1)
+	c.AddHandler("updateMessageSendSucceeded", c.messageSendSucceededHandler, -1)
+	c.AddHandler("updateMessageSendFailed", c.messageSendFailedHandler, -1)
 	return c, nil
 }
 
-// Connect initializes the client and blocks until authorization is successful or fails.
-func (c *Client) Connect() error {
+// Start initializes the client and blocks until authorization is successful or fails.
+func (c *Client) Start() error {
 	c.wg.Add(1)
 	go c.receiver()
 
@@ -185,7 +183,7 @@ func (c *Client) Idle() {
 	sig := make(chan os.Signal, 1)
 	signal.Notify(sig, syscall.SIGINT, syscall.SIGTERM)
 	<-sig
-	c.Stop()
+	c.Close()
 }
 
 // SetTdlibLogVerbosityLevel sets the verbosity level of TDLib's internal logging.
@@ -206,7 +204,8 @@ func SetTdlibLogStreamEmpty() {
 	tdjson.Execute(req)
 }
 
-func (c *Client) Stop() {
+// Close Closes the TDLib instance. All databases will be flushed to disk and properly closed. After the close completes, updateAuthorizationState with authorizationStateClosed will be sent. Can be called before initialization
+func (c *Client) Close() {
 	_, _ = c.Send(&Close{})
 
 	select {
@@ -259,35 +258,7 @@ func (c *Client) processor() {
 		case <-c.stop:
 			return
 		case update := <-c.updates:
-			go c.handleUpdate(update)
-		}
-	}
-}
-
-func (c *Client) handleUpdate(update TlObject) {
-	c.hMu.RLock()
-	defer c.hMu.RUnlock()
-
-	// Initializers
-	for _, h := range c.initializers {
-		if err := h.Func(c, update); errors.Is(err, StopHandlers) {
-			return
-		}
-	}
-
-	// Main Handlers
-	if typeHandlers, ok := c.handlers[update.Type()]; ok {
-		for _, h := range typeHandlers {
-			if err := h.Func(c, update); errors.Is(err, StopHandlers) {
-				return
-			}
-		}
-	}
-
-	// Finalizers
-	for _, h := range c.finalizers {
-		if err := h.Func(c, update); errors.Is(err, StopHandlers) {
-			return
+			c.Dispatcher.ProcessUpdate(update)
 		}
 	}
 }
@@ -493,28 +464,19 @@ func (c *Client) Send(req TlObject) (TlObject, error) {
 }
 
 // AddHandler registers a handler for updates.
+// Deprecated: Use c.Dispatcher.AddHandler or similar.
 func (c *Client) AddHandler(updateType string, fn HandlerFunc, position int) {
-	c.hMu.Lock()
-	defer c.hMu.Unlock()
 
-	h := &Handler{Func: fn, UpdateType: updateType, Position: position}
+	h := &LegacyHandler{Func: fn, UpdateType: updateType, Position: position}
 
 	if updateType == "initializer" {
-		c.initializers = append(c.initializers, h)
-		sortHandlers(c.initializers)
+		c.Dispatcher.AddInitializer(h)
 	} else if updateType == "finalizer" {
-		c.finalizers = append(c.finalizers, h)
-		sortHandlers(c.finalizers)
+		c.Dispatcher.AddFinalizer(h)
 	} else {
-		c.handlers[updateType] = append(c.handlers[updateType], h)
-		sortHandlers(c.handlers[updateType])
+		// Use position as group index
+		c.Dispatcher.AddHandlerToGroup(h, position)
 	}
-}
-
-func sortHandlers(handlers []*Handler) {
-	sort.Slice(handlers, func(i, j int) bool {
-		return handlers[i].Position < handlers[j].Position
-	})
 }
 
 // Me returns the cached User object for the current bot.

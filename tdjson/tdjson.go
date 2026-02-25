@@ -2,16 +2,18 @@ package tdjson
 
 import (
 	"fmt"
+	"runtime"
 	"unsafe"
 
 	"github.com/ebitengine/purego"
 )
 
 var (
-	tdCreateClientId func() int32
-	tdSend           func(int32, *byte)
-	tdReceive        func(float64) uintptr
-	tdExecute        func(*byte) uintptr
+	tdCreateClientId        func() int32
+	tdSend                  func(int32, *byte)
+	tdReceive               func(float64) uintptr
+	tdExecute               func(*byte) uintptr
+	tdSetLogMessageCallback func(int32, uintptr)
 
 	libLoaded bool
 )
@@ -35,13 +37,21 @@ func Init(libPath string) error {
 	purego.RegisterLibFunc(&tdSend, lib, "td_send")
 	purego.RegisterLibFunc(&tdReceive, lib, "td_receive")
 	purego.RegisterLibFunc(&tdExecute, lib, "td_execute")
+	purego.RegisterLibFunc(&tdSetLogMessageCallback, lib, "td_set_log_message_callback")
 
 	libLoaded = true
 	return nil
 }
 
 func getDefaultLibName() string {
-	return "libtdjson.so"
+	switch runtime.GOOS {
+	case "windows":
+		return "tdjson.dll"
+	case "darwin":
+		return "libtdjson.dylib"
+	default:
+		return "libtdjson.so"
+	}
 }
 
 // CreateClientID returns an opaque identifier of a new TDLib instance.
@@ -74,6 +84,20 @@ func Execute(request string) string {
 		return ""
 	}
 	return goString(ptr)
+}
+
+var logCallback uintptr
+
+// SetLogMessageCallback registers a callback for TDLib log messages.
+// The callback function receives the verbosity level and the log message.
+func SetLogMessageCallback(maxVerbosityLevel int32, callback func(verbosityLevel int32, message string)) {
+	cb := purego.NewCallback(func(verbosity int32, msg *byte) {
+		message := goString(uintptr(unsafe.Pointer(msg)))
+		callback(verbosity, message)
+	})
+	logCallback = cb // Prevent GC
+
+	tdSetLogMessageCallback(maxVerbosityLevel, cb)
 }
 
 func goString(ptr uintptr) string {

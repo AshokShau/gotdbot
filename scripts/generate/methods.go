@@ -14,6 +14,10 @@ func generateMethods(functions []TLType, classes map[string]*TLClass) {
 
 	for _, fn := range functions {
 		methodName := toCamelCase(fn.Name)
+
+		if methodName == "Close" {
+			continue
+		}
 		structName := toCamelCase(fn.Name)
 
 		hasOptional := false

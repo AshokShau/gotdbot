@@ -19,6 +19,33 @@ const (
 	version   = "v1.8.61"
 )
 
+// writeFile writes from an io.Reader to a file named name and ensures the file
+// is closed on all paths.
+func writeFile(name string, r io.Reader) error {
+	outFile, err := os.Create(name)
+	if err != nil {
+		return err
+	}
+	defer outFile.Close()
+
+	_, err = io.Copy(outFile, r)
+	return err
+}
+
+// writeFileFromReadCloser writes from an io.ReadCloser to a file and ensures both
+// the reader and file are closed on all paths.
+func writeFileFromReadCloser(name string, rc io.ReadCloser) error {
+	defer rc.Close()
+	outFile, err := os.Create(name)
+	if err != nil {
+		return err
+	}
+	defer outFile.Close()
+
+	_, err = io.Copy(outFile, rc)
+	return err
+}
+
 func main() {
 	goos := runtime.GOOS
 	goarch := runtime.GOARCH
@@ -114,14 +141,7 @@ func main() {
 
 			name := filepath.Base(hdr.Name)
 			if matchFunc(name) {
-				outFile, err := os.Create(name)
-				if err != nil {
-					panic(err)
-				}
-
-				_, err = io.Copy(outFile, tr)
-				outFile.Close()
-				if err != nil {
+				if err := writeFile(name, tr); err != nil {
 					panic(err)
 				}
 				fmt.Println("Extracted:", name)
@@ -146,15 +166,10 @@ func main() {
 					panic(err)
 				}
 
-				outFile, err := os.Create(name)
-				if err != nil {
-					rc.Close()
+				if err := writeFileFromReadCloser(name, rc); err != nil {
 					panic(err)
 				}
 
-				_, err = io.Copy(outFile, rc)
-				outFile.Close()
-				rc.Close()
 				fmt.Println("Extracted:", name)
 				found = true
 			}
