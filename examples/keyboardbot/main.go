@@ -26,7 +26,7 @@ func main() {
 		botToken = envToken
 	}
 
-	bot, err := gotdbot.NewClient(apiID, apiHash, botToken, &gotdbot.ClientConfig{LibraryPath: "./libtdjson.so.1.8.61"})
+	bot, err := gotdbot.NewClient(apiID, apiHash, botToken, &gotdbot.ClientConfig{LibraryPath: "./libtdjson.so.1.8.62"})
 	if err != nil {
 		panic(err)
 	}

@@ -639,7 +639,7 @@ func (c *Chat) GetPaymentReceipt(client *Client, messageId int64) (*PaymentRecei
 }
 
 // GetPollVoters is a helper method for Client.GetPollVoters
-func (c *Chat) GetPollVoters(client *Client, limit int32, messageId int64, offset int32, optionId int32) (*MessageSenders, error) {
+func (c *Chat) GetPollVoters(client *Client, limit int32, messageId int64, offset int32, optionId int32) (*PollVoters, error) {
 	return client.GetPollVoters(c.Id, limit, messageId, offset, optionId)
 }
 
@@ -746,6 +746,11 @@ func (c *Chat) PinMessage(client *Client, messageId int64, opts *PinChatMessageO
 // PostStory is a helper method for Client.PostStory
 func (c *Chat) PostStory(client *Client, activePeriod int32, albumIds []int32, content InputStoryContent, privacySettings StoryPrivacySettings, opts *PostStoryOpts) (*Story, error) {
 	return client.PostStory(activePeriod, albumIds, c.Id, content, privacySettings, opts)
+}
+
+// ProcessHasProtectedContentDisableRequest is a helper method for Client.ProcessChatHasProtectedContentDisableRequest
+func (c *Chat) ProcessHasProtectedContentDisableRequest(client *Client, requestMessageId int64, opts *ProcessChatHasProtectedContentDisableRequestOpts) error {
+	return client.ProcessChatHasProtectedContentDisableRequest(c.Id, requestMessageId, opts)
 }
 
 // ProcessJoinRequest is a helper method for Client.ProcessChatJoinRequest
@@ -1028,6 +1033,11 @@ func (c *Chat) SetMemberStatus(client *Client, memberId MessageSender, status Ch
 	return client.SetChatMemberStatus(c.Id, memberId, status)
 }
 
+// SetMemberTag is a helper method for Client.SetChatMemberTag
+func (c *Chat) SetMemberTag(client *Client, tag string, userId int64) error {
+	return client.SetChatMemberTag(c.Id, tag, userId)
+}
+
 // SetMessageAutoDeleteTime is a helper method for Client.SetChatMessageAutoDeleteTime
 func (c *Chat) SetMessageAutoDeleteTime(client *Client) error {
 	return client.SetChatMessageAutoDeleteTime(c.Id, c.MessageAutoDeleteTime)
@@ -1074,8 +1084,8 @@ func (c *Chat) SetSlowModeDelay(client *Client, slowModeDelay int32) error {
 }
 
 // SetTheme is a helper method for Client.SetChatTheme
-func (c *Chat) SetTheme(client *Client, theme InputChatTheme) error {
-	return client.SetChatTheme(c.Id, theme)
+func (c *Chat) SetTheme(client *Client, opts *SetChatThemeOpts) error {
+	return client.SetChatTheme(c.Id, opts)
 }
 
 // SetTitle is a helper method for Client.SetChatTitle
@@ -1594,7 +1604,7 @@ func (m *Message) GetPaymentReceipt(client *Client) (*PaymentReceipt, error) {
 }
 
 // GetPollVoters is a helper method for Client.GetPollVoters
-func (m *Message) GetPollVoters(client *Client, limit int32, offset int32, optionId int32) (*MessageSenders, error) {
+func (m *Message) GetPollVoters(client *Client, limit int32, offset int32, optionId int32) (*PollVoters, error) {
 	return client.GetPollVoters(m.ChatId, limit, m.Id, offset, optionId)
 }
 
@@ -1883,6 +1893,11 @@ func (u *User) SavePreparedInlineMessage(client *Client, chatTypes *TargetChatTy
 	return client.SavePreparedInlineMessage(chatTypes, result, u.Id)
 }
 
+// SetChatMemberTag is a helper method for Client.SetChatMemberTag
+func (u *User) SetChatMemberTag(client *Client, chatId int64, tag string) error {
+	return client.SetChatMemberTag(chatId, tag, u.Id)
+}
+
 // SetGameScore is a helper method for Client.SetGameScore
 func (u *User) SetGameScore(client *Client, chatId int64, messageId int64, score int32, opts *SetGameScoreOpts) (*Message, error) {
 	return client.SetGameScore(chatId, messageId, score, u.Id, opts)
@@ -1909,8 +1924,8 @@ func (u *User) SetStickerSetThumbnail(client *Client, name string, opts *SetStic
 }
 
 // SetEmojiStatus is a helper method for Client.SetUserEmojiStatus
-func (u *User) SetEmojiStatus(client *Client) error {
-	return client.SetUserEmojiStatus(u.EmojiStatus, u.Id)
+func (u *User) SetEmojiStatus(client *Client, opts *SetUserEmojiStatusOpts) error {
+	return client.SetUserEmojiStatus(u.Id, opts)
 }
 
 // SetNote is a helper method for Client.SetUserNote
@@ -1919,8 +1934,8 @@ func (u *User) SetNote(client *Client, note *FormattedText) error {
 }
 
 // SetPersonalProfilePhoto is a helper method for Client.SetUserPersonalProfilePhoto
-func (u *User) SetPersonalProfilePhoto(client *Client, photo InputChatPhoto) error {
-	return client.SetUserPersonalProfilePhoto(photo, u.Id)
+func (u *User) SetPersonalProfilePhoto(client *Client, opts *SetUserPersonalProfilePhotoOpts) error {
+	return client.SetUserPersonalProfilePhoto(u.Id, opts)
 }
 
 // SetSupportInfo is a helper method for Client.SetUserSupportInfo

@@ -1674,6 +1674,7 @@ func UnmarshalChatBoostSource(data []byte) (ChatBoostSource, error) {
 //   - ChatEventMemberPromoted
 //   - ChatEventMemberRestricted
 //   - ChatEventMemberSubscriptionExtended
+//   - ChatEventMemberTagChanged
 //   - ChatEventMessageAutoDeleteTimeChanged
 //   - ChatEventMessageDeleted
 //   - ChatEventMessageEdited
@@ -1896,6 +1897,12 @@ func UnmarshalChatEventAction(data []byte) (ChatEventAction, error) {
 		return &obj, nil
 	case "chatEventMemberSubscriptionExtended":
 		var obj ChatEventMemberSubscriptionExtended
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "chatEventMemberTagChanged":
+		var obj ChatEventMemberTagChanged
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -2701,6 +2708,81 @@ func UnmarshalCraftGiftResult(data []byte) (CraftGiftResult, error) {
 		return &obj, nil
 	case "craftGiftResultTooEarly":
 		var obj CraftGiftResultTooEarly
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	default:
+		return nil, fmt.Errorf("unknown type: %s", typeObj.Type)
+	}
+}
+
+// DateTimeFormattingType Describes date and time formatting
+//   - DateTimeFormattingTypeAbsolute
+//   - DateTimeFormattingTypeRelative
+type DateTimeFormattingType interface {
+	TlObject
+	dateTimeFormattingType()
+}
+
+// UnmarshalDateTimeFormattingType unmarshals the JSON into the correct concrete implementation of DateTimeFormattingType
+func UnmarshalDateTimeFormattingType(data []byte) (DateTimeFormattingType, error) {
+	var typeObj struct {
+		Type string `json:"@type"`
+	}
+	if err := json.Unmarshal(data, &typeObj); err != nil {
+		return nil, err
+	}
+	switch typeObj.Type {
+	case "dateTimeFormattingTypeAbsolute":
+		var obj DateTimeFormattingTypeAbsolute
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "dateTimeFormattingTypeRelative":
+		var obj DateTimeFormattingTypeRelative
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	default:
+		return nil, fmt.Errorf("unknown type: %s", typeObj.Type)
+	}
+}
+
+// DateTimePartPrecision Describes precision with which to show a date or a time
+//   - DateTimePartPrecisionLong
+//   - DateTimePartPrecisionNone
+//   - DateTimePartPrecisionShort
+type DateTimePartPrecision interface {
+	TlObject
+	dateTimePartPrecision()
+}
+
+// UnmarshalDateTimePartPrecision unmarshals the JSON into the correct concrete implementation of DateTimePartPrecision
+func UnmarshalDateTimePartPrecision(data []byte) (DateTimePartPrecision, error) {
+	var typeObj struct {
+		Type string `json:"@type"`
+	}
+	if err := json.Unmarshal(data, &typeObj); err != nil {
+		return nil, err
+	}
+	switch typeObj.Type {
+	case "dateTimePartPrecisionLong":
+		var obj DateTimePartPrecisionLong
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "dateTimePartPrecisionNone":
+		var obj DateTimePartPrecisionNone
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "dateTimePartPrecisionShort":
+		var obj DateTimePartPrecisionShort
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -3905,6 +3987,40 @@ func UnmarshalInputBackground(data []byte) (InputBackground, error) {
 	}
 }
 
+// InputCall Describes a call
+//   - InputCallDiscarded
+//   - InputCallFromMessage
+type InputCall interface {
+	TlObject
+	inputCall()
+}
+
+// UnmarshalInputCall unmarshals the JSON into the correct concrete implementation of InputCall
+func UnmarshalInputCall(data []byte) (InputCall, error) {
+	var typeObj struct {
+		Type string `json:"@type"`
+	}
+	if err := json.Unmarshal(data, &typeObj); err != nil {
+		return nil, err
+	}
+	switch typeObj.Type {
+	case "inputCallDiscarded":
+		var obj InputCallDiscarded
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "inputCallFromMessage":
+		var obj InputCallFromMessage
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	default:
+		return nil, fmt.Errorf("unknown type: %s", typeObj.Type)
+	}
+}
+
 // InputChatPhoto Describes a photo to be set as a user profile or chat photo
 //   - InputChatPhotoAnimation
 //   - InputChatPhotoPrevious
@@ -4840,6 +4956,7 @@ func UnmarshalInputStoryContent(data []byte) (InputStoryContent, error) {
 //   - InternalLinkTypeNewGroupChat
 //   - InternalLinkTypeNewPrivateChat
 //   - InternalLinkTypeNewStory
+//   - InternalLinkTypeOauth
 //   - InternalLinkTypePassportDataRequest
 //   - InternalLinkTypePhoneNumberConfirmation
 //   - InternalLinkTypePremiumFeaturesPage
@@ -5059,6 +5176,12 @@ func UnmarshalInternalLinkType(data []byte) (InternalLinkType, error) {
 		return &obj, nil
 	case "internalLinkTypeNewStory":
 		var obj InternalLinkTypeNewStory
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "internalLinkTypeOauth":
+		var obj InternalLinkTypeOauth
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -5787,7 +5910,7 @@ func UnmarshalLinkPreviewType(data []byte) (LinkPreviewType, error) {
 	}
 }
 
-// LoginUrlInfo Contains information about an inline button of type inlineKeyboardButtonTypeLoginUrl
+// LoginUrlInfo Contains information about an inline button of type inlineKeyboardButtonTypeLoginUrl or an external link
 //   - LoginUrlInfoOpen
 //   - LoginUrlInfoRequestConfirmation
 type LoginUrlInfo interface {
@@ -5923,6 +6046,8 @@ func UnmarshalMaskPoint(data []byte) (MaskPoint, error) {
 //   - MessageChatChangeTitle
 //   - MessageChatDeleteMember
 //   - MessageChatDeletePhoto
+//   - MessageChatHasProtectedContentDisableRequested
+//   - MessageChatHasProtectedContentToggled
 //   - MessageChatJoinByLink
 //   - MessageChatJoinByRequest
 //   - MessageChatOwnerChanged
@@ -6088,6 +6213,18 @@ func UnmarshalMessageContent(data []byte) (MessageContent, error) {
 		return &obj, nil
 	case "messageChatDeletePhoto":
 		var obj MessageChatDeletePhoto
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "messageChatHasProtectedContentDisableRequested":
+		var obj MessageChatHasProtectedContentDisableRequested
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "messageChatHasProtectedContentToggled":
+		var obj MessageChatHasProtectedContentToggled
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -8280,6 +8417,7 @@ func UnmarshalPollType(data []byte) (PollType, error) {
 //   - PremiumFeatureMessagePrivacy
 //   - PremiumFeaturePaidMessages
 //   - PremiumFeatureProfileBadge
+//   - PremiumFeatureProtectPrivateChatContent
 //   - PremiumFeatureRealTimeChatTranslation
 //   - PremiumFeatureSavedMessagesTags
 //   - PremiumFeatureUniqueReactions
@@ -8416,6 +8554,12 @@ func UnmarshalPremiumFeature(data []byte) (PremiumFeature, error) {
 		return &obj, nil
 	case "premiumFeatureProfileBadge":
 		var obj PremiumFeatureProfileBadge
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "premiumFeatureProtectPrivateChatContent":
+		var obj PremiumFeatureProtectPrivateChatContent
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -11995,6 +12139,7 @@ func UnmarshalTelegramPaymentPurpose(data []byte) (TelegramPaymentPurpose, error
 //   - TextEntityTypeCashtag
 //   - TextEntityTypeCode
 //   - TextEntityTypeCustomEmoji
+//   - TextEntityTypeDateTime
 //   - TextEntityTypeEmailAddress
 //   - TextEntityTypeExpandableBlockQuote
 //   - TextEntityTypeHashtag
@@ -12062,6 +12207,12 @@ func UnmarshalTextEntityType(data []byte) (TextEntityType, error) {
 		return &obj, nil
 	case "textEntityTypeCustomEmoji":
 		var obj TextEntityTypeCustomEmoji
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "textEntityTypeDateTime":
+		var obj TextEntityTypeDateTime
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -12626,6 +12777,7 @@ func UnmarshalTransactionDirection(data []byte) (TransactionDirection, error) {
 //   - UpdateNewInlineCallbackQuery
 //   - UpdateNewInlineQuery
 //   - UpdateNewMessage
+//   - UpdateNewOauthRequest
 //   - UpdateNewPreCheckoutQuery
 //   - UpdateNewShippingQuery
 //   - UpdateNotification
@@ -13410,6 +13562,12 @@ func UnmarshalUpdate(data []byte) (Update, error) {
 		return &obj, nil
 	case "updateNewMessage":
 		var obj UpdateNewMessage
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "updateNewOauthRequest":
+		var obj UpdateNewOauthRequest
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}

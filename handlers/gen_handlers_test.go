@@ -1815,6 +1815,21 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
+		h := NewUpdateNewOauthRequest(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+			called <- true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(&gotdbot.UpdateNewOauthRequest{})
+		select {
+		case <-called:
+		case <-time.After(100 * time.Millisecond):
+			t.Errorf("Handler for UpdateNewOauthRequest not called")
+		}
+	}()
+
+	func() {
+		called := make(chan bool, 1)
 		h := NewUpdateNewPreCheckoutQuery(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
 			called <- true
 			return nil
