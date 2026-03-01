@@ -3,6 +3,12 @@
 
 package gotdbot
 
+// AcceptOauthRequestOpts contains optional parameters for AcceptOauthRequest
+type AcceptOauthRequestOpts struct {
+	AllowPhoneNumberAccess bool
+	AllowWriteAccess       bool
+}
+
 // AddContactOpts contains optional parameters for AddContact
 type AddContactOpts struct {
 	Contact          *ImportedContact
@@ -472,8 +478,7 @@ type GetCommandsOpts struct {
 
 // GetExternalLinkOpts contains optional parameters for GetExternalLink
 type GetExternalLinkOpts struct {
-	AllowPhoneNumberAccess bool
-	AllowWriteAccess       bool
+	AllowWriteAccess bool
 }
 
 // GetGroupCallStreamSegmentOpts contains optional parameters for GetGroupCallStreamSegment
@@ -709,6 +714,11 @@ type PostStoryOpts struct {
 // PreliminaryUploadFileOpts contains optional parameters for PreliminaryUploadFile
 type PreliminaryUploadFileOpts struct {
 	FileType FileType
+}
+
+// ProcessChatHasProtectedContentDisableRequestOpts contains optional parameters for ProcessChatHasProtectedContentDisableRequest
+type ProcessChatHasProtectedContentDisableRequestOpts struct {
+	Approve bool
 }
 
 // ProcessChatJoinRequestOpts contains optional parameters for ProcessChatJoinRequest

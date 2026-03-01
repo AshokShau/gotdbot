@@ -639,7 +639,7 @@ func (c *Chat) GetPaymentReceipt(client *Client, messageId int64) (*PaymentRecei
 }
 
 // GetPollVoters is a helper method for Client.GetPollVoters
-func (c *Chat) GetPollVoters(client *Client, limit int32, messageId int64, offset int32, optionId int32) (*MessageSenders, error) {
+func (c *Chat) GetPollVoters(client *Client, limit int32, messageId int64, offset int32, optionId int32) (*PollVoters, error) {
 	return client.GetPollVoters(c.Id, limit, messageId, offset, optionId)
 }
 
@@ -746,6 +746,11 @@ func (c *Chat) PinMessage(client *Client, messageId int64, opts *PinChatMessageO
 // PostStory is a helper method for Client.PostStory
 func (c *Chat) PostStory(client *Client, activePeriod int32, albumIds []int32, content InputStoryContent, privacySettings StoryPrivacySettings, opts *PostStoryOpts) (*Story, error) {
 	return client.PostStory(activePeriod, albumIds, c.Id, content, privacySettings, opts)
+}
+
+// ProcessHasProtectedContentDisableRequest is a helper method for Client.ProcessChatHasProtectedContentDisableRequest
+func (c *Chat) ProcessHasProtectedContentDisableRequest(client *Client, requestMessageId int64, opts *ProcessChatHasProtectedContentDisableRequestOpts) error {
+	return client.ProcessChatHasProtectedContentDisableRequest(c.Id, requestMessageId, opts)
 }
 
 // ProcessJoinRequest is a helper method for Client.ProcessChatJoinRequest
@@ -1026,6 +1031,11 @@ func (c *Chat) SetLocation(client *Client, location *ChatLocation) error {
 // SetMemberStatus is a helper method for Client.SetChatMemberStatus
 func (c *Chat) SetMemberStatus(client *Client, memberId MessageSender, status ChatMemberStatus) error {
 	return client.SetChatMemberStatus(c.Id, memberId, status)
+}
+
+// SetMemberTag is a helper method for Client.SetChatMemberTag
+func (c *Chat) SetMemberTag(client *Client, tag string, userId int64) error {
+	return client.SetChatMemberTag(c.Id, tag, userId)
 }
 
 // SetMessageAutoDeleteTime is a helper method for Client.SetChatMessageAutoDeleteTime
@@ -1594,7 +1604,7 @@ func (m *Message) GetPaymentReceipt(client *Client) (*PaymentReceipt, error) {
 }
 
 // GetPollVoters is a helper method for Client.GetPollVoters
-func (m *Message) GetPollVoters(client *Client, limit int32, offset int32, optionId int32) (*MessageSenders, error) {
+func (m *Message) GetPollVoters(client *Client, limit int32, offset int32, optionId int32) (*PollVoters, error) {
 	return client.GetPollVoters(m.ChatId, limit, m.Id, offset, optionId)
 }
 
@@ -1881,6 +1891,11 @@ func (u *User) ReplaceStickerInSet(client *Client, name string, newSticker *Inpu
 // SavePreparedInlineMessage is a helper method for Client.SavePreparedInlineMessage
 func (u *User) SavePreparedInlineMessage(client *Client, chatTypes *TargetChatTypes, result InputInlineQueryResult) (*PreparedInlineMessageId, error) {
 	return client.SavePreparedInlineMessage(chatTypes, result, u.Id)
+}
+
+// SetChatMemberTag is a helper method for Client.SetChatMemberTag
+func (u *User) SetChatMemberTag(client *Client, chatId int64, tag string) error {
+	return client.SetChatMemberTag(chatId, tag, u.Id)
 }
 
 // SetGameScore is a helper method for Client.SetGameScore

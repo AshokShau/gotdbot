@@ -5421,7 +5421,7 @@ type Chat struct {
 	ProfileAccentColorId int32 `json:"profile_accent_color_id"`
 	// Identifier of a custom emoji to be shown on the background of the chat's profile; 0 if none
 	ProfileBackgroundCustomEmojiId int64 `json:"profile_background_custom_emoji_id,string"`
-	// Identifier of the message from which reply markup needs to be used; 0 if there is no default custom reply markup in the chat
+	// Identifier of the message from which reply markup needs to be used; 0 if there is no reply markup in the chat
 	ReplyMarkupMessageId int64 `json:"reply_markup_message_id"`
 	// Theme set for the chat; may be null if none
 	Theme ChatTheme `json:"theme,omitempty"`
@@ -6094,6 +6094,8 @@ type ChatAdministratorRights struct {
 	CanManageChat bool `json:"can_manage_chat"`
 	// True, if the administrator can answer to channel direct messages; applicable to channels only
 	CanManageDirectMessages bool `json:"can_manage_direct_messages"`
+	// True, if the administrator can change tags of other users; applicable to basic groups and supergroups only
+	CanManageTags bool `json:"can_manage_tags"`
 	// True, if the administrator can create, rename, close, reopen, hide, and unhide forum topics; applicable to forum supergroups only
 	CanManageTopics bool `json:"can_manage_topics"`
 	// True, if the administrator can manage video chats
@@ -7286,6 +7288,8 @@ type ChatEventLogFilters struct {
 	MemberPromotions bool `json:"member_promotions"`
 	// True, if member restricted/unrestricted/banned/unbanned events need to be returned
 	MemberRestrictions bool `json:"member_restrictions"`
+	// True, if member tag and custom title change events need to be returned
+	MemberTagChanges bool `json:"member_tag_changes"`
 	// True, if message deletions need to be returned
 	MessageDeletions bool `json:"message_deletions"`
 	// True, if message edits need to be returned
@@ -7635,6 +7639,33 @@ func (t *ChatEventMemberSubscriptionExtended) UnmarshalJSON(data []byte) error {
 		t.OldStatus = v
 	}
 	return nil
+}
+
+// ChatEventMemberTagChanged A chat member tag has been changed @user_id Affected chat member user identifier @old_tag Previous tag of the chat member @new_tag New tag of the chat member
+type ChatEventMemberTagChanged struct {
+	//
+	NewTag string `json:"new_tag"`
+	//
+	OldTag string `json:"old_tag"`
+	//
+	UserId int64 `json:"user_id"`
+}
+
+func (t ChatEventMemberTagChanged) Type() string {
+	return "chatEventMemberTagChanged"
+}
+
+func (t ChatEventMemberTagChanged) chatEventAction() {}
+
+func (t ChatEventMemberTagChanged) MarshalJSON() ([]byte, error) {
+	type Alias ChatEventMemberTagChanged
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "chatEventMemberTagChanged",
+		Alias:   (*Alias)(&t),
+	})
 }
 
 // ChatEventMessageAutoDeleteTimeChanged The message auto-delete timer was changed @old_message_auto_delete_time Previous value of message_auto_delete_time @new_message_auto_delete_time New value of message_auto_delete_time
@@ -8862,6 +8893,8 @@ type ChatMember struct {
 	MemberId MessageSender `json:"member_id"`
 	// Status of the member in the chat
 	Status ChatMemberStatus `json:"status"`
+	// Tag of the chat member or its custom title if the member is an administrator of the chat; 0-16 characters without emoji; applicable to basic groups and supergroups only
+	Tag string `json:"tag"`
 }
 
 func (t ChatMember) Type() string {
@@ -9109,8 +9142,6 @@ func (t ChatMembersFilterRestricted) MarshalJSON() ([]byte, error) {
 type ChatMemberStatusAdministrator struct {
 	// True, if the current user can edit the administrator privileges for the called user
 	CanBeEdited bool `json:"can_be_edited"`
-	// A custom title of the administrator; 0-16 characters without emoji; applicable to supergroups only
-	CustomTitle string `json:"custom_title"`
 	// Rights of the administrator
 	Rights *ChatAdministratorRights `json:"rights"`
 }
@@ -9157,8 +9188,6 @@ func (t ChatMemberStatusBanned) MarshalJSON() ([]byte, error) {
 
 // ChatMemberStatusCreator The user is the owner of the chat and has all the administrator privileges
 type ChatMemberStatusCreator struct {
-	// A custom title of the owner; 0-16 characters without emoji; applicable to supergroups only
-	CustomTitle string `json:"custom_title"`
 	// True, if the creator isn't shown in the chat member list and sends messages anonymously; applicable to supergroups only
 	IsAnonymous bool `json:"is_anonymous"`
 	// True, if the user is a member of the chat
@@ -9379,6 +9408,8 @@ type ChatPermissions struct {
 	CanChangeInfo bool `json:"can_change_info"`
 	// True, if the user can create topics
 	CanCreateTopics bool `json:"can_create_topics"`
+	// True, if the user may change the tag of self
+	CanEditTag bool `json:"can_edit_tag"`
 	// True, if the user can invite new users to the chat
 	CanInviteUsers bool `json:"can_invite_users"`
 	// True, if the user can pin messages
@@ -11657,6 +11688,148 @@ func (t DateRange) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "dateRange",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// DateTimeFormattingTypeAbsolute The date and time must be shown as absolute timestamps
+type DateTimeFormattingTypeAbsolute struct {
+	// The precision with which the date is shown
+	DatePrecision DateTimePartPrecision `json:"date_precision"`
+	// True, if the day of week must be shown
+	ShowDayOfWeek bool `json:"show_day_of_week"`
+	// The precision with which hours, minutes and seconds are shown
+	TimePrecision DateTimePartPrecision `json:"time_precision"`
+}
+
+func (t DateTimeFormattingTypeAbsolute) Type() string {
+	return "dateTimeFormattingTypeAbsolute"
+}
+
+func (t DateTimeFormattingTypeAbsolute) dateTimeFormattingType() {}
+
+func (t DateTimeFormattingTypeAbsolute) MarshalJSON() ([]byte, error) {
+	type Alias DateTimeFormattingTypeAbsolute
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "dateTimeFormattingTypeAbsolute",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+func (t *DateTimeFormattingTypeAbsolute) UnmarshalJSON(data []byte) error {
+	type Alias DateTimeFormattingTypeAbsolute
+	aux := &struct {
+		DatePrecision json.RawMessage `json:"date_precision"`
+		TimePrecision json.RawMessage `json:"time_precision"`
+		*Alias
+	}{
+		Alias: (*Alias)(t),
+	}
+
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+
+	if aux.DatePrecision != nil {
+		v, err := UnmarshalDateTimePartPrecision(aux.DatePrecision)
+		if err != nil {
+			return err
+		}
+		t.DatePrecision = v
+	}
+	if aux.TimePrecision != nil {
+		v, err := UnmarshalDateTimePartPrecision(aux.TimePrecision)
+		if err != nil {
+			return err
+		}
+		t.TimePrecision = v
+	}
+	return nil
+}
+
+// DateTimeFormattingTypeRelative The time must be shown relative to the current time ([in ] X seconds, minutes, hours, days, months, years [ago])
+type DateTimeFormattingTypeRelative struct {
+}
+
+func (t DateTimeFormattingTypeRelative) Type() string {
+	return "dateTimeFormattingTypeRelative"
+}
+
+func (t DateTimeFormattingTypeRelative) dateTimeFormattingType() {}
+
+func (t DateTimeFormattingTypeRelative) MarshalJSON() ([]byte, error) {
+	type Alias DateTimeFormattingTypeRelative
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "dateTimeFormattingTypeRelative",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// DateTimePartPrecisionLong Show the date or time in a long way (March 17, 2022 or 22:45:00)
+type DateTimePartPrecisionLong struct {
+}
+
+func (t DateTimePartPrecisionLong) Type() string {
+	return "dateTimePartPrecisionLong"
+}
+
+func (t DateTimePartPrecisionLong) dateTimePartPrecision() {}
+
+func (t DateTimePartPrecisionLong) MarshalJSON() ([]byte, error) {
+	type Alias DateTimePartPrecisionLong
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "dateTimePartPrecisionLong",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// DateTimePartPrecisionNone Don't show the date or time
+type DateTimePartPrecisionNone struct {
+}
+
+func (t DateTimePartPrecisionNone) Type() string {
+	return "dateTimePartPrecisionNone"
+}
+
+func (t DateTimePartPrecisionNone) dateTimePartPrecision() {}
+
+func (t DateTimePartPrecisionNone) MarshalJSON() ([]byte, error) {
+	type Alias DateTimePartPrecisionNone
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "dateTimePartPrecisionNone",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// DateTimePartPrecisionShort Show the date or time in a short way (17.03.22 or 22:45)
+type DateTimePartPrecisionShort struct {
+}
+
+func (t DateTimePartPrecisionShort) Type() string {
+	return "dateTimePartPrecisionShort"
+}
+
+func (t DateTimePartPrecisionShort) dateTimePartPrecision() {}
+
+func (t DateTimePartPrecisionShort) MarshalJSON() ([]byte, error) {
+	type Alias DateTimePartPrecisionShort
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "dateTimePartPrecisionShort",
 		Alias:   (*Alias)(&t),
 	})
 }
@@ -17043,6 +17216,54 @@ func (t *InputBusinessStartPage) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
+// InputCallDiscarded A just ended call @call_id Identifier of the call
+type InputCallDiscarded struct {
+	//
+	CallId int32 `json:"call_id"`
+}
+
+func (t InputCallDiscarded) Type() string {
+	return "inputCallDiscarded"
+}
+
+func (t InputCallDiscarded) inputCall() {}
+
+func (t InputCallDiscarded) MarshalJSON() ([]byte, error) {
+	type Alias InputCallDiscarded
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "inputCallDiscarded",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// InputCallFromMessage A call from a message of the type messageCall with non-zero messageCall.unique_id
+type InputCallFromMessage struct {
+	// Chat identifier of the message
+	ChatId int64 `json:"chat_id"`
+	// Message identifier
+	MessageId int64 `json:"message_id"`
+}
+
+func (t InputCallFromMessage) Type() string {
+	return "inputCallFromMessage"
+}
+
+func (t InputCallFromMessage) inputCall() {}
+
+func (t InputCallFromMessage) MarshalJSON() ([]byte, error) {
+	type Alias InputCallFromMessage
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "inputCallFromMessage",
+		Alias:   (*Alias)(&t),
+	})
+}
+
 // InputChatPhotoAnimation An animation in MPEG4 format; must be square, at most 10 seconds long, have width between 160 and 1280 and be at most 2MB in size
 type InputChatPhotoAnimation struct {
 	// Animation to be set as profile photo. Only inputFileLocal and inputFileGenerated are allowed
@@ -21611,6 +21832,29 @@ func (t *InternalLinkTypeNewStory) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
+// InternalLinkTypeOauth The link is an OAuth link. Call getOauthLinkInfo with the given URL to process the link if the link was received from outside of the application; otherwise, ignore it.
+type InternalLinkTypeOauth struct {
+	// URL to be passed to getOauthLinkInfo
+	Url string `json:"url"`
+}
+
+func (t InternalLinkTypeOauth) Type() string {
+	return "internalLinkTypeOauth"
+}
+
+func (t InternalLinkTypeOauth) internalLinkType() {}
+
+func (t InternalLinkTypeOauth) MarshalJSON() ([]byte, error) {
+	type Alias InternalLinkTypeOauth
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "internalLinkTypeOauth",
+		Alias:   (*Alias)(&t),
+	})
+}
+
 // InternalLinkTypePassportDataRequest The link contains a request of Telegram passport data. Call getPassportAuthorizationForm with the given parameters to process the link if the link was received from outside of the application; otherwise, ignore it
 type InternalLinkTypePassportDataRequest struct {
 	// User identifier of the service's bot; the corresponding user may be unknown yet
@@ -23544,6 +23788,8 @@ func (t LinkPreviewTypeDocument) MarshalJSON() ([]byte, error) {
 
 // LinkPreviewTypeEmbeddedAnimationPlayer The link is a link to an animation player
 type LinkPreviewTypeEmbeddedAnimationPlayer struct {
+	// The cached animation; may be null if unknown
+	Animation *Animation `json:"animation,omitempty"`
 	// Duration of the animation, in seconds
 	Duration int32 `json:"duration"`
 	// Expected height of the embedded player
@@ -23575,6 +23821,8 @@ func (t LinkPreviewTypeEmbeddedAnimationPlayer) MarshalJSON() ([]byte, error) {
 
 // LinkPreviewTypeEmbeddedAudioPlayer The link is a link to an audio player
 type LinkPreviewTypeEmbeddedAudioPlayer struct {
+	// The cached audio; may be null if unknown
+	Audio *Audio `json:"audio,omitempty"`
 	// Duration of the audio, in seconds
 	Duration int32 `json:"duration"`
 	// Expected height of the embedded player
@@ -23614,6 +23862,8 @@ type LinkPreviewTypeEmbeddedVideoPlayer struct {
 	Thumbnail *Photo `json:"thumbnail,omitempty"`
 	// URL of the external video player
 	Url string `json:"url"`
+	// The cached video; may be null if unknown
+	Video *Video `json:"video,omitempty"`
 	// Expected width of the embedded player
 	Width int32 `json:"width"`
 }
@@ -24390,18 +24640,8 @@ func (t LoginUrlInfoOpen) MarshalJSON() ([]byte, error) {
 type LoginUrlInfoRequestConfirmation struct {
 	// User identifier of a bot linked with the website
 	BotUserId int64 `json:"bot_user_id"`
-	// The version of a browser used for the authorization; may be empty if irrelevant
-	Browser string `json:"browser,omitempty"`
 	// A domain of the URL
 	Domain string `json:"domain"`
-	// IP address from which the authorization is performed, in human-readable format; may be empty if irrelevant
-	IpAddress string `json:"ip_address,omitempty"`
-	// Human-readable description of a country and a region from which the authorization is performed, based on the IP address; may be empty if irrelevant
-	Location string `json:"location,omitempty"`
-	// Operating system the browser is running on; may be empty if irrelevant
-	Platform string `json:"platform,omitempty"`
-	// True, if the user must be asked for the permission to share their phone number
-	RequestPhoneNumberAccess bool `json:"request_phone_number_access"`
 	// True, if the user must be asked for the permission to the bot to send them messages
 	RequestWriteAccess bool `json:"request_write_access"`
 	// An HTTP URL to be opened
@@ -24782,6 +25022,8 @@ type Message struct {
 	SenderBusinessBotUserId int64 `json:"sender_business_bot_user_id"`
 	// Identifier of the sender of the message
 	SenderId MessageSender `json:"sender_id"`
+	// Tag of the sender of the message in the supergroup at the time the message was sent; may be empty if none or unknown. For messages sent in basic groups or supergroup administrators, the current custom title or tag must be used instead
+	SenderTag string `json:"sender_tag,omitempty"`
 	// The sending state of the message; may be null if the message isn't being sent and didn't fail to be sent
 	SendingState MessageSendingState `json:"sending_state,omitempty"`
 	// Information about the suggested post; may be null if the message isn't a suggested post
@@ -25109,14 +25351,16 @@ func (t MessageCalendarDay) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// MessageCall A message with information about an ended call @is_video True, if the call was a video call @discard_reason Reason why the call was discarded @duration Call duration, in seconds
+// MessageCall A message with information about an ended call
 type MessageCall struct {
-	//
+	// Reason why the call was discarded
 	DiscardReason CallDiscardReason `json:"discard_reason"`
-	//
+	// Call duration, in seconds
 	Duration int32 `json:"duration"`
-	//
+	// True, if the call was a video call
 	IsVideo bool `json:"is_video"`
+	// Persistent unique call identifier; 0 for calls from other devices, which can't be passed as inputCallFromMessage
+	UniqueId int64 `json:"unique_id,string"`
 }
 
 func (t MessageCall) Type() string {
@@ -25291,6 +25535,56 @@ func (t MessageChatDeletePhoto) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "messageChatDeletePhoto",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// MessageChatHasProtectedContentDisableRequested Chat has_protected_content setting was requested to be disabled @is_expired True, if the request has expired
+type MessageChatHasProtectedContentDisableRequested struct {
+	//
+	IsExpired bool `json:"is_expired"`
+}
+
+func (t MessageChatHasProtectedContentDisableRequested) Type() string {
+	return "messageChatHasProtectedContentDisableRequested"
+}
+
+func (t MessageChatHasProtectedContentDisableRequested) messageContent() {}
+
+func (t MessageChatHasProtectedContentDisableRequested) MarshalJSON() ([]byte, error) {
+	type Alias MessageChatHasProtectedContentDisableRequested
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "messageChatHasProtectedContentDisableRequested",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// MessageChatHasProtectedContentToggled Chat has_protected_content setting was changed or request to change it was rejected
+type MessageChatHasProtectedContentToggled struct {
+	// New value of the setting
+	NewHasProtectedContent bool `json:"new_has_protected_content"`
+	// Previous value of the setting
+	OldHasProtectedContent bool `json:"old_has_protected_content"`
+	// Identifier of the message with the request to change the setting; can be an identifier of a deleted message or 0
+	RequestMessageId int64 `json:"request_message_id"`
+}
+
+func (t MessageChatHasProtectedContentToggled) Type() string {
+	return "messageChatHasProtectedContentToggled"
+}
+
+func (t MessageChatHasProtectedContentToggled) messageContent() {}
+
+func (t MessageChatHasProtectedContentToggled) MarshalJSON() ([]byte, error) {
+	type Alias MessageChatHasProtectedContentToggled
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "messageChatHasProtectedContentToggled",
 		Alias:   (*Alias)(&t),
 	})
 }
@@ -27666,6 +27960,10 @@ type MessageProperties struct {
 	CanReportSupergroupSpam bool `json:"can_report_supergroup_spam"`
 	// True, if fact check for the message can be changed through setMessageFactCheck
 	CanSetFactCheck bool `json:"can_set_fact_check"`
+	// True, if content of the message can't be saved locally, because it is protected by the current user; if true, then can_be_saved is false
+	HasProtectedContentByCurrentUser bool `json:"has_protected_content_by_current_user"`
+	// True, if content of the message can't be saved locally, because it is protected by the other user; if true, then can_be_saved is false
+	HasProtectedContentByOtherUser bool `json:"has_protected_content_by_other_user"`
 	// True, if message statistics must be available from context menu of the message
 	NeedShowStatistics bool `json:"need_show_statistics"`
 }
@@ -28342,7 +28640,7 @@ func (t MessageSenderChat) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// MessageSenders Represents a list of message senders @total_count Approximate total number of messages senders found @senders List of message senders
+// MessageSenders Represents a list of message senders @total_count Approximate total number of message senders found @senders List of message senders
 type MessageSenders struct {
 	//
 	Senders []MessageSender `json:"senders"`
@@ -30619,6 +30917,49 @@ func (t NotificationTypeNewSecretChat) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "notificationTypeNewSecretChat",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// OauthLinkInfo Information about the OAuth authorization
+type OauthLinkInfo struct {
+	// User identifier of a bot linked with the website
+	BotUserId int64 `json:"bot_user_id"`
+	// The version of a browser used for the authorization
+	Browser string `json:"browser"`
+	// A domain of the URL
+	Domain string `json:"domain"`
+	// IP address from which the authorization is performed, in human-readable format
+	IpAddress string `json:"ip_address"`
+	// Human-readable description of a country and a region from which the authorization is performed, based on the IP address
+	Location string `json:"location"`
+	// True, if code matching dialog must be shown first and checkOauthRequestMatchCode must be called before acceptOauthRequest. Otherwise, checkOauthRequestMatchCode must not be called
+	MatchCodeFirst bool `json:"match_code_first"`
+	// The list of codes to match; may be empty if irrelevant
+	MatchCodes []string `json:"match_codes,omitempty"`
+	// Operating system the browser is running on
+	Platform string `json:"platform"`
+	// True, if the user must be asked for the permission to share their phone number
+	RequestPhoneNumberAccess bool `json:"request_phone_number_access"`
+	// True, if the user must be asked for the permission to the bot to send them messages
+	RequestWriteAccess bool `json:"request_write_access"`
+	// An HTTP URL where the user authorizes
+	Url string `json:"url"`
+	// Identifier of the user for which the link was generated; may be 0 if unknown. The corresponding user may be unknown.
+	UserId int64 `json:"user_id"`
+}
+
+func (t OauthLinkInfo) Type() string {
+	return "oauthLinkInfo"
+}
+
+func (t OauthLinkInfo) MarshalJSON() ([]byte, error) {
+	type Alias OauthLinkInfo
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "oauthLinkInfo",
 		Alias:   (*Alias)(&t),
 	})
 }
@@ -34444,6 +34785,75 @@ func (t PollTypeRegular) MarshalJSON() ([]byte, error) {
 	})
 }
 
+// PollVoter Represents a poll voter
+type PollVoter struct {
+	// Point in time (Unix timestamp) when the vote was added
+	Date int32 `json:"date"`
+	// The voter identifier
+	VoterId MessageSender `json:"voter_id"`
+}
+
+func (t PollVoter) Type() string {
+	return "pollVoter"
+}
+
+func (t PollVoter) MarshalJSON() ([]byte, error) {
+	type Alias PollVoter
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "pollVoter",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+func (t *PollVoter) UnmarshalJSON(data []byte) error {
+	type Alias PollVoter
+	aux := &struct {
+		VoterId json.RawMessage `json:"voter_id"`
+		*Alias
+	}{
+		Alias: (*Alias)(t),
+	}
+
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+
+	if aux.VoterId != nil {
+		v, err := UnmarshalMessageSender(aux.VoterId)
+		if err != nil {
+			return err
+		}
+		t.VoterId = v
+	}
+	return nil
+}
+
+// PollVoters Represents a list of poll voters @total_count Approximate total number of poll voters found @voters List of poll voters
+type PollVoters struct {
+	//
+	TotalCount int32 `json:"total_count"`
+	//
+	Voters []PollVoter `json:"voters"`
+}
+
+func (t PollVoters) Type() string {
+	return "pollVoters"
+}
+
+func (t PollVoters) MarshalJSON() ([]byte, error) {
+	type Alias PollVoters
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "pollVoters",
+		Alias:   (*Alias)(&t),
+	})
+}
+
 // PremiumFeatureAccentColor The ability to choose accent color for replies and user profile
 type PremiumFeatureAccentColor struct {
 }
@@ -34908,6 +35318,27 @@ func (t *PremiumFeaturePromotionAnimation) UnmarshalJSON(data []byte) error {
 		t.Feature = v
 	}
 	return nil
+}
+
+// PremiumFeatureProtectPrivateChatContent The ability to enable content protection in private chats
+type PremiumFeatureProtectPrivateChatContent struct {
+}
+
+func (t PremiumFeatureProtectPrivateChatContent) Type() string {
+	return "premiumFeatureProtectPrivateChatContent"
+}
+
+func (t PremiumFeatureProtectPrivateChatContent) premiumFeature() {}
+
+func (t PremiumFeatureProtectPrivateChatContent) MarshalJSON() ([]byte, error) {
+	type Alias PremiumFeatureProtectPrivateChatContent
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "premiumFeatureProtectPrivateChatContent",
+		Alias:   (*Alias)(&t),
+	})
 }
 
 // PremiumFeatureRealTimeChatTranslation Allowed to translate chat messages real-time
@@ -38656,7 +39087,7 @@ func (t ReplyMarkupInlineKeyboard) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// ReplyMarkupRemoveKeyboard Instructs application to remove the keyboard once this message has been received. This kind of keyboard can't be received in an incoming message; instead, updateChatReplyMarkup with message_id == 0 will be sent
+// ReplyMarkupRemoveKeyboard Instructs application to remove the keyboard once this message has been received. This kind of keyboard can't be received in an incoming message; instead, updateChatReplyMarkup with reply_markup_message == null will be sent
 type ReplyMarkupRemoveKeyboard struct {
 	// True, if the keyboard is removed only for the mentioned users or the target user of a reply
 	IsPersonal bool `json:"is_personal"`
@@ -47088,7 +47519,7 @@ type Supergroup struct {
 	ShowMessageSender bool `json:"show_message_sender"`
 	// True, if messages sent to the channel contains name of the sender. This field is only applicable to channels
 	SignMessages bool `json:"sign_messages"`
-	// Status of the current user in the supergroup or channel; custom title will always be empty
+	// Status of the current user in the supergroup or channel
 	Status ChatMemberStatus `json:"status"`
 	// Usernames of the supergroup or channel; may be null
 	Usernames *Usernames `json:"usernames,omitempty"`
@@ -48223,6 +48654,54 @@ func (t TextEntityTypeCustomEmoji) MarshalJSON() ([]byte, error) {
 		TypeStr: "textEntityTypeCustomEmoji",
 		Alias:   (*Alias)(&t),
 	})
+}
+
+// TextEntityTypeDateTime A data and time @unix_time Point in time (Unix timestamp) representing the data and time @formatting_type Date and time formatting type; may be null if none and the original text must not be changed
+type TextEntityTypeDateTime struct {
+	//
+	FormattingType DateTimeFormattingType `json:"formatting_type"`
+	//
+	UnixTime int32 `json:"unix_time"`
+}
+
+func (t TextEntityTypeDateTime) Type() string {
+	return "textEntityTypeDateTime"
+}
+
+func (t TextEntityTypeDateTime) textEntityType() {}
+
+func (t TextEntityTypeDateTime) MarshalJSON() ([]byte, error) {
+	type Alias TextEntityTypeDateTime
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "textEntityTypeDateTime",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+func (t *TextEntityTypeDateTime) UnmarshalJSON(data []byte) error {
+	type Alias TextEntityTypeDateTime
+	aux := &struct {
+		FormattingType json.RawMessage `json:"formatting_type"`
+		*Alias
+	}{
+		Alias: (*Alias)(t),
+	}
+
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+
+	if aux.FormattingType != nil {
+		v, err := UnmarshalDateTimeFormattingType(aux.FormattingType)
+		if err != nil {
+			return err
+		}
+		t.FormattingType = v
+	}
+	return nil
 }
 
 // TextEntityTypeEmailAddress An email address
@@ -51352,12 +51831,12 @@ func (t *UpdateChatRemovedFromList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-// UpdateChatReplyMarkup The default chat reply markup was changed. Can occur because new messages with reply markup were received or because an old reply markup was hidden by the user
+// UpdateChatReplyMarkup The chat reply markup was changed @chat_id Chat identifier @reply_markup_message The message from which the reply markup must be used; may be null if there is no default reply markup in the chat
 type UpdateChatReplyMarkup struct {
-	// Chat identifier
+	//
 	ChatId int64 `json:"chat_id"`
-	// Identifier of the message from which reply markup needs to be used; 0 if there is no default custom reply markup in the chat
-	ReplyMarkupMessageId int64 `json:"reply_markup_message_id"`
+	//
+	ReplyMarkupMessage *Message `json:"reply_markup_message"`
 }
 
 func (t UpdateChatReplyMarkup) Type() string {
@@ -53476,6 +53955,33 @@ func (t UpdateNewMessage) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "updateNewMessage",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// UpdateNewOauthRequest An OAuth authorization request was received
+type UpdateNewOauthRequest struct {
+	// A domain of the URL where the user authorizes
+	Domain string `json:"domain"`
+	// Human-readable description of a country and a region from which the authorization is performed, based on the IP address
+	Location string `json:"location"`
+	// The URL to pass to getOauthLinkInfo; the link is valid for 60 seconds
+	Url string `json:"url"`
+}
+
+func (t UpdateNewOauthRequest) Type() string {
+	return "updateNewOauthRequest"
+}
+
+func (t UpdateNewOauthRequest) update() {}
+
+func (t UpdateNewOauthRequest) MarshalJSON() ([]byte, error) {
+	type Alias UpdateNewOauthRequest
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "updateNewOauthRequest",
 		Alias:   (*Alias)(&t),
 	})
 }
@@ -59663,6 +60169,12 @@ func Unmarshal(data []byte) (TlObject, string, error) {
 			return nil, "", err
 		}
 		return &obj, typeObj.Extra, nil
+	case "chatEventMemberTagChanged":
+		var obj ChatEventMemberTagChanged
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
 	case "chatEventMessageAutoDeleteTimeChanged":
 		var obj ChatEventMessageAutoDeleteTimeChanged
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -60481,6 +60993,36 @@ func Unmarshal(data []byte) (TlObject, string, error) {
 		return &obj, typeObj.Extra, nil
 	case "dateRange":
 		var obj DateRange
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "dateTimeFormattingTypeAbsolute":
+		var obj DateTimeFormattingTypeAbsolute
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "dateTimeFormattingTypeRelative":
+		var obj DateTimeFormattingTypeRelative
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "dateTimePartPrecisionLong":
+		var obj DateTimePartPrecisionLong
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "dateTimePartPrecisionNone":
+		var obj DateTimePartPrecisionNone
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "dateTimePartPrecisionShort":
+		var obj DateTimePartPrecisionShort
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, "", err
 		}
@@ -61649,6 +62191,18 @@ func Unmarshal(data []byte) (TlObject, string, error) {
 			return nil, "", err
 		}
 		return &obj, typeObj.Extra, nil
+	case "inputCallDiscarded":
+		var obj InputCallDiscarded
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "inputCallFromMessage":
+		var obj InputCallFromMessage
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
 	case "inputChatPhotoAnimation":
 		var obj InputChatPhotoAnimation
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -62441,6 +62995,12 @@ func Unmarshal(data []byte) (TlObject, string, error) {
 			return nil, "", err
 		}
 		return &obj, typeObj.Extra, nil
+	case "internalLinkTypeOauth":
+		var obj InternalLinkTypeOauth
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
 	case "internalLinkTypePassportDataRequest":
 		var obj InternalLinkTypePassportDataRequest
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -63211,6 +63771,18 @@ func Unmarshal(data []byte) (TlObject, string, error) {
 		return &obj, typeObj.Extra, nil
 	case "messageChatDeletePhoto":
 		var obj MessageChatDeletePhoto
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "messageChatHasProtectedContentDisableRequested":
+		var obj MessageChatHasProtectedContentDisableRequested
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "messageChatHasProtectedContentToggled":
+		var obj MessageChatHasProtectedContentToggled
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, "", err
 		}
@@ -64223,6 +64795,12 @@ func Unmarshal(data []byte) (TlObject, string, error) {
 			return nil, "", err
 		}
 		return &obj, typeObj.Extra, nil
+	case "oauthLinkInfo":
+		var obj OauthLinkInfo
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
 	case "ok":
 		var obj Ok
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -64967,6 +65545,18 @@ func Unmarshal(data []byte) (TlObject, string, error) {
 			return nil, "", err
 		}
 		return &obj, typeObj.Extra, nil
+	case "pollVoter":
+		var obj PollVoter
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "pollVoters":
+		var obj PollVoters
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
 	case "premiumFeatureAccentColor":
 		var obj PremiumFeatureAccentColor
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -65089,6 +65679,12 @@ func Unmarshal(data []byte) (TlObject, string, error) {
 		return &obj, typeObj.Extra, nil
 	case "premiumFeaturePromotionAnimation":
 		var obj PremiumFeaturePromotionAnimation
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "premiumFeatureProtectPrivateChatContent":
+		var obj PremiumFeatureProtectPrivateChatContent
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, "", err
 		}
@@ -67967,6 +68563,12 @@ func Unmarshal(data []byte) (TlObject, string, error) {
 			return nil, "", err
 		}
 		return &obj, typeObj.Extra, nil
+	case "textEntityTypeDateTime":
+		var obj TextEntityTypeDateTime
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
 	case "textEntityTypeEmailAddress":
 		var obj TextEntityTypeEmailAddress
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -69055,6 +69657,12 @@ func Unmarshal(data []byte) (TlObject, string, error) {
 		return &obj, typeObj.Extra, nil
 	case "updateNewMessage":
 		var obj UpdateNewMessage
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, "", err
+		}
+		return &obj, typeObj.Extra, nil
+	case "updateNewOauthRequest":
+		var obj UpdateNewOauthRequest
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, "", err
 		}

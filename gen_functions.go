@@ -28,6 +28,33 @@ func (t AcceptCall) MarshalJSON() ([]byte, error) {
 	})
 }
 
+// AcceptOauthRequest Accepts an OAuth authorization request. Returns an HTTP URL to open after successful authorization.
+type AcceptOauthRequest struct {
+	// Pass true if the current user allowed the bot that was returned in getOauthLinkInfo, to access their phone number
+	AllowPhoneNumberAccess bool `json:"allow_phone_number_access"`
+	// Pass true if the current user allowed the bot that was returned in getOauthLinkInfo, to send them messages
+	AllowWriteAccess bool `json:"allow_write_access"`
+	// The matching code chosen by the user
+	MatchCode string `json:"match_code"`
+	// URL of the OAuth deep link
+	Url string `json:"url"`
+}
+
+func (t AcceptOauthRequest) Type() string {
+	return "acceptOauthRequest"
+}
+
+func (t AcceptOauthRequest) MarshalJSON() ([]byte, error) {
+	type Alias AcceptOauthRequest
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "acceptOauthRequest",
+		Alias:   (*Alias)(&t),
+	})
+}
+
 // AcceptTermsOfService Accepts Telegram terms of services @terms_of_service_id Terms of service identifier
 type AcceptTermsOfService struct {
 	//
@@ -1721,6 +1748,29 @@ func (t CheckLoginEmailAddressCode) MarshalJSON() ([]byte, error) {
 	})
 }
 
+// CheckOauthRequestMatchCode Checks a match-code for an OAuth authorization request. If fails, then the authorization request has failed. Otherwise,
+type CheckOauthRequestMatchCode struct {
+	// The matching code chosen by the user
+	MatchCode string `json:"match_code"`
+	// URL of the OAuth deep link
+	Url string `json:"url"`
+}
+
+func (t CheckOauthRequestMatchCode) Type() string {
+	return "checkOauthRequestMatchCode"
+}
+
+func (t CheckOauthRequestMatchCode) MarshalJSON() ([]byte, error) {
+	type Alias CheckOauthRequestMatchCode
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "checkOauthRequestMatchCode",
+		Alias:   (*Alias)(&t),
+	})
+}
+
 // CheckPasswordRecoveryCode Checks whether a 2-step verification password recovery code sent to an email address is valid @recovery_code Recovery code to check
 type CheckPasswordRecoveryCode struct {
 	//
@@ -2378,7 +2428,7 @@ func (t ConnectAffiliateProgram) MarshalJSON() ([]byte, error) {
 
 // CraftGift Crafts a new gift from other gifts that will be permanently lost
 type CraftGift struct {
-	// Identifier of the gifts to use for crafting
+	// Identifier of the gifts to use for crafting. In the case of a successful craft, the resulting gift will have the number of the first gift.
 	ReceivedGiftIds []string `json:"received_gift_ids"`
 }
 
@@ -2889,7 +2939,7 @@ func (t CreateTemporaryPassword) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// CreateVideoChat Creates a video chat (a group call bound to a chat). Available only for basic groups, supergroups and channels; requires can_manage_video_chats administrator right
+// CreateVideoChat Creates a video chat (a group call bound to a chat); for basic groups, supergroups and channels only; requires can_manage_video_chats administrator right
 type CreateVideoChat struct {
 	// Identifier of a chat in which the video chat will be created
 	ChatId int64 `json:"chat_id"`
@@ -2935,6 +2985,27 @@ func (t DeclineGroupCallInvitation) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "declineGroupCallInvitation",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// DeclineOauthRequest Declines an OAuth authorization request
+type DeclineOauthRequest struct {
+	// URL of the OAuth deep link
+	Url string `json:"url"`
+}
+
+func (t DeclineOauthRequest) Type() string {
+	return "declineOauthRequest"
+}
+
+func (t DeclineOauthRequest) MarshalJSON() ([]byte, error) {
+	type Alias DeclineOauthRequest
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "declineOauthRequest",
 		Alias:   (*Alias)(&t),
 	})
 }
@@ -6680,7 +6751,7 @@ func (t GetChatNotificationSettingsExceptions) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// GetChatOwnerAfterLeaving Returns the user who will become the owner of the chat after 7 days if the current user does not return to the chat during that period; requires owner privileges in the chat.
+// GetChatOwnerAfterLeaving Returns the user who will become the owner of the chat after 7 days if the current user does not return to the supergroup or channel during that period or immediately for basic groups; requires owner privileges in the chat.
 type GetChatOwnerAfterLeaving struct {
 	// Chat identifier
 	ChatId int64 `json:"chat_id"`
@@ -7718,8 +7789,6 @@ func (t GetEmojiSuggestionsUrl) MarshalJSON() ([]byte, error) {
 
 // GetExternalLink Returns an HTTP URL which can be used to automatically authorize the current user on a website after clicking an HTTP link.
 type GetExternalLink struct {
-	// Pass true if the current user allowed the bot that was returned in getExternalLinkInfo, to access their phone number
-	AllowPhoneNumberAccess bool `json:"allow_phone_number_access"`
 	// Pass true if the current user allowed the bot that was returned in getExternalLinkInfo, to send them messages
 	AllowWriteAccess bool `json:"allow_write_access"`
 	// The HTTP link
@@ -9534,6 +9603,29 @@ func (t GetNewChatPrivacySettings) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "getNewChatPrivacySettings",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// GetOauthLinkInfo Returns information about an OAuth deep link. Use checkOauthRequestMatchCode, acceptOauthRequest or declineOauthRequest to process the link
+type GetOauthLinkInfo struct {
+	// Origin of the OAuth request if the request was received from the in-app browser; pass an empty string otherwise
+	InAppOrigin string `json:"in_app_origin"`
+	// URL of the link
+	Url string `json:"url"`
+}
+
+func (t GetOauthLinkInfo) Type() string {
+	return "getOauthLinkInfo"
+}
+
+func (t GetOauthLinkInfo) MarshalJSON() ([]byte, error) {
+	type Alias GetOauthLinkInfo
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getOauthLinkInfo",
 		Alias:   (*Alias)(&t),
 	})
 }
@@ -13178,6 +13270,31 @@ func (t ProcessChatFolderNewChats) MarshalJSON() ([]byte, error) {
 	})
 }
 
+// ProcessChatHasProtectedContentDisableRequest Processes request to disable has_protected_content in a chat
+type ProcessChatHasProtectedContentDisableRequest struct {
+	// Pass true to approve the request; pass false to reject the request
+	Approve bool `json:"approve"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message with the request. The message must be incoming and has content of the type messageChatHasProtectedContentDisableRequested
+	RequestMessageId int64 `json:"request_message_id"`
+}
+
+func (t ProcessChatHasProtectedContentDisableRequest) Type() string {
+	return "processChatHasProtectedContentDisableRequest"
+}
+
+func (t ProcessChatHasProtectedContentDisableRequest) MarshalJSON() ([]byte, error) {
+	type Alias ProcessChatHasProtectedContentDisableRequest
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "processChatHasProtectedContentDisableRequest",
+		Alias:   (*Alias)(&t),
+	})
+}
+
 // ProcessChatJoinRequest Handles a pending join request in a chat @chat_id Chat identifier @user_id Identifier of the user who sent the request @approve Pass true to approve the request; pass false to decline it
 type ProcessChatJoinRequest struct {
 	//
@@ -16258,7 +16375,7 @@ func (t SendBusinessMessageAlbum) MarshalJSON() ([]byte, error) {
 // SendCallDebugInformation Sends debug information for a call to Telegram servers @call_id Call identifier @debug_information Debug information in application-specific format
 type SendCallDebugInformation struct {
 	//
-	CallId int32 `json:"call_id"`
+	CallId InputCall `json:"call_id"`
 	//
 	DebugInformation string `json:"debug_information"`
 }
@@ -16281,7 +16398,7 @@ func (t SendCallDebugInformation) MarshalJSON() ([]byte, error) {
 // SendCallLog Sends log file for a call to Telegram servers @call_id Call identifier @log_file Call log file. Only inputFileLocal and inputFileGenerated are supported
 type SendCallLog struct {
 	//
-	CallId int32 `json:"call_id"`
+	CallId InputCall `json:"call_id"`
 	//
 	LogFile InputFile `json:"log_file"`
 }
@@ -16304,7 +16421,7 @@ func (t SendCallLog) MarshalJSON() ([]byte, error) {
 // SendCallRating Sends a call rating
 type SendCallRating struct {
 	// Call identifier
-	CallId int32 `json:"call_id"`
+	CallId InputCall `json:"call_id"`
 	// An optional user comment if the rating is less than 5
 	Comment string `json:"comment"`
 	// List of the exact types of problems with the call, specified by the user
@@ -17795,6 +17912,31 @@ func (t SetChatMemberStatus) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "setChatMemberStatus",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// SetChatMemberTag Changes the tag or custom title of a chat member; requires can_manage_tags administrator right to change tag of other users; for basic groups and supergroups only
+type SetChatMemberTag struct {
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// The new tag of the member in the chat; 0-16 characters without emoji
+	Tag string `json:"tag"`
+	// Identifier of the user, which tag is changed. Chats can't have member tags
+	UserId int64 `json:"user_id"`
+}
+
+func (t SetChatMemberTag) Type() string {
+	return "setChatMemberTag"
+}
+
+func (t SetChatMemberTag) MarshalJSON() ([]byte, error) {
+	type Alias SetChatMemberTag
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setChatMemberTag",
 		Alias:   (*Alias)(&t),
 	})
 }
@@ -20800,7 +20942,7 @@ func (t ToggleChatGiftNotifications) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// ToggleChatHasProtectedContent Changes the ability of users to save, forward, or copy chat content. Supported only for basic groups, supergroups and channels. Requires owner privileges
+// ToggleChatHasProtectedContent Changes the ability of users to save, forward, or copy chat content. Requires owner privileges in basic groups, supergroups and channels.
 type ToggleChatHasProtectedContent struct {
 	// Chat identifier
 	ChatId int64 `json:"chat_id"`
@@ -21669,7 +21811,7 @@ func (t TransferBusinessAccountStars) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// TransferChatOwnership Changes the owner of a chat; requires owner privileges in the chat. Use the method canTransferOwnership to check whether the ownership can be transferred from the current session. Available only for supergroups and channel chats
+// TransferChatOwnership Changes the owner of a chat; for basic groups, supergroups and channel chats only; requires owner privileges in the chat. Use the method canTransferOwnership to check whether the ownership can be transferred from the current session
 type TransferChatOwnership struct {
 	// Chat identifier
 	ChatId int64 `json:"chat_id"`

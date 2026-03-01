@@ -126,6 +126,7 @@ type (
 	UpdateNewInlineCallbackQuery                   func(u *gotdbot.UpdateNewInlineCallbackQuery) bool
 	UpdateNewInlineQuery                           func(u *gotdbot.UpdateNewInlineQuery) bool
 	UpdateNewMessage                               func(u *gotdbot.UpdateNewMessage) bool
+	UpdateNewOauthRequest                          func(u *gotdbot.UpdateNewOauthRequest) bool
 	UpdateNewPreCheckoutQuery                      func(u *gotdbot.UpdateNewPreCheckoutQuery) bool
 	UpdateNewShippingQuery                         func(u *gotdbot.UpdateNewShippingQuery) bool
 	UpdateNotification                             func(u *gotdbot.UpdateNotification) bool

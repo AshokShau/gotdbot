@@ -13,6 +13,23 @@ func (c *Client) AcceptCall(callId int32, protocol *CallProtocol) error {
 	return err
 }
 
+// AcceptOauthRequest Accepts an OAuth authorization request. Returns an HTTP URL to open after successful authorization.
+func (c *Client) AcceptOauthRequest(matchCode string, url string, opts *AcceptOauthRequestOpts) (*HttpUrl, error) {
+	req := &AcceptOauthRequest{
+		MatchCode: matchCode,
+		Url:       url,
+	}
+	if opts != nil {
+		req.AllowPhoneNumberAccess = opts.AllowPhoneNumberAccess
+		req.AllowWriteAccess = opts.AllowWriteAccess
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*HttpUrl), nil
+}
+
 // AcceptTermsOfService Accepts Telegram terms of services @terms_of_service_id Terms of service identifier
 func (c *Client) AcceptTermsOfService(termsOfServiceId string) error {
 	req := &AcceptTermsOfService{
@@ -854,6 +871,16 @@ func (c *Client) CheckLoginEmailAddressCode(code EmailAddressAuthentication) err
 	return err
 }
 
+// CheckOauthRequestMatchCode Checks a match-code for an OAuth authorization request. If fails, then the authorization request has failed. Otherwise,
+func (c *Client) CheckOauthRequestMatchCode(matchCode string, url string) error {
+	req := &CheckOauthRequestMatchCode{
+		MatchCode: matchCode,
+		Url:       url,
+	}
+	_, err := c.Send(req)
+	return err
+}
+
 // CheckPasswordRecoveryCode Checks whether a 2-step verification password recovery code sent to an email address is valid @recovery_code Recovery code to check
 func (c *Client) CheckPasswordRecoveryCode(recoveryCode string) error {
 	req := &CheckPasswordRecoveryCode{
@@ -1453,7 +1480,7 @@ func (c *Client) CreateTemporaryPassword(password string, validFor int32) (*Temp
 	return resp.(*TemporaryPasswordState), nil
 }
 
-// CreateVideoChat Creates a video chat (a group call bound to a chat). Available only for basic groups, supergroups and channels; requires can_manage_video_chats administrator right
+// CreateVideoChat Creates a video chat (a group call bound to a chat); for basic groups, supergroups and channels only; requires can_manage_video_chats administrator right
 func (c *Client) CreateVideoChat(chatId int64, startDate int32, title string, opts *CreateVideoChatOpts) (*GroupCallId, error) {
 	req := &CreateVideoChat{
 		ChatId:    chatId,
@@ -1475,6 +1502,15 @@ func (c *Client) DeclineGroupCallInvitation(chatId int64, messageId int64) error
 	req := &DeclineGroupCallInvitation{
 		ChatId:    chatId,
 		MessageId: messageId,
+	}
+	_, err := c.Send(req)
+	return err
+}
+
+// DeclineOauthRequest Declines an OAuth authorization request
+func (c *Client) DeclineOauthRequest(url string) error {
+	req := &DeclineOauthRequest{
+		Url: url,
 	}
 	_, err := c.Send(req)
 	return err
@@ -3476,7 +3512,7 @@ func (c *Client) GetChatNotificationSettingsExceptions(opts *GetChatNotification
 	return resp.(*Chats), nil
 }
 
-// GetChatOwnerAfterLeaving Returns the user who will become the owner of the chat after 7 days if the current user does not return to the chat during that period; requires owner privileges in the chat.
+// GetChatOwnerAfterLeaving Returns the user who will become the owner of the chat after 7 days if the current user does not return to the supergroup or channel during that period or immediately for basic groups; requires owner privileges in the chat.
 func (c *Client) GetChatOwnerAfterLeaving(chatId int64) (*User, error) {
 	req := &GetChatOwnerAfterLeaving{
 		ChatId: chatId,
@@ -4068,7 +4104,6 @@ func (c *Client) GetExternalLink(link string, opts *GetExternalLinkOpts) (*HttpU
 		Link: link,
 	}
 	if opts != nil {
-		req.AllowPhoneNumberAccess = opts.AllowPhoneNumberAccess
 		req.AllowWriteAccess = opts.AllowWriteAccess
 	}
 	resp, err := c.Send(req)
@@ -5107,6 +5142,19 @@ func (c *Client) GetNewChatPrivacySettings() (*NewChatPrivacySettings, error) {
 	return resp.(*NewChatPrivacySettings), nil
 }
 
+// GetOauthLinkInfo Returns information about an OAuth deep link. Use checkOauthRequestMatchCode, acceptOauthRequest or declineOauthRequest to process the link
+func (c *Client) GetOauthLinkInfo(inAppOrigin string, url string) (*OauthLinkInfo, error) {
+	req := &GetOauthLinkInfo{
+		InAppOrigin: inAppOrigin,
+		Url:         url,
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*OauthLinkInfo), nil
+}
+
 // GetOption Returns the value of an option by its name. (Check the list of available options on https://core.telegram.org/tdlib/options.) Can be called before authorization. Can be called synchronously for options "version" and "commit_hash"
 func (c *Client) GetOption(name string) (OptionValue, error) {
 	req := &GetOption{
@@ -5269,7 +5317,7 @@ func (c *Client) GetPhoneNumberInfoSync(languageCode string, phoneNumberPrefix s
 }
 
 // GetPollVoters Returns message senders voted for the specified option in a non-anonymous polls. For optimal performance, the number of returned users is chosen by TDLib
-func (c *Client) GetPollVoters(chatId int64, limit int32, messageId int64, offset int32, optionId int32) (*MessageSenders, error) {
+func (c *Client) GetPollVoters(chatId int64, limit int32, messageId int64, offset int32, optionId int32) (*PollVoters, error) {
 	req := &GetPollVoters{
 		ChatId:    chatId,
 		Limit:     limit,
@@ -5281,7 +5329,7 @@ func (c *Client) GetPollVoters(chatId int64, limit int32, messageId int64, offse
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*MessageSenders), nil
+	return resp.(*PollVoters), nil
 }
 
 // GetPreferredCountryLanguage Returns an IETF language tag of the language preferred in the country, which must be used to fill native fields in Telegram Passport personal details. Returns a 404 error if unknown @country_code A two-letter ISO 3166-1 alpha-2 country code
@@ -7097,6 +7145,19 @@ func (c *Client) ProcessChatFolderNewChats(addedChatIds []int64, chatFolderId in
 	return err
 }
 
+// ProcessChatHasProtectedContentDisableRequest Processes request to disable has_protected_content in a chat
+func (c *Client) ProcessChatHasProtectedContentDisableRequest(chatId int64, requestMessageId int64, opts *ProcessChatHasProtectedContentDisableRequestOpts) error {
+	req := &ProcessChatHasProtectedContentDisableRequest{
+		ChatId:           chatId,
+		RequestMessageId: requestMessageId,
+	}
+	if opts != nil {
+		req.Approve = opts.Approve
+	}
+	_, err := c.Send(req)
+	return err
+}
+
 // ProcessChatJoinRequest Handles a pending join request in a chat @chat_id Chat identifier @user_id Identifier of the user who sent the request @approve Pass true to approve the request; pass false to decline it
 func (c *Client) ProcessChatJoinRequest(chatId int64, userId int64, opts *ProcessChatJoinRequestOpts) error {
 	req := &ProcessChatJoinRequest{
@@ -8674,7 +8735,7 @@ func (c *Client) SendBusinessMessageAlbum(businessConnectionId string, chatId in
 }
 
 // SendCallDebugInformation Sends debug information for a call to Telegram servers @call_id Call identifier @debug_information Debug information in application-specific format
-func (c *Client) SendCallDebugInformation(callId int32, debugInformation string) error {
+func (c *Client) SendCallDebugInformation(callId InputCall, debugInformation string) error {
 	req := &SendCallDebugInformation{
 		CallId:           callId,
 		DebugInformation: debugInformation,
@@ -8684,7 +8745,7 @@ func (c *Client) SendCallDebugInformation(callId int32, debugInformation string)
 }
 
 // SendCallLog Sends log file for a call to Telegram servers @call_id Call identifier @log_file Call log file. Only inputFileLocal and inputFileGenerated are supported
-func (c *Client) SendCallLog(callId int32, logFile InputFile) error {
+func (c *Client) SendCallLog(callId InputCall, logFile InputFile) error {
 	req := &SendCallLog{
 		CallId:  callId,
 		LogFile: logFile,
@@ -8694,7 +8755,7 @@ func (c *Client) SendCallLog(callId int32, logFile InputFile) error {
 }
 
 // SendCallRating Sends a call rating
-func (c *Client) SendCallRating(callId int32, comment string, problems []CallProblem, rating int32) error {
+func (c *Client) SendCallRating(callId InputCall, comment string, problems []CallProblem, rating int32) error {
 	req := &SendCallRating{
 		CallId:   callId,
 		Comment:  comment,
@@ -9407,6 +9468,17 @@ func (c *Client) SetChatMemberStatus(chatId int64, memberId MessageSender, statu
 		ChatId:   chatId,
 		MemberId: memberId,
 		Status:   status,
+	}
+	_, err := c.Send(req)
+	return err
+}
+
+// SetChatMemberTag Changes the tag or custom title of a chat member; requires can_manage_tags administrator right to change tag of other users; for basic groups and supergroups only
+func (c *Client) SetChatMemberTag(chatId int64, tag string, userId int64) error {
+	req := &SetChatMemberTag{
+		ChatId: chatId,
+		Tag:    tag,
+		UserId: userId,
 	}
 	_, err := c.Send(req)
 	return err
@@ -10847,7 +10919,7 @@ func (c *Client) ToggleChatGiftNotifications(chatId int64, opts *ToggleChatGiftN
 	return err
 }
 
-// ToggleChatHasProtectedContent Changes the ability of users to save, forward, or copy chat content. Supported only for basic groups, supergroups and channels. Requires owner privileges
+// ToggleChatHasProtectedContent Changes the ability of users to save, forward, or copy chat content. Requires owner privileges in basic groups, supergroups and channels.
 func (c *Client) ToggleChatHasProtectedContent(chatId int64, opts *ToggleChatHasProtectedContentOpts) error {
 	req := &ToggleChatHasProtectedContent{
 		ChatId: chatId,
@@ -11295,7 +11367,7 @@ func (c *Client) TransferBusinessAccountStars(businessConnectionId string, starC
 	return err
 }
 
-// TransferChatOwnership Changes the owner of a chat; requires owner privileges in the chat. Use the method canTransferOwnership to check whether the ownership can be transferred from the current session. Available only for supergroups and channel chats
+// TransferChatOwnership Changes the owner of a chat; for basic groups, supergroups and channel chats only; requires owner privileges in the chat. Use the method canTransferOwnership to check whether the ownership can be transferred from the current session
 func (c *Client) TransferChatOwnership(chatId int64, password string, userId int64) error {
 	req := &TransferChatOwnership{
 		ChatId:   chatId,

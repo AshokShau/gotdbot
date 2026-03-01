@@ -4,4 +4,4 @@ package gotdbot
 const Version = "v0.5.0"
 
 // TDLibVersion is the version of the TDLib used by the library.
-const TDLibVersion = "v1.8.61"
+const TDLibVersion = "v1.8.62"

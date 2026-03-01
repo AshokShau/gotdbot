@@ -124,6 +124,7 @@ type ContextUpdates struct {
 	UpdateNewInlineCallbackQuery                   *UpdateNewInlineCallbackQuery
 	UpdateNewInlineQuery                           *UpdateNewInlineQuery
 	UpdateNewMessage                               *UpdateNewMessage
+	UpdateNewOauthRequest                          *UpdateNewOauthRequest
 	UpdateNewPreCheckoutQuery                      *UpdateNewPreCheckoutQuery
 	UpdateNewShippingQuery                         *UpdateNewShippingQuery
 	UpdateNotification                             *UpdateNotification
@@ -423,6 +424,8 @@ func NewContextUpdates(u TlObject) *ContextUpdates {
 		up.UpdateNewInlineQuery = u
 	case *UpdateNewMessage:
 		up.UpdateNewMessage = u
+	case *UpdateNewOauthRequest:
+		up.UpdateNewOauthRequest = u
 	case *UpdateNewPreCheckoutQuery:
 		up.UpdateNewPreCheckoutQuery = u
 	case *UpdateNewShippingQuery:
