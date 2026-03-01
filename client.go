@@ -558,13 +558,13 @@ func (c *Client) Send(req TlObject) (TlObject, error) {
 	case res := <-ch:
 		if res.Type() == "error" {
 			if errObj, ok := res.(*Error); ok {
-				return nil, fmt.Errorf("TDLib error %d: %s", errObj.Code, errObj.Message)
+				return nil, errObj
 			}
 		}
 		return res, nil
 	case <-time.After(30 * time.Second):
 		c.pendingRequests.Delete(extra)
-		return nil, fmt.Errorf("timeout")
+		return nil, SendTimeout
 	}
 }
 
@@ -586,7 +586,7 @@ func (c *Client) WaitMessage(msg *Message) (*Message, error) {
 		select {
 		case res := <-ch:
 			if errObj, ok := res.(*Error); ok {
-				return nil, fmt.Errorf("TDLib error %d: %s", errObj.Code, errObj.Message)
+				return nil, errObj
 			}
 			if finalMsg, ok := res.(*Message); ok {
 				return finalMsg, nil

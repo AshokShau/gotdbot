@@ -13,5 +13,6 @@ var (
 	ConversationCancelled = errors.New("conversation cancelled")
 	ConversationTimeout   = errors.New("conversation wait timeout")
 
+	SendTimeout         = errors.New("TDLib send timeout")
 	WaitPremiumPurchase = errors.New("account requires Telegram Premium")
 )
