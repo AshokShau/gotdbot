@@ -25,11 +25,6 @@ type Dispatcher struct {
 	groups []int
 	mu     sync.RWMutex
 
-	// Initializers are handlers that run before grouped handlers.
-	Initializers []Handler
-	// Finalizers are handlers that run after grouped handlers.
-	Finalizers []Handler
-
 	// Waiters
 	waiters     map[string]*Waiter
 	waiterCount int64
@@ -37,14 +32,32 @@ type Dispatcher struct {
 
 	// PanicHandler handles panics during update processing.
 	PanicHandler func(c *Context, r interface{})
+
+	// ErrorHandler handles errors returned by handlers.
+	// It should only return EndGroups, ContinueGroups, or nil.
+	// Any other error returned will be logged and treated as nil (success).
+	ErrorHandler func(client *Client, ctx *Context, err error) error
 }
 
-func NewDispatcher(client *Client) *Dispatcher {
-	return &Dispatcher{
+type DispatcherOpts struct {
+	PanicHandler func(c *Context, r interface{})
+	// ErrorHandler handles errors returned by handlers.
+	// It should only return EndGroups, ContinueGroups, or nil.
+	// Any other error returned will be logged and treated as nil (success).
+	ErrorHandler func(client *Client, ctx *Context, err error) error
+}
+
+func NewDispatcher(client *Client, opts *DispatcherOpts) *Dispatcher {
+	d := &Dispatcher{
 		Client:   client,
 		handlers: make(map[int][]Handler),
 		waiters:  make(map[string]*Waiter),
 	}
+	if opts != nil {
+		d.PanicHandler = opts.PanicHandler
+		d.ErrorHandler = opts.ErrorHandler
+	}
+	return d
 }
 
 // AddHandler adds a handler to group 0.
@@ -63,20 +76,6 @@ func (d *Dispatcher) AddHandlerToGroup(h Handler, group int) {
 		sort.Ints(d.groups)
 	}
 	d.handlers[group] = append(d.handlers[group], h)
-}
-
-// AddInitializer adds a handler to the initializers list.
-func (d *Dispatcher) AddInitializer(h Handler) {
-	d.mu.Lock()
-	defer d.mu.Unlock()
-	d.Initializers = append(d.Initializers, h)
-}
-
-// AddFinalizer adds a handler to the finalizers list.
-func (d *Dispatcher) AddFinalizer(h Handler) {
-	d.mu.Lock()
-	defer d.mu.Unlock()
-	d.Finalizers = append(d.Finalizers, h)
 }
 
 // WaitFor registers a waiter and blocks until a matching update arrives or timeout occurs.
@@ -138,13 +137,26 @@ func (d *Dispatcher) ProcessUpdate(update TlObject) {
 		d.mu.RLock()
 		defer d.mu.RUnlock()
 
-		// Initializers
-		for _, h := range d.Initializers {
-			if h.CheckUpdate(d.Client, ctx) {
-				if err := h.HandleUpdate(d.Client, ctx); errors.Is(err, EndGroups) {
-					return
-				}
+		handleError := func(err error) error {
+			if err == nil {
+				return nil
 			}
+			if errors.Is(err, EndGroups) {
+				return EndGroups
+			}
+			if errors.Is(err, ContinueGroups) {
+				return ContinueGroups
+			}
+			if d.ErrorHandler != nil {
+				action := d.ErrorHandler(d.Client, ctx, err)
+				if action != nil && !errors.Is(action, EndGroups) && !errors.Is(action, ContinueGroups) {
+					log.Printf("ErrorHandler returned unexpected error: %v", action)
+					return nil
+				}
+				return action
+			}
+			log.Printf("Handler error: %v", err)
+			return nil
 		}
 
 		// Grouped Handlers
@@ -153,27 +165,17 @@ func (d *Dispatcher) ProcessUpdate(update TlObject) {
 			for _, h := range groupHandlers {
 				if h.CheckUpdate(d.Client, ctx) {
 					err := h.HandleUpdate(d.Client, ctx)
-					if errors.Is(err, EndGroups) {
+					action := handleError(err)
+
+					if errors.Is(action, EndGroups) {
 						return
 					}
-					if errors.Is(err, ContinueGroups) {
+					if errors.Is(action, ContinueGroups) {
 						continue
 					}
-					if err != nil {
-						log.Printf("Handler error: %v", err)
-					}
-					// If handler executed successfully (or returned error other than ContinueGroups),
+					// If handler executed successfully (or action returned nil),
 					// stop iterating this group and move to the next group.
 					break
-				}
-			}
-		}
-
-		// Finalizers
-		for _, h := range d.Finalizers {
-			if h.CheckUpdate(d.Client, ctx) {
-				if err := h.HandleUpdate(d.Client, ctx); errors.Is(err, EndGroups) {
-					return
 				}
 			}
 		}

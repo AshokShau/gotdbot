@@ -12915,6 +12915,10 @@ func (t Error) Type() string {
 	return "error"
 }
 
+func (t Error) Error() string {
+	return fmt.Sprintf("TDLib error %d: %s", t.Code, t.Message)
+}
+
 func (t Error) MarshalJSON() ([]byte, error) {
 	type Alias Error
 	return json.Marshal(&struct {

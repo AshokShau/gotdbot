@@ -11,7 +11,7 @@ import (
 )
 
 func TestGeneratedHandlers(t *testing.T) {
-	d := gotdbot.NewDispatcher(&gotdbot.Client{})
+	d := gotdbot.NewDispatcher(&gotdbot.Client{}, nil)
 
 	func() {
 		called := make(chan bool, 1)
