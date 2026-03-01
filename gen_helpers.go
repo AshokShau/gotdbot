@@ -1084,8 +1084,8 @@ func (c *Chat) SetSlowModeDelay(client *Client, slowModeDelay int32) error {
 }
 
 // SetTheme is a helper method for Client.SetChatTheme
-func (c *Chat) SetTheme(client *Client, theme InputChatTheme) error {
-	return client.SetChatTheme(c.Id, theme)
+func (c *Chat) SetTheme(client *Client, opts *SetChatThemeOpts) error {
+	return client.SetChatTheme(c.Id, opts)
 }
 
 // SetTitle is a helper method for Client.SetChatTitle
@@ -1924,8 +1924,8 @@ func (u *User) SetStickerSetThumbnail(client *Client, name string, opts *SetStic
 }
 
 // SetEmojiStatus is a helper method for Client.SetUserEmojiStatus
-func (u *User) SetEmojiStatus(client *Client) error {
-	return client.SetUserEmojiStatus(u.EmojiStatus, u.Id)
+func (u *User) SetEmojiStatus(client *Client, opts *SetUserEmojiStatusOpts) error {
+	return client.SetUserEmojiStatus(u.Id, opts)
 }
 
 // SetNote is a helper method for Client.SetUserNote
@@ -1934,8 +1934,8 @@ func (u *User) SetNote(client *Client, note *FormattedText) error {
 }
 
 // SetPersonalProfilePhoto is a helper method for Client.SetUserPersonalProfilePhoto
-func (u *User) SetPersonalProfilePhoto(client *Client, photo InputChatPhoto) error {
-	return client.SetUserPersonalProfilePhoto(photo, u.Id)
+func (u *User) SetPersonalProfilePhoto(client *Client, opts *SetUserPersonalProfilePhotoOpts) error {
+	return client.SetUserPersonalProfilePhoto(u.Id, opts)
 }
 
 // SetSupportInfo is a helper method for Client.SetUserSupportInfo

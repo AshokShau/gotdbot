@@ -132,6 +132,11 @@ type CreateForumTopicOpts struct {
 	IsNameImplicit bool
 }
 
+// CreateGroupCallOpts contains optional parameters for CreateGroupCall
+type CreateGroupCallOpts struct {
+	JoinParameters *GroupCallJoinParameters
+}
+
 // CreateNewBasicGroupChatOpts contains optional parameters for CreateNewBasicGroupChat
 type CreateNewBasicGroupChatOpts struct {
 	UserIds []int64
@@ -382,6 +387,11 @@ type GetBotSimilarBotCountOpts struct {
 	ReturnLocal bool
 }
 
+// GetBusinessFeaturesOpts contains optional parameters for GetBusinessFeatures
+type GetBusinessFeaturesOpts struct {
+	Source BusinessFeature
+}
+
 // GetChatBoostFeaturesOpts contains optional parameters for GetChatBoostFeatures
 type GetChatBoostFeaturesOpts struct {
 	IsChannel bool
@@ -476,6 +486,11 @@ type GetCommandsOpts struct {
 	Scope BotCommandScope
 }
 
+// GetEmojiCategoriesOpts contains optional parameters for GetEmojiCategories
+type GetEmojiCategoriesOpts struct {
+	TypeField EmojiCategoryType
+}
+
 // GetExternalLinkOpts contains optional parameters for GetExternalLink
 type GetExternalLinkOpts struct {
 	AllowWriteAccess bool
@@ -550,6 +565,11 @@ type GetNetworkStatisticsOpts struct {
 // GetPaymentFormOpts contains optional parameters for GetPaymentForm
 type GetPaymentFormOpts struct {
 	Theme *ThemeParameters
+}
+
+// GetPremiumFeaturesOpts contains optional parameters for GetPremiumFeatures
+type GetPremiumFeaturesOpts struct {
+	Source PremiumSource
 }
 
 // GetReceivedGiftsOpts contains optional parameters for GetReceivedGifts
@@ -937,10 +957,40 @@ type SetAuthenticationPremiumPurchaseTransactionOpts struct {
 	IsRestore bool
 }
 
+// SetAutosaveSettingsOpts contains optional parameters for SetAutosaveSettings
+type SetAutosaveSettingsOpts struct {
+	Settings *ScopeAutosaveSettings
+}
+
+// SetBirthdateOpts contains optional parameters for SetBirthdate
+type SetBirthdateOpts struct {
+	Birthdate *Birthdate
+}
+
+// SetBotProfilePhotoOpts contains optional parameters for SetBotProfilePhoto
+type SetBotProfilePhotoOpts struct {
+	Photo InputChatPhoto
+}
+
 // SetBusinessAccountProfilePhotoOpts contains optional parameters for SetBusinessAccountProfilePhoto
 type SetBusinessAccountProfilePhotoOpts struct {
 	IsPublic bool
 	Photo    InputChatPhoto
+}
+
+// SetBusinessAwayMessageSettingsOpts contains optional parameters for SetBusinessAwayMessageSettings
+type SetBusinessAwayMessageSettingsOpts struct {
+	AwayMessageSettings *BusinessAwayMessageSettings
+}
+
+// SetBusinessGreetingMessageSettingsOpts contains optional parameters for SetBusinessGreetingMessageSettings
+type SetBusinessGreetingMessageSettingsOpts struct {
+	GreetingMessageSettings *BusinessGreetingMessageSettings
+}
+
+// SetBusinessLocationOpts contains optional parameters for SetBusinessLocation
+type SetBusinessLocationOpts struct {
+	Location *BusinessLocation
 }
 
 // SetBusinessMessageIsPinnedOpts contains optional parameters for SetBusinessMessageIsPinned
@@ -951,6 +1001,11 @@ type SetBusinessMessageIsPinnedOpts struct {
 // SetBusinessOpeningHoursOpts contains optional parameters for SetBusinessOpeningHours
 type SetBusinessOpeningHoursOpts struct {
 	OpeningHours *BusinessOpeningHours
+}
+
+// SetBusinessStartPageOpts contains optional parameters for SetBusinessStartPage
+type SetBusinessStartPageOpts struct {
+	StartPage *InputBusinessStartPage
 }
 
 // SetChatAffiliateProgramOpts contains optional parameters for SetChatAffiliateProgram
@@ -986,6 +1041,11 @@ type SetChatPhotoOpts struct {
 	Photo InputChatPhoto
 }
 
+// SetChatThemeOpts contains optional parameters for SetChatTheme
+type SetChatThemeOpts struct {
+	Theme InputChatTheme
+}
+
 // SetCommandsOpts contains optional parameters for SetCommands
 type SetCommandsOpts struct {
 	Scope BotCommandScope
@@ -998,9 +1058,24 @@ type SetDefaultBackgroundOpts struct {
 	TypeField    BackgroundType
 }
 
+// SetDefaultChannelAdministratorRightsOpts contains optional parameters for SetDefaultChannelAdministratorRights
+type SetDefaultChannelAdministratorRightsOpts struct {
+	DefaultChannelAdministratorRights *ChatAdministratorRights
+}
+
+// SetDefaultGroupAdministratorRightsOpts contains optional parameters for SetDefaultGroupAdministratorRights
+type SetDefaultGroupAdministratorRightsOpts struct {
+	DefaultGroupAdministratorRights *ChatAdministratorRights
+}
+
 // SetDirectMessagesChatTopicIsMarkedAsUnreadOpts contains optional parameters for SetDirectMessagesChatTopicIsMarkedAsUnread
 type SetDirectMessagesChatTopicIsMarkedAsUnreadOpts struct {
 	IsMarkedAsUnread bool
+}
+
+// SetEmojiStatusOpts contains optional parameters for SetEmojiStatus
+type SetEmojiStatusOpts struct {
+	EmojiStatus *EmojiStatus
 }
 
 // SetGameScoreOpts contains optional parameters for SetGameScore
@@ -1087,6 +1162,16 @@ type SetTdlibParametersOpts struct {
 	UseMessageDatabase  bool
 	UseSecretChats      bool
 	UseTestDc           bool
+}
+
+// SetUserEmojiStatusOpts contains optional parameters for SetUserEmojiStatus
+type SetUserEmojiStatusOpts struct {
+	EmojiStatus *EmojiStatus
+}
+
+// SetUserPersonalProfilePhotoOpts contains optional parameters for SetUserPersonalProfilePhoto
+type SetUserPersonalProfilePhotoOpts struct {
+	Photo InputChatPhoto
 }
 
 // ShareChatWithBotOpts contains optional parameters for ShareChatWithBot
