@@ -39,7 +39,8 @@ type ClientConfig struct {
 	Logger                  *slog.Logger
 	QrMode                  bool
 	AuthorizationTimeout    time.Duration
-	LogCallback             func(verbosity int32, message string)
+	LogVerbosityLevel       int32
+	LogStream               LogStream
 }
 
 func DefaultClientConfig() *ClientConfig {
@@ -59,6 +60,7 @@ func DefaultClientConfig() *ClientConfig {
 		Logger:                  slog.New(slog.NewTextHandler(os.Stdout, nil)),
 		QrMode:                  false,
 		AuthorizationTimeout:    60 * time.Second,
+		LogVerbosityLevel:       2,
 	}
 }
 
@@ -139,10 +141,6 @@ func NewClient(apiID int32, apiHash, tokenOrPhone string, config *ClientConfig) 
 		return nil, err
 	}
 
-	if config.LogCallback != nil {
-		tdjson.SetLogMessageCallback(5, config.LogCallback)
-	}
-
 	botTokenRegex := regexp.MustCompile(`^\d+:[a-zA-Z0-9_-]+$`)
 	var botToken, phoneNumber string
 	if botTokenRegex.MatchString(tokenOrPhone) {
@@ -164,13 +162,14 @@ func NewClient(apiID int32, apiHash, tokenOrPhone string, config *ClientConfig) 
 		closed:        make(chan struct{}),
 		authErrorChan: make(chan error, 1),
 	}
+
 	c.Dispatcher = NewDispatcher(c)
 
-	c.AddHandler("updateAuthorizationState", c.authHandler, -1)
-	c.AddHandler("updateUser", c.userHandler, -1)
-	c.AddHandler("updateConnectionState", c.connectionStateHandler, -1)
-	c.AddHandler("updateMessageSendSucceeded", c.messageSendSucceededHandler, -1)
-	c.AddHandler("updateMessageSendFailed", c.messageSendFailedHandler, -1)
+	c.Dispatcher.AddHandlerToGroup(&internalHandler{handleFunc: c.authHandler, updateType: "updateAuthorizationState"}, -1)
+	c.Dispatcher.AddHandlerToGroup(&internalHandler{handleFunc: c.userHandler, updateType: "updateUser"}, -1)
+	c.Dispatcher.AddHandlerToGroup(&internalHandler{handleFunc: c.connectionStateHandler, updateType: "updateConnectionState"}, -1)
+	c.Dispatcher.AddHandlerToGroup(&internalHandler{handleFunc: c.messageSendSucceededHandler, updateType: "updateMessageSendSucceeded"}, -1)
+	c.Dispatcher.AddHandlerToGroup(&internalHandler{handleFunc: c.messageSendFailedHandler, updateType: "updateMessageSendFailed"}, -1)
 	return c, nil
 }
 
@@ -563,21 +562,6 @@ func (c *Client) Send(req TlObject) (TlObject, error) {
 	case <-time.After(30 * time.Second):
 		c.pendingRequests.Delete(extra)
 		return nil, fmt.Errorf("timeout")
-	}
-}
-
-// AddHandler registers a handler for updates.
-// Deprecated: Use c.Dispatcher.AddHandler or similar.
-func (c *Client) AddHandler(updateType string, fn HandlerFunc, position int) {
-	h := &LegacyHandler{Func: fn, UpdateType: updateType, Position: position}
-
-	if updateType == "initializer" {
-		c.Dispatcher.AddInitializer(h)
-	} else if updateType == "finalizer" {
-		c.Dispatcher.AddFinalizer(h)
-	} else {
-		// Use position as group index
-		c.Dispatcher.AddHandlerToGroup(h, position)
 	}
 }
 
