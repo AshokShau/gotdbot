@@ -15,4 +15,7 @@ var (
 
 	SendTimeout         = errors.New("TDLib send timeout")
 	WaitPremiumPurchase = errors.New("account requires Telegram Premium")
+
+	// ErrNoFormattedText is returned when a message content does not contain text or caption.
+	ErrNoFormattedText = errors.New("message does not contain formatted text or caption")
 )

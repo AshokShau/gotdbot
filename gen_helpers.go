@@ -1368,6 +1368,51 @@ func (f *File) ToggleDownloadIsPaused(client *Client, opts *ToggleDownloadIsPaus
 	return client.ToggleDownloadIsPaused(f.Id, opts)
 }
 
+// AddLogMessage is a helper method for Client.AddLogMessage
+func (f *FormattedText) AddLogMessage(client *Client, verbosityLevel int32) error {
+	return client.AddLogMessage(f.Text, verbosityLevel)
+}
+
+// AnswerCallbackQuery is a helper method for Client.AnswerCallbackQuery
+func (f *FormattedText) AnswerCallbackQuery(client *Client, cacheTime int32, callbackQueryId int64, url string, opts *AnswerCallbackQueryOpts) error {
+	return client.AnswerCallbackQuery(cacheTime, callbackQueryId, f.Text, url, opts)
+}
+
+// GetKeywordEmojis is a helper method for Client.GetKeywordEmojis
+func (f *FormattedText) GetKeywordEmojis(client *Client, opts *GetKeywordEmojisOpts) (*Emojis, error) {
+	return client.GetKeywordEmojis(f.Text, opts)
+}
+
+// GetTextEntities is a helper method for Client.GetTextEntities
+func (f *FormattedText) GetTextEntities(client *Client) (*TextEntities, error) {
+	return client.GetTextEntities(f.Text)
+}
+
+// ParseTextEntities is a helper method for Client.ParseTextEntities
+func (f *FormattedText) ParseTextEntities(client *Client, parseMode TextParseMode) (*FormattedText, error) {
+	return client.ParseTextEntities(parseMode, f.Text)
+}
+
+// ReportChat is a helper method for Client.ReportChat
+func (f *FormattedText) ReportChat(client *Client, chatId int64, messageIds []int64, optionId []byte) (ReportChatResult, error) {
+	return client.ReportChat(chatId, messageIds, optionId, f.Text)
+}
+
+// ReportChatPhoto is a helper method for Client.ReportChatPhoto
+func (f *FormattedText) ReportChatPhoto(client *Client, chatId int64, fileId int32, reason ReportReason) error {
+	return client.ReportChatPhoto(chatId, fileId, reason, f.Text)
+}
+
+// ReportStory is a helper method for Client.ReportStory
+func (f *FormattedText) ReportStory(client *Client, optionId []byte, storyId int32, storyPosterChatId int64) (ReportStoryResult, error) {
+	return client.ReportStory(optionId, storyId, storyPosterChatId, f.Text)
+}
+
+// SearchEmojis is a helper method for Client.SearchEmojis
+func (f *FormattedText) SearchEmojis(client *Client, opts *SearchEmojisOpts) (*EmojiKeywords, error) {
+	return client.SearchEmojis(f.Text, opts)
+}
+
 // AddChecklistTasks is a helper method for Client.AddChecklistTasks
 func (m *Message) AddChecklistTasks(client *Client, tasks []InputChecklistTask) error {
 	return client.AddChecklistTasks(m.ChatId, m.Id, tasks)
@@ -1746,6 +1791,81 @@ func (m *Message) UnpinChat(client *Client) error {
 // Get is a helper method for Client.GetRemoteFile
 func (r *RemoteFile) Get(client *Client, opts *GetRemoteFileOpts) (*File, error) {
 	return client.GetRemoteFile(r.Id, opts)
+}
+
+// GetBlockedMessageSenders is a helper method for Client.GetBlockedMessageSenders
+func (t *TextEntity) GetBlockedMessageSenders(client *Client, blockList BlockList, limit int32) (*MessageSenders, error) {
+	return client.GetBlockedMessageSenders(blockList, limit, t.Offset)
+}
+
+// GetChatHistory is a helper method for Client.GetChatHistory
+func (t *TextEntity) GetChatHistory(client *Client, chatId int64, fromMessageId int64, limit int32, opts *GetChatHistoryOpts) (*Messages, error) {
+	return client.GetChatHistory(chatId, fromMessageId, limit, t.Offset, opts)
+}
+
+// GetDirectMessagesChatTopicHistory is a helper method for Client.GetDirectMessagesChatTopicHistory
+func (t *TextEntity) GetDirectMessagesChatTopicHistory(client *Client, chatId int64, fromMessageId int64, limit int32, topicId int64) (*Messages, error) {
+	return client.GetDirectMessagesChatTopicHistory(chatId, fromMessageId, limit, t.Offset, topicId)
+}
+
+// GetForumTopicHistory is a helper method for Client.GetForumTopicHistory
+func (t *TextEntity) GetForumTopicHistory(client *Client, chatId int64, forumTopicId int32, fromMessageId int64, limit int32) (*Messages, error) {
+	return client.GetForumTopicHistory(chatId, forumTopicId, fromMessageId, limit, t.Offset)
+}
+
+// GetMessageThreadHistory is a helper method for Client.GetMessageThreadHistory
+func (t *TextEntity) GetMessageThreadHistory(client *Client, chatId int64, fromMessageId int64, limit int32, messageId int64) (*Messages, error) {
+	return client.GetMessageThreadHistory(chatId, fromMessageId, limit, messageId, t.Offset)
+}
+
+// GetPollVoters is a helper method for Client.GetPollVoters
+func (t *TextEntity) GetPollVoters(client *Client, chatId int64, limit int32, messageId int64, optionId int32) (*PollVoters, error) {
+	return client.GetPollVoters(chatId, limit, messageId, t.Offset, optionId)
+}
+
+// GetSavedMessagesTopicHistory is a helper method for Client.GetSavedMessagesTopicHistory
+func (t *TextEntity) GetSavedMessagesTopicHistory(client *Client, fromMessageId int64, limit int32, savedMessagesTopicId int64) (*Messages, error) {
+	return client.GetSavedMessagesTopicHistory(fromMessageId, limit, t.Offset, savedMessagesTopicId)
+}
+
+// GetStoryAlbumStories is a helper method for Client.GetStoryAlbumStories
+func (t *TextEntity) GetStoryAlbumStories(client *Client, chatId int64, limit int32, storyAlbumId int32) (*Stories, error) {
+	return client.GetStoryAlbumStories(chatId, limit, t.Offset, storyAlbumId)
+}
+
+// GetSupergroupMembers is a helper method for Client.GetSupergroupMembers
+func (t *TextEntity) GetSupergroupMembers(client *Client, limit int32, supergroupId int64, opts *GetSupergroupMembersOpts) (*ChatMembers, error) {
+	return client.GetSupergroupMembers(limit, t.Offset, supergroupId, opts)
+}
+
+// GetTrendingStickerSets is a helper method for Client.GetTrendingStickerSets
+func (t *TextEntity) GetTrendingStickerSets(client *Client, limit int32, stickerType StickerType) (*TrendingStickerSets, error) {
+	return client.GetTrendingStickerSets(limit, t.Offset, stickerType)
+}
+
+// GetUserProfileAudios is a helper method for Client.GetUserProfileAudios
+func (t *TextEntity) GetUserProfileAudios(client *Client, limit int32, userId int64) (*Audios, error) {
+	return client.GetUserProfileAudios(limit, t.Offset, userId)
+}
+
+// GetUserProfilePhotos is a helper method for Client.GetUserProfilePhotos
+func (t *TextEntity) GetUserProfilePhotos(client *Client, limit int32, userId int64) (*ChatPhotos, error) {
+	return client.GetUserProfilePhotos(limit, t.Offset, userId)
+}
+
+// SearchChatMessages is a helper method for Client.SearchChatMessages
+func (t *TextEntity) SearchChatMessages(client *Client, chatId int64, fromMessageId int64, limit int32, query string, opts *SearchChatMessagesOpts) (*FoundChatMessages, error) {
+	return client.SearchChatMessages(chatId, fromMessageId, limit, t.Offset, query, opts)
+}
+
+// SearchSavedMessages is a helper method for Client.SearchSavedMessages
+func (t *TextEntity) SearchSavedMessages(client *Client, fromMessageId int64, limit int32, query string, savedMessagesTopicId int64, opts *SearchSavedMessagesOpts) (*FoundChatMessages, error) {
+	return client.SearchSavedMessages(fromMessageId, limit, t.Offset, query, savedMessagesTopicId, opts)
+}
+
+// SearchStickers is a helper method for Client.SearchStickers
+func (t *TextEntity) SearchStickers(client *Client, emojis string, limit int32, stickerType StickerType, opts *SearchStickersOpts) (*Stickers, error) {
+	return client.SearchStickers(emojis, limit, t.Offset, stickerType, opts)
 }
 
 // AddChatMember is a helper method for Client.AddChatMember

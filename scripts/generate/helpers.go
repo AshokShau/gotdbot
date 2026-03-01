@@ -15,11 +15,13 @@ func generateHelpers(types []TLType, functions []TLType, classes map[string]*TLC
 	generatedFiles := []string{"gen_helpers.go"}
 
 	allowedTypes := map[string]bool{
-		"File":       true,
-		"RemoteFile": true,
-		"Message":    true,
-		"Chat":       true,
-		"User":       true,
+		"File":          true,
+		"RemoteFile":    true,
+		"Message":       true,
+		"Chat":          true,
+		"User":          true,
+		"TextEntity":    true,
+		"FormattedText": true,
 	}
 
 	manualMethods := map[string]bool{

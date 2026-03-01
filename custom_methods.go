@@ -34,7 +34,10 @@ func (c *Client) SendTextMessage(chatId int64, text string, opts *SendTextMessag
 		opts = &SendTextMessageOpts{}
 	}
 
-	formattedText := GetFormattedText(c, text, opts.Entities, opts.ParseMode)
+	formattedText, err := GetFormattedText(c, text, opts.Entities, opts.ParseMode)
+	if err != nil {
+		return nil, err
+	}
 
 	linkPreviewOptions := &LinkPreviewOptions{
 		IsDisabled:      opts.DisableWebPagePreview,
@@ -86,7 +89,10 @@ func (c *Client) SendPhoto(chatId int64, photo InputFile, opts *SendPhotoOpts) (
 		opts = &SendPhotoOpts{}
 	}
 
-	caption := GetFormattedText(c, opts.Caption, opts.CaptionEntities, opts.ParseMode)
+	caption, err := GetFormattedText(c, opts.Caption, opts.CaptionEntities, opts.ParseMode)
+	if err != nil {
+		return nil, err
+	}
 
 	content := &InputMessagePhoto{
 		Photo:               photo,
@@ -137,7 +143,10 @@ func (c *Client) SendVideo(chatId int64, video InputFile, opts *SendVideoOpts) (
 		opts = &SendVideoOpts{}
 	}
 
-	caption := GetFormattedText(c, opts.Caption, opts.CaptionEntities, opts.ParseMode)
+	caption, err := GetFormattedText(c, opts.Caption, opts.CaptionEntities, opts.ParseMode)
+	if err != nil {
+		return nil, err
+	}
 
 	content := &InputMessageVideo{
 		Video:               video,
@@ -188,7 +197,10 @@ func (c *Client) SendAnimation(chatId int64, animation InputFile, opts *SendAnim
 		opts = &SendAnimationOpts{}
 	}
 
-	caption := GetFormattedText(c, opts.Caption, opts.CaptionEntities, opts.ParseMode)
+	caption, err := GetFormattedText(c, opts.Caption, opts.CaptionEntities, opts.ParseMode)
+	if err != nil {
+		return nil, err
+	}
 
 	content := &InputMessageAnimation{
 		Animation:           animation,
@@ -235,7 +247,10 @@ func (c *Client) SendAudio(chatId int64, audio InputFile, opts *SendAudioOpts) (
 		opts = &SendAudioOpts{}
 	}
 
-	caption := GetFormattedText(c, opts.Caption, opts.CaptionEntities, opts.ParseMode)
+	caption, err := GetFormattedText(c, opts.Caption, opts.CaptionEntities, opts.ParseMode)
+	if err != nil {
+		return nil, err
+	}
 
 	content := &InputMessageAudio{
 		Audio:               audio,
@@ -278,7 +293,10 @@ func (c *Client) SendDocument(chatId int64, document InputFile, opts *SendDocume
 		opts = &SendDocumentOpts{}
 	}
 
-	caption := GetFormattedText(c, opts.Caption, opts.CaptionEntities, opts.ParseMode)
+	caption, err := GetFormattedText(c, opts.Caption, opts.CaptionEntities, opts.ParseMode)
+	if err != nil {
+		return nil, err
+	}
 
 	content := &InputMessageDocument{
 		Document:                    document,
@@ -319,7 +337,10 @@ func (c *Client) SendVoice(chatId int64, voice InputFile, opts *SendVoiceOpts) (
 		opts = &SendVoiceOpts{}
 	}
 
-	caption := GetFormattedText(c, opts.Caption, opts.CaptionEntities, opts.ParseMode)
+	caption, err := GetFormattedText(c, opts.Caption, opts.CaptionEntities, opts.ParseMode)
+	if err != nil {
+		return nil, err
+	}
 
 	content := &InputMessageVoiceNote{
 		VoiceNote: voice,
@@ -436,7 +457,10 @@ func (c *Client) SendCopy(chatId int64, fromChatId int64, messageId int64, opts 
 		opts = &SendCopyOpts{}
 	}
 
-	caption := GetFormattedText(c, opts.NewCaption, opts.NewCaptionEntities, opts.ParseMode)
+	caption, err := GetFormattedText(c, opts.NewCaption, opts.NewCaptionEntities, opts.ParseMode)
+	if err != nil {
+		return nil, err
+	}
 	content := &InputMessageForwarded{
 		FromChatId:  fromChatId,
 		MessageId:   messageId,
@@ -505,7 +529,10 @@ func (c *Client) EditTextMessage(chatId int64, messageId int64, text string, opt
 		}
 	}
 
-	formattedText := GetFormattedText(c, text, opts.Entities, opts.ParseMode)
+	formattedText, err := GetFormattedText(c, text, opts.Entities, opts.ParseMode)
+	if err != nil {
+		return nil, err
+	}
 
 	linkPreviewOptions := &LinkPreviewOptions{
 		IsDisabled:      opts.DisableWebPagePreview,
@@ -591,19 +618,20 @@ func (c *Client) ParseText(text string, parseMode string) (*FormattedText, error
 	return c.ParseTextEntities(mode, text)
 }
 
-func GetFormattedText(c *Client, text string, entities []TextEntity, parseMode string) *FormattedText {
+func GetFormattedText(c *Client, text string, entities []TextEntity, parseMode string) (*FormattedText, error) {
 	if len(entities) > 0 {
 		return &FormattedText{
 			Text:     text,
 			Entities: entities,
-		}
+		}, nil
 	} else if parseMode != "" {
 		ft, err := c.ParseText(text, parseMode)
 		if err == nil {
-			return ft
+			return ft, nil
 		}
+		return nil, err
 	}
-	return &FormattedText{Text: text}
+	return &FormattedText{Text: text}, nil
 }
 
 func GetInputFile(path string) InputFile {
