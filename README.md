@@ -6,7 +6,7 @@
 
 **gotdbot** is a powerful, pure Go wrapper for [TDLib](https://github.com/tdlib/td) (Telegram Database Library). It provides a simple and idiomatic way to build Telegram clients and bots using Go.
 
-Current Version: **v0.5.0** and TDLib **v1.8.62**.
+Current Version: **v0.6.0** and TDLib **v1.8.62**.
 
 ---
 
