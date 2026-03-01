@@ -11,7 +11,7 @@ import (
 )
 
 func TestDispatcher_Message(t *testing.T) {
-	d := gotdbot.NewDispatcher(nil)
+	d := gotdbot.NewDispatcher(nil, nil)
 
 	var wg sync.WaitGroup
 	wg.Add(1)
@@ -46,7 +46,7 @@ func TestDispatcher_Message(t *testing.T) {
 }
 
 func TestDispatcher_Command(t *testing.T) {
-	d := gotdbot.NewDispatcher(&gotdbot.Client{})
+	d := gotdbot.NewDispatcher(&gotdbot.Client{}, nil)
 	var wg sync.WaitGroup
 	wg.Add(1)
 	called := false
@@ -78,7 +78,7 @@ func TestDispatcher_Command(t *testing.T) {
 }
 
 func TestDispatcher_InlineQuery(t *testing.T) {
-	d := gotdbot.NewDispatcher(nil)
+	d := gotdbot.NewDispatcher(nil, nil)
 	var wg sync.WaitGroup
 	wg.Add(1)
 	called := false

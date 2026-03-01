@@ -41,6 +41,9 @@ type ClientConfig struct {
 	AuthorizationTimeout    time.Duration
 	LogVerbosityLevel       int32
 	LogStream               LogStream
+
+	// DispatcherOpts configures the dispatcher
+	DispatcherOpts *DispatcherOpts
 }
 
 func DefaultClientConfig() *ClientConfig {
@@ -163,7 +166,7 @@ func NewClient(apiID int32, apiHash, tokenOrPhone string, config *ClientConfig) 
 		authErrorChan: make(chan error, 1),
 	}
 
-	c.Dispatcher = NewDispatcher(c)
+	c.Dispatcher = NewDispatcher(c, config.DispatcherOpts)
 
 	c.Dispatcher.AddHandlerToGroup(&internalHandler{handleFunc: c.authHandler, updateType: "updateAuthorizationState"}, -1)
 	c.Dispatcher.AddHandlerToGroup(&internalHandler{handleFunc: c.userHandler, updateType: "updateUser"}, -1)

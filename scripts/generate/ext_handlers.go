@@ -182,7 +182,7 @@ func generateExtHandlers(types []TLType) []string {
 	sbTest.WriteString(")\n\n")
 
 	sbTest.WriteString("func TestGeneratedHandlers(t *testing.T) {\n")
-	sbTest.WriteString("\td := gotdbot.NewDispatcher(&gotdbot.Client{})\n\n")
+	sbTest.WriteString("\td := gotdbot.NewDispatcher(&gotdbot.Client{}, nil)\n\n")
 
 	for _, t := range types {
 		if t.ResultType != "Update" {

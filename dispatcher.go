@@ -37,14 +37,27 @@ type Dispatcher struct {
 
 	// PanicHandler handles panics during update processing.
 	PanicHandler func(c *Context, r interface{})
+
+	// ErrorHandler handles errors returned by handlers.
+	ErrorHandler func(client *Client, ctx *Context, err error) error
 }
 
-func NewDispatcher(client *Client) *Dispatcher {
-	return &Dispatcher{
+type DispatcherOpts struct {
+	PanicHandler func(c *Context, r interface{})
+	ErrorHandler func(client *Client, ctx *Context, err error) error
+}
+
+func NewDispatcher(client *Client, opts *DispatcherOpts) *Dispatcher {
+	d := &Dispatcher{
 		Client:   client,
 		handlers: make(map[int][]Handler),
 		waiters:  make(map[string]*Waiter),
 	}
+	if opts != nil {
+		d.PanicHandler = opts.PanicHandler
+		d.ErrorHandler = opts.ErrorHandler
+	}
+	return d
 }
 
 // AddHandler adds a handler to group 0.
@@ -138,11 +151,31 @@ func (d *Dispatcher) ProcessUpdate(update TlObject) {
 		d.mu.RLock()
 		defer d.mu.RUnlock()
 
+		handleError := func(err error) error {
+			if err == nil {
+				return nil
+			}
+			if errors.Is(err, EndGroups) {
+				return EndGroups
+			}
+			if errors.Is(err, ContinueGroups) {
+				return ContinueGroups
+			}
+			if d.ErrorHandler != nil {
+				return d.ErrorHandler(d.Client, ctx, err)
+			}
+			log.Printf("Handler error: %v", err)
+			return nil
+		}
+
 		// Initializers
 		for _, h := range d.Initializers {
 			if h.CheckUpdate(d.Client, ctx) {
-				if err := h.HandleUpdate(d.Client, ctx); errors.Is(err, EndGroups) {
-					return
+				if err := h.HandleUpdate(d.Client, ctx); err != nil {
+					action := handleError(err)
+					if errors.Is(action, EndGroups) {
+						return
+					}
 				}
 			}
 		}
@@ -153,16 +186,15 @@ func (d *Dispatcher) ProcessUpdate(update TlObject) {
 			for _, h := range groupHandlers {
 				if h.CheckUpdate(d.Client, ctx) {
 					err := h.HandleUpdate(d.Client, ctx)
-					if errors.Is(err, EndGroups) {
+					action := handleError(err)
+
+					if errors.Is(action, EndGroups) {
 						return
 					}
-					if errors.Is(err, ContinueGroups) {
+					if errors.Is(action, ContinueGroups) {
 						continue
 					}
-					if err != nil {
-						log.Printf("Handler error: %v", err)
-					}
-					// If handler executed successfully (or returned error other than ContinueGroups),
+					// If handler executed successfully (or action returned nil),
 					// stop iterating this group and move to the next group.
 					break
 				}
@@ -172,8 +204,11 @@ func (d *Dispatcher) ProcessUpdate(update TlObject) {
 		// Finalizers
 		for _, h := range d.Finalizers {
 			if h.CheckUpdate(d.Client, ctx) {
-				if err := h.HandleUpdate(d.Client, ctx); errors.Is(err, EndGroups) {
-					return
+				if err := h.HandleUpdate(d.Client, ctx); err != nil {
+					action := handleError(err)
+					if errors.Is(action, EndGroups) {
+						return
+					}
 				}
 			}
 		}

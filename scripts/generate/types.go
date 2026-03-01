@@ -125,6 +125,12 @@ func generateObjects(types []TLType, classes map[string]*TLClass) {
 		fmt.Fprintf(&sb, "\treturn \"%s\"\n", t.Name)
 		sb.WriteString("}\n\n")
 
+		if structName == "Error" {
+			sb.WriteString("func (t Error) Error() string {\n")
+			sb.WriteString("\treturn fmt.Sprintf(\"TDLib error %d: %s\", t.Code, t.Message)\n")
+			sb.WriteString("}\n\n")
+		}
+
 		// Implement interface dummy method if this type belongs to a class
 		if cls, ok := classes[t.ResultType]; ok {
 			methodName := toLowerCamelCase(cls.Name)
