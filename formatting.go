@@ -244,6 +244,7 @@ func UnparseEntities(text string, entities []TextEntity, mode string) string {
 
 				inCode := false
 				isRaw := false
+				inBlockQuote := false
 				for _, ent := range entities {
 					switch ent.TypeField.(type) {
 					case *TextEntityTypeCode, TextEntityTypeCode,
@@ -263,6 +264,11 @@ func UnparseEntities(text string, entities []TextEntity, mode string) string {
 						if int(ent.Offset) <= lastIndex && int(ent.Offset+ent.Length) >= end {
 							isRaw = true
 						}
+					case *TextEntityTypeBlockQuote, TextEntityTypeBlockQuote,
+						*TextEntityTypeExpandableBlockQuote, TextEntityTypeExpandableBlockQuote:
+						if int(ent.Offset) <= lastIndex && int(ent.Offset+ent.Length) >= end {
+							inBlockQuote = true
+						}
 					}
 				}
 
@@ -273,6 +279,11 @@ func UnparseEntities(text string, entities []TextEntity, mode string) string {
 				} else {
 					chunk = escapeText(chunk, mode)
 				}
+
+				if inBlockQuote && mode == "markdownv2" {
+					chunk = strings.ReplaceAll(chunk, "\n", "\n>")
+				}
+
 				result.WriteString(chunk)
 			}
 			lastIndex = ev.Index
@@ -515,9 +526,8 @@ func getTag(ent *TextEntity, isStart bool, mode string, text string) string {
 				return "</blockquote>"
 			}
 		} else if mode == "markdownv2" {
-			// This might need line-by-line escaping, but we'll use block tags
 			if isStart {
-				return "**>"
+				return ">"
 			} else {
 				return ""
 			}
@@ -533,7 +543,7 @@ func getTag(ent *TextEntity, isStart bool, mode string, text string) string {
 			if isStart {
 				return "**>"
 			} else {
-				return ""
+				return "||"
 			}
 		}
 	case *TextEntityTypeDateTime, TextEntityTypeDateTime:
