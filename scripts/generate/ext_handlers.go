@@ -174,11 +174,12 @@ func generateExtHandlers(types []TLType) []string {
 	testPath := filepath.Join("handlers", "gen_handlers_test.go")
 	var sbTest strings.Builder
 	sbTest.WriteString(header)
-	sbTest.WriteString("package handlers\n\n")
+	sbTest.WriteString("package handlers_test\n\n")
 	sbTest.WriteString("import (\n")
 	sbTest.WriteString("\t\"testing\"\n")
 	sbTest.WriteString("\t\"time\"\n\n")
 	sbTest.WriteString("\t\"github.com/AshokShau/gotdbot\"\n")
+	sbTest.WriteString("\t\"github.com/AshokShau/gotdbot/handlers\"\n")
 	sbTest.WriteString(")\n\n")
 
 	sbTest.WriteString("func TestGeneratedHandlers(t *testing.T) {\n")
@@ -192,7 +193,7 @@ func generateExtHandlers(types []TLType) []string {
 
 		sbTest.WriteString("\tfunc() {\n")
 		sbTest.WriteString("\t\tcalled := make(chan bool, 1)\n")
-		sbTest.WriteString(fmt.Sprintf("\t\th := New%s(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {\n", structName))
+		sbTest.WriteString(fmt.Sprintf("\t\th := handlers.New%s(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {\n", structName))
 		sbTest.WriteString("\t\t\tcalled <- true\n")
 		sbTest.WriteString("\t\t\treturn nil\n")
 		sbTest.WriteString("\t\t})\n")
