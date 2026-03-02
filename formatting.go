@@ -223,7 +223,6 @@ func UnparseEntities(text string, entities []TextEntity, mode string) string {
 		if events[i].IsStart != events[j].IsStart {
 			return !events[i].IsStart
 		}
-
 		if events[i].IsStart {
 			return events[i].Level < events[j].Level
 		}
@@ -268,6 +267,7 @@ func UnparseEntities(text string, entities []TextEntity, mode string) string {
 				}
 
 				if isRaw {
+					//
 				} else if inCode && (mode == "markdownv2" || mode == "markdown") {
 					chunk = escapeText(chunk, mode+"_code")
 				} else {
@@ -536,32 +536,36 @@ func getTag(ent *TextEntity, isStart bool, mode string, text string) string {
 				return ""
 			}
 		}
-	case *TextEntityTypeDateTime:
-		if mode == "html" {
-			if isStart {
-				return fmt.Sprintf("<tg-time unix=\"%d\" format=\"%s\">", e.UnixTime, buildFormatString(e.FormattingType))
-			} else {
-				return "</tg-time>"
-			}
-		} else if mode == "markdownv2" {
-			if isStart {
-				return "["
-			} else {
-				return fmt.Sprintf("](tg://time?unix=%d&format=%s)", e.UnixTime, escapeText(buildFormatString(e.FormattingType), "markdownv2_url"))
-			}
+	case *TextEntityTypeDateTime, TextEntityTypeDateTime:
+		var unixTime int32
+		var formattingType DateTimeFormattingType
+		if ptr, ok := e.(*TextEntityTypeDateTime); ok {
+			unixTime = ptr.UnixTime
+			formattingType = ptr.FormattingType
+		} else {
+			val := e.(TextEntityTypeDateTime)
+			unixTime = val.UnixTime
+			formattingType = val.FormattingType
 		}
-	case TextEntityTypeDateTime:
+		formatStr := buildFormatString(formattingType)
+
 		if mode == "html" {
 			if isStart {
-				return fmt.Sprintf("<tg-time unix=\"%d\" format=\"%s\">", e.UnixTime, buildFormatString(e.FormattingType))
+				if formatStr == "" {
+					return fmt.Sprintf("<tg-time unix=\"%d\">", unixTime)
+				}
+				return fmt.Sprintf("<tg-time unix=\"%d\" format=\"%s\">", unixTime, formatStr)
 			} else {
 				return "</tg-time>"
 			}
 		} else if mode == "markdownv2" {
 			if isStart {
-				return "["
+				return "!["
 			} else {
-				return fmt.Sprintf("](tg://time?unix=%d&format=%s)", e.UnixTime, escapeText(buildFormatString(e.FormattingType), "markdownv2_url"))
+				if formatStr == "" {
+					return fmt.Sprintf("](tg://time?unix=%d)", unixTime)
+				}
+				return fmt.Sprintf("](tg://time?unix=%d&format=%s)", unixTime, escapeText(formatStr, "markdownv2_url"))
 			}
 		}
 	// Entities that don't add formatting syntax because they're implicit (Urls, Emails, Phone numbers, Hashtags, etc.)
