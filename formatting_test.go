@@ -116,7 +116,7 @@ func TestUnparseEntities(t *testing.T) {
 				{Offset: 0, Length: 8, TypeField: &TextEntityTypeDateTime{UnixTime: 1234567890, FormattingType: &DateTimeFormattingTypeRelative{}}},
 			},
 			mode:     "markdownv2",
-			expected: "[tomorrow](tg://time?unix=1234567890&format=r)",
+			expected: "![tomorrow](tg://time?unix=1234567890&format=r)",
 		},
 		{
 			name: "Implicit Entity Mention MDV2",
