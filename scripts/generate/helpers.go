@@ -20,7 +20,6 @@ func generateHelpers(types []TLType, functions []TLType, classes map[string]*TLC
 		"Message":       true,
 		"Chat":          true,
 		"User":          true,
-		"TextEntity":    true,
 		"FormattedText": true,
 	}
 
