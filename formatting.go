@@ -70,7 +70,7 @@ func (m *Message) OriginalHTML() string {
 	return UnparseEntities(text.Text, text.Entities, "html")
 }
 
-// OriginalCaptionMD gets the original markdown formatting of a message caption.
+// OriginalCaptionMD gets the original Markdown formatting of a message caption.
 func (m *Message) OriginalCaptionMD() string {
 	caption, err := m.getCaption()
 	if err != nil {
@@ -79,7 +79,7 @@ func (m *Message) OriginalCaptionMD() string {
 	return UnparseEntities(caption.Text, caption.Entities, "markdown")
 }
 
-// OriginalCaptionMDV2 gets the original markdownV2 formatting of a message caption.
+// OriginalCaptionMDV2 gets the original MarkdownV2 formatting of a message caption.
 func (m *Message) OriginalCaptionMDV2() string {
 	caption, err := m.getCaption()
 	if err != nil {
@@ -103,6 +103,61 @@ type entityEvent struct {
 	IsStart bool
 	Entity  *TextEntity
 	Level   int
+}
+
+func buildFormatString(format DateTimeFormattingType) string {
+	if format == nil {
+		return ""
+	}
+	switch f := format.(type) {
+	case *DateTimeFormattingTypeRelative, DateTimeFormattingTypeRelative:
+		return "r"
+	case *DateTimeFormattingTypeAbsolute:
+		formatStr := ""
+		if f.ShowDayOfWeek {
+			formatStr += "w"
+		}
+		if f.DatePrecision != nil {
+			switch f.DatePrecision.Type() {
+			case "dateTimePartPrecisionShort":
+				formatStr += "d"
+			case "dateTimePartPrecisionLong":
+				formatStr += "D"
+			}
+		}
+		if f.TimePrecision != nil {
+			switch f.TimePrecision.Type() {
+			case "dateTimePartPrecisionShort":
+				formatStr += "t"
+			case "dateTimePartPrecisionLong":
+				formatStr += "T"
+			}
+		}
+		return formatStr
+	case DateTimeFormattingTypeAbsolute:
+		formatStr := ""
+		if f.ShowDayOfWeek {
+			formatStr += "w"
+		}
+		if f.DatePrecision != nil {
+			switch f.DatePrecision.Type() {
+			case "dateTimePartPrecisionShort":
+				formatStr += "d"
+			case "dateTimePartPrecisionLong":
+				formatStr += "D"
+			}
+		}
+		if f.TimePrecision != nil {
+			switch f.TimePrecision.Type() {
+			case "dateTimePartPrecisionShort":
+				formatStr += "t"
+			case "dateTimePartPrecisionLong":
+				formatStr += "T"
+			}
+		}
+		return formatStr
+	}
+	return ""
 }
 
 // escapeText escapes special characters for HTML and MDV2.
@@ -430,7 +485,36 @@ func getTag(ent *TextEntity, isStart bool, mode string) string {
 				return ""
 			}
 		}
+	case *TextEntityTypeDateTime:
+		if mode == "html" {
+			if isStart {
+				return fmt.Sprintf("<tg-time unix=\"%d\" format=\"%s\">", e.UnixTime, buildFormatString(e.FormattingType))
+			} else {
+				return "</tg-time>"
+			}
+		} else if mode == "markdownv2" {
+			if isStart {
+				return "["
+			} else {
+				return fmt.Sprintf("](tg://time?unix=%d&format=%s)", e.UnixTime, escapeText(buildFormatString(e.FormattingType), "markdownv2_url"))
+			}
+		}
+	case TextEntityTypeDateTime:
+		if mode == "html" {
+			if isStart {
+				return fmt.Sprintf("<tg-time unix=\"%d\" format=\"%s\">", e.UnixTime, buildFormatString(e.FormattingType))
+			} else {
+				return "</tg-time>"
+			}
+		} else if mode == "markdownv2" {
+			if isStart {
+				return "["
+			} else {
+				return fmt.Sprintf("](tg://time?unix=%d&format=%s)", e.UnixTime, escapeText(buildFormatString(e.FormattingType), "markdownv2_url"))
+			}
+		}
 
+	// Entities that don't add formatting syntax because they're implicit (Urls, Emails, Phone numbers, Hashtags, etc.)
 	case *TextEntityTypeUrl, TextEntityTypeUrl,
 		*TextEntityTypeEmailAddress, TextEntityTypeEmailAddress,
 		*TextEntityTypePhoneNumber, TextEntityTypePhoneNumber,
@@ -439,7 +523,6 @@ func getTag(ent *TextEntity, isStart bool, mode string) string {
 		*TextEntityTypeBankCardNumber, TextEntityTypeBankCardNumber,
 		*TextEntityTypeBotCommand, TextEntityTypeBotCommand,
 		*TextEntityTypeMention, TextEntityTypeMention,
-		*TextEntityTypeDateTime, TextEntityTypeDateTime,
 		*TextEntityTypeMediaTimestamp, TextEntityTypeMediaTimestamp:
 		return ""
 	}
