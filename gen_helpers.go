@@ -1368,51 +1368,6 @@ func (f *File) ToggleDownloadIsPaused(client *Client, opts *ToggleDownloadIsPaus
 	return client.ToggleDownloadIsPaused(f.Id, opts)
 }
 
-// AddLogMessage is a helper method for Client.AddLogMessage
-func (f *FormattedText) AddLogMessage(client *Client, verbosityLevel int32) error {
-	return client.AddLogMessage(f.Text, verbosityLevel)
-}
-
-// AnswerCallbackQuery is a helper method for Client.AnswerCallbackQuery
-func (f *FormattedText) AnswerCallbackQuery(client *Client, cacheTime int32, callbackQueryId int64, url string, opts *AnswerCallbackQueryOpts) error {
-	return client.AnswerCallbackQuery(cacheTime, callbackQueryId, f.Text, url, opts)
-}
-
-// GetKeywordEmojis is a helper method for Client.GetKeywordEmojis
-func (f *FormattedText) GetKeywordEmojis(client *Client, opts *GetKeywordEmojisOpts) (*Emojis, error) {
-	return client.GetKeywordEmojis(f.Text, opts)
-}
-
-// GetTextEntities is a helper method for Client.GetTextEntities
-func (f *FormattedText) GetTextEntities(client *Client) (*TextEntities, error) {
-	return client.GetTextEntities(f.Text)
-}
-
-// ParseTextEntities is a helper method for Client.ParseTextEntities
-func (f *FormattedText) ParseTextEntities(client *Client, parseMode TextParseMode) (*FormattedText, error) {
-	return client.ParseTextEntities(parseMode, f.Text)
-}
-
-// ReportChat is a helper method for Client.ReportChat
-func (f *FormattedText) ReportChat(client *Client, chatId int64, messageIds []int64, optionId []byte) (ReportChatResult, error) {
-	return client.ReportChat(chatId, messageIds, optionId, f.Text)
-}
-
-// ReportChatPhoto is a helper method for Client.ReportChatPhoto
-func (f *FormattedText) ReportChatPhoto(client *Client, chatId int64, fileId int32, reason ReportReason) error {
-	return client.ReportChatPhoto(chatId, fileId, reason, f.Text)
-}
-
-// ReportStory is a helper method for Client.ReportStory
-func (f *FormattedText) ReportStory(client *Client, optionId []byte, storyId int32, storyPosterChatId int64) (ReportStoryResult, error) {
-	return client.ReportStory(optionId, storyId, storyPosterChatId, f.Text)
-}
-
-// SearchEmojis is a helper method for Client.SearchEmojis
-func (f *FormattedText) SearchEmojis(client *Client, opts *SearchEmojisOpts) (*EmojiKeywords, error) {
-	return client.SearchEmojis(f.Text, opts)
-}
-
 // AddChecklistTasks is a helper method for Client.AddChecklistTasks
 func (m *Message) AddChecklistTasks(client *Client, tasks []InputChecklistTask) error {
 	return client.AddChecklistTasks(m.ChatId, m.Id, tasks)
