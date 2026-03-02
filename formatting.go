@@ -43,7 +43,7 @@ func (m *Message) getCaption() (*FormattedText, error) {
 	}
 }
 
-// OriginalMD gets the original Markdown formatting of a message text.
+// OriginalMD gets the original markdown formatting of a message text.
 func (m *Message) OriginalMD() string {
 	text, err := m.getText()
 	if err != nil {
@@ -70,7 +70,7 @@ func (m *Message) OriginalHTML() string {
 	return UnparseEntities(text.Text, text.Entities, "html")
 }
 
-// OriginalCaptionMD gets the original Markdown formatting of a message caption.
+// OriginalCaptionMD gets the original markdown formatting of a message caption.
 func (m *Message) OriginalCaptionMD() string {
 	caption, err := m.getCaption()
 	if err != nil {
@@ -79,7 +79,7 @@ func (m *Message) OriginalCaptionMD() string {
 	return UnparseEntities(caption.Text, caption.Entities, "markdown")
 }
 
-// OriginalCaptionMDV2 gets the original MarkdownV2 formatting of a message caption.
+// OriginalCaptionMDV2 gets the original markdownV2 formatting of a message caption.
 func (m *Message) OriginalCaptionMDV2() string {
 	caption, err := m.getCaption()
 	if err != nil {
@@ -179,6 +179,18 @@ func escapeText(text, mode string) string {
 			text = strings.ReplaceAll(text, s, "\\"+s)
 		}
 		return text
+	} else if mode == "markdownv2_code" {
+		specials := []string{"\\", "`"}
+		for _, s := range specials {
+			text = strings.ReplaceAll(text, s, "\\"+s)
+		}
+		return text
+	} else if mode == "markdown_code" {
+		specials := []string{"\\", "`"}
+		for _, s := range specials {
+			text = strings.ReplaceAll(text, s, "\\"+s)
+		}
+		return text
 	} else if mode == "markdown" {
 		specials := []string{"*", "_", "`", "["}
 		for _, s := range specials {
@@ -230,12 +242,51 @@ func UnparseEntities(text string, entities []TextEntity, mode string) string {
 					end = len(utf16Str)
 				}
 				chunk := string(utf16.Decode(utf16Str[lastIndex:end]))
-				result.WriteString(escapeText(chunk, mode))
+
+				inCode := false
+				isRaw := false
+				for _, ent := range entities {
+					switch ent.TypeField.(type) {
+					case *TextEntityTypeCode, TextEntityTypeCode,
+						*TextEntityTypePre, TextEntityTypePre,
+						*TextEntityTypePreCode, TextEntityTypePreCode:
+						if int(ent.Offset) <= lastIndex && int(ent.Offset+ent.Length) >= end {
+							inCode = true
+						}
+					case *TextEntityTypeUrl, TextEntityTypeUrl,
+						*TextEntityTypeEmailAddress, TextEntityTypeEmailAddress,
+						*TextEntityTypePhoneNumber, TextEntityTypePhoneNumber,
+						*TextEntityTypeHashtag, TextEntityTypeHashtag,
+						*TextEntityTypeCashtag, TextEntityTypeCashtag,
+						*TextEntityTypeBankCardNumber, TextEntityTypeBankCardNumber,
+						*TextEntityTypeBotCommand, TextEntityTypeBotCommand,
+						*TextEntityTypeMention, TextEntityTypeMention:
+						if int(ent.Offset) <= lastIndex && int(ent.Offset+ent.Length) >= end {
+							isRaw = true
+						}
+					}
+				}
+
+				if isRaw {
+				} else if inCode && (mode == "markdownv2" || mode == "markdown") {
+					chunk = escapeText(chunk, mode+"_code")
+				} else {
+					chunk = escapeText(chunk, mode)
+				}
+				result.WriteString(chunk)
 			}
 			lastIndex = ev.Index
 		}
 
-		tag := getTag(ev.Entity, ev.IsStart, mode)
+		end := int(ev.Entity.Offset + ev.Entity.Length)
+		if end > len(utf16Str) {
+			end = len(utf16Str)
+		}
+		extractedText := ""
+		if ev.Entity.Offset <= int32(len(utf16Str)) {
+			extractedText = string(utf16.Decode(utf16Str[ev.Entity.Offset:end]))
+		}
+		tag := getTag(ev.Entity, ev.IsStart, mode, extractedText)
 		result.WriteString(tag)
 	}
 
@@ -256,7 +307,7 @@ func UnparseEntities(text string, entities []TextEntity, mode string) string {
 	return result.String()
 }
 
-func getTag(ent *TextEntity, isStart bool, mode string) string {
+func getTag(ent *TextEntity, isStart bool, mode string, text string) string {
 	switch e := ent.TypeField.(type) {
 	case *TextEntityTypeBold, TextEntityTypeBold:
 		if mode == "html" {
@@ -513,7 +564,6 @@ func getTag(ent *TextEntity, isStart bool, mode string) string {
 				return fmt.Sprintf("](tg://time?unix=%d&format=%s)", e.UnixTime, escapeText(buildFormatString(e.FormattingType), "markdownv2_url"))
 			}
 		}
-
 	// Entities that don't add formatting syntax because they're implicit (Urls, Emails, Phone numbers, Hashtags, etc.)
 	case *TextEntityTypeUrl, TextEntityTypeUrl,
 		*TextEntityTypeEmailAddress, TextEntityTypeEmailAddress,
