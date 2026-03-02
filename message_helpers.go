@@ -37,7 +37,7 @@ func (m *Message) GetText() string {
 		return m.Caption()
 	}
 
-	return m.GetText()
+	return m.Text()
 }
 
 // GetEntities returns the message entities, for both text messages and media messages.
