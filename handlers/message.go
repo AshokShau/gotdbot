@@ -21,6 +21,11 @@ func (m *Message) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	if ctx.EffectiveMessage == nil {
 		return false
 	}
+
+	if m.Filter == nil {
+		return true
+	}
+
 	return m.Filter(ctx.EffectiveMessage)
 }
 
