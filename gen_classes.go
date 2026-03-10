@@ -8,7 +8,7 @@ import "fmt"
 
 // TlObject is the interface that all TDLib types satisfy
 type TlObject interface {
-	Type() string
+	GetType() string
 }
 
 // ActiveStoryState Describes state of active stories posted by a chat

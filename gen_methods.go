@@ -275,7 +275,7 @@ func (c *Client) AddPendingPaidMessageReaction(chatId int64, messageId int64, st
 		StarCount: starCount,
 	}
 	if opts != nil {
-		req.TypeField = opts.TypeField
+		req.Type = opts.Type
 	}
 	_, err := c.Send(req)
 	return err
@@ -847,7 +847,7 @@ func (c *Client) CheckChatUsername(chatId int64, username string) (CheckChatUser
 // CheckCreatedPublicChatsLimit Checks whether the maximum number of owned public chats has been reached. Returns corresponding error if the limit was reached. The limit can be increased with Telegram Premium
 func (c *Client) CheckCreatedPublicChatsLimit(typeField PublicChatType) error {
 	req := &CheckCreatedPublicChatsLimit{
-		TypeField: typeField,
+		Type: typeField,
 	}
 	_, err := c.Send(req)
 	return err
@@ -1836,7 +1836,7 @@ func (c *Client) DeleteMessages(chatId int64, messageIds []int64, opts *DeleteMe
 // DeletePassportElement Deletes a Telegram Passport element
 func (c *Client) DeletePassportElement(typeField PassportElementType) error {
 	req := &DeletePassportElement{
-		TypeField: typeField,
+		Type: typeField,
 	}
 	_, err := c.Send(req)
 	return err
@@ -2819,8 +2819,8 @@ func (c *Client) GetAvailableGifts() (*AvailableGifts, error) {
 // GetBackgroundUrl Constructs a persistent HTTP URL for a background
 func (c *Client) GetBackgroundUrl(name string, typeField BackgroundType) (*HttpUrl, error) {
 	req := &GetBackgroundUrl{
-		Name:      name,
-		TypeField: typeField,
+		Name: name,
+		Type: typeField,
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -3757,7 +3757,7 @@ func (c *Client) GetCloseFriends() (*Users, error) {
 // GetCollectibleItemInfo Returns information about a given collectible item that was purchased at https://fragment.com
 func (c *Client) GetCollectibleItemInfo(typeField CollectibleItemType) (*CollectibleItemInfo, error) {
 	req := &GetCollectibleItemInfo{
-		TypeField: typeField,
+		Type: typeField,
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -3863,7 +3863,7 @@ func (c *Client) GetCountryFlagEmoji(countryCode string) (*Text, error) {
 // GetCreatedPublicChats Returns a list of public chats of the specified type, owned by the user
 func (c *Client) GetCreatedPublicChats(typeField PublicChatType) (*Chats, error) {
 	req := &GetCreatedPublicChats{
-		TypeField: typeField,
+		Type: typeField,
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -4068,7 +4068,7 @@ func (c *Client) GetDisallowedChatEmojiStatuses() (*EmojiStatusCustomEmojis, err
 func (c *Client) GetEmojiCategories(opts *GetEmojiCategoriesOpts) (*EmojiCategories, error) {
 	req := &GetEmojiCategories{}
 	if opts != nil {
-		req.TypeField = opts.TypeField
+		req.Type = opts.Type
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -4529,7 +4529,7 @@ func (c *Client) GetInstalledStickerSets(stickerType StickerType) (*StickerSets,
 // GetInternalLink Returns an HTTPS or a tg: link with the given type. Can be called before authorization
 func (c *Client) GetInternalLink(typeField InternalLinkType, opts *GetInternalLinkOpts) (*HttpUrl, error) {
 	req := &GetInternalLink{
-		TypeField: typeField,
+		Type: typeField,
 	}
 	if opts != nil {
 		req.IsHttp = opts.IsHttp
@@ -5246,8 +5246,8 @@ func (c *Client) GetPassportAuthorizationFormAvailableElements(authorizationForm
 // GetPassportElement Returns one of the available Telegram Passport elements
 func (c *Client) GetPassportElement(password string, typeField PassportElementType) (PassportElement, error) {
 	req := &GetPassportElement{
-		Password:  password,
-		TypeField: typeField,
+		Password: password,
+		Type:     typeField,
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -8116,9 +8116,9 @@ func (c *Client) RevokeGroupCallInviteLink(groupCallId int32) error {
 // SaveApplicationLogEvent Saves application log event on the server. Can be called before authorization
 func (c *Client) SaveApplicationLogEvent(chatId int64, data JsonValue, typeField string) error {
 	req := &SaveApplicationLogEvent{
-		ChatId:    chatId,
-		Data:      data,
-		TypeField: typeField,
+		ChatId: chatId,
+		Data:   data,
+		Type:   typeField,
 	}
 	_, err := c.Send(req)
 	return err
@@ -8948,7 +8948,7 @@ func (c *Client) SendPaymentForm(inputInvoice InputInvoice, orderInfoId string, 
 func (c *Client) SendPhoneNumberCode(phoneNumber string, typeField PhoneNumberCodeType, opts *SendPhoneNumberCodeOpts) (*AuthenticationCodeInfo, error) {
 	req := &SendPhoneNumberCode{
 		PhoneNumber: phoneNumber,
-		TypeField:   typeField,
+		Type:        typeField,
 	}
 	if opts != nil {
 		req.Settings = opts.Settings
@@ -9119,8 +9119,8 @@ func (c *Client) SetAuthenticationPremiumPurchaseTransaction(amount int64, curre
 // SetAutoDownloadSettings Sets auto-download settings
 func (c *Client) SetAutoDownloadSettings(settings *AutoDownloadSettings, typeField NetworkType) error {
 	req := &SetAutoDownloadSettings{
-		Settings:  settings,
-		TypeField: typeField,
+		Settings: settings,
+		Type:     typeField,
 	}
 	_, err := c.Send(req)
 	return err
@@ -9391,7 +9391,7 @@ func (c *Client) SetChatBackground(chatId int64, darkThemeDimming int32, opts *S
 	if opts != nil {
 		req.Background = opts.Background
 		req.OnlyForSelf = opts.OnlyForSelf
-		req.TypeField = opts.TypeField
+		req.Type = opts.Type
 	}
 	_, err := c.Send(req)
 	return err
@@ -9679,7 +9679,7 @@ func (c *Client) SetDefaultBackground(opts *SetDefaultBackgroundOpts) (*Backgrou
 	if opts != nil {
 		req.Background = opts.Background
 		req.ForDarkTheme = opts.ForDarkTheme
-		req.TypeField = opts.TypeField
+		req.Type = opts.Type
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -10019,7 +10019,7 @@ func (c *Client) SetName(firstName string, lastName string) error {
 func (c *Client) SetNetworkType(opts *SetNetworkTypeOpts) error {
 	req := &SetNetworkType{}
 	if opts != nil {
-		req.TypeField = opts.TypeField
+		req.Type = opts.Type
 	}
 	_, err := c.Send(req)
 	return err
@@ -10051,7 +10051,7 @@ func (c *Client) SetPaidMessageReactionType(chatId int64, messageId int64, typeF
 	req := &SetPaidMessageReactionType{
 		ChatId:    chatId,
 		MessageId: messageId,
-		TypeField: typeField,
+		Type:      typeField,
 	}
 	_, err := c.Send(req)
 	return err

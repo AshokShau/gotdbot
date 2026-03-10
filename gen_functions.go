@@ -13,7 +13,7 @@ type AcceptCall struct {
 	Protocol *CallProtocol `json:"protocol"`
 }
 
-func (t AcceptCall) Type() string {
+func (t AcceptCall) GetType() string {
 	return "acceptCall"
 }
 
@@ -40,7 +40,7 @@ type AcceptOauthRequest struct {
 	Url string `json:"url"`
 }
 
-func (t AcceptOauthRequest) Type() string {
+func (t AcceptOauthRequest) GetType() string {
 	return "acceptOauthRequest"
 }
 
@@ -61,7 +61,7 @@ type AcceptTermsOfService struct {
 	TermsOfServiceId string `json:"terms_of_service_id"`
 }
 
-func (t AcceptTermsOfService) Type() string {
+func (t AcceptTermsOfService) GetType() string {
 	return "acceptTermsOfService"
 }
 
@@ -80,7 +80,7 @@ func (t AcceptTermsOfService) MarshalJSON() ([]byte, error) {
 type ActivateStoryStealthMode struct {
 }
 
-func (t ActivateStoryStealthMode) Type() string {
+func (t ActivateStoryStealthMode) GetType() string {
 	return "activateStoryStealthMode"
 }
 
@@ -105,7 +105,7 @@ type AddBotMediaPreview struct {
 	LanguageCode string `json:"language_code"`
 }
 
-func (t AddBotMediaPreview) Type() string {
+func (t AddBotMediaPreview) GetType() string {
 	return "addBotMediaPreview"
 }
 
@@ -128,7 +128,7 @@ type AddChatFolderByInviteLink struct {
 	InviteLink string `json:"invite_link"`
 }
 
-func (t AddChatFolderByInviteLink) Type() string {
+func (t AddChatFolderByInviteLink) GetType() string {
 	return "addChatFolderByInviteLink"
 }
 
@@ -153,7 +153,7 @@ type AddChatMember struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t AddChatMember) Type() string {
+func (t AddChatMember) GetType() string {
 	return "addChatMember"
 }
 
@@ -176,7 +176,7 @@ type AddChatMembers struct {
 	UserIds []int64 `json:"user_ids"`
 }
 
-func (t AddChatMembers) Type() string {
+func (t AddChatMembers) GetType() string {
 	return "addChatMembers"
 }
 
@@ -199,7 +199,7 @@ type AddChatToList struct {
 	ChatList ChatList `json:"chat_list"`
 }
 
-func (t AddChatToList) Type() string {
+func (t AddChatToList) GetType() string {
 	return "addChatToList"
 }
 
@@ -224,7 +224,7 @@ type AddChecklistTasks struct {
 	Tasks []InputChecklistTask `json:"tasks"`
 }
 
-func (t AddChecklistTasks) Type() string {
+func (t AddChecklistTasks) GetType() string {
 	return "addChecklistTasks"
 }
 
@@ -249,7 +249,7 @@ type AddContact struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t AddContact) Type() string {
+func (t AddContact) GetType() string {
 	return "addContact"
 }
 
@@ -270,7 +270,7 @@ type AddCustomServerLanguagePack struct {
 	LanguagePackId string `json:"language_pack_id"`
 }
 
-func (t AddCustomServerLanguagePack) Type() string {
+func (t AddCustomServerLanguagePack) GetType() string {
 	return "addCustomServerLanguagePack"
 }
 
@@ -291,7 +291,7 @@ type AddFavoriteSticker struct {
 	Sticker InputFile `json:"sticker"`
 }
 
-func (t AddFavoriteSticker) Type() string {
+func (t AddFavoriteSticker) GetType() string {
 	return "addFavoriteSticker"
 }
 
@@ -318,7 +318,7 @@ type AddFileToDownloads struct {
 	Priority int32 `json:"priority"`
 }
 
-func (t AddFileToDownloads) Type() string {
+func (t AddFileToDownloads) GetType() string {
 	return "addFileToDownloads"
 }
 
@@ -343,7 +343,7 @@ type AddGiftCollectionGifts struct {
 	ReceivedGiftIds []string `json:"received_gift_ids"`
 }
 
-func (t AddGiftCollectionGifts) Type() string {
+func (t AddGiftCollectionGifts) GetType() string {
 	return "addGiftCollectionGifts"
 }
 
@@ -372,7 +372,7 @@ type AddLocalMessage struct {
 	SenderId MessageSender `json:"sender_id"`
 }
 
-func (t AddLocalMessage) Type() string {
+func (t AddLocalMessage) GetType() string {
 	return "addLocalMessage"
 }
 
@@ -395,7 +395,7 @@ type AddLoginPasskey struct {
 	ClientData string `json:"client_data"`
 }
 
-func (t AddLoginPasskey) Type() string {
+func (t AddLoginPasskey) GetType() string {
 	return "addLoginPasskey"
 }
 
@@ -418,7 +418,7 @@ type AddLogMessage struct {
 	VerbosityLevel int32 `json:"verbosity_level"`
 }
 
-func (t AddLogMessage) Type() string {
+func (t AddLogMessage) GetType() string {
 	return "addLogMessage"
 }
 
@@ -447,7 +447,7 @@ type AddMessageReaction struct {
 	UpdateRecentReactions bool `json:"update_recent_reactions"`
 }
 
-func (t AddMessageReaction) Type() string {
+func (t AddMessageReaction) GetType() string {
 	return "addMessageReaction"
 }
 
@@ -468,7 +468,7 @@ type AddNetworkStatistics struct {
 	Entry NetworkStatisticsEntry `json:"entry"`
 }
 
-func (t AddNetworkStatistics) Type() string {
+func (t AddNetworkStatistics) GetType() string {
 	return "addNetworkStatistics"
 }
 
@@ -493,7 +493,7 @@ type AddOffer struct {
 	Options *MessageSendOptions `json:"options"`
 }
 
-func (t AddOffer) Type() string {
+func (t AddOffer) GetType() string {
 	return "addOffer"
 }
 
@@ -516,7 +516,7 @@ type AddPendingLiveStoryReaction struct {
 	StarCount int64 `json:"star_count"`
 }
 
-func (t AddPendingLiveStoryReaction) Type() string {
+func (t AddPendingLiveStoryReaction) GetType() string {
 	return "addPendingLiveStoryReaction"
 }
 
@@ -540,10 +540,10 @@ type AddPendingPaidMessageReaction struct {
 	// Number of Telegram Stars to be used for the reaction. The total number of pending paid reactions must not exceed getOption("paid_reaction_star_count_max")
 	StarCount int64 `json:"star_count"`
 	// Type of the paid reaction; pass null if the user didn't choose reaction type explicitly, for example, the reaction is set from the message bubble
-	TypeField PaidReactionType `json:"type,omitempty"`
+	Type PaidReactionType `json:"type,omitempty"`
 }
 
-func (t AddPendingPaidMessageReaction) Type() string {
+func (t AddPendingPaidMessageReaction) GetType() string {
 	return "addPendingPaidMessageReaction"
 }
 
@@ -564,7 +564,7 @@ type AddProfileAudio struct {
 	FileId int32 `json:"file_id"`
 }
 
-func (t AddProfileAudio) Type() string {
+func (t AddProfileAudio) GetType() string {
 	return "addProfileAudio"
 }
 
@@ -587,7 +587,7 @@ type AddProxy struct {
 	Proxy *Proxy `json:"proxy"`
 }
 
-func (t AddProxy) Type() string {
+func (t AddProxy) GetType() string {
 	return "addProxy"
 }
 
@@ -616,7 +616,7 @@ type AddQuickReplyShortcutInlineQueryResultMessage struct {
 	ShortcutName string `json:"shortcut_name"`
 }
 
-func (t AddQuickReplyShortcutInlineQueryResultMessage) Type() string {
+func (t AddQuickReplyShortcutInlineQueryResultMessage) GetType() string {
 	return "addQuickReplyShortcutInlineQueryResultMessage"
 }
 
@@ -641,7 +641,7 @@ type AddQuickReplyShortcutMessage struct {
 	ShortcutName string `json:"shortcut_name"`
 }
 
-func (t AddQuickReplyShortcutMessage) Type() string {
+func (t AddQuickReplyShortcutMessage) GetType() string {
 	return "addQuickReplyShortcutMessage"
 }
 
@@ -666,7 +666,7 @@ type AddQuickReplyShortcutMessageAlbum struct {
 	ShortcutName string `json:"shortcut_name"`
 }
 
-func (t AddQuickReplyShortcutMessageAlbum) Type() string {
+func (t AddQuickReplyShortcutMessageAlbum) GetType() string {
 	return "addQuickReplyShortcutMessageAlbum"
 }
 
@@ -687,7 +687,7 @@ type AddRecentlyFoundChat struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t AddRecentlyFoundChat) Type() string {
+func (t AddRecentlyFoundChat) GetType() string {
 	return "addRecentlyFoundChat"
 }
 
@@ -710,7 +710,7 @@ type AddRecentSticker struct {
 	Sticker InputFile `json:"sticker"`
 }
 
-func (t AddRecentSticker) Type() string {
+func (t AddRecentSticker) GetType() string {
 	return "addRecentSticker"
 }
 
@@ -731,7 +731,7 @@ type AddSavedAnimation struct {
 	Animation InputFile `json:"animation"`
 }
 
-func (t AddSavedAnimation) Type() string {
+func (t AddSavedAnimation) GetType() string {
 	return "addSavedAnimation"
 }
 
@@ -752,7 +752,7 @@ type AddSavedNotificationSound struct {
 	Sound InputFile `json:"sound"`
 }
 
-func (t AddSavedNotificationSound) Type() string {
+func (t AddSavedNotificationSound) GetType() string {
 	return "addSavedNotificationSound"
 }
 
@@ -777,7 +777,7 @@ type AddStickerToSet struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t AddStickerToSet) Type() string {
+func (t AddStickerToSet) GetType() string {
 	return "addStickerToSet"
 }
 
@@ -802,7 +802,7 @@ type AddStoryAlbumStories struct {
 	StoryIds []int32 `json:"story_ids"`
 }
 
-func (t AddStoryAlbumStories) Type() string {
+func (t AddStoryAlbumStories) GetType() string {
 	return "addStoryAlbumStories"
 }
 
@@ -823,7 +823,7 @@ type AllowBotToSendMessages struct {
 	BotUserId int64 `json:"bot_user_id"`
 }
 
-func (t AllowBotToSendMessages) Type() string {
+func (t AllowBotToSendMessages) GetType() string {
 	return "allowBotToSendMessages"
 }
 
@@ -846,7 +846,7 @@ type AllowUnpaidMessagesFromUser struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t AllowUnpaidMessagesFromUser) Type() string {
+func (t AllowUnpaidMessagesFromUser) GetType() string {
 	return "allowUnpaidMessagesFromUser"
 }
 
@@ -875,7 +875,7 @@ type AnswerCallbackQuery struct {
 	Url string `json:"url"`
 }
 
-func (t AnswerCallbackQuery) Type() string {
+func (t AnswerCallbackQuery) GetType() string {
 	return "answerCallbackQuery"
 }
 
@@ -898,7 +898,7 @@ type AnswerCustomQuery struct {
 	Data string `json:"data"`
 }
 
-func (t AnswerCustomQuery) Type() string {
+func (t AnswerCustomQuery) GetType() string {
 	return "answerCustomQuery"
 }
 
@@ -929,7 +929,7 @@ type AnswerInlineQuery struct {
 	Results []InputInlineQueryResult `json:"results"`
 }
 
-func (t AnswerInlineQuery) Type() string {
+func (t AnswerInlineQuery) GetType() string {
 	return "answerInlineQuery"
 }
 
@@ -952,7 +952,7 @@ type AnswerPreCheckoutQuery struct {
 	PreCheckoutQueryId int64 `json:"pre_checkout_query_id,string"`
 }
 
-func (t AnswerPreCheckoutQuery) Type() string {
+func (t AnswerPreCheckoutQuery) GetType() string {
 	return "answerPreCheckoutQuery"
 }
 
@@ -977,7 +977,7 @@ type AnswerShippingQuery struct {
 	ShippingQueryId int64 `json:"shipping_query_id,string"`
 }
 
-func (t AnswerShippingQuery) Type() string {
+func (t AnswerShippingQuery) GetType() string {
 	return "answerShippingQuery"
 }
 
@@ -1000,7 +1000,7 @@ type AnswerWebAppQuery struct {
 	WebAppQueryId string `json:"web_app_query_id"`
 }
 
-func (t AnswerWebAppQuery) Type() string {
+func (t AnswerWebAppQuery) GetType() string {
 	return "answerWebAppQuery"
 }
 
@@ -1021,7 +1021,7 @@ type ApplyPremiumGiftCode struct {
 	Code string `json:"code"`
 }
 
-func (t ApplyPremiumGiftCode) Type() string {
+func (t ApplyPremiumGiftCode) GetType() string {
 	return "applyPremiumGiftCode"
 }
 
@@ -1046,7 +1046,7 @@ type ApproveSuggestedPost struct {
 	SendDate int32 `json:"send_date"`
 }
 
-func (t ApproveSuggestedPost) Type() string {
+func (t ApproveSuggestedPost) GetType() string {
 	return "approveSuggestedPost"
 }
 
@@ -1069,7 +1069,7 @@ type AssignStoreTransaction struct {
 	Transaction StoreTransaction `json:"transaction"`
 }
 
-func (t AssignStoreTransaction) Type() string {
+func (t AssignStoreTransaction) GetType() string {
 	return "assignStoreTransaction"
 }
 
@@ -1096,7 +1096,7 @@ type BanChatMember struct {
 	RevokeMessages bool `json:"revoke_messages"`
 }
 
-func (t BanChatMember) Type() string {
+func (t BanChatMember) GetType() string {
 	return "banChatMember"
 }
 
@@ -1119,7 +1119,7 @@ type BanGroupCallParticipants struct {
 	UserIds Int64Slice `json:"user_ids"`
 }
 
-func (t BanGroupCallParticipants) Type() string {
+func (t BanGroupCallParticipants) GetType() string {
 	return "banGroupCallParticipants"
 }
 
@@ -1146,7 +1146,7 @@ type BlockMessageSenderFromReplies struct {
 	ReportSpam bool `json:"report_spam"`
 }
 
-func (t BlockMessageSenderFromReplies) Type() string {
+func (t BlockMessageSenderFromReplies) GetType() string {
 	return "blockMessageSenderFromReplies"
 }
 
@@ -1169,7 +1169,7 @@ type BoostChat struct {
 	SlotIds []int32 `json:"slot_ids"`
 }
 
-func (t BoostChat) Type() string {
+func (t BoostChat) GetType() string {
 	return "boostChat"
 }
 
@@ -1194,7 +1194,7 @@ type BuyGiftUpgrade struct {
 	StarCount int64 `json:"star_count"`
 }
 
-func (t BuyGiftUpgrade) Type() string {
+func (t BuyGiftUpgrade) GetType() string {
 	return "buyGiftUpgrade"
 }
 
@@ -1215,7 +1215,7 @@ type CanBotSendMessages struct {
 	BotUserId int64 `json:"bot_user_id"`
 }
 
-func (t CanBotSendMessages) Type() string {
+func (t CanBotSendMessages) GetType() string {
 	return "canBotSendMessages"
 }
 
@@ -1238,7 +1238,7 @@ type CancelDownloadFile struct {
 	OnlyIfPending bool `json:"only_if_pending"`
 }
 
-func (t CancelDownloadFile) Type() string {
+func (t CancelDownloadFile) GetType() string {
 	return "cancelDownloadFile"
 }
 
@@ -1257,7 +1257,7 @@ func (t CancelDownloadFile) MarshalJSON() ([]byte, error) {
 type CancelPasswordReset struct {
 }
 
-func (t CancelPasswordReset) Type() string {
+func (t CancelPasswordReset) GetType() string {
 	return "cancelPasswordReset"
 }
 
@@ -1278,7 +1278,7 @@ type CancelPreliminaryUploadFile struct {
 	FileId int32 `json:"file_id"`
 }
 
-func (t CancelPreliminaryUploadFile) Type() string {
+func (t CancelPreliminaryUploadFile) GetType() string {
 	return "cancelPreliminaryUploadFile"
 }
 
@@ -1297,7 +1297,7 @@ func (t CancelPreliminaryUploadFile) MarshalJSON() ([]byte, error) {
 type CancelRecoveryEmailAddressVerification struct {
 }
 
-func (t CancelRecoveryEmailAddressVerification) Type() string {
+func (t CancelRecoveryEmailAddressVerification) GetType() string {
 	return "cancelRecoveryEmailAddressVerification"
 }
 
@@ -1318,7 +1318,7 @@ type CanPostStory struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t CanPostStory) Type() string {
+func (t CanPostStory) GetType() string {
 	return "canPostStory"
 }
 
@@ -1339,7 +1339,7 @@ type CanPurchaseFromStore struct {
 	Purpose StorePaymentPurpose `json:"purpose"`
 }
 
-func (t CanPurchaseFromStore) Type() string {
+func (t CanPurchaseFromStore) GetType() string {
 	return "canPurchaseFromStore"
 }
 
@@ -1360,7 +1360,7 @@ type CanSendGift struct {
 	GiftId int64 `json:"gift_id,string"`
 }
 
-func (t CanSendGift) Type() string {
+func (t CanSendGift) GetType() string {
 	return "canSendGift"
 }
 
@@ -1383,7 +1383,7 @@ type CanSendMessageToUser struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t CanSendMessageToUser) Type() string {
+func (t CanSendMessageToUser) GetType() string {
 	return "canSendMessageToUser"
 }
 
@@ -1402,7 +1402,7 @@ func (t CanSendMessageToUser) MarshalJSON() ([]byte, error) {
 type CanTransferOwnership struct {
 }
 
-func (t CanTransferOwnership) Type() string {
+func (t CanTransferOwnership) GetType() string {
 	return "canTransferOwnership"
 }
 
@@ -1423,7 +1423,7 @@ type ChangeImportedContacts struct {
 	Contacts []ImportedContact `json:"contacts"`
 }
 
-func (t ChangeImportedContacts) Type() string {
+func (t ChangeImportedContacts) GetType() string {
 	return "changeImportedContacts"
 }
 
@@ -1448,7 +1448,7 @@ type ChangeStickerSet struct {
 	SetId int64 `json:"set_id,string"`
 }
 
-func (t ChangeStickerSet) Type() string {
+func (t ChangeStickerSet) GetType() string {
 	return "changeStickerSet"
 }
 
@@ -1469,7 +1469,7 @@ type CheckAuthenticationBotToken struct {
 	Token string `json:"token"`
 }
 
-func (t CheckAuthenticationBotToken) Type() string {
+func (t CheckAuthenticationBotToken) GetType() string {
 	return "checkAuthenticationBotToken"
 }
 
@@ -1490,7 +1490,7 @@ type CheckAuthenticationCode struct {
 	Code string `json:"code"`
 }
 
-func (t CheckAuthenticationCode) Type() string {
+func (t CheckAuthenticationCode) GetType() string {
 	return "checkAuthenticationCode"
 }
 
@@ -1511,7 +1511,7 @@ type CheckAuthenticationEmailCode struct {
 	Code EmailAddressAuthentication `json:"code"`
 }
 
-func (t CheckAuthenticationEmailCode) Type() string {
+func (t CheckAuthenticationEmailCode) GetType() string {
 	return "checkAuthenticationEmailCode"
 }
 
@@ -1540,7 +1540,7 @@ type CheckAuthenticationPasskey struct {
 	UserHandle []byte `json:"user_handle"`
 }
 
-func (t CheckAuthenticationPasskey) Type() string {
+func (t CheckAuthenticationPasskey) GetType() string {
 	return "checkAuthenticationPasskey"
 }
 
@@ -1561,7 +1561,7 @@ type CheckAuthenticationPassword struct {
 	Password string `json:"password"`
 }
 
-func (t CheckAuthenticationPassword) Type() string {
+func (t CheckAuthenticationPassword) GetType() string {
 	return "checkAuthenticationPassword"
 }
 
@@ -1582,7 +1582,7 @@ type CheckAuthenticationPasswordRecoveryCode struct {
 	RecoveryCode string `json:"recovery_code"`
 }
 
-func (t CheckAuthenticationPasswordRecoveryCode) Type() string {
+func (t CheckAuthenticationPasswordRecoveryCode) GetType() string {
 	return "checkAuthenticationPasswordRecoveryCode"
 }
 
@@ -1605,7 +1605,7 @@ type CheckAuthenticationPremiumPurchase struct {
 	Currency string `json:"currency"`
 }
 
-func (t CheckAuthenticationPremiumPurchase) Type() string {
+func (t CheckAuthenticationPremiumPurchase) GetType() string {
 	return "checkAuthenticationPremiumPurchase"
 }
 
@@ -1626,7 +1626,7 @@ type CheckChatFolderInviteLink struct {
 	InviteLink string `json:"invite_link"`
 }
 
-func (t CheckChatFolderInviteLink) Type() string {
+func (t CheckChatFolderInviteLink) GetType() string {
 	return "checkChatFolderInviteLink"
 }
 
@@ -1647,7 +1647,7 @@ type CheckChatInviteLink struct {
 	InviteLink string `json:"invite_link"`
 }
 
-func (t CheckChatInviteLink) Type() string {
+func (t CheckChatInviteLink) GetType() string {
 	return "checkChatInviteLink"
 }
 
@@ -1670,7 +1670,7 @@ type CheckChatUsername struct {
 	Username string `json:"username"`
 }
 
-func (t CheckChatUsername) Type() string {
+func (t CheckChatUsername) GetType() string {
 	return "checkChatUsername"
 }
 
@@ -1688,10 +1688,10 @@ func (t CheckChatUsername) MarshalJSON() ([]byte, error) {
 // CheckCreatedPublicChatsLimit Checks whether the maximum number of owned public chats has been reached. Returns corresponding error if the limit was reached. The limit can be increased with Telegram Premium
 type CheckCreatedPublicChatsLimit struct {
 	// Type of the public chats, for which to check the limit
-	TypeField PublicChatType `json:"type"`
+	Type PublicChatType `json:"type"`
 }
 
-func (t CheckCreatedPublicChatsLimit) Type() string {
+func (t CheckCreatedPublicChatsLimit) GetType() string {
 	return "checkCreatedPublicChatsLimit"
 }
 
@@ -1712,7 +1712,7 @@ type CheckEmailAddressVerificationCode struct {
 	Code string `json:"code"`
 }
 
-func (t CheckEmailAddressVerificationCode) Type() string {
+func (t CheckEmailAddressVerificationCode) GetType() string {
 	return "checkEmailAddressVerificationCode"
 }
 
@@ -1733,7 +1733,7 @@ type CheckLoginEmailAddressCode struct {
 	Code EmailAddressAuthentication `json:"code"`
 }
 
-func (t CheckLoginEmailAddressCode) Type() string {
+func (t CheckLoginEmailAddressCode) GetType() string {
 	return "checkLoginEmailAddressCode"
 }
 
@@ -1756,7 +1756,7 @@ type CheckOauthRequestMatchCode struct {
 	Url string `json:"url"`
 }
 
-func (t CheckOauthRequestMatchCode) Type() string {
+func (t CheckOauthRequestMatchCode) GetType() string {
 	return "checkOauthRequestMatchCode"
 }
 
@@ -1777,7 +1777,7 @@ type CheckPasswordRecoveryCode struct {
 	RecoveryCode string `json:"recovery_code"`
 }
 
-func (t CheckPasswordRecoveryCode) Type() string {
+func (t CheckPasswordRecoveryCode) GetType() string {
 	return "checkPasswordRecoveryCode"
 }
 
@@ -1798,7 +1798,7 @@ type CheckPhoneNumberCode struct {
 	Code string `json:"code"`
 }
 
-func (t CheckPhoneNumberCode) Type() string {
+func (t CheckPhoneNumberCode) GetType() string {
 	return "checkPhoneNumberCode"
 }
 
@@ -1819,7 +1819,7 @@ type CheckPremiumGiftCode struct {
 	Code string `json:"code"`
 }
 
-func (t CheckPremiumGiftCode) Type() string {
+func (t CheckPremiumGiftCode) GetType() string {
 	return "checkPremiumGiftCode"
 }
 
@@ -1840,7 +1840,7 @@ type CheckQuickReplyShortcutName struct {
 	Name string `json:"name"`
 }
 
-func (t CheckQuickReplyShortcutName) Type() string {
+func (t CheckQuickReplyShortcutName) GetType() string {
 	return "checkQuickReplyShortcutName"
 }
 
@@ -1861,7 +1861,7 @@ type CheckRecoveryEmailAddressCode struct {
 	Code string `json:"code"`
 }
 
-func (t CheckRecoveryEmailAddressCode) Type() string {
+func (t CheckRecoveryEmailAddressCode) GetType() string {
 	return "checkRecoveryEmailAddressCode"
 }
 
@@ -1882,7 +1882,7 @@ type CheckStickerSetName struct {
 	Name string `json:"name"`
 }
 
-func (t CheckStickerSetName) Type() string {
+func (t CheckStickerSetName) GetType() string {
 	return "checkStickerSetName"
 }
 
@@ -1907,7 +1907,7 @@ type CheckWebAppFileDownload struct {
 	Url string `json:"url"`
 }
 
-func (t CheckWebAppFileDownload) Type() string {
+func (t CheckWebAppFileDownload) GetType() string {
 	return "checkWebAppFileDownload"
 }
 
@@ -1928,7 +1928,7 @@ type CleanFileName struct {
 	FileName string `json:"file_name"`
 }
 
-func (t CleanFileName) Type() string {
+func (t CleanFileName) GetType() string {
 	return "cleanFileName"
 }
 
@@ -1949,7 +1949,7 @@ type ClearAllDraftMessages struct {
 	ExcludeSecretChats bool `json:"exclude_secret_chats"`
 }
 
-func (t ClearAllDraftMessages) Type() string {
+func (t ClearAllDraftMessages) GetType() string {
 	return "clearAllDraftMessages"
 }
 
@@ -1968,7 +1968,7 @@ func (t ClearAllDraftMessages) MarshalJSON() ([]byte, error) {
 type ClearAutosaveSettingsExceptions struct {
 }
 
-func (t ClearAutosaveSettingsExceptions) Type() string {
+func (t ClearAutosaveSettingsExceptions) GetType() string {
 	return "clearAutosaveSettingsExceptions"
 }
 
@@ -1987,7 +1987,7 @@ func (t ClearAutosaveSettingsExceptions) MarshalJSON() ([]byte, error) {
 type ClearImportedContacts struct {
 }
 
-func (t ClearImportedContacts) Type() string {
+func (t ClearImportedContacts) GetType() string {
 	return "clearImportedContacts"
 }
 
@@ -2006,7 +2006,7 @@ func (t ClearImportedContacts) MarshalJSON() ([]byte, error) {
 type ClearRecentEmojiStatuses struct {
 }
 
-func (t ClearRecentEmojiStatuses) Type() string {
+func (t ClearRecentEmojiStatuses) GetType() string {
 	return "clearRecentEmojiStatuses"
 }
 
@@ -2025,7 +2025,7 @@ func (t ClearRecentEmojiStatuses) MarshalJSON() ([]byte, error) {
 type ClearRecentlyFoundChats struct {
 }
 
-func (t ClearRecentlyFoundChats) Type() string {
+func (t ClearRecentlyFoundChats) GetType() string {
 	return "clearRecentlyFoundChats"
 }
 
@@ -2044,7 +2044,7 @@ func (t ClearRecentlyFoundChats) MarshalJSON() ([]byte, error) {
 type ClearRecentReactions struct {
 }
 
-func (t ClearRecentReactions) Type() string {
+func (t ClearRecentReactions) GetType() string {
 	return "clearRecentReactions"
 }
 
@@ -2065,7 +2065,7 @@ type ClearRecentStickers struct {
 	IsAttached bool `json:"is_attached"`
 }
 
-func (t ClearRecentStickers) Type() string {
+func (t ClearRecentStickers) GetType() string {
 	return "clearRecentStickers"
 }
 
@@ -2086,7 +2086,7 @@ type ClearSearchedForTags struct {
 	ClearCashtags bool `json:"clear_cashtags"`
 }
 
-func (t ClearSearchedForTags) Type() string {
+func (t ClearSearchedForTags) GetType() string {
 	return "clearSearchedForTags"
 }
 
@@ -2109,7 +2109,7 @@ type ClickAnimatedEmojiMessage struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t ClickAnimatedEmojiMessage) Type() string {
+func (t ClickAnimatedEmojiMessage) GetType() string {
 	return "clickAnimatedEmojiMessage"
 }
 
@@ -2136,7 +2136,7 @@ type ClickChatSponsoredMessage struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t ClickChatSponsoredMessage) Type() string {
+func (t ClickChatSponsoredMessage) GetType() string {
 	return "clickChatSponsoredMessage"
 }
 
@@ -2155,7 +2155,7 @@ func (t ClickChatSponsoredMessage) MarshalJSON() ([]byte, error) {
 type ClickPremiumSubscriptionButton struct {
 }
 
-func (t ClickPremiumSubscriptionButton) Type() string {
+func (t ClickPremiumSubscriptionButton) GetType() string {
 	return "clickPremiumSubscriptionButton"
 }
 
@@ -2176,7 +2176,7 @@ type ClickVideoMessageAdvertisement struct {
 	AdvertisementUniqueId int64 `json:"advertisement_unique_id"`
 }
 
-func (t ClickVideoMessageAdvertisement) Type() string {
+func (t ClickVideoMessageAdvertisement) GetType() string {
 	return "clickVideoMessageAdvertisement"
 }
 
@@ -2195,7 +2195,7 @@ func (t ClickVideoMessageAdvertisement) MarshalJSON() ([]byte, error) {
 type Close struct {
 }
 
-func (t Close) Type() string {
+func (t Close) GetType() string {
 	return "close"
 }
 
@@ -2216,7 +2216,7 @@ type CloseChat struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t CloseChat) Type() string {
+func (t CloseChat) GetType() string {
 	return "closeChat"
 }
 
@@ -2237,7 +2237,7 @@ type CloseGiftAuction struct {
 	GiftId int64 `json:"gift_id,string"`
 }
 
-func (t CloseGiftAuction) Type() string {
+func (t CloseGiftAuction) GetType() string {
 	return "closeGiftAuction"
 }
 
@@ -2258,7 +2258,7 @@ type CloseSecretChat struct {
 	SecretChatId int32 `json:"secret_chat_id"`
 }
 
-func (t CloseSecretChat) Type() string {
+func (t CloseSecretChat) GetType() string {
 	return "closeSecretChat"
 }
 
@@ -2281,7 +2281,7 @@ type CloseStory struct {
 	StoryPosterChatId int64 `json:"story_poster_chat_id"`
 }
 
-func (t CloseStory) Type() string {
+func (t CloseStory) GetType() string {
 	return "closeStory"
 }
 
@@ -2302,7 +2302,7 @@ type CloseWebApp struct {
 	WebAppLaunchId int64 `json:"web_app_launch_id,string"`
 }
 
-func (t CloseWebApp) Type() string {
+func (t CloseWebApp) GetType() string {
 	return "closeWebApp"
 }
 
@@ -2323,7 +2323,7 @@ type CommitPendingLiveStoryReactions struct {
 	GroupCallId int32 `json:"group_call_id"`
 }
 
-func (t CommitPendingLiveStoryReactions) Type() string {
+func (t CommitPendingLiveStoryReactions) GetType() string {
 	return "commitPendingLiveStoryReactions"
 }
 
@@ -2346,7 +2346,7 @@ type CommitPendingPaidMessageReactions struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t CommitPendingPaidMessageReactions) Type() string {
+func (t CommitPendingPaidMessageReactions) GetType() string {
 	return "commitPendingPaidMessageReactions"
 }
 
@@ -2367,7 +2367,7 @@ type ConfirmQrCodeAuthentication struct {
 	Link string `json:"link"`
 }
 
-func (t ConfirmQrCodeAuthentication) Type() string {
+func (t ConfirmQrCodeAuthentication) GetType() string {
 	return "confirmQrCodeAuthentication"
 }
 
@@ -2388,7 +2388,7 @@ type ConfirmSession struct {
 	SessionId int64 `json:"session_id,string"`
 }
 
-func (t ConfirmSession) Type() string {
+func (t ConfirmSession) GetType() string {
 	return "confirmSession"
 }
 
@@ -2411,7 +2411,7 @@ type ConnectAffiliateProgram struct {
 	BotUserId int64 `json:"bot_user_id"`
 }
 
-func (t ConnectAffiliateProgram) Type() string {
+func (t ConnectAffiliateProgram) GetType() string {
 	return "connectAffiliateProgram"
 }
 
@@ -2432,7 +2432,7 @@ type CraftGift struct {
 	ReceivedGiftIds []string `json:"received_gift_ids"`
 }
 
-func (t CraftGift) Type() string {
+func (t CraftGift) GetType() string {
 	return "craftGift"
 }
 
@@ -2455,7 +2455,7 @@ type CreateBasicGroupChat struct {
 	Force bool `json:"force"`
 }
 
-func (t CreateBasicGroupChat) Type() string {
+func (t CreateBasicGroupChat) GetType() string {
 	return "createBasicGroupChat"
 }
 
@@ -2476,7 +2476,7 @@ type CreateBusinessChatLink struct {
 	LinkInfo *InputBusinessChatLink `json:"link_info"`
 }
 
-func (t CreateBusinessChatLink) Type() string {
+func (t CreateBusinessChatLink) GetType() string {
 	return "createBusinessChatLink"
 }
 
@@ -2501,7 +2501,7 @@ type CreateCall struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t CreateCall) Type() string {
+func (t CreateCall) GetType() string {
 	return "createCall"
 }
 
@@ -2522,7 +2522,7 @@ type CreateChatFolder struct {
 	Folder *ChatFolder `json:"folder"`
 }
 
-func (t CreateChatFolder) Type() string {
+func (t CreateChatFolder) GetType() string {
 	return "createChatFolder"
 }
 
@@ -2547,7 +2547,7 @@ type CreateChatFolderInviteLink struct {
 	Name string `json:"name"`
 }
 
-func (t CreateChatFolderInviteLink) Type() string {
+func (t CreateChatFolderInviteLink) GetType() string {
 	return "createChatFolderInviteLink"
 }
 
@@ -2576,7 +2576,7 @@ type CreateChatInviteLink struct {
 	Name string `json:"name"`
 }
 
-func (t CreateChatInviteLink) Type() string {
+func (t CreateChatInviteLink) GetType() string {
 	return "createChatInviteLink"
 }
 
@@ -2601,7 +2601,7 @@ type CreateChatSubscriptionInviteLink struct {
 	SubscriptionPricing *StarSubscriptionPricing `json:"subscription_pricing"`
 }
 
-func (t CreateChatSubscriptionInviteLink) Type() string {
+func (t CreateChatSubscriptionInviteLink) GetType() string {
 	return "createChatSubscriptionInviteLink"
 }
 
@@ -2628,7 +2628,7 @@ type CreateForumTopic struct {
 	Name string `json:"name"`
 }
 
-func (t CreateForumTopic) Type() string {
+func (t CreateForumTopic) GetType() string {
 	return "createForumTopic"
 }
 
@@ -2653,7 +2653,7 @@ type CreateGiftCollection struct {
 	ReceivedGiftIds []string `json:"received_gift_ids"`
 }
 
-func (t CreateGiftCollection) Type() string {
+func (t CreateGiftCollection) GetType() string {
 	return "createGiftCollection"
 }
 
@@ -2674,7 +2674,7 @@ type CreateGroupCall struct {
 	JoinParameters *GroupCallJoinParameters `json:"join_parameters,omitempty"`
 }
 
-func (t CreateGroupCall) Type() string {
+func (t CreateGroupCall) GetType() string {
 	return "createGroupCall"
 }
 
@@ -2697,7 +2697,7 @@ type CreateInvoiceLink struct {
 	Invoice InputMessageContent `json:"invoice"`
 }
 
-func (t CreateInvoiceLink) Type() string {
+func (t CreateInvoiceLink) GetType() string {
 	return "createInvoiceLink"
 }
 
@@ -2722,7 +2722,7 @@ type CreateNewBasicGroupChat struct {
 	UserIds []int64 `json:"user_ids,omitempty"`
 }
 
-func (t CreateNewBasicGroupChat) Type() string {
+func (t CreateNewBasicGroupChat) GetType() string {
 	return "createNewBasicGroupChat"
 }
 
@@ -2743,7 +2743,7 @@ type CreateNewSecretChat struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t CreateNewSecretChat) Type() string {
+func (t CreateNewSecretChat) GetType() string {
 	return "createNewSecretChat"
 }
 
@@ -2776,7 +2776,7 @@ type CreateNewStickerSet struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t CreateNewStickerSet) Type() string {
+func (t CreateNewStickerSet) GetType() string {
 	return "createNewStickerSet"
 }
 
@@ -2809,7 +2809,7 @@ type CreateNewSupergroupChat struct {
 	Title string `json:"title"`
 }
 
-func (t CreateNewSupergroupChat) Type() string {
+func (t CreateNewSupergroupChat) GetType() string {
 	return "createNewSupergroupChat"
 }
 
@@ -2832,7 +2832,7 @@ type CreatePrivateChat struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t CreatePrivateChat) Type() string {
+func (t CreatePrivateChat) GetType() string {
 	return "createPrivateChat"
 }
 
@@ -2853,7 +2853,7 @@ type CreateSecretChat struct {
 	SecretChatId int32 `json:"secret_chat_id"`
 }
 
-func (t CreateSecretChat) Type() string {
+func (t CreateSecretChat) GetType() string {
 	return "createSecretChat"
 }
 
@@ -2878,7 +2878,7 @@ type CreateStoryAlbum struct {
 	StoryPosterChatId int64 `json:"story_poster_chat_id"`
 }
 
-func (t CreateStoryAlbum) Type() string {
+func (t CreateStoryAlbum) GetType() string {
 	return "createStoryAlbum"
 }
 
@@ -2901,7 +2901,7 @@ type CreateSupergroupChat struct {
 	SupergroupId int64 `json:"supergroup_id"`
 }
 
-func (t CreateSupergroupChat) Type() string {
+func (t CreateSupergroupChat) GetType() string {
 	return "createSupergroupChat"
 }
 
@@ -2924,7 +2924,7 @@ type CreateTemporaryPassword struct {
 	ValidFor int32 `json:"valid_for"`
 }
 
-func (t CreateTemporaryPassword) Type() string {
+func (t CreateTemporaryPassword) GetType() string {
 	return "createTemporaryPassword"
 }
 
@@ -2951,7 +2951,7 @@ type CreateVideoChat struct {
 	Title string `json:"title"`
 }
 
-func (t CreateVideoChat) Type() string {
+func (t CreateVideoChat) GetType() string {
 	return "createVideoChat"
 }
 
@@ -2974,7 +2974,7 @@ type DeclineGroupCallInvitation struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t DeclineGroupCallInvitation) Type() string {
+func (t DeclineGroupCallInvitation) GetType() string {
 	return "declineGroupCallInvitation"
 }
 
@@ -2995,7 +2995,7 @@ type DeclineOauthRequest struct {
 	Url string `json:"url"`
 }
 
-func (t DeclineOauthRequest) Type() string {
+func (t DeclineOauthRequest) GetType() string {
 	return "declineOauthRequest"
 }
 
@@ -3020,7 +3020,7 @@ type DeclineSuggestedPost struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t DeclineSuggestedPost) Type() string {
+func (t DeclineSuggestedPost) GetType() string {
 	return "declineSuggestedPost"
 }
 
@@ -3047,7 +3047,7 @@ type DecryptGroupCallData struct {
 	ParticipantId MessageSender `json:"participant_id"`
 }
 
-func (t DecryptGroupCallData) Type() string {
+func (t DecryptGroupCallData) GetType() string {
 	return "decryptGroupCallData"
 }
 
@@ -3070,7 +3070,7 @@ type DeleteAccount struct {
 	Reason string `json:"reason"`
 }
 
-func (t DeleteAccount) Type() string {
+func (t DeleteAccount) GetType() string {
 	return "deleteAccount"
 }
 
@@ -3091,7 +3091,7 @@ type DeleteAllCallMessages struct {
 	Revoke bool `json:"revoke"`
 }
 
-func (t DeleteAllCallMessages) Type() string {
+func (t DeleteAllCallMessages) GetType() string {
 	return "deleteAllCallMessages"
 }
 
@@ -3114,7 +3114,7 @@ type DeleteAllRevokedChatInviteLinks struct {
 	CreatorUserId int64 `json:"creator_user_id"`
 }
 
-func (t DeleteAllRevokedChatInviteLinks) Type() string {
+func (t DeleteAllRevokedChatInviteLinks) GetType() string {
 	return "deleteAllRevokedChatInviteLinks"
 }
 
@@ -3139,7 +3139,7 @@ type DeleteBotMediaPreviews struct {
 	LanguageCode string `json:"language_code"`
 }
 
-func (t DeleteBotMediaPreviews) Type() string {
+func (t DeleteBotMediaPreviews) GetType() string {
 	return "deleteBotMediaPreviews"
 }
 
@@ -3160,7 +3160,7 @@ type DeleteBusinessChatLink struct {
 	Link string `json:"link"`
 }
 
-func (t DeleteBusinessChatLink) Type() string {
+func (t DeleteBusinessChatLink) GetType() string {
 	return "deleteBusinessChatLink"
 }
 
@@ -3181,7 +3181,7 @@ type DeleteBusinessConnectedBot struct {
 	BotUserId int64 `json:"bot_user_id"`
 }
 
-func (t DeleteBusinessConnectedBot) Type() string {
+func (t DeleteBusinessConnectedBot) GetType() string {
 	return "deleteBusinessConnectedBot"
 }
 
@@ -3204,7 +3204,7 @@ type DeleteBusinessMessages struct {
 	MessageIds []int64 `json:"message_ids"`
 }
 
-func (t DeleteBusinessMessages) Type() string {
+func (t DeleteBusinessMessages) GetType() string {
 	return "deleteBusinessMessages"
 }
 
@@ -3227,7 +3227,7 @@ type DeleteBusinessStory struct {
 	StoryId int32 `json:"story_id"`
 }
 
-func (t DeleteBusinessStory) Type() string {
+func (t DeleteBusinessStory) GetType() string {
 	return "deleteBusinessStory"
 }
 
@@ -3248,7 +3248,7 @@ type DeleteChat struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t DeleteChat) Type() string {
+func (t DeleteChat) GetType() string {
 	return "deleteChat"
 }
 
@@ -3271,7 +3271,7 @@ type DeleteChatBackground struct {
 	RestorePrevious bool `json:"restore_previous"`
 }
 
-func (t DeleteChatBackground) Type() string {
+func (t DeleteChatBackground) GetType() string {
 	return "deleteChatBackground"
 }
 
@@ -3294,7 +3294,7 @@ type DeleteChatFolder struct {
 	LeaveChatIds []int64 `json:"leave_chat_ids"`
 }
 
-func (t DeleteChatFolder) Type() string {
+func (t DeleteChatFolder) GetType() string {
 	return "deleteChatFolder"
 }
 
@@ -3317,7 +3317,7 @@ type DeleteChatFolderInviteLink struct {
 	InviteLink string `json:"invite_link"`
 }
 
-func (t DeleteChatFolderInviteLink) Type() string {
+func (t DeleteChatFolderInviteLink) GetType() string {
 	return "deleteChatFolderInviteLink"
 }
 
@@ -3342,7 +3342,7 @@ type DeleteChatHistory struct {
 	Revoke bool `json:"revoke"`
 }
 
-func (t DeleteChatHistory) Type() string {
+func (t DeleteChatHistory) GetType() string {
 	return "deleteChatHistory"
 }
 
@@ -3369,7 +3369,7 @@ type DeleteChatMessagesByDate struct {
 	Revoke bool `json:"revoke"`
 }
 
-func (t DeleteChatMessagesByDate) Type() string {
+func (t DeleteChatMessagesByDate) GetType() string {
 	return "deleteChatMessagesByDate"
 }
 
@@ -3392,7 +3392,7 @@ type DeleteChatMessagesBySender struct {
 	SenderId MessageSender `json:"sender_id"`
 }
 
-func (t DeleteChatMessagesBySender) Type() string {
+func (t DeleteChatMessagesBySender) GetType() string {
 	return "deleteChatMessagesBySender"
 }
 
@@ -3415,7 +3415,7 @@ type DeleteChatReplyMarkup struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t DeleteChatReplyMarkup) Type() string {
+func (t DeleteChatReplyMarkup) GetType() string {
 	return "deleteChatReplyMarkup"
 }
 
@@ -3438,7 +3438,7 @@ type DeleteCommands struct {
 	Scope BotCommandScope `json:"scope,omitempty"`
 }
 
-func (t DeleteCommands) Type() string {
+func (t DeleteCommands) GetType() string {
 	return "deleteCommands"
 }
 
@@ -3459,7 +3459,7 @@ type DeleteDefaultBackground struct {
 	ForDarkTheme bool `json:"for_dark_theme"`
 }
 
-func (t DeleteDefaultBackground) Type() string {
+func (t DeleteDefaultBackground) GetType() string {
 	return "deleteDefaultBackground"
 }
 
@@ -3482,7 +3482,7 @@ type DeleteDirectMessagesChatTopicHistory struct {
 	TopicId int64 `json:"topic_id"`
 }
 
-func (t DeleteDirectMessagesChatTopicHistory) Type() string {
+func (t DeleteDirectMessagesChatTopicHistory) GetType() string {
 	return "deleteDirectMessagesChatTopicHistory"
 }
 
@@ -3509,7 +3509,7 @@ type DeleteDirectMessagesChatTopicMessagesByDate struct {
 	TopicId int64 `json:"topic_id"`
 }
 
-func (t DeleteDirectMessagesChatTopicMessagesByDate) Type() string {
+func (t DeleteDirectMessagesChatTopicMessagesByDate) GetType() string {
 	return "deleteDirectMessagesChatTopicMessagesByDate"
 }
 
@@ -3530,7 +3530,7 @@ type DeleteFile struct {
 	FileId int32 `json:"file_id"`
 }
 
-func (t DeleteFile) Type() string {
+func (t DeleteFile) GetType() string {
 	return "deleteFile"
 }
 
@@ -3553,7 +3553,7 @@ type DeleteForumTopic struct {
 	ForumTopicId int32 `json:"forum_topic_id"`
 }
 
-func (t DeleteForumTopic) Type() string {
+func (t DeleteForumTopic) GetType() string {
 	return "deleteForumTopic"
 }
 
@@ -3576,7 +3576,7 @@ type DeleteGiftCollection struct {
 	OwnerId MessageSender `json:"owner_id"`
 }
 
-func (t DeleteGiftCollection) Type() string {
+func (t DeleteGiftCollection) GetType() string {
 	return "deleteGiftCollection"
 }
 
@@ -3601,7 +3601,7 @@ type DeleteGroupCallMessages struct {
 	ReportSpam bool `json:"report_spam"`
 }
 
-func (t DeleteGroupCallMessages) Type() string {
+func (t DeleteGroupCallMessages) GetType() string {
 	return "deleteGroupCallMessages"
 }
 
@@ -3626,7 +3626,7 @@ type DeleteGroupCallMessagesBySender struct {
 	SenderId MessageSender `json:"sender_id"`
 }
 
-func (t DeleteGroupCallMessagesBySender) Type() string {
+func (t DeleteGroupCallMessagesBySender) GetType() string {
 	return "deleteGroupCallMessagesBySender"
 }
 
@@ -3647,7 +3647,7 @@ type DeleteLanguagePack struct {
 	LanguagePackId string `json:"language_pack_id"`
 }
 
-func (t DeleteLanguagePack) Type() string {
+func (t DeleteLanguagePack) GetType() string {
 	return "deleteLanguagePack"
 }
 
@@ -3672,7 +3672,7 @@ type DeleteMessages struct {
 	Revoke bool `json:"revoke"`
 }
 
-func (t DeleteMessages) Type() string {
+func (t DeleteMessages) GetType() string {
 	return "deleteMessages"
 }
 
@@ -3690,10 +3690,10 @@ func (t DeleteMessages) MarshalJSON() ([]byte, error) {
 // DeletePassportElement Deletes a Telegram Passport element
 type DeletePassportElement struct {
 	// Element type
-	TypeField PassportElementType `json:"type"`
+	Type PassportElementType `json:"type"`
 }
 
-func (t DeletePassportElement) Type() string {
+func (t DeletePassportElement) GetType() string {
 	return "deletePassportElement"
 }
 
@@ -3714,7 +3714,7 @@ type DeleteProfilePhoto struct {
 	ProfilePhotoId int64 `json:"profile_photo_id,string"`
 }
 
-func (t DeleteProfilePhoto) Type() string {
+func (t DeleteProfilePhoto) GetType() string {
 	return "deleteProfilePhoto"
 }
 
@@ -3735,7 +3735,7 @@ type DeleteQuickReplyShortcut struct {
 	ShortcutId int32 `json:"shortcut_id"`
 }
 
-func (t DeleteQuickReplyShortcut) Type() string {
+func (t DeleteQuickReplyShortcut) GetType() string {
 	return "deleteQuickReplyShortcut"
 }
 
@@ -3758,7 +3758,7 @@ type DeleteQuickReplyShortcutMessages struct {
 	ShortcutId int32 `json:"shortcut_id"`
 }
 
-func (t DeleteQuickReplyShortcutMessages) Type() string {
+func (t DeleteQuickReplyShortcutMessages) GetType() string {
 	return "deleteQuickReplyShortcutMessages"
 }
 
@@ -3781,7 +3781,7 @@ type DeleteRevokedChatInviteLink struct {
 	InviteLink string `json:"invite_link"`
 }
 
-func (t DeleteRevokedChatInviteLink) Type() string {
+func (t DeleteRevokedChatInviteLink) GetType() string {
 	return "deleteRevokedChatInviteLink"
 }
 
@@ -3800,7 +3800,7 @@ func (t DeleteRevokedChatInviteLink) MarshalJSON() ([]byte, error) {
 type DeleteSavedCredentials struct {
 }
 
-func (t DeleteSavedCredentials) Type() string {
+func (t DeleteSavedCredentials) GetType() string {
 	return "deleteSavedCredentials"
 }
 
@@ -3821,7 +3821,7 @@ type DeleteSavedMessagesTopicHistory struct {
 	SavedMessagesTopicId int64 `json:"saved_messages_topic_id"`
 }
 
-func (t DeleteSavedMessagesTopicHistory) Type() string {
+func (t DeleteSavedMessagesTopicHistory) GetType() string {
 	return "deleteSavedMessagesTopicHistory"
 }
 
@@ -3846,7 +3846,7 @@ type DeleteSavedMessagesTopicMessagesByDate struct {
 	SavedMessagesTopicId int64 `json:"saved_messages_topic_id"`
 }
 
-func (t DeleteSavedMessagesTopicMessagesByDate) Type() string {
+func (t DeleteSavedMessagesTopicMessagesByDate) GetType() string {
 	return "deleteSavedMessagesTopicMessagesByDate"
 }
 
@@ -3865,7 +3865,7 @@ func (t DeleteSavedMessagesTopicMessagesByDate) MarshalJSON() ([]byte, error) {
 type DeleteSavedOrderInfo struct {
 }
 
-func (t DeleteSavedOrderInfo) Type() string {
+func (t DeleteSavedOrderInfo) GetType() string {
 	return "deleteSavedOrderInfo"
 }
 
@@ -3886,7 +3886,7 @@ type DeleteStickerSet struct {
 	Name string `json:"name"`
 }
 
-func (t DeleteStickerSet) Type() string {
+func (t DeleteStickerSet) GetType() string {
 	return "deleteStickerSet"
 }
 
@@ -3909,7 +3909,7 @@ type DeleteStory struct {
 	StoryPosterChatId int64 `json:"story_poster_chat_id"`
 }
 
-func (t DeleteStory) Type() string {
+func (t DeleteStory) GetType() string {
 	return "deleteStory"
 }
 
@@ -3932,7 +3932,7 @@ type DeleteStoryAlbum struct {
 	StoryAlbumId int32 `json:"story_album_id"`
 }
 
-func (t DeleteStoryAlbum) Type() string {
+func (t DeleteStoryAlbum) GetType() string {
 	return "deleteStoryAlbum"
 }
 
@@ -3951,7 +3951,7 @@ func (t DeleteStoryAlbum) MarshalJSON() ([]byte, error) {
 type Destroy struct {
 }
 
-func (t Destroy) Type() string {
+func (t Destroy) GetType() string {
 	return "destroy"
 }
 
@@ -3972,7 +3972,7 @@ type DisableAllSupergroupUsernames struct {
 	SupergroupId int64 `json:"supergroup_id"`
 }
 
-func (t DisableAllSupergroupUsernames) Type() string {
+func (t DisableAllSupergroupUsernames) GetType() string {
 	return "disableAllSupergroupUsernames"
 }
 
@@ -3991,7 +3991,7 @@ func (t DisableAllSupergroupUsernames) MarshalJSON() ([]byte, error) {
 type DisableProxy struct {
 }
 
-func (t DisableProxy) Type() string {
+func (t DisableProxy) GetType() string {
 	return "disableProxy"
 }
 
@@ -4022,7 +4022,7 @@ type DiscardCall struct {
 	IsVideo bool `json:"is_video"`
 }
 
-func (t DiscardCall) Type() string {
+func (t DiscardCall) GetType() string {
 	return "discardCall"
 }
 
@@ -4045,7 +4045,7 @@ type DisconnectAffiliateProgram struct {
 	Url string `json:"url"`
 }
 
-func (t DisconnectAffiliateProgram) Type() string {
+func (t DisconnectAffiliateProgram) GetType() string {
 	return "disconnectAffiliateProgram"
 }
 
@@ -4064,7 +4064,7 @@ func (t DisconnectAffiliateProgram) MarshalJSON() ([]byte, error) {
 type DisconnectAllWebsites struct {
 }
 
-func (t DisconnectAllWebsites) Type() string {
+func (t DisconnectAllWebsites) GetType() string {
 	return "disconnectAllWebsites"
 }
 
@@ -4085,7 +4085,7 @@ type DisconnectWebsite struct {
 	WebsiteId int64 `json:"website_id,string"`
 }
 
-func (t DisconnectWebsite) Type() string {
+func (t DisconnectWebsite) GetType() string {
 	return "disconnectWebsite"
 }
 
@@ -4114,7 +4114,7 @@ type DownloadFile struct {
 	Synchronous bool `json:"synchronous"`
 }
 
-func (t DownloadFile) Type() string {
+func (t DownloadFile) GetType() string {
 	return "downloadFile"
 }
 
@@ -4137,7 +4137,7 @@ type DropGiftOriginalDetails struct {
 	StarCount int64 `json:"star_count"`
 }
 
-func (t DropGiftOriginalDetails) Type() string {
+func (t DropGiftOriginalDetails) GetType() string {
 	return "dropGiftOriginalDetails"
 }
 
@@ -4164,7 +4164,7 @@ type EditBotMediaPreview struct {
 	LanguageCode string `json:"language_code"`
 }
 
-func (t EditBotMediaPreview) Type() string {
+func (t EditBotMediaPreview) GetType() string {
 	return "editBotMediaPreview"
 }
 
@@ -4187,7 +4187,7 @@ type EditBusinessChatLink struct {
 	LinkInfo *InputBusinessChatLink `json:"link_info"`
 }
 
-func (t EditBusinessChatLink) Type() string {
+func (t EditBusinessChatLink) GetType() string {
 	return "editBusinessChatLink"
 }
 
@@ -4218,7 +4218,7 @@ type EditBusinessMessageCaption struct {
 	ShowCaptionAboveMedia bool `json:"show_caption_above_media"`
 }
 
-func (t EditBusinessMessageCaption) Type() string {
+func (t EditBusinessMessageCaption) GetType() string {
 	return "editBusinessMessageCaption"
 }
 
@@ -4247,7 +4247,7 @@ type EditBusinessMessageChecklist struct {
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
 }
 
-func (t EditBusinessMessageChecklist) Type() string {
+func (t EditBusinessMessageChecklist) GetType() string {
 	return "editBusinessMessageChecklist"
 }
 
@@ -4282,7 +4282,7 @@ type EditBusinessMessageLiveLocation struct {
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
 }
 
-func (t EditBusinessMessageLiveLocation) Type() string {
+func (t EditBusinessMessageLiveLocation) GetType() string {
 	return "editBusinessMessageLiveLocation"
 }
 
@@ -4311,7 +4311,7 @@ type EditBusinessMessageMedia struct {
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
 }
 
-func (t EditBusinessMessageMedia) Type() string {
+func (t EditBusinessMessageMedia) GetType() string {
 	return "editBusinessMessageMedia"
 }
 
@@ -4338,7 +4338,7 @@ type EditBusinessMessageReplyMarkup struct {
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
 }
 
-func (t EditBusinessMessageReplyMarkup) Type() string {
+func (t EditBusinessMessageReplyMarkup) GetType() string {
 	return "editBusinessMessageReplyMarkup"
 }
 
@@ -4367,7 +4367,7 @@ type EditBusinessMessageText struct {
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
 }
 
-func (t EditBusinessMessageText) Type() string {
+func (t EditBusinessMessageText) GetType() string {
 	return "editBusinessMessageText"
 }
 
@@ -4398,7 +4398,7 @@ type EditBusinessStory struct {
 	StoryPosterChatId int64 `json:"story_poster_chat_id"`
 }
 
-func (t EditBusinessStory) Type() string {
+func (t EditBusinessStory) GetType() string {
 	return "editBusinessStory"
 }
 
@@ -4421,7 +4421,7 @@ type EditChatFolder struct {
 	Folder *ChatFolder `json:"folder"`
 }
 
-func (t EditChatFolder) Type() string {
+func (t EditChatFolder) GetType() string {
 	return "editChatFolder"
 }
 
@@ -4448,7 +4448,7 @@ type EditChatFolderInviteLink struct {
 	Name string `json:"name"`
 }
 
-func (t EditChatFolderInviteLink) Type() string {
+func (t EditChatFolderInviteLink) GetType() string {
 	return "editChatFolderInviteLink"
 }
 
@@ -4479,7 +4479,7 @@ type EditChatInviteLink struct {
 	Name string `json:"name"`
 }
 
-func (t EditChatInviteLink) Type() string {
+func (t EditChatInviteLink) GetType() string {
 	return "editChatInviteLink"
 }
 
@@ -4504,7 +4504,7 @@ type EditChatSubscriptionInviteLink struct {
 	Name string `json:"name"`
 }
 
-func (t EditChatSubscriptionInviteLink) Type() string {
+func (t EditChatSubscriptionInviteLink) GetType() string {
 	return "editChatSubscriptionInviteLink"
 }
 
@@ -4525,7 +4525,7 @@ type EditCustomLanguagePackInfo struct {
 	Info *LanguagePackInfo `json:"info"`
 }
 
-func (t EditCustomLanguagePackInfo) Type() string {
+func (t EditCustomLanguagePackInfo) GetType() string {
 	return "editCustomLanguagePackInfo"
 }
 
@@ -4554,7 +4554,7 @@ type EditForumTopic struct {
 	Name string `json:"name"`
 }
 
-func (t EditForumTopic) Type() string {
+func (t EditForumTopic) GetType() string {
 	return "editForumTopic"
 }
 
@@ -4581,7 +4581,7 @@ type EditInlineMessageCaption struct {
 	ShowCaptionAboveMedia bool `json:"show_caption_above_media"`
 }
 
-func (t EditInlineMessageCaption) Type() string {
+func (t EditInlineMessageCaption) GetType() string {
 	return "editInlineMessageCaption"
 }
 
@@ -4612,7 +4612,7 @@ type EditInlineMessageLiveLocation struct {
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
 }
 
-func (t EditInlineMessageLiveLocation) Type() string {
+func (t EditInlineMessageLiveLocation) GetType() string {
 	return "editInlineMessageLiveLocation"
 }
 
@@ -4637,7 +4637,7 @@ type EditInlineMessageMedia struct {
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
 }
 
-func (t EditInlineMessageMedia) Type() string {
+func (t EditInlineMessageMedia) GetType() string {
 	return "editInlineMessageMedia"
 }
 
@@ -4660,7 +4660,7 @@ type EditInlineMessageReplyMarkup struct {
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
 }
 
-func (t EditInlineMessageReplyMarkup) Type() string {
+func (t EditInlineMessageReplyMarkup) GetType() string {
 	return "editInlineMessageReplyMarkup"
 }
 
@@ -4685,7 +4685,7 @@ type EditInlineMessageText struct {
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
 }
 
-func (t EditInlineMessageText) Type() string {
+func (t EditInlineMessageText) GetType() string {
 	return "editInlineMessageText"
 }
 
@@ -4714,7 +4714,7 @@ type EditMessageCaption struct {
 	ShowCaptionAboveMedia bool `json:"show_caption_above_media"`
 }
 
-func (t EditMessageCaption) Type() string {
+func (t EditMessageCaption) GetType() string {
 	return "editMessageCaption"
 }
 
@@ -4741,7 +4741,7 @@ type EditMessageChecklist struct {
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
 }
 
-func (t EditMessageChecklist) Type() string {
+func (t EditMessageChecklist) GetType() string {
 	return "editMessageChecklist"
 }
 
@@ -4774,7 +4774,7 @@ type EditMessageLiveLocation struct {
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
 }
 
-func (t EditMessageLiveLocation) Type() string {
+func (t EditMessageLiveLocation) GetType() string {
 	return "editMessageLiveLocation"
 }
 
@@ -4801,7 +4801,7 @@ type EditMessageMedia struct {
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
 }
 
-func (t EditMessageMedia) Type() string {
+func (t EditMessageMedia) GetType() string {
 	return "editMessageMedia"
 }
 
@@ -4826,7 +4826,7 @@ type EditMessageReplyMarkup struct {
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
 }
 
-func (t EditMessageReplyMarkup) Type() string {
+func (t EditMessageReplyMarkup) GetType() string {
 	return "editMessageReplyMarkup"
 }
 
@@ -4851,7 +4851,7 @@ type EditMessageSchedulingState struct {
 	SchedulingState MessageSchedulingState `json:"scheduling_state,omitempty"`
 }
 
-func (t EditMessageSchedulingState) Type() string {
+func (t EditMessageSchedulingState) GetType() string {
 	return "editMessageSchedulingState"
 }
 
@@ -4878,7 +4878,7 @@ type EditMessageText struct {
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
 }
 
-func (t EditMessageText) Type() string {
+func (t EditMessageText) GetType() string {
 	return "editMessageText"
 }
 
@@ -4903,7 +4903,7 @@ type EditProxy struct {
 	ProxyId int32 `json:"proxy_id"`
 }
 
-func (t EditProxy) Type() string {
+func (t EditProxy) GetType() string {
 	return "editProxy"
 }
 
@@ -4928,7 +4928,7 @@ type EditQuickReplyMessage struct {
 	ShortcutId int32 `json:"shortcut_id"`
 }
 
-func (t EditQuickReplyMessage) Type() string {
+func (t EditQuickReplyMessage) GetType() string {
 	return "editQuickReplyMessage"
 }
 
@@ -4951,7 +4951,7 @@ type EditStarSubscription struct {
 	SubscriptionId string `json:"subscription_id"`
 }
 
-func (t EditStarSubscription) Type() string {
+func (t EditStarSubscription) GetType() string {
 	return "editStarSubscription"
 }
 
@@ -4980,7 +4980,7 @@ type EditStory struct {
 	StoryPosterChatId int64 `json:"story_poster_chat_id"`
 }
 
-func (t EditStory) Type() string {
+func (t EditStory) GetType() string {
 	return "editStory"
 }
 
@@ -5005,7 +5005,7 @@ type EditStoryCover struct {
 	StoryPosterChatId int64 `json:"story_poster_chat_id"`
 }
 
-func (t EditStoryCover) Type() string {
+func (t EditStoryCover) GetType() string {
 	return "editStoryCover"
 }
 
@@ -5030,7 +5030,7 @@ type EditUserStarSubscription struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t EditUserStarSubscription) Type() string {
+func (t EditUserStarSubscription) GetType() string {
 	return "editUserStarSubscription"
 }
 
@@ -5051,7 +5051,7 @@ type EnableProxy struct {
 	ProxyId int32 `json:"proxy_id"`
 }
 
-func (t EnableProxy) Type() string {
+func (t EnableProxy) GetType() string {
 	return "enableProxy"
 }
 
@@ -5078,7 +5078,7 @@ type EncryptGroupCallData struct {
 	UnencryptedPrefixSize int32 `json:"unencrypted_prefix_size"`
 }
 
-func (t EncryptGroupCallData) Type() string {
+func (t EncryptGroupCallData) GetType() string {
 	return "encryptGroupCallData"
 }
 
@@ -5099,7 +5099,7 @@ type EndGroupCall struct {
 	GroupCallId int32 `json:"group_call_id"`
 }
 
-func (t EndGroupCall) Type() string {
+func (t EndGroupCall) GetType() string {
 	return "endGroupCall"
 }
 
@@ -5120,7 +5120,7 @@ type EndGroupCallRecording struct {
 	GroupCallId int32 `json:"group_call_id"`
 }
 
-func (t EndGroupCallRecording) Type() string {
+func (t EndGroupCallRecording) GetType() string {
 	return "endGroupCallRecording"
 }
 
@@ -5141,7 +5141,7 @@ type EndGroupCallScreenSharing struct {
 	GroupCallId int32 `json:"group_call_id"`
 }
 
-func (t EndGroupCallScreenSharing) Type() string {
+func (t EndGroupCallScreenSharing) GetType() string {
 	return "endGroupCallScreenSharing"
 }
 
@@ -5164,7 +5164,7 @@ type FinishFileGeneration struct {
 	GenerationId int64 `json:"generation_id,string"`
 }
 
-func (t FinishFileGeneration) Type() string {
+func (t FinishFileGeneration) GetType() string {
 	return "finishFileGeneration"
 }
 
@@ -5197,7 +5197,7 @@ type ForwardMessages struct {
 	TopicId MessageTopic `json:"topic_id,omitempty"`
 }
 
-func (t ForwardMessages) Type() string {
+func (t ForwardMessages) GetType() string {
 	return "forwardMessages"
 }
 
@@ -5216,7 +5216,7 @@ func (t ForwardMessages) MarshalJSON() ([]byte, error) {
 type GetAccountTtl struct {
 }
 
-func (t GetAccountTtl) Type() string {
+func (t GetAccountTtl) GetType() string {
 	return "getAccountTtl"
 }
 
@@ -5235,7 +5235,7 @@ func (t GetAccountTtl) MarshalJSON() ([]byte, error) {
 type GetActiveSessions struct {
 }
 
-func (t GetActiveSessions) Type() string {
+func (t GetActiveSessions) GetType() string {
 	return "getActiveSessions"
 }
 
@@ -5256,7 +5256,7 @@ type GetAllPassportElements struct {
 	Password string `json:"password"`
 }
 
-func (t GetAllPassportElements) Type() string {
+func (t GetAllPassportElements) GetType() string {
 	return "getAllPassportElements"
 }
 
@@ -5283,7 +5283,7 @@ type GetAllStickerEmojis struct {
 	StickerType StickerType `json:"sticker_type"`
 }
 
-func (t GetAllStickerEmojis) Type() string {
+func (t GetAllStickerEmojis) GetType() string {
 	return "getAllStickerEmojis"
 }
 
@@ -5304,7 +5304,7 @@ type GetAnimatedEmoji struct {
 	Emoji string `json:"emoji"`
 }
 
-func (t GetAnimatedEmoji) Type() string {
+func (t GetAnimatedEmoji) GetType() string {
 	return "getAnimatedEmoji"
 }
 
@@ -5323,7 +5323,7 @@ func (t GetAnimatedEmoji) MarshalJSON() ([]byte, error) {
 type GetApplicationConfig struct {
 }
 
-func (t GetApplicationConfig) Type() string {
+func (t GetApplicationConfig) GetType() string {
 	return "getApplicationConfig"
 }
 
@@ -5342,7 +5342,7 @@ func (t GetApplicationConfig) MarshalJSON() ([]byte, error) {
 type GetApplicationDownloadLink struct {
 }
 
-func (t GetApplicationDownloadLink) Type() string {
+func (t GetApplicationDownloadLink) GetType() string {
 	return "getApplicationDownloadLink"
 }
 
@@ -5361,7 +5361,7 @@ func (t GetApplicationDownloadLink) MarshalJSON() ([]byte, error) {
 type GetArchiveChatListSettings struct {
 }
 
-func (t GetArchiveChatListSettings) Type() string {
+func (t GetArchiveChatListSettings) GetType() string {
 	return "getArchiveChatListSettings"
 }
 
@@ -5386,7 +5386,7 @@ type GetArchivedStickerSets struct {
 	StickerType StickerType `json:"sticker_type"`
 }
 
-func (t GetArchivedStickerSets) Type() string {
+func (t GetArchivedStickerSets) GetType() string {
 	return "getArchivedStickerSets"
 }
 
@@ -5407,7 +5407,7 @@ type GetAttachedStickerSets struct {
 	FileId int32 `json:"file_id"`
 }
 
-func (t GetAttachedStickerSets) Type() string {
+func (t GetAttachedStickerSets) GetType() string {
 	return "getAttachedStickerSets"
 }
 
@@ -5428,7 +5428,7 @@ type GetAttachmentMenuBot struct {
 	BotUserId int64 `json:"bot_user_id"`
 }
 
-func (t GetAttachmentMenuBot) Type() string {
+func (t GetAttachmentMenuBot) GetType() string {
 	return "getAttachmentMenuBot"
 }
 
@@ -5447,7 +5447,7 @@ func (t GetAttachmentMenuBot) MarshalJSON() ([]byte, error) {
 type GetAuthenticationPasskeyParameters struct {
 }
 
-func (t GetAuthenticationPasskeyParameters) Type() string {
+func (t GetAuthenticationPasskeyParameters) GetType() string {
 	return "getAuthenticationPasskeyParameters"
 }
 
@@ -5466,7 +5466,7 @@ func (t GetAuthenticationPasskeyParameters) MarshalJSON() ([]byte, error) {
 type GetAuthorizationState struct {
 }
 
-func (t GetAuthorizationState) Type() string {
+func (t GetAuthorizationState) GetType() string {
 	return "getAuthorizationState"
 }
 
@@ -5485,7 +5485,7 @@ func (t GetAuthorizationState) MarshalJSON() ([]byte, error) {
 type GetAutoDownloadSettingsPresets struct {
 }
 
-func (t GetAutoDownloadSettingsPresets) Type() string {
+func (t GetAutoDownloadSettingsPresets) GetType() string {
 	return "getAutoDownloadSettingsPresets"
 }
 
@@ -5504,7 +5504,7 @@ func (t GetAutoDownloadSettingsPresets) MarshalJSON() ([]byte, error) {
 type GetAutosaveSettings struct {
 }
 
-func (t GetAutosaveSettings) Type() string {
+func (t GetAutosaveSettings) GetType() string {
 	return "getAutosaveSettings"
 }
 
@@ -5523,7 +5523,7 @@ func (t GetAutosaveSettings) MarshalJSON() ([]byte, error) {
 type GetAvailableChatBoostSlots struct {
 }
 
-func (t GetAvailableChatBoostSlots) Type() string {
+func (t GetAvailableChatBoostSlots) GetType() string {
 	return "getAvailableChatBoostSlots"
 }
 
@@ -5542,7 +5542,7 @@ func (t GetAvailableChatBoostSlots) MarshalJSON() ([]byte, error) {
 type GetAvailableGifts struct {
 }
 
-func (t GetAvailableGifts) Type() string {
+func (t GetAvailableGifts) GetType() string {
 	return "getAvailableGifts"
 }
 
@@ -5562,10 +5562,10 @@ type GetBackgroundUrl struct {
 	// Background name
 	Name string `json:"name"`
 	// Background type; backgroundTypeChatTheme isn't supported
-	TypeField BackgroundType `json:"type"`
+	Type BackgroundType `json:"type"`
 }
 
-func (t GetBackgroundUrl) Type() string {
+func (t GetBackgroundUrl) GetType() string {
 	return "getBackgroundUrl"
 }
 
@@ -5586,7 +5586,7 @@ type GetBankCardInfo struct {
 	BankCardNumber string `json:"bank_card_number"`
 }
 
-func (t GetBankCardInfo) Type() string {
+func (t GetBankCardInfo) GetType() string {
 	return "getBankCardInfo"
 }
 
@@ -5607,7 +5607,7 @@ type GetBasicGroup struct {
 	BasicGroupId int64 `json:"basic_group_id"`
 }
 
-func (t GetBasicGroup) Type() string {
+func (t GetBasicGroup) GetType() string {
 	return "getBasicGroup"
 }
 
@@ -5628,7 +5628,7 @@ type GetBasicGroupFullInfo struct {
 	BasicGroupId int64 `json:"basic_group_id"`
 }
 
-func (t GetBasicGroupFullInfo) Type() string {
+func (t GetBasicGroupFullInfo) GetType() string {
 	return "getBasicGroupFullInfo"
 }
 
@@ -5653,7 +5653,7 @@ type GetBlockedMessageSenders struct {
 	Offset int32 `json:"offset"`
 }
 
-func (t GetBlockedMessageSenders) Type() string {
+func (t GetBlockedMessageSenders) GetType() string {
 	return "getBlockedMessageSenders"
 }
 
@@ -5676,7 +5676,7 @@ type GetBotInfoDescription struct {
 	LanguageCode string `json:"language_code"`
 }
 
-func (t GetBotInfoDescription) Type() string {
+func (t GetBotInfoDescription) GetType() string {
 	return "getBotInfoDescription"
 }
 
@@ -5699,7 +5699,7 @@ type GetBotInfoShortDescription struct {
 	LanguageCode string `json:"language_code"`
 }
 
-func (t GetBotInfoShortDescription) Type() string {
+func (t GetBotInfoShortDescription) GetType() string {
 	return "getBotInfoShortDescription"
 }
 
@@ -5722,7 +5722,7 @@ type GetBotMediaPreviewInfo struct {
 	LanguageCode string `json:"language_code"`
 }
 
-func (t GetBotMediaPreviewInfo) Type() string {
+func (t GetBotMediaPreviewInfo) GetType() string {
 	return "getBotMediaPreviewInfo"
 }
 
@@ -5743,7 +5743,7 @@ type GetBotMediaPreviews struct {
 	BotUserId int64 `json:"bot_user_id"`
 }
 
-func (t GetBotMediaPreviews) Type() string {
+func (t GetBotMediaPreviews) GetType() string {
 	return "getBotMediaPreviews"
 }
 
@@ -5766,7 +5766,7 @@ type GetBotName struct {
 	LanguageCode string `json:"language_code"`
 }
 
-func (t GetBotName) Type() string {
+func (t GetBotName) GetType() string {
 	return "getBotName"
 }
 
@@ -5789,7 +5789,7 @@ type GetBotSimilarBotCount struct {
 	ReturnLocal bool `json:"return_local"`
 }
 
-func (t GetBotSimilarBotCount) Type() string {
+func (t GetBotSimilarBotCount) GetType() string {
 	return "getBotSimilarBotCount"
 }
 
@@ -5810,7 +5810,7 @@ type GetBotSimilarBots struct {
 	BotUserId int64 `json:"bot_user_id"`
 }
 
-func (t GetBotSimilarBots) Type() string {
+func (t GetBotSimilarBots) GetType() string {
 	return "getBotSimilarBots"
 }
 
@@ -5831,7 +5831,7 @@ type GetBusinessAccountStarAmount struct {
 	BusinessConnectionId string `json:"business_connection_id"`
 }
 
-func (t GetBusinessAccountStarAmount) Type() string {
+func (t GetBusinessAccountStarAmount) GetType() string {
 	return "getBusinessAccountStarAmount"
 }
 
@@ -5852,7 +5852,7 @@ type GetBusinessChatLinkInfo struct {
 	LinkName string `json:"link_name"`
 }
 
-func (t GetBusinessChatLinkInfo) Type() string {
+func (t GetBusinessChatLinkInfo) GetType() string {
 	return "getBusinessChatLinkInfo"
 }
 
@@ -5871,7 +5871,7 @@ func (t GetBusinessChatLinkInfo) MarshalJSON() ([]byte, error) {
 type GetBusinessChatLinks struct {
 }
 
-func (t GetBusinessChatLinks) Type() string {
+func (t GetBusinessChatLinks) GetType() string {
 	return "getBusinessChatLinks"
 }
 
@@ -5890,7 +5890,7 @@ func (t GetBusinessChatLinks) MarshalJSON() ([]byte, error) {
 type GetBusinessConnectedBot struct {
 }
 
-func (t GetBusinessConnectedBot) Type() string {
+func (t GetBusinessConnectedBot) GetType() string {
 	return "getBusinessConnectedBot"
 }
 
@@ -5911,7 +5911,7 @@ type GetBusinessConnection struct {
 	ConnectionId string `json:"connection_id"`
 }
 
-func (t GetBusinessConnection) Type() string {
+func (t GetBusinessConnection) GetType() string {
 	return "getBusinessConnection"
 }
 
@@ -5932,7 +5932,7 @@ type GetBusinessFeatures struct {
 	Source BusinessFeature `json:"source,omitempty"`
 }
 
-func (t GetBusinessFeatures) Type() string {
+func (t GetBusinessFeatures) GetType() string {
 	return "getBusinessFeatures"
 }
 
@@ -5957,7 +5957,7 @@ type GetCallbackQueryAnswer struct {
 	Payload CallbackQueryPayload `json:"payload"`
 }
 
-func (t GetCallbackQueryAnswer) Type() string {
+func (t GetCallbackQueryAnswer) GetType() string {
 	return "getCallbackQueryAnswer"
 }
 
@@ -5982,7 +5982,7 @@ type GetCallbackQueryMessage struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t GetCallbackQueryMessage) Type() string {
+func (t GetCallbackQueryMessage) GetType() string {
 	return "getCallbackQueryMessage"
 }
 
@@ -6003,7 +6003,7 @@ type GetChat struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t GetChat) Type() string {
+func (t GetChat) GetType() string {
 	return "getChat"
 }
 
@@ -6024,7 +6024,7 @@ type GetChatActiveStories struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t GetChatActiveStories) Type() string {
+func (t GetChatActiveStories) GetType() string {
 	return "getChatActiveStories"
 }
 
@@ -6045,7 +6045,7 @@ type GetChatAdministrators struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t GetChatAdministrators) Type() string {
+func (t GetChatAdministrators) GetType() string {
 	return "getChatAdministrators"
 }
 
@@ -6070,7 +6070,7 @@ type GetChatArchivedStories struct {
 	Limit int32 `json:"limit"`
 }
 
-func (t GetChatArchivedStories) Type() string {
+func (t GetChatArchivedStories) GetType() string {
 	return "getChatArchivedStories"
 }
 
@@ -6091,7 +6091,7 @@ type GetChatAvailableMessageSenders struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t GetChatAvailableMessageSenders) Type() string {
+func (t GetChatAvailableMessageSenders) GetType() string {
 	return "getChatAvailableMessageSenders"
 }
 
@@ -6112,7 +6112,7 @@ type GetChatAvailablePaidMessageReactionSenders struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t GetChatAvailablePaidMessageReactionSenders) Type() string {
+func (t GetChatAvailablePaidMessageReactionSenders) GetType() string {
 	return "getChatAvailablePaidMessageReactionSenders"
 }
 
@@ -6133,7 +6133,7 @@ type GetChatBoostFeatures struct {
 	IsChannel bool `json:"is_channel"`
 }
 
-func (t GetChatBoostFeatures) Type() string {
+func (t GetChatBoostFeatures) GetType() string {
 	return "getChatBoostFeatures"
 }
 
@@ -6156,7 +6156,7 @@ type GetChatBoostLevelFeatures struct {
 	Level int32 `json:"level"`
 }
 
-func (t GetChatBoostLevelFeatures) Type() string {
+func (t GetChatBoostLevelFeatures) GetType() string {
 	return "getChatBoostLevelFeatures"
 }
 
@@ -6177,7 +6177,7 @@ type GetChatBoostLink struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t GetChatBoostLink) Type() string {
+func (t GetChatBoostLink) GetType() string {
 	return "getChatBoostLink"
 }
 
@@ -6198,7 +6198,7 @@ type GetChatBoostLinkInfo struct {
 	Url string `json:"url"`
 }
 
-func (t GetChatBoostLinkInfo) Type() string {
+func (t GetChatBoostLinkInfo) GetType() string {
 	return "getChatBoostLinkInfo"
 }
 
@@ -6225,7 +6225,7 @@ type GetChatBoosts struct {
 	OnlyGiftCodes bool `json:"only_gift_codes"`
 }
 
-func (t GetChatBoosts) Type() string {
+func (t GetChatBoosts) GetType() string {
 	return "getChatBoosts"
 }
 
@@ -6246,7 +6246,7 @@ type GetChatBoostStatus struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t GetChatBoostStatus) Type() string {
+func (t GetChatBoostStatus) GetType() string {
 	return "getChatBoostStatus"
 }
 
@@ -6277,7 +6277,7 @@ type GetChatEventLog struct {
 	UserIds []int64 `json:"user_ids"`
 }
 
-func (t GetChatEventLog) Type() string {
+func (t GetChatEventLog) GetType() string {
 	return "getChatEventLog"
 }
 
@@ -6298,7 +6298,7 @@ type GetChatFolder struct {
 	ChatFolderId int32 `json:"chat_folder_id"`
 }
 
-func (t GetChatFolder) Type() string {
+func (t GetChatFolder) GetType() string {
 	return "getChatFolder"
 }
 
@@ -6319,7 +6319,7 @@ type GetChatFolderChatCount struct {
 	Folder *ChatFolder `json:"folder"`
 }
 
-func (t GetChatFolderChatCount) Type() string {
+func (t GetChatFolderChatCount) GetType() string {
 	return "getChatFolderChatCount"
 }
 
@@ -6340,7 +6340,7 @@ type GetChatFolderChatsToLeave struct {
 	ChatFolderId int32 `json:"chat_folder_id"`
 }
 
-func (t GetChatFolderChatsToLeave) Type() string {
+func (t GetChatFolderChatsToLeave) GetType() string {
 	return "getChatFolderChatsToLeave"
 }
 
@@ -6361,7 +6361,7 @@ type GetChatFolderDefaultIconName struct {
 	Folder *ChatFolder `json:"folder"`
 }
 
-func (t GetChatFolderDefaultIconName) Type() string {
+func (t GetChatFolderDefaultIconName) GetType() string {
 	return "getChatFolderDefaultIconName"
 }
 
@@ -6382,7 +6382,7 @@ type GetChatFolderInviteLinks struct {
 	ChatFolderId int32 `json:"chat_folder_id"`
 }
 
-func (t GetChatFolderInviteLinks) Type() string {
+func (t GetChatFolderInviteLinks) GetType() string {
 	return "getChatFolderInviteLinks"
 }
 
@@ -6403,7 +6403,7 @@ type GetChatFolderNewChats struct {
 	ChatFolderId int32 `json:"chat_folder_id"`
 }
 
-func (t GetChatFolderNewChats) Type() string {
+func (t GetChatFolderNewChats) GetType() string {
 	return "getChatFolderNewChats"
 }
 
@@ -6432,7 +6432,7 @@ type GetChatHistory struct {
 	OnlyLocal bool `json:"only_local"`
 }
 
-func (t GetChatHistory) Type() string {
+func (t GetChatHistory) GetType() string {
 	return "getChatHistory"
 }
 
@@ -6455,7 +6455,7 @@ type GetChatInviteLink struct {
 	InviteLink string `json:"invite_link"`
 }
 
-func (t GetChatInviteLink) Type() string {
+func (t GetChatInviteLink) GetType() string {
 	return "getChatInviteLink"
 }
 
@@ -6476,7 +6476,7 @@ type GetChatInviteLinkCounts struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t GetChatInviteLinkCounts) Type() string {
+func (t GetChatInviteLinkCounts) GetType() string {
 	return "getChatInviteLinkCounts"
 }
 
@@ -6505,7 +6505,7 @@ type GetChatInviteLinkMembers struct {
 	OnlyWithExpiredSubscription bool `json:"only_with_expired_subscription"`
 }
 
-func (t GetChatInviteLinkMembers) Type() string {
+func (t GetChatInviteLinkMembers) GetType() string {
 	return "getChatInviteLinkMembers"
 }
 
@@ -6536,7 +6536,7 @@ type GetChatInviteLinks struct {
 	OffsetInviteLink string `json:"offset_invite_link"`
 }
 
-func (t GetChatInviteLinks) Type() string {
+func (t GetChatInviteLinks) GetType() string {
 	return "getChatInviteLinks"
 }
 
@@ -6565,7 +6565,7 @@ type GetChatJoinRequests struct {
 	Query string `json:"query"`
 }
 
-func (t GetChatJoinRequests) Type() string {
+func (t GetChatJoinRequests) GetType() string {
 	return "getChatJoinRequests"
 }
 
@@ -6586,7 +6586,7 @@ type GetChatListsToAddChat struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t GetChatListsToAddChat) Type() string {
+func (t GetChatListsToAddChat) GetType() string {
 	return "getChatListsToAddChat"
 }
 
@@ -6609,7 +6609,7 @@ type GetChatMember struct {
 	MemberId MessageSender `json:"member_id"`
 }
 
-func (t GetChatMember) Type() string {
+func (t GetChatMember) GetType() string {
 	return "getChatMember"
 }
 
@@ -6632,7 +6632,7 @@ type GetChatMessageByDate struct {
 	Date int32 `json:"date"`
 }
 
-func (t GetChatMessageByDate) Type() string {
+func (t GetChatMessageByDate) GetType() string {
 	return "getChatMessageByDate"
 }
 
@@ -6659,7 +6659,7 @@ type GetChatMessageCalendar struct {
 	TopicId MessageTopic `json:"topic_id,omitempty"`
 }
 
-func (t GetChatMessageCalendar) Type() string {
+func (t GetChatMessageCalendar) GetType() string {
 	return "getChatMessageCalendar"
 }
 
@@ -6686,7 +6686,7 @@ type GetChatMessageCount struct {
 	TopicId MessageTopic `json:"topic_id,omitempty"`
 }
 
-func (t GetChatMessageCount) Type() string {
+func (t GetChatMessageCount) GetType() string {
 	return "getChatMessageCount"
 }
 
@@ -6713,7 +6713,7 @@ type GetChatMessagePosition struct {
 	TopicId MessageTopic `json:"topic_id,omitempty"`
 }
 
-func (t GetChatMessagePosition) Type() string {
+func (t GetChatMessagePosition) GetType() string {
 	return "getChatMessagePosition"
 }
 
@@ -6736,7 +6736,7 @@ type GetChatNotificationSettingsExceptions struct {
 	Scope NotificationSettingsScope `json:"scope,omitempty"`
 }
 
-func (t GetChatNotificationSettingsExceptions) Type() string {
+func (t GetChatNotificationSettingsExceptions) GetType() string {
 	return "getChatNotificationSettingsExceptions"
 }
 
@@ -6757,7 +6757,7 @@ type GetChatOwnerAfterLeaving struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t GetChatOwnerAfterLeaving) Type() string {
+func (t GetChatOwnerAfterLeaving) GetType() string {
 	return "getChatOwnerAfterLeaving"
 }
 
@@ -6778,7 +6778,7 @@ type GetChatPinnedMessage struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t GetChatPinnedMessage) Type() string {
+func (t GetChatPinnedMessage) GetType() string {
 	return "getChatPinnedMessage"
 }
 
@@ -6803,7 +6803,7 @@ type GetChatPostedToChatPageStories struct {
 	Limit int32 `json:"limit"`
 }
 
-func (t GetChatPostedToChatPageStories) Type() string {
+func (t GetChatPostedToChatPageStories) GetType() string {
 	return "getChatPostedToChatPageStories"
 }
 
@@ -6826,7 +6826,7 @@ type GetChatRevenueStatistics struct {
 	IsDark bool `json:"is_dark"`
 }
 
-func (t GetChatRevenueStatistics) Type() string {
+func (t GetChatRevenueStatistics) GetType() string {
 	return "getChatRevenueStatistics"
 }
 
@@ -6851,7 +6851,7 @@ type GetChatRevenueTransactions struct {
 	Offset string `json:"offset"`
 }
 
-func (t GetChatRevenueTransactions) Type() string {
+func (t GetChatRevenueTransactions) GetType() string {
 	return "getChatRevenueTransactions"
 }
 
@@ -6874,7 +6874,7 @@ type GetChatRevenueWithdrawalUrl struct {
 	Password string `json:"password"`
 }
 
-func (t GetChatRevenueWithdrawalUrl) Type() string {
+func (t GetChatRevenueWithdrawalUrl) GetType() string {
 	return "getChatRevenueWithdrawalUrl"
 }
 
@@ -6897,7 +6897,7 @@ type GetChats struct {
 	Limit int32 `json:"limit"`
 }
 
-func (t GetChats) Type() string {
+func (t GetChats) GetType() string {
 	return "getChats"
 }
 
@@ -6918,7 +6918,7 @@ type GetChatScheduledMessages struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t GetChatScheduledMessages) Type() string {
+func (t GetChatScheduledMessages) GetType() string {
 	return "getChatScheduledMessages"
 }
 
@@ -6939,7 +6939,7 @@ type GetChatsForChatFolderInviteLink struct {
 	ChatFolderId int32 `json:"chat_folder_id"`
 }
 
-func (t GetChatsForChatFolderInviteLink) Type() string {
+func (t GetChatsForChatFolderInviteLink) GetType() string {
 	return "getChatsForChatFolderInviteLink"
 }
 
@@ -6962,7 +6962,7 @@ type GetChatSimilarChatCount struct {
 	ReturnLocal bool `json:"return_local"`
 }
 
-func (t GetChatSimilarChatCount) Type() string {
+func (t GetChatSimilarChatCount) GetType() string {
 	return "getChatSimilarChatCount"
 }
 
@@ -6983,7 +6983,7 @@ type GetChatSimilarChats struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t GetChatSimilarChats) Type() string {
+func (t GetChatSimilarChats) GetType() string {
 	return "getChatSimilarChats"
 }
 
@@ -7012,7 +7012,7 @@ type GetChatSparseMessagePositions struct {
 	SavedMessagesTopicId int64 `json:"saved_messages_topic_id"`
 }
 
-func (t GetChatSparseMessagePositions) Type() string {
+func (t GetChatSparseMessagePositions) GetType() string {
 	return "getChatSparseMessagePositions"
 }
 
@@ -7033,7 +7033,7 @@ type GetChatSponsoredMessages struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t GetChatSponsoredMessages) Type() string {
+func (t GetChatSponsoredMessages) GetType() string {
 	return "getChatSponsoredMessages"
 }
 
@@ -7056,7 +7056,7 @@ type GetChatStatistics struct {
 	IsDark bool `json:"is_dark"`
 }
 
-func (t GetChatStatistics) Type() string {
+func (t GetChatStatistics) GetType() string {
 	return "getChatStatistics"
 }
 
@@ -7075,7 +7075,7 @@ func (t GetChatStatistics) MarshalJSON() ([]byte, error) {
 type GetChatsToPostStories struct {
 }
 
-func (t GetChatsToPostStories) Type() string {
+func (t GetChatsToPostStories) GetType() string {
 	return "getChatsToPostStories"
 }
 
@@ -7096,7 +7096,7 @@ type GetChatStoryAlbums struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t GetChatStoryAlbums) Type() string {
+func (t GetChatStoryAlbums) GetType() string {
 	return "getChatStoryAlbums"
 }
 
@@ -7127,7 +7127,7 @@ type GetChatStoryInteractions struct {
 	StoryPosterChatId int64 `json:"story_poster_chat_id"`
 }
 
-func (t GetChatStoryInteractions) Type() string {
+func (t GetChatStoryInteractions) GetType() string {
 	return "getChatStoryInteractions"
 }
 
@@ -7146,7 +7146,7 @@ func (t GetChatStoryInteractions) MarshalJSON() ([]byte, error) {
 type GetCloseFriends struct {
 }
 
-func (t GetCloseFriends) Type() string {
+func (t GetCloseFriends) GetType() string {
 	return "getCloseFriends"
 }
 
@@ -7164,10 +7164,10 @@ func (t GetCloseFriends) MarshalJSON() ([]byte, error) {
 // GetCollectibleItemInfo Returns information about a given collectible item that was purchased at https://fragment.com
 type GetCollectibleItemInfo struct {
 	// Type of the collectible item. The item must be used by a user and must be visible to the current user
-	TypeField CollectibleItemType `json:"type"`
+	Type CollectibleItemType `json:"type"`
 }
 
-func (t GetCollectibleItemInfo) Type() string {
+func (t GetCollectibleItemInfo) GetType() string {
 	return "getCollectibleItemInfo"
 }
 
@@ -7190,7 +7190,7 @@ type GetCommands struct {
 	Scope BotCommandScope `json:"scope,omitempty"`
 }
 
-func (t GetCommands) Type() string {
+func (t GetCommands) GetType() string {
 	return "getCommands"
 }
 
@@ -7213,7 +7213,7 @@ type GetConnectedAffiliateProgram struct {
 	BotUserId int64 `json:"bot_user_id"`
 }
 
-func (t GetConnectedAffiliateProgram) Type() string {
+func (t GetConnectedAffiliateProgram) GetType() string {
 	return "getConnectedAffiliateProgram"
 }
 
@@ -7238,7 +7238,7 @@ type GetConnectedAffiliatePrograms struct {
 	Offset string `json:"offset"`
 }
 
-func (t GetConnectedAffiliatePrograms) Type() string {
+func (t GetConnectedAffiliatePrograms) GetType() string {
 	return "getConnectedAffiliatePrograms"
 }
 
@@ -7257,7 +7257,7 @@ func (t GetConnectedAffiliatePrograms) MarshalJSON() ([]byte, error) {
 type GetConnectedWebsites struct {
 }
 
-func (t GetConnectedWebsites) Type() string {
+func (t GetConnectedWebsites) GetType() string {
 	return "getConnectedWebsites"
 }
 
@@ -7276,7 +7276,7 @@ func (t GetConnectedWebsites) MarshalJSON() ([]byte, error) {
 type GetContacts struct {
 }
 
-func (t GetContacts) Type() string {
+func (t GetContacts) GetType() string {
 	return "getContacts"
 }
 
@@ -7295,7 +7295,7 @@ func (t GetContacts) MarshalJSON() ([]byte, error) {
 type GetCountries struct {
 }
 
-func (t GetCountries) Type() string {
+func (t GetCountries) GetType() string {
 	return "getCountries"
 }
 
@@ -7314,7 +7314,7 @@ func (t GetCountries) MarshalJSON() ([]byte, error) {
 type GetCountryCode struct {
 }
 
-func (t GetCountryCode) Type() string {
+func (t GetCountryCode) GetType() string {
 	return "getCountryCode"
 }
 
@@ -7335,7 +7335,7 @@ type GetCountryFlagEmoji struct {
 	CountryCode string `json:"country_code"`
 }
 
-func (t GetCountryFlagEmoji) Type() string {
+func (t GetCountryFlagEmoji) GetType() string {
 	return "getCountryFlagEmoji"
 }
 
@@ -7353,10 +7353,10 @@ func (t GetCountryFlagEmoji) MarshalJSON() ([]byte, error) {
 // GetCreatedPublicChats Returns a list of public chats of the specified type, owned by the user
 type GetCreatedPublicChats struct {
 	// Type of the public chats to return
-	TypeField PublicChatType `json:"type"`
+	Type PublicChatType `json:"type"`
 }
 
-func (t GetCreatedPublicChats) Type() string {
+func (t GetCreatedPublicChats) GetType() string {
 	return "getCreatedPublicChats"
 }
 
@@ -7375,7 +7375,7 @@ func (t GetCreatedPublicChats) MarshalJSON() ([]byte, error) {
 type GetCurrentState struct {
 }
 
-func (t GetCurrentState) Type() string {
+func (t GetCurrentState) GetType() string {
 	return "getCurrentState"
 }
 
@@ -7396,7 +7396,7 @@ type GetCurrentWeather struct {
 	Location *Location `json:"location"`
 }
 
-func (t GetCurrentWeather) Type() string {
+func (t GetCurrentWeather) GetType() string {
 	return "getCurrentWeather"
 }
 
@@ -7415,7 +7415,7 @@ func (t GetCurrentWeather) MarshalJSON() ([]byte, error) {
 type GetCustomEmojiReactionAnimations struct {
 }
 
-func (t GetCustomEmojiReactionAnimations) Type() string {
+func (t GetCustomEmojiReactionAnimations) GetType() string {
 	return "getCustomEmojiReactionAnimations"
 }
 
@@ -7436,7 +7436,7 @@ type GetCustomEmojiStickers struct {
 	CustomEmojiIds Int64Slice `json:"custom_emoji_ids"`
 }
 
-func (t GetCustomEmojiStickers) Type() string {
+func (t GetCustomEmojiStickers) GetType() string {
 	return "getCustomEmojiStickers"
 }
 
@@ -7455,7 +7455,7 @@ func (t GetCustomEmojiStickers) MarshalJSON() ([]byte, error) {
 type GetDatabaseStatistics struct {
 }
 
-func (t GetDatabaseStatistics) Type() string {
+func (t GetDatabaseStatistics) GetType() string {
 	return "getDatabaseStatistics"
 }
 
@@ -7476,7 +7476,7 @@ type GetDeepLinkInfo struct {
 	Link string `json:"link"`
 }
 
-func (t GetDeepLinkInfo) Type() string {
+func (t GetDeepLinkInfo) GetType() string {
 	return "getDeepLinkInfo"
 }
 
@@ -7495,7 +7495,7 @@ func (t GetDeepLinkInfo) MarshalJSON() ([]byte, error) {
 type GetDefaultBackgroundCustomEmojiStickers struct {
 }
 
-func (t GetDefaultBackgroundCustomEmojiStickers) Type() string {
+func (t GetDefaultBackgroundCustomEmojiStickers) GetType() string {
 	return "getDefaultBackgroundCustomEmojiStickers"
 }
 
@@ -7514,7 +7514,7 @@ func (t GetDefaultBackgroundCustomEmojiStickers) MarshalJSON() ([]byte, error) {
 type GetDefaultChatEmojiStatuses struct {
 }
 
-func (t GetDefaultChatEmojiStatuses) Type() string {
+func (t GetDefaultChatEmojiStatuses) GetType() string {
 	return "getDefaultChatEmojiStatuses"
 }
 
@@ -7533,7 +7533,7 @@ func (t GetDefaultChatEmojiStatuses) MarshalJSON() ([]byte, error) {
 type GetDefaultChatPhotoCustomEmojiStickers struct {
 }
 
-func (t GetDefaultChatPhotoCustomEmojiStickers) Type() string {
+func (t GetDefaultChatPhotoCustomEmojiStickers) GetType() string {
 	return "getDefaultChatPhotoCustomEmojiStickers"
 }
 
@@ -7552,7 +7552,7 @@ func (t GetDefaultChatPhotoCustomEmojiStickers) MarshalJSON() ([]byte, error) {
 type GetDefaultEmojiStatuses struct {
 }
 
-func (t GetDefaultEmojiStatuses) Type() string {
+func (t GetDefaultEmojiStatuses) GetType() string {
 	return "getDefaultEmojiStatuses"
 }
 
@@ -7571,7 +7571,7 @@ func (t GetDefaultEmojiStatuses) MarshalJSON() ([]byte, error) {
 type GetDefaultMessageAutoDeleteTime struct {
 }
 
-func (t GetDefaultMessageAutoDeleteTime) Type() string {
+func (t GetDefaultMessageAutoDeleteTime) GetType() string {
 	return "getDefaultMessageAutoDeleteTime"
 }
 
@@ -7590,7 +7590,7 @@ func (t GetDefaultMessageAutoDeleteTime) MarshalJSON() ([]byte, error) {
 type GetDefaultProfilePhotoCustomEmojiStickers struct {
 }
 
-func (t GetDefaultProfilePhotoCustomEmojiStickers) Type() string {
+func (t GetDefaultProfilePhotoCustomEmojiStickers) GetType() string {
 	return "getDefaultProfilePhotoCustomEmojiStickers"
 }
 
@@ -7613,7 +7613,7 @@ type GetDirectMessagesChatTopic struct {
 	TopicId int64 `json:"topic_id"`
 }
 
-func (t GetDirectMessagesChatTopic) Type() string {
+func (t GetDirectMessagesChatTopic) GetType() string {
 	return "getDirectMessagesChatTopic"
 }
 
@@ -7642,7 +7642,7 @@ type GetDirectMessagesChatTopicHistory struct {
 	TopicId int64 `json:"topic_id"`
 }
 
-func (t GetDirectMessagesChatTopicHistory) Type() string {
+func (t GetDirectMessagesChatTopicHistory) GetType() string {
 	return "getDirectMessagesChatTopicHistory"
 }
 
@@ -7667,7 +7667,7 @@ type GetDirectMessagesChatTopicMessageByDate struct {
 	TopicId int64 `json:"topic_id"`
 }
 
-func (t GetDirectMessagesChatTopicMessageByDate) Type() string {
+func (t GetDirectMessagesChatTopicMessageByDate) GetType() string {
 	return "getDirectMessagesChatTopicMessageByDate"
 }
 
@@ -7690,7 +7690,7 @@ type GetDirectMessagesChatTopicRevenue struct {
 	TopicId int64 `json:"topic_id"`
 }
 
-func (t GetDirectMessagesChatTopicRevenue) Type() string {
+func (t GetDirectMessagesChatTopicRevenue) GetType() string {
 	return "getDirectMessagesChatTopicRevenue"
 }
 
@@ -7709,7 +7709,7 @@ func (t GetDirectMessagesChatTopicRevenue) MarshalJSON() ([]byte, error) {
 type GetDisallowedChatEmojiStatuses struct {
 }
 
-func (t GetDisallowedChatEmojiStatuses) Type() string {
+func (t GetDisallowedChatEmojiStatuses) GetType() string {
 	return "getDisallowedChatEmojiStatuses"
 }
 
@@ -7727,10 +7727,10 @@ func (t GetDisallowedChatEmojiStatuses) MarshalJSON() ([]byte, error) {
 // GetEmojiCategories Returns available emoji categories
 type GetEmojiCategories struct {
 	// Type of emoji categories to return; pass null to get default emoji categories
-	TypeField EmojiCategoryType `json:"type,omitempty"`
+	Type EmojiCategoryType `json:"type,omitempty"`
 }
 
-func (t GetEmojiCategories) Type() string {
+func (t GetEmojiCategories) GetType() string {
 	return "getEmojiCategories"
 }
 
@@ -7751,7 +7751,7 @@ type GetEmojiReaction struct {
 	Emoji string `json:"emoji"`
 }
 
-func (t GetEmojiReaction) Type() string {
+func (t GetEmojiReaction) GetType() string {
 	return "getEmojiReaction"
 }
 
@@ -7772,7 +7772,7 @@ type GetEmojiSuggestionsUrl struct {
 	LanguageCode string `json:"language_code"`
 }
 
-func (t GetEmojiSuggestionsUrl) Type() string {
+func (t GetEmojiSuggestionsUrl) GetType() string {
 	return "getEmojiSuggestionsUrl"
 }
 
@@ -7795,7 +7795,7 @@ type GetExternalLink struct {
 	Link string `json:"link"`
 }
 
-func (t GetExternalLink) Type() string {
+func (t GetExternalLink) GetType() string {
 	return "getExternalLink"
 }
 
@@ -7816,7 +7816,7 @@ type GetExternalLinkInfo struct {
 	Link string `json:"link"`
 }
 
-func (t GetExternalLinkInfo) Type() string {
+func (t GetExternalLinkInfo) GetType() string {
 	return "getExternalLinkInfo"
 }
 
@@ -7835,7 +7835,7 @@ func (t GetExternalLinkInfo) MarshalJSON() ([]byte, error) {
 type GetFavoriteStickers struct {
 }
 
-func (t GetFavoriteStickers) Type() string {
+func (t GetFavoriteStickers) GetType() string {
 	return "getFavoriteStickers"
 }
 
@@ -7856,7 +7856,7 @@ type GetFile struct {
 	FileId int32 `json:"file_id"`
 }
 
-func (t GetFile) Type() string {
+func (t GetFile) GetType() string {
 	return "getFile"
 }
 
@@ -7879,7 +7879,7 @@ type GetFileDownloadedPrefixSize struct {
 	Offset int64 `json:"offset"`
 }
 
-func (t GetFileDownloadedPrefixSize) Type() string {
+func (t GetFileDownloadedPrefixSize) GetType() string {
 	return "getFileDownloadedPrefixSize"
 }
 
@@ -7900,7 +7900,7 @@ type GetFileExtension struct {
 	MimeType string `json:"mime_type"`
 }
 
-func (t GetFileExtension) Type() string {
+func (t GetFileExtension) GetType() string {
 	return "getFileExtension"
 }
 
@@ -7921,7 +7921,7 @@ type GetFileMimeType struct {
 	FileName string `json:"file_name"`
 }
 
-func (t GetFileMimeType) Type() string {
+func (t GetFileMimeType) GetType() string {
 	return "getFileMimeType"
 }
 
@@ -7944,7 +7944,7 @@ type GetForumTopic struct {
 	ForumTopicId int32 `json:"forum_topic_id"`
 }
 
-func (t GetForumTopic) Type() string {
+func (t GetForumTopic) GetType() string {
 	return "getForumTopic"
 }
 
@@ -7963,7 +7963,7 @@ func (t GetForumTopic) MarshalJSON() ([]byte, error) {
 type GetForumTopicDefaultIcons struct {
 }
 
-func (t GetForumTopicDefaultIcons) Type() string {
+func (t GetForumTopicDefaultIcons) GetType() string {
 	return "getForumTopicDefaultIcons"
 }
 
@@ -7992,7 +7992,7 @@ type GetForumTopicHistory struct {
 	Offset int32 `json:"offset"`
 }
 
-func (t GetForumTopicHistory) Type() string {
+func (t GetForumTopicHistory) GetType() string {
 	return "getForumTopicHistory"
 }
 
@@ -8015,7 +8015,7 @@ type GetForumTopicLink struct {
 	ForumTopicId int32 `json:"forum_topic_id"`
 }
 
-func (t GetForumTopicLink) Type() string {
+func (t GetForumTopicLink) GetType() string {
 	return "getForumTopicLink"
 }
 
@@ -8046,7 +8046,7 @@ type GetForumTopics struct {
 	Query string `json:"query"`
 }
 
-func (t GetForumTopics) Type() string {
+func (t GetForumTopics) GetType() string {
 	return "getForumTopics"
 }
 
@@ -8071,7 +8071,7 @@ type GetGameHighScores struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t GetGameHighScores) Type() string {
+func (t GetGameHighScores) GetType() string {
 	return "getGameHighScores"
 }
 
@@ -8092,7 +8092,7 @@ type GetGiftAuctionAcquiredGifts struct {
 	GiftId int64 `json:"gift_id,string"`
 }
 
-func (t GetGiftAuctionAcquiredGifts) Type() string {
+func (t GetGiftAuctionAcquiredGifts) GetType() string {
 	return "getGiftAuctionAcquiredGifts"
 }
 
@@ -8113,7 +8113,7 @@ type GetGiftAuctionState struct {
 	AuctionId string `json:"auction_id"`
 }
 
-func (t GetGiftAuctionState) Type() string {
+func (t GetGiftAuctionState) GetType() string {
 	return "getGiftAuctionState"
 }
 
@@ -8136,7 +8136,7 @@ type GetGiftChatThemes struct {
 	Offset string `json:"offset"`
 }
 
-func (t GetGiftChatThemes) Type() string {
+func (t GetGiftChatThemes) GetType() string {
 	return "getGiftChatThemes"
 }
 
@@ -8157,7 +8157,7 @@ type GetGiftCollections struct {
 	OwnerId MessageSender `json:"owner_id"`
 }
 
-func (t GetGiftCollections) Type() string {
+func (t GetGiftCollections) GetType() string {
 	return "getGiftCollections"
 }
 
@@ -8182,7 +8182,7 @@ type GetGiftsForCrafting struct {
 	RegularGiftId int64 `json:"regular_gift_id,string"`
 }
 
-func (t GetGiftsForCrafting) Type() string {
+func (t GetGiftsForCrafting) GetType() string {
 	return "getGiftsForCrafting"
 }
 
@@ -8203,7 +8203,7 @@ type GetGiftUpgradePreview struct {
 	RegularGiftId int64 `json:"regular_gift_id,string"`
 }
 
-func (t GetGiftUpgradePreview) Type() string {
+func (t GetGiftUpgradePreview) GetType() string {
 	return "getGiftUpgradePreview"
 }
 
@@ -8226,7 +8226,7 @@ type GetGiveawayInfo struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t GetGiveawayInfo) Type() string {
+func (t GetGiveawayInfo) GetType() string {
 	return "getGiveawayInfo"
 }
 
@@ -8245,7 +8245,7 @@ func (t GetGiveawayInfo) MarshalJSON() ([]byte, error) {
 type GetGreetingStickers struct {
 }
 
-func (t GetGreetingStickers) Type() string {
+func (t GetGreetingStickers) GetType() string {
 	return "getGreetingStickers"
 }
 
@@ -8268,7 +8268,7 @@ type GetGrossingWebAppBots struct {
 	Offset string `json:"offset"`
 }
 
-func (t GetGrossingWebAppBots) Type() string {
+func (t GetGrossingWebAppBots) GetType() string {
 	return "getGrossingWebAppBots"
 }
 
@@ -8289,7 +8289,7 @@ type GetGroupCall struct {
 	GroupCallId int32 `json:"group_call_id"`
 }
 
-func (t GetGroupCall) Type() string {
+func (t GetGroupCall) GetType() string {
 	return "getGroupCall"
 }
 
@@ -8312,7 +8312,7 @@ type GetGroupCallParticipants struct {
 	Limit int32 `json:"limit"`
 }
 
-func (t GetGroupCallParticipants) Type() string {
+func (t GetGroupCallParticipants) GetType() string {
 	return "getGroupCallParticipants"
 }
 
@@ -8333,7 +8333,7 @@ type GetGroupCallStreams struct {
 	GroupCallId int32 `json:"group_call_id"`
 }
 
-func (t GetGroupCallStreams) Type() string {
+func (t GetGroupCallStreams) GetType() string {
 	return "getGroupCallStreams"
 }
 
@@ -8362,7 +8362,7 @@ type GetGroupCallStreamSegment struct {
 	VideoQuality GroupCallVideoQuality `json:"video_quality,omitempty"`
 }
 
-func (t GetGroupCallStreamSegment) Type() string {
+func (t GetGroupCallStreamSegment) GetType() string {
 	return "getGroupCallStreamSegment"
 }
 
@@ -8387,7 +8387,7 @@ type GetGroupsInCommon struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t GetGroupsInCommon) Type() string {
+func (t GetGroupsInCommon) GetType() string {
 	return "getGroupsInCommon"
 }
 
@@ -8406,7 +8406,7 @@ func (t GetGroupsInCommon) MarshalJSON() ([]byte, error) {
 type GetImportedContactCount struct {
 }
 
-func (t GetImportedContactCount) Type() string {
+func (t GetImportedContactCount) GetType() string {
 	return "getImportedContactCount"
 }
 
@@ -8425,7 +8425,7 @@ func (t GetImportedContactCount) MarshalJSON() ([]byte, error) {
 type GetInactiveSupergroupChats struct {
 }
 
-func (t GetInactiveSupergroupChats) Type() string {
+func (t GetInactiveSupergroupChats) GetType() string {
 	return "getInactiveSupergroupChats"
 }
 
@@ -8448,7 +8448,7 @@ type GetInlineGameHighScores struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t GetInlineGameHighScores) Type() string {
+func (t GetInlineGameHighScores) GetType() string {
 	return "getInlineGameHighScores"
 }
 
@@ -8477,7 +8477,7 @@ type GetInlineQueryResults struct {
 	UserLocation *Location `json:"user_location,omitempty"`
 }
 
-func (t GetInlineQueryResults) Type() string {
+func (t GetInlineQueryResults) GetType() string {
 	return "getInlineQueryResults"
 }
 
@@ -8498,7 +8498,7 @@ type GetInstalledBackgrounds struct {
 	ForDarkTheme bool `json:"for_dark_theme"`
 }
 
-func (t GetInstalledBackgrounds) Type() string {
+func (t GetInstalledBackgrounds) GetType() string {
 	return "getInstalledBackgrounds"
 }
 
@@ -8519,7 +8519,7 @@ type GetInstalledStickerSets struct {
 	StickerType StickerType `json:"sticker_type"`
 }
 
-func (t GetInstalledStickerSets) Type() string {
+func (t GetInstalledStickerSets) GetType() string {
 	return "getInstalledStickerSets"
 }
 
@@ -8539,10 +8539,10 @@ type GetInternalLink struct {
 	// Pass true to create an HTTPS link (only available for some link types); pass false to create a tg: link
 	IsHttp bool `json:"is_http"`
 	// Expected type of the link
-	TypeField InternalLinkType `json:"type"`
+	Type InternalLinkType `json:"type"`
 }
 
-func (t GetInternalLink) Type() string {
+func (t GetInternalLink) GetType() string {
 	return "getInternalLink"
 }
 
@@ -8563,7 +8563,7 @@ type GetInternalLinkType struct {
 	Link string `json:"link"`
 }
 
-func (t GetInternalLinkType) Type() string {
+func (t GetInternalLinkType) GetType() string {
 	return "getInternalLinkType"
 }
 
@@ -8584,7 +8584,7 @@ type GetJsonString struct {
 	JsonValue JsonValue `json:"json_value"`
 }
 
-func (t GetJsonString) Type() string {
+func (t GetJsonString) GetType() string {
 	return "getJsonString"
 }
 
@@ -8605,7 +8605,7 @@ type GetJsonValue struct {
 	Json string `json:"json"`
 }
 
-func (t GetJsonValue) Type() string {
+func (t GetJsonValue) GetType() string {
 	return "getJsonValue"
 }
 
@@ -8628,7 +8628,7 @@ type GetKeywordEmojis struct {
 	Text string `json:"text"`
 }
 
-func (t GetKeywordEmojis) Type() string {
+func (t GetKeywordEmojis) GetType() string {
 	return "getKeywordEmojis"
 }
 
@@ -8649,7 +8649,7 @@ type GetLanguagePackInfo struct {
 	LanguagePackId string `json:"language_pack_id"`
 }
 
-func (t GetLanguagePackInfo) Type() string {
+func (t GetLanguagePackInfo) GetType() string {
 	return "getLanguagePackInfo"
 }
 
@@ -8676,7 +8676,7 @@ type GetLanguagePackString struct {
 	LocalizationTarget string `json:"localization_target"`
 }
 
-func (t GetLanguagePackString) Type() string {
+func (t GetLanguagePackString) GetType() string {
 	return "getLanguagePackString"
 }
 
@@ -8699,7 +8699,7 @@ type GetLanguagePackStrings struct {
 	LanguagePackId string `json:"language_pack_id"`
 }
 
-func (t GetLanguagePackStrings) Type() string {
+func (t GetLanguagePackStrings) GetType() string {
 	return "getLanguagePackStrings"
 }
 
@@ -8722,7 +8722,7 @@ type GetLinkPreview struct {
 	Text *FormattedText `json:"text"`
 }
 
-func (t GetLinkPreview) Type() string {
+func (t GetLinkPreview) GetType() string {
 	return "getLinkPreview"
 }
 
@@ -8743,7 +8743,7 @@ type GetLiveStoryAvailableMessageSenders struct {
 	GroupCallId int32 `json:"group_call_id"`
 }
 
-func (t GetLiveStoryAvailableMessageSenders) Type() string {
+func (t GetLiveStoryAvailableMessageSenders) GetType() string {
 	return "getLiveStoryAvailableMessageSenders"
 }
 
@@ -8764,7 +8764,7 @@ type GetLiveStoryRtmpUrl struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t GetLiveStoryRtmpUrl) Type() string {
+func (t GetLiveStoryRtmpUrl) GetType() string {
 	return "getLiveStoryRtmpUrl"
 }
 
@@ -8785,7 +8785,7 @@ type GetLiveStoryStreamer struct {
 	GroupCallId int32 `json:"group_call_id"`
 }
 
-func (t GetLiveStoryStreamer) Type() string {
+func (t GetLiveStoryStreamer) GetType() string {
 	return "getLiveStoryStreamer"
 }
 
@@ -8806,7 +8806,7 @@ type GetLiveStoryTopDonors struct {
 	GroupCallId int32 `json:"group_call_id"`
 }
 
-func (t GetLiveStoryTopDonors) Type() string {
+func (t GetLiveStoryTopDonors) GetType() string {
 	return "getLiveStoryTopDonors"
 }
 
@@ -8827,7 +8827,7 @@ type GetLocalizationTargetInfo struct {
 	OnlyLocal bool `json:"only_local"`
 }
 
-func (t GetLocalizationTargetInfo) Type() string {
+func (t GetLocalizationTargetInfo) GetType() string {
 	return "getLocalizationTargetInfo"
 }
 
@@ -8846,7 +8846,7 @@ func (t GetLocalizationTargetInfo) MarshalJSON() ([]byte, error) {
 type GetLoginPasskeys struct {
 }
 
-func (t GetLoginPasskeys) Type() string {
+func (t GetLoginPasskeys) GetType() string {
 	return "getLoginPasskeys"
 }
 
@@ -8873,7 +8873,7 @@ type GetLoginUrl struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t GetLoginUrl) Type() string {
+func (t GetLoginUrl) GetType() string {
 	return "getLoginUrl"
 }
 
@@ -8898,7 +8898,7 @@ type GetLoginUrlInfo struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t GetLoginUrlInfo) Type() string {
+func (t GetLoginUrlInfo) GetType() string {
 	return "getLoginUrlInfo"
 }
 
@@ -8917,7 +8917,7 @@ func (t GetLoginUrlInfo) MarshalJSON() ([]byte, error) {
 type GetLogStream struct {
 }
 
-func (t GetLogStream) Type() string {
+func (t GetLogStream) GetType() string {
 	return "getLogStream"
 }
 
@@ -8936,7 +8936,7 @@ func (t GetLogStream) MarshalJSON() ([]byte, error) {
 type GetLogTags struct {
 }
 
-func (t GetLogTags) Type() string {
+func (t GetLogTags) GetType() string {
 	return "getLogTags"
 }
 
@@ -8957,7 +8957,7 @@ type GetLogTagVerbosityLevel struct {
 	Tag string `json:"tag"`
 }
 
-func (t GetLogTagVerbosityLevel) Type() string {
+func (t GetLogTagVerbosityLevel) GetType() string {
 	return "getLogTagVerbosityLevel"
 }
 
@@ -8976,7 +8976,7 @@ func (t GetLogTagVerbosityLevel) MarshalJSON() ([]byte, error) {
 type GetLogVerbosityLevel struct {
 }
 
-func (t GetLogVerbosityLevel) Type() string {
+func (t GetLogVerbosityLevel) GetType() string {
 	return "getLogVerbosityLevel"
 }
 
@@ -9003,7 +9003,7 @@ type GetMainWebApp struct {
 	StartParameter string `json:"start_parameter"`
 }
 
-func (t GetMainWebApp) Type() string {
+func (t GetMainWebApp) GetType() string {
 	return "getMainWebApp"
 }
 
@@ -9034,7 +9034,7 @@ type GetMapThumbnailFile struct {
 	Zoom int32 `json:"zoom"`
 }
 
-func (t GetMapThumbnailFile) Type() string {
+func (t GetMapThumbnailFile) GetType() string {
 	return "getMapThumbnailFile"
 }
 
@@ -9055,7 +9055,7 @@ type GetMarkdownText struct {
 	Text *FormattedText `json:"text"`
 }
 
-func (t GetMarkdownText) Type() string {
+func (t GetMarkdownText) GetType() string {
 	return "getMarkdownText"
 }
 
@@ -9074,7 +9074,7 @@ func (t GetMarkdownText) MarshalJSON() ([]byte, error) {
 type GetMe struct {
 }
 
-func (t GetMe) Type() string {
+func (t GetMe) GetType() string {
 	return "getMe"
 }
 
@@ -9095,7 +9095,7 @@ type GetMenuButton struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t GetMenuButton) Type() string {
+func (t GetMenuButton) GetType() string {
 	return "getMenuButton"
 }
 
@@ -9118,7 +9118,7 @@ type GetMessage struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t GetMessage) Type() string {
+func (t GetMessage) GetType() string {
 	return "getMessage"
 }
 
@@ -9147,7 +9147,7 @@ type GetMessageAddedReactions struct {
 	ReactionType ReactionType `json:"reaction_type,omitempty"`
 }
 
-func (t GetMessageAddedReactions) Type() string {
+func (t GetMessageAddedReactions) GetType() string {
 	return "getMessageAddedReactions"
 }
 
@@ -9170,7 +9170,7 @@ type GetMessageAuthor struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t GetMessageAuthor) Type() string {
+func (t GetMessageAuthor) GetType() string {
 	return "getMessageAuthor"
 }
 
@@ -9195,7 +9195,7 @@ type GetMessageAvailableReactions struct {
 	RowSize int32 `json:"row_size"`
 }
 
-func (t GetMessageAvailableReactions) Type() string {
+func (t GetMessageAvailableReactions) GetType() string {
 	return "getMessageAvailableReactions"
 }
 
@@ -9216,7 +9216,7 @@ type GetMessageEffect struct {
 	EffectId int64 `json:"effect_id,string"`
 }
 
-func (t GetMessageEffect) Type() string {
+func (t GetMessageEffect) GetType() string {
 	return "getMessageEffect"
 }
 
@@ -9241,7 +9241,7 @@ type GetMessageEmbeddingCode struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t GetMessageEmbeddingCode) Type() string {
+func (t GetMessageEmbeddingCode) GetType() string {
 	return "getMessageEmbeddingCode"
 }
 
@@ -9262,7 +9262,7 @@ type GetMessageFileType struct {
 	MessageFileHead string `json:"message_file_head"`
 }
 
-func (t GetMessageFileType) Type() string {
+func (t GetMessageFileType) GetType() string {
 	return "getMessageFileType"
 }
 
@@ -9283,7 +9283,7 @@ type GetMessageImportConfirmationText struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t GetMessageImportConfirmationText) Type() string {
+func (t GetMessageImportConfirmationText) GetType() string {
 	return "getMessageImportConfirmationText"
 }
 
@@ -9312,7 +9312,7 @@ type GetMessageLink struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t GetMessageLink) Type() string {
+func (t GetMessageLink) GetType() string {
 	return "getMessageLink"
 }
 
@@ -9333,7 +9333,7 @@ type GetMessageLinkInfo struct {
 	Url string `json:"url"`
 }
 
-func (t GetMessageLinkInfo) Type() string {
+func (t GetMessageLinkInfo) GetType() string {
 	return "getMessageLinkInfo"
 }
 
@@ -9356,7 +9356,7 @@ type GetMessageLocally struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t GetMessageLocally) Type() string {
+func (t GetMessageLocally) GetType() string {
 	return "getMessageLocally"
 }
 
@@ -9379,7 +9379,7 @@ type GetMessageProperties struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t GetMessageProperties) Type() string {
+func (t GetMessageProperties) GetType() string {
 	return "getMessageProperties"
 }
 
@@ -9406,7 +9406,7 @@ type GetMessagePublicForwards struct {
 	Offset string `json:"offset"`
 }
 
-func (t GetMessagePublicForwards) Type() string {
+func (t GetMessagePublicForwards) GetType() string {
 	return "getMessagePublicForwards"
 }
 
@@ -9429,7 +9429,7 @@ type GetMessageReadDate struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t GetMessageReadDate) Type() string {
+func (t GetMessageReadDate) GetType() string {
 	return "getMessageReadDate"
 }
 
@@ -9452,7 +9452,7 @@ type GetMessages struct {
 	MessageIds []int64 `json:"message_ids"`
 }
 
-func (t GetMessages) Type() string {
+func (t GetMessages) GetType() string {
 	return "getMessages"
 }
 
@@ -9477,7 +9477,7 @@ type GetMessageStatistics struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t GetMessageStatistics) Type() string {
+func (t GetMessageStatistics) GetType() string {
 	return "getMessageStatistics"
 }
 
@@ -9500,7 +9500,7 @@ type GetMessageThread struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t GetMessageThread) Type() string {
+func (t GetMessageThread) GetType() string {
 	return "getMessageThread"
 }
 
@@ -9529,7 +9529,7 @@ type GetMessageThreadHistory struct {
 	Offset int32 `json:"offset"`
 }
 
-func (t GetMessageThreadHistory) Type() string {
+func (t GetMessageThreadHistory) GetType() string {
 	return "getMessageThreadHistory"
 }
 
@@ -9552,7 +9552,7 @@ type GetMessageViewers struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t GetMessageViewers) Type() string {
+func (t GetMessageViewers) GetType() string {
 	return "getMessageViewers"
 }
 
@@ -9573,7 +9573,7 @@ type GetNetworkStatistics struct {
 	OnlyCurrent bool `json:"only_current"`
 }
 
-func (t GetNetworkStatistics) Type() string {
+func (t GetNetworkStatistics) GetType() string {
 	return "getNetworkStatistics"
 }
 
@@ -9592,7 +9592,7 @@ func (t GetNetworkStatistics) MarshalJSON() ([]byte, error) {
 type GetNewChatPrivacySettings struct {
 }
 
-func (t GetNewChatPrivacySettings) Type() string {
+func (t GetNewChatPrivacySettings) GetType() string {
 	return "getNewChatPrivacySettings"
 }
 
@@ -9615,7 +9615,7 @@ type GetOauthLinkInfo struct {
 	Url string `json:"url"`
 }
 
-func (t GetOauthLinkInfo) Type() string {
+func (t GetOauthLinkInfo) GetType() string {
 	return "getOauthLinkInfo"
 }
 
@@ -9636,7 +9636,7 @@ type GetOption struct {
 	Name string `json:"name"`
 }
 
-func (t GetOption) Type() string {
+func (t GetOption) GetType() string {
 	return "getOption"
 }
 
@@ -9655,7 +9655,7 @@ func (t GetOption) MarshalJSON() ([]byte, error) {
 type GetOwnedBots struct {
 }
 
-func (t GetOwnedBots) Type() string {
+func (t GetOwnedBots) GetType() string {
 	return "getOwnedBots"
 }
 
@@ -9678,7 +9678,7 @@ type GetOwnedStickerSets struct {
 	OffsetStickerSetId int64 `json:"offset_sticker_set_id,string"`
 }
 
-func (t GetOwnedStickerSets) Type() string {
+func (t GetOwnedStickerSets) GetType() string {
 	return "getOwnedStickerSets"
 }
 
@@ -9699,7 +9699,7 @@ type GetPaidMessageRevenue struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t GetPaidMessageRevenue) Type() string {
+func (t GetPaidMessageRevenue) GetType() string {
 	return "getPaidMessageRevenue"
 }
 
@@ -9718,7 +9718,7 @@ func (t GetPaidMessageRevenue) MarshalJSON() ([]byte, error) {
 type GetPasskeyParameters struct {
 }
 
-func (t GetPasskeyParameters) Type() string {
+func (t GetPasskeyParameters) GetType() string {
 	return "getPasskeyParameters"
 }
 
@@ -9745,7 +9745,7 @@ type GetPassportAuthorizationForm struct {
 	Scope string `json:"scope"`
 }
 
-func (t GetPassportAuthorizationForm) Type() string {
+func (t GetPassportAuthorizationForm) GetType() string {
 	return "getPassportAuthorizationForm"
 }
 
@@ -9768,7 +9768,7 @@ type GetPassportAuthorizationFormAvailableElements struct {
 	Password string `json:"password"`
 }
 
-func (t GetPassportAuthorizationFormAvailableElements) Type() string {
+func (t GetPassportAuthorizationFormAvailableElements) GetType() string {
 	return "getPassportAuthorizationFormAvailableElements"
 }
 
@@ -9788,10 +9788,10 @@ type GetPassportElement struct {
 	// The 2-step verification password of the current user
 	Password string `json:"password"`
 	// Telegram Passport element type
-	TypeField PassportElementType `json:"type"`
+	Type PassportElementType `json:"type"`
 }
 
-func (t GetPassportElement) Type() string {
+func (t GetPassportElement) GetType() string {
 	return "getPassportElement"
 }
 
@@ -9810,7 +9810,7 @@ func (t GetPassportElement) MarshalJSON() ([]byte, error) {
 type GetPasswordState struct {
 }
 
-func (t GetPasswordState) Type() string {
+func (t GetPasswordState) GetType() string {
 	return "getPasswordState"
 }
 
@@ -9833,7 +9833,7 @@ type GetPaymentForm struct {
 	Theme *ThemeParameters `json:"theme,omitempty"`
 }
 
-func (t GetPaymentForm) Type() string {
+func (t GetPaymentForm) GetType() string {
 	return "getPaymentForm"
 }
 
@@ -9856,7 +9856,7 @@ type GetPaymentReceipt struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t GetPaymentReceipt) Type() string {
+func (t GetPaymentReceipt) GetType() string {
 	return "getPaymentReceipt"
 }
 
@@ -9877,7 +9877,7 @@ type GetPhoneNumberInfo struct {
 	PhoneNumberPrefix string `json:"phone_number_prefix"`
 }
 
-func (t GetPhoneNumberInfo) Type() string {
+func (t GetPhoneNumberInfo) GetType() string {
 	return "getPhoneNumberInfo"
 }
 
@@ -9900,7 +9900,7 @@ type GetPhoneNumberInfoSync struct {
 	PhoneNumberPrefix string `json:"phone_number_prefix"`
 }
 
-func (t GetPhoneNumberInfoSync) Type() string {
+func (t GetPhoneNumberInfoSync) GetType() string {
 	return "getPhoneNumberInfoSync"
 }
 
@@ -9929,7 +9929,7 @@ type GetPollVoters struct {
 	OptionId int32 `json:"option_id"`
 }
 
-func (t GetPollVoters) Type() string {
+func (t GetPollVoters) GetType() string {
 	return "getPollVoters"
 }
 
@@ -9950,7 +9950,7 @@ type GetPreferredCountryLanguage struct {
 	CountryCode string `json:"country_code"`
 }
 
-func (t GetPreferredCountryLanguage) Type() string {
+func (t GetPreferredCountryLanguage) GetType() string {
 	return "getPreferredCountryLanguage"
 }
 
@@ -9971,7 +9971,7 @@ type GetPremiumFeatures struct {
 	Source PremiumSource `json:"source,omitempty"`
 }
 
-func (t GetPremiumFeatures) Type() string {
+func (t GetPremiumFeatures) GetType() string {
 	return "getPremiumFeatures"
 }
 
@@ -9990,7 +9990,7 @@ func (t GetPremiumFeatures) MarshalJSON() ([]byte, error) {
 type GetPremiumGiftPaymentOptions struct {
 }
 
-func (t GetPremiumGiftPaymentOptions) Type() string {
+func (t GetPremiumGiftPaymentOptions) GetType() string {
 	return "getPremiumGiftPaymentOptions"
 }
 
@@ -10011,7 +10011,7 @@ type GetPremiumGiveawayPaymentOptions struct {
 	BoostedChatId int64 `json:"boosted_chat_id"`
 }
 
-func (t GetPremiumGiveawayPaymentOptions) Type() string {
+func (t GetPremiumGiveawayPaymentOptions) GetType() string {
 	return "getPremiumGiveawayPaymentOptions"
 }
 
@@ -10032,7 +10032,7 @@ type GetPremiumInfoSticker struct {
 	MonthCount int32 `json:"month_count"`
 }
 
-func (t GetPremiumInfoSticker) Type() string {
+func (t GetPremiumInfoSticker) GetType() string {
 	return "getPremiumInfoSticker"
 }
 
@@ -10053,7 +10053,7 @@ type GetPremiumLimit struct {
 	LimitType PremiumLimitType `json:"limit_type"`
 }
 
-func (t GetPremiumLimit) Type() string {
+func (t GetPremiumLimit) GetType() string {
 	return "getPremiumLimit"
 }
 
@@ -10072,7 +10072,7 @@ func (t GetPremiumLimit) MarshalJSON() ([]byte, error) {
 type GetPremiumState struct {
 }
 
-func (t GetPremiumState) Type() string {
+func (t GetPremiumState) GetType() string {
 	return "getPremiumState"
 }
 
@@ -10091,7 +10091,7 @@ func (t GetPremiumState) MarshalJSON() ([]byte, error) {
 type GetPremiumStickerExamples struct {
 }
 
-func (t GetPremiumStickerExamples) Type() string {
+func (t GetPremiumStickerExamples) GetType() string {
 	return "getPremiumStickerExamples"
 }
 
@@ -10112,7 +10112,7 @@ type GetPremiumStickers struct {
 	Limit int32 `json:"limit"`
 }
 
-func (t GetPremiumStickers) Type() string {
+func (t GetPremiumStickers) GetType() string {
 	return "getPremiumStickers"
 }
 
@@ -10135,7 +10135,7 @@ type GetPreparedInlineMessage struct {
 	PreparedMessageId string `json:"prepared_message_id"`
 }
 
-func (t GetPreparedInlineMessage) Type() string {
+func (t GetPreparedInlineMessage) GetType() string {
 	return "getPreparedInlineMessage"
 }
 
@@ -10154,7 +10154,7 @@ func (t GetPreparedInlineMessage) MarshalJSON() ([]byte, error) {
 type GetProxies struct {
 }
 
-func (t GetProxies) Type() string {
+func (t GetProxies) GetType() string {
 	return "getProxies"
 }
 
@@ -10175,7 +10175,7 @@ type GetPublicPostSearchLimits struct {
 	Query string `json:"query"`
 }
 
-func (t GetPublicPostSearchLimits) Type() string {
+func (t GetPublicPostSearchLimits) GetType() string {
 	return "getPublicPostSearchLimits"
 }
 
@@ -10196,7 +10196,7 @@ type GetPushReceiverId struct {
 	Payload string `json:"payload"`
 }
 
-func (t GetPushReceiverId) Type() string {
+func (t GetPushReceiverId) GetType() string {
 	return "getPushReceiverId"
 }
 
@@ -10215,7 +10215,7 @@ func (t GetPushReceiverId) MarshalJSON() ([]byte, error) {
 type GetReadDatePrivacySettings struct {
 }
 
-func (t GetReadDatePrivacySettings) Type() string {
+func (t GetReadDatePrivacySettings) GetType() string {
 	return "getReadDatePrivacySettings"
 }
 
@@ -10236,7 +10236,7 @@ type GetReceivedGift struct {
 	ReceivedGiftId string `json:"received_gift_id"`
 }
 
-func (t GetReceivedGift) Type() string {
+func (t GetReceivedGift) GetType() string {
 	return "getReceivedGift"
 }
 
@@ -10283,7 +10283,7 @@ type GetReceivedGifts struct {
 	SortByPrice bool `json:"sort_by_price"`
 }
 
-func (t GetReceivedGifts) Type() string {
+func (t GetReceivedGifts) GetType() string {
 	return "getReceivedGifts"
 }
 
@@ -10302,7 +10302,7 @@ func (t GetReceivedGifts) MarshalJSON() ([]byte, error) {
 type GetRecentEmojiStatuses struct {
 }
 
-func (t GetRecentEmojiStatuses) Type() string {
+func (t GetRecentEmojiStatuses) GetType() string {
 	return "getRecentEmojiStatuses"
 }
 
@@ -10321,7 +10321,7 @@ func (t GetRecentEmojiStatuses) MarshalJSON() ([]byte, error) {
 type GetRecentInlineBots struct {
 }
 
-func (t GetRecentInlineBots) Type() string {
+func (t GetRecentInlineBots) GetType() string {
 	return "getRecentInlineBots"
 }
 
@@ -10342,7 +10342,7 @@ type GetRecentlyOpenedChats struct {
 	Limit int32 `json:"limit"`
 }
 
-func (t GetRecentlyOpenedChats) Type() string {
+func (t GetRecentlyOpenedChats) GetType() string {
 	return "getRecentlyOpenedChats"
 }
 
@@ -10363,7 +10363,7 @@ type GetRecentlyVisitedTMeUrls struct {
 	Referrer string `json:"referrer"`
 }
 
-func (t GetRecentlyVisitedTMeUrls) Type() string {
+func (t GetRecentlyVisitedTMeUrls) GetType() string {
 	return "getRecentlyVisitedTMeUrls"
 }
 
@@ -10384,7 +10384,7 @@ type GetRecentStickers struct {
 	IsAttached bool `json:"is_attached"`
 }
 
-func (t GetRecentStickers) Type() string {
+func (t GetRecentStickers) GetType() string {
 	return "getRecentStickers"
 }
 
@@ -10403,7 +10403,7 @@ func (t GetRecentStickers) MarshalJSON() ([]byte, error) {
 type GetRecommendedChatFolders struct {
 }
 
-func (t GetRecommendedChatFolders) Type() string {
+func (t GetRecommendedChatFolders) GetType() string {
 	return "getRecommendedChatFolders"
 }
 
@@ -10422,7 +10422,7 @@ func (t GetRecommendedChatFolders) MarshalJSON() ([]byte, error) {
 type GetRecommendedChats struct {
 }
 
-func (t GetRecommendedChats) Type() string {
+func (t GetRecommendedChats) GetType() string {
 	return "getRecommendedChats"
 }
 
@@ -10443,7 +10443,7 @@ type GetRecoveryEmailAddress struct {
 	Password string `json:"password"`
 }
 
-func (t GetRecoveryEmailAddress) Type() string {
+func (t GetRecoveryEmailAddress) GetType() string {
 	return "getRecoveryEmailAddress"
 }
 
@@ -10466,7 +10466,7 @@ type GetRemoteFile struct {
 	RemoteFileId string `json:"remote_file_id"`
 }
 
-func (t GetRemoteFile) Type() string {
+func (t GetRemoteFile) GetType() string {
 	return "getRemoteFile"
 }
 
@@ -10489,7 +10489,7 @@ type GetRepliedMessage struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t GetRepliedMessage) Type() string {
+func (t GetRepliedMessage) GetType() string {
 	return "getRepliedMessage"
 }
 
@@ -10508,7 +10508,7 @@ func (t GetRepliedMessage) MarshalJSON() ([]byte, error) {
 type GetSavedAnimations struct {
 }
 
-func (t GetSavedAnimations) Type() string {
+func (t GetSavedAnimations) GetType() string {
 	return "getSavedAnimations"
 }
 
@@ -10529,7 +10529,7 @@ type GetSavedMessagesTags struct {
 	SavedMessagesTopicId int64 `json:"saved_messages_topic_id"`
 }
 
-func (t GetSavedMessagesTags) Type() string {
+func (t GetSavedMessagesTags) GetType() string {
 	return "getSavedMessagesTags"
 }
 
@@ -10556,7 +10556,7 @@ type GetSavedMessagesTopicHistory struct {
 	SavedMessagesTopicId int64 `json:"saved_messages_topic_id"`
 }
 
-func (t GetSavedMessagesTopicHistory) Type() string {
+func (t GetSavedMessagesTopicHistory) GetType() string {
 	return "getSavedMessagesTopicHistory"
 }
 
@@ -10579,7 +10579,7 @@ type GetSavedMessagesTopicMessageByDate struct {
 	SavedMessagesTopicId int64 `json:"saved_messages_topic_id"`
 }
 
-func (t GetSavedMessagesTopicMessageByDate) Type() string {
+func (t GetSavedMessagesTopicMessageByDate) GetType() string {
 	return "getSavedMessagesTopicMessageByDate"
 }
 
@@ -10600,7 +10600,7 @@ type GetSavedNotificationSound struct {
 	NotificationSoundId int64 `json:"notification_sound_id,string"`
 }
 
-func (t GetSavedNotificationSound) Type() string {
+func (t GetSavedNotificationSound) GetType() string {
 	return "getSavedNotificationSound"
 }
 
@@ -10619,7 +10619,7 @@ func (t GetSavedNotificationSound) MarshalJSON() ([]byte, error) {
 type GetSavedNotificationSounds struct {
 }
 
-func (t GetSavedNotificationSounds) Type() string {
+func (t GetSavedNotificationSounds) GetType() string {
 	return "getSavedNotificationSounds"
 }
 
@@ -10638,7 +10638,7 @@ func (t GetSavedNotificationSounds) MarshalJSON() ([]byte, error) {
 type GetSavedOrderInfo struct {
 }
 
-func (t GetSavedOrderInfo) Type() string {
+func (t GetSavedOrderInfo) GetType() string {
 	return "getSavedOrderInfo"
 }
 
@@ -10659,7 +10659,7 @@ type GetScopeNotificationSettings struct {
 	Scope NotificationSettingsScope `json:"scope"`
 }
 
-func (t GetScopeNotificationSettings) Type() string {
+func (t GetScopeNotificationSettings) GetType() string {
 	return "getScopeNotificationSettings"
 }
 
@@ -10682,7 +10682,7 @@ type GetSearchedForTags struct {
 	TagPrefix string `json:"tag_prefix"`
 }
 
-func (t GetSearchedForTags) Type() string {
+func (t GetSearchedForTags) GetType() string {
 	return "getSearchedForTags"
 }
 
@@ -10703,7 +10703,7 @@ type GetSearchSponsoredChats struct {
 	Query string `json:"query"`
 }
 
-func (t GetSearchSponsoredChats) Type() string {
+func (t GetSearchSponsoredChats) GetType() string {
 	return "getSearchSponsoredChats"
 }
 
@@ -10724,7 +10724,7 @@ type GetSecretChat struct {
 	SecretChatId int32 `json:"secret_chat_id"`
 }
 
-func (t GetSecretChat) Type() string {
+func (t GetSecretChat) GetType() string {
 	return "getSecretChat"
 }
 
@@ -10743,7 +10743,7 @@ func (t GetSecretChat) MarshalJSON() ([]byte, error) {
 type GetStakeDiceState struct {
 }
 
-func (t GetStakeDiceState) Type() string {
+func (t GetStakeDiceState) GetType() string {
 	return "getStakeDiceState"
 }
 
@@ -10764,7 +10764,7 @@ type GetStarAdAccountUrl struct {
 	OwnerId MessageSender `json:"owner_id"`
 }
 
-func (t GetStarAdAccountUrl) Type() string {
+func (t GetStarAdAccountUrl) GetType() string {
 	return "getStarAdAccountUrl"
 }
 
@@ -10785,7 +10785,7 @@ type GetStarGiftPaymentOptions struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t GetStarGiftPaymentOptions) Type() string {
+func (t GetStarGiftPaymentOptions) GetType() string {
 	return "getStarGiftPaymentOptions"
 }
 
@@ -10804,7 +10804,7 @@ func (t GetStarGiftPaymentOptions) MarshalJSON() ([]byte, error) {
 type GetStarGiveawayPaymentOptions struct {
 }
 
-func (t GetStarGiveawayPaymentOptions) Type() string {
+func (t GetStarGiveawayPaymentOptions) GetType() string {
 	return "getStarGiveawayPaymentOptions"
 }
 
@@ -10823,7 +10823,7 @@ func (t GetStarGiveawayPaymentOptions) MarshalJSON() ([]byte, error) {
 type GetStarPaymentOptions struct {
 }
 
-func (t GetStarPaymentOptions) Type() string {
+func (t GetStarPaymentOptions) GetType() string {
 	return "getStarPaymentOptions"
 }
 
@@ -10846,7 +10846,7 @@ type GetStarRevenueStatistics struct {
 	OwnerId MessageSender `json:"owner_id"`
 }
 
-func (t GetStarRevenueStatistics) Type() string {
+func (t GetStarRevenueStatistics) GetType() string {
 	return "getStarRevenueStatistics"
 }
 
@@ -10869,7 +10869,7 @@ type GetStarSubscriptions struct {
 	OnlyExpiring bool `json:"only_expiring"`
 }
 
-func (t GetStarSubscriptions) Type() string {
+func (t GetStarSubscriptions) GetType() string {
 	return "getStarSubscriptions"
 }
 
@@ -10898,7 +10898,7 @@ type GetStarTransactions struct {
 	SubscriptionId string `json:"subscription_id,omitempty"`
 }
 
-func (t GetStarTransactions) Type() string {
+func (t GetStarTransactions) GetType() string {
 	return "getStarTransactions"
 }
 
@@ -10923,7 +10923,7 @@ type GetStarWithdrawalUrl struct {
 	StarCount int64 `json:"star_count"`
 }
 
-func (t GetStarWithdrawalUrl) Type() string {
+func (t GetStarWithdrawalUrl) GetType() string {
 	return "getStarWithdrawalUrl"
 }
 
@@ -10948,7 +10948,7 @@ type GetStatisticalGraph struct {
 	X int64 `json:"x"`
 }
 
-func (t GetStatisticalGraph) Type() string {
+func (t GetStatisticalGraph) GetType() string {
 	return "getStatisticalGraph"
 }
 
@@ -10969,7 +10969,7 @@ type GetStickerEmojis struct {
 	Sticker InputFile `json:"sticker"`
 }
 
-func (t GetStickerEmojis) Type() string {
+func (t GetStickerEmojis) GetType() string {
 	return "getStickerEmojis"
 }
 
@@ -10994,7 +10994,7 @@ type GetStickerOutline struct {
 	StickerFileId int32 `json:"sticker_file_id"`
 }
 
-func (t GetStickerOutline) Type() string {
+func (t GetStickerOutline) GetType() string {
 	return "getStickerOutline"
 }
 
@@ -11019,7 +11019,7 @@ type GetStickerOutlineSvgPath struct {
 	StickerFileId int32 `json:"sticker_file_id"`
 }
 
-func (t GetStickerOutlineSvgPath) Type() string {
+func (t GetStickerOutlineSvgPath) GetType() string {
 	return "getStickerOutlineSvgPath"
 }
 
@@ -11046,7 +11046,7 @@ type GetStickers struct {
 	StickerType StickerType `json:"sticker_type"`
 }
 
-func (t GetStickers) Type() string {
+func (t GetStickers) GetType() string {
 	return "getStickers"
 }
 
@@ -11067,7 +11067,7 @@ type GetStickerSet struct {
 	SetId int64 `json:"set_id,string"`
 }
 
-func (t GetStickerSet) Type() string {
+func (t GetStickerSet) GetType() string {
 	return "getStickerSet"
 }
 
@@ -11088,7 +11088,7 @@ type GetStickerSetName struct {
 	SetId int64 `json:"set_id,string"`
 }
 
-func (t GetStickerSetName) Type() string {
+func (t GetStickerSetName) GetType() string {
 	return "getStickerSetName"
 }
 
@@ -11109,7 +11109,7 @@ type GetStorageStatistics struct {
 	ChatLimit int32 `json:"chat_limit"`
 }
 
-func (t GetStorageStatistics) Type() string {
+func (t GetStorageStatistics) GetType() string {
 	return "getStorageStatistics"
 }
 
@@ -11128,7 +11128,7 @@ func (t GetStorageStatistics) MarshalJSON() ([]byte, error) {
 type GetStorageStatisticsFast struct {
 }
 
-func (t GetStorageStatisticsFast) Type() string {
+func (t GetStorageStatisticsFast) GetType() string {
 	return "getStorageStatisticsFast"
 }
 
@@ -11153,7 +11153,7 @@ type GetStory struct {
 	StoryPosterChatId int64 `json:"story_poster_chat_id"`
 }
 
-func (t GetStory) Type() string {
+func (t GetStory) GetType() string {
 	return "getStory"
 }
 
@@ -11180,7 +11180,7 @@ type GetStoryAlbumStories struct {
 	StoryAlbumId int32 `json:"story_album_id"`
 }
 
-func (t GetStoryAlbumStories) Type() string {
+func (t GetStoryAlbumStories) GetType() string {
 	return "getStoryAlbumStories"
 }
 
@@ -11201,7 +11201,7 @@ type GetStoryAvailableReactions struct {
 	RowSize int32 `json:"row_size"`
 }
 
-func (t GetStoryAvailableReactions) Type() string {
+func (t GetStoryAvailableReactions) GetType() string {
 	return "getStoryAvailableReactions"
 }
 
@@ -11234,7 +11234,7 @@ type GetStoryInteractions struct {
 	StoryId int32 `json:"story_id"`
 }
 
-func (t GetStoryInteractions) Type() string {
+func (t GetStoryInteractions) GetType() string {
 	return "getStoryInteractions"
 }
 
@@ -11253,7 +11253,7 @@ func (t GetStoryInteractions) MarshalJSON() ([]byte, error) {
 type GetStoryNotificationSettingsExceptions struct {
 }
 
-func (t GetStoryNotificationSettingsExceptions) Type() string {
+func (t GetStoryNotificationSettingsExceptions) GetType() string {
 	return "getStoryNotificationSettingsExceptions"
 }
 
@@ -11280,7 +11280,7 @@ type GetStoryPublicForwards struct {
 	StoryPosterChatId int64 `json:"story_poster_chat_id"`
 }
 
-func (t GetStoryPublicForwards) Type() string {
+func (t GetStoryPublicForwards) GetType() string {
 	return "getStoryPublicForwards"
 }
 
@@ -11305,7 +11305,7 @@ type GetStoryStatistics struct {
 	StoryId int32 `json:"story_id"`
 }
 
-func (t GetStoryStatistics) Type() string {
+func (t GetStoryStatistics) GetType() string {
 	return "getStoryStatistics"
 }
 
@@ -11328,7 +11328,7 @@ type GetSuggestedFileName struct {
 	FileId int32 `json:"file_id"`
 }
 
-func (t GetSuggestedFileName) Type() string {
+func (t GetSuggestedFileName) GetType() string {
 	return "getSuggestedFileName"
 }
 
@@ -11349,7 +11349,7 @@ type GetSuggestedStickerSetName struct {
 	Title string `json:"title"`
 }
 
-func (t GetSuggestedStickerSetName) Type() string {
+func (t GetSuggestedStickerSetName) GetType() string {
 	return "getSuggestedStickerSetName"
 }
 
@@ -11368,7 +11368,7 @@ func (t GetSuggestedStickerSetName) MarshalJSON() ([]byte, error) {
 type GetSuitableDiscussionChats struct {
 }
 
-func (t GetSuitableDiscussionChats) Type() string {
+func (t GetSuitableDiscussionChats) GetType() string {
 	return "getSuitableDiscussionChats"
 }
 
@@ -11387,7 +11387,7 @@ func (t GetSuitableDiscussionChats) MarshalJSON() ([]byte, error) {
 type GetSuitablePersonalChats struct {
 }
 
-func (t GetSuitablePersonalChats) Type() string {
+func (t GetSuitablePersonalChats) GetType() string {
 	return "getSuitablePersonalChats"
 }
 
@@ -11408,7 +11408,7 @@ type GetSupergroup struct {
 	SupergroupId int64 `json:"supergroup_id"`
 }
 
-func (t GetSupergroup) Type() string {
+func (t GetSupergroup) GetType() string {
 	return "getSupergroup"
 }
 
@@ -11429,7 +11429,7 @@ type GetSupergroupFullInfo struct {
 	SupergroupId int64 `json:"supergroup_id"`
 }
 
-func (t GetSupergroupFullInfo) Type() string {
+func (t GetSupergroupFullInfo) GetType() string {
 	return "getSupergroupFullInfo"
 }
 
@@ -11456,7 +11456,7 @@ type GetSupergroupMembers struct {
 	SupergroupId int64 `json:"supergroup_id"`
 }
 
-func (t GetSupergroupMembers) Type() string {
+func (t GetSupergroupMembers) GetType() string {
 	return "getSupergroupMembers"
 }
 
@@ -11475,7 +11475,7 @@ func (t GetSupergroupMembers) MarshalJSON() ([]byte, error) {
 type GetSupportName struct {
 }
 
-func (t GetSupportName) Type() string {
+func (t GetSupportName) GetType() string {
 	return "getSupportName"
 }
 
@@ -11494,7 +11494,7 @@ func (t GetSupportName) MarshalJSON() ([]byte, error) {
 type GetSupportUser struct {
 }
 
-func (t GetSupportUser) Type() string {
+func (t GetSupportUser) GetType() string {
 	return "getSupportUser"
 }
 
@@ -11513,7 +11513,7 @@ func (t GetSupportUser) MarshalJSON() ([]byte, error) {
 type GetTemporaryPasswordState struct {
 }
 
-func (t GetTemporaryPasswordState) Type() string {
+func (t GetTemporaryPasswordState) GetType() string {
 	return "getTemporaryPasswordState"
 }
 
@@ -11534,7 +11534,7 @@ type GetTextEntities struct {
 	Text string `json:"text"`
 }
 
-func (t GetTextEntities) Type() string {
+func (t GetTextEntities) GetType() string {
 	return "getTextEntities"
 }
 
@@ -11553,7 +11553,7 @@ func (t GetTextEntities) MarshalJSON() ([]byte, error) {
 type GetThemedChatEmojiStatuses struct {
 }
 
-func (t GetThemedChatEmojiStatuses) Type() string {
+func (t GetThemedChatEmojiStatuses) GetType() string {
 	return "getThemedChatEmojiStatuses"
 }
 
@@ -11572,7 +11572,7 @@ func (t GetThemedChatEmojiStatuses) MarshalJSON() ([]byte, error) {
 type GetThemedEmojiStatuses struct {
 }
 
-func (t GetThemedEmojiStatuses) Type() string {
+func (t GetThemedEmojiStatuses) GetType() string {
 	return "getThemedEmojiStatuses"
 }
 
@@ -11593,7 +11593,7 @@ type GetThemeParametersJsonString struct {
 	Theme *ThemeParameters `json:"theme"`
 }
 
-func (t GetThemeParametersJsonString) Type() string {
+func (t GetThemeParametersJsonString) GetType() string {
 	return "getThemeParametersJsonString"
 }
 
@@ -11612,7 +11612,7 @@ func (t GetThemeParametersJsonString) MarshalJSON() ([]byte, error) {
 type GetTimeZones struct {
 }
 
-func (t GetTimeZones) Type() string {
+func (t GetTimeZones) GetType() string {
 	return "getTimeZones"
 }
 
@@ -11633,7 +11633,7 @@ type GetTonRevenueStatistics struct {
 	IsDark bool `json:"is_dark"`
 }
 
-func (t GetTonRevenueStatistics) Type() string {
+func (t GetTonRevenueStatistics) GetType() string {
 	return "getTonRevenueStatistics"
 }
 
@@ -11658,7 +11658,7 @@ type GetTonTransactions struct {
 	Offset string `json:"offset"`
 }
 
-func (t GetTonTransactions) Type() string {
+func (t GetTonTransactions) GetType() string {
 	return "getTonTransactions"
 }
 
@@ -11679,7 +11679,7 @@ type GetTonWithdrawalUrl struct {
 	Password string `json:"password"`
 }
 
-func (t GetTonWithdrawalUrl) Type() string {
+func (t GetTonWithdrawalUrl) GetType() string {
 	return "getTonWithdrawalUrl"
 }
 
@@ -11702,7 +11702,7 @@ type GetTopChats struct {
 	Limit int32 `json:"limit"`
 }
 
-func (t GetTopChats) Type() string {
+func (t GetTopChats) GetType() string {
 	return "getTopChats"
 }
 
@@ -11727,7 +11727,7 @@ type GetTrendingStickerSets struct {
 	StickerType StickerType `json:"sticker_type"`
 }
 
-func (t GetTrendingStickerSets) Type() string {
+func (t GetTrendingStickerSets) GetType() string {
 	return "getTrendingStickerSets"
 }
 
@@ -11748,7 +11748,7 @@ type GetUpgradedGift struct {
 	Name string `json:"name"`
 }
 
-func (t GetUpgradedGift) Type() string {
+func (t GetUpgradedGift) GetType() string {
 	return "getUpgradedGift"
 }
 
@@ -11767,7 +11767,7 @@ func (t GetUpgradedGift) MarshalJSON() ([]byte, error) {
 type GetUpgradedGiftEmojiStatuses struct {
 }
 
-func (t GetUpgradedGiftEmojiStatuses) Type() string {
+func (t GetUpgradedGiftEmojiStatuses) GetType() string {
 	return "getUpgradedGiftEmojiStatuses"
 }
 
@@ -11786,7 +11786,7 @@ func (t GetUpgradedGiftEmojiStatuses) MarshalJSON() ([]byte, error) {
 type GetUpgradedGiftsPromotionalAnimation struct {
 }
 
-func (t GetUpgradedGiftsPromotionalAnimation) Type() string {
+func (t GetUpgradedGiftsPromotionalAnimation) GetType() string {
 	return "getUpgradedGiftsPromotionalAnimation"
 }
 
@@ -11807,7 +11807,7 @@ type GetUpgradedGiftValueInfo struct {
 	Name string `json:"name"`
 }
 
-func (t GetUpgradedGiftValueInfo) Type() string {
+func (t GetUpgradedGiftValueInfo) GetType() string {
 	return "getUpgradedGiftValueInfo"
 }
 
@@ -11832,7 +11832,7 @@ type GetUpgradedGiftVariants struct {
 	ReturnUpgradeModels bool `json:"return_upgrade_models"`
 }
 
-func (t GetUpgradedGiftVariants) Type() string {
+func (t GetUpgradedGiftVariants) GetType() string {
 	return "getUpgradedGiftVariants"
 }
 
@@ -11855,7 +11855,7 @@ type GetUpgradedGiftWithdrawalUrl struct {
 	ReceivedGiftId string `json:"received_gift_id"`
 }
 
-func (t GetUpgradedGiftWithdrawalUrl) Type() string {
+func (t GetUpgradedGiftWithdrawalUrl) GetType() string {
 	return "getUpgradedGiftWithdrawalUrl"
 }
 
@@ -11876,7 +11876,7 @@ type GetUser struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t GetUser) Type() string {
+func (t GetUser) GetType() string {
 	return "getUser"
 }
 
@@ -11899,7 +11899,7 @@ type GetUserChatBoosts struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t GetUserChatBoosts) Type() string {
+func (t GetUserChatBoosts) GetType() string {
 	return "getUserChatBoosts"
 }
 
@@ -11920,7 +11920,7 @@ type GetUserFullInfo struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t GetUserFullInfo) Type() string {
+func (t GetUserFullInfo) GetType() string {
 	return "getUserFullInfo"
 }
 
@@ -11939,7 +11939,7 @@ func (t GetUserFullInfo) MarshalJSON() ([]byte, error) {
 type GetUserLink struct {
 }
 
-func (t GetUserLink) Type() string {
+func (t GetUserLink) GetType() string {
 	return "getUserLink"
 }
 
@@ -11960,7 +11960,7 @@ type GetUserPrivacySettingRules struct {
 	Setting UserPrivacySetting `json:"setting"`
 }
 
-func (t GetUserPrivacySettingRules) Type() string {
+func (t GetUserPrivacySettingRules) GetType() string {
 	return "getUserPrivacySettingRules"
 }
 
@@ -11985,7 +11985,7 @@ type GetUserProfileAudios struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t GetUserProfileAudios) Type() string {
+func (t GetUserProfileAudios) GetType() string {
 	return "getUserProfileAudios"
 }
 
@@ -12010,7 +12010,7 @@ type GetUserProfilePhotos struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t GetUserProfilePhotos) Type() string {
+func (t GetUserProfilePhotos) GetType() string {
 	return "getUserProfilePhotos"
 }
 
@@ -12031,7 +12031,7 @@ type GetUserSupportInfo struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t GetUserSupportInfo) Type() string {
+func (t GetUserSupportInfo) GetType() string {
 	return "getUserSupportInfo"
 }
 
@@ -12052,7 +12052,7 @@ type GetVideoChatAvailableParticipants struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t GetVideoChatAvailableParticipants) Type() string {
+func (t GetVideoChatAvailableParticipants) GetType() string {
 	return "getVideoChatAvailableParticipants"
 }
 
@@ -12075,7 +12075,7 @@ type GetVideoChatInviteLink struct {
 	GroupCallId int32 `json:"group_call_id"`
 }
 
-func (t GetVideoChatInviteLink) Type() string {
+func (t GetVideoChatInviteLink) GetType() string {
 	return "getVideoChatInviteLink"
 }
 
@@ -12096,7 +12096,7 @@ type GetVideoChatRtmpUrl struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t GetVideoChatRtmpUrl) Type() string {
+func (t GetVideoChatRtmpUrl) GetType() string {
 	return "getVideoChatRtmpUrl"
 }
 
@@ -12119,7 +12119,7 @@ type GetVideoMessageAdvertisements struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t GetVideoMessageAdvertisements) Type() string {
+func (t GetVideoMessageAdvertisements) GetType() string {
 	return "getVideoMessageAdvertisements"
 }
 
@@ -12150,7 +12150,7 @@ type GetWebAppLinkUrl struct {
 	WebAppShortName string `json:"web_app_short_name"`
 }
 
-func (t GetWebAppLinkUrl) Type() string {
+func (t GetWebAppLinkUrl) GetType() string {
 	return "getWebAppLinkUrl"
 }
 
@@ -12171,7 +12171,7 @@ type GetWebAppPlaceholder struct {
 	BotUserId int64 `json:"bot_user_id"`
 }
 
-func (t GetWebAppPlaceholder) Type() string {
+func (t GetWebAppPlaceholder) GetType() string {
 	return "getWebAppPlaceholder"
 }
 
@@ -12196,7 +12196,7 @@ type GetWebAppUrl struct {
 	Url string `json:"url"`
 }
 
-func (t GetWebAppUrl) Type() string {
+func (t GetWebAppUrl) GetType() string {
 	return "getWebAppUrl"
 }
 
@@ -12219,7 +12219,7 @@ type GetWebPageInstantView struct {
 	Url string `json:"url"`
 }
 
-func (t GetWebPageInstantView) Type() string {
+func (t GetWebPageInstantView) GetType() string {
 	return "getWebPageInstantView"
 }
 
@@ -12246,7 +12246,7 @@ type GiftPremiumWithStars struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t GiftPremiumWithStars) Type() string {
+func (t GiftPremiumWithStars) GetType() string {
 	return "giftPremiumWithStars"
 }
 
@@ -12265,7 +12265,7 @@ func (t GiftPremiumWithStars) MarshalJSON() ([]byte, error) {
 type HideContactCloseBirthdays struct {
 }
 
-func (t HideContactCloseBirthdays) Type() string {
+func (t HideContactCloseBirthdays) GetType() string {
 	return "hideContactCloseBirthdays"
 }
 
@@ -12286,7 +12286,7 @@ type HideSuggestedAction struct {
 	Action SuggestedAction `json:"action"`
 }
 
-func (t HideSuggestedAction) Type() string {
+func (t HideSuggestedAction) GetType() string {
 	return "hideSuggestedAction"
 }
 
@@ -12307,7 +12307,7 @@ type ImportContacts struct {
 	Contacts []ImportedContact `json:"contacts"`
 }
 
-func (t ImportContacts) Type() string {
+func (t ImportContacts) GetType() string {
 	return "importContacts"
 }
 
@@ -12332,7 +12332,7 @@ type ImportMessages struct {
 	MessageFile InputFile `json:"message_file"`
 }
 
-func (t ImportMessages) Type() string {
+func (t ImportMessages) GetType() string {
 	return "importMessages"
 }
 
@@ -12355,7 +12355,7 @@ type IncreaseGiftAuctionBid struct {
 	StarCount int64 `json:"star_count"`
 }
 
-func (t IncreaseGiftAuctionBid) Type() string {
+func (t IncreaseGiftAuctionBid) GetType() string {
 	return "increaseGiftAuctionBid"
 }
 
@@ -12380,7 +12380,7 @@ type InviteGroupCallParticipant struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t InviteGroupCallParticipant) Type() string {
+func (t InviteGroupCallParticipant) GetType() string {
 	return "inviteGroupCallParticipant"
 }
 
@@ -12403,7 +12403,7 @@ type InviteVideoChatParticipants struct {
 	UserIds []int64 `json:"user_ids"`
 }
 
-func (t InviteVideoChatParticipants) Type() string {
+func (t InviteVideoChatParticipants) GetType() string {
 	return "inviteVideoChatParticipants"
 }
 
@@ -12422,7 +12422,7 @@ func (t InviteVideoChatParticipants) MarshalJSON() ([]byte, error) {
 type IsLoginEmailAddressRequired struct {
 }
 
-func (t IsLoginEmailAddressRequired) Type() string {
+func (t IsLoginEmailAddressRequired) GetType() string {
 	return "isLoginEmailAddressRequired"
 }
 
@@ -12443,7 +12443,7 @@ type IsProfileAudio struct {
 	FileId int32 `json:"file_id"`
 }
 
-func (t IsProfileAudio) Type() string {
+func (t IsProfileAudio) GetType() string {
 	return "isProfileAudio"
 }
 
@@ -12464,7 +12464,7 @@ type JoinChat struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t JoinChat) Type() string {
+func (t JoinChat) GetType() string {
 	return "joinChat"
 }
 
@@ -12485,7 +12485,7 @@ type JoinChatByInviteLink struct {
 	InviteLink string `json:"invite_link"`
 }
 
-func (t JoinChatByInviteLink) Type() string {
+func (t JoinChatByInviteLink) GetType() string {
 	return "joinChatByInviteLink"
 }
 
@@ -12508,7 +12508,7 @@ type JoinGroupCall struct {
 	JoinParameters *GroupCallJoinParameters `json:"join_parameters"`
 }
 
-func (t JoinGroupCall) Type() string {
+func (t JoinGroupCall) GetType() string {
 	return "joinGroupCall"
 }
 
@@ -12531,7 +12531,7 @@ type JoinLiveStory struct {
 	JoinParameters *GroupCallJoinParameters `json:"join_parameters"`
 }
 
-func (t JoinLiveStory) Type() string {
+func (t JoinLiveStory) GetType() string {
 	return "joinLiveStory"
 }
 
@@ -12558,7 +12558,7 @@ type JoinVideoChat struct {
 	ParticipantId MessageSender `json:"participant_id,omitempty"`
 }
 
-func (t JoinVideoChat) Type() string {
+func (t JoinVideoChat) GetType() string {
 	return "joinVideoChat"
 }
 
@@ -12585,7 +12585,7 @@ type LaunchPrepaidGiveaway struct {
 	WinnerCount int32 `json:"winner_count"`
 }
 
-func (t LaunchPrepaidGiveaway) Type() string {
+func (t LaunchPrepaidGiveaway) GetType() string {
 	return "launchPrepaidGiveaway"
 }
 
@@ -12606,7 +12606,7 @@ type LeaveChat struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t LeaveChat) Type() string {
+func (t LeaveChat) GetType() string {
 	return "leaveChat"
 }
 
@@ -12627,7 +12627,7 @@ type LeaveGroupCall struct {
 	GroupCallId int32 `json:"group_call_id"`
 }
 
-func (t LeaveGroupCall) Type() string {
+func (t LeaveGroupCall) GetType() string {
 	return "leaveGroupCall"
 }
 
@@ -12648,7 +12648,7 @@ type LoadActiveStories struct {
 	StoryList StoryList `json:"story_list"`
 }
 
-func (t LoadActiveStories) Type() string {
+func (t LoadActiveStories) GetType() string {
 	return "loadActiveStories"
 }
 
@@ -12671,7 +12671,7 @@ type LoadChats struct {
 	Limit int32 `json:"limit"`
 }
 
-func (t LoadChats) Type() string {
+func (t LoadChats) GetType() string {
 	return "loadChats"
 }
 
@@ -12694,7 +12694,7 @@ type LoadDirectMessagesChatTopics struct {
 	Limit int32 `json:"limit"`
 }
 
-func (t LoadDirectMessagesChatTopics) Type() string {
+func (t LoadDirectMessagesChatTopics) GetType() string {
 	return "loadDirectMessagesChatTopics"
 }
 
@@ -12717,7 +12717,7 @@ type LoadGroupCallParticipants struct {
 	Limit int32 `json:"limit"`
 }
 
-func (t LoadGroupCallParticipants) Type() string {
+func (t LoadGroupCallParticipants) GetType() string {
 	return "loadGroupCallParticipants"
 }
 
@@ -12738,7 +12738,7 @@ type LoadQuickReplyShortcutMessages struct {
 	ShortcutId int32 `json:"shortcut_id"`
 }
 
-func (t LoadQuickReplyShortcutMessages) Type() string {
+func (t LoadQuickReplyShortcutMessages) GetType() string {
 	return "loadQuickReplyShortcutMessages"
 }
 
@@ -12757,7 +12757,7 @@ func (t LoadQuickReplyShortcutMessages) MarshalJSON() ([]byte, error) {
 type LoadQuickReplyShortcuts struct {
 }
 
-func (t LoadQuickReplyShortcuts) Type() string {
+func (t LoadQuickReplyShortcuts) GetType() string {
 	return "loadQuickReplyShortcuts"
 }
 
@@ -12778,7 +12778,7 @@ type LoadSavedMessagesTopics struct {
 	Limit int32 `json:"limit"`
 }
 
-func (t LoadSavedMessagesTopics) Type() string {
+func (t LoadSavedMessagesTopics) GetType() string {
 	return "loadSavedMessagesTopics"
 }
 
@@ -12797,7 +12797,7 @@ func (t LoadSavedMessagesTopics) MarshalJSON() ([]byte, error) {
 type LogOut struct {
 }
 
-func (t LogOut) Type() string {
+func (t LogOut) GetType() string {
 	return "logOut"
 }
 
@@ -12824,7 +12824,7 @@ type MarkChecklistTasksAsDone struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t MarkChecklistTasksAsDone) Type() string {
+func (t MarkChecklistTasksAsDone) GetType() string {
 	return "markChecklistTasksAsDone"
 }
 
@@ -12847,7 +12847,7 @@ type OpenBotSimilarBot struct {
 	OpenedBotUserId int64 `json:"opened_bot_user_id"`
 }
 
-func (t OpenBotSimilarBot) Type() string {
+func (t OpenBotSimilarBot) GetType() string {
 	return "openBotSimilarBot"
 }
 
@@ -12868,7 +12868,7 @@ type OpenChat struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t OpenChat) Type() string {
+func (t OpenChat) GetType() string {
 	return "openChat"
 }
 
@@ -12891,7 +12891,7 @@ type OpenChatSimilarChat struct {
 	OpenedChatId int64 `json:"opened_chat_id"`
 }
 
-func (t OpenChatSimilarChat) Type() string {
+func (t OpenChatSimilarChat) GetType() string {
 	return "openChatSimilarChat"
 }
 
@@ -12912,7 +12912,7 @@ type OpenGiftAuction struct {
 	GiftId int64 `json:"gift_id,string"`
 }
 
-func (t OpenGiftAuction) Type() string {
+func (t OpenGiftAuction) GetType() string {
 	return "openGiftAuction"
 }
 
@@ -12935,7 +12935,7 @@ type OpenMessageContent struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t OpenMessageContent) Type() string {
+func (t OpenMessageContent) GetType() string {
 	return "openMessageContent"
 }
 
@@ -12956,7 +12956,7 @@ type OpenSponsoredChat struct {
 	SponsoredChatUniqueId int64 `json:"sponsored_chat_unique_id"`
 }
 
-func (t OpenSponsoredChat) Type() string {
+func (t OpenSponsoredChat) GetType() string {
 	return "openSponsoredChat"
 }
 
@@ -12979,7 +12979,7 @@ type OpenStory struct {
 	StoryPosterChatId int64 `json:"story_poster_chat_id"`
 }
 
-func (t OpenStory) Type() string {
+func (t OpenStory) GetType() string {
 	return "openStory"
 }
 
@@ -13010,7 +13010,7 @@ type OpenWebApp struct {
 	Url string `json:"url"`
 }
 
-func (t OpenWebApp) Type() string {
+func (t OpenWebApp) GetType() string {
 	return "openWebApp"
 }
 
@@ -13047,7 +13047,7 @@ type OptimizeStorage struct {
 	Ttl int32 `json:"ttl"`
 }
 
-func (t OptimizeStorage) Type() string {
+func (t OptimizeStorage) GetType() string {
 	return "optimizeStorage"
 }
 
@@ -13068,7 +13068,7 @@ type ParseMarkdown struct {
 	Text *FormattedText `json:"text"`
 }
 
-func (t ParseMarkdown) Type() string {
+func (t ParseMarkdown) GetType() string {
 	return "parseMarkdown"
 }
 
@@ -13091,7 +13091,7 @@ type ParseTextEntities struct {
 	Text string `json:"text"`
 }
 
-func (t ParseTextEntities) Type() string {
+func (t ParseTextEntities) GetType() string {
 	return "parseTextEntities"
 }
 
@@ -13118,7 +13118,7 @@ type PinChatMessage struct {
 	OnlyForSelf bool `json:"only_for_self"`
 }
 
-func (t PinChatMessage) Type() string {
+func (t PinChatMessage) GetType() string {
 	return "pinChatMessage"
 }
 
@@ -13139,7 +13139,7 @@ type PingProxy struct {
 	Proxy *Proxy `json:"proxy,omitempty"`
 }
 
-func (t PingProxy) Type() string {
+func (t PingProxy) GetType() string {
 	return "pingProxy"
 }
 
@@ -13168,7 +13168,7 @@ type PlaceGiftAuctionBid struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t PlaceGiftAuctionBid) Type() string {
+func (t PlaceGiftAuctionBid) GetType() string {
 	return "placeGiftAuctionBid"
 }
 
@@ -13207,7 +13207,7 @@ type PostStory struct {
 	ProtectContent bool `json:"protect_content"`
 }
 
-func (t PostStory) Type() string {
+func (t PostStory) GetType() string {
 	return "postStory"
 }
 
@@ -13232,7 +13232,7 @@ type PreliminaryUploadFile struct {
 	Priority int32 `json:"priority"`
 }
 
-func (t PreliminaryUploadFile) Type() string {
+func (t PreliminaryUploadFile) GetType() string {
 	return "preliminaryUploadFile"
 }
 
@@ -13255,7 +13255,7 @@ type ProcessChatFolderNewChats struct {
 	ChatFolderId int32 `json:"chat_folder_id"`
 }
 
-func (t ProcessChatFolderNewChats) Type() string {
+func (t ProcessChatFolderNewChats) GetType() string {
 	return "processChatFolderNewChats"
 }
 
@@ -13280,7 +13280,7 @@ type ProcessChatHasProtectedContentDisableRequest struct {
 	RequestMessageId int64 `json:"request_message_id"`
 }
 
-func (t ProcessChatHasProtectedContentDisableRequest) Type() string {
+func (t ProcessChatHasProtectedContentDisableRequest) GetType() string {
 	return "processChatHasProtectedContentDisableRequest"
 }
 
@@ -13305,7 +13305,7 @@ type ProcessChatJoinRequest struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t ProcessChatJoinRequest) Type() string {
+func (t ProcessChatJoinRequest) GetType() string {
 	return "processChatJoinRequest"
 }
 
@@ -13330,7 +13330,7 @@ type ProcessChatJoinRequests struct {
 	InviteLink string `json:"invite_link"`
 }
 
-func (t ProcessChatJoinRequests) Type() string {
+func (t ProcessChatJoinRequests) GetType() string {
 	return "processChatJoinRequests"
 }
 
@@ -13353,7 +13353,7 @@ type ProcessGiftPurchaseOffer struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t ProcessGiftPurchaseOffer) Type() string {
+func (t ProcessGiftPurchaseOffer) GetType() string {
 	return "processGiftPurchaseOffer"
 }
 
@@ -13374,7 +13374,7 @@ type ProcessPushNotification struct {
 	Payload string `json:"payload"`
 }
 
-func (t ProcessPushNotification) Type() string {
+func (t ProcessPushNotification) GetType() string {
 	return "processPushNotification"
 }
 
@@ -13399,7 +13399,7 @@ type RateSpeechRecognition struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t RateSpeechRecognition) Type() string {
+func (t RateSpeechRecognition) GetType() string {
 	return "rateSpeechRecognition"
 }
 
@@ -13420,7 +13420,7 @@ type ReadAllChatMentions struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t ReadAllChatMentions) Type() string {
+func (t ReadAllChatMentions) GetType() string {
 	return "readAllChatMentions"
 }
 
@@ -13441,7 +13441,7 @@ type ReadAllChatReactions struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t ReadAllChatReactions) Type() string {
+func (t ReadAllChatReactions) GetType() string {
 	return "readAllChatReactions"
 }
 
@@ -13464,7 +13464,7 @@ type ReadAllDirectMessagesChatTopicReactions struct {
 	TopicId int64 `json:"topic_id"`
 }
 
-func (t ReadAllDirectMessagesChatTopicReactions) Type() string {
+func (t ReadAllDirectMessagesChatTopicReactions) GetType() string {
 	return "readAllDirectMessagesChatTopicReactions"
 }
 
@@ -13487,7 +13487,7 @@ type ReadAllForumTopicMentions struct {
 	ForumTopicId int32 `json:"forum_topic_id"`
 }
 
-func (t ReadAllForumTopicMentions) Type() string {
+func (t ReadAllForumTopicMentions) GetType() string {
 	return "readAllForumTopicMentions"
 }
 
@@ -13510,7 +13510,7 @@ type ReadAllForumTopicReactions struct {
 	ForumTopicId int32 `json:"forum_topic_id"`
 }
 
-func (t ReadAllForumTopicReactions) Type() string {
+func (t ReadAllForumTopicReactions) GetType() string {
 	return "readAllForumTopicReactions"
 }
 
@@ -13535,7 +13535,7 @@ type ReadBusinessMessage struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t ReadBusinessMessage) Type() string {
+func (t ReadBusinessMessage) GetType() string {
 	return "readBusinessMessage"
 }
 
@@ -13556,7 +13556,7 @@ type ReadChatList struct {
 	ChatList ChatList `json:"chat_list"`
 }
 
-func (t ReadChatList) Type() string {
+func (t ReadChatList) GetType() string {
 	return "readChatList"
 }
 
@@ -13579,7 +13579,7 @@ type ReaddQuickReplyShortcutMessages struct {
 	ShortcutName string `json:"shortcut_name"`
 }
 
-func (t ReaddQuickReplyShortcutMessages) Type() string {
+func (t ReaddQuickReplyShortcutMessages) GetType() string {
 	return "readdQuickReplyShortcutMessages"
 }
 
@@ -13604,7 +13604,7 @@ type ReadFilePart struct {
 	Offset int64 `json:"offset"`
 }
 
-func (t ReadFilePart) Type() string {
+func (t ReadFilePart) GetType() string {
 	return "readFilePart"
 }
 
@@ -13627,7 +13627,7 @@ type RecognizeSpeech struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t RecognizeSpeech) Type() string {
+func (t RecognizeSpeech) GetType() string {
 	return "recognizeSpeech"
 }
 
@@ -13652,7 +13652,7 @@ type RecoverAuthenticationPassword struct {
 	RecoveryCode string `json:"recovery_code"`
 }
 
-func (t RecoverAuthenticationPassword) Type() string {
+func (t RecoverAuthenticationPassword) GetType() string {
 	return "recoverAuthenticationPassword"
 }
 
@@ -13677,7 +13677,7 @@ type RecoverPassword struct {
 	RecoveryCode string `json:"recovery_code"`
 }
 
-func (t RecoverPassword) Type() string {
+func (t RecoverPassword) GetType() string {
 	return "recoverPassword"
 }
 
@@ -13700,7 +13700,7 @@ type RefundStarPayment struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t RefundStarPayment) Type() string {
+func (t RefundStarPayment) GetType() string {
 	return "refundStarPayment"
 }
 
@@ -13723,7 +13723,7 @@ type RegisterDevice struct {
 	OtherUserIds []int64 `json:"other_user_ids"`
 }
 
-func (t RegisterDevice) Type() string {
+func (t RegisterDevice) GetType() string {
 	return "registerDevice"
 }
 
@@ -13748,7 +13748,7 @@ type RegisterUser struct {
 	LastName string `json:"last_name"`
 }
 
-func (t RegisterUser) Type() string {
+func (t RegisterUser) GetType() string {
 	return "registerUser"
 }
 
@@ -13773,7 +13773,7 @@ type RemoveAllFilesFromDownloads struct {
 	OnlyCompleted bool `json:"only_completed"`
 }
 
-func (t RemoveAllFilesFromDownloads) Type() string {
+func (t RemoveAllFilesFromDownloads) GetType() string {
 	return "removeAllFilesFromDownloads"
 }
 
@@ -13794,7 +13794,7 @@ type RemoveBusinessConnectedBotFromChat struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t RemoveBusinessConnectedBotFromChat) Type() string {
+func (t RemoveBusinessConnectedBotFromChat) GetType() string {
 	return "removeBusinessConnectedBotFromChat"
 }
 
@@ -13815,7 +13815,7 @@ type RemoveChatActionBar struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t RemoveChatActionBar) Type() string {
+func (t RemoveChatActionBar) GetType() string {
 	return "removeChatActionBar"
 }
 
@@ -13836,7 +13836,7 @@ type RemoveContacts struct {
 	UserIds []int64 `json:"user_ids"`
 }
 
-func (t RemoveContacts) Type() string {
+func (t RemoveContacts) GetType() string {
 	return "removeContacts"
 }
 
@@ -13857,7 +13857,7 @@ type RemoveFavoriteSticker struct {
 	Sticker InputFile `json:"sticker"`
 }
 
-func (t RemoveFavoriteSticker) Type() string {
+func (t RemoveFavoriteSticker) GetType() string {
 	return "removeFavoriteSticker"
 }
 
@@ -13880,7 +13880,7 @@ type RemoveFileFromDownloads struct {
 	FileId int32 `json:"file_id"`
 }
 
-func (t RemoveFileFromDownloads) Type() string {
+func (t RemoveFileFromDownloads) GetType() string {
 	return "removeFileFromDownloads"
 }
 
@@ -13905,7 +13905,7 @@ type RemoveGiftCollectionGifts struct {
 	ReceivedGiftIds []string `json:"received_gift_ids"`
 }
 
-func (t RemoveGiftCollectionGifts) Type() string {
+func (t RemoveGiftCollectionGifts) GetType() string {
 	return "removeGiftCollectionGifts"
 }
 
@@ -13926,7 +13926,7 @@ type RemoveInstalledBackground struct {
 	BackgroundId int64 `json:"background_id,string"`
 }
 
-func (t RemoveInstalledBackground) Type() string {
+func (t RemoveInstalledBackground) GetType() string {
 	return "removeInstalledBackground"
 }
 
@@ -13947,7 +13947,7 @@ type RemoveLoginPasskey struct {
 	PasskeyId string `json:"passkey_id"`
 }
 
-func (t RemoveLoginPasskey) Type() string {
+func (t RemoveLoginPasskey) GetType() string {
 	return "removeLoginPasskey"
 }
 
@@ -13972,7 +13972,7 @@ type RemoveMessageReaction struct {
 	ReactionType ReactionType `json:"reaction_type"`
 }
 
-func (t RemoveMessageReaction) Type() string {
+func (t RemoveMessageReaction) GetType() string {
 	return "removeMessageReaction"
 }
 
@@ -13995,7 +13995,7 @@ type RemoveMessageSenderBotVerification struct {
 	VerifiedId MessageSender `json:"verified_id"`
 }
 
-func (t RemoveMessageSenderBotVerification) Type() string {
+func (t RemoveMessageSenderBotVerification) GetType() string {
 	return "removeMessageSenderBotVerification"
 }
 
@@ -14018,7 +14018,7 @@ type RemoveNotification struct {
 	NotificationId int32 `json:"notification_id"`
 }
 
-func (t RemoveNotification) Type() string {
+func (t RemoveNotification) GetType() string {
 	return "removeNotification"
 }
 
@@ -14041,7 +14041,7 @@ type RemoveNotificationGroup struct {
 	NotificationGroupId int32 `json:"notification_group_id"`
 }
 
-func (t RemoveNotificationGroup) Type() string {
+func (t RemoveNotificationGroup) GetType() string {
 	return "removeNotificationGroup"
 }
 
@@ -14062,7 +14062,7 @@ type RemovePendingLiveStoryReactions struct {
 	GroupCallId int32 `json:"group_call_id"`
 }
 
-func (t RemovePendingLiveStoryReactions) Type() string {
+func (t RemovePendingLiveStoryReactions) GetType() string {
 	return "removePendingLiveStoryReactions"
 }
 
@@ -14085,7 +14085,7 @@ type RemovePendingPaidMessageReactions struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t RemovePendingPaidMessageReactions) Type() string {
+func (t RemovePendingPaidMessageReactions) GetType() string {
 	return "removePendingPaidMessageReactions"
 }
 
@@ -14106,7 +14106,7 @@ type RemoveProfileAudio struct {
 	FileId int32 `json:"file_id"`
 }
 
-func (t RemoveProfileAudio) Type() string {
+func (t RemoveProfileAudio) GetType() string {
 	return "removeProfileAudio"
 }
 
@@ -14127,7 +14127,7 @@ type RemoveProxy struct {
 	ProxyId int32 `json:"proxy_id"`
 }
 
-func (t RemoveProxy) Type() string {
+func (t RemoveProxy) GetType() string {
 	return "removeProxy"
 }
 
@@ -14148,7 +14148,7 @@ type RemoveRecentHashtag struct {
 	Hashtag string `json:"hashtag"`
 }
 
-func (t RemoveRecentHashtag) Type() string {
+func (t RemoveRecentHashtag) GetType() string {
 	return "removeRecentHashtag"
 }
 
@@ -14169,7 +14169,7 @@ type RemoveRecentlyFoundChat struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t RemoveRecentlyFoundChat) Type() string {
+func (t RemoveRecentlyFoundChat) GetType() string {
 	return "removeRecentlyFoundChat"
 }
 
@@ -14192,7 +14192,7 @@ type RemoveRecentSticker struct {
 	Sticker InputFile `json:"sticker"`
 }
 
-func (t RemoveRecentSticker) Type() string {
+func (t RemoveRecentSticker) GetType() string {
 	return "removeRecentSticker"
 }
 
@@ -14213,7 +14213,7 @@ type RemoveSavedAnimation struct {
 	Animation InputFile `json:"animation"`
 }
 
-func (t RemoveSavedAnimation) Type() string {
+func (t RemoveSavedAnimation) GetType() string {
 	return "removeSavedAnimation"
 }
 
@@ -14234,7 +14234,7 @@ type RemoveSavedNotificationSound struct {
 	NotificationSoundId int64 `json:"notification_sound_id,string"`
 }
 
-func (t RemoveSavedNotificationSound) Type() string {
+func (t RemoveSavedNotificationSound) GetType() string {
 	return "removeSavedNotificationSound"
 }
 
@@ -14255,7 +14255,7 @@ type RemoveSearchedForTag struct {
 	Tag string `json:"tag"`
 }
 
-func (t RemoveSearchedForTag) Type() string {
+func (t RemoveSearchedForTag) GetType() string {
 	return "removeSearchedForTag"
 }
 
@@ -14276,7 +14276,7 @@ type RemoveStickerFromSet struct {
 	Sticker InputFile `json:"sticker"`
 }
 
-func (t RemoveStickerFromSet) Type() string {
+func (t RemoveStickerFromSet) GetType() string {
 	return "removeStickerFromSet"
 }
 
@@ -14301,7 +14301,7 @@ type RemoveStoryAlbumStories struct {
 	StoryIds []int32 `json:"story_ids"`
 }
 
-func (t RemoveStoryAlbumStories) Type() string {
+func (t RemoveStoryAlbumStories) GetType() string {
 	return "removeStoryAlbumStories"
 }
 
@@ -14324,7 +14324,7 @@ type RemoveTopChat struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t RemoveTopChat) Type() string {
+func (t RemoveTopChat) GetType() string {
 	return "removeTopChat"
 }
 
@@ -14345,7 +14345,7 @@ type ReorderActiveUsernames struct {
 	Usernames []string `json:"usernames"`
 }
 
-func (t ReorderActiveUsernames) Type() string {
+func (t ReorderActiveUsernames) GetType() string {
 	return "reorderActiveUsernames"
 }
 
@@ -14368,7 +14368,7 @@ type ReorderBotActiveUsernames struct {
 	Usernames []string `json:"usernames"`
 }
 
-func (t ReorderBotActiveUsernames) Type() string {
+func (t ReorderBotActiveUsernames) GetType() string {
 	return "reorderBotActiveUsernames"
 }
 
@@ -14393,7 +14393,7 @@ type ReorderBotMediaPreviews struct {
 	LanguageCode string `json:"language_code"`
 }
 
-func (t ReorderBotMediaPreviews) Type() string {
+func (t ReorderBotMediaPreviews) GetType() string {
 	return "reorderBotMediaPreviews"
 }
 
@@ -14416,7 +14416,7 @@ type ReorderChatFolders struct {
 	MainChatListPosition int32 `json:"main_chat_list_position"`
 }
 
-func (t ReorderChatFolders) Type() string {
+func (t ReorderChatFolders) GetType() string {
 	return "reorderChatFolders"
 }
 
@@ -14441,7 +14441,7 @@ type ReorderGiftCollectionGifts struct {
 	ReceivedGiftIds []string `json:"received_gift_ids"`
 }
 
-func (t ReorderGiftCollectionGifts) Type() string {
+func (t ReorderGiftCollectionGifts) GetType() string {
 	return "reorderGiftCollectionGifts"
 }
 
@@ -14464,7 +14464,7 @@ type ReorderGiftCollections struct {
 	OwnerId MessageSender `json:"owner_id"`
 }
 
-func (t ReorderGiftCollections) Type() string {
+func (t ReorderGiftCollections) GetType() string {
 	return "reorderGiftCollections"
 }
 
@@ -14487,7 +14487,7 @@ type ReorderInstalledStickerSets struct {
 	StickerType StickerType `json:"sticker_type"`
 }
 
-func (t ReorderInstalledStickerSets) Type() string {
+func (t ReorderInstalledStickerSets) GetType() string {
 	return "reorderInstalledStickerSets"
 }
 
@@ -14508,7 +14508,7 @@ type ReorderQuickReplyShortcuts struct {
 	ShortcutIds []int32 `json:"shortcut_ids"`
 }
 
-func (t ReorderQuickReplyShortcuts) Type() string {
+func (t ReorderQuickReplyShortcuts) GetType() string {
 	return "reorderQuickReplyShortcuts"
 }
 
@@ -14531,7 +14531,7 @@ type ReorderStoryAlbums struct {
 	StoryAlbumIds []int32 `json:"story_album_ids"`
 }
 
-func (t ReorderStoryAlbums) Type() string {
+func (t ReorderStoryAlbums) GetType() string {
 	return "reorderStoryAlbums"
 }
 
@@ -14556,7 +14556,7 @@ type ReorderStoryAlbumStories struct {
 	StoryIds []int32 `json:"story_ids"`
 }
 
-func (t ReorderStoryAlbumStories) Type() string {
+func (t ReorderStoryAlbumStories) GetType() string {
 	return "reorderStoryAlbumStories"
 }
 
@@ -14579,7 +14579,7 @@ type ReorderSupergroupActiveUsernames struct {
 	Usernames []string `json:"usernames"`
 }
 
-func (t ReorderSupergroupActiveUsernames) Type() string {
+func (t ReorderSupergroupActiveUsernames) GetType() string {
 	return "reorderSupergroupActiveUsernames"
 }
 
@@ -14600,7 +14600,7 @@ type ReplaceLiveStoryRtmpUrl struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t ReplaceLiveStoryRtmpUrl) Type() string {
+func (t ReplaceLiveStoryRtmpUrl) GetType() string {
 	return "replaceLiveStoryRtmpUrl"
 }
 
@@ -14621,7 +14621,7 @@ type ReplacePrimaryChatInviteLink struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t ReplacePrimaryChatInviteLink) Type() string {
+func (t ReplacePrimaryChatInviteLink) GetType() string {
 	return "replacePrimaryChatInviteLink"
 }
 
@@ -14648,7 +14648,7 @@ type ReplaceStickerInSet struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t ReplaceStickerInSet) Type() string {
+func (t ReplaceStickerInSet) GetType() string {
 	return "replaceStickerInSet"
 }
 
@@ -14669,7 +14669,7 @@ type ReplaceVideoChatRtmpUrl struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t ReplaceVideoChatRtmpUrl) Type() string {
+func (t ReplaceVideoChatRtmpUrl) GetType() string {
 	return "replaceVideoChatRtmpUrl"
 }
 
@@ -14690,7 +14690,7 @@ type ReportAuthenticationCodeMissing struct {
 	MobileNetworkCode string `json:"mobile_network_code"`
 }
 
-func (t ReportAuthenticationCodeMissing) Type() string {
+func (t ReportAuthenticationCodeMissing) GetType() string {
 	return "reportAuthenticationCodeMissing"
 }
 
@@ -14717,7 +14717,7 @@ type ReportChat struct {
 	Text string `json:"text"`
 }
 
-func (t ReportChat) Type() string {
+func (t ReportChat) GetType() string {
 	return "reportChat"
 }
 
@@ -14744,7 +14744,7 @@ type ReportChatPhoto struct {
 	Text string `json:"text"`
 }
 
-func (t ReportChatPhoto) Type() string {
+func (t ReportChatPhoto) GetType() string {
 	return "reportChatPhoto"
 }
 
@@ -14769,7 +14769,7 @@ type ReportChatSponsoredMessage struct {
 	OptionId []byte `json:"option_id"`
 }
 
-func (t ReportChatSponsoredMessage) Type() string {
+func (t ReportChatSponsoredMessage) GetType() string {
 	return "reportChatSponsoredMessage"
 }
 
@@ -14794,7 +14794,7 @@ type ReportMessageReactions struct {
 	SenderId MessageSender `json:"sender_id"`
 }
 
-func (t ReportMessageReactions) Type() string {
+func (t ReportMessageReactions) GetType() string {
 	return "reportMessageReactions"
 }
 
@@ -14815,7 +14815,7 @@ type ReportPhoneNumberCodeMissing struct {
 	MobileNetworkCode string `json:"mobile_network_code"`
 }
 
-func (t ReportPhoneNumberCodeMissing) Type() string {
+func (t ReportPhoneNumberCodeMissing) GetType() string {
 	return "reportPhoneNumberCodeMissing"
 }
 
@@ -14838,7 +14838,7 @@ type ReportSponsoredChat struct {
 	SponsoredChatUniqueId int64 `json:"sponsored_chat_unique_id"`
 }
 
-func (t ReportSponsoredChat) Type() string {
+func (t ReportSponsoredChat) GetType() string {
 	return "reportSponsoredChat"
 }
 
@@ -14865,7 +14865,7 @@ type ReportStory struct {
 	Text string `json:"text"`
 }
 
-func (t ReportStory) Type() string {
+func (t ReportStory) GetType() string {
 	return "reportStory"
 }
 
@@ -14888,7 +14888,7 @@ type ReportSupergroupAntiSpamFalsePositive struct {
 	SupergroupId int64 `json:"supergroup_id"`
 }
 
-func (t ReportSupergroupAntiSpamFalsePositive) Type() string {
+func (t ReportSupergroupAntiSpamFalsePositive) GetType() string {
 	return "reportSupergroupAntiSpamFalsePositive"
 }
 
@@ -14911,7 +14911,7 @@ type ReportSupergroupSpam struct {
 	SupergroupId int64 `json:"supergroup_id"`
 }
 
-func (t ReportSupergroupSpam) Type() string {
+func (t ReportSupergroupSpam) GetType() string {
 	return "reportSupergroupSpam"
 }
 
@@ -14934,7 +14934,7 @@ type ReportVideoMessageAdvertisement struct {
 	OptionId []byte `json:"option_id"`
 }
 
-func (t ReportVideoMessageAdvertisement) Type() string {
+func (t ReportVideoMessageAdvertisement) GetType() string {
 	return "reportVideoMessageAdvertisement"
 }
 
@@ -14953,7 +14953,7 @@ func (t ReportVideoMessageAdvertisement) MarshalJSON() ([]byte, error) {
 type RequestAuthenticationPasswordRecovery struct {
 }
 
-func (t RequestAuthenticationPasswordRecovery) Type() string {
+func (t RequestAuthenticationPasswordRecovery) GetType() string {
 	return "requestAuthenticationPasswordRecovery"
 }
 
@@ -14972,7 +14972,7 @@ func (t RequestAuthenticationPasswordRecovery) MarshalJSON() ([]byte, error) {
 type RequestPasswordRecovery struct {
 }
 
-func (t RequestPasswordRecovery) Type() string {
+func (t RequestPasswordRecovery) GetType() string {
 	return "requestPasswordRecovery"
 }
 
@@ -14993,7 +14993,7 @@ type RequestQrCodeAuthentication struct {
 	OtherUserIds []int64 `json:"other_user_ids"`
 }
 
-func (t RequestQrCodeAuthentication) Type() string {
+func (t RequestQrCodeAuthentication) GetType() string {
 	return "requestQrCodeAuthentication"
 }
 
@@ -15014,7 +15014,7 @@ type ResendAuthenticationCode struct {
 	Reason ResendCodeReason `json:"reason,omitempty"`
 }
 
-func (t ResendAuthenticationCode) Type() string {
+func (t ResendAuthenticationCode) GetType() string {
 	return "resendAuthenticationCode"
 }
 
@@ -15033,7 +15033,7 @@ func (t ResendAuthenticationCode) MarshalJSON() ([]byte, error) {
 type ResendEmailAddressVerificationCode struct {
 }
 
-func (t ResendEmailAddressVerificationCode) Type() string {
+func (t ResendEmailAddressVerificationCode) GetType() string {
 	return "resendEmailAddressVerificationCode"
 }
 
@@ -15052,7 +15052,7 @@ func (t ResendEmailAddressVerificationCode) MarshalJSON() ([]byte, error) {
 type ResendLoginEmailAddressCode struct {
 }
 
-func (t ResendLoginEmailAddressCode) Type() string {
+func (t ResendLoginEmailAddressCode) GetType() string {
 	return "resendLoginEmailAddressCode"
 }
 
@@ -15079,7 +15079,7 @@ type ResendMessages struct {
 	Quote *InputTextQuote `json:"quote,omitempty"`
 }
 
-func (t ResendMessages) Type() string {
+func (t ResendMessages) GetType() string {
 	return "resendMessages"
 }
 
@@ -15100,7 +15100,7 @@ type ResendPhoneNumberCode struct {
 	Reason ResendCodeReason `json:"reason,omitempty"`
 }
 
-func (t ResendPhoneNumberCode) Type() string {
+func (t ResendPhoneNumberCode) GetType() string {
 	return "resendPhoneNumberCode"
 }
 
@@ -15119,7 +15119,7 @@ func (t ResendPhoneNumberCode) MarshalJSON() ([]byte, error) {
 type ResendRecoveryEmailAddressCode struct {
 }
 
-func (t ResendRecoveryEmailAddressCode) Type() string {
+func (t ResendRecoveryEmailAddressCode) GetType() string {
 	return "resendRecoveryEmailAddressCode"
 }
 
@@ -15138,7 +15138,7 @@ func (t ResendRecoveryEmailAddressCode) MarshalJSON() ([]byte, error) {
 type ResetAllNotificationSettings struct {
 }
 
-func (t ResetAllNotificationSettings) Type() string {
+func (t ResetAllNotificationSettings) GetType() string {
 	return "resetAllNotificationSettings"
 }
 
@@ -15157,7 +15157,7 @@ func (t ResetAllNotificationSettings) MarshalJSON() ([]byte, error) {
 type ResetAuthenticationEmailAddress struct {
 }
 
-func (t ResetAuthenticationEmailAddress) Type() string {
+func (t ResetAuthenticationEmailAddress) GetType() string {
 	return "resetAuthenticationEmailAddress"
 }
 
@@ -15176,7 +15176,7 @@ func (t ResetAuthenticationEmailAddress) MarshalJSON() ([]byte, error) {
 type ResetInstalledBackgrounds struct {
 }
 
-func (t ResetInstalledBackgrounds) Type() string {
+func (t ResetInstalledBackgrounds) GetType() string {
 	return "resetInstalledBackgrounds"
 }
 
@@ -15195,7 +15195,7 @@ func (t ResetInstalledBackgrounds) MarshalJSON() ([]byte, error) {
 type ResetNetworkStatistics struct {
 }
 
-func (t ResetNetworkStatistics) Type() string {
+func (t ResetNetworkStatistics) GetType() string {
 	return "resetNetworkStatistics"
 }
 
@@ -15214,7 +15214,7 @@ func (t ResetNetworkStatistics) MarshalJSON() ([]byte, error) {
 type ResetPassword struct {
 }
 
-func (t ResetPassword) Type() string {
+func (t ResetPassword) GetType() string {
 	return "resetPassword"
 }
 
@@ -15235,7 +15235,7 @@ type ReuseStarSubscription struct {
 	SubscriptionId string `json:"subscription_id"`
 }
 
-func (t ReuseStarSubscription) Type() string {
+func (t ReuseStarSubscription) GetType() string {
 	return "reuseStarSubscription"
 }
 
@@ -15258,7 +15258,7 @@ type RevokeChatInviteLink struct {
 	InviteLink string `json:"invite_link"`
 }
 
-func (t RevokeChatInviteLink) Type() string {
+func (t RevokeChatInviteLink) GetType() string {
 	return "revokeChatInviteLink"
 }
 
@@ -15279,7 +15279,7 @@ type RevokeGroupCallInviteLink struct {
 	GroupCallId int32 `json:"group_call_id"`
 }
 
-func (t RevokeGroupCallInviteLink) Type() string {
+func (t RevokeGroupCallInviteLink) GetType() string {
 	return "revokeGroupCallInviteLink"
 }
 
@@ -15301,10 +15301,10 @@ type SaveApplicationLogEvent struct {
 	// The log event data
 	Data JsonValue `json:"data"`
 	// Event type
-	TypeField string `json:"type"`
+	Type string `json:"type"`
 }
 
-func (t SaveApplicationLogEvent) Type() string {
+func (t SaveApplicationLogEvent) GetType() string {
 	return "saveApplicationLogEvent"
 }
 
@@ -15329,7 +15329,7 @@ type SavePreparedInlineMessage struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t SavePreparedInlineMessage) Type() string {
+func (t SavePreparedInlineMessage) GetType() string {
 	return "savePreparedInlineMessage"
 }
 
@@ -15356,7 +15356,7 @@ type SearchAffiliatePrograms struct {
 	SortOrder AffiliateProgramSortOrder `json:"sort_order"`
 }
 
-func (t SearchAffiliatePrograms) Type() string {
+func (t SearchAffiliatePrograms) GetType() string {
 	return "searchAffiliatePrograms"
 }
 
@@ -15377,7 +15377,7 @@ type SearchBackground struct {
 	Name string `json:"name"`
 }
 
-func (t SearchBackground) Type() string {
+func (t SearchBackground) GetType() string {
 	return "searchBackground"
 }
 
@@ -15402,7 +15402,7 @@ type SearchCallMessages struct {
 	OnlyMissed bool `json:"only_missed"`
 }
 
-func (t SearchCallMessages) Type() string {
+func (t SearchCallMessages) GetType() string {
 	return "searchCallMessages"
 }
 
@@ -15425,7 +15425,7 @@ type SearchChatAffiliateProgram struct {
 	Username string `json:"username"`
 }
 
-func (t SearchChatAffiliateProgram) Type() string {
+func (t SearchChatAffiliateProgram) GetType() string {
 	return "searchChatAffiliateProgram"
 }
 
@@ -15452,7 +15452,7 @@ type SearchChatMembers struct {
 	Query string `json:"query"`
 }
 
-func (t SearchChatMembers) Type() string {
+func (t SearchChatMembers) GetType() string {
 	return "searchChatMembers"
 }
 
@@ -15487,7 +15487,7 @@ type SearchChatMessages struct {
 	TopicId MessageTopic `json:"topic_id,omitempty"`
 }
 
-func (t SearchChatMessages) Type() string {
+func (t SearchChatMessages) GetType() string {
 	return "searchChatMessages"
 }
 
@@ -15510,7 +15510,7 @@ type SearchChatRecentLocationMessages struct {
 	Limit int32 `json:"limit"`
 }
 
-func (t SearchChatRecentLocationMessages) Type() string {
+func (t SearchChatRecentLocationMessages) GetType() string {
 	return "searchChatRecentLocationMessages"
 }
 
@@ -15533,7 +15533,7 @@ type SearchChats struct {
 	Query string `json:"query"`
 }
 
-func (t SearchChats) Type() string {
+func (t SearchChats) GetType() string {
 	return "searchChats"
 }
 
@@ -15556,7 +15556,7 @@ type SearchChatsOnServer struct {
 	Query string `json:"query"`
 }
 
-func (t SearchChatsOnServer) Type() string {
+func (t SearchChatsOnServer) GetType() string {
 	return "searchChatsOnServer"
 }
 
@@ -15579,7 +15579,7 @@ type SearchContacts struct {
 	Query string `json:"query,omitempty"`
 }
 
-func (t SearchContacts) Type() string {
+func (t SearchContacts) GetType() string {
 	return "searchContacts"
 }
 
@@ -15602,7 +15602,7 @@ type SearchEmojis struct {
 	Text string `json:"text"`
 }
 
-func (t SearchEmojis) Type() string {
+func (t SearchEmojis) GetType() string {
 	return "searchEmojis"
 }
 
@@ -15631,7 +15631,7 @@ type SearchFileDownloads struct {
 	Query string `json:"query,omitempty"`
 }
 
-func (t SearchFileDownloads) Type() string {
+func (t SearchFileDownloads) GetType() string {
 	return "searchFileDownloads"
 }
 
@@ -15662,7 +15662,7 @@ type SearchGiftsForResale struct {
 	Order GiftForResaleOrder `json:"order"`
 }
 
-func (t SearchGiftsForResale) Type() string {
+func (t SearchGiftsForResale) GetType() string {
 	return "searchGiftsForResale"
 }
 
@@ -15685,7 +15685,7 @@ type SearchHashtags struct {
 	Prefix string `json:"prefix"`
 }
 
-func (t SearchHashtags) Type() string {
+func (t SearchHashtags) GetType() string {
 	return "searchHashtags"
 }
 
@@ -15710,7 +15710,7 @@ type SearchInstalledStickerSets struct {
 	StickerType StickerType `json:"sticker_type"`
 }
 
-func (t SearchInstalledStickerSets) Type() string {
+func (t SearchInstalledStickerSets) GetType() string {
 	return "searchInstalledStickerSets"
 }
 
@@ -15745,7 +15745,7 @@ type SearchMessages struct {
 	Query string `json:"query"`
 }
 
-func (t SearchMessages) Type() string {
+func (t SearchMessages) GetType() string {
 	return "searchMessages"
 }
 
@@ -15768,7 +15768,7 @@ type SearchOutgoingDocumentMessages struct {
 	Query string `json:"query"`
 }
 
-func (t SearchOutgoingDocumentMessages) Type() string {
+func (t SearchOutgoingDocumentMessages) GetType() string {
 	return "searchOutgoingDocumentMessages"
 }
 
@@ -15789,7 +15789,7 @@ type SearchPublicChat struct {
 	Username string `json:"username"`
 }
 
-func (t SearchPublicChat) Type() string {
+func (t SearchPublicChat) GetType() string {
 	return "searchPublicChat"
 }
 
@@ -15810,7 +15810,7 @@ type SearchPublicChats struct {
 	Query string `json:"query"`
 }
 
-func (t SearchPublicChats) Type() string {
+func (t SearchPublicChats) GetType() string {
 	return "searchPublicChats"
 }
 
@@ -15835,7 +15835,7 @@ type SearchPublicMessagesByTag struct {
 	Tag string `json:"tag"`
 }
 
-func (t SearchPublicMessagesByTag) Type() string {
+func (t SearchPublicMessagesByTag) GetType() string {
 	return "searchPublicMessagesByTag"
 }
 
@@ -15862,7 +15862,7 @@ type SearchPublicPosts struct {
 	StarCount int64 `json:"star_count"`
 }
 
-func (t SearchPublicPosts) Type() string {
+func (t SearchPublicPosts) GetType() string {
 	return "searchPublicPosts"
 }
 
@@ -15887,7 +15887,7 @@ type SearchPublicStoriesByLocation struct {
 	Offset string `json:"offset"`
 }
 
-func (t SearchPublicStoriesByLocation) Type() string {
+func (t SearchPublicStoriesByLocation) GetType() string {
 	return "searchPublicStoriesByLocation"
 }
 
@@ -15914,7 +15914,7 @@ type SearchPublicStoriesByTag struct {
 	Tag string `json:"tag"`
 }
 
-func (t SearchPublicStoriesByTag) Type() string {
+func (t SearchPublicStoriesByTag) GetType() string {
 	return "searchPublicStoriesByTag"
 }
 
@@ -15941,7 +15941,7 @@ type SearchPublicStoriesByVenue struct {
 	VenueProvider string `json:"venue_provider"`
 }
 
-func (t SearchPublicStoriesByVenue) Type() string {
+func (t SearchPublicStoriesByVenue) GetType() string {
 	return "searchPublicStoriesByVenue"
 }
 
@@ -15966,7 +15966,7 @@ type SearchQuote struct {
 	Text *FormattedText `json:"text"`
 }
 
-func (t SearchQuote) Type() string {
+func (t SearchQuote) GetType() string {
 	return "searchQuote"
 }
 
@@ -15989,7 +15989,7 @@ type SearchRecentlyFoundChats struct {
 	Query string `json:"query"`
 }
 
-func (t SearchRecentlyFoundChats) Type() string {
+func (t SearchRecentlyFoundChats) GetType() string {
 	return "searchRecentlyFoundChats"
 }
 
@@ -16020,7 +16020,7 @@ type SearchSavedMessages struct {
 	Tag ReactionType `json:"tag,omitempty"`
 }
 
-func (t SearchSavedMessages) Type() string {
+func (t SearchSavedMessages) GetType() string {
 	return "searchSavedMessages"
 }
 
@@ -16049,7 +16049,7 @@ type SearchSecretMessages struct {
 	Query string `json:"query"`
 }
 
-func (t SearchSecretMessages) Type() string {
+func (t SearchSecretMessages) GetType() string {
 	return "searchSecretMessages"
 }
 
@@ -16080,7 +16080,7 @@ type SearchStickers struct {
 	StickerType StickerType `json:"sticker_type"`
 }
 
-func (t SearchStickers) Type() string {
+func (t SearchStickers) GetType() string {
 	return "searchStickers"
 }
 
@@ -16103,7 +16103,7 @@ type SearchStickerSet struct {
 	Name string `json:"name"`
 }
 
-func (t SearchStickerSet) Type() string {
+func (t SearchStickerSet) GetType() string {
 	return "searchStickerSet"
 }
 
@@ -16126,7 +16126,7 @@ type SearchStickerSets struct {
 	StickerType StickerType `json:"sticker_type"`
 }
 
-func (t SearchStickerSets) Type() string {
+func (t SearchStickerSets) GetType() string {
 	return "searchStickerSets"
 }
 
@@ -16153,7 +16153,7 @@ type SearchStringsByPrefix struct {
 	Strings []string `json:"strings"`
 }
 
-func (t SearchStringsByPrefix) Type() string {
+func (t SearchStringsByPrefix) GetType() string {
 	return "searchStringsByPrefix"
 }
 
@@ -16176,7 +16176,7 @@ type SearchUserByPhoneNumber struct {
 	PhoneNumber string `json:"phone_number"`
 }
 
-func (t SearchUserByPhoneNumber) Type() string {
+func (t SearchUserByPhoneNumber) GetType() string {
 	return "searchUserByPhoneNumber"
 }
 
@@ -16197,7 +16197,7 @@ type SearchUserByToken struct {
 	Token string `json:"token"`
 }
 
-func (t SearchUserByToken) Type() string {
+func (t SearchUserByToken) GetType() string {
 	return "searchUserByToken"
 }
 
@@ -16220,7 +16220,7 @@ type SearchWebApp struct {
 	WebAppShortName string `json:"web_app_short_name"`
 }
 
-func (t SearchWebApp) Type() string {
+func (t SearchWebApp) GetType() string {
 	return "searchWebApp"
 }
 
@@ -16243,7 +16243,7 @@ type SellGift struct {
 	ReceivedGiftId string `json:"received_gift_id"`
 }
 
-func (t SellGift) Type() string {
+func (t SellGift) GetType() string {
 	return "sellGift"
 }
 
@@ -16264,7 +16264,7 @@ type SendAuthenticationFirebaseSms struct {
 	Token string `json:"token"`
 }
 
-func (t SendAuthenticationFirebaseSms) Type() string {
+func (t SendAuthenticationFirebaseSms) GetType() string {
 	return "sendAuthenticationFirebaseSms"
 }
 
@@ -16289,7 +16289,7 @@ type SendBotStartMessage struct {
 	Parameter string `json:"parameter"`
 }
 
-func (t SendBotStartMessage) Type() string {
+func (t SendBotStartMessage) GetType() string {
 	return "sendBotStartMessage"
 }
 
@@ -16324,7 +16324,7 @@ type SendBusinessMessage struct {
 	ReplyTo InputMessageReplyTo `json:"reply_to,omitempty"`
 }
 
-func (t SendBusinessMessage) Type() string {
+func (t SendBusinessMessage) GetType() string {
 	return "sendBusinessMessage"
 }
 
@@ -16357,7 +16357,7 @@ type SendBusinessMessageAlbum struct {
 	ReplyTo InputMessageReplyTo `json:"reply_to,omitempty"`
 }
 
-func (t SendBusinessMessageAlbum) Type() string {
+func (t SendBusinessMessageAlbum) GetType() string {
 	return "sendBusinessMessageAlbum"
 }
 
@@ -16380,7 +16380,7 @@ type SendCallDebugInformation struct {
 	DebugInformation string `json:"debug_information"`
 }
 
-func (t SendCallDebugInformation) Type() string {
+func (t SendCallDebugInformation) GetType() string {
 	return "sendCallDebugInformation"
 }
 
@@ -16403,7 +16403,7 @@ type SendCallLog struct {
 	LogFile InputFile `json:"log_file"`
 }
 
-func (t SendCallLog) Type() string {
+func (t SendCallLog) GetType() string {
 	return "sendCallLog"
 }
 
@@ -16430,7 +16430,7 @@ type SendCallRating struct {
 	Rating int32 `json:"rating"`
 }
 
-func (t SendCallRating) Type() string {
+func (t SendCallRating) GetType() string {
 	return "sendCallRating"
 }
 
@@ -16453,7 +16453,7 @@ type SendCallSignalingData struct {
 	Data []byte `json:"data"`
 }
 
-func (t SendCallSignalingData) Type() string {
+func (t SendCallSignalingData) GetType() string {
 	return "sendCallSignalingData"
 }
 
@@ -16480,7 +16480,7 @@ type SendChatAction struct {
 	TopicId MessageTopic `json:"topic_id,omitempty"`
 }
 
-func (t SendChatAction) Type() string {
+func (t SendChatAction) GetType() string {
 	return "sendChatAction"
 }
 
@@ -16503,7 +16503,7 @@ type SendCustomRequest struct {
 	Parameters string `json:"parameters"`
 }
 
-func (t SendCustomRequest) Type() string {
+func (t SendCustomRequest) GetType() string {
 	return "sendCustomRequest"
 }
 
@@ -16524,7 +16524,7 @@ type SendEmailAddressVerificationCode struct {
 	EmailAddress string `json:"email_address"`
 }
 
-func (t SendEmailAddressVerificationCode) Type() string {
+func (t SendEmailAddressVerificationCode) GetType() string {
 	return "sendEmailAddressVerificationCode"
 }
 
@@ -16553,7 +16553,7 @@ type SendGift struct {
 	Text *FormattedText `json:"text"`
 }
 
-func (t SendGift) Type() string {
+func (t SendGift) GetType() string {
 	return "sendGift"
 }
 
@@ -16582,7 +16582,7 @@ type SendGiftPurchaseOffer struct {
 	Price GiftResalePrice `json:"price"`
 }
 
-func (t SendGiftPurchaseOffer) Type() string {
+func (t SendGiftPurchaseOffer) GetType() string {
 	return "sendGiftPurchaseOffer"
 }
 
@@ -16607,7 +16607,7 @@ type SendGroupCallMessage struct {
 	Text *FormattedText `json:"text"`
 }
 
-func (t SendGroupCallMessage) Type() string {
+func (t SendGroupCallMessage) GetType() string {
 	return "sendGroupCallMessage"
 }
 
@@ -16640,7 +16640,7 @@ type SendInlineQueryResultMessage struct {
 	TopicId MessageTopic `json:"topic_id,omitempty"`
 }
 
-func (t SendInlineQueryResultMessage) Type() string {
+func (t SendInlineQueryResultMessage) GetType() string {
 	return "sendInlineQueryResultMessage"
 }
 
@@ -16671,7 +16671,7 @@ type SendMessage struct {
 	TopicId MessageTopic `json:"topic_id,omitempty"`
 }
 
-func (t SendMessage) Type() string {
+func (t SendMessage) GetType() string {
 	return "sendMessage"
 }
 
@@ -16700,7 +16700,7 @@ type SendMessageAlbum struct {
 	TopicId MessageTopic `json:"topic_id,omitempty"`
 }
 
-func (t SendMessageAlbum) Type() string {
+func (t SendMessageAlbum) GetType() string {
 	return "sendMessageAlbum"
 }
 
@@ -16723,7 +16723,7 @@ type SendPassportAuthorizationForm struct {
 	Types []PassportElementType `json:"types"`
 }
 
-func (t SendPassportAuthorizationForm) Type() string {
+func (t SendPassportAuthorizationForm) GetType() string {
 	return "sendPassportAuthorizationForm"
 }
 
@@ -16754,7 +16754,7 @@ type SendPaymentForm struct {
 	TipAmount int64 `json:"tip_amount"`
 }
 
-func (t SendPaymentForm) Type() string {
+func (t SendPaymentForm) GetType() string {
 	return "sendPaymentForm"
 }
 
@@ -16776,10 +16776,10 @@ type SendPhoneNumberCode struct {
 	// Settings for the authentication of the user's phone number; pass null to use default settings
 	Settings *PhoneNumberAuthenticationSettings `json:"settings,omitempty"`
 	// Type of the request for which the code is sent
-	TypeField PhoneNumberCodeType `json:"type"`
+	Type PhoneNumberCodeType `json:"type"`
 }
 
-func (t SendPhoneNumberCode) Type() string {
+func (t SendPhoneNumberCode) GetType() string {
 	return "sendPhoneNumberCode"
 }
 
@@ -16800,7 +16800,7 @@ type SendPhoneNumberFirebaseSms struct {
 	Token string `json:"token"`
 }
 
-func (t SendPhoneNumberFirebaseSms) Type() string {
+func (t SendPhoneNumberFirebaseSms) GetType() string {
 	return "sendPhoneNumberFirebaseSms"
 }
 
@@ -16825,7 +16825,7 @@ type SendQuickReplyShortcutMessages struct {
 	ShortcutId int32 `json:"shortcut_id"`
 }
 
-func (t SendQuickReplyShortcutMessages) Type() string {
+func (t SendQuickReplyShortcutMessages) GetType() string {
 	return "sendQuickReplyShortcutMessages"
 }
 
@@ -16850,7 +16850,7 @@ type SendResoldGift struct {
 	Price GiftResalePrice `json:"price"`
 }
 
-func (t SendResoldGift) Type() string {
+func (t SendResoldGift) GetType() string {
 	return "sendResoldGift"
 }
 
@@ -16877,7 +16877,7 @@ type SendTextMessageDraft struct {
 	Text *FormattedText `json:"text"`
 }
 
-func (t SendTextMessageDraft) Type() string {
+func (t SendTextMessageDraft) GetType() string {
 	return "sendTextMessageDraft"
 }
 
@@ -16902,7 +16902,7 @@ type SendWebAppCustomRequest struct {
 	Parameters string `json:"parameters"`
 }
 
-func (t SendWebAppCustomRequest) Type() string {
+func (t SendWebAppCustomRequest) GetType() string {
 	return "sendWebAppCustomRequest"
 }
 
@@ -16927,7 +16927,7 @@ type SendWebAppData struct {
 	Data string `json:"data"`
 }
 
-func (t SendWebAppData) Type() string {
+func (t SendWebAppData) GetType() string {
 	return "sendWebAppData"
 }
 
@@ -16950,7 +16950,7 @@ type SetAccentColor struct {
 	BackgroundCustomEmojiId int64 `json:"background_custom_emoji_id,string"`
 }
 
-func (t SetAccentColor) Type() string {
+func (t SetAccentColor) GetType() string {
 	return "setAccentColor"
 }
 
@@ -16971,7 +16971,7 @@ type SetAccountTtl struct {
 	Ttl *AccountTtl `json:"ttl"`
 }
 
-func (t SetAccountTtl) Type() string {
+func (t SetAccountTtl) GetType() string {
 	return "setAccountTtl"
 }
 
@@ -16992,7 +16992,7 @@ type SetAlarm struct {
 	Seconds float64 `json:"seconds"`
 }
 
-func (t SetAlarm) Type() string {
+func (t SetAlarm) GetType() string {
 	return "setAlarm"
 }
 
@@ -17015,7 +17015,7 @@ type SetApplicationVerificationToken struct {
 	VerificationId int64 `json:"verification_id"`
 }
 
-func (t SetApplicationVerificationToken) Type() string {
+func (t SetApplicationVerificationToken) GetType() string {
 	return "setApplicationVerificationToken"
 }
 
@@ -17036,7 +17036,7 @@ type SetArchiveChatListSettings struct {
 	Settings *ArchiveChatListSettings `json:"settings"`
 }
 
-func (t SetArchiveChatListSettings) Type() string {
+func (t SetArchiveChatListSettings) GetType() string {
 	return "setArchiveChatListSettings"
 }
 
@@ -17057,7 +17057,7 @@ type SetAuthenticationEmailAddress struct {
 	EmailAddress string `json:"email_address"`
 }
 
-func (t SetAuthenticationEmailAddress) Type() string {
+func (t SetAuthenticationEmailAddress) GetType() string {
 	return "setAuthenticationEmailAddress"
 }
 
@@ -17080,7 +17080,7 @@ type SetAuthenticationPhoneNumber struct {
 	Settings *PhoneNumberAuthenticationSettings `json:"settings,omitempty"`
 }
 
-func (t SetAuthenticationPhoneNumber) Type() string {
+func (t SetAuthenticationPhoneNumber) GetType() string {
 	return "setAuthenticationPhoneNumber"
 }
 
@@ -17107,7 +17107,7 @@ type SetAuthenticationPremiumPurchaseTransaction struct {
 	Transaction StoreTransaction `json:"transaction"`
 }
 
-func (t SetAuthenticationPremiumPurchaseTransaction) Type() string {
+func (t SetAuthenticationPremiumPurchaseTransaction) GetType() string {
 	return "setAuthenticationPremiumPurchaseTransaction"
 }
 
@@ -17127,10 +17127,10 @@ type SetAutoDownloadSettings struct {
 	// New user auto-download settings
 	Settings *AutoDownloadSettings `json:"settings"`
 	// Type of the network for which the new settings are relevant
-	TypeField NetworkType `json:"type"`
+	Type NetworkType `json:"type"`
 }
 
-func (t SetAutoDownloadSettings) Type() string {
+func (t SetAutoDownloadSettings) GetType() string {
 	return "setAutoDownloadSettings"
 }
 
@@ -17153,7 +17153,7 @@ type SetAutosaveSettings struct {
 	Settings *ScopeAutosaveSettings `json:"settings,omitempty"`
 }
 
-func (t SetAutosaveSettings) Type() string {
+func (t SetAutosaveSettings) GetType() string {
 	return "setAutosaveSettings"
 }
 
@@ -17174,7 +17174,7 @@ type SetBio struct {
 	Bio string `json:"bio"`
 }
 
-func (t SetBio) Type() string {
+func (t SetBio) GetType() string {
 	return "setBio"
 }
 
@@ -17195,7 +17195,7 @@ type SetBirthdate struct {
 	Birthdate *Birthdate `json:"birthdate,omitempty"`
 }
 
-func (t SetBirthdate) Type() string {
+func (t SetBirthdate) GetType() string {
 	return "setBirthdate"
 }
 
@@ -17220,7 +17220,7 @@ type SetBotInfoDescription struct {
 	LanguageCode string `json:"language_code"`
 }
 
-func (t SetBotInfoDescription) Type() string {
+func (t SetBotInfoDescription) GetType() string {
 	return "setBotInfoDescription"
 }
 
@@ -17245,7 +17245,7 @@ type SetBotInfoShortDescription struct {
 	ShortDescription string `json:"short_description"`
 }
 
-func (t SetBotInfoShortDescription) Type() string {
+func (t SetBotInfoShortDescription) GetType() string {
 	return "setBotInfoShortDescription"
 }
 
@@ -17270,7 +17270,7 @@ type SetBotName struct {
 	Name string `json:"name"`
 }
 
-func (t SetBotName) Type() string {
+func (t SetBotName) GetType() string {
 	return "setBotName"
 }
 
@@ -17293,7 +17293,7 @@ type SetBotProfilePhoto struct {
 	Photo InputChatPhoto `json:"photo,omitempty"`
 }
 
-func (t SetBotProfilePhoto) Type() string {
+func (t SetBotProfilePhoto) GetType() string {
 	return "setBotProfilePhoto"
 }
 
@@ -17316,7 +17316,7 @@ type SetBotUpdatesStatus struct {
 	PendingUpdateCount int32 `json:"pending_update_count"`
 }
 
-func (t SetBotUpdatesStatus) Type() string {
+func (t SetBotUpdatesStatus) GetType() string {
 	return "setBotUpdatesStatus"
 }
 
@@ -17339,7 +17339,7 @@ type SetBusinessAccountBio struct {
 	BusinessConnectionId string `json:"business_connection_id"`
 }
 
-func (t SetBusinessAccountBio) Type() string {
+func (t SetBusinessAccountBio) GetType() string {
 	return "setBusinessAccountBio"
 }
 
@@ -17362,7 +17362,7 @@ type SetBusinessAccountGiftSettings struct {
 	Settings *GiftSettings `json:"settings"`
 }
 
-func (t SetBusinessAccountGiftSettings) Type() string {
+func (t SetBusinessAccountGiftSettings) GetType() string {
 	return "setBusinessAccountGiftSettings"
 }
 
@@ -17387,7 +17387,7 @@ type SetBusinessAccountName struct {
 	LastName string `json:"last_name"`
 }
 
-func (t SetBusinessAccountName) Type() string {
+func (t SetBusinessAccountName) GetType() string {
 	return "setBusinessAccountName"
 }
 
@@ -17412,7 +17412,7 @@ type SetBusinessAccountProfilePhoto struct {
 	Photo InputChatPhoto `json:"photo,omitempty"`
 }
 
-func (t SetBusinessAccountProfilePhoto) Type() string {
+func (t SetBusinessAccountProfilePhoto) GetType() string {
 	return "setBusinessAccountProfilePhoto"
 }
 
@@ -17435,7 +17435,7 @@ type SetBusinessAccountUsername struct {
 	Username string `json:"username"`
 }
 
-func (t SetBusinessAccountUsername) Type() string {
+func (t SetBusinessAccountUsername) GetType() string {
 	return "setBusinessAccountUsername"
 }
 
@@ -17456,7 +17456,7 @@ type SetBusinessAwayMessageSettings struct {
 	AwayMessageSettings *BusinessAwayMessageSettings `json:"away_message_settings,omitempty"`
 }
 
-func (t SetBusinessAwayMessageSettings) Type() string {
+func (t SetBusinessAwayMessageSettings) GetType() string {
 	return "setBusinessAwayMessageSettings"
 }
 
@@ -17477,7 +17477,7 @@ type SetBusinessConnectedBot struct {
 	Bot *BusinessConnectedBot `json:"bot"`
 }
 
-func (t SetBusinessConnectedBot) Type() string {
+func (t SetBusinessConnectedBot) GetType() string {
 	return "setBusinessConnectedBot"
 }
 
@@ -17498,7 +17498,7 @@ type SetBusinessGreetingMessageSettings struct {
 	GreetingMessageSettings *BusinessGreetingMessageSettings `json:"greeting_message_settings,omitempty"`
 }
 
-func (t SetBusinessGreetingMessageSettings) Type() string {
+func (t SetBusinessGreetingMessageSettings) GetType() string {
 	return "setBusinessGreetingMessageSettings"
 }
 
@@ -17519,7 +17519,7 @@ type SetBusinessLocation struct {
 	Location *BusinessLocation `json:"location,omitempty"`
 }
 
-func (t SetBusinessLocation) Type() string {
+func (t SetBusinessLocation) GetType() string {
 	return "setBusinessLocation"
 }
 
@@ -17546,7 +17546,7 @@ type SetBusinessMessageIsPinned struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t SetBusinessMessageIsPinned) Type() string {
+func (t SetBusinessMessageIsPinned) GetType() string {
 	return "setBusinessMessageIsPinned"
 }
 
@@ -17567,7 +17567,7 @@ type SetBusinessOpeningHours struct {
 	OpeningHours *BusinessOpeningHours `json:"opening_hours,omitempty"`
 }
 
-func (t SetBusinessOpeningHours) Type() string {
+func (t SetBusinessOpeningHours) GetType() string {
 	return "setBusinessOpeningHours"
 }
 
@@ -17588,7 +17588,7 @@ type SetBusinessStartPage struct {
 	StartPage *InputBusinessStartPage `json:"start_page,omitempty"`
 }
 
-func (t SetBusinessStartPage) Type() string {
+func (t SetBusinessStartPage) GetType() string {
 	return "setBusinessStartPage"
 }
 
@@ -17613,7 +17613,7 @@ type SetChatAccentColor struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t SetChatAccentColor) Type() string {
+func (t SetChatAccentColor) GetType() string {
 	return "setChatAccentColor"
 }
 
@@ -17636,7 +17636,7 @@ type SetChatActiveStoriesList struct {
 	StoryList StoryList `json:"story_list"`
 }
 
-func (t SetChatActiveStoriesList) Type() string {
+func (t SetChatActiveStoriesList) GetType() string {
 	return "setChatActiveStoriesList"
 }
 
@@ -17659,7 +17659,7 @@ type SetChatAffiliateProgram struct {
 	Parameters *AffiliateProgramParameters `json:"parameters,omitempty"`
 }
 
-func (t SetChatAffiliateProgram) Type() string {
+func (t SetChatAffiliateProgram) GetType() string {
 	return "setChatAffiliateProgram"
 }
 
@@ -17682,7 +17682,7 @@ type SetChatAvailableReactions struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t SetChatAvailableReactions) Type() string {
+func (t SetChatAvailableReactions) GetType() string {
 	return "setChatAvailableReactions"
 }
 
@@ -17708,10 +17708,10 @@ type SetChatBackground struct {
 	// Pass true to set background only for self; pass false to set background for all chat users. Always false for backgrounds set in boosted chats. Background can be set for both users only by Telegram Premium users and if set background isn't of the type inputBackgroundPrevious
 	OnlyForSelf bool `json:"only_for_self"`
 	// Background type; pass null to use default background type for the chosen background; backgroundTypeChatTheme isn't supported for private and secret chats.
-	TypeField BackgroundType `json:"type,omitempty"`
+	Type BackgroundType `json:"type,omitempty"`
 }
 
-func (t SetChatBackground) Type() string {
+func (t SetChatBackground) GetType() string {
 	return "setChatBackground"
 }
 
@@ -17734,7 +17734,7 @@ type SetChatClientData struct {
 	ClientData string `json:"client_data"`
 }
 
-func (t SetChatClientData) Type() string {
+func (t SetChatClientData) GetType() string {
 	return "setChatClientData"
 }
 
@@ -17757,7 +17757,7 @@ type SetChatDescription struct {
 	Description string `json:"description"`
 }
 
-func (t SetChatDescription) Type() string {
+func (t SetChatDescription) GetType() string {
 	return "setChatDescription"
 }
 
@@ -17782,7 +17782,7 @@ type SetChatDirectMessagesGroup struct {
 	PaidMessageStarCount int64 `json:"paid_message_star_count"`
 }
 
-func (t SetChatDirectMessagesGroup) Type() string {
+func (t SetChatDirectMessagesGroup) GetType() string {
 	return "setChatDirectMessagesGroup"
 }
 
@@ -17805,7 +17805,7 @@ type SetChatDiscussionGroup struct {
 	DiscussionChatId int64 `json:"discussion_chat_id"`
 }
 
-func (t SetChatDiscussionGroup) Type() string {
+func (t SetChatDiscussionGroup) GetType() string {
 	return "setChatDiscussionGroup"
 }
 
@@ -17830,7 +17830,7 @@ type SetChatDraftMessage struct {
 	TopicId MessageTopic `json:"topic_id,omitempty"`
 }
 
-func (t SetChatDraftMessage) Type() string {
+func (t SetChatDraftMessage) GetType() string {
 	return "setChatDraftMessage"
 }
 
@@ -17853,7 +17853,7 @@ type SetChatEmojiStatus struct {
 	EmojiStatus *EmojiStatus `json:"emoji_status,omitempty"`
 }
 
-func (t SetChatEmojiStatus) Type() string {
+func (t SetChatEmojiStatus) GetType() string {
 	return "setChatEmojiStatus"
 }
 
@@ -17876,7 +17876,7 @@ type SetChatLocation struct {
 	Location *ChatLocation `json:"location"`
 }
 
-func (t SetChatLocation) Type() string {
+func (t SetChatLocation) GetType() string {
 	return "setChatLocation"
 }
 
@@ -17901,7 +17901,7 @@ type SetChatMemberStatus struct {
 	Status ChatMemberStatus `json:"status"`
 }
 
-func (t SetChatMemberStatus) Type() string {
+func (t SetChatMemberStatus) GetType() string {
 	return "setChatMemberStatus"
 }
 
@@ -17926,7 +17926,7 @@ type SetChatMemberTag struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t SetChatMemberTag) Type() string {
+func (t SetChatMemberTag) GetType() string {
 	return "setChatMemberTag"
 }
 
@@ -17949,7 +17949,7 @@ type SetChatMessageAutoDeleteTime struct {
 	MessageAutoDeleteTime int32 `json:"message_auto_delete_time"`
 }
 
-func (t SetChatMessageAutoDeleteTime) Type() string {
+func (t SetChatMessageAutoDeleteTime) GetType() string {
 	return "setChatMessageAutoDeleteTime"
 }
 
@@ -17972,7 +17972,7 @@ type SetChatMessageSender struct {
 	MessageSenderId MessageSender `json:"message_sender_id"`
 }
 
-func (t SetChatMessageSender) Type() string {
+func (t SetChatMessageSender) GetType() string {
 	return "setChatMessageSender"
 }
 
@@ -17995,7 +17995,7 @@ type SetChatNotificationSettings struct {
 	NotificationSettings *ChatNotificationSettings `json:"notification_settings"`
 }
 
-func (t SetChatNotificationSettings) Type() string {
+func (t SetChatNotificationSettings) GetType() string {
 	return "setChatNotificationSettings"
 }
 
@@ -18018,7 +18018,7 @@ type SetChatPaidMessageStarCount struct {
 	PaidMessageStarCount int64 `json:"paid_message_star_count"`
 }
 
-func (t SetChatPaidMessageStarCount) Type() string {
+func (t SetChatPaidMessageStarCount) GetType() string {
 	return "setChatPaidMessageStarCount"
 }
 
@@ -18041,7 +18041,7 @@ type SetChatPermissions struct {
 	Permissions *ChatPermissions `json:"permissions"`
 }
 
-func (t SetChatPermissions) Type() string {
+func (t SetChatPermissions) GetType() string {
 	return "setChatPermissions"
 }
 
@@ -18064,7 +18064,7 @@ type SetChatPhoto struct {
 	Photo InputChatPhoto `json:"photo,omitempty"`
 }
 
-func (t SetChatPhoto) Type() string {
+func (t SetChatPhoto) GetType() string {
 	return "setChatPhoto"
 }
 
@@ -18087,7 +18087,7 @@ type SetChatPinnedStories struct {
 	StoryIds []int32 `json:"story_ids"`
 }
 
-func (t SetChatPinnedStories) Type() string {
+func (t SetChatPinnedStories) GetType() string {
 	return "setChatPinnedStories"
 }
 
@@ -18112,7 +18112,7 @@ type SetChatProfileAccentColor struct {
 	ProfileBackgroundCustomEmojiId int64 `json:"profile_background_custom_emoji_id,string"`
 }
 
-func (t SetChatProfileAccentColor) Type() string {
+func (t SetChatProfileAccentColor) GetType() string {
 	return "setChatProfileAccentColor"
 }
 
@@ -18135,7 +18135,7 @@ type SetChatSlowModeDelay struct {
 	SlowModeDelay int32 `json:"slow_mode_delay"`
 }
 
-func (t SetChatSlowModeDelay) Type() string {
+func (t SetChatSlowModeDelay) GetType() string {
 	return "setChatSlowModeDelay"
 }
 
@@ -18158,7 +18158,7 @@ type SetChatTheme struct {
 	Theme InputChatTheme `json:"theme,omitempty"`
 }
 
-func (t SetChatTheme) Type() string {
+func (t SetChatTheme) GetType() string {
 	return "setChatTheme"
 }
 
@@ -18181,7 +18181,7 @@ type SetChatTitle struct {
 	Title string `json:"title"`
 }
 
-func (t SetChatTitle) Type() string {
+func (t SetChatTitle) GetType() string {
 	return "setChatTitle"
 }
 
@@ -18202,7 +18202,7 @@ type SetCloseFriends struct {
 	UserIds []int64 `json:"user_ids"`
 }
 
-func (t SetCloseFriends) Type() string {
+func (t SetCloseFriends) GetType() string {
 	return "setCloseFriends"
 }
 
@@ -18227,7 +18227,7 @@ type SetCommands struct {
 	Scope BotCommandScope `json:"scope,omitempty"`
 }
 
-func (t SetCommands) Type() string {
+func (t SetCommands) GetType() string {
 	return "setCommands"
 }
 
@@ -18250,7 +18250,7 @@ type SetCustomEmojiStickerSetThumbnail struct {
 	Name string `json:"name"`
 }
 
-func (t SetCustomEmojiStickerSetThumbnail) Type() string {
+func (t SetCustomEmojiStickerSetThumbnail) GetType() string {
 	return "setCustomEmojiStickerSetThumbnail"
 }
 
@@ -18273,7 +18273,7 @@ type SetCustomLanguagePack struct {
 	Strings []LanguagePackString `json:"strings"`
 }
 
-func (t SetCustomLanguagePack) Type() string {
+func (t SetCustomLanguagePack) GetType() string {
 	return "setCustomLanguagePack"
 }
 
@@ -18296,7 +18296,7 @@ type SetCustomLanguagePackString struct {
 	NewString *LanguagePackString `json:"new_string"`
 }
 
-func (t SetCustomLanguagePackString) Type() string {
+func (t SetCustomLanguagePackString) GetType() string {
 	return "setCustomLanguagePackString"
 }
 
@@ -18317,7 +18317,7 @@ type SetDatabaseEncryptionKey struct {
 	NewEncryptionKey []byte `json:"new_encryption_key"`
 }
 
-func (t SetDatabaseEncryptionKey) Type() string {
+func (t SetDatabaseEncryptionKey) GetType() string {
 	return "setDatabaseEncryptionKey"
 }
 
@@ -18339,10 +18339,10 @@ type SetDefaultBackground struct {
 	// Pass true if the background is set for a dark theme
 	ForDarkTheme bool `json:"for_dark_theme"`
 	// Background type; pass null to use the default type of the remote background; backgroundTypeChatTheme isn't supported
-	TypeField BackgroundType `json:"type,omitempty"`
+	Type BackgroundType `json:"type,omitempty"`
 }
 
-func (t SetDefaultBackground) Type() string {
+func (t SetDefaultBackground) GetType() string {
 	return "setDefaultBackground"
 }
 
@@ -18363,7 +18363,7 @@ type SetDefaultChannelAdministratorRights struct {
 	DefaultChannelAdministratorRights *ChatAdministratorRights `json:"default_channel_administrator_rights,omitempty"`
 }
 
-func (t SetDefaultChannelAdministratorRights) Type() string {
+func (t SetDefaultChannelAdministratorRights) GetType() string {
 	return "setDefaultChannelAdministratorRights"
 }
 
@@ -18384,7 +18384,7 @@ type SetDefaultGroupAdministratorRights struct {
 	DefaultGroupAdministratorRights *ChatAdministratorRights `json:"default_group_administrator_rights,omitempty"`
 }
 
-func (t SetDefaultGroupAdministratorRights) Type() string {
+func (t SetDefaultGroupAdministratorRights) GetType() string {
 	return "setDefaultGroupAdministratorRights"
 }
 
@@ -18405,7 +18405,7 @@ type SetDefaultMessageAutoDeleteTime struct {
 	MessageAutoDeleteTime *MessageAutoDeleteTime `json:"message_auto_delete_time"`
 }
 
-func (t SetDefaultMessageAutoDeleteTime) Type() string {
+func (t SetDefaultMessageAutoDeleteTime) GetType() string {
 	return "setDefaultMessageAutoDeleteTime"
 }
 
@@ -18426,7 +18426,7 @@ type SetDefaultReactionType struct {
 	ReactionType ReactionType `json:"reaction_type"`
 }
 
-func (t SetDefaultReactionType) Type() string {
+func (t SetDefaultReactionType) GetType() string {
 	return "setDefaultReactionType"
 }
 
@@ -18451,7 +18451,7 @@ type SetDirectMessagesChatTopicIsMarkedAsUnread struct {
 	TopicId int64 `json:"topic_id"`
 }
 
-func (t SetDirectMessagesChatTopicIsMarkedAsUnread) Type() string {
+func (t SetDirectMessagesChatTopicIsMarkedAsUnread) GetType() string {
 	return "setDirectMessagesChatTopicIsMarkedAsUnread"
 }
 
@@ -18472,7 +18472,7 @@ type SetEmojiStatus struct {
 	EmojiStatus *EmojiStatus `json:"emoji_status,omitempty"`
 }
 
-func (t SetEmojiStatus) Type() string {
+func (t SetEmojiStatus) GetType() string {
 	return "setEmojiStatus"
 }
 
@@ -18497,7 +18497,7 @@ type SetFileGenerationProgress struct {
 	LocalPrefixSize int64 `json:"local_prefix_size"`
 }
 
-func (t SetFileGenerationProgress) Type() string {
+func (t SetFileGenerationProgress) GetType() string {
 	return "setFileGenerationProgress"
 }
 
@@ -18522,7 +18522,7 @@ type SetForumTopicNotificationSettings struct {
 	NotificationSettings *ChatNotificationSettings `json:"notification_settings"`
 }
 
-func (t SetForumTopicNotificationSettings) Type() string {
+func (t SetForumTopicNotificationSettings) GetType() string {
 	return "setForumTopicNotificationSettings"
 }
 
@@ -18553,7 +18553,7 @@ type SetGameScore struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t SetGameScore) Type() string {
+func (t SetGameScore) GetType() string {
 	return "setGameScore"
 }
 
@@ -18578,7 +18578,7 @@ type SetGiftCollectionName struct {
 	OwnerId MessageSender `json:"owner_id"`
 }
 
-func (t SetGiftCollectionName) Type() string {
+func (t SetGiftCollectionName) GetType() string {
 	return "setGiftCollectionName"
 }
 
@@ -18601,7 +18601,7 @@ type SetGiftResalePrice struct {
 	ReceivedGiftId string `json:"received_gift_id"`
 }
 
-func (t SetGiftResalePrice) Type() string {
+func (t SetGiftResalePrice) GetType() string {
 	return "setGiftResalePrice"
 }
 
@@ -18622,7 +18622,7 @@ type SetGiftSettings struct {
 	Settings *GiftSettings `json:"settings"`
 }
 
-func (t SetGiftSettings) Type() string {
+func (t SetGiftSettings) GetType() string {
 	return "setGiftSettings"
 }
 
@@ -18645,7 +18645,7 @@ type SetGroupCallPaidMessageStarCount struct {
 	PaidMessageStarCount int64 `json:"paid_message_star_count"`
 }
 
-func (t SetGroupCallPaidMessageStarCount) Type() string {
+func (t SetGroupCallPaidMessageStarCount) GetType() string {
 	return "setGroupCallPaidMessageStarCount"
 }
 
@@ -18670,7 +18670,7 @@ type SetGroupCallParticipantIsSpeaking struct {
 	IsSpeaking bool `json:"is_speaking"`
 }
 
-func (t SetGroupCallParticipantIsSpeaking) Type() string {
+func (t SetGroupCallParticipantIsSpeaking) GetType() string {
 	return "setGroupCallParticipantIsSpeaking"
 }
 
@@ -18695,7 +18695,7 @@ type SetGroupCallParticipantVolumeLevel struct {
 	VolumeLevel int32 `json:"volume_level"`
 }
 
-func (t SetGroupCallParticipantVolumeLevel) Type() string {
+func (t SetGroupCallParticipantVolumeLevel) GetType() string {
 	return "setGroupCallParticipantVolumeLevel"
 }
 
@@ -18716,7 +18716,7 @@ type SetInactiveSessionTtl struct {
 	InactiveSessionTtlDays int32 `json:"inactive_session_ttl_days"`
 }
 
-func (t SetInactiveSessionTtl) Type() string {
+func (t SetInactiveSessionTtl) GetType() string {
 	return "setInactiveSessionTtl"
 }
 
@@ -18745,7 +18745,7 @@ type SetInlineGameScore struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t SetInlineGameScore) Type() string {
+func (t SetInlineGameScore) GetType() string {
 	return "setInlineGameScore"
 }
 
@@ -18768,7 +18768,7 @@ type SetLiveStoryMessageSender struct {
 	MessageSenderId MessageSender `json:"message_sender_id"`
 }
 
-func (t SetLiveStoryMessageSender) Type() string {
+func (t SetLiveStoryMessageSender) GetType() string {
 	return "setLiveStoryMessageSender"
 }
 
@@ -18789,7 +18789,7 @@ type SetLoginEmailAddress struct {
 	NewLoginEmailAddress string `json:"new_login_email_address"`
 }
 
-func (t SetLoginEmailAddress) Type() string {
+func (t SetLoginEmailAddress) GetType() string {
 	return "setLoginEmailAddress"
 }
 
@@ -18810,7 +18810,7 @@ type SetLogStream struct {
 	LogStream LogStream `json:"log_stream"`
 }
 
-func (t SetLogStream) Type() string {
+func (t SetLogStream) GetType() string {
 	return "setLogStream"
 }
 
@@ -18833,7 +18833,7 @@ type SetLogTagVerbosityLevel struct {
 	Tag string `json:"tag"`
 }
 
-func (t SetLogTagVerbosityLevel) Type() string {
+func (t SetLogTagVerbosityLevel) GetType() string {
 	return "setLogTagVerbosityLevel"
 }
 
@@ -18854,7 +18854,7 @@ type SetLogVerbosityLevel struct {
 	NewVerbosityLevel int32 `json:"new_verbosity_level"`
 }
 
-func (t SetLogVerbosityLevel) Type() string {
+func (t SetLogVerbosityLevel) GetType() string {
 	return "setLogVerbosityLevel"
 }
 
@@ -18875,7 +18875,7 @@ type SetMainProfileTab struct {
 	MainProfileTab ProfileTab `json:"main_profile_tab"`
 }
 
-func (t SetMainProfileTab) Type() string {
+func (t SetMainProfileTab) GetType() string {
 	return "setMainProfileTab"
 }
 
@@ -18898,7 +18898,7 @@ type SetMenuButton struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t SetMenuButton) Type() string {
+func (t SetMenuButton) GetType() string {
 	return "setMenuButton"
 }
 
@@ -18923,7 +18923,7 @@ type SetMessageFactCheck struct {
 	Text *FormattedText `json:"text,omitempty"`
 }
 
-func (t SetMessageFactCheck) Type() string {
+func (t SetMessageFactCheck) GetType() string {
 	return "setMessageFactCheck"
 }
 
@@ -18950,7 +18950,7 @@ type SetMessageReactions struct {
 	ReactionTypes []ReactionType `json:"reaction_types"`
 }
 
-func (t SetMessageReactions) Type() string {
+func (t SetMessageReactions) GetType() string {
 	return "setMessageReactions"
 }
 
@@ -18973,7 +18973,7 @@ type SetMessageSenderBlockList struct {
 	SenderId MessageSender `json:"sender_id"`
 }
 
-func (t SetMessageSenderBlockList) Type() string {
+func (t SetMessageSenderBlockList) GetType() string {
 	return "setMessageSenderBlockList"
 }
 
@@ -18998,7 +18998,7 @@ type SetMessageSenderBotVerification struct {
 	VerifiedId MessageSender `json:"verified_id"`
 }
 
-func (t SetMessageSenderBotVerification) Type() string {
+func (t SetMessageSenderBotVerification) GetType() string {
 	return "setMessageSenderBotVerification"
 }
 
@@ -19021,7 +19021,7 @@ type SetName struct {
 	LastName string `json:"last_name"`
 }
 
-func (t SetName) Type() string {
+func (t SetName) GetType() string {
 	return "setName"
 }
 
@@ -19039,10 +19039,10 @@ func (t SetName) MarshalJSON() ([]byte, error) {
 // SetNetworkType Sets the current network type. Can be called before authorization. Calling this method forces all network connections to reopen, mitigating the delay in switching between different networks,
 type SetNetworkType struct {
 	// The new network type; pass null to set network type to networkTypeOther
-	TypeField NetworkType `json:"type,omitempty"`
+	Type NetworkType `json:"type,omitempty"`
 }
 
-func (t SetNetworkType) Type() string {
+func (t SetNetworkType) GetType() string {
 	return "setNetworkType"
 }
 
@@ -19063,7 +19063,7 @@ type SetNewChatPrivacySettings struct {
 	Settings *NewChatPrivacySettings `json:"settings"`
 }
 
-func (t SetNewChatPrivacySettings) Type() string {
+func (t SetNewChatPrivacySettings) GetType() string {
 	return "setNewChatPrivacySettings"
 }
 
@@ -19086,7 +19086,7 @@ type SetOption struct {
 	Value OptionValue `json:"value,omitempty"`
 }
 
-func (t SetOption) Type() string {
+func (t SetOption) GetType() string {
 	return "setOption"
 }
 
@@ -19108,10 +19108,10 @@ type SetPaidMessageReactionType struct {
 	// Identifier of the message
 	MessageId int64 `json:"message_id"`
 	// New type of the paid reaction
-	TypeField PaidReactionType `json:"type"`
+	Type PaidReactionType `json:"type"`
 }
 
-func (t SetPaidMessageReactionType) Type() string {
+func (t SetPaidMessageReactionType) GetType() string {
 	return "setPaidMessageReactionType"
 }
 
@@ -19134,7 +19134,7 @@ type SetPassportElement struct {
 	Password string `json:"password"`
 }
 
-func (t SetPassportElement) Type() string {
+func (t SetPassportElement) GetType() string {
 	return "setPassportElement"
 }
 
@@ -19157,7 +19157,7 @@ type SetPassportElementErrors struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t SetPassportElementErrors) Type() string {
+func (t SetPassportElementErrors) GetType() string {
 	return "setPassportElementErrors"
 }
 
@@ -19186,7 +19186,7 @@ type SetPassword struct {
 	SetRecoveryEmailAddress bool `json:"set_recovery_email_address"`
 }
 
-func (t SetPassword) Type() string {
+func (t SetPassword) GetType() string {
 	return "setPassword"
 }
 
@@ -19207,7 +19207,7 @@ type SetPersonalChat struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t SetPersonalChat) Type() string {
+func (t SetPersonalChat) GetType() string {
 	return "setPersonalChat"
 }
 
@@ -19230,7 +19230,7 @@ type SetPinnedChats struct {
 	ChatList ChatList `json:"chat_list"`
 }
 
-func (t SetPinnedChats) Type() string {
+func (t SetPinnedChats) GetType() string {
 	return "setPinnedChats"
 }
 
@@ -19253,7 +19253,7 @@ type SetPinnedForumTopics struct {
 	ForumTopicIds []int32 `json:"forum_topic_ids"`
 }
 
-func (t SetPinnedForumTopics) Type() string {
+func (t SetPinnedForumTopics) GetType() string {
 	return "setPinnedForumTopics"
 }
 
@@ -19276,7 +19276,7 @@ type SetPinnedGifts struct {
 	ReceivedGiftIds []string `json:"received_gift_ids"`
 }
 
-func (t SetPinnedGifts) Type() string {
+func (t SetPinnedGifts) GetType() string {
 	return "setPinnedGifts"
 }
 
@@ -19297,7 +19297,7 @@ type SetPinnedSavedMessagesTopics struct {
 	SavedMessagesTopicIds []int64 `json:"saved_messages_topic_ids"`
 }
 
-func (t SetPinnedSavedMessagesTopics) Type() string {
+func (t SetPinnedSavedMessagesTopics) GetType() string {
 	return "setPinnedSavedMessagesTopics"
 }
 
@@ -19322,7 +19322,7 @@ type SetPollAnswer struct {
 	OptionIds []int32 `json:"option_ids"`
 }
 
-func (t SetPollAnswer) Type() string {
+func (t SetPollAnswer) GetType() string {
 	return "setPollAnswer"
 }
 
@@ -19345,7 +19345,7 @@ type SetProfileAccentColor struct {
 	ProfileBackgroundCustomEmojiId int64 `json:"profile_background_custom_emoji_id,string"`
 }
 
-func (t SetProfileAccentColor) Type() string {
+func (t SetProfileAccentColor) GetType() string {
 	return "setProfileAccentColor"
 }
 
@@ -19368,7 +19368,7 @@ type SetProfileAudioPosition struct {
 	FileId int32 `json:"file_id"`
 }
 
-func (t SetProfileAudioPosition) Type() string {
+func (t SetProfileAudioPosition) GetType() string {
 	return "setProfileAudioPosition"
 }
 
@@ -19391,7 +19391,7 @@ type SetProfilePhoto struct {
 	Photo InputChatPhoto `json:"photo"`
 }
 
-func (t SetProfilePhoto) Type() string {
+func (t SetProfilePhoto) GetType() string {
 	return "setProfilePhoto"
 }
 
@@ -19414,7 +19414,7 @@ type SetQuickReplyShortcutName struct {
 	ShortcutId int32 `json:"shortcut_id"`
 }
 
-func (t SetQuickReplyShortcutName) Type() string {
+func (t SetQuickReplyShortcutName) GetType() string {
 	return "setQuickReplyShortcutName"
 }
 
@@ -19435,7 +19435,7 @@ type SetReactionNotificationSettings struct {
 	NotificationSettings *ReactionNotificationSettings `json:"notification_settings"`
 }
 
-func (t SetReactionNotificationSettings) Type() string {
+func (t SetReactionNotificationSettings) GetType() string {
 	return "setReactionNotificationSettings"
 }
 
@@ -19456,7 +19456,7 @@ type SetReadDatePrivacySettings struct {
 	Settings *ReadDatePrivacySettings `json:"settings"`
 }
 
-func (t SetReadDatePrivacySettings) Type() string {
+func (t SetReadDatePrivacySettings) GetType() string {
 	return "setReadDatePrivacySettings"
 }
 
@@ -19479,7 +19479,7 @@ type SetRecoveryEmailAddress struct {
 	Password string `json:"password"`
 }
 
-func (t SetRecoveryEmailAddress) Type() string {
+func (t SetRecoveryEmailAddress) GetType() string {
 	return "setRecoveryEmailAddress"
 }
 
@@ -19502,7 +19502,7 @@ type SetSavedMessagesTagLabel struct {
 	Tag ReactionType `json:"tag"`
 }
 
-func (t SetSavedMessagesTagLabel) Type() string {
+func (t SetSavedMessagesTagLabel) GetType() string {
 	return "setSavedMessagesTagLabel"
 }
 
@@ -19525,7 +19525,7 @@ type SetScopeNotificationSettings struct {
 	Scope NotificationSettingsScope `json:"scope"`
 }
 
-func (t SetScopeNotificationSettings) Type() string {
+func (t SetScopeNotificationSettings) GetType() string {
 	return "setScopeNotificationSettings"
 }
 
@@ -19548,7 +19548,7 @@ type SetStickerEmojis struct {
 	Sticker InputFile `json:"sticker"`
 }
 
-func (t SetStickerEmojis) Type() string {
+func (t SetStickerEmojis) GetType() string {
 	return "setStickerEmojis"
 }
 
@@ -19571,7 +19571,7 @@ type SetStickerKeywords struct {
 	Sticker InputFile `json:"sticker"`
 }
 
-func (t SetStickerKeywords) Type() string {
+func (t SetStickerKeywords) GetType() string {
 	return "setStickerKeywords"
 }
 
@@ -19594,7 +19594,7 @@ type SetStickerMaskPosition struct {
 	Sticker InputFile `json:"sticker"`
 }
 
-func (t SetStickerMaskPosition) Type() string {
+func (t SetStickerMaskPosition) GetType() string {
 	return "setStickerMaskPosition"
 }
 
@@ -19617,7 +19617,7 @@ type SetStickerPositionInSet struct {
 	Sticker InputFile `json:"sticker"`
 }
 
-func (t SetStickerPositionInSet) Type() string {
+func (t SetStickerPositionInSet) GetType() string {
 	return "setStickerPositionInSet"
 }
 
@@ -19644,7 +19644,7 @@ type SetStickerSetThumbnail struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t SetStickerSetThumbnail) Type() string {
+func (t SetStickerSetThumbnail) GetType() string {
 	return "setStickerSetThumbnail"
 }
 
@@ -19667,7 +19667,7 @@ type SetStickerSetTitle struct {
 	Title string `json:"title"`
 }
 
-func (t SetStickerSetTitle) Type() string {
+func (t SetStickerSetTitle) GetType() string {
 	return "setStickerSetTitle"
 }
 
@@ -19692,7 +19692,7 @@ type SetStoryAlbumName struct {
 	StoryAlbumId int32 `json:"story_album_id"`
 }
 
-func (t SetStoryAlbumName) Type() string {
+func (t SetStoryAlbumName) GetType() string {
 	return "setStoryAlbumName"
 }
 
@@ -19715,7 +19715,7 @@ type SetStoryPrivacySettings struct {
 	StoryId int32 `json:"story_id"`
 }
 
-func (t SetStoryPrivacySettings) Type() string {
+func (t SetStoryPrivacySettings) GetType() string {
 	return "setStoryPrivacySettings"
 }
 
@@ -19742,7 +19742,7 @@ type SetStoryReaction struct {
 	UpdateRecentReactions bool `json:"update_recent_reactions"`
 }
 
-func (t SetStoryReaction) Type() string {
+func (t SetStoryReaction) GetType() string {
 	return "setStoryReaction"
 }
 
@@ -19765,7 +19765,7 @@ type SetSupergroupCustomEmojiStickerSet struct {
 	SupergroupId int64 `json:"supergroup_id"`
 }
 
-func (t SetSupergroupCustomEmojiStickerSet) Type() string {
+func (t SetSupergroupCustomEmojiStickerSet) GetType() string {
 	return "setSupergroupCustomEmojiStickerSet"
 }
 
@@ -19788,7 +19788,7 @@ type SetSupergroupMainProfileTab struct {
 	SupergroupId int64 `json:"supergroup_id"`
 }
 
-func (t SetSupergroupMainProfileTab) Type() string {
+func (t SetSupergroupMainProfileTab) GetType() string {
 	return "setSupergroupMainProfileTab"
 }
 
@@ -19811,7 +19811,7 @@ type SetSupergroupStickerSet struct {
 	SupergroupId int64 `json:"supergroup_id"`
 }
 
-func (t SetSupergroupStickerSet) Type() string {
+func (t SetSupergroupStickerSet) GetType() string {
 	return "setSupergroupStickerSet"
 }
 
@@ -19834,7 +19834,7 @@ type SetSupergroupUnrestrictBoostCount struct {
 	UnrestrictBoostCount int32 `json:"unrestrict_boost_count"`
 }
 
-func (t SetSupergroupUnrestrictBoostCount) Type() string {
+func (t SetSupergroupUnrestrictBoostCount) GetType() string {
 	return "setSupergroupUnrestrictBoostCount"
 }
 
@@ -19857,7 +19857,7 @@ type SetSupergroupUsername struct {
 	Username string `json:"username"`
 }
 
-func (t SetSupergroupUsername) Type() string {
+func (t SetSupergroupUsername) GetType() string {
 	return "setSupergroupUsername"
 }
 
@@ -19904,7 +19904,7 @@ type SetTdlibParameters struct {
 	UseTestDc bool `json:"use_test_dc"`
 }
 
-func (t SetTdlibParameters) Type() string {
+func (t SetTdlibParameters) GetType() string {
 	return "setTdlibParameters"
 }
 
@@ -19925,7 +19925,7 @@ type SetUpgradedGiftColors struct {
 	UpgradedGiftColorsId int64 `json:"upgraded_gift_colors_id,string"`
 }
 
-func (t SetUpgradedGiftColors) Type() string {
+func (t SetUpgradedGiftColors) GetType() string {
 	return "setUpgradedGiftColors"
 }
 
@@ -19948,7 +19948,7 @@ type SetUserEmojiStatus struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t SetUserEmojiStatus) Type() string {
+func (t SetUserEmojiStatus) GetType() string {
 	return "setUserEmojiStatus"
 }
 
@@ -19969,7 +19969,7 @@ type SetUsername struct {
 	Username string `json:"username"`
 }
 
-func (t SetUsername) Type() string {
+func (t SetUsername) GetType() string {
 	return "setUsername"
 }
 
@@ -19992,7 +19992,7 @@ type SetUserNote struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t SetUserNote) Type() string {
+func (t SetUserNote) GetType() string {
 	return "setUserNote"
 }
 
@@ -20015,7 +20015,7 @@ type SetUserPersonalProfilePhoto struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t SetUserPersonalProfilePhoto) Type() string {
+func (t SetUserPersonalProfilePhoto) GetType() string {
 	return "setUserPersonalProfilePhoto"
 }
 
@@ -20038,7 +20038,7 @@ type SetUserPrivacySettingRules struct {
 	Setting UserPrivacySetting `json:"setting"`
 }
 
-func (t SetUserPrivacySettingRules) Type() string {
+func (t SetUserPrivacySettingRules) GetType() string {
 	return "setUserPrivacySettingRules"
 }
 
@@ -20061,7 +20061,7 @@ type SetUserSupportInfo struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t SetUserSupportInfo) Type() string {
+func (t SetUserSupportInfo) GetType() string {
 	return "setUserSupportInfo"
 }
 
@@ -20084,7 +20084,7 @@ type SetVideoChatDefaultParticipant struct {
 	DefaultParticipantId MessageSender `json:"default_participant_id"`
 }
 
-func (t SetVideoChatDefaultParticipant) Type() string {
+func (t SetVideoChatDefaultParticipant) GetType() string {
 	return "setVideoChatDefaultParticipant"
 }
 
@@ -20107,7 +20107,7 @@ type SetVideoChatTitle struct {
 	Title string `json:"title"`
 }
 
-func (t SetVideoChatTitle) Type() string {
+func (t SetVideoChatTitle) GetType() string {
 	return "setVideoChatTitle"
 }
 
@@ -20136,7 +20136,7 @@ type ShareChatWithBot struct {
 	SharedChatId int64 `json:"shared_chat_id"`
 }
 
-func (t ShareChatWithBot) Type() string {
+func (t ShareChatWithBot) GetType() string {
 	return "shareChatWithBot"
 }
 
@@ -20157,7 +20157,7 @@ type SharePhoneNumber struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t SharePhoneNumber) Type() string {
+func (t SharePhoneNumber) GetType() string {
 	return "sharePhoneNumber"
 }
 
@@ -20186,7 +20186,7 @@ type ShareUsersWithBot struct {
 	SharedUserIds []int64 `json:"shared_user_ids"`
 }
 
-func (t ShareUsersWithBot) Type() string {
+func (t ShareUsersWithBot) GetType() string {
 	return "shareUsersWithBot"
 }
 
@@ -20213,7 +20213,7 @@ type StartGroupCallRecording struct {
 	UsePortraitOrientation bool `json:"use_portrait_orientation"`
 }
 
-func (t StartGroupCallRecording) Type() string {
+func (t StartGroupCallRecording) GetType() string {
 	return "startGroupCallRecording"
 }
 
@@ -20238,7 +20238,7 @@ type StartGroupCallScreenSharing struct {
 	Payload string `json:"payload"`
 }
 
-func (t StartGroupCallScreenSharing) Type() string {
+func (t StartGroupCallScreenSharing) GetType() string {
 	return "startGroupCallScreenSharing"
 }
 
@@ -20269,7 +20269,7 @@ type StartLiveStory struct {
 	ProtectContent bool `json:"protect_content"`
 }
 
-func (t StartLiveStory) Type() string {
+func (t StartLiveStory) GetType() string {
 	return "startLiveStory"
 }
 
@@ -20290,7 +20290,7 @@ type StartScheduledVideoChat struct {
 	GroupCallId int32 `json:"group_call_id"`
 }
 
-func (t StartScheduledVideoChat) Type() string {
+func (t StartScheduledVideoChat) GetType() string {
 	return "startScheduledVideoChat"
 }
 
@@ -20317,7 +20317,7 @@ type StopBusinessPoll struct {
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
 }
 
-func (t StopBusinessPoll) Type() string {
+func (t StopBusinessPoll) GetType() string {
 	return "stopBusinessPoll"
 }
 
@@ -20342,7 +20342,7 @@ type StopPoll struct {
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
 }
 
-func (t StopPoll) Type() string {
+func (t StopPoll) GetType() string {
 	return "stopPoll"
 }
 
@@ -20365,7 +20365,7 @@ type SuggestUserBirthdate struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t SuggestUserBirthdate) Type() string {
+func (t SuggestUserBirthdate) GetType() string {
 	return "suggestUserBirthdate"
 }
 
@@ -20388,7 +20388,7 @@ type SuggestUserProfilePhoto struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t SuggestUserProfilePhoto) Type() string {
+func (t SuggestUserProfilePhoto) GetType() string {
 	return "suggestUserProfilePhoto"
 }
 
@@ -20413,7 +20413,7 @@ type SummarizeMessage struct {
 	TranslateToLanguageCode string `json:"translate_to_language_code,omitempty"`
 }
 
-func (t SummarizeMessage) Type() string {
+func (t SummarizeMessage) GetType() string {
 	return "summarizeMessage"
 }
 
@@ -20434,7 +20434,7 @@ type SynchronizeLanguagePack struct {
 	LanguagePackId string `json:"language_pack_id"`
 }
 
-func (t SynchronizeLanguagePack) Type() string {
+func (t SynchronizeLanguagePack) GetType() string {
 	return "synchronizeLanguagePack"
 }
 
@@ -20453,7 +20453,7 @@ func (t SynchronizeLanguagePack) MarshalJSON() ([]byte, error) {
 type TerminateAllOtherSessions struct {
 }
 
-func (t TerminateAllOtherSessions) Type() string {
+func (t TerminateAllOtherSessions) GetType() string {
 	return "terminateAllOtherSessions"
 }
 
@@ -20474,7 +20474,7 @@ type TerminateSession struct {
 	SessionId int64 `json:"session_id,string"`
 }
 
-func (t TerminateSession) Type() string {
+func (t TerminateSession) GetType() string {
 	return "terminateSession"
 }
 
@@ -20495,7 +20495,7 @@ type TestCallBytes struct {
 	X []byte `json:"x"`
 }
 
-func (t TestCallBytes) Type() string {
+func (t TestCallBytes) GetType() string {
 	return "testCallBytes"
 }
 
@@ -20514,7 +20514,7 @@ func (t TestCallBytes) MarshalJSON() ([]byte, error) {
 type TestCallEmpty struct {
 }
 
-func (t TestCallEmpty) Type() string {
+func (t TestCallEmpty) GetType() string {
 	return "testCallEmpty"
 }
 
@@ -20535,7 +20535,7 @@ type TestCallString struct {
 	X string `json:"x"`
 }
 
-func (t TestCallString) Type() string {
+func (t TestCallString) GetType() string {
 	return "testCallString"
 }
 
@@ -20556,7 +20556,7 @@ type TestCallVectorInt struct {
 	X []int32 `json:"x"`
 }
 
-func (t TestCallVectorInt) Type() string {
+func (t TestCallVectorInt) GetType() string {
 	return "testCallVectorInt"
 }
 
@@ -20577,7 +20577,7 @@ type TestCallVectorIntObject struct {
 	X []TestInt `json:"x"`
 }
 
-func (t TestCallVectorIntObject) Type() string {
+func (t TestCallVectorIntObject) GetType() string {
 	return "testCallVectorIntObject"
 }
 
@@ -20598,7 +20598,7 @@ type TestCallVectorString struct {
 	X []string `json:"x"`
 }
 
-func (t TestCallVectorString) Type() string {
+func (t TestCallVectorString) GetType() string {
 	return "testCallVectorString"
 }
 
@@ -20619,7 +20619,7 @@ type TestCallVectorStringObject struct {
 	X []TestString `json:"x"`
 }
 
-func (t TestCallVectorStringObject) Type() string {
+func (t TestCallVectorStringObject) GetType() string {
 	return "testCallVectorStringObject"
 }
 
@@ -20638,7 +20638,7 @@ func (t TestCallVectorStringObject) MarshalJSON() ([]byte, error) {
 type TestGetDifference struct {
 }
 
-func (t TestGetDifference) Type() string {
+func (t TestGetDifference) GetType() string {
 	return "testGetDifference"
 }
 
@@ -20657,7 +20657,7 @@ func (t TestGetDifference) MarshalJSON() ([]byte, error) {
 type TestNetwork struct {
 }
 
-func (t TestNetwork) Type() string {
+func (t TestNetwork) GetType() string {
 	return "testNetwork"
 }
 
@@ -20682,7 +20682,7 @@ type TestProxy struct {
 	Timeout float64 `json:"timeout"`
 }
 
-func (t TestProxy) Type() string {
+func (t TestProxy) GetType() string {
 	return "testProxy"
 }
 
@@ -20703,7 +20703,7 @@ type TestReturnError struct {
 	Error *Error `json:"error"`
 }
 
-func (t TestReturnError) Type() string {
+func (t TestReturnError) GetType() string {
 	return "testReturnError"
 }
 
@@ -20724,7 +20724,7 @@ type TestSquareInt struct {
 	X int32 `json:"x"`
 }
 
-func (t TestSquareInt) Type() string {
+func (t TestSquareInt) GetType() string {
 	return "testSquareInt"
 }
 
@@ -20743,7 +20743,7 @@ func (t TestSquareInt) MarshalJSON() ([]byte, error) {
 type TestUseUpdate struct {
 }
 
-func (t TestUseUpdate) Type() string {
+func (t TestUseUpdate) GetType() string {
 	return "testUseUpdate"
 }
 
@@ -20764,7 +20764,7 @@ type ToggleAllDownloadsArePaused struct {
 	ArePaused bool `json:"are_paused"`
 }
 
-func (t ToggleAllDownloadsArePaused) Type() string {
+func (t ToggleAllDownloadsArePaused) GetType() string {
 	return "toggleAllDownloadsArePaused"
 }
 
@@ -20787,7 +20787,7 @@ type ToggleBotCanManageEmojiStatus struct {
 	CanManageEmojiStatus bool `json:"can_manage_emoji_status"`
 }
 
-func (t ToggleBotCanManageEmojiStatus) Type() string {
+func (t ToggleBotCanManageEmojiStatus) GetType() string {
 	return "toggleBotCanManageEmojiStatus"
 }
 
@@ -20812,7 +20812,7 @@ type ToggleBotIsAddedToAttachmentMenu struct {
 	IsAdded bool `json:"is_added"`
 }
 
-func (t ToggleBotIsAddedToAttachmentMenu) Type() string {
+func (t ToggleBotIsAddedToAttachmentMenu) GetType() string {
 	return "toggleBotIsAddedToAttachmentMenu"
 }
 
@@ -20837,7 +20837,7 @@ type ToggleBotUsernameIsActive struct {
 	Username string `json:"username"`
 }
 
-func (t ToggleBotUsernameIsActive) Type() string {
+func (t ToggleBotUsernameIsActive) GetType() string {
 	return "toggleBotUsernameIsActive"
 }
 
@@ -20860,7 +20860,7 @@ type ToggleBusinessConnectedBotChatIsPaused struct {
 	IsPaused bool `json:"is_paused"`
 }
 
-func (t ToggleBusinessConnectedBotChatIsPaused) Type() string {
+func (t ToggleBusinessConnectedBotChatIsPaused) GetType() string {
 	return "toggleBusinessConnectedBotChatIsPaused"
 }
 
@@ -20883,7 +20883,7 @@ type ToggleChatDefaultDisableNotification struct {
 	DefaultDisableNotification bool `json:"default_disable_notification"`
 }
 
-func (t ToggleChatDefaultDisableNotification) Type() string {
+func (t ToggleChatDefaultDisableNotification) GetType() string {
 	return "toggleChatDefaultDisableNotification"
 }
 
@@ -20904,7 +20904,7 @@ type ToggleChatFolderTags struct {
 	AreTagsEnabled bool `json:"are_tags_enabled"`
 }
 
-func (t ToggleChatFolderTags) Type() string {
+func (t ToggleChatFolderTags) GetType() string {
 	return "toggleChatFolderTags"
 }
 
@@ -20927,7 +20927,7 @@ type ToggleChatGiftNotifications struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t ToggleChatGiftNotifications) Type() string {
+func (t ToggleChatGiftNotifications) GetType() string {
 	return "toggleChatGiftNotifications"
 }
 
@@ -20950,7 +20950,7 @@ type ToggleChatHasProtectedContent struct {
 	HasProtectedContent bool `json:"has_protected_content"`
 }
 
-func (t ToggleChatHasProtectedContent) Type() string {
+func (t ToggleChatHasProtectedContent) GetType() string {
 	return "toggleChatHasProtectedContent"
 }
 
@@ -20973,7 +20973,7 @@ type ToggleChatIsMarkedAsUnread struct {
 	IsMarkedAsUnread bool `json:"is_marked_as_unread"`
 }
 
-func (t ToggleChatIsMarkedAsUnread) Type() string {
+func (t ToggleChatIsMarkedAsUnread) GetType() string {
 	return "toggleChatIsMarkedAsUnread"
 }
 
@@ -20998,7 +20998,7 @@ type ToggleChatIsPinned struct {
 	IsPinned bool `json:"is_pinned"`
 }
 
-func (t ToggleChatIsPinned) Type() string {
+func (t ToggleChatIsPinned) GetType() string {
 	return "toggleChatIsPinned"
 }
 
@@ -21021,7 +21021,7 @@ type ToggleChatIsTranslatable struct {
 	IsTranslatable bool `json:"is_translatable"`
 }
 
-func (t ToggleChatIsTranslatable) Type() string {
+func (t ToggleChatIsTranslatable) GetType() string {
 	return "toggleChatIsTranslatable"
 }
 
@@ -21044,7 +21044,7 @@ type ToggleChatViewAsTopics struct {
 	ViewAsTopics bool `json:"view_as_topics"`
 }
 
-func (t ToggleChatViewAsTopics) Type() string {
+func (t ToggleChatViewAsTopics) GetType() string {
 	return "toggleChatViewAsTopics"
 }
 
@@ -21071,7 +21071,7 @@ type ToggleDirectMessagesChatTopicCanSendUnpaidMessages struct {
 	TopicId int64 `json:"topic_id"`
 }
 
-func (t ToggleDirectMessagesChatTopicCanSendUnpaidMessages) Type() string {
+func (t ToggleDirectMessagesChatTopicCanSendUnpaidMessages) GetType() string {
 	return "toggleDirectMessagesChatTopicCanSendUnpaidMessages"
 }
 
@@ -21094,7 +21094,7 @@ type ToggleDownloadIsPaused struct {
 	IsPaused bool `json:"is_paused"`
 }
 
-func (t ToggleDownloadIsPaused) Type() string {
+func (t ToggleDownloadIsPaused) GetType() string {
 	return "toggleDownloadIsPaused"
 }
 
@@ -21119,7 +21119,7 @@ type ToggleForumTopicIsClosed struct {
 	IsClosed bool `json:"is_closed"`
 }
 
-func (t ToggleForumTopicIsClosed) Type() string {
+func (t ToggleForumTopicIsClosed) GetType() string {
 	return "toggleForumTopicIsClosed"
 }
 
@@ -21144,7 +21144,7 @@ type ToggleForumTopicIsPinned struct {
 	IsPinned bool `json:"is_pinned"`
 }
 
-func (t ToggleForumTopicIsPinned) Type() string {
+func (t ToggleForumTopicIsPinned) GetType() string {
 	return "toggleForumTopicIsPinned"
 }
 
@@ -21167,7 +21167,7 @@ type ToggleGeneralForumTopicIsHidden struct {
 	IsHidden bool `json:"is_hidden"`
 }
 
-func (t ToggleGeneralForumTopicIsHidden) Type() string {
+func (t ToggleGeneralForumTopicIsHidden) GetType() string {
 	return "toggleGeneralForumTopicIsHidden"
 }
 
@@ -21190,7 +21190,7 @@ type ToggleGiftIsSaved struct {
 	ReceivedGiftId string `json:"received_gift_id"`
 }
 
-func (t ToggleGiftIsSaved) Type() string {
+func (t ToggleGiftIsSaved) GetType() string {
 	return "toggleGiftIsSaved"
 }
 
@@ -21213,7 +21213,7 @@ type ToggleGroupCallAreMessagesAllowed struct {
 	GroupCallId int32 `json:"group_call_id"`
 }
 
-func (t ToggleGroupCallAreMessagesAllowed) Type() string {
+func (t ToggleGroupCallAreMessagesAllowed) GetType() string {
 	return "toggleGroupCallAreMessagesAllowed"
 }
 
@@ -21236,7 +21236,7 @@ type ToggleGroupCallIsMyVideoEnabled struct {
 	IsMyVideoEnabled bool `json:"is_my_video_enabled"`
 }
 
-func (t ToggleGroupCallIsMyVideoEnabled) Type() string {
+func (t ToggleGroupCallIsMyVideoEnabled) GetType() string {
 	return "toggleGroupCallIsMyVideoEnabled"
 }
 
@@ -21259,7 +21259,7 @@ type ToggleGroupCallIsMyVideoPaused struct {
 	IsMyVideoPaused bool `json:"is_my_video_paused"`
 }
 
-func (t ToggleGroupCallIsMyVideoPaused) Type() string {
+func (t ToggleGroupCallIsMyVideoPaused) GetType() string {
 	return "toggleGroupCallIsMyVideoPaused"
 }
 
@@ -21284,7 +21284,7 @@ type ToggleGroupCallParticipantIsHandRaised struct {
 	ParticipantId MessageSender `json:"participant_id"`
 }
 
-func (t ToggleGroupCallParticipantIsHandRaised) Type() string {
+func (t ToggleGroupCallParticipantIsHandRaised) GetType() string {
 	return "toggleGroupCallParticipantIsHandRaised"
 }
 
@@ -21309,7 +21309,7 @@ type ToggleGroupCallParticipantIsMuted struct {
 	ParticipantId MessageSender `json:"participant_id"`
 }
 
-func (t ToggleGroupCallParticipantIsMuted) Type() string {
+func (t ToggleGroupCallParticipantIsMuted) GetType() string {
 	return "toggleGroupCallParticipantIsMuted"
 }
 
@@ -21332,7 +21332,7 @@ type ToggleGroupCallScreenSharingIsPaused struct {
 	IsPaused bool `json:"is_paused"`
 }
 
-func (t ToggleGroupCallScreenSharingIsPaused) Type() string {
+func (t ToggleGroupCallScreenSharingIsPaused) GetType() string {
 	return "toggleGroupCallScreenSharingIsPaused"
 }
 
@@ -21353,7 +21353,7 @@ type ToggleHasSponsoredMessagesEnabled struct {
 	HasSponsoredMessagesEnabled bool `json:"has_sponsored_messages_enabled"`
 }
 
-func (t ToggleHasSponsoredMessagesEnabled) Type() string {
+func (t ToggleHasSponsoredMessagesEnabled) GetType() string {
 	return "toggleHasSponsoredMessagesEnabled"
 }
 
@@ -21376,7 +21376,7 @@ type ToggleSavedMessagesTopicIsPinned struct {
 	SavedMessagesTopicId int64 `json:"saved_messages_topic_id"`
 }
 
-func (t ToggleSavedMessagesTopicIsPinned) Type() string {
+func (t ToggleSavedMessagesTopicIsPinned) GetType() string {
 	return "toggleSavedMessagesTopicIsPinned"
 }
 
@@ -21399,7 +21399,7 @@ type ToggleSessionCanAcceptCalls struct {
 	SessionId int64 `json:"session_id,string"`
 }
 
-func (t ToggleSessionCanAcceptCalls) Type() string {
+func (t ToggleSessionCanAcceptCalls) GetType() string {
 	return "toggleSessionCanAcceptCalls"
 }
 
@@ -21422,7 +21422,7 @@ type ToggleSessionCanAcceptSecretChats struct {
 	SessionId int64 `json:"session_id,string"`
 }
 
-func (t ToggleSessionCanAcceptSecretChats) Type() string {
+func (t ToggleSessionCanAcceptSecretChats) GetType() string {
 	return "toggleSessionCanAcceptSecretChats"
 }
 
@@ -21447,7 +21447,7 @@ type ToggleStoryIsPostedToChatPage struct {
 	StoryPosterChatId int64 `json:"story_poster_chat_id"`
 }
 
-func (t ToggleStoryIsPostedToChatPage) Type() string {
+func (t ToggleStoryIsPostedToChatPage) GetType() string {
 	return "toggleStoryIsPostedToChatPage"
 }
 
@@ -21470,7 +21470,7 @@ type ToggleSupergroupCanHaveSponsoredMessages struct {
 	SupergroupId int64 `json:"supergroup_id"`
 }
 
-func (t ToggleSupergroupCanHaveSponsoredMessages) Type() string {
+func (t ToggleSupergroupCanHaveSponsoredMessages) GetType() string {
 	return "toggleSupergroupCanHaveSponsoredMessages"
 }
 
@@ -21493,7 +21493,7 @@ type ToggleSupergroupHasAggressiveAntiSpamEnabled struct {
 	SupergroupId int64 `json:"supergroup_id"`
 }
 
-func (t ToggleSupergroupHasAggressiveAntiSpamEnabled) Type() string {
+func (t ToggleSupergroupHasAggressiveAntiSpamEnabled) GetType() string {
 	return "toggleSupergroupHasAggressiveAntiSpamEnabled"
 }
 
@@ -21516,7 +21516,7 @@ type ToggleSupergroupHasAutomaticTranslation struct {
 	SupergroupId int64 `json:"supergroup_id"`
 }
 
-func (t ToggleSupergroupHasAutomaticTranslation) Type() string {
+func (t ToggleSupergroupHasAutomaticTranslation) GetType() string {
 	return "toggleSupergroupHasAutomaticTranslation"
 }
 
@@ -21539,7 +21539,7 @@ type ToggleSupergroupHasHiddenMembers struct {
 	SupergroupId int64 `json:"supergroup_id"`
 }
 
-func (t ToggleSupergroupHasHiddenMembers) Type() string {
+func (t ToggleSupergroupHasHiddenMembers) GetType() string {
 	return "toggleSupergroupHasHiddenMembers"
 }
 
@@ -21562,7 +21562,7 @@ type ToggleSupergroupIsAllHistoryAvailable struct {
 	SupergroupId int64 `json:"supergroup_id"`
 }
 
-func (t ToggleSupergroupIsAllHistoryAvailable) Type() string {
+func (t ToggleSupergroupIsAllHistoryAvailable) GetType() string {
 	return "toggleSupergroupIsAllHistoryAvailable"
 }
 
@@ -21583,7 +21583,7 @@ type ToggleSupergroupIsBroadcastGroup struct {
 	SupergroupId int64 `json:"supergroup_id"`
 }
 
-func (t ToggleSupergroupIsBroadcastGroup) Type() string {
+func (t ToggleSupergroupIsBroadcastGroup) GetType() string {
 	return "toggleSupergroupIsBroadcastGroup"
 }
 
@@ -21608,7 +21608,7 @@ type ToggleSupergroupIsForum struct {
 	SupergroupId int64 `json:"supergroup_id"`
 }
 
-func (t ToggleSupergroupIsForum) Type() string {
+func (t ToggleSupergroupIsForum) GetType() string {
 	return "toggleSupergroupIsForum"
 }
 
@@ -21631,7 +21631,7 @@ type ToggleSupergroupJoinByRequest struct {
 	SupergroupId int64 `json:"supergroup_id"`
 }
 
-func (t ToggleSupergroupJoinByRequest) Type() string {
+func (t ToggleSupergroupJoinByRequest) GetType() string {
 	return "toggleSupergroupJoinByRequest"
 }
 
@@ -21654,7 +21654,7 @@ type ToggleSupergroupJoinToSendMessages struct {
 	SupergroupId int64 `json:"supergroup_id"`
 }
 
-func (t ToggleSupergroupJoinToSendMessages) Type() string {
+func (t ToggleSupergroupJoinToSendMessages) GetType() string {
 	return "toggleSupergroupJoinToSendMessages"
 }
 
@@ -21679,7 +21679,7 @@ type ToggleSupergroupSignMessages struct {
 	SupergroupId int64 `json:"supergroup_id"`
 }
 
-func (t ToggleSupergroupSignMessages) Type() string {
+func (t ToggleSupergroupSignMessages) GetType() string {
 	return "toggleSupergroupSignMessages"
 }
 
@@ -21704,7 +21704,7 @@ type ToggleSupergroupUsernameIsActive struct {
 	Username string `json:"username"`
 }
 
-func (t ToggleSupergroupUsernameIsActive) Type() string {
+func (t ToggleSupergroupUsernameIsActive) GetType() string {
 	return "toggleSupergroupUsernameIsActive"
 }
 
@@ -21727,7 +21727,7 @@ type ToggleUsernameIsActive struct {
 	Username string `json:"username"`
 }
 
-func (t ToggleUsernameIsActive) Type() string {
+func (t ToggleUsernameIsActive) GetType() string {
 	return "toggleUsernameIsActive"
 }
 
@@ -21750,7 +21750,7 @@ type ToggleVideoChatEnabledStartNotification struct {
 	GroupCallId int32 `json:"group_call_id"`
 }
 
-func (t ToggleVideoChatEnabledStartNotification) Type() string {
+func (t ToggleVideoChatEnabledStartNotification) GetType() string {
 	return "toggleVideoChatEnabledStartNotification"
 }
 
@@ -21773,7 +21773,7 @@ type ToggleVideoChatMuteNewParticipants struct {
 	MuteNewParticipants bool `json:"mute_new_participants"`
 }
 
-func (t ToggleVideoChatMuteNewParticipants) Type() string {
+func (t ToggleVideoChatMuteNewParticipants) GetType() string {
 	return "toggleVideoChatMuteNewParticipants"
 }
 
@@ -21796,7 +21796,7 @@ type TransferBusinessAccountStars struct {
 	StarCount int64 `json:"star_count"`
 }
 
-func (t TransferBusinessAccountStars) Type() string {
+func (t TransferBusinessAccountStars) GetType() string {
 	return "transferBusinessAccountStars"
 }
 
@@ -21821,7 +21821,7 @@ type TransferChatOwnership struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t TransferChatOwnership) Type() string {
+func (t TransferChatOwnership) GetType() string {
 	return "transferChatOwnership"
 }
 
@@ -21848,7 +21848,7 @@ type TransferGift struct {
 	StarCount int64 `json:"star_count"`
 }
 
-func (t TransferGift) Type() string {
+func (t TransferGift) GetType() string {
 	return "transferGift"
 }
 
@@ -21873,7 +21873,7 @@ type TranslateMessageText struct {
 	ToLanguageCode string `json:"to_language_code"`
 }
 
-func (t TranslateMessageText) Type() string {
+func (t TranslateMessageText) GetType() string {
 	return "translateMessageText"
 }
 
@@ -21896,7 +21896,7 @@ type TranslateText struct {
 	ToLanguageCode string `json:"to_language_code"`
 }
 
-func (t TranslateText) Type() string {
+func (t TranslateText) GetType() string {
 	return "translateText"
 }
 
@@ -21917,7 +21917,7 @@ type UnpinAllChatMessages struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t UnpinAllChatMessages) Type() string {
+func (t UnpinAllChatMessages) GetType() string {
 	return "unpinAllChatMessages"
 }
 
@@ -21940,7 +21940,7 @@ type UnpinAllDirectMessagesChatTopicMessages struct {
 	TopicId int64 `json:"topic_id"`
 }
 
-func (t UnpinAllDirectMessagesChatTopicMessages) Type() string {
+func (t UnpinAllDirectMessagesChatTopicMessages) GetType() string {
 	return "unpinAllDirectMessagesChatTopicMessages"
 }
 
@@ -21963,7 +21963,7 @@ type UnpinAllForumTopicMessages struct {
 	ForumTopicId int32 `json:"forum_topic_id"`
 }
 
-func (t UnpinAllForumTopicMessages) Type() string {
+func (t UnpinAllForumTopicMessages) GetType() string {
 	return "unpinAllForumTopicMessages"
 }
 
@@ -21986,7 +21986,7 @@ type UnpinChatMessage struct {
 	MessageId int64 `json:"message_id"`
 }
 
-func (t UnpinChatMessage) Type() string {
+func (t UnpinChatMessage) GetType() string {
 	return "unpinChatMessage"
 }
 
@@ -22007,7 +22007,7 @@ type UpgradeBasicGroupChatToSupergroupChat struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-func (t UpgradeBasicGroupChatToSupergroupChat) Type() string {
+func (t UpgradeBasicGroupChatToSupergroupChat) GetType() string {
 	return "upgradeBasicGroupChatToSupergroupChat"
 }
 
@@ -22034,7 +22034,7 @@ type UpgradeGift struct {
 	StarCount int64 `json:"star_count"`
 }
 
-func (t UpgradeGift) Type() string {
+func (t UpgradeGift) GetType() string {
 	return "upgradeGift"
 }
 
@@ -22059,7 +22059,7 @@ type UploadStickerFile struct {
 	UserId int64 `json:"user_id"`
 }
 
-func (t UploadStickerFile) Type() string {
+func (t UploadStickerFile) GetType() string {
 	return "uploadStickerFile"
 }
 
@@ -22084,7 +22084,7 @@ type ValidateOrderInfo struct {
 	OrderInfo *OrderInfo `json:"order_info,omitempty"`
 }
 
-func (t ValidateOrderInfo) Type() string {
+func (t ValidateOrderInfo) GetType() string {
 	return "validateOrderInfo"
 }
 
@@ -22111,7 +22111,7 @@ type ViewMessages struct {
 	Source MessageSource `json:"source,omitempty"`
 }
 
-func (t ViewMessages) Type() string {
+func (t ViewMessages) GetType() string {
 	return "viewMessages"
 }
 
@@ -22132,7 +22132,7 @@ type ViewPremiumFeature struct {
 	Feature PremiumFeature `json:"feature"`
 }
 
-func (t ViewPremiumFeature) Type() string {
+func (t ViewPremiumFeature) GetType() string {
 	return "viewPremiumFeature"
 }
 
@@ -22153,7 +22153,7 @@ type ViewSponsoredChat struct {
 	SponsoredChatUniqueId int64 `json:"sponsored_chat_unique_id"`
 }
 
-func (t ViewSponsoredChat) Type() string {
+func (t ViewSponsoredChat) GetType() string {
 	return "viewSponsoredChat"
 }
 
@@ -22174,7 +22174,7 @@ type ViewTrendingStickerSets struct {
 	StickerSetIds Int64Slice `json:"sticker_set_ids"`
 }
 
-func (t ViewTrendingStickerSets) Type() string {
+func (t ViewTrendingStickerSets) GetType() string {
 	return "viewTrendingStickerSets"
 }
 
@@ -22195,7 +22195,7 @@ type ViewVideoMessageAdvertisement struct {
 	AdvertisementUniqueId int64 `json:"advertisement_unique_id"`
 }
 
-func (t ViewVideoMessageAdvertisement) Type() string {
+func (t ViewVideoMessageAdvertisement) GetType() string {
 	return "viewVideoMessageAdvertisement"
 }
 
@@ -22220,7 +22220,7 @@ type WriteGeneratedFilePart struct {
 	Offset int64 `json:"offset"`
 }
 
-func (t WriteGeneratedFilePart) Type() string {
+func (t WriteGeneratedFilePart) GetType() string {
 	return "writeGeneratedFilePart"
 }
 

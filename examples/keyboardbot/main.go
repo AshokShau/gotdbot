@@ -63,7 +63,7 @@ func main() {
 				{
 					{
 						Text: "GitHub",
-						TypeField: &gotdbot.InlineKeyboardButtonTypeUrl{
+						Type: &gotdbot.InlineKeyboardButtonTypeUrl{
 							Url: "https://github.com/AshokShau/gotdbot",
 						},
 						IconCustomEmojiId: 5271604874419647061,
@@ -98,14 +98,14 @@ func main() {
 				{
 					{
 						Text: "OwO",
-						TypeField: &gotdbot.InlineKeyboardButtonTypeCallback{
+						Type: &gotdbot.InlineKeyboardButtonTypeCallback{
 							Data: []byte("OwO"),
 						},
 						Style: &gotdbot.ButtonStylePrimary{},
 					},
 					{
 						Text: "UwU",
-						TypeField: &gotdbot.InlineKeyboardButtonTypeCallback{
+						Type: &gotdbot.InlineKeyboardButtonTypeCallback{
 							Data: []byte("UwU"),
 						},
 						Style: &gotdbot.ButtonStyleDanger{},
@@ -142,11 +142,11 @@ func main() {
 				{
 					{
 						Text:      "OwO",
-						TypeField: &gotdbot.KeyboardButtonTypeText{},
+						Type: &gotdbot.KeyboardButtonTypeText{},
 					},
 					{
 						Text:      "UwU",
-						TypeField: &gotdbot.KeyboardButtonTypeText{},
+						Type: &gotdbot.KeyboardButtonTypeText{},
 					},
 				},
 			},
@@ -224,7 +224,7 @@ func main() {
 					{
 						{
 							Text: "GitHub",
-							TypeField: &gotdbot.InlineKeyboardButtonTypeUrl{
+							Type: &gotdbot.InlineKeyboardButtonTypeUrl{
 								Url: "https://github.com/AshokShau/gotdbot",
 							},
 							IconCustomEmojiId: 5330237710655306682,

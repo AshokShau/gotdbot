@@ -57,7 +57,7 @@ func (m *Message) IsCommand() bool {
 	}
 
 	for _, entity := range entities {
-		if _, ok := entity.TypeField.(*TextEntityTypeBotCommand); ok && entity.Offset == 0 {
+		if _, ok := entity.Type.(*TextEntityTypeBotCommand); ok && entity.Offset == 0 {
 			return true
 		}
 	}

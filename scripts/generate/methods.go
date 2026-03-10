@@ -82,9 +82,6 @@ func generateMethods(functions []TLType, classes map[string]*TLClass) {
 				continue
 			}
 			fieldName := toCamelCase(p.Name)
-			if fieldName == "Type" {
-				fieldName = "TypeField"
-			}
 			argName := strings.ToLower(fieldName[:1]) + fieldName[1:]
 			if argName == "type" {
 				argName = "typeField"
@@ -104,9 +101,6 @@ func generateMethods(functions []TLType, classes map[string]*TLClass) {
 					continue
 				}
 				fieldName := toCamelCase(p.Name)
-				if fieldName == "Type" {
-					fieldName = "TypeField"
-				}
 				fmt.Fprintf(&sb, "\t\treq.%s = opts.%s\n", fieldName, fieldName)
 			}
 			sb.WriteString("\t}\n")

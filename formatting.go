@@ -118,7 +118,7 @@ func buildFormatString(format DateTimeFormattingType) string {
 			formatStr += "w"
 		}
 		if f.DatePrecision != nil {
-			switch f.DatePrecision.Type() {
+			switch f.DatePrecision.GetType() {
 			case "dateTimePartPrecisionShort":
 				formatStr += "d"
 			case "dateTimePartPrecisionLong":
@@ -126,7 +126,7 @@ func buildFormatString(format DateTimeFormattingType) string {
 			}
 		}
 		if f.TimePrecision != nil {
-			switch f.TimePrecision.Type() {
+			switch f.TimePrecision.GetType() {
 			case "dateTimePartPrecisionShort":
 				formatStr += "t"
 			case "dateTimePartPrecisionLong":
@@ -140,7 +140,7 @@ func buildFormatString(format DateTimeFormattingType) string {
 			formatStr += "w"
 		}
 		if f.DatePrecision != nil {
-			switch f.DatePrecision.Type() {
+			switch f.DatePrecision.GetType() {
 			case "dateTimePartPrecisionShort":
 				formatStr += "d"
 			case "dateTimePartPrecisionLong":
@@ -148,7 +148,7 @@ func buildFormatString(format DateTimeFormattingType) string {
 			}
 		}
 		if f.TimePrecision != nil {
-			switch f.TimePrecision.Type() {
+			switch f.TimePrecision.GetType() {
 			case "dateTimePartPrecisionShort":
 				formatStr += "t"
 			case "dateTimePartPrecisionLong":
@@ -246,7 +246,7 @@ func UnparseEntities(text string, entities []TextEntity, mode string) string {
 				isRaw := false
 				inBlockQuote := false
 				for _, ent := range entities {
-					switch ent.TypeField.(type) {
+					switch ent.Type.(type) {
 					case *TextEntityTypeCode, TextEntityTypeCode,
 						*TextEntityTypePre, TextEntityTypePre,
 						*TextEntityTypePreCode, TextEntityTypePreCode:
@@ -319,7 +319,7 @@ func UnparseEntities(text string, entities []TextEntity, mode string) string {
 }
 
 func getTag(ent *TextEntity, isStart bool, mode string, text string) string {
-	switch e := ent.TypeField.(type) {
+	switch e := ent.Type.(type) {
 	case *TextEntityTypeBold, TextEntityTypeBold:
 		if mode == "html" {
 			if isStart {

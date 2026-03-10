@@ -285,9 +285,9 @@ func (c *Client) authHandler(client *Client, update TlObject) error {
 		return nil
 	}
 
-	c.Logger.Debug("Authorization state update", "state", authState.AuthorizationState.Type())
+	c.Logger.Debug("Authorization state update", "state", authState.AuthorizationState.GetType())
 
-	switch authState.AuthorizationState.Type() {
+	switch authState.AuthorizationState.GetType() {
 	case "authorizationStateWaitTdlibParameters":
 		if len(c.config.TDLibOptions) > 0 {
 			for k, v := range c.config.TDLibOptions {
@@ -384,7 +384,7 @@ func (c *Client) authHandler(client *Client, update TlObject) error {
 
 	case "authorizationStateWaitCode":
 		codeInfo := authState.AuthorizationState.(*AuthorizationStateWaitCode).CodeInfo
-		codeType := codeInfo.TypeField.Type()
+		codeType := codeInfo.Type.GetType()
 		codeType = strings.TrimPrefix(codeType, "authenticationCodeType")
 		reader := bufio.NewReader(os.Stdin)
 		for {
@@ -497,7 +497,7 @@ func (c *Client) connectionStateHandler(client *Client, update TlObject) error {
 		return nil
 	}
 
-	state := u.State.Type()
+	state := u.State.GetType()
 	state = strings.TrimPrefix(state, "connectionState")
 	c.Logger.Info("Connection state changed", "state", state)
 	return nil
@@ -556,7 +556,7 @@ func (c *Client) Send(req TlObject) (TlObject, error) {
 
 	select {
 	case res := <-ch:
-		if res.Type() == "error" {
+		if res.GetType() == "error" {
 			if errObj, ok := res.(*Error); ok {
 				return nil, errObj
 			}
@@ -577,7 +577,7 @@ func (c *Client) Me() *User {
 
 // WaitMessage waits for the message to be sent and returns the final message.
 func (c *Client) WaitMessage(msg *Message) (*Message, error) {
-	if msg.SendingState != nil && msg.SendingState.Type() == "messageSendingStatePending" {
+	if msg.SendingState != nil && msg.SendingState.GetType() == "messageSendingStatePending" {
 		key := fmt.Sprintf("%d:%d", msg.ChatId, msg.Id)
 		ch := make(chan TlObject, 1)
 		c.pendingMessages.Store(key, ch)

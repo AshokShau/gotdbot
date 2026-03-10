@@ -33,7 +33,7 @@ func main() {
 				{
 					{
 						Text: "GoTDBot GitHub",
-						TypeField: &gotdbot.InlineKeyboardButtonTypeUrl{
+						Type: &gotdbot.InlineKeyboardButtonTypeUrl{
 							Url: "https://github.com/AshokShau/gotdbot",
 						},
 					},
