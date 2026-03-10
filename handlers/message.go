@@ -6,19 +6,29 @@ import (
 )
 
 type Message struct {
-	Filter   filters.Message
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Filter        filters.Message
+	Response      func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	AllowOutgoing bool
 }
 
 func NewMessage(filter filters.Message, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *Message {
 	return &Message{
-		Filter:   filter,
-		Response: response,
+		Filter:        filter,
+		Response:      response,
+		AllowOutgoing: false,
 	}
+}
+
+func (m *Message) SetAllowOutgoing(allow bool) *Message {
+	m.AllowOutgoing = allow
+	return m
 }
 
 func (m *Message) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	if ctx.EffectiveMessage == nil {
+		return false
+	}
+	if ctx.EffectiveMessage.IsOutgoing && !m.AllowOutgoing {
 		return false
 	}
 
