@@ -7,45 +7,9 @@ import (
 	"unicode/utf16"
 )
 
-// getText extracts the *FormattedText from the message content if it has text.
-func (m *Message) getText() (*FormattedText, error) {
-	if m == nil || m.Content == nil {
-		return nil, ErrNoFormattedText
-	}
-	switch content := m.Content.(type) {
-	case *MessageText:
-		return content.Text, nil
-	default:
-		return nil, ErrNoFormattedText
-	}
-}
-
-// getCaption extracts the *FormattedText from the message content if it has a caption.
-func (m *Message) getCaption() (*FormattedText, error) {
-	if m == nil || m.Content == nil {
-		return nil, ErrNoFormattedText
-	}
-	switch content := m.Content.(type) {
-	case *MessageAnimation:
-		return content.Caption, nil
-	case *MessageAudio:
-		return content.Caption, nil
-	case *MessageDocument:
-		return content.Caption, nil
-	case *MessagePhoto:
-		return content.Caption, nil
-	case *MessageVideo:
-		return content.Caption, nil
-	case *MessageVoiceNote:
-		return content.Caption, nil
-	default:
-		return nil, ErrNoFormattedText
-	}
-}
-
 // OriginalMD gets the original markdown formatting of a message text.
 func (m *Message) OriginalMD() string {
-	text, err := m.getText()
+	text, err := m.GetFormattedText()
 	if err != nil {
 		return ""
 	}
@@ -54,7 +18,7 @@ func (m *Message) OriginalMD() string {
 
 // OriginalMDV2 gets the original markdownV2 formatting of a message text.
 func (m *Message) OriginalMDV2() string {
-	text, err := m.getText()
+	text, err := m.GetFormattedText()
 	if err != nil {
 		return ""
 	}
@@ -63,7 +27,7 @@ func (m *Message) OriginalMDV2() string {
 
 // OriginalHTML gets the original HTML formatting of a message text.
 func (m *Message) OriginalHTML() string {
-	text, err := m.getText()
+	text, err := m.GetFormattedText()
 	if err != nil {
 		return ""
 	}
@@ -72,7 +36,7 @@ func (m *Message) OriginalHTML() string {
 
 // OriginalCaptionMD gets the original markdown formatting of a message caption.
 func (m *Message) OriginalCaptionMD() string {
-	caption, err := m.getCaption()
+	caption, err := m.GetFormattedCaption()
 	if err != nil {
 		return ""
 	}
@@ -81,7 +45,7 @@ func (m *Message) OriginalCaptionMD() string {
 
 // OriginalCaptionMDV2 gets the original markdownV2 formatting of a message caption.
 func (m *Message) OriginalCaptionMDV2() string {
-	caption, err := m.getCaption()
+	caption, err := m.GetFormattedCaption()
 	if err != nil {
 		return ""
 	}
@@ -90,7 +54,7 @@ func (m *Message) OriginalCaptionMDV2() string {
 
 // OriginalCaptionHTML gets the original HTML formatting of a message caption.
 func (m *Message) OriginalCaptionHTML() string {
-	caption, err := m.getCaption()
+	caption, err := m.GetFormattedCaption()
 	if err != nil {
 		return ""
 	}
@@ -318,7 +282,7 @@ func UnparseEntities(text string, entities []TextEntity, mode string) string {
 	return result.String()
 }
 
-func getTag(ent *TextEntity, isStart bool, mode string, text string) string {
+func getTag(ent *TextEntity, isStart bool, mode string, _ string) string {
 	switch e := ent.Type.(type) {
 	case *TextEntityTypeBold, TextEntityTypeBold:
 		if mode == "html" {
