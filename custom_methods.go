@@ -559,11 +559,11 @@ func (c *Client) GetSupergroupId(chatId int64) (int64, error) {
 		return 0, err
 	}
 
-	if chat.TypeField == nil {
+	if chat.Type == nil {
 		return 0, nil
 	}
 
-	if ct, ok := chat.TypeField.(*ChatTypeSupergroup); ok {
+	if ct, ok := chat.Type.(*ChatTypeSupergroup); ok {
 		return ct.SupergroupId, nil
 	}
 

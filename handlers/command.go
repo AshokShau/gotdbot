@@ -4,19 +4,24 @@ import (
 	"strings"
 
 	"github.com/AshokShau/gotdbot"
+	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
 type Command struct {
-	Triggers []rune
-	Command  string
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Triggers      []rune
+	Command       string
+	Response      func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	AllowOutgoing bool
+	Filter        filters.Message
 }
 
 func NewCommand(command string, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *Command {
 	return &Command{
-		Triggers: []rune{'/'},
-		Command:  strings.ToLower(command),
-		Response: response,
+		Triggers:      []rune{'/'},
+		Command:       strings.ToLower(command),
+		Response:      response,
+		AllowOutgoing: false,
+		Filter:        nil,
 	}
 }
 
@@ -25,12 +30,26 @@ func (c *Command) SetTriggers(triggers []rune) *Command {
 	return c
 }
 
+func (c *Command) SetAllowOutgoing(allow bool) *Command {
+	c.AllowOutgoing = allow
+	return c
+}
+
+func (c *Command) SetFilter(filter filters.Message) *Command {
+	c.Filter = filter
+	return c
+}
+
 func (c *Command) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	if ctx.EffectiveMessage == nil || ctx.EffectiveMessage.Content == nil {
 		return false
 	}
 
-	if ctx.EffectiveMessage.IsOutgoing {
+	if ctx.EffectiveMessage.IsOutgoing && !c.AllowOutgoing {
+		return false
+	}
+
+	if c.Filter != nil && !c.Filter(ctx.EffectiveMessage) {
 		return false
 	}
 

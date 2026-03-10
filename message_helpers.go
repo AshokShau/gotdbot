@@ -40,6 +40,19 @@ func (m *Message) GetText() string {
 	return m.Text()
 }
 
+// GetFormattedText extracts the *FormattedText from the message content if it has text.
+func (m *Message) GetFormattedText() (*FormattedText, error) {
+	if m == nil || m.Content == nil {
+		return nil, ErrNoFormattedText
+	}
+	switch content := m.Content.(type) {
+	case *MessageText:
+		return content.Text, nil
+	default:
+		return nil, ErrNoFormattedText
+	}
+}
+
 // GetEntities returns the message entities, for both text messages and media messages.
 func (m *Message) GetEntities() []TextEntity {
 	if len(m.CaptionEntities()) > 0 {
@@ -57,7 +70,7 @@ func (m *Message) IsCommand() bool {
 	}
 
 	for _, entity := range entities {
-		if _, ok := entity.TypeField.(*TextEntityTypeBotCommand); ok && entity.Offset == 0 {
+		if _, ok := entity.Type.(*TextEntityTypeBotCommand); ok && entity.Offset == 0 {
 			return true
 		}
 	}
@@ -140,6 +153,29 @@ func (m *Message) Caption() string {
 		return c.Caption.Text
 	}
 	return ""
+}
+
+// GetFormattedCaption extracts the *FormattedText from the message content if it has a caption.
+func (m *Message) GetFormattedCaption() (*FormattedText, error) {
+	if m == nil || m.Content == nil {
+		return nil, ErrNoFormattedText
+	}
+	switch content := m.Content.(type) {
+	case *MessageAnimation:
+		return content.Caption, nil
+	case *MessageAudio:
+		return content.Caption, nil
+	case *MessageDocument:
+		return content.Caption, nil
+	case *MessagePhoto:
+		return content.Caption, nil
+	case *MessageVideo:
+		return content.Caption, nil
+	case *MessageVoiceNote:
+		return content.Caption, nil
+	default:
+		return nil, ErrNoFormattedText
+	}
 }
 
 // CaptionEntities returns the entities of the message caption.

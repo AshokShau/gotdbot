@@ -18,7 +18,7 @@ func generateClasses(classes map[string]*TLClass) {
 
 	sb.WriteString("// TlObject is the interface that all TDLib types satisfy\n")
 	sb.WriteString("type TlObject interface {\n")
-	sb.WriteString("\tType() string\n")
+	sb.WriteString("\tGetType() string\n")
 	sb.WriteString("}\n\n")
 
 	sortedNames := sortKeysAZ(classes)
@@ -88,9 +88,6 @@ func generateObjects(types []TLType, classes map[string]*TLClass) {
 		for _, p := range t.Params {
 			goType := toGoType(p.Type, classes)
 			fieldName := toCamelCase(p.Name)
-			if fieldName == "Type" {
-				fieldName = "TypeField"
-			}
 			jsonTag := fmt.Sprintf("`json:\"%s\"`", p.Name)
 			if p.Type == "int64" {
 				jsonTag = fmt.Sprintf("`json:\"%s,string\"`", p.Name)
@@ -121,7 +118,7 @@ func generateObjects(types []TLType, classes map[string]*TLClass) {
 		}
 		sb.WriteString("}\n\n")
 
-		fmt.Fprintf(&sb, "func (t %s) Type() string {\n", structName)
+		fmt.Fprintf(&sb, "func (t %s) GetType() string {\n", structName)
 		fmt.Fprintf(&sb, "\treturn \"%s\"\n", t.Name)
 		sb.WriteString("}\n\n")
 
@@ -156,9 +153,6 @@ func generateObjects(types []TLType, classes map[string]*TLClass) {
 			sb.WriteString("\taux := &struct {\n")
 			for _, p := range classFields {
 				fieldName := toCamelCase(p.Name)
-				if fieldName == "Type" {
-					fieldName = "TypeField"
-				}
 				if strings.HasPrefix(p.Type, "vector<") {
 					fmt.Fprintf(&sb, "\t\t%s []json.RawMessage `json:\"%s\"`\n", fieldName, p.Name)
 				} else {
@@ -175,9 +169,6 @@ func generateObjects(types []TLType, classes map[string]*TLClass) {
 
 			for _, p := range classFields {
 				fieldName := toCamelCase(p.Name)
-				if fieldName == "Type" {
-					fieldName = "TypeField"
-				}
 
 				typeName := p.Type
 				isVector := false
@@ -248,9 +239,6 @@ func generateFunctions(functions []TLType, classes map[string]*TLClass) {
 		for _, p := range t.Params {
 			goType := toGoType(p.Type, classes)
 			fieldName := toCamelCase(p.Name)
-			if fieldName == "Type" {
-				fieldName = "TypeField"
-			}
 			jsonTag := fmt.Sprintf("`json:\"%s\"`", p.Name)
 			if p.Type == "int64" {
 				jsonTag = fmt.Sprintf("`json:\"%s,string\"`", p.Name)
@@ -267,7 +255,7 @@ func generateFunctions(functions []TLType, classes map[string]*TLClass) {
 		}
 		sb.WriteString("}\n\n")
 
-		fmt.Fprintf(&sb, "func (t %s) Type() string {\n", structName)
+		fmt.Fprintf(&sb, "func (t %s) GetType() string {\n", structName)
 		fmt.Fprintf(&sb, "\treturn \"%s\"\n", t.Name)
 		sb.WriteString("}\n\n")
 
@@ -314,9 +302,6 @@ func generateOptions(functions []TLType, classes map[string]*TLClass) {
 				if p.IsOptional || p.Type == "Bool" {
 					goType := toGoType(p.Type, classes)
 					fieldName := toCamelCase(p.Name)
-					if fieldName == "Type" {
-						fieldName = "TypeField"
-					}
 					fmt.Fprintf(&sb, "\t%s %s\n", fieldName, goType)
 				}
 			}

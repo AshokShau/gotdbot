@@ -29,7 +29,7 @@ type AddMessageReactionOpts struct {
 
 // AddPendingPaidMessageReactionOpts contains optional parameters for AddPendingPaidMessageReaction
 type AddPendingPaidMessageReactionOpts struct {
-	TypeField PaidReactionType
+	Type PaidReactionType
 }
 
 // AddProxyOpts contains optional parameters for AddProxy
@@ -488,7 +488,7 @@ type GetCommandsOpts struct {
 
 // GetEmojiCategoriesOpts contains optional parameters for GetEmojiCategories
 type GetEmojiCategoriesOpts struct {
-	TypeField EmojiCategoryType
+	Type EmojiCategoryType
 }
 
 // GetExternalLinkOpts contains optional parameters for GetExternalLink
@@ -1017,7 +1017,7 @@ type SetChatAffiliateProgramOpts struct {
 type SetChatBackgroundOpts struct {
 	Background  InputBackground
 	OnlyForSelf bool
-	TypeField   BackgroundType
+	Type        BackgroundType
 }
 
 // SetChatDirectMessagesGroupOpts contains optional parameters for SetChatDirectMessagesGroup
@@ -1055,7 +1055,7 @@ type SetCommandsOpts struct {
 type SetDefaultBackgroundOpts struct {
 	Background   InputBackground
 	ForDarkTheme bool
-	TypeField    BackgroundType
+	Type         BackgroundType
 }
 
 // SetDefaultChannelAdministratorRightsOpts contains optional parameters for SetDefaultChannelAdministratorRights
@@ -1117,7 +1117,7 @@ type SetMessageSenderBlockListOpts struct {
 
 // SetNetworkTypeOpts contains optional parameters for SetNetworkType
 type SetNetworkTypeOpts struct {
-	TypeField NetworkType
+	Type NetworkType
 }
 
 // SetOptionOpts contains optional parameters for SetOption

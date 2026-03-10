@@ -14,7 +14,7 @@ type internalHandler struct {
 }
 
 func (h *internalHandler) CheckUpdate(client *Client, ctx *Context) bool {
-	return ctx.RawUpdate.Type() == h.updateType
+	return ctx.RawUpdate.GetType() == h.updateType
 }
 
 func (h *internalHandler) HandleUpdate(client *Client, ctx *Context) error {
