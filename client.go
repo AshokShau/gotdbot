@@ -600,6 +600,39 @@ func (c *Client) WaitMessage(msg *Message) (*Message, error) {
 	return msg, nil
 }
 
+// WaitMessages waits for all messages in the album to be sent and returns the final messages.
+func (c *Client) WaitMessages(msgs *Messages) (*Messages, error) {
+	if msgs == nil {
+		return nil, nil
+	}
+
+	var wg sync.WaitGroup
+	var err error
+	var mu sync.Mutex
+
+	for i := range msgs.Messages {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			finalMsg, e := c.WaitMessage(&msgs.Messages[i])
+			mu.Lock()
+			defer mu.Unlock()
+			if e != nil {
+				if err == nil {
+					err = e
+				}
+				return
+			}
+			if finalMsg != nil {
+				msgs.Messages[i] = *finalMsg
+			}
+		}(i)
+	}
+
+	wg.Wait()
+	return msgs, err
+}
+
 func toOptionValue(v interface{}) OptionValue {
 	switch val := v.(type) {
 	case bool:

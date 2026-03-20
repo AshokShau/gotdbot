@@ -8912,7 +8912,7 @@ func (c *Client) SendMessageAlbum(chatId int64, inputMessageContents []InputMess
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Messages), nil
+	return c.WaitMessages(resp.(*Messages))
 }
 
 // SendPassportAuthorizationForm Sends a Telegram Passport authorization form, effectively sharing data with the service. This method must be called after getPassportAuthorizationFormAvailableElements if some previously available elements are going to be reused
