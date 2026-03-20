@@ -5,6 +5,7 @@ package gotdbot
 import (
 	"bufio"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"log/slog"
 	"os"
@@ -525,7 +526,7 @@ func (c *Client) messageSendFailedHandler(client *Client, update TlObject) error
 	}
 	key := fmt.Sprintf("%d:%d", u.Message.ChatId, u.OldMessageId)
 	if ch, ok := c.pendingMessages.Load(key); ok {
-		ch.(chan TlObject) <- u.Error
+		ch.(chan TlObject) <- u
 		c.pendingMessages.Delete(key)
 	}
 	return nil
@@ -588,6 +589,9 @@ func (c *Client) WaitMessage(msg *Message) (*Message, error) {
 			if errObj, ok := res.(*Error); ok {
 				return nil, errObj
 			}
+			if u, ok := res.(*UpdateMessageSendFailed); ok {
+				return u.Message, u.Error
+			}
 			if finalMsg, ok := res.(*Message); ok {
 				return finalMsg, nil
 			}
@@ -607,7 +611,7 @@ func (c *Client) WaitMessages(msgs *Messages) (*Messages, error) {
 	}
 
 	var wg sync.WaitGroup
-	var err error
+	var errs []error
 	var mu sync.Mutex
 
 	for i := range msgs.Messages {
@@ -617,19 +621,20 @@ func (c *Client) WaitMessages(msgs *Messages) (*Messages, error) {
 			finalMsg, e := c.WaitMessage(&msgs.Messages[i])
 			mu.Lock()
 			defer mu.Unlock()
-			if e != nil {
-				if err == nil {
-					err = e
-				}
-				return
-			}
 			if finalMsg != nil {
 				msgs.Messages[i] = *finalMsg
+			}
+			if e != nil {
+				errs = append(errs, e)
 			}
 		}(i)
 	}
 
 	wg.Wait()
+	var err error
+	if len(errs) > 0 {
+		err = errors.Join(errs...)
+	}
 	return msgs, err
 }
 
