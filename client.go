@@ -611,31 +611,24 @@ func (c *Client) WaitMessages(msgs *Messages) (*Messages, error) {
 	}
 
 	var wg sync.WaitGroup
-	var errs []error
-	var mu sync.Mutex
+	errs := make([]error, len(msgs.Messages))
 
 	for i := range msgs.Messages {
 		wg.Add(1)
 		go func(i int) {
 			defer wg.Done()
 			finalMsg, e := c.WaitMessage(&msgs.Messages[i])
-			mu.Lock()
-			defer mu.Unlock()
 			if finalMsg != nil {
 				msgs.Messages[i] = *finalMsg
 			}
 			if e != nil {
-				errs = append(errs, e)
+				errs[i] = e
 			}
 		}(i)
 	}
 
 	wg.Wait()
-	var err error
-	if len(errs) > 0 {
-		err = errors.Join(errs...)
-	}
-	return msgs, err
+	return msgs, errors.Join(errs...)
 }
 
 func toOptionValue(v interface{}) OptionValue {
