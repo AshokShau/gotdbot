@@ -25022,7 +25022,7 @@ type Message struct {
 	SenderBusinessBotUserId int64 `json:"sender_business_bot_user_id"`
 	// Identifier of the sender of the message
 	SenderId MessageSender `json:"sender_id"`
-	// Tag of the sender of the message in the supergroup at the time the message was sent; may be empty if none or unknown. For messages sent by basic groups or supergroup administrators, the current custom title or tag must be used instead
+	// Tag of the sender of the message in the supergroup at the time the message was sent; may be empty if none or unknown. For messages sent in basic groups or supergroup administrators, the current custom title or tag must be used instead
 	SenderTag string `json:"sender_tag,omitempty"`
 	// The sending state of the message; may be null if the message isn't being sent and didn't fail to be sent
 	SendingState MessageSendingState `json:"sending_state,omitempty"`
@@ -48660,7 +48660,7 @@ func (t TextEntityTypeCustomEmoji) MarshalJSON() ([]byte, error) {
 type TextEntityTypeDateTime struct {
 	// Date and time formatting type; may be null if none and the original text must not be changed
 	FormattingType DateTimeFormattingType `json:"formatting_type,omitempty"`
-	// Point in time (Unix timestamp) representing the data and time
+	// Point in time (Unix timestamp) representing the date and time
 	UnixTime int32 `json:"unix_time"`
 }
 

@@ -5,6 +5,7 @@ package gotdbot
 import (
 	"bufio"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"log/slog"
 	"os"
@@ -525,7 +526,7 @@ func (c *Client) messageSendFailedHandler(client *Client, update TlObject) error
 	}
 	key := fmt.Sprintf("%d:%d", u.Message.ChatId, u.OldMessageId)
 	if ch, ok := c.pendingMessages.Load(key); ok {
-		ch.(chan TlObject) <- u.Error
+		ch.(chan TlObject) <- u
 		c.pendingMessages.Delete(key)
 	}
 	return nil
@@ -588,6 +589,9 @@ func (c *Client) WaitMessage(msg *Message) (*Message, error) {
 			if errObj, ok := res.(*Error); ok {
 				return nil, errObj
 			}
+			if u, ok := res.(*UpdateMessageSendFailed); ok {
+				return u.Message, u.Error
+			}
 			if finalMsg, ok := res.(*Message); ok {
 				return finalMsg, nil
 			}
@@ -598,6 +602,33 @@ func (c *Client) WaitMessage(msg *Message) (*Message, error) {
 	}
 
 	return msg, nil
+}
+
+// WaitMessages waits for all messages in the album to be sent and returns the final messages.
+func (c *Client) WaitMessages(msgs *Messages) (*Messages, error) {
+	if msgs == nil {
+		return nil, nil
+	}
+
+	var wg sync.WaitGroup
+	errs := make([]error, len(msgs.Messages))
+
+	for i := range msgs.Messages {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			finalMsg, e := c.WaitMessage(&msgs.Messages[i])
+			if finalMsg != nil {
+				msgs.Messages[i] = *finalMsg
+			}
+			if e != nil {
+				errs[i] = e
+			}
+		}(i)
+	}
+
+	wg.Wait()
+	return msgs, errors.Join(errs...)
 }
 
 func toOptionValue(v interface{}) OptionValue {

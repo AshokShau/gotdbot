@@ -115,6 +115,8 @@ func generateMethods(functions []TLType, classes map[string]*TLClass) {
 
 			if methodName == "SendMessage" {
 				sb.WriteString("\treturn c.WaitMessage(resp.(*Message))\n")
+			} else if methodName == "SendMessageAlbum" {
+				sb.WriteString("\treturn c.WaitMessages(resp.(*Messages))\n")
 			} else {
 				fmt.Fprintf(&sb, "\treturn resp.(%s), nil\n", retTypeStr)
 			}
