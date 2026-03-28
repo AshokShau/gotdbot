@@ -5,6 +5,8 @@ import (
 )
 
 type Context struct {
+	// Client is the client that received the update.
+	Client *Client
 	// RawUpdate is the original update object.
 	RawUpdate TlObject
 	// Update contains pointers to all possible update types.
@@ -20,8 +22,9 @@ type Context struct {
 	EffectiveChatId  int64
 }
 
-func NewContext(update TlObject, dispatcher *Dispatcher) *Context {
+func NewContext(client *Client, update TlObject, dispatcher *Dispatcher) *Context {
 	ctx := &Context{
+		Client:     client,
 		RawUpdate:  update,
 		Update:     NewContextUpdates(update),
 		Dispatcher: dispatcher,
@@ -33,7 +36,7 @@ func NewContext(update TlObject, dispatcher *Dispatcher) *Context {
 
 // WaitFor waits for an update that matches the filter.
 func (c *Context) WaitFor(filter UpdateFilter, timeout time.Duration) (TlObject, error) {
-	return c.Dispatcher.WaitFor(filter, timeout)
+	return c.Dispatcher.WaitFor(c.Client, filter, timeout)
 }
 
 func (c *Context) extractEffectiveFields(u TlObject) {

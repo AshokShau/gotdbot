@@ -26,15 +26,13 @@ func main() {
 		botToken = envToken
 	}
 
-	bot, err := gotdbot.NewClient(apiID, apiHash, botToken, &gotdbot.ClientConfig{LibraryPath: "./libtdjson.so.1.8.62"})
+	bot, err := gotdbot.NewClient(apiID, apiHash, botToken, &gotdbot.ClientOpts{LibraryPath: "./libtdjson.so.1.8.62"})
 	if err != nil {
 		panic(err)
 	}
 
 	dispatcher := bot.Dispatcher
 
-	gotdbot.SetTdlibLogVerbosityLevel(3)
-	// /start - Send welcome message with inline keyboard
 	dispatcher.AddHandler(handlers.NewCommand("start", func(c *gotdbot.Client, ctx *gotdbot.Context) error {
 		msg := ctx.EffectiveMessage
 		userId := msg.SenderID()
@@ -141,11 +139,11 @@ func main() {
 			Rows: [][]gotdbot.KeyboardButton{
 				{
 					{
-						Text:      "OwO",
+						Text: "OwO",
 						Type: &gotdbot.KeyboardButtonTypeText{},
 					},
 					{
-						Text:      "UwU",
+						Text: "UwU",
 						Type: &gotdbot.KeyboardButtonTypeText{},
 					},
 				},
@@ -257,7 +255,7 @@ func main() {
 		log.Fatalf("Failed to start bot: %v", err)
 	}
 
-	me := bot.Me()
+	me, _ := bot.GetMe()
 	if me != nil {
 		username := ""
 		if me.Usernames != nil && len(me.Usernames.ActiveUsernames) > 0 {

@@ -9,12 +9,13 @@ type Handler interface {
 }
 
 type internalHandler struct {
+	client     *Client
 	handleFunc func(client *Client, update TlObject) error
 	updateType string
 }
 
 func (h *internalHandler) CheckUpdate(client *Client, ctx *Context) bool {
-	return ctx.RawUpdate.GetType() == h.updateType
+	return (h.client == nil || h.client == client) && ctx.RawUpdate.GetType() == h.updateType
 }
 
 func (h *internalHandler) HandleUpdate(client *Client, ctx *Context) error {

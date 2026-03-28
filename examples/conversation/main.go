@@ -18,13 +18,13 @@ func main() {
 	apiHash := "API_HASH"
 	botToken := "BOT_TOKEN"
 
-	bot, err := gotdbot.NewClient(apiID, apiHash, botToken, &gotdbot.ClientConfig{LibraryPath: "./libtdjson.so.1.8.62"})
+	bot, err := gotdbot.NewClient(apiID, apiHash, botToken, &gotdbot.ClientOpts{LibraryPath: "./libtdjson.so.1.8.62"})
 	if err != nil {
 		panic(err)
 	}
 
 	dispatcher := bot.Dispatcher
-	gotdbot.SetTdlibLogVerbosityLevel(2)
+
 	dispatcher.AddHandler(handlers.NewCommand("start", func(c *gotdbot.Client, ctx *gotdbot.Context) error {
 		msg := ctx.EffectiveMessage
 		_, err := msg.ReplyText(c, "Welcome! Use /survey to start the survey.\nSend /cancel to stop talking to me", nil)

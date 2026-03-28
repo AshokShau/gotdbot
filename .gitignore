@@ -4,3 +4,5 @@
 database
 libtdjson.so.*
 *.binlog
+db_*
+

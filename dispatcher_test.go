@@ -12,7 +12,8 @@ import (
 )
 
 func TestDispatcher_Message(t *testing.T) {
-	d := gotdbot.NewDispatcher(nil, nil)
+	d := gotdbot.NewDispatcher(nil)
+	client := &gotdbot.Client{}
 
 	var wg sync.WaitGroup
 	wg.Add(1)
@@ -36,7 +37,7 @@ func TestDispatcher_Message(t *testing.T) {
 		},
 	}
 
-	d.ProcessUpdate(update)
+	d.ProcessUpdate(client, update)
 
 	if waitTimeout(&wg, 1*time.Second) {
 		t.Errorf("Handler was not called (timeout)")
@@ -47,7 +48,8 @@ func TestDispatcher_Message(t *testing.T) {
 }
 
 func TestDispatcher_Command(t *testing.T) {
-	d := gotdbot.NewDispatcher(&gotdbot.Client{}, nil)
+	client := &gotdbot.Client{}
+	d := gotdbot.NewDispatcher(nil)
 	var wg sync.WaitGroup
 	wg.Add(1)
 	called := false
@@ -69,7 +71,7 @@ func TestDispatcher_Command(t *testing.T) {
 		},
 	}
 
-	d.ProcessUpdate(update)
+	d.ProcessUpdate(client, update)
 	if waitTimeout(&wg, 1*time.Second) {
 		t.Errorf("Command handler was not called (timeout)")
 	}
@@ -79,7 +81,8 @@ func TestDispatcher_Command(t *testing.T) {
 }
 
 func TestDispatcher_InlineQuery(t *testing.T) {
-	d := gotdbot.NewDispatcher(nil, nil)
+	client := &gotdbot.Client{}
+	d := gotdbot.NewDispatcher(nil)
 	var wg sync.WaitGroup
 	wg.Add(1)
 	called := false
@@ -95,7 +98,7 @@ func TestDispatcher_InlineQuery(t *testing.T) {
 		Query: "test",
 	}
 
-	d.ProcessUpdate(update)
+	d.ProcessUpdate(client, update)
 	if waitTimeout(&wg, 1*time.Second) {
 		t.Errorf("InlineQuery handler was not called (timeout)")
 	}
@@ -230,7 +233,8 @@ func TestDispatcher_ErrorHandler_ControlFlow_Message(t *testing.T) {
 				}
 			}
 
-			d := gotdbot.NewDispatcher(nil, &gotdbot.DispatcherOpts{ErrorHandler: wrappedErrHandler})
+			client := &gotdbot.Client{}
+			d := gotdbot.NewDispatcher(&gotdbot.DispatcherOpts{ErrorHandler: wrappedErrHandler})
 
 			// Let the test case override with more specific behavior, including
 			// returning errors and control-flow markers.
@@ -251,7 +255,7 @@ func TestDispatcher_ErrorHandler_ControlFlow_Message(t *testing.T) {
 			}), 100) // use a high group number to ensure it runs last
 
 			// Dispatch a single message to drive the pipeline.
-			d.ProcessUpdate(msg)
+			d.ProcessUpdate(client, msg)
 
 			// Try to wait, if it times out just continue
 			waitTimeout(&wg, 100*time.Millisecond)
@@ -290,7 +294,8 @@ func TestDispatcher_ErrorHandler_ControlFlow_Command(t *testing.T) {
 			return nil
 		}
 
-		d := gotdbot.NewDispatcher(&gotdbot.Client{}, &gotdbot.DispatcherOpts{ErrorHandler: errHandler})
+		client := &gotdbot.Client{}
+		d := gotdbot.NewDispatcher(&gotdbot.DispatcherOpts{ErrorHandler: errHandler})
 
 		d.AddHandlerToGroup(handlers.NewCommand("start", func(client *gotdbot.Client, ctx *gotdbot.Context) error {
 			mu.Lock()
@@ -316,7 +321,7 @@ func TestDispatcher_ErrorHandler_ControlFlow_Command(t *testing.T) {
 			return nil
 		}), 100)
 
-		d.ProcessUpdate(cmd)
+		d.ProcessUpdate(client, cmd)
 		waitTimeout(&wg, 100*time.Millisecond)
 
 		mu.Lock()

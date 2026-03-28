@@ -18,13 +18,13 @@ func main() {
 	apiHash := "API_HASH"
 	botToken := "BOT_TOKEN"
 
-	bot, err := gotdbot.NewClient(apiID, apiHash, botToken, &gotdbot.ClientConfig{LibraryPath: "./libtdjson.so.1.8.62"})
+	bot, err := gotdbot.NewClient(apiID, apiHash, botToken, &gotdbot.ClientOpts{LibraryPath: "./libtdjson.so.1.8.62"})
 	if err != nil {
 		panic(err)
 	}
 
 	dispatcher := bot.Dispatcher
-	gotdbot.SetTdlibLogVerbosityLevel(2)
+
 	var startTime = time.Now()
 
 	dispatcher.AddHandler(handlers.NewCommand("start", func(c *gotdbot.Client, ctx *gotdbot.Context) error {
@@ -107,7 +107,7 @@ func main() {
 		log.Fatalf("Failed to start bot: %v", err)
 	}
 
-	me := bot.Me()
+	me, _ := bot.GetMe()
 	username := ""
 	if me.Usernames != nil && len(me.Usernames.ActiveUsernames) > 0 {
 		username = me.Usernames.ActiveUsernames[0]
