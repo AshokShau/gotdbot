@@ -19,7 +19,7 @@ func main() {
 	}
 	
 	manager := gotdbot.NewClientManager("./libtdjson.so.1.8.62")
-	dispatcher := gotdbot.NewDispatcher(nil, nil)
+	dispatcher := gotdbot.NewDispatcher(nil)
 
 	dispatcher.AddHandler(handlers.NewCommand("start", func(c *gotdbot.Client, ctx *gotdbot.Context) error {
 		_, err := c.SendTextMessage(ctx.EffectiveChatId, "Hello! I am a bot managed by ClientManager.", nil)

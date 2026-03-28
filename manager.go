@@ -9,6 +9,20 @@ import (
 	"github.com/AshokShau/gotdbot/tdjson"
 )
 
+var (
+	defaultManager *ClientManager
+	managerOnce    sync.Once
+)
+
+// GetDefaultManager returns the global singleton ClientManager.
+func GetDefaultManager(libPath string) *ClientManager {
+	managerOnce.Do(func() {
+		defaultManager = NewClientManager(libPath)
+		defaultManager.Start()
+	})
+	return defaultManager
+}
+
 type ClientManager struct {
 	LibraryPath string
 

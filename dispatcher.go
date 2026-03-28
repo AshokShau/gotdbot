@@ -18,8 +18,6 @@ type Waiter struct {
 }
 
 type Dispatcher struct {
-	DefaultClient *Client
-
 	// Handlers are grouped by integer index. Low indices are processed first.
 	handlers map[int][]Handler
 	// keys stores sorted keys for iteration
@@ -48,11 +46,10 @@ type DispatcherOpts struct {
 	ErrorHandler func(client *Client, ctx *Context, err error) error
 }
 
-func NewDispatcher(client *Client, opts *DispatcherOpts) *Dispatcher {
+func NewDispatcher(opts *DispatcherOpts) *Dispatcher {
 	d := &Dispatcher{
-		DefaultClient: client,
-		handlers:      make(map[int][]Handler),
-		waiters:       make(map[string]*Waiter),
+		handlers: make(map[int][]Handler),
+		waiters:  make(map[string]*Waiter),
 	}
 	if opts != nil {
 		d.PanicHandler = opts.PanicHandler
@@ -79,13 +76,8 @@ func (d *Dispatcher) AddHandlerToGroup(h Handler, group int) {
 	d.handlers[group] = append(d.handlers[group], h)
 }
 
-// WaitFor registers a waiter and blocks until a matching update arrives or timeout occurs.
-func (d *Dispatcher) WaitFor(filter UpdateFilter, timeout time.Duration) (TlObject, error) {
-	return d.WaitForClient(d.DefaultClient, filter, timeout)
-}
-
-// WaitForClient registers a waiter for a specific client and blocks until a matching update arrives or timeout occurs.
-func (d *Dispatcher) WaitForClient(client *Client, filter UpdateFilter, timeout time.Duration) (TlObject, error) {
+// WaitFor registers a waiter for a specific client and blocks until a matching update arrives or timeout occurs.
+func (d *Dispatcher) WaitFor(client *Client, filter UpdateFilter, timeout time.Duration) (TlObject, error) {
 	ch := make(chan TlObject, 1)
 	idNum := atomic.AddInt64(&d.waiterCount, 1)
 	id := fmt.Sprintf("%d", idNum)
@@ -108,14 +100,9 @@ func (d *Dispatcher) WaitForClient(client *Client, filter UpdateFilter, timeout 
 	}
 }
 
-// ProcessUpdate processes a single update through the handlers.
+// ProcessUpdate processes a single update through the handlers for a specific client.
 // It launches a goroutine to prevent blocking the main update loop.
-func (d *Dispatcher) ProcessUpdate(update TlObject) {
-	d.ProcessUpdateForClient(d.DefaultClient, update)
-}
-
-// ProcessUpdateForClient processes a single update through the handlers for a specific client.
-func (d *Dispatcher) ProcessUpdateForClient(client *Client, update TlObject) {
+func (d *Dispatcher) ProcessUpdate(client *Client, update TlObject) {
 	go func() {
 		ctx := NewContext(client, update, d)
 

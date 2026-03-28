@@ -170,7 +170,7 @@ func NewClient(apiID int32, apiHash, tokenOrPhone string, config *ClientOpts) (*
 	if config.Dispatcher != nil {
 		c.Dispatcher = config.Dispatcher
 	} else {
-		c.Dispatcher = NewDispatcher(c, nil)
+		c.Dispatcher = NewDispatcher(nil)
 	}
 
 	c.Dispatcher.AddHandlerToGroup(&internalHandler{client: c, handleFunc: c.authHandler, updateType: "updateAuthorizationState"}, -1)
@@ -183,8 +183,8 @@ func NewClient(apiID int32, apiHash, tokenOrPhone string, config *ClientOpts) (*
 // Start initializes the client and blocks until authorization is successful or fails.
 func (c *Client) Start() error {
 	if c.manager == nil {
-		c.wg.Add(1)
-		go c.receiver()
+		m := GetDefaultManager(c.config.LibraryPath)
+		m.AddClient(c)
 	}
 
 	c.wg.Add(1)
@@ -242,39 +242,6 @@ func (c *Client) Close() {
 	})
 }
 
-func (c *Client) receiver() {
-	defer c.wg.Done()
-	for {
-		select {
-		case <-c.stop:
-			return
-		default:
-			res := tdjson.Receive(0.1)
-			if res != "" {
-				data := []byte(res)
-				obj, extra, err := Unmarshal(data)
-				if err != nil {
-					// fmt.Println("Error unmarshaling:", err)
-					continue
-				}
-				if obj == nil {
-					continue
-				}
-
-				if extra != "" {
-					if ch, ok := c.pendingRequests.Load(extra); ok {
-						ch.(chan TlObject) <- obj
-						c.pendingRequests.Delete(extra)
-						continue
-					}
-				}
-
-				c.updates <- obj
-			}
-		}
-	}
-}
-
 func (c *Client) processor() {
 	defer c.wg.Done()
 	for {
@@ -282,7 +249,7 @@ func (c *Client) processor() {
 		case <-c.stop:
 			return
 		case update := <-c.updates:
-			c.Dispatcher.ProcessUpdateForClient(c, update)
+			c.Dispatcher.ProcessUpdate(c, update)
 		}
 	}
 }

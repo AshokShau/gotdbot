@@ -36,7 +36,7 @@ func NewContext(client *Client, update TlObject, dispatcher *Dispatcher) *Contex
 
 // WaitFor waits for an update that matches the filter.
 func (c *Context) WaitFor(filter UpdateFilter, timeout time.Duration) (TlObject, error) {
-	return c.Dispatcher.WaitForClient(c.Client, filter, timeout)
+	return c.Dispatcher.WaitFor(c.Client, filter, timeout)
 }
 
 func (c *Context) extractEffectiveFields(u TlObject) {
