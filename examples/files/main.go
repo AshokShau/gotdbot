@@ -35,9 +35,6 @@ func main() {
 		panic(err)
 	}
 
-	gotdbot.SetTdlibLogVerbosityLevel(2)
-	// gotdbot.SetTdlibLogStreamFile("tdlib.log", 10*1024*1024, false)
-
 	dispatcher := bot.Dispatcher
 
 	dispatcher.AddHandler(handlers.NewCommand("saved", func(client *gotdbot.Client, ctx *gotdbot.Context) error {

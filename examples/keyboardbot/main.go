@@ -33,8 +33,6 @@ func main() {
 
 	dispatcher := bot.Dispatcher
 
-	gotdbot.SetTdlibLogVerbosityLevel(3)
-	// /start - Send welcome message with inline keyboard
 	dispatcher.AddHandler(handlers.NewCommand("start", func(c *gotdbot.Client, ctx *gotdbot.Context) error {
 		msg := ctx.EffectiveMessage
 		userId := msg.SenderID()

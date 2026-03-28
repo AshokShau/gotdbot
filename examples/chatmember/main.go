@@ -23,7 +23,6 @@ func main() {
 		panic(err)
 	}
 
-	gotdbot.SetTdlibLogVerbosityLevel(2)
 	dispatcher := bot.Dispatcher
 	log.Println("Starting bot...")
 	// Register the UpdateChatMember handler

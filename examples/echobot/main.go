@@ -24,7 +24,7 @@ func main() {
 	}
 
 	dispatcher := bot.Dispatcher
-	gotdbot.SetTdlibLogVerbosityLevel(2)
+
 	var startTime = time.Now()
 
 	dispatcher.AddHandler(handlers.NewCommand("start", func(c *gotdbot.Client, ctx *gotdbot.Context) error {

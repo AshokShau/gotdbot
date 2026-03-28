@@ -27,7 +27,6 @@ func main() {
 		panic(err)
 	}
 
-	gotdbot.SetTdlibLogStreamEmpty()
 	dispatcher := bot.Dispatcher
 
 	dispatcher.AddHandler(handlers.NewCommand("hi", func(c *gotdbot.Client, ctx *gotdbot.Context) error {

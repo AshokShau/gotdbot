@@ -1,6 +1,6 @@
 package gotdbot
 
-//go:generate go run ./scripts/generate
+//go:generate go run ./internal/gen
 
 import (
 	"bufio"
@@ -206,24 +206,6 @@ func (c *Client) Idle() {
 	signal.Notify(sig, syscall.SIGINT, syscall.SIGTERM)
 	<-sig
 	c.Close()
-}
-
-// SetTdlibLogVerbosityLevel sets the verbosity level of TDLib's internal logging.
-func SetTdlibLogVerbosityLevel(level int32) {
-	req := fmt.Sprintf(`{"@type": "setLogVerbosityLevel", "new_verbosity_level": %d}`, level)
-	tdjson.Execute(req)
-}
-
-// SetTdlibLogStreamFile redirects internal TDLib logs to a file.
-func SetTdlibLogStreamFile(path string, maxFileSize int64, redirectStderr bool) {
-	req := fmt.Sprintf(`{"@type": "setLogStream", "log_stream": {"@type": "logStreamFile", "path": "%s", "max_file_size": %d, "redirect_stderr": %v}}`, path, maxFileSize, redirectStderr)
-	tdjson.Execute(req)
-}
-
-// SetTdlibLogStreamEmpty disables internal TDLib logging.
-func SetTdlibLogStreamEmpty() {
-	req := `{"@type": "setLogStream", "log_stream": {"@type": "logStreamEmpty"}}`
-	tdjson.Execute(req)
 }
 
 // Close Closes the TDLib instance. All databases will be flushed to disk and properly closed. After the close completes, updateAuthorizationState with authorizationStateClosed will be sent. Can be called before initialization
