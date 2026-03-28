@@ -47,6 +47,7 @@ func (m *ClientManager) AddClient(c *Client) {
 	defer m.mu.Unlock()
 	m.clients[c.clientID] = c
 	c.manager = m
+	m.Start()
 }
 
 func (m *ClientManager) RemoveClient(c *Client) {
@@ -98,6 +99,7 @@ func (m *ClientManager) RegisterClient(apiID int32, apiHash, tokenOrPhone string
 
 func (m *ClientManager) Start() {
 	m.once.Do(func() {
+		_ = tdjson.Init(m.LibraryPath)
 		m.wg.Add(1)
 		go m.receiver()
 	})
