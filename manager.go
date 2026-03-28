@@ -72,7 +72,7 @@ func (m *ClientManager) GetClients() []*Client {
 	return clients
 }
 
-// RegisterClient creates a new client, adds it to the manager, and starts it in a background goroutine.
+// RegisterClient creates a new client, adds it to the manager, and starts it.
 func (m *ClientManager) RegisterClient(apiID int32, apiHash, tokenOrPhone string, config *ClientOpts) (*Client, error) {
 	if config == nil {
 		config = DefaultClientConfig()
@@ -87,11 +87,11 @@ func (m *ClientManager) RegisterClient(apiID int32, apiHash, tokenOrPhone string
 	}
 
 	m.AddClient(client)
-	go func(c *Client) {
-		if err := c.Start(); err != nil {
-			c.Logger.Error("Failed to start client", "error", err)
-		}
-	}(client)
+	if err := client.Start(); err != nil {
+		client.Close()
+		m.RemoveClient(client)
+		return nil, err
+	}
 
 	return client, nil
 }
