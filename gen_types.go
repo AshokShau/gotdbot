@@ -58517,12027 +58517,12034 @@ func (t *WebPageInstantView) UnmarshalJSON(data []byte) error {
 }
 
 func Unmarshal(data []byte) (TlObject, string, error) {
+	obj, _, extra, err := UnmarshalWithClient(data)
+	return obj, extra, err
+}
+
+// UnmarshalWithClient unmarshals the JSON and returns the object, the client identifier, and the @extra field.
+func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 	var typeObj struct {
-		Type  string `json:"@type"`
-		Extra string `json:"@extra"`
+		Type     string `json:"@type"`
+		ClientId int    `json:"@client_id"`
+		Extra    string `json:"@extra"`
 	}
 	if err := json.Unmarshal(data, &typeObj); err != nil {
-		return nil, "", err
+		return nil, 0, "", err
 	}
 	switch typeObj.Type {
 	case "accentColor":
 		var obj AccentColor
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "acceptedGiftTypes":
 		var obj AcceptedGiftTypes
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "accountInfo":
 		var obj AccountInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "accountTtl":
 		var obj AccountTtl
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "activeStoryStateLive":
 		var obj ActiveStoryStateLive
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "activeStoryStateRead":
 		var obj ActiveStoryStateRead
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "activeStoryStateUnread":
 		var obj ActiveStoryStateUnread
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "addedProxies":
 		var obj AddedProxies
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "addedProxy":
 		var obj AddedProxy
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "addedReaction":
 		var obj AddedReaction
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "addedReactions":
 		var obj AddedReactions
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "address":
 		var obj Address
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "advertisementSponsor":
 		var obj AdvertisementSponsor
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "affiliateInfo":
 		var obj AffiliateInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "affiliateProgramInfo":
 		var obj AffiliateProgramInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "affiliateProgramParameters":
 		var obj AffiliateProgramParameters
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "affiliateProgramSortOrderCreationDate":
 		var obj AffiliateProgramSortOrderCreationDate
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "affiliateProgramSortOrderProfitability":
 		var obj AffiliateProgramSortOrderProfitability
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "affiliateProgramSortOrderRevenue":
 		var obj AffiliateProgramSortOrderRevenue
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "affiliateTypeBot":
 		var obj AffiliateTypeBot
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "affiliateTypeChannel":
 		var obj AffiliateTypeChannel
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "affiliateTypeCurrentUser":
 		var obj AffiliateTypeCurrentUser
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "ageVerificationParameters":
 		var obj AgeVerificationParameters
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "alternativeVideo":
 		var obj AlternativeVideo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "animatedChatPhoto":
 		var obj AnimatedChatPhoto
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "animatedEmoji":
 		var obj AnimatedEmoji
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "animation":
 		var obj Animation
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "animations":
 		var obj Animations
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "archiveChatListSettings":
 		var obj ArchiveChatListSettings
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "attachmentMenuBot":
 		var obj AttachmentMenuBot
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "attachmentMenuBotColor":
 		var obj AttachmentMenuBotColor
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "attributeCraftPersistenceProbability":
 		var obj AttributeCraftPersistenceProbability
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "auctionBid":
 		var obj AuctionBid
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "auctionRound":
 		var obj AuctionRound
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "auctionStateActive":
 		var obj AuctionStateActive
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "auctionStateFinished":
 		var obj AuctionStateFinished
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "audio":
 		var obj Audio
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "audios":
 		var obj Audios
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "authenticationCodeInfo":
 		var obj AuthenticationCodeInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "authenticationCodeTypeCall":
 		var obj AuthenticationCodeTypeCall
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "authenticationCodeTypeFirebaseAndroid":
 		var obj AuthenticationCodeTypeFirebaseAndroid
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "authenticationCodeTypeFirebaseIos":
 		var obj AuthenticationCodeTypeFirebaseIos
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "authenticationCodeTypeFlashCall":
 		var obj AuthenticationCodeTypeFlashCall
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "authenticationCodeTypeFragment":
 		var obj AuthenticationCodeTypeFragment
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "authenticationCodeTypeMissedCall":
 		var obj AuthenticationCodeTypeMissedCall
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "authenticationCodeTypeSms":
 		var obj AuthenticationCodeTypeSms
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "authenticationCodeTypeSmsPhrase":
 		var obj AuthenticationCodeTypeSmsPhrase
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "authenticationCodeTypeSmsWord":
 		var obj AuthenticationCodeTypeSmsWord
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "authenticationCodeTypeTelegramMessage":
 		var obj AuthenticationCodeTypeTelegramMessage
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "authorizationStateClosed":
 		var obj AuthorizationStateClosed
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "authorizationStateClosing":
 		var obj AuthorizationStateClosing
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "authorizationStateLoggingOut":
 		var obj AuthorizationStateLoggingOut
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "authorizationStateReady":
 		var obj AuthorizationStateReady
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "authorizationStateWaitCode":
 		var obj AuthorizationStateWaitCode
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "authorizationStateWaitEmailAddress":
 		var obj AuthorizationStateWaitEmailAddress
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "authorizationStateWaitEmailCode":
 		var obj AuthorizationStateWaitEmailCode
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "authorizationStateWaitOtherDeviceConfirmation":
 		var obj AuthorizationStateWaitOtherDeviceConfirmation
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "authorizationStateWaitPassword":
 		var obj AuthorizationStateWaitPassword
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "authorizationStateWaitPhoneNumber":
 		var obj AuthorizationStateWaitPhoneNumber
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "authorizationStateWaitPremiumPurchase":
 		var obj AuthorizationStateWaitPremiumPurchase
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "authorizationStateWaitRegistration":
 		var obj AuthorizationStateWaitRegistration
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "authorizationStateWaitTdlibParameters":
 		var obj AuthorizationStateWaitTdlibParameters
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "autoDownloadSettings":
 		var obj AutoDownloadSettings
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "autoDownloadSettingsPresets":
 		var obj AutoDownloadSettingsPresets
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "autosaveSettings":
 		var obj AutosaveSettings
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "autosaveSettingsException":
 		var obj AutosaveSettingsException
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "autosaveSettingsScopeChannelChats":
 		var obj AutosaveSettingsScopeChannelChats
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "autosaveSettingsScopeChat":
 		var obj AutosaveSettingsScopeChat
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "autosaveSettingsScopeGroupChats":
 		var obj AutosaveSettingsScopeGroupChats
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "autosaveSettingsScopePrivateChats":
 		var obj AutosaveSettingsScopePrivateChats
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "availableGift":
 		var obj AvailableGift
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "availableGifts":
 		var obj AvailableGifts
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "availableReaction":
 		var obj AvailableReaction
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "availableReactions":
 		var obj AvailableReactions
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "background":
 		var obj Background
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "backgroundFillFreeformGradient":
 		var obj BackgroundFillFreeformGradient
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "backgroundFillGradient":
 		var obj BackgroundFillGradient
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "backgroundFillSolid":
 		var obj BackgroundFillSolid
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "backgrounds":
 		var obj Backgrounds
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "backgroundTypeChatTheme":
 		var obj BackgroundTypeChatTheme
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "backgroundTypeFill":
 		var obj BackgroundTypeFill
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "backgroundTypePattern":
 		var obj BackgroundTypePattern
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "backgroundTypeWallpaper":
 		var obj BackgroundTypeWallpaper
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "bankCardActionOpenUrl":
 		var obj BankCardActionOpenUrl
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "bankCardInfo":
 		var obj BankCardInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "basicGroup":
 		var obj BasicGroup
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "basicGroupFullInfo":
 		var obj BasicGroupFullInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "birthdate":
 		var obj Birthdate
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "blockListMain":
 		var obj BlockListMain
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "blockListStories":
 		var obj BlockListStories
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "botCommand":
 		var obj BotCommand
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "botCommands":
 		var obj BotCommands
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "botCommandScopeAllChatAdministrators":
 		var obj BotCommandScopeAllChatAdministrators
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "botCommandScopeAllGroupChats":
 		var obj BotCommandScopeAllGroupChats
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "botCommandScopeAllPrivateChats":
 		var obj BotCommandScopeAllPrivateChats
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "botCommandScopeChat":
 		var obj BotCommandScopeChat
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "botCommandScopeChatAdministrators":
 		var obj BotCommandScopeChatAdministrators
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "botCommandScopeChatMember":
 		var obj BotCommandScopeChatMember
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "botCommandScopeDefault":
 		var obj BotCommandScopeDefault
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "botInfo":
 		var obj BotInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "botMediaPreview":
 		var obj BotMediaPreview
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "botMediaPreviewInfo":
 		var obj BotMediaPreviewInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "botMediaPreviews":
 		var obj BotMediaPreviews
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "botMenuButton":
 		var obj BotMenuButton
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "botVerification":
 		var obj BotVerification
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "botVerificationParameters":
 		var obj BotVerificationParameters
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "botWriteAccessAllowReasonAcceptedRequest":
 		var obj BotWriteAccessAllowReasonAcceptedRequest
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "botWriteAccessAllowReasonAddedToAttachmentMenu":
 		var obj BotWriteAccessAllowReasonAddedToAttachmentMenu
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "botWriteAccessAllowReasonConnectedWebsite":
 		var obj BotWriteAccessAllowReasonConnectedWebsite
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "botWriteAccessAllowReasonLaunchedWebApp":
 		var obj BotWriteAccessAllowReasonLaunchedWebApp
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "builtInThemeArctic":
 		var obj BuiltInThemeArctic
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "builtInThemeClassic":
 		var obj BuiltInThemeClassic
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "builtInThemeDay":
 		var obj BuiltInThemeDay
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "builtInThemeNight":
 		var obj BuiltInThemeNight
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "builtInThemeTinted":
 		var obj BuiltInThemeTinted
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "businessAwayMessageScheduleAlways":
 		var obj BusinessAwayMessageScheduleAlways
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "businessAwayMessageScheduleCustom":
 		var obj BusinessAwayMessageScheduleCustom
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "businessAwayMessageScheduleOutsideOfOpeningHours":
 		var obj BusinessAwayMessageScheduleOutsideOfOpeningHours
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "businessAwayMessageSettings":
 		var obj BusinessAwayMessageSettings
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "businessBotManageBar":
 		var obj BusinessBotManageBar
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "businessBotRights":
 		var obj BusinessBotRights
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "businessChatLink":
 		var obj BusinessChatLink
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "businessChatLinkInfo":
 		var obj BusinessChatLinkInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "businessChatLinks":
 		var obj BusinessChatLinks
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "businessConnectedBot":
 		var obj BusinessConnectedBot
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "businessConnection":
 		var obj BusinessConnection
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "businessFeatureAccountLinks":
 		var obj BusinessFeatureAccountLinks
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "businessFeatureAwayMessage":
 		var obj BusinessFeatureAwayMessage
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "businessFeatureBots":
 		var obj BusinessFeatureBots
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "businessFeatureChatFolderTags":
 		var obj BusinessFeatureChatFolderTags
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "businessFeatureEmojiStatus":
 		var obj BusinessFeatureEmojiStatus
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "businessFeatureGreetingMessage":
 		var obj BusinessFeatureGreetingMessage
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "businessFeatureLocation":
 		var obj BusinessFeatureLocation
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "businessFeatureOpeningHours":
 		var obj BusinessFeatureOpeningHours
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "businessFeaturePromotionAnimation":
 		var obj BusinessFeaturePromotionAnimation
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "businessFeatureQuickReplies":
 		var obj BusinessFeatureQuickReplies
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "businessFeatures":
 		var obj BusinessFeatures
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "businessFeatureStartPage":
 		var obj BusinessFeatureStartPage
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "businessFeatureUpgradedStories":
 		var obj BusinessFeatureUpgradedStories
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "businessGreetingMessageSettings":
 		var obj BusinessGreetingMessageSettings
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "businessInfo":
 		var obj BusinessInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "businessLocation":
 		var obj BusinessLocation
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "businessMessage":
 		var obj BusinessMessage
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "businessMessages":
 		var obj BusinessMessages
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "businessOpeningHours":
 		var obj BusinessOpeningHours
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "businessOpeningHoursInterval":
 		var obj BusinessOpeningHoursInterval
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "businessRecipients":
 		var obj BusinessRecipients
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "businessStartPage":
 		var obj BusinessStartPage
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "buttonStyleDanger":
 		var obj ButtonStyleDanger
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "buttonStyleDefault":
 		var obj ButtonStyleDefault
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "buttonStylePrimary":
 		var obj ButtonStylePrimary
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "buttonStyleSuccess":
 		var obj ButtonStyleSuccess
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "call":
 		var obj Call
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "callbackQueryAnswer":
 		var obj CallbackQueryAnswer
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "callbackQueryPayloadData":
 		var obj CallbackQueryPayloadData
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "callbackQueryPayloadDataWithPassword":
 		var obj CallbackQueryPayloadDataWithPassword
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "callbackQueryPayloadGame":
 		var obj CallbackQueryPayloadGame
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "callDiscardReasonDeclined":
 		var obj CallDiscardReasonDeclined
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "callDiscardReasonDisconnected":
 		var obj CallDiscardReasonDisconnected
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "callDiscardReasonEmpty":
 		var obj CallDiscardReasonEmpty
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "callDiscardReasonHungUp":
 		var obj CallDiscardReasonHungUp
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "callDiscardReasonMissed":
 		var obj CallDiscardReasonMissed
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "callDiscardReasonUpgradeToGroupCall":
 		var obj CallDiscardReasonUpgradeToGroupCall
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "callId":
 		var obj CallId
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "callProblemDistortedSpeech":
 		var obj CallProblemDistortedSpeech
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "callProblemDistortedVideo":
 		var obj CallProblemDistortedVideo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "callProblemDropped":
 		var obj CallProblemDropped
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "callProblemEcho":
 		var obj CallProblemEcho
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "callProblemInterruptions":
 		var obj CallProblemInterruptions
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "callProblemNoise":
 		var obj CallProblemNoise
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "callProblemPixelatedVideo":
 		var obj CallProblemPixelatedVideo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "callProblemSilentLocal":
 		var obj CallProblemSilentLocal
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "callProblemSilentRemote":
 		var obj CallProblemSilentRemote
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "callProtocol":
 		var obj CallProtocol
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "callServer":
 		var obj CallServer
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "callServerTypeTelegramReflector":
 		var obj CallServerTypeTelegramReflector
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "callServerTypeWebrtc":
 		var obj CallServerTypeWebrtc
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "callStateDiscarded":
 		var obj CallStateDiscarded
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "callStateError":
 		var obj CallStateError
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "callStateExchangingKeys":
 		var obj CallStateExchangingKeys
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "callStateHangingUp":
 		var obj CallStateHangingUp
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "callStatePending":
 		var obj CallStatePending
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "callStateReady":
 		var obj CallStateReady
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "canPostStoryResultActiveStoryLimitExceeded":
 		var obj CanPostStoryResultActiveStoryLimitExceeded
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "canPostStoryResultBoostNeeded":
 		var obj CanPostStoryResultBoostNeeded
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "canPostStoryResultLiveStoryIsActive":
 		var obj CanPostStoryResultLiveStoryIsActive
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "canPostStoryResultMonthlyLimitExceeded":
 		var obj CanPostStoryResultMonthlyLimitExceeded
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "canPostStoryResultOk":
 		var obj CanPostStoryResultOk
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "canPostStoryResultPremiumNeeded":
 		var obj CanPostStoryResultPremiumNeeded
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "canPostStoryResultWeeklyLimitExceeded":
 		var obj CanPostStoryResultWeeklyLimitExceeded
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "canSendGiftResultFail":
 		var obj CanSendGiftResultFail
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "canSendGiftResultOk":
 		var obj CanSendGiftResultOk
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "canSendMessageToUserResultOk":
 		var obj CanSendMessageToUserResultOk
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "canSendMessageToUserResultUserHasPaidMessages":
 		var obj CanSendMessageToUserResultUserHasPaidMessages
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "canSendMessageToUserResultUserIsDeleted":
 		var obj CanSendMessageToUserResultUserIsDeleted
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "canSendMessageToUserResultUserRestrictsNewChats":
 		var obj CanSendMessageToUserResultUserRestrictsNewChats
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "canTransferOwnershipResultOk":
 		var obj CanTransferOwnershipResultOk
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "canTransferOwnershipResultPasswordNeeded":
 		var obj CanTransferOwnershipResultPasswordNeeded
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "canTransferOwnershipResultPasswordTooFresh":
 		var obj CanTransferOwnershipResultPasswordTooFresh
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "canTransferOwnershipResultSessionTooFresh":
 		var obj CanTransferOwnershipResultSessionTooFresh
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chat":
 		var obj Chat
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatActionBarAddContact":
 		var obj ChatActionBarAddContact
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatActionBarInviteMembers":
 		var obj ChatActionBarInviteMembers
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatActionBarJoinRequest":
 		var obj ChatActionBarJoinRequest
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatActionBarReportAddBlock":
 		var obj ChatActionBarReportAddBlock
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatActionBarReportSpam":
 		var obj ChatActionBarReportSpam
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatActionBarSharePhoneNumber":
 		var obj ChatActionBarSharePhoneNumber
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatActionCancel":
 		var obj ChatActionCancel
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatActionChoosingContact":
 		var obj ChatActionChoosingContact
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatActionChoosingLocation":
 		var obj ChatActionChoosingLocation
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatActionChoosingSticker":
 		var obj ChatActionChoosingSticker
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatActionRecordingVideo":
 		var obj ChatActionRecordingVideo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatActionRecordingVideoNote":
 		var obj ChatActionRecordingVideoNote
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatActionRecordingVoiceNote":
 		var obj ChatActionRecordingVoiceNote
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatActionStartPlayingGame":
 		var obj ChatActionStartPlayingGame
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatActionTyping":
 		var obj ChatActionTyping
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatActionUploadingDocument":
 		var obj ChatActionUploadingDocument
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatActionUploadingPhoto":
 		var obj ChatActionUploadingPhoto
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatActionUploadingVideo":
 		var obj ChatActionUploadingVideo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatActionUploadingVideoNote":
 		var obj ChatActionUploadingVideoNote
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatActionUploadingVoiceNote":
 		var obj ChatActionUploadingVoiceNote
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatActionWatchingAnimations":
 		var obj ChatActionWatchingAnimations
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatActiveStories":
 		var obj ChatActiveStories
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatAdministrator":
 		var obj ChatAdministrator
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatAdministratorRights":
 		var obj ChatAdministratorRights
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatAdministrators":
 		var obj ChatAdministrators
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatAvailableReactionsAll":
 		var obj ChatAvailableReactionsAll
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatAvailableReactionsSome":
 		var obj ChatAvailableReactionsSome
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatBackground":
 		var obj ChatBackground
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatBoost":
 		var obj ChatBoost
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatBoostFeatures":
 		var obj ChatBoostFeatures
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatBoostLevelFeatures":
 		var obj ChatBoostLevelFeatures
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatBoostLink":
 		var obj ChatBoostLink
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatBoostLinkInfo":
 		var obj ChatBoostLinkInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatBoostSlot":
 		var obj ChatBoostSlot
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatBoostSlots":
 		var obj ChatBoostSlots
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatBoostSourceGiftCode":
 		var obj ChatBoostSourceGiftCode
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatBoostSourceGiveaway":
 		var obj ChatBoostSourceGiveaway
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatBoostSourcePremium":
 		var obj ChatBoostSourcePremium
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatBoostStatus":
 		var obj ChatBoostStatus
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEvent":
 		var obj ChatEvent
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventAccentColorChanged":
 		var obj ChatEventAccentColorChanged
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventActiveUsernamesChanged":
 		var obj ChatEventActiveUsernamesChanged
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventAutomaticTranslationToggled":
 		var obj ChatEventAutomaticTranslationToggled
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventAvailableReactionsChanged":
 		var obj ChatEventAvailableReactionsChanged
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventBackgroundChanged":
 		var obj ChatEventBackgroundChanged
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventCustomEmojiStickerSetChanged":
 		var obj ChatEventCustomEmojiStickerSetChanged
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventDescriptionChanged":
 		var obj ChatEventDescriptionChanged
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventEmojiStatusChanged":
 		var obj ChatEventEmojiStatusChanged
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventForumTopicCreated":
 		var obj ChatEventForumTopicCreated
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventForumTopicDeleted":
 		var obj ChatEventForumTopicDeleted
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventForumTopicEdited":
 		var obj ChatEventForumTopicEdited
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventForumTopicPinned":
 		var obj ChatEventForumTopicPinned
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventForumTopicToggleIsClosed":
 		var obj ChatEventForumTopicToggleIsClosed
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventForumTopicToggleIsHidden":
 		var obj ChatEventForumTopicToggleIsHidden
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventHasAggressiveAntiSpamEnabledToggled":
 		var obj ChatEventHasAggressiveAntiSpamEnabledToggled
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventHasProtectedContentToggled":
 		var obj ChatEventHasProtectedContentToggled
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventInviteLinkDeleted":
 		var obj ChatEventInviteLinkDeleted
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventInviteLinkEdited":
 		var obj ChatEventInviteLinkEdited
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventInviteLinkRevoked":
 		var obj ChatEventInviteLinkRevoked
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventInvitesToggled":
 		var obj ChatEventInvitesToggled
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventIsAllHistoryAvailableToggled":
 		var obj ChatEventIsAllHistoryAvailableToggled
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventIsForumToggled":
 		var obj ChatEventIsForumToggled
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventLinkedChatChanged":
 		var obj ChatEventLinkedChatChanged
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventLocationChanged":
 		var obj ChatEventLocationChanged
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventLogFilters":
 		var obj ChatEventLogFilters
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventMemberInvited":
 		var obj ChatEventMemberInvited
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventMemberJoined":
 		var obj ChatEventMemberJoined
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventMemberJoinedByInviteLink":
 		var obj ChatEventMemberJoinedByInviteLink
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventMemberJoinedByRequest":
 		var obj ChatEventMemberJoinedByRequest
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventMemberLeft":
 		var obj ChatEventMemberLeft
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventMemberPromoted":
 		var obj ChatEventMemberPromoted
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventMemberRestricted":
 		var obj ChatEventMemberRestricted
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventMemberSubscriptionExtended":
 		var obj ChatEventMemberSubscriptionExtended
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventMemberTagChanged":
 		var obj ChatEventMemberTagChanged
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventMessageAutoDeleteTimeChanged":
 		var obj ChatEventMessageAutoDeleteTimeChanged
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventMessageDeleted":
 		var obj ChatEventMessageDeleted
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventMessageEdited":
 		var obj ChatEventMessageEdited
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventMessagePinned":
 		var obj ChatEventMessagePinned
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventMessageUnpinned":
 		var obj ChatEventMessageUnpinned
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventPermissionsChanged":
 		var obj ChatEventPermissionsChanged
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventPhotoChanged":
 		var obj ChatEventPhotoChanged
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventPollStopped":
 		var obj ChatEventPollStopped
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventProfileAccentColorChanged":
 		var obj ChatEventProfileAccentColorChanged
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEvents":
 		var obj ChatEvents
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventShowMessageSenderToggled":
 		var obj ChatEventShowMessageSenderToggled
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventSignMessagesToggled":
 		var obj ChatEventSignMessagesToggled
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventSlowModeDelayChanged":
 		var obj ChatEventSlowModeDelayChanged
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventStickerSetChanged":
 		var obj ChatEventStickerSetChanged
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventTitleChanged":
 		var obj ChatEventTitleChanged
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventUsernameChanged":
 		var obj ChatEventUsernameChanged
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventVideoChatCreated":
 		var obj ChatEventVideoChatCreated
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventVideoChatEnded":
 		var obj ChatEventVideoChatEnded
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventVideoChatMuteNewParticipantsToggled":
 		var obj ChatEventVideoChatMuteNewParticipantsToggled
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventVideoChatParticipantIsMutedToggled":
 		var obj ChatEventVideoChatParticipantIsMutedToggled
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatEventVideoChatParticipantVolumeLevelChanged":
 		var obj ChatEventVideoChatParticipantVolumeLevelChanged
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatFolder":
 		var obj ChatFolder
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatFolderIcon":
 		var obj ChatFolderIcon
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatFolderInfo":
 		var obj ChatFolderInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatFolderInviteLink":
 		var obj ChatFolderInviteLink
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatFolderInviteLinkInfo":
 		var obj ChatFolderInviteLinkInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatFolderInviteLinks":
 		var obj ChatFolderInviteLinks
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatFolderName":
 		var obj ChatFolderName
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatInviteLink":
 		var obj ChatInviteLink
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatInviteLinkCount":
 		var obj ChatInviteLinkCount
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatInviteLinkCounts":
 		var obj ChatInviteLinkCounts
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatInviteLinkInfo":
 		var obj ChatInviteLinkInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatInviteLinkMember":
 		var obj ChatInviteLinkMember
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatInviteLinkMembers":
 		var obj ChatInviteLinkMembers
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatInviteLinks":
 		var obj ChatInviteLinks
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatInviteLinkSubscriptionInfo":
 		var obj ChatInviteLinkSubscriptionInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatJoinRequest":
 		var obj ChatJoinRequest
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatJoinRequests":
 		var obj ChatJoinRequests
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatJoinRequestsInfo":
 		var obj ChatJoinRequestsInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatListArchive":
 		var obj ChatListArchive
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatListFolder":
 		var obj ChatListFolder
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatListMain":
 		var obj ChatListMain
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatLists":
 		var obj ChatLists
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatLocation":
 		var obj ChatLocation
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatMember":
 		var obj ChatMember
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatMembers":
 		var obj ChatMembers
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatMembersFilterAdministrators":
 		var obj ChatMembersFilterAdministrators
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatMembersFilterBanned":
 		var obj ChatMembersFilterBanned
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatMembersFilterBots":
 		var obj ChatMembersFilterBots
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatMembersFilterContacts":
 		var obj ChatMembersFilterContacts
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatMembersFilterMembers":
 		var obj ChatMembersFilterMembers
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatMembersFilterMention":
 		var obj ChatMembersFilterMention
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatMembersFilterRestricted":
 		var obj ChatMembersFilterRestricted
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatMemberStatusAdministrator":
 		var obj ChatMemberStatusAdministrator
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatMemberStatusBanned":
 		var obj ChatMemberStatusBanned
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatMemberStatusCreator":
 		var obj ChatMemberStatusCreator
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatMemberStatusLeft":
 		var obj ChatMemberStatusLeft
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatMemberStatusMember":
 		var obj ChatMemberStatusMember
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatMemberStatusRestricted":
 		var obj ChatMemberStatusRestricted
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatMessageSender":
 		var obj ChatMessageSender
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatMessageSenders":
 		var obj ChatMessageSenders
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatNotificationSettings":
 		var obj ChatNotificationSettings
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatPermissions":
 		var obj ChatPermissions
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatPhoto":
 		var obj ChatPhoto
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatPhotoInfo":
 		var obj ChatPhotoInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatPhotos":
 		var obj ChatPhotos
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatPhotoSticker":
 		var obj ChatPhotoSticker
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatPhotoStickerTypeCustomEmoji":
 		var obj ChatPhotoStickerTypeCustomEmoji
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatPhotoStickerTypeRegularOrMask":
 		var obj ChatPhotoStickerTypeRegularOrMask
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatPosition":
 		var obj ChatPosition
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatRevenueAmount":
 		var obj ChatRevenueAmount
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatRevenueStatistics":
 		var obj ChatRevenueStatistics
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatRevenueTransaction":
 		var obj ChatRevenueTransaction
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatRevenueTransactions":
 		var obj ChatRevenueTransactions
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatRevenueTransactionTypeFragmentRefund":
 		var obj ChatRevenueTransactionTypeFragmentRefund
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatRevenueTransactionTypeFragmentWithdrawal":
 		var obj ChatRevenueTransactionTypeFragmentWithdrawal
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatRevenueTransactionTypeSponsoredMessageEarnings":
 		var obj ChatRevenueTransactionTypeSponsoredMessageEarnings
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatRevenueTransactionTypeSuggestedPostEarnings":
 		var obj ChatRevenueTransactionTypeSuggestedPostEarnings
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatRevenueTransactionTypeUnsupported":
 		var obj ChatRevenueTransactionTypeUnsupported
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chats":
 		var obj Chats
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatSourceMtprotoProxy":
 		var obj ChatSourceMtprotoProxy
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatSourcePublicServiceAnnouncement":
 		var obj ChatSourcePublicServiceAnnouncement
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatStatisticsAdministratorActionsInfo":
 		var obj ChatStatisticsAdministratorActionsInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatStatisticsChannel":
 		var obj ChatStatisticsChannel
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatStatisticsInteractionInfo":
 		var obj ChatStatisticsInteractionInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatStatisticsInviterInfo":
 		var obj ChatStatisticsInviterInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatStatisticsMessageSenderInfo":
 		var obj ChatStatisticsMessageSenderInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatStatisticsObjectTypeMessage":
 		var obj ChatStatisticsObjectTypeMessage
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatStatisticsObjectTypeStory":
 		var obj ChatStatisticsObjectTypeStory
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatStatisticsSupergroup":
 		var obj ChatStatisticsSupergroup
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatThemeEmoji":
 		var obj ChatThemeEmoji
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatThemeGift":
 		var obj ChatThemeGift
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatTypeBasicGroup":
 		var obj ChatTypeBasicGroup
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatTypePrivate":
 		var obj ChatTypePrivate
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatTypeSecret":
 		var obj ChatTypeSecret
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatTypeSupergroup":
 		var obj ChatTypeSupergroup
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "checkChatUsernameResultOk":
 		var obj CheckChatUsernameResultOk
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "checkChatUsernameResultPublicChatsTooMany":
 		var obj CheckChatUsernameResultPublicChatsTooMany
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "checkChatUsernameResultPublicGroupsUnavailable":
 		var obj CheckChatUsernameResultPublicGroupsUnavailable
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "checkChatUsernameResultUsernameInvalid":
 		var obj CheckChatUsernameResultUsernameInvalid
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "checkChatUsernameResultUsernameOccupied":
 		var obj CheckChatUsernameResultUsernameOccupied
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "checkChatUsernameResultUsernamePurchasable":
 		var obj CheckChatUsernameResultUsernamePurchasable
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "checklist":
 		var obj Checklist
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "checklistTask":
 		var obj ChecklistTask
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "checkStickerSetNameResultNameInvalid":
 		var obj CheckStickerSetNameResultNameInvalid
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "checkStickerSetNameResultNameOccupied":
 		var obj CheckStickerSetNameResultNameOccupied
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "checkStickerSetNameResultOk":
 		var obj CheckStickerSetNameResultOk
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "closeBirthdayUser":
 		var obj CloseBirthdayUser
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "closedVectorPath":
 		var obj ClosedVectorPath
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "collectibleItemInfo":
 		var obj CollectibleItemInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "collectibleItemTypePhoneNumber":
 		var obj CollectibleItemTypePhoneNumber
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "collectibleItemTypeUsername":
 		var obj CollectibleItemTypeUsername
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "connectedAffiliateProgram":
 		var obj ConnectedAffiliateProgram
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "connectedAffiliatePrograms":
 		var obj ConnectedAffiliatePrograms
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "connectedWebsite":
 		var obj ConnectedWebsite
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "connectedWebsites":
 		var obj ConnectedWebsites
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "connectionStateConnecting":
 		var obj ConnectionStateConnecting
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "connectionStateConnectingToProxy":
 		var obj ConnectionStateConnectingToProxy
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "connectionStateReady":
 		var obj ConnectionStateReady
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "connectionStateUpdating":
 		var obj ConnectionStateUpdating
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "connectionStateWaitingForNetwork":
 		var obj ConnectionStateWaitingForNetwork
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "contact":
 		var obj Contact
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "count":
 		var obj Count
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "countries":
 		var obj Countries
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "countryInfo":
 		var obj CountryInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "craftGiftResultFail":
 		var obj CraftGiftResultFail
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "craftGiftResultInvalidGift":
 		var obj CraftGiftResultInvalidGift
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "craftGiftResultSuccess":
 		var obj CraftGiftResultSuccess
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "craftGiftResultTooEarly":
 		var obj CraftGiftResultTooEarly
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "createdBasicGroupChat":
 		var obj CreatedBasicGroupChat
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "currentWeather":
 		var obj CurrentWeather
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "customRequestResult":
 		var obj CustomRequestResult
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "data":
 		var obj Data
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "databaseStatistics":
 		var obj DatabaseStatistics
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "date":
 		var obj Date
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "datedFile":
 		var obj DatedFile
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "dateRange":
 		var obj DateRange
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "dateTimeFormattingTypeAbsolute":
 		var obj DateTimeFormattingTypeAbsolute
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "dateTimeFormattingTypeRelative":
 		var obj DateTimeFormattingTypeRelative
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "dateTimePartPrecisionLong":
 		var obj DateTimePartPrecisionLong
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "dateTimePartPrecisionNone":
 		var obj DateTimePartPrecisionNone
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "dateTimePartPrecisionShort":
 		var obj DateTimePartPrecisionShort
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "deepLinkInfo":
 		var obj DeepLinkInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "deviceTokenApplePush":
 		var obj DeviceTokenApplePush
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "deviceTokenApplePushVoIP":
 		var obj DeviceTokenApplePushVoIP
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "deviceTokenBlackBerryPush":
 		var obj DeviceTokenBlackBerryPush
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "deviceTokenFirebaseCloudMessaging":
 		var obj DeviceTokenFirebaseCloudMessaging
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "deviceTokenHuaweiPush":
 		var obj DeviceTokenHuaweiPush
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "deviceTokenMicrosoftPush":
 		var obj DeviceTokenMicrosoftPush
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "deviceTokenMicrosoftPushVoIP":
 		var obj DeviceTokenMicrosoftPushVoIP
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "deviceTokenSimplePush":
 		var obj DeviceTokenSimplePush
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "deviceTokenTizenPush":
 		var obj DeviceTokenTizenPush
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "deviceTokenUbuntuPush":
 		var obj DeviceTokenUbuntuPush
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "deviceTokenWebPush":
 		var obj DeviceTokenWebPush
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "deviceTokenWindowsPush":
 		var obj DeviceTokenWindowsPush
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "diceStickersRegular":
 		var obj DiceStickersRegular
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "diceStickersSlotMachine":
 		var obj DiceStickersSlotMachine
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "directMessagesChatTopic":
 		var obj DirectMessagesChatTopic
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "document":
 		var obj Document
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "downloadedFileCounts":
 		var obj DownloadedFileCounts
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "draftMessage":
 		var obj DraftMessage
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "emailAddressAuthenticationAppleId":
 		var obj EmailAddressAuthenticationAppleId
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "emailAddressAuthenticationCode":
 		var obj EmailAddressAuthenticationCode
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "emailAddressAuthenticationCodeInfo":
 		var obj EmailAddressAuthenticationCodeInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "emailAddressAuthenticationGoogleId":
 		var obj EmailAddressAuthenticationGoogleId
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "emailAddressResetStateAvailable":
 		var obj EmailAddressResetStateAvailable
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "emailAddressResetStatePending":
 		var obj EmailAddressResetStatePending
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "emojiCategories":
 		var obj EmojiCategories
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "emojiCategory":
 		var obj EmojiCategory
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "emojiCategorySourcePremium":
 		var obj EmojiCategorySourcePremium
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "emojiCategorySourceSearch":
 		var obj EmojiCategorySourceSearch
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "emojiCategoryTypeChatPhoto":
 		var obj EmojiCategoryTypeChatPhoto
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "emojiCategoryTypeDefault":
 		var obj EmojiCategoryTypeDefault
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "emojiCategoryTypeEmojiStatus":
 		var obj EmojiCategoryTypeEmojiStatus
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "emojiCategoryTypeRegularStickers":
 		var obj EmojiCategoryTypeRegularStickers
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "emojiChatTheme":
 		var obj EmojiChatTheme
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "emojiKeyword":
 		var obj EmojiKeyword
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "emojiKeywords":
 		var obj EmojiKeywords
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "emojiReaction":
 		var obj EmojiReaction
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "emojis":
 		var obj Emojis
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "emojiStatus":
 		var obj EmojiStatus
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "emojiStatusCustomEmojis":
 		var obj EmojiStatusCustomEmojis
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "emojiStatuses":
 		var obj EmojiStatuses
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "emojiStatusTypeCustomEmoji":
 		var obj EmojiStatusTypeCustomEmoji
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "emojiStatusTypeUpgradedGift":
 		var obj EmojiStatusTypeUpgradedGift
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "encryptedCredentials":
 		var obj EncryptedCredentials
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "encryptedPassportElement":
 		var obj EncryptedPassportElement
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "error":
 		var obj Error
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "factCheck":
 		var obj FactCheck
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "failedToAddMember":
 		var obj FailedToAddMember
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "failedToAddMembers":
 		var obj FailedToAddMembers
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "file":
 		var obj File
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "fileDownload":
 		var obj FileDownload
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "fileDownloadedPrefixSize":
 		var obj FileDownloadedPrefixSize
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "fileTypeAnimation":
 		var obj FileTypeAnimation
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "fileTypeAudio":
 		var obj FileTypeAudio
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "fileTypeDocument":
 		var obj FileTypeDocument
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "fileTypeNone":
 		var obj FileTypeNone
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "fileTypeNotificationSound":
 		var obj FileTypeNotificationSound
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "fileTypePhoto":
 		var obj FileTypePhoto
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "fileTypePhotoStory":
 		var obj FileTypePhotoStory
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "fileTypeProfilePhoto":
 		var obj FileTypeProfilePhoto
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "fileTypeSecret":
 		var obj FileTypeSecret
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "fileTypeSecretThumbnail":
 		var obj FileTypeSecretThumbnail
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "fileTypeSecure":
 		var obj FileTypeSecure
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "fileTypeSelfDestructingPhoto":
 		var obj FileTypeSelfDestructingPhoto
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "fileTypeSelfDestructingVideo":
 		var obj FileTypeSelfDestructingVideo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "fileTypeSelfDestructingVideoNote":
 		var obj FileTypeSelfDestructingVideoNote
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "fileTypeSelfDestructingVoiceNote":
 		var obj FileTypeSelfDestructingVoiceNote
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "fileTypeSticker":
 		var obj FileTypeSticker
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "fileTypeThumbnail":
 		var obj FileTypeThumbnail
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "fileTypeUnknown":
 		var obj FileTypeUnknown
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "fileTypeVideo":
 		var obj FileTypeVideo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "fileTypeVideoNote":
 		var obj FileTypeVideoNote
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "fileTypeVideoStory":
 		var obj FileTypeVideoStory
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "fileTypeVoiceNote":
 		var obj FileTypeVoiceNote
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "fileTypeWallpaper":
 		var obj FileTypeWallpaper
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "firebaseAuthenticationSettingsAndroid":
 		var obj FirebaseAuthenticationSettingsAndroid
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "firebaseAuthenticationSettingsIos":
 		var obj FirebaseAuthenticationSettingsIos
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "firebaseDeviceVerificationParametersPlayIntegrity":
 		var obj FirebaseDeviceVerificationParametersPlayIntegrity
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "firebaseDeviceVerificationParametersSafetyNet":
 		var obj FirebaseDeviceVerificationParametersSafetyNet
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "formattedText":
 		var obj FormattedText
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "forumTopic":
 		var obj ForumTopic
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "forumTopicIcon":
 		var obj ForumTopicIcon
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "forumTopicInfo":
 		var obj ForumTopicInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "forumTopics":
 		var obj ForumTopics
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "forwardSource":
 		var obj ForwardSource
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "foundAffiliateProgram":
 		var obj FoundAffiliateProgram
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "foundAffiliatePrograms":
 		var obj FoundAffiliatePrograms
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "foundChatBoosts":
 		var obj FoundChatBoosts
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "foundChatMessages":
 		var obj FoundChatMessages
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "foundFileDownloads":
 		var obj FoundFileDownloads
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "foundMessages":
 		var obj FoundMessages
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "foundPosition":
 		var obj FoundPosition
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "foundPositions":
 		var obj FoundPositions
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "foundPublicPosts":
 		var obj FoundPublicPosts
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "foundStories":
 		var obj FoundStories
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "foundUsers":
 		var obj FoundUsers
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "foundWebApp":
 		var obj FoundWebApp
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "game":
 		var obj Game
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "gameHighScore":
 		var obj GameHighScore
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "gameHighScores":
 		var obj GameHighScores
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "gift":
 		var obj Gift
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "giftAuction":
 		var obj GiftAuction
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "giftAuctionAcquiredGift":
 		var obj GiftAuctionAcquiredGift
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "giftAuctionAcquiredGifts":
 		var obj GiftAuctionAcquiredGifts
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "giftAuctionState":
 		var obj GiftAuctionState
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "giftBackground":
 		var obj GiftBackground
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "giftChatTheme":
 		var obj GiftChatTheme
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "giftChatThemes":
 		var obj GiftChatThemes
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "giftCollection":
 		var obj GiftCollection
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "giftCollections":
 		var obj GiftCollections
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "giftForResale":
 		var obj GiftForResale
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "giftForResaleOrderNumber":
 		var obj GiftForResaleOrderNumber
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "giftForResaleOrderPrice":
 		var obj GiftForResaleOrderPrice
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "giftForResaleOrderPriceChangeDate":
 		var obj GiftForResaleOrderPriceChangeDate
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "giftPurchaseLimits":
 		var obj GiftPurchaseLimits
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "giftPurchaseOfferStateAccepted":
 		var obj GiftPurchaseOfferStateAccepted
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "giftPurchaseOfferStatePending":
 		var obj GiftPurchaseOfferStatePending
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "giftPurchaseOfferStateRejected":
 		var obj GiftPurchaseOfferStateRejected
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "giftResaleParameters":
 		var obj GiftResaleParameters
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "giftResalePriceStar":
 		var obj GiftResalePriceStar
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "giftResalePriceTon":
 		var obj GiftResalePriceTon
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "giftResaleResultOk":
 		var obj GiftResaleResultOk
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "giftResaleResultPriceIncreased":
 		var obj GiftResaleResultPriceIncreased
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "giftSettings":
 		var obj GiftSettings
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "giftsForCrafting":
 		var obj GiftsForCrafting
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "giftsForResale":
 		var obj GiftsForResale
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "giftUpgradePreview":
 		var obj GiftUpgradePreview
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "giftUpgradePrice":
 		var obj GiftUpgradePrice
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "giftUpgradeVariants":
 		var obj GiftUpgradeVariants
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "giveawayInfoCompleted":
 		var obj GiveawayInfoCompleted
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "giveawayInfoOngoing":
 		var obj GiveawayInfoOngoing
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "giveawayParameters":
 		var obj GiveawayParameters
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "giveawayParticipantStatusAdministrator":
 		var obj GiveawayParticipantStatusAdministrator
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "giveawayParticipantStatusAlreadyWasMember":
 		var obj GiveawayParticipantStatusAlreadyWasMember
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "giveawayParticipantStatusDisallowedCountry":
 		var obj GiveawayParticipantStatusDisallowedCountry
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "giveawayParticipantStatusEligible":
 		var obj GiveawayParticipantStatusEligible
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "giveawayParticipantStatusParticipating":
 		var obj GiveawayParticipantStatusParticipating
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "giveawayPrizePremium":
 		var obj GiveawayPrizePremium
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "giveawayPrizeStars":
 		var obj GiveawayPrizeStars
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "groupCall":
 		var obj GroupCall
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "groupCallDataChannelMain":
 		var obj GroupCallDataChannelMain
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "groupCallDataChannelScreenSharing":
 		var obj GroupCallDataChannelScreenSharing
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "groupCallId":
 		var obj GroupCallId
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "groupCallInfo":
 		var obj GroupCallInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "groupCallJoinParameters":
 		var obj GroupCallJoinParameters
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "groupCallMessage":
 		var obj GroupCallMessage
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "groupCallMessageLevel":
 		var obj GroupCallMessageLevel
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "groupCallParticipant":
 		var obj GroupCallParticipant
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "groupCallParticipants":
 		var obj GroupCallParticipants
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "groupCallParticipantVideoInfo":
 		var obj GroupCallParticipantVideoInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "groupCallRecentSpeaker":
 		var obj GroupCallRecentSpeaker
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "groupCallStream":
 		var obj GroupCallStream
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "groupCallStreams":
 		var obj GroupCallStreams
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "groupCallVideoQualityFull":
 		var obj GroupCallVideoQualityFull
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "groupCallVideoQualityMedium":
 		var obj GroupCallVideoQualityMedium
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "groupCallVideoQualityThumbnail":
 		var obj GroupCallVideoQualityThumbnail
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "groupCallVideoSourceGroup":
 		var obj GroupCallVideoSourceGroup
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "hashtags":
 		var obj Hashtags
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "httpUrl":
 		var obj HttpUrl
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "identityDocument":
 		var obj IdentityDocument
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "importedContact":
 		var obj ImportedContact
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "importedContacts":
 		var obj ImportedContacts
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inlineKeyboardButton":
 		var obj InlineKeyboardButton
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inlineKeyboardButtonTypeBuy":
 		var obj InlineKeyboardButtonTypeBuy
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inlineKeyboardButtonTypeCallback":
 		var obj InlineKeyboardButtonTypeCallback
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inlineKeyboardButtonTypeCallbackGame":
 		var obj InlineKeyboardButtonTypeCallbackGame
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inlineKeyboardButtonTypeCallbackWithPassword":
 		var obj InlineKeyboardButtonTypeCallbackWithPassword
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inlineKeyboardButtonTypeCopyText":
 		var obj InlineKeyboardButtonTypeCopyText
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inlineKeyboardButtonTypeLoginUrl":
 		var obj InlineKeyboardButtonTypeLoginUrl
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inlineKeyboardButtonTypeSwitchInline":
 		var obj InlineKeyboardButtonTypeSwitchInline
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inlineKeyboardButtonTypeUrl":
 		var obj InlineKeyboardButtonTypeUrl
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inlineKeyboardButtonTypeUser":
 		var obj InlineKeyboardButtonTypeUser
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inlineKeyboardButtonTypeWebApp":
 		var obj InlineKeyboardButtonTypeWebApp
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inlineQueryResultAnimation":
 		var obj InlineQueryResultAnimation
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inlineQueryResultArticle":
 		var obj InlineQueryResultArticle
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inlineQueryResultAudio":
 		var obj InlineQueryResultAudio
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inlineQueryResultContact":
 		var obj InlineQueryResultContact
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inlineQueryResultDocument":
 		var obj InlineQueryResultDocument
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inlineQueryResultGame":
 		var obj InlineQueryResultGame
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inlineQueryResultLocation":
 		var obj InlineQueryResultLocation
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inlineQueryResultPhoto":
 		var obj InlineQueryResultPhoto
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inlineQueryResults":
 		var obj InlineQueryResults
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inlineQueryResultsButton":
 		var obj InlineQueryResultsButton
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inlineQueryResultsButtonTypeStartBot":
 		var obj InlineQueryResultsButtonTypeStartBot
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inlineQueryResultsButtonTypeWebApp":
 		var obj InlineQueryResultsButtonTypeWebApp
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inlineQueryResultSticker":
 		var obj InlineQueryResultSticker
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inlineQueryResultVenue":
 		var obj InlineQueryResultVenue
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inlineQueryResultVideo":
 		var obj InlineQueryResultVideo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inlineQueryResultVoiceNote":
 		var obj InlineQueryResultVoiceNote
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputBackgroundLocal":
 		var obj InputBackgroundLocal
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputBackgroundPrevious":
 		var obj InputBackgroundPrevious
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputBackgroundRemote":
 		var obj InputBackgroundRemote
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputBusinessChatLink":
 		var obj InputBusinessChatLink
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputBusinessStartPage":
 		var obj InputBusinessStartPage
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputCallDiscarded":
 		var obj InputCallDiscarded
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputCallFromMessage":
 		var obj InputCallFromMessage
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputChatPhotoAnimation":
 		var obj InputChatPhotoAnimation
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputChatPhotoPrevious":
 		var obj InputChatPhotoPrevious
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputChatPhotoStatic":
 		var obj InputChatPhotoStatic
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputChatPhotoSticker":
 		var obj InputChatPhotoSticker
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputChatThemeEmoji":
 		var obj InputChatThemeEmoji
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputChatThemeGift":
 		var obj InputChatThemeGift
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputChecklist":
 		var obj InputChecklist
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputChecklistTask":
 		var obj InputChecklistTask
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputCredentialsApplePay":
 		var obj InputCredentialsApplePay
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputCredentialsGooglePay":
 		var obj InputCredentialsGooglePay
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputCredentialsNew":
 		var obj InputCredentialsNew
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputCredentialsSaved":
 		var obj InputCredentialsSaved
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputFileGenerated":
 		var obj InputFileGenerated
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputFileId":
 		var obj InputFileId
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputFileLocal":
 		var obj InputFileLocal
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputFileRemote":
 		var obj InputFileRemote
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputGroupCallLink":
 		var obj InputGroupCallLink
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputGroupCallMessage":
 		var obj InputGroupCallMessage
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputIdentityDocument":
 		var obj InputIdentityDocument
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputInlineQueryResultAnimation":
 		var obj InputInlineQueryResultAnimation
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputInlineQueryResultArticle":
 		var obj InputInlineQueryResultArticle
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputInlineQueryResultAudio":
 		var obj InputInlineQueryResultAudio
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputInlineQueryResultContact":
 		var obj InputInlineQueryResultContact
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputInlineQueryResultDocument":
 		var obj InputInlineQueryResultDocument
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputInlineQueryResultGame":
 		var obj InputInlineQueryResultGame
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputInlineQueryResultLocation":
 		var obj InputInlineQueryResultLocation
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputInlineQueryResultPhoto":
 		var obj InputInlineQueryResultPhoto
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputInlineQueryResultSticker":
 		var obj InputInlineQueryResultSticker
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputInlineQueryResultVenue":
 		var obj InputInlineQueryResultVenue
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputInlineQueryResultVideo":
 		var obj InputInlineQueryResultVideo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputInlineQueryResultVoiceNote":
 		var obj InputInlineQueryResultVoiceNote
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputInvoiceMessage":
 		var obj InputInvoiceMessage
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputInvoiceName":
 		var obj InputInvoiceName
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputInvoiceTelegram":
 		var obj InputInvoiceTelegram
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputMessageAnimation":
 		var obj InputMessageAnimation
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputMessageAudio":
 		var obj InputMessageAudio
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputMessageChecklist":
 		var obj InputMessageChecklist
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputMessageContact":
 		var obj InputMessageContact
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputMessageDice":
 		var obj InputMessageDice
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputMessageDocument":
 		var obj InputMessageDocument
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputMessageForwarded":
 		var obj InputMessageForwarded
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputMessageGame":
 		var obj InputMessageGame
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputMessageInvoice":
 		var obj InputMessageInvoice
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputMessageLocation":
 		var obj InputMessageLocation
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputMessagePaidMedia":
 		var obj InputMessagePaidMedia
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputMessagePhoto":
 		var obj InputMessagePhoto
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputMessagePoll":
 		var obj InputMessagePoll
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputMessageReplyToExternalMessage":
 		var obj InputMessageReplyToExternalMessage
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputMessageReplyToMessage":
 		var obj InputMessageReplyToMessage
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputMessageReplyToStory":
 		var obj InputMessageReplyToStory
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputMessageStakeDice":
 		var obj InputMessageStakeDice
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputMessageSticker":
 		var obj InputMessageSticker
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputMessageStory":
 		var obj InputMessageStory
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputMessageText":
 		var obj InputMessageText
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputMessageVenue":
 		var obj InputMessageVenue
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputMessageVideo":
 		var obj InputMessageVideo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputMessageVideoNote":
 		var obj InputMessageVideoNote
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputMessageVoiceNote":
 		var obj InputMessageVoiceNote
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputPaidMedia":
 		var obj InputPaidMedia
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputPaidMediaTypePhoto":
 		var obj InputPaidMediaTypePhoto
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputPaidMediaTypeVideo":
 		var obj InputPaidMediaTypeVideo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputPassportElementAddress":
 		var obj InputPassportElementAddress
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputPassportElementBankStatement":
 		var obj InputPassportElementBankStatement
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputPassportElementDriverLicense":
 		var obj InputPassportElementDriverLicense
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputPassportElementEmailAddress":
 		var obj InputPassportElementEmailAddress
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputPassportElementError":
 		var obj InputPassportElementError
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputPassportElementErrorSourceDataField":
 		var obj InputPassportElementErrorSourceDataField
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputPassportElementErrorSourceFile":
 		var obj InputPassportElementErrorSourceFile
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputPassportElementErrorSourceFiles":
 		var obj InputPassportElementErrorSourceFiles
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputPassportElementErrorSourceFrontSide":
 		var obj InputPassportElementErrorSourceFrontSide
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputPassportElementErrorSourceReverseSide":
 		var obj InputPassportElementErrorSourceReverseSide
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputPassportElementErrorSourceSelfie":
 		var obj InputPassportElementErrorSourceSelfie
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputPassportElementErrorSourceTranslationFile":
 		var obj InputPassportElementErrorSourceTranslationFile
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputPassportElementErrorSourceTranslationFiles":
 		var obj InputPassportElementErrorSourceTranslationFiles
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputPassportElementErrorSourceUnspecified":
 		var obj InputPassportElementErrorSourceUnspecified
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputPassportElementIdentityCard":
 		var obj InputPassportElementIdentityCard
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputPassportElementInternalPassport":
 		var obj InputPassportElementInternalPassport
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputPassportElementPassport":
 		var obj InputPassportElementPassport
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputPassportElementPassportRegistration":
 		var obj InputPassportElementPassportRegistration
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputPassportElementPersonalDetails":
 		var obj InputPassportElementPersonalDetails
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputPassportElementPhoneNumber":
 		var obj InputPassportElementPhoneNumber
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputPassportElementRentalAgreement":
 		var obj InputPassportElementRentalAgreement
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputPassportElementTemporaryRegistration":
 		var obj InputPassportElementTemporaryRegistration
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputPassportElementUtilityBill":
 		var obj InputPassportElementUtilityBill
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputPersonalDocument":
 		var obj InputPersonalDocument
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputSticker":
 		var obj InputSticker
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputStoryArea":
 		var obj InputStoryArea
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputStoryAreas":
 		var obj InputStoryAreas
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputStoryAreaTypeFoundVenue":
 		var obj InputStoryAreaTypeFoundVenue
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputStoryAreaTypeLink":
 		var obj InputStoryAreaTypeLink
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputStoryAreaTypeLocation":
 		var obj InputStoryAreaTypeLocation
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputStoryAreaTypeMessage":
 		var obj InputStoryAreaTypeMessage
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputStoryAreaTypePreviousVenue":
 		var obj InputStoryAreaTypePreviousVenue
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputStoryAreaTypeSuggestedReaction":
 		var obj InputStoryAreaTypeSuggestedReaction
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputStoryAreaTypeUpgradedGift":
 		var obj InputStoryAreaTypeUpgradedGift
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputStoryAreaTypeWeather":
 		var obj InputStoryAreaTypeWeather
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputStoryContentPhoto":
 		var obj InputStoryContentPhoto
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputStoryContentVideo":
 		var obj InputStoryContentVideo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputSuggestedPostInfo":
 		var obj InputSuggestedPostInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputTextQuote":
 		var obj InputTextQuote
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputThumbnail":
 		var obj InputThumbnail
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypeAttachmentMenuBot":
 		var obj InternalLinkTypeAttachmentMenuBot
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypeAuthenticationCode":
 		var obj InternalLinkTypeAuthenticationCode
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypeBackground":
 		var obj InternalLinkTypeBackground
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypeBotAddToChannel":
 		var obj InternalLinkTypeBotAddToChannel
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypeBotStart":
 		var obj InternalLinkTypeBotStart
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypeBotStartInGroup":
 		var obj InternalLinkTypeBotStartInGroup
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypeBusinessChat":
 		var obj InternalLinkTypeBusinessChat
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypeCallsPage":
 		var obj InternalLinkTypeCallsPage
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypeChatAffiliateProgram":
 		var obj InternalLinkTypeChatAffiliateProgram
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypeChatBoost":
 		var obj InternalLinkTypeChatBoost
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypeChatFolderInvite":
 		var obj InternalLinkTypeChatFolderInvite
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypeChatInvite":
 		var obj InternalLinkTypeChatInvite
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypeChatSelection":
 		var obj InternalLinkTypeChatSelection
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypeContactsPage":
 		var obj InternalLinkTypeContactsPage
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypeDirectMessagesChat":
 		var obj InternalLinkTypeDirectMessagesChat
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypeGame":
 		var obj InternalLinkTypeGame
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypeGiftAuction":
 		var obj InternalLinkTypeGiftAuction
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypeGiftCollection":
 		var obj InternalLinkTypeGiftCollection
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypeGroupCall":
 		var obj InternalLinkTypeGroupCall
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypeInstantView":
 		var obj InternalLinkTypeInstantView
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypeInvoice":
 		var obj InternalLinkTypeInvoice
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypeLanguagePack":
 		var obj InternalLinkTypeLanguagePack
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypeLiveStory":
 		var obj InternalLinkTypeLiveStory
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypeMainWebApp":
 		var obj InternalLinkTypeMainWebApp
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypeMessage":
 		var obj InternalLinkTypeMessage
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypeMessageDraft":
 		var obj InternalLinkTypeMessageDraft
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypeMyProfilePage":
 		var obj InternalLinkTypeMyProfilePage
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypeNewChannelChat":
 		var obj InternalLinkTypeNewChannelChat
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypeNewGroupChat":
 		var obj InternalLinkTypeNewGroupChat
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypeNewPrivateChat":
 		var obj InternalLinkTypeNewPrivateChat
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypeNewStory":
 		var obj InternalLinkTypeNewStory
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypeOauth":
 		var obj InternalLinkTypeOauth
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypePassportDataRequest":
 		var obj InternalLinkTypePassportDataRequest
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypePhoneNumberConfirmation":
 		var obj InternalLinkTypePhoneNumberConfirmation
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypePremiumFeaturesPage":
 		var obj InternalLinkTypePremiumFeaturesPage
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypePremiumGiftCode":
 		var obj InternalLinkTypePremiumGiftCode
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypePremiumGiftPurchase":
 		var obj InternalLinkTypePremiumGiftPurchase
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypeProxy":
 		var obj InternalLinkTypeProxy
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypePublicChat":
 		var obj InternalLinkTypePublicChat
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypeQrCodeAuthentication":
 		var obj InternalLinkTypeQrCodeAuthentication
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypeRestorePurchases":
 		var obj InternalLinkTypeRestorePurchases
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypeSavedMessages":
 		var obj InternalLinkTypeSavedMessages
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypeSearch":
 		var obj InternalLinkTypeSearch
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypeSettings":
 		var obj InternalLinkTypeSettings
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypeStarPurchase":
 		var obj InternalLinkTypeStarPurchase
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypeStickerSet":
 		var obj InternalLinkTypeStickerSet
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypeStory":
 		var obj InternalLinkTypeStory
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypeStoryAlbum":
 		var obj InternalLinkTypeStoryAlbum
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypeTheme":
 		var obj InternalLinkTypeTheme
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypeUnknownDeepLink":
 		var obj InternalLinkTypeUnknownDeepLink
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypeUpgradedGift":
 		var obj InternalLinkTypeUpgradedGift
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypeUserPhoneNumber":
 		var obj InternalLinkTypeUserPhoneNumber
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypeUserToken":
 		var obj InternalLinkTypeUserToken
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypeVideoChat":
 		var obj InternalLinkTypeVideoChat
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypeWebApp":
 		var obj InternalLinkTypeWebApp
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inviteGroupCallParticipantResultSuccess":
 		var obj InviteGroupCallParticipantResultSuccess
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inviteGroupCallParticipantResultUserAlreadyParticipant":
 		var obj InviteGroupCallParticipantResultUserAlreadyParticipant
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inviteGroupCallParticipantResultUserPrivacyRestricted":
 		var obj InviteGroupCallParticipantResultUserPrivacyRestricted
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inviteGroupCallParticipantResultUserWasBanned":
 		var obj InviteGroupCallParticipantResultUserWasBanned
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inviteLinkChatTypeBasicGroup":
 		var obj InviteLinkChatTypeBasicGroup
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inviteLinkChatTypeChannel":
 		var obj InviteLinkChatTypeChannel
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inviteLinkChatTypeSupergroup":
 		var obj InviteLinkChatTypeSupergroup
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "invoice":
 		var obj Invoice
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "jsonObjectMember":
 		var obj JsonObjectMember
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "jsonValueArray":
 		var obj JsonValueArray
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "jsonValueBoolean":
 		var obj JsonValueBoolean
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "jsonValueNull":
 		var obj JsonValueNull
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "jsonValueNumber":
 		var obj JsonValueNumber
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "jsonValueObject":
 		var obj JsonValueObject
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "jsonValueString":
 		var obj JsonValueString
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "keyboardButton":
 		var obj KeyboardButton
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "keyboardButtonTypeRequestChat":
 		var obj KeyboardButtonTypeRequestChat
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "keyboardButtonTypeRequestLocation":
 		var obj KeyboardButtonTypeRequestLocation
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "keyboardButtonTypeRequestPhoneNumber":
 		var obj KeyboardButtonTypeRequestPhoneNumber
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "keyboardButtonTypeRequestPoll":
 		var obj KeyboardButtonTypeRequestPoll
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "keyboardButtonTypeRequestUsers":
 		var obj KeyboardButtonTypeRequestUsers
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "keyboardButtonTypeText":
 		var obj KeyboardButtonTypeText
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "keyboardButtonTypeWebApp":
 		var obj KeyboardButtonTypeWebApp
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "labeledPricePart":
 		var obj LabeledPricePart
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "languagePackInfo":
 		var obj LanguagePackInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "languagePackString":
 		var obj LanguagePackString
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "languagePackStrings":
 		var obj LanguagePackStrings
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "languagePackStringValueDeleted":
 		var obj LanguagePackStringValueDeleted
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "languagePackStringValueOrdinary":
 		var obj LanguagePackStringValueOrdinary
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "languagePackStringValuePluralized":
 		var obj LanguagePackStringValuePluralized
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "linkPreview":
 		var obj LinkPreview
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "linkPreviewAlbumMediaPhoto":
 		var obj LinkPreviewAlbumMediaPhoto
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "linkPreviewAlbumMediaVideo":
 		var obj LinkPreviewAlbumMediaVideo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "linkPreviewOptions":
 		var obj LinkPreviewOptions
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "linkPreviewTypeAlbum":
 		var obj LinkPreviewTypeAlbum
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "linkPreviewTypeAnimation":
 		var obj LinkPreviewTypeAnimation
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "linkPreviewTypeApp":
 		var obj LinkPreviewTypeApp
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "linkPreviewTypeArticle":
 		var obj LinkPreviewTypeArticle
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "linkPreviewTypeAudio":
 		var obj LinkPreviewTypeAudio
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "linkPreviewTypeBackground":
 		var obj LinkPreviewTypeBackground
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "linkPreviewTypeChannelBoost":
 		var obj LinkPreviewTypeChannelBoost
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "linkPreviewTypeChat":
 		var obj LinkPreviewTypeChat
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "linkPreviewTypeDirectMessagesChat":
 		var obj LinkPreviewTypeDirectMessagesChat
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "linkPreviewTypeDocument":
 		var obj LinkPreviewTypeDocument
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "linkPreviewTypeEmbeddedAnimationPlayer":
 		var obj LinkPreviewTypeEmbeddedAnimationPlayer
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "linkPreviewTypeEmbeddedAudioPlayer":
 		var obj LinkPreviewTypeEmbeddedAudioPlayer
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "linkPreviewTypeEmbeddedVideoPlayer":
 		var obj LinkPreviewTypeEmbeddedVideoPlayer
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "linkPreviewTypeExternalAudio":
 		var obj LinkPreviewTypeExternalAudio
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "linkPreviewTypeExternalVideo":
 		var obj LinkPreviewTypeExternalVideo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "linkPreviewTypeGiftAuction":
 		var obj LinkPreviewTypeGiftAuction
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "linkPreviewTypeGiftCollection":
 		var obj LinkPreviewTypeGiftCollection
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "linkPreviewTypeGroupCall":
 		var obj LinkPreviewTypeGroupCall
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "linkPreviewTypeInvoice":
 		var obj LinkPreviewTypeInvoice
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "linkPreviewTypeLiveStory":
 		var obj LinkPreviewTypeLiveStory
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "linkPreviewTypeMessage":
 		var obj LinkPreviewTypeMessage
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "linkPreviewTypePhoto":
 		var obj LinkPreviewTypePhoto
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "linkPreviewTypePremiumGiftCode":
 		var obj LinkPreviewTypePremiumGiftCode
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "linkPreviewTypeShareableChatFolder":
 		var obj LinkPreviewTypeShareableChatFolder
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "linkPreviewTypeSticker":
 		var obj LinkPreviewTypeSticker
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "linkPreviewTypeStickerSet":
 		var obj LinkPreviewTypeStickerSet
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "linkPreviewTypeStory":
 		var obj LinkPreviewTypeStory
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "linkPreviewTypeStoryAlbum":
 		var obj LinkPreviewTypeStoryAlbum
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "linkPreviewTypeSupergroupBoost":
 		var obj LinkPreviewTypeSupergroupBoost
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "linkPreviewTypeTheme":
 		var obj LinkPreviewTypeTheme
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "linkPreviewTypeUnsupported":
 		var obj LinkPreviewTypeUnsupported
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "linkPreviewTypeUpgradedGift":
 		var obj LinkPreviewTypeUpgradedGift
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "linkPreviewTypeUser":
 		var obj LinkPreviewTypeUser
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "linkPreviewTypeVideo":
 		var obj LinkPreviewTypeVideo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "linkPreviewTypeVideoChat":
 		var obj LinkPreviewTypeVideoChat
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "linkPreviewTypeVideoNote":
 		var obj LinkPreviewTypeVideoNote
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "linkPreviewTypeVoiceNote":
 		var obj LinkPreviewTypeVoiceNote
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "linkPreviewTypeWebApp":
 		var obj LinkPreviewTypeWebApp
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "liveStoryDonors":
 		var obj LiveStoryDonors
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "localFile":
 		var obj LocalFile
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "localizationTargetInfo":
 		var obj LocalizationTargetInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "location":
 		var obj Location
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "locationAddress":
 		var obj LocationAddress
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "loginUrlInfoOpen":
 		var obj LoginUrlInfoOpen
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "loginUrlInfoRequestConfirmation":
 		var obj LoginUrlInfoRequestConfirmation
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "logStreamDefault":
 		var obj LogStreamDefault
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "logStreamEmpty":
 		var obj LogStreamEmpty
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "logStreamFile":
 		var obj LogStreamFile
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "logTags":
 		var obj LogTags
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "logVerbosityLevel":
 		var obj LogVerbosityLevel
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "mainWebApp":
 		var obj MainWebApp
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "maskPointChin":
 		var obj MaskPointChin
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "maskPointEyes":
 		var obj MaskPointEyes
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "maskPointForehead":
 		var obj MaskPointForehead
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "maskPointMouth":
 		var obj MaskPointMouth
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "maskPosition":
 		var obj MaskPosition
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "message":
 		var obj Message
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageAnimatedEmoji":
 		var obj MessageAnimatedEmoji
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageAnimation":
 		var obj MessageAnimation
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageAudio":
 		var obj MessageAudio
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageAutoDeleteTime":
 		var obj MessageAutoDeleteTime
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageBasicGroupChatCreate":
 		var obj MessageBasicGroupChatCreate
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageBotWriteAccessAllowed":
 		var obj MessageBotWriteAccessAllowed
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageCalendar":
 		var obj MessageCalendar
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageCalendarDay":
 		var obj MessageCalendarDay
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageCall":
 		var obj MessageCall
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageChatAddMembers":
 		var obj MessageChatAddMembers
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageChatBoost":
 		var obj MessageChatBoost
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageChatChangePhoto":
 		var obj MessageChatChangePhoto
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageChatChangeTitle":
 		var obj MessageChatChangeTitle
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageChatDeleteMember":
 		var obj MessageChatDeleteMember
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageChatDeletePhoto":
 		var obj MessageChatDeletePhoto
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageChatHasProtectedContentDisableRequested":
 		var obj MessageChatHasProtectedContentDisableRequested
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageChatHasProtectedContentToggled":
 		var obj MessageChatHasProtectedContentToggled
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageChatJoinByLink":
 		var obj MessageChatJoinByLink
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageChatJoinByRequest":
 		var obj MessageChatJoinByRequest
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageChatOwnerChanged":
 		var obj MessageChatOwnerChanged
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageChatOwnerLeft":
 		var obj MessageChatOwnerLeft
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageChatSetBackground":
 		var obj MessageChatSetBackground
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageChatSetMessageAutoDeleteTime":
 		var obj MessageChatSetMessageAutoDeleteTime
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageChatSetTheme":
 		var obj MessageChatSetTheme
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageChatShared":
 		var obj MessageChatShared
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageChatUpgradeFrom":
 		var obj MessageChatUpgradeFrom
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageChatUpgradeTo":
 		var obj MessageChatUpgradeTo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageChecklist":
 		var obj MessageChecklist
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageChecklistTasksAdded":
 		var obj MessageChecklistTasksAdded
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageChecklistTasksDone":
 		var obj MessageChecklistTasksDone
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageContact":
 		var obj MessageContact
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageContactRegistered":
 		var obj MessageContactRegistered
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageCopyOptions":
 		var obj MessageCopyOptions
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageCustomServiceAction":
 		var obj MessageCustomServiceAction
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageDice":
 		var obj MessageDice
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageDirectMessagePriceChanged":
 		var obj MessageDirectMessagePriceChanged
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageDocument":
 		var obj MessageDocument
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageEffect":
 		var obj MessageEffect
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageEffectTypeEmojiReaction":
 		var obj MessageEffectTypeEmojiReaction
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageEffectTypePremiumSticker":
 		var obj MessageEffectTypePremiumSticker
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageExpiredPhoto":
 		var obj MessageExpiredPhoto
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageExpiredVideo":
 		var obj MessageExpiredVideo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageExpiredVideoNote":
 		var obj MessageExpiredVideoNote
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageExpiredVoiceNote":
 		var obj MessageExpiredVoiceNote
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageFileTypeGroup":
 		var obj MessageFileTypeGroup
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageFileTypePrivate":
 		var obj MessageFileTypePrivate
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageFileTypeUnknown":
 		var obj MessageFileTypeUnknown
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageForumTopicCreated":
 		var obj MessageForumTopicCreated
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageForumTopicEdited":
 		var obj MessageForumTopicEdited
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageForumTopicIsClosedToggled":
 		var obj MessageForumTopicIsClosedToggled
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageForumTopicIsHiddenToggled":
 		var obj MessageForumTopicIsHiddenToggled
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageForwardInfo":
 		var obj MessageForwardInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageGame":
 		var obj MessageGame
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageGameScore":
 		var obj MessageGameScore
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageGift":
 		var obj MessageGift
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageGiftedPremium":
 		var obj MessageGiftedPremium
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageGiftedStars":
 		var obj MessageGiftedStars
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageGiftedTon":
 		var obj MessageGiftedTon
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageGiveaway":
 		var obj MessageGiveaway
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageGiveawayCompleted":
 		var obj MessageGiveawayCompleted
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageGiveawayCreated":
 		var obj MessageGiveawayCreated
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageGiveawayPrizeStars":
 		var obj MessageGiveawayPrizeStars
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageGiveawayWinners":
 		var obj MessageGiveawayWinners
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageGroupCall":
 		var obj MessageGroupCall
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageImportInfo":
 		var obj MessageImportInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageInteractionInfo":
 		var obj MessageInteractionInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageInviteVideoChatParticipants":
 		var obj MessageInviteVideoChatParticipants
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageInvoice":
 		var obj MessageInvoice
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageLink":
 		var obj MessageLink
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageLinkInfo":
 		var obj MessageLinkInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageLocation":
 		var obj MessageLocation
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageOriginChannel":
 		var obj MessageOriginChannel
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageOriginChat":
 		var obj MessageOriginChat
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageOriginHiddenUser":
 		var obj MessageOriginHiddenUser
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageOriginUser":
 		var obj MessageOriginUser
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messagePaidMedia":
 		var obj MessagePaidMedia
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messagePaidMessagePriceChanged":
 		var obj MessagePaidMessagePriceChanged
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messagePaidMessagesRefunded":
 		var obj MessagePaidMessagesRefunded
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messagePassportDataReceived":
 		var obj MessagePassportDataReceived
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messagePassportDataSent":
 		var obj MessagePassportDataSent
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messagePaymentRefunded":
 		var obj MessagePaymentRefunded
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messagePaymentSuccessful":
 		var obj MessagePaymentSuccessful
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messagePaymentSuccessfulBot":
 		var obj MessagePaymentSuccessfulBot
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messagePhoto":
 		var obj MessagePhoto
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messagePinMessage":
 		var obj MessagePinMessage
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messagePoll":
 		var obj MessagePoll
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messagePosition":
 		var obj MessagePosition
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messagePositions":
 		var obj MessagePositions
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messagePremiumGiftCode":
 		var obj MessagePremiumGiftCode
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageProperties":
 		var obj MessageProperties
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageProximityAlertTriggered":
 		var obj MessageProximityAlertTriggered
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageReaction":
 		var obj MessageReaction
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageReactions":
 		var obj MessageReactions
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageReadDateMyPrivacyRestricted":
 		var obj MessageReadDateMyPrivacyRestricted
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageReadDateRead":
 		var obj MessageReadDateRead
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageReadDateTooOld":
 		var obj MessageReadDateTooOld
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageReadDateUnread":
 		var obj MessageReadDateUnread
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageReadDateUserPrivacyRestricted":
 		var obj MessageReadDateUserPrivacyRestricted
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageRefundedUpgradedGift":
 		var obj MessageRefundedUpgradedGift
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageReplyInfo":
 		var obj MessageReplyInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageReplyToMessage":
 		var obj MessageReplyToMessage
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageReplyToStory":
 		var obj MessageReplyToStory
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messages":
 		var obj Messages
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageSchedulingStateSendAtDate":
 		var obj MessageSchedulingStateSendAtDate
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageSchedulingStateSendWhenOnline":
 		var obj MessageSchedulingStateSendWhenOnline
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageSchedulingStateSendWhenVideoProcessed":
 		var obj MessageSchedulingStateSendWhenVideoProcessed
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageScreenshotTaken":
 		var obj MessageScreenshotTaken
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageSelfDestructTypeImmediately":
 		var obj MessageSelfDestructTypeImmediately
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageSelfDestructTypeTimer":
 		var obj MessageSelfDestructTypeTimer
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageSenderChat":
 		var obj MessageSenderChat
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageSenders":
 		var obj MessageSenders
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageSenderUser":
 		var obj MessageSenderUser
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageSendingStateFailed":
 		var obj MessageSendingStateFailed
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageSendingStatePending":
 		var obj MessageSendingStatePending
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageSendOptions":
 		var obj MessageSendOptions
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageSourceChatEventLog":
 		var obj MessageSourceChatEventLog
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageSourceChatHistory":
 		var obj MessageSourceChatHistory
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageSourceChatList":
 		var obj MessageSourceChatList
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageSourceDirectMessagesChatTopicHistory":
 		var obj MessageSourceDirectMessagesChatTopicHistory
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageSourceForumTopicHistory":
 		var obj MessageSourceForumTopicHistory
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageSourceHistoryPreview":
 		var obj MessageSourceHistoryPreview
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageSourceMessageThreadHistory":
 		var obj MessageSourceMessageThreadHistory
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageSourceNotification":
 		var obj MessageSourceNotification
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageSourceOther":
 		var obj MessageSourceOther
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageSourceScreenshot":
 		var obj MessageSourceScreenshot
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageSourceSearch":
 		var obj MessageSourceSearch
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageStakeDice":
 		var obj MessageStakeDice
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageStatistics":
 		var obj MessageStatistics
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageSticker":
 		var obj MessageSticker
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageStory":
 		var obj MessageStory
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageSuggestBirthdate":
 		var obj MessageSuggestBirthdate
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageSuggestedPostApprovalFailed":
 		var obj MessageSuggestedPostApprovalFailed
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageSuggestedPostApproved":
 		var obj MessageSuggestedPostApproved
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageSuggestedPostDeclined":
 		var obj MessageSuggestedPostDeclined
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageSuggestedPostPaid":
 		var obj MessageSuggestedPostPaid
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageSuggestedPostRefunded":
 		var obj MessageSuggestedPostRefunded
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageSuggestProfilePhoto":
 		var obj MessageSuggestProfilePhoto
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageSupergroupChatCreate":
 		var obj MessageSupergroupChatCreate
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageText":
 		var obj MessageText
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageThreadInfo":
 		var obj MessageThreadInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageTopicDirectMessages":
 		var obj MessageTopicDirectMessages
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageTopicForum":
 		var obj MessageTopicForum
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageTopicSavedMessages":
 		var obj MessageTopicSavedMessages
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageTopicThread":
 		var obj MessageTopicThread
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageUnsupported":
 		var obj MessageUnsupported
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageUpgradedGift":
 		var obj MessageUpgradedGift
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageUpgradedGiftPurchaseOffer":
 		var obj MessageUpgradedGiftPurchaseOffer
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageUpgradedGiftPurchaseOfferRejected":
 		var obj MessageUpgradedGiftPurchaseOfferRejected
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageUsersShared":
 		var obj MessageUsersShared
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageVenue":
 		var obj MessageVenue
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageVideo":
 		var obj MessageVideo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageVideoChatEnded":
 		var obj MessageVideoChatEnded
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageVideoChatScheduled":
 		var obj MessageVideoChatScheduled
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageVideoChatStarted":
 		var obj MessageVideoChatStarted
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageVideoNote":
 		var obj MessageVideoNote
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageViewer":
 		var obj MessageViewer
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageViewers":
 		var obj MessageViewers
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageVoiceNote":
 		var obj MessageVoiceNote
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageWebAppDataReceived":
 		var obj MessageWebAppDataReceived
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageWebAppDataSent":
 		var obj MessageWebAppDataSent
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "minithumbnail":
 		var obj Minithumbnail
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "networkStatistics":
 		var obj NetworkStatistics
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "networkStatisticsEntryCall":
 		var obj NetworkStatisticsEntryCall
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "networkStatisticsEntryFile":
 		var obj NetworkStatisticsEntryFile
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "networkTypeMobile":
 		var obj NetworkTypeMobile
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "networkTypeMobileRoaming":
 		var obj NetworkTypeMobileRoaming
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "networkTypeNone":
 		var obj NetworkTypeNone
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "networkTypeOther":
 		var obj NetworkTypeOther
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "networkTypeWiFi":
 		var obj NetworkTypeWiFi
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "newChatPrivacySettings":
 		var obj NewChatPrivacySettings
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "notification":
 		var obj Notification
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "notificationGroup":
 		var obj NotificationGroup
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "notificationGroupTypeCalls":
 		var obj NotificationGroupTypeCalls
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "notificationGroupTypeMentions":
 		var obj NotificationGroupTypeMentions
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "notificationGroupTypeMessages":
 		var obj NotificationGroupTypeMessages
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "notificationGroupTypeSecretChat":
 		var obj NotificationGroupTypeSecretChat
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "notificationSettingsScopeChannelChats":
 		var obj NotificationSettingsScopeChannelChats
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "notificationSettingsScopeGroupChats":
 		var obj NotificationSettingsScopeGroupChats
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "notificationSettingsScopePrivateChats":
 		var obj NotificationSettingsScopePrivateChats
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "notificationSound":
 		var obj NotificationSound
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "notificationSounds":
 		var obj NotificationSounds
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "notificationTypeNewCall":
 		var obj NotificationTypeNewCall
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "notificationTypeNewMessage":
 		var obj NotificationTypeNewMessage
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "notificationTypeNewPushMessage":
 		var obj NotificationTypeNewPushMessage
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "notificationTypeNewSecretChat":
 		var obj NotificationTypeNewSecretChat
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "oauthLinkInfo":
 		var obj OauthLinkInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "ok":
 		var obj Ok
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "optionValueBoolean":
 		var obj OptionValueBoolean
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "optionValueEmpty":
 		var obj OptionValueEmpty
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "optionValueInteger":
 		var obj OptionValueInteger
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "optionValueString":
 		var obj OptionValueString
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "orderInfo":
 		var obj OrderInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "outline":
 		var obj Outline
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pageBlockAnchor":
 		var obj PageBlockAnchor
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pageBlockAnimation":
 		var obj PageBlockAnimation
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pageBlockAudio":
 		var obj PageBlockAudio
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pageBlockAuthorDate":
 		var obj PageBlockAuthorDate
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pageBlockBlockQuote":
 		var obj PageBlockBlockQuote
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pageBlockCaption":
 		var obj PageBlockCaption
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pageBlockChatLink":
 		var obj PageBlockChatLink
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pageBlockCollage":
 		var obj PageBlockCollage
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pageBlockCover":
 		var obj PageBlockCover
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pageBlockDetails":
 		var obj PageBlockDetails
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pageBlockDivider":
 		var obj PageBlockDivider
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pageBlockEmbedded":
 		var obj PageBlockEmbedded
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pageBlockEmbeddedPost":
 		var obj PageBlockEmbeddedPost
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pageBlockFooter":
 		var obj PageBlockFooter
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pageBlockHeader":
 		var obj PageBlockHeader
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pageBlockHorizontalAlignmentCenter":
 		var obj PageBlockHorizontalAlignmentCenter
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pageBlockHorizontalAlignmentLeft":
 		var obj PageBlockHorizontalAlignmentLeft
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pageBlockHorizontalAlignmentRight":
 		var obj PageBlockHorizontalAlignmentRight
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pageBlockKicker":
 		var obj PageBlockKicker
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pageBlockList":
 		var obj PageBlockList
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pageBlockListItem":
 		var obj PageBlockListItem
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pageBlockMap":
 		var obj PageBlockMap
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pageBlockParagraph":
 		var obj PageBlockParagraph
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pageBlockPhoto":
 		var obj PageBlockPhoto
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pageBlockPreformatted":
 		var obj PageBlockPreformatted
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pageBlockPullQuote":
 		var obj PageBlockPullQuote
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pageBlockRelatedArticle":
 		var obj PageBlockRelatedArticle
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pageBlockRelatedArticles":
 		var obj PageBlockRelatedArticles
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pageBlockSlideshow":
 		var obj PageBlockSlideshow
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pageBlockSubheader":
 		var obj PageBlockSubheader
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pageBlockSubtitle":
 		var obj PageBlockSubtitle
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pageBlockTable":
 		var obj PageBlockTable
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pageBlockTableCell":
 		var obj PageBlockTableCell
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pageBlockTitle":
 		var obj PageBlockTitle
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pageBlockVerticalAlignmentBottom":
 		var obj PageBlockVerticalAlignmentBottom
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pageBlockVerticalAlignmentMiddle":
 		var obj PageBlockVerticalAlignmentMiddle
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pageBlockVerticalAlignmentTop":
 		var obj PageBlockVerticalAlignmentTop
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pageBlockVideo":
 		var obj PageBlockVideo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pageBlockVoiceNote":
 		var obj PageBlockVoiceNote
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "paidMediaPhoto":
 		var obj PaidMediaPhoto
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "paidMediaPreview":
 		var obj PaidMediaPreview
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "paidMediaUnsupported":
 		var obj PaidMediaUnsupported
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "paidMediaVideo":
 		var obj PaidMediaVideo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "paidReactionTypeAnonymous":
 		var obj PaidReactionTypeAnonymous
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "paidReactionTypeChat":
 		var obj PaidReactionTypeChat
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "paidReactionTypeRegular":
 		var obj PaidReactionTypeRegular
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "paidReactor":
 		var obj PaidReactor
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "passkey":
 		var obj Passkey
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "passkeys":
 		var obj Passkeys
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "passportAuthorizationForm":
 		var obj PassportAuthorizationForm
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "passportElementAddress":
 		var obj PassportElementAddress
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "passportElementBankStatement":
 		var obj PassportElementBankStatement
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "passportElementDriverLicense":
 		var obj PassportElementDriverLicense
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "passportElementEmailAddress":
 		var obj PassportElementEmailAddress
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "passportElementError":
 		var obj PassportElementError
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "passportElementErrorSourceDataField":
 		var obj PassportElementErrorSourceDataField
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "passportElementErrorSourceFile":
 		var obj PassportElementErrorSourceFile
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "passportElementErrorSourceFiles":
 		var obj PassportElementErrorSourceFiles
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "passportElementErrorSourceFrontSide":
 		var obj PassportElementErrorSourceFrontSide
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "passportElementErrorSourceReverseSide":
 		var obj PassportElementErrorSourceReverseSide
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "passportElementErrorSourceSelfie":
 		var obj PassportElementErrorSourceSelfie
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "passportElementErrorSourceTranslationFile":
 		var obj PassportElementErrorSourceTranslationFile
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "passportElementErrorSourceTranslationFiles":
 		var obj PassportElementErrorSourceTranslationFiles
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "passportElementErrorSourceUnspecified":
 		var obj PassportElementErrorSourceUnspecified
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "passportElementIdentityCard":
 		var obj PassportElementIdentityCard
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "passportElementInternalPassport":
 		var obj PassportElementInternalPassport
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "passportElementPassport":
 		var obj PassportElementPassport
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "passportElementPassportRegistration":
 		var obj PassportElementPassportRegistration
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "passportElementPersonalDetails":
 		var obj PassportElementPersonalDetails
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "passportElementPhoneNumber":
 		var obj PassportElementPhoneNumber
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "passportElementRentalAgreement":
 		var obj PassportElementRentalAgreement
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "passportElements":
 		var obj PassportElements
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "passportElementsWithErrors":
 		var obj PassportElementsWithErrors
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "passportElementTemporaryRegistration":
 		var obj PassportElementTemporaryRegistration
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "passportElementTypeAddress":
 		var obj PassportElementTypeAddress
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "passportElementTypeBankStatement":
 		var obj PassportElementTypeBankStatement
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "passportElementTypeDriverLicense":
 		var obj PassportElementTypeDriverLicense
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "passportElementTypeEmailAddress":
 		var obj PassportElementTypeEmailAddress
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "passportElementTypeIdentityCard":
 		var obj PassportElementTypeIdentityCard
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "passportElementTypeInternalPassport":
 		var obj PassportElementTypeInternalPassport
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "passportElementTypePassport":
 		var obj PassportElementTypePassport
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "passportElementTypePassportRegistration":
 		var obj PassportElementTypePassportRegistration
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "passportElementTypePersonalDetails":
 		var obj PassportElementTypePersonalDetails
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "passportElementTypePhoneNumber":
 		var obj PassportElementTypePhoneNumber
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "passportElementTypeRentalAgreement":
 		var obj PassportElementTypeRentalAgreement
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "passportElementTypeTemporaryRegistration":
 		var obj PassportElementTypeTemporaryRegistration
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "passportElementTypeUtilityBill":
 		var obj PassportElementTypeUtilityBill
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "passportElementUtilityBill":
 		var obj PassportElementUtilityBill
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "passportRequiredElement":
 		var obj PassportRequiredElement
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "passportSuitableElement":
 		var obj PassportSuitableElement
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "passwordState":
 		var obj PasswordState
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "paymentForm":
 		var obj PaymentForm
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "paymentFormTypeRegular":
 		var obj PaymentFormTypeRegular
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "paymentFormTypeStars":
 		var obj PaymentFormTypeStars
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "paymentFormTypeStarSubscription":
 		var obj PaymentFormTypeStarSubscription
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "paymentOption":
 		var obj PaymentOption
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "paymentProviderOther":
 		var obj PaymentProviderOther
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "paymentProviderSmartGlocal":
 		var obj PaymentProviderSmartGlocal
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "paymentProviderStripe":
 		var obj PaymentProviderStripe
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "paymentReceipt":
 		var obj PaymentReceipt
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "paymentReceiptTypeRegular":
 		var obj PaymentReceiptTypeRegular
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "paymentReceiptTypeStars":
 		var obj PaymentReceiptTypeStars
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "paymentResult":
 		var obj PaymentResult
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "personalDetails":
 		var obj PersonalDetails
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "personalDocument":
 		var obj PersonalDocument
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "phoneNumberAuthenticationSettings":
 		var obj PhoneNumberAuthenticationSettings
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "phoneNumberCodeTypeChange":
 		var obj PhoneNumberCodeTypeChange
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "phoneNumberCodeTypeConfirmOwnership":
 		var obj PhoneNumberCodeTypeConfirmOwnership
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "phoneNumberCodeTypeVerify":
 		var obj PhoneNumberCodeTypeVerify
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "phoneNumberInfo":
 		var obj PhoneNumberInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "photo":
 		var obj Photo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "photoSize":
 		var obj PhotoSize
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "point":
 		var obj Point
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "poll":
 		var obj Poll
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pollOption":
 		var obj PollOption
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pollTypeQuiz":
 		var obj PollTypeQuiz
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pollTypeRegular":
 		var obj PollTypeRegular
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pollVoter":
 		var obj PollVoter
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pollVoters":
 		var obj PollVoters
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumFeatureAccentColor":
 		var obj PremiumFeatureAccentColor
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumFeatureAdvancedChatManagement":
 		var obj PremiumFeatureAdvancedChatManagement
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumFeatureAnimatedProfilePhoto":
 		var obj PremiumFeatureAnimatedProfilePhoto
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumFeatureAppIcons":
 		var obj PremiumFeatureAppIcons
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumFeatureBackgroundForBoth":
 		var obj PremiumFeatureBackgroundForBoth
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumFeatureBusiness":
 		var obj PremiumFeatureBusiness
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumFeatureChatBoost":
 		var obj PremiumFeatureChatBoost
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumFeatureChecklists":
 		var obj PremiumFeatureChecklists
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumFeatureCustomEmoji":
 		var obj PremiumFeatureCustomEmoji
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumFeatureDisabledAds":
 		var obj PremiumFeatureDisabledAds
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumFeatureEmojiStatus":
 		var obj PremiumFeatureEmojiStatus
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumFeatureForumTopicIcon":
 		var obj PremiumFeatureForumTopicIcon
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumFeatureImprovedDownloadSpeed":
 		var obj PremiumFeatureImprovedDownloadSpeed
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumFeatureIncreasedLimits":
 		var obj PremiumFeatureIncreasedLimits
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumFeatureIncreasedUploadFileSize":
 		var obj PremiumFeatureIncreasedUploadFileSize
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumFeatureLastSeenTimes":
 		var obj PremiumFeatureLastSeenTimes
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumFeatureMessageEffects":
 		var obj PremiumFeatureMessageEffects
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumFeatureMessagePrivacy":
 		var obj PremiumFeatureMessagePrivacy
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumFeaturePaidMessages":
 		var obj PremiumFeaturePaidMessages
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumFeatureProfileBadge":
 		var obj PremiumFeatureProfileBadge
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumFeaturePromotionAnimation":
 		var obj PremiumFeaturePromotionAnimation
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumFeatureProtectPrivateChatContent":
 		var obj PremiumFeatureProtectPrivateChatContent
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumFeatureRealTimeChatTranslation":
 		var obj PremiumFeatureRealTimeChatTranslation
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumFeatures":
 		var obj PremiumFeatures
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumFeatureSavedMessagesTags":
 		var obj PremiumFeatureSavedMessagesTags
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumFeatureUniqueReactions":
 		var obj PremiumFeatureUniqueReactions
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumFeatureUniqueStickers":
 		var obj PremiumFeatureUniqueStickers
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumFeatureUpgradedStories":
 		var obj PremiumFeatureUpgradedStories
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumFeatureVoiceRecognition":
 		var obj PremiumFeatureVoiceRecognition
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumGiftCodeInfo":
 		var obj PremiumGiftCodeInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumGiftPaymentOption":
 		var obj PremiumGiftPaymentOption
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumGiftPaymentOptions":
 		var obj PremiumGiftPaymentOptions
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumGiveawayPaymentOption":
 		var obj PremiumGiveawayPaymentOption
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumGiveawayPaymentOptions":
 		var obj PremiumGiveawayPaymentOptions
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumLimit":
 		var obj PremiumLimit
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumLimitTypeActiveStoryCount":
 		var obj PremiumLimitTypeActiveStoryCount
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumLimitTypeBioLength":
 		var obj PremiumLimitTypeBioLength
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumLimitTypeCaptionLength":
 		var obj PremiumLimitTypeCaptionLength
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumLimitTypeChatFolderChosenChatCount":
 		var obj PremiumLimitTypeChatFolderChosenChatCount
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumLimitTypeChatFolderCount":
 		var obj PremiumLimitTypeChatFolderCount
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumLimitTypeChatFolderInviteLinkCount":
 		var obj PremiumLimitTypeChatFolderInviteLinkCount
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumLimitTypeCreatedPublicChatCount":
 		var obj PremiumLimitTypeCreatedPublicChatCount
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumLimitTypeFavoriteStickerCount":
 		var obj PremiumLimitTypeFavoriteStickerCount
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumLimitTypeMonthlyPostedStoryCount":
 		var obj PremiumLimitTypeMonthlyPostedStoryCount
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumLimitTypePinnedArchivedChatCount":
 		var obj PremiumLimitTypePinnedArchivedChatCount
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumLimitTypePinnedChatCount":
 		var obj PremiumLimitTypePinnedChatCount
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumLimitTypePinnedSavedMessagesTopicCount":
 		var obj PremiumLimitTypePinnedSavedMessagesTopicCount
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumLimitTypeSavedAnimationCount":
 		var obj PremiumLimitTypeSavedAnimationCount
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumLimitTypeShareableChatFolderCount":
 		var obj PremiumLimitTypeShareableChatFolderCount
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumLimitTypeSimilarChatCount":
 		var obj PremiumLimitTypeSimilarChatCount
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumLimitTypeStoryCaptionLength":
 		var obj PremiumLimitTypeStoryCaptionLength
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumLimitTypeStorySuggestedReactionAreaCount":
 		var obj PremiumLimitTypeStorySuggestedReactionAreaCount
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumLimitTypeSupergroupCount":
 		var obj PremiumLimitTypeSupergroupCount
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumLimitTypeWeeklyPostedStoryCount":
 		var obj PremiumLimitTypeWeeklyPostedStoryCount
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumPaymentOption":
 		var obj PremiumPaymentOption
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumSourceBusinessFeature":
 		var obj PremiumSourceBusinessFeature
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumSourceFeature":
 		var obj PremiumSourceFeature
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumSourceLimitExceeded":
 		var obj PremiumSourceLimitExceeded
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumSourceLink":
 		var obj PremiumSourceLink
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumSourceSettings":
 		var obj PremiumSourceSettings
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumSourceStoryFeature":
 		var obj PremiumSourceStoryFeature
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumState":
 		var obj PremiumState
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumStatePaymentOption":
 		var obj PremiumStatePaymentOption
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumStoryFeatureCustomExpirationDuration":
 		var obj PremiumStoryFeatureCustomExpirationDuration
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumStoryFeatureLinksAndFormatting":
 		var obj PremiumStoryFeatureLinksAndFormatting
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumStoryFeaturePermanentViewsHistory":
 		var obj PremiumStoryFeaturePermanentViewsHistory
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumStoryFeaturePriorityOrder":
 		var obj PremiumStoryFeaturePriorityOrder
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumStoryFeatureSaveStories":
 		var obj PremiumStoryFeatureSaveStories
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumStoryFeatureStealthMode":
 		var obj PremiumStoryFeatureStealthMode
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumStoryFeatureVideoQuality":
 		var obj PremiumStoryFeatureVideoQuality
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "prepaidGiveaway":
 		var obj PrepaidGiveaway
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "preparedInlineMessage":
 		var obj PreparedInlineMessage
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "preparedInlineMessageId":
 		var obj PreparedInlineMessageId
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "productInfo":
 		var obj ProductInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "profileAccentColor":
 		var obj ProfileAccentColor
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "profileAccentColors":
 		var obj ProfileAccentColors
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "profilePhoto":
 		var obj ProfilePhoto
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "profileTabFiles":
 		var obj ProfileTabFiles
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "profileTabGifs":
 		var obj ProfileTabGifs
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "profileTabGifts":
 		var obj ProfileTabGifts
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "profileTabLinks":
 		var obj ProfileTabLinks
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "profileTabMedia":
 		var obj ProfileTabMedia
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "profileTabMusic":
 		var obj ProfileTabMusic
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "profileTabPosts":
 		var obj ProfileTabPosts
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "profileTabVoice":
 		var obj ProfileTabVoice
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "proxy":
 		var obj Proxy
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "proxyTypeHttp":
 		var obj ProxyTypeHttp
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "proxyTypeMtproto":
 		var obj ProxyTypeMtproto
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "proxyTypeSocks5":
 		var obj ProxyTypeSocks5
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "publicChatTypeHasUsername":
 		var obj PublicChatTypeHasUsername
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "publicChatTypeIsLocationBased":
 		var obj PublicChatTypeIsLocationBased
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "publicForwardMessage":
 		var obj PublicForwardMessage
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "publicForwards":
 		var obj PublicForwards
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "publicForwardStory":
 		var obj PublicForwardStory
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "publicPostSearchLimits":
 		var obj PublicPostSearchLimits
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pushMessageContentAnimation":
 		var obj PushMessageContentAnimation
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pushMessageContentAudio":
 		var obj PushMessageContentAudio
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pushMessageContentBasicGroupChatCreate":
 		var obj PushMessageContentBasicGroupChatCreate
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pushMessageContentChatAddMembers":
 		var obj PushMessageContentChatAddMembers
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pushMessageContentChatChangePhoto":
 		var obj PushMessageContentChatChangePhoto
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pushMessageContentChatChangeTitle":
 		var obj PushMessageContentChatChangeTitle
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pushMessageContentChatDeleteMember":
 		var obj PushMessageContentChatDeleteMember
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pushMessageContentChatJoinByLink":
 		var obj PushMessageContentChatJoinByLink
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pushMessageContentChatJoinByRequest":
 		var obj PushMessageContentChatJoinByRequest
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pushMessageContentChatSetBackground":
 		var obj PushMessageContentChatSetBackground
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pushMessageContentChatSetTheme":
 		var obj PushMessageContentChatSetTheme
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pushMessageContentChecklist":
 		var obj PushMessageContentChecklist
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pushMessageContentChecklistTasksAdded":
 		var obj PushMessageContentChecklistTasksAdded
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pushMessageContentChecklistTasksDone":
 		var obj PushMessageContentChecklistTasksDone
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pushMessageContentContact":
 		var obj PushMessageContentContact
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pushMessageContentContactRegistered":
 		var obj PushMessageContentContactRegistered
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pushMessageContentDocument":
 		var obj PushMessageContentDocument
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pushMessageContentGame":
 		var obj PushMessageContentGame
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pushMessageContentGameScore":
 		var obj PushMessageContentGameScore
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pushMessageContentGift":
 		var obj PushMessageContentGift
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pushMessageContentGiveaway":
 		var obj PushMessageContentGiveaway
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pushMessageContentHidden":
 		var obj PushMessageContentHidden
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pushMessageContentInviteVideoChatParticipants":
 		var obj PushMessageContentInviteVideoChatParticipants
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pushMessageContentInvoice":
 		var obj PushMessageContentInvoice
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pushMessageContentLocation":
 		var obj PushMessageContentLocation
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pushMessageContentMediaAlbum":
 		var obj PushMessageContentMediaAlbum
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pushMessageContentMessageForwards":
 		var obj PushMessageContentMessageForwards
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pushMessageContentPaidMedia":
 		var obj PushMessageContentPaidMedia
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pushMessageContentPhoto":
 		var obj PushMessageContentPhoto
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pushMessageContentPoll":
 		var obj PushMessageContentPoll
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pushMessageContentPremiumGiftCode":
 		var obj PushMessageContentPremiumGiftCode
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pushMessageContentProximityAlertTriggered":
 		var obj PushMessageContentProximityAlertTriggered
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pushMessageContentRecurringPayment":
 		var obj PushMessageContentRecurringPayment
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pushMessageContentScreenshotTaken":
 		var obj PushMessageContentScreenshotTaken
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pushMessageContentSticker":
 		var obj PushMessageContentSticker
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pushMessageContentStory":
 		var obj PushMessageContentStory
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pushMessageContentSuggestBirthdate":
 		var obj PushMessageContentSuggestBirthdate
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pushMessageContentSuggestProfilePhoto":
 		var obj PushMessageContentSuggestProfilePhoto
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pushMessageContentText":
 		var obj PushMessageContentText
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pushMessageContentUpgradedGift":
 		var obj PushMessageContentUpgradedGift
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pushMessageContentVideo":
 		var obj PushMessageContentVideo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pushMessageContentVideoChatEnded":
 		var obj PushMessageContentVideoChatEnded
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pushMessageContentVideoChatStarted":
 		var obj PushMessageContentVideoChatStarted
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pushMessageContentVideoNote":
 		var obj PushMessageContentVideoNote
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pushMessageContentVoiceNote":
 		var obj PushMessageContentVoiceNote
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pushReceiverId":
 		var obj PushReceiverId
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "quickReplyMessage":
 		var obj QuickReplyMessage
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "quickReplyMessages":
 		var obj QuickReplyMessages
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "quickReplyShortcut":
 		var obj QuickReplyShortcut
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "reactionNotificationSettings":
 		var obj ReactionNotificationSettings
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "reactionNotificationSourceAll":
 		var obj ReactionNotificationSourceAll
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "reactionNotificationSourceContacts":
 		var obj ReactionNotificationSourceContacts
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "reactionNotificationSourceNone":
 		var obj ReactionNotificationSourceNone
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "reactionTypeCustomEmoji":
 		var obj ReactionTypeCustomEmoji
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "reactionTypeEmoji":
 		var obj ReactionTypeEmoji
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "reactionTypePaid":
 		var obj ReactionTypePaid
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "reactionUnavailabilityReasonAnonymousAdministrator":
 		var obj ReactionUnavailabilityReasonAnonymousAdministrator
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "reactionUnavailabilityReasonGuest":
 		var obj ReactionUnavailabilityReasonGuest
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "readDatePrivacySettings":
 		var obj ReadDatePrivacySettings
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "receivedGift":
 		var obj ReceivedGift
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "receivedGifts":
 		var obj ReceivedGifts
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "recommendedChatFolder":
 		var obj RecommendedChatFolder
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "recommendedChatFolders":
 		var obj RecommendedChatFolders
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "recoveryEmailAddress":
 		var obj RecoveryEmailAddress
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "remoteFile":
 		var obj RemoteFile
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "replyMarkupForceReply":
 		var obj ReplyMarkupForceReply
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "replyMarkupInlineKeyboard":
 		var obj ReplyMarkupInlineKeyboard
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "replyMarkupRemoveKeyboard":
 		var obj ReplyMarkupRemoveKeyboard
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "replyMarkupShowKeyboard":
 		var obj ReplyMarkupShowKeyboard
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "reportChatResultMessagesRequired":
 		var obj ReportChatResultMessagesRequired
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "reportChatResultOk":
 		var obj ReportChatResultOk
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "reportChatResultOptionRequired":
 		var obj ReportChatResultOptionRequired
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "reportChatResultTextRequired":
 		var obj ReportChatResultTextRequired
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "reportOption":
 		var obj ReportOption
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "reportReasonChildAbuse":
 		var obj ReportReasonChildAbuse
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "reportReasonCopyright":
 		var obj ReportReasonCopyright
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "reportReasonCustom":
 		var obj ReportReasonCustom
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "reportReasonFake":
 		var obj ReportReasonFake
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "reportReasonIllegalDrugs":
 		var obj ReportReasonIllegalDrugs
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "reportReasonPersonalDetails":
 		var obj ReportReasonPersonalDetails
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "reportReasonPornography":
 		var obj ReportReasonPornography
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "reportReasonSpam":
 		var obj ReportReasonSpam
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "reportReasonUnrelatedLocation":
 		var obj ReportReasonUnrelatedLocation
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "reportReasonViolence":
 		var obj ReportReasonViolence
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "reportSponsoredResultAdsHidden":
 		var obj ReportSponsoredResultAdsHidden
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "reportSponsoredResultFailed":
 		var obj ReportSponsoredResultFailed
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "reportSponsoredResultOk":
 		var obj ReportSponsoredResultOk
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "reportSponsoredResultOptionRequired":
 		var obj ReportSponsoredResultOptionRequired
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "reportSponsoredResultPremiumRequired":
 		var obj ReportSponsoredResultPremiumRequired
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "reportStoryResultOk":
 		var obj ReportStoryResultOk
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "reportStoryResultOptionRequired":
 		var obj ReportStoryResultOptionRequired
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "reportStoryResultTextRequired":
 		var obj ReportStoryResultTextRequired
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "resendCodeReasonUserRequest":
 		var obj ResendCodeReasonUserRequest
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "resendCodeReasonVerificationFailed":
 		var obj ResendCodeReasonVerificationFailed
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "resetPasswordResultDeclined":
 		var obj ResetPasswordResultDeclined
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "resetPasswordResultOk":
 		var obj ResetPasswordResultOk
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "resetPasswordResultPending":
 		var obj ResetPasswordResultPending
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "restrictionInfo":
 		var obj RestrictionInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "revenueWithdrawalStateFailed":
 		var obj RevenueWithdrawalStateFailed
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "revenueWithdrawalStatePending":
 		var obj RevenueWithdrawalStatePending
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "revenueWithdrawalStateSucceeded":
 		var obj RevenueWithdrawalStateSucceeded
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "richTextAnchor":
 		var obj RichTextAnchor
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "richTextAnchorLink":
 		var obj RichTextAnchorLink
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "richTextBold":
 		var obj RichTextBold
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "richTextEmailAddress":
 		var obj RichTextEmailAddress
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "richTextFixed":
 		var obj RichTextFixed
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "richTextIcon":
 		var obj RichTextIcon
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "richTextItalic":
 		var obj RichTextItalic
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "richTextMarked":
 		var obj RichTextMarked
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "richTextPhoneNumber":
 		var obj RichTextPhoneNumber
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "richTextPlain":
 		var obj RichTextPlain
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "richTextReference":
 		var obj RichTextReference
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "richTexts":
 		var obj RichTexts
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "richTextStrikethrough":
 		var obj RichTextStrikethrough
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "richTextSubscript":
 		var obj RichTextSubscript
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "richTextSuperscript":
 		var obj RichTextSuperscript
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "richTextUnderline":
 		var obj RichTextUnderline
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "richTextUrl":
 		var obj RichTextUrl
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "rtmpUrl":
 		var obj RtmpUrl
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "savedCredentials":
 		var obj SavedCredentials
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "savedMessagesTag":
 		var obj SavedMessagesTag
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "savedMessagesTags":
 		var obj SavedMessagesTags
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "savedMessagesTopic":
 		var obj SavedMessagesTopic
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "savedMessagesTopicTypeAuthorHidden":
 		var obj SavedMessagesTopicTypeAuthorHidden
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "savedMessagesTopicTypeMyNotes":
 		var obj SavedMessagesTopicTypeMyNotes
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "savedMessagesTopicTypeSavedFromChat":
 		var obj SavedMessagesTopicTypeSavedFromChat
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "scopeAutosaveSettings":
 		var obj ScopeAutosaveSettings
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "scopeNotificationSettings":
 		var obj ScopeNotificationSettings
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "searchMessagesChatTypeFilterChannel":
 		var obj SearchMessagesChatTypeFilterChannel
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "searchMessagesChatTypeFilterGroup":
 		var obj SearchMessagesChatTypeFilterGroup
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "searchMessagesChatTypeFilterPrivate":
 		var obj SearchMessagesChatTypeFilterPrivate
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "searchMessagesFilterAnimation":
 		var obj SearchMessagesFilterAnimation
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "searchMessagesFilterAudio":
 		var obj SearchMessagesFilterAudio
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "searchMessagesFilterChatPhoto":
 		var obj SearchMessagesFilterChatPhoto
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "searchMessagesFilterDocument":
 		var obj SearchMessagesFilterDocument
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "searchMessagesFilterEmpty":
 		var obj SearchMessagesFilterEmpty
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "searchMessagesFilterFailedToSend":
 		var obj SearchMessagesFilterFailedToSend
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "searchMessagesFilterMention":
 		var obj SearchMessagesFilterMention
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "searchMessagesFilterPhoto":
 		var obj SearchMessagesFilterPhoto
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "searchMessagesFilterPhotoAndVideo":
 		var obj SearchMessagesFilterPhotoAndVideo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "searchMessagesFilterPinned":
 		var obj SearchMessagesFilterPinned
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "searchMessagesFilterUnreadMention":
 		var obj SearchMessagesFilterUnreadMention
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "searchMessagesFilterUnreadReaction":
 		var obj SearchMessagesFilterUnreadReaction
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "searchMessagesFilterUrl":
 		var obj SearchMessagesFilterUrl
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "searchMessagesFilterVideo":
 		var obj SearchMessagesFilterVideo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "searchMessagesFilterVideoNote":
 		var obj SearchMessagesFilterVideoNote
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "searchMessagesFilterVoiceAndVideoNote":
 		var obj SearchMessagesFilterVoiceAndVideoNote
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "searchMessagesFilterVoiceNote":
 		var obj SearchMessagesFilterVoiceNote
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "seconds":
 		var obj Seconds
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "secretChat":
 		var obj SecretChat
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "secretChatStateClosed":
 		var obj SecretChatStateClosed
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "secretChatStatePending":
 		var obj SecretChatStatePending
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "secretChatStateReady":
 		var obj SecretChatStateReady
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "sentGiftRegular":
 		var obj SentGiftRegular
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "sentGiftUpgraded":
 		var obj SentGiftUpgraded
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "sentWebAppMessage":
 		var obj SentWebAppMessage
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "session":
 		var obj Session
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "sessions":
 		var obj Sessions
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "sessionTypeAndroid":
 		var obj SessionTypeAndroid
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "sessionTypeApple":
 		var obj SessionTypeApple
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "sessionTypeBrave":
 		var obj SessionTypeBrave
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "sessionTypeChrome":
 		var obj SessionTypeChrome
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "sessionTypeEdge":
 		var obj SessionTypeEdge
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "sessionTypeFirefox":
 		var obj SessionTypeFirefox
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "sessionTypeIpad":
 		var obj SessionTypeIpad
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "sessionTypeIphone":
 		var obj SessionTypeIphone
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "sessionTypeLinux":
 		var obj SessionTypeLinux
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "sessionTypeMac":
 		var obj SessionTypeMac
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "sessionTypeOpera":
 		var obj SessionTypeOpera
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "sessionTypeSafari":
 		var obj SessionTypeSafari
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "sessionTypeUbuntu":
 		var obj SessionTypeUbuntu
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "sessionTypeUnknown":
 		var obj SessionTypeUnknown
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "sessionTypeVivaldi":
 		var obj SessionTypeVivaldi
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "sessionTypeWindows":
 		var obj SessionTypeWindows
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "sessionTypeXbox":
 		var obj SessionTypeXbox
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "settingsSectionAppearance":
 		var obj SettingsSectionAppearance
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "settingsSectionAskQuestion":
 		var obj SettingsSectionAskQuestion
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "settingsSectionBusiness":
 		var obj SettingsSectionBusiness
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "settingsSectionChatFolders":
 		var obj SettingsSectionChatFolders
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "settingsSectionDataAndStorage":
 		var obj SettingsSectionDataAndStorage
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "settingsSectionDevices":
 		var obj SettingsSectionDevices
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "settingsSectionEditProfile":
 		var obj SettingsSectionEditProfile
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "settingsSectionFaq":
 		var obj SettingsSectionFaq
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "settingsSectionFeatures":
 		var obj SettingsSectionFeatures
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "settingsSectionInAppBrowser":
 		var obj SettingsSectionInAppBrowser
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "settingsSectionLanguage":
 		var obj SettingsSectionLanguage
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "settingsSectionMyStars":
 		var obj SettingsSectionMyStars
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "settingsSectionMyToncoins":
 		var obj SettingsSectionMyToncoins
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "settingsSectionNotifications":
 		var obj SettingsSectionNotifications
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "settingsSectionPowerSaving":
 		var obj SettingsSectionPowerSaving
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "settingsSectionPremium":
 		var obj SettingsSectionPremium
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "settingsSectionPrivacyAndSecurity":
 		var obj SettingsSectionPrivacyAndSecurity
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "settingsSectionPrivacyPolicy":
 		var obj SettingsSectionPrivacyPolicy
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "settingsSectionQrCode":
 		var obj SettingsSectionQrCode
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "settingsSectionSearch":
 		var obj SettingsSectionSearch
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "settingsSectionSendGift":
 		var obj SettingsSectionSendGift
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "sharedChat":
 		var obj SharedChat
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "sharedUser":
 		var obj SharedUser
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "shippingOption":
 		var obj ShippingOption
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "speechRecognitionResultError":
 		var obj SpeechRecognitionResultError
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "speechRecognitionResultPending":
 		var obj SpeechRecognitionResultPending
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "speechRecognitionResultText":
 		var obj SpeechRecognitionResultText
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "sponsoredChat":
 		var obj SponsoredChat
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "sponsoredChats":
 		var obj SponsoredChats
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "sponsoredMessage":
 		var obj SponsoredMessage
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "sponsoredMessages":
 		var obj SponsoredMessages
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "stakeDiceState":
 		var obj StakeDiceState
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starAmount":
 		var obj StarAmount
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starCount":
 		var obj StarCount
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starGiveawayPaymentOption":
 		var obj StarGiveawayPaymentOption
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starGiveawayPaymentOptions":
 		var obj StarGiveawayPaymentOptions
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starGiveawayWinnerOption":
 		var obj StarGiveawayWinnerOption
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starPaymentOption":
 		var obj StarPaymentOption
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starPaymentOptions":
 		var obj StarPaymentOptions
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starRevenueStatistics":
 		var obj StarRevenueStatistics
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starRevenueStatus":
 		var obj StarRevenueStatus
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starSubscription":
 		var obj StarSubscription
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starSubscriptionPricing":
 		var obj StarSubscriptionPricing
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starSubscriptions":
 		var obj StarSubscriptions
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starSubscriptionTypeBot":
 		var obj StarSubscriptionTypeBot
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starSubscriptionTypeChannel":
 		var obj StarSubscriptionTypeChannel
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "startLiveStoryResultFail":
 		var obj StartLiveStoryResultFail
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "startLiveStoryResultOk":
 		var obj StartLiveStoryResultOk
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starTransaction":
 		var obj StarTransaction
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starTransactions":
 		var obj StarTransactions
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starTransactionTypeAffiliateProgramCommission":
 		var obj StarTransactionTypeAffiliateProgramCommission
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starTransactionTypeAppStoreDeposit":
 		var obj StarTransactionTypeAppStoreDeposit
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starTransactionTypeBotInvoicePurchase":
 		var obj StarTransactionTypeBotInvoicePurchase
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starTransactionTypeBotInvoiceSale":
 		var obj StarTransactionTypeBotInvoiceSale
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starTransactionTypeBotPaidMediaPurchase":
 		var obj StarTransactionTypeBotPaidMediaPurchase
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starTransactionTypeBotPaidMediaSale":
 		var obj StarTransactionTypeBotPaidMediaSale
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starTransactionTypeBotSubscriptionPurchase":
 		var obj StarTransactionTypeBotSubscriptionPurchase
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starTransactionTypeBotSubscriptionSale":
 		var obj StarTransactionTypeBotSubscriptionSale
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starTransactionTypeBusinessBotTransferReceive":
 		var obj StarTransactionTypeBusinessBotTransferReceive
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starTransactionTypeBusinessBotTransferSend":
 		var obj StarTransactionTypeBusinessBotTransferSend
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starTransactionTypeChannelPaidMediaPurchase":
 		var obj StarTransactionTypeChannelPaidMediaPurchase
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starTransactionTypeChannelPaidMediaSale":
 		var obj StarTransactionTypeChannelPaidMediaSale
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starTransactionTypeChannelPaidReactionReceive":
 		var obj StarTransactionTypeChannelPaidReactionReceive
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starTransactionTypeChannelPaidReactionSend":
 		var obj StarTransactionTypeChannelPaidReactionSend
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starTransactionTypeChannelSubscriptionPurchase":
 		var obj StarTransactionTypeChannelSubscriptionPurchase
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starTransactionTypeChannelSubscriptionSale":
 		var obj StarTransactionTypeChannelSubscriptionSale
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starTransactionTypeFragmentDeposit":
 		var obj StarTransactionTypeFragmentDeposit
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starTransactionTypeFragmentWithdrawal":
 		var obj StarTransactionTypeFragmentWithdrawal
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starTransactionTypeGiftAuctionBid":
 		var obj StarTransactionTypeGiftAuctionBid
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starTransactionTypeGiftOriginalDetailsDrop":
 		var obj StarTransactionTypeGiftOriginalDetailsDrop
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starTransactionTypeGiftPurchase":
 		var obj StarTransactionTypeGiftPurchase
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starTransactionTypeGiftPurchaseOffer":
 		var obj StarTransactionTypeGiftPurchaseOffer
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starTransactionTypeGiftSale":
 		var obj StarTransactionTypeGiftSale
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starTransactionTypeGiftTransfer":
 		var obj StarTransactionTypeGiftTransfer
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starTransactionTypeGiftUpgrade":
 		var obj StarTransactionTypeGiftUpgrade
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starTransactionTypeGiftUpgradePurchase":
 		var obj StarTransactionTypeGiftUpgradePurchase
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starTransactionTypeGiveawayDeposit":
 		var obj StarTransactionTypeGiveawayDeposit
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starTransactionTypeGooglePlayDeposit":
 		var obj StarTransactionTypeGooglePlayDeposit
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starTransactionTypePaidGroupCallMessageReceive":
 		var obj StarTransactionTypePaidGroupCallMessageReceive
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starTransactionTypePaidGroupCallMessageSend":
 		var obj StarTransactionTypePaidGroupCallMessageSend
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starTransactionTypePaidGroupCallReactionReceive":
 		var obj StarTransactionTypePaidGroupCallReactionReceive
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starTransactionTypePaidGroupCallReactionSend":
 		var obj StarTransactionTypePaidGroupCallReactionSend
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starTransactionTypePaidMessageReceive":
 		var obj StarTransactionTypePaidMessageReceive
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starTransactionTypePaidMessageSend":
 		var obj StarTransactionTypePaidMessageSend
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starTransactionTypePremiumBotDeposit":
 		var obj StarTransactionTypePremiumBotDeposit
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starTransactionTypePremiumPurchase":
 		var obj StarTransactionTypePremiumPurchase
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starTransactionTypePublicPostSearch":
 		var obj StarTransactionTypePublicPostSearch
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starTransactionTypeSuggestedPostPaymentReceive":
 		var obj StarTransactionTypeSuggestedPostPaymentReceive
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starTransactionTypeSuggestedPostPaymentSend":
 		var obj StarTransactionTypeSuggestedPostPaymentSend
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starTransactionTypeTelegramAdsWithdrawal":
 		var obj StarTransactionTypeTelegramAdsWithdrawal
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starTransactionTypeTelegramApiUsage":
 		var obj StarTransactionTypeTelegramApiUsage
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starTransactionTypeUnsupported":
 		var obj StarTransactionTypeUnsupported
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starTransactionTypeUpgradedGiftPurchase":
 		var obj StarTransactionTypeUpgradedGiftPurchase
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starTransactionTypeUpgradedGiftSale":
 		var obj StarTransactionTypeUpgradedGiftSale
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "starTransactionTypeUserDeposit":
 		var obj StarTransactionTypeUserDeposit
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "statisticalGraphAsync":
 		var obj StatisticalGraphAsync
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "statisticalGraphData":
 		var obj StatisticalGraphData
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "statisticalGraphError":
 		var obj StatisticalGraphError
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "statisticalValue":
 		var obj StatisticalValue
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "sticker":
 		var obj Sticker
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "stickerFormatTgs":
 		var obj StickerFormatTgs
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "stickerFormatWebm":
 		var obj StickerFormatWebm
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "stickerFormatWebp":
 		var obj StickerFormatWebp
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "stickerFullTypeCustomEmoji":
 		var obj StickerFullTypeCustomEmoji
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "stickerFullTypeMask":
 		var obj StickerFullTypeMask
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "stickerFullTypeRegular":
 		var obj StickerFullTypeRegular
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "stickers":
 		var obj Stickers
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "stickerSet":
 		var obj StickerSet
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "stickerSetInfo":
 		var obj StickerSetInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "stickerSets":
 		var obj StickerSets
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "stickerTypeCustomEmoji":
 		var obj StickerTypeCustomEmoji
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "stickerTypeMask":
 		var obj StickerTypeMask
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "stickerTypeRegular":
 		var obj StickerTypeRegular
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "storageStatistics":
 		var obj StorageStatistics
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "storageStatisticsByChat":
 		var obj StorageStatisticsByChat
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "storageStatisticsByFileType":
 		var obj StorageStatisticsByFileType
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "storageStatisticsFast":
 		var obj StorageStatisticsFast
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "storePaymentPurposeGiftedStars":
 		var obj StorePaymentPurposeGiftedStars
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "storePaymentPurposePremiumGift":
 		var obj StorePaymentPurposePremiumGift
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "storePaymentPurposePremiumGiftCodes":
 		var obj StorePaymentPurposePremiumGiftCodes
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "storePaymentPurposePremiumGiveaway":
 		var obj StorePaymentPurposePremiumGiveaway
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "storePaymentPurposePremiumSubscription":
 		var obj StorePaymentPurposePremiumSubscription
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "storePaymentPurposeStarGiveaway":
 		var obj StorePaymentPurposeStarGiveaway
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "storePaymentPurposeStars":
 		var obj StorePaymentPurposeStars
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "storeTransactionAppStore":
 		var obj StoreTransactionAppStore
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "storeTransactionGooglePlay":
 		var obj StoreTransactionGooglePlay
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "stories":
 		var obj Stories
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "story":
 		var obj Story
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "storyAlbum":
 		var obj StoryAlbum
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "storyAlbums":
 		var obj StoryAlbums
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "storyArea":
 		var obj StoryArea
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "storyAreaPosition":
 		var obj StoryAreaPosition
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "storyAreaTypeLink":
 		var obj StoryAreaTypeLink
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "storyAreaTypeLocation":
 		var obj StoryAreaTypeLocation
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "storyAreaTypeMessage":
 		var obj StoryAreaTypeMessage
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "storyAreaTypeSuggestedReaction":
 		var obj StoryAreaTypeSuggestedReaction
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "storyAreaTypeUpgradedGift":
 		var obj StoryAreaTypeUpgradedGift
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "storyAreaTypeVenue":
 		var obj StoryAreaTypeVenue
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "storyAreaTypeWeather":
 		var obj StoryAreaTypeWeather
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "storyContentLive":
 		var obj StoryContentLive
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "storyContentPhoto":
 		var obj StoryContentPhoto
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "storyContentTypeLive":
 		var obj StoryContentTypeLive
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "storyContentTypePhoto":
 		var obj StoryContentTypePhoto
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "storyContentTypeUnsupported":
 		var obj StoryContentTypeUnsupported
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "storyContentTypeVideo":
 		var obj StoryContentTypeVideo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "storyContentUnsupported":
 		var obj StoryContentUnsupported
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "storyContentVideo":
 		var obj StoryContentVideo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "storyFullId":
 		var obj StoryFullId
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "storyInfo":
 		var obj StoryInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "storyInteraction":
 		var obj StoryInteraction
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "storyInteractionInfo":
 		var obj StoryInteractionInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "storyInteractions":
 		var obj StoryInteractions
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "storyInteractionTypeForward":
 		var obj StoryInteractionTypeForward
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "storyInteractionTypeRepost":
 		var obj StoryInteractionTypeRepost
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "storyInteractionTypeView":
 		var obj StoryInteractionTypeView
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "storyListArchive":
 		var obj StoryListArchive
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "storyListMain":
 		var obj StoryListMain
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "storyOriginHiddenUser":
 		var obj StoryOriginHiddenUser
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "storyOriginPublicStory":
 		var obj StoryOriginPublicStory
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "storyPrivacySettingsCloseFriends":
 		var obj StoryPrivacySettingsCloseFriends
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "storyPrivacySettingsContacts":
 		var obj StoryPrivacySettingsContacts
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "storyPrivacySettingsEveryone":
 		var obj StoryPrivacySettingsEveryone
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "storyPrivacySettingsSelectedUsers":
 		var obj StoryPrivacySettingsSelectedUsers
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "storyRepostInfo":
 		var obj StoryRepostInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "storyStatistics":
 		var obj StoryStatistics
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "storyVideo":
 		var obj StoryVideo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "suggestedActionAddLoginPasskey":
 		var obj SuggestedActionAddLoginPasskey
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "suggestedActionCheckPassword":
 		var obj SuggestedActionCheckPassword
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "suggestedActionCheckPhoneNumber":
 		var obj SuggestedActionCheckPhoneNumber
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "suggestedActionConvertToBroadcastGroup":
 		var obj SuggestedActionConvertToBroadcastGroup
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "suggestedActionCustom":
 		var obj SuggestedActionCustom
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "suggestedActionEnableArchiveAndMuteNewChats":
 		var obj SuggestedActionEnableArchiveAndMuteNewChats
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "suggestedActionExtendPremium":
 		var obj SuggestedActionExtendPremium
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "suggestedActionExtendStarSubscriptions":
 		var obj SuggestedActionExtendStarSubscriptions
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "suggestedActionGiftPremiumForChristmas":
 		var obj SuggestedActionGiftPremiumForChristmas
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "suggestedActionRestorePremium":
 		var obj SuggestedActionRestorePremium
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "suggestedActionSetBirthdate":
 		var obj SuggestedActionSetBirthdate
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "suggestedActionSetLoginEmailAddress":
 		var obj SuggestedActionSetLoginEmailAddress
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "suggestedActionSetPassword":
 		var obj SuggestedActionSetPassword
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "suggestedActionSetProfilePhoto":
 		var obj SuggestedActionSetProfilePhoto
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "suggestedActionSubscribeToAnnualPremium":
 		var obj SuggestedActionSubscribeToAnnualPremium
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "suggestedActionUpgradePremium":
 		var obj SuggestedActionUpgradePremium
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "suggestedActionViewChecksHint":
 		var obj SuggestedActionViewChecksHint
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "suggestedPostInfo":
 		var obj SuggestedPostInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "suggestedPostPriceStar":
 		var obj SuggestedPostPriceStar
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "suggestedPostPriceTon":
 		var obj SuggestedPostPriceTon
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "suggestedPostRefundReasonPaymentRefunded":
 		var obj SuggestedPostRefundReasonPaymentRefunded
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "suggestedPostRefundReasonPostDeleted":
 		var obj SuggestedPostRefundReasonPostDeleted
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "suggestedPostStateApproved":
 		var obj SuggestedPostStateApproved
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "suggestedPostStateDeclined":
 		var obj SuggestedPostStateDeclined
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "suggestedPostStatePending":
 		var obj SuggestedPostStatePending
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "supergroup":
 		var obj Supergroup
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "supergroupFullInfo":
 		var obj SupergroupFullInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "supergroupMembersFilterAdministrators":
 		var obj SupergroupMembersFilterAdministrators
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "supergroupMembersFilterBanned":
 		var obj SupergroupMembersFilterBanned
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "supergroupMembersFilterBots":
 		var obj SupergroupMembersFilterBots
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "supergroupMembersFilterContacts":
 		var obj SupergroupMembersFilterContacts
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "supergroupMembersFilterMention":
 		var obj SupergroupMembersFilterMention
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "supergroupMembersFilterRecent":
 		var obj SupergroupMembersFilterRecent
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "supergroupMembersFilterRestricted":
 		var obj SupergroupMembersFilterRestricted
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "supergroupMembersFilterSearch":
 		var obj SupergroupMembersFilterSearch
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "targetChatChosen":
 		var obj TargetChatChosen
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "targetChatCurrent":
 		var obj TargetChatCurrent
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "targetChatInternalLink":
 		var obj TargetChatInternalLink
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "targetChatTypes":
 		var obj TargetChatTypes
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "telegramPaymentPurposeGiftedStars":
 		var obj TelegramPaymentPurposeGiftedStars
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "telegramPaymentPurposeJoinChat":
 		var obj TelegramPaymentPurposeJoinChat
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "telegramPaymentPurposePremiumGift":
 		var obj TelegramPaymentPurposePremiumGift
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "telegramPaymentPurposePremiumGiftCodes":
 		var obj TelegramPaymentPurposePremiumGiftCodes
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "telegramPaymentPurposePremiumGiveaway":
 		var obj TelegramPaymentPurposePremiumGiveaway
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "telegramPaymentPurposeStarGiveaway":
 		var obj TelegramPaymentPurposeStarGiveaway
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "telegramPaymentPurposeStars":
 		var obj TelegramPaymentPurposeStars
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "temporaryPasswordState":
 		var obj TemporaryPasswordState
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "termsOfService":
 		var obj TermsOfService
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "testBytes":
 		var obj TestBytes
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "testInt":
 		var obj TestInt
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "testString":
 		var obj TestString
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "testVectorInt":
 		var obj TestVectorInt
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "testVectorIntObject":
 		var obj TestVectorIntObject
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "testVectorString":
 		var obj TestVectorString
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "testVectorStringObject":
 		var obj TestVectorStringObject
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "text":
 		var obj Text
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "textEntities":
 		var obj TextEntities
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "textEntity":
 		var obj TextEntity
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "textEntityTypeBankCardNumber":
 		var obj TextEntityTypeBankCardNumber
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "textEntityTypeBlockQuote":
 		var obj TextEntityTypeBlockQuote
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "textEntityTypeBold":
 		var obj TextEntityTypeBold
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "textEntityTypeBotCommand":
 		var obj TextEntityTypeBotCommand
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "textEntityTypeCashtag":
 		var obj TextEntityTypeCashtag
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "textEntityTypeCode":
 		var obj TextEntityTypeCode
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "textEntityTypeCustomEmoji":
 		var obj TextEntityTypeCustomEmoji
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "textEntityTypeDateTime":
 		var obj TextEntityTypeDateTime
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "textEntityTypeEmailAddress":
 		var obj TextEntityTypeEmailAddress
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "textEntityTypeExpandableBlockQuote":
 		var obj TextEntityTypeExpandableBlockQuote
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "textEntityTypeHashtag":
 		var obj TextEntityTypeHashtag
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "textEntityTypeItalic":
 		var obj TextEntityTypeItalic
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "textEntityTypeMediaTimestamp":
 		var obj TextEntityTypeMediaTimestamp
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "textEntityTypeMention":
 		var obj TextEntityTypeMention
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "textEntityTypeMentionName":
 		var obj TextEntityTypeMentionName
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "textEntityTypePhoneNumber":
 		var obj TextEntityTypePhoneNumber
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "textEntityTypePre":
 		var obj TextEntityTypePre
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "textEntityTypePreCode":
 		var obj TextEntityTypePreCode
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "textEntityTypeSpoiler":
 		var obj TextEntityTypeSpoiler
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "textEntityTypeStrikethrough":
 		var obj TextEntityTypeStrikethrough
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "textEntityTypeTextUrl":
 		var obj TextEntityTypeTextUrl
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "textEntityTypeUnderline":
 		var obj TextEntityTypeUnderline
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "textEntityTypeUrl":
 		var obj TextEntityTypeUrl
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "textParseModeHTML":
 		var obj TextParseModeHTML
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "textParseModeMarkdown":
 		var obj TextParseModeMarkdown
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "textQuote":
 		var obj TextQuote
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "themeParameters":
 		var obj ThemeParameters
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "themeSettings":
 		var obj ThemeSettings
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "thumbnail":
 		var obj Thumbnail
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "thumbnailFormatGif":
 		var obj ThumbnailFormatGif
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "thumbnailFormatJpeg":
 		var obj ThumbnailFormatJpeg
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "thumbnailFormatMpeg4":
 		var obj ThumbnailFormatMpeg4
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "thumbnailFormatPng":
 		var obj ThumbnailFormatPng
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "thumbnailFormatTgs":
 		var obj ThumbnailFormatTgs
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "thumbnailFormatWebm":
 		var obj ThumbnailFormatWebm
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "thumbnailFormatWebp":
 		var obj ThumbnailFormatWebp
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "timeZone":
 		var obj TimeZone
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "timeZones":
 		var obj TimeZones
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "tMeUrl":
 		var obj TMeUrl
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "tMeUrls":
 		var obj TMeUrls
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "tMeUrlTypeChatInvite":
 		var obj TMeUrlTypeChatInvite
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "tMeUrlTypeStickerSet":
 		var obj TMeUrlTypeStickerSet
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "tMeUrlTypeSupergroup":
 		var obj TMeUrlTypeSupergroup
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "tMeUrlTypeUser":
 		var obj TMeUrlTypeUser
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "tonRevenueStatistics":
 		var obj TonRevenueStatistics
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "tonRevenueStatus":
 		var obj TonRevenueStatus
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "tonTransaction":
 		var obj TonTransaction
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "tonTransactions":
 		var obj TonTransactions
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "tonTransactionTypeFragmentDeposit":
 		var obj TonTransactionTypeFragmentDeposit
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "tonTransactionTypeFragmentWithdrawal":
 		var obj TonTransactionTypeFragmentWithdrawal
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "tonTransactionTypeGiftPurchaseOffer":
 		var obj TonTransactionTypeGiftPurchaseOffer
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "tonTransactionTypeStakeDicePayout":
 		var obj TonTransactionTypeStakeDicePayout
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "tonTransactionTypeStakeDiceStake":
 		var obj TonTransactionTypeStakeDiceStake
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "tonTransactionTypeSuggestedPostPayment":
 		var obj TonTransactionTypeSuggestedPostPayment
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "tonTransactionTypeUnsupported":
 		var obj TonTransactionTypeUnsupported
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "tonTransactionTypeUpgradedGiftPurchase":
 		var obj TonTransactionTypeUpgradedGiftPurchase
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "tonTransactionTypeUpgradedGiftSale":
 		var obj TonTransactionTypeUpgradedGiftSale
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "topChatCategoryBots":
 		var obj TopChatCategoryBots
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "topChatCategoryCalls":
 		var obj TopChatCategoryCalls
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "topChatCategoryChannels":
 		var obj TopChatCategoryChannels
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "topChatCategoryForwardChats":
 		var obj TopChatCategoryForwardChats
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "topChatCategoryGroups":
 		var obj TopChatCategoryGroups
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "topChatCategoryInlineBots":
 		var obj TopChatCategoryInlineBots
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "topChatCategoryUsers":
 		var obj TopChatCategoryUsers
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "topChatCategoryWebAppBots":
 		var obj TopChatCategoryWebAppBots
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "transactionDirectionIncoming":
 		var obj TransactionDirectionIncoming
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "transactionDirectionOutgoing":
 		var obj TransactionDirectionOutgoing
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "trendingStickerSets":
 		var obj TrendingStickerSets
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "unconfirmedSession":
 		var obj UnconfirmedSession
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "unreadReaction":
 		var obj UnreadReaction
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateAccentColors":
 		var obj UpdateAccentColors
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateActiveEmojiReactions":
 		var obj UpdateActiveEmojiReactions
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateActiveGiftAuctions":
 		var obj UpdateActiveGiftAuctions
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateActiveLiveLocationMessages":
 		var obj UpdateActiveLiveLocationMessages
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateActiveNotifications":
 		var obj UpdateActiveNotifications
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateAgeVerificationParameters":
 		var obj UpdateAgeVerificationParameters
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateAnimatedEmojiMessageClicked":
 		var obj UpdateAnimatedEmojiMessageClicked
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateAnimationSearchParameters":
 		var obj UpdateAnimationSearchParameters
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateApplicationRecaptchaVerificationRequired":
 		var obj UpdateApplicationRecaptchaVerificationRequired
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateApplicationVerificationRequired":
 		var obj UpdateApplicationVerificationRequired
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateAttachmentMenuBots":
 		var obj UpdateAttachmentMenuBots
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateAuthorizationState":
 		var obj UpdateAuthorizationState
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateAutosaveSettings":
 		var obj UpdateAutosaveSettings
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateAvailableMessageEffects":
 		var obj UpdateAvailableMessageEffects
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateBasicGroup":
 		var obj UpdateBasicGroup
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateBasicGroupFullInfo":
 		var obj UpdateBasicGroupFullInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateBusinessConnection":
 		var obj UpdateBusinessConnection
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateBusinessMessageEdited":
 		var obj UpdateBusinessMessageEdited
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateBusinessMessagesDeleted":
 		var obj UpdateBusinessMessagesDeleted
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateCall":
 		var obj UpdateCall
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateChatAccentColors":
 		var obj UpdateChatAccentColors
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateChatAction":
 		var obj UpdateChatAction
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateChatActionBar":
 		var obj UpdateChatActionBar
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateChatActiveStories":
 		var obj UpdateChatActiveStories
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateChatAddedToList":
 		var obj UpdateChatAddedToList
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateChatAvailableReactions":
 		var obj UpdateChatAvailableReactions
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateChatBackground":
 		var obj UpdateChatBackground
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateChatBlockList":
 		var obj UpdateChatBlockList
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateChatBoost":
 		var obj UpdateChatBoost
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateChatBusinessBotManageBar":
 		var obj UpdateChatBusinessBotManageBar
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateChatDefaultDisableNotification":
 		var obj UpdateChatDefaultDisableNotification
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateChatDraftMessage":
 		var obj UpdateChatDraftMessage
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateChatEmojiStatus":
 		var obj UpdateChatEmojiStatus
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateChatFolders":
 		var obj UpdateChatFolders
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateChatHasProtectedContent":
 		var obj UpdateChatHasProtectedContent
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateChatHasScheduledMessages":
 		var obj UpdateChatHasScheduledMessages
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateChatIsMarkedAsUnread":
 		var obj UpdateChatIsMarkedAsUnread
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateChatIsTranslatable":
 		var obj UpdateChatIsTranslatable
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateChatLastMessage":
 		var obj UpdateChatLastMessage
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateChatMember":
 		var obj UpdateChatMember
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateChatMessageAutoDeleteTime":
 		var obj UpdateChatMessageAutoDeleteTime
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateChatMessageSender":
 		var obj UpdateChatMessageSender
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateChatNotificationSettings":
 		var obj UpdateChatNotificationSettings
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateChatOnlineMemberCount":
 		var obj UpdateChatOnlineMemberCount
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateChatPendingJoinRequests":
 		var obj UpdateChatPendingJoinRequests
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateChatPermissions":
 		var obj UpdateChatPermissions
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateChatPhoto":
 		var obj UpdateChatPhoto
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateChatPosition":
 		var obj UpdateChatPosition
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateChatReadInbox":
 		var obj UpdateChatReadInbox
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateChatReadOutbox":
 		var obj UpdateChatReadOutbox
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateChatRemovedFromList":
 		var obj UpdateChatRemovedFromList
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateChatReplyMarkup":
 		var obj UpdateChatReplyMarkup
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateChatRevenueAmount":
 		var obj UpdateChatRevenueAmount
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateChatTheme":
 		var obj UpdateChatTheme
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateChatTitle":
 		var obj UpdateChatTitle
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateChatUnreadMentionCount":
 		var obj UpdateChatUnreadMentionCount
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateChatUnreadReactionCount":
 		var obj UpdateChatUnreadReactionCount
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateChatVideoChat":
 		var obj UpdateChatVideoChat
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateChatViewAsTopics":
 		var obj UpdateChatViewAsTopics
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateConnectionState":
 		var obj UpdateConnectionState
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateContactCloseBirthdays":
 		var obj UpdateContactCloseBirthdays
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateDefaultBackground":
 		var obj UpdateDefaultBackground
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateDefaultPaidReactionType":
 		var obj UpdateDefaultPaidReactionType
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateDefaultReactionType":
 		var obj UpdateDefaultReactionType
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateDeleteMessages":
 		var obj UpdateDeleteMessages
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateDiceEmojis":
 		var obj UpdateDiceEmojis
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateDirectMessagesChatTopic":
 		var obj UpdateDirectMessagesChatTopic
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateEmojiChatThemes":
 		var obj UpdateEmojiChatThemes
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateFavoriteStickers":
 		var obj UpdateFavoriteStickers
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateFile":
 		var obj UpdateFile
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateFileAddedToDownloads":
 		var obj UpdateFileAddedToDownloads
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateFileDownload":
 		var obj UpdateFileDownload
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateFileDownloads":
 		var obj UpdateFileDownloads
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateFileGenerationStart":
 		var obj UpdateFileGenerationStart
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateFileGenerationStop":
 		var obj UpdateFileGenerationStop
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateFileRemovedFromDownloads":
 		var obj UpdateFileRemovedFromDownloads
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateForumTopic":
 		var obj UpdateForumTopic
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateForumTopicInfo":
 		var obj UpdateForumTopicInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateFreezeState":
 		var obj UpdateFreezeState
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateGiftAuctionState":
 		var obj UpdateGiftAuctionState
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateGroupCall":
 		var obj UpdateGroupCall
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateGroupCallMessageLevels":
 		var obj UpdateGroupCallMessageLevels
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateGroupCallMessagesDeleted":
 		var obj UpdateGroupCallMessagesDeleted
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateGroupCallMessageSendFailed":
 		var obj UpdateGroupCallMessageSendFailed
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateGroupCallParticipant":
 		var obj UpdateGroupCallParticipant
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateGroupCallParticipants":
 		var obj UpdateGroupCallParticipants
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateGroupCallVerificationState":
 		var obj UpdateGroupCallVerificationState
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateHavePendingNotifications":
 		var obj UpdateHavePendingNotifications
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateInstalledStickerSets":
 		var obj UpdateInstalledStickerSets
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateLanguagePackStrings":
 		var obj UpdateLanguagePackStrings
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateLiveStoryTopDonors":
 		var obj UpdateLiveStoryTopDonors
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateMessageContent":
 		var obj UpdateMessageContent
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateMessageContentOpened":
 		var obj UpdateMessageContentOpened
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateMessageEdited":
 		var obj UpdateMessageEdited
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateMessageFactCheck":
 		var obj UpdateMessageFactCheck
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateMessageInteractionInfo":
 		var obj UpdateMessageInteractionInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateMessageIsPinned":
 		var obj UpdateMessageIsPinned
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateMessageLiveLocationViewed":
 		var obj UpdateMessageLiveLocationViewed
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateMessageMentionRead":
 		var obj UpdateMessageMentionRead
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateMessageReaction":
 		var obj UpdateMessageReaction
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateMessageReactions":
 		var obj UpdateMessageReactions
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateMessageSendAcknowledged":
 		var obj UpdateMessageSendAcknowledged
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateMessageSendFailed":
 		var obj UpdateMessageSendFailed
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateMessageSendSucceeded":
 		var obj UpdateMessageSendSucceeded
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateMessageSuggestedPostInfo":
 		var obj UpdateMessageSuggestedPostInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateMessageUnreadReactions":
 		var obj UpdateMessageUnreadReactions
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateNewBusinessCallbackQuery":
 		var obj UpdateNewBusinessCallbackQuery
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateNewBusinessMessage":
 		var obj UpdateNewBusinessMessage
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateNewCallbackQuery":
 		var obj UpdateNewCallbackQuery
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateNewCallSignalingData":
 		var obj UpdateNewCallSignalingData
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateNewChat":
 		var obj UpdateNewChat
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateNewChatJoinRequest":
 		var obj UpdateNewChatJoinRequest
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateNewChosenInlineResult":
 		var obj UpdateNewChosenInlineResult
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateNewCustomEvent":
 		var obj UpdateNewCustomEvent
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateNewCustomQuery":
 		var obj UpdateNewCustomQuery
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateNewGroupCallMessage":
 		var obj UpdateNewGroupCallMessage
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateNewGroupCallPaidReaction":
 		var obj UpdateNewGroupCallPaidReaction
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateNewInlineCallbackQuery":
 		var obj UpdateNewInlineCallbackQuery
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateNewInlineQuery":
 		var obj UpdateNewInlineQuery
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateNewMessage":
 		var obj UpdateNewMessage
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateNewOauthRequest":
 		var obj UpdateNewOauthRequest
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateNewPreCheckoutQuery":
 		var obj UpdateNewPreCheckoutQuery
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateNewShippingQuery":
 		var obj UpdateNewShippingQuery
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateNotification":
 		var obj UpdateNotification
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateNotificationGroup":
 		var obj UpdateNotificationGroup
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateOption":
 		var obj UpdateOption
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateOwnedStarCount":
 		var obj UpdateOwnedStarCount
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateOwnedTonCount":
 		var obj UpdateOwnedTonCount
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updatePaidMediaPurchased":
 		var obj UpdatePaidMediaPurchased
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updatePendingTextMessage":
 		var obj UpdatePendingTextMessage
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updatePoll":
 		var obj UpdatePoll
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updatePollAnswer":
 		var obj UpdatePollAnswer
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateProfileAccentColors":
 		var obj UpdateProfileAccentColors
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateQuickReplyShortcut":
 		var obj UpdateQuickReplyShortcut
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateQuickReplyShortcutDeleted":
 		var obj UpdateQuickReplyShortcutDeleted
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateQuickReplyShortcutMessages":
 		var obj UpdateQuickReplyShortcutMessages
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateQuickReplyShortcuts":
 		var obj UpdateQuickReplyShortcuts
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateReactionNotificationSettings":
 		var obj UpdateReactionNotificationSettings
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateRecentStickers":
 		var obj UpdateRecentStickers
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updates":
 		var obj Updates
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateSavedAnimations":
 		var obj UpdateSavedAnimations
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateSavedMessagesTags":
 		var obj UpdateSavedMessagesTags
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateSavedMessagesTopic":
 		var obj UpdateSavedMessagesTopic
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateSavedMessagesTopicCount":
 		var obj UpdateSavedMessagesTopicCount
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateSavedNotificationSounds":
 		var obj UpdateSavedNotificationSounds
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateScopeNotificationSettings":
 		var obj UpdateScopeNotificationSettings
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateSecretChat":
 		var obj UpdateSecretChat
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateServiceNotification":
 		var obj UpdateServiceNotification
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateSpeechRecognitionTrial":
 		var obj UpdateSpeechRecognitionTrial
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateSpeedLimitNotification":
 		var obj UpdateSpeedLimitNotification
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateStakeDiceState":
 		var obj UpdateStakeDiceState
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateStarRevenueStatus":
 		var obj UpdateStarRevenueStatus
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateStickerSet":
 		var obj UpdateStickerSet
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateStory":
 		var obj UpdateStory
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateStoryDeleted":
 		var obj UpdateStoryDeleted
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateStoryListChatCount":
 		var obj UpdateStoryListChatCount
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateStoryPostFailed":
 		var obj UpdateStoryPostFailed
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateStoryPostSucceeded":
 		var obj UpdateStoryPostSucceeded
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateStoryStealthMode":
 		var obj UpdateStoryStealthMode
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateSuggestedActions":
 		var obj UpdateSuggestedActions
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateSupergroup":
 		var obj UpdateSupergroup
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateSupergroupFullInfo":
 		var obj UpdateSupergroupFullInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateTermsOfService":
 		var obj UpdateTermsOfService
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateTonRevenueStatus":
 		var obj UpdateTonRevenueStatus
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateTopicMessageCount":
 		var obj UpdateTopicMessageCount
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateTrendingStickerSets":
 		var obj UpdateTrendingStickerSets
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateTrustedMiniAppBots":
 		var obj UpdateTrustedMiniAppBots
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateUnconfirmedSession":
 		var obj UpdateUnconfirmedSession
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateUnreadChatCount":
 		var obj UpdateUnreadChatCount
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateUnreadMessageCount":
 		var obj UpdateUnreadMessageCount
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateUser":
 		var obj UpdateUser
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateUserFullInfo":
 		var obj UpdateUserFullInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateUserPrivacySettingRules":
 		var obj UpdateUserPrivacySettingRules
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateUserStatus":
 		var obj UpdateUserStatus
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateVideoPublished":
 		var obj UpdateVideoPublished
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateWebAppMessageSent":
 		var obj UpdateWebAppMessageSent
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "upgradedGift":
 		var obj UpgradedGift
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "upgradedGiftAttributeIdBackdrop":
 		var obj UpgradedGiftAttributeIdBackdrop
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "upgradedGiftAttributeIdModel":
 		var obj UpgradedGiftAttributeIdModel
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "upgradedGiftAttributeIdSymbol":
 		var obj UpgradedGiftAttributeIdSymbol
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "upgradedGiftAttributeRarityEpic":
 		var obj UpgradedGiftAttributeRarityEpic
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "upgradedGiftAttributeRarityLegendary":
 		var obj UpgradedGiftAttributeRarityLegendary
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "upgradedGiftAttributeRarityPerMille":
 		var obj UpgradedGiftAttributeRarityPerMille
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "upgradedGiftAttributeRarityRare":
 		var obj UpgradedGiftAttributeRarityRare
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "upgradedGiftAttributeRarityUncommon":
 		var obj UpgradedGiftAttributeRarityUncommon
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "upgradedGiftBackdrop":
 		var obj UpgradedGiftBackdrop
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "upgradedGiftBackdropColors":
 		var obj UpgradedGiftBackdropColors
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "upgradedGiftBackdropCount":
 		var obj UpgradedGiftBackdropCount
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "upgradedGiftColors":
 		var obj UpgradedGiftColors
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "upgradedGiftModel":
 		var obj UpgradedGiftModel
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "upgradedGiftModelCount":
 		var obj UpgradedGiftModelCount
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "upgradedGiftOriginalDetails":
 		var obj UpgradedGiftOriginalDetails
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "upgradedGiftOriginBlockchain":
 		var obj UpgradedGiftOriginBlockchain
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "upgradedGiftOriginCraft":
 		var obj UpgradedGiftOriginCraft
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "upgradedGiftOriginOffer":
 		var obj UpgradedGiftOriginOffer
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "upgradedGiftOriginPrepaidUpgrade":
 		var obj UpgradedGiftOriginPrepaidUpgrade
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "upgradedGiftOriginResale":
 		var obj UpgradedGiftOriginResale
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "upgradedGiftOriginTransfer":
 		var obj UpgradedGiftOriginTransfer
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "upgradedGiftOriginUpgrade":
 		var obj UpgradedGiftOriginUpgrade
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "upgradedGiftSymbol":
 		var obj UpgradedGiftSymbol
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "upgradedGiftSymbolCount":
 		var obj UpgradedGiftSymbolCount
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "upgradedGiftValueInfo":
 		var obj UpgradedGiftValueInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "upgradeGiftResult":
 		var obj UpgradeGiftResult
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "user":
 		var obj User
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "userAuctionBid":
 		var obj UserAuctionBid
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "userFullInfo":
 		var obj UserFullInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "userLink":
 		var obj UserLink
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "usernames":
 		var obj Usernames
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "userPrivacySettingAllowCalls":
 		var obj UserPrivacySettingAllowCalls
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "userPrivacySettingAllowChatInvites":
 		var obj UserPrivacySettingAllowChatInvites
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "userPrivacySettingAllowFindingByPhoneNumber":
 		var obj UserPrivacySettingAllowFindingByPhoneNumber
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "userPrivacySettingAllowPeerToPeerCalls":
 		var obj UserPrivacySettingAllowPeerToPeerCalls
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "userPrivacySettingAllowPrivateVoiceAndVideoNoteMessages":
 		var obj UserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "userPrivacySettingAllowUnpaidMessages":
 		var obj UserPrivacySettingAllowUnpaidMessages
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "userPrivacySettingAutosaveGifts":
 		var obj UserPrivacySettingAutosaveGifts
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "userPrivacySettingRuleAllowAll":
 		var obj UserPrivacySettingRuleAllowAll
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "userPrivacySettingRuleAllowBots":
 		var obj UserPrivacySettingRuleAllowBots
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "userPrivacySettingRuleAllowChatMembers":
 		var obj UserPrivacySettingRuleAllowChatMembers
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "userPrivacySettingRuleAllowContacts":
 		var obj UserPrivacySettingRuleAllowContacts
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "userPrivacySettingRuleAllowPremiumUsers":
 		var obj UserPrivacySettingRuleAllowPremiumUsers
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "userPrivacySettingRuleAllowUsers":
 		var obj UserPrivacySettingRuleAllowUsers
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "userPrivacySettingRuleRestrictAll":
 		var obj UserPrivacySettingRuleRestrictAll
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "userPrivacySettingRuleRestrictBots":
 		var obj UserPrivacySettingRuleRestrictBots
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "userPrivacySettingRuleRestrictChatMembers":
 		var obj UserPrivacySettingRuleRestrictChatMembers
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "userPrivacySettingRuleRestrictContacts":
 		var obj UserPrivacySettingRuleRestrictContacts
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "userPrivacySettingRuleRestrictUsers":
 		var obj UserPrivacySettingRuleRestrictUsers
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "userPrivacySettingRules":
 		var obj UserPrivacySettingRules
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "userPrivacySettingShowBio":
 		var obj UserPrivacySettingShowBio
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "userPrivacySettingShowBirthdate":
 		var obj UserPrivacySettingShowBirthdate
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "userPrivacySettingShowLinkInForwardedMessages":
 		var obj UserPrivacySettingShowLinkInForwardedMessages
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "userPrivacySettingShowPhoneNumber":
 		var obj UserPrivacySettingShowPhoneNumber
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "userPrivacySettingShowProfileAudio":
 		var obj UserPrivacySettingShowProfileAudio
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "userPrivacySettingShowProfilePhoto":
 		var obj UserPrivacySettingShowProfilePhoto
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "userPrivacySettingShowStatus":
 		var obj UserPrivacySettingShowStatus
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "userRating":
 		var obj UserRating
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "users":
 		var obj Users
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "userStatusEmpty":
 		var obj UserStatusEmpty
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "userStatusLastMonth":
 		var obj UserStatusLastMonth
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "userStatusLastWeek":
 		var obj UserStatusLastWeek
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "userStatusOffline":
 		var obj UserStatusOffline
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "userStatusOnline":
 		var obj UserStatusOnline
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "userStatusRecently":
 		var obj UserStatusRecently
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "userSupportInfo":
 		var obj UserSupportInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "userTypeBot":
 		var obj UserTypeBot
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "userTypeDeleted":
 		var obj UserTypeDeleted
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "userTypeRegular":
 		var obj UserTypeRegular
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "userTypeUnknown":
 		var obj UserTypeUnknown
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "validatedOrderInfo":
 		var obj ValidatedOrderInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "vectorPathCommandCubicBezierCurve":
 		var obj VectorPathCommandCubicBezierCurve
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "vectorPathCommandLine":
 		var obj VectorPathCommandLine
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "venue":
 		var obj Venue
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "verificationStatus":
 		var obj VerificationStatus
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "video":
 		var obj Video
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "videoChat":
 		var obj VideoChat
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "videoMessageAdvertisement":
 		var obj VideoMessageAdvertisement
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "videoMessageAdvertisements":
 		var obj VideoMessageAdvertisements
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "videoNote":
 		var obj VideoNote
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "videoStoryboard":
 		var obj VideoStoryboard
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "voiceNote":
 		var obj VoiceNote
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "webApp":
 		var obj WebApp
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "webAppInfo":
 		var obj WebAppInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "webAppOpenModeCompact":
 		var obj WebAppOpenModeCompact
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "webAppOpenModeFullScreen":
 		var obj WebAppOpenModeFullScreen
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "webAppOpenModeFullSize":
 		var obj WebAppOpenModeFullSize
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "webAppOpenParameters":
 		var obj WebAppOpenParameters
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "webPageInstantView":
 		var obj WebPageInstantView
 		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, "", err
+			return nil, 0, "", err
 		}
-		return &obj, typeObj.Extra, nil
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	default:
-		return nil, "", fmt.Errorf("unknown type: %s", typeObj.Type)
+		return nil, 0, "", fmt.Errorf("unknown type: %s", typeObj.Type)
 	}
 }

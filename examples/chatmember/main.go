@@ -15,7 +15,7 @@ func main() {
 	apiHash := ""
 	botToken := ""
 
-	bot, err := gotdbot.NewClient(apiID, apiHash, botToken, &gotdbot.ClientConfig{
+	bot, err := gotdbot.NewClient(apiID, apiHash, botToken, &gotdbot.ClientOpts{
 		LibraryPath: "./libtdjson.so.1.8.62",
 	})
 
@@ -31,7 +31,7 @@ func main() {
 	dispatcher.AddHandler(handlers.NewUpdateChatMember(nil, func(c *gotdbot.Client, ctx *gotdbot.Context) error {
 		update := ctx.Update.UpdateChatMember
 		chatId := ctx.EffectiveChatId
-		me := c.Me()
+		me, _ := c.GetMe()
 
 		var userId int64
 		var memberName string

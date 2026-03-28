@@ -21,7 +21,7 @@ import (
 	"github.com/AshokShau/gotdbot/tdjson"
 )
 
-type ClientConfig struct {
+type ClientOpts struct {
 	LibraryPath             string
 	UseTestDC               bool
 	DatabaseDirectory       string
@@ -43,12 +43,13 @@ type ClientConfig struct {
 	LogVerbosityLevel       int32
 	LogStream               LogStream
 
-	// DispatcherOpts configures the dispatcher
-	DispatcherOpts *DispatcherOpts
+	// Dispatcher is the dispatcher to use for this client.
+	// If nil, a new dispatcher will be created.
+	Dispatcher *Dispatcher
 }
 
-func DefaultClientConfig() *ClientConfig {
-	return &ClientConfig{
+func DefaultClientConfig() *ClientOpts {
+	return &ClientOpts{
 		DatabaseDirectory:       "database",
 		FilesDirectory:          "",
 		DatabaseEncryptionKey:   "",
@@ -69,6 +70,7 @@ func DefaultClientConfig() *ClientConfig {
 }
 
 type Client struct {
+	manager  *ClientManager
 	clientID int
 
 	apiID    int32
@@ -76,7 +78,7 @@ type Client struct {
 	botToken string
 	// phoneNumber is set if the user is logging in with a phone number.
 	phoneNumber string
-	config      *ClientConfig
+	config      *ClientOpts
 	Logger      *slog.Logger
 
 	updates chan TlObject
@@ -89,16 +91,14 @@ type Client struct {
 	pendingRequests sync.Map // map[string]chan TlObject
 	pendingMessages sync.Map // map[string]chan TlObject
 
-	// Cache
-	me   *User
-	meMu sync.RWMutex
-
 	// Auth state management
 	authErrorChan chan error
 	isAuthorized  bool
+	closeOnce     sync.Once
 }
 
-func NewClient(apiID int32, apiHash, tokenOrPhone string, config *ClientConfig) (*Client, error) {
+func NewClient(apiID int32, apiHash, tokenOrPhone string, config *ClientOpts) (*Client, error) {
+	tokenOrPhone = strings.TrimSpace(tokenOrPhone)
 	if config == nil {
 		config = DefaultClientConfig()
 	} else {
@@ -167,20 +167,25 @@ func NewClient(apiID int32, apiHash, tokenOrPhone string, config *ClientConfig) 
 		authErrorChan: make(chan error, 1),
 	}
 
-	c.Dispatcher = NewDispatcher(c, config.DispatcherOpts)
+	if config.Dispatcher != nil {
+		c.Dispatcher = config.Dispatcher
+	} else {
+		c.Dispatcher = NewDispatcher(c, nil)
+	}
 
-	c.Dispatcher.AddHandlerToGroup(&internalHandler{handleFunc: c.authHandler, updateType: "updateAuthorizationState"}, -1)
-	c.Dispatcher.AddHandlerToGroup(&internalHandler{handleFunc: c.userHandler, updateType: "updateUser"}, -1)
-	c.Dispatcher.AddHandlerToGroup(&internalHandler{handleFunc: c.connectionStateHandler, updateType: "updateConnectionState"}, -1)
-	c.Dispatcher.AddHandlerToGroup(&internalHandler{handleFunc: c.messageSendSucceededHandler, updateType: "updateMessageSendSucceeded"}, -1)
-	c.Dispatcher.AddHandlerToGroup(&internalHandler{handleFunc: c.messageSendFailedHandler, updateType: "updateMessageSendFailed"}, -1)
+	c.Dispatcher.AddHandlerToGroup(&internalHandler{client: c, handleFunc: c.authHandler, updateType: "updateAuthorizationState"}, -1)
+	c.Dispatcher.AddHandlerToGroup(&internalHandler{client: c, handleFunc: c.connectionStateHandler, updateType: "updateConnectionState"}, -1)
+	c.Dispatcher.AddHandlerToGroup(&internalHandler{client: c, handleFunc: c.messageSendSucceededHandler, updateType: "updateMessageSendSucceeded"}, -1)
+	c.Dispatcher.AddHandlerToGroup(&internalHandler{client: c, handleFunc: c.messageSendFailedHandler, updateType: "updateMessageSendFailed"}, -1)
 	return c, nil
 }
 
 // Start initializes the client and blocks until authorization is successful or fails.
 func (c *Client) Start() error {
-	c.wg.Add(1)
-	go c.receiver()
+	if c.manager == nil {
+		c.wg.Add(1)
+		go c.receiver()
+	}
 
 	c.wg.Add(1)
 	go c.processor()
@@ -223,16 +228,18 @@ func SetTdlibLogStreamEmpty() {
 
 // Close Closes the TDLib instance. All databases will be flushed to disk and properly closed. After the close completes, updateAuthorizationState with authorizationStateClosed will be sent. Can be called before initialization
 func (c *Client) Close() {
-	_, _ = c.Send(&Close{})
+	c.closeOnce.Do(func() {
+		_, _ = c.Send(&Close{})
 
-	select {
-	case <-c.closed:
-	case <-time.After(5 * time.Second):
-		c.Logger.Warn("Timeout waiting for TDLib to close")
-	}
+		select {
+		case <-c.closed:
+		case <-time.After(5 * time.Second):
+			c.Logger.Warn("Timeout waiting for TDLib to close")
+		}
 
-	close(c.stop)
-	c.wg.Wait()
+		close(c.stop)
+		c.wg.Wait()
+	})
 }
 
 func (c *Client) receiver() {
@@ -275,7 +282,7 @@ func (c *Client) processor() {
 		case <-c.stop:
 			return
 		case update := <-c.updates:
-			c.Dispatcher.ProcessUpdate(update)
+			c.Dispatcher.ProcessUpdateForClient(c, update)
 		}
 	}
 }
@@ -447,9 +454,6 @@ func (c *Client) authHandler(client *Client, update TlObject) error {
 			return nil
 		}
 
-		c.meMu.Lock()
-		c.me = me
-		c.meMu.Unlock()
 		username := ""
 		if me.Usernames != nil && len(me.Usernames.ActiveUsernames) > 0 {
 			username = me.Usernames.ActiveUsernames[0]
@@ -470,24 +474,6 @@ func (c *Client) authHandler(client *Client, update TlObject) error {
 		default:
 			close(c.closed)
 		}
-	}
-	return nil
-}
-
-func (c *Client) userHandler(client *Client, update TlObject) error {
-	u, ok := update.(*UpdateUser)
-	if !ok {
-		return nil
-	}
-
-	c.meMu.RLock()
-	isMe := c.me != nil && c.me.Id == u.User.Id
-	c.meMu.RUnlock()
-
-	if isMe {
-		c.meMu.Lock()
-		c.me = u.User
-		c.meMu.Unlock()
 	}
 	return nil
 }
@@ -567,13 +553,6 @@ func (c *Client) Send(req TlObject) (TlObject, error) {
 		c.pendingRequests.Delete(extra)
 		return nil, SendTimeout
 	}
-}
-
-// Me returns the cached User object for the current bot.
-func (c *Client) Me() *User {
-	c.meMu.RLock()
-	defer c.meMu.RUnlock()
-	return c.me
 }
 
 // WaitMessage waits for the message to be sent and returns the final message.

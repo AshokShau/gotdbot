@@ -15,7 +15,7 @@ func main() {
 	apiID := int32(6)
 	apiHash := "API_HASH"
 
-	bot, err := gotdbot.NewClient(apiID, apiHash, "", &gotdbot.ClientConfig{
+	bot, err := gotdbot.NewClient(apiID, apiHash, "", &gotdbot.ClientOpts{
 		LibraryPath:           "./libtdjson.so.1.8.62",
 		UseFileDatabase:       gotdbot.Bool(true),
 		AuthorizationTimeout:  2 * time.Minute,
@@ -40,7 +40,7 @@ func main() {
 		log.Fatalf("Failed to start bot: %v", err)
 	}
 
-	me := bot.Me()
+	me, _ := bot.GetMe()
 	if me != nil {
 		fmt.Printf("Current user: %s (ID: %d)\n", me.FirstName, me.Id)
 	}

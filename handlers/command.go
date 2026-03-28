@@ -88,7 +88,7 @@ func (c *Command) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 		}
 
 		if mentionedBot != "" {
-			me := b.Me()
+			me, _ := b.GetMe()
 			if me == nil {
 				return false
 			}

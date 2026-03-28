@@ -12,12 +12,13 @@ import (
 )
 
 type Waiter struct {
+	Client *Client
 	Filter UpdateFilter
 	C      chan TlObject
 }
 
 type Dispatcher struct {
-	Client *Client
+	DefaultClient *Client
 
 	// Handlers are grouped by integer index. Low indices are processed first.
 	handlers map[int][]Handler
@@ -49,9 +50,9 @@ type DispatcherOpts struct {
 
 func NewDispatcher(client *Client, opts *DispatcherOpts) *Dispatcher {
 	d := &Dispatcher{
-		Client:   client,
-		handlers: make(map[int][]Handler),
-		waiters:  make(map[string]*Waiter),
+		DefaultClient: client,
+		handlers:      make(map[int][]Handler),
+		waiters:       make(map[string]*Waiter),
 	}
 	if opts != nil {
 		d.PanicHandler = opts.PanicHandler
@@ -80,12 +81,17 @@ func (d *Dispatcher) AddHandlerToGroup(h Handler, group int) {
 
 // WaitFor registers a waiter and blocks until a matching update arrives or timeout occurs.
 func (d *Dispatcher) WaitFor(filter UpdateFilter, timeout time.Duration) (TlObject, error) {
+	return d.WaitForClient(d.DefaultClient, filter, timeout)
+}
+
+// WaitForClient registers a waiter for a specific client and blocks until a matching update arrives or timeout occurs.
+func (d *Dispatcher) WaitForClient(client *Client, filter UpdateFilter, timeout time.Duration) (TlObject, error) {
 	ch := make(chan TlObject, 1)
 	idNum := atomic.AddInt64(&d.waiterCount, 1)
 	id := fmt.Sprintf("%d", idNum)
 
 	d.wMu.Lock()
-	d.waiters[id] = &Waiter{Filter: filter, C: ch}
+	d.waiters[id] = &Waiter{Client: client, Filter: filter, C: ch}
 	d.wMu.Unlock()
 
 	defer func() {
@@ -105,8 +111,13 @@ func (d *Dispatcher) WaitFor(filter UpdateFilter, timeout time.Duration) (TlObje
 // ProcessUpdate processes a single update through the handlers.
 // It launches a goroutine to prevent blocking the main update loop.
 func (d *Dispatcher) ProcessUpdate(update TlObject) {
+	d.ProcessUpdateForClient(d.DefaultClient, update)
+}
+
+// ProcessUpdateForClient processes a single update through the handlers for a specific client.
+func (d *Dispatcher) ProcessUpdateForClient(client *Client, update TlObject) {
 	go func() {
-		ctx := NewContext(update, d)
+		ctx := NewContext(client, update, d)
 
 		defer func() {
 			if r := recover(); r != nil {
@@ -121,7 +132,7 @@ func (d *Dispatcher) ProcessUpdate(update TlObject) {
 		d.wMu.RLock()
 		var matchedWaiters []*Waiter
 		for _, w := range d.waiters {
-			if w.Filter(d.Client, ctx) {
+			if w.Client == client && w.Filter(client, ctx) {
 				matchedWaiters = append(matchedWaiters, w)
 			}
 		}
@@ -148,7 +159,7 @@ func (d *Dispatcher) ProcessUpdate(update TlObject) {
 				return ContinueGroups
 			}
 			if d.ErrorHandler != nil {
-				action := d.ErrorHandler(d.Client, ctx, err)
+				action := d.ErrorHandler(client, ctx, err)
 				if action != nil && !errors.Is(action, EndGroups) && !errors.Is(action, ContinueGroups) {
 					log.Printf("ErrorHandler returned unexpected error: %v", action)
 					return nil
@@ -163,8 +174,8 @@ func (d *Dispatcher) ProcessUpdate(update TlObject) {
 		for _, group := range d.groups {
 			groupHandlers := d.handlers[group]
 			for _, h := range groupHandlers {
-				if h.CheckUpdate(d.Client, ctx) {
-					err := h.HandleUpdate(d.Client, ctx)
+				if h.CheckUpdate(client, ctx) {
+					err := h.HandleUpdate(client, ctx)
 					action := handleError(err)
 
 					if errors.Is(action, EndGroups) {
