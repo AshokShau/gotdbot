@@ -133,7 +133,15 @@ func (d *Dispatcher) ProcessUpdate(client *Client, update TlObject) {
 		}
 
 		d.mu.RLock()
-		defer d.mu.RUnlock()
+		groups := make([]int, len(d.groups))
+		copy(groups, d.groups)
+		handlers := make(map[int][]Handler, len(groups))
+		for _, g := range groups {
+			h := make([]Handler, len(d.handlers[g]))
+			copy(h, d.handlers[g])
+			handlers[g] = h
+		}
+		d.mu.RUnlock()
 
 		handleError := func(err error) error {
 			if err == nil {
@@ -158,8 +166,8 @@ func (d *Dispatcher) ProcessUpdate(client *Client, update TlObject) {
 		}
 
 		// Grouped Handlers
-		for _, group := range d.groups {
-			groupHandlers := d.handlers[group]
+		for _, group := range groups {
+			groupHandlers := handlers[group]
 			for _, h := range groupHandlers {
 				if h.CheckUpdate(client, ctx) {
 					err := h.HandleUpdate(client, ctx)

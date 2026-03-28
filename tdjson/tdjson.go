@@ -40,6 +40,10 @@ func Init(libPath string) error {
 	purego.RegisterLibFunc(&tdSetLogMessageCallback, lib, "td_set_log_message_callback")
 
 	libLoaded = true
+
+	// disables internal TDLib logging
+	req := `{"@type": "setLogStream", "log_stream": {"@type": "logStreamEmpty"}}`
+	Execute(req)
 	return nil
 }
 
