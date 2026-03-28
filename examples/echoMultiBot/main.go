@@ -17,7 +17,7 @@ func main() {
 	if tokens == "" {
 		log.Fatal("TOKENS environment variable is empty")
 	}
-	
+
 	manager := gotdbot.NewClientManager("./libtdjson.so.1.8.62")
 	dispatcher := gotdbot.NewDispatcher(nil)
 
@@ -53,13 +53,13 @@ func main() {
 	}))
 
 	splitTokens := strings.Split(tokens, ",")
-	config := gotdbot.DefaultClientConfig()
+
 	for _, token := range splitTokens {
 		token = strings.TrimSpace(token)
 		if token == "" {
 			continue
 		}
-
+		config := gotdbot.DefaultClientConfig()
 		config.Dispatcher = dispatcher
 		config.DatabaseDirectory = "db_" + strings.Split(token, ":")[0]
 		_, err := manager.RegisterClient(apiID, apiHash, token, config)
