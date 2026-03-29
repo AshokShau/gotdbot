@@ -95,6 +95,10 @@ type Client struct {
 	authErrorChan chan error
 	isAuthorized  bool
 	closeOnce     sync.Once
+
+	// Me is the bot's User info, as returned by client.GetMe.
+	// Populated when authorization is ready.
+	Me *User
 }
 
 func NewClient(apiID int32, apiHash, tokenOrPhone string, config *ClientOpts) (*Client, error) {
@@ -402,6 +406,8 @@ func (c *Client) authHandler(client *Client, update TlObject) error {
 			c.authErrorChan <- err
 			return nil
 		}
+
+		c.Me = me
 
 		username := ""
 		if me.Usernames != nil && len(me.Usernames.ActiveUsernames) > 0 {
