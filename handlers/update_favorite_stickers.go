@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateFavoriteStickers The list of favorite stickers was updated
 type UpdateFavoriteStickers struct {
 	Filter   filters.UpdateFavoriteStickers
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateFavoriteStickers creates a new UpdateFavoriteStickers
 func NewUpdateFavoriteStickers(filter filters.UpdateFavoriteStickers, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateFavoriteStickers {
 	return &UpdateFavoriteStickers{
 		Filter:   filter,

@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateConnectionState The connection state has changed. This update must be used only to show a human-readable description of the connection state
 type UpdateConnectionState struct {
 	Filter   filters.UpdateConnectionState
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateConnectionState creates a new UpdateConnectionState
 func NewUpdateConnectionState(filter filters.UpdateConnectionState, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateConnectionState {
 	return &UpdateConnectionState{
 		Filter:   filter,

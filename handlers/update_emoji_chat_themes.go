@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateEmojiChatThemes The list of available emoji chat themes has changed
 type UpdateEmojiChatThemes struct {
 	Filter   filters.UpdateEmojiChatThemes
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateEmojiChatThemes creates a new UpdateEmojiChatThemes
 func NewUpdateEmojiChatThemes(filter filters.UpdateEmojiChatThemes, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateEmojiChatThemes {
 	return &UpdateEmojiChatThemes{
 		Filter:   filter,

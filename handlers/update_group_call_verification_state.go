@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateGroupCallVerificationState The verification state of an encrypted group call has changed; for group calls not bound to a chat only
 type UpdateGroupCallVerificationState struct {
 	Filter   filters.UpdateGroupCallVerificationState
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateGroupCallVerificationState creates a new UpdateGroupCallVerificationState
 func NewUpdateGroupCallVerificationState(filter filters.UpdateGroupCallVerificationState, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateGroupCallVerificationState {
 	return &UpdateGroupCallVerificationState{
 		Filter:   filter,

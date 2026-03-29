@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateOwnedStarCount The number of Telegram Stars owned by the current user has changed
 type UpdateOwnedStarCount struct {
 	Filter   filters.UpdateOwnedStarCount
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateOwnedStarCount creates a new UpdateOwnedStarCount
 func NewUpdateOwnedStarCount(filter filters.UpdateOwnedStarCount, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateOwnedStarCount {
 	return &UpdateOwnedStarCount{
 		Filter:   filter,

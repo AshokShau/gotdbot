@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateVideoPublished An automatically scheduled message with video has been successfully sent after conversion
 type UpdateVideoPublished struct {
 	Filter   filters.UpdateVideoPublished
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateVideoPublished creates a new UpdateVideoPublished
 func NewUpdateVideoPublished(filter filters.UpdateVideoPublished, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateVideoPublished {
 	return &UpdateVideoPublished{
 		Filter:   filter,

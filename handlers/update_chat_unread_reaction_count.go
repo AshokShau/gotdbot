@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateChatUnreadReactionCount The chat unread_reaction_count has changed
 type UpdateChatUnreadReactionCount struct {
 	Filter   filters.UpdateChatUnreadReactionCount
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateChatUnreadReactionCount creates a new UpdateChatUnreadReactionCount
 func NewUpdateChatUnreadReactionCount(filter filters.UpdateChatUnreadReactionCount, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatUnreadReactionCount {
 	return &UpdateChatUnreadReactionCount{
 		Filter:   filter,

@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateUserStatus The user went online or offline
 type UpdateUserStatus struct {
 	Filter   filters.UpdateUserStatus
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateUserStatus creates a new UpdateUserStatus
 func NewUpdateUserStatus(filter filters.UpdateUserStatus, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateUserStatus {
 	return &UpdateUserStatus{
 		Filter:   filter,

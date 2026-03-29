@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateSavedAnimations The list of saved animations was updated
 type UpdateSavedAnimations struct {
 	Filter   filters.UpdateSavedAnimations
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateSavedAnimations creates a new UpdateSavedAnimations
 func NewUpdateSavedAnimations(filter filters.UpdateSavedAnimations, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateSavedAnimations {
 	return &UpdateSavedAnimations{
 		Filter:   filter,

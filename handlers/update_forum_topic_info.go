@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateForumTopicInfo Basic information about a topic in a forum chat was changed
 type UpdateForumTopicInfo struct {
 	Filter   filters.UpdateForumTopicInfo
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateForumTopicInfo creates a new UpdateForumTopicInfo
 func NewUpdateForumTopicInfo(filter filters.UpdateForumTopicInfo, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateForumTopicInfo {
 	return &UpdateForumTopicInfo{
 		Filter:   filter,

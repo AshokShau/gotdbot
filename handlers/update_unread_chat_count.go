@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateUnreadChatCount Number of unread chats, i.e. with unread messages or marked as unread, has changed. This update is sent only if the message database is used
 type UpdateUnreadChatCount struct {
 	Filter   filters.UpdateUnreadChatCount
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateUnreadChatCount creates a new UpdateUnreadChatCount
 func NewUpdateUnreadChatCount(filter filters.UpdateUnreadChatCount, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateUnreadChatCount {
 	return &UpdateUnreadChatCount{
 		Filter:   filter,

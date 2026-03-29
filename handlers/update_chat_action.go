@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateChatAction A message sender activity in the chat has changed
 type UpdateChatAction struct {
 	Filter   filters.UpdateChatAction
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateChatAction creates a new UpdateChatAction
 func NewUpdateChatAction(filter filters.UpdateChatAction, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatAction {
 	return &UpdateChatAction{
 		Filter:   filter,

@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateTermsOfService New terms of service must be accepted by the user. If the terms of service are declined, then the deleteAccount method must be called with the reason "Decline ToS update"
 type UpdateTermsOfService struct {
 	Filter   filters.UpdateTermsOfService
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateTermsOfService creates a new UpdateTermsOfService
 func NewUpdateTermsOfService(filter filters.UpdateTermsOfService, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateTermsOfService {
 	return &UpdateTermsOfService{
 		Filter:   filter,

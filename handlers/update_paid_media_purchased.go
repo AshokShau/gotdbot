@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdatePaidMediaPurchased Paid media were purchased by a user; for bots only
 type UpdatePaidMediaPurchased struct {
 	Filter   filters.UpdatePaidMediaPurchased
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdatePaidMediaPurchased creates a new UpdatePaidMediaPurchased
 func NewUpdatePaidMediaPurchased(filter filters.UpdatePaidMediaPurchased, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdatePaidMediaPurchased {
 	return &UpdatePaidMediaPurchased{
 		Filter:   filter,

@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateLanguagePackStrings Some language pack strings have been updated
 type UpdateLanguagePackStrings struct {
 	Filter   filters.UpdateLanguagePackStrings
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateLanguagePackStrings creates a new UpdateLanguagePackStrings
 func NewUpdateLanguagePackStrings(filter filters.UpdateLanguagePackStrings, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateLanguagePackStrings {
 	return &UpdateLanguagePackStrings{
 		Filter:   filter,

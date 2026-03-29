@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateChatPendingJoinRequests The chat pending join requests were changed
 type UpdateChatPendingJoinRequests struct {
 	Filter   filters.UpdateChatPendingJoinRequests
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateChatPendingJoinRequests creates a new UpdateChatPendingJoinRequests
 func NewUpdateChatPendingJoinRequests(filter filters.UpdateChatPendingJoinRequests, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatPendingJoinRequests {
 	return &UpdateChatPendingJoinRequests{
 		Filter:   filter,

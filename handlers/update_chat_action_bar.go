@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateChatActionBar The chat action bar was changed
 type UpdateChatActionBar struct {
 	Filter   filters.UpdateChatActionBar
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateChatActionBar creates a new UpdateChatActionBar
 func NewUpdateChatActionBar(filter filters.UpdateChatActionBar, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatActionBar {
 	return &UpdateChatActionBar{
 		Filter:   filter,

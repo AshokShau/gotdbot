@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateFreezeState The freeze state of the current user's account has changed
 type UpdateFreezeState struct {
 	Filter   filters.UpdateFreezeState
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateFreezeState creates a new UpdateFreezeState
 func NewUpdateFreezeState(filter filters.UpdateFreezeState, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateFreezeState {
 	return &UpdateFreezeState{
 		Filter:   filter,

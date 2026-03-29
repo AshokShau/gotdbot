@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateChatRemovedFromList A chat was removed from a chat list
 type UpdateChatRemovedFromList struct {
 	Filter   filters.UpdateChatRemovedFromList
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateChatRemovedFromList creates a new UpdateChatRemovedFromList
 func NewUpdateChatRemovedFromList(filter filters.UpdateChatRemovedFromList, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatRemovedFromList {
 	return &UpdateChatRemovedFromList{
 		Filter:   filter,

@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateApplicationVerificationRequired A request can't be completed unless application verification is performed; for official mobile applications only.
 type UpdateApplicationVerificationRequired struct {
 	Filter   filters.UpdateApplicationVerificationRequired
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateApplicationVerificationRequired creates a new UpdateApplicationVerificationRequired
 func NewUpdateApplicationVerificationRequired(filter filters.UpdateApplicationVerificationRequired, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateApplicationVerificationRequired {
 	return &UpdateApplicationVerificationRequired{
 		Filter:   filter,

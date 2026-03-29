@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateChatHasProtectedContent A chat content was allowed or restricted for saving
 type UpdateChatHasProtectedContent struct {
 	Filter   filters.UpdateChatHasProtectedContent
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateChatHasProtectedContent creates a new UpdateChatHasProtectedContent
 func NewUpdateChatHasProtectedContent(filter filters.UpdateChatHasProtectedContent, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatHasProtectedContent {
 	return &UpdateChatHasProtectedContent{
 		Filter:   filter,

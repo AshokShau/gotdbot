@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateChatMessageAutoDeleteTime The message auto-delete or self-destruct timer setting for a chat was changed
 type UpdateChatMessageAutoDeleteTime struct {
 	Filter   filters.UpdateChatMessageAutoDeleteTime
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateChatMessageAutoDeleteTime creates a new UpdateChatMessageAutoDeleteTime
 func NewUpdateChatMessageAutoDeleteTime(filter filters.UpdateChatMessageAutoDeleteTime, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatMessageAutoDeleteTime {
 	return &UpdateChatMessageAutoDeleteTime{
 		Filter:   filter,

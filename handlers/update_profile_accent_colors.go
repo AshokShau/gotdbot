@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateProfileAccentColors The list of supported accent colors for user profiles has changed
 type UpdateProfileAccentColors struct {
 	Filter   filters.UpdateProfileAccentColors
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateProfileAccentColors creates a new UpdateProfileAccentColors
 func NewUpdateProfileAccentColors(filter filters.UpdateProfileAccentColors, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateProfileAccentColors {
 	return &UpdateProfileAccentColors{
 		Filter:   filter,

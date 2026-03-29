@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateSuggestedActions The list of suggested to the user actions has changed
 type UpdateSuggestedActions struct {
 	Filter   filters.UpdateSuggestedActions
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateSuggestedActions creates a new UpdateSuggestedActions
 func NewUpdateSuggestedActions(filter filters.UpdateSuggestedActions, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateSuggestedActions {
 	return &UpdateSuggestedActions{
 		Filter:   filter,

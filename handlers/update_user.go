@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateUser Some data of a user has changed. This update is guaranteed to come before the user identifier is returned to the application
 type UpdateUser struct {
 	Filter   filters.UpdateUser
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateUser creates a new UpdateUser
 func NewUpdateUser(filter filters.UpdateUser, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateUser {
 	return &UpdateUser{
 		Filter:   filter,

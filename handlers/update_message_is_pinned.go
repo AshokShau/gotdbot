@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateMessageIsPinned The message pinned state was changed
 type UpdateMessageIsPinned struct {
 	Filter   filters.UpdateMessageIsPinned
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateMessageIsPinned creates a new UpdateMessageIsPinned
 func NewUpdateMessageIsPinned(filter filters.UpdateMessageIsPinned, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateMessageIsPinned {
 	return &UpdateMessageIsPinned{
 		Filter:   filter,

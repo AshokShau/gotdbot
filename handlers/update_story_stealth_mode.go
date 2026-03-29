@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateStoryStealthMode Story stealth mode settings have changed
 type UpdateStoryStealthMode struct {
 	Filter   filters.UpdateStoryStealthMode
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateStoryStealthMode creates a new UpdateStoryStealthMode
 func NewUpdateStoryStealthMode(filter filters.UpdateStoryStealthMode, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateStoryStealthMode {
 	return &UpdateStoryStealthMode{
 		Filter:   filter,

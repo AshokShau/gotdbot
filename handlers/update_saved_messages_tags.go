@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateSavedMessagesTags Tags used in Saved Messages or a Saved Messages topic have changed
 type UpdateSavedMessagesTags struct {
 	Filter   filters.UpdateSavedMessagesTags
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateSavedMessagesTags creates a new UpdateSavedMessagesTags
 func NewUpdateSavedMessagesTags(filter filters.UpdateSavedMessagesTags, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateSavedMessagesTags {
 	return &UpdateSavedMessagesTags{
 		Filter:   filter,

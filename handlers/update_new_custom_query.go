@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateNewCustomQuery A new incoming query; for bots only
 type UpdateNewCustomQuery struct {
 	Filter   filters.UpdateNewCustomQuery
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateNewCustomQuery creates a new UpdateNewCustomQuery
 func NewUpdateNewCustomQuery(filter filters.UpdateNewCustomQuery, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateNewCustomQuery {
 	return &UpdateNewCustomQuery{
 		Filter:   filter,

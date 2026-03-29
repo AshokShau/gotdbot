@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateChatReadInbox Incoming messages were read or the number of unread messages has been changed
 type UpdateChatReadInbox struct {
 	Filter   filters.UpdateChatReadInbox
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateChatReadInbox creates a new UpdateChatReadInbox
 func NewUpdateChatReadInbox(filter filters.UpdateChatReadInbox, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatReadInbox {
 	return &UpdateChatReadInbox{
 		Filter:   filter,

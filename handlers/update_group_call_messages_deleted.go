@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateGroupCallMessagesDeleted Some group call messages were deleted
 type UpdateGroupCallMessagesDeleted struct {
 	Filter   filters.UpdateGroupCallMessagesDeleted
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateGroupCallMessagesDeleted creates a new UpdateGroupCallMessagesDeleted
 func NewUpdateGroupCallMessagesDeleted(filter filters.UpdateGroupCallMessagesDeleted, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateGroupCallMessagesDeleted {
 	return &UpdateGroupCallMessagesDeleted{
 		Filter:   filter,

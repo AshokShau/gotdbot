@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateMessageSendSucceeded A message has been successfully sent
 type UpdateMessageSendSucceeded struct {
 	Filter   filters.UpdateMessageSendSucceeded
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateMessageSendSucceeded creates a new UpdateMessageSendSucceeded
 func NewUpdateMessageSendSucceeded(filter filters.UpdateMessageSendSucceeded, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateMessageSendSucceeded {
 	return &UpdateMessageSendSucceeded{
 		Filter:   filter,

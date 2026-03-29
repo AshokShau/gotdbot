@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateChatReplyMarkup The chat reply markup was changed
 type UpdateChatReplyMarkup struct {
 	Filter   filters.UpdateChatReplyMarkup
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateChatReplyMarkup creates a new UpdateChatReplyMarkup
 func NewUpdateChatReplyMarkup(filter filters.UpdateChatReplyMarkup, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatReplyMarkup {
 	return &UpdateChatReplyMarkup{
 		Filter:   filter,

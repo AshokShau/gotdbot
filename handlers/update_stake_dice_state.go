@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateStakeDiceState The stake dice state has changed
 type UpdateStakeDiceState struct {
 	Filter   filters.UpdateStakeDiceState
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateStakeDiceState creates a new UpdateStakeDiceState
 func NewUpdateStakeDiceState(filter filters.UpdateStakeDiceState, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateStakeDiceState {
 	return &UpdateStakeDiceState{
 		Filter:   filter,

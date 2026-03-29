@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateChatEmojiStatus Chat emoji status has changed
 type UpdateChatEmojiStatus struct {
 	Filter   filters.UpdateChatEmojiStatus
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateChatEmojiStatus creates a new UpdateChatEmojiStatus
 func NewUpdateChatEmojiStatus(filter filters.UpdateChatEmojiStatus, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatEmojiStatus {
 	return &UpdateChatEmojiStatus{
 		Filter:   filter,

@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateMessageSuggestedPostInfo Information about suggested post of a message was changed
 type UpdateMessageSuggestedPostInfo struct {
 	Filter   filters.UpdateMessageSuggestedPostInfo
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateMessageSuggestedPostInfo creates a new UpdateMessageSuggestedPostInfo
 func NewUpdateMessageSuggestedPostInfo(filter filters.UpdateMessageSuggestedPostInfo, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateMessageSuggestedPostInfo {
 	return &UpdateMessageSuggestedPostInfo{
 		Filter:   filter,

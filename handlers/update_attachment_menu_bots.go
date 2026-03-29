@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateAttachmentMenuBots The list of bots added to attachment or side menu has changed
 type UpdateAttachmentMenuBots struct {
 	Filter   filters.UpdateAttachmentMenuBots
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateAttachmentMenuBots creates a new UpdateAttachmentMenuBots
 func NewUpdateAttachmentMenuBots(filter filters.UpdateAttachmentMenuBots, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateAttachmentMenuBots {
 	return &UpdateAttachmentMenuBots{
 		Filter:   filter,

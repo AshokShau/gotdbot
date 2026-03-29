@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateChatLastMessage The last message of a chat was changed
 type UpdateChatLastMessage struct {
 	Filter   filters.UpdateChatLastMessage
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateChatLastMessage creates a new UpdateChatLastMessage
 func NewUpdateChatLastMessage(filter filters.UpdateChatLastMessage, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatLastMessage {
 	return &UpdateChatLastMessage{
 		Filter:   filter,

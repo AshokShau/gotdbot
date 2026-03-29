@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateChatActiveStories The list of active stories posted by a specific chat has changed
 type UpdateChatActiveStories struct {
 	Filter   filters.UpdateChatActiveStories
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateChatActiveStories creates a new UpdateChatActiveStories
 func NewUpdateChatActiveStories(filter filters.UpdateChatActiveStories, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatActiveStories {
 	return &UpdateChatActiveStories{
 		Filter:   filter,

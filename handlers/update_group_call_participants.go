@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateGroupCallParticipants The list of group call participants that can send and receive encrypted call data has changed; for group calls not bound to a chat only
 type UpdateGroupCallParticipants struct {
 	Filter   filters.UpdateGroupCallParticipants
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateGroupCallParticipants creates a new UpdateGroupCallParticipants
 func NewUpdateGroupCallParticipants(filter filters.UpdateGroupCallParticipants, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateGroupCallParticipants {
 	return &UpdateGroupCallParticipants{
 		Filter:   filter,

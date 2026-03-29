@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateChatMessageSender The message sender that is selected to send messages in a chat has changed
 type UpdateChatMessageSender struct {
 	Filter   filters.UpdateChatMessageSender
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateChatMessageSender creates a new UpdateChatMessageSender
 func NewUpdateChatMessageSender(filter filters.UpdateChatMessageSender, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatMessageSender {
 	return &UpdateChatMessageSender{
 		Filter:   filter,

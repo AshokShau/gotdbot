@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateChatVideoChat A chat video chat state has changed
 type UpdateChatVideoChat struct {
 	Filter   filters.UpdateChatVideoChat
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateChatVideoChat creates a new UpdateChatVideoChat
 func NewUpdateChatVideoChat(filter filters.UpdateChatVideoChat, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatVideoChat {
 	return &UpdateChatVideoChat{
 		Filter:   filter,

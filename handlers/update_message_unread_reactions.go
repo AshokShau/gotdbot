@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateMessageUnreadReactions The list of unread reactions added to a message was changed
 type UpdateMessageUnreadReactions struct {
 	Filter   filters.UpdateMessageUnreadReactions
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateMessageUnreadReactions creates a new UpdateMessageUnreadReactions
 func NewUpdateMessageUnreadReactions(filter filters.UpdateMessageUnreadReactions, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateMessageUnreadReactions {
 	return &UpdateMessageUnreadReactions{
 		Filter:   filter,

@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateAnimatedEmojiMessageClicked Some animated emoji message was clicked and a big animated sticker must be played if the message is visible on the screen. chatActionWatchingAnimations with the text of the message needs to be sent if the sticker is played
 type UpdateAnimatedEmojiMessageClicked struct {
 	Filter   filters.UpdateAnimatedEmojiMessageClicked
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateAnimatedEmojiMessageClicked creates a new UpdateAnimatedEmojiMessageClicked
 func NewUpdateAnimatedEmojiMessageClicked(filter filters.UpdateAnimatedEmojiMessageClicked, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateAnimatedEmojiMessageClicked {
 	return &UpdateAnimatedEmojiMessageClicked{
 		Filter:   filter,

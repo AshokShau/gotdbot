@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateStoryPostSucceeded A story has been successfully posted
 type UpdateStoryPostSucceeded struct {
 	Filter   filters.UpdateStoryPostSucceeded
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateStoryPostSucceeded creates a new UpdateStoryPostSucceeded
 func NewUpdateStoryPostSucceeded(filter filters.UpdateStoryPostSucceeded, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateStoryPostSucceeded {
 	return &UpdateStoryPostSucceeded{
 		Filter:   filter,

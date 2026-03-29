@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateNewChat A new chat has been loaded/created. This update is guaranteed to come before the chat identifier is returned to the application. The chat field changes will be reported through separate updates
 type UpdateNewChat struct {
 	Filter   filters.UpdateNewChat
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateNewChat creates a new UpdateNewChat
 func NewUpdateNewChat(filter filters.UpdateNewChat, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateNewChat {
 	return &UpdateNewChat{
 		Filter:   filter,

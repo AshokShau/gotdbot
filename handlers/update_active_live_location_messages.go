@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateActiveLiveLocationMessages The list of messages with active live location that need to be updated by the application has changed. The list is persistent across application restarts only if the message database is used
 type UpdateActiveLiveLocationMessages struct {
 	Filter   filters.UpdateActiveLiveLocationMessages
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateActiveLiveLocationMessages creates a new UpdateActiveLiveLocationMessages
 func NewUpdateActiveLiveLocationMessages(filter filters.UpdateActiveLiveLocationMessages, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateActiveLiveLocationMessages {
 	return &UpdateActiveLiveLocationMessages{
 		Filter:   filter,

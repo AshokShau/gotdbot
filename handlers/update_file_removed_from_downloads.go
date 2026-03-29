@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateFileRemovedFromDownloads A file was removed from the file download list. This update is sent only after file download list is loaded for the first time
 type UpdateFileRemovedFromDownloads struct {
 	Filter   filters.UpdateFileRemovedFromDownloads
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateFileRemovedFromDownloads creates a new UpdateFileRemovedFromDownloads
 func NewUpdateFileRemovedFromDownloads(filter filters.UpdateFileRemovedFromDownloads, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateFileRemovedFromDownloads {
 	return &UpdateFileRemovedFromDownloads{
 		Filter:   filter,

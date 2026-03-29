@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateMessageContent The message content has changed
 type UpdateMessageContent struct {
 	Filter   filters.UpdateMessageContent
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateMessageContent creates a new UpdateMessageContent
 func NewUpdateMessageContent(filter filters.UpdateMessageContent, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateMessageContent {
 	return &UpdateMessageContent{
 		Filter:   filter,

@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateGroupCall Information about a group call was updated
 type UpdateGroupCall struct {
 	Filter   filters.UpdateGroupCall
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateGroupCall creates a new UpdateGroupCall
 func NewUpdateGroupCall(filter filters.UpdateGroupCall, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateGroupCall {
 	return &UpdateGroupCall{
 		Filter:   filter,

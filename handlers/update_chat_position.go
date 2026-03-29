@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateChatPosition The position of a chat in a chat list has changed. An updateChatLastMessage or updateChatDraftMessage update might be sent instead of the update
 type UpdateChatPosition struct {
 	Filter   filters.UpdateChatPosition
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateChatPosition creates a new UpdateChatPosition
 func NewUpdateChatPosition(filter filters.UpdateChatPosition, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatPosition {
 	return &UpdateChatPosition{
 		Filter:   filter,

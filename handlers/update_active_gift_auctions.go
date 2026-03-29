@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateActiveGiftAuctions The list of auctions in which participate the current user has changed
 type UpdateActiveGiftAuctions struct {
 	Filter   filters.UpdateActiveGiftAuctions
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateActiveGiftAuctions creates a new UpdateActiveGiftAuctions
 func NewUpdateActiveGiftAuctions(filter filters.UpdateActiveGiftAuctions, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateActiveGiftAuctions {
 	return &UpdateActiveGiftAuctions{
 		Filter:   filter,

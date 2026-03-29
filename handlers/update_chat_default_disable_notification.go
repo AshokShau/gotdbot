@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateChatDefaultDisableNotification The value of the default disable_notification parameter, used when a message is sent to the chat, was changed
 type UpdateChatDefaultDisableNotification struct {
 	Filter   filters.UpdateChatDefaultDisableNotification
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateChatDefaultDisableNotification creates a new UpdateChatDefaultDisableNotification
 func NewUpdateChatDefaultDisableNotification(filter filters.UpdateChatDefaultDisableNotification, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatDefaultDisableNotification {
 	return &UpdateChatDefaultDisableNotification{
 		Filter:   filter,

@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateRecentStickers The list of recently used stickers was updated
 type UpdateRecentStickers struct {
 	Filter   filters.UpdateRecentStickers
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateRecentStickers creates a new UpdateRecentStickers
 func NewUpdateRecentStickers(filter filters.UpdateRecentStickers, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateRecentStickers {
 	return &UpdateRecentStickers{
 		Filter:   filter,

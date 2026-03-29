@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateBusinessConnection A business connection has changed; for bots only
 type UpdateBusinessConnection struct {
 	Filter   filters.UpdateBusinessConnection
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateBusinessConnection creates a new UpdateBusinessConnection
 func NewUpdateBusinessConnection(filter filters.UpdateBusinessConnection, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateBusinessConnection {
 	return &UpdateBusinessConnection{
 		Filter:   filter,

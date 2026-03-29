@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateMessageReactions Reactions added to a message with anonymous reactions have changed; for bots only
 type UpdateMessageReactions struct {
 	Filter   filters.UpdateMessageReactions
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateMessageReactions creates a new UpdateMessageReactions
 func NewUpdateMessageReactions(filter filters.UpdateMessageReactions, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateMessageReactions {
 	return &UpdateMessageReactions{
 		Filter:   filter,

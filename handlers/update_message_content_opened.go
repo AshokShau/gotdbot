@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateMessageContentOpened The message content was opened. Updates voice note messages to "listened", video note messages to "viewed" and starts the self-destruct timer
 type UpdateMessageContentOpened struct {
 	Filter   filters.UpdateMessageContentOpened
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateMessageContentOpened creates a new UpdateMessageContentOpened
 func NewUpdateMessageContentOpened(filter filters.UpdateMessageContentOpened, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateMessageContentOpened {
 	return &UpdateMessageContentOpened{
 		Filter:   filter,

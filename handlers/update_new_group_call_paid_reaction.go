@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateNewGroupCallPaidReaction A new paid reaction was received in a live story group call
 type UpdateNewGroupCallPaidReaction struct {
 	Filter   filters.UpdateNewGroupCallPaidReaction
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateNewGroupCallPaidReaction creates a new UpdateNewGroupCallPaidReaction
 func NewUpdateNewGroupCallPaidReaction(filter filters.UpdateNewGroupCallPaidReaction, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateNewGroupCallPaidReaction {
 	return &UpdateNewGroupCallPaidReaction{
 		Filter:   filter,

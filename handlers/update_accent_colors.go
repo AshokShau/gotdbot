@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateAccentColors The list of supported accent colors has changed
 type UpdateAccentColors struct {
 	Filter   filters.UpdateAccentColors
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateAccentColors creates a new UpdateAccentColors
 func NewUpdateAccentColors(filter filters.UpdateAccentColors, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateAccentColors {
 	return &UpdateAccentColors{
 		Filter:   filter,

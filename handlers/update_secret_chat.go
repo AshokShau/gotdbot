@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateSecretChat Some data of a secret chat has changed. This update is guaranteed to come before the secret chat identifier is returned to the application
 type UpdateSecretChat struct {
 	Filter   filters.UpdateSecretChat
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateSecretChat creates a new UpdateSecretChat
 func NewUpdateSecretChat(filter filters.UpdateSecretChat, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateSecretChat {
 	return &UpdateSecretChat{
 		Filter:   filter,

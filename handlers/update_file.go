@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateFile Information about a file was updated
 type UpdateFile struct {
 	Filter   filters.UpdateFile
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateFile creates a new UpdateFile
 func NewUpdateFile(filter filters.UpdateFile, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateFile {
 	return &UpdateFile{
 		Filter:   filter,

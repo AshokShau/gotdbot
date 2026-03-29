@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateMessageMentionRead A message with an unread mention was read
 type UpdateMessageMentionRead struct {
 	Filter   filters.UpdateMessageMentionRead
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateMessageMentionRead creates a new UpdateMessageMentionRead
 func NewUpdateMessageMentionRead(filter filters.UpdateMessageMentionRead, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateMessageMentionRead {
 	return &UpdateMessageMentionRead{
 		Filter:   filter,

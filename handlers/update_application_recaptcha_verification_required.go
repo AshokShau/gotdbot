@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateApplicationRecaptchaVerificationRequired A request can't be completed unless reCAPTCHA verification is performed; for official mobile applications only.
 type UpdateApplicationRecaptchaVerificationRequired struct {
 	Filter   filters.UpdateApplicationRecaptchaVerificationRequired
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateApplicationRecaptchaVerificationRequired creates a new UpdateApplicationRecaptchaVerificationRequired
 func NewUpdateApplicationRecaptchaVerificationRequired(filter filters.UpdateApplicationRecaptchaVerificationRequired, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateApplicationRecaptchaVerificationRequired {
 	return &UpdateApplicationRecaptchaVerificationRequired{
 		Filter:   filter,

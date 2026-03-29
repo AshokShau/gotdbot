@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateStarRevenueStatus The Telegram Star revenue earned by a user or a chat has changed. If Telegram Star transaction screen of the chat is opened, then getStarTransactions may be called to fetch new transactions
 type UpdateStarRevenueStatus struct {
 	Filter   filters.UpdateStarRevenueStatus
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateStarRevenueStatus creates a new UpdateStarRevenueStatus
 func NewUpdateStarRevenueStatus(filter filters.UpdateStarRevenueStatus, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateStarRevenueStatus {
 	return &UpdateStarRevenueStatus{
 		Filter:   filter,

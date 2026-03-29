@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateChatBackground The chat background was changed
 type UpdateChatBackground struct {
 	Filter   filters.UpdateChatBackground
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateChatBackground creates a new UpdateChatBackground
 func NewUpdateChatBackground(filter filters.UpdateChatBackground, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatBackground {
 	return &UpdateChatBackground{
 		Filter:   filter,

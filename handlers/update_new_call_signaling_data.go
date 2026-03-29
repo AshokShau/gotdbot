@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateNewCallSignalingData New call signaling data arrived
 type UpdateNewCallSignalingData struct {
 	Filter   filters.UpdateNewCallSignalingData
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateNewCallSignalingData creates a new UpdateNewCallSignalingData
 func NewUpdateNewCallSignalingData(filter filters.UpdateNewCallSignalingData, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateNewCallSignalingData {
 	return &UpdateNewCallSignalingData{
 		Filter:   filter,

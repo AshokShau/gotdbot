@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateDefaultReactionType The type of default reaction has changed
 type UpdateDefaultReactionType struct {
 	Filter   filters.UpdateDefaultReactionType
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateDefaultReactionType creates a new UpdateDefaultReactionType
 func NewUpdateDefaultReactionType(filter filters.UpdateDefaultReactionType, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateDefaultReactionType {
 	return &UpdateDefaultReactionType{
 		Filter:   filter,

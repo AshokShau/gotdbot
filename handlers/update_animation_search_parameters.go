@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateAnimationSearchParameters The parameters of animation search through getOption("animation_search_bot_username") bot has changed
 type UpdateAnimationSearchParameters struct {
 	Filter   filters.UpdateAnimationSearchParameters
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateAnimationSearchParameters creates a new UpdateAnimationSearchParameters
 func NewUpdateAnimationSearchParameters(filter filters.UpdateAnimationSearchParameters, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateAnimationSearchParameters {
 	return &UpdateAnimationSearchParameters{
 		Filter:   filter,

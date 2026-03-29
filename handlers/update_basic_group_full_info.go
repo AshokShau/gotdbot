@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateBasicGroupFullInfo Some data in basicGroupFullInfo has been changed
 type UpdateBasicGroupFullInfo struct {
 	Filter   filters.UpdateBasicGroupFullInfo
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateBasicGroupFullInfo creates a new UpdateBasicGroupFullInfo
 func NewUpdateBasicGroupFullInfo(filter filters.UpdateBasicGroupFullInfo, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateBasicGroupFullInfo {
 	return &UpdateBasicGroupFullInfo{
 		Filter:   filter,

@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateChatDraftMessage A chat draft has changed. Be aware that the update may come in the currently opened chat but with old content of the draft. If the user has changed the content of the draft, this update mustn't be applied
 type UpdateChatDraftMessage struct {
 	Filter   filters.UpdateChatDraftMessage
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateChatDraftMessage creates a new UpdateChatDraftMessage
 func NewUpdateChatDraftMessage(filter filters.UpdateChatDraftMessage, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatDraftMessage {
 	return &UpdateChatDraftMessage{
 		Filter:   filter,

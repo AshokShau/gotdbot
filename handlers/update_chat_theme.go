@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateChatTheme The chat theme was changed
 type UpdateChatTheme struct {
 	Filter   filters.UpdateChatTheme
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateChatTheme creates a new UpdateChatTheme
 func NewUpdateChatTheme(filter filters.UpdateChatTheme, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatTheme {
 	return &UpdateChatTheme{
 		Filter:   filter,

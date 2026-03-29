@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateBusinessMessagesDeleted Messages in a business account were deleted; for bots only
 type UpdateBusinessMessagesDeleted struct {
 	Filter   filters.UpdateBusinessMessagesDeleted
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateBusinessMessagesDeleted creates a new UpdateBusinessMessagesDeleted
 func NewUpdateBusinessMessagesDeleted(filter filters.UpdateBusinessMessagesDeleted, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateBusinessMessagesDeleted {
 	return &UpdateBusinessMessagesDeleted{
 		Filter:   filter,

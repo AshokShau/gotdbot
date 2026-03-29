@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateCall New call was created or information about a call was updated
 type UpdateCall struct {
 	Filter   filters.UpdateCall
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateCall creates a new UpdateCall
 func NewUpdateCall(filter filters.UpdateCall, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateCall {
 	return &UpdateCall{
 		Filter:   filter,

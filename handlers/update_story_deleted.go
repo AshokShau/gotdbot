@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateStoryDeleted A story became inaccessible
 type UpdateStoryDeleted struct {
 	Filter   filters.UpdateStoryDeleted
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateStoryDeleted creates a new UpdateStoryDeleted
 func NewUpdateStoryDeleted(filter filters.UpdateStoryDeleted, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateStoryDeleted {
 	return &UpdateStoryDeleted{
 		Filter:   filter,

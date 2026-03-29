@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateDiceEmojis The list of supported dice emojis has changed
 type UpdateDiceEmojis struct {
 	Filter   filters.UpdateDiceEmojis
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateDiceEmojis creates a new UpdateDiceEmojis
 func NewUpdateDiceEmojis(filter filters.UpdateDiceEmojis, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateDiceEmojis {
 	return &UpdateDiceEmojis{
 		Filter:   filter,

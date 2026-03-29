@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateBasicGroup Some data of a basic group has changed. This update is guaranteed to come before the basic group identifier is returned to the application
 type UpdateBasicGroup struct {
 	Filter   filters.UpdateBasicGroup
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateBasicGroup creates a new UpdateBasicGroup
 func NewUpdateBasicGroup(filter filters.UpdateBasicGroup, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateBasicGroup {
 	return &UpdateBasicGroup{
 		Filter:   filter,

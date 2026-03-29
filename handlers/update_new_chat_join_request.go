@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateNewChatJoinRequest A user sent a join request to a chat; for bots only
 type UpdateNewChatJoinRequest struct {
 	Filter   filters.UpdateNewChatJoinRequest
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateNewChatJoinRequest creates a new UpdateNewChatJoinRequest
 func NewUpdateNewChatJoinRequest(filter filters.UpdateNewChatJoinRequest, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateNewChatJoinRequest {
 	return &UpdateNewChatJoinRequest{
 		Filter:   filter,

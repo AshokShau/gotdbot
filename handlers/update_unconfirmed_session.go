@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateUnconfirmedSession The first unconfirmed session has changed
 type UpdateUnconfirmedSession struct {
 	Filter   filters.UpdateUnconfirmedSession
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateUnconfirmedSession creates a new UpdateUnconfirmedSession
 func NewUpdateUnconfirmedSession(filter filters.UpdateUnconfirmedSession, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateUnconfirmedSession {
 	return &UpdateUnconfirmedSession{
 		Filter:   filter,

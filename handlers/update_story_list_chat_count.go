@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateStoryListChatCount Number of chats in a story list has changed
 type UpdateStoryListChatCount struct {
 	Filter   filters.UpdateStoryListChatCount
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateStoryListChatCount creates a new UpdateStoryListChatCount
 func NewUpdateStoryListChatCount(filter filters.UpdateStoryListChatCount, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateStoryListChatCount {
 	return &UpdateStoryListChatCount{
 		Filter:   filter,

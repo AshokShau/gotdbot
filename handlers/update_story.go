@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateStory A story was changed
 type UpdateStory struct {
 	Filter   filters.UpdateStory
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateStory creates a new UpdateStory
 func NewUpdateStory(filter filters.UpdateStory, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateStory {
 	return &UpdateStory{
 		Filter:   filter,

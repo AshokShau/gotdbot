@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateTopicMessageCount Number of messages in a topic has changed; for Saved Messages and channel direct messages chat topics only
 type UpdateTopicMessageCount struct {
 	Filter   filters.UpdateTopicMessageCount
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateTopicMessageCount creates a new UpdateTopicMessageCount
 func NewUpdateTopicMessageCount(filter filters.UpdateTopicMessageCount, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateTopicMessageCount {
 	return &UpdateTopicMessageCount{
 		Filter:   filter,

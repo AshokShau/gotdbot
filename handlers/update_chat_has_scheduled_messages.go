@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateChatHasScheduledMessages A chat's has_scheduled_messages field has changed
 type UpdateChatHasScheduledMessages struct {
 	Filter   filters.UpdateChatHasScheduledMessages
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateChatHasScheduledMessages creates a new UpdateChatHasScheduledMessages
 func NewUpdateChatHasScheduledMessages(filter filters.UpdateChatHasScheduledMessages, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatHasScheduledMessages {
 	return &UpdateChatHasScheduledMessages{
 		Filter:   filter,

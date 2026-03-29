@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateNewMessage A new message was received; can also be an outgoing message
 type UpdateNewMessage struct {
 	Filter   filters.UpdateNewMessage
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateNewMessage creates a new UpdateNewMessage
 func NewUpdateNewMessage(filter filters.UpdateNewMessage, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateNewMessage {
 	return &UpdateNewMessage{
 		Filter:   filter,

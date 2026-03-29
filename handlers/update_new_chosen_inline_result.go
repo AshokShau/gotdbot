@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateNewChosenInlineResult The user has chosen a result of an inline query; for bots only
 type UpdateNewChosenInlineResult struct {
 	Filter   filters.UpdateNewChosenInlineResult
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateNewChosenInlineResult creates a new UpdateNewChosenInlineResult
 func NewUpdateNewChosenInlineResult(filter filters.UpdateNewChosenInlineResult, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateNewChosenInlineResult {
 	return &UpdateNewChosenInlineResult{
 		Filter:   filter,

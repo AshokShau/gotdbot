@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateNewOauthRequest An OAuth authorization request was received
 type UpdateNewOauthRequest struct {
 	Filter   filters.UpdateNewOauthRequest
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateNewOauthRequest creates a new UpdateNewOauthRequest
 func NewUpdateNewOauthRequest(filter filters.UpdateNewOauthRequest, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateNewOauthRequest {
 	return &UpdateNewOauthRequest{
 		Filter:   filter,

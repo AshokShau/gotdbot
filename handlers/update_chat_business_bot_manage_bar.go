@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateChatBusinessBotManageBar The bar for managing business bot was changed in a chat
 type UpdateChatBusinessBotManageBar struct {
 	Filter   filters.UpdateChatBusinessBotManageBar
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateChatBusinessBotManageBar creates a new UpdateChatBusinessBotManageBar
 func NewUpdateChatBusinessBotManageBar(filter filters.UpdateChatBusinessBotManageBar, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatBusinessBotManageBar {
 	return &UpdateChatBusinessBotManageBar{
 		Filter:   filter,

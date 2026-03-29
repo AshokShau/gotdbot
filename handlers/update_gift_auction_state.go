@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateGiftAuctionState State of a gift auction was updated
 type UpdateGiftAuctionState struct {
 	Filter   filters.UpdateGiftAuctionState
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateGiftAuctionState creates a new UpdateGiftAuctionState
 func NewUpdateGiftAuctionState(filter filters.UpdateGiftAuctionState, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateGiftAuctionState {
 	return &UpdateGiftAuctionState{
 		Filter:   filter,

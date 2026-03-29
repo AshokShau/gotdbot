@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateMessageInteractionInfo The information about interactions with a message has changed
 type UpdateMessageInteractionInfo struct {
 	Filter   filters.UpdateMessageInteractionInfo
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateMessageInteractionInfo creates a new UpdateMessageInteractionInfo
 func NewUpdateMessageInteractionInfo(filter filters.UpdateMessageInteractionInfo, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateMessageInteractionInfo {
 	return &UpdateMessageInteractionInfo{
 		Filter:   filter,

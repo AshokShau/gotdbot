@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateNotification A notification was changed
 type UpdateNotification struct {
 	Filter   filters.UpdateNotification
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateNotification creates a new UpdateNotification
 func NewUpdateNotification(filter filters.UpdateNotification, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateNotification {
 	return &UpdateNotification{
 		Filter:   filter,

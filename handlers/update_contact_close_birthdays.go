@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateContactCloseBirthdays The list of contacts that had birthdays recently or will have birthday soon has changed
 type UpdateContactCloseBirthdays struct {
 	Filter   filters.UpdateContactCloseBirthdays
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateContactCloseBirthdays creates a new UpdateContactCloseBirthdays
 func NewUpdateContactCloseBirthdays(filter filters.UpdateContactCloseBirthdays, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateContactCloseBirthdays {
 	return &UpdateContactCloseBirthdays{
 		Filter:   filter,
