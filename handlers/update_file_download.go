@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateFileDownload A file download was changed. This update is sent only after file download list is loaded for the first time
 type UpdateFileDownload struct {
 	Filter   filters.UpdateFileDownload
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateFileDownload creates a new UpdateFileDownload
 func NewUpdateFileDownload(filter filters.UpdateFileDownload, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateFileDownload {
 	return &UpdateFileDownload{
 		Filter:   filter,

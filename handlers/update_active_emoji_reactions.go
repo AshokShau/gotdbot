@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateActiveEmojiReactions The list of active emoji reactions has changed
 type UpdateActiveEmojiReactions struct {
 	Filter   filters.UpdateActiveEmojiReactions
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateActiveEmojiReactions creates a new UpdateActiveEmojiReactions
 func NewUpdateActiveEmojiReactions(filter filters.UpdateActiveEmojiReactions, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateActiveEmojiReactions {
 	return &UpdateActiveEmojiReactions{
 		Filter:   filter,

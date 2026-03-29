@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateOwnedTonCount The number of Toncoins owned by the current user has changed
 type UpdateOwnedTonCount struct {
 	Filter   filters.UpdateOwnedTonCount
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateOwnedTonCount creates a new UpdateOwnedTonCount
 func NewUpdateOwnedTonCount(filter filters.UpdateOwnedTonCount, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateOwnedTonCount {
 	return &UpdateOwnedTonCount{
 		Filter:   filter,

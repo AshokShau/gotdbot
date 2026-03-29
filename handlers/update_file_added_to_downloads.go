@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateFileAddedToDownloads A file was added to the file download list. This update is sent only after file download list is loaded for the first time
 type UpdateFileAddedToDownloads struct {
 	Filter   filters.UpdateFileAddedToDownloads
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateFileAddedToDownloads creates a new UpdateFileAddedToDownloads
 func NewUpdateFileAddedToDownloads(filter filters.UpdateFileAddedToDownloads, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateFileAddedToDownloads {
 	return &UpdateFileAddedToDownloads{
 		Filter:   filter,

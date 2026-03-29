@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateReactionNotificationSettings Notification settings for reactions were updated
 type UpdateReactionNotificationSettings struct {
 	Filter   filters.UpdateReactionNotificationSettings
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateReactionNotificationSettings creates a new UpdateReactionNotificationSettings
 func NewUpdateReactionNotificationSettings(filter filters.UpdateReactionNotificationSettings, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateReactionNotificationSettings {
 	return &UpdateReactionNotificationSettings{
 		Filter:   filter,

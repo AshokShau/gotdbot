@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateChatPermissions Chat permissions were changed
 type UpdateChatPermissions struct {
 	Filter   filters.UpdateChatPermissions
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateChatPermissions creates a new UpdateChatPermissions
 func NewUpdateChatPermissions(filter filters.UpdateChatPermissions, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatPermissions {
 	return &UpdateChatPermissions{
 		Filter:   filter,

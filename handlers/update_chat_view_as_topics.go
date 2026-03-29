@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateChatViewAsTopics A chat default appearance has changed
 type UpdateChatViewAsTopics struct {
 	Filter   filters.UpdateChatViewAsTopics
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateChatViewAsTopics creates a new UpdateChatViewAsTopics
 func NewUpdateChatViewAsTopics(filter filters.UpdateChatViewAsTopics, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatViewAsTopics {
 	return &UpdateChatViewAsTopics{
 		Filter:   filter,

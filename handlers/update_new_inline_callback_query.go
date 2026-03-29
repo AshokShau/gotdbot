@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateNewInlineCallbackQuery A new incoming callback query from a message sent via a bot; for bots only
 type UpdateNewInlineCallbackQuery struct {
 	Filter   filters.UpdateNewInlineCallbackQuery
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateNewInlineCallbackQuery creates a new UpdateNewInlineCallbackQuery
 func NewUpdateNewInlineCallbackQuery(filter filters.UpdateNewInlineCallbackQuery, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateNewInlineCallbackQuery {
 	return &UpdateNewInlineCallbackQuery{
 		Filter:   filter,

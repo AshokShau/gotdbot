@@ -202,21 +202,28 @@ func generateObjects(types []TLType, classes map[string]*TLClass) {
 
 	// Unmarshal helper
 	sb.WriteString("func Unmarshal(data []byte) (TlObject, string, error) {\n")
+	sb.WriteString("\tobj, _, extra, err := UnmarshalWithClient(data)\n")
+	sb.WriteString("\treturn obj, extra, err\n")
+	sb.WriteString("}\n\n")
+
+	sb.WriteString("// UnmarshalWithClient unmarshals the JSON and returns the object, the client identifier, and the @extra field.\n")
+	sb.WriteString("func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {\n")
 	sb.WriteString("\tvar typeObj struct {\n")
-	sb.WriteString("\t\tType string `json:\"@type\"`\n")
-	sb.WriteString("\t\tExtra string `json:\"@extra\"`\n")
+	sb.WriteString("\t\tType     string `json:\"@type\"`\n")
+	sb.WriteString("\t\tClientId int    `json:\"@client_id\"`\n")
+	sb.WriteString("\t\tExtra    string `json:\"@extra\"`\n")
 	sb.WriteString("\t}\n")
-	sb.WriteString("\tif err := json.Unmarshal(data, &typeObj); err != nil { return nil, \"\", err }\n")
+	sb.WriteString("\tif err := json.Unmarshal(data, &typeObj); err != nil { return nil, 0, \"\", err }\n")
 	sb.WriteString("\tswitch typeObj.Type {\n")
 	for _, t := range types {
 		structName := toCamelCase(t.Name)
 		fmt.Fprintf(&sb, "\tcase \"%s\":\n", t.Name)
 		fmt.Fprintf(&sb, "\t\tvar obj %s\n", structName)
-		sb.WriteString("\t\tif err := json.Unmarshal(data, &obj); err != nil { return nil, \"\", err }\n")
-		sb.WriteString("\t\treturn &obj, typeObj.Extra, nil\n")
+		sb.WriteString("\t\tif err := json.Unmarshal(data, &obj); err != nil { return nil, 0, \"\", err }\n")
+		sb.WriteString("\t\treturn &obj, typeObj.ClientId, typeObj.Extra, nil\n")
 	}
 	sb.WriteString("\tdefault:\n")
-	sb.WriteString("\t\treturn nil, \"\", fmt.Errorf(\"unknown type: %s\", typeObj.Type)\n")
+	sb.WriteString("\t\treturn nil, 0, \"\", fmt.Errorf(\"unknown type: %s\", typeObj.Type)\n")
 	sb.WriteString("\t}\n")
 	sb.WriteString("}\n")
 
@@ -300,6 +307,7 @@ func generateOptions(functions []TLType, classes map[string]*TLClass) {
 			fmt.Fprintf(&sb, "type %s struct {\n", optsStructName)
 			for _, p := range fn.Params {
 				if p.IsOptional || p.Type == "Bool" {
+					fmt.Fprintf(&sb, "\t// %s\n", formatDesc(p.Description))
 					goType := toGoType(p.Type, classes)
 					fieldName := toCamelCase(p.Name)
 					fmt.Fprintf(&sb, "\t%s %s\n", fieldName, goType)

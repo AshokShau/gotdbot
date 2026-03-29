@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateNewShippingQuery A new incoming shipping query; for bots only. Only for invoices with flexible price
 type UpdateNewShippingQuery struct {
 	Filter   filters.UpdateNewShippingQuery
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateNewShippingQuery creates a new UpdateNewShippingQuery
 func NewUpdateNewShippingQuery(filter filters.UpdateNewShippingQuery, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateNewShippingQuery {
 	return &UpdateNewShippingQuery{
 		Filter:   filter,

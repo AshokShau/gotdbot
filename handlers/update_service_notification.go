@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateServiceNotification A service notification from the server was received. Upon receiving this the application must show a popup with the content of the notification
 type UpdateServiceNotification struct {
 	Filter   filters.UpdateServiceNotification
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateServiceNotification creates a new UpdateServiceNotification
 func NewUpdateServiceNotification(filter filters.UpdateServiceNotification, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateServiceNotification {
 	return &UpdateServiceNotification{
 		Filter:   filter,

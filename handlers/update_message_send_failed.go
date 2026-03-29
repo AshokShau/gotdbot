@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateMessageSendFailed A message failed to send. Be aware that some messages being sent can be irrecoverably deleted, in which case updateDeleteMessages will be received instead of this update
 type UpdateMessageSendFailed struct {
 	Filter   filters.UpdateMessageSendFailed
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateMessageSendFailed creates a new UpdateMessageSendFailed
 func NewUpdateMessageSendFailed(filter filters.UpdateMessageSendFailed, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateMessageSendFailed {
 	return &UpdateMessageSendFailed{
 		Filter:   filter,

@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateFileGenerationStop File generation is no longer needed
 type UpdateFileGenerationStop struct {
 	Filter   filters.UpdateFileGenerationStop
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateFileGenerationStop creates a new UpdateFileGenerationStop
 func NewUpdateFileGenerationStop(filter filters.UpdateFileGenerationStop, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateFileGenerationStop {
 	return &UpdateFileGenerationStop{
 		Filter:   filter,

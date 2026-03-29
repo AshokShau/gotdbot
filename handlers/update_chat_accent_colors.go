@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateChatAccentColors Chat accent colors have changed
 type UpdateChatAccentColors struct {
 	Filter   filters.UpdateChatAccentColors
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateChatAccentColors creates a new UpdateChatAccentColors
 func NewUpdateChatAccentColors(filter filters.UpdateChatAccentColors, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatAccentColors {
 	return &UpdateChatAccentColors{
 		Filter:   filter,

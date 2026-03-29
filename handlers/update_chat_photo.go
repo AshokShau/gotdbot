@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateChatPhoto A chat photo was changed
 type UpdateChatPhoto struct {
 	Filter   filters.UpdateChatPhoto
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateChatPhoto creates a new UpdateChatPhoto
 func NewUpdateChatPhoto(filter filters.UpdateChatPhoto, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatPhoto {
 	return &UpdateChatPhoto{
 		Filter:   filter,

@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateTrendingStickerSets The list of trending sticker sets was updated or some of them were viewed
 type UpdateTrendingStickerSets struct {
 	Filter   filters.UpdateTrendingStickerSets
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateTrendingStickerSets creates a new UpdateTrendingStickerSets
 func NewUpdateTrendingStickerSets(filter filters.UpdateTrendingStickerSets, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateTrendingStickerSets {
 	return &UpdateTrendingStickerSets{
 		Filter:   filter,

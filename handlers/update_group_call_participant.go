@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateGroupCallParticipant Information about a group call participant was changed. The updates are sent only after the group call is received through getGroupCall and only if the call is joined or being joined
 type UpdateGroupCallParticipant struct {
 	Filter   filters.UpdateGroupCallParticipant
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateGroupCallParticipant creates a new UpdateGroupCallParticipant
 func NewUpdateGroupCallParticipant(filter filters.UpdateGroupCallParticipant, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateGroupCallParticipant {
 	return &UpdateGroupCallParticipant{
 		Filter:   filter,

@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateFileGenerationStart The file generation process needs to be started by the application. Use setFileGenerationProgress and finishFileGeneration to generate the file
 type UpdateFileGenerationStart struct {
 	Filter   filters.UpdateFileGenerationStart
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateFileGenerationStart creates a new UpdateFileGenerationStart
 func NewUpdateFileGenerationStart(filter filters.UpdateFileGenerationStart, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateFileGenerationStart {
 	return &UpdateFileGenerationStart{
 		Filter:   filter,

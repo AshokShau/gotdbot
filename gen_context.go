@@ -4,181 +4,356 @@
 package gotdbot
 
 type ContextUpdates struct {
-	UpdateAccentColors                             *UpdateAccentColors
-	UpdateActiveEmojiReactions                     *UpdateActiveEmojiReactions
-	UpdateActiveGiftAuctions                       *UpdateActiveGiftAuctions
-	UpdateActiveLiveLocationMessages               *UpdateActiveLiveLocationMessages
-	UpdateActiveNotifications                      *UpdateActiveNotifications
-	UpdateAgeVerificationParameters                *UpdateAgeVerificationParameters
-	UpdateAnimatedEmojiMessageClicked              *UpdateAnimatedEmojiMessageClicked
-	UpdateAnimationSearchParameters                *UpdateAnimationSearchParameters
+	// UpdateAccentColors The list of supported accent colors has changed
+	UpdateAccentColors *UpdateAccentColors
+	// UpdateActiveEmojiReactions The list of active emoji reactions has changed
+	UpdateActiveEmojiReactions *UpdateActiveEmojiReactions
+	// UpdateActiveGiftAuctions The list of auctions in which participate the current user has changed
+	UpdateActiveGiftAuctions *UpdateActiveGiftAuctions
+	// UpdateActiveLiveLocationMessages The list of messages with active live location that need to be updated by the application has changed. The list is persistent across application restarts only if the message database is used
+	UpdateActiveLiveLocationMessages *UpdateActiveLiveLocationMessages
+	// UpdateActiveNotifications Contains active notifications that were shown on previous application launches. This update is sent only if the message database is used. In that case it comes once before any updateNotification and updateNotificationGroup update
+	UpdateActiveNotifications *UpdateActiveNotifications
+	// UpdateAgeVerificationParameters The parameters for age verification of the current user's account has changed
+	UpdateAgeVerificationParameters *UpdateAgeVerificationParameters
+	// UpdateAnimatedEmojiMessageClicked Some animated emoji message was clicked and a big animated sticker must be played if the message is visible on the screen. chatActionWatchingAnimations with the text of the message needs to be sent if the sticker is played
+	UpdateAnimatedEmojiMessageClicked *UpdateAnimatedEmojiMessageClicked
+	// UpdateAnimationSearchParameters The parameters of animation search through getOption("animation_search_bot_username") bot has changed
+	UpdateAnimationSearchParameters *UpdateAnimationSearchParameters
+	// UpdateApplicationRecaptchaVerificationRequired A request can't be completed unless reCAPTCHA verification is performed; for official mobile applications only.
 	UpdateApplicationRecaptchaVerificationRequired *UpdateApplicationRecaptchaVerificationRequired
-	UpdateApplicationVerificationRequired          *UpdateApplicationVerificationRequired
-	UpdateAttachmentMenuBots                       *UpdateAttachmentMenuBots
-	UpdateAuthorizationState                       *UpdateAuthorizationState
-	UpdateAutosaveSettings                         *UpdateAutosaveSettings
-	UpdateAvailableMessageEffects                  *UpdateAvailableMessageEffects
-	UpdateBasicGroup                               *UpdateBasicGroup
-	UpdateBasicGroupFullInfo                       *UpdateBasicGroupFullInfo
-	UpdateBusinessConnection                       *UpdateBusinessConnection
-	UpdateBusinessMessageEdited                    *UpdateBusinessMessageEdited
-	UpdateBusinessMessagesDeleted                  *UpdateBusinessMessagesDeleted
-	UpdateCall                                     *UpdateCall
-	UpdateChatAccentColors                         *UpdateChatAccentColors
-	UpdateChatAction                               *UpdateChatAction
-	UpdateChatActionBar                            *UpdateChatActionBar
-	UpdateChatActiveStories                        *UpdateChatActiveStories
-	UpdateChatAddedToList                          *UpdateChatAddedToList
-	UpdateChatAvailableReactions                   *UpdateChatAvailableReactions
-	UpdateChatBackground                           *UpdateChatBackground
-	UpdateChatBlockList                            *UpdateChatBlockList
-	UpdateChatBoost                                *UpdateChatBoost
-	UpdateChatBusinessBotManageBar                 *UpdateChatBusinessBotManageBar
-	UpdateChatDefaultDisableNotification           *UpdateChatDefaultDisableNotification
-	UpdateChatDraftMessage                         *UpdateChatDraftMessage
-	UpdateChatEmojiStatus                          *UpdateChatEmojiStatus
-	UpdateChatFolders                              *UpdateChatFolders
-	UpdateChatHasProtectedContent                  *UpdateChatHasProtectedContent
-	UpdateChatHasScheduledMessages                 *UpdateChatHasScheduledMessages
-	UpdateChatIsMarkedAsUnread                     *UpdateChatIsMarkedAsUnread
-	UpdateChatIsTranslatable                       *UpdateChatIsTranslatable
-	UpdateChatLastMessage                          *UpdateChatLastMessage
-	UpdateChatMember                               *UpdateChatMember
-	UpdateChatMessageAutoDeleteTime                *UpdateChatMessageAutoDeleteTime
-	UpdateChatMessageSender                        *UpdateChatMessageSender
-	UpdateChatNotificationSettings                 *UpdateChatNotificationSettings
-	UpdateChatOnlineMemberCount                    *UpdateChatOnlineMemberCount
-	UpdateChatPendingJoinRequests                  *UpdateChatPendingJoinRequests
-	UpdateChatPermissions                          *UpdateChatPermissions
-	UpdateChatPhoto                                *UpdateChatPhoto
-	UpdateChatPosition                             *UpdateChatPosition
-	UpdateChatReadInbox                            *UpdateChatReadInbox
-	UpdateChatReadOutbox                           *UpdateChatReadOutbox
-	UpdateChatRemovedFromList                      *UpdateChatRemovedFromList
-	UpdateChatReplyMarkup                          *UpdateChatReplyMarkup
-	UpdateChatRevenueAmount                        *UpdateChatRevenueAmount
-	UpdateChatTheme                                *UpdateChatTheme
-	UpdateChatTitle                                *UpdateChatTitle
-	UpdateChatUnreadMentionCount                   *UpdateChatUnreadMentionCount
-	UpdateChatUnreadReactionCount                  *UpdateChatUnreadReactionCount
-	UpdateChatVideoChat                            *UpdateChatVideoChat
-	UpdateChatViewAsTopics                         *UpdateChatViewAsTopics
-	UpdateConnectionState                          *UpdateConnectionState
-	UpdateContactCloseBirthdays                    *UpdateContactCloseBirthdays
-	UpdateDefaultBackground                        *UpdateDefaultBackground
-	UpdateDefaultPaidReactionType                  *UpdateDefaultPaidReactionType
-	UpdateDefaultReactionType                      *UpdateDefaultReactionType
-	UpdateDeleteMessages                           *UpdateDeleteMessages
-	UpdateDiceEmojis                               *UpdateDiceEmojis
-	UpdateDirectMessagesChatTopic                  *UpdateDirectMessagesChatTopic
-	UpdateEmojiChatThemes                          *UpdateEmojiChatThemes
-	UpdateFavoriteStickers                         *UpdateFavoriteStickers
-	UpdateFile                                     *UpdateFile
-	UpdateFileAddedToDownloads                     *UpdateFileAddedToDownloads
-	UpdateFileDownload                             *UpdateFileDownload
-	UpdateFileDownloads                            *UpdateFileDownloads
-	UpdateFileGenerationStart                      *UpdateFileGenerationStart
-	UpdateFileGenerationStop                       *UpdateFileGenerationStop
-	UpdateFileRemovedFromDownloads                 *UpdateFileRemovedFromDownloads
-	UpdateForumTopic                               *UpdateForumTopic
-	UpdateForumTopicInfo                           *UpdateForumTopicInfo
-	UpdateFreezeState                              *UpdateFreezeState
-	UpdateGiftAuctionState                         *UpdateGiftAuctionState
-	UpdateGroupCall                                *UpdateGroupCall
-	UpdateGroupCallMessageLevels                   *UpdateGroupCallMessageLevels
-	UpdateGroupCallMessagesDeleted                 *UpdateGroupCallMessagesDeleted
-	UpdateGroupCallMessageSendFailed               *UpdateGroupCallMessageSendFailed
-	UpdateGroupCallParticipant                     *UpdateGroupCallParticipant
-	UpdateGroupCallParticipants                    *UpdateGroupCallParticipants
-	UpdateGroupCallVerificationState               *UpdateGroupCallVerificationState
-	UpdateHavePendingNotifications                 *UpdateHavePendingNotifications
-	UpdateInstalledStickerSets                     *UpdateInstalledStickerSets
-	UpdateLanguagePackStrings                      *UpdateLanguagePackStrings
-	UpdateLiveStoryTopDonors                       *UpdateLiveStoryTopDonors
-	UpdateMessageContent                           *UpdateMessageContent
-	UpdateMessageContentOpened                     *UpdateMessageContentOpened
-	UpdateMessageEdited                            *UpdateMessageEdited
-	UpdateMessageFactCheck                         *UpdateMessageFactCheck
-	UpdateMessageInteractionInfo                   *UpdateMessageInteractionInfo
-	UpdateMessageIsPinned                          *UpdateMessageIsPinned
-	UpdateMessageLiveLocationViewed                *UpdateMessageLiveLocationViewed
-	UpdateMessageMentionRead                       *UpdateMessageMentionRead
-	UpdateMessageReaction                          *UpdateMessageReaction
-	UpdateMessageReactions                         *UpdateMessageReactions
-	UpdateMessageSendAcknowledged                  *UpdateMessageSendAcknowledged
-	UpdateMessageSendFailed                        *UpdateMessageSendFailed
-	UpdateMessageSendSucceeded                     *UpdateMessageSendSucceeded
-	UpdateMessageSuggestedPostInfo                 *UpdateMessageSuggestedPostInfo
-	UpdateMessageUnreadReactions                   *UpdateMessageUnreadReactions
-	UpdateNewBusinessCallbackQuery                 *UpdateNewBusinessCallbackQuery
-	UpdateNewBusinessMessage                       *UpdateNewBusinessMessage
-	UpdateNewCallbackQuery                         *UpdateNewCallbackQuery
-	UpdateNewCallSignalingData                     *UpdateNewCallSignalingData
-	UpdateNewChat                                  *UpdateNewChat
-	UpdateNewChatJoinRequest                       *UpdateNewChatJoinRequest
-	UpdateNewChosenInlineResult                    *UpdateNewChosenInlineResult
-	UpdateNewCustomEvent                           *UpdateNewCustomEvent
-	UpdateNewCustomQuery                           *UpdateNewCustomQuery
-	UpdateNewGroupCallMessage                      *UpdateNewGroupCallMessage
-	UpdateNewGroupCallPaidReaction                 *UpdateNewGroupCallPaidReaction
-	UpdateNewInlineCallbackQuery                   *UpdateNewInlineCallbackQuery
-	UpdateNewInlineQuery                           *UpdateNewInlineQuery
-	UpdateNewMessage                               *UpdateNewMessage
-	UpdateNewOauthRequest                          *UpdateNewOauthRequest
-	UpdateNewPreCheckoutQuery                      *UpdateNewPreCheckoutQuery
-	UpdateNewShippingQuery                         *UpdateNewShippingQuery
-	UpdateNotification                             *UpdateNotification
-	UpdateNotificationGroup                        *UpdateNotificationGroup
-	UpdateOption                                   *UpdateOption
-	UpdateOwnedStarCount                           *UpdateOwnedStarCount
-	UpdateOwnedTonCount                            *UpdateOwnedTonCount
-	UpdatePaidMediaPurchased                       *UpdatePaidMediaPurchased
-	UpdatePendingTextMessage                       *UpdatePendingTextMessage
-	UpdatePoll                                     *UpdatePoll
-	UpdatePollAnswer                               *UpdatePollAnswer
-	UpdateProfileAccentColors                      *UpdateProfileAccentColors
-	UpdateQuickReplyShortcut                       *UpdateQuickReplyShortcut
-	UpdateQuickReplyShortcutDeleted                *UpdateQuickReplyShortcutDeleted
-	UpdateQuickReplyShortcutMessages               *UpdateQuickReplyShortcutMessages
-	UpdateQuickReplyShortcuts                      *UpdateQuickReplyShortcuts
-	UpdateReactionNotificationSettings             *UpdateReactionNotificationSettings
-	UpdateRecentStickers                           *UpdateRecentStickers
-	UpdateSavedAnimations                          *UpdateSavedAnimations
-	UpdateSavedMessagesTags                        *UpdateSavedMessagesTags
-	UpdateSavedMessagesTopic                       *UpdateSavedMessagesTopic
-	UpdateSavedMessagesTopicCount                  *UpdateSavedMessagesTopicCount
-	UpdateSavedNotificationSounds                  *UpdateSavedNotificationSounds
-	UpdateScopeNotificationSettings                *UpdateScopeNotificationSettings
-	UpdateSecretChat                               *UpdateSecretChat
-	UpdateServiceNotification                      *UpdateServiceNotification
-	UpdateSpeechRecognitionTrial                   *UpdateSpeechRecognitionTrial
-	UpdateSpeedLimitNotification                   *UpdateSpeedLimitNotification
-	UpdateStakeDiceState                           *UpdateStakeDiceState
-	UpdateStarRevenueStatus                        *UpdateStarRevenueStatus
-	UpdateStickerSet                               *UpdateStickerSet
-	UpdateStory                                    *UpdateStory
-	UpdateStoryDeleted                             *UpdateStoryDeleted
-	UpdateStoryListChatCount                       *UpdateStoryListChatCount
-	UpdateStoryPostFailed                          *UpdateStoryPostFailed
-	UpdateStoryPostSucceeded                       *UpdateStoryPostSucceeded
-	UpdateStoryStealthMode                         *UpdateStoryStealthMode
-	UpdateSuggestedActions                         *UpdateSuggestedActions
-	UpdateSupergroup                               *UpdateSupergroup
-	UpdateSupergroupFullInfo                       *UpdateSupergroupFullInfo
-	UpdateTermsOfService                           *UpdateTermsOfService
-	UpdateTonRevenueStatus                         *UpdateTonRevenueStatus
-	UpdateTopicMessageCount                        *UpdateTopicMessageCount
-	UpdateTrendingStickerSets                      *UpdateTrendingStickerSets
-	UpdateTrustedMiniAppBots                       *UpdateTrustedMiniAppBots
-	UpdateUnconfirmedSession                       *UpdateUnconfirmedSession
-	UpdateUnreadChatCount                          *UpdateUnreadChatCount
-	UpdateUnreadMessageCount                       *UpdateUnreadMessageCount
-	UpdateUser                                     *UpdateUser
-	UpdateUserFullInfo                             *UpdateUserFullInfo
-	UpdateUserPrivacySettingRules                  *UpdateUserPrivacySettingRules
-	UpdateUserStatus                               *UpdateUserStatus
-	UpdateVideoPublished                           *UpdateVideoPublished
-	UpdateWebAppMessageSent                        *UpdateWebAppMessageSent
+	// UpdateApplicationVerificationRequired A request can't be completed unless application verification is performed; for official mobile applications only.
+	UpdateApplicationVerificationRequired *UpdateApplicationVerificationRequired
+	// UpdateAttachmentMenuBots The list of bots added to attachment or side menu has changed
+	UpdateAttachmentMenuBots *UpdateAttachmentMenuBots
+	// UpdateAuthorizationState The user authorization state has changed
+	UpdateAuthorizationState *UpdateAuthorizationState
+	// UpdateAutosaveSettings Autosave settings for some type of chats were updated
+	UpdateAutosaveSettings *UpdateAutosaveSettings
+	// UpdateAvailableMessageEffects The list of available message effects has changed
+	UpdateAvailableMessageEffects *UpdateAvailableMessageEffects
+	// UpdateBasicGroup Some data of a basic group has changed. This update is guaranteed to come before the basic group identifier is returned to the application
+	UpdateBasicGroup *UpdateBasicGroup
+	// UpdateBasicGroupFullInfo Some data in basicGroupFullInfo has been changed
+	UpdateBasicGroupFullInfo *UpdateBasicGroupFullInfo
+	// UpdateBusinessConnection A business connection has changed; for bots only
+	UpdateBusinessConnection *UpdateBusinessConnection
+	// UpdateBusinessMessageEdited A message in a business account was edited; for bots only
+	UpdateBusinessMessageEdited *UpdateBusinessMessageEdited
+	// UpdateBusinessMessagesDeleted Messages in a business account were deleted; for bots only
+	UpdateBusinessMessagesDeleted *UpdateBusinessMessagesDeleted
+	// UpdateCall New call was created or information about a call was updated
+	UpdateCall *UpdateCall
+	// UpdateChatAccentColors Chat accent colors have changed
+	UpdateChatAccentColors *UpdateChatAccentColors
+	// UpdateChatAction A message sender activity in the chat has changed
+	UpdateChatAction *UpdateChatAction
+	// UpdateChatActionBar The chat action bar was changed
+	UpdateChatActionBar *UpdateChatActionBar
+	// UpdateChatActiveStories The list of active stories posted by a specific chat has changed
+	UpdateChatActiveStories *UpdateChatActiveStories
+	// UpdateChatAddedToList A chat was added to a chat list
+	UpdateChatAddedToList *UpdateChatAddedToList
+	// UpdateChatAvailableReactions The chat available reactions were changed
+	UpdateChatAvailableReactions *UpdateChatAvailableReactions
+	// UpdateChatBackground The chat background was changed
+	UpdateChatBackground *UpdateChatBackground
+	// UpdateChatBlockList A chat was blocked or unblocked
+	UpdateChatBlockList *UpdateChatBlockList
+	// UpdateChatBoost A chat boost has changed; for bots only
+	UpdateChatBoost *UpdateChatBoost
+	// UpdateChatBusinessBotManageBar The bar for managing business bot was changed in a chat
+	UpdateChatBusinessBotManageBar *UpdateChatBusinessBotManageBar
+	// UpdateChatDefaultDisableNotification The value of the default disable_notification parameter, used when a message is sent to the chat, was changed
+	UpdateChatDefaultDisableNotification *UpdateChatDefaultDisableNotification
+	// UpdateChatDraftMessage A chat draft has changed. Be aware that the update may come in the currently opened chat but with old content of the draft. If the user has changed the content of the draft, this update mustn't be applied
+	UpdateChatDraftMessage *UpdateChatDraftMessage
+	// UpdateChatEmojiStatus Chat emoji status has changed
+	UpdateChatEmojiStatus *UpdateChatEmojiStatus
+	// UpdateChatFolders The list of chat folders or a chat folder has changed
+	UpdateChatFolders *UpdateChatFolders
+	// UpdateChatHasProtectedContent A chat content was allowed or restricted for saving
+	UpdateChatHasProtectedContent *UpdateChatHasProtectedContent
+	// UpdateChatHasScheduledMessages A chat's has_scheduled_messages field has changed
+	UpdateChatHasScheduledMessages *UpdateChatHasScheduledMessages
+	// UpdateChatIsMarkedAsUnread A chat was marked as unread or was read
+	UpdateChatIsMarkedAsUnread *UpdateChatIsMarkedAsUnread
+	// UpdateChatIsTranslatable Translation of chat messages was enabled or disabled
+	UpdateChatIsTranslatable *UpdateChatIsTranslatable
+	// UpdateChatLastMessage The last message of a chat was changed
+	UpdateChatLastMessage *UpdateChatLastMessage
+	// UpdateChatMember User rights changed in a chat; for bots only
+	UpdateChatMember *UpdateChatMember
+	// UpdateChatMessageAutoDeleteTime The message auto-delete or self-destruct timer setting for a chat was changed
+	UpdateChatMessageAutoDeleteTime *UpdateChatMessageAutoDeleteTime
+	// UpdateChatMessageSender The message sender that is selected to send messages in a chat has changed
+	UpdateChatMessageSender *UpdateChatMessageSender
+	// UpdateChatNotificationSettings Notification settings for a chat were changed
+	UpdateChatNotificationSettings *UpdateChatNotificationSettings
+	// UpdateChatOnlineMemberCount The number of online group members has changed. This update with non-zero number of online group members is sent only for currently opened chats.
+	UpdateChatOnlineMemberCount *UpdateChatOnlineMemberCount
+	// UpdateChatPendingJoinRequests The chat pending join requests were changed
+	UpdateChatPendingJoinRequests *UpdateChatPendingJoinRequests
+	// UpdateChatPermissions Chat permissions were changed
+	UpdateChatPermissions *UpdateChatPermissions
+	// UpdateChatPhoto A chat photo was changed
+	UpdateChatPhoto *UpdateChatPhoto
+	// UpdateChatPosition The position of a chat in a chat list has changed. An updateChatLastMessage or updateChatDraftMessage update might be sent instead of the update
+	UpdateChatPosition *UpdateChatPosition
+	// UpdateChatReadInbox Incoming messages were read or the number of unread messages has been changed
+	UpdateChatReadInbox *UpdateChatReadInbox
+	// UpdateChatReadOutbox Outgoing messages were read
+	UpdateChatReadOutbox *UpdateChatReadOutbox
+	// UpdateChatRemovedFromList A chat was removed from a chat list
+	UpdateChatRemovedFromList *UpdateChatRemovedFromList
+	// UpdateChatReplyMarkup The chat reply markup was changed
+	UpdateChatReplyMarkup *UpdateChatReplyMarkup
+	// UpdateChatRevenueAmount The revenue earned from sponsored messages in a chat has changed. If chat revenue screen is opened, then getChatRevenueTransactions may be called to fetch new transactions
+	UpdateChatRevenueAmount *UpdateChatRevenueAmount
+	// UpdateChatTheme The chat theme was changed
+	UpdateChatTheme *UpdateChatTheme
+	// UpdateChatTitle The title of a chat was changed
+	UpdateChatTitle *UpdateChatTitle
+	// UpdateChatUnreadMentionCount The chat unread_mention_count has changed
+	UpdateChatUnreadMentionCount *UpdateChatUnreadMentionCount
+	// UpdateChatUnreadReactionCount The chat unread_reaction_count has changed
+	UpdateChatUnreadReactionCount *UpdateChatUnreadReactionCount
+	// UpdateChatVideoChat A chat video chat state has changed
+	UpdateChatVideoChat *UpdateChatVideoChat
+	// UpdateChatViewAsTopics A chat default appearance has changed
+	UpdateChatViewAsTopics *UpdateChatViewAsTopics
+	// UpdateConnectionState The connection state has changed. This update must be used only to show a human-readable description of the connection state
+	UpdateConnectionState *UpdateConnectionState
+	// UpdateContactCloseBirthdays The list of contacts that had birthdays recently or will have birthday soon has changed
+	UpdateContactCloseBirthdays *UpdateContactCloseBirthdays
+	// UpdateDefaultBackground The default background has changed
+	UpdateDefaultBackground *UpdateDefaultBackground
+	// UpdateDefaultPaidReactionType The type of default paid reaction has changed
+	UpdateDefaultPaidReactionType *UpdateDefaultPaidReactionType
+	// UpdateDefaultReactionType The type of default reaction has changed
+	UpdateDefaultReactionType *UpdateDefaultReactionType
+	// UpdateDeleteMessages Some messages were deleted
+	UpdateDeleteMessages *UpdateDeleteMessages
+	// UpdateDiceEmojis The list of supported dice emojis has changed
+	UpdateDiceEmojis *UpdateDiceEmojis
+	// UpdateDirectMessagesChatTopic Basic information about a topic in a channel direct messages chat administered by the current user has changed. This update is guaranteed to come before the topic identifier is returned to the application
+	UpdateDirectMessagesChatTopic *UpdateDirectMessagesChatTopic
+	// UpdateEmojiChatThemes The list of available emoji chat themes has changed
+	UpdateEmojiChatThemes *UpdateEmojiChatThemes
+	// UpdateFavoriteStickers The list of favorite stickers was updated
+	UpdateFavoriteStickers *UpdateFavoriteStickers
+	// UpdateFile Information about a file was updated
+	UpdateFile *UpdateFile
+	// UpdateFileAddedToDownloads A file was added to the file download list. This update is sent only after file download list is loaded for the first time
+	UpdateFileAddedToDownloads *UpdateFileAddedToDownloads
+	// UpdateFileDownload A file download was changed. This update is sent only after file download list is loaded for the first time
+	UpdateFileDownload *UpdateFileDownload
+	// UpdateFileDownloads The state of the file download list has changed
+	UpdateFileDownloads *UpdateFileDownloads
+	// UpdateFileGenerationStart The file generation process needs to be started by the application. Use setFileGenerationProgress and finishFileGeneration to generate the file
+	UpdateFileGenerationStart *UpdateFileGenerationStart
+	// UpdateFileGenerationStop File generation is no longer needed
+	UpdateFileGenerationStop *UpdateFileGenerationStop
+	// UpdateFileRemovedFromDownloads A file was removed from the file download list. This update is sent only after file download list is loaded for the first time
+	UpdateFileRemovedFromDownloads *UpdateFileRemovedFromDownloads
+	// UpdateForumTopic Information about a topic in a forum chat was changed
+	UpdateForumTopic *UpdateForumTopic
+	// UpdateForumTopicInfo Basic information about a topic in a forum chat was changed
+	UpdateForumTopicInfo *UpdateForumTopicInfo
+	// UpdateFreezeState The freeze state of the current user's account has changed
+	UpdateFreezeState *UpdateFreezeState
+	// UpdateGiftAuctionState State of a gift auction was updated
+	UpdateGiftAuctionState *UpdateGiftAuctionState
+	// UpdateGroupCall Information about a group call was updated
+	UpdateGroupCall *UpdateGroupCall
+	// UpdateGroupCallMessageLevels The levels of live story group call messages have changed
+	UpdateGroupCallMessageLevels *UpdateGroupCallMessageLevels
+	// UpdateGroupCallMessagesDeleted Some group call messages were deleted
+	UpdateGroupCallMessagesDeleted *UpdateGroupCallMessagesDeleted
+	// UpdateGroupCallMessageSendFailed A group call message failed to send
+	UpdateGroupCallMessageSendFailed *UpdateGroupCallMessageSendFailed
+	// UpdateGroupCallParticipant Information about a group call participant was changed. The updates are sent only after the group call is received through getGroupCall and only if the call is joined or being joined
+	UpdateGroupCallParticipant *UpdateGroupCallParticipant
+	// UpdateGroupCallParticipants The list of group call participants that can send and receive encrypted call data has changed; for group calls not bound to a chat only
+	UpdateGroupCallParticipants *UpdateGroupCallParticipants
+	// UpdateGroupCallVerificationState The verification state of an encrypted group call has changed; for group calls not bound to a chat only
+	UpdateGroupCallVerificationState *UpdateGroupCallVerificationState
+	// UpdateHavePendingNotifications Describes whether there are some pending notification updates. Can be used to prevent application from killing, while there are some pending notifications
+	UpdateHavePendingNotifications *UpdateHavePendingNotifications
+	// UpdateInstalledStickerSets The list of installed sticker sets was updated
+	UpdateInstalledStickerSets *UpdateInstalledStickerSets
+	// UpdateLanguagePackStrings Some language pack strings have been updated
+	UpdateLanguagePackStrings *UpdateLanguagePackStrings
+	// UpdateLiveStoryTopDonors The list of top donors in live story group call has changed
+	UpdateLiveStoryTopDonors *UpdateLiveStoryTopDonors
+	// UpdateMessageContent The message content has changed
+	UpdateMessageContent *UpdateMessageContent
+	// UpdateMessageContentOpened The message content was opened. Updates voice note messages to "listened", video note messages to "viewed" and starts the self-destruct timer
+	UpdateMessageContentOpened *UpdateMessageContentOpened
+	// UpdateMessageEdited A message was edited. Changes in the message content will come in a separate updateMessageContent
+	UpdateMessageEdited *UpdateMessageEdited
+	// UpdateMessageFactCheck A fact-check added to a message was changed
+	UpdateMessageFactCheck *UpdateMessageFactCheck
+	// UpdateMessageInteractionInfo The information about interactions with a message has changed
+	UpdateMessageInteractionInfo *UpdateMessageInteractionInfo
+	// UpdateMessageIsPinned The message pinned state was changed
+	UpdateMessageIsPinned *UpdateMessageIsPinned
+	// UpdateMessageLiveLocationViewed A message with a live location was viewed. When the update is received, the application is expected to update the live location
+	UpdateMessageLiveLocationViewed *UpdateMessageLiveLocationViewed
+	// UpdateMessageMentionRead A message with an unread mention was read
+	UpdateMessageMentionRead *UpdateMessageMentionRead
+	// UpdateMessageReaction User changed its reactions on a message with public reactions; for bots only
+	UpdateMessageReaction *UpdateMessageReaction
+	// UpdateMessageReactions Reactions added to a message with anonymous reactions have changed; for bots only
+	UpdateMessageReactions *UpdateMessageReactions
+	// UpdateMessageSendAcknowledged A request to send a message has reached the Telegram server. This doesn't mean that the message will be sent successfully.
+	UpdateMessageSendAcknowledged *UpdateMessageSendAcknowledged
+	// UpdateMessageSendFailed A message failed to send. Be aware that some messages being sent can be irrecoverably deleted, in which case updateDeleteMessages will be received instead of this update
+	UpdateMessageSendFailed *UpdateMessageSendFailed
+	// UpdateMessageSendSucceeded A message has been successfully sent
+	UpdateMessageSendSucceeded *UpdateMessageSendSucceeded
+	// UpdateMessageSuggestedPostInfo Information about suggested post of a message was changed
+	UpdateMessageSuggestedPostInfo *UpdateMessageSuggestedPostInfo
+	// UpdateMessageUnreadReactions The list of unread reactions added to a message was changed
+	UpdateMessageUnreadReactions *UpdateMessageUnreadReactions
+	// UpdateNewBusinessCallbackQuery A new incoming callback query from a business message; for bots only
+	UpdateNewBusinessCallbackQuery *UpdateNewBusinessCallbackQuery
+	// UpdateNewBusinessMessage A new message was added to a business account; for bots only
+	UpdateNewBusinessMessage *UpdateNewBusinessMessage
+	// UpdateNewCallbackQuery A new incoming callback query; for bots only
+	UpdateNewCallbackQuery *UpdateNewCallbackQuery
+	// UpdateNewCallSignalingData New call signaling data arrived
+	UpdateNewCallSignalingData *UpdateNewCallSignalingData
+	// UpdateNewChat A new chat has been loaded/created. This update is guaranteed to come before the chat identifier is returned to the application. The chat field changes will be reported through separate updates
+	UpdateNewChat *UpdateNewChat
+	// UpdateNewChatJoinRequest A user sent a join request to a chat; for bots only
+	UpdateNewChatJoinRequest *UpdateNewChatJoinRequest
+	// UpdateNewChosenInlineResult The user has chosen a result of an inline query; for bots only
+	UpdateNewChosenInlineResult *UpdateNewChosenInlineResult
+	// UpdateNewCustomEvent A new incoming event; for bots only
+	UpdateNewCustomEvent *UpdateNewCustomEvent
+	// UpdateNewCustomQuery A new incoming query; for bots only
+	UpdateNewCustomQuery *UpdateNewCustomQuery
+	// UpdateNewGroupCallMessage A new message was received in a group call
+	UpdateNewGroupCallMessage *UpdateNewGroupCallMessage
+	// UpdateNewGroupCallPaidReaction A new paid reaction was received in a live story group call
+	UpdateNewGroupCallPaidReaction *UpdateNewGroupCallPaidReaction
+	// UpdateNewInlineCallbackQuery A new incoming callback query from a message sent via a bot; for bots only
+	UpdateNewInlineCallbackQuery *UpdateNewInlineCallbackQuery
+	// UpdateNewInlineQuery A new incoming inline query; for bots only
+	UpdateNewInlineQuery *UpdateNewInlineQuery
+	// UpdateNewMessage A new message was received; can also be an outgoing message
+	UpdateNewMessage *UpdateNewMessage
+	// UpdateNewOauthRequest An OAuth authorization request was received
+	UpdateNewOauthRequest *UpdateNewOauthRequest
+	// UpdateNewPreCheckoutQuery A new incoming pre-checkout query; for bots only. Contains full information about a checkout
+	UpdateNewPreCheckoutQuery *UpdateNewPreCheckoutQuery
+	// UpdateNewShippingQuery A new incoming shipping query; for bots only. Only for invoices with flexible price
+	UpdateNewShippingQuery *UpdateNewShippingQuery
+	// UpdateNotification A notification was changed
+	UpdateNotification *UpdateNotification
+	// UpdateNotificationGroup A list of active notifications in a notification group has changed
+	UpdateNotificationGroup *UpdateNotificationGroup
+	// UpdateOption An option changed its value
+	UpdateOption *UpdateOption
+	// UpdateOwnedStarCount The number of Telegram Stars owned by the current user has changed
+	UpdateOwnedStarCount *UpdateOwnedStarCount
+	// UpdateOwnedTonCount The number of Toncoins owned by the current user has changed
+	UpdateOwnedTonCount *UpdateOwnedTonCount
+	// UpdatePaidMediaPurchased Paid media were purchased by a user; for bots only
+	UpdatePaidMediaPurchased *UpdatePaidMediaPurchased
+	// UpdatePendingTextMessage A new pending text message was received in a chat with a bot. The message must be shown in the chat for at most getOption("pending_text_message_period") seconds,
+	UpdatePendingTextMessage *UpdatePendingTextMessage
+	// UpdatePoll A poll was updated; for bots only
+	UpdatePoll *UpdatePoll
+	// UpdatePollAnswer A user changed the answer to a poll; for bots only
+	UpdatePollAnswer *UpdatePollAnswer
+	// UpdateProfileAccentColors The list of supported accent colors for user profiles has changed
+	UpdateProfileAccentColors *UpdateProfileAccentColors
+	// UpdateQuickReplyShortcut Basic information about a quick reply shortcut has changed. This update is guaranteed to come before the quick shortcut name is returned to the application
+	UpdateQuickReplyShortcut *UpdateQuickReplyShortcut
+	// UpdateQuickReplyShortcutDeleted A quick reply shortcut and all its messages were deleted
+	UpdateQuickReplyShortcutDeleted *UpdateQuickReplyShortcutDeleted
+	// UpdateQuickReplyShortcutMessages The list of quick reply shortcut messages has changed
+	UpdateQuickReplyShortcutMessages *UpdateQuickReplyShortcutMessages
+	// UpdateQuickReplyShortcuts The list of quick reply shortcuts has changed
+	UpdateQuickReplyShortcuts *UpdateQuickReplyShortcuts
+	// UpdateReactionNotificationSettings Notification settings for reactions were updated
+	UpdateReactionNotificationSettings *UpdateReactionNotificationSettings
+	// UpdateRecentStickers The list of recently used stickers was updated
+	UpdateRecentStickers *UpdateRecentStickers
+	// UpdateSavedAnimations The list of saved animations was updated
+	UpdateSavedAnimations *UpdateSavedAnimations
+	// UpdateSavedMessagesTags Tags used in Saved Messages or a Saved Messages topic have changed
+	UpdateSavedMessagesTags *UpdateSavedMessagesTags
+	// UpdateSavedMessagesTopic Basic information about a Saved Messages topic has changed. This update is guaranteed to come before the topic identifier is returned to the application
+	UpdateSavedMessagesTopic *UpdateSavedMessagesTopic
+	// UpdateSavedMessagesTopicCount Number of Saved Messages topics has changed
+	UpdateSavedMessagesTopicCount *UpdateSavedMessagesTopicCount
+	// UpdateSavedNotificationSounds The list of saved notification sounds was updated. This update may not be sent until information about a notification sound was requested for the first time
+	UpdateSavedNotificationSounds *UpdateSavedNotificationSounds
+	// UpdateScopeNotificationSettings Notification settings for some type of chats were updated
+	UpdateScopeNotificationSettings *UpdateScopeNotificationSettings
+	// UpdateSecretChat Some data of a secret chat has changed. This update is guaranteed to come before the secret chat identifier is returned to the application
+	UpdateSecretChat *UpdateSecretChat
+	// UpdateServiceNotification A service notification from the server was received. Upon receiving this the application must show a popup with the content of the notification
+	UpdateServiceNotification *UpdateServiceNotification
+	// UpdateSpeechRecognitionTrial The parameters of speech recognition without Telegram Premium subscription has changed
+	UpdateSpeechRecognitionTrial *UpdateSpeechRecognitionTrial
+	// UpdateSpeedLimitNotification Download or upload file speed for the user was limited, but it can be restored by subscription to Telegram Premium. The notification can be postponed until a being downloaded or uploaded file is visible to the user.
+	UpdateSpeedLimitNotification *UpdateSpeedLimitNotification
+	// UpdateStakeDiceState The stake dice state has changed
+	UpdateStakeDiceState *UpdateStakeDiceState
+	// UpdateStarRevenueStatus The Telegram Star revenue earned by a user or a chat has changed. If Telegram Star transaction screen of the chat is opened, then getStarTransactions may be called to fetch new transactions
+	UpdateStarRevenueStatus *UpdateStarRevenueStatus
+	// UpdateStickerSet A sticker set has changed
+	UpdateStickerSet *UpdateStickerSet
+	// UpdateStory A story was changed
+	UpdateStory *UpdateStory
+	// UpdateStoryDeleted A story became inaccessible
+	UpdateStoryDeleted *UpdateStoryDeleted
+	// UpdateStoryListChatCount Number of chats in a story list has changed
+	UpdateStoryListChatCount *UpdateStoryListChatCount
+	// UpdateStoryPostFailed A story failed to post. If the story posting is canceled, then updateStoryDeleted will be received instead of this update
+	UpdateStoryPostFailed *UpdateStoryPostFailed
+	// UpdateStoryPostSucceeded A story has been successfully posted
+	UpdateStoryPostSucceeded *UpdateStoryPostSucceeded
+	// UpdateStoryStealthMode Story stealth mode settings have changed
+	UpdateStoryStealthMode *UpdateStoryStealthMode
+	// UpdateSuggestedActions The list of suggested to the user actions has changed
+	UpdateSuggestedActions *UpdateSuggestedActions
+	// UpdateSupergroup Some data of a supergroup or a channel has changed. This update is guaranteed to come before the supergroup identifier is returned to the application
+	UpdateSupergroup *UpdateSupergroup
+	// UpdateSupergroupFullInfo Some data in supergroupFullInfo has been changed
+	UpdateSupergroupFullInfo *UpdateSupergroupFullInfo
+	// UpdateTermsOfService New terms of service must be accepted by the user. If the terms of service are declined, then the deleteAccount method must be called with the reason "Decline ToS update"
+	UpdateTermsOfService *UpdateTermsOfService
+	// UpdateTonRevenueStatus The Toncoin revenue earned by the current user has changed. If Toncoin transaction screen of the chat is opened, then getTonTransactions may be called to fetch new transactions
+	UpdateTonRevenueStatus *UpdateTonRevenueStatus
+	// UpdateTopicMessageCount Number of messages in a topic has changed; for Saved Messages and channel direct messages chat topics only
+	UpdateTopicMessageCount *UpdateTopicMessageCount
+	// UpdateTrendingStickerSets The list of trending sticker sets was updated or some of them were viewed
+	UpdateTrendingStickerSets *UpdateTrendingStickerSets
+	// UpdateTrustedMiniAppBots Lists of bots which Mini Apps must be allowed to read text from clipboard and must be opened without a warning
+	UpdateTrustedMiniAppBots *UpdateTrustedMiniAppBots
+	// UpdateUnconfirmedSession The first unconfirmed session has changed
+	UpdateUnconfirmedSession *UpdateUnconfirmedSession
+	// UpdateUnreadChatCount Number of unread chats, i.e. with unread messages or marked as unread, has changed. This update is sent only if the message database is used
+	UpdateUnreadChatCount *UpdateUnreadChatCount
+	// UpdateUnreadMessageCount Number of unread messages in a chat list has changed. This update is sent only if the message database is used
+	UpdateUnreadMessageCount *UpdateUnreadMessageCount
+	// UpdateUser Some data of a user has changed. This update is guaranteed to come before the user identifier is returned to the application
+	UpdateUser *UpdateUser
+	// UpdateUserFullInfo Some data in userFullInfo has been changed
+	UpdateUserFullInfo *UpdateUserFullInfo
+	// UpdateUserPrivacySettingRules Some privacy setting rules have been changed
+	UpdateUserPrivacySettingRules *UpdateUserPrivacySettingRules
+	// UpdateUserStatus The user went online or offline
+	UpdateUserStatus *UpdateUserStatus
+	// UpdateVideoPublished An automatically scheduled message with video has been successfully sent after conversion
+	UpdateVideoPublished *UpdateVideoPublished
+	// UpdateWebAppMessageSent A message was sent by an opened Web App, so the Web App needs to be closed
+	UpdateWebAppMessageSent *UpdateWebAppMessageSent
 }
 
 func NewContextUpdates(u TlObject) *ContextUpdates {

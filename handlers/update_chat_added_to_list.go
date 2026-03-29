@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateChatAddedToList A chat was added to a chat list
 type UpdateChatAddedToList struct {
 	Filter   filters.UpdateChatAddedToList
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateChatAddedToList creates a new UpdateChatAddedToList
 func NewUpdateChatAddedToList(filter filters.UpdateChatAddedToList, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatAddedToList {
 	return &UpdateChatAddedToList{
 		Filter:   filter,

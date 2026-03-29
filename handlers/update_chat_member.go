@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateChatMember User rights changed in a chat; for bots only
 type UpdateChatMember struct {
 	Filter   filters.UpdateChatMember
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateChatMember creates a new UpdateChatMember
 func NewUpdateChatMember(filter filters.UpdateChatMember, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatMember {
 	return &UpdateChatMember{
 		Filter:   filter,

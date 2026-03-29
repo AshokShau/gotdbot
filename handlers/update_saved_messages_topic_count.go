@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateSavedMessagesTopicCount Number of Saved Messages topics has changed
 type UpdateSavedMessagesTopicCount struct {
 	Filter   filters.UpdateSavedMessagesTopicCount
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateSavedMessagesTopicCount creates a new UpdateSavedMessagesTopicCount
 func NewUpdateSavedMessagesTopicCount(filter filters.UpdateSavedMessagesTopicCount, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateSavedMessagesTopicCount {
 	return &UpdateSavedMessagesTopicCount{
 		Filter:   filter,

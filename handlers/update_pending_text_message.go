@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdatePendingTextMessage A new pending text message was received in a chat with a bot. The message must be shown in the chat for at most getOption("pending_text_message_period") seconds,
 type UpdatePendingTextMessage struct {
 	Filter   filters.UpdatePendingTextMessage
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdatePendingTextMessage creates a new UpdatePendingTextMessage
 func NewUpdatePendingTextMessage(filter filters.UpdatePendingTextMessage, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdatePendingTextMessage {
 	return &UpdatePendingTextMessage{
 		Filter:   filter,

@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateSavedMessagesTopic Basic information about a Saved Messages topic has changed. This update is guaranteed to come before the topic identifier is returned to the application
 type UpdateSavedMessagesTopic struct {
 	Filter   filters.UpdateSavedMessagesTopic
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateSavedMessagesTopic creates a new UpdateSavedMessagesTopic
 func NewUpdateSavedMessagesTopic(filter filters.UpdateSavedMessagesTopic, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateSavedMessagesTopic {
 	return &UpdateSavedMessagesTopic{
 		Filter:   filter,

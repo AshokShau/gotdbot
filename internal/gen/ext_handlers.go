@@ -29,11 +29,13 @@ func generateExtHandlers(types []TLType) []string {
 		sb.WriteString("\t\"github.com/AshokShau/gotdbot/handlers/filters\"\n")
 		sb.WriteString(")\n\n")
 
+		sb.WriteString(fmt.Sprintf("// %s %s\n", structName, formatDesc(t.Description)))
 		sb.WriteString(fmt.Sprintf("type %s struct {\n", structName))
 		sb.WriteString(fmt.Sprintf("\tFilter   filters.%s\n", structName))
 		sb.WriteString("\tResponse func(b *gotdbot.Client, ctx *gotdbot.Context) error\n")
 		sb.WriteString("}\n\n")
 
+		sb.WriteString(fmt.Sprintf("// New%s creates a new %s\n", structName, structName))
 		sb.WriteString(fmt.Sprintf("func New%s(filter filters.%s, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *%s {\n", structName, structName, structName))
 		sb.WriteString(fmt.Sprintf("\treturn &%s{\n", structName))
 		sb.WriteString("\t\tFilter:   filter,\n")
@@ -74,6 +76,7 @@ func generateExtHandlers(types []TLType) []string {
 			continue
 		}
 		structName := toCamelCase(t.Name)
+		sbFilters.WriteString(fmt.Sprintf("\t// %s %s\n", structName, formatDesc(t.Description)))
 		sbFilters.WriteString(fmt.Sprintf("\t%s func(u *gotdbot.%s) bool\n", structName, structName))
 	}
 
@@ -97,6 +100,7 @@ func generateExtHandlers(types []TLType) []string {
 			continue
 		}
 		structName := toCamelCase(t.Name)
+		sbContext.WriteString(fmt.Sprintf("\t// %s %s\n", structName, formatDesc(t.Description)))
 		sbContext.WriteString(fmt.Sprintf("\t%s *%s\n", structName, structName))
 	}
 	sbContext.WriteString("}\n\n")
@@ -183,7 +187,8 @@ func generateExtHandlers(types []TLType) []string {
 	sbTest.WriteString(")\n\n")
 
 	sbTest.WriteString("func TestGeneratedHandlers(t *testing.T) {\n")
-	sbTest.WriteString("\td := gotdbot.NewDispatcher(&gotdbot.Client{}, nil)\n\n")
+	sbTest.WriteString("\tc := &gotdbot.Client{}\n")
+	sbTest.WriteString("\td := gotdbot.NewDispatcher(nil)\n\n")
 
 	for _, t := range types {
 		if t.ResultType != "Update" {
@@ -198,7 +203,7 @@ func generateExtHandlers(types []TLType) []string {
 		sbTest.WriteString("\t\t\treturn nil\n")
 		sbTest.WriteString("\t\t})\n")
 		sbTest.WriteString("\t\td.AddHandler(h)\n")
-		sbTest.WriteString(fmt.Sprintf("\t\td.ProcessUpdate(&gotdbot.%s{})\n", structName))
+		sbTest.WriteString(fmt.Sprintf("\t\td.ProcessUpdate(c, &gotdbot.%s{})\n", structName))
 		sbTest.WriteString("\t\tselect {\n")
 		sbTest.WriteString("\t\tcase <-called:\n")
 		sbTest.WriteString("\t\tcase <-time.After(100 * time.Millisecond):\n")

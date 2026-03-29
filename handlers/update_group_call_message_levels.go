@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateGroupCallMessageLevels The levels of live story group call messages have changed
 type UpdateGroupCallMessageLevels struct {
 	Filter   filters.UpdateGroupCallMessageLevels
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateGroupCallMessageLevels creates a new UpdateGroupCallMessageLevels
 func NewUpdateGroupCallMessageLevels(filter filters.UpdateGroupCallMessageLevels, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateGroupCallMessageLevels {
 	return &UpdateGroupCallMessageLevels{
 		Filter:   filter,

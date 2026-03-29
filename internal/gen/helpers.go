@@ -187,7 +187,8 @@ func generateHelperMethod(sb *strings.Builder, t TLType, fn TLType, matches map[
 
 	receiverVar := strings.ToLower(structName[:1])
 
-	fmt.Fprintf(sb, "// %s is a helper method for Client.%s\n", helperName, clientMethodName)
+	fmt.Fprintf(sb, "// %s %s\n", helperName, formatDesc(fn.Description))
+	fmt.Fprintf(sb, "// It is a helper method for Client.%s\n", clientMethodName)
 
 	if isOk {
 		fmt.Fprintf(sb, "func (%s *%s) %s(client *Client, %s) error {\n",

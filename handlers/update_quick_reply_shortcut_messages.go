@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateQuickReplyShortcutMessages The list of quick reply shortcut messages has changed
 type UpdateQuickReplyShortcutMessages struct {
 	Filter   filters.UpdateQuickReplyShortcutMessages
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateQuickReplyShortcutMessages creates a new UpdateQuickReplyShortcutMessages
 func NewUpdateQuickReplyShortcutMessages(filter filters.UpdateQuickReplyShortcutMessages, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateQuickReplyShortcutMessages {
 	return &UpdateQuickReplyShortcutMessages{
 		Filter:   filter,

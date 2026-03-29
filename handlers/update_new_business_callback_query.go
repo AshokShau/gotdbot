@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateNewBusinessCallbackQuery A new incoming callback query from a business message; for bots only
 type UpdateNewBusinessCallbackQuery struct {
 	Filter   filters.UpdateNewBusinessCallbackQuery
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateNewBusinessCallbackQuery creates a new UpdateNewBusinessCallbackQuery
 func NewUpdateNewBusinessCallbackQuery(filter filters.UpdateNewBusinessCallbackQuery, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateNewBusinessCallbackQuery {
 	return &UpdateNewBusinessCallbackQuery{
 		Filter:   filter,

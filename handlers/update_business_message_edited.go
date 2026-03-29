@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateBusinessMessageEdited A message in a business account was edited; for bots only
 type UpdateBusinessMessageEdited struct {
 	Filter   filters.UpdateBusinessMessageEdited
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateBusinessMessageEdited creates a new UpdateBusinessMessageEdited
 func NewUpdateBusinessMessageEdited(filter filters.UpdateBusinessMessageEdited, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateBusinessMessageEdited {
 	return &UpdateBusinessMessageEdited{
 		Filter:   filter,

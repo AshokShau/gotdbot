@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateWebAppMessageSent A message was sent by an opened Web App, so the Web App needs to be closed
 type UpdateWebAppMessageSent struct {
 	Filter   filters.UpdateWebAppMessageSent
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateWebAppMessageSent creates a new UpdateWebAppMessageSent
 func NewUpdateWebAppMessageSent(filter filters.UpdateWebAppMessageSent, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateWebAppMessageSent {
 	return &UpdateWebAppMessageSent{
 		Filter:   filter,

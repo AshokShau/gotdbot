@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateChatBlockList A chat was blocked or unblocked
 type UpdateChatBlockList struct {
 	Filter   filters.UpdateChatBlockList
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateChatBlockList creates a new UpdateChatBlockList
 func NewUpdateChatBlockList(filter filters.UpdateChatBlockList, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatBlockList {
 	return &UpdateChatBlockList{
 		Filter:   filter,

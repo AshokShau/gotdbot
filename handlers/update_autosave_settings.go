@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateAutosaveSettings Autosave settings for some type of chats were updated
 type UpdateAutosaveSettings struct {
 	Filter   filters.UpdateAutosaveSettings
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateAutosaveSettings creates a new UpdateAutosaveSettings
 func NewUpdateAutosaveSettings(filter filters.UpdateAutosaveSettings, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateAutosaveSettings {
 	return &UpdateAutosaveSettings{
 		Filter:   filter,

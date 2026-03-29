@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateChatOnlineMemberCount The number of online group members has changed. This update with non-zero number of online group members is sent only for currently opened chats.
 type UpdateChatOnlineMemberCount struct {
 	Filter   filters.UpdateChatOnlineMemberCount
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateChatOnlineMemberCount creates a new UpdateChatOnlineMemberCount
 func NewUpdateChatOnlineMemberCount(filter filters.UpdateChatOnlineMemberCount, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatOnlineMemberCount {
 	return &UpdateChatOnlineMemberCount{
 		Filter:   filter,

@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateChatBoost A chat boost has changed; for bots only
 type UpdateChatBoost struct {
 	Filter   filters.UpdateChatBoost
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateChatBoost creates a new UpdateChatBoost
 func NewUpdateChatBoost(filter filters.UpdateChatBoost, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatBoost {
 	return &UpdateChatBoost{
 		Filter:   filter,

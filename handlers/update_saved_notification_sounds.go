@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateSavedNotificationSounds The list of saved notification sounds was updated. This update may not be sent until information about a notification sound was requested for the first time
 type UpdateSavedNotificationSounds struct {
 	Filter   filters.UpdateSavedNotificationSounds
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateSavedNotificationSounds creates a new UpdateSavedNotificationSounds
 func NewUpdateSavedNotificationSounds(filter filters.UpdateSavedNotificationSounds, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateSavedNotificationSounds {
 	return &UpdateSavedNotificationSounds{
 		Filter:   filter,

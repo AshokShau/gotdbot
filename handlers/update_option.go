@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateOption An option changed its value
 type UpdateOption struct {
 	Filter   filters.UpdateOption
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateOption creates a new UpdateOption
 func NewUpdateOption(filter filters.UpdateOption, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateOption {
 	return &UpdateOption{
 		Filter:   filter,

@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateFileDownloads The state of the file download list has changed
 type UpdateFileDownloads struct {
 	Filter   filters.UpdateFileDownloads
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateFileDownloads creates a new UpdateFileDownloads
 func NewUpdateFileDownloads(filter filters.UpdateFileDownloads, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateFileDownloads {
 	return &UpdateFileDownloads{
 		Filter:   filter,

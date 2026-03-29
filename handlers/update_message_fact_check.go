@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateMessageFactCheck A fact-check added to a message was changed
 type UpdateMessageFactCheck struct {
 	Filter   filters.UpdateMessageFactCheck
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateMessageFactCheck creates a new UpdateMessageFactCheck
 func NewUpdateMessageFactCheck(filter filters.UpdateMessageFactCheck, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateMessageFactCheck {
 	return &UpdateMessageFactCheck{
 		Filter:   filter,

@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateChatFolders The list of chat folders or a chat folder has changed
 type UpdateChatFolders struct {
 	Filter   filters.UpdateChatFolders
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateChatFolders creates a new UpdateChatFolders
 func NewUpdateChatFolders(filter filters.UpdateChatFolders, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatFolders {
 	return &UpdateChatFolders{
 		Filter:   filter,

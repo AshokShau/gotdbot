@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateNewPreCheckoutQuery A new incoming pre-checkout query; for bots only. Contains full information about a checkout
 type UpdateNewPreCheckoutQuery struct {
 	Filter   filters.UpdateNewPreCheckoutQuery
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateNewPreCheckoutQuery creates a new UpdateNewPreCheckoutQuery
 func NewUpdateNewPreCheckoutQuery(filter filters.UpdateNewPreCheckoutQuery, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateNewPreCheckoutQuery {
 	return &UpdateNewPreCheckoutQuery{
 		Filter:   filter,

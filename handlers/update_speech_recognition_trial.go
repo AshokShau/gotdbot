@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateSpeechRecognitionTrial The parameters of speech recognition without Telegram Premium subscription has changed
 type UpdateSpeechRecognitionTrial struct {
 	Filter   filters.UpdateSpeechRecognitionTrial
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateSpeechRecognitionTrial creates a new UpdateSpeechRecognitionTrial
 func NewUpdateSpeechRecognitionTrial(filter filters.UpdateSpeechRecognitionTrial, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateSpeechRecognitionTrial {
 	return &UpdateSpeechRecognitionTrial{
 		Filter:   filter,

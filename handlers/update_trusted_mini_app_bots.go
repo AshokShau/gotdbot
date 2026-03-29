@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateTrustedMiniAppBots Lists of bots which Mini Apps must be allowed to read text from clipboard and must be opened without a warning
 type UpdateTrustedMiniAppBots struct {
 	Filter   filters.UpdateTrustedMiniAppBots
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateTrustedMiniAppBots creates a new UpdateTrustedMiniAppBots
 func NewUpdateTrustedMiniAppBots(filter filters.UpdateTrustedMiniAppBots, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateTrustedMiniAppBots {
 	return &UpdateTrustedMiniAppBots{
 		Filter:   filter,

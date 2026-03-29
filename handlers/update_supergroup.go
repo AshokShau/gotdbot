@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateSupergroup Some data of a supergroup or a channel has changed. This update is guaranteed to come before the supergroup identifier is returned to the application
 type UpdateSupergroup struct {
 	Filter   filters.UpdateSupergroup
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateSupergroup creates a new UpdateSupergroup
 func NewUpdateSupergroup(filter filters.UpdateSupergroup, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateSupergroup {
 	return &UpdateSupergroup{
 		Filter:   filter,

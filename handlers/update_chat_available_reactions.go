@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateChatAvailableReactions The chat available reactions were changed
 type UpdateChatAvailableReactions struct {
 	Filter   filters.UpdateChatAvailableReactions
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateChatAvailableReactions creates a new UpdateChatAvailableReactions
 func NewUpdateChatAvailableReactions(filter filters.UpdateChatAvailableReactions, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatAvailableReactions {
 	return &UpdateChatAvailableReactions{
 		Filter:   filter,

@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateLiveStoryTopDonors The list of top donors in live story group call has changed
 type UpdateLiveStoryTopDonors struct {
 	Filter   filters.UpdateLiveStoryTopDonors
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateLiveStoryTopDonors creates a new UpdateLiveStoryTopDonors
 func NewUpdateLiveStoryTopDonors(filter filters.UpdateLiveStoryTopDonors, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateLiveStoryTopDonors {
 	return &UpdateLiveStoryTopDonors{
 		Filter:   filter,

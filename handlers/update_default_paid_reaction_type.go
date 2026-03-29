@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateDefaultPaidReactionType The type of default paid reaction has changed
 type UpdateDefaultPaidReactionType struct {
 	Filter   filters.UpdateDefaultPaidReactionType
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateDefaultPaidReactionType creates a new UpdateDefaultPaidReactionType
 func NewUpdateDefaultPaidReactionType(filter filters.UpdateDefaultPaidReactionType, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateDefaultPaidReactionType {
 	return &UpdateDefaultPaidReactionType{
 		Filter:   filter,

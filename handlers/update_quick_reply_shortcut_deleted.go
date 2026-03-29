@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateQuickReplyShortcutDeleted A quick reply shortcut and all its messages were deleted
 type UpdateQuickReplyShortcutDeleted struct {
 	Filter   filters.UpdateQuickReplyShortcutDeleted
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateQuickReplyShortcutDeleted creates a new UpdateQuickReplyShortcutDeleted
 func NewUpdateQuickReplyShortcutDeleted(filter filters.UpdateQuickReplyShortcutDeleted, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateQuickReplyShortcutDeleted {
 	return &UpdateQuickReplyShortcutDeleted{
 		Filter:   filter,

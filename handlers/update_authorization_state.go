@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateAuthorizationState The user authorization state has changed
 type UpdateAuthorizationState struct {
 	Filter   filters.UpdateAuthorizationState
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateAuthorizationState creates a new UpdateAuthorizationState
 func NewUpdateAuthorizationState(filter filters.UpdateAuthorizationState, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateAuthorizationState {
 	return &UpdateAuthorizationState{
 		Filter:   filter,

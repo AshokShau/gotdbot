@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateAvailableMessageEffects The list of available message effects has changed
 type UpdateAvailableMessageEffects struct {
 	Filter   filters.UpdateAvailableMessageEffects
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateAvailableMessageEffects creates a new UpdateAvailableMessageEffects
 func NewUpdateAvailableMessageEffects(filter filters.UpdateAvailableMessageEffects, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateAvailableMessageEffects {
 	return &UpdateAvailableMessageEffects{
 		Filter:   filter,

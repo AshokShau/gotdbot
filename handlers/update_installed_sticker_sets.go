@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateInstalledStickerSets The list of installed sticker sets was updated
 type UpdateInstalledStickerSets struct {
 	Filter   filters.UpdateInstalledStickerSets
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateInstalledStickerSets creates a new UpdateInstalledStickerSets
 func NewUpdateInstalledStickerSets(filter filters.UpdateInstalledStickerSets, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateInstalledStickerSets {
 	return &UpdateInstalledStickerSets{
 		Filter:   filter,

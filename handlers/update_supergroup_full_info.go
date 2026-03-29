@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateSupergroupFullInfo Some data in supergroupFullInfo has been changed
 type UpdateSupergroupFullInfo struct {
 	Filter   filters.UpdateSupergroupFullInfo
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateSupergroupFullInfo creates a new UpdateSupergroupFullInfo
 func NewUpdateSupergroupFullInfo(filter filters.UpdateSupergroupFullInfo, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateSupergroupFullInfo {
 	return &UpdateSupergroupFullInfo{
 		Filter:   filter,

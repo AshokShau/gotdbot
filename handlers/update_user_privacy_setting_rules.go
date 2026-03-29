@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateUserPrivacySettingRules Some privacy setting rules have been changed
 type UpdateUserPrivacySettingRules struct {
 	Filter   filters.UpdateUserPrivacySettingRules
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateUserPrivacySettingRules creates a new UpdateUserPrivacySettingRules
 func NewUpdateUserPrivacySettingRules(filter filters.UpdateUserPrivacySettingRules, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateUserPrivacySettingRules {
 	return &UpdateUserPrivacySettingRules{
 		Filter:   filter,

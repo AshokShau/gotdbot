@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateMessageSendAcknowledged A request to send a message has reached the Telegram server. This doesn't mean that the message will be sent successfully.
 type UpdateMessageSendAcknowledged struct {
 	Filter   filters.UpdateMessageSendAcknowledged
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateMessageSendAcknowledged creates a new UpdateMessageSendAcknowledged
 func NewUpdateMessageSendAcknowledged(filter filters.UpdateMessageSendAcknowledged, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateMessageSendAcknowledged {
 	return &UpdateMessageSendAcknowledged{
 		Filter:   filter,

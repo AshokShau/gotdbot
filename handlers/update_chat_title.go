@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateChatTitle The title of a chat was changed
 type UpdateChatTitle struct {
 	Filter   filters.UpdateChatTitle
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateChatTitle creates a new UpdateChatTitle
 func NewUpdateChatTitle(filter filters.UpdateChatTitle, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatTitle {
 	return &UpdateChatTitle{
 		Filter:   filter,

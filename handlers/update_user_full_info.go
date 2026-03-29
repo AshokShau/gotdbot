@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateUserFullInfo Some data in userFullInfo has been changed
 type UpdateUserFullInfo struct {
 	Filter   filters.UpdateUserFullInfo
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateUserFullInfo creates a new UpdateUserFullInfo
 func NewUpdateUserFullInfo(filter filters.UpdateUserFullInfo, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateUserFullInfo {
 	return &UpdateUserFullInfo{
 		Filter:   filter,

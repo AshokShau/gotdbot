@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateChatRevenueAmount The revenue earned from sponsored messages in a chat has changed. If chat revenue screen is opened, then getChatRevenueTransactions may be called to fetch new transactions
 type UpdateChatRevenueAmount struct {
 	Filter   filters.UpdateChatRevenueAmount
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateChatRevenueAmount creates a new UpdateChatRevenueAmount
 func NewUpdateChatRevenueAmount(filter filters.UpdateChatRevenueAmount, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatRevenueAmount {
 	return &UpdateChatRevenueAmount{
 		Filter:   filter,

@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdatePollAnswer A user changed the answer to a poll; for bots only
 type UpdatePollAnswer struct {
 	Filter   filters.UpdatePollAnswer
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdatePollAnswer creates a new UpdatePollAnswer
 func NewUpdatePollAnswer(filter filters.UpdatePollAnswer, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdatePollAnswer {
 	return &UpdatePollAnswer{
 		Filter:   filter,

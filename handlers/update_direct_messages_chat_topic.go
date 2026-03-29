@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateDirectMessagesChatTopic Basic information about a topic in a channel direct messages chat administered by the current user has changed. This update is guaranteed to come before the topic identifier is returned to the application
 type UpdateDirectMessagesChatTopic struct {
 	Filter   filters.UpdateDirectMessagesChatTopic
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateDirectMessagesChatTopic creates a new UpdateDirectMessagesChatTopic
 func NewUpdateDirectMessagesChatTopic(filter filters.UpdateDirectMessagesChatTopic, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateDirectMessagesChatTopic {
 	return &UpdateDirectMessagesChatTopic{
 		Filter:   filter,

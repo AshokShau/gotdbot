@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateMessageLiveLocationViewed A message with a live location was viewed. When the update is received, the application is expected to update the live location
 type UpdateMessageLiveLocationViewed struct {
 	Filter   filters.UpdateMessageLiveLocationViewed
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateMessageLiveLocationViewed creates a new UpdateMessageLiveLocationViewed
 func NewUpdateMessageLiveLocationViewed(filter filters.UpdateMessageLiveLocationViewed, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateMessageLiveLocationViewed {
 	return &UpdateMessageLiveLocationViewed{
 		Filter:   filter,

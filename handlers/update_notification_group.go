@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateNotificationGroup A list of active notifications in a notification group has changed
 type UpdateNotificationGroup struct {
 	Filter   filters.UpdateNotificationGroup
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateNotificationGroup creates a new UpdateNotificationGroup
 func NewUpdateNotificationGroup(filter filters.UpdateNotificationGroup, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateNotificationGroup {
 	return &UpdateNotificationGroup{
 		Filter:   filter,

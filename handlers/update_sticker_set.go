@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateStickerSet A sticker set has changed
 type UpdateStickerSet struct {
 	Filter   filters.UpdateStickerSet
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateStickerSet creates a new UpdateStickerSet
 func NewUpdateStickerSet(filter filters.UpdateStickerSet, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateStickerSet {
 	return &UpdateStickerSet{
 		Filter:   filter,

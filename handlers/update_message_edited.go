@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateMessageEdited A message was edited. Changes in the message content will come in a separate updateMessageContent
 type UpdateMessageEdited struct {
 	Filter   filters.UpdateMessageEdited
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateMessageEdited creates a new UpdateMessageEdited
 func NewUpdateMessageEdited(filter filters.UpdateMessageEdited, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateMessageEdited {
 	return &UpdateMessageEdited{
 		Filter:   filter,

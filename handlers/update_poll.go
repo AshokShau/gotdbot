@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdatePoll A poll was updated; for bots only
 type UpdatePoll struct {
 	Filter   filters.UpdatePoll
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdatePoll creates a new UpdatePoll
 func NewUpdatePoll(filter filters.UpdatePoll, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdatePoll {
 	return &UpdatePoll{
 		Filter:   filter,

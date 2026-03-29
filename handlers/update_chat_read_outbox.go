@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateChatReadOutbox Outgoing messages were read
 type UpdateChatReadOutbox struct {
 	Filter   filters.UpdateChatReadOutbox
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateChatReadOutbox creates a new UpdateChatReadOutbox
 func NewUpdateChatReadOutbox(filter filters.UpdateChatReadOutbox, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatReadOutbox {
 	return &UpdateChatReadOutbox{
 		Filter:   filter,

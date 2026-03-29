@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateAgeVerificationParameters The parameters for age verification of the current user's account has changed
 type UpdateAgeVerificationParameters struct {
 	Filter   filters.UpdateAgeVerificationParameters
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateAgeVerificationParameters creates a new UpdateAgeVerificationParameters
 func NewUpdateAgeVerificationParameters(filter filters.UpdateAgeVerificationParameters, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateAgeVerificationParameters {
 	return &UpdateAgeVerificationParameters{
 		Filter:   filter,

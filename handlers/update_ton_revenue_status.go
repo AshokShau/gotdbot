@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateTonRevenueStatus The Toncoin revenue earned by the current user has changed. If Toncoin transaction screen of the chat is opened, then getTonTransactions may be called to fetch new transactions
 type UpdateTonRevenueStatus struct {
 	Filter   filters.UpdateTonRevenueStatus
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateTonRevenueStatus creates a new UpdateTonRevenueStatus
 func NewUpdateTonRevenueStatus(filter filters.UpdateTonRevenueStatus, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateTonRevenueStatus {
 	return &UpdateTonRevenueStatus{
 		Filter:   filter,

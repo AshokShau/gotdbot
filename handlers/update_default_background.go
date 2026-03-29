@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateDefaultBackground The default background has changed
 type UpdateDefaultBackground struct {
 	Filter   filters.UpdateDefaultBackground
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateDefaultBackground creates a new UpdateDefaultBackground
 func NewUpdateDefaultBackground(filter filters.UpdateDefaultBackground, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateDefaultBackground {
 	return &UpdateDefaultBackground{
 		Filter:   filter,

@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateSpeedLimitNotification Download or upload file speed for the user was limited, but it can be restored by subscription to Telegram Premium. The notification can be postponed until a being downloaded or uploaded file is visible to the user.
 type UpdateSpeedLimitNotification struct {
 	Filter   filters.UpdateSpeedLimitNotification
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateSpeedLimitNotification creates a new UpdateSpeedLimitNotification
 func NewUpdateSpeedLimitNotification(filter filters.UpdateSpeedLimitNotification, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateSpeedLimitNotification {
 	return &UpdateSpeedLimitNotification{
 		Filter:   filter,

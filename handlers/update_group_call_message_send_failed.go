@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateGroupCallMessageSendFailed A group call message failed to send
 type UpdateGroupCallMessageSendFailed struct {
 	Filter   filters.UpdateGroupCallMessageSendFailed
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateGroupCallMessageSendFailed creates a new UpdateGroupCallMessageSendFailed
 func NewUpdateGroupCallMessageSendFailed(filter filters.UpdateGroupCallMessageSendFailed, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateGroupCallMessageSendFailed {
 	return &UpdateGroupCallMessageSendFailed{
 		Filter:   filter,

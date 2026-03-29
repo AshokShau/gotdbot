@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateChatNotificationSettings Notification settings for a chat were changed
 type UpdateChatNotificationSettings struct {
 	Filter   filters.UpdateChatNotificationSettings
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateChatNotificationSettings creates a new UpdateChatNotificationSettings
 func NewUpdateChatNotificationSettings(filter filters.UpdateChatNotificationSettings, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatNotificationSettings {
 	return &UpdateChatNotificationSettings{
 		Filter:   filter,

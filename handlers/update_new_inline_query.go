@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateNewInlineQuery A new incoming inline query; for bots only
 type UpdateNewInlineQuery struct {
 	Filter   filters.UpdateNewInlineQuery
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateNewInlineQuery creates a new UpdateNewInlineQuery
 func NewUpdateNewInlineQuery(filter filters.UpdateNewInlineQuery, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateNewInlineQuery {
 	return &UpdateNewInlineQuery{
 		Filter:   filter,

@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateHavePendingNotifications Describes whether there are some pending notification updates. Can be used to prevent application from killing, while there are some pending notifications
 type UpdateHavePendingNotifications struct {
 	Filter   filters.UpdateHavePendingNotifications
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateHavePendingNotifications creates a new UpdateHavePendingNotifications
 func NewUpdateHavePendingNotifications(filter filters.UpdateHavePendingNotifications, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateHavePendingNotifications {
 	return &UpdateHavePendingNotifications{
 		Filter:   filter,

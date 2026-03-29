@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateChatIsMarkedAsUnread A chat was marked as unread or was read
 type UpdateChatIsMarkedAsUnread struct {
 	Filter   filters.UpdateChatIsMarkedAsUnread
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateChatIsMarkedAsUnread creates a new UpdateChatIsMarkedAsUnread
 func NewUpdateChatIsMarkedAsUnread(filter filters.UpdateChatIsMarkedAsUnread, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatIsMarkedAsUnread {
 	return &UpdateChatIsMarkedAsUnread{
 		Filter:   filter,

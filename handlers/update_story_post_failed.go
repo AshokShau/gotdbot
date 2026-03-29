@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateStoryPostFailed A story failed to post. If the story posting is canceled, then updateStoryDeleted will be received instead of this update
 type UpdateStoryPostFailed struct {
 	Filter   filters.UpdateStoryPostFailed
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateStoryPostFailed creates a new UpdateStoryPostFailed
 func NewUpdateStoryPostFailed(filter filters.UpdateStoryPostFailed, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateStoryPostFailed {
 	return &UpdateStoryPostFailed{
 		Filter:   filter,

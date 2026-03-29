@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateNewCustomEvent A new incoming event; for bots only
 type UpdateNewCustomEvent struct {
 	Filter   filters.UpdateNewCustomEvent
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateNewCustomEvent creates a new UpdateNewCustomEvent
 func NewUpdateNewCustomEvent(filter filters.UpdateNewCustomEvent, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateNewCustomEvent {
 	return &UpdateNewCustomEvent{
 		Filter:   filter,

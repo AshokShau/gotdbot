@@ -8,11 +8,13 @@ import (
 	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
+// UpdateChatIsTranslatable Translation of chat messages was enabled or disabled
 type UpdateChatIsTranslatable struct {
 	Filter   filters.UpdateChatIsTranslatable
 	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
 }
 
+// NewUpdateChatIsTranslatable creates a new UpdateChatIsTranslatable
 func NewUpdateChatIsTranslatable(filter filters.UpdateChatIsTranslatable, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatIsTranslatable {
 	return &UpdateChatIsTranslatable{
 		Filter:   filter,
