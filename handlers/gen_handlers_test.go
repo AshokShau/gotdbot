@@ -12,6 +12,7 @@ import (
 )
 
 func TestGeneratedHandlers(t *testing.T) {
+	c := &gotdbot.Client{}
 	d := gotdbot.NewDispatcher(nil)
 
 	func() {
@@ -21,7 +22,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateAccentColors{})
+		d.ProcessUpdate(c, &gotdbot.UpdateAccentColors{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -36,7 +37,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateActiveEmojiReactions{})
+		d.ProcessUpdate(c, &gotdbot.UpdateActiveEmojiReactions{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -51,7 +52,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateActiveGiftAuctions{})
+		d.ProcessUpdate(c, &gotdbot.UpdateActiveGiftAuctions{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -66,7 +67,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateActiveLiveLocationMessages{})
+		d.ProcessUpdate(c, &gotdbot.UpdateActiveLiveLocationMessages{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -81,7 +82,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateActiveNotifications{})
+		d.ProcessUpdate(c, &gotdbot.UpdateActiveNotifications{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -96,7 +97,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateAgeVerificationParameters{})
+		d.ProcessUpdate(c, &gotdbot.UpdateAgeVerificationParameters{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -111,7 +112,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateAnimatedEmojiMessageClicked{})
+		d.ProcessUpdate(c, &gotdbot.UpdateAnimatedEmojiMessageClicked{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -126,7 +127,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateAnimationSearchParameters{})
+		d.ProcessUpdate(c, &gotdbot.UpdateAnimationSearchParameters{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -141,7 +142,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateApplicationRecaptchaVerificationRequired{})
+		d.ProcessUpdate(c, &gotdbot.UpdateApplicationRecaptchaVerificationRequired{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -156,7 +157,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateApplicationVerificationRequired{})
+		d.ProcessUpdate(c, &gotdbot.UpdateApplicationVerificationRequired{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -171,7 +172,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateAttachmentMenuBots{})
+		d.ProcessUpdate(c, &gotdbot.UpdateAttachmentMenuBots{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -186,7 +187,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateAuthorizationState{})
+		d.ProcessUpdate(c, &gotdbot.UpdateAuthorizationState{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -201,7 +202,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateAutosaveSettings{})
+		d.ProcessUpdate(c, &gotdbot.UpdateAutosaveSettings{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -216,7 +217,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateAvailableMessageEffects{})
+		d.ProcessUpdate(c, &gotdbot.UpdateAvailableMessageEffects{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -231,7 +232,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateBasicGroup{})
+		d.ProcessUpdate(c, &gotdbot.UpdateBasicGroup{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -246,7 +247,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateBasicGroupFullInfo{})
+		d.ProcessUpdate(c, &gotdbot.UpdateBasicGroupFullInfo{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -261,7 +262,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateBusinessConnection{})
+		d.ProcessUpdate(c, &gotdbot.UpdateBusinessConnection{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -276,7 +277,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateBusinessMessageEdited{})
+		d.ProcessUpdate(c, &gotdbot.UpdateBusinessMessageEdited{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -291,7 +292,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateBusinessMessagesDeleted{})
+		d.ProcessUpdate(c, &gotdbot.UpdateBusinessMessagesDeleted{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -306,7 +307,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateCall{})
+		d.ProcessUpdate(c, &gotdbot.UpdateCall{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -321,7 +322,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateChatAccentColors{})
+		d.ProcessUpdate(c, &gotdbot.UpdateChatAccentColors{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -336,7 +337,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateChatAction{})
+		d.ProcessUpdate(c, &gotdbot.UpdateChatAction{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -351,7 +352,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateChatActionBar{})
+		d.ProcessUpdate(c, &gotdbot.UpdateChatActionBar{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -366,7 +367,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateChatActiveStories{})
+		d.ProcessUpdate(c, &gotdbot.UpdateChatActiveStories{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -381,7 +382,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateChatAddedToList{})
+		d.ProcessUpdate(c, &gotdbot.UpdateChatAddedToList{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -396,7 +397,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateChatAvailableReactions{})
+		d.ProcessUpdate(c, &gotdbot.UpdateChatAvailableReactions{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -411,7 +412,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateChatBackground{})
+		d.ProcessUpdate(c, &gotdbot.UpdateChatBackground{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -426,7 +427,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateChatBlockList{})
+		d.ProcessUpdate(c, &gotdbot.UpdateChatBlockList{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -441,7 +442,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateChatBoost{})
+		d.ProcessUpdate(c, &gotdbot.UpdateChatBoost{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -456,7 +457,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateChatBusinessBotManageBar{})
+		d.ProcessUpdate(c, &gotdbot.UpdateChatBusinessBotManageBar{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -471,7 +472,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateChatDefaultDisableNotification{})
+		d.ProcessUpdate(c, &gotdbot.UpdateChatDefaultDisableNotification{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -486,7 +487,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateChatDraftMessage{})
+		d.ProcessUpdate(c, &gotdbot.UpdateChatDraftMessage{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -501,7 +502,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateChatEmojiStatus{})
+		d.ProcessUpdate(c, &gotdbot.UpdateChatEmojiStatus{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -516,7 +517,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateChatFolders{})
+		d.ProcessUpdate(c, &gotdbot.UpdateChatFolders{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -531,7 +532,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateChatHasProtectedContent{})
+		d.ProcessUpdate(c, &gotdbot.UpdateChatHasProtectedContent{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -546,7 +547,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateChatHasScheduledMessages{})
+		d.ProcessUpdate(c, &gotdbot.UpdateChatHasScheduledMessages{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -561,7 +562,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateChatIsMarkedAsUnread{})
+		d.ProcessUpdate(c, &gotdbot.UpdateChatIsMarkedAsUnread{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -576,7 +577,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateChatIsTranslatable{})
+		d.ProcessUpdate(c, &gotdbot.UpdateChatIsTranslatable{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -591,7 +592,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateChatLastMessage{})
+		d.ProcessUpdate(c, &gotdbot.UpdateChatLastMessage{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -606,7 +607,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateChatMember{})
+		d.ProcessUpdate(c, &gotdbot.UpdateChatMember{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -621,7 +622,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateChatMessageAutoDeleteTime{})
+		d.ProcessUpdate(c, &gotdbot.UpdateChatMessageAutoDeleteTime{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -636,7 +637,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateChatMessageSender{})
+		d.ProcessUpdate(c, &gotdbot.UpdateChatMessageSender{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -651,7 +652,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateChatNotificationSettings{})
+		d.ProcessUpdate(c, &gotdbot.UpdateChatNotificationSettings{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -666,7 +667,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateChatOnlineMemberCount{})
+		d.ProcessUpdate(c, &gotdbot.UpdateChatOnlineMemberCount{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -681,7 +682,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateChatPendingJoinRequests{})
+		d.ProcessUpdate(c, &gotdbot.UpdateChatPendingJoinRequests{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -696,7 +697,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateChatPermissions{})
+		d.ProcessUpdate(c, &gotdbot.UpdateChatPermissions{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -711,7 +712,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateChatPhoto{})
+		d.ProcessUpdate(c, &gotdbot.UpdateChatPhoto{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -726,7 +727,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateChatPosition{})
+		d.ProcessUpdate(c, &gotdbot.UpdateChatPosition{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -741,7 +742,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateChatReadInbox{})
+		d.ProcessUpdate(c, &gotdbot.UpdateChatReadInbox{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -756,7 +757,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateChatReadOutbox{})
+		d.ProcessUpdate(c, &gotdbot.UpdateChatReadOutbox{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -771,7 +772,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateChatRemovedFromList{})
+		d.ProcessUpdate(c, &gotdbot.UpdateChatRemovedFromList{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -786,7 +787,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateChatReplyMarkup{})
+		d.ProcessUpdate(c, &gotdbot.UpdateChatReplyMarkup{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -801,7 +802,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateChatRevenueAmount{})
+		d.ProcessUpdate(c, &gotdbot.UpdateChatRevenueAmount{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -816,7 +817,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateChatTheme{})
+		d.ProcessUpdate(c, &gotdbot.UpdateChatTheme{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -831,7 +832,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateChatTitle{})
+		d.ProcessUpdate(c, &gotdbot.UpdateChatTitle{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -846,7 +847,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateChatUnreadMentionCount{})
+		d.ProcessUpdate(c, &gotdbot.UpdateChatUnreadMentionCount{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -861,7 +862,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateChatUnreadReactionCount{})
+		d.ProcessUpdate(c, &gotdbot.UpdateChatUnreadReactionCount{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -876,7 +877,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateChatVideoChat{})
+		d.ProcessUpdate(c, &gotdbot.UpdateChatVideoChat{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -891,7 +892,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateChatViewAsTopics{})
+		d.ProcessUpdate(c, &gotdbot.UpdateChatViewAsTopics{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -906,7 +907,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateConnectionState{})
+		d.ProcessUpdate(c, &gotdbot.UpdateConnectionState{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -921,7 +922,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateContactCloseBirthdays{})
+		d.ProcessUpdate(c, &gotdbot.UpdateContactCloseBirthdays{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -936,7 +937,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateDefaultBackground{})
+		d.ProcessUpdate(c, &gotdbot.UpdateDefaultBackground{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -951,7 +952,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateDefaultPaidReactionType{})
+		d.ProcessUpdate(c, &gotdbot.UpdateDefaultPaidReactionType{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -966,7 +967,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateDefaultReactionType{})
+		d.ProcessUpdate(c, &gotdbot.UpdateDefaultReactionType{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -981,7 +982,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateDeleteMessages{})
+		d.ProcessUpdate(c, &gotdbot.UpdateDeleteMessages{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -996,7 +997,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateDiceEmojis{})
+		d.ProcessUpdate(c, &gotdbot.UpdateDiceEmojis{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1011,7 +1012,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateDirectMessagesChatTopic{})
+		d.ProcessUpdate(c, &gotdbot.UpdateDirectMessagesChatTopic{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1026,7 +1027,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateEmojiChatThemes{})
+		d.ProcessUpdate(c, &gotdbot.UpdateEmojiChatThemes{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1041,7 +1042,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateFavoriteStickers{})
+		d.ProcessUpdate(c, &gotdbot.UpdateFavoriteStickers{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1056,7 +1057,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateFile{})
+		d.ProcessUpdate(c, &gotdbot.UpdateFile{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1071,7 +1072,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateFileAddedToDownloads{})
+		d.ProcessUpdate(c, &gotdbot.UpdateFileAddedToDownloads{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1086,7 +1087,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateFileDownload{})
+		d.ProcessUpdate(c, &gotdbot.UpdateFileDownload{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1101,7 +1102,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateFileDownloads{})
+		d.ProcessUpdate(c, &gotdbot.UpdateFileDownloads{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1116,7 +1117,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateFileGenerationStart{})
+		d.ProcessUpdate(c, &gotdbot.UpdateFileGenerationStart{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1131,7 +1132,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateFileGenerationStop{})
+		d.ProcessUpdate(c, &gotdbot.UpdateFileGenerationStop{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1146,7 +1147,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateFileRemovedFromDownloads{})
+		d.ProcessUpdate(c, &gotdbot.UpdateFileRemovedFromDownloads{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1161,7 +1162,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateForumTopic{})
+		d.ProcessUpdate(c, &gotdbot.UpdateForumTopic{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1176,7 +1177,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateForumTopicInfo{})
+		d.ProcessUpdate(c, &gotdbot.UpdateForumTopicInfo{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1191,7 +1192,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateFreezeState{})
+		d.ProcessUpdate(c, &gotdbot.UpdateFreezeState{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1206,7 +1207,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateGiftAuctionState{})
+		d.ProcessUpdate(c, &gotdbot.UpdateGiftAuctionState{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1221,7 +1222,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateGroupCall{})
+		d.ProcessUpdate(c, &gotdbot.UpdateGroupCall{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1236,7 +1237,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateGroupCallMessageLevels{})
+		d.ProcessUpdate(c, &gotdbot.UpdateGroupCallMessageLevels{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1251,7 +1252,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateGroupCallMessagesDeleted{})
+		d.ProcessUpdate(c, &gotdbot.UpdateGroupCallMessagesDeleted{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1266,7 +1267,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateGroupCallMessageSendFailed{})
+		d.ProcessUpdate(c, &gotdbot.UpdateGroupCallMessageSendFailed{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1281,7 +1282,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateGroupCallParticipant{})
+		d.ProcessUpdate(c, &gotdbot.UpdateGroupCallParticipant{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1296,7 +1297,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateGroupCallParticipants{})
+		d.ProcessUpdate(c, &gotdbot.UpdateGroupCallParticipants{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1311,7 +1312,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateGroupCallVerificationState{})
+		d.ProcessUpdate(c, &gotdbot.UpdateGroupCallVerificationState{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1326,7 +1327,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateHavePendingNotifications{})
+		d.ProcessUpdate(c, &gotdbot.UpdateHavePendingNotifications{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1341,7 +1342,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateInstalledStickerSets{})
+		d.ProcessUpdate(c, &gotdbot.UpdateInstalledStickerSets{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1356,7 +1357,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateLanguagePackStrings{})
+		d.ProcessUpdate(c, &gotdbot.UpdateLanguagePackStrings{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1371,7 +1372,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateLiveStoryTopDonors{})
+		d.ProcessUpdate(c, &gotdbot.UpdateLiveStoryTopDonors{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1386,7 +1387,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateMessageContent{})
+		d.ProcessUpdate(c, &gotdbot.UpdateMessageContent{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1401,7 +1402,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateMessageContentOpened{})
+		d.ProcessUpdate(c, &gotdbot.UpdateMessageContentOpened{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1416,7 +1417,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateMessageEdited{})
+		d.ProcessUpdate(c, &gotdbot.UpdateMessageEdited{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1431,7 +1432,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateMessageFactCheck{})
+		d.ProcessUpdate(c, &gotdbot.UpdateMessageFactCheck{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1446,7 +1447,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateMessageInteractionInfo{})
+		d.ProcessUpdate(c, &gotdbot.UpdateMessageInteractionInfo{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1461,7 +1462,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateMessageIsPinned{})
+		d.ProcessUpdate(c, &gotdbot.UpdateMessageIsPinned{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1476,7 +1477,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateMessageLiveLocationViewed{})
+		d.ProcessUpdate(c, &gotdbot.UpdateMessageLiveLocationViewed{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1491,7 +1492,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateMessageMentionRead{})
+		d.ProcessUpdate(c, &gotdbot.UpdateMessageMentionRead{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1506,7 +1507,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateMessageReaction{})
+		d.ProcessUpdate(c, &gotdbot.UpdateMessageReaction{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1521,7 +1522,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateMessageReactions{})
+		d.ProcessUpdate(c, &gotdbot.UpdateMessageReactions{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1536,7 +1537,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateMessageSendAcknowledged{})
+		d.ProcessUpdate(c, &gotdbot.UpdateMessageSendAcknowledged{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1551,7 +1552,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateMessageSendFailed{})
+		d.ProcessUpdate(c, &gotdbot.UpdateMessageSendFailed{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1566,7 +1567,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateMessageSendSucceeded{})
+		d.ProcessUpdate(c, &gotdbot.UpdateMessageSendSucceeded{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1581,7 +1582,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateMessageSuggestedPostInfo{})
+		d.ProcessUpdate(c, &gotdbot.UpdateMessageSuggestedPostInfo{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1596,7 +1597,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateMessageUnreadReactions{})
+		d.ProcessUpdate(c, &gotdbot.UpdateMessageUnreadReactions{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1611,7 +1612,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateNewBusinessCallbackQuery{})
+		d.ProcessUpdate(c, &gotdbot.UpdateNewBusinessCallbackQuery{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1626,7 +1627,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateNewBusinessMessage{})
+		d.ProcessUpdate(c, &gotdbot.UpdateNewBusinessMessage{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1641,7 +1642,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateNewCallbackQuery{})
+		d.ProcessUpdate(c, &gotdbot.UpdateNewCallbackQuery{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1656,7 +1657,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateNewCallSignalingData{})
+		d.ProcessUpdate(c, &gotdbot.UpdateNewCallSignalingData{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1671,7 +1672,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateNewChat{})
+		d.ProcessUpdate(c, &gotdbot.UpdateNewChat{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1686,7 +1687,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateNewChatJoinRequest{})
+		d.ProcessUpdate(c, &gotdbot.UpdateNewChatJoinRequest{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1701,7 +1702,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateNewChosenInlineResult{})
+		d.ProcessUpdate(c, &gotdbot.UpdateNewChosenInlineResult{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1716,7 +1717,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateNewCustomEvent{})
+		d.ProcessUpdate(c, &gotdbot.UpdateNewCustomEvent{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1731,7 +1732,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateNewCustomQuery{})
+		d.ProcessUpdate(c, &gotdbot.UpdateNewCustomQuery{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1746,7 +1747,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateNewGroupCallMessage{})
+		d.ProcessUpdate(c, &gotdbot.UpdateNewGroupCallMessage{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1761,7 +1762,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateNewGroupCallPaidReaction{})
+		d.ProcessUpdate(c, &gotdbot.UpdateNewGroupCallPaidReaction{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1776,7 +1777,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateNewInlineCallbackQuery{})
+		d.ProcessUpdate(c, &gotdbot.UpdateNewInlineCallbackQuery{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1791,7 +1792,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateNewInlineQuery{})
+		d.ProcessUpdate(c, &gotdbot.UpdateNewInlineQuery{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1806,7 +1807,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateNewMessage{})
+		d.ProcessUpdate(c, &gotdbot.UpdateNewMessage{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1821,7 +1822,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateNewOauthRequest{})
+		d.ProcessUpdate(c, &gotdbot.UpdateNewOauthRequest{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1836,7 +1837,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateNewPreCheckoutQuery{})
+		d.ProcessUpdate(c, &gotdbot.UpdateNewPreCheckoutQuery{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1851,7 +1852,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateNewShippingQuery{})
+		d.ProcessUpdate(c, &gotdbot.UpdateNewShippingQuery{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1866,7 +1867,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateNotification{})
+		d.ProcessUpdate(c, &gotdbot.UpdateNotification{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1881,7 +1882,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateNotificationGroup{})
+		d.ProcessUpdate(c, &gotdbot.UpdateNotificationGroup{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1896,7 +1897,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateOption{})
+		d.ProcessUpdate(c, &gotdbot.UpdateOption{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1911,7 +1912,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateOwnedStarCount{})
+		d.ProcessUpdate(c, &gotdbot.UpdateOwnedStarCount{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1926,7 +1927,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateOwnedTonCount{})
+		d.ProcessUpdate(c, &gotdbot.UpdateOwnedTonCount{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1941,7 +1942,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdatePaidMediaPurchased{})
+		d.ProcessUpdate(c, &gotdbot.UpdatePaidMediaPurchased{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1956,7 +1957,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdatePendingTextMessage{})
+		d.ProcessUpdate(c, &gotdbot.UpdatePendingTextMessage{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1971,7 +1972,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdatePoll{})
+		d.ProcessUpdate(c, &gotdbot.UpdatePoll{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -1986,7 +1987,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdatePollAnswer{})
+		d.ProcessUpdate(c, &gotdbot.UpdatePollAnswer{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -2001,7 +2002,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateProfileAccentColors{})
+		d.ProcessUpdate(c, &gotdbot.UpdateProfileAccentColors{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -2016,7 +2017,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateQuickReplyShortcut{})
+		d.ProcessUpdate(c, &gotdbot.UpdateQuickReplyShortcut{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -2031,7 +2032,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateQuickReplyShortcutDeleted{})
+		d.ProcessUpdate(c, &gotdbot.UpdateQuickReplyShortcutDeleted{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -2046,7 +2047,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateQuickReplyShortcutMessages{})
+		d.ProcessUpdate(c, &gotdbot.UpdateQuickReplyShortcutMessages{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -2061,7 +2062,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateQuickReplyShortcuts{})
+		d.ProcessUpdate(c, &gotdbot.UpdateQuickReplyShortcuts{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -2076,7 +2077,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateReactionNotificationSettings{})
+		d.ProcessUpdate(c, &gotdbot.UpdateReactionNotificationSettings{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -2091,7 +2092,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateRecentStickers{})
+		d.ProcessUpdate(c, &gotdbot.UpdateRecentStickers{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -2106,7 +2107,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateSavedAnimations{})
+		d.ProcessUpdate(c, &gotdbot.UpdateSavedAnimations{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -2121,7 +2122,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateSavedMessagesTags{})
+		d.ProcessUpdate(c, &gotdbot.UpdateSavedMessagesTags{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -2136,7 +2137,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateSavedMessagesTopic{})
+		d.ProcessUpdate(c, &gotdbot.UpdateSavedMessagesTopic{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -2151,7 +2152,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateSavedMessagesTopicCount{})
+		d.ProcessUpdate(c, &gotdbot.UpdateSavedMessagesTopicCount{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -2166,7 +2167,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateSavedNotificationSounds{})
+		d.ProcessUpdate(c, &gotdbot.UpdateSavedNotificationSounds{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -2181,7 +2182,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateScopeNotificationSettings{})
+		d.ProcessUpdate(c, &gotdbot.UpdateScopeNotificationSettings{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -2196,7 +2197,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateSecretChat{})
+		d.ProcessUpdate(c, &gotdbot.UpdateSecretChat{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -2211,7 +2212,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateServiceNotification{})
+		d.ProcessUpdate(c, &gotdbot.UpdateServiceNotification{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -2226,7 +2227,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateSpeechRecognitionTrial{})
+		d.ProcessUpdate(c, &gotdbot.UpdateSpeechRecognitionTrial{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -2241,7 +2242,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateSpeedLimitNotification{})
+		d.ProcessUpdate(c, &gotdbot.UpdateSpeedLimitNotification{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -2256,7 +2257,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateStakeDiceState{})
+		d.ProcessUpdate(c, &gotdbot.UpdateStakeDiceState{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -2271,7 +2272,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateStarRevenueStatus{})
+		d.ProcessUpdate(c, &gotdbot.UpdateStarRevenueStatus{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -2286,7 +2287,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateStickerSet{})
+		d.ProcessUpdate(c, &gotdbot.UpdateStickerSet{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -2301,7 +2302,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateStory{})
+		d.ProcessUpdate(c, &gotdbot.UpdateStory{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -2316,7 +2317,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateStoryDeleted{})
+		d.ProcessUpdate(c, &gotdbot.UpdateStoryDeleted{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -2331,7 +2332,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateStoryListChatCount{})
+		d.ProcessUpdate(c, &gotdbot.UpdateStoryListChatCount{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -2346,7 +2347,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateStoryPostFailed{})
+		d.ProcessUpdate(c, &gotdbot.UpdateStoryPostFailed{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -2361,7 +2362,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateStoryPostSucceeded{})
+		d.ProcessUpdate(c, &gotdbot.UpdateStoryPostSucceeded{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -2376,7 +2377,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateStoryStealthMode{})
+		d.ProcessUpdate(c, &gotdbot.UpdateStoryStealthMode{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -2391,7 +2392,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateSuggestedActions{})
+		d.ProcessUpdate(c, &gotdbot.UpdateSuggestedActions{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -2406,7 +2407,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateSupergroup{})
+		d.ProcessUpdate(c, &gotdbot.UpdateSupergroup{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -2421,7 +2422,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateSupergroupFullInfo{})
+		d.ProcessUpdate(c, &gotdbot.UpdateSupergroupFullInfo{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -2436,7 +2437,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateTermsOfService{})
+		d.ProcessUpdate(c, &gotdbot.UpdateTermsOfService{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -2451,7 +2452,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateTonRevenueStatus{})
+		d.ProcessUpdate(c, &gotdbot.UpdateTonRevenueStatus{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -2466,7 +2467,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateTopicMessageCount{})
+		d.ProcessUpdate(c, &gotdbot.UpdateTopicMessageCount{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -2481,7 +2482,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateTrendingStickerSets{})
+		d.ProcessUpdate(c, &gotdbot.UpdateTrendingStickerSets{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -2496,7 +2497,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateTrustedMiniAppBots{})
+		d.ProcessUpdate(c, &gotdbot.UpdateTrustedMiniAppBots{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -2511,7 +2512,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateUnconfirmedSession{})
+		d.ProcessUpdate(c, &gotdbot.UpdateUnconfirmedSession{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -2526,7 +2527,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateUnreadChatCount{})
+		d.ProcessUpdate(c, &gotdbot.UpdateUnreadChatCount{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -2541,7 +2542,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateUnreadMessageCount{})
+		d.ProcessUpdate(c, &gotdbot.UpdateUnreadMessageCount{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -2556,7 +2557,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateUser{})
+		d.ProcessUpdate(c, &gotdbot.UpdateUser{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -2571,7 +2572,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateUserFullInfo{})
+		d.ProcessUpdate(c, &gotdbot.UpdateUserFullInfo{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -2586,7 +2587,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateUserPrivacySettingRules{})
+		d.ProcessUpdate(c, &gotdbot.UpdateUserPrivacySettingRules{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -2601,7 +2602,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateUserStatus{})
+		d.ProcessUpdate(c, &gotdbot.UpdateUserStatus{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -2616,7 +2617,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateVideoPublished{})
+		d.ProcessUpdate(c, &gotdbot.UpdateVideoPublished{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
@@ -2631,7 +2632,7 @@ func TestGeneratedHandlers(t *testing.T) {
 			return nil
 		})
 		d.AddHandler(h)
-		d.ProcessUpdate(&gotdbot.Client{}, &gotdbot.UpdateWebAppMessageSent{})
+		d.ProcessUpdate(c, &gotdbot.UpdateWebAppMessageSent{})
 		select {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):

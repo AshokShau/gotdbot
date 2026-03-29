@@ -187,7 +187,8 @@ func generateExtHandlers(types []TLType) []string {
 	sbTest.WriteString(")\n\n")
 
 	sbTest.WriteString("func TestGeneratedHandlers(t *testing.T) {\n")
-	sbTest.WriteString("\td := gotdbot.NewDispatcher(&gotdbot.Client{}, nil)\n\n")
+	sbTest.WriteString("\tc := &gotdbot.Client{}\n")
+	sbTest.WriteString("\td := gotdbot.NewDispatcher(nil)\n\n")
 
 	for _, t := range types {
 		if t.ResultType != "Update" {
@@ -202,7 +203,7 @@ func generateExtHandlers(types []TLType) []string {
 		sbTest.WriteString("\t\t\treturn nil\n")
 		sbTest.WriteString("\t\t})\n")
 		sbTest.WriteString("\t\td.AddHandler(h)\n")
-		sbTest.WriteString(fmt.Sprintf("\t\td.ProcessUpdate(&gotdbot.%s{})\n", structName))
+		sbTest.WriteString(fmt.Sprintf("\t\td.ProcessUpdate(c, &gotdbot.%s{})\n", structName))
 		sbTest.WriteString("\t\tselect {\n")
 		sbTest.WriteString("\t\tcase <-called:\n")
 		sbTest.WriteString("\t\tcase <-time.After(100 * time.Millisecond):\n")
