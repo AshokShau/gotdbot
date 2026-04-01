@@ -149,6 +149,9 @@ func generateObjects(types []TLType, classes map[string]*TLClass) {
 		// UnmarshalJSON if needed
 		if len(classFields) > 0 {
 			fmt.Fprintf(&sb, "func (t *%s) UnmarshalJSON(data []byte) error {\n", structName)
+			sb.WriteString("\tif data == nil || len(data) == 0 || string(data) == \"null\" {\n")
+			sb.WriteString("\t\treturn nil\n")
+			sb.WriteString("\t}\n")
 			fmt.Fprintf(&sb, "\ttype Alias %s\n", structName)
 			sb.WriteString("\taux := &struct {\n")
 			for _, p := range classFields {
