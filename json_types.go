@@ -1,9 +1,21 @@
 package gotdbot
 
 import (
+	"bytes"
 	"encoding/json"
 	"strconv"
 )
+
+func isNilOrNullJSON(data []byte) bool {
+	if len(data) == 0 {
+		return true
+	}
+	trimmed := bytes.TrimSpace(data)
+	if len(trimmed) == 0 {
+		return true
+	}
+	return bytes.Equal(trimmed, []byte("null"))
+}
 
 // Int64Slice is a slice of int64 that is marshalled to/from a slice of strings in JSON.
 // This is necessary because TDLib sends vector<int64> as a list of strings.

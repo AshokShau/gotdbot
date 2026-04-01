@@ -149,7 +149,8 @@ func generateObjects(types []TLType, classes map[string]*TLClass) {
 		// UnmarshalJSON if needed
 		if len(classFields) > 0 {
 			fmt.Fprintf(&sb, "func (t *%s) UnmarshalJSON(data []byte) error {\n", structName)
-			sb.WriteString("\tif data == nil || len(data) == 0 || string(data) == \"null\" {\n")
+			sb.WriteString("\tif isNilOrNullJSON(data) {\n")
+			fmt.Fprintf(&sb, "\t\t*t = %s{}\n", structName)
 			sb.WriteString("\t\treturn nil\n")
 			sb.WriteString("\t}\n")
 			fmt.Fprintf(&sb, "\ttype Alias %s\n", structName)

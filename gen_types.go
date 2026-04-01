@@ -255,7 +255,8 @@ func (t AddedReaction) MarshalJSON() ([]byte, error) {
 }
 
 func (t *AddedReaction) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = AddedReaction{}
 		return nil
 	}
 	type Alias AddedReaction
@@ -1096,7 +1097,8 @@ func (t AuthenticationCodeInfo) MarshalJSON() ([]byte, error) {
 }
 
 func (t *AuthenticationCodeInfo) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = AuthenticationCodeInfo{}
 		return nil
 	}
 	type Alias AuthenticationCodeInfo
@@ -1178,7 +1180,8 @@ func (t AuthenticationCodeTypeFirebaseAndroid) MarshalJSON() ([]byte, error) {
 }
 
 func (t *AuthenticationCodeTypeFirebaseAndroid) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = AuthenticationCodeTypeFirebaseAndroid{}
 		return nil
 	}
 	type Alias AuthenticationCodeTypeFirebaseAndroid
@@ -1557,7 +1560,8 @@ func (t AuthorizationStateWaitEmailCode) MarshalJSON() ([]byte, error) {
 }
 
 func (t *AuthorizationStateWaitEmailCode) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = AuthorizationStateWaitEmailCode{}
 		return nil
 	}
 	type Alias AuthorizationStateWaitEmailCode
@@ -1996,7 +2000,8 @@ func (t AvailableReaction) MarshalJSON() ([]byte, error) {
 }
 
 func (t *AvailableReaction) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = AvailableReaction{}
 		return nil
 	}
 	type Alias AvailableReaction
@@ -2053,7 +2058,8 @@ func (t AvailableReactions) MarshalJSON() ([]byte, error) {
 }
 
 func (t *AvailableReactions) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = AvailableReactions{}
 		return nil
 	}
 	type Alias AvailableReactions
@@ -2110,7 +2116,8 @@ func (t Background) MarshalJSON() ([]byte, error) {
 }
 
 func (t *Background) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = Background{}
 		return nil
 	}
 	type Alias Background
@@ -2276,7 +2283,8 @@ func (t BackgroundTypeFill) MarshalJSON() ([]byte, error) {
 }
 
 func (t *BackgroundTypeFill) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = BackgroundTypeFill{}
 		return nil
 	}
 	type Alias BackgroundTypeFill
@@ -2331,7 +2339,8 @@ func (t BackgroundTypePattern) MarshalJSON() ([]byte, error) {
 }
 
 func (t *BackgroundTypePattern) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = BackgroundTypePattern{}
 		return nil
 	}
 	type Alias BackgroundTypePattern
@@ -2457,7 +2466,8 @@ func (t BasicGroup) MarshalJSON() ([]byte, error) {
 }
 
 func (t *BasicGroup) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = BasicGroup{}
 		return nil
 	}
 	type Alias BasicGroup
@@ -2849,7 +2859,8 @@ func (t BotInfo) MarshalJSON() ([]byte, error) {
 }
 
 func (t *BotInfo) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = BotInfo{}
 		return nil
 	}
 	type Alias BotInfo
@@ -2922,7 +2933,8 @@ func (t BotMediaPreview) MarshalJSON() ([]byte, error) {
 }
 
 func (t *BotMediaPreview) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = BotMediaPreview{}
 		return nil
 	}
 	type Alias BotMediaPreview
@@ -3354,7 +3366,8 @@ func (t BusinessAwayMessageSettings) MarshalJSON() ([]byte, error) {
 }
 
 func (t *BusinessAwayMessageSettings) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = BusinessAwayMessageSettings{}
 		return nil
 	}
 	type Alias BusinessAwayMessageSettings
@@ -3772,7 +3785,8 @@ func (t BusinessFeaturePromotionAnimation) MarshalJSON() ([]byte, error) {
 }
 
 func (t *BusinessFeaturePromotionAnimation) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = BusinessFeaturePromotionAnimation{}
 		return nil
 	}
 	type Alias BusinessFeaturePromotionAnimation
@@ -3840,7 +3854,8 @@ func (t BusinessFeatures) MarshalJSON() ([]byte, error) {
 }
 
 func (t *BusinessFeatures) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = BusinessFeatures{}
 		return nil
 	}
 	type Alias BusinessFeatures
@@ -4257,7 +4272,8 @@ func (t Call) MarshalJSON() ([]byte, error) {
 }
 
 func (t *Call) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = Call{}
 		return nil
 	}
 	type Alias Call
@@ -4775,7 +4791,8 @@ func (t CallServer) MarshalJSON() ([]byte, error) {
 }
 
 func (t *CallServer) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = CallServer{}
 		return nil
 	}
 	type Alias CallServer
@@ -4884,7 +4901,8 @@ func (t CallStateDiscarded) MarshalJSON() ([]byte, error) {
 }
 
 func (t *CallStateDiscarded) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = CallStateDiscarded{}
 		return nil
 	}
 	type Alias CallStateDiscarded
@@ -5513,7 +5531,8 @@ func (t Chat) MarshalJSON() ([]byte, error) {
 }
 
 func (t *Chat) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = Chat{}
 		return nil
 	}
 	type Alias Chat
@@ -6086,7 +6105,8 @@ func (t ChatActiveStories) MarshalJSON() ([]byte, error) {
 }
 
 func (t *ChatActiveStories) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = ChatActiveStories{}
 		return nil
 	}
 	type Alias ChatActiveStories
@@ -6259,7 +6279,8 @@ func (t ChatAvailableReactionsSome) MarshalJSON() ([]byte, error) {
 }
 
 func (t *ChatAvailableReactionsSome) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = ChatAvailableReactionsSome{}
 		return nil
 	}
 	type Alias ChatAvailableReactionsSome
@@ -6340,7 +6361,8 @@ func (t ChatBoost) MarshalJSON() ([]byte, error) {
 }
 
 func (t *ChatBoost) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = ChatBoost{}
 		return nil
 	}
 	type Alias ChatBoost
@@ -6695,7 +6717,8 @@ func (t ChatEvent) MarshalJSON() ([]byte, error) {
 }
 
 func (t *ChatEvent) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = ChatEvent{}
 		return nil
 	}
 	type Alias ChatEvent
@@ -6831,7 +6854,8 @@ func (t ChatEventAvailableReactionsChanged) MarshalJSON() ([]byte, error) {
 }
 
 func (t *ChatEventAvailableReactionsChanged) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = ChatEventAvailableReactionsChanged{}
 		return nil
 	}
 	type Alias ChatEventAvailableReactionsChanged
@@ -7417,7 +7441,8 @@ func (t ChatEventMemberInvited) MarshalJSON() ([]byte, error) {
 }
 
 func (t *ChatEventMemberInvited) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = ChatEventMemberInvited{}
 		return nil
 	}
 	type Alias ChatEventMemberInvited
@@ -7562,7 +7587,8 @@ func (t ChatEventMemberPromoted) MarshalJSON() ([]byte, error) {
 }
 
 func (t *ChatEventMemberPromoted) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = ChatEventMemberPromoted{}
 		return nil
 	}
 	type Alias ChatEventMemberPromoted
@@ -7623,7 +7649,8 @@ func (t ChatEventMemberRestricted) MarshalJSON() ([]byte, error) {
 }
 
 func (t *ChatEventMemberRestricted) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = ChatEventMemberRestricted{}
 		return nil
 	}
 	type Alias ChatEventMemberRestricted
@@ -7692,7 +7719,8 @@ func (t ChatEventMemberSubscriptionExtended) MarshalJSON() ([]byte, error) {
 }
 
 func (t *ChatEventMemberSubscriptionExtended) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = ChatEventMemberSubscriptionExtended{}
 		return nil
 	}
 	type Alias ChatEventMemberSubscriptionExtended
@@ -8237,7 +8265,8 @@ func (t ChatEventVideoChatParticipantIsMutedToggled) MarshalJSON() ([]byte, erro
 }
 
 func (t *ChatEventVideoChatParticipantIsMutedToggled) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = ChatEventVideoChatParticipantIsMutedToggled{}
 		return nil
 	}
 	type Alias ChatEventVideoChatParticipantIsMutedToggled
@@ -8288,7 +8317,8 @@ func (t ChatEventVideoChatParticipantVolumeLevelChanged) MarshalJSON() ([]byte, 
 }
 
 func (t *ChatEventVideoChatParticipantVolumeLevelChanged) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = ChatEventVideoChatParticipantVolumeLevelChanged{}
 		return nil
 	}
 	type Alias ChatEventVideoChatParticipantVolumeLevelChanged
@@ -8647,7 +8677,8 @@ func (t ChatInviteLinkInfo) MarshalJSON() ([]byte, error) {
 }
 
 func (t *ChatInviteLinkInfo) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = ChatInviteLinkInfo{}
 		return nil
 	}
 	type Alias ChatInviteLinkInfo
@@ -8928,7 +8959,8 @@ func (t ChatLists) MarshalJSON() ([]byte, error) {
 }
 
 func (t *ChatLists) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = ChatLists{}
 		return nil
 	}
 	type Alias ChatLists
@@ -9009,7 +9041,8 @@ func (t ChatMember) MarshalJSON() ([]byte, error) {
 }
 
 func (t *ChatMember) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = ChatMember{}
 		return nil
 	}
 	type Alias ChatMember
@@ -9194,7 +9227,8 @@ func (t ChatMembersFilterMention) MarshalJSON() ([]byte, error) {
 }
 
 func (t *ChatMembersFilterMention) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = ChatMembersFilterMention{}
 		return nil
 	}
 	type Alias ChatMembersFilterMention
@@ -9408,7 +9442,8 @@ func (t ChatMessageSender) MarshalJSON() ([]byte, error) {
 }
 
 func (t *ChatMessageSender) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = ChatMessageSender{}
 		return nil
 	}
 	type Alias ChatMessageSender
@@ -9663,7 +9698,8 @@ func (t ChatPhotoSticker) MarshalJSON() ([]byte, error) {
 }
 
 func (t *ChatPhotoSticker) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = ChatPhotoSticker{}
 		return nil
 	}
 	type Alias ChatPhotoSticker
@@ -9772,7 +9808,8 @@ func (t ChatPosition) MarshalJSON() ([]byte, error) {
 }
 
 func (t *ChatPosition) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = ChatPosition{}
 		return nil
 	}
 	type Alias ChatPosition
@@ -9862,7 +9899,8 @@ func (t ChatRevenueStatistics) MarshalJSON() ([]byte, error) {
 }
 
 func (t *ChatRevenueStatistics) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = ChatRevenueStatistics{}
 		return nil
 	}
 	type Alias ChatRevenueStatistics
@@ -9921,7 +9959,8 @@ func (t ChatRevenueTransaction) MarshalJSON() ([]byte, error) {
 }
 
 func (t *ChatRevenueTransaction) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = ChatRevenueTransaction{}
 		return nil
 	}
 	type Alias ChatRevenueTransaction
@@ -10020,7 +10059,8 @@ func (t ChatRevenueTransactionTypeFragmentWithdrawal) MarshalJSON() ([]byte, err
 }
 
 func (t *ChatRevenueTransactionTypeFragmentWithdrawal) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = ChatRevenueTransactionTypeFragmentWithdrawal{}
 		return nil
 	}
 	type Alias ChatRevenueTransactionTypeFragmentWithdrawal
@@ -10276,7 +10316,8 @@ func (t ChatStatisticsChannel) MarshalJSON() ([]byte, error) {
 }
 
 func (t *ChatStatisticsChannel) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = ChatStatisticsChannel{}
 		return nil
 	}
 	type Alias ChatStatisticsChannel
@@ -10417,7 +10458,8 @@ func (t ChatStatisticsInteractionInfo) MarshalJSON() ([]byte, error) {
 }
 
 func (t *ChatStatisticsInteractionInfo) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = ChatStatisticsInteractionInfo{}
 		return nil
 	}
 	type Alias ChatStatisticsInteractionInfo
@@ -10590,7 +10632,8 @@ func (t ChatStatisticsSupergroup) MarshalJSON() ([]byte, error) {
 }
 
 func (t *ChatStatisticsSupergroup) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = ChatStatisticsSupergroup{}
 		return nil
 	}
 	type Alias ChatStatisticsSupergroup
@@ -10998,7 +11041,8 @@ func (t ChecklistTask) MarshalJSON() ([]byte, error) {
 }
 
 func (t *ChecklistTask) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = ChecklistTask{}
 		return nil
 	}
 	type Alias ChecklistTask
@@ -11131,7 +11175,8 @@ func (t ClosedVectorPath) MarshalJSON() ([]byte, error) {
 }
 
 func (t *ClosedVectorPath) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = ClosedVectorPath{}
 		return nil
 	}
 	type Alias ClosedVectorPath
@@ -11855,7 +11900,8 @@ func (t DateTimeFormattingTypeAbsolute) MarshalJSON() ([]byte, error) {
 }
 
 func (t *DateTimeFormattingTypeAbsolute) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = DateTimeFormattingTypeAbsolute{}
 		return nil
 	}
 	type Alias DateTimeFormattingTypeAbsolute
@@ -12383,7 +12429,8 @@ func (t DirectMessagesChatTopic) MarshalJSON() ([]byte, error) {
 }
 
 func (t *DirectMessagesChatTopic) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = DirectMessagesChatTopic{}
 		return nil
 	}
 	type Alias DirectMessagesChatTopic
@@ -12492,7 +12539,8 @@ func (t DraftMessage) MarshalJSON() ([]byte, error) {
 }
 
 func (t *DraftMessage) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = DraftMessage{}
 		return nil
 	}
 	type Alias DraftMessage
@@ -12712,7 +12760,8 @@ func (t EmojiCategory) MarshalJSON() ([]byte, error) {
 }
 
 func (t *EmojiCategory) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = EmojiCategory{}
 		return nil
 	}
 	type Alias EmojiCategory
@@ -13018,7 +13067,8 @@ func (t EmojiStatus) MarshalJSON() ([]byte, error) {
 }
 
 func (t *EmojiStatus) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = EmojiStatus{}
 		return nil
 	}
 	type Alias EmojiStatus
@@ -13204,7 +13254,8 @@ func (t EncryptedPassportElement) MarshalJSON() ([]byte, error) {
 }
 
 func (t *EncryptedPassportElement) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = EncryptedPassportElement{}
 		return nil
 	}
 	type Alias EncryptedPassportElement
@@ -14110,7 +14161,8 @@ func (t ForumTopicInfo) MarshalJSON() ([]byte, error) {
 }
 
 func (t *ForumTopicInfo) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = ForumTopicInfo{}
 		return nil
 	}
 	type Alias ForumTopicInfo
@@ -14196,7 +14248,8 @@ func (t ForwardSource) MarshalJSON() ([]byte, error) {
 }
 
 func (t *ForwardSource) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = ForwardSource{}
 		return nil
 	}
 	type Alias ForwardSource
@@ -14706,7 +14759,8 @@ func (t GiftAuctionAcquiredGift) MarshalJSON() ([]byte, error) {
 }
 
 func (t *GiftAuctionAcquiredGift) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = GiftAuctionAcquiredGift{}
 		return nil
 	}
 	type Alias GiftAuctionAcquiredGift
@@ -14776,7 +14830,8 @@ func (t GiftAuctionState) MarshalJSON() ([]byte, error) {
 }
 
 func (t *GiftAuctionState) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = GiftAuctionState{}
 		return nil
 	}
 	type Alias GiftAuctionState
@@ -15212,7 +15267,8 @@ func (t GiftResaleResultPriceIncreased) MarshalJSON() ([]byte, error) {
 }
 
 func (t *GiftResaleResultPriceIncreased) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = GiftResaleResultPriceIncreased{}
 		return nil
 	}
 	type Alias GiftResaleResultPriceIncreased
@@ -15460,7 +15516,8 @@ func (t GiveawayInfoOngoing) MarshalJSON() ([]byte, error) {
 }
 
 func (t *GiveawayInfoOngoing) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = GiveawayInfoOngoing{}
 		return nil
 	}
 	type Alias GiveawayInfoOngoing
@@ -15759,7 +15816,8 @@ func (t GroupCall) MarshalJSON() ([]byte, error) {
 }
 
 func (t *GroupCall) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = GroupCall{}
 		return nil
 	}
 	type Alias GroupCall
@@ -15931,7 +15989,8 @@ func (t GroupCallMessage) MarshalJSON() ([]byte, error) {
 }
 
 func (t *GroupCallMessage) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = GroupCallMessage{}
 		return nil
 	}
 	type Alias GroupCallMessage
@@ -16045,7 +16104,8 @@ func (t GroupCallParticipant) MarshalJSON() ([]byte, error) {
 }
 
 func (t *GroupCallParticipant) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = GroupCallParticipant{}
 		return nil
 	}
 	type Alias GroupCallParticipant
@@ -16094,7 +16154,8 @@ func (t GroupCallParticipants) MarshalJSON() ([]byte, error) {
 }
 
 func (t *GroupCallParticipants) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = GroupCallParticipants{}
 		return nil
 	}
 	type Alias GroupCallParticipants
@@ -16171,7 +16232,8 @@ func (t GroupCallRecentSpeaker) MarshalJSON() ([]byte, error) {
 }
 
 func (t *GroupCallRecentSpeaker) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = GroupCallRecentSpeaker{}
 		return nil
 	}
 	type Alias GroupCallRecentSpeaker
@@ -16479,7 +16541,8 @@ func (t InlineKeyboardButton) MarshalJSON() ([]byte, error) {
 }
 
 func (t *InlineKeyboardButton) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = InlineKeyboardButton{}
 		return nil
 	}
 	type Alias InlineKeyboardButton
@@ -16676,7 +16739,8 @@ func (t InlineKeyboardButtonTypeSwitchInline) MarshalJSON() ([]byte, error) {
 }
 
 func (t *InlineKeyboardButtonTypeSwitchInline) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = InlineKeyboardButtonTypeSwitchInline{}
 		return nil
 	}
 	type Alias InlineKeyboardButtonTypeSwitchInline
@@ -17020,7 +17084,8 @@ func (t InlineQueryResults) MarshalJSON() ([]byte, error) {
 }
 
 func (t *InlineQueryResults) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = InlineQueryResults{}
 		return nil
 	}
 	type Alias InlineQueryResults
@@ -17072,7 +17137,8 @@ func (t InlineQueryResultsButton) MarshalJSON() ([]byte, error) {
 }
 
 func (t *InlineQueryResultsButton) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = InlineQueryResultsButton{}
 		return nil
 	}
 	type Alias InlineQueryResultsButton
@@ -17275,7 +17341,8 @@ func (t InputBackgroundLocal) MarshalJSON() ([]byte, error) {
 }
 
 func (t *InputBackgroundLocal) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = InputBackgroundLocal{}
 		return nil
 	}
 	type Alias InputBackgroundLocal
@@ -17395,7 +17462,8 @@ func (t InputBusinessStartPage) MarshalJSON() ([]byte, error) {
 }
 
 func (t *InputBusinessStartPage) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = InputBusinessStartPage{}
 		return nil
 	}
 	type Alias InputBusinessStartPage
@@ -17494,7 +17562,8 @@ func (t InputChatPhotoAnimation) MarshalJSON() ([]byte, error) {
 }
 
 func (t *InputChatPhotoAnimation) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = InputChatPhotoAnimation{}
 		return nil
 	}
 	type Alias InputChatPhotoAnimation
@@ -17566,7 +17635,8 @@ func (t InputChatPhotoStatic) MarshalJSON() ([]byte, error) {
 }
 
 func (t *InputChatPhotoStatic) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = InputChatPhotoStatic{}
 		return nil
 	}
 	type Alias InputChatPhotoStatic
@@ -17980,7 +18050,8 @@ func (t InputIdentityDocument) MarshalJSON() ([]byte, error) {
 }
 
 func (t *InputIdentityDocument) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = InputIdentityDocument{}
 		return nil
 	}
 	type Alias InputIdentityDocument
@@ -18076,7 +18147,8 @@ func (t InputInlineQueryResultAnimation) MarshalJSON() ([]byte, error) {
 }
 
 func (t *InputInlineQueryResultAnimation) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = InputInlineQueryResultAnimation{}
 		return nil
 	}
 	type Alias InputInlineQueryResultAnimation
@@ -18149,7 +18221,8 @@ func (t InputInlineQueryResultArticle) MarshalJSON() ([]byte, error) {
 }
 
 func (t *InputInlineQueryResultArticle) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = InputInlineQueryResultArticle{}
 		return nil
 	}
 	type Alias InputInlineQueryResultArticle
@@ -18218,7 +18291,8 @@ func (t InputInlineQueryResultAudio) MarshalJSON() ([]byte, error) {
 }
 
 func (t *InputInlineQueryResultAudio) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = InputInlineQueryResultAudio{}
 		return nil
 	}
 	type Alias InputInlineQueryResultAudio
@@ -18287,7 +18361,8 @@ func (t InputInlineQueryResultContact) MarshalJSON() ([]byte, error) {
 }
 
 func (t *InputInlineQueryResultContact) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = InputInlineQueryResultContact{}
 		return nil
 	}
 	type Alias InputInlineQueryResultContact
@@ -18362,7 +18437,8 @@ func (t InputInlineQueryResultDocument) MarshalJSON() ([]byte, error) {
 }
 
 func (t *InputInlineQueryResultDocument) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = InputInlineQueryResultDocument{}
 		return nil
 	}
 	type Alias InputInlineQueryResultDocument
@@ -18423,7 +18499,8 @@ func (t InputInlineQueryResultGame) MarshalJSON() ([]byte, error) {
 }
 
 func (t *InputInlineQueryResultGame) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = InputInlineQueryResultGame{}
 		return nil
 	}
 	type Alias InputInlineQueryResultGame
@@ -18488,7 +18565,8 @@ func (t InputInlineQueryResultLocation) MarshalJSON() ([]byte, error) {
 }
 
 func (t *InputInlineQueryResultLocation) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = InputInlineQueryResultLocation{}
 		return nil
 	}
 	type Alias InputInlineQueryResultLocation
@@ -18561,7 +18639,8 @@ func (t InputInlineQueryResultPhoto) MarshalJSON() ([]byte, error) {
 }
 
 func (t *InputInlineQueryResultPhoto) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = InputInlineQueryResultPhoto{}
 		return nil
 	}
 	type Alias InputInlineQueryResultPhoto
@@ -18630,7 +18709,8 @@ func (t InputInlineQueryResultSticker) MarshalJSON() ([]byte, error) {
 }
 
 func (t *InputInlineQueryResultSticker) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = InputInlineQueryResultSticker{}
 		return nil
 	}
 	type Alias InputInlineQueryResultSticker
@@ -18699,7 +18779,8 @@ func (t InputInlineQueryResultVenue) MarshalJSON() ([]byte, error) {
 }
 
 func (t *InputInlineQueryResultVenue) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = InputInlineQueryResultVenue{}
 		return nil
 	}
 	type Alias InputInlineQueryResultVenue
@@ -18776,7 +18857,8 @@ func (t InputInlineQueryResultVideo) MarshalJSON() ([]byte, error) {
 }
 
 func (t *InputInlineQueryResultVideo) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = InputInlineQueryResultVideo{}
 		return nil
 	}
 	type Alias InputInlineQueryResultVideo
@@ -18843,7 +18925,8 @@ func (t InputInlineQueryResultVoiceNote) MarshalJSON() ([]byte, error) {
 }
 
 func (t *InputInlineQueryResultVoiceNote) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = InputInlineQueryResultVoiceNote{}
 		return nil
 	}
 	type Alias InputInlineQueryResultVoiceNote
@@ -18948,7 +19031,8 @@ func (t InputInvoiceTelegram) MarshalJSON() ([]byte, error) {
 }
 
 func (t *InputInvoiceTelegram) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = InputInvoiceTelegram{}
 		return nil
 	}
 	type Alias InputInvoiceTelegram
@@ -19013,7 +19097,8 @@ func (t InputMessageAnimation) MarshalJSON() ([]byte, error) {
 }
 
 func (t *InputMessageAnimation) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = InputMessageAnimation{}
 		return nil
 	}
 	type Alias InputMessageAnimation
@@ -19072,7 +19157,8 @@ func (t InputMessageAudio) MarshalJSON() ([]byte, error) {
 }
 
 func (t *InputMessageAudio) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = InputMessageAudio{}
 		return nil
 	}
 	type Alias InputMessageAudio
@@ -19198,7 +19284,8 @@ func (t InputMessageDocument) MarshalJSON() ([]byte, error) {
 }
 
 func (t *InputMessageDocument) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = InputMessageDocument{}
 		return nil
 	}
 	type Alias InputMessageDocument
@@ -19428,7 +19515,8 @@ func (t InputMessagePhoto) MarshalJSON() ([]byte, error) {
 }
 
 func (t *InputMessagePhoto) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = InputMessagePhoto{}
 		return nil
 	}
 	type Alias InputMessagePhoto
@@ -19497,7 +19585,8 @@ func (t InputMessagePoll) MarshalJSON() ([]byte, error) {
 }
 
 func (t *InputMessagePoll) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = InputMessagePoll{}
 		return nil
 	}
 	type Alias InputMessagePoll
@@ -19662,7 +19751,8 @@ func (t InputMessageSticker) MarshalJSON() ([]byte, error) {
 }
 
 func (t *InputMessageSticker) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = InputMessageSticker{}
 		return nil
 	}
 	type Alias InputMessageSticker
@@ -19810,7 +19900,8 @@ func (t InputMessageVideo) MarshalJSON() ([]byte, error) {
 }
 
 func (t *InputMessageVideo) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = InputMessageVideo{}
 		return nil
 	}
 	type Alias InputMessageVideo
@@ -19883,7 +19974,8 @@ func (t InputMessageVideoNote) MarshalJSON() ([]byte, error) {
 }
 
 func (t *InputMessageVideoNote) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = InputMessageVideoNote{}
 		return nil
 	}
 	type Alias InputMessageVideoNote
@@ -19948,7 +20040,8 @@ func (t InputMessageVoiceNote) MarshalJSON() ([]byte, error) {
 }
 
 func (t *InputMessageVoiceNote) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = InputMessageVoiceNote{}
 		return nil
 	}
 	type Alias InputMessageVoiceNote
@@ -20013,7 +20106,8 @@ func (t InputPaidMedia) MarshalJSON() ([]byte, error) {
 }
 
 func (t *InputPaidMedia) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = InputPaidMedia{}
 		return nil
 	}
 	type Alias InputPaidMedia
@@ -20097,7 +20191,8 @@ func (t InputPaidMediaTypeVideo) MarshalJSON() ([]byte, error) {
 }
 
 func (t *InputPaidMediaTypeVideo) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = InputPaidMediaTypeVideo{}
 		return nil
 	}
 	type Alias InputPaidMediaTypeVideo
@@ -20240,7 +20335,8 @@ func (t InputPassportElementError) MarshalJSON() ([]byte, error) {
 }
 
 func (t *InputPassportElementError) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = InputPassportElementError{}
 		return nil
 	}
 	type Alias InputPassportElementError
@@ -20713,7 +20809,8 @@ func (t InputPersonalDocument) MarshalJSON() ([]byte, error) {
 }
 
 func (t *InputPersonalDocument) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = InputPersonalDocument{}
 		return nil
 	}
 	type Alias InputPersonalDocument
@@ -20782,7 +20879,8 @@ func (t InputSticker) MarshalJSON() ([]byte, error) {
 }
 
 func (t *InputSticker) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = InputSticker{}
 		return nil
 	}
 	type Alias InputSticker
@@ -20839,7 +20937,8 @@ func (t InputStoryArea) MarshalJSON() ([]byte, error) {
 }
 
 func (t *InputStoryArea) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = InputStoryArea{}
 		return nil
 	}
 	type Alias InputStoryArea
@@ -21036,7 +21135,8 @@ func (t InputStoryAreaTypeSuggestedReaction) MarshalJSON() ([]byte, error) {
 }
 
 func (t *InputStoryAreaTypeSuggestedReaction) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = InputStoryAreaTypeSuggestedReaction{}
 		return nil
 	}
 	type Alias InputStoryAreaTypeSuggestedReaction
@@ -21137,7 +21237,8 @@ func (t InputStoryContentPhoto) MarshalJSON() ([]byte, error) {
 }
 
 func (t *InputStoryContentPhoto) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = InputStoryContentPhoto{}
 		return nil
 	}
 	type Alias InputStoryContentPhoto
@@ -21194,7 +21295,8 @@ func (t InputStoryContentVideo) MarshalJSON() ([]byte, error) {
 }
 
 func (t *InputStoryContentVideo) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = InputStoryContentVideo{}
 		return nil
 	}
 	type Alias InputStoryContentVideo
@@ -21243,7 +21345,8 @@ func (t InputSuggestedPostInfo) MarshalJSON() ([]byte, error) {
 }
 
 func (t *InputSuggestedPostInfo) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = InputSuggestedPostInfo{}
 		return nil
 	}
 	type Alias InputSuggestedPostInfo
@@ -21317,7 +21420,8 @@ func (t InputThumbnail) MarshalJSON() ([]byte, error) {
 }
 
 func (t *InputThumbnail) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = InputThumbnail{}
 		return nil
 	}
 	type Alias InputThumbnail
@@ -21370,7 +21474,8 @@ func (t InternalLinkTypeAttachmentMenuBot) MarshalJSON() ([]byte, error) {
 }
 
 func (t *InternalLinkTypeAttachmentMenuBot) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = InternalLinkTypeAttachmentMenuBot{}
 		return nil
 	}
 	type Alias InternalLinkTypeAttachmentMenuBot
@@ -21945,7 +22050,8 @@ func (t InternalLinkTypeMainWebApp) MarshalJSON() ([]byte, error) {
 }
 
 func (t *InternalLinkTypeMainWebApp) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = InternalLinkTypeMainWebApp{}
 		return nil
 	}
 	type Alias InternalLinkTypeMainWebApp
@@ -22128,7 +22234,8 @@ func (t InternalLinkTypeNewStory) MarshalJSON() ([]byte, error) {
 }
 
 func (t *InternalLinkTypeNewStory) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = InternalLinkTypeNewStory{}
 		return nil
 	}
 	type Alias InternalLinkTypeNewStory
@@ -22459,7 +22566,8 @@ func (t InternalLinkTypeSettings) MarshalJSON() ([]byte, error) {
 }
 
 func (t *InternalLinkTypeSettings) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = InternalLinkTypeSettings{}
 		return nil
 	}
 	type Alias InternalLinkTypeSettings
@@ -22760,7 +22868,8 @@ func (t InternalLinkTypeWebApp) MarshalJSON() ([]byte, error) {
 }
 
 func (t *InternalLinkTypeWebApp) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = InternalLinkTypeWebApp{}
 		return nil
 	}
 	type Alias InternalLinkTypeWebApp
@@ -23009,7 +23118,8 @@ func (t JsonObjectMember) MarshalJSON() ([]byte, error) {
 }
 
 func (t *JsonObjectMember) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = JsonObjectMember{}
 		return nil
 	}
 	type Alias JsonObjectMember
@@ -23058,7 +23168,8 @@ func (t JsonValueArray) MarshalJSON() ([]byte, error) {
 }
 
 func (t *JsonValueArray) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = JsonValueArray{}
 		return nil
 	}
 	type Alias JsonValueArray
@@ -23227,7 +23338,8 @@ func (t KeyboardButton) MarshalJSON() ([]byte, error) {
 }
 
 func (t *KeyboardButton) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = KeyboardButton{}
 		return nil
 	}
 	type Alias KeyboardButton
@@ -23549,7 +23661,8 @@ func (t LanguagePackString) MarshalJSON() ([]byte, error) {
 }
 
 func (t *LanguagePackString) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = LanguagePackString{}
 		return nil
 	}
 	type Alias LanguagePackString
@@ -23718,7 +23831,8 @@ func (t LinkPreview) MarshalJSON() ([]byte, error) {
 }
 
 func (t *LinkPreview) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = LinkPreview{}
 		return nil
 	}
 	type Alias LinkPreview
@@ -23844,7 +23958,8 @@ func (t LinkPreviewTypeAlbum) MarshalJSON() ([]byte, error) {
 }
 
 func (t *LinkPreviewTypeAlbum) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = LinkPreviewTypeAlbum{}
 		return nil
 	}
 	type Alias LinkPreviewTypeAlbum
@@ -23990,7 +24105,8 @@ func (t LinkPreviewTypeBackground) MarshalJSON() ([]byte, error) {
 }
 
 func (t *LinkPreviewTypeBackground) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = LinkPreviewTypeBackground{}
 		return nil
 	}
 	type Alias LinkPreviewTypeBackground
@@ -24066,7 +24182,8 @@ func (t LinkPreviewTypeChat) MarshalJSON() ([]byte, error) {
 }
 
 func (t *LinkPreviewTypeChat) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = LinkPreviewTypeChat{}
 		return nil
 	}
 	type Alias LinkPreviewTypeChat
@@ -25151,7 +25268,8 @@ func (t MainWebApp) MarshalJSON() ([]byte, error) {
 }
 
 func (t *MainWebApp) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = MainWebApp{}
 		return nil
 	}
 	type Alias MainWebApp
@@ -25288,7 +25406,8 @@ func (t MaskPosition) MarshalJSON() ([]byte, error) {
 }
 
 func (t *MaskPosition) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = MaskPosition{}
 		return nil
 	}
 	type Alias MaskPosition
@@ -25411,7 +25530,8 @@ func (t Message) MarshalJSON() ([]byte, error) {
 }
 
 func (t *Message) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = Message{}
 		return nil
 	}
 	type Alias Message
@@ -25643,7 +25763,8 @@ func (t MessageBotWriteAccessAllowed) MarshalJSON() ([]byte, error) {
 }
 
 func (t *MessageBotWriteAccessAllowed) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = MessageBotWriteAccessAllowed{}
 		return nil
 	}
 	type Alias MessageBotWriteAccessAllowed
@@ -25744,7 +25865,8 @@ func (t MessageCall) MarshalJSON() ([]byte, error) {
 }
 
 func (t *MessageCall) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = MessageCall{}
 		return nil
 	}
 	type Alias MessageCall
@@ -26119,7 +26241,8 @@ func (t MessageChatSetTheme) MarshalJSON() ([]byte, error) {
 }
 
 func (t *MessageChatSetTheme) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = MessageChatSetTheme{}
 		return nil
 	}
 	type Alias MessageChatSetTheme
@@ -26418,7 +26541,8 @@ func (t MessageDice) MarshalJSON() ([]byte, error) {
 }
 
 func (t *MessageDice) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = MessageDice{}
 		return nil
 	}
 	type Alias MessageDice
@@ -26531,7 +26655,8 @@ func (t MessageEffect) MarshalJSON() ([]byte, error) {
 }
 
 func (t *MessageEffect) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = MessageEffect{}
 		return nil
 	}
 	type Alias MessageEffect
@@ -26883,7 +27008,8 @@ func (t MessageForwardInfo) MarshalJSON() ([]byte, error) {
 }
 
 func (t *MessageForwardInfo) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = MessageForwardInfo{}
 		return nil
 	}
 	type Alias MessageForwardInfo
@@ -27018,7 +27144,8 @@ func (t MessageGift) MarshalJSON() ([]byte, error) {
 }
 
 func (t *MessageGift) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = MessageGift{}
 		return nil
 	}
 	type Alias MessageGift
@@ -27192,7 +27319,8 @@ func (t MessageGiveaway) MarshalJSON() ([]byte, error) {
 }
 
 func (t *MessageGiveaway) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = MessageGiveaway{}
 		return nil
 	}
 	type Alias MessageGiveaway
@@ -27346,7 +27474,8 @@ func (t MessageGiveawayWinners) MarshalJSON() ([]byte, error) {
 }
 
 func (t *MessageGiveawayWinners) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = MessageGiveawayWinners{}
 		return nil
 	}
 	type Alias MessageGiveawayWinners
@@ -27405,7 +27534,8 @@ func (t MessageGroupCall) MarshalJSON() ([]byte, error) {
 }
 
 func (t *MessageGroupCall) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = MessageGroupCall{}
 		return nil
 	}
 	type Alias MessageGroupCall
@@ -27548,7 +27678,8 @@ func (t MessageInvoice) MarshalJSON() ([]byte, error) {
 }
 
 func (t *MessageInvoice) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = MessageInvoice{}
 		return nil
 	}
 	type Alias MessageInvoice
@@ -27628,7 +27759,8 @@ func (t MessageLinkInfo) MarshalJSON() ([]byte, error) {
 }
 
 func (t *MessageLinkInfo) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = MessageLinkInfo{}
 		return nil
 	}
 	type Alias MessageLinkInfo
@@ -27812,7 +27944,8 @@ func (t MessagePaidMedia) MarshalJSON() ([]byte, error) {
 }
 
 func (t *MessagePaidMedia) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = MessagePaidMedia{}
 		return nil
 	}
 	type Alias MessagePaidMedia
@@ -27937,7 +28070,8 @@ func (t MessagePassportDataSent) MarshalJSON() ([]byte, error) {
 }
 
 func (t *MessagePassportDataSent) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = MessagePassportDataSent{}
 		return nil
 	}
 	type Alias MessagePassportDataSent
@@ -27999,7 +28133,8 @@ func (t MessagePaymentRefunded) MarshalJSON() ([]byte, error) {
 }
 
 func (t *MessagePaymentRefunded) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = MessagePaymentRefunded{}
 		return nil
 	}
 	type Alias MessagePaymentRefunded
@@ -28273,7 +28408,8 @@ func (t MessagePremiumGiftCode) MarshalJSON() ([]byte, error) {
 }
 
 func (t *MessagePremiumGiftCode) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = MessagePremiumGiftCode{}
 		return nil
 	}
 	type Alias MessagePremiumGiftCode
@@ -28419,7 +28555,8 @@ func (t MessageProximityAlertTriggered) MarshalJSON() ([]byte, error) {
 }
 
 func (t *MessageProximityAlertTriggered) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = MessageProximityAlertTriggered{}
 		return nil
 	}
 	type Alias MessageProximityAlertTriggered
@@ -28482,7 +28619,8 @@ func (t MessageReaction) MarshalJSON() ([]byte, error) {
 }
 
 func (t *MessageReaction) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = MessageReaction{}
 		return nil
 	}
 	type Alias MessageReaction
@@ -28690,7 +28828,8 @@ func (t MessageRefundedUpgradedGift) MarshalJSON() ([]byte, error) {
 }
 
 func (t *MessageRefundedUpgradedGift) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = MessageRefundedUpgradedGift{}
 		return nil
 	}
 	type Alias MessageRefundedUpgradedGift
@@ -28761,7 +28900,8 @@ func (t MessageReplyInfo) MarshalJSON() ([]byte, error) {
 }
 
 func (t *MessageReplyInfo) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = MessageReplyInfo{}
 		return nil
 	}
 	type Alias MessageReplyInfo
@@ -28825,7 +28965,8 @@ func (t MessageReplyToMessage) MarshalJSON() ([]byte, error) {
 }
 
 func (t *MessageReplyToMessage) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = MessageReplyToMessage{}
 		return nil
 	}
 	type Alias MessageReplyToMessage
@@ -29087,7 +29228,8 @@ func (t MessageSenders) MarshalJSON() ([]byte, error) {
 }
 
 func (t *MessageSenders) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = MessageSenders{}
 		return nil
 	}
 	type Alias MessageSenders
@@ -29238,7 +29380,8 @@ func (t MessageSendOptions) MarshalJSON() ([]byte, error) {
 }
 
 func (t *MessageSendOptions) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = MessageSendOptions{}
 		return nil
 	}
 	type Alias MessageSendOptions
@@ -29526,7 +29669,8 @@ func (t MessageStakeDice) MarshalJSON() ([]byte, error) {
 }
 
 func (t *MessageStakeDice) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = MessageStakeDice{}
 		return nil
 	}
 	type Alias MessageStakeDice
@@ -29583,7 +29727,8 @@ func (t MessageStatistics) MarshalJSON() ([]byte, error) {
 }
 
 func (t *MessageStatistics) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = MessageStatistics{}
 		return nil
 	}
 	type Alias MessageStatistics
@@ -29717,7 +29862,8 @@ func (t MessageSuggestedPostApprovalFailed) MarshalJSON() ([]byte, error) {
 }
 
 func (t *MessageSuggestedPostApprovalFailed) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = MessageSuggestedPostApprovalFailed{}
 		return nil
 	}
 	type Alias MessageSuggestedPostApprovalFailed
@@ -29770,7 +29916,8 @@ func (t MessageSuggestedPostApproved) MarshalJSON() ([]byte, error) {
 }
 
 func (t *MessageSuggestedPostApproved) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = MessageSuggestedPostApproved{}
 		return nil
 	}
 	type Alias MessageSuggestedPostApproved
@@ -29873,7 +30020,8 @@ func (t MessageSuggestedPostRefunded) MarshalJSON() ([]byte, error) {
 }
 
 func (t *MessageSuggestedPostRefunded) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = MessageSuggestedPostRefunded{}
 		return nil
 	}
 	type Alias MessageSuggestedPostRefunded
@@ -30165,7 +30313,8 @@ func (t MessageUpgradedGift) MarshalJSON() ([]byte, error) {
 }
 
 func (t *MessageUpgradedGift) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = MessageUpgradedGift{}
 		return nil
 	}
 	type Alias MessageUpgradedGift
@@ -30236,7 +30385,8 @@ func (t MessageUpgradedGiftPurchaseOffer) MarshalJSON() ([]byte, error) {
 }
 
 func (t *MessageUpgradedGiftPurchaseOffer) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = MessageUpgradedGiftPurchaseOffer{}
 		return nil
 	}
 	type Alias MessageUpgradedGiftPurchaseOffer
@@ -30299,7 +30449,8 @@ func (t MessageUpgradedGiftPurchaseOfferRejected) MarshalJSON() ([]byte, error) 
 }
 
 func (t *MessageUpgradedGiftPurchaseOfferRejected) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = MessageUpgradedGiftPurchaseOfferRejected{}
 		return nil
 	}
 	type Alias MessageUpgradedGiftPurchaseOfferRejected
@@ -30677,7 +30828,8 @@ func (t NetworkStatistics) MarshalJSON() ([]byte, error) {
 }
 
 func (t *NetworkStatistics) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = NetworkStatistics{}
 		return nil
 	}
 	type Alias NetworkStatistics
@@ -30735,7 +30887,8 @@ func (t NetworkStatisticsEntryCall) MarshalJSON() ([]byte, error) {
 }
 
 func (t *NetworkStatisticsEntryCall) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = NetworkStatisticsEntryCall{}
 		return nil
 	}
 	type Alias NetworkStatisticsEntryCall
@@ -30790,7 +30943,8 @@ func (t NetworkStatisticsEntryFile) MarshalJSON() ([]byte, error) {
 }
 
 func (t *NetworkStatisticsEntryFile) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = NetworkStatisticsEntryFile{}
 		return nil
 	}
 	type Alias NetworkStatisticsEntryFile
@@ -30979,7 +31133,8 @@ func (t Notification) MarshalJSON() ([]byte, error) {
 }
 
 func (t *Notification) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = Notification{}
 		return nil
 	}
 	type Alias Notification
@@ -31034,7 +31189,8 @@ func (t NotificationGroup) MarshalJSON() ([]byte, error) {
 }
 
 func (t *NotificationGroup) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = NotificationGroup{}
 		return nil
 	}
 	type Alias NotificationGroup
@@ -31338,7 +31494,8 @@ func (t NotificationTypeNewPushMessage) MarshalJSON() ([]byte, error) {
 }
 
 func (t *NotificationTypeNewPushMessage) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = NotificationTypeNewPushMessage{}
 		return nil
 	}
 	type Alias NotificationTypeNewPushMessage
@@ -31693,7 +31850,8 @@ func (t PageBlockAuthorDate) MarshalJSON() ([]byte, error) {
 }
 
 func (t *PageBlockAuthorDate) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = PageBlockAuthorDate{}
 		return nil
 	}
 	type Alias PageBlockAuthorDate
@@ -31744,7 +31902,8 @@ func (t PageBlockBlockQuote) MarshalJSON() ([]byte, error) {
 }
 
 func (t *PageBlockBlockQuote) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = PageBlockBlockQuote{}
 		return nil
 	}
 	type Alias PageBlockBlockQuote
@@ -31801,7 +31960,8 @@ func (t PageBlockCaption) MarshalJSON() ([]byte, error) {
 }
 
 func (t *PageBlockCaption) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = PageBlockCaption{}
 		return nil
 	}
 	type Alias PageBlockCaption
@@ -31889,7 +32049,8 @@ func (t PageBlockCollage) MarshalJSON() ([]byte, error) {
 }
 
 func (t *PageBlockCollage) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = PageBlockCollage{}
 		return nil
 	}
 	type Alias PageBlockCollage
@@ -31941,7 +32102,8 @@ func (t PageBlockCover) MarshalJSON() ([]byte, error) {
 }
 
 func (t *PageBlockCover) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = PageBlockCover{}
 		return nil
 	}
 	type Alias PageBlockCover
@@ -31994,7 +32156,8 @@ func (t PageBlockDetails) MarshalJSON() ([]byte, error) {
 }
 
 func (t *PageBlockDetails) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = PageBlockDetails{}
 		return nil
 	}
 	type Alias PageBlockDetails
@@ -32122,7 +32285,8 @@ func (t PageBlockEmbeddedPost) MarshalJSON() ([]byte, error) {
 }
 
 func (t *PageBlockEmbeddedPost) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = PageBlockEmbeddedPost{}
 		return nil
 	}
 	type Alias PageBlockEmbeddedPost
@@ -32174,7 +32338,8 @@ func (t PageBlockFooter) MarshalJSON() ([]byte, error) {
 }
 
 func (t *PageBlockFooter) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = PageBlockFooter{}
 		return nil
 	}
 	type Alias PageBlockFooter
@@ -32223,7 +32388,8 @@ func (t PageBlockHeader) MarshalJSON() ([]byte, error) {
 }
 
 func (t *PageBlockHeader) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = PageBlockHeader{}
 		return nil
 	}
 	type Alias PageBlockHeader
@@ -32335,7 +32501,8 @@ func (t PageBlockKicker) MarshalJSON() ([]byte, error) {
 }
 
 func (t *PageBlockKicker) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = PageBlockKicker{}
 		return nil
 	}
 	type Alias PageBlockKicker
@@ -32407,7 +32574,8 @@ func (t PageBlockListItem) MarshalJSON() ([]byte, error) {
 }
 
 func (t *PageBlockListItem) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = PageBlockListItem{}
 		return nil
 	}
 	type Alias PageBlockListItem
@@ -32490,7 +32658,8 @@ func (t PageBlockParagraph) MarshalJSON() ([]byte, error) {
 }
 
 func (t *PageBlockParagraph) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = PageBlockParagraph{}
 		return nil
 	}
 	type Alias PageBlockParagraph
@@ -32568,7 +32737,8 @@ func (t PageBlockPreformatted) MarshalJSON() ([]byte, error) {
 }
 
 func (t *PageBlockPreformatted) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = PageBlockPreformatted{}
 		return nil
 	}
 	type Alias PageBlockPreformatted
@@ -32619,7 +32789,8 @@ func (t PageBlockPullQuote) MarshalJSON() ([]byte, error) {
 }
 
 func (t *PageBlockPullQuote) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = PageBlockPullQuote{}
 		return nil
 	}
 	type Alias PageBlockPullQuote
@@ -32709,7 +32880,8 @@ func (t PageBlockRelatedArticles) MarshalJSON() ([]byte, error) {
 }
 
 func (t *PageBlockRelatedArticles) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = PageBlockRelatedArticles{}
 		return nil
 	}
 	type Alias PageBlockRelatedArticles
@@ -32760,7 +32932,8 @@ func (t PageBlockSlideshow) MarshalJSON() ([]byte, error) {
 }
 
 func (t *PageBlockSlideshow) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = PageBlockSlideshow{}
 		return nil
 	}
 	type Alias PageBlockSlideshow
@@ -32812,7 +32985,8 @@ func (t PageBlockSubheader) MarshalJSON() ([]byte, error) {
 }
 
 func (t *PageBlockSubheader) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = PageBlockSubheader{}
 		return nil
 	}
 	type Alias PageBlockSubheader
@@ -32861,7 +33035,8 @@ func (t PageBlockSubtitle) MarshalJSON() ([]byte, error) {
 }
 
 func (t *PageBlockSubtitle) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = PageBlockSubtitle{}
 		return nil
 	}
 	type Alias PageBlockSubtitle
@@ -32916,7 +33091,8 @@ func (t PageBlockTable) MarshalJSON() ([]byte, error) {
 }
 
 func (t *PageBlockTable) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = PageBlockTable{}
 		return nil
 	}
 	type Alias PageBlockTable
@@ -32973,7 +33149,8 @@ func (t PageBlockTableCell) MarshalJSON() ([]byte, error) {
 }
 
 func (t *PageBlockTableCell) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = PageBlockTableCell{}
 		return nil
 	}
 	type Alias PageBlockTableCell
@@ -33038,7 +33215,8 @@ func (t PageBlockTitle) MarshalJSON() ([]byte, error) {
 }
 
 func (t *PageBlockTitle) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = PageBlockTitle{}
 		return nil
 	}
 	type Alias PageBlockTitle
@@ -33375,7 +33553,8 @@ func (t PaidReactor) MarshalJSON() ([]byte, error) {
 }
 
 func (t *PaidReactor) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = PaidReactor{}
 		return nil
 	}
 	type Alias PaidReactor
@@ -33593,7 +33772,8 @@ func (t PassportElementError) MarshalJSON() ([]byte, error) {
 }
 
 func (t *PassportElementError) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = PassportElementError{}
 		return nil
 	}
 	type Alias PassportElementError
@@ -34004,7 +34184,8 @@ func (t PassportElements) MarshalJSON() ([]byte, error) {
 }
 
 func (t *PassportElements) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = PassportElements{}
 		return nil
 	}
 	type Alias PassportElements
@@ -34056,7 +34237,8 @@ func (t PassportElementsWithErrors) MarshalJSON() ([]byte, error) {
 }
 
 func (t *PassportElementsWithErrors) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = PassportElementsWithErrors{}
 		return nil
 	}
 	type Alias PassportElementsWithErrors
@@ -34452,7 +34634,8 @@ func (t PassportSuitableElement) MarshalJSON() ([]byte, error) {
 }
 
 func (t *PassportSuitableElement) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = PassportSuitableElement{}
 		return nil
 	}
 	type Alias PassportSuitableElement
@@ -34538,7 +34721,8 @@ func (t PaymentForm) MarshalJSON() ([]byte, error) {
 }
 
 func (t *PaymentForm) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = PaymentForm{}
 		return nil
 	}
 	type Alias PaymentForm
@@ -34601,7 +34785,8 @@ func (t PaymentFormTypeRegular) MarshalJSON() ([]byte, error) {
 }
 
 func (t *PaymentFormTypeRegular) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = PaymentFormTypeRegular{}
 		return nil
 	}
 	type Alias PaymentFormTypeRegular
@@ -34800,7 +34985,8 @@ func (t PaymentReceipt) MarshalJSON() ([]byte, error) {
 }
 
 func (t *PaymentReceipt) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = PaymentReceipt{}
 		return nil
 	}
 	type Alias PaymentReceipt
@@ -35002,7 +35188,8 @@ func (t PhoneNumberAuthenticationSettings) MarshalJSON() ([]byte, error) {
 }
 
 func (t *PhoneNumberAuthenticationSettings) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = PhoneNumberAuthenticationSettings{}
 		return nil
 	}
 	type Alias PhoneNumberAuthenticationSettings
@@ -35236,7 +35423,8 @@ func (t Poll) MarshalJSON() ([]byte, error) {
 }
 
 func (t *Poll) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = Poll{}
 		return nil
 	}
 	type Alias Poll
@@ -35373,7 +35561,8 @@ func (t PollVoter) MarshalJSON() ([]byte, error) {
 }
 
 func (t *PollVoter) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = PollVoter{}
 		return nil
 	}
 	type Alias PollVoter
@@ -35865,7 +36054,8 @@ func (t PremiumFeaturePromotionAnimation) MarshalJSON() ([]byte, error) {
 }
 
 func (t *PremiumFeaturePromotionAnimation) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = PremiumFeaturePromotionAnimation{}
 		return nil
 	}
 	type Alias PremiumFeaturePromotionAnimation
@@ -35958,7 +36148,8 @@ func (t PremiumFeatures) MarshalJSON() ([]byte, error) {
 }
 
 func (t *PremiumFeatures) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = PremiumFeatures{}
 		return nil
 	}
 	type Alias PremiumFeatures
@@ -36135,7 +36326,8 @@ func (t PremiumGiftCodeInfo) MarshalJSON() ([]byte, error) {
 }
 
 func (t *PremiumGiftCodeInfo) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = PremiumGiftCodeInfo{}
 		return nil
 	}
 	type Alias PremiumGiftCodeInfo
@@ -36292,7 +36484,8 @@ func (t PremiumLimit) MarshalJSON() ([]byte, error) {
 }
 
 func (t *PremiumLimit) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = PremiumLimit{}
 		return nil
 	}
 	type Alias PremiumLimit
@@ -36748,7 +36941,8 @@ func (t PremiumPaymentOption) MarshalJSON() ([]byte, error) {
 }
 
 func (t *PremiumPaymentOption) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = PremiumPaymentOption{}
 		return nil
 	}
 	type Alias PremiumPaymentOption
@@ -36797,7 +36991,8 @@ func (t PremiumSourceBusinessFeature) MarshalJSON() ([]byte, error) {
 }
 
 func (t *PremiumSourceBusinessFeature) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = PremiumSourceBusinessFeature{}
 		return nil
 	}
 	type Alias PremiumSourceBusinessFeature
@@ -36846,7 +37041,8 @@ func (t PremiumSourceFeature) MarshalJSON() ([]byte, error) {
 }
 
 func (t *PremiumSourceFeature) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = PremiumSourceFeature{}
 		return nil
 	}
 	type Alias PremiumSourceFeature
@@ -36895,7 +37091,8 @@ func (t PremiumSourceLimitExceeded) MarshalJSON() ([]byte, error) {
 }
 
 func (t *PremiumSourceLimitExceeded) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = PremiumSourceLimitExceeded{}
 		return nil
 	}
 	type Alias PremiumSourceLimitExceeded
@@ -36988,7 +37185,8 @@ func (t PremiumSourceStoryFeature) MarshalJSON() ([]byte, error) {
 }
 
 func (t *PremiumSourceStoryFeature) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = PremiumSourceStoryFeature{}
 		return nil
 	}
 	type Alias PremiumSourceStoryFeature
@@ -37244,7 +37442,8 @@ func (t PrepaidGiveaway) MarshalJSON() ([]byte, error) {
 }
 
 func (t *PrepaidGiveaway) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = PrepaidGiveaway{}
 		return nil
 	}
 	type Alias PrepaidGiveaway
@@ -37295,7 +37494,8 @@ func (t PreparedInlineMessage) MarshalJSON() ([]byte, error) {
 }
 
 func (t *PreparedInlineMessage) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = PreparedInlineMessage{}
 		return nil
 	}
 	type Alias PreparedInlineMessage
@@ -37647,7 +37847,8 @@ func (t Proxy) MarshalJSON() ([]byte, error) {
 }
 
 func (t *Proxy) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = Proxy{}
 		return nil
 	}
 	type Alias Proxy
@@ -37838,7 +38039,8 @@ func (t PublicForwards) MarshalJSON() ([]byte, error) {
 }
 
 func (t *PublicForwards) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = PublicForwards{}
 		return nil
 	}
 	type Alias PublicForwards
@@ -38426,7 +38628,8 @@ func (t PushMessageContentGiveaway) MarshalJSON() ([]byte, error) {
 }
 
 func (t *PushMessageContentGiveaway) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = PushMessageContentGiveaway{}
 		return nil
 	}
 	type Alias PushMessageContentGiveaway
@@ -39094,7 +39297,8 @@ func (t QuickReplyMessage) MarshalJSON() ([]byte, error) {
 }
 
 func (t *QuickReplyMessage) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = QuickReplyMessage{}
 		return nil
 	}
 	type Alias QuickReplyMessage
@@ -39211,7 +39415,8 @@ func (t ReactionNotificationSettings) MarshalJSON() ([]byte, error) {
 }
 
 func (t *ReactionNotificationSettings) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = ReactionNotificationSettings{}
 		return nil
 	}
 	type Alias ReactionNotificationSettings
@@ -39503,7 +39708,8 @@ func (t ReceivedGift) MarshalJSON() ([]byte, error) {
 }
 
 func (t *ReceivedGift) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = ReceivedGift{}
 		return nil
 	}
 	type Alias ReceivedGift
@@ -40518,7 +40724,8 @@ func (t RichTextAnchorLink) MarshalJSON() ([]byte, error) {
 }
 
 func (t *RichTextAnchorLink) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = RichTextAnchorLink{}
 		return nil
 	}
 	type Alias RichTextAnchorLink
@@ -40567,7 +40774,8 @@ func (t RichTextBold) MarshalJSON() ([]byte, error) {
 }
 
 func (t *RichTextBold) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = RichTextBold{}
 		return nil
 	}
 	type Alias RichTextBold
@@ -40618,7 +40826,8 @@ func (t RichTextEmailAddress) MarshalJSON() ([]byte, error) {
 }
 
 func (t *RichTextEmailAddress) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = RichTextEmailAddress{}
 		return nil
 	}
 	type Alias RichTextEmailAddress
@@ -40667,7 +40876,8 @@ func (t RichTextFixed) MarshalJSON() ([]byte, error) {
 }
 
 func (t *RichTextFixed) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = RichTextFixed{}
 		return nil
 	}
 	type Alias RichTextFixed
@@ -40743,7 +40953,8 @@ func (t RichTextItalic) MarshalJSON() ([]byte, error) {
 }
 
 func (t *RichTextItalic) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = RichTextItalic{}
 		return nil
 	}
 	type Alias RichTextItalic
@@ -40792,7 +41003,8 @@ func (t RichTextMarked) MarshalJSON() ([]byte, error) {
 }
 
 func (t *RichTextMarked) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = RichTextMarked{}
 		return nil
 	}
 	type Alias RichTextMarked
@@ -40843,7 +41055,8 @@ func (t RichTextPhoneNumber) MarshalJSON() ([]byte, error) {
 }
 
 func (t *RichTextPhoneNumber) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = RichTextPhoneNumber{}
 		return nil
 	}
 	type Alias RichTextPhoneNumber
@@ -40919,7 +41132,8 @@ func (t RichTextReference) MarshalJSON() ([]byte, error) {
 }
 
 func (t *RichTextReference) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = RichTextReference{}
 		return nil
 	}
 	type Alias RichTextReference
@@ -40968,7 +41182,8 @@ func (t RichTexts) MarshalJSON() ([]byte, error) {
 }
 
 func (t *RichTexts) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = RichTexts{}
 		return nil
 	}
 	type Alias RichTexts
@@ -41020,7 +41235,8 @@ func (t RichTextStrikethrough) MarshalJSON() ([]byte, error) {
 }
 
 func (t *RichTextStrikethrough) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = RichTextStrikethrough{}
 		return nil
 	}
 	type Alias RichTextStrikethrough
@@ -41069,7 +41285,8 @@ func (t RichTextSubscript) MarshalJSON() ([]byte, error) {
 }
 
 func (t *RichTextSubscript) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = RichTextSubscript{}
 		return nil
 	}
 	type Alias RichTextSubscript
@@ -41118,7 +41335,8 @@ func (t RichTextSuperscript) MarshalJSON() ([]byte, error) {
 }
 
 func (t *RichTextSuperscript) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = RichTextSuperscript{}
 		return nil
 	}
 	type Alias RichTextSuperscript
@@ -41167,7 +41385,8 @@ func (t RichTextUnderline) MarshalJSON() ([]byte, error) {
 }
 
 func (t *RichTextUnderline) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = RichTextUnderline{}
 		return nil
 	}
 	type Alias RichTextUnderline
@@ -41220,7 +41439,8 @@ func (t RichTextUrl) MarshalJSON() ([]byte, error) {
 }
 
 func (t *RichTextUrl) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = RichTextUrl{}
 		return nil
 	}
 	type Alias RichTextUrl
@@ -41317,7 +41537,8 @@ func (t SavedMessagesTag) MarshalJSON() ([]byte, error) {
 }
 
 func (t *SavedMessagesTag) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = SavedMessagesTag{}
 		return nil
 	}
 	type Alias SavedMessagesTag
@@ -41395,7 +41616,8 @@ func (t SavedMessagesTopic) MarshalJSON() ([]byte, error) {
 }
 
 func (t *SavedMessagesTopic) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = SavedMessagesTopic{}
 		return nil
 	}
 	type Alias SavedMessagesTopic
@@ -42020,7 +42242,8 @@ func (t SecretChat) MarshalJSON() ([]byte, error) {
 }
 
 func (t *SecretChat) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = SecretChat{}
 		return nil
 	}
 	type Alias SecretChat
@@ -42231,7 +42454,8 @@ func (t Session) MarshalJSON() ([]byte, error) {
 }
 
 func (t *Session) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = Session{}
 		return nil
 	}
 	type Alias Session
@@ -43343,7 +43567,8 @@ func (t SponsoredMessage) MarshalJSON() ([]byte, error) {
 }
 
 func (t *SponsoredMessage) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = SponsoredMessage{}
 		return nil
 	}
 	type Alias SponsoredMessage
@@ -43623,7 +43848,8 @@ func (t StarRevenueStatistics) MarshalJSON() ([]byte, error) {
 }
 
 func (t *StarRevenueStatistics) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = StarRevenueStatistics{}
 		return nil
 	}
 	type Alias StarRevenueStatistics
@@ -43711,7 +43937,8 @@ func (t StarSubscription) MarshalJSON() ([]byte, error) {
 }
 
 func (t *StarSubscription) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = StarSubscription{}
 		return nil
 	}
 	type Alias StarSubscription
@@ -43864,7 +44091,8 @@ func (t StartLiveStoryResultFail) MarshalJSON() ([]byte, error) {
 }
 
 func (t *StartLiveStoryResultFail) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = StartLiveStoryResultFail{}
 		return nil
 	}
 	type Alias StartLiveStoryResultFail
@@ -43942,7 +44170,8 @@ func (t StarTransaction) MarshalJSON() ([]byte, error) {
 }
 
 func (t *StarTransaction) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = StarTransaction{}
 		return nil
 	}
 	type Alias StarTransaction
@@ -44118,7 +44347,8 @@ func (t StarTransactionTypeBotPaidMediaPurchase) MarshalJSON() ([]byte, error) {
 }
 
 func (t *StarTransactionTypeBotPaidMediaPurchase) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = StarTransactionTypeBotPaidMediaPurchase{}
 		return nil
 	}
 	type Alias StarTransactionTypeBotPaidMediaPurchase
@@ -44176,7 +44406,8 @@ func (t StarTransactionTypeBotPaidMediaSale) MarshalJSON() ([]byte, error) {
 }
 
 func (t *StarTransactionTypeBotPaidMediaSale) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = StarTransactionTypeBotPaidMediaSale{}
 		return nil
 	}
 	type Alias StarTransactionTypeBotPaidMediaSale
@@ -44336,7 +44567,8 @@ func (t StarTransactionTypeChannelPaidMediaPurchase) MarshalJSON() ([]byte, erro
 }
 
 func (t *StarTransactionTypeChannelPaidMediaPurchase) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = StarTransactionTypeChannelPaidMediaPurchase{}
 		return nil
 	}
 	type Alias StarTransactionTypeChannelPaidMediaPurchase
@@ -44392,7 +44624,8 @@ func (t StarTransactionTypeChannelPaidMediaSale) MarshalJSON() ([]byte, error) {
 }
 
 func (t *StarTransactionTypeChannelPaidMediaSale) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = StarTransactionTypeChannelPaidMediaSale{}
 		return nil
 	}
 	type Alias StarTransactionTypeChannelPaidMediaSale
@@ -44565,7 +44798,8 @@ func (t StarTransactionTypeFragmentWithdrawal) MarshalJSON() ([]byte, error) {
 }
 
 func (t *StarTransactionTypeFragmentWithdrawal) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = StarTransactionTypeFragmentWithdrawal{}
 		return nil
 	}
 	type Alias StarTransactionTypeFragmentWithdrawal
@@ -44616,7 +44850,8 @@ func (t StarTransactionTypeGiftAuctionBid) MarshalJSON() ([]byte, error) {
 }
 
 func (t *StarTransactionTypeGiftAuctionBid) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = StarTransactionTypeGiftAuctionBid{}
 		return nil
 	}
 	type Alias StarTransactionTypeGiftAuctionBid
@@ -44667,7 +44902,8 @@ func (t StarTransactionTypeGiftOriginalDetailsDrop) MarshalJSON() ([]byte, error
 }
 
 func (t *StarTransactionTypeGiftOriginalDetailsDrop) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = StarTransactionTypeGiftOriginalDetailsDrop{}
 		return nil
 	}
 	type Alias StarTransactionTypeGiftOriginalDetailsDrop
@@ -44718,7 +44954,8 @@ func (t StarTransactionTypeGiftPurchase) MarshalJSON() ([]byte, error) {
 }
 
 func (t *StarTransactionTypeGiftPurchase) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = StarTransactionTypeGiftPurchase{}
 		return nil
 	}
 	type Alias StarTransactionTypeGiftPurchase
@@ -44817,7 +45054,8 @@ func (t StarTransactionTypeGiftTransfer) MarshalJSON() ([]byte, error) {
 }
 
 func (t *StarTransactionTypeGiftTransfer) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = StarTransactionTypeGiftTransfer{}
 		return nil
 	}
 	type Alias StarTransactionTypeGiftTransfer
@@ -44893,7 +45131,8 @@ func (t StarTransactionTypeGiftUpgradePurchase) MarshalJSON() ([]byte, error) {
 }
 
 func (t *StarTransactionTypeGiftUpgradePurchase) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = StarTransactionTypeGiftUpgradePurchase{}
 		return nil
 	}
 	type Alias StarTransactionTypeGiftUpgradePurchase
@@ -44992,7 +45231,8 @@ func (t StarTransactionTypePaidGroupCallMessageReceive) MarshalJSON() ([]byte, e
 }
 
 func (t *StarTransactionTypePaidGroupCallMessageReceive) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = StarTransactionTypePaidGroupCallMessageReceive{}
 		return nil
 	}
 	type Alias StarTransactionTypePaidGroupCallMessageReceive
@@ -45068,7 +45308,8 @@ func (t StarTransactionTypePaidGroupCallReactionReceive) MarshalJSON() ([]byte, 
 }
 
 func (t *StarTransactionTypePaidGroupCallReactionReceive) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = StarTransactionTypePaidGroupCallReactionReceive{}
 		return nil
 	}
 	type Alias StarTransactionTypePaidGroupCallReactionReceive
@@ -45146,7 +45387,8 @@ func (t StarTransactionTypePaidMessageReceive) MarshalJSON() ([]byte, error) {
 }
 
 func (t *StarTransactionTypePaidMessageReceive) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = StarTransactionTypePaidMessageReceive{}
 		return nil
 	}
 	type Alias StarTransactionTypePaidMessageReceive
@@ -45591,7 +45833,8 @@ func (t Sticker) MarshalJSON() ([]byte, error) {
 }
 
 func (t *Sticker) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = Sticker{}
 		return nil
 	}
 	type Alias Sticker
@@ -45829,7 +46072,8 @@ func (t StickerSet) MarshalJSON() ([]byte, error) {
 }
 
 func (t *StickerSet) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = StickerSet{}
 		return nil
 	}
 	type Alias StickerSet
@@ -45904,7 +46148,8 @@ func (t StickerSetInfo) MarshalJSON() ([]byte, error) {
 }
 
 func (t *StickerSetInfo) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = StickerSetInfo{}
 		return nil
 	}
 	type Alias StickerSetInfo
@@ -46093,7 +46338,8 @@ func (t StorageStatisticsByFileType) MarshalJSON() ([]byte, error) {
 }
 
 func (t *StorageStatisticsByFileType) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = StorageStatisticsByFileType{}
 		return nil
 	}
 	type Alias StorageStatisticsByFileType
@@ -46497,7 +46743,8 @@ func (t Story) MarshalJSON() ([]byte, error) {
 }
 
 func (t *Story) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = Story{}
 		return nil
 	}
 	type Alias Story
@@ -46618,7 +46865,8 @@ func (t StoryArea) MarshalJSON() ([]byte, error) {
 }
 
 func (t *StoryArea) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = StoryArea{}
 		return nil
 	}
 	type Alias StoryArea
@@ -46777,7 +47025,8 @@ func (t StoryAreaTypeSuggestedReaction) MarshalJSON() ([]byte, error) {
 }
 
 func (t *StoryAreaTypeSuggestedReaction) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = StoryAreaTypeSuggestedReaction{}
 		return nil
 	}
 	type Alias StoryAreaTypeSuggestedReaction
@@ -47131,7 +47380,8 @@ func (t StoryInteraction) MarshalJSON() ([]byte, error) {
 }
 
 func (t *StoryInteraction) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = StoryInteraction{}
 		return nil
 	}
 	type Alias StoryInteraction
@@ -47298,7 +47548,8 @@ func (t StoryInteractionTypeView) MarshalJSON() ([]byte, error) {
 }
 
 func (t *StoryInteractionTypeView) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = StoryInteractionTypeView{}
 		return nil
 	}
 	type Alias StoryInteractionTypeView
@@ -47527,7 +47778,8 @@ func (t StoryRepostInfo) MarshalJSON() ([]byte, error) {
 }
 
 func (t *StoryRepostInfo) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = StoryRepostInfo{}
 		return nil
 	}
 	type Alias StoryRepostInfo
@@ -47576,7 +47828,8 @@ func (t StoryStatistics) MarshalJSON() ([]byte, error) {
 }
 
 func (t *StoryStatistics) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = StoryStatistics{}
 		return nil
 	}
 	type Alias StoryStatistics
@@ -48051,7 +48304,8 @@ func (t SuggestedPostInfo) MarshalJSON() ([]byte, error) {
 }
 
 func (t *SuggestedPostInfo) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = SuggestedPostInfo{}
 		return nil
 	}
 	type Alias SuggestedPostInfo
@@ -48305,7 +48559,8 @@ func (t Supergroup) MarshalJSON() ([]byte, error) {
 }
 
 func (t *Supergroup) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = Supergroup{}
 		return nil
 	}
 	type Alias Supergroup
@@ -48438,7 +48693,8 @@ func (t SupergroupFullInfo) MarshalJSON() ([]byte, error) {
 }
 
 func (t *SupergroupFullInfo) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = SupergroupFullInfo{}
 		return nil
 	}
 	type Alias SupergroupFullInfo
@@ -48577,7 +48833,8 @@ func (t SupergroupMembersFilterMention) MarshalJSON() ([]byte, error) {
 }
 
 func (t *SupergroupMembersFilterMention) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = SupergroupMembersFilterMention{}
 		return nil
 	}
 	type Alias SupergroupMembersFilterMention
@@ -48737,7 +48994,8 @@ func (t TargetChatInternalLink) MarshalJSON() ([]byte, error) {
 }
 
 func (t *TargetChatInternalLink) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = TargetChatInternalLink{}
 		return nil
 	}
 	type Alias TargetChatInternalLink
@@ -49259,7 +49517,8 @@ func (t TextEntity) MarshalJSON() ([]byte, error) {
 }
 
 func (t *TextEntity) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = TextEntity{}
 		return nil
 	}
 	type Alias TextEntity
@@ -49459,7 +49718,8 @@ func (t TextEntityTypeDateTime) MarshalJSON() ([]byte, error) {
 }
 
 func (t *TextEntityTypeDateTime) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = TextEntityTypeDateTime{}
 		return nil
 	}
 	type Alias TextEntityTypeDateTime
@@ -49957,7 +50217,8 @@ func (t ThemeSettings) MarshalJSON() ([]byte, error) {
 }
 
 func (t *ThemeSettings) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = ThemeSettings{}
 		return nil
 	}
 	type Alias ThemeSettings
@@ -50018,7 +50279,8 @@ func (t Thumbnail) MarshalJSON() ([]byte, error) {
 }
 
 func (t *Thumbnail) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = Thumbnail{}
 		return nil
 	}
 	type Alias Thumbnail
@@ -50260,7 +50522,8 @@ func (t TMeUrl) MarshalJSON() ([]byte, error) {
 }
 
 func (t *TMeUrl) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = TMeUrl{}
 		return nil
 	}
 	type Alias TMeUrl
@@ -50424,7 +50687,8 @@ func (t TonRevenueStatistics) MarshalJSON() ([]byte, error) {
 }
 
 func (t *TonRevenueStatistics) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = TonRevenueStatistics{}
 		return nil
 	}
 	type Alias TonRevenueStatistics
@@ -50506,7 +50770,8 @@ func (t TonTransaction) MarshalJSON() ([]byte, error) {
 }
 
 func (t *TonTransaction) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = TonTransaction{}
 		return nil
 	}
 	type Alias TonTransaction
@@ -50605,7 +50870,8 @@ func (t TonTransactionTypeFragmentWithdrawal) MarshalJSON() ([]byte, error) {
 }
 
 func (t *TonTransactionTypeFragmentWithdrawal) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = TonTransactionTypeFragmentWithdrawal{}
 		return nil
 	}
 	type Alias TonTransactionTypeFragmentWithdrawal
@@ -51083,7 +51349,8 @@ func (t UnreadReaction) MarshalJSON() ([]byte, error) {
 }
 
 func (t *UnreadReaction) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = UnreadReaction{}
 		return nil
 	}
 	type Alias UnreadReaction
@@ -51409,7 +51676,8 @@ func (t UpdateAuthorizationState) MarshalJSON() ([]byte, error) {
 }
 
 func (t *UpdateAuthorizationState) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = UpdateAuthorizationState{}
 		return nil
 	}
 	type Alias UpdateAuthorizationState
@@ -51460,7 +51728,8 @@ func (t UpdateAutosaveSettings) MarshalJSON() ([]byte, error) {
 }
 
 func (t *UpdateAutosaveSettings) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = UpdateAutosaveSettings{}
 		return nil
 	}
 	type Alias UpdateAutosaveSettings
@@ -51719,7 +51988,8 @@ func (t UpdateChatAction) MarshalJSON() ([]byte, error) {
 }
 
 func (t *UpdateChatAction) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = UpdateChatAction{}
 		return nil
 	}
 	type Alias UpdateChatAction
@@ -51786,7 +52056,8 @@ func (t UpdateChatActionBar) MarshalJSON() ([]byte, error) {
 }
 
 func (t *UpdateChatActionBar) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = UpdateChatActionBar{}
 		return nil
 	}
 	type Alias UpdateChatActionBar
@@ -51860,7 +52131,8 @@ func (t UpdateChatAddedToList) MarshalJSON() ([]byte, error) {
 }
 
 func (t *UpdateChatAddedToList) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = UpdateChatAddedToList{}
 		return nil
 	}
 	type Alias UpdateChatAddedToList
@@ -51911,7 +52183,8 @@ func (t UpdateChatAvailableReactions) MarshalJSON() ([]byte, error) {
 }
 
 func (t *UpdateChatAvailableReactions) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = UpdateChatAvailableReactions{}
 		return nil
 	}
 	type Alias UpdateChatAvailableReactions
@@ -51987,7 +52260,8 @@ func (t UpdateChatBlockList) MarshalJSON() ([]byte, error) {
 }
 
 func (t *UpdateChatBlockList) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = UpdateChatBlockList{}
 		return nil
 	}
 	type Alias UpdateChatBlockList
@@ -52381,7 +52655,8 @@ func (t UpdateChatMessageSender) MarshalJSON() ([]byte, error) {
 }
 
 func (t *UpdateChatMessageSender) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = UpdateChatMessageSender{}
 		return nil
 	}
 	type Alias UpdateChatMessageSender
@@ -52634,7 +52909,8 @@ func (t UpdateChatRemovedFromList) MarshalJSON() ([]byte, error) {
 }
 
 func (t *UpdateChatRemovedFromList) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = UpdateChatRemovedFromList{}
 		return nil
 	}
 	type Alias UpdateChatRemovedFromList
@@ -52735,7 +53011,8 @@ func (t UpdateChatTheme) MarshalJSON() ([]byte, error) {
 }
 
 func (t *UpdateChatTheme) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = UpdateChatTheme{}
 		return nil
 	}
 	type Alias UpdateChatTheme
@@ -52909,7 +53186,8 @@ func (t UpdateConnectionState) MarshalJSON() ([]byte, error) {
 }
 
 func (t *UpdateConnectionState) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = UpdateConnectionState{}
 		return nil
 	}
 	type Alias UpdateConnectionState
@@ -53006,7 +53284,8 @@ func (t UpdateDefaultPaidReactionType) MarshalJSON() ([]byte, error) {
 }
 
 func (t *UpdateDefaultPaidReactionType) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = UpdateDefaultPaidReactionType{}
 		return nil
 	}
 	type Alias UpdateDefaultPaidReactionType
@@ -53055,7 +53334,8 @@ func (t UpdateDefaultReactionType) MarshalJSON() ([]byte, error) {
 }
 
 func (t *UpdateDefaultReactionType) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = UpdateDefaultReactionType{}
 		return nil
 	}
 	type Alias UpdateDefaultReactionType
@@ -53722,7 +54002,8 @@ func (t UpdateInstalledStickerSets) MarshalJSON() ([]byte, error) {
 }
 
 func (t *UpdateInstalledStickerSets) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = UpdateInstalledStickerSets{}
 		return nil
 	}
 	type Alias UpdateInstalledStickerSets
@@ -53827,7 +54108,8 @@ func (t UpdateMessageContent) MarshalJSON() ([]byte, error) {
 }
 
 func (t *UpdateMessageContent) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = UpdateMessageContent{}
 		return nil
 	}
 	type Alias UpdateMessageContent
@@ -53907,7 +54189,8 @@ func (t UpdateMessageEdited) MarshalJSON() ([]byte, error) {
 }
 
 func (t *UpdateMessageEdited) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = UpdateMessageEdited{}
 		return nil
 	}
 	type Alias UpdateMessageEdited
@@ -54099,7 +54382,8 @@ func (t UpdateMessageReaction) MarshalJSON() ([]byte, error) {
 }
 
 func (t *UpdateMessageReaction) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = UpdateMessageReaction{}
 		return nil
 	}
 	type Alias UpdateMessageReaction
@@ -54342,7 +54626,8 @@ func (t UpdateNewBusinessCallbackQuery) MarshalJSON() ([]byte, error) {
 }
 
 func (t *UpdateNewBusinessCallbackQuery) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = UpdateNewBusinessCallbackQuery{}
 		return nil
 	}
 	type Alias UpdateNewBusinessCallbackQuery
@@ -54426,7 +54711,8 @@ func (t UpdateNewCallbackQuery) MarshalJSON() ([]byte, error) {
 }
 
 func (t *UpdateNewCallbackQuery) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = UpdateNewCallbackQuery{}
 		return nil
 	}
 	type Alias UpdateNewCallbackQuery
@@ -54662,7 +54948,8 @@ func (t UpdateNewGroupCallPaidReaction) MarshalJSON() ([]byte, error) {
 }
 
 func (t *UpdateNewGroupCallPaidReaction) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = UpdateNewGroupCallPaidReaction{}
 		return nil
 	}
 	type Alias UpdateNewGroupCallPaidReaction
@@ -54719,7 +55006,8 @@ func (t UpdateNewInlineCallbackQuery) MarshalJSON() ([]byte, error) {
 }
 
 func (t *UpdateNewInlineCallbackQuery) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = UpdateNewInlineCallbackQuery{}
 		return nil
 	}
 	type Alias UpdateNewInlineCallbackQuery
@@ -54778,7 +55066,8 @@ func (t UpdateNewInlineQuery) MarshalJSON() ([]byte, error) {
 }
 
 func (t *UpdateNewInlineQuery) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = UpdateNewInlineQuery{}
 		return nil
 	}
 	type Alias UpdateNewInlineQuery
@@ -54980,7 +55269,8 @@ func (t UpdateNotificationGroup) MarshalJSON() ([]byte, error) {
 }
 
 func (t *UpdateNotificationGroup) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = UpdateNotificationGroup{}
 		return nil
 	}
 	type Alias UpdateNotificationGroup
@@ -55031,7 +55321,8 @@ func (t UpdateOption) MarshalJSON() ([]byte, error) {
 }
 
 func (t *UpdateOption) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = UpdateOption{}
 		return nil
 	}
 	type Alias UpdateOption
@@ -55207,7 +55498,8 @@ func (t UpdatePollAnswer) MarshalJSON() ([]byte, error) {
 }
 
 func (t *UpdatePollAnswer) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = UpdatePollAnswer{}
 		return nil
 	}
 	type Alias UpdatePollAnswer
@@ -55421,7 +55713,8 @@ func (t Updates) MarshalJSON() ([]byte, error) {
 }
 
 func (t *Updates) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = Updates{}
 		return nil
 	}
 	type Alias Updates
@@ -55592,7 +55885,8 @@ func (t UpdateScopeNotificationSettings) MarshalJSON() ([]byte, error) {
 }
 
 func (t *UpdateScopeNotificationSettings) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = UpdateScopeNotificationSettings{}
 		return nil
 	}
 	type Alias UpdateScopeNotificationSettings
@@ -55666,7 +55960,8 @@ func (t UpdateServiceNotification) MarshalJSON() ([]byte, error) {
 }
 
 func (t *UpdateServiceNotification) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = UpdateServiceNotification{}
 		return nil
 	}
 	type Alias UpdateServiceNotification
@@ -55792,7 +56087,8 @@ func (t UpdateStarRevenueStatus) MarshalJSON() ([]byte, error) {
 }
 
 func (t *UpdateStarRevenueStatus) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = UpdateStarRevenueStatus{}
 		return nil
 	}
 	type Alias UpdateStarRevenueStatus
@@ -55914,7 +56210,8 @@ func (t UpdateStoryListChatCount) MarshalJSON() ([]byte, error) {
 }
 
 func (t *UpdateStoryListChatCount) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = UpdateStoryListChatCount{}
 		return nil
 	}
 	type Alias UpdateStoryListChatCount
@@ -55967,7 +56264,8 @@ func (t UpdateStoryPostFailed) MarshalJSON() ([]byte, error) {
 }
 
 func (t *UpdateStoryPostFailed) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = UpdateStoryPostFailed{}
 		return nil
 	}
 	type Alias UpdateStoryPostFailed
@@ -56068,7 +56366,8 @@ func (t UpdateSuggestedActions) MarshalJSON() ([]byte, error) {
 }
 
 func (t *UpdateSuggestedActions) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = UpdateSuggestedActions{}
 		return nil
 	}
 	type Alias UpdateSuggestedActions
@@ -56231,7 +56530,8 @@ func (t UpdateTopicMessageCount) MarshalJSON() ([]byte, error) {
 }
 
 func (t *UpdateTopicMessageCount) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = UpdateTopicMessageCount{}
 		return nil
 	}
 	type Alias UpdateTopicMessageCount
@@ -56282,7 +56582,8 @@ func (t UpdateTrendingStickerSets) MarshalJSON() ([]byte, error) {
 }
 
 func (t *UpdateTrendingStickerSets) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = UpdateTrendingStickerSets{}
 		return nil
 	}
 	type Alias UpdateTrendingStickerSets
@@ -56387,7 +56688,8 @@ func (t UpdateUnreadChatCount) MarshalJSON() ([]byte, error) {
 }
 
 func (t *UpdateUnreadChatCount) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = UpdateUnreadChatCount{}
 		return nil
 	}
 	type Alias UpdateUnreadChatCount
@@ -56440,7 +56742,8 @@ func (t UpdateUnreadMessageCount) MarshalJSON() ([]byte, error) {
 }
 
 func (t *UpdateUnreadMessageCount) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = UpdateUnreadMessageCount{}
 		return nil
 	}
 	type Alias UpdateUnreadMessageCount
@@ -56539,7 +56842,8 @@ func (t UpdateUserPrivacySettingRules) MarshalJSON() ([]byte, error) {
 }
 
 func (t *UpdateUserPrivacySettingRules) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = UpdateUserPrivacySettingRules{}
 		return nil
 	}
 	type Alias UpdateUserPrivacySettingRules
@@ -56590,7 +56894,8 @@ func (t UpdateUserStatus) MarshalJSON() ([]byte, error) {
 }
 
 func (t *UpdateUserStatus) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = UpdateUserStatus{}
 		return nil
 	}
 	type Alias UpdateUserStatus
@@ -56741,7 +57046,8 @@ func (t UpgradedGift) MarshalJSON() ([]byte, error) {
 }
 
 func (t *UpgradedGift) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = UpgradedGift{}
 		return nil
 	}
 	type Alias UpgradedGift
@@ -56978,7 +57284,8 @@ func (t UpgradedGiftBackdrop) MarshalJSON() ([]byte, error) {
 }
 
 func (t *UpgradedGiftBackdrop) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = UpgradedGiftBackdrop{}
 		return nil
 	}
 	type Alias UpgradedGiftBackdrop
@@ -57114,7 +57421,8 @@ func (t UpgradedGiftModel) MarshalJSON() ([]byte, error) {
 }
 
 func (t *UpgradedGiftModel) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = UpgradedGiftModel{}
 		return nil
 	}
 	type Alias UpgradedGiftModel
@@ -57190,7 +57498,8 @@ func (t UpgradedGiftOriginalDetails) MarshalJSON() ([]byte, error) {
 }
 
 func (t *UpgradedGiftOriginalDetails) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = UpgradedGiftOriginalDetails{}
 		return nil
 	}
 	type Alias UpgradedGiftOriginalDetails
@@ -57289,7 +57598,8 @@ func (t UpgradedGiftOriginOffer) MarshalJSON() ([]byte, error) {
 }
 
 func (t *UpgradedGiftOriginOffer) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = UpgradedGiftOriginOffer{}
 		return nil
 	}
 	type Alias UpgradedGiftOriginOffer
@@ -57359,7 +57669,8 @@ func (t UpgradedGiftOriginResale) MarshalJSON() ([]byte, error) {
 }
 
 func (t *UpgradedGiftOriginResale) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = UpgradedGiftOriginResale{}
 		return nil
 	}
 	type Alias UpgradedGiftOriginResale
@@ -57454,7 +57765,8 @@ func (t UpgradedGiftSymbol) MarshalJSON() ([]byte, error) {
 }
 
 func (t *UpgradedGiftSymbol) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = UpgradedGiftSymbol{}
 		return nil
 	}
 	type Alias UpgradedGiftSymbol
@@ -57660,7 +57972,8 @@ func (t User) MarshalJSON() ([]byte, error) {
 }
 
 func (t *User) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = User{}
 		return nil
 	}
 	type Alias User
@@ -57731,7 +58044,8 @@ func (t UserAuctionBid) MarshalJSON() ([]byte, error) {
 }
 
 func (t *UserAuctionBid) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = UserAuctionBid{}
 		return nil
 	}
 	type Alias UserAuctionBid
@@ -57836,7 +58150,8 @@ func (t UserFullInfo) MarshalJSON() ([]byte, error) {
 }
 
 func (t *UserFullInfo) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = UserFullInfo{}
 		return nil
 	}
 	type Alias UserFullInfo
@@ -58327,7 +58642,8 @@ func (t UserPrivacySettingRules) MarshalJSON() ([]byte, error) {
 }
 
 func (t *UserPrivacySettingRules) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = UserPrivacySettingRules{}
 		return nil
 	}
 	type Alias UserPrivacySettingRules
@@ -59019,7 +59335,8 @@ func (t VideoChat) MarshalJSON() ([]byte, error) {
 }
 
 func (t *VideoChat) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = VideoChat{}
 		return nil
 	}
 	type Alias VideoChat
@@ -59138,7 +59455,8 @@ func (t VideoNote) MarshalJSON() ([]byte, error) {
 }
 
 func (t *VideoNote) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = VideoNote{}
 		return nil
 	}
 	type Alias VideoNote
@@ -59220,7 +59538,8 @@ func (t VoiceNote) MarshalJSON() ([]byte, error) {
 }
 
 func (t *VoiceNote) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = VoiceNote{}
 		return nil
 	}
 	type Alias VoiceNote
@@ -59386,7 +59705,8 @@ func (t WebAppOpenParameters) MarshalJSON() ([]byte, error) {
 }
 
 func (t *WebAppOpenParameters) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = WebAppOpenParameters{}
 		return nil
 	}
 	type Alias WebAppOpenParameters
@@ -59443,7 +59763,8 @@ func (t WebPageInstantView) MarshalJSON() ([]byte, error) {
 }
 
 func (t *WebPageInstantView) UnmarshalJSON(data []byte) error {
-	if data == nil || len(data) == 0 || string(data) == "null" {
+	if isNilOrNullJSON(data) {
+		*t = WebPageInstantView{}
 		return nil
 	}
 	type Alias WebPageInstantView
