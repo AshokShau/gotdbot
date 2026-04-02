@@ -18,7 +18,7 @@ import (
 	"time"
 
 	"github.com/AshokShau/gotdbot/internal/qrcode"
-	"github.com/AshokShau/gotdbot/tdjson"
+	"github.com/AshokShau/gotdbot/internal/tdjson"
 )
 
 type ClientOpts struct {

@@ -90,20 +90,6 @@ func Execute(request string) string {
 	return goString(ptr)
 }
 
-var logCallback uintptr
-
-// SetLogMessageCallback registers a callback for TDLib log messages.
-// The callback function receives the verbosity level and the log message.
-func SetLogMessageCallback(maxVerbosityLevel int32, callback func(verbosityLevel int32, message string)) {
-	cb := purego.NewCallback(func(verbosity int32, msg *byte) {
-		message := goString(uintptr(unsafe.Pointer(msg)))
-		callback(verbosity, message)
-	})
-	logCallback = cb // Prevent GC
-
-	tdSetLogMessageCallback(maxVerbosityLevel, cb)
-}
-
 func goString(ptr uintptr) string {
 	if ptr == 0 {
 		return ""
