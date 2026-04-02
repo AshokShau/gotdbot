@@ -21,6 +21,11 @@ import (
 	"github.com/AshokShau/gotdbot/internal/tdjson"
 )
 
+type AutoRetry struct {
+	ChatNotFound    bool
+	MessageNotFound bool
+}
+
 type ClientOpts struct {
 	LibraryPath             string
 	UseTestDC               bool
@@ -42,6 +47,7 @@ type ClientOpts struct {
 	AuthorizationTimeout    time.Duration
 	LogVerbosityLevel       int32
 	LogStream               LogStream
+	AutoRetry               *AutoRetry
 
 	// Dispatcher is the dispatcher to use for this client.
 	// If nil, a new dispatcher will be created.
@@ -66,6 +72,7 @@ func DefaultClientConfig() *ClientOpts {
 		QrMode:                  false,
 		AuthorizationTimeout:    60 * time.Second,
 		LogVerbosityLevel:       2,
+		AutoRetry:               &AutoRetry{},
 	}
 }
 
@@ -142,6 +149,10 @@ func NewClient(apiID int32, apiHash, tokenOrPhone string, config *ClientOpts) (*
 		}
 		if config.AuthorizationTimeout == 0 {
 			config.AuthorizationTimeout = def.AuthorizationTimeout
+		}
+
+		if config.AutoRetry == nil {
+			config.AutoRetry = def.AutoRetry
 		}
 	}
 
@@ -474,8 +485,6 @@ func (c *Client) messageSendFailedHandler(client *Client, update TlObject) error
 }
 
 func (c *Client) Send(req TlObject) (TlObject, error) {
-	extra := fmt.Sprintf("%d", time.Now().UnixNano())
-
 	data, err := json.Marshal(req)
 	if err != nil {
 		return nil, err
@@ -485,29 +494,112 @@ func (c *Client) Send(req TlObject) (TlObject, error) {
 	if err := json.Unmarshal(data, &tmp); err != nil {
 		return nil, err
 	}
-	tmp["@extra"] = extra
-	data, err = json.Marshal(tmp)
-	if err != nil {
-		return nil, err
-	}
 
-	ch := make(chan TlObject, 1)
-	c.pendingRequests.Store(extra, ch)
+	reqType, _ := tmp["@type"].(string)
+	reqType = strings.ToLower(reqType)
 
-	tdjson.Send(c.clientID, string(data))
+	isChatAttemptedLoad := reqType == "getchat"
+	isMessageAttemptedLoad := reqType == "getmessage" || reqType == "getmessagelocally" || reqType == "getrepliedmessage" || reqType == "getcallbackquerymessage"
 
-	select {
-	case res := <-ch:
-		if res.GetType() == "error" {
-			if errObj, ok := res.(*Error); ok {
-				return nil, errObj
-			}
+	for {
+		extra := fmt.Sprintf("%d", time.Now().UnixNano())
+		tmp["@extra"] = extra
+
+		sendData, err := json.Marshal(tmp)
+		if err != nil {
+			return nil, err
 		}
-		return res, nil
-	case <-time.After(30 * time.Second):
-		c.pendingRequests.Delete(extra)
-		return nil, SendTimeout
+
+		ch := make(chan TlObject, 1)
+		c.pendingRequests.Store(extra, ch)
+
+		tdjson.Send(c.clientID, string(sendData))
+
+		var result TlObject
+		var resultErr error
+
+		select {
+		case res := <-ch:
+			if res.GetType() == "error" {
+				if errObj, ok := res.(*Error); ok {
+					resultErr = errObj
+					result = res
+				}
+			} else {
+				result = res
+			}
+		case <-time.After(30 * time.Second):
+			c.pendingRequests.Delete(extra)
+			return nil, SendTimeout
+		}
+
+		if resultErr == nil {
+			return result, nil
+		}
+
+		errObj := resultErr.(*Error)
+
+		if c.handleAutoRetry(tmp, errObj, &isChatAttemptedLoad, &isMessageAttemptedLoad) {
+			continue
+		}
+
+		return nil, resultErr
 	}
+}
+
+func (c *Client) handleAutoRetry(req map[string]interface{}, errObj *Error, isChatAttemptedLoad, isMessageAttemptedLoad *bool) bool {
+	if errObj.Code != 400 || c.config.AutoRetry == nil {
+		return false
+	}
+
+	if !*isMessageAttemptedLoad && errObj.Message == "Message not found" && c.config.AutoRetry.MessageNotFound {
+		*isMessageAttemptedLoad = true
+		var chatId, messageId int64
+		if cId, ok := req["chat_id"].(float64); ok {
+			chatId = int64(cId)
+		}
+		if mId, ok := req["message_id"].(float64); ok {
+			messageId = int64(mId)
+		}
+		if chatId != 0 && messageId != 0 {
+			c.Logger.Debug("Attempting to load message", "chat_id", chatId, "message_id", messageId)
+			msg, loadErr := c.GetMessage(chatId, messageId)
+			if loadErr == nil && msg != nil {
+				c.Logger.Debug("Successfully loaded message, retrying request", "chat_id", chatId, "message_id", messageId)
+				return true
+			}
+
+			c.Logger.Debug("Failed to load message", "chat_id", chatId, "message_id", messageId, "error", loadErr)
+		}
+	}
+
+	if !*isChatAttemptedLoad && errObj.Message == "Chat not found" && c.config.AutoRetry.ChatNotFound {
+		*isChatAttemptedLoad = true
+		var chatId int64
+		if cId, ok := req["chat_id"].(float64); ok {
+			chatId = int64(cId)
+		}
+		if chatId != 0 {
+			c.Logger.Debug("Attempting to load chat", "chat_id", chatId)
+			chat, loadErr := c.GetChat(chatId)
+			if loadErr == nil && chat != nil {
+				c.Logger.Debug("Successfully loaded chat, retrying request", "chat_id", chatId)
+				if replyToMap, ok := req["reply_to"].(map[string]interface{}); ok {
+					if mId, ok := replyToMap["message_id"].(float64); ok {
+						replyToMessageId := int64(mId)
+						if replyToMessageId > 0 {
+							_, _ = c.GetMessage(chatId, replyToMessageId)
+						}
+					}
+				}
+
+				return true
+			}
+
+			c.Logger.Debug("Failed to load chat", "chat_id", chatId, "error", loadErr)
+		}
+	}
+	return false
 }
 
 // WaitMessage waits for the message to be sent and returns the final message.
