@@ -9,12 +9,11 @@ import (
 )
 
 var (
-	tdCreateClientId        func() int32
-	tdSend                  func(int32, *byte)
-	tdReceive               func(float64) uintptr
-	tdExecute               func(*byte) uintptr
-	tdSetLogMessageCallback func(int32, uintptr)
-
+	tdCreateClientId func() int32
+	tdSend           func(int32, *byte)
+	tdReceive        func(float64) uintptr
+	tdExecute        func(*byte) uintptr
+	
 	libLoaded bool
 )
 
@@ -37,7 +36,6 @@ func Init(libPath string) error {
 	purego.RegisterLibFunc(&tdSend, lib, "td_send")
 	purego.RegisterLibFunc(&tdReceive, lib, "td_receive")
 	purego.RegisterLibFunc(&tdExecute, lib, "td_execute")
-	purego.RegisterLibFunc(&tdSetLogMessageCallback, lib, "td_set_log_message_callback")
 
 	libLoaded = true
 
