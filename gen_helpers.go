@@ -57,6 +57,12 @@ func (c *Chat) AddPendingPaidMessageReaction(client *Client, messageId int64, st
 	return client.AddPendingPaidMessageReaction(c.Id, messageId, starCount, opts)
 }
 
+// AddPollOption Adds an option to a poll
+// It is a helper method for Client.AddPollOption
+func (c *Chat) AddPollOption(client *Client, messageId int64, option *InputPollOption) error {
+	return client.AddPollOption(c.Id, messageId, option)
+}
+
 // AddRecentlyFound Adds a chat to the list of recently found chats. The chat is added to the beginning of the list. If the chat is already in the list, it will be removed from the list first
 // It is a helper method for Client.AddRecentlyFoundChat
 func (c *Chat) AddRecentlyFound(client *Client) error {
@@ -223,6 +229,12 @@ func (c *Chat) DeleteForumTopic(client *Client, forumTopicId int32) error {
 // It is a helper method for Client.DeleteMessages
 func (c *Chat) DeleteMessages(client *Client, messageIds []int64, opts *DeleteMessagesOpts) error {
 	return client.DeleteMessages(c.Id, messageIds, opts)
+}
+
+// DeletePollOption Adds an option to a poll
+// It is a helper method for Client.DeletePollOption
+func (c *Chat) DeletePollOption(client *Client, messageId int64, optionId string) error {
+	return client.DeletePollOption(c.Id, messageId, optionId)
 }
 
 // DeleteRevokedInviteLink Deletes revoked chat invite links. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
@@ -701,8 +713,8 @@ func (c *Chat) GetMessageImportConfirmationText(client *Client) (*Text, error) {
 
 // GetMessageLink Returns an HTTPS link to a message in a chat. Available only if messageProperties.can_get_link, or if messageProperties.can_get_media_timestamp_links and a media timestamp link is generated. This is an offline method
 // It is a helper method for Client.GetMessageLink
-func (c *Chat) GetMessageLink(client *Client, mediaTimestamp int32, messageId int64, opts *GetMessageLinkOpts) (*MessageLink, error) {
-	return client.GetMessageLink(c.Id, mediaTimestamp, messageId, opts)
+func (c *Chat) GetMessageLink(client *Client, checklistTaskId int32, mediaTimestamp int32, messageId int64, pollOptionId string, opts *GetMessageLinkOpts) (*MessageLink, error) {
+	return client.GetMessageLink(c.Id, checklistTaskId, mediaTimestamp, messageId, pollOptionId, opts)
 }
 
 // GetMessageLocally Returns information about a message, if it is available without sending network request. Returns a 404 error if message isn't available locally. This is an offline method
@@ -765,7 +777,13 @@ func (c *Chat) GetPaymentReceipt(client *Client, messageId int64) (*PaymentRecei
 	return client.GetPaymentReceipt(c.Id, messageId)
 }
 
-// GetPollVoters Returns message senders voted for the specified option in a non-anonymous polls. For optimal performance, the number of returned users is chosen by TDLib
+// GetPollOptionProperties Returns properties of a poll option. This is an offline method
+// It is a helper method for Client.GetPollOptionProperties
+func (c *Chat) GetPollOptionProperties(client *Client, messageId int64, pollOptionId string) (*PollOptionProperties, error) {
+	return client.GetPollOptionProperties(c.Id, messageId, pollOptionId)
+}
+
+// GetPollVoters Returns message senders voted for the specified option in a poll; use poll.can_get_voters to check whether the method can be used.
 // It is a helper method for Client.GetPollVoters
 func (c *Chat) GetPollVoters(client *Client, limit int32, messageId int64, offset int32, optionId int32) (*PollVoters, error) {
 	return client.GetPollVoters(c.Id, limit, messageId, offset, optionId)
@@ -831,7 +849,7 @@ func (c *Chat) GetWebAppLinkUrl(client *Client, botUserId int64, parameters *Web
 	return client.GetWebAppLinkUrl(botUserId, c.Id, parameters, startParameter, webAppShortName, opts)
 }
 
-// ImportMessages Imports messages exported from another app
+// ImportMessages Imports messages exported from another application
 // It is a helper method for Client.ImportMessages
 func (c *Chat) ImportMessages(client *Client, attachedFiles []InputFile, messageFile InputFile) error {
 	return client.ImportMessages(attachedFiles, c.Id, messageFile)
@@ -927,6 +945,12 @@ func (c *Chat) ReadAllMentions(client *Client) error {
 	return client.ReadAllChatMentions(c.Id)
 }
 
+// ReadAllPollVotes Marks all poll votes in a chat as read
+// It is a helper method for Client.ReadAllChatPollVotes
+func (c *Chat) ReadAllPollVotes(client *Client) error {
+	return client.ReadAllChatPollVotes(c.Id)
+}
+
 // ReadAllReactions Marks all reactions in a chat as read
 // It is a helper method for Client.ReadAllChatReactions
 func (c *Chat) ReadAllReactions(client *Client) error {
@@ -943,6 +967,12 @@ func (c *Chat) ReadAllDirectMessagesTopicReactions(client *Client, topicId int64
 // It is a helper method for Client.ReadAllForumTopicMentions
 func (c *Chat) ReadAllForumTopicMentions(client *Client, forumTopicId int32) error {
 	return client.ReadAllForumTopicMentions(c.Id, forumTopicId)
+}
+
+// ReadAllForumTopicPollVotes Marks all poll votes in a topic in a forum supergroup chat as read
+// It is a helper method for Client.ReadAllForumTopicPollVotes
+func (c *Chat) ReadAllForumTopicPollVotes(client *Client, forumTopicId int32) error {
+	return client.ReadAllForumTopicPollVotes(c.Id, forumTopicId)
 }
 
 // ReadAllForumTopicReactions Marks all reactions in a topic in a forum supergroup chat or a chat with a bot with topics as read
@@ -1141,6 +1171,12 @@ func (c *Chat) SendMessage(client *Client, inputMessageContent InputMessageConte
 // It is a helper method for Client.SendMessageAlbum
 func (c *Chat) SendMessageAlbum(client *Client, inputMessageContents []InputMessageContent, opts *SendMessageAlbumOpts) (*Messages, error) {
 	return client.SendMessageAlbum(c.Id, inputMessageContents, opts)
+}
+
+// SendMessageViewMetrics Informs TDLib about details of a message view by the user from a chat, a message thread or a forum topic history. The method must be called if
+// It is a helper method for Client.SendMessageViewMetrics
+func (c *Chat) SendMessageViewMetrics(client *Client, activeTimeInViewMs int32, heightToViewportRatioPerMille int32, messageId int64, seenRangeRatioPerMille int32, timeInViewMs int32) error {
+	return client.SendMessageViewMetrics(activeTimeInViewMs, c.Id, heightToViewportRatioPerMille, messageId, seenRangeRatioPerMille, timeInViewMs)
 }
 
 // SendQuickReplyShortcutMessages Sends messages from a quick reply shortcut. Requires Telegram Business subscription. Can't be used to send paid messages
@@ -1359,7 +1395,7 @@ func (c *Chat) SetPinnedForumTopics(client *Client, forumTopicIds []int32) error
 	return client.SetPinnedForumTopics(c.Id, forumTopicIds)
 }
 
-// SetPollAnswer Changes the user answer to a poll. A poll in quiz mode can be answered only once
+// SetPollAnswer Changes the user answer to a poll
 // It is a helper method for Client.SetPollAnswer
 func (c *Chat) SetPollAnswer(client *Client, messageId int64, optionIds []int32) error {
 	return client.SetPollAnswer(c.Id, messageId, optionIds)
@@ -1375,18 +1411,6 @@ func (c *Chat) SetStoryAlbumName(client *Client, name string, storyAlbumId int32
 // It is a helper method for Client.SetVideoChatDefaultParticipant
 func (c *Chat) SetVideoDefaultParticipant(client *Client, defaultParticipantId MessageSender) error {
 	return client.SetVideoChatDefaultParticipant(c.Id, defaultParticipantId)
-}
-
-// ShareWithBot Shares a chat after pressing a keyboardButtonTypeRequestChat button with the bot
-// It is a helper method for Client.ShareChatWithBot
-func (c *Chat) ShareWithBot(client *Client, buttonId int32, messageId int64, sharedChatId int64, opts *ShareChatWithBotOpts) error {
-	return client.ShareChatWithBot(buttonId, c.Id, messageId, sharedChatId, opts)
-}
-
-// ShareUsersWithBot Shares users after pressing a keyboardButtonTypeRequestUsers button with the bot
-// It is a helper method for Client.ShareUsersWithBot
-func (c *Chat) ShareUsersWithBot(client *Client, buttonId int32, messageId int64, sharedUserIds []int64, opts *ShareUsersWithBotOpts) error {
-	return client.ShareUsersWithBot(buttonId, c.Id, messageId, sharedUserIds, opts)
 }
 
 // StartLiveStory Starts a new live story on behalf of a chat; requires can_post_stories administrator right for channel chats
@@ -1409,8 +1433,8 @@ func (c *Chat) StopPoll(client *Client, messageId int64, opts *StopPollOpts) err
 
 // SummarizeMessage Summarizes content of the message with non-empty summary_language_code
 // It is a helper method for Client.SummarizeMessage
-func (c *Chat) SummarizeMessage(client *Client, messageId int64, opts *SummarizeMessageOpts) (*FormattedText, error) {
-	return client.SummarizeMessage(c.Id, messageId, opts)
+func (c *Chat) SummarizeMessage(client *Client, messageId int64, tone string, translateToLanguageCode string) (*FormattedText, error) {
+	return client.SummarizeMessage(c.Id, messageId, tone, translateToLanguageCode)
 }
 
 // ToggleBusinessConnectedBotIsPaused Pauses or resumes the connected business bot in a specific chat
@@ -1491,10 +1515,10 @@ func (c *Chat) TransferOwnership(client *Client, password string, userId int64) 
 	return client.TransferChatOwnership(c.Id, password, userId)
 }
 
-// TranslateMessageText Extracts text or caption of the given message and translates it to the given language. If the current user is a Telegram Premium user, then text formatting is preserved
+// TranslateMessageText Extracts text or caption of the given message and translates it to the given language; must not be used in secret chats. If the current user is a Telegram Premium user, then text formatting is preserved
 // It is a helper method for Client.TranslateMessageText
-func (c *Chat) TranslateMessageText(client *Client, messageId int64, toLanguageCode string) (*FormattedText, error) {
-	return client.TranslateMessageText(c.Id, messageId, toLanguageCode)
+func (c *Chat) TranslateMessageText(client *Client, messageId int64, toLanguageCode string, tone string) (*FormattedText, error) {
+	return client.TranslateMessageText(c.Id, messageId, toLanguageCode, tone)
 }
 
 // UnpinAllMessages Removes all pinned messages from a chat; requires can_pin_messages member right if the chat is a basic group or supergroup, or can_edit_messages administrator right if the chat is a channel
@@ -1671,6 +1695,12 @@ func (m *Message) AddPendingPaidReaction(client *Client, starCount int64, opts *
 	return client.AddPendingPaidMessageReaction(m.ChatId, m.Id, starCount, opts)
 }
 
+// AddPollOption Adds an option to a poll
+// It is a helper method for Client.AddPollOption
+func (m *Message) AddPollOption(client *Client, option *InputPollOption) error {
+	return client.AddPollOption(m.ChatId, m.Id, option)
+}
+
 // ApproveSuggestedPost Approves a suggested post in a channel direct messages chat
 // It is a helper method for Client.ApproveSuggestedPost
 func (m *Message) ApproveSuggestedPost(client *Client, sendDate int32) error {
@@ -1717,6 +1747,12 @@ func (m *Message) DeclineSuggestedPost(client *Client, comment string) error {
 // It is a helper method for Client.DeleteChatReplyMarkup
 func (m *Message) DeleteChatReplyMarkup(client *Client) error {
 	return client.DeleteChatReplyMarkup(m.ChatId, m.Id)
+}
+
+// DeletePollOption Adds an option to a poll
+// It is a helper method for Client.DeletePollOption
+func (m *Message) DeletePollOption(client *Client, optionId string) error {
+	return client.DeletePollOption(m.ChatId, m.Id, optionId)
 }
 
 // EditBusinessCaption Edits the caption of a message sent on behalf of a business account; for bots only
@@ -1923,7 +1959,13 @@ func (m *Message) GetPaymentReceipt(client *Client) (*PaymentReceipt, error) {
 	return client.GetPaymentReceipt(m.ChatId, m.Id)
 }
 
-// GetPollVoters Returns message senders voted for the specified option in a non-anonymous polls. For optimal performance, the number of returned users is chosen by TDLib
+// GetPollOptionProperties Returns properties of a poll option. This is an offline method
+// It is a helper method for Client.GetPollOptionProperties
+func (m *Message) GetPollOptionProperties(client *Client, pollOptionId string) (*PollOptionProperties, error) {
+	return client.GetPollOptionProperties(m.ChatId, m.Id, pollOptionId)
+}
+
+// GetPollVoters Returns message senders voted for the specified option in a poll; use poll.can_get_voters to check whether the method can be used.
 // It is a helper method for Client.GetPollVoters
 func (m *Message) GetPollVoters(client *Client, limit int32, offset int32, optionId int32) (*PollVoters, error) {
 	return client.GetPollVoters(m.ChatId, limit, m.Id, offset, optionId)
@@ -2013,6 +2055,12 @@ func (m *Message) ReportSupergroupAntiSpamFalsePositive(client *Client, supergro
 	return client.ReportSupergroupAntiSpamFalsePositive(m.Id, supergroupId)
 }
 
+// SendViewMetrics Informs TDLib about details of a message view by the user from a chat, a message thread or a forum topic history. The method must be called if
+// It is a helper method for Client.SendMessageViewMetrics
+func (m *Message) SendViewMetrics(client *Client, activeTimeInViewMs int32, heightToViewportRatioPerMille int32, seenRangeRatioPerMille int32, timeInViewMs int32) error {
+	return client.SendMessageViewMetrics(activeTimeInViewMs, m.ChatId, heightToViewportRatioPerMille, m.Id, seenRangeRatioPerMille, timeInViewMs)
+}
+
 // SetBusinessIsPinned Pins or unpins a message sent on behalf of a business account; for bots only
 // It is a helper method for Client.SetBusinessMessageIsPinned
 func (m *Message) SetBusinessIsPinned(client *Client, businessConnectionId string, opts *SetBusinessMessageIsPinnedOpts) error {
@@ -2043,22 +2091,10 @@ func (m *Message) SetPaidReactionType(client *Client, typeField PaidReactionType
 	return client.SetPaidMessageReactionType(m.ChatId, m.Id, typeField)
 }
 
-// SetPollAnswer Changes the user answer to a poll. A poll in quiz mode can be answered only once
+// SetPollAnswer Changes the user answer to a poll
 // It is a helper method for Client.SetPollAnswer
 func (m *Message) SetPollAnswer(client *Client, optionIds []int32) error {
 	return client.SetPollAnswer(m.ChatId, m.Id, optionIds)
-}
-
-// ShareChatWithBot Shares a chat after pressing a keyboardButtonTypeRequestChat button with the bot
-// It is a helper method for Client.ShareChatWithBot
-func (m *Message) ShareChatWithBot(client *Client, buttonId int32, sharedChatId int64, opts *ShareChatWithBotOpts) error {
-	return client.ShareChatWithBot(buttonId, m.ChatId, m.Id, sharedChatId, opts)
-}
-
-// ShareUsersWithBot Shares users after pressing a keyboardButtonTypeRequestUsers button with the bot
-// It is a helper method for Client.ShareUsersWithBot
-func (m *Message) ShareUsersWithBot(client *Client, buttonId int32, sharedUserIds []int64, opts *ShareUsersWithBotOpts) error {
-	return client.ShareUsersWithBot(buttonId, m.ChatId, m.Id, sharedUserIds, opts)
 }
 
 // StopBusinessPoll Stops a poll sent on behalf of a business account; for bots only
@@ -2075,14 +2111,14 @@ func (m *Message) StopPoll(client *Client, opts *StopPollOpts) error {
 
 // Summarize Summarizes content of the message with non-empty summary_language_code
 // It is a helper method for Client.SummarizeMessage
-func (m *Message) Summarize(client *Client, opts *SummarizeMessageOpts) (*FormattedText, error) {
-	return client.SummarizeMessage(m.ChatId, m.Id, opts)
+func (m *Message) Summarize(client *Client, tone string, translateToLanguageCode string) (*FormattedText, error) {
+	return client.SummarizeMessage(m.ChatId, m.Id, tone, translateToLanguageCode)
 }
 
-// TranslateText Extracts text or caption of the given message and translates it to the given language. If the current user is a Telegram Premium user, then text formatting is preserved
+// TranslateText Extracts text or caption of the given message and translates it to the given language; must not be used in secret chats. If the current user is a Telegram Premium user, then text formatting is preserved
 // It is a helper method for Client.TranslateMessageText
-func (m *Message) TranslateText(client *Client, toLanguageCode string) (*FormattedText, error) {
-	return client.TranslateMessageText(m.ChatId, m.Id, toLanguageCode)
+func (m *Message) TranslateText(client *Client, toLanguageCode string, tone string) (*FormattedText, error) {
+	return client.TranslateMessageText(m.ChatId, m.Id, toLanguageCode, tone)
 }
 
 // UnpinChat Removes a pinned message from a chat; requires can_pin_messages member right if the chat is a basic group or supergroup, or can_edit_messages administrator right if the chat is a channel
@@ -2269,6 +2305,12 @@ func (u *User) ReplaceStickerInSet(client *Client, name string, newSticker *Inpu
 // It is a helper method for Client.SavePreparedInlineMessage
 func (u *User) SavePreparedInlineMessage(client *Client, chatTypes *TargetChatTypes, result InputInlineQueryResult) (*PreparedInlineMessageId, error) {
 	return client.SavePreparedInlineMessage(chatTypes, result, u.Id)
+}
+
+// SavePreparedKeyboardButton Saves a keyboard button to be shown to the given user; for bots only
+// It is a helper method for Client.SavePreparedKeyboardButton
+func (u *User) SavePreparedKeyboardButton(client *Client, button *KeyboardButton) (*Text, error) {
+	return client.SavePreparedKeyboardButton(button, u.Id)
 }
 
 // SetChatMemberTag Changes the tag or custom title of a chat member; requires can_manage_tags administrator right to change tag of other users; for basic groups and supergroups only

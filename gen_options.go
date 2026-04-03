@@ -141,10 +141,22 @@ type ClickChatSponsoredMessageOpts struct {
 	IsMediaClick bool
 }
 
+// ComposeTextWithAiOpts contains optional parameters for ComposeTextWithAi
+type ComposeTextWithAiOpts struct {
+	// Pass true to add emoji to the text
+	AddEmojis bool
+}
+
 // CreateBasicGroupChatOpts contains optional parameters for CreateBasicGroupChat
 type CreateBasicGroupChatOpts struct {
 	// Pass true to create the chat without a network request. In this case all information about the chat except its type, title and photo can be incorrect
 	Force bool
+}
+
+// CreateBotOpts contains optional parameters for CreateBot
+type CreateBotOpts struct {
+	// Pass true if the bot is created from an internalLinkTypeRequestManagedBot link
+	ViaLink bool
 }
 
 // CreateCallOpts contains optional parameters for CreateCall
@@ -485,6 +497,12 @@ type GetAllStickerEmojisOpts struct {
 type GetBotSimilarBotCountOpts struct {
 	// Pass true to get the number of bots without sending network requests, or -1 if the number of bots is unknown locally
 	ReturnLocal bool
+}
+
+// GetBotTokenOpts contains optional parameters for GetBotToken
+type GetBotTokenOpts struct {
+	// Pass true to revoke the current token and create a new one
+	Revoke bool
 }
 
 // GetBusinessFeaturesOpts contains optional parameters for GetBusinessFeatures
@@ -1069,6 +1087,8 @@ type SearchFileDownloadsOpts struct {
 type SearchGiftsForResaleOpts struct {
 	// Pass true to get only gifts suitable for crafting
 	ForCrafting bool
+	// Pass true to get only gifts that can be bought using Telegram Stars
+	ForStars bool
 }
 
 // SearchMessagesOpts contains optional parameters for SearchMessages
@@ -1077,7 +1097,7 @@ type SearchMessagesOpts struct {
 	ChatList ChatList
 	// Additional filter for type of the chat of the searched messages; pass null to search for messages in all chats
 	ChatTypeFilter SearchMessagesChatTypeFilter
-	// Additional filter for messages to search; pass null to search for all messages. Filters searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, searchMessagesFilterFailedToSend, and searchMessagesFilterPinned are unsupported in this function
+	// Additional filter for messages to search; pass null to search for all messages. Filters searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction,
 	Filter SearchMessagesFilter
 }
 
@@ -1529,12 +1549,6 @@ type StopBusinessPollOpts struct {
 type StopPollOpts struct {
 	// The new message reply markup; pass null if none; for bots only
 	ReplyMarkup ReplyMarkup
-}
-
-// SummarizeMessageOpts contains optional parameters for SummarizeMessage
-type SummarizeMessageOpts struct {
-	// Pass a language code to which the summary will be translated; may be empty if translation isn't needed. See translateText.to_language_code for the list of supported values
-	TranslateToLanguageCode string
 }
 
 // ToggleAllDownloadsArePausedOpts contains optional parameters for ToggleAllDownloadsArePaused

@@ -118,6 +118,8 @@ type (
 	UpdateChatTitle func(u *gotdbot.UpdateChatTitle) bool
 	// UpdateChatUnreadMentionCount The chat unread_mention_count has changed
 	UpdateChatUnreadMentionCount func(u *gotdbot.UpdateChatUnreadMentionCount) bool
+	// UpdateChatUnreadPollVoteCount The chat unread_poll_vote_count has changed
+	UpdateChatUnreadPollVoteCount func(u *gotdbot.UpdateChatUnreadPollVoteCount) bool
 	// UpdateChatUnreadReactionCount The chat unread_reaction_count has changed
 	UpdateChatUnreadReactionCount func(u *gotdbot.UpdateChatUnreadReactionCount) bool
 	// UpdateChatVideoChat A chat video chat state has changed
@@ -188,6 +190,8 @@ type (
 	UpdateLanguagePackStrings func(u *gotdbot.UpdateLanguagePackStrings) bool
 	// UpdateLiveStoryTopDonors The list of top donors in live story group call has changed
 	UpdateLiveStoryTopDonors func(u *gotdbot.UpdateLiveStoryTopDonors) bool
+	// UpdateManagedBot A bot that can be managed by the current bot was created or updated; for bots only
+	UpdateManagedBot func(u *gotdbot.UpdateManagedBot) bool
 	// UpdateMessageContent The message content has changed
 	UpdateMessageContent func(u *gotdbot.UpdateMessageContent) bool
 	// UpdateMessageContentOpened The message content was opened. Updates voice note messages to "listened", video note messages to "viewed" and starts the self-destruct timer
@@ -330,6 +334,8 @@ type (
 	UpdateSupergroupFullInfo func(u *gotdbot.UpdateSupergroupFullInfo) bool
 	// UpdateTermsOfService New terms of service must be accepted by the user. If the terms of service are declined, then the deleteAccount method must be called with the reason "Decline ToS update"
 	UpdateTermsOfService func(u *gotdbot.UpdateTermsOfService) bool
+	// UpdateTextCompositionStyles The styles supported for text composition have changed
+	UpdateTextCompositionStyles func(u *gotdbot.UpdateTextCompositionStyles) bool
 	// UpdateTonRevenueStatus The Toncoin revenue earned by the current user has changed. If Toncoin transaction screen of the chat is opened, then getTonTransactions may be called to fetch new transactions
 	UpdateTonRevenueStatus func(u *gotdbot.UpdateTonRevenueStatus) bool
 	// UpdateTopicMessageCount Number of messages in a topic has changed; for Saved Messages and channel direct messages chat topics only

@@ -116,6 +116,8 @@ type ContextUpdates struct {
 	UpdateChatTitle *UpdateChatTitle
 	// UpdateChatUnreadMentionCount The chat unread_mention_count has changed
 	UpdateChatUnreadMentionCount *UpdateChatUnreadMentionCount
+	// UpdateChatUnreadPollVoteCount The chat unread_poll_vote_count has changed
+	UpdateChatUnreadPollVoteCount *UpdateChatUnreadPollVoteCount
 	// UpdateChatUnreadReactionCount The chat unread_reaction_count has changed
 	UpdateChatUnreadReactionCount *UpdateChatUnreadReactionCount
 	// UpdateChatVideoChat A chat video chat state has changed
@@ -186,6 +188,8 @@ type ContextUpdates struct {
 	UpdateLanguagePackStrings *UpdateLanguagePackStrings
 	// UpdateLiveStoryTopDonors The list of top donors in live story group call has changed
 	UpdateLiveStoryTopDonors *UpdateLiveStoryTopDonors
+	// UpdateManagedBot A bot that can be managed by the current bot was created or updated; for bots only
+	UpdateManagedBot *UpdateManagedBot
 	// UpdateMessageContent The message content has changed
 	UpdateMessageContent *UpdateMessageContent
 	// UpdateMessageContentOpened The message content was opened. Updates voice note messages to "listened", video note messages to "viewed" and starts the self-destruct timer
@@ -328,6 +332,8 @@ type ContextUpdates struct {
 	UpdateSupergroupFullInfo *UpdateSupergroupFullInfo
 	// UpdateTermsOfService New terms of service must be accepted by the user. If the terms of service are declined, then the deleteAccount method must be called with the reason "Decline ToS update"
 	UpdateTermsOfService *UpdateTermsOfService
+	// UpdateTextCompositionStyles The styles supported for text composition have changed
+	UpdateTextCompositionStyles *UpdateTextCompositionStyles
 	// UpdateTonRevenueStatus The Toncoin revenue earned by the current user has changed. If Toncoin transaction screen of the chat is opened, then getTonTransactions may be called to fetch new transactions
 	UpdateTonRevenueStatus *UpdateTonRevenueStatus
 	// UpdateTopicMessageCount Number of messages in a topic has changed; for Saved Messages and channel direct messages chat topics only
@@ -471,6 +477,8 @@ func NewContextUpdates(u TlObject) *ContextUpdates {
 		up.UpdateChatTitle = u
 	case *UpdateChatUnreadMentionCount:
 		up.UpdateChatUnreadMentionCount = u
+	case *UpdateChatUnreadPollVoteCount:
+		up.UpdateChatUnreadPollVoteCount = u
 	case *UpdateChatUnreadReactionCount:
 		up.UpdateChatUnreadReactionCount = u
 	case *UpdateChatVideoChat:
@@ -541,6 +549,8 @@ func NewContextUpdates(u TlObject) *ContextUpdates {
 		up.UpdateLanguagePackStrings = u
 	case *UpdateLiveStoryTopDonors:
 		up.UpdateLiveStoryTopDonors = u
+	case *UpdateManagedBot:
+		up.UpdateManagedBot = u
 	case *UpdateMessageContent:
 		up.UpdateMessageContent = u
 	case *UpdateMessageContentOpened:
@@ -683,6 +693,8 @@ func NewContextUpdates(u TlObject) *ContextUpdates {
 		up.UpdateSupergroupFullInfo = u
 	case *UpdateTermsOfService:
 		up.UpdateTermsOfService = u
+	case *UpdateTextCompositionStyles:
+		up.UpdateTextCompositionStyles = u
 	case *UpdateTonRevenueStatus:
 		up.UpdateTonRevenueStatus = u
 	case *UpdateTopicMessageCount:
@@ -792,6 +804,8 @@ func extractGeneratedEffectiveFields(u TlObject, c *Context) {
 	case *UpdateChatTitle:
 		c.EffectiveChatId = u.ChatId
 	case *UpdateChatUnreadMentionCount:
+		c.EffectiveChatId = u.ChatId
+	case *UpdateChatUnreadPollVoteCount:
 		c.EffectiveChatId = u.ChatId
 	case *UpdateChatUnreadReactionCount:
 		c.EffectiveChatId = u.ChatId

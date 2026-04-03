@@ -657,7 +657,7 @@ func UnmarshalBotWriteAccessAllowReason(data []byte) (BotWriteAccessAllowReason,
 	}
 }
 
-// BuiltInTheme Describes a built-in theme of an official app
+// BuiltInTheme Describes a built-in theme of an official application
 //   - BuiltInThemeArctic
 //   - BuiltInThemeClassic
 //   - BuiltInThemeDay
@@ -2930,6 +2930,47 @@ func UnmarshalDiceStickers(data []byte) (DiceStickers, error) {
 	}
 }
 
+// DiffEntityType Represents a change of a text
+//   - DiffEntityTypeDelete
+//   - DiffEntityTypeInsert
+//   - DiffEntityTypeReplace
+type DiffEntityType interface {
+	TlObject
+	diffEntityType()
+}
+
+// UnmarshalDiffEntityType unmarshals the JSON into the correct concrete implementation of DiffEntityType
+func UnmarshalDiffEntityType(data []byte) (DiffEntityType, error) {
+	var typeObj struct {
+		Type string `json:"@type"`
+	}
+	if err := json.Unmarshal(data, &typeObj); err != nil {
+		return nil, err
+	}
+	switch typeObj.Type {
+	case "diffEntityTypeDelete":
+		var obj DiffEntityTypeDelete
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "diffEntityTypeInsert":
+		var obj DiffEntityTypeInsert
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "diffEntityTypeReplace":
+		var obj DiffEntityTypeReplace
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	default:
+		return nil, fmt.Errorf("unknown type: %s", typeObj.Type)
+	}
+}
+
 // EmailAddressAuthentication Contains authentication data for an email address
 //   - EmailAddressAuthenticationAppleId
 //   - EmailAddressAuthenticationCode
@@ -3125,6 +3166,7 @@ func UnmarshalEmojiStatusType(data []byte) (EmojiStatusType, error) {
 //   - FileTypeAnimation
 //   - FileTypeAudio
 //   - FileTypeDocument
+//   - FileTypeLivePhotoVideo
 //   - FileTypeNone
 //   - FileTypeNotificationSound
 //   - FileTypePhoto
@@ -3133,6 +3175,7 @@ func UnmarshalEmojiStatusType(data []byte) (EmojiStatusType, error) {
 //   - FileTypeSecret
 //   - FileTypeSecretThumbnail
 //   - FileTypeSecure
+//   - FileTypeSelfDestructingLivePhotoVideo
 //   - FileTypeSelfDestructingPhoto
 //   - FileTypeSelfDestructingVideo
 //   - FileTypeSelfDestructingVideoNote
@@ -3173,6 +3216,12 @@ func UnmarshalFileType(data []byte) (FileType, error) {
 		return &obj, nil
 	case "fileTypeDocument":
 		var obj FileTypeDocument
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "fileTypeLivePhotoVideo":
+		var obj FileTypeLivePhotoVideo
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -3221,6 +3270,12 @@ func UnmarshalFileType(data []byte) (FileType, error) {
 		return &obj, nil
 	case "fileTypeSecure":
 		var obj FileTypeSecure
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "fileTypeSelfDestructingLivePhotoVideo":
+		var obj FileTypeSelfDestructingLivePhotoVideo
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -4814,6 +4869,40 @@ func UnmarshalInputPassportElementErrorSource(data []byte) (InputPassportElement
 	}
 }
 
+// InputPollType Describes the type of poll to send
+//   - InputPollTypeQuiz
+//   - InputPollTypeRegular
+type InputPollType interface {
+	TlObject
+	inputPollType()
+}
+
+// UnmarshalInputPollType unmarshals the JSON into the correct concrete implementation of InputPollType
+func UnmarshalInputPollType(data []byte) (InputPollType, error) {
+	var typeObj struct {
+		Type string `json:"@type"`
+	}
+	if err := json.Unmarshal(data, &typeObj); err != nil {
+		return nil, err
+	}
+	switch typeObj.Type {
+	case "inputPollTypeQuiz":
+		var obj InputPollTypeQuiz
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "inputPollTypeRegular":
+		var obj InputPollTypeRegular
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	default:
+		return nil, fmt.Errorf("unknown type: %s", typeObj.Type)
+	}
+}
+
 // InputStoryAreaType Describes type of clickable area on a story media to be added
 //   - InputStoryAreaTypeFoundVenue
 //   - InputStoryAreaTypeLink
@@ -4965,6 +5054,7 @@ func UnmarshalInputStoryContent(data []byte) (InputStoryContent, error) {
 //   - InternalLinkTypeProxy
 //   - InternalLinkTypePublicChat
 //   - InternalLinkTypeQrCodeAuthentication
+//   - InternalLinkTypeRequestManagedBot
 //   - InternalLinkTypeRestorePurchases
 //   - InternalLinkTypeSavedMessages
 //   - InternalLinkTypeSearch
@@ -5234,6 +5324,12 @@ func UnmarshalInternalLinkType(data []byte) (InternalLinkType, error) {
 			return nil, err
 		}
 		return &obj, nil
+	case "internalLinkTypeRequestManagedBot":
+		var obj InternalLinkTypeRequestManagedBot
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
 	case "internalLinkTypeRestorePurchases":
 		var obj InternalLinkTypeRestorePurchases
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -5480,9 +5576,44 @@ func UnmarshalJsonValue(data []byte) (JsonValue, error) {
 	}
 }
 
+// KeyboardButtonSource Describes source of a keyboard button
+//   - KeyboardButtonSourceMessage
+//   - KeyboardButtonSourceWebApp
+type KeyboardButtonSource interface {
+	TlObject
+	keyboardButtonSource()
+}
+
+// UnmarshalKeyboardButtonSource unmarshals the JSON into the correct concrete implementation of KeyboardButtonSource
+func UnmarshalKeyboardButtonSource(data []byte) (KeyboardButtonSource, error) {
+	var typeObj struct {
+		Type string `json:"@type"`
+	}
+	if err := json.Unmarshal(data, &typeObj); err != nil {
+		return nil, err
+	}
+	switch typeObj.Type {
+	case "keyboardButtonSourceMessage":
+		var obj KeyboardButtonSourceMessage
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "keyboardButtonSourceWebApp":
+		var obj KeyboardButtonSourceWebApp
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	default:
+		return nil, fmt.Errorf("unknown type: %s", typeObj.Type)
+	}
+}
+
 // KeyboardButtonType Describes a keyboard button type
 //   - KeyboardButtonTypeRequestChat
 //   - KeyboardButtonTypeRequestLocation
+//   - KeyboardButtonTypeRequestManagedBot
 //   - KeyboardButtonTypeRequestPhoneNumber
 //   - KeyboardButtonTypeRequestPoll
 //   - KeyboardButtonTypeRequestUsers
@@ -5510,6 +5641,12 @@ func UnmarshalKeyboardButtonType(data []byte) (KeyboardButtonType, error) {
 		return &obj, nil
 	case "keyboardButtonTypeRequestLocation":
 		var obj KeyboardButtonTypeRequestLocation
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "keyboardButtonTypeRequestManagedBot":
+		var obj KeyboardButtonTypeRequestManagedBot
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -5648,6 +5785,7 @@ func UnmarshalLinkPreviewAlbumMedia(data []byte) (LinkPreviewAlbumMedia, error) 
 //   - LinkPreviewTypeMessage
 //   - LinkPreviewTypePhoto
 //   - LinkPreviewTypePremiumGiftCode
+//   - LinkPreviewTypeRequestManagedBot
 //   - LinkPreviewTypeShareableChatFolder
 //   - LinkPreviewTypeSticker
 //   - LinkPreviewTypeStickerSet
@@ -5811,6 +5949,12 @@ func UnmarshalLinkPreviewType(data []byte) (LinkPreviewType, error) {
 		return &obj, nil
 	case "linkPreviewTypePremiumGiftCode":
 		var obj LinkPreviewTypePremiumGiftCode
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "linkPreviewTypeRequestManagedBot":
+		var obj LinkPreviewTypeRequestManagedBot
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -6090,6 +6234,7 @@ func UnmarshalMaskPoint(data []byte) (MaskPoint, error) {
 //   - MessageInviteVideoChatParticipants
 //   - MessageInvoice
 //   - MessageLocation
+//   - MessageManagedBotCreated
 //   - MessagePaidMedia
 //   - MessagePaidMessagePriceChanged
 //   - MessagePaidMessagesRefunded
@@ -6101,6 +6246,8 @@ func UnmarshalMaskPoint(data []byte) (MaskPoint, error) {
 //   - MessagePhoto
 //   - MessagePinMessage
 //   - MessagePoll
+//   - MessagePollOptionAdded
+//   - MessagePollOptionDeleted
 //   - MessagePremiumGiftCode
 //   - MessageProximityAlertTriggered
 //   - MessageRefundedUpgradedGift
@@ -6481,6 +6628,12 @@ func UnmarshalMessageContent(data []byte) (MessageContent, error) {
 			return nil, err
 		}
 		return &obj, nil
+	case "messageManagedBotCreated":
+		var obj MessageManagedBotCreated
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
 	case "messagePaidMedia":
 		var obj MessagePaidMedia
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -6543,6 +6696,18 @@ func UnmarshalMessageContent(data []byte) (MessageContent, error) {
 		return &obj, nil
 	case "messagePoll":
 		var obj MessagePoll
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "messagePollOptionAdded":
+		var obj MessagePollOptionAdded
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "messagePollOptionDeleted":
+		var obj MessagePollOptionDeleted
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -8420,6 +8585,7 @@ func UnmarshalPollType(data []byte) (PollType, error) {
 //   - PremiumFeatureProtectPrivateChatContent
 //   - PremiumFeatureRealTimeChatTranslation
 //   - PremiumFeatureSavedMessagesTags
+//   - PremiumFeatureTextComposition
 //   - PremiumFeatureUniqueReactions
 //   - PremiumFeatureUniqueStickers
 //   - PremiumFeatureUpgradedStories
@@ -8576,6 +8742,12 @@ func UnmarshalPremiumFeature(data []byte) (PremiumFeature, error) {
 			return nil, err
 		}
 		return &obj, nil
+	case "premiumFeatureTextComposition":
+		var obj PremiumFeatureTextComposition
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
 	case "premiumFeatureUniqueReactions":
 		var obj PremiumFeatureUniqueReactions
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -8615,6 +8787,7 @@ func UnmarshalPremiumFeature(data []byte) (PremiumFeature, error) {
 //   - PremiumLimitTypeCreatedPublicChatCount
 //   - PremiumLimitTypeFavoriteStickerCount
 //   - PremiumLimitTypeMonthlyPostedStoryCount
+//   - PremiumLimitTypeOwnedBotCount
 //   - PremiumLimitTypePinnedArchivedChatCount
 //   - PremiumLimitTypePinnedChatCount
 //   - PremiumLimitTypePinnedSavedMessagesTopicCount
@@ -8689,6 +8862,12 @@ func UnmarshalPremiumLimitType(data []byte) (PremiumLimitType, error) {
 		return &obj, nil
 	case "premiumLimitTypeMonthlyPostedStoryCount":
 		var obj PremiumLimitTypeMonthlyPostedStoryCount
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "premiumLimitTypeOwnedBotCount":
+		var obj PremiumLimitTypeOwnedBotCount
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -9105,6 +9284,7 @@ func UnmarshalPublicForward(data []byte) (PublicForward, error) {
 //   - PushMessageContentPaidMedia
 //   - PushMessageContentPhoto
 //   - PushMessageContentPoll
+//   - PushMessageContentPollOptionAdded
 //   - PushMessageContentPremiumGiftCode
 //   - PushMessageContentProximityAlertTriggered
 //   - PushMessageContentRecurringPayment
@@ -9310,6 +9490,12 @@ func UnmarshalPushMessageContent(data []byte) (PushMessageContent, error) {
 		return &obj, nil
 	case "pushMessageContentPoll":
 		var obj PushMessageContentPoll
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "pushMessageContentPollOptionAdded":
+		var obj PushMessageContentPollOptionAdded
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -10155,7 +10341,9 @@ func UnmarshalSearchMessagesChatTypeFilter(data []byte) (SearchMessagesChatTypeF
 //   - SearchMessagesFilterPhoto
 //   - SearchMessagesFilterPhotoAndVideo
 //   - SearchMessagesFilterPinned
+//   - SearchMessagesFilterPoll
 //   - SearchMessagesFilterUnreadMention
+//   - SearchMessagesFilterUnreadPollVote
 //   - SearchMessagesFilterUnreadReaction
 //   - SearchMessagesFilterUrl
 //   - SearchMessagesFilterVideo
@@ -10236,8 +10424,20 @@ func UnmarshalSearchMessagesFilter(data []byte) (SearchMessagesFilter, error) {
 			return nil, err
 		}
 		return &obj, nil
+	case "searchMessagesFilterPoll":
+		var obj SearchMessagesFilterPoll
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
 	case "searchMessagesFilterUnreadMention":
 		var obj SearchMessagesFilterUnreadMention
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "searchMessagesFilterUnreadPollVote":
+		var obj SearchMessagesFilterUnreadPollVote
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -12713,6 +12913,7 @@ func UnmarshalTransactionDirection(data []byte) (TransactionDirection, error) {
 //   - UpdateChatTheme
 //   - UpdateChatTitle
 //   - UpdateChatUnreadMentionCount
+//   - UpdateChatUnreadPollVoteCount
 //   - UpdateChatUnreadReactionCount
 //   - UpdateChatVideoChat
 //   - UpdateChatViewAsTopics
@@ -12748,6 +12949,7 @@ func UnmarshalTransactionDirection(data []byte) (TransactionDirection, error) {
 //   - UpdateInstalledStickerSets
 //   - UpdateLanguagePackStrings
 //   - UpdateLiveStoryTopDonors
+//   - UpdateManagedBot
 //   - UpdateMessageContent
 //   - UpdateMessageContentOpened
 //   - UpdateMessageEdited
@@ -12819,6 +13021,7 @@ func UnmarshalTransactionDirection(data []byte) (TransactionDirection, error) {
 //   - UpdateSupergroup
 //   - UpdateSupergroupFullInfo
 //   - UpdateTermsOfService
+//   - UpdateTextCompositionStyles
 //   - UpdateTonRevenueStatus
 //   - UpdateTopicMessageCount
 //   - UpdateTrendingStickerSets
@@ -13182,6 +13385,12 @@ func UnmarshalUpdate(data []byte) (Update, error) {
 			return nil, err
 		}
 		return &obj, nil
+	case "updateChatUnreadPollVoteCount":
+		var obj UpdateChatUnreadPollVoteCount
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
 	case "updateChatUnreadReactionCount":
 		var obj UpdateChatUnreadReactionCount
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -13388,6 +13597,12 @@ func UnmarshalUpdate(data []byte) (Update, error) {
 		return &obj, nil
 	case "updateLiveStoryTopDonors":
 		var obj UpdateLiveStoryTopDonors
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "updateManagedBot":
+		var obj UpdateManagedBot
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -13814,6 +14029,12 @@ func UnmarshalUpdate(data []byte) (Update, error) {
 		return &obj, nil
 	case "updateTermsOfService":
 		var obj UpdateTermsOfService
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "updateTextCompositionStyles":
+		var obj UpdateTextCompositionStyles
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
