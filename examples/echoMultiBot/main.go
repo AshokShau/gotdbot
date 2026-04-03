@@ -20,7 +20,7 @@ var (
 )
 
 func main() {
-	manager = gotdbot.NewClientManager("./libtdjson.so.1.8.62")
+	manager = gotdbot.NewClientManager("./libtdjson.so.1.8.63")
 	dispatcher := gotdbot.NewDispatcher(nil)
 
 	dispatcher.AddHandler(handlers.NewUpdateNewMessage(func(u *gotdbot.UpdateNewMessage) bool {

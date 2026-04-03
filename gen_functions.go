@@ -558,6 +558,31 @@ func (t AddPendingPaidMessageReaction) MarshalJSON() ([]byte, error) {
 	})
 }
 
+// AddPollOption Adds an option to a poll
+type AddPollOption struct {
+	// Identifier of the chat to which the poll belongs
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message containing the poll. Use messagePoll.can_add_option to check whether an option can be added
+	MessageId int64 `json:"message_id"`
+	// The new option
+	Option *InputPollOption `json:"option"`
+}
+
+func (t AddPollOption) GetType() string {
+	return "addPollOption"
+}
+
+func (t AddPollOption) MarshalJSON() ([]byte, error) {
+	type Alias AddPollOption
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "addPollOption",
+		Alias:   (*Alias)(&t),
+	})
+}
+
 // AddProfileAudio Adds an audio file to the beginning of the profile audio files of the current user
 type AddProfileAudio struct {
 	// Identifier of the audio file to be added. The file must have been uploaded to the server
@@ -1620,6 +1645,27 @@ func (t CheckAuthenticationPremiumPurchase) MarshalJSON() ([]byte, error) {
 	})
 }
 
+// CheckBotUsername Checks whether a username can be set for a new bot. Use checkChatUsername to check username for other chat types
+type CheckBotUsername struct {
+	// Username to be checked
+	Username string `json:"username"`
+}
+
+func (t CheckBotUsername) GetType() string {
+	return "checkBotUsername"
+}
+
+func (t CheckBotUsername) MarshalJSON() ([]byte, error) {
+	type Alias CheckBotUsername
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "checkBotUsername",
+		Alias:   (*Alias)(&t),
+	})
+}
+
 // CheckChatFolderInviteLink Checks the validity of an invite link for a chat folder and returns information about the corresponding chat folder
 type CheckChatFolderInviteLink struct {
 	// Invite link to be checked
@@ -2361,6 +2407,33 @@ func (t CommitPendingPaidMessageReactions) MarshalJSON() ([]byte, error) {
 	})
 }
 
+// ComposeTextWithAi Changes text using an AI model; must not be used in secret chats. May return an error with a message "AICOMPOSE_FLOOD_PREMIUM" if Telegram Premium is required to send further requests
+type ComposeTextWithAi struct {
+	// Pass true to add emoji to the text
+	AddEmojis bool `json:"add_emojis"`
+	// Name of the style of the resulted text; handle updateTextCompositionStyles to get the list of supported styles; pass an empty string to keep the current style of the text
+	StyleName string `json:"style_name"`
+	// The original text
+	Text *FormattedText `json:"text"`
+	// Pass a language code to which the text will be translated; pass an empty string if translation isn't needed. See translateText.to_language_code for the list of supported values
+	TranslateToLanguageCode string `json:"translate_to_language_code"`
+}
+
+func (t ComposeTextWithAi) GetType() string {
+	return "composeTextWithAi"
+}
+
+func (t ComposeTextWithAi) MarshalJSON() ([]byte, error) {
+	type Alias ComposeTextWithAi
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "composeTextWithAi",
+		Alias:   (*Alias)(&t),
+	})
+}
+
 // ConfirmQrCodeAuthentication Confirms QR code authentication on another device. Returns created session on success
 type ConfirmQrCodeAuthentication struct {
 	// A link from a QR code. The link must be scanned by the in-app camera
@@ -2466,6 +2539,33 @@ func (t CreateBasicGroupChat) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "createBasicGroupChat",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// CreateBot Creates a bot which will be managed by another bot. Returns the created bot. May return an error with a message "BOT_CREATE_LIMIT_EXCEEDED"
+type CreateBot struct {
+	// Identifier of the bot that will manage the created bot
+	ManagerBotUserId int64 `json:"manager_bot_user_id"`
+	// Name of the bot; 1-64 characters
+	Name string `json:"name"`
+	// Username of the bot. The username must end with "bot". Use checkBotUsername to find whether the name is suitable
+	Username string `json:"username"`
+	// Pass true if the bot is created from an internalLinkTypeRequestManagedBot link
+	ViaLink bool `json:"via_link"`
+}
+
+func (t CreateBot) GetType() string {
+	return "createBot"
+}
+
+func (t CreateBot) MarshalJSON() ([]byte, error) {
+	type Alias CreateBot
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "createBot",
 		Alias:   (*Alias)(&t),
 	})
 }
@@ -3704,6 +3804,31 @@ func (t DeletePassportElement) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "deletePassportElement",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// DeletePollOption Adds an option to a poll
+type DeletePollOption struct {
+	// Identifier of the chat to which the poll belongs
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message containing the poll
+	MessageId int64 `json:"message_id"`
+	// Unique identifier of the option. Use pollOptionProperties.can_be_deleted to check whether the option can be deleted by the user
+	OptionId string `json:"option_id"`
+}
+
+func (t DeletePollOption) GetType() string {
+	return "deletePollOption"
+}
+
+func (t DeletePollOption) MarshalJSON() ([]byte, error) {
+	type Alias DeletePollOption
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "deletePollOption",
 		Alias:   (*Alias)(&t),
 	})
 }
@@ -5179,6 +5304,27 @@ func (t FinishFileGeneration) MarshalJSON() ([]byte, error) {
 	})
 }
 
+// FixTextWithAi Fixes text using an AI model; must not be used in secret chats. May return an error with a message "AICOMPOSE_FLOOD_PREMIUM" if Telegram Premium is required to send further requests
+type FixTextWithAi struct {
+	// The original text
+	Text *FormattedText `json:"text"`
+}
+
+func (t FixTextWithAi) GetType() string {
+	return "fixTextWithAi"
+}
+
+func (t FixTextWithAi) MarshalJSON() ([]byte, error) {
+	type Alias FixTextWithAi
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "fixTextWithAi",
+		Alias:   (*Alias)(&t),
+	})
+}
+
 // ForwardMessages Forwards previously sent messages. Returns the forwarded messages in the same order as the message identifiers passed in message_ids. If a message can't be forwarded, null will be returned instead of the message
 type ForwardMessages struct {
 	// Identifier of the chat to which to forward messages
@@ -5821,6 +5967,29 @@ func (t GetBotSimilarBots) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "getBotSimilarBots",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// GetBotToken Returns token of a created bot; for bots only
+type GetBotToken struct {
+	// Identifier of the created bot
+	BotUserId int64 `json:"bot_user_id"`
+	// Pass true to revoke the current token and create a new one
+	Revoke bool `json:"revoke"`
+}
+
+func (t GetBotToken) GetType() string {
+	return "getBotToken"
+}
+
+func (t GetBotToken) MarshalJSON() ([]byte, error) {
+	type Alias GetBotToken
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getBotToken",
 		Alias:   (*Alias)(&t),
 	})
 }
@@ -6651,7 +6820,7 @@ func (t GetChatMessageByDate) MarshalJSON() ([]byte, error) {
 type GetChatMessageCalendar struct {
 	// Identifier of the chat in which to return information about messages
 	ChatId int64 `json:"chat_id"`
-	// Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, and searchMessagesFilterUnreadReaction are unsupported in this function
+	// Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction,
 	Filter SearchMessagesFilter `json:"filter"`
 	// The message identifier from which to return information about messages; use 0 to get results from the last message
 	FromMessageId int64 `json:"from_message_id"`
@@ -6705,7 +6874,7 @@ func (t GetChatMessageCount) MarshalJSON() ([]byte, error) {
 type GetChatMessagePosition struct {
 	// Identifier of the chat in which to find message position
 	ChatId int64 `json:"chat_id"`
-	// Filter for message content; searchMessagesFilterEmpty, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, and searchMessagesFilterFailedToSend are unsupported in this function
+	// Filter for message content; searchMessagesFilterEmpty, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, searchMessagesFilterUnreadPollVote,
 	Filter SearchMessagesFilter `json:"filter"`
 	// Message identifier
 	MessageId int64 `json:"message_id"`
@@ -7002,7 +7171,7 @@ func (t GetChatSimilarChats) MarshalJSON() ([]byte, error) {
 type GetChatSparseMessagePositions struct {
 	// Identifier of the chat in which to return information about message positions
 	ChatId int64 `json:"chat_id"`
-	// Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, and searchMessagesFilterUnreadReaction are unsupported in this function
+	// Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction,
 	Filter SearchMessagesFilter `json:"filter"`
 	// The message identifier from which to return information about message positions
 	FromMessageId int64 `json:"from_message_id"`
@@ -9302,6 +9471,8 @@ func (t GetMessageImportConfirmationText) MarshalJSON() ([]byte, error) {
 type GetMessageLink struct {
 	// Identifier of the chat to which the message belongs
 	ChatId int64 `json:"chat_id"`
+	// If not 0, identifier of the checklist task in the message to be linked
+	ChecklistTaskId int32 `json:"checklist_task_id"`
 	// Pass true to create a link for the whole media album
 	ForAlbum bool `json:"for_album"`
 	// Pass true to create a link to the message as a channel post comment, in a message thread, or a forum topic
@@ -9310,6 +9481,8 @@ type GetMessageLink struct {
 	MediaTimestamp int32 `json:"media_timestamp"`
 	// Identifier of the message
 	MessageId int64 `json:"message_id"`
+	// If not empty, identifier of the poll option in the message to be linked
+	PollOptionId string `json:"poll_option_id"`
 }
 
 func (t GetMessageLink) GetType() string {
@@ -9915,7 +10088,32 @@ func (t GetPhoneNumberInfoSync) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// GetPollVoters Returns message senders voted for the specified option in a non-anonymous polls. For optimal performance, the number of returned users is chosen by TDLib
+// GetPollOptionProperties Returns properties of a poll option. This is an offline method
+type GetPollOptionProperties struct {
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message
+	MessageId int64 `json:"message_id"`
+	// Unique identifier of the answer option, which properties will be returned
+	PollOptionId string `json:"poll_option_id"`
+}
+
+func (t GetPollOptionProperties) GetType() string {
+	return "getPollOptionProperties"
+}
+
+func (t GetPollOptionProperties) MarshalJSON() ([]byte, error) {
+	type Alias GetPollOptionProperties
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getPollOptionProperties",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// GetPollVoters Returns message senders voted for the specified option in a poll; use poll.can_get_voters to check whether the method can be used.
 type GetPollVoters struct {
 	// Identifier of the chat to which the poll belongs
 	ChatId int64 `json:"chat_id"`
@@ -10146,6 +10344,29 @@ func (t GetPreparedInlineMessage) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "getPreparedInlineMessage",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// GetPreparedKeyboardButton Returns a keyboard button prepared by the bot for the user. The button will be of the type keyboardButtonTypeRequestUsers, keyboardButtonTypeRequestChat, or keyboardButtonTypeRequestManagedBot
+type GetPreparedKeyboardButton struct {
+	// Identifier of the bot that created the button
+	BotUserId int64 `json:"bot_user_id"`
+	// Identifier of the prepared button
+	PreparedButtonId string `json:"prepared_button_id"`
+}
+
+func (t GetPreparedKeyboardButton) GetType() string {
+	return "getPreparedKeyboardButton"
+}
+
+func (t GetPreparedKeyboardButton) MarshalJSON() ([]byte, error) {
+	type Alias GetPreparedKeyboardButton
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getPreparedKeyboardButton",
 		Alias:   (*Alias)(&t),
 	})
 }
@@ -12240,7 +12461,7 @@ type GiftPremiumWithStars struct {
 	MonthCount int32 `json:"month_count"`
 	// The number of Telegram Stars to pay for subscription
 	StarCount int64 `json:"star_count"`
-	// Text to show to the user receiving Telegram Premium; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed
+	// Text to show to the user receiving Telegram Premium; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, and DateTime entities are allowed
 	Text *FormattedText `json:"text"`
 	// Identifier of the user which will receive Telegram Premium
 	UserId int64 `json:"user_id"`
@@ -12322,7 +12543,7 @@ func (t ImportContacts) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// ImportMessages Imports messages exported from another app
+// ImportMessages Imports messages exported from another application
 type ImportMessages struct {
 	// Files used in the imported messages. Only inputFileLocal and inputFileGenerated are supported. The files must not be previously uploaded
 	AttachedFiles []InputFile `json:"attached_files"`
@@ -12638,6 +12859,29 @@ func (t LeaveGroupCall) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "leaveGroupCall",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// ListenToAudio Informs TDLib that an audio was listened by the user
+type ListenToAudio struct {
+	// Identifier of the file with an audio
+	AudioFileId int32 `json:"audio_file_id"`
+	// Duration of the listening to the audio, in seconds
+	Duration int32 `json:"duration"`
+}
+
+func (t ListenToAudio) GetType() string {
+	return "listenToAudio"
+}
+
+func (t ListenToAudio) MarshalJSON() ([]byte, error) {
+	type Alias ListenToAudio
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "listenToAudio",
 		Alias:   (*Alias)(&t),
 	})
 }
@@ -13083,7 +13327,7 @@ func (t ParseMarkdown) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// ParseTextEntities Parses Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, BlockQuote, ExpandableBlockQuote, Code, Pre, PreCode, TextUrl
+// ParseTextEntities Parses Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, BlockQuote, ExpandableBlockQuote, Code, Pre, PreCode, TextUrl,
 type ParseTextEntities struct {
 	// Text parse mode
 	ParseMode TextParseMode `json:"parse_mode"`
@@ -13162,7 +13406,7 @@ type PlaceGiftAuctionBid struct {
 	IsPrivate bool `json:"is_private"`
 	// The number of Telegram Stars to place in the bid
 	StarCount int64 `json:"star_count"`
-	// Text to show along with the gift; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed.
+	// Text to show along with the gift; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, and DateTime entities are allowed.
 	Text *FormattedText `json:"text"`
 	// Identifier of the user who will receive the gift
 	UserId int64 `json:"user_id"`
@@ -13435,6 +13679,27 @@ func (t ReadAllChatMentions) MarshalJSON() ([]byte, error) {
 	})
 }
 
+// ReadAllChatPollVotes Marks all poll votes in a chat as read
+type ReadAllChatPollVotes struct {
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+}
+
+func (t ReadAllChatPollVotes) GetType() string {
+	return "readAllChatPollVotes"
+}
+
+func (t ReadAllChatPollVotes) MarshalJSON() ([]byte, error) {
+	type Alias ReadAllChatPollVotes
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "readAllChatPollVotes",
+		Alias:   (*Alias)(&t),
+	})
+}
+
 // ReadAllChatReactions Marks all reactions in a chat as read
 type ReadAllChatReactions struct {
 	// Chat identifier
@@ -13498,6 +13763,29 @@ func (t ReadAllForumTopicMentions) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "readAllForumTopicMentions",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// ReadAllForumTopicPollVotes Marks all poll votes in a topic in a forum supergroup chat as read
+type ReadAllForumTopicPollVotes struct {
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Forum topic identifier in which poll votes are marked as read
+	ForumTopicId int32 `json:"forum_topic_id"`
+}
+
+func (t ReadAllForumTopicPollVotes) GetType() string {
+	return "readAllForumTopicPollVotes"
+}
+
+func (t ReadAllForumTopicPollVotes) MarshalJSON() ([]byte, error) {
+	type Alias ReadAllForumTopicPollVotes
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "readAllForumTopicPollVotes",
 		Alias:   (*Alias)(&t),
 	})
 }
@@ -15344,6 +15632,29 @@ func (t SavePreparedInlineMessage) MarshalJSON() ([]byte, error) {
 	})
 }
 
+// SavePreparedKeyboardButton Saves a keyboard button to be shown to the given user; for bots only
+type SavePreparedKeyboardButton struct {
+	// The button; must be of the type keyboardButtonTypeRequestUsers, keyboardButtonTypeRequestChat, or keyboardButtonTypeRequestManagedBot
+	Button *KeyboardButton `json:"button"`
+	// Identifier of the user
+	UserId int64 `json:"user_id"`
+}
+
+func (t SavePreparedKeyboardButton) GetType() string {
+	return "savePreparedKeyboardButton"
+}
+
+func (t SavePreparedKeyboardButton) MarshalJSON() ([]byte, error) {
+	type Alias SavePreparedKeyboardButton
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "savePreparedKeyboardButton",
+		Alias:   (*Alias)(&t),
+	})
+}
+
 // SearchAffiliatePrograms Searches affiliate programs that can be connected to the given affiliate
 type SearchAffiliatePrograms struct {
 	// The affiliate for which affiliate programs are searched for
@@ -15652,6 +15963,8 @@ type SearchGiftsForResale struct {
 	Attributes []UpgradedGiftAttributeId `json:"attributes"`
 	// Pass true to get only gifts suitable for crafting
 	ForCrafting bool `json:"for_crafting"`
+	// Pass true to get only gifts that can be bought using Telegram Stars
+	ForStars bool `json:"for_stars"`
 	// Identifier of the regular gift that was upgraded to a unique gift
 	GiftId int64 `json:"gift_id,string"`
 	// The maximum number of gifts to return
@@ -15731,7 +16044,7 @@ type SearchMessages struct {
 	ChatList ChatList `json:"chat_list,omitempty"`
 	// Additional filter for type of the chat of the searched messages; pass null to search for messages in all chats
 	ChatTypeFilter SearchMessagesChatTypeFilter `json:"chat_type_filter,omitempty"`
-	// Additional filter for messages to search; pass null to search for all messages. Filters searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, searchMessagesFilterFailedToSend, and searchMessagesFilterPinned are unsupported in this function
+	// Additional filter for messages to search; pass null to search for all messages. Filters searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction,
 	Filter SearchMessagesFilter `json:"filter,omitempty"`
 	// The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
 	Limit int32 `json:"limit"`
@@ -16549,7 +16862,7 @@ type SendGift struct {
 	OwnerId MessageSender `json:"owner_id"`
 	// Pass true to additionally pay for the gift upgrade and allow the receiver to upgrade it for free
 	PayForUpgrade bool `json:"pay_for_upgrade"`
-	// Text to show along with the gift; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed.
+	// Text to show along with the gift; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, and DateTime entities are allowed.
 	Text *FormattedText `json:"text"`
 }
 
@@ -16711,6 +17024,37 @@ func (t SendMessageAlbum) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "sendMessageAlbum",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// SendMessageViewMetrics Informs TDLib about details of a message view by the user from a chat, a message thread or a forum topic history. The method must be called if
+type SendMessageViewMetrics struct {
+	// The amount of time the message was seen by at least 1 pixel within 15 seconds after any action from the user; in milliseconds
+	ActiveTimeInViewMs int32 `json:"active_time_in_view_ms"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// The ratio of the post height to the viewport height in 1/1000 fractions
+	HeightToViewportRatioPerMille int32 `json:"height_to_viewport_ratio_per_mille"`
+	// The identifier of the message being viewed
+	MessageId int64 `json:"message_id"`
+	// The ratio of the viewed post height to the full post height in 1/1000 fractions; 0-1000
+	SeenRangeRatioPerMille int32 `json:"seen_range_ratio_per_mille"`
+	// The amount of time the message was seen by at least 1 pixel; in milliseconds
+	TimeInViewMs int32 `json:"time_in_view_ms"`
+}
+
+func (t SendMessageViewMetrics) GetType() string {
+	return "sendMessageViewMetrics"
+}
+
+func (t SendMessageViewMetrics) MarshalJSON() ([]byte, error) {
+	type Alias SendMessageViewMetrics
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "sendMessageViewMetrics",
 		Alias:   (*Alias)(&t),
 	})
 }
@@ -19312,7 +19656,7 @@ func (t SetPinnedSavedMessagesTopics) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// SetPollAnswer Changes the user answer to a poll. A poll in quiz mode can be answered only once
+// SetPollAnswer Changes the user answer to a poll
 type SetPollAnswer struct {
 	// Identifier of the chat to which the poll belongs
 	ChatId int64 `json:"chat_id"`
@@ -19986,7 +20330,7 @@ func (t SetUsername) MarshalJSON() ([]byte, error) {
 
 // SetUserNote Changes a note of a contact user
 type SetUserNote struct {
-	// Note to set for the user; 0-getOption("user_note_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed
+	// Note to set for the user; 0-getOption("user_note_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, and DateTime entities are allowed
 	Note *FormattedText `json:"note"`
 	// User identifier
 	UserId int64 `json:"user_id"`
@@ -20126,14 +20470,12 @@ func (t SetVideoChatTitle) MarshalJSON() ([]byte, error) {
 type ShareChatWithBot struct {
 	// Identifier of the button
 	ButtonId int32 `json:"button_id"`
-	// Identifier of the chat with the bot
-	ChatId int64 `json:"chat_id"`
-	// Identifier of the message with the button
-	MessageId int64 `json:"message_id"`
 	// Pass true to check that the chat can be shared by the button instead of actually sharing it. Doesn't check bot_is_member and bot_administrator_rights restrictions.
 	OnlyCheck bool `json:"only_check"`
 	// Identifier of the shared chat
 	SharedChatId int64 `json:"shared_chat_id"`
+	// Source of the button
+	Source KeyboardButtonSource `json:"source"`
 }
 
 func (t ShareChatWithBot) GetType() string {
@@ -20176,14 +20518,12 @@ func (t SharePhoneNumber) MarshalJSON() ([]byte, error) {
 type ShareUsersWithBot struct {
 	// Identifier of the button
 	ButtonId int32 `json:"button_id"`
-	// Identifier of the chat with the bot
-	ChatId int64 `json:"chat_id"`
-	// Identifier of the message with the button
-	MessageId int64 `json:"message_id"`
 	// Pass true to check that the users can be shared by the button instead of actually sharing them
 	OnlyCheck bool `json:"only_check"`
 	// Identifiers of the shared users
 	SharedUserIds []int64 `json:"shared_user_ids"`
+	// Source of the button
+	Source KeyboardButtonSource `json:"source"`
 }
 
 func (t ShareUsersWithBot) GetType() string {
@@ -20409,8 +20749,10 @@ type SummarizeMessage struct {
 	ChatId int64 `json:"chat_id"`
 	// Identifier of the message
 	MessageId int64 `json:"message_id"`
-	// Pass a language code to which the summary will be translated; may be empty if translation isn't needed. See translateText.to_language_code for the list of supported values
-	TranslateToLanguageCode string `json:"translate_to_language_code,omitempty"`
+	// Tone of the summarization; see translateText.tone for the list of supported values
+	Tone string `json:"tone"`
+	// Pass a language code to which the summary will be translated; pass an empty string if translation isn't needed. See translateText.to_language_code for the list of supported values
+	TranslateToLanguageCode string `json:"translate_to_language_code"`
 }
 
 func (t SummarizeMessage) GetType() string {
@@ -21863,7 +22205,7 @@ func (t TransferGift) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// TranslateMessageText Extracts text or caption of the given message and translates it to the given language. If the current user is a Telegram Premium user, then text formatting is preserved
+// TranslateMessageText Extracts text or caption of the given message and translates it to the given language; must not be used in secret chats. If the current user is a Telegram Premium user, then text formatting is preserved
 type TranslateMessageText struct {
 	// Identifier of the chat to which the message belongs
 	ChatId int64 `json:"chat_id"`
@@ -21871,6 +22213,8 @@ type TranslateMessageText struct {
 	MessageId int64 `json:"message_id"`
 	// Language code of the language to which the message is translated. See translateText.to_language_code for the list of supported values
 	ToLanguageCode string `json:"to_language_code"`
+	// Tone of the translation; see translateText.tone for the list of supported values
+	Tone string `json:"tone"`
 }
 
 func (t TranslateMessageText) GetType() string {
@@ -21888,12 +22232,14 @@ func (t TranslateMessageText) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// TranslateText Translates a text to the given language. If the current user is a Telegram Premium user, then text formatting is preserved
+// TranslateText Translates a text to the given language; must not be used in secret chats. If the current user is a Telegram Premium user, then text formatting is preserved
 type TranslateText struct {
 	// Text to translate
 	Text *FormattedText `json:"text"`
 	// Language code of the language to which the message is translated. Must be one of
 	ToLanguageCode string `json:"to_language_code"`
+	// Tone of the translation; must be one of "", "formal", "neutral", "casual"; defaults to "neutral"
+	Tone string `json:"tone"`
 }
 
 func (t TranslateText) GetType() string {

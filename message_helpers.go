@@ -6,7 +6,7 @@ import (
 
 // GetLink returns the message link.
 func (m *Message) GetLink(c *Client) (*MessageLink, error) {
-	return c.GetMessageLink(m.ChatId, 0, m.Id, nil)
+	return c.GetMessageLink(m.ChatId, 0, 0, m.Id, "", &GetMessageLinkOpts{})
 }
 
 // IsPrivate checks if the message is from a private chat (user).
@@ -390,8 +390,8 @@ func (m *Message) GetMessageProperties(c *Client) (*MessageProperties, error) {
 }
 
 // GetMessageLink returns the message link.
-func (m *Message) GetMessageLink(c *Client, forAlbum bool, inMessageThread bool, mediaTimestamp int32) (*MessageLink, error) {
-	return c.GetMessageLink(m.ChatId, mediaTimestamp, m.Id, &GetMessageLinkOpts{ForAlbum: forAlbum, InMessageThread: inMessageThread})
+func (m *Message) GetMessageLink(c *Client, checklistTaskId int32, mediaTimestamp int32, pollOptionId string, opts *GetMessageLinkOpts) (*MessageLink, error) {
+	return c.GetMessageLink(m.ChatId, checklistTaskId, mediaTimestamp, m.Id, pollOptionId, opts)
 }
 
 // GetRepliedMessage returns the replied message.

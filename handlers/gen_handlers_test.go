@@ -857,6 +857,21 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
+		h := handlers.NewUpdateChatUnreadPollVoteCount(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+			called <- true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(c, &gotdbot.UpdateChatUnreadPollVoteCount{})
+		select {
+		case <-called:
+		case <-time.After(100 * time.Millisecond):
+			t.Errorf("Handler for UpdateChatUnreadPollVoteCount not called")
+		}
+	}()
+
+	func() {
+		called := make(chan bool, 1)
 		h := handlers.NewUpdateChatUnreadReactionCount(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
 			called <- true
 			return nil
@@ -1377,6 +1392,21 @@ func TestGeneratedHandlers(t *testing.T) {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
 			t.Errorf("Handler for UpdateLiveStoryTopDonors not called")
+		}
+	}()
+
+	func() {
+		called := make(chan bool, 1)
+		h := handlers.NewUpdateManagedBot(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+			called <- true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(c, &gotdbot.UpdateManagedBot{})
+		select {
+		case <-called:
+		case <-time.After(100 * time.Millisecond):
+			t.Errorf("Handler for UpdateManagedBot not called")
 		}
 	}()
 
@@ -2442,6 +2472,21 @@ func TestGeneratedHandlers(t *testing.T) {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
 			t.Errorf("Handler for UpdateTermsOfService not called")
+		}
+	}()
+
+	func() {
+		called := make(chan bool, 1)
+		h := handlers.NewUpdateTextCompositionStyles(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+			called <- true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(c, &gotdbot.UpdateTextCompositionStyles{})
+		select {
+		case <-called:
+		case <-time.After(100 * time.Millisecond):
+			t.Errorf("Handler for UpdateTextCompositionStyles not called")
 		}
 	}()
 

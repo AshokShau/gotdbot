@@ -281,6 +281,17 @@ func (c *Client) AddPendingPaidMessageReaction(chatId int64, messageId int64, st
 	return err
 }
 
+// AddPollOption Adds an option to a poll
+func (c *Client) AddPollOption(chatId int64, messageId int64, option *InputPollOption) error {
+	req := &AddPollOption{
+		ChatId:    chatId,
+		MessageId: messageId,
+		Option:    option,
+	}
+	_, err := c.Send(req)
+	return err
+}
+
 // AddProfileAudio Adds an audio file to the beginning of the profile audio files of the current user
 func (c *Client) AddProfileAudio(fileId int32) error {
 	req := &AddProfileAudio{
@@ -807,6 +818,18 @@ func (c *Client) CheckAuthenticationPremiumPurchase(amount int64, currency strin
 	return err
 }
 
+// CheckBotUsername Checks whether a username can be set for a new bot. Use checkChatUsername to check username for other chat types
+func (c *Client) CheckBotUsername(username string) (CheckChatUsernameResult, error) {
+	req := &CheckBotUsername{
+		Username: username,
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(CheckChatUsernameResult), nil
+}
+
 // CheckChatFolderInviteLink Checks the validity of an invite link for a chat folder and returns information about the corresponding chat folder
 func (c *Client) CheckChatFolderInviteLink(inviteLink string) (*ChatFolderInviteLinkInfo, error) {
 	req := &CheckChatFolderInviteLink{
@@ -1140,6 +1163,23 @@ func (c *Client) CommitPendingPaidMessageReactions(chatId int64, messageId int64
 	return err
 }
 
+// ComposeTextWithAi Changes text using an AI model; must not be used in secret chats. May return an error with a message "AICOMPOSE_FLOOD_PREMIUM" if Telegram Premium is required to send further requests
+func (c *Client) ComposeTextWithAi(styleName string, text *FormattedText, translateToLanguageCode string, opts *ComposeTextWithAiOpts) (*FormattedText, error) {
+	req := &ComposeTextWithAi{
+		StyleName:               styleName,
+		Text:                    text,
+		TranslateToLanguageCode: translateToLanguageCode,
+	}
+	if opts != nil {
+		req.AddEmojis = opts.AddEmojis
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*FormattedText), nil
+}
+
 // ConfirmQrCodeAuthentication Confirms QR code authentication on another device. Returns created session on success
 func (c *Client) ConfirmQrCodeAuthentication(link string) (*Session, error) {
 	req := &ConfirmQrCodeAuthentication{
@@ -1199,6 +1239,23 @@ func (c *Client) CreateBasicGroupChat(basicGroupId int64, opts *CreateBasicGroup
 		return nil, err
 	}
 	return resp.(*Chat), nil
+}
+
+// CreateBot Creates a bot which will be managed by another bot. Returns the created bot. May return an error with a message "BOT_CREATE_LIMIT_EXCEEDED"
+func (c *Client) CreateBot(managerBotUserId int64, name string, username string, opts *CreateBotOpts) (*User, error) {
+	req := &CreateBot{
+		ManagerBotUserId: managerBotUserId,
+		Name:             name,
+		Username:         username,
+	}
+	if opts != nil {
+		req.ViaLink = opts.ViaLink
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*User), nil
 }
 
 // CreateBusinessChatLink Creates a business chat link for the current account. Requires Telegram Business subscription. There can be up to getOption("business_chat_link_count_max") links created. Returns the created link
@@ -1837,6 +1894,17 @@ func (c *Client) DeleteMessages(chatId int64, messageIds []int64, opts *DeleteMe
 func (c *Client) DeletePassportElement(typeField PassportElementType) error {
 	req := &DeletePassportElement{
 		Type: typeField,
+	}
+	_, err := c.Send(req)
+	return err
+}
+
+// DeletePollOption Adds an option to a poll
+func (c *Client) DeletePollOption(chatId int64, messageId int64, optionId string) error {
+	req := &DeletePollOption{
+		ChatId:    chatId,
+		MessageId: messageId,
+		OptionId:  optionId,
 	}
 	_, err := c.Send(req)
 	return err
@@ -2607,6 +2675,18 @@ func (c *Client) FinishFileGeneration(generationId int64, opts *FinishFileGenera
 	return err
 }
 
+// FixTextWithAi Fixes text using an AI model; must not be used in secret chats. May return an error with a message "AICOMPOSE_FLOOD_PREMIUM" if Telegram Premium is required to send further requests
+func (c *Client) FixTextWithAi(text *FormattedText) (*FixedText, error) {
+	req := &FixTextWithAi{
+		Text: text,
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*FixedText), nil
+}
+
 // ForwardMessages Forwards previously sent messages. Returns the forwarded messages in the same order as the message identifiers passed in message_ids. If a message can't be forwarded, null will be returned instead of the message
 func (c *Client) ForwardMessages(chatId int64, fromChatId int64, messageIds []int64, opts *ForwardMessagesOpts) (*Messages, error) {
 	req := &ForwardMessages{
@@ -2968,6 +3048,21 @@ func (c *Client) GetBotSimilarBots(botUserId int64) (*Users, error) {
 		return nil, err
 	}
 	return resp.(*Users), nil
+}
+
+// GetBotToken Returns token of a created bot; for bots only
+func (c *Client) GetBotToken(botUserId int64, opts *GetBotTokenOpts) (*Text, error) {
+	req := &GetBotToken{
+		BotUserId: botUserId,
+	}
+	if opts != nil {
+		req.Revoke = opts.Revoke
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*Text), nil
 }
 
 // GetBusinessAccountStarAmount Returns the Telegram Star amount owned by a business account; for bots only
@@ -4968,11 +5063,13 @@ func (c *Client) GetMessageImportConfirmationText(chatId int64) (*Text, error) {
 }
 
 // GetMessageLink Returns an HTTPS link to a message in a chat. Available only if messageProperties.can_get_link, or if messageProperties.can_get_media_timestamp_links and a media timestamp link is generated. This is an offline method
-func (c *Client) GetMessageLink(chatId int64, mediaTimestamp int32, messageId int64, opts *GetMessageLinkOpts) (*MessageLink, error) {
+func (c *Client) GetMessageLink(chatId int64, checklistTaskId int32, mediaTimestamp int32, messageId int64, pollOptionId string, opts *GetMessageLinkOpts) (*MessageLink, error) {
 	req := &GetMessageLink{
-		ChatId:         chatId,
-		MediaTimestamp: mediaTimestamp,
-		MessageId:      messageId,
+		ChatId:          chatId,
+		ChecklistTaskId: checklistTaskId,
+		MediaTimestamp:  mediaTimestamp,
+		MessageId:       messageId,
+		PollOptionId:    pollOptionId,
 	}
 	if opts != nil {
 		req.ForAlbum = opts.ForAlbum
@@ -5319,7 +5416,21 @@ func (c *Client) GetPhoneNumberInfoSync(languageCode string, phoneNumberPrefix s
 	return resp.(*PhoneNumberInfo), nil
 }
 
-// GetPollVoters Returns message senders voted for the specified option in a non-anonymous polls. For optimal performance, the number of returned users is chosen by TDLib
+// GetPollOptionProperties Returns properties of a poll option. This is an offline method
+func (c *Client) GetPollOptionProperties(chatId int64, messageId int64, pollOptionId string) (*PollOptionProperties, error) {
+	req := &GetPollOptionProperties{
+		ChatId:       chatId,
+		MessageId:    messageId,
+		PollOptionId: pollOptionId,
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*PollOptionProperties), nil
+}
+
+// GetPollVoters Returns message senders voted for the specified option in a poll; use poll.can_get_voters to check whether the method can be used.
 func (c *Client) GetPollVoters(chatId int64, limit int32, messageId int64, offset int32, optionId int32) (*PollVoters, error) {
 	req := &GetPollVoters{
 		ChatId:    chatId,
@@ -5449,6 +5560,19 @@ func (c *Client) GetPreparedInlineMessage(botUserId int64, preparedMessageId str
 		return nil, err
 	}
 	return resp.(*PreparedInlineMessage), nil
+}
+
+// GetPreparedKeyboardButton Returns a keyboard button prepared by the bot for the user. The button will be of the type keyboardButtonTypeRequestUsers, keyboardButtonTypeRequestChat, or keyboardButtonTypeRequestManagedBot
+func (c *Client) GetPreparedKeyboardButton(botUserId int64, preparedButtonId string) (*KeyboardButton, error) {
+	req := &GetPreparedKeyboardButton{
+		BotUserId:        botUserId,
+		PreparedButtonId: preparedButtonId,
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*KeyboardButton), nil
 }
 
 // GetProxies Returns the list of proxies that are currently set up. Can be called before authorization
@@ -6683,7 +6807,7 @@ func (c *Client) ImportContacts(contacts []ImportedContact) (*ImportedContacts, 
 	return resp.(*ImportedContacts), nil
 }
 
-// ImportMessages Imports messages exported from another app
+// ImportMessages Imports messages exported from another application
 func (c *Client) ImportMessages(attachedFiles []InputFile, chatId int64, messageFile InputFile) error {
 	req := &ImportMessages{
 		AttachedFiles: attachedFiles,
@@ -6835,6 +6959,16 @@ func (c *Client) LeaveChat(chatId int64) error {
 func (c *Client) LeaveGroupCall(groupCallId int32) error {
 	req := &LeaveGroupCall{
 		GroupCallId: groupCallId,
+	}
+	_, err := c.Send(req)
+	return err
+}
+
+// ListenToAudio Informs TDLib that an audio was listened by the user
+func (c *Client) ListenToAudio(audioFileId int32, duration int32) error {
+	req := &ListenToAudio{
+		AudioFileId: audioFileId,
+		Duration:    duration,
 	}
 	_, err := c.Send(req)
 	return err
@@ -7045,7 +7179,7 @@ func (c *Client) ParseMarkdown(text *FormattedText) (*FormattedText, error) {
 	return resp.(*FormattedText), nil
 }
 
-// ParseTextEntities Parses Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, BlockQuote, ExpandableBlockQuote, Code, Pre, PreCode, TextUrl
+// ParseTextEntities Parses Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, BlockQuote, ExpandableBlockQuote, Code, Pre, PreCode, TextUrl,
 func (c *Client) ParseTextEntities(parseMode TextParseMode, text string) (*FormattedText, error) {
 	req := &ParseTextEntities{
 		ParseMode: parseMode,
@@ -7231,6 +7365,15 @@ func (c *Client) ReadAllChatMentions(chatId int64) error {
 	return err
 }
 
+// ReadAllChatPollVotes Marks all poll votes in a chat as read
+func (c *Client) ReadAllChatPollVotes(chatId int64) error {
+	req := &ReadAllChatPollVotes{
+		ChatId: chatId,
+	}
+	_, err := c.Send(req)
+	return err
+}
+
 // ReadAllChatReactions Marks all reactions in a chat as read
 func (c *Client) ReadAllChatReactions(chatId int64) error {
 	req := &ReadAllChatReactions{
@@ -7253,6 +7396,16 @@ func (c *Client) ReadAllDirectMessagesChatTopicReactions(chatId int64, topicId i
 // ReadAllForumTopicMentions Marks all mentions in a topic in a forum supergroup chat as read
 func (c *Client) ReadAllForumTopicMentions(chatId int64, forumTopicId int32) error {
 	req := &ReadAllForumTopicMentions{
+		ChatId:       chatId,
+		ForumTopicId: forumTopicId,
+	}
+	_, err := c.Send(req)
+	return err
+}
+
+// ReadAllForumTopicPollVotes Marks all poll votes in a topic in a forum supergroup chat as read
+func (c *Client) ReadAllForumTopicPollVotes(chatId int64, forumTopicId int32) error {
+	req := &ReadAllForumTopicPollVotes{
 		ChatId:       chatId,
 		ForumTopicId: forumTopicId,
 	}
@@ -8138,6 +8291,19 @@ func (c *Client) SavePreparedInlineMessage(chatTypes *TargetChatTypes, result In
 	return resp.(*PreparedInlineMessageId), nil
 }
 
+// SavePreparedKeyboardButton Saves a keyboard button to be shown to the given user; for bots only
+func (c *Client) SavePreparedKeyboardButton(button *KeyboardButton, userId int64) (*Text, error) {
+	req := &SavePreparedKeyboardButton{
+		Button: button,
+		UserId: userId,
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*Text), nil
+}
+
 // SearchAffiliatePrograms Searches affiliate programs that can be connected to the given affiliate
 func (c *Client) SearchAffiliatePrograms(affiliate AffiliateType, limit int32, offset string, sortOrder AffiliateProgramSortOrder) (*FoundAffiliatePrograms, error) {
 	req := &SearchAffiliatePrograms{
@@ -8330,6 +8496,7 @@ func (c *Client) SearchGiftsForResale(attributes []UpgradedGiftAttributeId, gift
 	}
 	if opts != nil {
 		req.ForCrafting = opts.ForCrafting
+		req.ForStars = opts.ForStars
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -8913,6 +9080,20 @@ func (c *Client) SendMessageAlbum(chatId int64, inputMessageContents []InputMess
 		return nil, err
 	}
 	return c.WaitMessages(resp.(*Messages))
+}
+
+// SendMessageViewMetrics Informs TDLib about details of a message view by the user from a chat, a message thread or a forum topic history. The method must be called if
+func (c *Client) SendMessageViewMetrics(activeTimeInViewMs int32, chatId int64, heightToViewportRatioPerMille int32, messageId int64, seenRangeRatioPerMille int32, timeInViewMs int32) error {
+	req := &SendMessageViewMetrics{
+		ActiveTimeInViewMs:            activeTimeInViewMs,
+		ChatId:                        chatId,
+		HeightToViewportRatioPerMille: heightToViewportRatioPerMille,
+		MessageId:                     messageId,
+		SeenRangeRatioPerMille:        seenRangeRatioPerMille,
+		TimeInViewMs:                  timeInViewMs,
+	}
+	_, err := c.Send(req)
+	return err
 }
 
 // SendPassportAuthorizationForm Sends a Telegram Passport authorization form, effectively sharing data with the service. This method must be called after getPassportAuthorizationFormAvailableElements if some previously available elements are going to be reused
@@ -10146,7 +10327,7 @@ func (c *Client) SetPinnedSavedMessagesTopics(savedMessagesTopicIds []int64) err
 	return err
 }
 
-// SetPollAnswer Changes the user answer to a poll. A poll in quiz mode can be answered only once
+// SetPollAnswer Changes the user answer to a poll
 func (c *Client) SetPollAnswer(chatId int64, messageId int64, optionIds []int32) error {
 	req := &SetPollAnswer{
 		ChatId:    chatId,
@@ -10524,12 +10705,11 @@ func (c *Client) SetVideoChatTitle(groupCallId int32, title string) error {
 }
 
 // ShareChatWithBot Shares a chat after pressing a keyboardButtonTypeRequestChat button with the bot
-func (c *Client) ShareChatWithBot(buttonId int32, chatId int64, messageId int64, sharedChatId int64, opts *ShareChatWithBotOpts) error {
+func (c *Client) ShareChatWithBot(buttonId int32, sharedChatId int64, source KeyboardButtonSource, opts *ShareChatWithBotOpts) error {
 	req := &ShareChatWithBot{
 		ButtonId:     buttonId,
-		ChatId:       chatId,
-		MessageId:    messageId,
 		SharedChatId: sharedChatId,
+		Source:       source,
 	}
 	if opts != nil {
 		req.OnlyCheck = opts.OnlyCheck
@@ -10548,12 +10728,11 @@ func (c *Client) SharePhoneNumber(userId int64) error {
 }
 
 // ShareUsersWithBot Shares users after pressing a keyboardButtonTypeRequestUsers button with the bot
-func (c *Client) ShareUsersWithBot(buttonId int32, chatId int64, messageId int64, sharedUserIds []int64, opts *ShareUsersWithBotOpts) error {
+func (c *Client) ShareUsersWithBot(buttonId int32, sharedUserIds []int64, source KeyboardButtonSource, opts *ShareUsersWithBotOpts) error {
 	req := &ShareUsersWithBot{
 		ButtonId:      buttonId,
-		ChatId:        chatId,
-		MessageId:     messageId,
 		SharedUserIds: sharedUserIds,
+		Source:        source,
 	}
 	if opts != nil {
 		req.OnlyCheck = opts.OnlyCheck
@@ -10669,13 +10848,12 @@ func (c *Client) SuggestUserProfilePhoto(photo InputChatPhoto, userId int64) err
 }
 
 // SummarizeMessage Summarizes content of the message with non-empty summary_language_code
-func (c *Client) SummarizeMessage(chatId int64, messageId int64, opts *SummarizeMessageOpts) (*FormattedText, error) {
+func (c *Client) SummarizeMessage(chatId int64, messageId int64, tone string, translateToLanguageCode string) (*FormattedText, error) {
 	req := &SummarizeMessage{
-		ChatId:    chatId,
-		MessageId: messageId,
-	}
-	if opts != nil {
-		req.TranslateToLanguageCode = opts.TranslateToLanguageCode
+		ChatId:                  chatId,
+		MessageId:               messageId,
+		Tone:                    tone,
+		TranslateToLanguageCode: translateToLanguageCode,
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -11412,12 +11590,13 @@ func (c *Client) TransferGift(businessConnectionId string, newOwnerId MessageSen
 	return err
 }
 
-// TranslateMessageText Extracts text or caption of the given message and translates it to the given language. If the current user is a Telegram Premium user, then text formatting is preserved
-func (c *Client) TranslateMessageText(chatId int64, messageId int64, toLanguageCode string) (*FormattedText, error) {
+// TranslateMessageText Extracts text or caption of the given message and translates it to the given language; must not be used in secret chats. If the current user is a Telegram Premium user, then text formatting is preserved
+func (c *Client) TranslateMessageText(chatId int64, messageId int64, toLanguageCode string, tone string) (*FormattedText, error) {
 	req := &TranslateMessageText{
 		ChatId:         chatId,
 		MessageId:      messageId,
 		ToLanguageCode: toLanguageCode,
+		Tone:           tone,
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -11426,11 +11605,12 @@ func (c *Client) TranslateMessageText(chatId int64, messageId int64, toLanguageC
 	return resp.(*FormattedText), nil
 }
 
-// TranslateText Translates a text to the given language. If the current user is a Telegram Premium user, then text formatting is preserved
-func (c *Client) TranslateText(text *FormattedText, toLanguageCode string) (*FormattedText, error) {
+// TranslateText Translates a text to the given language; must not be used in secret chats. If the current user is a Telegram Premium user, then text formatting is preserved
+func (c *Client) TranslateText(text *FormattedText, toLanguageCode string, tone string) (*FormattedText, error) {
 	req := &TranslateText{
 		Text:           text,
 		ToLanguageCode: toLanguageCode,
+		Tone:           tone,
 	}
 	resp, err := c.Send(req)
 	if err != nil {
