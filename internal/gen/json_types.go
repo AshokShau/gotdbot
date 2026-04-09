@@ -8,6 +8,7 @@ type TDLibJSON struct {
 	Types     map[string]*TypeDef  `json:"types"`
 	Updates   map[string]*TypeDef  `json:"updates"`
 	Functions map[string]*TypeDef  `json:"functions"`
+	Options   map[string]*OptionDef `json:"options"`
 }
 
 type ClassDef struct {
@@ -26,4 +27,10 @@ type ArgDef struct {
 	Description string `json:"description"`
 	IsOptional  bool   `json:"is_optional"`
 	Type        string `json:"type"`
+}
+
+type OptionDef struct {
+	Type        string `json:"type"`
+	Writable    bool   `json:"writable"`
+	Description string `json:"description"`
 }

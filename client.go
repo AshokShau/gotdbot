@@ -205,15 +205,15 @@ func (c *Client) authHandler(client *Client, update TlObject) error {
 
 	switch authState.AuthorizationState.GetType() {
 	case "authorizationStateWaitTdlibParameters":
-		if len(c.config.TDLibOptions) > 0 {
-			for k, v := range c.config.TDLibOptions {
+		if c.config.TDLibOptions != nil {
+			c.config.TDLibOptions.forEachSet(func(k string, v interface{}) {
 				if opt := toOptionValue(v); opt != nil {
 					err := c.SetOption(k, &SetOptionOpts{Value: opt})
 					if err != nil {
 						c.Logger.Error("Error setting option", "option", k, "error", err)
 					}
 				}
-			}
+			})
 		}
 
 		c.Logger.Debug("Setting TDLib parameters",

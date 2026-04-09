@@ -231,7 +231,7 @@ func (c *Chat) DeleteMessages(client *Client, messageIds []int64, opts *DeleteMe
 	return client.DeleteMessages(c.Id, messageIds, opts)
 }
 
-// DeletePollOption Adds an option to a poll
+// DeletePollOption Deletes an option from a poll
 // It is a helper method for Client.DeletePollOption
 func (c *Chat) DeletePollOption(client *Client, messageId int64, optionId string) error {
 	return client.DeletePollOption(c.Id, messageId, optionId)
@@ -1749,7 +1749,7 @@ func (m *Message) DeleteChatReplyMarkup(client *Client) error {
 	return client.DeleteChatReplyMarkup(m.ChatId, m.Id)
 }
 
-// DeletePollOption Adds an option to a poll
+// DeletePollOption Deletes an option from a poll
 // It is a helper method for Client.DeletePollOption
 func (m *Message) DeletePollOption(client *Client, optionId string) error {
 	return client.DeletePollOption(m.ChatId, m.Id, optionId)

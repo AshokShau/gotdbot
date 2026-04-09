@@ -29,7 +29,7 @@ func LoadTDLibJSON(url string) (*TDLibJSON, error) {
 }
 
 // ConvertJSONToGen converts the TDLibJSON structure into the format expected by the generators.
-func ConvertJSONToGen(data *TDLibJSON) ([]TLType, []TLType, map[string]*TLClass) {
+func ConvertJSONToGen(data *TDLibJSON) ([]TLType, []TLType, map[string]*TLClass, map[string]*OptionDef) {
 	var types []TLType
 	var functions []TLType
 	classes := make(map[string]*TLClass)
@@ -86,5 +86,5 @@ func ConvertJSONToGen(data *TDLibJSON) ([]TLType, []TLType, map[string]*TLClass)
 		functions = append(functions, convert(name, def, true))
 	}
 
-	return types, functions, classes
+	return types, functions, classes, data.Options
 }

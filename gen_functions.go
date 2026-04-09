@@ -3808,7 +3808,7 @@ func (t DeletePassportElement) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// DeletePollOption Adds an option to a poll
+// DeletePollOption Deletes an option from a poll
 type DeletePollOption struct {
 	// Identifier of the chat to which the poll belongs
 	ChatId int64 `json:"chat_id"`
