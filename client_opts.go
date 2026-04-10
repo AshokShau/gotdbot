@@ -21,7 +21,7 @@ type ClientOpts struct {
 	UseFileDatabase         *bool
 	UseChatInfoDatabase     *bool
 	UseMessageDatabase      *bool
-	UseSecretChats          *bool
+	UseSecretChats          bool
 	LoadMessagesBeforeReply bool
 	SystemLanguageCode      string
 	DeviceModel             string
@@ -102,35 +102,93 @@ type TDLibOptions struct {
 
 // forEachSet calls fn for each non-default TDLib option.
 func (o *TDLibOptions) forEachSet(fn func(name string, value interface{})) {
-	if o == nil || fn == nil { return }
-	if o.AlwaysParseMarkdown { fn("always_parse_markdown", o.AlwaysParseMarkdown) }
-	if o.DisableAnimatedEmoji { fn("disable_animated_emoji", o.DisableAnimatedEmoji) }
-	if o.DisableContactRegisteredNotifications { fn("disable_contact_registered_notifications", o.DisableContactRegisteredNotifications) }
-	if o.DisableNetworkStatistics { fn("disable_network_statistics", o.DisableNetworkStatistics) }
-	if o.DisablePersistentNetworkStatistics { fn("disable_persistent_network_statistics", o.DisablePersistentNetworkStatistics) }
-	if o.DisableSentScheduledMessageNotifications { fn("disable_sent_scheduled_message_notifications", o.DisableSentScheduledMessageNotifications) }
-	if o.DisableTimeAdjustmentProtection { fn("disable_time_adjustment_protection", o.DisableTimeAdjustmentProtection) }
-	if o.DisableTopChats { fn("disable_top_chats", o.DisableTopChats) }
-	if o.IgnoreBackgroundUpdates { fn("ignore_background_updates", o.IgnoreBackgroundUpdates) }
-	if o.IgnoreDefaultDisableNotification { fn("ignore_default_disable_notification", o.IgnoreDefaultDisableNotification) }
-	if o.IgnoreFileNames { fn("ignore_file_names", o.IgnoreFileNames) }
-	if o.IgnoreInlineThumbnails { fn("ignore_inline_thumbnails", o.IgnoreInlineThumbnails) }
-	if o.IgnorePlatformRestrictions { fn("ignore_platform_restrictions", o.IgnorePlatformRestrictions) }
-	if o.IgnoreSensitiveContentRestrictions { fn("ignore_sensitive_content_restrictions", o.IgnoreSensitiveContentRestrictions) }
-	if o.IsPaidReactionAnonymous { fn("is_paid_reaction_anonymous", o.IsPaidReactionAnonymous) }
-	if o.LanguagePackDatabasePath != "" { fn("language_pack_database_path", o.LanguagePackDatabasePath) }
-	if o.LanguagePackId != "" { fn("language_pack_id", o.LanguagePackId) }
-	if o.LocalizationTarget != "" { fn("localization_target", o.LocalizationTarget) }
-	if o.MessageUnloadDelay != 0 { fn("message_unload_delay", o.MessageUnloadDelay) }
-	if o.NotificationGroupCountMax != 0 { fn("notification_group_count_max", o.NotificationGroupCountMax) }
-	if o.NotificationGroupSizeMax != 0 { fn("notification_group_size_max", o.NotificationGroupSizeMax) }
-	if o.Online { fn("online", o.Online) }
-	if o.PreferIpv6 { fn("prefer_ipv6", o.PreferIpv6) }
-	if o.ProcessPinnedMessagesAsMentions { fn("process_pinned_messages_as_mentions", o.ProcessPinnedMessagesAsMentions) }
-	if o.UsePfs { fn("use_pfs", o.UsePfs) }
-	if o.UseQuickAck { fn("use_quick_ack", o.UseQuickAck) }
-	if o.UseStorageOptimizer { fn("use_storage_optimizer", o.UseStorageOptimizer) }
-	if o.UtcTimeOffset != 0 { fn("utc_time_offset", o.UtcTimeOffset) }
+	if o == nil || fn == nil {
+		return
+	}
+	if o.AlwaysParseMarkdown {
+		fn("always_parse_markdown", o.AlwaysParseMarkdown)
+	}
+	if o.DisableAnimatedEmoji {
+		fn("disable_animated_emoji", o.DisableAnimatedEmoji)
+	}
+	if o.DisableContactRegisteredNotifications {
+		fn("disable_contact_registered_notifications", o.DisableContactRegisteredNotifications)
+	}
+	if o.DisableNetworkStatistics {
+		fn("disable_network_statistics", o.DisableNetworkStatistics)
+	}
+	if o.DisablePersistentNetworkStatistics {
+		fn("disable_persistent_network_statistics", o.DisablePersistentNetworkStatistics)
+	}
+	if o.DisableSentScheduledMessageNotifications {
+		fn("disable_sent_scheduled_message_notifications", o.DisableSentScheduledMessageNotifications)
+	}
+	if o.DisableTimeAdjustmentProtection {
+		fn("disable_time_adjustment_protection", o.DisableTimeAdjustmentProtection)
+	}
+	if o.DisableTopChats {
+		fn("disable_top_chats", o.DisableTopChats)
+	}
+	if o.IgnoreBackgroundUpdates {
+		fn("ignore_background_updates", o.IgnoreBackgroundUpdates)
+	}
+	if o.IgnoreDefaultDisableNotification {
+		fn("ignore_default_disable_notification", o.IgnoreDefaultDisableNotification)
+	}
+	if o.IgnoreFileNames {
+		fn("ignore_file_names", o.IgnoreFileNames)
+	}
+	if o.IgnoreInlineThumbnails {
+		fn("ignore_inline_thumbnails", o.IgnoreInlineThumbnails)
+	}
+	if o.IgnorePlatformRestrictions {
+		fn("ignore_platform_restrictions", o.IgnorePlatformRestrictions)
+	}
+	if o.IgnoreSensitiveContentRestrictions {
+		fn("ignore_sensitive_content_restrictions", o.IgnoreSensitiveContentRestrictions)
+	}
+	if o.IsPaidReactionAnonymous {
+		fn("is_paid_reaction_anonymous", o.IsPaidReactionAnonymous)
+	}
+	if o.LanguagePackDatabasePath != "" {
+		fn("language_pack_database_path", o.LanguagePackDatabasePath)
+	}
+	if o.LanguagePackId != "" {
+		fn("language_pack_id", o.LanguagePackId)
+	}
+	if o.LocalizationTarget != "" {
+		fn("localization_target", o.LocalizationTarget)
+	}
+	if o.MessageUnloadDelay != 0 {
+		fn("message_unload_delay", o.MessageUnloadDelay)
+	}
+	if o.NotificationGroupCountMax != 0 {
+		fn("notification_group_count_max", o.NotificationGroupCountMax)
+	}
+	if o.NotificationGroupSizeMax != 0 {
+		fn("notification_group_size_max", o.NotificationGroupSizeMax)
+	}
+	if o.Online {
+		fn("online", o.Online)
+	}
+	if o.PreferIpv6 {
+		fn("prefer_ipv6", o.PreferIpv6)
+	}
+	if o.ProcessPinnedMessagesAsMentions {
+		fn("process_pinned_messages_as_mentions", o.ProcessPinnedMessagesAsMentions)
+	}
+	if o.UsePfs {
+		fn("use_pfs", o.UsePfs)
+	}
+	if o.UseQuickAck {
+		fn("use_quick_ack", o.UseQuickAck)
+	}
+	if o.UseStorageOptimizer {
+		fn("use_storage_optimizer", o.UseStorageOptimizer)
+	}
+	if o.UtcTimeOffset != 0 {
+		fn("utc_time_offset", o.UtcTimeOffset)
+	}
 }
 
 func DefaultClientConfig() *ClientOpts {
@@ -141,7 +199,7 @@ func DefaultClientConfig() *ClientOpts {
 		UseFileDatabase:         Bool(true),
 		UseChatInfoDatabase:     Bool(true),
 		UseMessageDatabase:      Bool(true),
-		UseSecretChats:          Bool(false),
+		UseSecretChats:          false,
 		LoadMessagesBeforeReply: false,
 		SystemLanguageCode:      "en",
 		DeviceModel:             "Gotdbot",

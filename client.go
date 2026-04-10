@@ -67,9 +67,6 @@ func NewClient(apiID int32, apiHash, tokenOrPhone string, config *ClientOpts) (*
 		if config.UseMessageDatabase == nil {
 			config.UseMessageDatabase = def.UseMessageDatabase
 		}
-		if config.UseSecretChats == nil {
-			config.UseSecretChats = def.UseSecretChats
-		}
 		if config.SystemLanguageCode == "" {
 			config.SystemLanguageCode = def.SystemLanguageCode
 		}
@@ -216,21 +213,6 @@ func (c *Client) authHandler(client *Client, update TlObject) error {
 			})
 		}
 
-		c.Logger.Debug("Setting TDLib parameters",
-			"use_test_dc", c.config.UseTestDC,
-			"database_directory", c.config.DatabaseDirectory,
-			"files_directory", c.config.FilesDirectory,
-			"use_file_database", *c.config.UseFileDatabase,
-			"use_chat_info_database", *c.config.UseChatInfoDatabase,
-			"use_message_database", *c.config.UseMessageDatabase,
-			"use_secret_chats", *c.config.UseSecretChats,
-			"api_id", c.apiID,
-			"system_language_code", c.config.SystemLanguageCode,
-			"device_model", c.config.DeviceModel,
-			"system_version", c.config.SystemVersion,
-			"application_version", c.config.ApplicationVersion,
-		)
-
 		err := c.SetTdlibParameters(
 			c.apiHash,
 			c.apiID,
@@ -245,7 +227,7 @@ func (c *Client) authHandler(client *Client, update TlObject) error {
 				UseChatInfoDatabase: *c.config.UseChatInfoDatabase,
 				UseFileDatabase:     *c.config.UseFileDatabase,
 				UseMessageDatabase:  *c.config.UseMessageDatabase,
-				UseSecretChats:      *c.config.UseSecretChats,
+				UseSecretChats:      c.config.UseSecretChats,
 				UseTestDc:           c.config.UseTestDC,
 			},
 		)
