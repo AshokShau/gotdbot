@@ -7,6 +7,98 @@ import (
 	"strings"
 )
 
+func GetFormattedText(c *Client, text string, entities []TextEntity, parseMode string) (*FormattedText, error) {
+	if len(entities) > 0 {
+		return &FormattedText{
+			Text:     text,
+			Entities: entities,
+		}, nil
+	} else if parseMode != "" {
+		ft, err := c.ParseText(text, parseMode)
+		if err == nil {
+			return ft, nil
+		}
+		return nil, err
+	}
+	return &FormattedText{Text: text}, nil
+}
+
+func GetInputFile(path string) InputFile {
+	if _, err := os.Stat(path); err == nil {
+		return InputFileLocal{Path: path}
+	}
+
+	return InputFileRemote{Id: path}
+}
+
+// EscapeHTML escapes HTML characters in the given text.
+func EscapeHTML(text string) string {
+	return html.EscapeString(text)
+}
+
+// EscapeMarkdown escapes Markdown characters in the given text.
+func EscapeMarkdown(text string, version int) string {
+	var chars string
+	if version == 1 {
+		chars = "_*`[\\"
+	} else {
+		chars = "_*[]()~`>#+-=|{}.!\\"
+	}
+	var b strings.Builder
+	for _, c := range text {
+		if strings.ContainsRune(chars, c) {
+			b.WriteRune('\\')
+		}
+		b.WriteRune(c)
+	}
+	return b.String()
+}
+
+// Mention returns a text mention for the given user ID.
+func Mention(text string, userId int64, isHtml bool, escape bool) string {
+	if escape {
+		if isHtml {
+			text = EscapeHTML(text)
+		} else {
+			text = EscapeMarkdown(text, 2)
+		}
+	}
+	if isHtml {
+		return fmt.Sprintf("<a href=\"tg://user?id=%d\">%s</a>", userId, text)
+	}
+	return fmt.Sprintf("[%s](tg://user?id=%d)", text, userId)
+}
+
+// sendMessageWithContent is a helper function to send a message with content
+func (c *Client) sendMessageWithContent(
+	chatId int64,
+	content InputMessageContent,
+	options *MessageSendOptions,
+	topicId MessageTopic,
+	quote *InputTextQuote,
+	replyTo InputMessageReplyTo,
+	replyToMessageId int64,
+	replyMarkup ReplyMarkup,
+) (*Message, error) {
+	if replyToMessageId > 0 {
+		replyTo = &InputMessageReplyToMessage{
+			MessageId: replyToMessageId,
+			Quote:     quote,
+		}
+	}
+
+	if c.config.LoadMessagesBeforeReply && replyToMessageId > 0 {
+		_, _ = c.GetMessage(chatId, replyToMessageId)
+	}
+
+	return c.SendMessage(chatId, content, &SendMessageOpts{
+		TopicId:     topicId,
+		ReplyTo:     replyTo,
+		Options:     options,
+		ReplyMarkup: replyMarkup,
+	})
+}
+
 // SendTextMessageOpts contains optional parameters for SendTextMessage
 type SendTextMessageOpts struct {
 	ParseMode             string
@@ -570,36 +662,6 @@ func (c *Client) GetSupergroupId(chatId int64) (int64, error) {
 	return 0, nil
 }
 
-// sendMessageWithContent is a helper function to send a message with content
-func (c *Client) sendMessageWithContent(
-	chatId int64,
-	content InputMessageContent,
-	options *MessageSendOptions,
-	topicId MessageTopic,
-	quote *InputTextQuote,
-	replyTo InputMessageReplyTo,
-	replyToMessageId int64,
-	replyMarkup ReplyMarkup,
-) (*Message, error) {
-	if replyToMessageId > 0 {
-		replyTo = &InputMessageReplyToMessage{
-			MessageId: replyToMessageId,
-			Quote:     quote,
-		}
-	}
-
-	if c.config.LoadMessagesBeforeReply && replyToMessageId > 0 {
-		_, _ = c.GetMessage(chatId, replyToMessageId)
-	}
-
-	return c.SendMessage(chatId, content, &SendMessageOpts{
-		TopicId:     topicId,
-		ReplyTo:     replyTo,
-		Options:     options,
-		ReplyMarkup: replyMarkup,
-	})
-}
-
 // ParseText parses the text using the specified parse mode.
 func (c *Client) ParseText(text string, parseMode string) (*FormattedText, error) {
 	var mode TextParseMode
@@ -618,64 +680,406 @@ func (c *Client) ParseText(text string, parseMode string) (*FormattedText, error
 	return c.ParseTextEntities(mode, text)
 }
 
-func GetFormattedText(c *Client, text string, entities []TextEntity, parseMode string) (*FormattedText, error) {
-	if len(entities) > 0 {
-		return &FormattedText{
-			Text:     text,
-			Entities: entities,
-		}, nil
-	} else if parseMode != "" {
-		ft, err := c.ParseText(text, parseMode)
-		if err == nil {
-			return ft, nil
-		}
+// SendChecklistOpts contains optional parameters for SendChecklist
+type SendChecklistOpts struct {
+	DisableNotification bool
+	ProtectContent      bool
+	AllowPaidBroadcast  bool
+	TopicId             MessageTopic
+	Quote               *InputTextQuote
+	ReplyTo             InputMessageReplyTo
+	ReplyToMessageID    int64
+	ReplyMarkup         ReplyMarkup
+	EffectId            int64
+}
+
+// SendChecklist sends a checklist to chat
+func (c *Client) SendChecklist(chatId int64, checklist *InputChecklist, opts *SendChecklistOpts) (*Message, error) {
+	if opts == nil {
+		opts = &SendChecklistOpts{}
+	}
+	content := &InputMessageChecklist{
+		Checklist: checklist,
+	}
+	return c.sendMessageWithContent(chatId, content, &MessageSendOptions{
+		DisableNotification: opts.DisableNotification,
+		ProtectContent:      opts.ProtectContent,
+		AllowPaidBroadcast:  opts.AllowPaidBroadcast,
+		EffectId:            opts.EffectId,
+	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
+}
+
+// SendContactOpts contains optional parameters for SendContact
+type SendContactOpts struct {
+	DisableNotification bool
+	ProtectContent      bool
+	AllowPaidBroadcast  bool
+	TopicId             MessageTopic
+	Quote               *InputTextQuote
+	ReplyTo             InputMessageReplyTo
+	ReplyToMessageID    int64
+	ReplyMarkup         ReplyMarkup
+	EffectId            int64
+}
+
+// SendContact sends a contact to chat
+func (c *Client) SendContact(chatId int64, contact *Contact, opts *SendContactOpts) (*Message, error) {
+	if opts == nil {
+		opts = &SendContactOpts{}
+	}
+	content := &InputMessageContact{
+		Contact: contact,
+	}
+	return c.sendMessageWithContent(chatId, content, &MessageSendOptions{
+		DisableNotification: opts.DisableNotification,
+		ProtectContent:      opts.ProtectContent,
+		AllowPaidBroadcast:  opts.AllowPaidBroadcast,
+		EffectId:            opts.EffectId,
+	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
+}
+
+// SendDiceOpts contains optional parameters for SendDice
+type SendDiceOpts struct {
+	ClearDraft          bool
+	DisableNotification bool
+	ProtectContent      bool
+	AllowPaidBroadcast  bool
+	TopicId             MessageTopic
+	Quote               *InputTextQuote
+	ReplyTo             InputMessageReplyTo
+	ReplyToMessageID    int64
+	ReplyMarkup         ReplyMarkup
+	EffectId            int64
+}
+
+// SendDice sends a dice to chat
+func (c *Client) SendDice(chatId int64, emoji string, opts *SendDiceOpts) (*Message, error) {
+	if opts == nil {
+		opts = &SendDiceOpts{}
+	}
+	content := &InputMessageDice{
+		Emoji:      emoji,
+		ClearDraft: opts.ClearDraft,
+	}
+	return c.sendMessageWithContent(chatId, content, &MessageSendOptions{
+		DisableNotification: opts.DisableNotification,
+		ProtectContent:      opts.ProtectContent,
+		AllowPaidBroadcast:  opts.AllowPaidBroadcast,
+		EffectId:            opts.EffectId,
+	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
+}
+
+// SendGameOpts contains optional parameters for SendGame
+type SendGameOpts struct {
+	DisableNotification bool
+	ProtectContent      bool
+	AllowPaidBroadcast  bool
+	TopicId             MessageTopic
+	Quote               *InputTextQuote
+	ReplyTo             InputMessageReplyTo
+	ReplyToMessageID    int64
+	ReplyMarkup         ReplyMarkup
+	EffectId            int64
+}
+
+// SendGame sends a game to chat
+func (c *Client) SendGame(chatId int64, botUserId int64, gameShortName string, opts *SendGameOpts) (*Message, error) {
+	if opts == nil {
+		opts = &SendGameOpts{}
+	}
+	content := &InputMessageGame{
+		BotUserId:     botUserId,
+		GameShortName: gameShortName,
+	}
+	return c.sendMessageWithContent(chatId, content, &MessageSendOptions{
+		DisableNotification: opts.DisableNotification,
+		ProtectContent:      opts.ProtectContent,
+		AllowPaidBroadcast:  opts.AllowPaidBroadcast,
+		EffectId:            opts.EffectId,
+	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
+}
+
+// SendInvoiceOpts contains optional parameters for SendInvoice
+type SendInvoiceOpts struct {
+	PaidMedia           *InputPaidMedia
+	PaidMediaCaption    string
+	PaidMediaEntities   []TextEntity
+	ParseMode           string
+	PhotoHeight         int32
+	PhotoSize           int32
+	PhotoUrl            string
+	PhotoWidth          int32
+	ProviderData        string
+	ProviderToken       string
+	StartParameter      string
+	DisableNotification bool
+	ProtectContent      bool
+	AllowPaidBroadcast  bool
+	TopicId             MessageTopic
+	Quote               *InputTextQuote
+	ReplyTo             InputMessageReplyTo
+	ReplyToMessageID    int64
+	ReplyMarkup         ReplyMarkup
+	EffectId            int64
+}
+
+// SendInvoice sends an invoice to chat
+func (c *Client) SendInvoice(chatId int64, invoice *Invoice, title string, description string, payload []byte, opts *SendInvoiceOpts) (*Message, error) {
+	if opts == nil {
+		opts = &SendInvoiceOpts{}
+	}
+	paidMediaCaption, err := GetFormattedText(c, opts.PaidMediaCaption, opts.PaidMediaEntities, opts.ParseMode)
+	if err != nil {
 		return nil, err
 	}
-	return &FormattedText{Text: text}, nil
+	content := &InputMessageInvoice{
+		Description:      description,
+		Invoice:          invoice,
+		PaidMedia:        opts.PaidMedia,
+		PaidMediaCaption: paidMediaCaption,
+		Payload:          payload,
+		PhotoHeight:      opts.PhotoHeight,
+		PhotoSize:        opts.PhotoSize,
+		PhotoUrl:         opts.PhotoUrl,
+		PhotoWidth:       opts.PhotoWidth,
+		ProviderData:     opts.ProviderData,
+		ProviderToken:    opts.ProviderToken,
+		StartParameter:   opts.StartParameter,
+		Title:            title,
+	}
+	return c.sendMessageWithContent(chatId, content, &MessageSendOptions{
+		DisableNotification: opts.DisableNotification,
+		ProtectContent:      opts.ProtectContent,
+		AllowPaidBroadcast:  opts.AllowPaidBroadcast,
+		EffectId:            opts.EffectId,
+	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
 }
 
-func GetInputFile(path string) InputFile {
-	if _, err := os.Stat(path); err == nil {
-		return InputFileLocal{Path: path}
-	}
-
-	return InputFileRemote{Id: path}
+// SendLocationOpts contains optional parameters for SendLocation
+type SendLocationOpts struct {
+	Heading              int32
+	LivePeriod           int32
+	ProximityAlertRadius int32
+	DisableNotification  bool
+	ProtectContent       bool
+	AllowPaidBroadcast   bool
+	TopicId              MessageTopic
+	Quote                *InputTextQuote
+	ReplyTo              InputMessageReplyTo
+	ReplyToMessageID     int64
+	ReplyMarkup          ReplyMarkup
+	EffectId             int64
 }
 
-// EscapeHTML escapes HTML characters in the given text.
-func EscapeHTML(text string) string {
-	return html.EscapeString(text)
+// SendLocation sends a location to chat
+func (c *Client) SendLocation(chatId int64, location *Location, opts *SendLocationOpts) (*Message, error) {
+	if opts == nil {
+		opts = &SendLocationOpts{}
+	}
+	content := &InputMessageLocation{
+		Heading:              opts.Heading,
+		LivePeriod:           opts.LivePeriod,
+		Location:             location,
+		ProximityAlertRadius: opts.ProximityAlertRadius,
+	}
+	return c.sendMessageWithContent(chatId, content, &MessageSendOptions{
+		DisableNotification: opts.DisableNotification,
+		ProtectContent:      opts.ProtectContent,
+		AllowPaidBroadcast:  opts.AllowPaidBroadcast,
+		EffectId:            opts.EffectId,
+	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
 }
 
-// EscapeMarkdown escapes Markdown characters in the given text.
-func EscapeMarkdown(text string, version int) string {
-	var chars string
-	if version == 1 {
-		chars = "_*`[\\"
-	} else {
-		chars = "_*[]()~`>#+-=|{}.!\\"
-	}
-	var b strings.Builder
-	for _, c := range text {
-		if strings.ContainsRune(chars, c) {
-			b.WriteRune('\\')
-		}
-		b.WriteRune(c)
-	}
-	return b.String()
+// SendPaidMediaOpts contains optional parameters for SendPaidMedia
+type SendPaidMediaOpts struct {
+	Caption               string
+	CaptionEntities       []TextEntity
+	ParseMode             string
+	Payload               string
+	ShowCaptionAboveMedia bool
+	DisableNotification   bool
+	ProtectContent        bool
+	AllowPaidBroadcast    bool
+	TopicId               MessageTopic
+	Quote                 *InputTextQuote
+	ReplyTo               InputMessageReplyTo
+	ReplyToMessageID      int64
+	ReplyMarkup           ReplyMarkup
+	EffectId              int64
 }
 
-// Mention returns a text mention for the given user ID.
-func Mention(text string, userId int64, isHtml bool, escape bool) string {
-	if escape {
-		if isHtml {
-			text = EscapeHTML(text)
-		} else {
-			text = EscapeMarkdown(text, 2)
-		}
+// SendPaidMedia sends paid media to chat
+func (c *Client) SendPaidMedia(chatId int64, starCount int64, paidMedia []InputPaidMedia, opts *SendPaidMediaOpts) (*Message, error) {
+	if opts == nil {
+		opts = &SendPaidMediaOpts{}
 	}
-	if isHtml {
-		return fmt.Sprintf("<a href=\"tg://user?id=%d\">%s</a>", userId, text)
+	caption, err := GetFormattedText(c, opts.Caption, opts.CaptionEntities, opts.ParseMode)
+	if err != nil {
+		return nil, err
 	}
-	return fmt.Sprintf("[%s](tg://user?id=%d)", text, userId)
+	content := &InputMessagePaidMedia{
+		Caption:               caption,
+		PaidMedia:             paidMedia,
+		Payload:               opts.Payload,
+		ShowCaptionAboveMedia: opts.ShowCaptionAboveMedia,
+		StarCount:             starCount,
+	}
+	return c.sendMessageWithContent(chatId, content, &MessageSendOptions{
+		DisableNotification: opts.DisableNotification,
+		ProtectContent:      opts.ProtectContent,
+		AllowPaidBroadcast:  opts.AllowPaidBroadcast,
+		EffectId:            opts.EffectId,
+	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
+}
+
+// SendPollOpts contains optional parameters for SendPoll
+type SendPollOpts struct {
+	AllowsMultipleAnswers  bool
+	AllowsRevoting         bool
+	CloseDate              int32
+	Description            string
+	DescriptionEntities    []TextEntity
+	ParseMode              string
+	HideResultsUntilCloses bool
+	IsAnonymous            bool
+	IsClosed               bool
+	OpenPeriod             int32
+	QuestionEntities       []TextEntity
+	ShuffleOptions         bool
+	Type                   InputPollType
+	DisableNotification    bool
+	ProtectContent         bool
+	AllowPaidBroadcast     bool
+	TopicId                MessageTopic
+	Quote                  *InputTextQuote
+	ReplyTo                InputMessageReplyTo
+	ReplyToMessageID       int64
+	ReplyMarkup            ReplyMarkup
+	EffectId               int64
+}
+
+// SendPoll sends a poll to chat
+func (c *Client) SendPoll(chatId int64, question string, options []InputPollOption, opts *SendPollOpts) (*Message, error) {
+	if opts == nil {
+		opts = &SendPollOpts{}
+	}
+	formattedQuestion, err := GetFormattedText(c, question, opts.QuestionEntities, opts.ParseMode)
+	if err != nil {
+		return nil, err
+	}
+	description, err := GetFormattedText(c, opts.Description, opts.DescriptionEntities, opts.ParseMode)
+	if err != nil {
+		return nil, err
+	}
+	content := &InputMessagePoll{
+		AllowsMultipleAnswers:  opts.AllowsMultipleAnswers,
+		AllowsRevoting:         opts.AllowsRevoting,
+		CloseDate:              opts.CloseDate,
+		Description:            description,
+		HideResultsUntilCloses: opts.HideResultsUntilCloses,
+		IsAnonymous:            opts.IsAnonymous,
+		IsClosed:               opts.IsClosed,
+		OpenPeriod:             opts.OpenPeriod,
+		Options:                options,
+		Question:               formattedQuestion,
+		ShuffleOptions:         opts.ShuffleOptions,
+		Type:                   opts.Type,
+	}
+	return c.sendMessageWithContent(chatId, content, &MessageSendOptions{
+		DisableNotification: opts.DisableNotification,
+		ProtectContent:      opts.ProtectContent,
+		AllowPaidBroadcast:  opts.AllowPaidBroadcast,
+		EffectId:            opts.EffectId,
+	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
+}
+
+// SendStakeDiceOpts contains optional parameters for SendStakeDice
+type SendStakeDiceOpts struct {
+	ClearDraft          bool
+	DisableNotification bool
+	ProtectContent      bool
+	AllowPaidBroadcast  bool
+	TopicId             MessageTopic
+	Quote               *InputTextQuote
+	ReplyTo             InputMessageReplyTo
+	ReplyToMessageID    int64
+	ReplyMarkup         ReplyMarkup
+	EffectId            int64
+}
+
+// SendStakeDice sends a stake dice to chat
+func (c *Client) SendStakeDice(chatId int64, stakeToncoinAmount int64, stateHash string, opts *SendStakeDiceOpts) (*Message, error) {
+	if opts == nil {
+		opts = &SendStakeDiceOpts{}
+	}
+	content := &InputMessageStakeDice{
+		ClearDraft:         opts.ClearDraft,
+		StakeToncoinAmount: stakeToncoinAmount,
+		StateHash:          stateHash,
+	}
+	return c.sendMessageWithContent(chatId, content, &MessageSendOptions{
+		DisableNotification: opts.DisableNotification,
+		ProtectContent:      opts.ProtectContent,
+		AllowPaidBroadcast:  opts.AllowPaidBroadcast,
+		EffectId:            opts.EffectId,
+	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
+}
+
+// SendStoryOpts contains optional parameters for SendStory
+type SendStoryOpts struct {
+	DisableNotification bool
+	ProtectContent      bool
+	AllowPaidBroadcast  bool
+	TopicId             MessageTopic
+	Quote               *InputTextQuote
+	ReplyTo             InputMessageReplyTo
+	ReplyToMessageID    int64
+	ReplyMarkup         ReplyMarkup
+	EffectId            int64
+}
+
+// SendStory sends a story to chat
+func (c *Client) SendStory(chatId int64, storyPosterChatId int64, storyId int32, opts *SendStoryOpts) (*Message, error) {
+	if opts == nil {
+		opts = &SendStoryOpts{}
+	}
+	content := &InputMessageStory{
+		StoryId:           storyId,
+		StoryPosterChatId: storyPosterChatId,
+	}
+	return c.sendMessageWithContent(chatId, content, &MessageSendOptions{
+		DisableNotification: opts.DisableNotification,
+		ProtectContent:      opts.ProtectContent,
+		AllowPaidBroadcast:  opts.AllowPaidBroadcast,
+		EffectId:            opts.EffectId,
+	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
+}
+
+// SendVenueOpts contains optional parameters for SendVenue
+type SendVenueOpts struct {
+	DisableNotification bool
+	ProtectContent      bool
+	AllowPaidBroadcast  bool
+	TopicId             MessageTopic
+	Quote               *InputTextQuote
+	ReplyTo             InputMessageReplyTo
+	ReplyToMessageID    int64
+	ReplyMarkup         ReplyMarkup
+	EffectId            int64
+}
+
+// SendVenue sends a venue to chat
+func (c *Client) SendVenue(chatId int64, venue *Venue, opts *SendVenueOpts) (*Message, error) {
+	if opts == nil {
+		opts = &SendVenueOpts{}
+	}
+	content := &InputMessageVenue{
+		Venue: venue,
+	}
+	return c.sendMessageWithContent(chatId, content, &MessageSendOptions{
+		DisableNotification: opts.DisableNotification,
+		ProtectContent:      opts.ProtectContent,
+		AllowPaidBroadcast:  opts.AllowPaidBroadcast,
+		EffectId:            opts.EffectId,
+	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
 }
