@@ -1791,12 +1791,6 @@ func (m *Message) EditBusinessText(client *Client, businessConnectionId string, 
 	return client.EditBusinessMessageText(businessConnectionId, m.ChatId, inputMessageContent, m.Id, opts)
 }
 
-// EditCaption Edits the message content caption. Returns the edited message after the edit is completed on the server side
-// It is a helper method for Client.EditMessageCaption
-func (m *Message) EditCaption(client *Client, opts *EditMessageCaptionOpts) (*Message, error) {
-	return client.EditMessageCaption(m.ChatId, m.Id, opts)
-}
-
 // EditChecklist Edits the message content of a checklist. Returns the edited message after the edit is completed on the server side
 // It is a helper method for Client.EditMessageChecklist
 func (m *Message) EditChecklist(client *Client, checklist *InputChecklist, opts *EditMessageChecklistOpts) (*Message, error) {

@@ -555,6 +555,11 @@ func (m *Message) EditText(c *Client, text string, opts *EditTextMessageOpts) (*
 	return c.EditTextMessage(m.ChatId, m.Id, text, opts)
 }
 
+// EditCaption edits the caption of a message.
+func (m *Message) EditCaption(c *Client, caption string, opts *EditCaptionOpts) (*Message, error) {
+	return c.EditCaption(m.ChatId, m.Id, caption, opts)
+}
+
 // ReplyChecklist replies to the message with a checklist.
 func (m *Message) ReplyChecklist(c *Client, checklist *InputChecklist, opts *SendChecklistOpts) (*Message, error) {
 	if opts == nil {

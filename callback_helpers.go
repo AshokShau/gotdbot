@@ -65,6 +65,11 @@ func (t *UpdateNewCallbackQuery) EditMessageText(c *Client, text string, opts *E
 	return c.EditTextMessage(t.ChatId, t.MessageId, text, opts)
 }
 
+// EditMessageCaption edits the caption of the message associated with the callback query.
+func (t *UpdateNewCallbackQuery) EditMessageCaption(c *Client, caption string, opts *EditCaptionOpts) (*Message, error) {
+	return c.EditCaption(t.ChatId, t.MessageId, caption, opts)
+}
+
 // EditMessageReplyMarkup edits the reply markup of the message associated with the callback query.
 func (t *UpdateNewCallbackQuery) EditMessageReplyMarkup(c *Client, replyMarkup ReplyMarkup) (*Message, error) {
 	return c.EditMessageReplyMarkup(t.ChatId, t.MessageId, &EditMessageReplyMarkupOpts{ReplyMarkup: replyMarkup})

@@ -644,6 +644,38 @@ func (c *Client) EditTextMessage(chatId int64, messageId int64, text string, opt
 	})
 }
 
+// EditCaptionOpts contains optional parameters for EditCaption
+type EditCaptionOpts struct {
+	ParseMode             string
+	Entities              []TextEntity
+	ShowCaptionAboveMedia bool
+	ReplyMarkup           ReplyMarkup
+}
+
+// EditCaption edits the caption of a message
+func (c *Client) EditCaption(chatId int64, messageId int64, caption string, opts *EditCaptionOpts) (*Message, error) {
+	if opts == nil {
+		opts = &EditCaptionOpts{}
+	}
+
+	if !*c.config.UseMessageDatabase {
+		if _, err := c.GetMessage(chatId, messageId); err != nil {
+			return nil, err
+		}
+	}
+
+	formattedText, err := GetFormattedText(c, caption, opts.Entities, opts.ParseMode)
+	if err != nil {
+		return nil, err
+	}
+
+	return c.EditMessageCaption(chatId, messageId, &EditMessageCaptionOpts{
+		Caption:               formattedText,
+		ReplyMarkup:           opts.ReplyMarkup,
+		ShowCaptionAboveMedia: opts.ShowCaptionAboveMedia,
+	})
+}
+
 // GetSupergroupId returns the supergroup ID from a chat ID
 func (c *Client) GetSupergroupId(chatId int64) (int64, error) {
 	chat, err := c.GetChat(chatId)
