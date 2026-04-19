@@ -1899,7 +1899,7 @@ func (c *Client) DeletePassportElement(typeField PassportElementType) error {
 	return err
 }
 
-// DeletePollOption Adds an option to a poll
+// DeletePollOption Deletes an option from a poll
 func (c *Client) DeletePollOption(chatId int64, messageId int64, optionId string) error {
 	req := &DeletePollOption{
 		ChatId:    chatId,

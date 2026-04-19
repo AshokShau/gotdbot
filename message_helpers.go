@@ -554,3 +554,140 @@ func (m *Message) Forward(c *Client, chatId int64, opts *ForwardMessageOpts) (*M
 func (m *Message) EditText(c *Client, text string, opts *EditTextMessageOpts) (*Message, error) {
 	return c.EditTextMessage(m.ChatId, m.Id, text, opts)
 }
+
+// EditCaption edits the caption of a message.
+func (m *Message) EditCaption(c *Client, caption string, opts *EditCaptionOpts) (*Message, error) {
+	return c.EditCaption(m.ChatId, m.Id, caption, opts)
+}
+
+// ReplyChecklist replies to the message with a checklist.
+func (m *Message) ReplyChecklist(c *Client, checklist *InputChecklist, opts *SendChecklistOpts) (*Message, error) {
+	if opts == nil {
+		opts = &SendChecklistOpts{}
+	}
+	if opts.ReplyToMessageID == 0 {
+		opts.ReplyToMessageID = m.Id
+	}
+	return c.SendChecklist(m.ChatId, checklist, opts)
+}
+
+// ReplyContact replies to the message with a contact.
+func (m *Message) ReplyContact(c *Client, contact *Contact, opts *SendContactOpts) (*Message, error) {
+	if opts == nil {
+		opts = &SendContactOpts{}
+	}
+	if opts.ReplyToMessageID == 0 {
+		opts.ReplyToMessageID = m.Id
+	}
+	return c.SendContact(m.ChatId, contact, opts)
+}
+
+// ReplyDice replies to the message with a dice.
+func (m *Message) ReplyDice(c *Client, emoji string, opts *SendDiceOpts) (*Message, error) {
+	if opts == nil {
+		opts = &SendDiceOpts{}
+	}
+	if opts.ReplyToMessageID == 0 {
+		opts.ReplyToMessageID = m.Id
+	}
+	return c.SendDice(m.ChatId, emoji, opts)
+}
+
+// ReplyGame replies to the message with a game.
+func (m *Message) ReplyGame(c *Client, botUserId int64, gameShortName string, opts *SendGameOpts) (*Message, error) {
+	if opts == nil {
+		opts = &SendGameOpts{}
+	}
+	if opts.ReplyToMessageID == 0 {
+		opts.ReplyToMessageID = m.Id
+	}
+	return c.SendGame(m.ChatId, botUserId, gameShortName, opts)
+}
+
+// ReplyInvoice replies to the message with an invoice.
+func (m *Message) ReplyInvoice(c *Client, invoice *Invoice, title string, description string, payload []byte, opts *SendInvoiceOpts) (*Message, error) {
+	if opts == nil {
+		opts = &SendInvoiceOpts{}
+	}
+	if opts.ReplyToMessageID == 0 {
+		opts.ReplyToMessageID = m.Id
+	}
+	return c.SendInvoice(m.ChatId, invoice, title, description, payload, opts)
+}
+
+// ReplyLocation replies to the message with a location.
+func (m *Message) ReplyLocation(c *Client, location *Location, opts *SendLocationOpts) (*Message, error) {
+	if opts == nil {
+		opts = &SendLocationOpts{}
+	}
+	if opts.ReplyToMessageID == 0 {
+		opts.ReplyToMessageID = m.Id
+	}
+	return c.SendLocation(m.ChatId, location, opts)
+}
+
+// ReplyPaidMedia replies to the message with paid media.
+func (m *Message) ReplyPaidMedia(c *Client, starCount int64, paidMedia []InputPaidMedia, opts *SendPaidMediaOpts) (*Message, error) {
+	if opts == nil {
+		opts = &SendPaidMediaOpts{}
+	}
+	if opts.ReplyToMessageID == 0 {
+		opts.ReplyToMessageID = m.Id
+	}
+	return c.SendPaidMedia(m.ChatId, starCount, paidMedia, opts)
+}
+
+// ReplyPoll replies to the message with a poll.
+func (m *Message) ReplyPoll(c *Client, question string, options []InputPollOption, opts *SendPollOpts) (*Message, error) {
+	if opts == nil {
+		opts = &SendPollOpts{}
+	}
+	if opts.ReplyToMessageID == 0 {
+		opts.ReplyToMessageID = m.Id
+	}
+	return c.SendPoll(m.ChatId, question, options, opts)
+}
+
+// ReplyStakeDice replies to the message with a stake dice.
+func (m *Message) ReplyStakeDice(c *Client, stakeToncoinAmount int64, stateHash string, opts *SendStakeDiceOpts) (*Message, error) {
+	if opts == nil {
+		opts = &SendStakeDiceOpts{}
+	}
+	if opts.ReplyToMessageID == 0 {
+		opts.ReplyToMessageID = m.Id
+	}
+	return c.SendStakeDice(m.ChatId, stakeToncoinAmount, stateHash, opts)
+}
+
+// ReplyStory replies to the message with a story.
+func (m *Message) ReplyStory(c *Client, storyPosterChatId int64, storyId int32, opts *SendStoryOpts) (*Message, error) {
+	if opts == nil {
+		opts = &SendStoryOpts{}
+	}
+	if opts.ReplyToMessageID == 0 {
+		opts.ReplyToMessageID = m.Id
+	}
+	return c.SendStory(m.ChatId, storyPosterChatId, storyId, opts)
+}
+
+// ReplyVenue replies to the message with a venue.
+func (m *Message) ReplyVenue(c *Client, venue *Venue, opts *SendVenueOpts) (*Message, error) {
+	if opts == nil {
+		opts = &SendVenueOpts{}
+	}
+	if opts.ReplyToMessageID == 0 {
+		opts.ReplyToMessageID = m.Id
+	}
+	return c.SendVenue(m.ChatId, venue, opts)
+}
+
+// ReplyCopy replies to the message by copying another message.
+func (m *Message) ReplyCopy(c *Client, fromChatId int64, messageId int64, opts *SendCopyOpts) (*Message, error) {
+	if opts == nil {
+		opts = &SendCopyOpts{}
+	}
+	if opts.ReplyToMessageID == 0 {
+		opts.ReplyToMessageID = m.Id
+	}
+	return c.SendCopy(m.ChatId, fromChatId, messageId, opts)
+}

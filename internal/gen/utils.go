@@ -113,3 +113,18 @@ func gofmt(paths ...string) {
 		log.Fatalf("gofmt failed: %v", err)
 	}
 }
+
+func findBalancedBrace(s string, startPos int) int {
+	count := 0
+	for i := startPos; i < len(s); i++ {
+		if s[i] == '{' {
+			count++
+		} else if s[i] == '}' {
+			count--
+			if count == 0 {
+				return i
+			}
+		}
+	}
+	return -1
+}

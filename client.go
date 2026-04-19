@@ -11,7 +11,6 @@ import (
 	"os"
 	"os/signal"
 	"regexp"
-	"runtime"
 	"strings"
 	"sync"
 	"syscall"
@@ -20,61 +19,6 @@ import (
 	"github.com/AshokShau/gotdbot/internal/qrcode"
 	"github.com/AshokShau/gotdbot/internal/tdjson"
 )
-
-type AutoRetry struct {
-	ChatNotFound    bool
-	MessageNotFound bool
-}
-
-type ClientOpts struct {
-	LibraryPath             string
-	UseTestDC               bool
-	DatabaseDirectory       string
-	FilesDirectory          string
-	DatabaseEncryptionKey   string
-	UseFileDatabase         *bool
-	UseChatInfoDatabase     *bool
-	UseMessageDatabase      *bool
-	UseSecretChats          *bool
-	LoadMessagesBeforeReply bool
-	SystemLanguageCode      string
-	DeviceModel             string
-	SystemVersion           string
-	ApplicationVersion      string
-	TDLibOptions            map[string]interface{}
-	Logger                  *slog.Logger
-	QrMode                  bool
-	AuthorizationTimeout    time.Duration
-	LogVerbosityLevel       int32
-	LogStream               LogStream
-	AutoRetry               *AutoRetry
-
-	// Dispatcher is the dispatcher to use for this client.
-	// If nil, a new dispatcher will be created.
-	Dispatcher *Dispatcher
-}
-
-func DefaultClientConfig() *ClientOpts {
-	return &ClientOpts{
-		DatabaseDirectory:       "database",
-		FilesDirectory:          "",
-		DatabaseEncryptionKey:   "",
-		UseFileDatabase:         Bool(true),
-		UseChatInfoDatabase:     Bool(true),
-		UseMessageDatabase:      Bool(true),
-		UseSecretChats:          Bool(false),
-		LoadMessagesBeforeReply: false,
-		SystemLanguageCode:      "en",
-		DeviceModel:             "Gotdbot",
-		SystemVersion:           runtime.GOOS,
-		ApplicationVersion:      "Gotdbot " + Version,
-		Logger:                  slog.New(slog.NewTextHandler(os.Stdout, nil)),
-		QrMode:                  false,
-		AuthorizationTimeout:    60 * time.Second,
-		LogVerbosityLevel:       2,
-		AutoRetry:               &AutoRetry{},
-	}
-}
 
 type Client struct {
 	manager  *ClientManager
@@ -122,9 +66,6 @@ func NewClient(apiID int32, apiHash, tokenOrPhone string, config *ClientOpts) (*
 		}
 		if config.UseMessageDatabase == nil {
 			config.UseMessageDatabase = def.UseMessageDatabase
-		}
-		if config.UseSecretChats == nil {
-			config.UseSecretChats = def.UseSecretChats
 		}
 		if config.SystemLanguageCode == "" {
 			config.SystemLanguageCode = def.SystemLanguageCode
@@ -261,31 +202,16 @@ func (c *Client) authHandler(client *Client, update TlObject) error {
 
 	switch authState.AuthorizationState.GetType() {
 	case "authorizationStateWaitTdlibParameters":
-		if len(c.config.TDLibOptions) > 0 {
-			for k, v := range c.config.TDLibOptions {
+		if c.config.TDLibOptions != nil {
+			c.config.TDLibOptions.forEachSet(func(k string, v interface{}) {
 				if opt := toOptionValue(v); opt != nil {
 					err := c.SetOption(k, &SetOptionOpts{Value: opt})
 					if err != nil {
 						c.Logger.Error("Error setting option", "option", k, "error", err)
 					}
 				}
-			}
+			})
 		}
-
-		c.Logger.Debug("Setting TDLib parameters",
-			"use_test_dc", c.config.UseTestDC,
-			"database_directory", c.config.DatabaseDirectory,
-			"files_directory", c.config.FilesDirectory,
-			"use_file_database", *c.config.UseFileDatabase,
-			"use_chat_info_database", *c.config.UseChatInfoDatabase,
-			"use_message_database", *c.config.UseMessageDatabase,
-			"use_secret_chats", *c.config.UseSecretChats,
-			"api_id", c.apiID,
-			"system_language_code", c.config.SystemLanguageCode,
-			"device_model", c.config.DeviceModel,
-			"system_version", c.config.SystemVersion,
-			"application_version", c.config.ApplicationVersion,
-		)
 
 		err := c.SetTdlibParameters(
 			c.apiHash,
@@ -301,7 +227,7 @@ func (c *Client) authHandler(client *Client, update TlObject) error {
 				UseChatInfoDatabase: *c.config.UseChatInfoDatabase,
 				UseFileDatabase:     *c.config.UseFileDatabase,
 				UseMessageDatabase:  *c.config.UseMessageDatabase,
-				UseSecretChats:      *c.config.UseSecretChats,
+				UseSecretChats:      c.config.UseSecretChats,
 				UseTestDc:           c.config.UseTestDC,
 			},
 		)

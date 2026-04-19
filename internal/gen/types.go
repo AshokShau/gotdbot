@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"regexp"
 	"sort"
 	"strings"
 	"unicode"
@@ -75,7 +76,7 @@ func generateObjects(types []TLType, classes map[string]*TLClass) {
 	sb.WriteString(header)
 	sb.WriteString("package gotdbot\n\n")
 	sb.WriteString("import \"encoding/json\"\n")
-	sb.WriteString("import \"fmt\"\n\n")
+	sb.WriteString("import \"fmt\"\nimport \"strings\"\nimport \"strconv\"\n\n")
 
 	for _, t := range types {
 		structName := toCamelCase(t.Name)
@@ -125,6 +126,17 @@ func generateObjects(types []TLType, classes map[string]*TLClass) {
 		if structName == "Error" {
 			sb.WriteString("func (t Error) Error() string {\n")
 			sb.WriteString("\treturn fmt.Sprintf(\"TDLib error %d: %s\", t.Code, t.Message)\n")
+			sb.WriteString("}\n\n")
+			sb.WriteString("// GetRetryAfter returns the retry after time in seconds if the error is a flood wait (429).\n")
+			sb.WriteString("// It returns 0 if the error is not a flood wait or the time cannot be parsed.\n")
+			sb.WriteString("func (t Error) GetRetryAfter() int {\n")
+			sb.WriteString("\tif t.Code == 429 && strings.HasPrefix(t.Message, \"Too Many Requests: retry after \") {\n")
+			sb.WriteString("\t\tretryStr := strings.TrimPrefix(t.Message, \"Too Many Requests: retry after \")\n")
+			sb.WriteString("\t\tif retryAfter, err := strconv.Atoi(retryStr); err == nil {\n")
+			sb.WriteString("\t\t\treturn retryAfter\n")
+			sb.WriteString("\t\t}\n")
+			sb.WriteString("\t}\n")
+			sb.WriteString("\treturn 0\n")
 			sb.WriteString("}\n\n")
 		}
 
@@ -266,8 +278,6 @@ func generateFunctions(functions []TLType, classes map[string]*TLClass) {
 		fmt.Fprintf(&sb, "\treturn \"%s\"\n", t.Name)
 		sb.WriteString("}\n\n")
 
-		// Functions do not implement class interfaces usually, they return objects.
-
 		// MarshalJSON (only @type)
 		fmt.Fprintf(&sb, "func (t %s) MarshalJSON() ([]byte, error) {\n", structName)
 		fmt.Fprintf(&sb, "\ttype Alias %s\n", structName)
@@ -330,4 +340,92 @@ func toLowerCamelCase(s string) string {
 	runes := []rune(camel)
 	runes[0] = unicode.ToLower(runes[0])
 	return string(runes)
+}
+
+func generateTDLibOptions(options map[string]*OptionDef) {
+	// Filter writable options and sort them
+	var writableOptions []string
+	for name, def := range options {
+		if def.Writable {
+			writableOptions = append(writableOptions, name)
+		}
+	}
+	sort.Strings(writableOptions)
+
+	contentBytes, err := os.ReadFile("client_opts.go")
+	if err != nil {
+		log.Fatal(err)
+	}
+	content := string(contentBytes)
+
+	structRegex := regexp.MustCompile(`(?s)(// TDLibOptions.*?\n)?type TDLibOptions struct\s*\{`)
+	forEachRegex := regexp.MustCompile(`(?s)(// forEachSet.*?\n)?func\s*\(o\s*\*TDLibOptions\)\s*forEachSet\s*\(fn func\(name string, value interface\{\}\)\)\s*\{`)
+
+	var structSb, forEachSb strings.Builder
+	structSb.WriteString("// TDLibOptions contains TDLib options that can be set\ntype TDLibOptions struct {\n")
+	for _, name := range writableOptions {
+		def := options[name]
+		fieldName := toCamelCase(name)
+		var goType string
+		switch def.Type {
+		case "Bool":
+			goType = "bool"
+		case "int64":
+			goType = "int64"
+		case "string":
+			goType = "string"
+		default:
+			goType = "interface{}"
+		}
+		fmt.Fprintf(&structSb, "\t// %s\n", formatDesc(def.Description))
+		fmt.Fprintf(&structSb, "\t%s %s `json:\"%s,omitempty\"`\n", fieldName, goType, name)
+	}
+	structSb.WriteString("}")
+
+	forEachSb.WriteString("// forEachSet calls fn for each non-default TDLib option.\nfunc (o *TDLibOptions) forEachSet(fn func(name string, value interface{})) {\n\tif o == nil || fn == nil { return }\n")
+	for _, name := range writableOptions {
+		fieldName := toCamelCase(name)
+		switch options[name].Type {
+		case "Bool":
+			fmt.Fprintf(&forEachSb, "\tif o.%s { fn(\"%s\", o.%s) }\n", fieldName, name, fieldName)
+		case "int64":
+			fmt.Fprintf(&forEachSb, "\tif o.%s != 0 { fn(\"%s\", o.%s) }\n", fieldName, name, fieldName)
+		case "string":
+			fmt.Fprintf(&forEachSb, "\tif o.%s != \"\" { fn(\"%s\", o.%s) }\n", fieldName, name, fieldName)
+		default:
+			fmt.Fprintf(&forEachSb, "\tif o.%s != nil { fn(\"%s\", o.%s) }\n", fieldName, name, fieldName)
+		}
+	}
+	forEachSb.WriteString("}")
+
+	newContent := content
+	if loc := structRegex.FindStringIndex(newContent); loc != nil {
+		end := findBalancedBrace(newContent, loc[1]-1)
+		if end != -1 {
+			for end+1 < len(newContent) && (newContent[end+1] == '\n' || newContent[end+1] == '\r') {
+				end++
+			}
+			newContent = newContent[:loc[0]] + structSb.String() + "\n\n" + newContent[end+1:]
+		}
+	}
+
+	if loc := forEachRegex.FindStringIndex(newContent); loc != nil {
+		end := findBalancedBrace(newContent, loc[1]-1)
+		if end != -1 {
+			for end+1 < len(newContent) && (newContent[end+1] == '\n' || newContent[end+1] == '\r') {
+				end++
+			}
+			newContent = newContent[:loc[0]] + forEachSb.String() + "\n\n" + newContent[end+1:]
+		}
+	} else if structLoc := structRegex.FindStringIndex(newContent); structLoc != nil {
+		structEnd := findBalancedBrace(newContent, structLoc[1]-1)
+		if structEnd != -1 {
+			insertAt := structEnd + 1
+			newContent = newContent[:insertAt] + "\n\n" + forEachSb.String() + newContent[insertAt:]
+		}
+	}
+
+	if err := os.WriteFile("client_opts.go", []byte(newContent), 0644); err != nil {
+		log.Fatal(err)
+	}
 }

@@ -13,7 +13,7 @@ var (
 	tdSend           func(int32, *byte)
 	tdReceive        func(float64) uintptr
 	tdExecute        func(*byte) uintptr
-	
+
 	libLoaded bool
 )
 

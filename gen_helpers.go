@@ -231,7 +231,7 @@ func (c *Chat) DeleteMessages(client *Client, messageIds []int64, opts *DeleteMe
 	return client.DeleteMessages(c.Id, messageIds, opts)
 }
 
-// DeletePollOption Adds an option to a poll
+// DeletePollOption Deletes an option from a poll
 // It is a helper method for Client.DeletePollOption
 func (c *Chat) DeletePollOption(client *Client, messageId int64, optionId string) error {
 	return client.DeletePollOption(c.Id, messageId, optionId)
@@ -1749,7 +1749,7 @@ func (m *Message) DeleteChatReplyMarkup(client *Client) error {
 	return client.DeleteChatReplyMarkup(m.ChatId, m.Id)
 }
 
-// DeletePollOption Adds an option to a poll
+// DeletePollOption Deletes an option from a poll
 // It is a helper method for Client.DeletePollOption
 func (m *Message) DeletePollOption(client *Client, optionId string) error {
 	return client.DeletePollOption(m.ChatId, m.Id, optionId)
@@ -1789,12 +1789,6 @@ func (m *Message) EditBusinessReplyMarkup(client *Client, businessConnectionId s
 // It is a helper method for Client.EditBusinessMessageText
 func (m *Message) EditBusinessText(client *Client, businessConnectionId string, inputMessageContent InputMessageContent, opts *EditBusinessMessageTextOpts) (*BusinessMessage, error) {
 	return client.EditBusinessMessageText(businessConnectionId, m.ChatId, inputMessageContent, m.Id, opts)
-}
-
-// EditCaption Edits the message content caption. Returns the edited message after the edit is completed on the server side
-// It is a helper method for Client.EditMessageCaption
-func (m *Message) EditCaption(client *Client, opts *EditMessageCaptionOpts) (*Message, error) {
-	return client.EditMessageCaption(m.ChatId, m.Id, opts)
 }
 
 // EditChecklist Edits the message content of a checklist. Returns the edited message after the edit is completed on the server side
