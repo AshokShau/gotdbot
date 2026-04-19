@@ -76,7 +76,7 @@ func generateObjects(types []TLType, classes map[string]*TLClass) {
 	sb.WriteString(header)
 	sb.WriteString("package gotdbot\n\n")
 	sb.WriteString("import \"encoding/json\"\n")
-	sb.WriteString("import \"fmt\"\n\n")
+	sb.WriteString("import \"fmt\"\nimport \"strings\"\nimport \"strconv\"\n\n")
 
 	for _, t := range types {
 		structName := toCamelCase(t.Name)
@@ -126,6 +126,17 @@ func generateObjects(types []TLType, classes map[string]*TLClass) {
 		if structName == "Error" {
 			sb.WriteString("func (t Error) Error() string {\n")
 			sb.WriteString("\treturn fmt.Sprintf(\"TDLib error %d: %s\", t.Code, t.Message)\n")
+			sb.WriteString("}\n\n")
+			sb.WriteString("// GetRetryAfter returns the retry after time in seconds if the error is a flood wait (429).\n")
+			sb.WriteString("// It returns 0 if the error is not a flood wait or the time cannot be parsed.\n")
+			sb.WriteString("func (t Error) GetRetryAfter() int {\n")
+			sb.WriteString("\tif t.Code == 429 && strings.HasPrefix(t.Message, \"Too Many Requests: retry after \") {\n")
+			sb.WriteString("\t\tretryStr := strings.TrimPrefix(t.Message, \"Too Many Requests: retry after \")\n")
+			sb.WriteString("\t\tif retryAfter, err := strconv.Atoi(retryStr); err == nil {\n")
+			sb.WriteString("\t\t\treturn retryAfter\n")
+			sb.WriteString("\t\t}\n")
+			sb.WriteString("\t}\n")
+			sb.WriteString("\treturn 0\n")
 			sb.WriteString("}\n\n")
 		}
 
@@ -266,8 +277,6 @@ func generateFunctions(functions []TLType, classes map[string]*TLClass) {
 		fmt.Fprintf(&sb, "func (t %s) GetType() string {\n", structName)
 		fmt.Fprintf(&sb, "\treturn \"%s\"\n", t.Name)
 		sb.WriteString("}\n\n")
-
-		// Functions do not implement class interfaces usually, they return objects.
 
 		// MarshalJSON (only @type)
 		fmt.Fprintf(&sb, "func (t %s) MarshalJSON() ([]byte, error) {\n", structName)

@@ -5,6 +5,8 @@ package gotdbot
 
 import "encoding/json"
 import "fmt"
+import "strings"
+import "strconv"
 
 // AccentColor Contains information about supported accent color for user/chat name, background of empty chat photo, replies to messages and link previews
 type AccentColor struct {
@@ -13232,6 +13234,18 @@ func (t Error) GetType() string {
 
 func (t Error) Error() string {
 	return fmt.Sprintf("TDLib error %d: %s", t.Code, t.Message)
+}
+
+// GetRetryAfter returns the retry after time in seconds if the error is a flood wait (429).
+// It returns 0 if the error is not a flood wait or the time cannot be parsed.
+func (t Error) GetRetryAfter() int {
+	if t.Code == 429 && strings.HasPrefix(t.Message, "Too Many Requests: retry after ") {
+		retryStr := strings.TrimPrefix(t.Message, "Too Many Requests: retry after ")
+		if retryAfter, err := strconv.Atoi(retryStr); err == nil {
+			return retryAfter
+		}
+	}
+	return 0
 }
 
 func (t Error) MarshalJSON() ([]byte, error) {
