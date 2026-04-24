@@ -129,10 +129,10 @@ func NewClient(apiID int32, apiHash, tokenOrPhone string, config *ClientOpts) (*
 		c.Dispatcher = NewDispatcher(nil)
 	}
 
-	c.Dispatcher.AddHandlerToGroup(&internalHandler{client: c, handleFunc: c.authHandler, updateType: "updateAuthorizationState"}, -1)
-	c.Dispatcher.AddHandlerToGroup(&internalHandler{client: c, handleFunc: c.connectionStateHandler, updateType: "updateConnectionState"}, -1)
-	c.Dispatcher.AddHandlerToGroup(&internalHandler{client: c, handleFunc: c.messageSendSucceededHandler, updateType: "updateMessageSendSucceeded"}, -1)
-	c.Dispatcher.AddHandlerToGroup(&internalHandler{client: c, handleFunc: c.messageSendFailedHandler, updateType: "updateMessageSendFailed"}, -1)
+	c.Dispatcher.AddHandlerToGroup(&internalHandler{client: c, handleFunc: c.authHandler, updateType: "updateAuthorizationState"}, -999)
+	c.Dispatcher.AddHandlerToGroup(&internalHandler{client: c, handleFunc: c.messageSendSucceededHandler, updateType: "updateMessageSendSucceeded"}, -998)
+	c.Dispatcher.AddHandlerToGroup(&internalHandler{client: c, handleFunc: c.messageSendFailedHandler, updateType: "updateMessageSendFailed"}, -997)
+	c.Dispatcher.AddHandlerToGroup(&internalHandler{client: c, handleFunc: c.connectionStateHandler, updateType: "updateConnectionState"}, -2)
 	return c, nil
 }
 
