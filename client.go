@@ -45,6 +45,7 @@ type Client struct {
 	// Auth state management
 	authErrorChan chan error
 	isAuthorized  bool
+	startOnce     sync.Once
 	closeOnce     sync.Once
 
 	// Me is the bot's User info, as returned by client.GetMe.
@@ -136,17 +137,22 @@ func NewClient(apiID int32, apiHash, tokenOrPhone string, config *ClientOpts) (*
 	return c, nil
 }
 
+// initClient initializes the client's internal state and processor loop exactly once.
+func (c *Client) initClient() {
+	c.startOnce.Do(func() {
+		if c.manager == nil {
+			m := GetDefaultManager(c.config.LibraryPath)
+			m.AddClient(c)
+		}
+
+		c.wg.Add(1)
+		go c.processor()
+	})
+}
+
 // Start initializes the client and blocks until authorization is successful or fails.
 func (c *Client) Start() error {
-	if c.manager == nil {
-		m := GetDefaultManager(c.config.LibraryPath)
-		m.AddClient(c)
-	}
-
-	c.wg.Add(1)
-	go c.processor()
-
-	tdjson.Send(c.clientID, `{"@type": "getOption", "name": "version"}`)
+	c.initClient()
 
 	select {
 	case err := <-c.authErrorChan:
@@ -154,6 +160,13 @@ func (c *Client) Start() error {
 	case <-time.After(c.config.AuthorizationTimeout):
 		return fmt.Errorf("authorization timeout")
 	}
+}
+
+// SendDummyRequest sends a dummy request to TDLib to initialize its state.
+// This is useful if you need to call unauthenticated TDLib methods before calling Start().
+func (c *Client) SendDummyRequest() {
+	c.initClient()
+	tdjson.Send(c.clientID, `{"@type": "getOption", "name": "version"}`)
 }
 
 // Idle blocks the current goroutine until a SIGINT or SIGTERM signal is received.
