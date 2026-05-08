@@ -1412,6 +1412,21 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
+		h := handlers.NewUpdateMessageContainsUnreadPollVotes(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+			called <- true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(c, &gotdbot.UpdateMessageContainsUnreadPollVotes{})
+		select {
+		case <-called:
+		case <-time.After(100 * time.Millisecond):
+			t.Errorf("Handler for UpdateMessageContainsUnreadPollVotes not called")
+		}
+	}()
+
+	func() {
+		called := make(chan bool, 1)
 		h := handlers.NewUpdateMessageContent(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
 			called <- true
 			return nil
@@ -1797,6 +1812,21 @@ func TestGeneratedHandlers(t *testing.T) {
 		case <-called:
 		case <-time.After(100 * time.Millisecond):
 			t.Errorf("Handler for UpdateNewGroupCallPaidReaction not called")
+		}
+	}()
+
+	func() {
+		called := make(chan bool, 1)
+		h := handlers.NewUpdateNewGuestQuery(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+			called <- true
+			return nil
+		})
+		d.AddHandler(h)
+		d.ProcessUpdate(c, &gotdbot.UpdateNewGuestQuery{})
+		select {
+		case <-called:
+		case <-time.After(100 * time.Millisecond):
+			t.Errorf("Handler for UpdateNewGuestQuery not called")
 		}
 	}()
 

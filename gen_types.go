@@ -204,6 +204,8 @@ func (t AddedProxies) MarshalJSON() ([]byte, error) {
 
 // AddedProxy Contains information about a proxy server added to the list of proxies
 type AddedProxy struct {
+	// Comment for the proxy added by the user
+	Comment string `json:"comment"`
 	// Unique identifier of the proxy
 	Id int32 `json:"id"`
 	// True, if the proxy is enabled now
@@ -1647,6 +1649,8 @@ func (t AuthorizationStateWaitPhoneNumber) MarshalJSON() ([]byte, error) {
 
 // AuthorizationStateWaitPremiumPurchase The user must buy Telegram Premium as an in-store purchase to log in. Call checkAuthenticationPremiumPurchase and then setAuthenticationPremiumPurchaseTransaction
 type AuthorizationStateWaitPremiumPurchase struct {
+	// Duration of the Telegram Premium subscription after the purchase; may be 0 if Telegram Premium subscription will not be granted
+	PremiumDayCount int32 `json:"premium_day_count"`
 	// Identifier of the store product that must be bought
 	StoreProductId string `json:"store_product_id"`
 	// Email address to use for support if the user has issues with Telegram Premium purchase
@@ -1672,7 +1676,7 @@ func (t AuthorizationStateWaitPremiumPurchase) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// AuthorizationStateWaitRegistration The user is unregistered and need to accept terms of service and enter their first name and last name to finish registration. Call registerUser to accept the terms of service and provide the data
+// AuthorizationStateWaitRegistration The user is unregistered and needs to accept terms of service and enter their first name and last name to finish registration. Call registerUser to accept the terms of service and provide the data
 type AuthorizationStateWaitRegistration struct {
 	// Telegram terms of service
 	TermsOfService *TermsOfService `json:"terms_of_service"`
@@ -2552,6 +2556,29 @@ func (t BlockListStories) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "blockListStories",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// BotAccessSettings Describes users that have access to a bot
+type BotAccessSettings struct {
+	// Identifiers of the users who can use the bot additionally to the owner of the bot
+	AddedUserIds []int64 `json:"added_user_ids"`
+	// True, if access to the bot is restricted to its owner and selected users
+	IsRestricted bool `json:"is_restricted"`
+}
+
+func (t BotAccessSettings) GetType() string {
+	return "botAccessSettings"
+}
+
+func (t BotAccessSettings) MarshalJSON() ([]byte, error) {
+	type Alias BotAccessSettings
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "botAccessSettings",
 		Alias:   (*Alias)(&t),
 	})
 }
@@ -6013,7 +6040,7 @@ type ChatActiveStories struct {
 	List StoryList `json:"list,omitempty"`
 	// Identifier of the last read active story
 	MaxReadStoryId int32 `json:"max_read_story_id"`
-	// A parameter used to determine order of the stories in the story list; 0 if the stories doesn't need to be shown in the story list. Stories must be sorted by the pair (order, story_poster_chat_id) in descending order
+	// A parameter used to determine order of the stories in the story list; 0 if the stories don't need to be shown in the story list. Stories must be sorted by the pair (order, story_poster_chat_id) in descending order
 	Order int64 `json:"order"`
 	// Basic information about the stories; use getStory to get full information about the stories. The stories are in chronological order (i.e., in order of increasing story identifiers)
 	Stories []StoryInfo `json:"stories"`
@@ -9422,6 +9449,8 @@ type ChatPermissions struct {
 	CanInviteUsers bool `json:"can_invite_users"`
 	// True, if the user can pin messages
 	CanPinMessages bool `json:"can_pin_messages"`
+	// True, if the user can react to messages
+	CanReactToMessages bool `json:"can_react_to_messages"`
 	// True, if the user can send music files
 	CanSendAudios bool `json:"can_send_audios"`
 	// True, if the user can send text messages, contacts, giveaways, giveaway winners, invoices, locations, and venues
@@ -12324,7 +12353,7 @@ func (t DiffEntityTypeReplace) MarshalJSON() ([]byte, error) {
 
 // DiffText A text with some changes highlighted
 type DiffText struct {
-	// Entities describing changes in the text. Entities doesn't mutually intersect with each other
+	// Entities describing changes in the text. Entities don't mutually intersect with each other
 	Entities []DiffEntity `json:"entities"`
 	// The text
 	Text string `json:"text"`
@@ -13659,7 +13688,7 @@ func (t FileTypeSecure) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// FileTypeSelfDestructingLivePhotoVideo The file is a seld-destructing video for a live photo in a private chat
+// FileTypeSelfDestructingLivePhotoVideo The file is a self-destructing video for a live photo in a private chat
 type FileTypeSelfDestructingLivePhotoVideo struct {
 }
 
@@ -16801,6 +16830,27 @@ func (t InlineKeyboardButtonTypeWebApp) MarshalJSON() ([]byte, error) {
 	})
 }
 
+// InlineMessageId Contains identifier of a sent guest message
+type InlineMessageId struct {
+	// Unique identifier for the message
+	Id string `json:"id"`
+}
+
+func (t InlineMessageId) GetType() string {
+	return "inlineMessageId"
+}
+
+func (t InlineMessageId) MarshalJSON() ([]byte, error) {
+	type Alias InlineMessageId
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "inlineMessageId",
+		Alias:   (*Alias)(&t),
+	})
+}
+
 // InlineQueryResultAnimation Represents an animation file
 type InlineQueryResultAnimation struct {
 	// Animation file
@@ -19438,6 +19488,8 @@ type InputMessagePoll struct {
 	AllowsRevoting bool `json:"allows_revoting"`
 	// Point in time (Unix timestamp) when the poll will automatically be closed; must be 0-getOption("poll_open_period_max") seconds in the future; pass 0 if not specified
 	CloseDate int32 `json:"close_date"`
+	// The list of two-letter ISO 3166-1 alpha-2 codes of countries, users from which will be able to vote; for channel chats only. If empty, then all users can participate in the poll.
+	CountryCodes []string `json:"country_codes"`
 	// Poll description; pass null to use an empty description; 0-getOption("message_caption_length_max") characters
 	Description *FormattedText `json:"description,omitempty"`
 	// True, if the poll results will appear only after the poll closes
@@ -19446,9 +19498,13 @@ type InputMessagePoll struct {
 	IsAnonymous bool `json:"is_anonymous"`
 	// True, if the poll needs to be sent already closed; for bots only
 	IsClosed bool `json:"is_closed"`
+	// Media attached to the poll; pass null if none. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, non-live inputMessageLocation,
+	Media InputMessageContent `json:"media,omitempty"`
+	// True, if only the users that are members of the chat for more than a day will be able to vote; for channel chats only
+	MembersOnly bool `json:"members_only"`
 	// Amount of time the poll will be active after creation, in seconds; 0-getOption("poll_open_period_max"); pass 0 if not specified
 	OpenPeriod int32 `json:"open_period"`
-	// List of poll answer options; 2-getOption("poll_answer_count_max") options
+	// List of poll answer options; 1-getOption("poll_answer_count_max") options
 	Options []InputPollOption `json:"options"`
 	// Poll question; 1-255 characters (up to 300 characters for bots). Only custom emoji entities are allowed to be added and only by Premium users
 	Question *FormattedText `json:"question"`
@@ -19478,7 +19534,8 @@ func (t InputMessagePoll) MarshalJSON() ([]byte, error) {
 func (t *InputMessagePoll) UnmarshalJSON(data []byte) error {
 	type Alias InputMessagePoll
 	aux := &struct {
-		Type json.RawMessage `json:"type"`
+		Media json.RawMessage `json:"media"`
+		Type  json.RawMessage `json:"type"`
 		*Alias
 	}{
 		Alias: (*Alias)(t),
@@ -19488,6 +19545,13 @@ func (t *InputMessagePoll) UnmarshalJSON(data []byte) error {
 		return err
 	}
 
+	if aux.Media != nil {
+		v, err := UnmarshalInputMessageContent(aux.Media)
+		if err != nil {
+			return err
+		}
+		t.Media = v
+	}
 	if aux.Type != nil {
 		v, err := UnmarshalInputPollType(aux.Type)
 		if err != nil {
@@ -20735,6 +20799,8 @@ func (t *InputPersonalDocument) UnmarshalJSON(data []byte) error {
 
 // InputPollOption Describes one answer option of a poll to be created
 type InputPollOption struct {
+	// Option media; pass null if none; ignored in addPollOption. Must be one of the following types:
+	Media InputMessageContent `json:"media,omitempty"`
 	// Option text; 1-100 characters. Only custom emoji entities are allowed to be added and only by Premium users
 	Text *FormattedText `json:"text"`
 }
@@ -20754,12 +20820,37 @@ func (t InputPollOption) MarshalJSON() ([]byte, error) {
 	})
 }
 
+func (t *InputPollOption) UnmarshalJSON(data []byte) error {
+	type Alias InputPollOption
+	aux := &struct {
+		Media json.RawMessage `json:"media"`
+		*Alias
+	}{
+		Alias: (*Alias)(t),
+	}
+
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+
+	if aux.Media != nil {
+		v, err := UnmarshalInputMessageContent(aux.Media)
+		if err != nil {
+			return err
+		}
+		t.Media = v
+	}
+	return nil
+}
+
 // InputPollTypeQuiz A poll in quiz mode, which has predefined correct answers
 type InputPollTypeQuiz struct {
 	// Increasing list of 0-based identifiers of the correct answer options; must be non-empty
 	CorrectOptionIds []int32 `json:"correct_option_ids"`
 	// Text that is shown when the user chooses an incorrect answer or taps on the lamp icon; 0-200 characters with at most 2 line feeds
 	Explanation *FormattedText `json:"explanation"`
+	// Media that is shown when the user chooses an incorrect answer or taps on the lamp icon; pass null if none. Must be one of the following types:
+	ExplanationMedia InputMessageContent `json:"explanation_media,omitempty"`
 }
 
 func (t InputPollTypeQuiz) GetType() string {
@@ -20777,6 +20868,29 @@ func (t InputPollTypeQuiz) MarshalJSON() ([]byte, error) {
 		TypeStr: "inputPollTypeQuiz",
 		Alias:   (*Alias)(&t),
 	})
+}
+
+func (t *InputPollTypeQuiz) UnmarshalJSON(data []byte) error {
+	type Alias InputPollTypeQuiz
+	aux := &struct {
+		ExplanationMedia json.RawMessage `json:"explanation_media"`
+		*Alias
+	}{
+		Alias: (*Alias)(t),
+	}
+
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+
+	if aux.ExplanationMedia != nil {
+		v, err := UnmarshalInputMessageContent(aux.ExplanationMedia)
+		if err != nil {
+			return err
+		}
+		t.ExplanationMedia = v
+	}
+	return nil
 }
 
 // InputPollTypeRegular A regular poll
@@ -22398,7 +22512,7 @@ type InternalLinkTypeRequestManagedBot struct {
 	ManagerBotUsername string `json:"manager_bot_username"`
 	// Suggested name for the bot; may be empty if not specified
 	SuggestedBotName string `json:"suggested_bot_name,omitempty"`
-	// Suggested username for the bot
+	// Suggested username for the bot; always ends with "bot" case-insensitive
 	SuggestedBotUsername string `json:"suggested_bot_username"`
 }
 
@@ -22624,6 +22738,29 @@ func (t InternalLinkTypeStoryAlbum) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "internalLinkTypeStoryAlbum",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// InternalLinkTypeTextCompositionStyle The link is a link to a text composition style. Call searchTextCompositionStyle with the given style name to get information about the style.
+type InternalLinkTypeTextCompositionStyle struct {
+	// Name of the style
+	StyleName string `json:"style_name"`
+}
+
+func (t InternalLinkTypeTextCompositionStyle) GetType() string {
+	return "internalLinkTypeTextCompositionStyle"
+}
+
+func (t InternalLinkTypeTextCompositionStyle) internalLinkType() {}
+
+func (t InternalLinkTypeTextCompositionStyle) MarshalJSON() ([]byte, error) {
+	type Alias InternalLinkTypeTextCompositionStyle
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "internalLinkTypeTextCompositionStyle",
 		Alias:   (*Alias)(&t),
 	})
 }
@@ -24729,6 +24866,29 @@ func (t LinkPreviewTypeSupergroupBoost) MarshalJSON() ([]byte, error) {
 	})
 }
 
+// LinkPreviewTypeTextCompositionStyle The link is a link to a text composition style
+type LinkPreviewTypeTextCompositionStyle struct {
+	// Identifier of the custom emoji corresponding to the style; 0 if none
+	CustomEmojiId int64 `json:"custom_emoji_id,string"`
+}
+
+func (t LinkPreviewTypeTextCompositionStyle) GetType() string {
+	return "linkPreviewTypeTextCompositionStyle"
+}
+
+func (t LinkPreviewTypeTextCompositionStyle) linkPreviewType() {}
+
+func (t LinkPreviewTypeTextCompositionStyle) MarshalJSON() ([]byte, error) {
+	type Alias LinkPreviewTypeTextCompositionStyle
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "linkPreviewTypeTextCompositionStyle",
+		Alias:   (*Alias)(&t),
+	})
+}
+
 // LinkPreviewTypeTheme The link is a link to a cloud theme. TDLib has no theme support yet
 type LinkPreviewTypeTheme struct {
 	// The list of files with theme description
@@ -25434,6 +25594,8 @@ type Message struct {
 	ChatId int64 `json:"chat_id"`
 	// True, if the message contains an unread mention for the current user
 	ContainsUnreadMention bool `json:"contains_unread_mention"`
+	// True, if the message is a poll message with unread votes
+	ContainsUnreadPollVotes bool `json:"contains_unread_poll_votes"`
 	// Content of the message
 	Content MessageContent `json:"content"`
 	// Point in time (Unix timestamp) when the message was sent; 0 for scheduled messages
@@ -25446,6 +25608,8 @@ type Message struct {
 	FactCheck *FactCheck `json:"fact_check,omitempty"`
 	// Information about the initial message sender; may be null if none or unknown
 	ForwardInfo *MessageForwardInfo `json:"forward_info,omitempty"`
+	// The identifier of the user or chat which used a guest bot to send the message; may be null if none
+	GuestBotCallerId MessageSender `json:"guest_bot_caller_id,omitempty"`
 	// True, if media timestamp entities refers to a media in this message as opposed to a media in the replied message
 	HasTimestampedMedia bool `json:"has_timestamped_media"`
 	// Message identifier; unique for the chat to which the message belongs
@@ -25523,6 +25687,7 @@ func (t *Message) UnmarshalJSON(data []byte) error {
 	type Alias Message
 	aux := &struct {
 		Content          json.RawMessage `json:"content"`
+		GuestBotCallerId json.RawMessage `json:"guest_bot_caller_id"`
 		ReplyMarkup      json.RawMessage `json:"reply_markup"`
 		ReplyTo          json.RawMessage `json:"reply_to"`
 		SchedulingState  json.RawMessage `json:"scheduling_state"`
@@ -25545,6 +25710,13 @@ func (t *Message) UnmarshalJSON(data []byte) error {
 			return err
 		}
 		t.Content = v
+	}
+	if aux.GuestBotCallerId != nil {
+		v, err := UnmarshalMessageSender(aux.GuestBotCallerId)
+		if err != nil {
+			return err
+		}
+		t.GuestBotCallerId = v
 	}
 	if aux.ReplyMarkup != nil {
 		v, err := UnmarshalReplyMarkup(aux.ReplyMarkup)
@@ -28252,8 +28424,8 @@ type MessagePoll struct {
 	CanAddOption bool `json:"can_add_option"`
 	// Description of the poll
 	Description *FormattedText `json:"description"`
-	// Media attached to the poll. Currently, can be only of the types messageAnimation, messageAudio, messageDocument, messageLocation, messagePhoto, messageVenue, or messageVideo without caption
-	Media MessageContent `json:"media"`
+	// Media attached to the poll; may be null if none. If present, currently, can be only of the types messageAnimation, messageAudio, messageDocument, messageLocation, messagePhoto, messageVenue, or messageVideo without caption
+	Media MessageContent `json:"media,omitempty"`
 	// Information about the poll
 	Poll *Poll `json:"poll"`
 }
@@ -28502,6 +28674,8 @@ type MessageProperties struct {
 	CanBeSaved bool `json:"can_be_saved"`
 	// True, if the message can be shared in a story using inputStoryAreaTypeMessage
 	CanBeSharedInStory bool `json:"can_be_shared_in_story"`
+	// True, if the user can delete reactions of other users in the message using the method deleteMessageReactionsFromSender
+	CanDeleteReactions bool `json:"can_delete_reactions"`
 	// True, if the message can be edited using the method editMessageMedia
 	CanEditMedia bool `json:"can_edit_media"`
 	// True, if scheduling state of the message can be edited
@@ -28518,11 +28692,13 @@ type MessageProperties struct {
 	CanGetMediaTimestampLinks bool `json:"can_get_media_timestamp_links"`
 	// True, if information about the message thread is available through getMessageThread and getMessageThreadHistory
 	CanGetMessageThread bool `json:"can_get_message_thread"`
+	// True, if the message is a poll and vote statistics are available through getPollVoteStatistics
+	CanGetPollVoteStatistics bool `json:"can_get_poll_vote_statistics"`
 	// True, if read date of the message can be received through getMessageReadDate
 	CanGetReadDate bool `json:"can_get_read_date"`
 	// True, if message statistics are available through getMessageStatistics and message forwards can be received using getMessagePublicForwards
 	CanGetStatistics bool `json:"can_get_statistics"`
-	// True, if advertisements for video of the message can be received though getVideoMessageAdvertisements
+	// True, if advertisements for video of the message can be received through getVideoMessageAdvertisements
 	CanGetVideoAdvertisements bool `json:"can_get_video_advertisements"`
 	// True, if chat members already viewed the message can be received through getMessageViewers
 	CanGetViewers bool `json:"can_get_viewers"`
@@ -35227,16 +35403,20 @@ type Poll struct {
 	AllowsMultipleAnswers bool `json:"allows_multiple_answers"`
 	// True, if the poll can be answered multiple times
 	AllowsRevoting bool `json:"allows_revoting"`
-	// True, if the current user can get voters in the poll
+	// True, if the current user can get voters in the poll using getPollVoters
 	CanGetVoters bool `json:"can_get_voters"`
 	// Point in time (Unix timestamp) when the poll will automatically be closed
 	CloseDate int32 `json:"close_date"`
+	// The list of two-letter ISO 3166-1 alpha-2 codes of countries, users from which will be able to vote. If empty, then all users can participate in the poll
+	CountryCodes []string `json:"country_codes"`
 	// Unique poll identifier
 	Id int64 `json:"id,string"`
 	// True, if the poll is anonymous
 	IsAnonymous bool `json:"is_anonymous"`
 	// True, if the poll is closed
 	IsClosed bool `json:"is_closed"`
+	// True, if only the users that are members of the chat for more than a day will be able to vote
+	MembersOnly bool `json:"members_only"`
 	// Amount of time the poll will be active after creation, in seconds
 	OpenPeriod int32 `json:"open_period"`
 	// The list of 0-based poll identifiers in which the options of the poll must be shown; empty if the order of options must not be changed
@@ -35251,6 +35431,8 @@ type Poll struct {
 	TotalVoterCount int32 `json:"total_voter_count"`
 	// Type of the poll
 	Type PollType `json:"type"`
+	// The reason describing, why the current user can't vote in the poll; may be null if the user can vote in the poll
+	VoteRestrictionReason PollVoteRestrictionReason `json:"vote_restriction_reason,omitempty"`
 }
 
 func (t Poll) GetType() string {
@@ -35271,8 +35453,9 @@ func (t Poll) MarshalJSON() ([]byte, error) {
 func (t *Poll) UnmarshalJSON(data []byte) error {
 	type Alias Poll
 	aux := &struct {
-		RecentVoterIds []json.RawMessage `json:"recent_voter_ids"`
-		Type           json.RawMessage   `json:"type"`
+		RecentVoterIds        []json.RawMessage `json:"recent_voter_ids"`
+		Type                  json.RawMessage   `json:"type"`
+		VoteRestrictionReason json.RawMessage   `json:"vote_restriction_reason"`
 		*Alias
 	}{
 		Alias: (*Alias)(t),
@@ -35299,6 +35482,13 @@ func (t *Poll) UnmarshalJSON(data []byte) error {
 		}
 		t.Type = v
 	}
+	if aux.VoteRestrictionReason != nil {
+		v, err := UnmarshalPollVoteRestrictionReason(aux.VoteRestrictionReason)
+		if err != nil {
+			return err
+		}
+		t.VoteRestrictionReason = v
+	}
 	return nil
 }
 
@@ -35308,14 +35498,14 @@ type PollOption struct {
 	AdditionDate int32 `json:"addition_date"`
 	// Identifier of the user or chat who added the option; may be null if the option existed from creation of the poll
 	Author MessageSender `json:"author,omitempty"`
-	// Unique identifier of the option in the poll
-	Id string `json:"id"`
+	// Unique identifier of the option in the poll; may be empty if yet unassigned
+	Id string `json:"id,omitempty"`
 	// True, if the option is being chosen by a pending setPollAnswer request
 	IsBeingChosen bool `json:"is_being_chosen"`
 	// True, if the option was chosen by the user
 	IsChosen bool `json:"is_chosen"`
-	// Option media. Currently, can be only of the types messageAnimation, messageLocation, messagePhoto, messageSticker, messageVenue, or messageVideo without caption
-	Media MessageContent `json:"media"`
+	// Option media; may be null if none. If present, currently, can be only of the types messageAnimation, messageLocation, messagePhoto, messageSticker, messageVenue, or messageVideo without caption
+	Media MessageContent `json:"media,omitempty"`
 	// Identifiers of recent voters for the option, if the poll is non-anonymous and poll results are available
 	RecentVoterIds []MessageSender `json:"recent_voter_ids"`
 	// Option text; 1-100 characters; may contain only custom emoji entities
@@ -35527,6 +35717,136 @@ func (t *PollVoter) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
+// PollVoteRestrictionReasonClosed The poll is closed
+type PollVoteRestrictionReasonClosed struct {
+}
+
+func (t PollVoteRestrictionReasonClosed) GetType() string {
+	return "pollVoteRestrictionReasonClosed"
+}
+
+func (t PollVoteRestrictionReasonClosed) pollVoteRestrictionReason() {}
+
+func (t PollVoteRestrictionReasonClosed) MarshalJSON() ([]byte, error) {
+	type Alias PollVoteRestrictionReasonClosed
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "pollVoteRestrictionReasonClosed",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// PollVoteRestrictionReasonCountryRestricted The user is from a country, users from which aren't allowed to vote
+type PollVoteRestrictionReasonCountryRestricted struct {
+	// Two-letter ISO 3166-1 alpha-2 code of the current user's country
+	CountryCode string `json:"country_code"`
+}
+
+func (t PollVoteRestrictionReasonCountryRestricted) GetType() string {
+	return "pollVoteRestrictionReasonCountryRestricted"
+}
+
+func (t PollVoteRestrictionReasonCountryRestricted) pollVoteRestrictionReason() {}
+
+func (t PollVoteRestrictionReasonCountryRestricted) MarshalJSON() ([]byte, error) {
+	type Alias PollVoteRestrictionReasonCountryRestricted
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "pollVoteRestrictionReasonCountryRestricted",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// PollVoteRestrictionReasonMembershipRequired The user must be a member of the chat for at least a day to vote
+type PollVoteRestrictionReasonMembershipRequired struct {
+	// Identifier of the chat which must be joined for at least a day before the user can vote
+	ChatId int64 `json:"chat_id"`
+}
+
+func (t PollVoteRestrictionReasonMembershipRequired) GetType() string {
+	return "pollVoteRestrictionReasonMembershipRequired"
+}
+
+func (t PollVoteRestrictionReasonMembershipRequired) pollVoteRestrictionReason() {}
+
+func (t PollVoteRestrictionReasonMembershipRequired) MarshalJSON() ([]byte, error) {
+	type Alias PollVoteRestrictionReasonMembershipRequired
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "pollVoteRestrictionReasonMembershipRequired",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// PollVoteRestrictionReasonOther The poll can't be voted by the user due to some other reason
+type PollVoteRestrictionReasonOther struct {
+}
+
+func (t PollVoteRestrictionReasonOther) GetType() string {
+	return "pollVoteRestrictionReasonOther"
+}
+
+func (t PollVoteRestrictionReasonOther) pollVoteRestrictionReason() {}
+
+func (t PollVoteRestrictionReasonOther) MarshalJSON() ([]byte, error) {
+	type Alias PollVoteRestrictionReasonOther
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "pollVoteRestrictionReasonOther",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// PollVoteRestrictionReasonScheduled The poll is from a scheduled message
+type PollVoteRestrictionReasonScheduled struct {
+}
+
+func (t PollVoteRestrictionReasonScheduled) GetType() string {
+	return "pollVoteRestrictionReasonScheduled"
+}
+
+func (t PollVoteRestrictionReasonScheduled) pollVoteRestrictionReason() {}
+
+func (t PollVoteRestrictionReasonScheduled) MarshalJSON() ([]byte, error) {
+	type Alias PollVoteRestrictionReasonScheduled
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "pollVoteRestrictionReasonScheduled",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// PollVoteRestrictionReasonYetUnsent The poll isn't sent yet
+type PollVoteRestrictionReasonYetUnsent struct {
+}
+
+func (t PollVoteRestrictionReasonYetUnsent) GetType() string {
+	return "pollVoteRestrictionReasonYetUnsent"
+}
+
+func (t PollVoteRestrictionReasonYetUnsent) pollVoteRestrictionReason() {}
+
+func (t PollVoteRestrictionReasonYetUnsent) MarshalJSON() ([]byte, error) {
+	type Alias PollVoteRestrictionReasonYetUnsent
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "pollVoteRestrictionReasonYetUnsent",
+		Alias:   (*Alias)(&t),
+	})
+}
+
 // PollVoters Represents a list of poll voters
 type PollVoters struct {
 	// Approximate total number of poll voters found
@@ -35548,6 +35868,50 @@ func (t PollVoters) MarshalJSON() ([]byte, error) {
 		TypeStr: "pollVoters",
 		Alias:   (*Alias)(&t),
 	})
+}
+
+// PollVoteStatistics A detailed statistics about poll votes
+type PollVoteStatistics struct {
+	// A graph containing distribution of votes in the poll
+	VoteGraph StatisticalGraph `json:"vote_graph"`
+}
+
+func (t PollVoteStatistics) GetType() string {
+	return "pollVoteStatistics"
+}
+
+func (t PollVoteStatistics) MarshalJSON() ([]byte, error) {
+	type Alias PollVoteStatistics
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "pollVoteStatistics",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+func (t *PollVoteStatistics) UnmarshalJSON(data []byte) error {
+	type Alias PollVoteStatistics
+	aux := &struct {
+		VoteGraph json.RawMessage `json:"vote_graph"`
+		*Alias
+	}{
+		Alias: (*Alias)(t),
+	}
+
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+
+	if aux.VoteGraph != nil {
+		v, err := UnmarshalStatisticalGraph(aux.VoteGraph)
+		if err != nil {
+			return err
+		}
+		t.VoteGraph = v
+	}
+	return nil
 }
 
 // PremiumFeatureAccentColor The ability to choose accent color for replies and user profile
@@ -36598,6 +36962,27 @@ func (t PremiumLimitTypeCreatedPublicChatCount) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "premiumLimitTypeCreatedPublicChatCount",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// PremiumLimitTypeCustomTextCompositionStyleCount The maximum number of added text composition styles
+type PremiumLimitTypeCustomTextCompositionStyleCount struct {
+}
+
+func (t PremiumLimitTypeCustomTextCompositionStyleCount) GetType() string {
+	return "premiumLimitTypeCustomTextCompositionStyleCount"
+}
+
+func (t PremiumLimitTypeCustomTextCompositionStyleCount) premiumLimitType() {}
+
+func (t PremiumLimitTypeCustomTextCompositionStyleCount) MarshalJSON() ([]byte, error) {
+	type Alias PremiumLimitTypeCustomTextCompositionStyleCount
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "premiumLimitTypeCustomTextCompositionStyleCount",
 		Alias:   (*Alias)(&t),
 	})
 }
@@ -39340,7 +39725,7 @@ type ReactionNotificationSettings struct {
 	PollVoteSource ReactionNotificationSource `json:"poll_vote_source"`
 	// True, if reaction sender and emoji must be displayed in notifications
 	ShowPreview bool `json:"show_preview"`
-	// Identifier of the notification sound to be played; 0 if sound is disabled
+	// Identifier of the notification sound to be played; 0 if sound is disabled; pass -1 to use the app-dependent default sound
 	SoundId int64 `json:"sound_id,string"`
 	// Source of story reactions for which notifications are shown
 	StoryReactionSource ReactionNotificationSource `json:"story_reaction_source"`
@@ -39568,6 +39953,27 @@ func (t ReactionUnavailabilityReasonGuest) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "reactionUnavailabilityReasonGuest",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// ReactionUnavailabilityReasonRestricted The user is restricted in the chat
+type ReactionUnavailabilityReasonRestricted struct {
+}
+
+func (t ReactionUnavailabilityReasonRestricted) GetType() string {
+	return "reactionUnavailabilityReasonRestricted"
+}
+
+func (t ReactionUnavailabilityReasonRestricted) reactionUnavailabilityReason() {}
+
+func (t ReactionUnavailabilityReasonRestricted) MarshalJSON() ([]byte, error) {
+	type Alias ReactionUnavailabilityReasonRestricted
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "reactionUnavailabilityReasonRestricted",
 		Alias:   (*Alias)(&t),
 	})
 }
@@ -41629,9 +42035,9 @@ type ScopeNotificationSettings struct {
 	ShowPreview bool `json:"show_preview"`
 	// True, if the chat that posted a story must be displayed in notifications
 	ShowStoryPoster bool `json:"show_story_poster"`
-	// Identifier of the notification sound to be played; 0 if sound is disabled
+	// Identifier of the notification sound to be played; 0 if sound is disabled; pass -1 to use the app-dependent default sound
 	SoundId int64 `json:"sound_id,string"`
-	// Identifier of the notification sound to be played for stories; 0 if sound is disabled
+	// Identifier of the notification sound to be played for stories; 0 if sound is disabled; pass -1 to use the app-dependent default sound
 	StorySoundId int64 `json:"story_sound_id,string"`
 	// If true, story notifications are received only for the first 5 chats from topChatCategoryUsers regardless of the value of mute_stories
 	UseDefaultMuteStories bool `json:"use_default_mute_stories"`
@@ -42294,27 +42700,6 @@ func (t SentGiftUpgraded) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "sentGiftUpgraded",
-		Alias:   (*Alias)(&t),
-	})
-}
-
-// SentWebAppMessage Information about the message sent by answerWebAppQuery
-type SentWebAppMessage struct {
-	// Identifier of the sent inline message, if known
-	InlineMessageId string `json:"inline_message_id"`
-}
-
-func (t SentWebAppMessage) GetType() string {
-	return "sentWebAppMessage"
-}
-
-func (t SentWebAppMessage) MarshalJSON() ([]byte, error) {
-	type Alias SentWebAppMessage
-	return json.Marshal(&struct {
-		TypeStr string `json:"@type"`
-		*Alias
-	}{
-		TypeStr: "sentWebAppMessage",
 		Alias:   (*Alias)(&t),
 	})
 }
@@ -49253,10 +49638,22 @@ func (t Text) MarshalJSON() ([]byte, error) {
 
 // TextCompositionStyle Describes a style that can be used to compose a text
 type TextCompositionStyle struct {
-	// Identifier of the custom emoji corresponding to the style
+	// User identifier of the creator of the style; 0 if none of unknown
+	CreatorUserId int64 `json:"creator_user_id"`
+	// Identifier of the custom emoji corresponding to the style; 0 if none
 	CustomEmojiId int64 `json:"custom_emoji_id,string"`
+	// Example of the style usage in English; may be null if unknown
+	EnglishExample *TextCompositionStyleExample `json:"english_example,omitempty"`
+	// Number of users that installed the style; for created custom styles only; 0 if unknown
+	InstallCount int32 `json:"install_count"`
+	// True, if the user is creator of the style
+	IsCreator bool `json:"is_creator"`
+	// True, if the style is created by a user
+	IsCustom bool `json:"is_custom"`
 	// Name of the style
 	Name string `json:"name"`
+	// Prompt of the style; for created custom styles only
+	Prompt string `json:"prompt"`
 	// Title of the style in the user application's language
 	Title string `json:"title"`
 }
@@ -49272,6 +49669,29 @@ func (t TextCompositionStyle) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "textCompositionStyle",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// TextCompositionStyleExample Contains an example of text composition style usage
+type TextCompositionStyleExample struct {
+	// The text after the style was applied to the source text
+	ResultText *FormattedText `json:"result_text"`
+	// Source text
+	SourceText *FormattedText `json:"source_text"`
+}
+
+func (t TextCompositionStyleExample) GetType() string {
+	return "textCompositionStyleExample"
+}
+
+func (t TextCompositionStyleExample) MarshalJSON() ([]byte, error) {
+	type Alias TextCompositionStyleExample
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "textCompositionStyleExample",
 		Alias:   (*Alias)(&t),
 	})
 }
@@ -50936,6 +51356,27 @@ func (t TopChatCategoryGroups) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "topChatCategoryGroups",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// TopChatCategoryGuestBots A category containing frequently used chats with bots, which were used as guest bots
+type TopChatCategoryGuestBots struct {
+}
+
+func (t TopChatCategoryGuestBots) GetType() string {
+	return "topChatCategoryGuestBots"
+}
+
+func (t TopChatCategoryGuestBots) topChatCategory() {}
+
+func (t TopChatCategoryGuestBots) MarshalJSON() ([]byte, error) {
+	type Alias TopChatCategoryGuestBots
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "topChatCategoryGuestBots",
 		Alias:   (*Alias)(&t),
 	})
 }
@@ -53846,6 +54287,35 @@ func (t UpdateManagedBot) MarshalJSON() ([]byte, error) {
 	})
 }
 
+// UpdateMessageContainsUnreadPollVotes Unread votes were added or removed from a poll message
+type UpdateMessageContainsUnreadPollVotes struct {
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// True, if the message is a poll message with unread votes
+	ContainsUnreadPollVotes bool `json:"contains_unread_poll_votes"`
+	// Message identifier
+	MessageId int64 `json:"message_id"`
+	// The new number of messages with unread poll votes in the chat
+	UnreadPollVoteCount int32 `json:"unread_poll_vote_count"`
+}
+
+func (t UpdateMessageContainsUnreadPollVotes) GetType() string {
+	return "updateMessageContainsUnreadPollVotes"
+}
+
+func (t UpdateMessageContainsUnreadPollVotes) update() {}
+
+func (t UpdateMessageContainsUnreadPollVotes) MarshalJSON() ([]byte, error) {
+	type Alias UpdateMessageContainsUnreadPollVotes
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "updateMessageContainsUnreadPollVotes",
+		Alias:   (*Alias)(&t),
+	})
+}
+
 // UpdateMessageContent The message content has changed
 type UpdateMessageContent struct {
 	// Chat identifier
@@ -54323,7 +54793,7 @@ type UpdateMessageUnreadReactions struct {
 	ChatId int64 `json:"chat_id"`
 	// Message identifier
 	MessageId int64 `json:"message_id"`
-	// The new number of messages with unread reactions left in the chat
+	// The new number of messages with unread reactions in the chat
 	UnreadReactionCount int32 `json:"unread_reaction_count"`
 	// The new list of unread reactions
 	UnreadReactions []UnreadReaction `json:"unread_reactions"`
@@ -54714,6 +55184,33 @@ func (t *UpdateNewGroupCallPaidReaction) UnmarshalJSON(data []byte) error {
 		t.SenderId = v
 	}
 	return nil
+}
+
+// UpdateNewGuestQuery A new incoming guest query; for bots only
+type UpdateNewGuestQuery struct {
+	// Unique query identifier
+	Id int64 `json:"id,string"`
+	// The message with the query
+	Message *Message `json:"message"`
+	// The list of reference messages
+	ReferenceMessages []Message `json:"reference_messages"`
+}
+
+func (t UpdateNewGuestQuery) GetType() string {
+	return "updateNewGuestQuery"
+}
+
+func (t UpdateNewGuestQuery) update() {}
+
+func (t UpdateNewGuestQuery) MarshalJSON() ([]byte, error) {
+	type Alias UpdateNewGuestQuery
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "updateNewGuestQuery",
+		Alias:   (*Alias)(&t),
+	})
 }
 
 // UpdateNewInlineCallbackQuery A new incoming callback query from a message sent via a bot; for bots only
@@ -56882,7 +57379,7 @@ func (t UpgradedGiftAttributeRarityLegendary) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// UpgradedGiftAttributeRarityPerMille The rarity is represented as the numeric frequence of the model
+// UpgradedGiftAttributeRarityPerMille The rarity is represented as the numeric frequency of the model
 type UpgradedGiftAttributeRarityPerMille struct {
 	// The number of upgraded gifts that receive this attribute for each 1000 gifts upgraded; if 0, then it can be shown as "<0.1%"
 	PerMille int32 `json:"per_mille"`
@@ -58694,7 +59191,7 @@ type UserTypeBot struct {
 	CanBeAddedToAttachmentMenu bool `json:"can_be_added_to_attachment_menu"`
 	// True, if the bot is owned by the current user and can be edited using the methods toggleBotUsernameIsActive, reorderBotActiveUsernames, setBotProfilePhoto, setBotName, setBotInfoDescription, and setBotInfoShortDescription
 	CanBeEdited bool `json:"can_be_edited"`
-	// True, if the bot supports connection to Telegram Business accounts
+	// True, if the bot supports connection to user accounts for chat automation
 	CanConnectToBusiness bool `json:"can_connect_to_business"`
 	// True, if the bot can be invited to basic group and supergroup chats
 	CanJoinGroups bool `json:"can_join_groups"`
@@ -58712,6 +59209,8 @@ type UserTypeBot struct {
 	IsInline bool `json:"is_inline"`
 	// True, if the location of the user is expected to be sent with every inline query to this bot
 	NeedLocation bool `json:"need_location"`
+	// True, if the bot can be queried by username from any non-secret chat
+	SupportsGuestQueries bool `json:"supports_guest_queries"`
 }
 
 func (t UserTypeBot) GetType() string {
@@ -59012,7 +59511,7 @@ func (t *VideoChat) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-// VideoMessageAdvertisement Describes an advertisent to be shown while a video from a message is watched
+// VideoMessageAdvertisement Describes an advertisement to be shown while a video from a message is watched
 type VideoMessageAdvertisement struct {
 	// If non-empty, additional information about the sponsored message to be shown along with the message
 	AdditionalInfo string `json:"additional_info,omitempty"`
@@ -59987,6 +60486,12 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "blockListStories":
 		var obj BlockListStories
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "botAccessSettings":
+		var obj BotAccessSettings
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, 0, "", err
 		}
@@ -63039,6 +63544,12 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 			return nil, 0, "", err
 		}
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "inlineMessageId":
+		var obj InlineMessageId
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inlineQueryResultAnimation":
 		var obj InlineQueryResultAnimation
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -64095,6 +64606,12 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 			return nil, 0, "", err
 		}
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "internalLinkTypeTextCompositionStyle":
+		var obj InternalLinkTypeTextCompositionStyle
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypeTheme":
 		var obj InternalLinkTypeTheme
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -64535,6 +65052,12 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "linkPreviewTypeSupergroupBoost":
 		var obj LinkPreviewTypeSupergroupBoost
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "linkPreviewTypeTextCompositionStyle":
+		var obj LinkPreviewTypeTextCompositionStyle
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, 0, "", err
 		}
@@ -66597,8 +67120,50 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 			return nil, 0, "", err
 		}
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "pollVoteRestrictionReasonClosed":
+		var obj PollVoteRestrictionReasonClosed
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "pollVoteRestrictionReasonCountryRestricted":
+		var obj PollVoteRestrictionReasonCountryRestricted
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "pollVoteRestrictionReasonMembershipRequired":
+		var obj PollVoteRestrictionReasonMembershipRequired
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "pollVoteRestrictionReasonOther":
+		var obj PollVoteRestrictionReasonOther
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "pollVoteRestrictionReasonScheduled":
+		var obj PollVoteRestrictionReasonScheduled
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "pollVoteRestrictionReasonYetUnsent":
+		var obj PollVoteRestrictionReasonYetUnsent
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pollVoters":
 		var obj PollVoters
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "pollVoteStatistics":
+		var obj PollVoteStatistics
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, 0, "", err
 		}
@@ -66857,6 +67422,12 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumLimitTypeCreatedPublicChatCount":
 		var obj PremiumLimitTypeCreatedPublicChatCount
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "premiumLimitTypeCustomTextCompositionStyleCount":
+		var obj PremiumLimitTypeCustomTextCompositionStyleCount
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, 0, "", err
 		}
@@ -67539,6 +68110,12 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 			return nil, 0, "", err
 		}
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "reactionUnavailabilityReasonRestricted":
+		var obj ReactionUnavailabilityReasonRestricted
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "readDatePrivacySettings":
 		var obj ReadDatePrivacySettings
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -68129,12 +68706,6 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "sentGiftUpgraded":
 		var obj SentGiftUpgraded
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, 0, "", err
-		}
-		return &obj, typeObj.ClientId, typeObj.Extra, nil
-	case "sentWebAppMessage":
-		var obj SentWebAppMessage
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, 0, "", err
 		}
@@ -69591,6 +70162,12 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 			return nil, 0, "", err
 		}
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "textCompositionStyleExample":
+		var obj TextCompositionStyleExample
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "textEntities":
 		var obj TextEntities
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -69971,6 +70548,12 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "topChatCategoryGroups":
 		var obj TopChatCategoryGroups
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "topChatCategoryGuestBots":
+		var obj TopChatCategoryGuestBots
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, 0, "", err
 		}
@@ -70581,6 +71164,12 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 			return nil, 0, "", err
 		}
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "updateMessageContainsUnreadPollVotes":
+		var obj UpdateMessageContainsUnreadPollVotes
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateMessageContent":
 		var obj UpdateMessageContent
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -70733,6 +71322,12 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateNewGroupCallPaidReaction":
 		var obj UpdateNewGroupCallPaidReaction
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "updateNewGuestQuery":
+		var obj UpdateNewGuestQuery
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, 0, "", err
 		}

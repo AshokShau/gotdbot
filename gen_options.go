@@ -221,6 +221,12 @@ type CreateSupergroupChatOpts struct {
 	Force bool
 }
 
+// CreateTextCompositionStyleOpts contains optional parameters for CreateTextCompositionStyle
+type CreateTextCompositionStyleOpts struct {
+	// Pass true if the current user must be shown as the creator of the style
+	ShowCreator bool
+}
+
 // CreateVideoChatOpts contains optional parameters for CreateVideoChat
 type CreateVideoChatOpts struct {
 	// Pass true to create an RTMP stream instead of an ordinary video chat
@@ -463,6 +469,12 @@ type EditStoryOpts struct {
 	Content InputStoryContent
 }
 
+// EditTextCompositionStyleOpts contains optional parameters for EditTextCompositionStyle
+type EditTextCompositionStyleOpts struct {
+	// Pass true if the current user must be shown as the creator of the style
+	ShowCreator bool
+}
+
 // EditUserStarSubscriptionOpts contains optional parameters for EditUserStarSubscription
 type EditUserStarSubscriptionOpts struct {
 	// Pass true to cancel the subscription; pass false to allow the user to enable it
@@ -497,12 +509,6 @@ type GetAllStickerEmojisOpts struct {
 type GetBotSimilarBotCountOpts struct {
 	// Pass true to get the number of bots without sending network requests, or -1 if the number of bots is unknown locally
 	ReturnLocal bool
-}
-
-// GetBotTokenOpts contains optional parameters for GetBotToken
-type GetBotTokenOpts struct {
-	// Pass true to revoke the current token and create a new one
-	Revoke bool
 }
 
 // GetBusinessFeaturesOpts contains optional parameters for GetBusinessFeatures
@@ -687,6 +693,12 @@ type GetLoginUrlOpts struct {
 	AllowWriteAccess bool
 }
 
+// GetManagedBotTokenOpts contains optional parameters for GetManagedBotToken
+type GetManagedBotTokenOpts struct {
+	// Pass true to revoke the current token and create a new one
+	Revoke bool
+}
+
 // GetMessageAddedReactionsOpts contains optional parameters for GetMessageAddedReactions
 type GetMessageAddedReactionsOpts struct {
 	// Type of the reactions to return; pass null to return all added reactions; reactionTypePaid isn't supported
@@ -723,6 +735,12 @@ type GetNetworkStatisticsOpts struct {
 type GetPaymentFormOpts struct {
 	// Preferred payment form theme; pass null to use the default theme
 	Theme *ThemeParameters
+}
+
+// GetPollVoteStatisticsOpts contains optional parameters for GetPollVoteStatistics
+type GetPollVoteStatisticsOpts struct {
+	// Pass true if a dark theme is used by the application
+	IsDark bool
 }
 
 // GetPremiumFeaturesOpts contains optional parameters for GetPremiumFeatures
@@ -1221,6 +1239,12 @@ type SendPaymentFormOpts struct {
 type SendPhoneNumberCodeOpts struct {
 	// Settings for the authentication of the user's phone number; pass null to use default settings
 	Settings *PhoneNumberAuthenticationSettings
+}
+
+// SendTextMessageDraftOpts contains optional parameters for SendTextMessageDraft
+type SendTextMessageDraftOpts struct {
+	// Draft text of the message; pass null to show a "Thinking..." placeholder
+	Text *FormattedText
 }
 
 // SetAuthenticationPhoneNumberOpts contains optional parameters for SetAuthenticationPhoneNumber

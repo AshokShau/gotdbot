@@ -190,6 +190,8 @@ type ContextUpdates struct {
 	UpdateLiveStoryTopDonors *UpdateLiveStoryTopDonors
 	// UpdateManagedBot A bot that can be managed by the current bot was created or updated; for bots only
 	UpdateManagedBot *UpdateManagedBot
+	// UpdateMessageContainsUnreadPollVotes Unread votes were added or removed from a poll message
+	UpdateMessageContainsUnreadPollVotes *UpdateMessageContainsUnreadPollVotes
 	// UpdateMessageContent The message content has changed
 	UpdateMessageContent *UpdateMessageContent
 	// UpdateMessageContentOpened The message content was opened. Updates voice note messages to "listened", video note messages to "viewed" and starts the self-destruct timer
@@ -242,6 +244,8 @@ type ContextUpdates struct {
 	UpdateNewGroupCallMessage *UpdateNewGroupCallMessage
 	// UpdateNewGroupCallPaidReaction A new paid reaction was received in a live story group call
 	UpdateNewGroupCallPaidReaction *UpdateNewGroupCallPaidReaction
+	// UpdateNewGuestQuery A new incoming guest query; for bots only
+	UpdateNewGuestQuery *UpdateNewGuestQuery
 	// UpdateNewInlineCallbackQuery A new incoming callback query from a message sent via a bot; for bots only
 	UpdateNewInlineCallbackQuery *UpdateNewInlineCallbackQuery
 	// UpdateNewInlineQuery A new incoming inline query; for bots only
@@ -551,6 +555,8 @@ func NewContextUpdates(u TlObject) *ContextUpdates {
 		up.UpdateLiveStoryTopDonors = u
 	case *UpdateManagedBot:
 		up.UpdateManagedBot = u
+	case *UpdateMessageContainsUnreadPollVotes:
+		up.UpdateMessageContainsUnreadPollVotes = u
 	case *UpdateMessageContent:
 		up.UpdateMessageContent = u
 	case *UpdateMessageContentOpened:
@@ -603,6 +609,8 @@ func NewContextUpdates(u TlObject) *ContextUpdates {
 		up.UpdateNewGroupCallMessage = u
 	case *UpdateNewGroupCallPaidReaction:
 		up.UpdateNewGroupCallPaidReaction = u
+	case *UpdateNewGuestQuery:
+		up.UpdateNewGuestQuery = u
 	case *UpdateNewInlineCallbackQuery:
 		up.UpdateNewInlineCallbackQuery = u
 	case *UpdateNewInlineQuery:
@@ -817,6 +825,8 @@ func extractGeneratedEffectiveFields(u TlObject, c *Context) {
 		c.EffectiveChatId = u.ChatId
 	case *UpdateForumTopic:
 		c.EffectiveChatId = u.ChatId
+	case *UpdateMessageContainsUnreadPollVotes:
+		c.EffectiveChatId = u.ChatId
 	case *UpdateMessageContent:
 		c.EffectiveChatId = u.ChatId
 	case *UpdateMessageContentOpened:
@@ -863,6 +873,11 @@ func extractGeneratedEffectiveFields(u TlObject, c *Context) {
 		}
 		if up, ok := u.SenderId.(*MessageSenderChat); ok {
 			c.EffectiveChatId = up.ChatId
+		}
+	case *UpdateNewGuestQuery:
+		if u.Message != nil {
+			c.EffectiveMessage = u.Message
+			c.EffectiveChatId = u.Message.ChatId
 		}
 	case *UpdateNewMessage:
 		if u.Message != nil {
