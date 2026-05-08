@@ -1,0 +1,54 @@
+name: Generate Code
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.24"
+
+      - name: Download dependencies
+        run: go mod download
+
+      - name: Run generators
+        run: go generate ./...
+
+      - name: Check for changes
+        id: changes
+        run: |
+          if git diff --quiet; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit generated code
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          BRANCH="generated"
+
+          git checkout -B $BRANCH
+
+          git config user.name "AshokShau"
+          git config user.email "AshokShau@users.noreply.github.com"
+
+          git add .
+
+          git commit -m "chore: update generated code"
+
+          git push -f origin $BRANCH
+  
