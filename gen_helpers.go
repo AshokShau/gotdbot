@@ -165,6 +165,12 @@ func (c *Chat) DeclineSuggestedPost(client *Client, comment string, messageId in
 	return client.DeclineSuggestedPost(c.Id, comment, messageId)
 }
 
+// DeleteAllRecentMessageReactionsFromSender Deletes all recent reactions added by the specified sender in a chat. Supported only for basic groups and supergroups; requires can_delete_messages administrator right
+// It is a helper method for Client.DeleteAllRecentMessageReactionsFromSender
+func (c *Chat) DeleteAllRecentMessageReactionsFromSender(client *Client, senderId MessageSender) error {
+	return client.DeleteAllRecentMessageReactionsFromSender(c.Id, senderId)
+}
+
 // DeleteAllRevokedInviteLinks Deletes all revoked chat invite links created by a given chat administrator. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
 // It is a helper method for Client.DeleteAllRevokedChatInviteLinks
 func (c *Chat) DeleteAllRevokedInviteLinks(client *Client, creatorUserId int64) error {
@@ -223,6 +229,12 @@ func (c *Chat) DeleteDirectMessagesTopicMessagesByDate(client *Client, maxDate i
 // It is a helper method for Client.DeleteForumTopic
 func (c *Chat) DeleteForumTopic(client *Client, forumTopicId int32) error {
 	return client.DeleteForumTopic(c.Id, forumTopicId)
+}
+
+// DeleteMessageReactionsFromSender Deletes all reactions added by the specified sender on a message
+// It is a helper method for Client.DeleteMessageReactionsFromSender
+func (c *Chat) DeleteMessageReactionsFromSender(client *Client, messageId int64, senderId MessageSender) error {
+	return client.DeleteMessageReactionsFromSender(c.Id, messageId, senderId)
 }
 
 // DeleteMessages Deletes messages
@@ -789,6 +801,12 @@ func (c *Chat) GetPollVoters(client *Client, limit int32, messageId int64, offse
 	return client.GetPollVoters(c.Id, limit, messageId, offset, optionId)
 }
 
+// GetPollVoteStatistics Returns statistics of poll votes in a poll
+// It is a helper method for Client.GetPollVoteStatistics
+func (c *Chat) GetPollVoteStatistics(client *Client, messageId int64, opts *GetPollVoteStatisticsOpts) (*PollVoteStatistics, error) {
+	return client.GetPollVoteStatistics(c.Id, messageId, opts)
+}
+
 // GetRepliedMessage Returns information about a non-bundled message that is replied by a given message. Also, returns the pinned message for messagePinMessage,
 // It is a helper method for Client.GetRepliedMessage
 func (c *Chat) GetRepliedMessage(client *Client, messageId int64) (*Message, error) {
@@ -1187,8 +1205,8 @@ func (c *Chat) SendQuickReplyShortcutMessages(client *Client, sendingId int32, s
 
 // SendTextMessageDraft Sends a draft for a being generated text message; for bots only
 // It is a helper method for Client.SendTextMessageDraft
-func (c *Chat) SendTextMessageDraft(client *Client, draftId int64, forumTopicId int32, text *FormattedText) error {
-	return client.SendTextMessageDraft(c.Id, draftId, forumTopicId, text)
+func (c *Chat) SendTextMessageDraft(client *Client, draftId int64, forumTopicId int32, opts *SendTextMessageDraftOpts) error {
+	return client.SendTextMessageDraft(c.Id, draftId, forumTopicId, opts)
 }
 
 // SetBusinessMessageIsPinned Pins or unpins a message sent on behalf of a business account; for bots only
@@ -1563,12 +1581,6 @@ func (f *File) AddToDownloads(client *Client, chatId int64, messageId int64, pri
 	return client.AddFileToDownloads(chatId, f.Id, messageId, priority)
 }
 
-// AddProfileAudio Adds an audio file to the beginning of the profile audio files of the current user
-// It is a helper method for Client.AddProfileAudio
-func (f *File) AddProfileAudio(client *Client) error {
-	return client.AddProfileAudio(f.Id)
-}
-
 // CancelDownload Stops the downloading of a file. If a file has already been downloaded, does nothing
 // It is a helper method for Client.CancelDownloadFile
 func (f *File) CancelDownload(client *Client, opts *CancelDownloadFileOpts) error {
@@ -1747,6 +1759,12 @@ func (m *Message) DeclineSuggestedPost(client *Client, comment string) error {
 // It is a helper method for Client.DeleteChatReplyMarkup
 func (m *Message) DeleteChatReplyMarkup(client *Client) error {
 	return client.DeleteChatReplyMarkup(m.ChatId, m.Id)
+}
+
+// DeleteReactionsFromSender Deletes all reactions added by the specified sender on a message
+// It is a helper method for Client.DeleteMessageReactionsFromSender
+func (m *Message) DeleteReactionsFromSender(client *Client) error {
+	return client.DeleteMessageReactionsFromSender(m.ChatId, m.Id, m.SenderId)
 }
 
 // DeletePollOption Deletes an option from a poll
@@ -1963,6 +1981,12 @@ func (m *Message) GetPollOptionProperties(client *Client, pollOptionId string) (
 // It is a helper method for Client.GetPollVoters
 func (m *Message) GetPollVoters(client *Client, limit int32, offset int32, optionId int32) (*PollVoters, error) {
 	return client.GetPollVoters(m.ChatId, limit, m.Id, offset, optionId)
+}
+
+// GetPollVoteStatistics Returns statistics of poll votes in a poll
+// It is a helper method for Client.GetPollVoteStatistics
+func (m *Message) GetPollVoteStatistics(client *Client, opts *GetPollVoteStatisticsOpts) (*PollVoteStatistics, error) {
+	return client.GetPollVoteStatistics(m.ChatId, m.Id, opts)
 }
 
 // GetReplied Returns information about a non-bundled message that is replied by a given message. Also, returns the pinned message for messagePinMessage,
@@ -2215,6 +2239,12 @@ func (u *User) GetMenuButton(client *Client) (*BotMenuButton, error) {
 // It is a helper method for Client.GetPaidMessageRevenue
 func (u *User) GetPaidMessageRevenue(client *Client) (*StarCount, error) {
 	return client.GetPaidMessageRevenue(u.Id)
+}
+
+// GetPersonalChatHistory Returns messages in the personal chat of a given user; for bots only
+// It is a helper method for Client.GetPersonalChatHistory
+func (u *User) GetPersonalChatHistory(client *Client, limit int32) (*Messages, error) {
+	return client.GetPersonalChatHistory(limit, u.Id)
 }
 
 // GetStarGiftPaymentOptions Returns available options for Telegram Stars gifting

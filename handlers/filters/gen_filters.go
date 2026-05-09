@@ -192,6 +192,8 @@ type (
 	UpdateLiveStoryTopDonors func(u *gotdbot.UpdateLiveStoryTopDonors) bool
 	// UpdateManagedBot A bot that can be managed by the current bot was created or updated; for bots only
 	UpdateManagedBot func(u *gotdbot.UpdateManagedBot) bool
+	// UpdateMessageContainsUnreadPollVotes Unread votes were added or removed from a poll message
+	UpdateMessageContainsUnreadPollVotes func(u *gotdbot.UpdateMessageContainsUnreadPollVotes) bool
 	// UpdateMessageContent The message content has changed
 	UpdateMessageContent func(u *gotdbot.UpdateMessageContent) bool
 	// UpdateMessageContentOpened The message content was opened. Updates voice note messages to "listened", video note messages to "viewed" and starts the self-destruct timer
@@ -244,6 +246,8 @@ type (
 	UpdateNewGroupCallMessage func(u *gotdbot.UpdateNewGroupCallMessage) bool
 	// UpdateNewGroupCallPaidReaction A new paid reaction was received in a live story group call
 	UpdateNewGroupCallPaidReaction func(u *gotdbot.UpdateNewGroupCallPaidReaction) bool
+	// UpdateNewGuestQuery A new incoming guest query; for bots only
+	UpdateNewGuestQuery func(u *gotdbot.UpdateNewGuestQuery) bool
 	// UpdateNewInlineCallbackQuery A new incoming callback query from a message sent via a bot; for bots only
 	UpdateNewInlineCallbackQuery func(u *gotdbot.UpdateNewInlineCallbackQuery) bool
 	// UpdateNewInlineQuery A new incoming inline query; for bots only

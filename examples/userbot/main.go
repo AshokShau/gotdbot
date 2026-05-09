@@ -16,7 +16,7 @@ func main() {
 	apiHash := "API_HASH"
 
 	bot, err := gotdbot.NewClient(apiID, apiHash, "", &gotdbot.ClientOpts{
-		LibraryPath:           "./libtdjson.so.1.8.63",
+		LibraryPath:           "./libtdjson.so.1.8.64",
 		UseFileDatabase:       gotdbot.Bool(true),
 		AuthorizationTimeout:  2 * time.Minute,
 		QrMode:                true,               // Enable QR code login

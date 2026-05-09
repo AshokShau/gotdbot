@@ -585,8 +585,14 @@ func (t AddPollOption) MarshalJSON() ([]byte, error) {
 
 // AddProfileAudio Adds an audio file to the beginning of the profile audio files of the current user
 type AddProfileAudio struct {
-	// Identifier of the audio file to be added. The file must have been uploaded to the server
-	FileId int32 `json:"file_id"`
+	// The audio file to be added
+	Audio InputFile `json:"audio"`
+	// Duration of the audio, in seconds; may be replaced by the server; ignored for already uploaded files
+	Duration int32 `json:"duration"`
+	// Performer of the audio; 0-64 characters, may be replaced by the server; ignored for already uploaded files
+	Performer string `json:"performer"`
+	// Title of the audio; 0-64 characters; may be replaced by the server; ignored for already uploaded files
+	Title string `json:"title"`
 }
 
 func (t AddProfileAudio) GetType() string {
@@ -606,6 +612,8 @@ func (t AddProfileAudio) MarshalJSON() ([]byte, error) {
 
 // AddProxy Adds a proxy server for network requests. Can be called before authorization
 type AddProxy struct {
+	// Comment to set for the proxy
+	Comment string `json:"comment"`
 	// Pass true to immediately enable the proxy
 	Enable bool `json:"enable"`
 	// The proxy to add
@@ -842,6 +850,27 @@ func (t AddStoryAlbumStories) MarshalJSON() ([]byte, error) {
 	})
 }
 
+// AddTextCompositionStyle Adds a custom text composition style to the list of used by the user styles. May return an error with a message "TONES_SAVED_TOO_MANY" if the maximum number of added custom styles has been reached
+type AddTextCompositionStyle struct {
+	// Name of the style
+	Name string `json:"name"`
+}
+
+func (t AddTextCompositionStyle) GetType() string {
+	return "addTextCompositionStyle"
+}
+
+func (t AddTextCompositionStyle) MarshalJSON() ([]byte, error) {
+	type Alias AddTextCompositionStyle
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "addTextCompositionStyle",
+		Alias:   (*Alias)(&t),
+	})
+}
+
 // AllowBotToSendMessages Allows the specified bot to send messages to the user
 type AllowBotToSendMessages struct {
 	// Identifier of the target bot
@@ -934,6 +963,29 @@ func (t AnswerCustomQuery) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "answerCustomQuery",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// AnswerGuestQuery Sets the result of a guest query; for bots only
+type AnswerGuestQuery struct {
+	// Identifier of the guest query
+	GuestQueryId int64 `json:"guest_query_id,string"`
+	// The result of the query
+	Result InputInlineQueryResult `json:"result"`
+}
+
+func (t AnswerGuestQuery) GetType() string {
+	return "answerGuestQuery"
+}
+
+func (t AnswerGuestQuery) MarshalJSON() ([]byte, error) {
+	type Alias AnswerGuestQuery
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "answerGuestQuery",
 		Alias:   (*Alias)(&t),
 	})
 }
@@ -1628,6 +1680,8 @@ type CheckAuthenticationPremiumPurchase struct {
 	Amount int64 `json:"amount"`
 	// ISO 4217 currency code of the payment currency
 	Currency string `json:"currency"`
+	// The number of days for which the Telegram Premium subscription will be granted
+	PremiumDayCount int32 `json:"premium_day_count"`
 }
 
 func (t CheckAuthenticationPremiumPurchase) GetType() string {
@@ -3039,6 +3093,33 @@ func (t CreateTemporaryPassword) MarshalJSON() ([]byte, error) {
 	})
 }
 
+// CreateTextCompositionStyle Creates a custom text composition style. May return an error with a message "TONES_SAVED_TOO_MANY" if the maximum number of added custom styles has been reached
+type CreateTextCompositionStyle struct {
+	// Identifier of the custom emoji corresponding to the style
+	CustomEmojiId int64 `json:"custom_emoji_id,string"`
+	// Prompt that will be used for text composition; 1-getOption("text_composition_style_prompt_length_max") characters
+	Prompt string `json:"prompt"`
+	// Pass true if the current user must be shown as the creator of the style
+	ShowCreator bool `json:"show_creator"`
+	// Title of the style; 1-getOption("text_composition_style_title_length_max") characters
+	Title string `json:"title"`
+}
+
+func (t CreateTextCompositionStyle) GetType() string {
+	return "createTextCompositionStyle"
+}
+
+func (t CreateTextCompositionStyle) MarshalJSON() ([]byte, error) {
+	type Alias CreateTextCompositionStyle
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "createTextCompositionStyle",
+		Alias:   (*Alias)(&t),
+	})
+}
+
 // CreateVideoChat Creates a video chat (a group call bound to a chat); for basic groups, supergroups and channels only; requires can_manage_video_chats administrator right
 type CreateVideoChat struct {
 	// Identifier of a chat in which the video chat will be created
@@ -3202,6 +3283,29 @@ func (t DeleteAllCallMessages) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "deleteAllCallMessages",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// DeleteAllRecentMessageReactionsFromSender Deletes all recent reactions added by the specified sender in a chat. Supported only for basic groups and supergroups; requires can_delete_messages administrator right
+type DeleteAllRecentMessageReactionsFromSender struct {
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the sender of reactions to delete
+	SenderId MessageSender `json:"sender_id"`
+}
+
+func (t DeleteAllRecentMessageReactionsFromSender) GetType() string {
+	return "deleteAllRecentMessageReactionsFromSender"
+}
+
+func (t DeleteAllRecentMessageReactionsFromSender) MarshalJSON() ([]byte, error) {
+	type Alias DeleteAllRecentMessageReactionsFromSender
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "deleteAllRecentMessageReactionsFromSender",
 		Alias:   (*Alias)(&t),
 	})
 }
@@ -3762,6 +3866,31 @@ func (t DeleteLanguagePack) MarshalJSON() ([]byte, error) {
 	})
 }
 
+// DeleteMessageReactionsFromSender Deletes all reactions added by the specified sender on a message
+type DeleteMessageReactionsFromSender struct {
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message containing the reactions. Use messageProperties.can_delete_reactions to check whether the method can be used for a message
+	MessageId int64 `json:"message_id"`
+	// Identifier of the sender of reactions to delete
+	SenderId MessageSender `json:"sender_id"`
+}
+
+func (t DeleteMessageReactionsFromSender) GetType() string {
+	return "deleteMessageReactionsFromSender"
+}
+
+func (t DeleteMessageReactionsFromSender) MarshalJSON() ([]byte, error) {
+	type Alias DeleteMessageReactionsFromSender
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "deleteMessageReactionsFromSender",
+		Alias:   (*Alias)(&t),
+	})
+}
+
 // DeleteMessages Deletes messages
 type DeleteMessages struct {
 	// Chat identifier
@@ -4068,6 +4197,27 @@ func (t DeleteStoryAlbum) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "deleteStoryAlbum",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// DeleteTextCompositionStyle Deletes a custom text composition style that was created by the current user
+type DeleteTextCompositionStyle struct {
+	// Name of the style
+	Name string `json:"name"`
+}
+
+func (t DeleteTextCompositionStyle) GetType() string {
+	return "deleteTextCompositionStyle"
+}
+
+func (t DeleteTextCompositionStyle) MarshalJSON() ([]byte, error) {
+	type Alias DeleteTextCompositionStyle
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "deleteTextCompositionStyle",
 		Alias:   (*Alias)(&t),
 	})
 }
@@ -5020,6 +5170,8 @@ func (t EditMessageText) MarshalJSON() ([]byte, error) {
 
 // EditProxy Edits an existing proxy server for network requests. Can be called before authorization
 type EditProxy struct {
+	// New comment for the proxy
+	Comment string `json:"comment"`
 	// Pass true to immediately enable the proxy
 	Enable bool `json:"enable"`
 	// The new information about the proxy
@@ -5141,6 +5293,35 @@ func (t EditStoryCover) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "editStoryCover",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// EditTextCompositionStyle Edits a custom text composition style that was created by the current user
+type EditTextCompositionStyle struct {
+	// Identifier of the custom emoji corresponding to the style
+	CustomEmojiId int64 `json:"custom_emoji_id,string"`
+	// Name of the style
+	Name string `json:"name"`
+	// Prompt that will be used for text composition; 1-getOption("text_composition_style_prompt_length_max") characters
+	Prompt string `json:"prompt"`
+	// Pass true if the current user must be shown as the creator of the style
+	ShowCreator bool `json:"show_creator"`
+	// Title of the style; 1-getOption("text_composition_style_title_length_max") characters
+	Title string `json:"title"`
+}
+
+func (t EditTextCompositionStyle) GetType() string {
+	return "editTextCompositionStyle"
+}
+
+func (t EditTextCompositionStyle) MarshalJSON() ([]byte, error) {
+	type Alias EditTextCompositionStyle
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "editTextCompositionStyle",
 		Alias:   (*Alias)(&t),
 	})
 }
@@ -5967,29 +6148,6 @@ func (t GetBotSimilarBots) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "getBotSimilarBots",
-		Alias:   (*Alias)(&t),
-	})
-}
-
-// GetBotToken Returns token of a created bot; for bots only
-type GetBotToken struct {
-	// Identifier of the created bot
-	BotUserId int64 `json:"bot_user_id"`
-	// Pass true to revoke the current token and create a new one
-	Revoke bool `json:"revoke"`
-}
-
-func (t GetBotToken) GetType() string {
-	return "getBotToken"
-}
-
-func (t GetBotToken) MarshalJSON() ([]byte, error) {
-	type Alias GetBotToken
-	return json.Marshal(&struct {
-		TypeStr string `json:"@type"`
-		*Alias
-	}{
-		TypeStr: "getBotToken",
 		Alias:   (*Alias)(&t),
 	})
 }
@@ -9187,6 +9345,50 @@ func (t GetMainWebApp) MarshalJSON() ([]byte, error) {
 	})
 }
 
+// GetManagedBotAccessSettings Returns access settings of a managed bot; for bots only
+type GetManagedBotAccessSettings struct {
+	// Identifier of the managed bot
+	BotUserId int64 `json:"bot_user_id"`
+}
+
+func (t GetManagedBotAccessSettings) GetType() string {
+	return "getManagedBotAccessSettings"
+}
+
+func (t GetManagedBotAccessSettings) MarshalJSON() ([]byte, error) {
+	type Alias GetManagedBotAccessSettings
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getManagedBotAccessSettings",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// GetManagedBotToken Returns token of a managed bot; for bots only
+type GetManagedBotToken struct {
+	// Identifier of the managed bot
+	BotUserId int64 `json:"bot_user_id"`
+	// Pass true to revoke the current token and create a new one
+	Revoke bool `json:"revoke"`
+}
+
+func (t GetManagedBotToken) GetType() string {
+	return "getManagedBotToken"
+}
+
+func (t GetManagedBotToken) MarshalJSON() ([]byte, error) {
+	type Alias GetManagedBotToken
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getManagedBotToken",
+		Alias:   (*Alias)(&t),
+	})
+}
+
 // GetMapThumbnailFile Returns information about a file with a map thumbnail in PNG format. Only map thumbnail files with size less than 1MB can be downloaded
 type GetMapThumbnailFile struct {
 	// Identifier of a chat in which the thumbnail will be shown. Use 0 if unknown
@@ -10044,6 +10246,29 @@ func (t GetPaymentReceipt) MarshalJSON() ([]byte, error) {
 	})
 }
 
+// GetPersonalChatHistory Returns messages in the personal chat of a given user; for bots only
+type GetPersonalChatHistory struct {
+	// The maximum number of messages to be returned; 1-20
+	Limit int32 `json:"limit"`
+	// User identifier
+	UserId int64 `json:"user_id"`
+}
+
+func (t GetPersonalChatHistory) GetType() string {
+	return "getPersonalChatHistory"
+}
+
+func (t GetPersonalChatHistory) MarshalJSON() ([]byte, error) {
+	type Alias GetPersonalChatHistory
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getPersonalChatHistory",
+		Alias:   (*Alias)(&t),
+	})
+}
+
 // GetPhoneNumberInfo Returns information about a phone number by its prefix. Can be called before authorization
 type GetPhoneNumberInfo struct {
 	// The phone number prefix
@@ -10138,6 +10363,31 @@ func (t GetPollVoters) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "getPollVoters",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// GetPollVoteStatistics Returns statistics of poll votes in a poll
+type GetPollVoteStatistics struct {
+	// Identifier of the chat to which the poll belongs
+	ChatId int64 `json:"chat_id"`
+	// Pass true if a dark theme is used by the application
+	IsDark bool `json:"is_dark"`
+	// Identifier of the message containing the poll. Use messageProperties.can_get_poll_vote_statistics to check whether the method can be used for a message
+	MessageId int64 `json:"message_id"`
+}
+
+func (t GetPollVoteStatistics) GetType() string {
+	return "getPollVoteStatistics"
+}
+
+func (t GetPollVoteStatistics) MarshalJSON() ([]byte, error) {
+	type Alias GetPollVoteStatistics
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getPollVoteStatistics",
 		Alias:   (*Alias)(&t),
 	})
 }
@@ -11749,6 +11999,29 @@ func (t GetTemporaryPasswordState) MarshalJSON() ([]byte, error) {
 	})
 }
 
+// GetTextCompositionStyleExample Returns an example of usage of a custom text composition style
+type GetTextCompositionStyleExample struct {
+	// 0-based unique number of the requested example; must be non-negative and less than getOption("text_composition_style_example_count")
+	ExampleNumber int32 `json:"example_number"`
+	// Name of the style
+	Name string `json:"name"`
+}
+
+func (t GetTextCompositionStyleExample) GetType() string {
+	return "getTextCompositionStyleExample"
+}
+
+func (t GetTextCompositionStyleExample) MarshalJSON() ([]byte, error) {
+	type Alias GetTextCompositionStyleExample
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getTextCompositionStyleExample",
+		Alias:   (*Alias)(&t),
+	})
+}
+
 // GetTextEntities Returns all entities (mentions, hashtags, cashtags, bot commands, bank card numbers, URLs, and email addresses) found in the text. Can be called synchronously
 type GetTextEntities struct {
 	// The text in which to look for entities
@@ -12003,7 +12276,7 @@ func (t GetUpgradedGiftEmojiStatuses) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// GetUpgradedGiftsPromotionalAnimation Returns promotional anumation for upgraded gifts
+// GetUpgradedGiftsPromotionalAnimation Returns promotional animation for upgraded gifts
 type GetUpgradedGiftsPromotionalAnimation struct {
 }
 
@@ -14604,6 +14877,27 @@ func (t RemoveStoryAlbumStories) MarshalJSON() ([]byte, error) {
 	})
 }
 
+// RemoveTextCompositionStyle Removes a custom text composition style from the list of used by the user styles. If the style was created by the current user, then it can only be deleted
+type RemoveTextCompositionStyle struct {
+	// Name of the style
+	Name string `json:"name"`
+}
+
+func (t RemoveTextCompositionStyle) GetType() string {
+	return "removeTextCompositionStyle"
+}
+
+func (t RemoveTextCompositionStyle) MarshalJSON() ([]byte, error) {
+	type Alias RemoveTextCompositionStyle
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "removeTextCompositionStyle",
+		Alias:   (*Alias)(&t),
+	})
+}
+
 // RemoveTopChat Removes a chat from the list of frequently used chats. Supported only if the chat info database is enabled
 type RemoveTopChat struct {
 	// Category of frequently used chats
@@ -16481,6 +16775,27 @@ func (t SearchStringsByPrefix) MarshalJSON() ([]byte, error) {
 	})
 }
 
+// SearchTextCompositionStyle Searches a custom text composition style by its name
+type SearchTextCompositionStyle struct {
+	// Name of the style
+	Name string `json:"name"`
+}
+
+func (t SearchTextCompositionStyle) GetType() string {
+	return "searchTextCompositionStyle"
+}
+
+func (t SearchTextCompositionStyle) MarshalJSON() ([]byte, error) {
+	type Alias SearchTextCompositionStyle
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "searchTextCompositionStyle",
+		Alias:   (*Alias)(&t),
+	})
+}
+
 // SearchUserByPhoneNumber Searches a user by their phone number. Returns a 404 error if the user can't be found
 type SearchUserByPhoneNumber struct {
 	// Pass true to get only locally available information without sending network requests
@@ -17217,8 +17532,8 @@ type SendTextMessageDraft struct {
 	DraftId int64 `json:"draft_id,string"`
 	// The forum topic identifier in which the message will be sent; pass 0 if none
 	ForumTopicId int32 `json:"forum_topic_id"`
-	// Draft text of the message
-	Text *FormattedText `json:"text"`
+	// Draft text of the message; pass null to show a "Thinking..." placeholder
+	Text *FormattedText `json:"text,omitempty"`
 }
 
 func (t SendTextMessageDraft) GetType() string {
@@ -17447,6 +17762,8 @@ type SetAuthenticationPremiumPurchaseTransaction struct {
 	Currency string `json:"currency"`
 	// Pass true if this is a restore of a Telegram Premium purchase; only for App Store
 	IsRestore bool `json:"is_restore"`
+	// The number of days for which the Telegram Premium subscription will be granted
+	PremiumDayCount int32 `json:"premium_day_count"`
 	// Information about the transaction
 	Transaction StoreTransaction `json:"transaction"`
 }
@@ -19230,6 +19547,29 @@ func (t SetMainProfileTab) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "setMainProfileTab",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// SetManagedBotAccessSettings Sets access settings of a managed bot; for bots only
+type SetManagedBotAccessSettings struct {
+	// Identifier of the managed bot
+	BotUserId int64 `json:"bot_user_id"`
+	// New access settings
+	Settings *BotAccessSettings `json:"settings"`
+}
+
+func (t SetManagedBotAccessSettings) GetType() string {
+	return "setManagedBotAccessSettings"
+}
+
+func (t SetManagedBotAccessSettings) MarshalJSON() ([]byte, error) {
+	type Alias SetManagedBotAccessSettings
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "setManagedBotAccessSettings",
 		Alias:   (*Alias)(&t),
 	})
 }

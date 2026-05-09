@@ -15,10 +15,10 @@ import (
 
 func main() {
 	apiID := int32(6)
-	apiHash := "API_HASH"
-	botToken := "BOT_TOKEN"
+	apiHash := ""
+	botToken := ""
 
-	bot, err := gotdbot.NewClient(apiID, apiHash, botToken, &gotdbot.ClientOpts{LibraryPath: "./libtdjson.so.1.8.63"})
+	bot, err := gotdbot.NewClient(apiID, apiHash, botToken, &gotdbot.ClientOpts{LibraryPath: "./libtdjson.so.1.8.64"})
 	if err != nil {
 		panic(err)
 	}

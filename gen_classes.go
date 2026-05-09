@@ -5063,6 +5063,7 @@ func UnmarshalInputStoryContent(data []byte) (InputStoryContent, error) {
 //   - InternalLinkTypeStickerSet
 //   - InternalLinkTypeStory
 //   - InternalLinkTypeStoryAlbum
+//   - InternalLinkTypeTextCompositionStyle
 //   - InternalLinkTypeTheme
 //   - InternalLinkTypeUnknownDeepLink
 //   - InternalLinkTypeUpgradedGift
@@ -5374,6 +5375,12 @@ func UnmarshalInternalLinkType(data []byte) (InternalLinkType, error) {
 		return &obj, nil
 	case "internalLinkTypeStoryAlbum":
 		var obj InternalLinkTypeStoryAlbum
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "internalLinkTypeTextCompositionStyle":
+		var obj InternalLinkTypeTextCompositionStyle
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -5792,6 +5799,7 @@ func UnmarshalLinkPreviewAlbumMedia(data []byte) (LinkPreviewAlbumMedia, error) 
 //   - LinkPreviewTypeStory
 //   - LinkPreviewTypeStoryAlbum
 //   - LinkPreviewTypeSupergroupBoost
+//   - LinkPreviewTypeTextCompositionStyle
 //   - LinkPreviewTypeTheme
 //   - LinkPreviewTypeUnsupported
 //   - LinkPreviewTypeUpgradedGift
@@ -5991,6 +5999,12 @@ func UnmarshalLinkPreviewType(data []byte) (LinkPreviewType, error) {
 		return &obj, nil
 	case "linkPreviewTypeSupergroupBoost":
 		var obj LinkPreviewTypeSupergroupBoost
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "linkPreviewTypeTextCompositionStyle":
+		var obj LinkPreviewTypeTextCompositionStyle
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -8561,6 +8575,68 @@ func UnmarshalPollType(data []byte) (PollType, error) {
 	}
 }
 
+// PollVoteRestrictionReason Reason of vote restriction in the poll for the current user
+//   - PollVoteRestrictionReasonClosed
+//   - PollVoteRestrictionReasonCountryRestricted
+//   - PollVoteRestrictionReasonMembershipRequired
+//   - PollVoteRestrictionReasonOther
+//   - PollVoteRestrictionReasonScheduled
+//   - PollVoteRestrictionReasonYetUnsent
+type PollVoteRestrictionReason interface {
+	TlObject
+	pollVoteRestrictionReason()
+}
+
+// UnmarshalPollVoteRestrictionReason unmarshals the JSON into the correct concrete implementation of PollVoteRestrictionReason
+func UnmarshalPollVoteRestrictionReason(data []byte) (PollVoteRestrictionReason, error) {
+	var typeObj struct {
+		Type string `json:"@type"`
+	}
+	if err := json.Unmarshal(data, &typeObj); err != nil {
+		return nil, err
+	}
+	switch typeObj.Type {
+	case "pollVoteRestrictionReasonClosed":
+		var obj PollVoteRestrictionReasonClosed
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "pollVoteRestrictionReasonCountryRestricted":
+		var obj PollVoteRestrictionReasonCountryRestricted
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "pollVoteRestrictionReasonMembershipRequired":
+		var obj PollVoteRestrictionReasonMembershipRequired
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "pollVoteRestrictionReasonOther":
+		var obj PollVoteRestrictionReasonOther
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "pollVoteRestrictionReasonScheduled":
+		var obj PollVoteRestrictionReasonScheduled
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "pollVoteRestrictionReasonYetUnsent":
+		var obj PollVoteRestrictionReasonYetUnsent
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	default:
+		return nil, fmt.Errorf("unknown type: %s", typeObj.Type)
+	}
+}
+
 // PremiumFeature Describes a feature available to Premium users
 //   - PremiumFeatureAccentColor
 //   - PremiumFeatureAdvancedChatManagement
@@ -8785,6 +8861,7 @@ func UnmarshalPremiumFeature(data []byte) (PremiumFeature, error) {
 //   - PremiumLimitTypeChatFolderCount
 //   - PremiumLimitTypeChatFolderInviteLinkCount
 //   - PremiumLimitTypeCreatedPublicChatCount
+//   - PremiumLimitTypeCustomTextCompositionStyleCount
 //   - PremiumLimitTypeFavoriteStickerCount
 //   - PremiumLimitTypeMonthlyPostedStoryCount
 //   - PremiumLimitTypeOwnedBotCount
@@ -8850,6 +8927,12 @@ func UnmarshalPremiumLimitType(data []byte) (PremiumLimitType, error) {
 		return &obj, nil
 	case "premiumLimitTypeCreatedPublicChatCount":
 		var obj PremiumLimitTypeCreatedPublicChatCount
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "premiumLimitTypeCustomTextCompositionStyleCount":
+		var obj PremiumLimitTypeCustomTextCompositionStyleCount
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -9680,6 +9763,7 @@ func UnmarshalReactionType(data []byte) (ReactionType, error) {
 // ReactionUnavailabilityReason Describes why the current user can't add reactions to the message, despite some other users can
 //   - ReactionUnavailabilityReasonAnonymousAdministrator
 //   - ReactionUnavailabilityReasonGuest
+//   - ReactionUnavailabilityReasonRestricted
 type ReactionUnavailabilityReason interface {
 	TlObject
 	reactionUnavailabilityReason()
@@ -9702,6 +9786,12 @@ func UnmarshalReactionUnavailabilityReason(data []byte) (ReactionUnavailabilityR
 		return &obj, nil
 	case "reactionUnavailabilityReasonGuest":
 		var obj ReactionUnavailabilityReasonGuest
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "reactionUnavailabilityReasonRestricted":
+		var obj ReactionUnavailabilityReasonRestricted
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -12752,6 +12842,7 @@ func UnmarshalTonTransactionType(data []byte) (TonTransactionType, error) {
 //   - TopChatCategoryChannels
 //   - TopChatCategoryForwardChats
 //   - TopChatCategoryGroups
+//   - TopChatCategoryGuestBots
 //   - TopChatCategoryInlineBots
 //   - TopChatCategoryUsers
 //   - TopChatCategoryWebAppBots
@@ -12795,6 +12886,12 @@ func UnmarshalTopChatCategory(data []byte) (TopChatCategory, error) {
 		return &obj, nil
 	case "topChatCategoryGroups":
 		var obj TopChatCategoryGroups
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "topChatCategoryGuestBots":
+		var obj TopChatCategoryGuestBots
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -12950,6 +13047,7 @@ func UnmarshalTransactionDirection(data []byte) (TransactionDirection, error) {
 //   - UpdateLanguagePackStrings
 //   - UpdateLiveStoryTopDonors
 //   - UpdateManagedBot
+//   - UpdateMessageContainsUnreadPollVotes
 //   - UpdateMessageContent
 //   - UpdateMessageContentOpened
 //   - UpdateMessageEdited
@@ -12976,6 +13074,7 @@ func UnmarshalTransactionDirection(data []byte) (TransactionDirection, error) {
 //   - UpdateNewCustomQuery
 //   - UpdateNewGroupCallMessage
 //   - UpdateNewGroupCallPaidReaction
+//   - UpdateNewGuestQuery
 //   - UpdateNewInlineCallbackQuery
 //   - UpdateNewInlineQuery
 //   - UpdateNewMessage
@@ -13607,6 +13706,12 @@ func UnmarshalUpdate(data []byte) (Update, error) {
 			return nil, err
 		}
 		return &obj, nil
+	case "updateMessageContainsUnreadPollVotes":
+		var obj UpdateMessageContainsUnreadPollVotes
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
 	case "updateMessageContent":
 		var obj UpdateMessageContent
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -13759,6 +13864,12 @@ func UnmarshalUpdate(data []byte) (Update, error) {
 		return &obj, nil
 	case "updateNewGroupCallPaidReaction":
 		var obj UpdateNewGroupCallPaidReaction
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "updateNewGuestQuery":
+		var obj UpdateNewGuestQuery
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}

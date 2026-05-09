@@ -139,6 +139,8 @@ func NewClient(apiID int32, apiHash, tokenOrPhone string, config *ClientOpts) (*
 
 // initClient initializes the client's internal state and processor loop exactly once.
 func (c *Client) initClient() {
+	tdjson.Send(c.clientID, `{"@type": "getOption", "name": "version"}`)
+
 	c.startOnce.Do(func() {
 		if c.manager == nil {
 			m := GetDefaultManager(c.config.LibraryPath)
@@ -166,7 +168,6 @@ func (c *Client) Start() error {
 // This is useful if you need to call unauthenticated TDLib methods before calling Start().
 func (c *Client) SendDummyRequest() {
 	c.initClient()
-	tdjson.Send(c.clientID, `{"@type": "getOption", "name": "version"}`)
 }
 
 // Idle blocks the current goroutine until a SIGINT or SIGTERM signal is received.

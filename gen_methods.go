@@ -293,18 +293,22 @@ func (c *Client) AddPollOption(chatId int64, messageId int64, option *InputPollO
 }
 
 // AddProfileAudio Adds an audio file to the beginning of the profile audio files of the current user
-func (c *Client) AddProfileAudio(fileId int32) error {
+func (c *Client) AddProfileAudio(audio InputFile, duration int32, performer string, title string) error {
 	req := &AddProfileAudio{
-		FileId: fileId,
+		Audio:     audio,
+		Duration:  duration,
+		Performer: performer,
+		Title:     title,
 	}
 	_, err := c.Send(req)
 	return err
 }
 
 // AddProxy Adds a proxy server for network requests. Can be called before authorization
-func (c *Client) AddProxy(proxy *Proxy, opts *AddProxyOpts) (*AddedProxy, error) {
+func (c *Client) AddProxy(comment string, proxy *Proxy, opts *AddProxyOpts) (*AddedProxy, error) {
 	req := &AddProxy{
-		Proxy: proxy,
+		Comment: comment,
+		Proxy:   proxy,
 	}
 	if opts != nil {
 		req.Enable = opts.Enable
@@ -432,6 +436,15 @@ func (c *Client) AddStoryAlbumStories(chatId int64, storyAlbumId int32, storyIds
 	return resp.(*StoryAlbum), nil
 }
 
+// AddTextCompositionStyle Adds a custom text composition style to the list of used by the user styles. May return an error with a message "TONES_SAVED_TOO_MANY" if the maximum number of added custom styles has been reached
+func (c *Client) AddTextCompositionStyle(name string) error {
+	req := &AddTextCompositionStyle{
+		Name: name,
+	}
+	_, err := c.Send(req)
+	return err
+}
+
 // AllowBotToSendMessages Allows the specified bot to send messages to the user
 func (c *Client) AllowBotToSendMessages(botUserId int64) error {
 	req := &AllowBotToSendMessages{
@@ -478,6 +491,19 @@ func (c *Client) AnswerCustomQuery(customQueryId int64, data string) error {
 	return err
 }
 
+// AnswerGuestQuery Sets the result of a guest query; for bots only
+func (c *Client) AnswerGuestQuery(guestQueryId int64, result InputInlineQueryResult) (*InlineMessageId, error) {
+	req := &AnswerGuestQuery{
+		GuestQueryId: guestQueryId,
+		Result:       result,
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*InlineMessageId), nil
+}
+
 // AnswerInlineQuery Sets the result of an inline query; for bots only
 func (c *Client) AnswerInlineQuery(cacheTime int32, inlineQueryId int64, nextOffset string, results []InputInlineQueryResult, opts *AnswerInlineQueryOpts) error {
 	req := &AnswerInlineQuery{
@@ -516,7 +542,7 @@ func (c *Client) AnswerShippingQuery(errorMessage string, shippingOptions []Ship
 }
 
 // AnswerWebAppQuery Sets the result of interaction with a Web App and sends corresponding message on behalf of the user to the chat from which the query originated; for bots only
-func (c *Client) AnswerWebAppQuery(result InputInlineQueryResult, webAppQueryId string) (*SentWebAppMessage, error) {
+func (c *Client) AnswerWebAppQuery(result InputInlineQueryResult, webAppQueryId string) (*InlineMessageId, error) {
 	req := &AnswerWebAppQuery{
 		Result:        result,
 		WebAppQueryId: webAppQueryId,
@@ -525,7 +551,7 @@ func (c *Client) AnswerWebAppQuery(result InputInlineQueryResult, webAppQueryId 
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*SentWebAppMessage), nil
+	return resp.(*InlineMessageId), nil
 }
 
 // ApplyPremiumGiftCode Applies a Telegram Premium gift code
@@ -809,10 +835,11 @@ func (c *Client) CheckAuthenticationPasswordRecoveryCode(recoveryCode string) er
 }
 
 // CheckAuthenticationPremiumPurchase Checks whether an in-store purchase of Telegram Premium is possible before authorization. Works only when the current authorization state is authorizationStateWaitPremiumPurchase
-func (c *Client) CheckAuthenticationPremiumPurchase(amount int64, currency string) error {
+func (c *Client) CheckAuthenticationPremiumPurchase(amount int64, currency string, premiumDayCount int32) error {
 	req := &CheckAuthenticationPremiumPurchase{
-		Amount:   amount,
-		Currency: currency,
+		Amount:          amount,
+		Currency:        currency,
+		PremiumDayCount: premiumDayCount,
 	}
 	_, err := c.Send(req)
 	return err
@@ -1538,6 +1565,23 @@ func (c *Client) CreateTemporaryPassword(password string, validFor int32) (*Temp
 	return resp.(*TemporaryPasswordState), nil
 }
 
+// CreateTextCompositionStyle Creates a custom text composition style. May return an error with a message "TONES_SAVED_TOO_MANY" if the maximum number of added custom styles has been reached
+func (c *Client) CreateTextCompositionStyle(customEmojiId int64, prompt string, title string, opts *CreateTextCompositionStyleOpts) (*TextCompositionStyle, error) {
+	req := &CreateTextCompositionStyle{
+		CustomEmojiId: customEmojiId,
+		Prompt:        prompt,
+		Title:         title,
+	}
+	if opts != nil {
+		req.ShowCreator = opts.ShowCreator
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*TextCompositionStyle), nil
+}
+
 // CreateVideoChat Creates a video chat (a group call bound to a chat); for basic groups, supergroups and channels only; requires can_manage_video_chats administrator right
 func (c *Client) CreateVideoChat(chatId int64, startDate int32, title string, opts *CreateVideoChatOpts) (*GroupCallId, error) {
 	req := &CreateVideoChat{
@@ -1617,6 +1661,16 @@ func (c *Client) DeleteAllCallMessages(opts *DeleteAllCallMessagesOpts) error {
 	req := &DeleteAllCallMessages{}
 	if opts != nil {
 		req.Revoke = opts.Revoke
+	}
+	_, err := c.Send(req)
+	return err
+}
+
+// DeleteAllRecentMessageReactionsFromSender Deletes all recent reactions added by the specified sender in a chat. Supported only for basic groups and supergroups; requires can_delete_messages administrator right
+func (c *Client) DeleteAllRecentMessageReactionsFromSender(chatId int64, senderId MessageSender) error {
+	req := &DeleteAllRecentMessageReactionsFromSender{
+		ChatId:   chatId,
+		SenderId: senderId,
 	}
 	_, err := c.Send(req)
 	return err
@@ -1877,6 +1931,17 @@ func (c *Client) DeleteLanguagePack(languagePackId string) error {
 	return err
 }
 
+// DeleteMessageReactionsFromSender Deletes all reactions added by the specified sender on a message
+func (c *Client) DeleteMessageReactionsFromSender(chatId int64, messageId int64, senderId MessageSender) error {
+	req := &DeleteMessageReactionsFromSender{
+		ChatId:    chatId,
+		MessageId: messageId,
+		SenderId:  senderId,
+	}
+	_, err := c.Send(req)
+	return err
+}
+
 // DeleteMessages Deletes messages
 func (c *Client) DeleteMessages(chatId int64, messageIds []int64, opts *DeleteMessagesOpts) error {
 	req := &DeleteMessages{
@@ -2006,6 +2071,15 @@ func (c *Client) DeleteStoryAlbum(chatId int64, storyAlbumId int32) error {
 	req := &DeleteStoryAlbum{
 		ChatId:       chatId,
 		StoryAlbumId: storyAlbumId,
+	}
+	_, err := c.Send(req)
+	return err
+}
+
+// DeleteTextCompositionStyle Deletes a custom text composition style that was created by the current user
+func (c *Client) DeleteTextCompositionStyle(name string) error {
+	req := &DeleteTextCompositionStyle{
+		Name: name,
 	}
 	_, err := c.Send(req)
 	return err
@@ -2535,8 +2609,9 @@ func (c *Client) EditMessageText(chatId int64, inputMessageContent InputMessageC
 }
 
 // EditProxy Edits an existing proxy server for network requests. Can be called before authorization
-func (c *Client) EditProxy(proxy *Proxy, proxyId int32, opts *EditProxyOpts) (*AddedProxy, error) {
+func (c *Client) EditProxy(comment string, proxy *Proxy, proxyId int32, opts *EditProxyOpts) (*AddedProxy, error) {
 	req := &EditProxy{
+		Comment: comment,
 		Proxy:   proxy,
 		ProxyId: proxyId,
 	}
@@ -2597,6 +2672,24 @@ func (c *Client) EditStoryCover(coverFrameTimestamp float64, storyId int32, stor
 	}
 	_, err := c.Send(req)
 	return err
+}
+
+// EditTextCompositionStyle Edits a custom text composition style that was created by the current user
+func (c *Client) EditTextCompositionStyle(customEmojiId int64, name string, prompt string, title string, opts *EditTextCompositionStyleOpts) (*TextCompositionStyle, error) {
+	req := &EditTextCompositionStyle{
+		CustomEmojiId: customEmojiId,
+		Name:          name,
+		Prompt:        prompt,
+		Title:         title,
+	}
+	if opts != nil {
+		req.ShowCreator = opts.ShowCreator
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*TextCompositionStyle), nil
 }
 
 // EditUserStarSubscription Cancels or re-enables Telegram Star subscription for a user; for bots only
@@ -3048,21 +3141,6 @@ func (c *Client) GetBotSimilarBots(botUserId int64) (*Users, error) {
 		return nil, err
 	}
 	return resp.(*Users), nil
-}
-
-// GetBotToken Returns token of a created bot; for bots only
-func (c *Client) GetBotToken(botUserId int64, opts *GetBotTokenOpts) (*Text, error) {
-	req := &GetBotToken{
-		BotUserId: botUserId,
-	}
-	if opts != nil {
-		req.Revoke = opts.Revoke
-	}
-	resp, err := c.Send(req)
-	if err != nil {
-		return nil, err
-	}
-	return resp.(*Text), nil
 }
 
 // GetBusinessAccountStarAmount Returns the Telegram Star amount owned by a business account; for bots only
@@ -4901,6 +4979,33 @@ func (c *Client) GetMainWebApp(botUserId int64, chatId int64, parameters *WebApp
 	return resp.(*MainWebApp), nil
 }
 
+// GetManagedBotAccessSettings Returns access settings of a managed bot; for bots only
+func (c *Client) GetManagedBotAccessSettings(botUserId int64) (*BotAccessSettings, error) {
+	req := &GetManagedBotAccessSettings{
+		BotUserId: botUserId,
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*BotAccessSettings), nil
+}
+
+// GetManagedBotToken Returns token of a managed bot; for bots only
+func (c *Client) GetManagedBotToken(botUserId int64, opts *GetManagedBotTokenOpts) (*Text, error) {
+	req := &GetManagedBotToken{
+		BotUserId: botUserId,
+	}
+	if opts != nil {
+		req.Revoke = opts.Revoke
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*Text), nil
+}
+
 // GetMapThumbnailFile Returns information about a file with a map thumbnail in PNG format. Only map thumbnail files with size less than 1MB can be downloaded
 func (c *Client) GetMapThumbnailFile(chatId int64, height int32, location *Location, scale int32, width int32, zoom int32) (*File, error) {
 	req := &GetMapThumbnailFile{
@@ -5391,6 +5496,19 @@ func (c *Client) GetPaymentReceipt(chatId int64, messageId int64) (*PaymentRecei
 	return resp.(*PaymentReceipt), nil
 }
 
+// GetPersonalChatHistory Returns messages in the personal chat of a given user; for bots only
+func (c *Client) GetPersonalChatHistory(limit int32, userId int64) (*Messages, error) {
+	req := &GetPersonalChatHistory{
+		Limit:  limit,
+		UserId: userId,
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*Messages), nil
+}
+
 // GetPhoneNumberInfo Returns information about a phone number by its prefix. Can be called before authorization
 func (c *Client) GetPhoneNumberInfo(phoneNumberPrefix string) (*PhoneNumberInfo, error) {
 	req := &GetPhoneNumberInfo{
@@ -5444,6 +5562,22 @@ func (c *Client) GetPollVoters(chatId int64, limit int32, messageId int64, offse
 		return nil, err
 	}
 	return resp.(*PollVoters), nil
+}
+
+// GetPollVoteStatistics Returns statistics of poll votes in a poll
+func (c *Client) GetPollVoteStatistics(chatId int64, messageId int64, opts *GetPollVoteStatisticsOpts) (*PollVoteStatistics, error) {
+	req := &GetPollVoteStatistics{
+		ChatId:    chatId,
+		MessageId: messageId,
+	}
+	if opts != nil {
+		req.IsDark = opts.IsDark
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*PollVoteStatistics), nil
 }
 
 // GetPreferredCountryLanguage Returns an IETF language tag of the language preferred in the country, which must be used to fill native fields in Telegram Passport personal details. Returns a 404 error if unknown
@@ -5826,7 +5960,7 @@ func (c *Client) GetSavedMessagesTopicMessageByDate(date int32, savedMessagesTop
 }
 
 // GetSavedNotificationSound Returns saved notification sound by its identifier. Returns a 404 error if there is no saved notification sound with the specified identifier
-func (c *Client) GetSavedNotificationSound(notificationSoundId int64) (*NotificationSounds, error) {
+func (c *Client) GetSavedNotificationSound(notificationSoundId int64) (*NotificationSound, error) {
 	req := &GetSavedNotificationSound{
 		NotificationSoundId: notificationSoundId,
 	}
@@ -5834,7 +5968,7 @@ func (c *Client) GetSavedNotificationSound(notificationSoundId int64) (*Notifica
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*NotificationSounds), nil
+	return resp.(*NotificationSound), nil
 }
 
 // GetSavedNotificationSounds Returns the list of saved notification sounds. If a sound isn't in the list, then default sound needs to be used
@@ -6361,6 +6495,19 @@ func (c *Client) GetTemporaryPasswordState() (*TemporaryPasswordState, error) {
 	return resp.(*TemporaryPasswordState), nil
 }
 
+// GetTextCompositionStyleExample Returns an example of usage of a custom text composition style
+func (c *Client) GetTextCompositionStyleExample(exampleNumber int32, name string) (*TextCompositionStyleExample, error) {
+	req := &GetTextCompositionStyleExample{
+		ExampleNumber: exampleNumber,
+		Name:          name,
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*TextCompositionStyleExample), nil
+}
+
 // GetTextEntities Returns all entities (mentions, hashtags, cashtags, bot commands, bank card numbers, URLs, and email addresses) found in the text. Can be called synchronously
 func (c *Client) GetTextEntities(text string) (*TextEntities, error) {
 	req := &GetTextEntities{
@@ -6505,7 +6652,7 @@ func (c *Client) GetUpgradedGiftEmojiStatuses() (*EmojiStatuses, error) {
 	return resp.(*EmojiStatuses), nil
 }
 
-// GetUpgradedGiftsPromotionalAnimation Returns promotional anumation for upgraded gifts
+// GetUpgradedGiftsPromotionalAnimation Returns promotional animation for upgraded gifts
 func (c *Client) GetUpgradedGiftsPromotionalAnimation() (*Animation, error) {
 	req := &GetUpgradedGiftsPromotionalAnimation{}
 	resp, err := c.Send(req)
@@ -7795,6 +7942,15 @@ func (c *Client) RemoveStoryAlbumStories(chatId int64, storyAlbumId int32, story
 	return resp.(*StoryAlbum), nil
 }
 
+// RemoveTextCompositionStyle Removes a custom text composition style from the list of used by the user styles. If the style was created by the current user, then it can only be deleted
+func (c *Client) RemoveTextCompositionStyle(name string) error {
+	req := &RemoveTextCompositionStyle{
+		Name: name,
+	}
+	_, err := c.Send(req)
+	return err
+}
+
 // RemoveTopChat Removes a chat from the list of frequently used chats. Supported only if the chat info database is enabled
 func (c *Client) RemoveTopChat(category TopChatCategory, chatId int64) error {
 	req := &RemoveTopChat{
@@ -8791,6 +8947,18 @@ func (c *Client) SearchStringsByPrefix(limit int32, query string, strings []stri
 	return resp.(*FoundPositions), nil
 }
 
+// SearchTextCompositionStyle Searches a custom text composition style by its name
+func (c *Client) SearchTextCompositionStyle(name string) (*TextCompositionStyle, error) {
+	req := &SearchTextCompositionStyle{
+		Name: name,
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*TextCompositionStyle), nil
+}
+
 // SearchUserByPhoneNumber Searches a user by their phone number. Returns a 404 error if the user can't be found
 func (c *Client) SearchUserByPhoneNumber(phoneNumber string, opts *SearchUserByPhoneNumberOpts) (*User, error) {
 	req := &SearchUserByPhoneNumber{
@@ -9179,12 +9347,14 @@ func (c *Client) SendResoldGift(giftName string, ownerId MessageSender, price Gi
 }
 
 // SendTextMessageDraft Sends a draft for a being generated text message; for bots only
-func (c *Client) SendTextMessageDraft(chatId int64, draftId int64, forumTopicId int32, text *FormattedText) error {
+func (c *Client) SendTextMessageDraft(chatId int64, draftId int64, forumTopicId int32, opts *SendTextMessageDraftOpts) error {
 	req := &SendTextMessageDraft{
 		ChatId:       chatId,
 		DraftId:      draftId,
 		ForumTopicId: forumTopicId,
-		Text:         text,
+	}
+	if opts != nil {
+		req.Text = opts.Text
 	}
 	_, err := c.Send(req)
 	return err
@@ -9284,11 +9454,12 @@ func (c *Client) SetAuthenticationPhoneNumber(phoneNumber string, opts *SetAuthe
 }
 
 // SetAuthenticationPremiumPurchaseTransaction Informs server about an in-store purchase of Telegram Premium before authorization. Works only when the current authorization state is authorizationStateWaitPremiumPurchase
-func (c *Client) SetAuthenticationPremiumPurchaseTransaction(amount int64, currency string, transaction StoreTransaction, opts *SetAuthenticationPremiumPurchaseTransactionOpts) error {
+func (c *Client) SetAuthenticationPremiumPurchaseTransaction(amount int64, currency string, premiumDayCount int32, transaction StoreTransaction, opts *SetAuthenticationPremiumPurchaseTransactionOpts) error {
 	req := &SetAuthenticationPremiumPurchaseTransaction{
-		Amount:      amount,
-		Currency:    currency,
-		Transaction: transaction,
+		Amount:          amount,
+		Currency:        currency,
+		PremiumDayCount: premiumDayCount,
+		Transaction:     transaction,
 	}
 	if opts != nil {
 		req.IsRestore = opts.IsRestore
@@ -10121,6 +10292,16 @@ func (c *Client) SetLogVerbosityLevel(newVerbosityLevel int32) error {
 func (c *Client) SetMainProfileTab(mainProfileTab ProfileTab) error {
 	req := &SetMainProfileTab{
 		MainProfileTab: mainProfileTab,
+	}
+	_, err := c.Send(req)
+	return err
+}
+
+// SetManagedBotAccessSettings Sets access settings of a managed bot; for bots only
+func (c *Client) SetManagedBotAccessSettings(botUserId int64, settings *BotAccessSettings) error {
+	req := &SetManagedBotAccessSettings{
+		BotUserId: botUserId,
+		Settings:  settings,
 	}
 	_, err := c.Send(req)
 	return err
