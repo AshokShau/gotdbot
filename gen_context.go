@@ -743,12 +743,6 @@ func extractGeneratedEffectiveFields(u TlObject, c *Context) {
 		c.EffectiveChatId = u.ChatId
 	case *UpdateChatAction:
 		c.EffectiveChatId = u.ChatId
-		if up, ok := u.SenderId.(*MessageSenderUser); ok {
-			c.EffectiveChatId = up.UserId
-		}
-		if up, ok := u.SenderId.(*MessageSenderChat); ok {
-			c.EffectiveChatId = up.ChatId
-		}
 	case *UpdateChatActionBar:
 		c.EffectiveChatId = u.ChatId
 	case *UpdateChatAddedToList:
@@ -779,6 +773,10 @@ func extractGeneratedEffectiveFields(u TlObject, c *Context) {
 		c.EffectiveChatId = u.ChatId
 	case *UpdateChatLastMessage:
 		c.EffectiveChatId = u.ChatId
+		if u.LastMessage != nil {
+			c.EffectiveMessage = u.LastMessage
+			c.EffectiveChatId = u.LastMessage.ChatId
+		}
 	case *UpdateChatMember:
 		c.EffectiveChatId = u.ChatId
 	case *UpdateChatMessageAutoDeleteTime:
@@ -805,6 +803,10 @@ func extractGeneratedEffectiveFields(u TlObject, c *Context) {
 		c.EffectiveChatId = u.ChatId
 	case *UpdateChatReplyMarkup:
 		c.EffectiveChatId = u.ChatId
+		if u.ReplyMarkupMessage != nil {
+			c.EffectiveMessage = u.ReplyMarkupMessage
+			c.EffectiveChatId = u.ReplyMarkupMessage.ChatId
+		}
 	case *UpdateChatRevenueAmount:
 		c.EffectiveChatId = u.ChatId
 	case *UpdateChatTheme:
@@ -825,6 +827,8 @@ func extractGeneratedEffectiveFields(u TlObject, c *Context) {
 		c.EffectiveChatId = u.ChatId
 	case *UpdateForumTopic:
 		c.EffectiveChatId = u.ChatId
+	case *UpdateManagedBot:
+		c.EffectiveChatId = u.UserId
 	case *UpdateMessageContainsUnreadPollVotes:
 		c.EffectiveChatId = u.ChatId
 	case *UpdateMessageContent:
@@ -863,10 +867,18 @@ func extractGeneratedEffectiveFields(u TlObject, c *Context) {
 		c.EffectiveChatId = u.ChatId
 	case *UpdateMessageUnreadReactions:
 		c.EffectiveChatId = u.ChatId
+	case *UpdateNewBusinessCallbackQuery:
+		c.EffectiveChatId = u.SenderUserId
 	case *UpdateNewCallbackQuery:
 		c.EffectiveChatId = u.ChatId
+	case *UpdateNewChat:
+		if u.Chat != nil {
+			c.EffectiveChatId = u.Chat.Id
+		}
 	case *UpdateNewChatJoinRequest:
 		c.EffectiveChatId = u.ChatId
+	case *UpdateNewChosenInlineResult:
+		c.EffectiveChatId = u.SenderUserId
 	case *UpdateNewGroupCallPaidReaction:
 		if up, ok := u.SenderId.(*MessageSenderUser); ok {
 			c.EffectiveChatId = up.UserId
@@ -879,17 +891,35 @@ func extractGeneratedEffectiveFields(u TlObject, c *Context) {
 			c.EffectiveMessage = u.Message
 			c.EffectiveChatId = u.Message.ChatId
 		}
+	case *UpdateNewInlineCallbackQuery:
+		c.EffectiveChatId = u.SenderUserId
+	case *UpdateNewInlineQuery:
+		c.EffectiveChatId = u.SenderUserId
 	case *UpdateNewMessage:
 		if u.Message != nil {
 			c.EffectiveMessage = u.Message
 			c.EffectiveChatId = u.Message.ChatId
 		}
+	case *UpdateNewPreCheckoutQuery:
+		c.EffectiveChatId = u.SenderUserId
+	case *UpdateNewShippingQuery:
+		c.EffectiveChatId = u.SenderUserId
 	case *UpdateNotificationGroup:
 		c.EffectiveChatId = u.ChatId
+	case *UpdatePaidMediaPurchased:
+		c.EffectiveChatId = u.UserId
 	case *UpdatePendingTextMessage:
 		c.EffectiveChatId = u.ChatId
 	case *UpdateTopicMessageCount:
 		c.EffectiveChatId = u.ChatId
+	case *UpdateUser:
+		if u.User != nil {
+			c.EffectiveChatId = u.User.Id
+		}
+	case *UpdateUserFullInfo:
+		c.EffectiveChatId = u.UserId
+	case *UpdateUserStatus:
+		c.EffectiveChatId = u.UserId
 	case *UpdateVideoPublished:
 		c.EffectiveChatId = u.ChatId
 	}

@@ -132,11 +132,11 @@ func generateExtHandlers(types []TLType) []string {
 		hasField := false
 
 		for _, p := range t.Params {
-			if p.Name == "chat_id" {
+			if p.Name == "chat_id" || p.Name == "sender_user_id" || p.Name == "user_id" {
 				hasField = true
 				break
 			}
-			if p.Name == "message" && p.Type == "message" {
+			if p.Type == "message" || p.Type == "chat" || p.Type == "user" {
 				hasField = true
 				break
 			}
@@ -150,21 +150,86 @@ func generateExtHandlers(types []TLType) []string {
 		}
 
 		sbContext.WriteString(fmt.Sprintf("\tcase *%s:\n", structName))
+		foundChatId := false
+
 		for _, p := range t.Params {
 			if p.Name == "chat_id" {
 				sbContext.WriteString("\t\tc.EffectiveChatId = u.ChatId\n")
-			} else if p.Name == "message" && p.Type == "message" {
-				sbContext.WriteString("\t\tif u.Message != nil {\n")
-				sbContext.WriteString("\t\t\tc.EffectiveMessage = u.Message\n")
-				sbContext.WriteString("\t\t\tc.EffectiveChatId = u.Message.ChatId\n")
+				foundChatId = true
+				break
+			}
+		}
+
+		for _, p := range t.Params {
+			if p.Type == "message" {
+				fieldName := toCamelCase(p.Name)
+				sbContext.WriteString(fmt.Sprintf("\t\tif u.%s != nil {\n", fieldName))
+				sbContext.WriteString(fmt.Sprintf("\t\t\tc.EffectiveMessage = u.%s\n", fieldName))
+				sbContext.WriteString(fmt.Sprintf("\t\t\tc.EffectiveChatId = u.%s.ChatId\n", fieldName))
 				sbContext.WriteString("\t\t}\n")
-			} else if p.Name == "sender_id" {
-				sbContext.WriteString("\t\tif up, ok := u.SenderId.(*MessageSenderUser); ok {\n")
-				sbContext.WriteString("\t\t\tc.EffectiveChatId = up.UserId\n")
-				sbContext.WriteString("\t\t}\n")
-				sbContext.WriteString("\t\tif up, ok := u.SenderId.(*MessageSenderChat); ok {\n")
-				sbContext.WriteString("\t\t\tc.EffectiveChatId = up.ChatId\n")
-				sbContext.WriteString("\t\t}\n")
+				foundChatId = true
+				break
+			}
+		}
+
+		if !foundChatId {
+			for _, p := range t.Params {
+				if p.Type == "chat" {
+					fieldName := toCamelCase(p.Name)
+					sbContext.WriteString(fmt.Sprintf("\t\tif u.%s != nil {\n", fieldName))
+					sbContext.WriteString(fmt.Sprintf("\t\t\tc.EffectiveChatId = u.%s.Id\n", fieldName))
+					sbContext.WriteString("\t\t}\n")
+					foundChatId = true
+					break
+				}
+			}
+		}
+
+		if !foundChatId {
+			for _, p := range t.Params {
+				if p.Type == "user" {
+					fieldName := toCamelCase(p.Name)
+					sbContext.WriteString(fmt.Sprintf("\t\tif u.%s != nil {\n", fieldName))
+					sbContext.WriteString(fmt.Sprintf("\t\t\tc.EffectiveChatId = u.%s.Id\n", fieldName))
+					sbContext.WriteString("\t\t}\n")
+					foundChatId = true
+					break
+				}
+			}
+		}
+
+		if !foundChatId {
+			for _, p := range t.Params {
+				if p.Name == "sender_user_id" {
+					sbContext.WriteString("\t\tc.EffectiveChatId = u.SenderUserId\n")
+					foundChatId = true
+					break
+				}
+			}
+		}
+
+		if !foundChatId {
+			for _, p := range t.Params {
+				if p.Name == "user_id" {
+					sbContext.WriteString("\t\tc.EffectiveChatId = u.UserId\n")
+					foundChatId = true
+					break
+				}
+			}
+		}
+
+		if !foundChatId {
+			for _, p := range t.Params {
+				if p.Name == "sender_id" {
+					sbContext.WriteString("\t\tif up, ok := u.SenderId.(*MessageSenderUser); ok {\n")
+					sbContext.WriteString("\t\t\tc.EffectiveChatId = up.UserId\n")
+					sbContext.WriteString("\t\t}\n")
+					sbContext.WriteString("\t\tif up, ok := u.SenderId.(*MessageSenderChat); ok {\n")
+					sbContext.WriteString("\t\t\tc.EffectiveChatId = up.ChatId\n")
+					sbContext.WriteString("\t\t}\n")
+					foundChatId = true
+					break
+				}
 			}
 		}
 	}
