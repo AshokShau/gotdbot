@@ -11,20 +11,20 @@ import (
 // UpdateChatTheme The chat theme was changed
 type UpdateChatTheme struct {
 	Filter   filters.UpdateChatTheme
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateChatTheme) error
 }
 
 // NewUpdateChatTheme creates a new UpdateChatTheme
-func NewUpdateChatTheme(filter filters.UpdateChatTheme, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatTheme {
+func NewUpdateChatTheme(filter filters.UpdateChatTheme, response func(b *gotdbot.Client, u *gotdbot.UpdateChatTheme) error) *UpdateChatTheme {
 	return &UpdateChatTheme{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateChatTheme) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateChatTheme
-	if u == nil {
+func (h *UpdateChatTheme) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateChatTheme)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateChatTheme) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) b
 	return h.Filter(u)
 }
 
-func (h *UpdateChatTheme) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateChatTheme) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateChatTheme))
 }

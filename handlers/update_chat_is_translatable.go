@@ -11,20 +11,20 @@ import (
 // UpdateChatIsTranslatable Translation of chat messages was enabled or disabled
 type UpdateChatIsTranslatable struct {
 	Filter   filters.UpdateChatIsTranslatable
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateChatIsTranslatable) error
 }
 
 // NewUpdateChatIsTranslatable creates a new UpdateChatIsTranslatable
-func NewUpdateChatIsTranslatable(filter filters.UpdateChatIsTranslatable, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatIsTranslatable {
+func NewUpdateChatIsTranslatable(filter filters.UpdateChatIsTranslatable, response func(b *gotdbot.Client, u *gotdbot.UpdateChatIsTranslatable) error) *UpdateChatIsTranslatable {
 	return &UpdateChatIsTranslatable{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateChatIsTranslatable) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateChatIsTranslatable
-	if u == nil {
+func (h *UpdateChatIsTranslatable) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateChatIsTranslatable)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateChatIsTranslatable) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.C
 	return h.Filter(u)
 }
 
-func (h *UpdateChatIsTranslatable) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateChatIsTranslatable) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateChatIsTranslatable))
 }

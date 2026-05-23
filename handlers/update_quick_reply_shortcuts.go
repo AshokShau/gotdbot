@@ -11,20 +11,20 @@ import (
 // UpdateQuickReplyShortcuts The list of quick reply shortcuts has changed
 type UpdateQuickReplyShortcuts struct {
 	Filter   filters.UpdateQuickReplyShortcuts
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateQuickReplyShortcuts) error
 }
 
 // NewUpdateQuickReplyShortcuts creates a new UpdateQuickReplyShortcuts
-func NewUpdateQuickReplyShortcuts(filter filters.UpdateQuickReplyShortcuts, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateQuickReplyShortcuts {
+func NewUpdateQuickReplyShortcuts(filter filters.UpdateQuickReplyShortcuts, response func(b *gotdbot.Client, u *gotdbot.UpdateQuickReplyShortcuts) error) *UpdateQuickReplyShortcuts {
 	return &UpdateQuickReplyShortcuts{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateQuickReplyShortcuts) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateQuickReplyShortcuts
-	if u == nil {
+func (h *UpdateQuickReplyShortcuts) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateQuickReplyShortcuts)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateQuickReplyShortcuts) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.
 	return h.Filter(u)
 }
 
-func (h *UpdateQuickReplyShortcuts) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateQuickReplyShortcuts) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateQuickReplyShortcuts))
 }

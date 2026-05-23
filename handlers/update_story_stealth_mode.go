@@ -11,20 +11,20 @@ import (
 // UpdateStoryStealthMode Story stealth mode settings have changed
 type UpdateStoryStealthMode struct {
 	Filter   filters.UpdateStoryStealthMode
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateStoryStealthMode) error
 }
 
 // NewUpdateStoryStealthMode creates a new UpdateStoryStealthMode
-func NewUpdateStoryStealthMode(filter filters.UpdateStoryStealthMode, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateStoryStealthMode {
+func NewUpdateStoryStealthMode(filter filters.UpdateStoryStealthMode, response func(b *gotdbot.Client, u *gotdbot.UpdateStoryStealthMode) error) *UpdateStoryStealthMode {
 	return &UpdateStoryStealthMode{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateStoryStealthMode) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateStoryStealthMode
-	if u == nil {
+func (h *UpdateStoryStealthMode) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateStoryStealthMode)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateStoryStealthMode) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Con
 	return h.Filter(u)
 }
 
-func (h *UpdateStoryStealthMode) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateStoryStealthMode) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateStoryStealthMode))
 }

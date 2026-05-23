@@ -11,20 +11,20 @@ import (
 // UpdateMessageInteractionInfo The information about interactions with a message has changed
 type UpdateMessageInteractionInfo struct {
 	Filter   filters.UpdateMessageInteractionInfo
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateMessageInteractionInfo) error
 }
 
 // NewUpdateMessageInteractionInfo creates a new UpdateMessageInteractionInfo
-func NewUpdateMessageInteractionInfo(filter filters.UpdateMessageInteractionInfo, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateMessageInteractionInfo {
+func NewUpdateMessageInteractionInfo(filter filters.UpdateMessageInteractionInfo, response func(b *gotdbot.Client, u *gotdbot.UpdateMessageInteractionInfo) error) *UpdateMessageInteractionInfo {
 	return &UpdateMessageInteractionInfo{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateMessageInteractionInfo) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateMessageInteractionInfo
-	if u == nil {
+func (h *UpdateMessageInteractionInfo) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateMessageInteractionInfo)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateMessageInteractionInfo) CheckUpdate(b *gotdbot.Client, ctx *gotdb
 	return h.Filter(u)
 }
 
-func (h *UpdateMessageInteractionInfo) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateMessageInteractionInfo) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateMessageInteractionInfo))
 }

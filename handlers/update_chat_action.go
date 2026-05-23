@@ -11,20 +11,20 @@ import (
 // UpdateChatAction A message sender activity in the chat has changed
 type UpdateChatAction struct {
 	Filter   filters.UpdateChatAction
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateChatAction) error
 }
 
 // NewUpdateChatAction creates a new UpdateChatAction
-func NewUpdateChatAction(filter filters.UpdateChatAction, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatAction {
+func NewUpdateChatAction(filter filters.UpdateChatAction, response func(b *gotdbot.Client, u *gotdbot.UpdateChatAction) error) *UpdateChatAction {
 	return &UpdateChatAction{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateChatAction) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateChatAction
-	if u == nil {
+func (h *UpdateChatAction) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateChatAction)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateChatAction) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) 
 	return h.Filter(u)
 }
 
-func (h *UpdateChatAction) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateChatAction) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateChatAction))
 }

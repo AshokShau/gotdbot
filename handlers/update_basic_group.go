@@ -11,20 +11,20 @@ import (
 // UpdateBasicGroup Some data of a basic group has changed. This update is guaranteed to come before the basic group identifier is returned to the application
 type UpdateBasicGroup struct {
 	Filter   filters.UpdateBasicGroup
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateBasicGroup) error
 }
 
 // NewUpdateBasicGroup creates a new UpdateBasicGroup
-func NewUpdateBasicGroup(filter filters.UpdateBasicGroup, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateBasicGroup {
+func NewUpdateBasicGroup(filter filters.UpdateBasicGroup, response func(b *gotdbot.Client, u *gotdbot.UpdateBasicGroup) error) *UpdateBasicGroup {
 	return &UpdateBasicGroup{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateBasicGroup) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateBasicGroup
-	if u == nil {
+func (h *UpdateBasicGroup) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateBasicGroup)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateBasicGroup) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) 
 	return h.Filter(u)
 }
 
-func (h *UpdateBasicGroup) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateBasicGroup) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateBasicGroup))
 }

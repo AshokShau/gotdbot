@@ -11,20 +11,20 @@ import (
 // UpdateOwnedTonCount The number of Toncoins owned by the current user has changed
 type UpdateOwnedTonCount struct {
 	Filter   filters.UpdateOwnedTonCount
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateOwnedTonCount) error
 }
 
 // NewUpdateOwnedTonCount creates a new UpdateOwnedTonCount
-func NewUpdateOwnedTonCount(filter filters.UpdateOwnedTonCount, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateOwnedTonCount {
+func NewUpdateOwnedTonCount(filter filters.UpdateOwnedTonCount, response func(b *gotdbot.Client, u *gotdbot.UpdateOwnedTonCount) error) *UpdateOwnedTonCount {
 	return &UpdateOwnedTonCount{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateOwnedTonCount) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateOwnedTonCount
-	if u == nil {
+func (h *UpdateOwnedTonCount) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateOwnedTonCount)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateOwnedTonCount) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Contex
 	return h.Filter(u)
 }
 
-func (h *UpdateOwnedTonCount) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateOwnedTonCount) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateOwnedTonCount))
 }

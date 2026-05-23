@@ -30,20 +30,20 @@ type Dispatcher struct {
 	wMu         sync.RWMutex
 
 	// PanicHandler handles panics during update processing.
-	PanicHandler func(c *Context, r interface{})
+	PanicHandler func(client *Client, update TlObject, r interface{})
 
 	// ErrorHandler handles errors returned by handlers.
 	// It should only return EndGroups, ContinueGroups, or nil.
 	// Any other error returned will be logged and treated as nil (success).
-	ErrorHandler func(client *Client, ctx *Context, err error) error
+	ErrorHandler func(client *Client, update TlObject, err error) error
 }
 
 type DispatcherOpts struct {
-	PanicHandler func(c *Context, r interface{})
+	PanicHandler func(client *Client, update TlObject, r interface{})
 	// ErrorHandler handles errors returned by handlers.
 	// It should only return EndGroups, ContinueGroups, or nil.
 	// Any other error returned will be logged and treated as nil (success).
-	ErrorHandler func(client *Client, ctx *Context, err error) error
+	ErrorHandler func(client *Client, update TlObject, err error) error
 }
 
 func NewDispatcher(opts *DispatcherOpts) *Dispatcher {
@@ -104,12 +104,10 @@ func (d *Dispatcher) WaitFor(client *Client, filter UpdateFilter, timeout time.D
 // It launches a goroutine to prevent blocking the main update loop.
 func (d *Dispatcher) ProcessUpdate(client *Client, update TlObject) {
 	go func() {
-		ctx := NewContext(client, update, d)
-
 		defer func() {
 			if r := recover(); r != nil {
 				if d.PanicHandler != nil {
-					d.PanicHandler(ctx, r)
+					d.PanicHandler(client, update, r)
 				} else {
 					log.Printf("Panic in dispatcher: %v\n%s", r, debug.Stack())
 				}
@@ -117,19 +115,23 @@ func (d *Dispatcher) ProcessUpdate(client *Client, update TlObject) {
 		}()
 
 		d.wMu.RLock()
-		var matchedWaiters []*Waiter
-		for _, w := range d.waiters {
-			if w.Client == client && w.Filter(client, ctx) {
-				matchedWaiters = append(matchedWaiters, w)
+		if len(d.waiters) > 0 {
+			var matchedWaiters []*Waiter
+			for _, w := range d.waiters {
+				if w.Client == client && w.Filter(client, update) {
+					matchedWaiters = append(matchedWaiters, w)
+				}
 			}
-		}
-		d.wMu.RUnlock()
+			d.wMu.RUnlock()
 
-		for _, w := range matchedWaiters {
-			select {
-			case w.C <- update:
-			default:
+			for _, w := range matchedWaiters {
+				select {
+				case w.C <- update:
+				default:
+				}
 			}
+		} else {
+			d.wMu.RUnlock()
 		}
 
 		d.mu.RLock()
@@ -154,7 +156,7 @@ func (d *Dispatcher) ProcessUpdate(client *Client, update TlObject) {
 				return ContinueGroups
 			}
 			if d.ErrorHandler != nil {
-				action := d.ErrorHandler(client, ctx, err)
+				action := d.ErrorHandler(client, update, err)
 				if action != nil && !errors.Is(action, EndGroups) && !errors.Is(action, ContinueGroups) {
 					log.Printf("ErrorHandler returned unexpected error: %v", action)
 					return nil
@@ -169,8 +171,8 @@ func (d *Dispatcher) ProcessUpdate(client *Client, update TlObject) {
 		for _, group := range groups {
 			groupHandlers := handlers[group]
 			for _, h := range groupHandlers {
-				if h.CheckUpdate(client, ctx) {
-					err := h.HandleUpdate(client, ctx)
+				if h.CheckUpdate(client, update) {
+					err := h.HandleUpdate(client, update)
 					action := handleError(err)
 
 					if errors.Is(action, EndGroups) {

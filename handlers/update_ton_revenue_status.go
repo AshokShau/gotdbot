@@ -11,20 +11,20 @@ import (
 // UpdateTonRevenueStatus The Toncoin revenue earned by the current user has changed. If Toncoin transaction screen of the chat is opened, then getTonTransactions may be called to fetch new transactions
 type UpdateTonRevenueStatus struct {
 	Filter   filters.UpdateTonRevenueStatus
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateTonRevenueStatus) error
 }
 
 // NewUpdateTonRevenueStatus creates a new UpdateTonRevenueStatus
-func NewUpdateTonRevenueStatus(filter filters.UpdateTonRevenueStatus, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateTonRevenueStatus {
+func NewUpdateTonRevenueStatus(filter filters.UpdateTonRevenueStatus, response func(b *gotdbot.Client, u *gotdbot.UpdateTonRevenueStatus) error) *UpdateTonRevenueStatus {
 	return &UpdateTonRevenueStatus{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateTonRevenueStatus) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateTonRevenueStatus
-	if u == nil {
+func (h *UpdateTonRevenueStatus) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateTonRevenueStatus)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateTonRevenueStatus) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Con
 	return h.Filter(u)
 }
 
-func (h *UpdateTonRevenueStatus) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateTonRevenueStatus) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateTonRevenueStatus))
 }

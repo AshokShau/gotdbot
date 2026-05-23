@@ -11,20 +11,20 @@ import (
 // UpdateAuthorizationState The user authorization state has changed
 type UpdateAuthorizationState struct {
 	Filter   filters.UpdateAuthorizationState
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateAuthorizationState) error
 }
 
 // NewUpdateAuthorizationState creates a new UpdateAuthorizationState
-func NewUpdateAuthorizationState(filter filters.UpdateAuthorizationState, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateAuthorizationState {
+func NewUpdateAuthorizationState(filter filters.UpdateAuthorizationState, response func(b *gotdbot.Client, u *gotdbot.UpdateAuthorizationState) error) *UpdateAuthorizationState {
 	return &UpdateAuthorizationState{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateAuthorizationState) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateAuthorizationState
-	if u == nil {
+func (h *UpdateAuthorizationState) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateAuthorizationState)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateAuthorizationState) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.C
 	return h.Filter(u)
 }
 
-func (h *UpdateAuthorizationState) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateAuthorizationState) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateAuthorizationState))
 }

@@ -11,20 +11,20 @@ import (
 // UpdateApplicationRecaptchaVerificationRequired A request can't be completed unless reCAPTCHA verification is performed; for official mobile applications only.
 type UpdateApplicationRecaptchaVerificationRequired struct {
 	Filter   filters.UpdateApplicationRecaptchaVerificationRequired
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateApplicationRecaptchaVerificationRequired) error
 }
 
 // NewUpdateApplicationRecaptchaVerificationRequired creates a new UpdateApplicationRecaptchaVerificationRequired
-func NewUpdateApplicationRecaptchaVerificationRequired(filter filters.UpdateApplicationRecaptchaVerificationRequired, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateApplicationRecaptchaVerificationRequired {
+func NewUpdateApplicationRecaptchaVerificationRequired(filter filters.UpdateApplicationRecaptchaVerificationRequired, response func(b *gotdbot.Client, u *gotdbot.UpdateApplicationRecaptchaVerificationRequired) error) *UpdateApplicationRecaptchaVerificationRequired {
 	return &UpdateApplicationRecaptchaVerificationRequired{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateApplicationRecaptchaVerificationRequired) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateApplicationRecaptchaVerificationRequired
-	if u == nil {
+func (h *UpdateApplicationRecaptchaVerificationRequired) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateApplicationRecaptchaVerificationRequired)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateApplicationRecaptchaVerificationRequired) CheckUpdate(b *gotdbot.
 	return h.Filter(u)
 }
 
-func (h *UpdateApplicationRecaptchaVerificationRequired) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateApplicationRecaptchaVerificationRequired) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateApplicationRecaptchaVerificationRequired))
 }

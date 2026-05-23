@@ -11,20 +11,20 @@ import (
 // UpdateChatPosition The position of a chat in a chat list has changed. An updateChatLastMessage or updateChatDraftMessage update might be sent instead of the update
 type UpdateChatPosition struct {
 	Filter   filters.UpdateChatPosition
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateChatPosition) error
 }
 
 // NewUpdateChatPosition creates a new UpdateChatPosition
-func NewUpdateChatPosition(filter filters.UpdateChatPosition, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatPosition {
+func NewUpdateChatPosition(filter filters.UpdateChatPosition, response func(b *gotdbot.Client, u *gotdbot.UpdateChatPosition) error) *UpdateChatPosition {
 	return &UpdateChatPosition{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateChatPosition) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateChatPosition
-	if u == nil {
+func (h *UpdateChatPosition) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateChatPosition)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateChatPosition) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context
 	return h.Filter(u)
 }
 
-func (h *UpdateChatPosition) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateChatPosition) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateChatPosition))
 }

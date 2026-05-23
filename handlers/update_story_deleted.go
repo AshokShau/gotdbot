@@ -11,20 +11,20 @@ import (
 // UpdateStoryDeleted A story became inaccessible
 type UpdateStoryDeleted struct {
 	Filter   filters.UpdateStoryDeleted
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateStoryDeleted) error
 }
 
 // NewUpdateStoryDeleted creates a new UpdateStoryDeleted
-func NewUpdateStoryDeleted(filter filters.UpdateStoryDeleted, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateStoryDeleted {
+func NewUpdateStoryDeleted(filter filters.UpdateStoryDeleted, response func(b *gotdbot.Client, u *gotdbot.UpdateStoryDeleted) error) *UpdateStoryDeleted {
 	return &UpdateStoryDeleted{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateStoryDeleted) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateStoryDeleted
-	if u == nil {
+func (h *UpdateStoryDeleted) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateStoryDeleted)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateStoryDeleted) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context
 	return h.Filter(u)
 }
 
-func (h *UpdateStoryDeleted) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateStoryDeleted) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateStoryDeleted))
 }

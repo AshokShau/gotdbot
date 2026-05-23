@@ -11,20 +11,20 @@ import (
 // UpdateFile Information about a file was updated
 type UpdateFile struct {
 	Filter   filters.UpdateFile
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateFile) error
 }
 
 // NewUpdateFile creates a new UpdateFile
-func NewUpdateFile(filter filters.UpdateFile, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateFile {
+func NewUpdateFile(filter filters.UpdateFile, response func(b *gotdbot.Client, u *gotdbot.UpdateFile) error) *UpdateFile {
 	return &UpdateFile{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateFile) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateFile
-	if u == nil {
+func (h *UpdateFile) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateFile)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateFile) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdateFile) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateFile) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateFile))
 }

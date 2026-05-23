@@ -11,20 +11,20 @@ import (
 // UpdateBusinessConnection A business connection has changed; for bots only
 type UpdateBusinessConnection struct {
 	Filter   filters.UpdateBusinessConnection
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateBusinessConnection) error
 }
 
 // NewUpdateBusinessConnection creates a new UpdateBusinessConnection
-func NewUpdateBusinessConnection(filter filters.UpdateBusinessConnection, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateBusinessConnection {
+func NewUpdateBusinessConnection(filter filters.UpdateBusinessConnection, response func(b *gotdbot.Client, u *gotdbot.UpdateBusinessConnection) error) *UpdateBusinessConnection {
 	return &UpdateBusinessConnection{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateBusinessConnection) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateBusinessConnection
-	if u == nil {
+func (h *UpdateBusinessConnection) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateBusinessConnection)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateBusinessConnection) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.C
 	return h.Filter(u)
 }
 
-func (h *UpdateBusinessConnection) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateBusinessConnection) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateBusinessConnection))
 }

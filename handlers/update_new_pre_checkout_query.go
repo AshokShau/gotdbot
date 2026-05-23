@@ -11,20 +11,20 @@ import (
 // UpdateNewPreCheckoutQuery A new incoming pre-checkout query; for bots only. Contains full information about a checkout
 type UpdateNewPreCheckoutQuery struct {
 	Filter   filters.UpdateNewPreCheckoutQuery
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateNewPreCheckoutQuery) error
 }
 
 // NewUpdateNewPreCheckoutQuery creates a new UpdateNewPreCheckoutQuery
-func NewUpdateNewPreCheckoutQuery(filter filters.UpdateNewPreCheckoutQuery, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateNewPreCheckoutQuery {
+func NewUpdateNewPreCheckoutQuery(filter filters.UpdateNewPreCheckoutQuery, response func(b *gotdbot.Client, u *gotdbot.UpdateNewPreCheckoutQuery) error) *UpdateNewPreCheckoutQuery {
 	return &UpdateNewPreCheckoutQuery{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateNewPreCheckoutQuery) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateNewPreCheckoutQuery
-	if u == nil {
+func (h *UpdateNewPreCheckoutQuery) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateNewPreCheckoutQuery)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateNewPreCheckoutQuery) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.
 	return h.Filter(u)
 }
 
-func (h *UpdateNewPreCheckoutQuery) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateNewPreCheckoutQuery) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateNewPreCheckoutQuery))
 }

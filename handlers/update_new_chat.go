@@ -11,20 +11,20 @@ import (
 // UpdateNewChat A new chat has been loaded/created. This update is guaranteed to come before the chat identifier is returned to the application. The chat field changes will be reported through separate updates
 type UpdateNewChat struct {
 	Filter   filters.UpdateNewChat
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateNewChat) error
 }
 
 // NewUpdateNewChat creates a new UpdateNewChat
-func NewUpdateNewChat(filter filters.UpdateNewChat, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateNewChat {
+func NewUpdateNewChat(filter filters.UpdateNewChat, response func(b *gotdbot.Client, u *gotdbot.UpdateNewChat) error) *UpdateNewChat {
 	return &UpdateNewChat{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateNewChat) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateNewChat
-	if u == nil {
+func (h *UpdateNewChat) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateNewChat)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateNewChat) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) boo
 	return h.Filter(u)
 }
 
-func (h *UpdateNewChat) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateNewChat) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateNewChat))
 }

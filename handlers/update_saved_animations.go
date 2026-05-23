@@ -11,20 +11,20 @@ import (
 // UpdateSavedAnimations The list of saved animations was updated
 type UpdateSavedAnimations struct {
 	Filter   filters.UpdateSavedAnimations
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateSavedAnimations) error
 }
 
 // NewUpdateSavedAnimations creates a new UpdateSavedAnimations
-func NewUpdateSavedAnimations(filter filters.UpdateSavedAnimations, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateSavedAnimations {
+func NewUpdateSavedAnimations(filter filters.UpdateSavedAnimations, response func(b *gotdbot.Client, u *gotdbot.UpdateSavedAnimations) error) *UpdateSavedAnimations {
 	return &UpdateSavedAnimations{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateSavedAnimations) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateSavedAnimations
-	if u == nil {
+func (h *UpdateSavedAnimations) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateSavedAnimations)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateSavedAnimations) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Cont
 	return h.Filter(u)
 }
 
-func (h *UpdateSavedAnimations) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateSavedAnimations) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateSavedAnimations))
 }

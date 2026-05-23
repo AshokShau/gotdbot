@@ -11,20 +11,20 @@ import (
 // UpdateGroupCallMessageSendFailed A group call message failed to send
 type UpdateGroupCallMessageSendFailed struct {
 	Filter   filters.UpdateGroupCallMessageSendFailed
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateGroupCallMessageSendFailed) error
 }
 
 // NewUpdateGroupCallMessageSendFailed creates a new UpdateGroupCallMessageSendFailed
-func NewUpdateGroupCallMessageSendFailed(filter filters.UpdateGroupCallMessageSendFailed, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateGroupCallMessageSendFailed {
+func NewUpdateGroupCallMessageSendFailed(filter filters.UpdateGroupCallMessageSendFailed, response func(b *gotdbot.Client, u *gotdbot.UpdateGroupCallMessageSendFailed) error) *UpdateGroupCallMessageSendFailed {
 	return &UpdateGroupCallMessageSendFailed{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateGroupCallMessageSendFailed) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateGroupCallMessageSendFailed
-	if u == nil {
+func (h *UpdateGroupCallMessageSendFailed) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateGroupCallMessageSendFailed)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateGroupCallMessageSendFailed) CheckUpdate(b *gotdbot.Client, ctx *g
 	return h.Filter(u)
 }
 
-func (h *UpdateGroupCallMessageSendFailed) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateGroupCallMessageSendFailed) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateGroupCallMessageSendFailed))
 }

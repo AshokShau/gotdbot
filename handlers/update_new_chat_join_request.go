@@ -11,20 +11,20 @@ import (
 // UpdateNewChatJoinRequest A user sent a join request to a chat; for bots only
 type UpdateNewChatJoinRequest struct {
 	Filter   filters.UpdateNewChatJoinRequest
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateNewChatJoinRequest) error
 }
 
 // NewUpdateNewChatJoinRequest creates a new UpdateNewChatJoinRequest
-func NewUpdateNewChatJoinRequest(filter filters.UpdateNewChatJoinRequest, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateNewChatJoinRequest {
+func NewUpdateNewChatJoinRequest(filter filters.UpdateNewChatJoinRequest, response func(b *gotdbot.Client, u *gotdbot.UpdateNewChatJoinRequest) error) *UpdateNewChatJoinRequest {
 	return &UpdateNewChatJoinRequest{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateNewChatJoinRequest) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateNewChatJoinRequest
-	if u == nil {
+func (h *UpdateNewChatJoinRequest) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateNewChatJoinRequest)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateNewChatJoinRequest) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.C
 	return h.Filter(u)
 }
 
-func (h *UpdateNewChatJoinRequest) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateNewChatJoinRequest) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateNewChatJoinRequest))
 }

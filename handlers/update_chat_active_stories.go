@@ -11,20 +11,20 @@ import (
 // UpdateChatActiveStories The list of active stories posted by a specific chat has changed
 type UpdateChatActiveStories struct {
 	Filter   filters.UpdateChatActiveStories
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateChatActiveStories) error
 }
 
 // NewUpdateChatActiveStories creates a new UpdateChatActiveStories
-func NewUpdateChatActiveStories(filter filters.UpdateChatActiveStories, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatActiveStories {
+func NewUpdateChatActiveStories(filter filters.UpdateChatActiveStories, response func(b *gotdbot.Client, u *gotdbot.UpdateChatActiveStories) error) *UpdateChatActiveStories {
 	return &UpdateChatActiveStories{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateChatActiveStories) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateChatActiveStories
-	if u == nil {
+func (h *UpdateChatActiveStories) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateChatActiveStories)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateChatActiveStories) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Co
 	return h.Filter(u)
 }
 
-func (h *UpdateChatActiveStories) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateChatActiveStories) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateChatActiveStories))
 }

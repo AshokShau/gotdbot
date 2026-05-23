@@ -11,20 +11,20 @@ import (
 // UpdateSpeechRecognitionTrial The parameters of speech recognition without Telegram Premium subscription has changed
 type UpdateSpeechRecognitionTrial struct {
 	Filter   filters.UpdateSpeechRecognitionTrial
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateSpeechRecognitionTrial) error
 }
 
 // NewUpdateSpeechRecognitionTrial creates a new UpdateSpeechRecognitionTrial
-func NewUpdateSpeechRecognitionTrial(filter filters.UpdateSpeechRecognitionTrial, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateSpeechRecognitionTrial {
+func NewUpdateSpeechRecognitionTrial(filter filters.UpdateSpeechRecognitionTrial, response func(b *gotdbot.Client, u *gotdbot.UpdateSpeechRecognitionTrial) error) *UpdateSpeechRecognitionTrial {
 	return &UpdateSpeechRecognitionTrial{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateSpeechRecognitionTrial) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateSpeechRecognitionTrial
-	if u == nil {
+func (h *UpdateSpeechRecognitionTrial) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateSpeechRecognitionTrial)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateSpeechRecognitionTrial) CheckUpdate(b *gotdbot.Client, ctx *gotdb
 	return h.Filter(u)
 }
 
-func (h *UpdateSpeechRecognitionTrial) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateSpeechRecognitionTrial) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateSpeechRecognitionTrial))
 }

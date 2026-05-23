@@ -11,20 +11,20 @@ import (
 // UpdateBasicGroupFullInfo Some data in basicGroupFullInfo has been changed
 type UpdateBasicGroupFullInfo struct {
 	Filter   filters.UpdateBasicGroupFullInfo
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateBasicGroupFullInfo) error
 }
 
 // NewUpdateBasicGroupFullInfo creates a new UpdateBasicGroupFullInfo
-func NewUpdateBasicGroupFullInfo(filter filters.UpdateBasicGroupFullInfo, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateBasicGroupFullInfo {
+func NewUpdateBasicGroupFullInfo(filter filters.UpdateBasicGroupFullInfo, response func(b *gotdbot.Client, u *gotdbot.UpdateBasicGroupFullInfo) error) *UpdateBasicGroupFullInfo {
 	return &UpdateBasicGroupFullInfo{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateBasicGroupFullInfo) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateBasicGroupFullInfo
-	if u == nil {
+func (h *UpdateBasicGroupFullInfo) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateBasicGroupFullInfo)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateBasicGroupFullInfo) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.C
 	return h.Filter(u)
 }
 
-func (h *UpdateBasicGroupFullInfo) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateBasicGroupFullInfo) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateBasicGroupFullInfo))
 }

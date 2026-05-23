@@ -11,20 +11,20 @@ import (
 // UpdateChatRemovedFromList A chat was removed from a chat list
 type UpdateChatRemovedFromList struct {
 	Filter   filters.UpdateChatRemovedFromList
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateChatRemovedFromList) error
 }
 
 // NewUpdateChatRemovedFromList creates a new UpdateChatRemovedFromList
-func NewUpdateChatRemovedFromList(filter filters.UpdateChatRemovedFromList, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatRemovedFromList {
+func NewUpdateChatRemovedFromList(filter filters.UpdateChatRemovedFromList, response func(b *gotdbot.Client, u *gotdbot.UpdateChatRemovedFromList) error) *UpdateChatRemovedFromList {
 	return &UpdateChatRemovedFromList{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateChatRemovedFromList) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateChatRemovedFromList
-	if u == nil {
+func (h *UpdateChatRemovedFromList) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateChatRemovedFromList)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateChatRemovedFromList) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.
 	return h.Filter(u)
 }
 
-func (h *UpdateChatRemovedFromList) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateChatRemovedFromList) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateChatRemovedFromList))
 }

@@ -11,20 +11,20 @@ import (
 // UpdateDefaultBackground The default background has changed
 type UpdateDefaultBackground struct {
 	Filter   filters.UpdateDefaultBackground
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateDefaultBackground) error
 }
 
 // NewUpdateDefaultBackground creates a new UpdateDefaultBackground
-func NewUpdateDefaultBackground(filter filters.UpdateDefaultBackground, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateDefaultBackground {
+func NewUpdateDefaultBackground(filter filters.UpdateDefaultBackground, response func(b *gotdbot.Client, u *gotdbot.UpdateDefaultBackground) error) *UpdateDefaultBackground {
 	return &UpdateDefaultBackground{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateDefaultBackground) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateDefaultBackground
-	if u == nil {
+func (h *UpdateDefaultBackground) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateDefaultBackground)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateDefaultBackground) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Co
 	return h.Filter(u)
 }
 
-func (h *UpdateDefaultBackground) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateDefaultBackground) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateDefaultBackground))
 }

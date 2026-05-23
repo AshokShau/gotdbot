@@ -11,20 +11,20 @@ import (
 // UpdateMessageSuggestedPostInfo Information about suggested post of a message was changed
 type UpdateMessageSuggestedPostInfo struct {
 	Filter   filters.UpdateMessageSuggestedPostInfo
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateMessageSuggestedPostInfo) error
 }
 
 // NewUpdateMessageSuggestedPostInfo creates a new UpdateMessageSuggestedPostInfo
-func NewUpdateMessageSuggestedPostInfo(filter filters.UpdateMessageSuggestedPostInfo, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateMessageSuggestedPostInfo {
+func NewUpdateMessageSuggestedPostInfo(filter filters.UpdateMessageSuggestedPostInfo, response func(b *gotdbot.Client, u *gotdbot.UpdateMessageSuggestedPostInfo) error) *UpdateMessageSuggestedPostInfo {
 	return &UpdateMessageSuggestedPostInfo{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateMessageSuggestedPostInfo) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateMessageSuggestedPostInfo
-	if u == nil {
+func (h *UpdateMessageSuggestedPostInfo) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateMessageSuggestedPostInfo)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateMessageSuggestedPostInfo) CheckUpdate(b *gotdbot.Client, ctx *got
 	return h.Filter(u)
 }
 
-func (h *UpdateMessageSuggestedPostInfo) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateMessageSuggestedPostInfo) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateMessageSuggestedPostInfo))
 }

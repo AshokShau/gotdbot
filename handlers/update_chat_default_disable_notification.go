@@ -11,20 +11,20 @@ import (
 // UpdateChatDefaultDisableNotification The value of the default disable_notification parameter, used when a message is sent to the chat, was changed
 type UpdateChatDefaultDisableNotification struct {
 	Filter   filters.UpdateChatDefaultDisableNotification
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateChatDefaultDisableNotification) error
 }
 
 // NewUpdateChatDefaultDisableNotification creates a new UpdateChatDefaultDisableNotification
-func NewUpdateChatDefaultDisableNotification(filter filters.UpdateChatDefaultDisableNotification, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatDefaultDisableNotification {
+func NewUpdateChatDefaultDisableNotification(filter filters.UpdateChatDefaultDisableNotification, response func(b *gotdbot.Client, u *gotdbot.UpdateChatDefaultDisableNotification) error) *UpdateChatDefaultDisableNotification {
 	return &UpdateChatDefaultDisableNotification{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateChatDefaultDisableNotification) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateChatDefaultDisableNotification
-	if u == nil {
+func (h *UpdateChatDefaultDisableNotification) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateChatDefaultDisableNotification)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateChatDefaultDisableNotification) CheckUpdate(b *gotdbot.Client, ct
 	return h.Filter(u)
 }
 
-func (h *UpdateChatDefaultDisableNotification) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateChatDefaultDisableNotification) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateChatDefaultDisableNotification))
 }

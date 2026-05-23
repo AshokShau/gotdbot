@@ -11,20 +11,20 @@ import (
 // UpdateDefaultPaidReactionType The type of default paid reaction has changed
 type UpdateDefaultPaidReactionType struct {
 	Filter   filters.UpdateDefaultPaidReactionType
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateDefaultPaidReactionType) error
 }
 
 // NewUpdateDefaultPaidReactionType creates a new UpdateDefaultPaidReactionType
-func NewUpdateDefaultPaidReactionType(filter filters.UpdateDefaultPaidReactionType, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateDefaultPaidReactionType {
+func NewUpdateDefaultPaidReactionType(filter filters.UpdateDefaultPaidReactionType, response func(b *gotdbot.Client, u *gotdbot.UpdateDefaultPaidReactionType) error) *UpdateDefaultPaidReactionType {
 	return &UpdateDefaultPaidReactionType{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateDefaultPaidReactionType) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateDefaultPaidReactionType
-	if u == nil {
+func (h *UpdateDefaultPaidReactionType) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateDefaultPaidReactionType)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateDefaultPaidReactionType) CheckUpdate(b *gotdbot.Client, ctx *gotd
 	return h.Filter(u)
 }
 
-func (h *UpdateDefaultPaidReactionType) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateDefaultPaidReactionType) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateDefaultPaidReactionType))
 }

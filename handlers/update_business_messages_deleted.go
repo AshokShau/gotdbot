@@ -11,20 +11,20 @@ import (
 // UpdateBusinessMessagesDeleted Messages in a business account were deleted; for bots only
 type UpdateBusinessMessagesDeleted struct {
 	Filter   filters.UpdateBusinessMessagesDeleted
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateBusinessMessagesDeleted) error
 }
 
 // NewUpdateBusinessMessagesDeleted creates a new UpdateBusinessMessagesDeleted
-func NewUpdateBusinessMessagesDeleted(filter filters.UpdateBusinessMessagesDeleted, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateBusinessMessagesDeleted {
+func NewUpdateBusinessMessagesDeleted(filter filters.UpdateBusinessMessagesDeleted, response func(b *gotdbot.Client, u *gotdbot.UpdateBusinessMessagesDeleted) error) *UpdateBusinessMessagesDeleted {
 	return &UpdateBusinessMessagesDeleted{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateBusinessMessagesDeleted) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateBusinessMessagesDeleted
-	if u == nil {
+func (h *UpdateBusinessMessagesDeleted) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateBusinessMessagesDeleted)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateBusinessMessagesDeleted) CheckUpdate(b *gotdbot.Client, ctx *gotd
 	return h.Filter(u)
 }
 
-func (h *UpdateBusinessMessagesDeleted) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateBusinessMessagesDeleted) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateBusinessMessagesDeleted))
 }

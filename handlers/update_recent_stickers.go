@@ -11,20 +11,20 @@ import (
 // UpdateRecentStickers The list of recently used stickers was updated
 type UpdateRecentStickers struct {
 	Filter   filters.UpdateRecentStickers
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateRecentStickers) error
 }
 
 // NewUpdateRecentStickers creates a new UpdateRecentStickers
-func NewUpdateRecentStickers(filter filters.UpdateRecentStickers, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateRecentStickers {
+func NewUpdateRecentStickers(filter filters.UpdateRecentStickers, response func(b *gotdbot.Client, u *gotdbot.UpdateRecentStickers) error) *UpdateRecentStickers {
 	return &UpdateRecentStickers{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateRecentStickers) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateRecentStickers
-	if u == nil {
+func (h *UpdateRecentStickers) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateRecentStickers)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateRecentStickers) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Conte
 	return h.Filter(u)
 }
 
-func (h *UpdateRecentStickers) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateRecentStickers) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateRecentStickers))
 }

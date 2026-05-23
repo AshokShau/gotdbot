@@ -11,20 +11,20 @@ import (
 // UpdateQuickReplyShortcut Basic information about a quick reply shortcut has changed. This update is guaranteed to come before the quick shortcut name is returned to the application
 type UpdateQuickReplyShortcut struct {
 	Filter   filters.UpdateQuickReplyShortcut
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateQuickReplyShortcut) error
 }
 
 // NewUpdateQuickReplyShortcut creates a new UpdateQuickReplyShortcut
-func NewUpdateQuickReplyShortcut(filter filters.UpdateQuickReplyShortcut, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateQuickReplyShortcut {
+func NewUpdateQuickReplyShortcut(filter filters.UpdateQuickReplyShortcut, response func(b *gotdbot.Client, u *gotdbot.UpdateQuickReplyShortcut) error) *UpdateQuickReplyShortcut {
 	return &UpdateQuickReplyShortcut{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateQuickReplyShortcut) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateQuickReplyShortcut
-	if u == nil {
+func (h *UpdateQuickReplyShortcut) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateQuickReplyShortcut)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateQuickReplyShortcut) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.C
 	return h.Filter(u)
 }
 
-func (h *UpdateQuickReplyShortcut) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateQuickReplyShortcut) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateQuickReplyShortcut))
 }

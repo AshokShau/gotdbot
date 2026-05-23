@@ -11,20 +11,20 @@ import (
 // UpdateActiveNotifications Contains active notifications that were shown on previous application launches. This update is sent only if the message database is used. In that case it comes once before any updateNotification and updateNotificationGroup update
 type UpdateActiveNotifications struct {
 	Filter   filters.UpdateActiveNotifications
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateActiveNotifications) error
 }
 
 // NewUpdateActiveNotifications creates a new UpdateActiveNotifications
-func NewUpdateActiveNotifications(filter filters.UpdateActiveNotifications, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateActiveNotifications {
+func NewUpdateActiveNotifications(filter filters.UpdateActiveNotifications, response func(b *gotdbot.Client, u *gotdbot.UpdateActiveNotifications) error) *UpdateActiveNotifications {
 	return &UpdateActiveNotifications{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateActiveNotifications) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateActiveNotifications
-	if u == nil {
+func (h *UpdateActiveNotifications) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateActiveNotifications)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateActiveNotifications) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.
 	return h.Filter(u)
 }
 
-func (h *UpdateActiveNotifications) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateActiveNotifications) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateActiveNotifications))
 }

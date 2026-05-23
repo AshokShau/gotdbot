@@ -11,20 +11,20 @@ import (
 // UpdateNewCustomEvent A new incoming event; for bots only
 type UpdateNewCustomEvent struct {
 	Filter   filters.UpdateNewCustomEvent
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateNewCustomEvent) error
 }
 
 // NewUpdateNewCustomEvent creates a new UpdateNewCustomEvent
-func NewUpdateNewCustomEvent(filter filters.UpdateNewCustomEvent, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateNewCustomEvent {
+func NewUpdateNewCustomEvent(filter filters.UpdateNewCustomEvent, response func(b *gotdbot.Client, u *gotdbot.UpdateNewCustomEvent) error) *UpdateNewCustomEvent {
 	return &UpdateNewCustomEvent{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateNewCustomEvent) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateNewCustomEvent
-	if u == nil {
+func (h *UpdateNewCustomEvent) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateNewCustomEvent)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateNewCustomEvent) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Conte
 	return h.Filter(u)
 }
 
-func (h *UpdateNewCustomEvent) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateNewCustomEvent) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateNewCustomEvent))
 }

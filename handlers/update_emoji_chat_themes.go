@@ -11,20 +11,20 @@ import (
 // UpdateEmojiChatThemes The list of available emoji chat themes has changed
 type UpdateEmojiChatThemes struct {
 	Filter   filters.UpdateEmojiChatThemes
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateEmojiChatThemes) error
 }
 
 // NewUpdateEmojiChatThemes creates a new UpdateEmojiChatThemes
-func NewUpdateEmojiChatThemes(filter filters.UpdateEmojiChatThemes, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateEmojiChatThemes {
+func NewUpdateEmojiChatThemes(filter filters.UpdateEmojiChatThemes, response func(b *gotdbot.Client, u *gotdbot.UpdateEmojiChatThemes) error) *UpdateEmojiChatThemes {
 	return &UpdateEmojiChatThemes{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateEmojiChatThemes) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateEmojiChatThemes
-	if u == nil {
+func (h *UpdateEmojiChatThemes) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateEmojiChatThemes)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateEmojiChatThemes) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Cont
 	return h.Filter(u)
 }
 
-func (h *UpdateEmojiChatThemes) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateEmojiChatThemes) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateEmojiChatThemes))
 }

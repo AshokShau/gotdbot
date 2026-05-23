@@ -11,20 +11,20 @@ import (
 // UpdateQuickReplyShortcutDeleted A quick reply shortcut and all its messages were deleted
 type UpdateQuickReplyShortcutDeleted struct {
 	Filter   filters.UpdateQuickReplyShortcutDeleted
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateQuickReplyShortcutDeleted) error
 }
 
 // NewUpdateQuickReplyShortcutDeleted creates a new UpdateQuickReplyShortcutDeleted
-func NewUpdateQuickReplyShortcutDeleted(filter filters.UpdateQuickReplyShortcutDeleted, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateQuickReplyShortcutDeleted {
+func NewUpdateQuickReplyShortcutDeleted(filter filters.UpdateQuickReplyShortcutDeleted, response func(b *gotdbot.Client, u *gotdbot.UpdateQuickReplyShortcutDeleted) error) *UpdateQuickReplyShortcutDeleted {
 	return &UpdateQuickReplyShortcutDeleted{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateQuickReplyShortcutDeleted) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateQuickReplyShortcutDeleted
-	if u == nil {
+func (h *UpdateQuickReplyShortcutDeleted) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateQuickReplyShortcutDeleted)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateQuickReplyShortcutDeleted) CheckUpdate(b *gotdbot.Client, ctx *go
 	return h.Filter(u)
 }
 
-func (h *UpdateQuickReplyShortcutDeleted) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateQuickReplyShortcutDeleted) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateQuickReplyShortcutDeleted))
 }

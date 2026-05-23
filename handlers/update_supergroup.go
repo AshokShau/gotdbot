@@ -11,20 +11,20 @@ import (
 // UpdateSupergroup Some data of a supergroup or a channel has changed. This update is guaranteed to come before the supergroup identifier is returned to the application
 type UpdateSupergroup struct {
 	Filter   filters.UpdateSupergroup
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateSupergroup) error
 }
 
 // NewUpdateSupergroup creates a new UpdateSupergroup
-func NewUpdateSupergroup(filter filters.UpdateSupergroup, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateSupergroup {
+func NewUpdateSupergroup(filter filters.UpdateSupergroup, response func(b *gotdbot.Client, u *gotdbot.UpdateSupergroup) error) *UpdateSupergroup {
 	return &UpdateSupergroup{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateSupergroup) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateSupergroup
-	if u == nil {
+func (h *UpdateSupergroup) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateSupergroup)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateSupergroup) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) 
 	return h.Filter(u)
 }
 
-func (h *UpdateSupergroup) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateSupergroup) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateSupergroup))
 }

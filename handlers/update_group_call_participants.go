@@ -11,20 +11,20 @@ import (
 // UpdateGroupCallParticipants The list of group call participants that can send and receive encrypted call data has changed; for group calls not bound to a chat only
 type UpdateGroupCallParticipants struct {
 	Filter   filters.UpdateGroupCallParticipants
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateGroupCallParticipants) error
 }
 
 // NewUpdateGroupCallParticipants creates a new UpdateGroupCallParticipants
-func NewUpdateGroupCallParticipants(filter filters.UpdateGroupCallParticipants, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateGroupCallParticipants {
+func NewUpdateGroupCallParticipants(filter filters.UpdateGroupCallParticipants, response func(b *gotdbot.Client, u *gotdbot.UpdateGroupCallParticipants) error) *UpdateGroupCallParticipants {
 	return &UpdateGroupCallParticipants{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateGroupCallParticipants) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateGroupCallParticipants
-	if u == nil {
+func (h *UpdateGroupCallParticipants) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateGroupCallParticipants)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateGroupCallParticipants) CheckUpdate(b *gotdbot.Client, ctx *gotdbo
 	return h.Filter(u)
 }
 
-func (h *UpdateGroupCallParticipants) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateGroupCallParticipants) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateGroupCallParticipants))
 }

@@ -11,20 +11,20 @@ import (
 // UpdateMessageEdited A message was edited. Changes in the message content will come in a separate updateMessageContent
 type UpdateMessageEdited struct {
 	Filter   filters.UpdateMessageEdited
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateMessageEdited) error
 }
 
 // NewUpdateMessageEdited creates a new UpdateMessageEdited
-func NewUpdateMessageEdited(filter filters.UpdateMessageEdited, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateMessageEdited {
+func NewUpdateMessageEdited(filter filters.UpdateMessageEdited, response func(b *gotdbot.Client, u *gotdbot.UpdateMessageEdited) error) *UpdateMessageEdited {
 	return &UpdateMessageEdited{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateMessageEdited) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateMessageEdited
-	if u == nil {
+func (h *UpdateMessageEdited) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateMessageEdited)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateMessageEdited) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Contex
 	return h.Filter(u)
 }
 
-func (h *UpdateMessageEdited) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateMessageEdited) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateMessageEdited))
 }

@@ -11,20 +11,20 @@ import (
 // UpdateApplicationVerificationRequired A request can't be completed unless application verification is performed; for official mobile applications only.
 type UpdateApplicationVerificationRequired struct {
 	Filter   filters.UpdateApplicationVerificationRequired
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateApplicationVerificationRequired) error
 }
 
 // NewUpdateApplicationVerificationRequired creates a new UpdateApplicationVerificationRequired
-func NewUpdateApplicationVerificationRequired(filter filters.UpdateApplicationVerificationRequired, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateApplicationVerificationRequired {
+func NewUpdateApplicationVerificationRequired(filter filters.UpdateApplicationVerificationRequired, response func(b *gotdbot.Client, u *gotdbot.UpdateApplicationVerificationRequired) error) *UpdateApplicationVerificationRequired {
 	return &UpdateApplicationVerificationRequired{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateApplicationVerificationRequired) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateApplicationVerificationRequired
-	if u == nil {
+func (h *UpdateApplicationVerificationRequired) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateApplicationVerificationRequired)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateApplicationVerificationRequired) CheckUpdate(b *gotdbot.Client, c
 	return h.Filter(u)
 }
 
-func (h *UpdateApplicationVerificationRequired) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateApplicationVerificationRequired) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateApplicationVerificationRequired))
 }

@@ -18,7 +18,7 @@ func TestDispatcher_Message(t *testing.T) {
 	var wg sync.WaitGroup
 	wg.Add(1)
 	called := false
-	h := handlers.NewMessage(filters.Text, func(client *gotdbot.Client, ctx *gotdbot.Context) error {
+	h := handlers.NewMessage(filters.Text, func(client *gotdbot.Client, u *gotdbot.Message) error {
 		called = true
 		wg.Done()
 		return nil
@@ -53,7 +53,7 @@ func TestDispatcher_Command(t *testing.T) {
 	var wg sync.WaitGroup
 	wg.Add(1)
 	called := false
-	cmd := handlers.NewCommand("start", func(client *gotdbot.Client, ctx *gotdbot.Context) error {
+	cmd := handlers.NewCommand("start", func(client *gotdbot.Client, u *gotdbot.Message) error {
 		called = true
 		wg.Done()
 		return nil
@@ -86,7 +86,7 @@ func TestDispatcher_InlineQuery(t *testing.T) {
 	var wg sync.WaitGroup
 	wg.Add(1)
 	called := false
-	h := handlers.NewUpdateNewInlineQuery(nil, func(client *gotdbot.Client, ctx *gotdbot.Context) error {
+	h := handlers.NewUpdateNewInlineQuery(nil, func(client *gotdbot.Client, u *gotdbot.UpdateNewInlineQuery) error {
 		called = true
 		wg.Done()
 		return nil
@@ -128,7 +128,7 @@ func TestDispatcher_ErrorHandler_ControlFlow_Message(t *testing.T) {
 		{
 			name: "handler error routed through ErrorHandler, handler return nil continues",
 			configure: func(d *gotdbot.Dispatcher, mu *sync.Mutex, handC *int) {
-				d.AddHandlerToGroup(handlers.NewMessage(filters.Message(func(msg *gotdbot.Message) bool { return true }), func(client *gotdbot.Client, ctx *gotdbot.Context) error {
+				d.AddHandlerToGroup(handlers.NewMessage(filters.Message(func(msg *gotdbot.Message) bool { return true }), func(client *gotdbot.Client, u *gotdbot.Message) error {
 					mu.Lock()
 					*handC++
 					mu.Unlock()
@@ -147,14 +147,14 @@ func TestDispatcher_ErrorHandler_ControlFlow_Message(t *testing.T) {
 		{
 			name: "handler directly returns EndGroups, ErrorHandler not called, next group doesn't run",
 			configure: func(d *gotdbot.Dispatcher, mu *sync.Mutex, handC *int) {
-				d.AddHandlerToGroup(handlers.NewMessage(filters.Message(func(msg *gotdbot.Message) bool { return true }), func(client *gotdbot.Client, ctx *gotdbot.Context) error {
+				d.AddHandlerToGroup(handlers.NewMessage(filters.Message(func(msg *gotdbot.Message) bool { return true }), func(client *gotdbot.Client, u *gotdbot.Message) error {
 					mu.Lock()
 					*handC++
 					mu.Unlock()
 					return endGroupsErr
 				}), 0)
 				// this handler should _not_ run because EndGroups was returned
-				d.AddHandlerToGroup(handlers.NewMessage(filters.Message(func(msg *gotdbot.Message) bool { return true }), func(client *gotdbot.Client, ctx *gotdbot.Context) error {
+				d.AddHandlerToGroup(handlers.NewMessage(filters.Message(func(msg *gotdbot.Message) bool { return true }), func(client *gotdbot.Client, u *gotdbot.Message) error {
 					t.Errorf("second handler should not be executed when EndGroups is returned")
 					return nil
 				}), 1)
@@ -168,13 +168,13 @@ func TestDispatcher_ErrorHandler_ControlFlow_Message(t *testing.T) {
 		{
 			name: "handler directly returns ContinueGroups, ErrorHandler not called, next group runs",
 			configure: func(d *gotdbot.Dispatcher, mu *sync.Mutex, handC *int) {
-				d.AddHandlerToGroup(handlers.NewMessage(filters.Message(func(msg *gotdbot.Message) bool { return true }), func(client *gotdbot.Client, ctx *gotdbot.Context) error {
+				d.AddHandlerToGroup(handlers.NewMessage(filters.Message(func(msg *gotdbot.Message) bool { return true }), func(client *gotdbot.Client, u *gotdbot.Message) error {
 					mu.Lock()
 					*handC++
 					mu.Unlock()
 					return continueGroupsErr
 				}), 0)
-				d.AddHandlerToGroup(handlers.NewMessage(filters.Message(func(msg *gotdbot.Message) bool { return true }), func(client *gotdbot.Client, ctx *gotdbot.Context) error {
+				d.AddHandlerToGroup(handlers.NewMessage(filters.Message(func(msg *gotdbot.Message) bool { return true }), func(client *gotdbot.Client, u *gotdbot.Message) error {
 					mu.Lock()
 					*handC++
 					mu.Unlock()
@@ -190,13 +190,13 @@ func TestDispatcher_ErrorHandler_ControlFlow_Message(t *testing.T) {
 		{
 			name: "nil ErrorHandler: errors are logged, flow controlled by dispatcher defaults",
 			configure: func(d *gotdbot.Dispatcher, mu *sync.Mutex, handC *int) {
-				d.AddHandlerToGroup(handlers.NewMessage(filters.Message(func(msg *gotdbot.Message) bool { return true }), func(client *gotdbot.Client, ctx *gotdbot.Context) error {
+				d.AddHandlerToGroup(handlers.NewMessage(filters.Message(func(msg *gotdbot.Message) bool { return true }), func(client *gotdbot.Client, u *gotdbot.Message) error {
 					mu.Lock()
 					*handC++
 					mu.Unlock()
 					return fmt.Errorf("handler failure")
 				}), 0)
-				d.AddHandlerToGroup(handlers.NewMessage(filters.Message(func(msg *gotdbot.Message) bool { return true }), func(client *gotdbot.Client, ctx *gotdbot.Context) error {
+				d.AddHandlerToGroup(handlers.NewMessage(filters.Message(func(msg *gotdbot.Message) bool { return true }), func(client *gotdbot.Client, u *gotdbot.Message) error {
 					mu.Lock()
 					*handC++
 					mu.Unlock()
@@ -221,9 +221,9 @@ func TestDispatcher_ErrorHandler_ControlFlow_Message(t *testing.T) {
 			)
 
 			// Wrap user-provided ErrorHandler so we can observe calls.
-			var wrappedErrHandler func(client *gotdbot.Client, ctx *gotdbot.Context, err error) error
+			var wrappedErrHandler func(client *gotdbot.Client, update gotdbot.TlObject, err error) error
 			if tt.errorHandler != nil {
-				wrappedErrHandler = func(client *gotdbot.Client, ctx *gotdbot.Context, err error) error {
+				wrappedErrHandler = func(client *gotdbot.Client, update gotdbot.TlObject, err error) error {
 					mu.Lock()
 					defer mu.Unlock()
 					errorCalled = true
@@ -249,7 +249,7 @@ func TestDispatcher_ErrorHandler_ControlFlow_Message(t *testing.T) {
 			// Waitgroup to ensure dispatcher routine runs
 			var wg sync.WaitGroup
 			wg.Add(1)
-			d.AddHandlerToGroup(handlers.NewMessage(filters.Message(func(msg *gotdbot.Message) bool { return true }), func(client *gotdbot.Client, ctx *gotdbot.Context) error {
+			d.AddHandlerToGroup(handlers.NewMessage(filters.Message(func(msg *gotdbot.Message) bool { return true }), func(client *gotdbot.Client, u *gotdbot.Message) error {
 				wg.Done()
 				return nil
 			}), 100) // use a high group number to ensure it runs last
@@ -286,7 +286,7 @@ func TestDispatcher_ErrorHandler_ControlFlow_Command(t *testing.T) {
 			errorCalled bool
 		)
 
-		errHandler := func(client *gotdbot.Client, ctx *gotdbot.Context, err error) error {
+		errHandler := func(client *gotdbot.Client, update gotdbot.TlObject, err error) error {
 			mu.Lock()
 			errorCalled = true
 			mu.Unlock()
@@ -297,7 +297,7 @@ func TestDispatcher_ErrorHandler_ControlFlow_Command(t *testing.T) {
 		client := &gotdbot.Client{}
 		d := gotdbot.NewDispatcher(&gotdbot.DispatcherOpts{ErrorHandler: errHandler})
 
-		d.AddHandlerToGroup(handlers.NewCommand("start", func(client *gotdbot.Client, ctx *gotdbot.Context) error {
+		d.AddHandlerToGroup(handlers.NewCommand("start", func(client *gotdbot.Client, u *gotdbot.Message) error {
 			mu.Lock()
 			ranHandlers++
 			mu.Unlock()
@@ -316,7 +316,7 @@ func TestDispatcher_ErrorHandler_ControlFlow_Command(t *testing.T) {
 
 		var wg sync.WaitGroup
 		wg.Add(1)
-		d.AddHandlerToGroup(handlers.NewMessage(filters.Message(func(msg *gotdbot.Message) bool { return true }), func(client *gotdbot.Client, ctx *gotdbot.Context) error {
+		d.AddHandlerToGroup(handlers.NewMessage(filters.Message(func(msg *gotdbot.Message) bool { return true }), func(client *gotdbot.Client, u *gotdbot.Message) error {
 			wg.Done()
 			return nil
 		}), 100)

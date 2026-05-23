@@ -11,20 +11,20 @@ import (
 // UpdateNewCallSignalingData New call signaling data arrived
 type UpdateNewCallSignalingData struct {
 	Filter   filters.UpdateNewCallSignalingData
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateNewCallSignalingData) error
 }
 
 // NewUpdateNewCallSignalingData creates a new UpdateNewCallSignalingData
-func NewUpdateNewCallSignalingData(filter filters.UpdateNewCallSignalingData, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateNewCallSignalingData {
+func NewUpdateNewCallSignalingData(filter filters.UpdateNewCallSignalingData, response func(b *gotdbot.Client, u *gotdbot.UpdateNewCallSignalingData) error) *UpdateNewCallSignalingData {
 	return &UpdateNewCallSignalingData{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateNewCallSignalingData) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateNewCallSignalingData
-	if u == nil {
+func (h *UpdateNewCallSignalingData) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateNewCallSignalingData)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateNewCallSignalingData) CheckUpdate(b *gotdbot.Client, ctx *gotdbot
 	return h.Filter(u)
 }
 
-func (h *UpdateNewCallSignalingData) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateNewCallSignalingData) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateNewCallSignalingData))
 }

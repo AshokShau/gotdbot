@@ -11,20 +11,20 @@ import (
 // UpdateAttachmentMenuBots The list of bots added to attachment or side menu has changed
 type UpdateAttachmentMenuBots struct {
 	Filter   filters.UpdateAttachmentMenuBots
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateAttachmentMenuBots) error
 }
 
 // NewUpdateAttachmentMenuBots creates a new UpdateAttachmentMenuBots
-func NewUpdateAttachmentMenuBots(filter filters.UpdateAttachmentMenuBots, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateAttachmentMenuBots {
+func NewUpdateAttachmentMenuBots(filter filters.UpdateAttachmentMenuBots, response func(b *gotdbot.Client, u *gotdbot.UpdateAttachmentMenuBots) error) *UpdateAttachmentMenuBots {
 	return &UpdateAttachmentMenuBots{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateAttachmentMenuBots) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateAttachmentMenuBots
-	if u == nil {
+func (h *UpdateAttachmentMenuBots) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateAttachmentMenuBots)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateAttachmentMenuBots) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.C
 	return h.Filter(u)
 }
 
-func (h *UpdateAttachmentMenuBots) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateAttachmentMenuBots) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateAttachmentMenuBots))
 }

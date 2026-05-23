@@ -11,20 +11,20 @@ import (
 // UpdatePaidMediaPurchased Paid media were purchased by a user; for bots only
 type UpdatePaidMediaPurchased struct {
 	Filter   filters.UpdatePaidMediaPurchased
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdatePaidMediaPurchased) error
 }
 
 // NewUpdatePaidMediaPurchased creates a new UpdatePaidMediaPurchased
-func NewUpdatePaidMediaPurchased(filter filters.UpdatePaidMediaPurchased, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdatePaidMediaPurchased {
+func NewUpdatePaidMediaPurchased(filter filters.UpdatePaidMediaPurchased, response func(b *gotdbot.Client, u *gotdbot.UpdatePaidMediaPurchased) error) *UpdatePaidMediaPurchased {
 	return &UpdatePaidMediaPurchased{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdatePaidMediaPurchased) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdatePaidMediaPurchased
-	if u == nil {
+func (h *UpdatePaidMediaPurchased) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdatePaidMediaPurchased)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdatePaidMediaPurchased) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.C
 	return h.Filter(u)
 }
 
-func (h *UpdatePaidMediaPurchased) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdatePaidMediaPurchased) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdatePaidMediaPurchased))
 }

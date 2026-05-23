@@ -11,20 +11,20 @@ import (
 // UpdateChatIsMarkedAsUnread A chat was marked as unread or was read
 type UpdateChatIsMarkedAsUnread struct {
 	Filter   filters.UpdateChatIsMarkedAsUnread
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateChatIsMarkedAsUnread) error
 }
 
 // NewUpdateChatIsMarkedAsUnread creates a new UpdateChatIsMarkedAsUnread
-func NewUpdateChatIsMarkedAsUnread(filter filters.UpdateChatIsMarkedAsUnread, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatIsMarkedAsUnread {
+func NewUpdateChatIsMarkedAsUnread(filter filters.UpdateChatIsMarkedAsUnread, response func(b *gotdbot.Client, u *gotdbot.UpdateChatIsMarkedAsUnread) error) *UpdateChatIsMarkedAsUnread {
 	return &UpdateChatIsMarkedAsUnread{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateChatIsMarkedAsUnread) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateChatIsMarkedAsUnread
-	if u == nil {
+func (h *UpdateChatIsMarkedAsUnread) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateChatIsMarkedAsUnread)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateChatIsMarkedAsUnread) CheckUpdate(b *gotdbot.Client, ctx *gotdbot
 	return h.Filter(u)
 }
 
-func (h *UpdateChatIsMarkedAsUnread) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateChatIsMarkedAsUnread) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateChatIsMarkedAsUnread))
 }

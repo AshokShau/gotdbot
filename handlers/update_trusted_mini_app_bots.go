@@ -11,20 +11,20 @@ import (
 // UpdateTrustedMiniAppBots Lists of bots which Mini Apps must be allowed to read text from clipboard and must be opened without a warning
 type UpdateTrustedMiniAppBots struct {
 	Filter   filters.UpdateTrustedMiniAppBots
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateTrustedMiniAppBots) error
 }
 
 // NewUpdateTrustedMiniAppBots creates a new UpdateTrustedMiniAppBots
-func NewUpdateTrustedMiniAppBots(filter filters.UpdateTrustedMiniAppBots, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateTrustedMiniAppBots {
+func NewUpdateTrustedMiniAppBots(filter filters.UpdateTrustedMiniAppBots, response func(b *gotdbot.Client, u *gotdbot.UpdateTrustedMiniAppBots) error) *UpdateTrustedMiniAppBots {
 	return &UpdateTrustedMiniAppBots{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateTrustedMiniAppBots) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateTrustedMiniAppBots
-	if u == nil {
+func (h *UpdateTrustedMiniAppBots) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateTrustedMiniAppBots)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateTrustedMiniAppBots) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.C
 	return h.Filter(u)
 }
 
-func (h *UpdateTrustedMiniAppBots) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateTrustedMiniAppBots) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateTrustedMiniAppBots))
 }

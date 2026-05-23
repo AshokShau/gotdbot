@@ -11,20 +11,20 @@ import (
 // UpdateChatPendingJoinRequests The chat pending join requests were changed
 type UpdateChatPendingJoinRequests struct {
 	Filter   filters.UpdateChatPendingJoinRequests
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateChatPendingJoinRequests) error
 }
 
 // NewUpdateChatPendingJoinRequests creates a new UpdateChatPendingJoinRequests
-func NewUpdateChatPendingJoinRequests(filter filters.UpdateChatPendingJoinRequests, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatPendingJoinRequests {
+func NewUpdateChatPendingJoinRequests(filter filters.UpdateChatPendingJoinRequests, response func(b *gotdbot.Client, u *gotdbot.UpdateChatPendingJoinRequests) error) *UpdateChatPendingJoinRequests {
 	return &UpdateChatPendingJoinRequests{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateChatPendingJoinRequests) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateChatPendingJoinRequests
-	if u == nil {
+func (h *UpdateChatPendingJoinRequests) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateChatPendingJoinRequests)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateChatPendingJoinRequests) CheckUpdate(b *gotdbot.Client, ctx *gotd
 	return h.Filter(u)
 }
 
-func (h *UpdateChatPendingJoinRequests) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateChatPendingJoinRequests) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateChatPendingJoinRequests))
 }

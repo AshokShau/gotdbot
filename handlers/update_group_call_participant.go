@@ -11,20 +11,20 @@ import (
 // UpdateGroupCallParticipant Information about a group call participant was changed. The updates are sent only after the group call is received through getGroupCall and only if the call is joined or being joined
 type UpdateGroupCallParticipant struct {
 	Filter   filters.UpdateGroupCallParticipant
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateGroupCallParticipant) error
 }
 
 // NewUpdateGroupCallParticipant creates a new UpdateGroupCallParticipant
-func NewUpdateGroupCallParticipant(filter filters.UpdateGroupCallParticipant, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateGroupCallParticipant {
+func NewUpdateGroupCallParticipant(filter filters.UpdateGroupCallParticipant, response func(b *gotdbot.Client, u *gotdbot.UpdateGroupCallParticipant) error) *UpdateGroupCallParticipant {
 	return &UpdateGroupCallParticipant{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateGroupCallParticipant) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateGroupCallParticipant
-	if u == nil {
+func (h *UpdateGroupCallParticipant) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateGroupCallParticipant)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateGroupCallParticipant) CheckUpdate(b *gotdbot.Client, ctx *gotdbot
 	return h.Filter(u)
 }
 
-func (h *UpdateGroupCallParticipant) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateGroupCallParticipant) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateGroupCallParticipant))
 }

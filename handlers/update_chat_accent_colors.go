@@ -11,20 +11,20 @@ import (
 // UpdateChatAccentColors Chat accent colors have changed
 type UpdateChatAccentColors struct {
 	Filter   filters.UpdateChatAccentColors
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateChatAccentColors) error
 }
 
 // NewUpdateChatAccentColors creates a new UpdateChatAccentColors
-func NewUpdateChatAccentColors(filter filters.UpdateChatAccentColors, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatAccentColors {
+func NewUpdateChatAccentColors(filter filters.UpdateChatAccentColors, response func(b *gotdbot.Client, u *gotdbot.UpdateChatAccentColors) error) *UpdateChatAccentColors {
 	return &UpdateChatAccentColors{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateChatAccentColors) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateChatAccentColors
-	if u == nil {
+func (h *UpdateChatAccentColors) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateChatAccentColors)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateChatAccentColors) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Con
 	return h.Filter(u)
 }
 
-func (h *UpdateChatAccentColors) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateChatAccentColors) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateChatAccentColors))
 }

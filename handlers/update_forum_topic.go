@@ -11,20 +11,20 @@ import (
 // UpdateForumTopic Information about a topic in a forum chat was changed
 type UpdateForumTopic struct {
 	Filter   filters.UpdateForumTopic
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateForumTopic) error
 }
 
 // NewUpdateForumTopic creates a new UpdateForumTopic
-func NewUpdateForumTopic(filter filters.UpdateForumTopic, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateForumTopic {
+func NewUpdateForumTopic(filter filters.UpdateForumTopic, response func(b *gotdbot.Client, u *gotdbot.UpdateForumTopic) error) *UpdateForumTopic {
 	return &UpdateForumTopic{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateForumTopic) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateForumTopic
-	if u == nil {
+func (h *UpdateForumTopic) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateForumTopic)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateForumTopic) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) 
 	return h.Filter(u)
 }
 
-func (h *UpdateForumTopic) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateForumTopic) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateForumTopic))
 }

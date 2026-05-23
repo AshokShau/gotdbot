@@ -11,20 +11,20 @@ import (
 // UpdateDiceEmojis The list of supported dice emojis has changed
 type UpdateDiceEmojis struct {
 	Filter   filters.UpdateDiceEmojis
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateDiceEmojis) error
 }
 
 // NewUpdateDiceEmojis creates a new UpdateDiceEmojis
-func NewUpdateDiceEmojis(filter filters.UpdateDiceEmojis, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateDiceEmojis {
+func NewUpdateDiceEmojis(filter filters.UpdateDiceEmojis, response func(b *gotdbot.Client, u *gotdbot.UpdateDiceEmojis) error) *UpdateDiceEmojis {
 	return &UpdateDiceEmojis{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateDiceEmojis) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateDiceEmojis
-	if u == nil {
+func (h *UpdateDiceEmojis) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateDiceEmojis)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateDiceEmojis) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) 
 	return h.Filter(u)
 }
 
-func (h *UpdateDiceEmojis) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateDiceEmojis) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateDiceEmojis))
 }

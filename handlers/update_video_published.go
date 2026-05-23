@@ -11,20 +11,20 @@ import (
 // UpdateVideoPublished An automatically scheduled message with video has been successfully sent after conversion
 type UpdateVideoPublished struct {
 	Filter   filters.UpdateVideoPublished
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateVideoPublished) error
 }
 
 // NewUpdateVideoPublished creates a new UpdateVideoPublished
-func NewUpdateVideoPublished(filter filters.UpdateVideoPublished, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateVideoPublished {
+func NewUpdateVideoPublished(filter filters.UpdateVideoPublished, response func(b *gotdbot.Client, u *gotdbot.UpdateVideoPublished) error) *UpdateVideoPublished {
 	return &UpdateVideoPublished{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateVideoPublished) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateVideoPublished
-	if u == nil {
+func (h *UpdateVideoPublished) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateVideoPublished)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateVideoPublished) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Conte
 	return h.Filter(u)
 }
 
-func (h *UpdateVideoPublished) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateVideoPublished) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateVideoPublished))
 }

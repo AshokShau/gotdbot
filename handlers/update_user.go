@@ -11,20 +11,20 @@ import (
 // UpdateUser Some data of a user has changed. This update is guaranteed to come before the user identifier is returned to the application
 type UpdateUser struct {
 	Filter   filters.UpdateUser
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateUser) error
 }
 
 // NewUpdateUser creates a new UpdateUser
-func NewUpdateUser(filter filters.UpdateUser, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateUser {
+func NewUpdateUser(filter filters.UpdateUser, response func(b *gotdbot.Client, u *gotdbot.UpdateUser) error) *UpdateUser {
 	return &UpdateUser{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateUser) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateUser
-	if u == nil {
+func (h *UpdateUser) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateUser)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateUser) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdateUser) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateUser) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateUser))
 }

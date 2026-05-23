@@ -11,20 +11,20 @@ import (
 // UpdateChatMember User rights changed in a chat; for bots only
 type UpdateChatMember struct {
 	Filter   filters.UpdateChatMember
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateChatMember) error
 }
 
 // NewUpdateChatMember creates a new UpdateChatMember
-func NewUpdateChatMember(filter filters.UpdateChatMember, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatMember {
+func NewUpdateChatMember(filter filters.UpdateChatMember, response func(b *gotdbot.Client, u *gotdbot.UpdateChatMember) error) *UpdateChatMember {
 	return &UpdateChatMember{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateChatMember) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateChatMember
-	if u == nil {
+func (h *UpdateChatMember) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateChatMember)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateChatMember) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) 
 	return h.Filter(u)
 }
 
-func (h *UpdateChatMember) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateChatMember) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateChatMember))
 }

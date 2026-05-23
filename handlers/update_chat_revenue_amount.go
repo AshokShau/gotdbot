@@ -11,20 +11,20 @@ import (
 // UpdateChatRevenueAmount The revenue earned from sponsored messages in a chat has changed. If chat revenue screen is opened, then getChatRevenueTransactions may be called to fetch new transactions
 type UpdateChatRevenueAmount struct {
 	Filter   filters.UpdateChatRevenueAmount
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateChatRevenueAmount) error
 }
 
 // NewUpdateChatRevenueAmount creates a new UpdateChatRevenueAmount
-func NewUpdateChatRevenueAmount(filter filters.UpdateChatRevenueAmount, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatRevenueAmount {
+func NewUpdateChatRevenueAmount(filter filters.UpdateChatRevenueAmount, response func(b *gotdbot.Client, u *gotdbot.UpdateChatRevenueAmount) error) *UpdateChatRevenueAmount {
 	return &UpdateChatRevenueAmount{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateChatRevenueAmount) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateChatRevenueAmount
-	if u == nil {
+func (h *UpdateChatRevenueAmount) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateChatRevenueAmount)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateChatRevenueAmount) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Co
 	return h.Filter(u)
 }
 
-func (h *UpdateChatRevenueAmount) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateChatRevenueAmount) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateChatRevenueAmount))
 }

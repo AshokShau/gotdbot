@@ -11,20 +11,20 @@ import (
 // UpdateMessageMentionRead A message with an unread mention was read
 type UpdateMessageMentionRead struct {
 	Filter   filters.UpdateMessageMentionRead
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateMessageMentionRead) error
 }
 
 // NewUpdateMessageMentionRead creates a new UpdateMessageMentionRead
-func NewUpdateMessageMentionRead(filter filters.UpdateMessageMentionRead, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateMessageMentionRead {
+func NewUpdateMessageMentionRead(filter filters.UpdateMessageMentionRead, response func(b *gotdbot.Client, u *gotdbot.UpdateMessageMentionRead) error) *UpdateMessageMentionRead {
 	return &UpdateMessageMentionRead{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateMessageMentionRead) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateMessageMentionRead
-	if u == nil {
+func (h *UpdateMessageMentionRead) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateMessageMentionRead)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateMessageMentionRead) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.C
 	return h.Filter(u)
 }
 
-func (h *UpdateMessageMentionRead) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateMessageMentionRead) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateMessageMentionRead))
 }

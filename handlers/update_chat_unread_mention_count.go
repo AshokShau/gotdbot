@@ -11,20 +11,20 @@ import (
 // UpdateChatUnreadMentionCount The chat unread_mention_count has changed
 type UpdateChatUnreadMentionCount struct {
 	Filter   filters.UpdateChatUnreadMentionCount
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateChatUnreadMentionCount) error
 }
 
 // NewUpdateChatUnreadMentionCount creates a new UpdateChatUnreadMentionCount
-func NewUpdateChatUnreadMentionCount(filter filters.UpdateChatUnreadMentionCount, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatUnreadMentionCount {
+func NewUpdateChatUnreadMentionCount(filter filters.UpdateChatUnreadMentionCount, response func(b *gotdbot.Client, u *gotdbot.UpdateChatUnreadMentionCount) error) *UpdateChatUnreadMentionCount {
 	return &UpdateChatUnreadMentionCount{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateChatUnreadMentionCount) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateChatUnreadMentionCount
-	if u == nil {
+func (h *UpdateChatUnreadMentionCount) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateChatUnreadMentionCount)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateChatUnreadMentionCount) CheckUpdate(b *gotdbot.Client, ctx *gotdb
 	return h.Filter(u)
 }
 
-func (h *UpdateChatUnreadMentionCount) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateChatUnreadMentionCount) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateChatUnreadMentionCount))
 }

@@ -11,20 +11,20 @@ import (
 // UpdateChatFolders The list of chat folders or a chat folder has changed
 type UpdateChatFolders struct {
 	Filter   filters.UpdateChatFolders
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateChatFolders) error
 }
 
 // NewUpdateChatFolders creates a new UpdateChatFolders
-func NewUpdateChatFolders(filter filters.UpdateChatFolders, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatFolders {
+func NewUpdateChatFolders(filter filters.UpdateChatFolders, response func(b *gotdbot.Client, u *gotdbot.UpdateChatFolders) error) *UpdateChatFolders {
 	return &UpdateChatFolders{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateChatFolders) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateChatFolders
-	if u == nil {
+func (h *UpdateChatFolders) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateChatFolders)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateChatFolders) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context)
 	return h.Filter(u)
 }
 
-func (h *UpdateChatFolders) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateChatFolders) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateChatFolders))
 }

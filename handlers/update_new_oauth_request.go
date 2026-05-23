@@ -11,20 +11,20 @@ import (
 // UpdateNewOauthRequest An OAuth authorization request was received
 type UpdateNewOauthRequest struct {
 	Filter   filters.UpdateNewOauthRequest
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateNewOauthRequest) error
 }
 
 // NewUpdateNewOauthRequest creates a new UpdateNewOauthRequest
-func NewUpdateNewOauthRequest(filter filters.UpdateNewOauthRequest, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateNewOauthRequest {
+func NewUpdateNewOauthRequest(filter filters.UpdateNewOauthRequest, response func(b *gotdbot.Client, u *gotdbot.UpdateNewOauthRequest) error) *UpdateNewOauthRequest {
 	return &UpdateNewOauthRequest{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateNewOauthRequest) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateNewOauthRequest
-	if u == nil {
+func (h *UpdateNewOauthRequest) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateNewOauthRequest)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateNewOauthRequest) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Cont
 	return h.Filter(u)
 }
 
-func (h *UpdateNewOauthRequest) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateNewOauthRequest) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateNewOauthRequest))
 }

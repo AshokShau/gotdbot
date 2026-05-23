@@ -11,20 +11,20 @@ import (
 // UpdateAgeVerificationParameters The parameters for age verification of the current user's account has changed
 type UpdateAgeVerificationParameters struct {
 	Filter   filters.UpdateAgeVerificationParameters
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateAgeVerificationParameters) error
 }
 
 // NewUpdateAgeVerificationParameters creates a new UpdateAgeVerificationParameters
-func NewUpdateAgeVerificationParameters(filter filters.UpdateAgeVerificationParameters, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateAgeVerificationParameters {
+func NewUpdateAgeVerificationParameters(filter filters.UpdateAgeVerificationParameters, response func(b *gotdbot.Client, u *gotdbot.UpdateAgeVerificationParameters) error) *UpdateAgeVerificationParameters {
 	return &UpdateAgeVerificationParameters{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateAgeVerificationParameters) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateAgeVerificationParameters
-	if u == nil {
+func (h *UpdateAgeVerificationParameters) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateAgeVerificationParameters)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateAgeVerificationParameters) CheckUpdate(b *gotdbot.Client, ctx *go
 	return h.Filter(u)
 }
 
-func (h *UpdateAgeVerificationParameters) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateAgeVerificationParameters) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateAgeVerificationParameters))
 }

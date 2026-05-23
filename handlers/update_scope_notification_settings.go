@@ -11,20 +11,20 @@ import (
 // UpdateScopeNotificationSettings Notification settings for some type of chats were updated
 type UpdateScopeNotificationSettings struct {
 	Filter   filters.UpdateScopeNotificationSettings
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateScopeNotificationSettings) error
 }
 
 // NewUpdateScopeNotificationSettings creates a new UpdateScopeNotificationSettings
-func NewUpdateScopeNotificationSettings(filter filters.UpdateScopeNotificationSettings, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateScopeNotificationSettings {
+func NewUpdateScopeNotificationSettings(filter filters.UpdateScopeNotificationSettings, response func(b *gotdbot.Client, u *gotdbot.UpdateScopeNotificationSettings) error) *UpdateScopeNotificationSettings {
 	return &UpdateScopeNotificationSettings{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateScopeNotificationSettings) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateScopeNotificationSettings
-	if u == nil {
+func (h *UpdateScopeNotificationSettings) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateScopeNotificationSettings)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateScopeNotificationSettings) CheckUpdate(b *gotdbot.Client, ctx *go
 	return h.Filter(u)
 }
 
-func (h *UpdateScopeNotificationSettings) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateScopeNotificationSettings) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateScopeNotificationSettings))
 }

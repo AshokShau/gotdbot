@@ -11,20 +11,20 @@ import (
 // UpdateSpeedLimitNotification Download or upload file speed for the user was limited, but it can be restored by subscription to Telegram Premium. The notification can be postponed until a being downloaded or uploaded file is visible to the user.
 type UpdateSpeedLimitNotification struct {
 	Filter   filters.UpdateSpeedLimitNotification
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateSpeedLimitNotification) error
 }
 
 // NewUpdateSpeedLimitNotification creates a new UpdateSpeedLimitNotification
-func NewUpdateSpeedLimitNotification(filter filters.UpdateSpeedLimitNotification, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateSpeedLimitNotification {
+func NewUpdateSpeedLimitNotification(filter filters.UpdateSpeedLimitNotification, response func(b *gotdbot.Client, u *gotdbot.UpdateSpeedLimitNotification) error) *UpdateSpeedLimitNotification {
 	return &UpdateSpeedLimitNotification{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateSpeedLimitNotification) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateSpeedLimitNotification
-	if u == nil {
+func (h *UpdateSpeedLimitNotification) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateSpeedLimitNotification)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateSpeedLimitNotification) CheckUpdate(b *gotdbot.Client, ctx *gotdb
 	return h.Filter(u)
 }
 
-func (h *UpdateSpeedLimitNotification) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateSpeedLimitNotification) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateSpeedLimitNotification))
 }

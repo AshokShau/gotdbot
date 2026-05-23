@@ -11,20 +11,20 @@ import (
 // UpdateChatReplyMarkup The chat reply markup was changed
 type UpdateChatReplyMarkup struct {
 	Filter   filters.UpdateChatReplyMarkup
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateChatReplyMarkup) error
 }
 
 // NewUpdateChatReplyMarkup creates a new UpdateChatReplyMarkup
-func NewUpdateChatReplyMarkup(filter filters.UpdateChatReplyMarkup, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatReplyMarkup {
+func NewUpdateChatReplyMarkup(filter filters.UpdateChatReplyMarkup, response func(b *gotdbot.Client, u *gotdbot.UpdateChatReplyMarkup) error) *UpdateChatReplyMarkup {
 	return &UpdateChatReplyMarkup{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateChatReplyMarkup) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateChatReplyMarkup
-	if u == nil {
+func (h *UpdateChatReplyMarkup) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateChatReplyMarkup)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateChatReplyMarkup) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Cont
 	return h.Filter(u)
 }
 
-func (h *UpdateChatReplyMarkup) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateChatReplyMarkup) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateChatReplyMarkup))
 }

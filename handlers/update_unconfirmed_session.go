@@ -11,20 +11,20 @@ import (
 // UpdateUnconfirmedSession The first unconfirmed session has changed
 type UpdateUnconfirmedSession struct {
 	Filter   filters.UpdateUnconfirmedSession
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateUnconfirmedSession) error
 }
 
 // NewUpdateUnconfirmedSession creates a new UpdateUnconfirmedSession
-func NewUpdateUnconfirmedSession(filter filters.UpdateUnconfirmedSession, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateUnconfirmedSession {
+func NewUpdateUnconfirmedSession(filter filters.UpdateUnconfirmedSession, response func(b *gotdbot.Client, u *gotdbot.UpdateUnconfirmedSession) error) *UpdateUnconfirmedSession {
 	return &UpdateUnconfirmedSession{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateUnconfirmedSession) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateUnconfirmedSession
-	if u == nil {
+func (h *UpdateUnconfirmedSession) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateUnconfirmedSession)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateUnconfirmedSession) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.C
 	return h.Filter(u)
 }
 
-func (h *UpdateUnconfirmedSession) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateUnconfirmedSession) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateUnconfirmedSession))
 }

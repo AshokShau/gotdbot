@@ -11,20 +11,20 @@ import (
 // UpdateSecretChat Some data of a secret chat has changed. This update is guaranteed to come before the secret chat identifier is returned to the application
 type UpdateSecretChat struct {
 	Filter   filters.UpdateSecretChat
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateSecretChat) error
 }
 
 // NewUpdateSecretChat creates a new UpdateSecretChat
-func NewUpdateSecretChat(filter filters.UpdateSecretChat, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateSecretChat {
+func NewUpdateSecretChat(filter filters.UpdateSecretChat, response func(b *gotdbot.Client, u *gotdbot.UpdateSecretChat) error) *UpdateSecretChat {
 	return &UpdateSecretChat{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateSecretChat) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateSecretChat
-	if u == nil {
+func (h *UpdateSecretChat) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateSecretChat)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateSecretChat) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) 
 	return h.Filter(u)
 }
 
-func (h *UpdateSecretChat) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateSecretChat) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateSecretChat))
 }

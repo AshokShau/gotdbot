@@ -11,20 +11,20 @@ import (
 // UpdateChatTitle The title of a chat was changed
 type UpdateChatTitle struct {
 	Filter   filters.UpdateChatTitle
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateChatTitle) error
 }
 
 // NewUpdateChatTitle creates a new UpdateChatTitle
-func NewUpdateChatTitle(filter filters.UpdateChatTitle, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatTitle {
+func NewUpdateChatTitle(filter filters.UpdateChatTitle, response func(b *gotdbot.Client, u *gotdbot.UpdateChatTitle) error) *UpdateChatTitle {
 	return &UpdateChatTitle{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateChatTitle) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateChatTitle
-	if u == nil {
+func (h *UpdateChatTitle) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateChatTitle)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateChatTitle) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) b
 	return h.Filter(u)
 }
 
-func (h *UpdateChatTitle) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateChatTitle) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateChatTitle))
 }

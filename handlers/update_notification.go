@@ -11,20 +11,20 @@ import (
 // UpdateNotification A notification was changed
 type UpdateNotification struct {
 	Filter   filters.UpdateNotification
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateNotification) error
 }
 
 // NewUpdateNotification creates a new UpdateNotification
-func NewUpdateNotification(filter filters.UpdateNotification, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateNotification {
+func NewUpdateNotification(filter filters.UpdateNotification, response func(b *gotdbot.Client, u *gotdbot.UpdateNotification) error) *UpdateNotification {
 	return &UpdateNotification{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateNotification) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateNotification
-	if u == nil {
+func (h *UpdateNotification) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateNotification)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateNotification) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context
 	return h.Filter(u)
 }
 
-func (h *UpdateNotification) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateNotification) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateNotification))
 }

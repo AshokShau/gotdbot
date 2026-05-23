@@ -11,20 +11,20 @@ import (
 // UpdateGroupCall Information about a group call was updated
 type UpdateGroupCall struct {
 	Filter   filters.UpdateGroupCall
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateGroupCall) error
 }
 
 // NewUpdateGroupCall creates a new UpdateGroupCall
-func NewUpdateGroupCall(filter filters.UpdateGroupCall, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateGroupCall {
+func NewUpdateGroupCall(filter filters.UpdateGroupCall, response func(b *gotdbot.Client, u *gotdbot.UpdateGroupCall) error) *UpdateGroupCall {
 	return &UpdateGroupCall{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateGroupCall) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateGroupCall
-	if u == nil {
+func (h *UpdateGroupCall) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateGroupCall)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateGroupCall) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) b
 	return h.Filter(u)
 }
 
-func (h *UpdateGroupCall) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateGroupCall) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateGroupCall))
 }

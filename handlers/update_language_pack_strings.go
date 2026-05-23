@@ -11,20 +11,20 @@ import (
 // UpdateLanguagePackStrings Some language pack strings have been updated
 type UpdateLanguagePackStrings struct {
 	Filter   filters.UpdateLanguagePackStrings
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateLanguagePackStrings) error
 }
 
 // NewUpdateLanguagePackStrings creates a new UpdateLanguagePackStrings
-func NewUpdateLanguagePackStrings(filter filters.UpdateLanguagePackStrings, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateLanguagePackStrings {
+func NewUpdateLanguagePackStrings(filter filters.UpdateLanguagePackStrings, response func(b *gotdbot.Client, u *gotdbot.UpdateLanguagePackStrings) error) *UpdateLanguagePackStrings {
 	return &UpdateLanguagePackStrings{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateLanguagePackStrings) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateLanguagePackStrings
-	if u == nil {
+func (h *UpdateLanguagePackStrings) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateLanguagePackStrings)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateLanguagePackStrings) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.
 	return h.Filter(u)
 }
 
-func (h *UpdateLanguagePackStrings) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateLanguagePackStrings) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateLanguagePackStrings))
 }

@@ -11,20 +11,20 @@ import (
 // UpdateSupergroupFullInfo Some data in supergroupFullInfo has been changed
 type UpdateSupergroupFullInfo struct {
 	Filter   filters.UpdateSupergroupFullInfo
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateSupergroupFullInfo) error
 }
 
 // NewUpdateSupergroupFullInfo creates a new UpdateSupergroupFullInfo
-func NewUpdateSupergroupFullInfo(filter filters.UpdateSupergroupFullInfo, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateSupergroupFullInfo {
+func NewUpdateSupergroupFullInfo(filter filters.UpdateSupergroupFullInfo, response func(b *gotdbot.Client, u *gotdbot.UpdateSupergroupFullInfo) error) *UpdateSupergroupFullInfo {
 	return &UpdateSupergroupFullInfo{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateSupergroupFullInfo) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateSupergroupFullInfo
-	if u == nil {
+func (h *UpdateSupergroupFullInfo) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateSupergroupFullInfo)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateSupergroupFullInfo) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.C
 	return h.Filter(u)
 }
 
-func (h *UpdateSupergroupFullInfo) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateSupergroupFullInfo) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateSupergroupFullInfo))
 }

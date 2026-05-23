@@ -11,20 +11,20 @@ import (
 // UpdateChatUnreadPollVoteCount The chat unread_poll_vote_count has changed
 type UpdateChatUnreadPollVoteCount struct {
 	Filter   filters.UpdateChatUnreadPollVoteCount
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateChatUnreadPollVoteCount) error
 }
 
 // NewUpdateChatUnreadPollVoteCount creates a new UpdateChatUnreadPollVoteCount
-func NewUpdateChatUnreadPollVoteCount(filter filters.UpdateChatUnreadPollVoteCount, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatUnreadPollVoteCount {
+func NewUpdateChatUnreadPollVoteCount(filter filters.UpdateChatUnreadPollVoteCount, response func(b *gotdbot.Client, u *gotdbot.UpdateChatUnreadPollVoteCount) error) *UpdateChatUnreadPollVoteCount {
 	return &UpdateChatUnreadPollVoteCount{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateChatUnreadPollVoteCount) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateChatUnreadPollVoteCount
-	if u == nil {
+func (h *UpdateChatUnreadPollVoteCount) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateChatUnreadPollVoteCount)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateChatUnreadPollVoteCount) CheckUpdate(b *gotdbot.Client, ctx *gotd
 	return h.Filter(u)
 }
 
-func (h *UpdateChatUnreadPollVoteCount) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateChatUnreadPollVoteCount) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateChatUnreadPollVoteCount))
 }

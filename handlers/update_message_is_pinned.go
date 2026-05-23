@@ -11,20 +11,20 @@ import (
 // UpdateMessageIsPinned The message pinned state was changed
 type UpdateMessageIsPinned struct {
 	Filter   filters.UpdateMessageIsPinned
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateMessageIsPinned) error
 }
 
 // NewUpdateMessageIsPinned creates a new UpdateMessageIsPinned
-func NewUpdateMessageIsPinned(filter filters.UpdateMessageIsPinned, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateMessageIsPinned {
+func NewUpdateMessageIsPinned(filter filters.UpdateMessageIsPinned, response func(b *gotdbot.Client, u *gotdbot.UpdateMessageIsPinned) error) *UpdateMessageIsPinned {
 	return &UpdateMessageIsPinned{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateMessageIsPinned) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateMessageIsPinned
-	if u == nil {
+func (h *UpdateMessageIsPinned) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateMessageIsPinned)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateMessageIsPinned) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Cont
 	return h.Filter(u)
 }
 
-func (h *UpdateMessageIsPinned) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateMessageIsPinned) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateMessageIsPinned))
 }

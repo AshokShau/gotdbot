@@ -11,20 +11,20 @@ import (
 // UpdateGiftAuctionState State of a gift auction was updated
 type UpdateGiftAuctionState struct {
 	Filter   filters.UpdateGiftAuctionState
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateGiftAuctionState) error
 }
 
 // NewUpdateGiftAuctionState creates a new UpdateGiftAuctionState
-func NewUpdateGiftAuctionState(filter filters.UpdateGiftAuctionState, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateGiftAuctionState {
+func NewUpdateGiftAuctionState(filter filters.UpdateGiftAuctionState, response func(b *gotdbot.Client, u *gotdbot.UpdateGiftAuctionState) error) *UpdateGiftAuctionState {
 	return &UpdateGiftAuctionState{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateGiftAuctionState) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateGiftAuctionState
-	if u == nil {
+func (h *UpdateGiftAuctionState) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateGiftAuctionState)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateGiftAuctionState) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Con
 	return h.Filter(u)
 }
 
-func (h *UpdateGiftAuctionState) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateGiftAuctionState) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateGiftAuctionState))
 }

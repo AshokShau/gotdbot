@@ -11,20 +11,20 @@ import (
 // UpdateMessageContainsUnreadPollVotes Unread votes were added or removed from a poll message
 type UpdateMessageContainsUnreadPollVotes struct {
 	Filter   filters.UpdateMessageContainsUnreadPollVotes
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateMessageContainsUnreadPollVotes) error
 }
 
 // NewUpdateMessageContainsUnreadPollVotes creates a new UpdateMessageContainsUnreadPollVotes
-func NewUpdateMessageContainsUnreadPollVotes(filter filters.UpdateMessageContainsUnreadPollVotes, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateMessageContainsUnreadPollVotes {
+func NewUpdateMessageContainsUnreadPollVotes(filter filters.UpdateMessageContainsUnreadPollVotes, response func(b *gotdbot.Client, u *gotdbot.UpdateMessageContainsUnreadPollVotes) error) *UpdateMessageContainsUnreadPollVotes {
 	return &UpdateMessageContainsUnreadPollVotes{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateMessageContainsUnreadPollVotes) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateMessageContainsUnreadPollVotes
-	if u == nil {
+func (h *UpdateMessageContainsUnreadPollVotes) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateMessageContainsUnreadPollVotes)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateMessageContainsUnreadPollVotes) CheckUpdate(b *gotdbot.Client, ct
 	return h.Filter(u)
 }
 
-func (h *UpdateMessageContainsUnreadPollVotes) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateMessageContainsUnreadPollVotes) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateMessageContainsUnreadPollVotes))
 }

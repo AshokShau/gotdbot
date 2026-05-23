@@ -11,20 +11,20 @@ import (
 // UpdateCall New call was created or information about a call was updated
 type UpdateCall struct {
 	Filter   filters.UpdateCall
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateCall) error
 }
 
 // NewUpdateCall creates a new UpdateCall
-func NewUpdateCall(filter filters.UpdateCall, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateCall {
+func NewUpdateCall(filter filters.UpdateCall, response func(b *gotdbot.Client, u *gotdbot.UpdateCall) error) *UpdateCall {
 	return &UpdateCall{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateCall) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateCall
-	if u == nil {
+func (h *UpdateCall) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateCall)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateCall) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	return h.Filter(u)
 }
 
-func (h *UpdateCall) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateCall) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateCall))
 }

@@ -11,20 +11,20 @@ import (
 // UpdateActiveGiftAuctions The list of auctions in which participate the current user has changed
 type UpdateActiveGiftAuctions struct {
 	Filter   filters.UpdateActiveGiftAuctions
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateActiveGiftAuctions) error
 }
 
 // NewUpdateActiveGiftAuctions creates a new UpdateActiveGiftAuctions
-func NewUpdateActiveGiftAuctions(filter filters.UpdateActiveGiftAuctions, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateActiveGiftAuctions {
+func NewUpdateActiveGiftAuctions(filter filters.UpdateActiveGiftAuctions, response func(b *gotdbot.Client, u *gotdbot.UpdateActiveGiftAuctions) error) *UpdateActiveGiftAuctions {
 	return &UpdateActiveGiftAuctions{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateActiveGiftAuctions) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateActiveGiftAuctions
-	if u == nil {
+func (h *UpdateActiveGiftAuctions) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateActiveGiftAuctions)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateActiveGiftAuctions) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.C
 	return h.Filter(u)
 }
 
-func (h *UpdateActiveGiftAuctions) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateActiveGiftAuctions) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateActiveGiftAuctions))
 }

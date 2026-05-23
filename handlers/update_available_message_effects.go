@@ -11,20 +11,20 @@ import (
 // UpdateAvailableMessageEffects The list of available message effects has changed
 type UpdateAvailableMessageEffects struct {
 	Filter   filters.UpdateAvailableMessageEffects
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateAvailableMessageEffects) error
 }
 
 // NewUpdateAvailableMessageEffects creates a new UpdateAvailableMessageEffects
-func NewUpdateAvailableMessageEffects(filter filters.UpdateAvailableMessageEffects, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateAvailableMessageEffects {
+func NewUpdateAvailableMessageEffects(filter filters.UpdateAvailableMessageEffects, response func(b *gotdbot.Client, u *gotdbot.UpdateAvailableMessageEffects) error) *UpdateAvailableMessageEffects {
 	return &UpdateAvailableMessageEffects{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateAvailableMessageEffects) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateAvailableMessageEffects
-	if u == nil {
+func (h *UpdateAvailableMessageEffects) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateAvailableMessageEffects)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateAvailableMessageEffects) CheckUpdate(b *gotdbot.Client, ctx *gotd
 	return h.Filter(u)
 }
 
-func (h *UpdateAvailableMessageEffects) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateAvailableMessageEffects) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateAvailableMessageEffects))
 }

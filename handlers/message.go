@@ -7,11 +7,11 @@ import (
 
 type Message struct {
 	Filter        filters.Message
-	Response      func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response      func(b *gotdbot.Client, u *gotdbot.Message) error
 	AllowOutgoing bool
 }
 
-func NewMessage(filter filters.Message, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *Message {
+func NewMessage(filter filters.Message, response func(b *gotdbot.Client, u *gotdbot.Message) error) *Message {
 	return &Message{
 		Filter:        filter,
 		Response:      response,
@@ -24,11 +24,12 @@ func (m *Message) SetAllowOutgoing(allow bool) *Message {
 	return m
 }
 
-func (m *Message) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	if ctx.EffectiveMessage == nil {
+func (m *Message) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	msg := gotdbot.ExtractMessage(update)
+	if msg == nil {
 		return false
 	}
-	if ctx.EffectiveMessage.IsOutgoing && !m.AllowOutgoing {
+	if msg.IsOutgoing && !m.AllowOutgoing {
 		return false
 	}
 
@@ -36,9 +37,9 @@ func (m *Message) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 		return true
 	}
 
-	return m.Filter(ctx.EffectiveMessage)
+	return m.Filter(msg)
 }
 
-func (m *Message) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return m.Response(b, ctx)
+func (m *Message) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return m.Response(b, gotdbot.ExtractMessage(update))
 }

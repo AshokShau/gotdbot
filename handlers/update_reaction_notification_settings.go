@@ -11,20 +11,20 @@ import (
 // UpdateReactionNotificationSettings Notification settings for reactions were updated
 type UpdateReactionNotificationSettings struct {
 	Filter   filters.UpdateReactionNotificationSettings
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateReactionNotificationSettings) error
 }
 
 // NewUpdateReactionNotificationSettings creates a new UpdateReactionNotificationSettings
-func NewUpdateReactionNotificationSettings(filter filters.UpdateReactionNotificationSettings, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateReactionNotificationSettings {
+func NewUpdateReactionNotificationSettings(filter filters.UpdateReactionNotificationSettings, response func(b *gotdbot.Client, u *gotdbot.UpdateReactionNotificationSettings) error) *UpdateReactionNotificationSettings {
 	return &UpdateReactionNotificationSettings{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateReactionNotificationSettings) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateReactionNotificationSettings
-	if u == nil {
+func (h *UpdateReactionNotificationSettings) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateReactionNotificationSettings)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateReactionNotificationSettings) CheckUpdate(b *gotdbot.Client, ctx 
 	return h.Filter(u)
 }
 
-func (h *UpdateReactionNotificationSettings) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateReactionNotificationSettings) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateReactionNotificationSettings))
 }

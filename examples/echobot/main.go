@@ -27,7 +27,7 @@ func main() {
 
 	var startTime = time.Now()
 
-	dispatcher.AddHandler(handlers.NewCommand("start", func(c *gotdbot.Client, ctx *gotdbot.Context) error {
+	dispatcher.AddHandler(handlers.NewCommand("start", func(c *gotdbot.Client, u *gotdbot.Message) error {
 		kb := &gotdbot.ReplyMarkupInlineKeyboard{
 			Rows: [][]gotdbot.InlineKeyboardButton{
 				{
@@ -49,25 +49,24 @@ func main() {
 
 		opts := &gotdbot.SendMessageOpts{
 			ReplyTo: &gotdbot.InputMessageReplyToMessage{
-				MessageId: ctx.EffectiveMessage.Id,
+				MessageId: u.Id,
 			},
 			ReplyMarkup: kb,
 		}
 
-		_, err := c.SendMessage(ctx.EffectiveChatId, content, opts)
+		_, err := c.SendMessage(u.ChatId, content, opts)
 		if err != nil {
 			log.Printf("Error sending message: %v", err)
 		}
 		return nil
 	}))
 
-	dispatcher.AddHandler(handlers.NewUpdateDeleteMessages(nil, func(c *gotdbot.Client, ctx *gotdbot.Context) error {
-		update := ctx.Update.UpdateDeleteMessages
-		log.Printf("Messages deleted: %v (ChatID %d)", update.MessageIds, update.ChatId)
+	dispatcher.AddHandler(handlers.NewUpdateDeleteMessages(nil, func(c *gotdbot.Client, u *gotdbot.UpdateDeleteMessages) error {
+		log.Printf("Messages deleted: %v (ChatID %d)", u.MessageIds, u.ChatId)
 		return nil
 	}))
 
-	dispatcher.AddHandler(handlers.NewCommand("go", func(c *gotdbot.Client, ctx *gotdbot.Context) error {
+	dispatcher.AddHandler(handlers.NewCommand("go", func(c *gotdbot.Client, u *gotdbot.Message) error {
 		var m runtime.MemStats
 		runtime.ReadMemStats(&m)
 
@@ -93,12 +92,12 @@ func main() {
 			m.NumGC,
 		)
 
-		_, err := c.SendTextMessage(ctx.EffectiveChatId, reply, &gotdbot.SendTextMessageOpts{ReplyToMessageID: ctx.EffectiveMessage.Id})
+		_, err := c.SendTextMessage(u.ChatId, reply, &gotdbot.SendTextMessageOpts{ReplyToMessageID: u.Id})
 		return err
 	}))
 
-	dispatcher.AddHandler(handlers.NewMessage(filters.Incoming, func(c *gotdbot.Client, ctx *gotdbot.Context) error {
-		_, err := c.ForwardMessages(ctx.EffectiveChatId, ctx.EffectiveChatId, []int64{ctx.EffectiveMessage.Id}, &gotdbot.ForwardMessagesOpts{SendCopy: true})
+	dispatcher.AddHandler(handlers.NewMessage(filters.Incoming, func(c *gotdbot.Client, u *gotdbot.Message) error {
+		_, err := c.ForwardMessages(u.ChatId, u.ChatId, []int64{u.Id}, &gotdbot.ForwardMessagesOpts{SendCopy: true})
 		return err
 	}))
 

@@ -11,20 +11,20 @@ import (
 // UpdateNewMessage A new message was received; can also be an outgoing message
 type UpdateNewMessage struct {
 	Filter   filters.UpdateNewMessage
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateNewMessage) error
 }
 
 // NewUpdateNewMessage creates a new UpdateNewMessage
-func NewUpdateNewMessage(filter filters.UpdateNewMessage, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateNewMessage {
+func NewUpdateNewMessage(filter filters.UpdateNewMessage, response func(b *gotdbot.Client, u *gotdbot.UpdateNewMessage) error) *UpdateNewMessage {
 	return &UpdateNewMessage{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateNewMessage) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateNewMessage
-	if u == nil {
+func (h *UpdateNewMessage) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateNewMessage)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateNewMessage) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) 
 	return h.Filter(u)
 }
 
-func (h *UpdateNewMessage) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateNewMessage) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateNewMessage))
 }

@@ -11,20 +11,20 @@ import (
 // UpdateNewBusinessCallbackQuery A new incoming callback query from a business message; for bots only
 type UpdateNewBusinessCallbackQuery struct {
 	Filter   filters.UpdateNewBusinessCallbackQuery
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateNewBusinessCallbackQuery) error
 }
 
 // NewUpdateNewBusinessCallbackQuery creates a new UpdateNewBusinessCallbackQuery
-func NewUpdateNewBusinessCallbackQuery(filter filters.UpdateNewBusinessCallbackQuery, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateNewBusinessCallbackQuery {
+func NewUpdateNewBusinessCallbackQuery(filter filters.UpdateNewBusinessCallbackQuery, response func(b *gotdbot.Client, u *gotdbot.UpdateNewBusinessCallbackQuery) error) *UpdateNewBusinessCallbackQuery {
 	return &UpdateNewBusinessCallbackQuery{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateNewBusinessCallbackQuery) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateNewBusinessCallbackQuery
-	if u == nil {
+func (h *UpdateNewBusinessCallbackQuery) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateNewBusinessCallbackQuery)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateNewBusinessCallbackQuery) CheckUpdate(b *gotdbot.Client, ctx *got
 	return h.Filter(u)
 }
 
-func (h *UpdateNewBusinessCallbackQuery) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateNewBusinessCallbackQuery) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateNewBusinessCallbackQuery))
 }

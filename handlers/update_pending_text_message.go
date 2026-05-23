@@ -11,20 +11,20 @@ import (
 // UpdatePendingTextMessage A new pending text message was received in a chat with a bot. The message must be shown in the chat for at most getOption("pending_text_message_period") seconds,
 type UpdatePendingTextMessage struct {
 	Filter   filters.UpdatePendingTextMessage
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdatePendingTextMessage) error
 }
 
 // NewUpdatePendingTextMessage creates a new UpdatePendingTextMessage
-func NewUpdatePendingTextMessage(filter filters.UpdatePendingTextMessage, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdatePendingTextMessage {
+func NewUpdatePendingTextMessage(filter filters.UpdatePendingTextMessage, response func(b *gotdbot.Client, u *gotdbot.UpdatePendingTextMessage) error) *UpdatePendingTextMessage {
 	return &UpdatePendingTextMessage{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdatePendingTextMessage) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdatePendingTextMessage
-	if u == nil {
+func (h *UpdatePendingTextMessage) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdatePendingTextMessage)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdatePendingTextMessage) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.C
 	return h.Filter(u)
 }
 
-func (h *UpdatePendingTextMessage) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdatePendingTextMessage) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdatePendingTextMessage))
 }

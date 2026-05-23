@@ -11,20 +11,20 @@ import (
 // UpdateMessageContent The message content has changed
 type UpdateMessageContent struct {
 	Filter   filters.UpdateMessageContent
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateMessageContent) error
 }
 
 // NewUpdateMessageContent creates a new UpdateMessageContent
-func NewUpdateMessageContent(filter filters.UpdateMessageContent, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateMessageContent {
+func NewUpdateMessageContent(filter filters.UpdateMessageContent, response func(b *gotdbot.Client, u *gotdbot.UpdateMessageContent) error) *UpdateMessageContent {
 	return &UpdateMessageContent{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateMessageContent) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateMessageContent
-	if u == nil {
+func (h *UpdateMessageContent) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateMessageContent)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateMessageContent) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Conte
 	return h.Filter(u)
 }
 
-func (h *UpdateMessageContent) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateMessageContent) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateMessageContent))
 }

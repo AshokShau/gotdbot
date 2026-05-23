@@ -11,20 +11,20 @@ import (
 // UpdateNotificationGroup A list of active notifications in a notification group has changed
 type UpdateNotificationGroup struct {
 	Filter   filters.UpdateNotificationGroup
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateNotificationGroup) error
 }
 
 // NewUpdateNotificationGroup creates a new UpdateNotificationGroup
-func NewUpdateNotificationGroup(filter filters.UpdateNotificationGroup, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateNotificationGroup {
+func NewUpdateNotificationGroup(filter filters.UpdateNotificationGroup, response func(b *gotdbot.Client, u *gotdbot.UpdateNotificationGroup) error) *UpdateNotificationGroup {
 	return &UpdateNotificationGroup{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateNotificationGroup) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateNotificationGroup
-	if u == nil {
+func (h *UpdateNotificationGroup) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateNotificationGroup)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateNotificationGroup) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Co
 	return h.Filter(u)
 }
 
-func (h *UpdateNotificationGroup) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateNotificationGroup) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateNotificationGroup))
 }

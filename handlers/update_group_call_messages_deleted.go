@@ -11,20 +11,20 @@ import (
 // UpdateGroupCallMessagesDeleted Some group call messages were deleted
 type UpdateGroupCallMessagesDeleted struct {
 	Filter   filters.UpdateGroupCallMessagesDeleted
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateGroupCallMessagesDeleted) error
 }
 
 // NewUpdateGroupCallMessagesDeleted creates a new UpdateGroupCallMessagesDeleted
-func NewUpdateGroupCallMessagesDeleted(filter filters.UpdateGroupCallMessagesDeleted, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateGroupCallMessagesDeleted {
+func NewUpdateGroupCallMessagesDeleted(filter filters.UpdateGroupCallMessagesDeleted, response func(b *gotdbot.Client, u *gotdbot.UpdateGroupCallMessagesDeleted) error) *UpdateGroupCallMessagesDeleted {
 	return &UpdateGroupCallMessagesDeleted{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateGroupCallMessagesDeleted) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateGroupCallMessagesDeleted
-	if u == nil {
+func (h *UpdateGroupCallMessagesDeleted) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateGroupCallMessagesDeleted)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateGroupCallMessagesDeleted) CheckUpdate(b *gotdbot.Client, ctx *got
 	return h.Filter(u)
 }
 
-func (h *UpdateGroupCallMessagesDeleted) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateGroupCallMessagesDeleted) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateGroupCallMessagesDeleted))
 }

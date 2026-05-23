@@ -11,20 +11,20 @@ import (
 // UpdateChatReadInbox Incoming messages were read or the number of unread messages has been changed
 type UpdateChatReadInbox struct {
 	Filter   filters.UpdateChatReadInbox
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateChatReadInbox) error
 }
 
 // NewUpdateChatReadInbox creates a new UpdateChatReadInbox
-func NewUpdateChatReadInbox(filter filters.UpdateChatReadInbox, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatReadInbox {
+func NewUpdateChatReadInbox(filter filters.UpdateChatReadInbox, response func(b *gotdbot.Client, u *gotdbot.UpdateChatReadInbox) error) *UpdateChatReadInbox {
 	return &UpdateChatReadInbox{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateChatReadInbox) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateChatReadInbox
-	if u == nil {
+func (h *UpdateChatReadInbox) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateChatReadInbox)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateChatReadInbox) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Contex
 	return h.Filter(u)
 }
 
-func (h *UpdateChatReadInbox) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateChatReadInbox) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateChatReadInbox))
 }

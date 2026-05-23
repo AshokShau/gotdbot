@@ -11,20 +11,20 @@ import (
 // UpdateStoryListChatCount Number of chats in a story list has changed
 type UpdateStoryListChatCount struct {
 	Filter   filters.UpdateStoryListChatCount
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateStoryListChatCount) error
 }
 
 // NewUpdateStoryListChatCount creates a new UpdateStoryListChatCount
-func NewUpdateStoryListChatCount(filter filters.UpdateStoryListChatCount, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateStoryListChatCount {
+func NewUpdateStoryListChatCount(filter filters.UpdateStoryListChatCount, response func(b *gotdbot.Client, u *gotdbot.UpdateStoryListChatCount) error) *UpdateStoryListChatCount {
 	return &UpdateStoryListChatCount{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateStoryListChatCount) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateStoryListChatCount
-	if u == nil {
+func (h *UpdateStoryListChatCount) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateStoryListChatCount)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateStoryListChatCount) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.C
 	return h.Filter(u)
 }
 
-func (h *UpdateStoryListChatCount) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateStoryListChatCount) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateStoryListChatCount))
 }

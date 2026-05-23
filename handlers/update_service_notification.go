@@ -11,20 +11,20 @@ import (
 // UpdateServiceNotification A service notification from the server was received. Upon receiving this the application must show a popup with the content of the notification
 type UpdateServiceNotification struct {
 	Filter   filters.UpdateServiceNotification
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateServiceNotification) error
 }
 
 // NewUpdateServiceNotification creates a new UpdateServiceNotification
-func NewUpdateServiceNotification(filter filters.UpdateServiceNotification, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateServiceNotification {
+func NewUpdateServiceNotification(filter filters.UpdateServiceNotification, response func(b *gotdbot.Client, u *gotdbot.UpdateServiceNotification) error) *UpdateServiceNotification {
 	return &UpdateServiceNotification{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateServiceNotification) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateServiceNotification
-	if u == nil {
+func (h *UpdateServiceNotification) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateServiceNotification)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateServiceNotification) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.
 	return h.Filter(u)
 }
 
-func (h *UpdateServiceNotification) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateServiceNotification) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateServiceNotification))
 }

@@ -11,20 +11,20 @@ import (
 // UpdateChatDraftMessage A chat draft has changed. Be aware that the update may come in the currently opened chat but with old content of the draft. If the user has changed the content of the draft, this update mustn't be applied
 type UpdateChatDraftMessage struct {
 	Filter   filters.UpdateChatDraftMessage
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateChatDraftMessage) error
 }
 
 // NewUpdateChatDraftMessage creates a new UpdateChatDraftMessage
-func NewUpdateChatDraftMessage(filter filters.UpdateChatDraftMessage, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatDraftMessage {
+func NewUpdateChatDraftMessage(filter filters.UpdateChatDraftMessage, response func(b *gotdbot.Client, u *gotdbot.UpdateChatDraftMessage) error) *UpdateChatDraftMessage {
 	return &UpdateChatDraftMessage{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateChatDraftMessage) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateChatDraftMessage
-	if u == nil {
+func (h *UpdateChatDraftMessage) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateChatDraftMessage)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateChatDraftMessage) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Con
 	return h.Filter(u)
 }
 
-func (h *UpdateChatDraftMessage) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateChatDraftMessage) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateChatDraftMessage))
 }

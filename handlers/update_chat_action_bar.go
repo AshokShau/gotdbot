@@ -11,20 +11,20 @@ import (
 // UpdateChatActionBar The chat action bar was changed
 type UpdateChatActionBar struct {
 	Filter   filters.UpdateChatActionBar
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateChatActionBar) error
 }
 
 // NewUpdateChatActionBar creates a new UpdateChatActionBar
-func NewUpdateChatActionBar(filter filters.UpdateChatActionBar, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatActionBar {
+func NewUpdateChatActionBar(filter filters.UpdateChatActionBar, response func(b *gotdbot.Client, u *gotdbot.UpdateChatActionBar) error) *UpdateChatActionBar {
 	return &UpdateChatActionBar{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateChatActionBar) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateChatActionBar
-	if u == nil {
+func (h *UpdateChatActionBar) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateChatActionBar)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateChatActionBar) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Contex
 	return h.Filter(u)
 }
 
-func (h *UpdateChatActionBar) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateChatActionBar) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateChatActionBar))
 }

@@ -11,20 +11,20 @@ import (
 // UpdateTextCompositionStyles The styles supported for text composition have changed
 type UpdateTextCompositionStyles struct {
 	Filter   filters.UpdateTextCompositionStyles
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateTextCompositionStyles) error
 }
 
 // NewUpdateTextCompositionStyles creates a new UpdateTextCompositionStyles
-func NewUpdateTextCompositionStyles(filter filters.UpdateTextCompositionStyles, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateTextCompositionStyles {
+func NewUpdateTextCompositionStyles(filter filters.UpdateTextCompositionStyles, response func(b *gotdbot.Client, u *gotdbot.UpdateTextCompositionStyles) error) *UpdateTextCompositionStyles {
 	return &UpdateTextCompositionStyles{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateTextCompositionStyles) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateTextCompositionStyles
-	if u == nil {
+func (h *UpdateTextCompositionStyles) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateTextCompositionStyles)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateTextCompositionStyles) CheckUpdate(b *gotdbot.Client, ctx *gotdbo
 	return h.Filter(u)
 }
 
-func (h *UpdateTextCompositionStyles) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateTextCompositionStyles) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateTextCompositionStyles))
 }

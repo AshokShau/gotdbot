@@ -11,20 +11,20 @@ import (
 // UpdateNewGuestQuery A new incoming guest query; for bots only
 type UpdateNewGuestQuery struct {
 	Filter   filters.UpdateNewGuestQuery
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateNewGuestQuery) error
 }
 
 // NewUpdateNewGuestQuery creates a new UpdateNewGuestQuery
-func NewUpdateNewGuestQuery(filter filters.UpdateNewGuestQuery, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateNewGuestQuery {
+func NewUpdateNewGuestQuery(filter filters.UpdateNewGuestQuery, response func(b *gotdbot.Client, u *gotdbot.UpdateNewGuestQuery) error) *UpdateNewGuestQuery {
 	return &UpdateNewGuestQuery{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateNewGuestQuery) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateNewGuestQuery
-	if u == nil {
+func (h *UpdateNewGuestQuery) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateNewGuestQuery)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateNewGuestQuery) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Contex
 	return h.Filter(u)
 }
 
-func (h *UpdateNewGuestQuery) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateNewGuestQuery) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateNewGuestQuery))
 }

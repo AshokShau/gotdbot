@@ -11,20 +11,20 @@ import (
 // UpdateChatViewAsTopics A chat default appearance has changed
 type UpdateChatViewAsTopics struct {
 	Filter   filters.UpdateChatViewAsTopics
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateChatViewAsTopics) error
 }
 
 // NewUpdateChatViewAsTopics creates a new UpdateChatViewAsTopics
-func NewUpdateChatViewAsTopics(filter filters.UpdateChatViewAsTopics, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatViewAsTopics {
+func NewUpdateChatViewAsTopics(filter filters.UpdateChatViewAsTopics, response func(b *gotdbot.Client, u *gotdbot.UpdateChatViewAsTopics) error) *UpdateChatViewAsTopics {
 	return &UpdateChatViewAsTopics{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateChatViewAsTopics) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateChatViewAsTopics
-	if u == nil {
+func (h *UpdateChatViewAsTopics) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateChatViewAsTopics)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateChatViewAsTopics) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Con
 	return h.Filter(u)
 }
 
-func (h *UpdateChatViewAsTopics) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateChatViewAsTopics) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateChatViewAsTopics))
 }

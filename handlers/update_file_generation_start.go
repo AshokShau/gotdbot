@@ -11,20 +11,20 @@ import (
 // UpdateFileGenerationStart The file generation process needs to be started by the application. Use setFileGenerationProgress and finishFileGeneration to generate the file
 type UpdateFileGenerationStart struct {
 	Filter   filters.UpdateFileGenerationStart
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateFileGenerationStart) error
 }
 
 // NewUpdateFileGenerationStart creates a new UpdateFileGenerationStart
-func NewUpdateFileGenerationStart(filter filters.UpdateFileGenerationStart, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateFileGenerationStart {
+func NewUpdateFileGenerationStart(filter filters.UpdateFileGenerationStart, response func(b *gotdbot.Client, u *gotdbot.UpdateFileGenerationStart) error) *UpdateFileGenerationStart {
 	return &UpdateFileGenerationStart{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateFileGenerationStart) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateFileGenerationStart
-	if u == nil {
+func (h *UpdateFileGenerationStart) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateFileGenerationStart)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateFileGenerationStart) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.
 	return h.Filter(u)
 }
 
-func (h *UpdateFileGenerationStart) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateFileGenerationStart) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateFileGenerationStart))
 }

@@ -11,20 +11,20 @@ import (
 // UpdateStarRevenueStatus The Telegram Star revenue earned by a user or a chat has changed. If Telegram Star transaction screen of the chat is opened, then getStarTransactions may be called to fetch new transactions
 type UpdateStarRevenueStatus struct {
 	Filter   filters.UpdateStarRevenueStatus
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateStarRevenueStatus) error
 }
 
 // NewUpdateStarRevenueStatus creates a new UpdateStarRevenueStatus
-func NewUpdateStarRevenueStatus(filter filters.UpdateStarRevenueStatus, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateStarRevenueStatus {
+func NewUpdateStarRevenueStatus(filter filters.UpdateStarRevenueStatus, response func(b *gotdbot.Client, u *gotdbot.UpdateStarRevenueStatus) error) *UpdateStarRevenueStatus {
 	return &UpdateStarRevenueStatus{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateStarRevenueStatus) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateStarRevenueStatus
-	if u == nil {
+func (h *UpdateStarRevenueStatus) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateStarRevenueStatus)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateStarRevenueStatus) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Co
 	return h.Filter(u)
 }
 
-func (h *UpdateStarRevenueStatus) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateStarRevenueStatus) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateStarRevenueStatus))
 }

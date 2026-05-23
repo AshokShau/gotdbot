@@ -11,20 +11,20 @@ import (
 // UpdateChatAvailableReactions The chat available reactions were changed
 type UpdateChatAvailableReactions struct {
 	Filter   filters.UpdateChatAvailableReactions
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateChatAvailableReactions) error
 }
 
 // NewUpdateChatAvailableReactions creates a new UpdateChatAvailableReactions
-func NewUpdateChatAvailableReactions(filter filters.UpdateChatAvailableReactions, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatAvailableReactions {
+func NewUpdateChatAvailableReactions(filter filters.UpdateChatAvailableReactions, response func(b *gotdbot.Client, u *gotdbot.UpdateChatAvailableReactions) error) *UpdateChatAvailableReactions {
 	return &UpdateChatAvailableReactions{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateChatAvailableReactions) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateChatAvailableReactions
-	if u == nil {
+func (h *UpdateChatAvailableReactions) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateChatAvailableReactions)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateChatAvailableReactions) CheckUpdate(b *gotdbot.Client, ctx *gotdb
 	return h.Filter(u)
 }
 
-func (h *UpdateChatAvailableReactions) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateChatAvailableReactions) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateChatAvailableReactions))
 }

@@ -11,20 +11,20 @@ import (
 // UpdateSavedMessagesTags Tags used in Saved Messages or a Saved Messages topic have changed
 type UpdateSavedMessagesTags struct {
 	Filter   filters.UpdateSavedMessagesTags
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateSavedMessagesTags) error
 }
 
 // NewUpdateSavedMessagesTags creates a new UpdateSavedMessagesTags
-func NewUpdateSavedMessagesTags(filter filters.UpdateSavedMessagesTags, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateSavedMessagesTags {
+func NewUpdateSavedMessagesTags(filter filters.UpdateSavedMessagesTags, response func(b *gotdbot.Client, u *gotdbot.UpdateSavedMessagesTags) error) *UpdateSavedMessagesTags {
 	return &UpdateSavedMessagesTags{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateSavedMessagesTags) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateSavedMessagesTags
-	if u == nil {
+func (h *UpdateSavedMessagesTags) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateSavedMessagesTags)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateSavedMessagesTags) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Co
 	return h.Filter(u)
 }
 
-func (h *UpdateSavedMessagesTags) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateSavedMessagesTags) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateSavedMessagesTags))
 }

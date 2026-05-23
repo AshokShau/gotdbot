@@ -11,20 +11,20 @@ import (
 // UpdateChatPhoto A chat photo was changed
 type UpdateChatPhoto struct {
 	Filter   filters.UpdateChatPhoto
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateChatPhoto) error
 }
 
 // NewUpdateChatPhoto creates a new UpdateChatPhoto
-func NewUpdateChatPhoto(filter filters.UpdateChatPhoto, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatPhoto {
+func NewUpdateChatPhoto(filter filters.UpdateChatPhoto, response func(b *gotdbot.Client, u *gotdbot.UpdateChatPhoto) error) *UpdateChatPhoto {
 	return &UpdateChatPhoto{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateChatPhoto) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateChatPhoto
-	if u == nil {
+func (h *UpdateChatPhoto) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateChatPhoto)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateChatPhoto) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) b
 	return h.Filter(u)
 }
 
-func (h *UpdateChatPhoto) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateChatPhoto) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateChatPhoto))
 }

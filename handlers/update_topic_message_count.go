@@ -11,20 +11,20 @@ import (
 // UpdateTopicMessageCount Number of messages in a topic has changed; for Saved Messages and channel direct messages chat topics only
 type UpdateTopicMessageCount struct {
 	Filter   filters.UpdateTopicMessageCount
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateTopicMessageCount) error
 }
 
 // NewUpdateTopicMessageCount creates a new UpdateTopicMessageCount
-func NewUpdateTopicMessageCount(filter filters.UpdateTopicMessageCount, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateTopicMessageCount {
+func NewUpdateTopicMessageCount(filter filters.UpdateTopicMessageCount, response func(b *gotdbot.Client, u *gotdbot.UpdateTopicMessageCount) error) *UpdateTopicMessageCount {
 	return &UpdateTopicMessageCount{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateTopicMessageCount) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateTopicMessageCount
-	if u == nil {
+func (h *UpdateTopicMessageCount) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateTopicMessageCount)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateTopicMessageCount) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Co
 	return h.Filter(u)
 }
 
-func (h *UpdateTopicMessageCount) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateTopicMessageCount) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateTopicMessageCount))
 }

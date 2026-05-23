@@ -11,20 +11,20 @@ import (
 // UpdateNewShippingQuery A new incoming shipping query; for bots only. Only for invoices with flexible price
 type UpdateNewShippingQuery struct {
 	Filter   filters.UpdateNewShippingQuery
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateNewShippingQuery) error
 }
 
 // NewUpdateNewShippingQuery creates a new UpdateNewShippingQuery
-func NewUpdateNewShippingQuery(filter filters.UpdateNewShippingQuery, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateNewShippingQuery {
+func NewUpdateNewShippingQuery(filter filters.UpdateNewShippingQuery, response func(b *gotdbot.Client, u *gotdbot.UpdateNewShippingQuery) error) *UpdateNewShippingQuery {
 	return &UpdateNewShippingQuery{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateNewShippingQuery) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateNewShippingQuery
-	if u == nil {
+func (h *UpdateNewShippingQuery) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateNewShippingQuery)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateNewShippingQuery) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Con
 	return h.Filter(u)
 }
 
-func (h *UpdateNewShippingQuery) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateNewShippingQuery) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateNewShippingQuery))
 }

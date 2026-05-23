@@ -11,20 +11,20 @@ import (
 // UpdateStakeDiceState The stake dice state has changed
 type UpdateStakeDiceState struct {
 	Filter   filters.UpdateStakeDiceState
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateStakeDiceState) error
 }
 
 // NewUpdateStakeDiceState creates a new UpdateStakeDiceState
-func NewUpdateStakeDiceState(filter filters.UpdateStakeDiceState, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateStakeDiceState {
+func NewUpdateStakeDiceState(filter filters.UpdateStakeDiceState, response func(b *gotdbot.Client, u *gotdbot.UpdateStakeDiceState) error) *UpdateStakeDiceState {
 	return &UpdateStakeDiceState{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateStakeDiceState) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateStakeDiceState
-	if u == nil {
+func (h *UpdateStakeDiceState) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateStakeDiceState)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateStakeDiceState) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Conte
 	return h.Filter(u)
 }
 
-func (h *UpdateStakeDiceState) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateStakeDiceState) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateStakeDiceState))
 }

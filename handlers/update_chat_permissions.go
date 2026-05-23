@@ -11,20 +11,20 @@ import (
 // UpdateChatPermissions Chat permissions were changed
 type UpdateChatPermissions struct {
 	Filter   filters.UpdateChatPermissions
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateChatPermissions) error
 }
 
 // NewUpdateChatPermissions creates a new UpdateChatPermissions
-func NewUpdateChatPermissions(filter filters.UpdateChatPermissions, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatPermissions {
+func NewUpdateChatPermissions(filter filters.UpdateChatPermissions, response func(b *gotdbot.Client, u *gotdbot.UpdateChatPermissions) error) *UpdateChatPermissions {
 	return &UpdateChatPermissions{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateChatPermissions) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateChatPermissions
-	if u == nil {
+func (h *UpdateChatPermissions) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateChatPermissions)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateChatPermissions) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Cont
 	return h.Filter(u)
 }
 
-func (h *UpdateChatPermissions) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateChatPermissions) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateChatPermissions))
 }

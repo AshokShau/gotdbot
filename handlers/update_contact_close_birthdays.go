@@ -11,20 +11,20 @@ import (
 // UpdateContactCloseBirthdays The list of contacts that had birthdays recently or will have birthday soon has changed
 type UpdateContactCloseBirthdays struct {
 	Filter   filters.UpdateContactCloseBirthdays
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateContactCloseBirthdays) error
 }
 
 // NewUpdateContactCloseBirthdays creates a new UpdateContactCloseBirthdays
-func NewUpdateContactCloseBirthdays(filter filters.UpdateContactCloseBirthdays, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateContactCloseBirthdays {
+func NewUpdateContactCloseBirthdays(filter filters.UpdateContactCloseBirthdays, response func(b *gotdbot.Client, u *gotdbot.UpdateContactCloseBirthdays) error) *UpdateContactCloseBirthdays {
 	return &UpdateContactCloseBirthdays{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateContactCloseBirthdays) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateContactCloseBirthdays
-	if u == nil {
+func (h *UpdateContactCloseBirthdays) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateContactCloseBirthdays)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateContactCloseBirthdays) CheckUpdate(b *gotdbot.Client, ctx *gotdbo
 	return h.Filter(u)
 }
 
-func (h *UpdateContactCloseBirthdays) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateContactCloseBirthdays) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateContactCloseBirthdays))
 }

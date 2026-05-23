@@ -11,20 +11,20 @@ import (
 // UpdateAccentColors The list of supported accent colors has changed
 type UpdateAccentColors struct {
 	Filter   filters.UpdateAccentColors
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateAccentColors) error
 }
 
 // NewUpdateAccentColors creates a new UpdateAccentColors
-func NewUpdateAccentColors(filter filters.UpdateAccentColors, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateAccentColors {
+func NewUpdateAccentColors(filter filters.UpdateAccentColors, response func(b *gotdbot.Client, u *gotdbot.UpdateAccentColors) error) *UpdateAccentColors {
 	return &UpdateAccentColors{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateAccentColors) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateAccentColors
-	if u == nil {
+func (h *UpdateAccentColors) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateAccentColors)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateAccentColors) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context
 	return h.Filter(u)
 }
 
-func (h *UpdateAccentColors) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateAccentColors) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateAccentColors))
 }

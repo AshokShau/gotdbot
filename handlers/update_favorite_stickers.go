@@ -11,20 +11,20 @@ import (
 // UpdateFavoriteStickers The list of favorite stickers was updated
 type UpdateFavoriteStickers struct {
 	Filter   filters.UpdateFavoriteStickers
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateFavoriteStickers) error
 }
 
 // NewUpdateFavoriteStickers creates a new UpdateFavoriteStickers
-func NewUpdateFavoriteStickers(filter filters.UpdateFavoriteStickers, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateFavoriteStickers {
+func NewUpdateFavoriteStickers(filter filters.UpdateFavoriteStickers, response func(b *gotdbot.Client, u *gotdbot.UpdateFavoriteStickers) error) *UpdateFavoriteStickers {
 	return &UpdateFavoriteStickers{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateFavoriteStickers) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateFavoriteStickers
-	if u == nil {
+func (h *UpdateFavoriteStickers) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateFavoriteStickers)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateFavoriteStickers) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Con
 	return h.Filter(u)
 }
 
-func (h *UpdateFavoriteStickers) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateFavoriteStickers) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateFavoriteStickers))
 }

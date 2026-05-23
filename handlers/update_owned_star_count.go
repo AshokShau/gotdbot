@@ -11,20 +11,20 @@ import (
 // UpdateOwnedStarCount The number of Telegram Stars owned by the current user has changed
 type UpdateOwnedStarCount struct {
 	Filter   filters.UpdateOwnedStarCount
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateOwnedStarCount) error
 }
 
 // NewUpdateOwnedStarCount creates a new UpdateOwnedStarCount
-func NewUpdateOwnedStarCount(filter filters.UpdateOwnedStarCount, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateOwnedStarCount {
+func NewUpdateOwnedStarCount(filter filters.UpdateOwnedStarCount, response func(b *gotdbot.Client, u *gotdbot.UpdateOwnedStarCount) error) *UpdateOwnedStarCount {
 	return &UpdateOwnedStarCount{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateOwnedStarCount) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateOwnedStarCount
-	if u == nil {
+func (h *UpdateOwnedStarCount) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateOwnedStarCount)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateOwnedStarCount) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Conte
 	return h.Filter(u)
 }
 
-func (h *UpdateOwnedStarCount) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateOwnedStarCount) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateOwnedStarCount))
 }

@@ -11,20 +11,20 @@ import (
 // UpdateHavePendingNotifications Describes whether there are some pending notification updates. Can be used to prevent application from killing, while there are some pending notifications
 type UpdateHavePendingNotifications struct {
 	Filter   filters.UpdateHavePendingNotifications
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateHavePendingNotifications) error
 }
 
 // NewUpdateHavePendingNotifications creates a new UpdateHavePendingNotifications
-func NewUpdateHavePendingNotifications(filter filters.UpdateHavePendingNotifications, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateHavePendingNotifications {
+func NewUpdateHavePendingNotifications(filter filters.UpdateHavePendingNotifications, response func(b *gotdbot.Client, u *gotdbot.UpdateHavePendingNotifications) error) *UpdateHavePendingNotifications {
 	return &UpdateHavePendingNotifications{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateHavePendingNotifications) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateHavePendingNotifications
-	if u == nil {
+func (h *UpdateHavePendingNotifications) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateHavePendingNotifications)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateHavePendingNotifications) CheckUpdate(b *gotdbot.Client, ctx *got
 	return h.Filter(u)
 }
 
-func (h *UpdateHavePendingNotifications) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateHavePendingNotifications) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateHavePendingNotifications))
 }

@@ -11,20 +11,20 @@ import (
 // UpdateUnreadMessageCount Number of unread messages in a chat list has changed. This update is sent only if the message database is used
 type UpdateUnreadMessageCount struct {
 	Filter   filters.UpdateUnreadMessageCount
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateUnreadMessageCount) error
 }
 
 // NewUpdateUnreadMessageCount creates a new UpdateUnreadMessageCount
-func NewUpdateUnreadMessageCount(filter filters.UpdateUnreadMessageCount, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateUnreadMessageCount {
+func NewUpdateUnreadMessageCount(filter filters.UpdateUnreadMessageCount, response func(b *gotdbot.Client, u *gotdbot.UpdateUnreadMessageCount) error) *UpdateUnreadMessageCount {
 	return &UpdateUnreadMessageCount{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateUnreadMessageCount) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateUnreadMessageCount
-	if u == nil {
+func (h *UpdateUnreadMessageCount) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateUnreadMessageCount)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateUnreadMessageCount) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.C
 	return h.Filter(u)
 }
 
-func (h *UpdateUnreadMessageCount) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateUnreadMessageCount) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateUnreadMessageCount))
 }

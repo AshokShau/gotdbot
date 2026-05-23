@@ -11,20 +11,20 @@ import (
 // UpdateChatVideoChat A chat video chat state has changed
 type UpdateChatVideoChat struct {
 	Filter   filters.UpdateChatVideoChat
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateChatVideoChat) error
 }
 
 // NewUpdateChatVideoChat creates a new UpdateChatVideoChat
-func NewUpdateChatVideoChat(filter filters.UpdateChatVideoChat, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatVideoChat {
+func NewUpdateChatVideoChat(filter filters.UpdateChatVideoChat, response func(b *gotdbot.Client, u *gotdbot.UpdateChatVideoChat) error) *UpdateChatVideoChat {
 	return &UpdateChatVideoChat{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateChatVideoChat) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateChatVideoChat
-	if u == nil {
+func (h *UpdateChatVideoChat) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateChatVideoChat)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateChatVideoChat) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Contex
 	return h.Filter(u)
 }
 
-func (h *UpdateChatVideoChat) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateChatVideoChat) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateChatVideoChat))
 }

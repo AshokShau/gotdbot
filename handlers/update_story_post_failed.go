@@ -11,20 +11,20 @@ import (
 // UpdateStoryPostFailed A story failed to post. If the story posting is canceled, then updateStoryDeleted will be received instead of this update
 type UpdateStoryPostFailed struct {
 	Filter   filters.UpdateStoryPostFailed
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateStoryPostFailed) error
 }
 
 // NewUpdateStoryPostFailed creates a new UpdateStoryPostFailed
-func NewUpdateStoryPostFailed(filter filters.UpdateStoryPostFailed, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateStoryPostFailed {
+func NewUpdateStoryPostFailed(filter filters.UpdateStoryPostFailed, response func(b *gotdbot.Client, u *gotdbot.UpdateStoryPostFailed) error) *UpdateStoryPostFailed {
 	return &UpdateStoryPostFailed{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateStoryPostFailed) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateStoryPostFailed
-	if u == nil {
+func (h *UpdateStoryPostFailed) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateStoryPostFailed)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateStoryPostFailed) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Cont
 	return h.Filter(u)
 }
 
-func (h *UpdateStoryPostFailed) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateStoryPostFailed) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateStoryPostFailed))
 }

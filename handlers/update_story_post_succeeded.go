@@ -11,20 +11,20 @@ import (
 // UpdateStoryPostSucceeded A story has been successfully posted
 type UpdateStoryPostSucceeded struct {
 	Filter   filters.UpdateStoryPostSucceeded
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateStoryPostSucceeded) error
 }
 
 // NewUpdateStoryPostSucceeded creates a new UpdateStoryPostSucceeded
-func NewUpdateStoryPostSucceeded(filter filters.UpdateStoryPostSucceeded, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateStoryPostSucceeded {
+func NewUpdateStoryPostSucceeded(filter filters.UpdateStoryPostSucceeded, response func(b *gotdbot.Client, u *gotdbot.UpdateStoryPostSucceeded) error) *UpdateStoryPostSucceeded {
 	return &UpdateStoryPostSucceeded{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateStoryPostSucceeded) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateStoryPostSucceeded
-	if u == nil {
+func (h *UpdateStoryPostSucceeded) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateStoryPostSucceeded)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateStoryPostSucceeded) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.C
 	return h.Filter(u)
 }
 
-func (h *UpdateStoryPostSucceeded) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateStoryPostSucceeded) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateStoryPostSucceeded))
 }

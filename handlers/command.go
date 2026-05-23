@@ -10,12 +10,12 @@ import (
 type Command struct {
 	Triggers      []rune
 	Command       string
-	Response      func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response      func(b *gotdbot.Client, u *gotdbot.Message) error
 	AllowOutgoing bool
 	Filter        filters.Message
 }
 
-func NewCommand(command string, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *Command {
+func NewCommand(command string, response func(b *gotdbot.Client, u *gotdbot.Message) error) *Command {
 	return &Command{
 		Triggers:      []rune{'/'},
 		Command:       strings.ToLower(command),
@@ -40,20 +40,21 @@ func (c *Command) SetFilter(filter filters.Message) *Command {
 	return c
 }
 
-func (c *Command) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	if ctx.EffectiveMessage == nil || ctx.EffectiveMessage.Content == nil {
+func (c *Command) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	msg := c.extractMessage(update)
+	if msg == nil || msg.Content == nil {
 		return false
 	}
 
-	if ctx.EffectiveMessage.IsOutgoing && !c.AllowOutgoing {
+	if msg.IsOutgoing && !c.AllowOutgoing {
 		return false
 	}
 
-	if c.Filter != nil && !c.Filter(ctx.EffectiveMessage) {
+	if c.Filter != nil && !c.Filter(msg) {
 		return false
 	}
 
-	text := ctx.EffectiveMessage.Text()
+	text := msg.Text()
 	if text == "" {
 		return false
 	}
@@ -111,6 +112,18 @@ func (c *Command) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
 	return false
 }
 
-func (c *Command) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return c.Response(b, ctx)
+func (c *Command) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return c.Response(b, c.extractMessage(update))
+}
+
+// extractMessage extracts a gotdbot.Message from an update if possible.
+func (c *Command) extractMessage(u gotdbot.TlObject) *gotdbot.Message {
+	switch t := u.(type) {
+	case *gotdbot.UpdateMessageSendSucceeded:
+		return t.Message
+	case *gotdbot.UpdateNewMessage:
+		return t.Message
+	default:
+		return nil
+	}
 }

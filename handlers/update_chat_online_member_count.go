@@ -11,20 +11,20 @@ import (
 // UpdateChatOnlineMemberCount The number of online group members has changed. This update with non-zero number of online group members is sent only for currently opened chats.
 type UpdateChatOnlineMemberCount struct {
 	Filter   filters.UpdateChatOnlineMemberCount
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateChatOnlineMemberCount) error
 }
 
 // NewUpdateChatOnlineMemberCount creates a new UpdateChatOnlineMemberCount
-func NewUpdateChatOnlineMemberCount(filter filters.UpdateChatOnlineMemberCount, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatOnlineMemberCount {
+func NewUpdateChatOnlineMemberCount(filter filters.UpdateChatOnlineMemberCount, response func(b *gotdbot.Client, u *gotdbot.UpdateChatOnlineMemberCount) error) *UpdateChatOnlineMemberCount {
 	return &UpdateChatOnlineMemberCount{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateChatOnlineMemberCount) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateChatOnlineMemberCount
-	if u == nil {
+func (h *UpdateChatOnlineMemberCount) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateChatOnlineMemberCount)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateChatOnlineMemberCount) CheckUpdate(b *gotdbot.Client, ctx *gotdbo
 	return h.Filter(u)
 }
 
-func (h *UpdateChatOnlineMemberCount) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateChatOnlineMemberCount) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateChatOnlineMemberCount))
 }

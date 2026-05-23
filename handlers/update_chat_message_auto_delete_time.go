@@ -11,20 +11,20 @@ import (
 // UpdateChatMessageAutoDeleteTime The message auto-delete or self-destruct timer setting for a chat was changed
 type UpdateChatMessageAutoDeleteTime struct {
 	Filter   filters.UpdateChatMessageAutoDeleteTime
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateChatMessageAutoDeleteTime) error
 }
 
 // NewUpdateChatMessageAutoDeleteTime creates a new UpdateChatMessageAutoDeleteTime
-func NewUpdateChatMessageAutoDeleteTime(filter filters.UpdateChatMessageAutoDeleteTime, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatMessageAutoDeleteTime {
+func NewUpdateChatMessageAutoDeleteTime(filter filters.UpdateChatMessageAutoDeleteTime, response func(b *gotdbot.Client, u *gotdbot.UpdateChatMessageAutoDeleteTime) error) *UpdateChatMessageAutoDeleteTime {
 	return &UpdateChatMessageAutoDeleteTime{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateChatMessageAutoDeleteTime) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateChatMessageAutoDeleteTime
-	if u == nil {
+func (h *UpdateChatMessageAutoDeleteTime) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateChatMessageAutoDeleteTime)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateChatMessageAutoDeleteTime) CheckUpdate(b *gotdbot.Client, ctx *go
 	return h.Filter(u)
 }
 
-func (h *UpdateChatMessageAutoDeleteTime) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateChatMessageAutoDeleteTime) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateChatMessageAutoDeleteTime))
 }

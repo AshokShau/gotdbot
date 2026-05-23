@@ -11,20 +11,20 @@ import (
 // UpdateUserFullInfo Some data in userFullInfo has been changed
 type UpdateUserFullInfo struct {
 	Filter   filters.UpdateUserFullInfo
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateUserFullInfo) error
 }
 
 // NewUpdateUserFullInfo creates a new UpdateUserFullInfo
-func NewUpdateUserFullInfo(filter filters.UpdateUserFullInfo, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateUserFullInfo {
+func NewUpdateUserFullInfo(filter filters.UpdateUserFullInfo, response func(b *gotdbot.Client, u *gotdbot.UpdateUserFullInfo) error) *UpdateUserFullInfo {
 	return &UpdateUserFullInfo{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateUserFullInfo) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateUserFullInfo
-	if u == nil {
+func (h *UpdateUserFullInfo) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateUserFullInfo)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateUserFullInfo) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context
 	return h.Filter(u)
 }
 
-func (h *UpdateUserFullInfo) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateUserFullInfo) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateUserFullInfo))
 }

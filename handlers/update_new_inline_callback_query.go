@@ -11,20 +11,20 @@ import (
 // UpdateNewInlineCallbackQuery A new incoming callback query from a message sent via a bot; for bots only
 type UpdateNewInlineCallbackQuery struct {
 	Filter   filters.UpdateNewInlineCallbackQuery
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateNewInlineCallbackQuery) error
 }
 
 // NewUpdateNewInlineCallbackQuery creates a new UpdateNewInlineCallbackQuery
-func NewUpdateNewInlineCallbackQuery(filter filters.UpdateNewInlineCallbackQuery, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateNewInlineCallbackQuery {
+func NewUpdateNewInlineCallbackQuery(filter filters.UpdateNewInlineCallbackQuery, response func(b *gotdbot.Client, u *gotdbot.UpdateNewInlineCallbackQuery) error) *UpdateNewInlineCallbackQuery {
 	return &UpdateNewInlineCallbackQuery{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateNewInlineCallbackQuery) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateNewInlineCallbackQuery
-	if u == nil {
+func (h *UpdateNewInlineCallbackQuery) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateNewInlineCallbackQuery)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateNewInlineCallbackQuery) CheckUpdate(b *gotdbot.Client, ctx *gotdb
 	return h.Filter(u)
 }
 
-func (h *UpdateNewInlineCallbackQuery) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateNewInlineCallbackQuery) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateNewInlineCallbackQuery))
 }

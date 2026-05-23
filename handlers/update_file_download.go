@@ -11,20 +11,20 @@ import (
 // UpdateFileDownload A file download was changed. This update is sent only after file download list is loaded for the first time
 type UpdateFileDownload struct {
 	Filter   filters.UpdateFileDownload
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateFileDownload) error
 }
 
 // NewUpdateFileDownload creates a new UpdateFileDownload
-func NewUpdateFileDownload(filter filters.UpdateFileDownload, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateFileDownload {
+func NewUpdateFileDownload(filter filters.UpdateFileDownload, response func(b *gotdbot.Client, u *gotdbot.UpdateFileDownload) error) *UpdateFileDownload {
 	return &UpdateFileDownload{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateFileDownload) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateFileDownload
-	if u == nil {
+func (h *UpdateFileDownload) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateFileDownload)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateFileDownload) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context
 	return h.Filter(u)
 }
 
-func (h *UpdateFileDownload) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateFileDownload) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateFileDownload))
 }

@@ -11,20 +11,20 @@ import (
 // UpdateTermsOfService New terms of service must be accepted by the user. If the terms of service are declined, then the deleteAccount method must be called with the reason "Decline ToS update"
 type UpdateTermsOfService struct {
 	Filter   filters.UpdateTermsOfService
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateTermsOfService) error
 }
 
 // NewUpdateTermsOfService creates a new UpdateTermsOfService
-func NewUpdateTermsOfService(filter filters.UpdateTermsOfService, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateTermsOfService {
+func NewUpdateTermsOfService(filter filters.UpdateTermsOfService, response func(b *gotdbot.Client, u *gotdbot.UpdateTermsOfService) error) *UpdateTermsOfService {
 	return &UpdateTermsOfService{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateTermsOfService) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateTermsOfService
-	if u == nil {
+func (h *UpdateTermsOfService) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateTermsOfService)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateTermsOfService) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Conte
 	return h.Filter(u)
 }
 
-func (h *UpdateTermsOfService) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateTermsOfService) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateTermsOfService))
 }

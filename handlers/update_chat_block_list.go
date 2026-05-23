@@ -11,20 +11,20 @@ import (
 // UpdateChatBlockList A chat was blocked or unblocked
 type UpdateChatBlockList struct {
 	Filter   filters.UpdateChatBlockList
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateChatBlockList) error
 }
 
 // NewUpdateChatBlockList creates a new UpdateChatBlockList
-func NewUpdateChatBlockList(filter filters.UpdateChatBlockList, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatBlockList {
+func NewUpdateChatBlockList(filter filters.UpdateChatBlockList, response func(b *gotdbot.Client, u *gotdbot.UpdateChatBlockList) error) *UpdateChatBlockList {
 	return &UpdateChatBlockList{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateChatBlockList) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateChatBlockList
-	if u == nil {
+func (h *UpdateChatBlockList) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateChatBlockList)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateChatBlockList) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Contex
 	return h.Filter(u)
 }
 
-func (h *UpdateChatBlockList) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateChatBlockList) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateChatBlockList))
 }

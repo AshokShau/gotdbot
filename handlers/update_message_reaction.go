@@ -11,20 +11,20 @@ import (
 // UpdateMessageReaction User changed its reactions on a message with public reactions; for bots only
 type UpdateMessageReaction struct {
 	Filter   filters.UpdateMessageReaction
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateMessageReaction) error
 }
 
 // NewUpdateMessageReaction creates a new UpdateMessageReaction
-func NewUpdateMessageReaction(filter filters.UpdateMessageReaction, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateMessageReaction {
+func NewUpdateMessageReaction(filter filters.UpdateMessageReaction, response func(b *gotdbot.Client, u *gotdbot.UpdateMessageReaction) error) *UpdateMessageReaction {
 	return &UpdateMessageReaction{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateMessageReaction) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateMessageReaction
-	if u == nil {
+func (h *UpdateMessageReaction) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateMessageReaction)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateMessageReaction) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Cont
 	return h.Filter(u)
 }
 
-func (h *UpdateMessageReaction) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateMessageReaction) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateMessageReaction))
 }

@@ -11,20 +11,20 @@ import (
 // UpdateNewGroupCallPaidReaction A new paid reaction was received in a live story group call
 type UpdateNewGroupCallPaidReaction struct {
 	Filter   filters.UpdateNewGroupCallPaidReaction
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateNewGroupCallPaidReaction) error
 }
 
 // NewUpdateNewGroupCallPaidReaction creates a new UpdateNewGroupCallPaidReaction
-func NewUpdateNewGroupCallPaidReaction(filter filters.UpdateNewGroupCallPaidReaction, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateNewGroupCallPaidReaction {
+func NewUpdateNewGroupCallPaidReaction(filter filters.UpdateNewGroupCallPaidReaction, response func(b *gotdbot.Client, u *gotdbot.UpdateNewGroupCallPaidReaction) error) *UpdateNewGroupCallPaidReaction {
 	return &UpdateNewGroupCallPaidReaction{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateNewGroupCallPaidReaction) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateNewGroupCallPaidReaction
-	if u == nil {
+func (h *UpdateNewGroupCallPaidReaction) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateNewGroupCallPaidReaction)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateNewGroupCallPaidReaction) CheckUpdate(b *gotdbot.Client, ctx *got
 	return h.Filter(u)
 }
 
-func (h *UpdateNewGroupCallPaidReaction) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateNewGroupCallPaidReaction) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateNewGroupCallPaidReaction))
 }

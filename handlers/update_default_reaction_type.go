@@ -11,20 +11,20 @@ import (
 // UpdateDefaultReactionType The type of default reaction has changed
 type UpdateDefaultReactionType struct {
 	Filter   filters.UpdateDefaultReactionType
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateDefaultReactionType) error
 }
 
 // NewUpdateDefaultReactionType creates a new UpdateDefaultReactionType
-func NewUpdateDefaultReactionType(filter filters.UpdateDefaultReactionType, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateDefaultReactionType {
+func NewUpdateDefaultReactionType(filter filters.UpdateDefaultReactionType, response func(b *gotdbot.Client, u *gotdbot.UpdateDefaultReactionType) error) *UpdateDefaultReactionType {
 	return &UpdateDefaultReactionType{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateDefaultReactionType) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateDefaultReactionType
-	if u == nil {
+func (h *UpdateDefaultReactionType) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateDefaultReactionType)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateDefaultReactionType) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.
 	return h.Filter(u)
 }
 
-func (h *UpdateDefaultReactionType) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateDefaultReactionType) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateDefaultReactionType))
 }

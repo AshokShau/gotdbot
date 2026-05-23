@@ -11,20 +11,20 @@ import (
 // UpdateWebAppMessageSent A message was sent by an opened Web App, so the Web App needs to be closed
 type UpdateWebAppMessageSent struct {
 	Filter   filters.UpdateWebAppMessageSent
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateWebAppMessageSent) error
 }
 
 // NewUpdateWebAppMessageSent creates a new UpdateWebAppMessageSent
-func NewUpdateWebAppMessageSent(filter filters.UpdateWebAppMessageSent, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateWebAppMessageSent {
+func NewUpdateWebAppMessageSent(filter filters.UpdateWebAppMessageSent, response func(b *gotdbot.Client, u *gotdbot.UpdateWebAppMessageSent) error) *UpdateWebAppMessageSent {
 	return &UpdateWebAppMessageSent{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateWebAppMessageSent) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateWebAppMessageSent
-	if u == nil {
+func (h *UpdateWebAppMessageSent) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateWebAppMessageSent)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateWebAppMessageSent) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Co
 	return h.Filter(u)
 }
 
-func (h *UpdateWebAppMessageSent) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateWebAppMessageSent) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateWebAppMessageSent))
 }

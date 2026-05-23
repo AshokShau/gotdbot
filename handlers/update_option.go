@@ -11,20 +11,20 @@ import (
 // UpdateOption An option changed its value
 type UpdateOption struct {
 	Filter   filters.UpdateOption
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateOption) error
 }
 
 // NewUpdateOption creates a new UpdateOption
-func NewUpdateOption(filter filters.UpdateOption, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateOption {
+func NewUpdateOption(filter filters.UpdateOption, response func(b *gotdbot.Client, u *gotdbot.UpdateOption) error) *UpdateOption {
 	return &UpdateOption{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateOption) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateOption
-	if u == nil {
+func (h *UpdateOption) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateOption)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateOption) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool
 	return h.Filter(u)
 }
 
-func (h *UpdateOption) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateOption) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateOption))
 }

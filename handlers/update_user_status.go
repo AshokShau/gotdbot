@@ -11,20 +11,20 @@ import (
 // UpdateUserStatus The user went online or offline
 type UpdateUserStatus struct {
 	Filter   filters.UpdateUserStatus
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateUserStatus) error
 }
 
 // NewUpdateUserStatus creates a new UpdateUserStatus
-func NewUpdateUserStatus(filter filters.UpdateUserStatus, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateUserStatus {
+func NewUpdateUserStatus(filter filters.UpdateUserStatus, response func(b *gotdbot.Client, u *gotdbot.UpdateUserStatus) error) *UpdateUserStatus {
 	return &UpdateUserStatus{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateUserStatus) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateUserStatus
-	if u == nil {
+func (h *UpdateUserStatus) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateUserStatus)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateUserStatus) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) 
 	return h.Filter(u)
 }
 
-func (h *UpdateUserStatus) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateUserStatus) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateUserStatus))
 }

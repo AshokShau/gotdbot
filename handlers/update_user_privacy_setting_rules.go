@@ -11,20 +11,20 @@ import (
 // UpdateUserPrivacySettingRules Some privacy setting rules have been changed
 type UpdateUserPrivacySettingRules struct {
 	Filter   filters.UpdateUserPrivacySettingRules
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateUserPrivacySettingRules) error
 }
 
 // NewUpdateUserPrivacySettingRules creates a new UpdateUserPrivacySettingRules
-func NewUpdateUserPrivacySettingRules(filter filters.UpdateUserPrivacySettingRules, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateUserPrivacySettingRules {
+func NewUpdateUserPrivacySettingRules(filter filters.UpdateUserPrivacySettingRules, response func(b *gotdbot.Client, u *gotdbot.UpdateUserPrivacySettingRules) error) *UpdateUserPrivacySettingRules {
 	return &UpdateUserPrivacySettingRules{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateUserPrivacySettingRules) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateUserPrivacySettingRules
-	if u == nil {
+func (h *UpdateUserPrivacySettingRules) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateUserPrivacySettingRules)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateUserPrivacySettingRules) CheckUpdate(b *gotdbot.Client, ctx *gotd
 	return h.Filter(u)
 }
 
-func (h *UpdateUserPrivacySettingRules) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateUserPrivacySettingRules) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateUserPrivacySettingRules))
 }

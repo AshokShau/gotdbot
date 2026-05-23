@@ -11,20 +11,20 @@ import (
 // UpdateInstalledStickerSets The list of installed sticker sets was updated
 type UpdateInstalledStickerSets struct {
 	Filter   filters.UpdateInstalledStickerSets
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateInstalledStickerSets) error
 }
 
 // NewUpdateInstalledStickerSets creates a new UpdateInstalledStickerSets
-func NewUpdateInstalledStickerSets(filter filters.UpdateInstalledStickerSets, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateInstalledStickerSets {
+func NewUpdateInstalledStickerSets(filter filters.UpdateInstalledStickerSets, response func(b *gotdbot.Client, u *gotdbot.UpdateInstalledStickerSets) error) *UpdateInstalledStickerSets {
 	return &UpdateInstalledStickerSets{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateInstalledStickerSets) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateInstalledStickerSets
-	if u == nil {
+func (h *UpdateInstalledStickerSets) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateInstalledStickerSets)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateInstalledStickerSets) CheckUpdate(b *gotdbot.Client, ctx *gotdbot
 	return h.Filter(u)
 }
 
-func (h *UpdateInstalledStickerSets) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateInstalledStickerSets) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateInstalledStickerSets))
 }

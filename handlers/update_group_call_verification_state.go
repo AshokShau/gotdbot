@@ -11,20 +11,20 @@ import (
 // UpdateGroupCallVerificationState The verification state of an encrypted group call has changed; for group calls not bound to a chat only
 type UpdateGroupCallVerificationState struct {
 	Filter   filters.UpdateGroupCallVerificationState
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateGroupCallVerificationState) error
 }
 
 // NewUpdateGroupCallVerificationState creates a new UpdateGroupCallVerificationState
-func NewUpdateGroupCallVerificationState(filter filters.UpdateGroupCallVerificationState, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateGroupCallVerificationState {
+func NewUpdateGroupCallVerificationState(filter filters.UpdateGroupCallVerificationState, response func(b *gotdbot.Client, u *gotdbot.UpdateGroupCallVerificationState) error) *UpdateGroupCallVerificationState {
 	return &UpdateGroupCallVerificationState{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateGroupCallVerificationState) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateGroupCallVerificationState
-	if u == nil {
+func (h *UpdateGroupCallVerificationState) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateGroupCallVerificationState)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateGroupCallVerificationState) CheckUpdate(b *gotdbot.Client, ctx *g
 	return h.Filter(u)
 }
 
-func (h *UpdateGroupCallVerificationState) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateGroupCallVerificationState) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateGroupCallVerificationState))
 }

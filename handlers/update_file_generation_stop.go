@@ -11,20 +11,20 @@ import (
 // UpdateFileGenerationStop File generation is no longer needed
 type UpdateFileGenerationStop struct {
 	Filter   filters.UpdateFileGenerationStop
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateFileGenerationStop) error
 }
 
 // NewUpdateFileGenerationStop creates a new UpdateFileGenerationStop
-func NewUpdateFileGenerationStop(filter filters.UpdateFileGenerationStop, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateFileGenerationStop {
+func NewUpdateFileGenerationStop(filter filters.UpdateFileGenerationStop, response func(b *gotdbot.Client, u *gotdbot.UpdateFileGenerationStop) error) *UpdateFileGenerationStop {
 	return &UpdateFileGenerationStop{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateFileGenerationStop) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateFileGenerationStop
-	if u == nil {
+func (h *UpdateFileGenerationStop) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateFileGenerationStop)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateFileGenerationStop) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.C
 	return h.Filter(u)
 }
 
-func (h *UpdateFileGenerationStop) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateFileGenerationStop) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateFileGenerationStop))
 }

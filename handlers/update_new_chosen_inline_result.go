@@ -11,20 +11,20 @@ import (
 // UpdateNewChosenInlineResult The user has chosen a result of an inline query; for bots only
 type UpdateNewChosenInlineResult struct {
 	Filter   filters.UpdateNewChosenInlineResult
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateNewChosenInlineResult) error
 }
 
 // NewUpdateNewChosenInlineResult creates a new UpdateNewChosenInlineResult
-func NewUpdateNewChosenInlineResult(filter filters.UpdateNewChosenInlineResult, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateNewChosenInlineResult {
+func NewUpdateNewChosenInlineResult(filter filters.UpdateNewChosenInlineResult, response func(b *gotdbot.Client, u *gotdbot.UpdateNewChosenInlineResult) error) *UpdateNewChosenInlineResult {
 	return &UpdateNewChosenInlineResult{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateNewChosenInlineResult) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateNewChosenInlineResult
-	if u == nil {
+func (h *UpdateNewChosenInlineResult) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateNewChosenInlineResult)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateNewChosenInlineResult) CheckUpdate(b *gotdbot.Client, ctx *gotdbo
 	return h.Filter(u)
 }
 
-func (h *UpdateNewChosenInlineResult) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateNewChosenInlineResult) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateNewChosenInlineResult))
 }

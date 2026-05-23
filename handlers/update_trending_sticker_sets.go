@@ -11,20 +11,20 @@ import (
 // UpdateTrendingStickerSets The list of trending sticker sets was updated or some of them were viewed
 type UpdateTrendingStickerSets struct {
 	Filter   filters.UpdateTrendingStickerSets
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateTrendingStickerSets) error
 }
 
 // NewUpdateTrendingStickerSets creates a new UpdateTrendingStickerSets
-func NewUpdateTrendingStickerSets(filter filters.UpdateTrendingStickerSets, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateTrendingStickerSets {
+func NewUpdateTrendingStickerSets(filter filters.UpdateTrendingStickerSets, response func(b *gotdbot.Client, u *gotdbot.UpdateTrendingStickerSets) error) *UpdateTrendingStickerSets {
 	return &UpdateTrendingStickerSets{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateTrendingStickerSets) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateTrendingStickerSets
-	if u == nil {
+func (h *UpdateTrendingStickerSets) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateTrendingStickerSets)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateTrendingStickerSets) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.
 	return h.Filter(u)
 }
 
-func (h *UpdateTrendingStickerSets) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateTrendingStickerSets) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateTrendingStickerSets))
 }

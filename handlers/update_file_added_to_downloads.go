@@ -11,20 +11,20 @@ import (
 // UpdateFileAddedToDownloads A file was added to the file download list. This update is sent only after file download list is loaded for the first time
 type UpdateFileAddedToDownloads struct {
 	Filter   filters.UpdateFileAddedToDownloads
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateFileAddedToDownloads) error
 }
 
 // NewUpdateFileAddedToDownloads creates a new UpdateFileAddedToDownloads
-func NewUpdateFileAddedToDownloads(filter filters.UpdateFileAddedToDownloads, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateFileAddedToDownloads {
+func NewUpdateFileAddedToDownloads(filter filters.UpdateFileAddedToDownloads, response func(b *gotdbot.Client, u *gotdbot.UpdateFileAddedToDownloads) error) *UpdateFileAddedToDownloads {
 	return &UpdateFileAddedToDownloads{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateFileAddedToDownloads) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateFileAddedToDownloads
-	if u == nil {
+func (h *UpdateFileAddedToDownloads) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateFileAddedToDownloads)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateFileAddedToDownloads) CheckUpdate(b *gotdbot.Client, ctx *gotdbot
 	return h.Filter(u)
 }
 
-func (h *UpdateFileAddedToDownloads) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateFileAddedToDownloads) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateFileAddedToDownloads))
 }

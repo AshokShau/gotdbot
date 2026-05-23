@@ -11,20 +11,20 @@ import (
 // UpdatePollAnswer A user changed the answer to a poll; for bots only
 type UpdatePollAnswer struct {
 	Filter   filters.UpdatePollAnswer
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdatePollAnswer) error
 }
 
 // NewUpdatePollAnswer creates a new UpdatePollAnswer
-func NewUpdatePollAnswer(filter filters.UpdatePollAnswer, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdatePollAnswer {
+func NewUpdatePollAnswer(filter filters.UpdatePollAnswer, response func(b *gotdbot.Client, u *gotdbot.UpdatePollAnswer) error) *UpdatePollAnswer {
 	return &UpdatePollAnswer{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdatePollAnswer) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdatePollAnswer
-	if u == nil {
+func (h *UpdatePollAnswer) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdatePollAnswer)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdatePollAnswer) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) 
 	return h.Filter(u)
 }
 
-func (h *UpdatePollAnswer) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdatePollAnswer) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdatePollAnswer))
 }

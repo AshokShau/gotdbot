@@ -11,20 +11,20 @@ import (
 // UpdateChatBusinessBotManageBar The bar for managing business bot was changed in a chat
 type UpdateChatBusinessBotManageBar struct {
 	Filter   filters.UpdateChatBusinessBotManageBar
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateChatBusinessBotManageBar) error
 }
 
 // NewUpdateChatBusinessBotManageBar creates a new UpdateChatBusinessBotManageBar
-func NewUpdateChatBusinessBotManageBar(filter filters.UpdateChatBusinessBotManageBar, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatBusinessBotManageBar {
+func NewUpdateChatBusinessBotManageBar(filter filters.UpdateChatBusinessBotManageBar, response func(b *gotdbot.Client, u *gotdbot.UpdateChatBusinessBotManageBar) error) *UpdateChatBusinessBotManageBar {
 	return &UpdateChatBusinessBotManageBar{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateChatBusinessBotManageBar) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateChatBusinessBotManageBar
-	if u == nil {
+func (h *UpdateChatBusinessBotManageBar) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateChatBusinessBotManageBar)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateChatBusinessBotManageBar) CheckUpdate(b *gotdbot.Client, ctx *got
 	return h.Filter(u)
 }
 
-func (h *UpdateChatBusinessBotManageBar) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateChatBusinessBotManageBar) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateChatBusinessBotManageBar))
 }

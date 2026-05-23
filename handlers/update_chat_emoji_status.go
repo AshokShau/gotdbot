@@ -11,20 +11,20 @@ import (
 // UpdateChatEmojiStatus Chat emoji status has changed
 type UpdateChatEmojiStatus struct {
 	Filter   filters.UpdateChatEmojiStatus
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateChatEmojiStatus) error
 }
 
 // NewUpdateChatEmojiStatus creates a new UpdateChatEmojiStatus
-func NewUpdateChatEmojiStatus(filter filters.UpdateChatEmojiStatus, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatEmojiStatus {
+func NewUpdateChatEmojiStatus(filter filters.UpdateChatEmojiStatus, response func(b *gotdbot.Client, u *gotdbot.UpdateChatEmojiStatus) error) *UpdateChatEmojiStatus {
 	return &UpdateChatEmojiStatus{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateChatEmojiStatus) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateChatEmojiStatus
-	if u == nil {
+func (h *UpdateChatEmojiStatus) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateChatEmojiStatus)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateChatEmojiStatus) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Cont
 	return h.Filter(u)
 }
 
-func (h *UpdateChatEmojiStatus) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateChatEmojiStatus) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateChatEmojiStatus))
 }

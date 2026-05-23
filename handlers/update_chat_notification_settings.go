@@ -11,20 +11,20 @@ import (
 // UpdateChatNotificationSettings Notification settings for a chat were changed
 type UpdateChatNotificationSettings struct {
 	Filter   filters.UpdateChatNotificationSettings
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateChatNotificationSettings) error
 }
 
 // NewUpdateChatNotificationSettings creates a new UpdateChatNotificationSettings
-func NewUpdateChatNotificationSettings(filter filters.UpdateChatNotificationSettings, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatNotificationSettings {
+func NewUpdateChatNotificationSettings(filter filters.UpdateChatNotificationSettings, response func(b *gotdbot.Client, u *gotdbot.UpdateChatNotificationSettings) error) *UpdateChatNotificationSettings {
 	return &UpdateChatNotificationSettings{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateChatNotificationSettings) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateChatNotificationSettings
-	if u == nil {
+func (h *UpdateChatNotificationSettings) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateChatNotificationSettings)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateChatNotificationSettings) CheckUpdate(b *gotdbot.Client, ctx *got
 	return h.Filter(u)
 }
 
-func (h *UpdateChatNotificationSettings) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateChatNotificationSettings) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateChatNotificationSettings))
 }

@@ -11,20 +11,20 @@ import (
 // UpdateChatLastMessage The last message of a chat was changed
 type UpdateChatLastMessage struct {
 	Filter   filters.UpdateChatLastMessage
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateChatLastMessage) error
 }
 
 // NewUpdateChatLastMessage creates a new UpdateChatLastMessage
-func NewUpdateChatLastMessage(filter filters.UpdateChatLastMessage, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatLastMessage {
+func NewUpdateChatLastMessage(filter filters.UpdateChatLastMessage, response func(b *gotdbot.Client, u *gotdbot.UpdateChatLastMessage) error) *UpdateChatLastMessage {
 	return &UpdateChatLastMessage{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateChatLastMessage) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateChatLastMessage
-	if u == nil {
+func (h *UpdateChatLastMessage) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateChatLastMessage)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateChatLastMessage) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Cont
 	return h.Filter(u)
 }
 
-func (h *UpdateChatLastMessage) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateChatLastMessage) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateChatLastMessage))
 }

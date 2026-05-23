@@ -11,20 +11,20 @@ import (
 // UpdateGroupCallMessageLevels The levels of live story group call messages have changed
 type UpdateGroupCallMessageLevels struct {
 	Filter   filters.UpdateGroupCallMessageLevels
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateGroupCallMessageLevels) error
 }
 
 // NewUpdateGroupCallMessageLevels creates a new UpdateGroupCallMessageLevels
-func NewUpdateGroupCallMessageLevels(filter filters.UpdateGroupCallMessageLevels, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateGroupCallMessageLevels {
+func NewUpdateGroupCallMessageLevels(filter filters.UpdateGroupCallMessageLevels, response func(b *gotdbot.Client, u *gotdbot.UpdateGroupCallMessageLevels) error) *UpdateGroupCallMessageLevels {
 	return &UpdateGroupCallMessageLevels{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateGroupCallMessageLevels) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateGroupCallMessageLevels
-	if u == nil {
+func (h *UpdateGroupCallMessageLevels) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateGroupCallMessageLevels)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateGroupCallMessageLevels) CheckUpdate(b *gotdbot.Client, ctx *gotdb
 	return h.Filter(u)
 }
 
-func (h *UpdateGroupCallMessageLevels) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateGroupCallMessageLevels) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateGroupCallMessageLevels))
 }

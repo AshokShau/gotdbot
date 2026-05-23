@@ -11,20 +11,20 @@ import (
 // UpdateChatBackground The chat background was changed
 type UpdateChatBackground struct {
 	Filter   filters.UpdateChatBackground
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateChatBackground) error
 }
 
 // NewUpdateChatBackground creates a new UpdateChatBackground
-func NewUpdateChatBackground(filter filters.UpdateChatBackground, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatBackground {
+func NewUpdateChatBackground(filter filters.UpdateChatBackground, response func(b *gotdbot.Client, u *gotdbot.UpdateChatBackground) error) *UpdateChatBackground {
 	return &UpdateChatBackground{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateChatBackground) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateChatBackground
-	if u == nil {
+func (h *UpdateChatBackground) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateChatBackground)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateChatBackground) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Conte
 	return h.Filter(u)
 }
 
-func (h *UpdateChatBackground) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateChatBackground) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateChatBackground))
 }

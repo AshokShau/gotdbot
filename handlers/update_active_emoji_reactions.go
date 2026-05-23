@@ -11,20 +11,20 @@ import (
 // UpdateActiveEmojiReactions The list of active emoji reactions has changed
 type UpdateActiveEmojiReactions struct {
 	Filter   filters.UpdateActiveEmojiReactions
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateActiveEmojiReactions) error
 }
 
 // NewUpdateActiveEmojiReactions creates a new UpdateActiveEmojiReactions
-func NewUpdateActiveEmojiReactions(filter filters.UpdateActiveEmojiReactions, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateActiveEmojiReactions {
+func NewUpdateActiveEmojiReactions(filter filters.UpdateActiveEmojiReactions, response func(b *gotdbot.Client, u *gotdbot.UpdateActiveEmojiReactions) error) *UpdateActiveEmojiReactions {
 	return &UpdateActiveEmojiReactions{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateActiveEmojiReactions) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateActiveEmojiReactions
-	if u == nil {
+func (h *UpdateActiveEmojiReactions) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateActiveEmojiReactions)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateActiveEmojiReactions) CheckUpdate(b *gotdbot.Client, ctx *gotdbot
 	return h.Filter(u)
 }
 
-func (h *UpdateActiveEmojiReactions) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateActiveEmojiReactions) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateActiveEmojiReactions))
 }

@@ -11,20 +11,20 @@ import (
 // UpdateNewInlineQuery A new incoming inline query; for bots only
 type UpdateNewInlineQuery struct {
 	Filter   filters.UpdateNewInlineQuery
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateNewInlineQuery) error
 }
 
 // NewUpdateNewInlineQuery creates a new UpdateNewInlineQuery
-func NewUpdateNewInlineQuery(filter filters.UpdateNewInlineQuery, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateNewInlineQuery {
+func NewUpdateNewInlineQuery(filter filters.UpdateNewInlineQuery, response func(b *gotdbot.Client, u *gotdbot.UpdateNewInlineQuery) error) *UpdateNewInlineQuery {
 	return &UpdateNewInlineQuery{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateNewInlineQuery) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateNewInlineQuery
-	if u == nil {
+func (h *UpdateNewInlineQuery) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateNewInlineQuery)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateNewInlineQuery) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Conte
 	return h.Filter(u)
 }
 
-func (h *UpdateNewInlineQuery) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateNewInlineQuery) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateNewInlineQuery))
 }

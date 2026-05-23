@@ -11,20 +11,20 @@ import (
 // UpdateBusinessMessageEdited A message in a business account was edited; for bots only
 type UpdateBusinessMessageEdited struct {
 	Filter   filters.UpdateBusinessMessageEdited
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateBusinessMessageEdited) error
 }
 
 // NewUpdateBusinessMessageEdited creates a new UpdateBusinessMessageEdited
-func NewUpdateBusinessMessageEdited(filter filters.UpdateBusinessMessageEdited, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateBusinessMessageEdited {
+func NewUpdateBusinessMessageEdited(filter filters.UpdateBusinessMessageEdited, response func(b *gotdbot.Client, u *gotdbot.UpdateBusinessMessageEdited) error) *UpdateBusinessMessageEdited {
 	return &UpdateBusinessMessageEdited{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateBusinessMessageEdited) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateBusinessMessageEdited
-	if u == nil {
+func (h *UpdateBusinessMessageEdited) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateBusinessMessageEdited)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateBusinessMessageEdited) CheckUpdate(b *gotdbot.Client, ctx *gotdbo
 	return h.Filter(u)
 }
 
-func (h *UpdateBusinessMessageEdited) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateBusinessMessageEdited) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateBusinessMessageEdited))
 }

@@ -11,20 +11,20 @@ import (
 // UpdateMessageContentOpened The message content was opened. Updates voice note messages to "listened", video note messages to "viewed" and starts the self-destruct timer
 type UpdateMessageContentOpened struct {
 	Filter   filters.UpdateMessageContentOpened
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateMessageContentOpened) error
 }
 
 // NewUpdateMessageContentOpened creates a new UpdateMessageContentOpened
-func NewUpdateMessageContentOpened(filter filters.UpdateMessageContentOpened, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateMessageContentOpened {
+func NewUpdateMessageContentOpened(filter filters.UpdateMessageContentOpened, response func(b *gotdbot.Client, u *gotdbot.UpdateMessageContentOpened) error) *UpdateMessageContentOpened {
 	return &UpdateMessageContentOpened{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateMessageContentOpened) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateMessageContentOpened
-	if u == nil {
+func (h *UpdateMessageContentOpened) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateMessageContentOpened)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateMessageContentOpened) CheckUpdate(b *gotdbot.Client, ctx *gotdbot
 	return h.Filter(u)
 }
 
-func (h *UpdateMessageContentOpened) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateMessageContentOpened) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateMessageContentOpened))
 }

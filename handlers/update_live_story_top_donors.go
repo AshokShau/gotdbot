@@ -11,20 +11,20 @@ import (
 // UpdateLiveStoryTopDonors The list of top donors in live story group call has changed
 type UpdateLiveStoryTopDonors struct {
 	Filter   filters.UpdateLiveStoryTopDonors
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateLiveStoryTopDonors) error
 }
 
 // NewUpdateLiveStoryTopDonors creates a new UpdateLiveStoryTopDonors
-func NewUpdateLiveStoryTopDonors(filter filters.UpdateLiveStoryTopDonors, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateLiveStoryTopDonors {
+func NewUpdateLiveStoryTopDonors(filter filters.UpdateLiveStoryTopDonors, response func(b *gotdbot.Client, u *gotdbot.UpdateLiveStoryTopDonors) error) *UpdateLiveStoryTopDonors {
 	return &UpdateLiveStoryTopDonors{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateLiveStoryTopDonors) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateLiveStoryTopDonors
-	if u == nil {
+func (h *UpdateLiveStoryTopDonors) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateLiveStoryTopDonors)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateLiveStoryTopDonors) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.C
 	return h.Filter(u)
 }
 
-func (h *UpdateLiveStoryTopDonors) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateLiveStoryTopDonors) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateLiveStoryTopDonors))
 }

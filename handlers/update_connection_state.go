@@ -11,20 +11,20 @@ import (
 // UpdateConnectionState The connection state has changed. This update must be used only to show a human-readable description of the connection state
 type UpdateConnectionState struct {
 	Filter   filters.UpdateConnectionState
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateConnectionState) error
 }
 
 // NewUpdateConnectionState creates a new UpdateConnectionState
-func NewUpdateConnectionState(filter filters.UpdateConnectionState, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateConnectionState {
+func NewUpdateConnectionState(filter filters.UpdateConnectionState, response func(b *gotdbot.Client, u *gotdbot.UpdateConnectionState) error) *UpdateConnectionState {
 	return &UpdateConnectionState{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateConnectionState) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateConnectionState
-	if u == nil {
+func (h *UpdateConnectionState) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateConnectionState)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateConnectionState) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Cont
 	return h.Filter(u)
 }
 
-func (h *UpdateConnectionState) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateConnectionState) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateConnectionState))
 }

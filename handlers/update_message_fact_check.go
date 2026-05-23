@@ -11,20 +11,20 @@ import (
 // UpdateMessageFactCheck A fact-check added to a message was changed
 type UpdateMessageFactCheck struct {
 	Filter   filters.UpdateMessageFactCheck
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateMessageFactCheck) error
 }
 
 // NewUpdateMessageFactCheck creates a new UpdateMessageFactCheck
-func NewUpdateMessageFactCheck(filter filters.UpdateMessageFactCheck, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateMessageFactCheck {
+func NewUpdateMessageFactCheck(filter filters.UpdateMessageFactCheck, response func(b *gotdbot.Client, u *gotdbot.UpdateMessageFactCheck) error) *UpdateMessageFactCheck {
 	return &UpdateMessageFactCheck{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateMessageFactCheck) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateMessageFactCheck
-	if u == nil {
+func (h *UpdateMessageFactCheck) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateMessageFactCheck)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateMessageFactCheck) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Con
 	return h.Filter(u)
 }
 
-func (h *UpdateMessageFactCheck) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateMessageFactCheck) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateMessageFactCheck))
 }

@@ -11,20 +11,20 @@ import (
 // UpdateAnimatedEmojiMessageClicked Some animated emoji message was clicked and a big animated sticker must be played if the message is visible on the screen. chatActionWatchingAnimations with the text of the message needs to be sent if the sticker is played
 type UpdateAnimatedEmojiMessageClicked struct {
 	Filter   filters.UpdateAnimatedEmojiMessageClicked
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateAnimatedEmojiMessageClicked) error
 }
 
 // NewUpdateAnimatedEmojiMessageClicked creates a new UpdateAnimatedEmojiMessageClicked
-func NewUpdateAnimatedEmojiMessageClicked(filter filters.UpdateAnimatedEmojiMessageClicked, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateAnimatedEmojiMessageClicked {
+func NewUpdateAnimatedEmojiMessageClicked(filter filters.UpdateAnimatedEmojiMessageClicked, response func(b *gotdbot.Client, u *gotdbot.UpdateAnimatedEmojiMessageClicked) error) *UpdateAnimatedEmojiMessageClicked {
 	return &UpdateAnimatedEmojiMessageClicked{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateAnimatedEmojiMessageClicked) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateAnimatedEmojiMessageClicked
-	if u == nil {
+func (h *UpdateAnimatedEmojiMessageClicked) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateAnimatedEmojiMessageClicked)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateAnimatedEmojiMessageClicked) CheckUpdate(b *gotdbot.Client, ctx *
 	return h.Filter(u)
 }
 
-func (h *UpdateAnimatedEmojiMessageClicked) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateAnimatedEmojiMessageClicked) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateAnimatedEmojiMessageClicked))
 }

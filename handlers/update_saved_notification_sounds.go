@@ -11,20 +11,20 @@ import (
 // UpdateSavedNotificationSounds The list of saved notification sounds was updated. This update may not be sent until information about a notification sound was requested for the first time
 type UpdateSavedNotificationSounds struct {
 	Filter   filters.UpdateSavedNotificationSounds
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateSavedNotificationSounds) error
 }
 
 // NewUpdateSavedNotificationSounds creates a new UpdateSavedNotificationSounds
-func NewUpdateSavedNotificationSounds(filter filters.UpdateSavedNotificationSounds, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateSavedNotificationSounds {
+func NewUpdateSavedNotificationSounds(filter filters.UpdateSavedNotificationSounds, response func(b *gotdbot.Client, u *gotdbot.UpdateSavedNotificationSounds) error) *UpdateSavedNotificationSounds {
 	return &UpdateSavedNotificationSounds{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateSavedNotificationSounds) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateSavedNotificationSounds
-	if u == nil {
+func (h *UpdateSavedNotificationSounds) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateSavedNotificationSounds)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateSavedNotificationSounds) CheckUpdate(b *gotdbot.Client, ctx *gotd
 	return h.Filter(u)
 }
 
-func (h *UpdateSavedNotificationSounds) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateSavedNotificationSounds) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateSavedNotificationSounds))
 }

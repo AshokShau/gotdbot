@@ -11,20 +11,20 @@ import (
 // UpdateNewCustomQuery A new incoming query; for bots only
 type UpdateNewCustomQuery struct {
 	Filter   filters.UpdateNewCustomQuery
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateNewCustomQuery) error
 }
 
 // NewUpdateNewCustomQuery creates a new UpdateNewCustomQuery
-func NewUpdateNewCustomQuery(filter filters.UpdateNewCustomQuery, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateNewCustomQuery {
+func NewUpdateNewCustomQuery(filter filters.UpdateNewCustomQuery, response func(b *gotdbot.Client, u *gotdbot.UpdateNewCustomQuery) error) *UpdateNewCustomQuery {
 	return &UpdateNewCustomQuery{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateNewCustomQuery) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateNewCustomQuery
-	if u == nil {
+func (h *UpdateNewCustomQuery) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateNewCustomQuery)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateNewCustomQuery) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Conte
 	return h.Filter(u)
 }
 
-func (h *UpdateNewCustomQuery) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateNewCustomQuery) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateNewCustomQuery))
 }

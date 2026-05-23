@@ -11,20 +11,20 @@ import (
 // UpdateChatMessageSender The message sender that is selected to send messages in a chat has changed
 type UpdateChatMessageSender struct {
 	Filter   filters.UpdateChatMessageSender
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateChatMessageSender) error
 }
 
 // NewUpdateChatMessageSender creates a new UpdateChatMessageSender
-func NewUpdateChatMessageSender(filter filters.UpdateChatMessageSender, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatMessageSender {
+func NewUpdateChatMessageSender(filter filters.UpdateChatMessageSender, response func(b *gotdbot.Client, u *gotdbot.UpdateChatMessageSender) error) *UpdateChatMessageSender {
 	return &UpdateChatMessageSender{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateChatMessageSender) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateChatMessageSender
-	if u == nil {
+func (h *UpdateChatMessageSender) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateChatMessageSender)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateChatMessageSender) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Co
 	return h.Filter(u)
 }
 
-func (h *UpdateChatMessageSender) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateChatMessageSender) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateChatMessageSender))
 }

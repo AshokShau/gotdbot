@@ -11,20 +11,20 @@ import (
 // UpdateChatHasScheduledMessages A chat's has_scheduled_messages field has changed
 type UpdateChatHasScheduledMessages struct {
 	Filter   filters.UpdateChatHasScheduledMessages
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateChatHasScheduledMessages) error
 }
 
 // NewUpdateChatHasScheduledMessages creates a new UpdateChatHasScheduledMessages
-func NewUpdateChatHasScheduledMessages(filter filters.UpdateChatHasScheduledMessages, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatHasScheduledMessages {
+func NewUpdateChatHasScheduledMessages(filter filters.UpdateChatHasScheduledMessages, response func(b *gotdbot.Client, u *gotdbot.UpdateChatHasScheduledMessages) error) *UpdateChatHasScheduledMessages {
 	return &UpdateChatHasScheduledMessages{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateChatHasScheduledMessages) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateChatHasScheduledMessages
-	if u == nil {
+func (h *UpdateChatHasScheduledMessages) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateChatHasScheduledMessages)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateChatHasScheduledMessages) CheckUpdate(b *gotdbot.Client, ctx *got
 	return h.Filter(u)
 }
 
-func (h *UpdateChatHasScheduledMessages) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateChatHasScheduledMessages) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateChatHasScheduledMessages))
 }

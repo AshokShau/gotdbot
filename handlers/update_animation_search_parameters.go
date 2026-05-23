@@ -11,20 +11,20 @@ import (
 // UpdateAnimationSearchParameters The parameters of animation search through getOption("animation_search_bot_username") bot has changed
 type UpdateAnimationSearchParameters struct {
 	Filter   filters.UpdateAnimationSearchParameters
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateAnimationSearchParameters) error
 }
 
 // NewUpdateAnimationSearchParameters creates a new UpdateAnimationSearchParameters
-func NewUpdateAnimationSearchParameters(filter filters.UpdateAnimationSearchParameters, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateAnimationSearchParameters {
+func NewUpdateAnimationSearchParameters(filter filters.UpdateAnimationSearchParameters, response func(b *gotdbot.Client, u *gotdbot.UpdateAnimationSearchParameters) error) *UpdateAnimationSearchParameters {
 	return &UpdateAnimationSearchParameters{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateAnimationSearchParameters) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateAnimationSearchParameters
-	if u == nil {
+func (h *UpdateAnimationSearchParameters) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateAnimationSearchParameters)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateAnimationSearchParameters) CheckUpdate(b *gotdbot.Client, ctx *go
 	return h.Filter(u)
 }
 
-func (h *UpdateAnimationSearchParameters) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateAnimationSearchParameters) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateAnimationSearchParameters))
 }

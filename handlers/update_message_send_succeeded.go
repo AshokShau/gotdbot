@@ -11,20 +11,20 @@ import (
 // UpdateMessageSendSucceeded A message has been successfully sent
 type UpdateMessageSendSucceeded struct {
 	Filter   filters.UpdateMessageSendSucceeded
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateMessageSendSucceeded) error
 }
 
 // NewUpdateMessageSendSucceeded creates a new UpdateMessageSendSucceeded
-func NewUpdateMessageSendSucceeded(filter filters.UpdateMessageSendSucceeded, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateMessageSendSucceeded {
+func NewUpdateMessageSendSucceeded(filter filters.UpdateMessageSendSucceeded, response func(b *gotdbot.Client, u *gotdbot.UpdateMessageSendSucceeded) error) *UpdateMessageSendSucceeded {
 	return &UpdateMessageSendSucceeded{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateMessageSendSucceeded) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateMessageSendSucceeded
-	if u == nil {
+func (h *UpdateMessageSendSucceeded) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateMessageSendSucceeded)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateMessageSendSucceeded) CheckUpdate(b *gotdbot.Client, ctx *gotdbot
 	return h.Filter(u)
 }
 
-func (h *UpdateMessageSendSucceeded) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateMessageSendSucceeded) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateMessageSendSucceeded))
 }

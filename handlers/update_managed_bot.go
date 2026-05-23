@@ -11,20 +11,20 @@ import (
 // UpdateManagedBot A bot that can be managed by the current bot was created or updated; for bots only
 type UpdateManagedBot struct {
 	Filter   filters.UpdateManagedBot
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateManagedBot) error
 }
 
 // NewUpdateManagedBot creates a new UpdateManagedBot
-func NewUpdateManagedBot(filter filters.UpdateManagedBot, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateManagedBot {
+func NewUpdateManagedBot(filter filters.UpdateManagedBot, response func(b *gotdbot.Client, u *gotdbot.UpdateManagedBot) error) *UpdateManagedBot {
 	return &UpdateManagedBot{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateManagedBot) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateManagedBot
-	if u == nil {
+func (h *UpdateManagedBot) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateManagedBot)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateManagedBot) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) 
 	return h.Filter(u)
 }
 
-func (h *UpdateManagedBot) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateManagedBot) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateManagedBot))
 }

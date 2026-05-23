@@ -11,20 +11,20 @@ import (
 // UpdateActiveLiveLocationMessages The list of messages with active live location that need to be updated by the application has changed. The list is persistent across application restarts only if the message database is used
 type UpdateActiveLiveLocationMessages struct {
 	Filter   filters.UpdateActiveLiveLocationMessages
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateActiveLiveLocationMessages) error
 }
 
 // NewUpdateActiveLiveLocationMessages creates a new UpdateActiveLiveLocationMessages
-func NewUpdateActiveLiveLocationMessages(filter filters.UpdateActiveLiveLocationMessages, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateActiveLiveLocationMessages {
+func NewUpdateActiveLiveLocationMessages(filter filters.UpdateActiveLiveLocationMessages, response func(b *gotdbot.Client, u *gotdbot.UpdateActiveLiveLocationMessages) error) *UpdateActiveLiveLocationMessages {
 	return &UpdateActiveLiveLocationMessages{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateActiveLiveLocationMessages) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateActiveLiveLocationMessages
-	if u == nil {
+func (h *UpdateActiveLiveLocationMessages) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateActiveLiveLocationMessages)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateActiveLiveLocationMessages) CheckUpdate(b *gotdbot.Client, ctx *g
 	return h.Filter(u)
 }
 
-func (h *UpdateActiveLiveLocationMessages) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateActiveLiveLocationMessages) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateActiveLiveLocationMessages))
 }

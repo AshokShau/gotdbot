@@ -11,20 +11,20 @@ import (
 // UpdateDirectMessagesChatTopic Basic information about a topic in a channel direct messages chat administered by the current user has changed. This update is guaranteed to come before the topic identifier is returned to the application
 type UpdateDirectMessagesChatTopic struct {
 	Filter   filters.UpdateDirectMessagesChatTopic
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateDirectMessagesChatTopic) error
 }
 
 // NewUpdateDirectMessagesChatTopic creates a new UpdateDirectMessagesChatTopic
-func NewUpdateDirectMessagesChatTopic(filter filters.UpdateDirectMessagesChatTopic, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateDirectMessagesChatTopic {
+func NewUpdateDirectMessagesChatTopic(filter filters.UpdateDirectMessagesChatTopic, response func(b *gotdbot.Client, u *gotdbot.UpdateDirectMessagesChatTopic) error) *UpdateDirectMessagesChatTopic {
 	return &UpdateDirectMessagesChatTopic{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateDirectMessagesChatTopic) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateDirectMessagesChatTopic
-	if u == nil {
+func (h *UpdateDirectMessagesChatTopic) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateDirectMessagesChatTopic)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateDirectMessagesChatTopic) CheckUpdate(b *gotdbot.Client, ctx *gotd
 	return h.Filter(u)
 }
 
-func (h *UpdateDirectMessagesChatTopic) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateDirectMessagesChatTopic) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateDirectMessagesChatTopic))
 }

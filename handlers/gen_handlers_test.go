@@ -17,7 +17,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateAccentColors(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateAccentColors(nil, func(b *gotdbot.Client, u *gotdbot.UpdateAccentColors) error {
 			called <- true
 			return nil
 		})
@@ -32,7 +32,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateActiveEmojiReactions(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateActiveEmojiReactions(nil, func(b *gotdbot.Client, u *gotdbot.UpdateActiveEmojiReactions) error {
 			called <- true
 			return nil
 		})
@@ -47,7 +47,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateActiveGiftAuctions(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateActiveGiftAuctions(nil, func(b *gotdbot.Client, u *gotdbot.UpdateActiveGiftAuctions) error {
 			called <- true
 			return nil
 		})
@@ -62,7 +62,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateActiveLiveLocationMessages(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateActiveLiveLocationMessages(nil, func(b *gotdbot.Client, u *gotdbot.UpdateActiveLiveLocationMessages) error {
 			called <- true
 			return nil
 		})
@@ -77,7 +77,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateActiveNotifications(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateActiveNotifications(nil, func(b *gotdbot.Client, u *gotdbot.UpdateActiveNotifications) error {
 			called <- true
 			return nil
 		})
@@ -92,7 +92,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateAgeVerificationParameters(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateAgeVerificationParameters(nil, func(b *gotdbot.Client, u *gotdbot.UpdateAgeVerificationParameters) error {
 			called <- true
 			return nil
 		})
@@ -107,7 +107,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateAnimatedEmojiMessageClicked(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateAnimatedEmojiMessageClicked(nil, func(b *gotdbot.Client, u *gotdbot.UpdateAnimatedEmojiMessageClicked) error {
 			called <- true
 			return nil
 		})
@@ -122,7 +122,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateAnimationSearchParameters(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateAnimationSearchParameters(nil, func(b *gotdbot.Client, u *gotdbot.UpdateAnimationSearchParameters) error {
 			called <- true
 			return nil
 		})
@@ -137,7 +137,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateApplicationRecaptchaVerificationRequired(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateApplicationRecaptchaVerificationRequired(nil, func(b *gotdbot.Client, u *gotdbot.UpdateApplicationRecaptchaVerificationRequired) error {
 			called <- true
 			return nil
 		})
@@ -152,7 +152,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateApplicationVerificationRequired(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateApplicationVerificationRequired(nil, func(b *gotdbot.Client, u *gotdbot.UpdateApplicationVerificationRequired) error {
 			called <- true
 			return nil
 		})
@@ -167,7 +167,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateAttachmentMenuBots(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateAttachmentMenuBots(nil, func(b *gotdbot.Client, u *gotdbot.UpdateAttachmentMenuBots) error {
 			called <- true
 			return nil
 		})
@@ -182,7 +182,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateAuthorizationState(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateAuthorizationState(nil, func(b *gotdbot.Client, u *gotdbot.UpdateAuthorizationState) error {
 			called <- true
 			return nil
 		})
@@ -197,7 +197,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateAutosaveSettings(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateAutosaveSettings(nil, func(b *gotdbot.Client, u *gotdbot.UpdateAutosaveSettings) error {
 			called <- true
 			return nil
 		})
@@ -212,7 +212,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateAvailableMessageEffects(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateAvailableMessageEffects(nil, func(b *gotdbot.Client, u *gotdbot.UpdateAvailableMessageEffects) error {
 			called <- true
 			return nil
 		})
@@ -227,7 +227,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateBasicGroup(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateBasicGroup(nil, func(b *gotdbot.Client, u *gotdbot.UpdateBasicGroup) error {
 			called <- true
 			return nil
 		})
@@ -242,7 +242,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateBasicGroupFullInfo(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateBasicGroupFullInfo(nil, func(b *gotdbot.Client, u *gotdbot.UpdateBasicGroupFullInfo) error {
 			called <- true
 			return nil
 		})
@@ -257,7 +257,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateBusinessConnection(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateBusinessConnection(nil, func(b *gotdbot.Client, u *gotdbot.UpdateBusinessConnection) error {
 			called <- true
 			return nil
 		})
@@ -272,7 +272,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateBusinessMessageEdited(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateBusinessMessageEdited(nil, func(b *gotdbot.Client, u *gotdbot.UpdateBusinessMessageEdited) error {
 			called <- true
 			return nil
 		})
@@ -287,7 +287,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateBusinessMessagesDeleted(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateBusinessMessagesDeleted(nil, func(b *gotdbot.Client, u *gotdbot.UpdateBusinessMessagesDeleted) error {
 			called <- true
 			return nil
 		})
@@ -302,7 +302,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateCall(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateCall(nil, func(b *gotdbot.Client, u *gotdbot.UpdateCall) error {
 			called <- true
 			return nil
 		})
@@ -317,7 +317,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateChatAccentColors(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateChatAccentColors(nil, func(b *gotdbot.Client, u *gotdbot.UpdateChatAccentColors) error {
 			called <- true
 			return nil
 		})
@@ -332,7 +332,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateChatAction(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateChatAction(nil, func(b *gotdbot.Client, u *gotdbot.UpdateChatAction) error {
 			called <- true
 			return nil
 		})
@@ -347,7 +347,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateChatActionBar(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateChatActionBar(nil, func(b *gotdbot.Client, u *gotdbot.UpdateChatActionBar) error {
 			called <- true
 			return nil
 		})
@@ -362,7 +362,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateChatActiveStories(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateChatActiveStories(nil, func(b *gotdbot.Client, u *gotdbot.UpdateChatActiveStories) error {
 			called <- true
 			return nil
 		})
@@ -377,7 +377,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateChatAddedToList(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateChatAddedToList(nil, func(b *gotdbot.Client, u *gotdbot.UpdateChatAddedToList) error {
 			called <- true
 			return nil
 		})
@@ -392,7 +392,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateChatAvailableReactions(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateChatAvailableReactions(nil, func(b *gotdbot.Client, u *gotdbot.UpdateChatAvailableReactions) error {
 			called <- true
 			return nil
 		})
@@ -407,7 +407,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateChatBackground(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateChatBackground(nil, func(b *gotdbot.Client, u *gotdbot.UpdateChatBackground) error {
 			called <- true
 			return nil
 		})
@@ -422,7 +422,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateChatBlockList(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateChatBlockList(nil, func(b *gotdbot.Client, u *gotdbot.UpdateChatBlockList) error {
 			called <- true
 			return nil
 		})
@@ -437,7 +437,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateChatBoost(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateChatBoost(nil, func(b *gotdbot.Client, u *gotdbot.UpdateChatBoost) error {
 			called <- true
 			return nil
 		})
@@ -452,7 +452,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateChatBusinessBotManageBar(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateChatBusinessBotManageBar(nil, func(b *gotdbot.Client, u *gotdbot.UpdateChatBusinessBotManageBar) error {
 			called <- true
 			return nil
 		})
@@ -467,7 +467,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateChatDefaultDisableNotification(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateChatDefaultDisableNotification(nil, func(b *gotdbot.Client, u *gotdbot.UpdateChatDefaultDisableNotification) error {
 			called <- true
 			return nil
 		})
@@ -482,7 +482,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateChatDraftMessage(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateChatDraftMessage(nil, func(b *gotdbot.Client, u *gotdbot.UpdateChatDraftMessage) error {
 			called <- true
 			return nil
 		})
@@ -497,7 +497,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateChatEmojiStatus(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateChatEmojiStatus(nil, func(b *gotdbot.Client, u *gotdbot.UpdateChatEmojiStatus) error {
 			called <- true
 			return nil
 		})
@@ -512,7 +512,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateChatFolders(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateChatFolders(nil, func(b *gotdbot.Client, u *gotdbot.UpdateChatFolders) error {
 			called <- true
 			return nil
 		})
@@ -527,7 +527,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateChatHasProtectedContent(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateChatHasProtectedContent(nil, func(b *gotdbot.Client, u *gotdbot.UpdateChatHasProtectedContent) error {
 			called <- true
 			return nil
 		})
@@ -542,7 +542,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateChatHasScheduledMessages(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateChatHasScheduledMessages(nil, func(b *gotdbot.Client, u *gotdbot.UpdateChatHasScheduledMessages) error {
 			called <- true
 			return nil
 		})
@@ -557,7 +557,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateChatIsMarkedAsUnread(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateChatIsMarkedAsUnread(nil, func(b *gotdbot.Client, u *gotdbot.UpdateChatIsMarkedAsUnread) error {
 			called <- true
 			return nil
 		})
@@ -572,7 +572,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateChatIsTranslatable(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateChatIsTranslatable(nil, func(b *gotdbot.Client, u *gotdbot.UpdateChatIsTranslatable) error {
 			called <- true
 			return nil
 		})
@@ -587,7 +587,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateChatLastMessage(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateChatLastMessage(nil, func(b *gotdbot.Client, u *gotdbot.UpdateChatLastMessage) error {
 			called <- true
 			return nil
 		})
@@ -602,7 +602,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateChatMember(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateChatMember(nil, func(b *gotdbot.Client, u *gotdbot.UpdateChatMember) error {
 			called <- true
 			return nil
 		})
@@ -617,7 +617,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateChatMessageAutoDeleteTime(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateChatMessageAutoDeleteTime(nil, func(b *gotdbot.Client, u *gotdbot.UpdateChatMessageAutoDeleteTime) error {
 			called <- true
 			return nil
 		})
@@ -632,7 +632,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateChatMessageSender(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateChatMessageSender(nil, func(b *gotdbot.Client, u *gotdbot.UpdateChatMessageSender) error {
 			called <- true
 			return nil
 		})
@@ -647,7 +647,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateChatNotificationSettings(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateChatNotificationSettings(nil, func(b *gotdbot.Client, u *gotdbot.UpdateChatNotificationSettings) error {
 			called <- true
 			return nil
 		})
@@ -662,7 +662,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateChatOnlineMemberCount(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateChatOnlineMemberCount(nil, func(b *gotdbot.Client, u *gotdbot.UpdateChatOnlineMemberCount) error {
 			called <- true
 			return nil
 		})
@@ -677,7 +677,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateChatPendingJoinRequests(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateChatPendingJoinRequests(nil, func(b *gotdbot.Client, u *gotdbot.UpdateChatPendingJoinRequests) error {
 			called <- true
 			return nil
 		})
@@ -692,7 +692,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateChatPermissions(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateChatPermissions(nil, func(b *gotdbot.Client, u *gotdbot.UpdateChatPermissions) error {
 			called <- true
 			return nil
 		})
@@ -707,7 +707,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateChatPhoto(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateChatPhoto(nil, func(b *gotdbot.Client, u *gotdbot.UpdateChatPhoto) error {
 			called <- true
 			return nil
 		})
@@ -722,7 +722,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateChatPosition(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateChatPosition(nil, func(b *gotdbot.Client, u *gotdbot.UpdateChatPosition) error {
 			called <- true
 			return nil
 		})
@@ -737,7 +737,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateChatReadInbox(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateChatReadInbox(nil, func(b *gotdbot.Client, u *gotdbot.UpdateChatReadInbox) error {
 			called <- true
 			return nil
 		})
@@ -752,7 +752,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateChatReadOutbox(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateChatReadOutbox(nil, func(b *gotdbot.Client, u *gotdbot.UpdateChatReadOutbox) error {
 			called <- true
 			return nil
 		})
@@ -767,7 +767,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateChatRemovedFromList(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateChatRemovedFromList(nil, func(b *gotdbot.Client, u *gotdbot.UpdateChatRemovedFromList) error {
 			called <- true
 			return nil
 		})
@@ -782,7 +782,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateChatReplyMarkup(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateChatReplyMarkup(nil, func(b *gotdbot.Client, u *gotdbot.UpdateChatReplyMarkup) error {
 			called <- true
 			return nil
 		})
@@ -797,7 +797,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateChatRevenueAmount(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateChatRevenueAmount(nil, func(b *gotdbot.Client, u *gotdbot.UpdateChatRevenueAmount) error {
 			called <- true
 			return nil
 		})
@@ -812,7 +812,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateChatTheme(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateChatTheme(nil, func(b *gotdbot.Client, u *gotdbot.UpdateChatTheme) error {
 			called <- true
 			return nil
 		})
@@ -827,7 +827,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateChatTitle(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateChatTitle(nil, func(b *gotdbot.Client, u *gotdbot.UpdateChatTitle) error {
 			called <- true
 			return nil
 		})
@@ -842,7 +842,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateChatUnreadMentionCount(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateChatUnreadMentionCount(nil, func(b *gotdbot.Client, u *gotdbot.UpdateChatUnreadMentionCount) error {
 			called <- true
 			return nil
 		})
@@ -857,7 +857,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateChatUnreadPollVoteCount(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateChatUnreadPollVoteCount(nil, func(b *gotdbot.Client, u *gotdbot.UpdateChatUnreadPollVoteCount) error {
 			called <- true
 			return nil
 		})
@@ -872,7 +872,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateChatUnreadReactionCount(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateChatUnreadReactionCount(nil, func(b *gotdbot.Client, u *gotdbot.UpdateChatUnreadReactionCount) error {
 			called <- true
 			return nil
 		})
@@ -887,7 +887,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateChatVideoChat(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateChatVideoChat(nil, func(b *gotdbot.Client, u *gotdbot.UpdateChatVideoChat) error {
 			called <- true
 			return nil
 		})
@@ -902,7 +902,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateChatViewAsTopics(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateChatViewAsTopics(nil, func(b *gotdbot.Client, u *gotdbot.UpdateChatViewAsTopics) error {
 			called <- true
 			return nil
 		})
@@ -917,7 +917,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateConnectionState(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateConnectionState(nil, func(b *gotdbot.Client, u *gotdbot.UpdateConnectionState) error {
 			called <- true
 			return nil
 		})
@@ -932,7 +932,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateContactCloseBirthdays(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateContactCloseBirthdays(nil, func(b *gotdbot.Client, u *gotdbot.UpdateContactCloseBirthdays) error {
 			called <- true
 			return nil
 		})
@@ -947,7 +947,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateDefaultBackground(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateDefaultBackground(nil, func(b *gotdbot.Client, u *gotdbot.UpdateDefaultBackground) error {
 			called <- true
 			return nil
 		})
@@ -962,7 +962,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateDefaultPaidReactionType(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateDefaultPaidReactionType(nil, func(b *gotdbot.Client, u *gotdbot.UpdateDefaultPaidReactionType) error {
 			called <- true
 			return nil
 		})
@@ -977,7 +977,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateDefaultReactionType(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateDefaultReactionType(nil, func(b *gotdbot.Client, u *gotdbot.UpdateDefaultReactionType) error {
 			called <- true
 			return nil
 		})
@@ -992,7 +992,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateDeleteMessages(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateDeleteMessages(nil, func(b *gotdbot.Client, u *gotdbot.UpdateDeleteMessages) error {
 			called <- true
 			return nil
 		})
@@ -1007,7 +1007,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateDiceEmojis(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateDiceEmojis(nil, func(b *gotdbot.Client, u *gotdbot.UpdateDiceEmojis) error {
 			called <- true
 			return nil
 		})
@@ -1022,7 +1022,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateDirectMessagesChatTopic(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateDirectMessagesChatTopic(nil, func(b *gotdbot.Client, u *gotdbot.UpdateDirectMessagesChatTopic) error {
 			called <- true
 			return nil
 		})
@@ -1037,7 +1037,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateEmojiChatThemes(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateEmojiChatThemes(nil, func(b *gotdbot.Client, u *gotdbot.UpdateEmojiChatThemes) error {
 			called <- true
 			return nil
 		})
@@ -1052,7 +1052,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateFavoriteStickers(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateFavoriteStickers(nil, func(b *gotdbot.Client, u *gotdbot.UpdateFavoriteStickers) error {
 			called <- true
 			return nil
 		})
@@ -1067,7 +1067,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateFile(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateFile(nil, func(b *gotdbot.Client, u *gotdbot.UpdateFile) error {
 			called <- true
 			return nil
 		})
@@ -1082,7 +1082,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateFileAddedToDownloads(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateFileAddedToDownloads(nil, func(b *gotdbot.Client, u *gotdbot.UpdateFileAddedToDownloads) error {
 			called <- true
 			return nil
 		})
@@ -1097,7 +1097,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateFileDownload(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateFileDownload(nil, func(b *gotdbot.Client, u *gotdbot.UpdateFileDownload) error {
 			called <- true
 			return nil
 		})
@@ -1112,7 +1112,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateFileDownloads(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateFileDownloads(nil, func(b *gotdbot.Client, u *gotdbot.UpdateFileDownloads) error {
 			called <- true
 			return nil
 		})
@@ -1127,7 +1127,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateFileGenerationStart(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateFileGenerationStart(nil, func(b *gotdbot.Client, u *gotdbot.UpdateFileGenerationStart) error {
 			called <- true
 			return nil
 		})
@@ -1142,7 +1142,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateFileGenerationStop(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateFileGenerationStop(nil, func(b *gotdbot.Client, u *gotdbot.UpdateFileGenerationStop) error {
 			called <- true
 			return nil
 		})
@@ -1157,7 +1157,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateFileRemovedFromDownloads(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateFileRemovedFromDownloads(nil, func(b *gotdbot.Client, u *gotdbot.UpdateFileRemovedFromDownloads) error {
 			called <- true
 			return nil
 		})
@@ -1172,7 +1172,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateForumTopic(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateForumTopic(nil, func(b *gotdbot.Client, u *gotdbot.UpdateForumTopic) error {
 			called <- true
 			return nil
 		})
@@ -1187,7 +1187,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateForumTopicInfo(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateForumTopicInfo(nil, func(b *gotdbot.Client, u *gotdbot.UpdateForumTopicInfo) error {
 			called <- true
 			return nil
 		})
@@ -1202,7 +1202,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateFreezeState(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateFreezeState(nil, func(b *gotdbot.Client, u *gotdbot.UpdateFreezeState) error {
 			called <- true
 			return nil
 		})
@@ -1217,7 +1217,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateGiftAuctionState(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateGiftAuctionState(nil, func(b *gotdbot.Client, u *gotdbot.UpdateGiftAuctionState) error {
 			called <- true
 			return nil
 		})
@@ -1232,7 +1232,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateGroupCall(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateGroupCall(nil, func(b *gotdbot.Client, u *gotdbot.UpdateGroupCall) error {
 			called <- true
 			return nil
 		})
@@ -1247,7 +1247,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateGroupCallMessageLevels(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateGroupCallMessageLevels(nil, func(b *gotdbot.Client, u *gotdbot.UpdateGroupCallMessageLevels) error {
 			called <- true
 			return nil
 		})
@@ -1262,7 +1262,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateGroupCallMessagesDeleted(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateGroupCallMessagesDeleted(nil, func(b *gotdbot.Client, u *gotdbot.UpdateGroupCallMessagesDeleted) error {
 			called <- true
 			return nil
 		})
@@ -1277,7 +1277,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateGroupCallMessageSendFailed(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateGroupCallMessageSendFailed(nil, func(b *gotdbot.Client, u *gotdbot.UpdateGroupCallMessageSendFailed) error {
 			called <- true
 			return nil
 		})
@@ -1292,7 +1292,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateGroupCallParticipant(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateGroupCallParticipant(nil, func(b *gotdbot.Client, u *gotdbot.UpdateGroupCallParticipant) error {
 			called <- true
 			return nil
 		})
@@ -1307,7 +1307,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateGroupCallParticipants(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateGroupCallParticipants(nil, func(b *gotdbot.Client, u *gotdbot.UpdateGroupCallParticipants) error {
 			called <- true
 			return nil
 		})
@@ -1322,7 +1322,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateGroupCallVerificationState(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateGroupCallVerificationState(nil, func(b *gotdbot.Client, u *gotdbot.UpdateGroupCallVerificationState) error {
 			called <- true
 			return nil
 		})
@@ -1337,7 +1337,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateHavePendingNotifications(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateHavePendingNotifications(nil, func(b *gotdbot.Client, u *gotdbot.UpdateHavePendingNotifications) error {
 			called <- true
 			return nil
 		})
@@ -1352,7 +1352,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateInstalledStickerSets(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateInstalledStickerSets(nil, func(b *gotdbot.Client, u *gotdbot.UpdateInstalledStickerSets) error {
 			called <- true
 			return nil
 		})
@@ -1367,7 +1367,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateLanguagePackStrings(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateLanguagePackStrings(nil, func(b *gotdbot.Client, u *gotdbot.UpdateLanguagePackStrings) error {
 			called <- true
 			return nil
 		})
@@ -1382,7 +1382,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateLiveStoryTopDonors(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateLiveStoryTopDonors(nil, func(b *gotdbot.Client, u *gotdbot.UpdateLiveStoryTopDonors) error {
 			called <- true
 			return nil
 		})
@@ -1397,7 +1397,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateManagedBot(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateManagedBot(nil, func(b *gotdbot.Client, u *gotdbot.UpdateManagedBot) error {
 			called <- true
 			return nil
 		})
@@ -1412,7 +1412,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateMessageContainsUnreadPollVotes(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateMessageContainsUnreadPollVotes(nil, func(b *gotdbot.Client, u *gotdbot.UpdateMessageContainsUnreadPollVotes) error {
 			called <- true
 			return nil
 		})
@@ -1427,7 +1427,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateMessageContent(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateMessageContent(nil, func(b *gotdbot.Client, u *gotdbot.UpdateMessageContent) error {
 			called <- true
 			return nil
 		})
@@ -1442,7 +1442,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateMessageContentOpened(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateMessageContentOpened(nil, func(b *gotdbot.Client, u *gotdbot.UpdateMessageContentOpened) error {
 			called <- true
 			return nil
 		})
@@ -1457,7 +1457,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateMessageEdited(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateMessageEdited(nil, func(b *gotdbot.Client, u *gotdbot.UpdateMessageEdited) error {
 			called <- true
 			return nil
 		})
@@ -1472,7 +1472,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateMessageFactCheck(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateMessageFactCheck(nil, func(b *gotdbot.Client, u *gotdbot.UpdateMessageFactCheck) error {
 			called <- true
 			return nil
 		})
@@ -1487,7 +1487,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateMessageInteractionInfo(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateMessageInteractionInfo(nil, func(b *gotdbot.Client, u *gotdbot.UpdateMessageInteractionInfo) error {
 			called <- true
 			return nil
 		})
@@ -1502,7 +1502,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateMessageIsPinned(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateMessageIsPinned(nil, func(b *gotdbot.Client, u *gotdbot.UpdateMessageIsPinned) error {
 			called <- true
 			return nil
 		})
@@ -1517,7 +1517,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateMessageLiveLocationViewed(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateMessageLiveLocationViewed(nil, func(b *gotdbot.Client, u *gotdbot.UpdateMessageLiveLocationViewed) error {
 			called <- true
 			return nil
 		})
@@ -1532,7 +1532,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateMessageMentionRead(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateMessageMentionRead(nil, func(b *gotdbot.Client, u *gotdbot.UpdateMessageMentionRead) error {
 			called <- true
 			return nil
 		})
@@ -1547,7 +1547,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateMessageReaction(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateMessageReaction(nil, func(b *gotdbot.Client, u *gotdbot.UpdateMessageReaction) error {
 			called <- true
 			return nil
 		})
@@ -1562,7 +1562,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateMessageReactions(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateMessageReactions(nil, func(b *gotdbot.Client, u *gotdbot.UpdateMessageReactions) error {
 			called <- true
 			return nil
 		})
@@ -1577,7 +1577,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateMessageSendAcknowledged(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateMessageSendAcknowledged(nil, func(b *gotdbot.Client, u *gotdbot.UpdateMessageSendAcknowledged) error {
 			called <- true
 			return nil
 		})
@@ -1592,7 +1592,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateMessageSendFailed(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateMessageSendFailed(nil, func(b *gotdbot.Client, u *gotdbot.UpdateMessageSendFailed) error {
 			called <- true
 			return nil
 		})
@@ -1607,7 +1607,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateMessageSendSucceeded(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateMessageSendSucceeded(nil, func(b *gotdbot.Client, u *gotdbot.UpdateMessageSendSucceeded) error {
 			called <- true
 			return nil
 		})
@@ -1622,7 +1622,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateMessageSuggestedPostInfo(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateMessageSuggestedPostInfo(nil, func(b *gotdbot.Client, u *gotdbot.UpdateMessageSuggestedPostInfo) error {
 			called <- true
 			return nil
 		})
@@ -1637,7 +1637,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateMessageUnreadReactions(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateMessageUnreadReactions(nil, func(b *gotdbot.Client, u *gotdbot.UpdateMessageUnreadReactions) error {
 			called <- true
 			return nil
 		})
@@ -1652,7 +1652,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateNewBusinessCallbackQuery(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateNewBusinessCallbackQuery(nil, func(b *gotdbot.Client, u *gotdbot.UpdateNewBusinessCallbackQuery) error {
 			called <- true
 			return nil
 		})
@@ -1667,7 +1667,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateNewBusinessMessage(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateNewBusinessMessage(nil, func(b *gotdbot.Client, u *gotdbot.UpdateNewBusinessMessage) error {
 			called <- true
 			return nil
 		})
@@ -1682,7 +1682,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateNewCallbackQuery(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateNewCallbackQuery(nil, func(b *gotdbot.Client, u *gotdbot.UpdateNewCallbackQuery) error {
 			called <- true
 			return nil
 		})
@@ -1697,7 +1697,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateNewCallSignalingData(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateNewCallSignalingData(nil, func(b *gotdbot.Client, u *gotdbot.UpdateNewCallSignalingData) error {
 			called <- true
 			return nil
 		})
@@ -1712,7 +1712,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateNewChat(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateNewChat(nil, func(b *gotdbot.Client, u *gotdbot.UpdateNewChat) error {
 			called <- true
 			return nil
 		})
@@ -1727,7 +1727,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateNewChatJoinRequest(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateNewChatJoinRequest(nil, func(b *gotdbot.Client, u *gotdbot.UpdateNewChatJoinRequest) error {
 			called <- true
 			return nil
 		})
@@ -1742,7 +1742,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateNewChosenInlineResult(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateNewChosenInlineResult(nil, func(b *gotdbot.Client, u *gotdbot.UpdateNewChosenInlineResult) error {
 			called <- true
 			return nil
 		})
@@ -1757,7 +1757,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateNewCustomEvent(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateNewCustomEvent(nil, func(b *gotdbot.Client, u *gotdbot.UpdateNewCustomEvent) error {
 			called <- true
 			return nil
 		})
@@ -1772,7 +1772,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateNewCustomQuery(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateNewCustomQuery(nil, func(b *gotdbot.Client, u *gotdbot.UpdateNewCustomQuery) error {
 			called <- true
 			return nil
 		})
@@ -1787,7 +1787,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateNewGroupCallMessage(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateNewGroupCallMessage(nil, func(b *gotdbot.Client, u *gotdbot.UpdateNewGroupCallMessage) error {
 			called <- true
 			return nil
 		})
@@ -1802,7 +1802,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateNewGroupCallPaidReaction(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateNewGroupCallPaidReaction(nil, func(b *gotdbot.Client, u *gotdbot.UpdateNewGroupCallPaidReaction) error {
 			called <- true
 			return nil
 		})
@@ -1817,7 +1817,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateNewGuestQuery(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateNewGuestQuery(nil, func(b *gotdbot.Client, u *gotdbot.UpdateNewGuestQuery) error {
 			called <- true
 			return nil
 		})
@@ -1832,7 +1832,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateNewInlineCallbackQuery(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateNewInlineCallbackQuery(nil, func(b *gotdbot.Client, u *gotdbot.UpdateNewInlineCallbackQuery) error {
 			called <- true
 			return nil
 		})
@@ -1847,7 +1847,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateNewInlineQuery(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateNewInlineQuery(nil, func(b *gotdbot.Client, u *gotdbot.UpdateNewInlineQuery) error {
 			called <- true
 			return nil
 		})
@@ -1862,7 +1862,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateNewMessage(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateNewMessage(nil, func(b *gotdbot.Client, u *gotdbot.UpdateNewMessage) error {
 			called <- true
 			return nil
 		})
@@ -1877,7 +1877,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateNewOauthRequest(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateNewOauthRequest(nil, func(b *gotdbot.Client, u *gotdbot.UpdateNewOauthRequest) error {
 			called <- true
 			return nil
 		})
@@ -1892,7 +1892,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateNewPreCheckoutQuery(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateNewPreCheckoutQuery(nil, func(b *gotdbot.Client, u *gotdbot.UpdateNewPreCheckoutQuery) error {
 			called <- true
 			return nil
 		})
@@ -1907,7 +1907,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateNewShippingQuery(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateNewShippingQuery(nil, func(b *gotdbot.Client, u *gotdbot.UpdateNewShippingQuery) error {
 			called <- true
 			return nil
 		})
@@ -1922,7 +1922,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateNotification(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateNotification(nil, func(b *gotdbot.Client, u *gotdbot.UpdateNotification) error {
 			called <- true
 			return nil
 		})
@@ -1937,7 +1937,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateNotificationGroup(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateNotificationGroup(nil, func(b *gotdbot.Client, u *gotdbot.UpdateNotificationGroup) error {
 			called <- true
 			return nil
 		})
@@ -1952,7 +1952,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateOption(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateOption(nil, func(b *gotdbot.Client, u *gotdbot.UpdateOption) error {
 			called <- true
 			return nil
 		})
@@ -1967,7 +1967,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateOwnedStarCount(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateOwnedStarCount(nil, func(b *gotdbot.Client, u *gotdbot.UpdateOwnedStarCount) error {
 			called <- true
 			return nil
 		})
@@ -1982,7 +1982,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateOwnedTonCount(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateOwnedTonCount(nil, func(b *gotdbot.Client, u *gotdbot.UpdateOwnedTonCount) error {
 			called <- true
 			return nil
 		})
@@ -1997,7 +1997,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdatePaidMediaPurchased(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdatePaidMediaPurchased(nil, func(b *gotdbot.Client, u *gotdbot.UpdatePaidMediaPurchased) error {
 			called <- true
 			return nil
 		})
@@ -2012,7 +2012,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdatePendingTextMessage(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdatePendingTextMessage(nil, func(b *gotdbot.Client, u *gotdbot.UpdatePendingTextMessage) error {
 			called <- true
 			return nil
 		})
@@ -2027,7 +2027,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdatePoll(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdatePoll(nil, func(b *gotdbot.Client, u *gotdbot.UpdatePoll) error {
 			called <- true
 			return nil
 		})
@@ -2042,7 +2042,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdatePollAnswer(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdatePollAnswer(nil, func(b *gotdbot.Client, u *gotdbot.UpdatePollAnswer) error {
 			called <- true
 			return nil
 		})
@@ -2057,7 +2057,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateProfileAccentColors(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateProfileAccentColors(nil, func(b *gotdbot.Client, u *gotdbot.UpdateProfileAccentColors) error {
 			called <- true
 			return nil
 		})
@@ -2072,7 +2072,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateQuickReplyShortcut(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateQuickReplyShortcut(nil, func(b *gotdbot.Client, u *gotdbot.UpdateQuickReplyShortcut) error {
 			called <- true
 			return nil
 		})
@@ -2087,7 +2087,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateQuickReplyShortcutDeleted(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateQuickReplyShortcutDeleted(nil, func(b *gotdbot.Client, u *gotdbot.UpdateQuickReplyShortcutDeleted) error {
 			called <- true
 			return nil
 		})
@@ -2102,7 +2102,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateQuickReplyShortcutMessages(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateQuickReplyShortcutMessages(nil, func(b *gotdbot.Client, u *gotdbot.UpdateQuickReplyShortcutMessages) error {
 			called <- true
 			return nil
 		})
@@ -2117,7 +2117,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateQuickReplyShortcuts(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateQuickReplyShortcuts(nil, func(b *gotdbot.Client, u *gotdbot.UpdateQuickReplyShortcuts) error {
 			called <- true
 			return nil
 		})
@@ -2132,7 +2132,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateReactionNotificationSettings(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateReactionNotificationSettings(nil, func(b *gotdbot.Client, u *gotdbot.UpdateReactionNotificationSettings) error {
 			called <- true
 			return nil
 		})
@@ -2147,7 +2147,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateRecentStickers(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateRecentStickers(nil, func(b *gotdbot.Client, u *gotdbot.UpdateRecentStickers) error {
 			called <- true
 			return nil
 		})
@@ -2162,7 +2162,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateSavedAnimations(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateSavedAnimations(nil, func(b *gotdbot.Client, u *gotdbot.UpdateSavedAnimations) error {
 			called <- true
 			return nil
 		})
@@ -2177,7 +2177,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateSavedMessagesTags(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateSavedMessagesTags(nil, func(b *gotdbot.Client, u *gotdbot.UpdateSavedMessagesTags) error {
 			called <- true
 			return nil
 		})
@@ -2192,7 +2192,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateSavedMessagesTopic(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateSavedMessagesTopic(nil, func(b *gotdbot.Client, u *gotdbot.UpdateSavedMessagesTopic) error {
 			called <- true
 			return nil
 		})
@@ -2207,7 +2207,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateSavedMessagesTopicCount(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateSavedMessagesTopicCount(nil, func(b *gotdbot.Client, u *gotdbot.UpdateSavedMessagesTopicCount) error {
 			called <- true
 			return nil
 		})
@@ -2222,7 +2222,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateSavedNotificationSounds(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateSavedNotificationSounds(nil, func(b *gotdbot.Client, u *gotdbot.UpdateSavedNotificationSounds) error {
 			called <- true
 			return nil
 		})
@@ -2237,7 +2237,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateScopeNotificationSettings(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateScopeNotificationSettings(nil, func(b *gotdbot.Client, u *gotdbot.UpdateScopeNotificationSettings) error {
 			called <- true
 			return nil
 		})
@@ -2252,7 +2252,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateSecretChat(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateSecretChat(nil, func(b *gotdbot.Client, u *gotdbot.UpdateSecretChat) error {
 			called <- true
 			return nil
 		})
@@ -2267,7 +2267,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateServiceNotification(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateServiceNotification(nil, func(b *gotdbot.Client, u *gotdbot.UpdateServiceNotification) error {
 			called <- true
 			return nil
 		})
@@ -2282,7 +2282,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateSpeechRecognitionTrial(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateSpeechRecognitionTrial(nil, func(b *gotdbot.Client, u *gotdbot.UpdateSpeechRecognitionTrial) error {
 			called <- true
 			return nil
 		})
@@ -2297,7 +2297,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateSpeedLimitNotification(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateSpeedLimitNotification(nil, func(b *gotdbot.Client, u *gotdbot.UpdateSpeedLimitNotification) error {
 			called <- true
 			return nil
 		})
@@ -2312,7 +2312,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateStakeDiceState(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateStakeDiceState(nil, func(b *gotdbot.Client, u *gotdbot.UpdateStakeDiceState) error {
 			called <- true
 			return nil
 		})
@@ -2327,7 +2327,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateStarRevenueStatus(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateStarRevenueStatus(nil, func(b *gotdbot.Client, u *gotdbot.UpdateStarRevenueStatus) error {
 			called <- true
 			return nil
 		})
@@ -2342,7 +2342,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateStickerSet(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateStickerSet(nil, func(b *gotdbot.Client, u *gotdbot.UpdateStickerSet) error {
 			called <- true
 			return nil
 		})
@@ -2357,7 +2357,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateStory(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateStory(nil, func(b *gotdbot.Client, u *gotdbot.UpdateStory) error {
 			called <- true
 			return nil
 		})
@@ -2372,7 +2372,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateStoryDeleted(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateStoryDeleted(nil, func(b *gotdbot.Client, u *gotdbot.UpdateStoryDeleted) error {
 			called <- true
 			return nil
 		})
@@ -2387,7 +2387,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateStoryListChatCount(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateStoryListChatCount(nil, func(b *gotdbot.Client, u *gotdbot.UpdateStoryListChatCount) error {
 			called <- true
 			return nil
 		})
@@ -2402,7 +2402,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateStoryPostFailed(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateStoryPostFailed(nil, func(b *gotdbot.Client, u *gotdbot.UpdateStoryPostFailed) error {
 			called <- true
 			return nil
 		})
@@ -2417,7 +2417,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateStoryPostSucceeded(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateStoryPostSucceeded(nil, func(b *gotdbot.Client, u *gotdbot.UpdateStoryPostSucceeded) error {
 			called <- true
 			return nil
 		})
@@ -2432,7 +2432,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateStoryStealthMode(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateStoryStealthMode(nil, func(b *gotdbot.Client, u *gotdbot.UpdateStoryStealthMode) error {
 			called <- true
 			return nil
 		})
@@ -2447,7 +2447,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateSuggestedActions(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateSuggestedActions(nil, func(b *gotdbot.Client, u *gotdbot.UpdateSuggestedActions) error {
 			called <- true
 			return nil
 		})
@@ -2462,7 +2462,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateSupergroup(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateSupergroup(nil, func(b *gotdbot.Client, u *gotdbot.UpdateSupergroup) error {
 			called <- true
 			return nil
 		})
@@ -2477,7 +2477,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateSupergroupFullInfo(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateSupergroupFullInfo(nil, func(b *gotdbot.Client, u *gotdbot.UpdateSupergroupFullInfo) error {
 			called <- true
 			return nil
 		})
@@ -2492,7 +2492,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateTermsOfService(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateTermsOfService(nil, func(b *gotdbot.Client, u *gotdbot.UpdateTermsOfService) error {
 			called <- true
 			return nil
 		})
@@ -2507,7 +2507,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateTextCompositionStyles(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateTextCompositionStyles(nil, func(b *gotdbot.Client, u *gotdbot.UpdateTextCompositionStyles) error {
 			called <- true
 			return nil
 		})
@@ -2522,7 +2522,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateTonRevenueStatus(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateTonRevenueStatus(nil, func(b *gotdbot.Client, u *gotdbot.UpdateTonRevenueStatus) error {
 			called <- true
 			return nil
 		})
@@ -2537,7 +2537,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateTopicMessageCount(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateTopicMessageCount(nil, func(b *gotdbot.Client, u *gotdbot.UpdateTopicMessageCount) error {
 			called <- true
 			return nil
 		})
@@ -2552,7 +2552,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateTrendingStickerSets(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateTrendingStickerSets(nil, func(b *gotdbot.Client, u *gotdbot.UpdateTrendingStickerSets) error {
 			called <- true
 			return nil
 		})
@@ -2567,7 +2567,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateTrustedMiniAppBots(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateTrustedMiniAppBots(nil, func(b *gotdbot.Client, u *gotdbot.UpdateTrustedMiniAppBots) error {
 			called <- true
 			return nil
 		})
@@ -2582,7 +2582,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateUnconfirmedSession(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateUnconfirmedSession(nil, func(b *gotdbot.Client, u *gotdbot.UpdateUnconfirmedSession) error {
 			called <- true
 			return nil
 		})
@@ -2597,7 +2597,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateUnreadChatCount(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateUnreadChatCount(nil, func(b *gotdbot.Client, u *gotdbot.UpdateUnreadChatCount) error {
 			called <- true
 			return nil
 		})
@@ -2612,7 +2612,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateUnreadMessageCount(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateUnreadMessageCount(nil, func(b *gotdbot.Client, u *gotdbot.UpdateUnreadMessageCount) error {
 			called <- true
 			return nil
 		})
@@ -2627,7 +2627,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateUser(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateUser(nil, func(b *gotdbot.Client, u *gotdbot.UpdateUser) error {
 			called <- true
 			return nil
 		})
@@ -2642,7 +2642,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateUserFullInfo(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateUserFullInfo(nil, func(b *gotdbot.Client, u *gotdbot.UpdateUserFullInfo) error {
 			called <- true
 			return nil
 		})
@@ -2657,7 +2657,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateUserPrivacySettingRules(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateUserPrivacySettingRules(nil, func(b *gotdbot.Client, u *gotdbot.UpdateUserPrivacySettingRules) error {
 			called <- true
 			return nil
 		})
@@ -2672,7 +2672,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateUserStatus(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateUserStatus(nil, func(b *gotdbot.Client, u *gotdbot.UpdateUserStatus) error {
 			called <- true
 			return nil
 		})
@@ -2687,7 +2687,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateVideoPublished(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateVideoPublished(nil, func(b *gotdbot.Client, u *gotdbot.UpdateVideoPublished) error {
 			called <- true
 			return nil
 		})
@@ -2702,7 +2702,7 @@ func TestGeneratedHandlers(t *testing.T) {
 
 	func() {
 		called := make(chan bool, 1)
-		h := handlers.NewUpdateWebAppMessageSent(nil, func(b *gotdbot.Client, ctx *gotdbot.Context) error {
+		h := handlers.NewUpdateWebAppMessageSent(nil, func(b *gotdbot.Client, u *gotdbot.UpdateWebAppMessageSent) error {
 			called <- true
 			return nil
 		})

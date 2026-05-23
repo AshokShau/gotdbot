@@ -11,20 +11,20 @@ import (
 // UpdateFreezeState The freeze state of the current user's account has changed
 type UpdateFreezeState struct {
 	Filter   filters.UpdateFreezeState
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateFreezeState) error
 }
 
 // NewUpdateFreezeState creates a new UpdateFreezeState
-func NewUpdateFreezeState(filter filters.UpdateFreezeState, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateFreezeState {
+func NewUpdateFreezeState(filter filters.UpdateFreezeState, response func(b *gotdbot.Client, u *gotdbot.UpdateFreezeState) error) *UpdateFreezeState {
 	return &UpdateFreezeState{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateFreezeState) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateFreezeState
-	if u == nil {
+func (h *UpdateFreezeState) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateFreezeState)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateFreezeState) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context)
 	return h.Filter(u)
 }
 
-func (h *UpdateFreezeState) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateFreezeState) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateFreezeState))
 }

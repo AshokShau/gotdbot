@@ -11,20 +11,20 @@ import (
 // UpdateMessageUnreadReactions The list of unread reactions added to a message was changed
 type UpdateMessageUnreadReactions struct {
 	Filter   filters.UpdateMessageUnreadReactions
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateMessageUnreadReactions) error
 }
 
 // NewUpdateMessageUnreadReactions creates a new UpdateMessageUnreadReactions
-func NewUpdateMessageUnreadReactions(filter filters.UpdateMessageUnreadReactions, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateMessageUnreadReactions {
+func NewUpdateMessageUnreadReactions(filter filters.UpdateMessageUnreadReactions, response func(b *gotdbot.Client, u *gotdbot.UpdateMessageUnreadReactions) error) *UpdateMessageUnreadReactions {
 	return &UpdateMessageUnreadReactions{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateMessageUnreadReactions) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateMessageUnreadReactions
-	if u == nil {
+func (h *UpdateMessageUnreadReactions) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateMessageUnreadReactions)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateMessageUnreadReactions) CheckUpdate(b *gotdbot.Client, ctx *gotdb
 	return h.Filter(u)
 }
 
-func (h *UpdateMessageUnreadReactions) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateMessageUnreadReactions) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateMessageUnreadReactions))
 }

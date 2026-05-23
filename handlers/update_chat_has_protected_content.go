@@ -11,20 +11,20 @@ import (
 // UpdateChatHasProtectedContent A chat content was allowed or restricted for saving
 type UpdateChatHasProtectedContent struct {
 	Filter   filters.UpdateChatHasProtectedContent
-	Response func(b *gotdbot.Client, ctx *gotdbot.Context) error
+	Response func(b *gotdbot.Client, u *gotdbot.UpdateChatHasProtectedContent) error
 }
 
 // NewUpdateChatHasProtectedContent creates a new UpdateChatHasProtectedContent
-func NewUpdateChatHasProtectedContent(filter filters.UpdateChatHasProtectedContent, response func(b *gotdbot.Client, ctx *gotdbot.Context) error) *UpdateChatHasProtectedContent {
+func NewUpdateChatHasProtectedContent(filter filters.UpdateChatHasProtectedContent, response func(b *gotdbot.Client, u *gotdbot.UpdateChatHasProtectedContent) error) *UpdateChatHasProtectedContent {
 	return &UpdateChatHasProtectedContent{
 		Filter:   filter,
 		Response: response,
 	}
 }
 
-func (h *UpdateChatHasProtectedContent) CheckUpdate(b *gotdbot.Client, ctx *gotdbot.Context) bool {
-	u := ctx.Update.UpdateChatHasProtectedContent
-	if u == nil {
+func (h *UpdateChatHasProtectedContent) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
+	u, ok := update.(*gotdbot.UpdateChatHasProtectedContent)
+	if !ok {
 		return false
 	}
 	if h.Filter == nil {
@@ -33,6 +33,6 @@ func (h *UpdateChatHasProtectedContent) CheckUpdate(b *gotdbot.Client, ctx *gotd
 	return h.Filter(u)
 }
 
-func (h *UpdateChatHasProtectedContent) HandleUpdate(b *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.Response(b, ctx)
+func (h *UpdateChatHasProtectedContent) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.Response(b, update.(*gotdbot.UpdateChatHasProtectedContent))
 }
