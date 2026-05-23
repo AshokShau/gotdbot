@@ -25,7 +25,7 @@ func (m *Message) SetAllowOutgoing(allow bool) *Message {
 }
 
 func (m *Message) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
-	msg := gotdbot.ExtractMessage(update)
+	msg := m.extractMessage(update)
 	if msg == nil {
 		return false
 	}
@@ -41,5 +41,17 @@ func (m *Message) CheckUpdate(b *gotdbot.Client, update gotdbot.TlObject) bool {
 }
 
 func (m *Message) HandleUpdate(b *gotdbot.Client, update gotdbot.TlObject) error {
-	return m.Response(b, gotdbot.ExtractMessage(update))
+	return m.Response(b, m.extractMessage(update))
+}
+
+// extractMessage extracts a gotdbot.Message from an update if possible.
+func (m *Message) extractMessage(u gotdbot.TlObject) *gotdbot.Message {
+	switch t := u.(type) {
+	case *gotdbot.UpdateMessageSendSucceeded:
+		return t.Message
+	case *gotdbot.UpdateNewMessage:
+		return t.Message
+	default:
+		return nil
+	}
 }
