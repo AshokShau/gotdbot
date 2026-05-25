@@ -88,127 +88,128 @@ func generateExtHandlers(types []TLType) []string {
 	}
 	generatedFiles = append(generatedFiles, filtersPath)
 
-	extractorsPath := filepath.Join("gen_extractors.go")
-	var sbExtract strings.Builder
-	sbExtract.WriteString(header)
-	sbExtract.WriteString("package gotdbot\n\n")
+	/*
+		    extractorsPath := filepath.Join("gen_extractors.go")
+			var sbExtract strings.Builder
+			sbExtract.WriteString(header)
+			sbExtract.WriteString("package gotdbot\n\n")
+			sbExtract.WriteString("// ExtractMessage extracts a Message from an update if possible.\n")
+			sbExtract.WriteString("func ExtractMessage(u TlObject) *Message {\n")
+			sbExtract.WriteString("\tswitch u := u.(type) {\n")
+			for _, t := range types {
+				if t.ResultType != "Update" {
+					continue
+				}
+				for _, p := range t.Params {
+					if p.Type == "message" {
+						fieldName := toCamelCase(p.Name)
+						sbExtract.WriteString(fmt.Sprintf("\tcase *%s:\n", toCamelCase(t.Name)))
+						sbExtract.WriteString(fmt.Sprintf("\t\treturn u.%s\n", fieldName))
+						break
+					}
+				}
+			}
+			sbExtract.WriteString("\tdefault:\n")
+			sbExtract.WriteString("\t\treturn nil\n")
+			sbExtract.WriteString("\t}\n")
+			sbExtract.WriteString("}\n\n")
 
-	sbExtract.WriteString("// ExtractMessage extracts a Message from an update if possible.\n")
-	sbExtract.WriteString("func ExtractMessage(u TlObject) *Message {\n")
-	sbExtract.WriteString("\tswitch u := u.(type) {\n")
-	for _, t := range types {
-		if t.ResultType != "Update" {
-			continue
-		}
-		for _, p := range t.Params {
-			if p.Type == "message" {
-				fieldName := toCamelCase(p.Name)
-				sbExtract.WriteString(fmt.Sprintf("\tcase *%s:\n", toCamelCase(t.Name)))
-				sbExtract.WriteString(fmt.Sprintf("\t\treturn u.%s\n", fieldName))
-				break
+			sbExtract.WriteString("// ExtractChatID extracts a ChatID from an update if possible.\n")
+			sbExtract.WriteString("func ExtractChatID(u TlObject) int64 {\n")
+			sbExtract.WriteString("\tswitch u := u.(type) {\n")
+			for _, t := range types {
+				if t.ResultType != "Update" {
+					continue
+				}
+				structName := toCamelCase(t.Name)
+				found := false
+				for _, p := range t.Params {
+					if p.Name == "chat_id" {
+						sbExtract.WriteString(fmt.Sprintf("\tcase *%s:\n", structName))
+						sbExtract.WriteString("\t\treturn u.ChatId\n")
+						found = true
+						break
+					}
+					if p.Type == "chat" {
+						fieldName := toCamelCase(p.Name)
+						sbExtract.WriteString(fmt.Sprintf("\tcase *%s:\n", structName))
+						sbExtract.WriteString(fmt.Sprintf("\t\tif u.%s != nil {\n", fieldName))
+						sbExtract.WriteString(fmt.Sprintf("\t\t\treturn u.%s.Id\n", fieldName))
+						sbExtract.WriteString("\t\t}\n")
+						found = true
+						break
+					}
+					if p.Type == "user" {
+						fieldName := toCamelCase(p.Name)
+						sbExtract.WriteString(fmt.Sprintf("\tcase *%s:\n", structName))
+						sbExtract.WriteString(fmt.Sprintf("\t\tif u.%s != nil {\n", fieldName))
+						sbExtract.WriteString(fmt.Sprintf("\t\t\treturn u.%s.Id\n", fieldName))
+						sbExtract.WriteString("\t\t}\n")
+						found = true
+						break
+					}
+				}
+				if found {
+					continue
+				}
+				for _, p := range t.Params {
+					if p.Type == "message" {
+						fieldName := toCamelCase(p.Name)
+						sbExtract.WriteString(fmt.Sprintf("\tcase *%s:\n", structName))
+						sbExtract.WriteString(fmt.Sprintf("\t\tif u.%s != nil {\n", fieldName))
+						sbExtract.WriteString(fmt.Sprintf("\t\t\treturn u.%s.ChatId\n", fieldName))
+						sbExtract.WriteString("\t\t}\n")
+						found = true
+						break
+					}
+				}
+				if found {
+					continue
+				}
+				for _, p := range t.Params {
+					if p.Name == "sender_user_id" {
+						sbExtract.WriteString(fmt.Sprintf("\tcase *%s:\n", structName))
+						sbExtract.WriteString("\t\treturn u.SenderUserId\n")
+						found = true
+						break
+					}
+					if p.Name == "user_id" {
+						sbExtract.WriteString(fmt.Sprintf("\tcase *%s:\n", structName))
+						sbExtract.WriteString("\t\treturn u.UserId\n")
+						found = true
+						break
+					}
+				}
+				if found {
+					continue
+				}
+				for _, p := range t.Params {
+					if p.Name == "sender_id" {
+						sbExtract.WriteString(fmt.Sprintf("\tcase *%s:\n", structName))
+						sbExtract.WriteString("\t\tif u.SenderId != nil {\n")
+						sbExtract.WriteString("\t\t\tif up, ok := u.SenderId.(*MessageSenderUser); ok {\n")
+						sbExtract.WriteString("\t\t\t\treturn up.UserId\n")
+						sbExtract.WriteString("\t\t\t}\n")
+						sbExtract.WriteString("\t\t\tif up, ok := u.SenderId.(*MessageSenderChat); ok {\n")
+						sbExtract.WriteString("\t\t\t\treturn up.ChatId\n")
+						sbExtract.WriteString("\t\t\t}\n")
+						sbExtract.WriteString("\t\t}\n")
+						found = true
+						break
+					}
+				}
 			}
-		}
-	}
-	sbExtract.WriteString("\tdefault:\n")
-	sbExtract.WriteString("\t\treturn nil\n")
-	sbExtract.WriteString("\t}\n")
-	sbExtract.WriteString("}\n\n")
+			sbExtract.WriteString("\tdefault:\n")
+			sbExtract.WriteString("\t\treturn 0\n")
+			sbExtract.WriteString("\t}\n")
+			sbExtract.WriteString("}\n")
 
-	sbExtract.WriteString("// ExtractChatID extracts a ChatID from an update if possible.\n")
-	sbExtract.WriteString("func ExtractChatID(u TlObject) int64 {\n")
-	sbExtract.WriteString("\tswitch u := u.(type) {\n")
-	for _, t := range types {
-		if t.ResultType != "Update" {
-			continue
-		}
-		structName := toCamelCase(t.Name)
-		found := false
-		for _, p := range t.Params {
-			if p.Name == "chat_id" {
-				sbExtract.WriteString(fmt.Sprintf("\tcase *%s:\n", structName))
-				sbExtract.WriteString("\t\treturn u.ChatId\n")
-				found = true
-				break
+			if err := os.WriteFile(extractorsPath, []byte(sbExtract.String()), 0644); err != nil {
+				log.Fatal(err)
 			}
-			if p.Type == "chat" {
-				fieldName := toCamelCase(p.Name)
-				sbExtract.WriteString(fmt.Sprintf("\tcase *%s:\n", structName))
-				sbExtract.WriteString(fmt.Sprintf("\t\tif u.%s != nil {\n", fieldName))
-				sbExtract.WriteString(fmt.Sprintf("\t\t\treturn u.%s.Id\n", fieldName))
-				sbExtract.WriteString("\t\t}\n")
-				found = true
-				break
-			}
-			if p.Type == "user" {
-				fieldName := toCamelCase(p.Name)
-				sbExtract.WriteString(fmt.Sprintf("\tcase *%s:\n", structName))
-				sbExtract.WriteString(fmt.Sprintf("\t\tif u.%s != nil {\n", fieldName))
-				sbExtract.WriteString(fmt.Sprintf("\t\t\treturn u.%s.Id\n", fieldName))
-				sbExtract.WriteString("\t\t}\n")
-				found = true
-				break
-			}
-		}
-		if found {
-			continue
-		}
-		for _, p := range t.Params {
-			if p.Type == "message" {
-				fieldName := toCamelCase(p.Name)
-				sbExtract.WriteString(fmt.Sprintf("\tcase *%s:\n", structName))
-				sbExtract.WriteString(fmt.Sprintf("\t\tif u.%s != nil {\n", fieldName))
-				sbExtract.WriteString(fmt.Sprintf("\t\t\treturn u.%s.ChatId\n", fieldName))
-				sbExtract.WriteString("\t\t}\n")
-				found = true
-				break
-			}
-		}
-		if found {
-			continue
-		}
-		for _, p := range t.Params {
-			if p.Name == "sender_user_id" {
-				sbExtract.WriteString(fmt.Sprintf("\tcase *%s:\n", structName))
-				sbExtract.WriteString("\t\treturn u.SenderUserId\n")
-				found = true
-				break
-			}
-			if p.Name == "user_id" {
-				sbExtract.WriteString(fmt.Sprintf("\tcase *%s:\n", structName))
-				sbExtract.WriteString("\t\treturn u.UserId\n")
-				found = true
-				break
-			}
-		}
-		if found {
-			continue
-		}
-		for _, p := range t.Params {
-			if p.Name == "sender_id" {
-				sbExtract.WriteString(fmt.Sprintf("\tcase *%s:\n", structName))
-				sbExtract.WriteString("\t\tif u.SenderId != nil {\n")
-				sbExtract.WriteString("\t\t\tif up, ok := u.SenderId.(*MessageSenderUser); ok {\n")
-				sbExtract.WriteString("\t\t\t\treturn up.UserId\n")
-				sbExtract.WriteString("\t\t\t}\n")
-				sbExtract.WriteString("\t\t\tif up, ok := u.SenderId.(*MessageSenderChat); ok {\n")
-				sbExtract.WriteString("\t\t\t\treturn up.ChatId\n")
-				sbExtract.WriteString("\t\t\t}\n")
-				sbExtract.WriteString("\t\t}\n")
-				found = true
-				break
-			}
-		}
-	}
-	sbExtract.WriteString("\tdefault:\n")
-	sbExtract.WriteString("\t\treturn 0\n")
-	sbExtract.WriteString("\t}\n")
-	sbExtract.WriteString("}\n")
 
-	if err := os.WriteFile(extractorsPath, []byte(sbExtract.String()), 0644); err != nil {
-		log.Fatal(err)
-	}
-	generatedFiles = append(generatedFiles, extractorsPath)
-
+	*/
+	generatedFiles = append(generatedFiles)
 	testPath := filepath.Join("handlers", "gen_handlers_test.go")
 	var sbTest strings.Builder
 	sbTest.WriteString(header)
