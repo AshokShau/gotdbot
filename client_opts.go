@@ -13,6 +13,9 @@ type AutoRetry struct {
 }
 
 type ClientOpts struct {
+	PanicHandler func(client *Client, update TlObject, r interface{})
+	ErrorHandler func(client *Client, update TlObject, err error) error
+
 	LibraryPath             string
 	UseTestDC               bool
 	DatabaseDirectory       string
@@ -34,10 +37,6 @@ type ClientOpts struct {
 	LogVerbosityLevel       int32
 	LogStream               LogStream
 	AutoRetry               *AutoRetry
-
-	// Dispatcher is the dispatcher to use for this client.
-	// If nil, a new dispatcher will be created.
-	Dispatcher *Dispatcher
 }
 
 // TDLibOptions contains TDLib options that can be set

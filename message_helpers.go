@@ -25,6 +25,21 @@ func (m *Message) IsSupergroupOrChannel() bool {
 	return isSupergroupOrChannelID(m.ChatId)
 }
 
+// IsOutgoingMessage returns true if the message is outgoing.
+func (m *Message) IsOutgoingMessage() bool {
+	return m.IsOutgoing
+}
+
+// IsEditedMessage returns true if the message is edited.
+func (m *Message) IsEditedMessage() bool {
+	return m.EditDate > 0
+}
+
+// IsChannel checks if the message is from a channel.
+func (m *Message) IsChannel() bool {
+	return m.IsSupergroupOrChannel()
+}
+
 func isSupergroupOrChannelID(id int64) bool {
 	// Supergroups and channels have IDs that start with -100
 	// (e.g. -1002166934878)
