@@ -3,376 +3,9 @@
 
 package gotdbot
 
-type (
-	// UpdateAccentColorsFilter is a filter for UpdateAccentColors updates
-	UpdateAccentColorsFilter func(u *UpdateAccentColors) bool
-	// UpdateActiveEmojiReactionsFilter is a filter for UpdateActiveEmojiReactions updates
-	UpdateActiveEmojiReactionsFilter func(u *UpdateActiveEmojiReactions) bool
-	// UpdateActiveGiftAuctionsFilter is a filter for UpdateActiveGiftAuctions updates
-	UpdateActiveGiftAuctionsFilter func(u *UpdateActiveGiftAuctions) bool
-	// UpdateActiveLiveLocationMessagesFilter is a filter for UpdateActiveLiveLocationMessages updates
-	UpdateActiveLiveLocationMessagesFilter func(u *UpdateActiveLiveLocationMessages) bool
-	// UpdateActiveNotificationsFilter is a filter for UpdateActiveNotifications updates
-	UpdateActiveNotificationsFilter func(u *UpdateActiveNotifications) bool
-	// UpdateAgeVerificationParametersFilter is a filter for UpdateAgeVerificationParameters updates
-	UpdateAgeVerificationParametersFilter func(u *UpdateAgeVerificationParameters) bool
-	// UpdateAnimatedEmojiMessageClickedFilter is a filter for UpdateAnimatedEmojiMessageClicked updates
-	UpdateAnimatedEmojiMessageClickedFilter func(u *UpdateAnimatedEmojiMessageClicked) bool
-	// UpdateAnimationSearchParametersFilter is a filter for UpdateAnimationSearchParameters updates
-	UpdateAnimationSearchParametersFilter func(u *UpdateAnimationSearchParameters) bool
-	// UpdateApplicationRecaptchaVerificationRequiredFilter is a filter for UpdateApplicationRecaptchaVerificationRequired updates
-	UpdateApplicationRecaptchaVerificationRequiredFilter func(u *UpdateApplicationRecaptchaVerificationRequired) bool
-	// UpdateApplicationVerificationRequiredFilter is a filter for UpdateApplicationVerificationRequired updates
-	UpdateApplicationVerificationRequiredFilter func(u *UpdateApplicationVerificationRequired) bool
-	// UpdateAttachmentMenuBotsFilter is a filter for UpdateAttachmentMenuBots updates
-	UpdateAttachmentMenuBotsFilter func(u *UpdateAttachmentMenuBots) bool
-	// UpdateAuthorizationStateFilter is a filter for UpdateAuthorizationState updates
-	UpdateAuthorizationStateFilter func(u *UpdateAuthorizationState) bool
-	// UpdateAutosaveSettingsFilter is a filter for UpdateAutosaveSettings updates
-	UpdateAutosaveSettingsFilter func(u *UpdateAutosaveSettings) bool
-	// UpdateAvailableMessageEffectsFilter is a filter for UpdateAvailableMessageEffects updates
-	UpdateAvailableMessageEffectsFilter func(u *UpdateAvailableMessageEffects) bool
-	// UpdateBasicGroupFilter is a filter for UpdateBasicGroup updates
-	UpdateBasicGroupFilter func(u *UpdateBasicGroup) bool
-	// UpdateBasicGroupFullInfoFilter is a filter for UpdateBasicGroupFullInfo updates
-	UpdateBasicGroupFullInfoFilter func(u *UpdateBasicGroupFullInfo) bool
-	// UpdateBusinessConnectionFilter is a filter for UpdateBusinessConnection updates
-	UpdateBusinessConnectionFilter func(u *UpdateBusinessConnection) bool
-	// UpdateBusinessMessageEditedFilter is a filter for UpdateBusinessMessageEdited updates
-	UpdateBusinessMessageEditedFilter func(u *UpdateBusinessMessageEdited) bool
-	// UpdateBusinessMessagesDeletedFilter is a filter for UpdateBusinessMessagesDeleted updates
-	UpdateBusinessMessagesDeletedFilter func(u *UpdateBusinessMessagesDeleted) bool
-	// UpdateCallFilter is a filter for UpdateCall updates
-	UpdateCallFilter func(u *UpdateCall) bool
-	// UpdateChatAccentColorsFilter is a filter for UpdateChatAccentColors updates
-	UpdateChatAccentColorsFilter func(u *UpdateChatAccentColors) bool
-	// UpdateChatActionFilter is a filter for UpdateChatAction updates
-	UpdateChatActionFilter func(u *UpdateChatAction) bool
-	// UpdateChatActionBarFilter is a filter for UpdateChatActionBar updates
-	UpdateChatActionBarFilter func(u *UpdateChatActionBar) bool
-	// UpdateChatActiveStoriesFilter is a filter for UpdateChatActiveStories updates
-	UpdateChatActiveStoriesFilter func(u *UpdateChatActiveStories) bool
-	// UpdateChatAddedToListFilter is a filter for UpdateChatAddedToList updates
-	UpdateChatAddedToListFilter func(u *UpdateChatAddedToList) bool
-	// UpdateChatAvailableReactionsFilter is a filter for UpdateChatAvailableReactions updates
-	UpdateChatAvailableReactionsFilter func(u *UpdateChatAvailableReactions) bool
-	// UpdateChatBackgroundFilter is a filter for UpdateChatBackground updates
-	UpdateChatBackgroundFilter func(u *UpdateChatBackground) bool
-	// UpdateChatBlockListFilter is a filter for UpdateChatBlockList updates
-	UpdateChatBlockListFilter func(u *UpdateChatBlockList) bool
-	// UpdateChatBoostFilter is a filter for UpdateChatBoost updates
-	UpdateChatBoostFilter func(u *UpdateChatBoost) bool
-	// UpdateChatBusinessBotManageBarFilter is a filter for UpdateChatBusinessBotManageBar updates
-	UpdateChatBusinessBotManageBarFilter func(u *UpdateChatBusinessBotManageBar) bool
-	// UpdateChatDefaultDisableNotificationFilter is a filter for UpdateChatDefaultDisableNotification updates
-	UpdateChatDefaultDisableNotificationFilter func(u *UpdateChatDefaultDisableNotification) bool
-	// UpdateChatDraftMessageFilter is a filter for UpdateChatDraftMessage updates
-	UpdateChatDraftMessageFilter func(u *UpdateChatDraftMessage) bool
-	// UpdateChatEmojiStatusFilter is a filter for UpdateChatEmojiStatus updates
-	UpdateChatEmojiStatusFilter func(u *UpdateChatEmojiStatus) bool
-	// UpdateChatFoldersFilter is a filter for UpdateChatFolders updates
-	UpdateChatFoldersFilter func(u *UpdateChatFolders) bool
-	// UpdateChatHasProtectedContentFilter is a filter for UpdateChatHasProtectedContent updates
-	UpdateChatHasProtectedContentFilter func(u *UpdateChatHasProtectedContent) bool
-	// UpdateChatHasScheduledMessagesFilter is a filter for UpdateChatHasScheduledMessages updates
-	UpdateChatHasScheduledMessagesFilter func(u *UpdateChatHasScheduledMessages) bool
-	// UpdateChatIsMarkedAsUnreadFilter is a filter for UpdateChatIsMarkedAsUnread updates
-	UpdateChatIsMarkedAsUnreadFilter func(u *UpdateChatIsMarkedAsUnread) bool
-	// UpdateChatIsTranslatableFilter is a filter for UpdateChatIsTranslatable updates
-	UpdateChatIsTranslatableFilter func(u *UpdateChatIsTranslatable) bool
-	// UpdateChatLastMessageFilter is a filter for UpdateChatLastMessage updates
-	UpdateChatLastMessageFilter func(u *UpdateChatLastMessage) bool
-	// UpdateChatMemberFilter is a filter for UpdateChatMember updates
-	UpdateChatMemberFilter func(u *UpdateChatMember) bool
-	// UpdateChatMessageAutoDeleteTimeFilter is a filter for UpdateChatMessageAutoDeleteTime updates
-	UpdateChatMessageAutoDeleteTimeFilter func(u *UpdateChatMessageAutoDeleteTime) bool
-	// UpdateChatMessageSenderFilter is a filter for UpdateChatMessageSender updates
-	UpdateChatMessageSenderFilter func(u *UpdateChatMessageSender) bool
-	// UpdateChatNotificationSettingsFilter is a filter for UpdateChatNotificationSettings updates
-	UpdateChatNotificationSettingsFilter func(u *UpdateChatNotificationSettings) bool
-	// UpdateChatOnlineMemberCountFilter is a filter for UpdateChatOnlineMemberCount updates
-	UpdateChatOnlineMemberCountFilter func(u *UpdateChatOnlineMemberCount) bool
-	// UpdateChatPendingJoinRequestsFilter is a filter for UpdateChatPendingJoinRequests updates
-	UpdateChatPendingJoinRequestsFilter func(u *UpdateChatPendingJoinRequests) bool
-	// UpdateChatPermissionsFilter is a filter for UpdateChatPermissions updates
-	UpdateChatPermissionsFilter func(u *UpdateChatPermissions) bool
-	// UpdateChatPhotoFilter is a filter for UpdateChatPhoto updates
-	UpdateChatPhotoFilter func(u *UpdateChatPhoto) bool
-	// UpdateChatPositionFilter is a filter for UpdateChatPosition updates
-	UpdateChatPositionFilter func(u *UpdateChatPosition) bool
-	// UpdateChatReadInboxFilter is a filter for UpdateChatReadInbox updates
-	UpdateChatReadInboxFilter func(u *UpdateChatReadInbox) bool
-	// UpdateChatReadOutboxFilter is a filter for UpdateChatReadOutbox updates
-	UpdateChatReadOutboxFilter func(u *UpdateChatReadOutbox) bool
-	// UpdateChatRemovedFromListFilter is a filter for UpdateChatRemovedFromList updates
-	UpdateChatRemovedFromListFilter func(u *UpdateChatRemovedFromList) bool
-	// UpdateChatReplyMarkupFilter is a filter for UpdateChatReplyMarkup updates
-	UpdateChatReplyMarkupFilter func(u *UpdateChatReplyMarkup) bool
-	// UpdateChatRevenueAmountFilter is a filter for UpdateChatRevenueAmount updates
-	UpdateChatRevenueAmountFilter func(u *UpdateChatRevenueAmount) bool
-	// UpdateChatThemeFilter is a filter for UpdateChatTheme updates
-	UpdateChatThemeFilter func(u *UpdateChatTheme) bool
-	// UpdateChatTitleFilter is a filter for UpdateChatTitle updates
-	UpdateChatTitleFilter func(u *UpdateChatTitle) bool
-	// UpdateChatUnreadMentionCountFilter is a filter for UpdateChatUnreadMentionCount updates
-	UpdateChatUnreadMentionCountFilter func(u *UpdateChatUnreadMentionCount) bool
-	// UpdateChatUnreadPollVoteCountFilter is a filter for UpdateChatUnreadPollVoteCount updates
-	UpdateChatUnreadPollVoteCountFilter func(u *UpdateChatUnreadPollVoteCount) bool
-	// UpdateChatUnreadReactionCountFilter is a filter for UpdateChatUnreadReactionCount updates
-	UpdateChatUnreadReactionCountFilter func(u *UpdateChatUnreadReactionCount) bool
-	// UpdateChatVideoChatFilter is a filter for UpdateChatVideoChat updates
-	UpdateChatVideoChatFilter func(u *UpdateChatVideoChat) bool
-	// UpdateChatViewAsTopicsFilter is a filter for UpdateChatViewAsTopics updates
-	UpdateChatViewAsTopicsFilter func(u *UpdateChatViewAsTopics) bool
-	// UpdateConnectionStateFilter is a filter for UpdateConnectionState updates
-	UpdateConnectionStateFilter func(u *UpdateConnectionState) bool
-	// UpdateContactCloseBirthdaysFilter is a filter for UpdateContactCloseBirthdays updates
-	UpdateContactCloseBirthdaysFilter func(u *UpdateContactCloseBirthdays) bool
-	// UpdateDefaultBackgroundFilter is a filter for UpdateDefaultBackground updates
-	UpdateDefaultBackgroundFilter func(u *UpdateDefaultBackground) bool
-	// UpdateDefaultPaidReactionTypeFilter is a filter for UpdateDefaultPaidReactionType updates
-	UpdateDefaultPaidReactionTypeFilter func(u *UpdateDefaultPaidReactionType) bool
-	// UpdateDefaultReactionTypeFilter is a filter for UpdateDefaultReactionType updates
-	UpdateDefaultReactionTypeFilter func(u *UpdateDefaultReactionType) bool
-	// UpdateDeleteMessagesFilter is a filter for UpdateDeleteMessages updates
-	UpdateDeleteMessagesFilter func(u *UpdateDeleteMessages) bool
-	// UpdateDiceEmojisFilter is a filter for UpdateDiceEmojis updates
-	UpdateDiceEmojisFilter func(u *UpdateDiceEmojis) bool
-	// UpdateDirectMessagesChatTopicFilter is a filter for UpdateDirectMessagesChatTopic updates
-	UpdateDirectMessagesChatTopicFilter func(u *UpdateDirectMessagesChatTopic) bool
-	// UpdateEmojiChatThemesFilter is a filter for UpdateEmojiChatThemes updates
-	UpdateEmojiChatThemesFilter func(u *UpdateEmojiChatThemes) bool
-	// UpdateFavoriteStickersFilter is a filter for UpdateFavoriteStickers updates
-	UpdateFavoriteStickersFilter func(u *UpdateFavoriteStickers) bool
-	// UpdateFileFilter is a filter for UpdateFile updates
-	UpdateFileFilter func(u *UpdateFile) bool
-	// UpdateFileAddedToDownloadsFilter is a filter for UpdateFileAddedToDownloads updates
-	UpdateFileAddedToDownloadsFilter func(u *UpdateFileAddedToDownloads) bool
-	// UpdateFileDownloadFilter is a filter for UpdateFileDownload updates
-	UpdateFileDownloadFilter func(u *UpdateFileDownload) bool
-	// UpdateFileDownloadsFilter is a filter for UpdateFileDownloads updates
-	UpdateFileDownloadsFilter func(u *UpdateFileDownloads) bool
-	// UpdateFileGenerationStartFilter is a filter for UpdateFileGenerationStart updates
-	UpdateFileGenerationStartFilter func(u *UpdateFileGenerationStart) bool
-	// UpdateFileGenerationStopFilter is a filter for UpdateFileGenerationStop updates
-	UpdateFileGenerationStopFilter func(u *UpdateFileGenerationStop) bool
-	// UpdateFileRemovedFromDownloadsFilter is a filter for UpdateFileRemovedFromDownloads updates
-	UpdateFileRemovedFromDownloadsFilter func(u *UpdateFileRemovedFromDownloads) bool
-	// UpdateForumTopicFilter is a filter for UpdateForumTopic updates
-	UpdateForumTopicFilter func(u *UpdateForumTopic) bool
-	// UpdateForumTopicInfoFilter is a filter for UpdateForumTopicInfo updates
-	UpdateForumTopicInfoFilter func(u *UpdateForumTopicInfo) bool
-	// UpdateFreezeStateFilter is a filter for UpdateFreezeState updates
-	UpdateFreezeStateFilter func(u *UpdateFreezeState) bool
-	// UpdateGiftAuctionStateFilter is a filter for UpdateGiftAuctionState updates
-	UpdateGiftAuctionStateFilter func(u *UpdateGiftAuctionState) bool
-	// UpdateGroupCallFilter is a filter for UpdateGroupCall updates
-	UpdateGroupCallFilter func(u *UpdateGroupCall) bool
-	// UpdateGroupCallMessageLevelsFilter is a filter for UpdateGroupCallMessageLevels updates
-	UpdateGroupCallMessageLevelsFilter func(u *UpdateGroupCallMessageLevels) bool
-	// UpdateGroupCallMessagesDeletedFilter is a filter for UpdateGroupCallMessagesDeleted updates
-	UpdateGroupCallMessagesDeletedFilter func(u *UpdateGroupCallMessagesDeleted) bool
-	// UpdateGroupCallMessageSendFailedFilter is a filter for UpdateGroupCallMessageSendFailed updates
-	UpdateGroupCallMessageSendFailedFilter func(u *UpdateGroupCallMessageSendFailed) bool
-	// UpdateGroupCallParticipantFilter is a filter for UpdateGroupCallParticipant updates
-	UpdateGroupCallParticipantFilter func(u *UpdateGroupCallParticipant) bool
-	// UpdateGroupCallParticipantsFilter is a filter for UpdateGroupCallParticipants updates
-	UpdateGroupCallParticipantsFilter func(u *UpdateGroupCallParticipants) bool
-	// UpdateGroupCallVerificationStateFilter is a filter for UpdateGroupCallVerificationState updates
-	UpdateGroupCallVerificationStateFilter func(u *UpdateGroupCallVerificationState) bool
-	// UpdateHavePendingNotificationsFilter is a filter for UpdateHavePendingNotifications updates
-	UpdateHavePendingNotificationsFilter func(u *UpdateHavePendingNotifications) bool
-	// UpdateInstalledStickerSetsFilter is a filter for UpdateInstalledStickerSets updates
-	UpdateInstalledStickerSetsFilter func(u *UpdateInstalledStickerSets) bool
-	// UpdateLanguagePackStringsFilter is a filter for UpdateLanguagePackStrings updates
-	UpdateLanguagePackStringsFilter func(u *UpdateLanguagePackStrings) bool
-	// UpdateLiveStoryTopDonorsFilter is a filter for UpdateLiveStoryTopDonors updates
-	UpdateLiveStoryTopDonorsFilter func(u *UpdateLiveStoryTopDonors) bool
-	// UpdateManagedBotFilter is a filter for UpdateManagedBot updates
-	UpdateManagedBotFilter func(u *UpdateManagedBot) bool
-	// UpdateMessageContainsUnreadPollVotesFilter is a filter for UpdateMessageContainsUnreadPollVotes updates
-	UpdateMessageContainsUnreadPollVotesFilter func(u *UpdateMessageContainsUnreadPollVotes) bool
-	// UpdateMessageContentFilter is a filter for UpdateMessageContent updates
-	UpdateMessageContentFilter func(u *UpdateMessageContent) bool
-	// UpdateMessageContentOpenedFilter is a filter for UpdateMessageContentOpened updates
-	UpdateMessageContentOpenedFilter func(u *UpdateMessageContentOpened) bool
-	// UpdateMessageEditedFilter is a filter for UpdateMessageEdited updates
-	UpdateMessageEditedFilter func(u *UpdateMessageEdited) bool
-	// UpdateMessageFactCheckFilter is a filter for UpdateMessageFactCheck updates
-	UpdateMessageFactCheckFilter func(u *UpdateMessageFactCheck) bool
-	// UpdateMessageInteractionInfoFilter is a filter for UpdateMessageInteractionInfo updates
-	UpdateMessageInteractionInfoFilter func(u *UpdateMessageInteractionInfo) bool
-	// UpdateMessageIsPinnedFilter is a filter for UpdateMessageIsPinned updates
-	UpdateMessageIsPinnedFilter func(u *UpdateMessageIsPinned) bool
-	// UpdateMessageLiveLocationViewedFilter is a filter for UpdateMessageLiveLocationViewed updates
-	UpdateMessageLiveLocationViewedFilter func(u *UpdateMessageLiveLocationViewed) bool
-	// UpdateMessageMentionReadFilter is a filter for UpdateMessageMentionRead updates
-	UpdateMessageMentionReadFilter func(u *UpdateMessageMentionRead) bool
-	// UpdateMessageReactionFilter is a filter for UpdateMessageReaction updates
-	UpdateMessageReactionFilter func(u *UpdateMessageReaction) bool
-	// UpdateMessageReactionsFilter is a filter for UpdateMessageReactions updates
-	UpdateMessageReactionsFilter func(u *UpdateMessageReactions) bool
-	// UpdateMessageSendAcknowledgedFilter is a filter for UpdateMessageSendAcknowledged updates
-	UpdateMessageSendAcknowledgedFilter func(u *UpdateMessageSendAcknowledged) bool
-	// UpdateMessageSendFailedFilter is a filter for UpdateMessageSendFailed updates
-	UpdateMessageSendFailedFilter func(u *UpdateMessageSendFailed) bool
-	// UpdateMessageSendSucceededFilter is a filter for UpdateMessageSendSucceeded updates
-	UpdateMessageSendSucceededFilter func(u *UpdateMessageSendSucceeded) bool
-	// UpdateMessageSuggestedPostInfoFilter is a filter for UpdateMessageSuggestedPostInfo updates
-	UpdateMessageSuggestedPostInfoFilter func(u *UpdateMessageSuggestedPostInfo) bool
-	// UpdateMessageUnreadReactionsFilter is a filter for UpdateMessageUnreadReactions updates
-	UpdateMessageUnreadReactionsFilter func(u *UpdateMessageUnreadReactions) bool
-	// UpdateNewBusinessCallbackQueryFilter is a filter for UpdateNewBusinessCallbackQuery updates
-	UpdateNewBusinessCallbackQueryFilter func(u *UpdateNewBusinessCallbackQuery) bool
-	// UpdateNewBusinessMessageFilter is a filter for UpdateNewBusinessMessage updates
-	UpdateNewBusinessMessageFilter func(u *UpdateNewBusinessMessage) bool
-	// UpdateNewCallbackQueryFilter is a filter for UpdateNewCallbackQuery updates
-	UpdateNewCallbackQueryFilter func(u *UpdateNewCallbackQuery) bool
-	// UpdateNewCallSignalingDataFilter is a filter for UpdateNewCallSignalingData updates
-	UpdateNewCallSignalingDataFilter func(u *UpdateNewCallSignalingData) bool
-	// UpdateNewChatFilter is a filter for UpdateNewChat updates
-	UpdateNewChatFilter func(u *UpdateNewChat) bool
-	// UpdateNewChatJoinRequestFilter is a filter for UpdateNewChatJoinRequest updates
-	UpdateNewChatJoinRequestFilter func(u *UpdateNewChatJoinRequest) bool
-	// UpdateNewChosenInlineResultFilter is a filter for UpdateNewChosenInlineResult updates
-	UpdateNewChosenInlineResultFilter func(u *UpdateNewChosenInlineResult) bool
-	// UpdateNewCustomEventFilter is a filter for UpdateNewCustomEvent updates
-	UpdateNewCustomEventFilter func(u *UpdateNewCustomEvent) bool
-	// UpdateNewCustomQueryFilter is a filter for UpdateNewCustomQuery updates
-	UpdateNewCustomQueryFilter func(u *UpdateNewCustomQuery) bool
-	// UpdateNewGroupCallMessageFilter is a filter for UpdateNewGroupCallMessage updates
-	UpdateNewGroupCallMessageFilter func(u *UpdateNewGroupCallMessage) bool
-	// UpdateNewGroupCallPaidReactionFilter is a filter for UpdateNewGroupCallPaidReaction updates
-	UpdateNewGroupCallPaidReactionFilter func(u *UpdateNewGroupCallPaidReaction) bool
-	// UpdateNewGuestQueryFilter is a filter for UpdateNewGuestQuery updates
-	UpdateNewGuestQueryFilter func(u *UpdateNewGuestQuery) bool
-	// UpdateNewInlineCallbackQueryFilter is a filter for UpdateNewInlineCallbackQuery updates
-	UpdateNewInlineCallbackQueryFilter func(u *UpdateNewInlineCallbackQuery) bool
-	// UpdateNewInlineQueryFilter is a filter for UpdateNewInlineQuery updates
-	UpdateNewInlineQueryFilter func(u *UpdateNewInlineQuery) bool
-	// UpdateNewMessageFilter is a filter for UpdateNewMessage updates
-	UpdateNewMessageFilter func(u *UpdateNewMessage) bool
-	// UpdateNewOauthRequestFilter is a filter for UpdateNewOauthRequest updates
-	UpdateNewOauthRequestFilter func(u *UpdateNewOauthRequest) bool
-	// UpdateNewPreCheckoutQueryFilter is a filter for UpdateNewPreCheckoutQuery updates
-	UpdateNewPreCheckoutQueryFilter func(u *UpdateNewPreCheckoutQuery) bool
-	// UpdateNewShippingQueryFilter is a filter for UpdateNewShippingQuery updates
-	UpdateNewShippingQueryFilter func(u *UpdateNewShippingQuery) bool
-	// UpdateNotificationFilter is a filter for UpdateNotification updates
-	UpdateNotificationFilter func(u *UpdateNotification) bool
-	// UpdateNotificationGroupFilter is a filter for UpdateNotificationGroup updates
-	UpdateNotificationGroupFilter func(u *UpdateNotificationGroup) bool
-	// UpdateOptionFilter is a filter for UpdateOption updates
-	UpdateOptionFilter func(u *UpdateOption) bool
-	// UpdateOwnedStarCountFilter is a filter for UpdateOwnedStarCount updates
-	UpdateOwnedStarCountFilter func(u *UpdateOwnedStarCount) bool
-	// UpdateOwnedTonCountFilter is a filter for UpdateOwnedTonCount updates
-	UpdateOwnedTonCountFilter func(u *UpdateOwnedTonCount) bool
-	// UpdatePaidMediaPurchasedFilter is a filter for UpdatePaidMediaPurchased updates
-	UpdatePaidMediaPurchasedFilter func(u *UpdatePaidMediaPurchased) bool
-	// UpdatePendingTextMessageFilter is a filter for UpdatePendingTextMessage updates
-	UpdatePendingTextMessageFilter func(u *UpdatePendingTextMessage) bool
-	// UpdatePollFilter is a filter for UpdatePoll updates
-	UpdatePollFilter func(u *UpdatePoll) bool
-	// UpdatePollAnswerFilter is a filter for UpdatePollAnswer updates
-	UpdatePollAnswerFilter func(u *UpdatePollAnswer) bool
-	// UpdateProfileAccentColorsFilter is a filter for UpdateProfileAccentColors updates
-	UpdateProfileAccentColorsFilter func(u *UpdateProfileAccentColors) bool
-	// UpdateQuickReplyShortcutFilter is a filter for UpdateQuickReplyShortcut updates
-	UpdateQuickReplyShortcutFilter func(u *UpdateQuickReplyShortcut) bool
-	// UpdateQuickReplyShortcutDeletedFilter is a filter for UpdateQuickReplyShortcutDeleted updates
-	UpdateQuickReplyShortcutDeletedFilter func(u *UpdateQuickReplyShortcutDeleted) bool
-	// UpdateQuickReplyShortcutMessagesFilter is a filter for UpdateQuickReplyShortcutMessages updates
-	UpdateQuickReplyShortcutMessagesFilter func(u *UpdateQuickReplyShortcutMessages) bool
-	// UpdateQuickReplyShortcutsFilter is a filter for UpdateQuickReplyShortcuts updates
-	UpdateQuickReplyShortcutsFilter func(u *UpdateQuickReplyShortcuts) bool
-	// UpdateReactionNotificationSettingsFilter is a filter for UpdateReactionNotificationSettings updates
-	UpdateReactionNotificationSettingsFilter func(u *UpdateReactionNotificationSettings) bool
-	// UpdateRecentStickersFilter is a filter for UpdateRecentStickers updates
-	UpdateRecentStickersFilter func(u *UpdateRecentStickers) bool
-	// UpdatesFilter is a filter for Updates updates
-	UpdatesFilter func(u *Updates) bool
-	// UpdateSavedAnimationsFilter is a filter for UpdateSavedAnimations updates
-	UpdateSavedAnimationsFilter func(u *UpdateSavedAnimations) bool
-	// UpdateSavedMessagesTagsFilter is a filter for UpdateSavedMessagesTags updates
-	UpdateSavedMessagesTagsFilter func(u *UpdateSavedMessagesTags) bool
-	// UpdateSavedMessagesTopicFilter is a filter for UpdateSavedMessagesTopic updates
-	UpdateSavedMessagesTopicFilter func(u *UpdateSavedMessagesTopic) bool
-	// UpdateSavedMessagesTopicCountFilter is a filter for UpdateSavedMessagesTopicCount updates
-	UpdateSavedMessagesTopicCountFilter func(u *UpdateSavedMessagesTopicCount) bool
-	// UpdateSavedNotificationSoundsFilter is a filter for UpdateSavedNotificationSounds updates
-	UpdateSavedNotificationSoundsFilter func(u *UpdateSavedNotificationSounds) bool
-	// UpdateScopeNotificationSettingsFilter is a filter for UpdateScopeNotificationSettings updates
-	UpdateScopeNotificationSettingsFilter func(u *UpdateScopeNotificationSettings) bool
-	// UpdateSecretChatFilter is a filter for UpdateSecretChat updates
-	UpdateSecretChatFilter func(u *UpdateSecretChat) bool
-	// UpdateServiceNotificationFilter is a filter for UpdateServiceNotification updates
-	UpdateServiceNotificationFilter func(u *UpdateServiceNotification) bool
-	// UpdateSpeechRecognitionTrialFilter is a filter for UpdateSpeechRecognitionTrial updates
-	UpdateSpeechRecognitionTrialFilter func(u *UpdateSpeechRecognitionTrial) bool
-	// UpdateSpeedLimitNotificationFilter is a filter for UpdateSpeedLimitNotification updates
-	UpdateSpeedLimitNotificationFilter func(u *UpdateSpeedLimitNotification) bool
-	// UpdateStakeDiceStateFilter is a filter for UpdateStakeDiceState updates
-	UpdateStakeDiceStateFilter func(u *UpdateStakeDiceState) bool
-	// UpdateStarRevenueStatusFilter is a filter for UpdateStarRevenueStatus updates
-	UpdateStarRevenueStatusFilter func(u *UpdateStarRevenueStatus) bool
-	// UpdateStickerSetFilter is a filter for UpdateStickerSet updates
-	UpdateStickerSetFilter func(u *UpdateStickerSet) bool
-	// UpdateStoryFilter is a filter for UpdateStory updates
-	UpdateStoryFilter func(u *UpdateStory) bool
-	// UpdateStoryDeletedFilter is a filter for UpdateStoryDeleted updates
-	UpdateStoryDeletedFilter func(u *UpdateStoryDeleted) bool
-	// UpdateStoryListChatCountFilter is a filter for UpdateStoryListChatCount updates
-	UpdateStoryListChatCountFilter func(u *UpdateStoryListChatCount) bool
-	// UpdateStoryPostFailedFilter is a filter for UpdateStoryPostFailed updates
-	UpdateStoryPostFailedFilter func(u *UpdateStoryPostFailed) bool
-	// UpdateStoryPostSucceededFilter is a filter for UpdateStoryPostSucceeded updates
-	UpdateStoryPostSucceededFilter func(u *UpdateStoryPostSucceeded) bool
-	// UpdateStoryStealthModeFilter is a filter for UpdateStoryStealthMode updates
-	UpdateStoryStealthModeFilter func(u *UpdateStoryStealthMode) bool
-	// UpdateSuggestedActionsFilter is a filter for UpdateSuggestedActions updates
-	UpdateSuggestedActionsFilter func(u *UpdateSuggestedActions) bool
-	// UpdateSupergroupFilter is a filter for UpdateSupergroup updates
-	UpdateSupergroupFilter func(u *UpdateSupergroup) bool
-	// UpdateSupergroupFullInfoFilter is a filter for UpdateSupergroupFullInfo updates
-	UpdateSupergroupFullInfoFilter func(u *UpdateSupergroupFullInfo) bool
-	// UpdateTermsOfServiceFilter is a filter for UpdateTermsOfService updates
-	UpdateTermsOfServiceFilter func(u *UpdateTermsOfService) bool
-	// UpdateTextCompositionStylesFilter is a filter for UpdateTextCompositionStyles updates
-	UpdateTextCompositionStylesFilter func(u *UpdateTextCompositionStyles) bool
-	// UpdateTonRevenueStatusFilter is a filter for UpdateTonRevenueStatus updates
-	UpdateTonRevenueStatusFilter func(u *UpdateTonRevenueStatus) bool
-	// UpdateTopicMessageCountFilter is a filter for UpdateTopicMessageCount updates
-	UpdateTopicMessageCountFilter func(u *UpdateTopicMessageCount) bool
-	// UpdateTrendingStickerSetsFilter is a filter for UpdateTrendingStickerSets updates
-	UpdateTrendingStickerSetsFilter func(u *UpdateTrendingStickerSets) bool
-	// UpdateTrustedMiniAppBotsFilter is a filter for UpdateTrustedMiniAppBots updates
-	UpdateTrustedMiniAppBotsFilter func(u *UpdateTrustedMiniAppBots) bool
-	// UpdateUnconfirmedSessionFilter is a filter for UpdateUnconfirmedSession updates
-	UpdateUnconfirmedSessionFilter func(u *UpdateUnconfirmedSession) bool
-	// UpdateUnreadChatCountFilter is a filter for UpdateUnreadChatCount updates
-	UpdateUnreadChatCountFilter func(u *UpdateUnreadChatCount) bool
-	// UpdateUnreadMessageCountFilter is a filter for UpdateUnreadMessageCount updates
-	UpdateUnreadMessageCountFilter func(u *UpdateUnreadMessageCount) bool
-	// UpdateUserFilter is a filter for UpdateUser updates
-	UpdateUserFilter func(u *UpdateUser) bool
-	// UpdateUserFullInfoFilter is a filter for UpdateUserFullInfo updates
-	UpdateUserFullInfoFilter func(u *UpdateUserFullInfo) bool
-	// UpdateUserPrivacySettingRulesFilter is a filter for UpdateUserPrivacySettingRules updates
-	UpdateUserPrivacySettingRulesFilter func(u *UpdateUserPrivacySettingRules) bool
-	// UpdateUserStatusFilter is a filter for UpdateUserStatus updates
-	UpdateUserStatusFilter func(u *UpdateUserStatus) bool
-	// UpdateVideoPublishedFilter is a filter for UpdateVideoPublished updates
-	UpdateVideoPublishedFilter func(u *UpdateVideoPublished) bool
-	// UpdateWebAppMessageSentFilter is a filter for UpdateWebAppMessageSent updates
-	UpdateWebAppMessageSentFilter func(u *UpdateWebAppMessageSent) bool
-	// MessageFilter is a filter for Message type
-	MessageFilter func(msg *Message) bool
-)
-
 // updateAccentColorsHandler handles UpdateAccentColors updates
 type updateAccentColorsHandler struct {
-	filter   UpdateAccentColorsFilter
+	filter   func(u *UpdateAccentColors) bool
 	response func(client *Client, update *UpdateAccentColors) error
 }
 
@@ -392,18 +25,18 @@ func (h *updateAccentColorsHandler) HandleUpdate(client *Client, update TlObject
 }
 
 // OnUpdateAccentColors registers a handler for UpdateAccentColors updates with default group (0)
-func (c *Client) OnUpdateAccentColors(handler func(client *Client, update *UpdateAccentColors) error, filter UpdateAccentColorsFilter) {
+func (c *Client) OnUpdateAccentColors(handler func(client *Client, update *UpdateAccentColors) error, filter func(u *UpdateAccentColors) bool) {
 	c.AddUpdateAccentColorsHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateAccentColorsHandlerGroup registers a handler for UpdateAccentColors updates with a specific group
-func (c *Client) AddUpdateAccentColorsHandlerGroup(handler func(client *Client, update *UpdateAccentColors) error, filter UpdateAccentColorsFilter, group int) {
+func (c *Client) AddUpdateAccentColorsHandlerGroup(handler func(client *Client, update *UpdateAccentColors) error, filter func(u *UpdateAccentColors) bool, group int) {
 	c.AddHandlerGroup(&updateAccentColorsHandler{filter: filter, response: handler}, group)
 }
 
 // updateActiveEmojiReactionsHandler handles UpdateActiveEmojiReactions updates
 type updateActiveEmojiReactionsHandler struct {
-	filter   UpdateActiveEmojiReactionsFilter
+	filter   func(u *UpdateActiveEmojiReactions) bool
 	response func(client *Client, update *UpdateActiveEmojiReactions) error
 }
 
@@ -423,18 +56,18 @@ func (h *updateActiveEmojiReactionsHandler) HandleUpdate(client *Client, update 
 }
 
 // OnUpdateActiveEmojiReactions registers a handler for UpdateActiveEmojiReactions updates with default group (0)
-func (c *Client) OnUpdateActiveEmojiReactions(handler func(client *Client, update *UpdateActiveEmojiReactions) error, filter UpdateActiveEmojiReactionsFilter) {
+func (c *Client) OnUpdateActiveEmojiReactions(handler func(client *Client, update *UpdateActiveEmojiReactions) error, filter func(u *UpdateActiveEmojiReactions) bool) {
 	c.AddUpdateActiveEmojiReactionsHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateActiveEmojiReactionsHandlerGroup registers a handler for UpdateActiveEmojiReactions updates with a specific group
-func (c *Client) AddUpdateActiveEmojiReactionsHandlerGroup(handler func(client *Client, update *UpdateActiveEmojiReactions) error, filter UpdateActiveEmojiReactionsFilter, group int) {
+func (c *Client) AddUpdateActiveEmojiReactionsHandlerGroup(handler func(client *Client, update *UpdateActiveEmojiReactions) error, filter func(u *UpdateActiveEmojiReactions) bool, group int) {
 	c.AddHandlerGroup(&updateActiveEmojiReactionsHandler{filter: filter, response: handler}, group)
 }
 
 // updateActiveGiftAuctionsHandler handles UpdateActiveGiftAuctions updates
 type updateActiveGiftAuctionsHandler struct {
-	filter   UpdateActiveGiftAuctionsFilter
+	filter   func(u *UpdateActiveGiftAuctions) bool
 	response func(client *Client, update *UpdateActiveGiftAuctions) error
 }
 
@@ -454,18 +87,18 @@ func (h *updateActiveGiftAuctionsHandler) HandleUpdate(client *Client, update Tl
 }
 
 // OnUpdateActiveGiftAuctions registers a handler for UpdateActiveGiftAuctions updates with default group (0)
-func (c *Client) OnUpdateActiveGiftAuctions(handler func(client *Client, update *UpdateActiveGiftAuctions) error, filter UpdateActiveGiftAuctionsFilter) {
+func (c *Client) OnUpdateActiveGiftAuctions(handler func(client *Client, update *UpdateActiveGiftAuctions) error, filter func(u *UpdateActiveGiftAuctions) bool) {
 	c.AddUpdateActiveGiftAuctionsHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateActiveGiftAuctionsHandlerGroup registers a handler for UpdateActiveGiftAuctions updates with a specific group
-func (c *Client) AddUpdateActiveGiftAuctionsHandlerGroup(handler func(client *Client, update *UpdateActiveGiftAuctions) error, filter UpdateActiveGiftAuctionsFilter, group int) {
+func (c *Client) AddUpdateActiveGiftAuctionsHandlerGroup(handler func(client *Client, update *UpdateActiveGiftAuctions) error, filter func(u *UpdateActiveGiftAuctions) bool, group int) {
 	c.AddHandlerGroup(&updateActiveGiftAuctionsHandler{filter: filter, response: handler}, group)
 }
 
 // updateActiveLiveLocationMessagesHandler handles UpdateActiveLiveLocationMessages updates
 type updateActiveLiveLocationMessagesHandler struct {
-	filter   UpdateActiveLiveLocationMessagesFilter
+	filter   func(u *UpdateActiveLiveLocationMessages) bool
 	response func(client *Client, update *UpdateActiveLiveLocationMessages) error
 }
 
@@ -485,18 +118,18 @@ func (h *updateActiveLiveLocationMessagesHandler) HandleUpdate(client *Client, u
 }
 
 // OnUpdateActiveLiveLocationMessages registers a handler for UpdateActiveLiveLocationMessages updates with default group (0)
-func (c *Client) OnUpdateActiveLiveLocationMessages(handler func(client *Client, update *UpdateActiveLiveLocationMessages) error, filter UpdateActiveLiveLocationMessagesFilter) {
+func (c *Client) OnUpdateActiveLiveLocationMessages(handler func(client *Client, update *UpdateActiveLiveLocationMessages) error, filter func(u *UpdateActiveLiveLocationMessages) bool) {
 	c.AddUpdateActiveLiveLocationMessagesHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateActiveLiveLocationMessagesHandlerGroup registers a handler for UpdateActiveLiveLocationMessages updates with a specific group
-func (c *Client) AddUpdateActiveLiveLocationMessagesHandlerGroup(handler func(client *Client, update *UpdateActiveLiveLocationMessages) error, filter UpdateActiveLiveLocationMessagesFilter, group int) {
+func (c *Client) AddUpdateActiveLiveLocationMessagesHandlerGroup(handler func(client *Client, update *UpdateActiveLiveLocationMessages) error, filter func(u *UpdateActiveLiveLocationMessages) bool, group int) {
 	c.AddHandlerGroup(&updateActiveLiveLocationMessagesHandler{filter: filter, response: handler}, group)
 }
 
 // updateActiveNotificationsHandler handles UpdateActiveNotifications updates
 type updateActiveNotificationsHandler struct {
-	filter   UpdateActiveNotificationsFilter
+	filter   func(u *UpdateActiveNotifications) bool
 	response func(client *Client, update *UpdateActiveNotifications) error
 }
 
@@ -516,18 +149,18 @@ func (h *updateActiveNotificationsHandler) HandleUpdate(client *Client, update T
 }
 
 // OnUpdateActiveNotifications registers a handler for UpdateActiveNotifications updates with default group (0)
-func (c *Client) OnUpdateActiveNotifications(handler func(client *Client, update *UpdateActiveNotifications) error, filter UpdateActiveNotificationsFilter) {
+func (c *Client) OnUpdateActiveNotifications(handler func(client *Client, update *UpdateActiveNotifications) error, filter func(u *UpdateActiveNotifications) bool) {
 	c.AddUpdateActiveNotificationsHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateActiveNotificationsHandlerGroup registers a handler for UpdateActiveNotifications updates with a specific group
-func (c *Client) AddUpdateActiveNotificationsHandlerGroup(handler func(client *Client, update *UpdateActiveNotifications) error, filter UpdateActiveNotificationsFilter, group int) {
+func (c *Client) AddUpdateActiveNotificationsHandlerGroup(handler func(client *Client, update *UpdateActiveNotifications) error, filter func(u *UpdateActiveNotifications) bool, group int) {
 	c.AddHandlerGroup(&updateActiveNotificationsHandler{filter: filter, response: handler}, group)
 }
 
 // updateAgeVerificationParametersHandler handles UpdateAgeVerificationParameters updates
 type updateAgeVerificationParametersHandler struct {
-	filter   UpdateAgeVerificationParametersFilter
+	filter   func(u *UpdateAgeVerificationParameters) bool
 	response func(client *Client, update *UpdateAgeVerificationParameters) error
 }
 
@@ -547,18 +180,18 @@ func (h *updateAgeVerificationParametersHandler) HandleUpdate(client *Client, up
 }
 
 // OnUpdateAgeVerificationParameters registers a handler for UpdateAgeVerificationParameters updates with default group (0)
-func (c *Client) OnUpdateAgeVerificationParameters(handler func(client *Client, update *UpdateAgeVerificationParameters) error, filter UpdateAgeVerificationParametersFilter) {
+func (c *Client) OnUpdateAgeVerificationParameters(handler func(client *Client, update *UpdateAgeVerificationParameters) error, filter func(u *UpdateAgeVerificationParameters) bool) {
 	c.AddUpdateAgeVerificationParametersHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateAgeVerificationParametersHandlerGroup registers a handler for UpdateAgeVerificationParameters updates with a specific group
-func (c *Client) AddUpdateAgeVerificationParametersHandlerGroup(handler func(client *Client, update *UpdateAgeVerificationParameters) error, filter UpdateAgeVerificationParametersFilter, group int) {
+func (c *Client) AddUpdateAgeVerificationParametersHandlerGroup(handler func(client *Client, update *UpdateAgeVerificationParameters) error, filter func(u *UpdateAgeVerificationParameters) bool, group int) {
 	c.AddHandlerGroup(&updateAgeVerificationParametersHandler{filter: filter, response: handler}, group)
 }
 
 // updateAnimatedEmojiMessageClickedHandler handles UpdateAnimatedEmojiMessageClicked updates
 type updateAnimatedEmojiMessageClickedHandler struct {
-	filter   UpdateAnimatedEmojiMessageClickedFilter
+	filter   func(u *UpdateAnimatedEmojiMessageClicked) bool
 	response func(client *Client, update *UpdateAnimatedEmojiMessageClicked) error
 }
 
@@ -578,18 +211,18 @@ func (h *updateAnimatedEmojiMessageClickedHandler) HandleUpdate(client *Client, 
 }
 
 // OnUpdateAnimatedEmojiMessageClicked registers a handler for UpdateAnimatedEmojiMessageClicked updates with default group (0)
-func (c *Client) OnUpdateAnimatedEmojiMessageClicked(handler func(client *Client, update *UpdateAnimatedEmojiMessageClicked) error, filter UpdateAnimatedEmojiMessageClickedFilter) {
+func (c *Client) OnUpdateAnimatedEmojiMessageClicked(handler func(client *Client, update *UpdateAnimatedEmojiMessageClicked) error, filter func(u *UpdateAnimatedEmojiMessageClicked) bool) {
 	c.AddUpdateAnimatedEmojiMessageClickedHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateAnimatedEmojiMessageClickedHandlerGroup registers a handler for UpdateAnimatedEmojiMessageClicked updates with a specific group
-func (c *Client) AddUpdateAnimatedEmojiMessageClickedHandlerGroup(handler func(client *Client, update *UpdateAnimatedEmojiMessageClicked) error, filter UpdateAnimatedEmojiMessageClickedFilter, group int) {
+func (c *Client) AddUpdateAnimatedEmojiMessageClickedHandlerGroup(handler func(client *Client, update *UpdateAnimatedEmojiMessageClicked) error, filter func(u *UpdateAnimatedEmojiMessageClicked) bool, group int) {
 	c.AddHandlerGroup(&updateAnimatedEmojiMessageClickedHandler{filter: filter, response: handler}, group)
 }
 
 // updateAnimationSearchParametersHandler handles UpdateAnimationSearchParameters updates
 type updateAnimationSearchParametersHandler struct {
-	filter   UpdateAnimationSearchParametersFilter
+	filter   func(u *UpdateAnimationSearchParameters) bool
 	response func(client *Client, update *UpdateAnimationSearchParameters) error
 }
 
@@ -609,18 +242,18 @@ func (h *updateAnimationSearchParametersHandler) HandleUpdate(client *Client, up
 }
 
 // OnUpdateAnimationSearchParameters registers a handler for UpdateAnimationSearchParameters updates with default group (0)
-func (c *Client) OnUpdateAnimationSearchParameters(handler func(client *Client, update *UpdateAnimationSearchParameters) error, filter UpdateAnimationSearchParametersFilter) {
+func (c *Client) OnUpdateAnimationSearchParameters(handler func(client *Client, update *UpdateAnimationSearchParameters) error, filter func(u *UpdateAnimationSearchParameters) bool) {
 	c.AddUpdateAnimationSearchParametersHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateAnimationSearchParametersHandlerGroup registers a handler for UpdateAnimationSearchParameters updates with a specific group
-func (c *Client) AddUpdateAnimationSearchParametersHandlerGroup(handler func(client *Client, update *UpdateAnimationSearchParameters) error, filter UpdateAnimationSearchParametersFilter, group int) {
+func (c *Client) AddUpdateAnimationSearchParametersHandlerGroup(handler func(client *Client, update *UpdateAnimationSearchParameters) error, filter func(u *UpdateAnimationSearchParameters) bool, group int) {
 	c.AddHandlerGroup(&updateAnimationSearchParametersHandler{filter: filter, response: handler}, group)
 }
 
 // updateApplicationRecaptchaVerificationRequiredHandler handles UpdateApplicationRecaptchaVerificationRequired updates
 type updateApplicationRecaptchaVerificationRequiredHandler struct {
-	filter   UpdateApplicationRecaptchaVerificationRequiredFilter
+	filter   func(u *UpdateApplicationRecaptchaVerificationRequired) bool
 	response func(client *Client, update *UpdateApplicationRecaptchaVerificationRequired) error
 }
 
@@ -640,18 +273,18 @@ func (h *updateApplicationRecaptchaVerificationRequiredHandler) HandleUpdate(cli
 }
 
 // OnUpdateApplicationRecaptchaVerificationRequired registers a handler for UpdateApplicationRecaptchaVerificationRequired updates with default group (0)
-func (c *Client) OnUpdateApplicationRecaptchaVerificationRequired(handler func(client *Client, update *UpdateApplicationRecaptchaVerificationRequired) error, filter UpdateApplicationRecaptchaVerificationRequiredFilter) {
+func (c *Client) OnUpdateApplicationRecaptchaVerificationRequired(handler func(client *Client, update *UpdateApplicationRecaptchaVerificationRequired) error, filter func(u *UpdateApplicationRecaptchaVerificationRequired) bool) {
 	c.AddUpdateApplicationRecaptchaVerificationRequiredHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateApplicationRecaptchaVerificationRequiredHandlerGroup registers a handler for UpdateApplicationRecaptchaVerificationRequired updates with a specific group
-func (c *Client) AddUpdateApplicationRecaptchaVerificationRequiredHandlerGroup(handler func(client *Client, update *UpdateApplicationRecaptchaVerificationRequired) error, filter UpdateApplicationRecaptchaVerificationRequiredFilter, group int) {
+func (c *Client) AddUpdateApplicationRecaptchaVerificationRequiredHandlerGroup(handler func(client *Client, update *UpdateApplicationRecaptchaVerificationRequired) error, filter func(u *UpdateApplicationRecaptchaVerificationRequired) bool, group int) {
 	c.AddHandlerGroup(&updateApplicationRecaptchaVerificationRequiredHandler{filter: filter, response: handler}, group)
 }
 
 // updateApplicationVerificationRequiredHandler handles UpdateApplicationVerificationRequired updates
 type updateApplicationVerificationRequiredHandler struct {
-	filter   UpdateApplicationVerificationRequiredFilter
+	filter   func(u *UpdateApplicationVerificationRequired) bool
 	response func(client *Client, update *UpdateApplicationVerificationRequired) error
 }
 
@@ -671,18 +304,18 @@ func (h *updateApplicationVerificationRequiredHandler) HandleUpdate(client *Clie
 }
 
 // OnUpdateApplicationVerificationRequired registers a handler for UpdateApplicationVerificationRequired updates with default group (0)
-func (c *Client) OnUpdateApplicationVerificationRequired(handler func(client *Client, update *UpdateApplicationVerificationRequired) error, filter UpdateApplicationVerificationRequiredFilter) {
+func (c *Client) OnUpdateApplicationVerificationRequired(handler func(client *Client, update *UpdateApplicationVerificationRequired) error, filter func(u *UpdateApplicationVerificationRequired) bool) {
 	c.AddUpdateApplicationVerificationRequiredHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateApplicationVerificationRequiredHandlerGroup registers a handler for UpdateApplicationVerificationRequired updates with a specific group
-func (c *Client) AddUpdateApplicationVerificationRequiredHandlerGroup(handler func(client *Client, update *UpdateApplicationVerificationRequired) error, filter UpdateApplicationVerificationRequiredFilter, group int) {
+func (c *Client) AddUpdateApplicationVerificationRequiredHandlerGroup(handler func(client *Client, update *UpdateApplicationVerificationRequired) error, filter func(u *UpdateApplicationVerificationRequired) bool, group int) {
 	c.AddHandlerGroup(&updateApplicationVerificationRequiredHandler{filter: filter, response: handler}, group)
 }
 
 // updateAttachmentMenuBotsHandler handles UpdateAttachmentMenuBots updates
 type updateAttachmentMenuBotsHandler struct {
-	filter   UpdateAttachmentMenuBotsFilter
+	filter   func(u *UpdateAttachmentMenuBots) bool
 	response func(client *Client, update *UpdateAttachmentMenuBots) error
 }
 
@@ -702,18 +335,18 @@ func (h *updateAttachmentMenuBotsHandler) HandleUpdate(client *Client, update Tl
 }
 
 // OnUpdateAttachmentMenuBots registers a handler for UpdateAttachmentMenuBots updates with default group (0)
-func (c *Client) OnUpdateAttachmentMenuBots(handler func(client *Client, update *UpdateAttachmentMenuBots) error, filter UpdateAttachmentMenuBotsFilter) {
+func (c *Client) OnUpdateAttachmentMenuBots(handler func(client *Client, update *UpdateAttachmentMenuBots) error, filter func(u *UpdateAttachmentMenuBots) bool) {
 	c.AddUpdateAttachmentMenuBotsHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateAttachmentMenuBotsHandlerGroup registers a handler for UpdateAttachmentMenuBots updates with a specific group
-func (c *Client) AddUpdateAttachmentMenuBotsHandlerGroup(handler func(client *Client, update *UpdateAttachmentMenuBots) error, filter UpdateAttachmentMenuBotsFilter, group int) {
+func (c *Client) AddUpdateAttachmentMenuBotsHandlerGroup(handler func(client *Client, update *UpdateAttachmentMenuBots) error, filter func(u *UpdateAttachmentMenuBots) bool, group int) {
 	c.AddHandlerGroup(&updateAttachmentMenuBotsHandler{filter: filter, response: handler}, group)
 }
 
 // updateAuthorizationStateHandler handles UpdateAuthorizationState updates
 type updateAuthorizationStateHandler struct {
-	filter   UpdateAuthorizationStateFilter
+	filter   func(u *UpdateAuthorizationState) bool
 	response func(client *Client, update *UpdateAuthorizationState) error
 }
 
@@ -733,18 +366,18 @@ func (h *updateAuthorizationStateHandler) HandleUpdate(client *Client, update Tl
 }
 
 // OnUpdateAuthorizationState registers a handler for UpdateAuthorizationState updates with default group (0)
-func (c *Client) OnUpdateAuthorizationState(handler func(client *Client, update *UpdateAuthorizationState) error, filter UpdateAuthorizationStateFilter) {
+func (c *Client) OnUpdateAuthorizationState(handler func(client *Client, update *UpdateAuthorizationState) error, filter func(u *UpdateAuthorizationState) bool) {
 	c.AddUpdateAuthorizationStateHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateAuthorizationStateHandlerGroup registers a handler for UpdateAuthorizationState updates with a specific group
-func (c *Client) AddUpdateAuthorizationStateHandlerGroup(handler func(client *Client, update *UpdateAuthorizationState) error, filter UpdateAuthorizationStateFilter, group int) {
+func (c *Client) AddUpdateAuthorizationStateHandlerGroup(handler func(client *Client, update *UpdateAuthorizationState) error, filter func(u *UpdateAuthorizationState) bool, group int) {
 	c.AddHandlerGroup(&updateAuthorizationStateHandler{filter: filter, response: handler}, group)
 }
 
 // updateAutosaveSettingsHandler handles UpdateAutosaveSettings updates
 type updateAutosaveSettingsHandler struct {
-	filter   UpdateAutosaveSettingsFilter
+	filter   func(u *UpdateAutosaveSettings) bool
 	response func(client *Client, update *UpdateAutosaveSettings) error
 }
 
@@ -764,18 +397,18 @@ func (h *updateAutosaveSettingsHandler) HandleUpdate(client *Client, update TlOb
 }
 
 // OnUpdateAutosaveSettings registers a handler for UpdateAutosaveSettings updates with default group (0)
-func (c *Client) OnUpdateAutosaveSettings(handler func(client *Client, update *UpdateAutosaveSettings) error, filter UpdateAutosaveSettingsFilter) {
+func (c *Client) OnUpdateAutosaveSettings(handler func(client *Client, update *UpdateAutosaveSettings) error, filter func(u *UpdateAutosaveSettings) bool) {
 	c.AddUpdateAutosaveSettingsHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateAutosaveSettingsHandlerGroup registers a handler for UpdateAutosaveSettings updates with a specific group
-func (c *Client) AddUpdateAutosaveSettingsHandlerGroup(handler func(client *Client, update *UpdateAutosaveSettings) error, filter UpdateAutosaveSettingsFilter, group int) {
+func (c *Client) AddUpdateAutosaveSettingsHandlerGroup(handler func(client *Client, update *UpdateAutosaveSettings) error, filter func(u *UpdateAutosaveSettings) bool, group int) {
 	c.AddHandlerGroup(&updateAutosaveSettingsHandler{filter: filter, response: handler}, group)
 }
 
 // updateAvailableMessageEffectsHandler handles UpdateAvailableMessageEffects updates
 type updateAvailableMessageEffectsHandler struct {
-	filter   UpdateAvailableMessageEffectsFilter
+	filter   func(u *UpdateAvailableMessageEffects) bool
 	response func(client *Client, update *UpdateAvailableMessageEffects) error
 }
 
@@ -795,18 +428,18 @@ func (h *updateAvailableMessageEffectsHandler) HandleUpdate(client *Client, upda
 }
 
 // OnUpdateAvailableMessageEffects registers a handler for UpdateAvailableMessageEffects updates with default group (0)
-func (c *Client) OnUpdateAvailableMessageEffects(handler func(client *Client, update *UpdateAvailableMessageEffects) error, filter UpdateAvailableMessageEffectsFilter) {
+func (c *Client) OnUpdateAvailableMessageEffects(handler func(client *Client, update *UpdateAvailableMessageEffects) error, filter func(u *UpdateAvailableMessageEffects) bool) {
 	c.AddUpdateAvailableMessageEffectsHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateAvailableMessageEffectsHandlerGroup registers a handler for UpdateAvailableMessageEffects updates with a specific group
-func (c *Client) AddUpdateAvailableMessageEffectsHandlerGroup(handler func(client *Client, update *UpdateAvailableMessageEffects) error, filter UpdateAvailableMessageEffectsFilter, group int) {
+func (c *Client) AddUpdateAvailableMessageEffectsHandlerGroup(handler func(client *Client, update *UpdateAvailableMessageEffects) error, filter func(u *UpdateAvailableMessageEffects) bool, group int) {
 	c.AddHandlerGroup(&updateAvailableMessageEffectsHandler{filter: filter, response: handler}, group)
 }
 
 // updateBasicGroupHandler handles UpdateBasicGroup updates
 type updateBasicGroupHandler struct {
-	filter   UpdateBasicGroupFilter
+	filter   func(u *UpdateBasicGroup) bool
 	response func(client *Client, update *UpdateBasicGroup) error
 }
 
@@ -826,18 +459,18 @@ func (h *updateBasicGroupHandler) HandleUpdate(client *Client, update TlObject) 
 }
 
 // OnUpdateBasicGroup registers a handler for UpdateBasicGroup updates with default group (0)
-func (c *Client) OnUpdateBasicGroup(handler func(client *Client, update *UpdateBasicGroup) error, filter UpdateBasicGroupFilter) {
+func (c *Client) OnUpdateBasicGroup(handler func(client *Client, update *UpdateBasicGroup) error, filter func(u *UpdateBasicGroup) bool) {
 	c.AddUpdateBasicGroupHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateBasicGroupHandlerGroup registers a handler for UpdateBasicGroup updates with a specific group
-func (c *Client) AddUpdateBasicGroupHandlerGroup(handler func(client *Client, update *UpdateBasicGroup) error, filter UpdateBasicGroupFilter, group int) {
+func (c *Client) AddUpdateBasicGroupHandlerGroup(handler func(client *Client, update *UpdateBasicGroup) error, filter func(u *UpdateBasicGroup) bool, group int) {
 	c.AddHandlerGroup(&updateBasicGroupHandler{filter: filter, response: handler}, group)
 }
 
 // updateBasicGroupFullInfoHandler handles UpdateBasicGroupFullInfo updates
 type updateBasicGroupFullInfoHandler struct {
-	filter   UpdateBasicGroupFullInfoFilter
+	filter   func(u *UpdateBasicGroupFullInfo) bool
 	response func(client *Client, update *UpdateBasicGroupFullInfo) error
 }
 
@@ -857,18 +490,18 @@ func (h *updateBasicGroupFullInfoHandler) HandleUpdate(client *Client, update Tl
 }
 
 // OnUpdateBasicGroupFullInfo registers a handler for UpdateBasicGroupFullInfo updates with default group (0)
-func (c *Client) OnUpdateBasicGroupFullInfo(handler func(client *Client, update *UpdateBasicGroupFullInfo) error, filter UpdateBasicGroupFullInfoFilter) {
+func (c *Client) OnUpdateBasicGroupFullInfo(handler func(client *Client, update *UpdateBasicGroupFullInfo) error, filter func(u *UpdateBasicGroupFullInfo) bool) {
 	c.AddUpdateBasicGroupFullInfoHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateBasicGroupFullInfoHandlerGroup registers a handler for UpdateBasicGroupFullInfo updates with a specific group
-func (c *Client) AddUpdateBasicGroupFullInfoHandlerGroup(handler func(client *Client, update *UpdateBasicGroupFullInfo) error, filter UpdateBasicGroupFullInfoFilter, group int) {
+func (c *Client) AddUpdateBasicGroupFullInfoHandlerGroup(handler func(client *Client, update *UpdateBasicGroupFullInfo) error, filter func(u *UpdateBasicGroupFullInfo) bool, group int) {
 	c.AddHandlerGroup(&updateBasicGroupFullInfoHandler{filter: filter, response: handler}, group)
 }
 
 // updateBusinessConnectionHandler handles UpdateBusinessConnection updates
 type updateBusinessConnectionHandler struct {
-	filter   UpdateBusinessConnectionFilter
+	filter   func(u *UpdateBusinessConnection) bool
 	response func(client *Client, update *UpdateBusinessConnection) error
 }
 
@@ -888,18 +521,18 @@ func (h *updateBusinessConnectionHandler) HandleUpdate(client *Client, update Tl
 }
 
 // OnUpdateBusinessConnection registers a handler for UpdateBusinessConnection updates with default group (0)
-func (c *Client) OnUpdateBusinessConnection(handler func(client *Client, update *UpdateBusinessConnection) error, filter UpdateBusinessConnectionFilter) {
+func (c *Client) OnUpdateBusinessConnection(handler func(client *Client, update *UpdateBusinessConnection) error, filter func(u *UpdateBusinessConnection) bool) {
 	c.AddUpdateBusinessConnectionHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateBusinessConnectionHandlerGroup registers a handler for UpdateBusinessConnection updates with a specific group
-func (c *Client) AddUpdateBusinessConnectionHandlerGroup(handler func(client *Client, update *UpdateBusinessConnection) error, filter UpdateBusinessConnectionFilter, group int) {
+func (c *Client) AddUpdateBusinessConnectionHandlerGroup(handler func(client *Client, update *UpdateBusinessConnection) error, filter func(u *UpdateBusinessConnection) bool, group int) {
 	c.AddHandlerGroup(&updateBusinessConnectionHandler{filter: filter, response: handler}, group)
 }
 
 // updateBusinessMessageEditedHandler handles UpdateBusinessMessageEdited updates
 type updateBusinessMessageEditedHandler struct {
-	filter   UpdateBusinessMessageEditedFilter
+	filter   func(u *UpdateBusinessMessageEdited) bool
 	response func(client *Client, update *UpdateBusinessMessageEdited) error
 }
 
@@ -919,18 +552,18 @@ func (h *updateBusinessMessageEditedHandler) HandleUpdate(client *Client, update
 }
 
 // OnUpdateBusinessMessageEdited registers a handler for UpdateBusinessMessageEdited updates with default group (0)
-func (c *Client) OnUpdateBusinessMessageEdited(handler func(client *Client, update *UpdateBusinessMessageEdited) error, filter UpdateBusinessMessageEditedFilter) {
+func (c *Client) OnUpdateBusinessMessageEdited(handler func(client *Client, update *UpdateBusinessMessageEdited) error, filter func(u *UpdateBusinessMessageEdited) bool) {
 	c.AddUpdateBusinessMessageEditedHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateBusinessMessageEditedHandlerGroup registers a handler for UpdateBusinessMessageEdited updates with a specific group
-func (c *Client) AddUpdateBusinessMessageEditedHandlerGroup(handler func(client *Client, update *UpdateBusinessMessageEdited) error, filter UpdateBusinessMessageEditedFilter, group int) {
+func (c *Client) AddUpdateBusinessMessageEditedHandlerGroup(handler func(client *Client, update *UpdateBusinessMessageEdited) error, filter func(u *UpdateBusinessMessageEdited) bool, group int) {
 	c.AddHandlerGroup(&updateBusinessMessageEditedHandler{filter: filter, response: handler}, group)
 }
 
 // updateBusinessMessagesDeletedHandler handles UpdateBusinessMessagesDeleted updates
 type updateBusinessMessagesDeletedHandler struct {
-	filter   UpdateBusinessMessagesDeletedFilter
+	filter   func(u *UpdateBusinessMessagesDeleted) bool
 	response func(client *Client, update *UpdateBusinessMessagesDeleted) error
 }
 
@@ -950,18 +583,18 @@ func (h *updateBusinessMessagesDeletedHandler) HandleUpdate(client *Client, upda
 }
 
 // OnUpdateBusinessMessagesDeleted registers a handler for UpdateBusinessMessagesDeleted updates with default group (0)
-func (c *Client) OnUpdateBusinessMessagesDeleted(handler func(client *Client, update *UpdateBusinessMessagesDeleted) error, filter UpdateBusinessMessagesDeletedFilter) {
+func (c *Client) OnUpdateBusinessMessagesDeleted(handler func(client *Client, update *UpdateBusinessMessagesDeleted) error, filter func(u *UpdateBusinessMessagesDeleted) bool) {
 	c.AddUpdateBusinessMessagesDeletedHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateBusinessMessagesDeletedHandlerGroup registers a handler for UpdateBusinessMessagesDeleted updates with a specific group
-func (c *Client) AddUpdateBusinessMessagesDeletedHandlerGroup(handler func(client *Client, update *UpdateBusinessMessagesDeleted) error, filter UpdateBusinessMessagesDeletedFilter, group int) {
+func (c *Client) AddUpdateBusinessMessagesDeletedHandlerGroup(handler func(client *Client, update *UpdateBusinessMessagesDeleted) error, filter func(u *UpdateBusinessMessagesDeleted) bool, group int) {
 	c.AddHandlerGroup(&updateBusinessMessagesDeletedHandler{filter: filter, response: handler}, group)
 }
 
 // updateCallHandler handles UpdateCall updates
 type updateCallHandler struct {
-	filter   UpdateCallFilter
+	filter   func(u *UpdateCall) bool
 	response func(client *Client, update *UpdateCall) error
 }
 
@@ -981,18 +614,18 @@ func (h *updateCallHandler) HandleUpdate(client *Client, update TlObject) error 
 }
 
 // OnUpdateCall registers a handler for UpdateCall updates with default group (0)
-func (c *Client) OnUpdateCall(handler func(client *Client, update *UpdateCall) error, filter UpdateCallFilter) {
+func (c *Client) OnUpdateCall(handler func(client *Client, update *UpdateCall) error, filter func(u *UpdateCall) bool) {
 	c.AddUpdateCallHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateCallHandlerGroup registers a handler for UpdateCall updates with a specific group
-func (c *Client) AddUpdateCallHandlerGroup(handler func(client *Client, update *UpdateCall) error, filter UpdateCallFilter, group int) {
+func (c *Client) AddUpdateCallHandlerGroup(handler func(client *Client, update *UpdateCall) error, filter func(u *UpdateCall) bool, group int) {
 	c.AddHandlerGroup(&updateCallHandler{filter: filter, response: handler}, group)
 }
 
 // updateChatAccentColorsHandler handles UpdateChatAccentColors updates
 type updateChatAccentColorsHandler struct {
-	filter   UpdateChatAccentColorsFilter
+	filter   func(u *UpdateChatAccentColors) bool
 	response func(client *Client, update *UpdateChatAccentColors) error
 }
 
@@ -1012,18 +645,18 @@ func (h *updateChatAccentColorsHandler) HandleUpdate(client *Client, update TlOb
 }
 
 // OnUpdateChatAccentColors registers a handler for UpdateChatAccentColors updates with default group (0)
-func (c *Client) OnUpdateChatAccentColors(handler func(client *Client, update *UpdateChatAccentColors) error, filter UpdateChatAccentColorsFilter) {
+func (c *Client) OnUpdateChatAccentColors(handler func(client *Client, update *UpdateChatAccentColors) error, filter func(u *UpdateChatAccentColors) bool) {
 	c.AddUpdateChatAccentColorsHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateChatAccentColorsHandlerGroup registers a handler for UpdateChatAccentColors updates with a specific group
-func (c *Client) AddUpdateChatAccentColorsHandlerGroup(handler func(client *Client, update *UpdateChatAccentColors) error, filter UpdateChatAccentColorsFilter, group int) {
+func (c *Client) AddUpdateChatAccentColorsHandlerGroup(handler func(client *Client, update *UpdateChatAccentColors) error, filter func(u *UpdateChatAccentColors) bool, group int) {
 	c.AddHandlerGroup(&updateChatAccentColorsHandler{filter: filter, response: handler}, group)
 }
 
 // updateChatActionHandler handles UpdateChatAction updates
 type updateChatActionHandler struct {
-	filter   UpdateChatActionFilter
+	filter   func(u *UpdateChatAction) bool
 	response func(client *Client, update *UpdateChatAction) error
 }
 
@@ -1043,18 +676,18 @@ func (h *updateChatActionHandler) HandleUpdate(client *Client, update TlObject) 
 }
 
 // OnUpdateChatAction registers a handler for UpdateChatAction updates with default group (0)
-func (c *Client) OnUpdateChatAction(handler func(client *Client, update *UpdateChatAction) error, filter UpdateChatActionFilter) {
+func (c *Client) OnUpdateChatAction(handler func(client *Client, update *UpdateChatAction) error, filter func(u *UpdateChatAction) bool) {
 	c.AddUpdateChatActionHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateChatActionHandlerGroup registers a handler for UpdateChatAction updates with a specific group
-func (c *Client) AddUpdateChatActionHandlerGroup(handler func(client *Client, update *UpdateChatAction) error, filter UpdateChatActionFilter, group int) {
+func (c *Client) AddUpdateChatActionHandlerGroup(handler func(client *Client, update *UpdateChatAction) error, filter func(u *UpdateChatAction) bool, group int) {
 	c.AddHandlerGroup(&updateChatActionHandler{filter: filter, response: handler}, group)
 }
 
 // updateChatActionBarHandler handles UpdateChatActionBar updates
 type updateChatActionBarHandler struct {
-	filter   UpdateChatActionBarFilter
+	filter   func(u *UpdateChatActionBar) bool
 	response func(client *Client, update *UpdateChatActionBar) error
 }
 
@@ -1074,18 +707,18 @@ func (h *updateChatActionBarHandler) HandleUpdate(client *Client, update TlObjec
 }
 
 // OnUpdateChatActionBar registers a handler for UpdateChatActionBar updates with default group (0)
-func (c *Client) OnUpdateChatActionBar(handler func(client *Client, update *UpdateChatActionBar) error, filter UpdateChatActionBarFilter) {
+func (c *Client) OnUpdateChatActionBar(handler func(client *Client, update *UpdateChatActionBar) error, filter func(u *UpdateChatActionBar) bool) {
 	c.AddUpdateChatActionBarHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateChatActionBarHandlerGroup registers a handler for UpdateChatActionBar updates with a specific group
-func (c *Client) AddUpdateChatActionBarHandlerGroup(handler func(client *Client, update *UpdateChatActionBar) error, filter UpdateChatActionBarFilter, group int) {
+func (c *Client) AddUpdateChatActionBarHandlerGroup(handler func(client *Client, update *UpdateChatActionBar) error, filter func(u *UpdateChatActionBar) bool, group int) {
 	c.AddHandlerGroup(&updateChatActionBarHandler{filter: filter, response: handler}, group)
 }
 
 // updateChatActiveStoriesHandler handles UpdateChatActiveStories updates
 type updateChatActiveStoriesHandler struct {
-	filter   UpdateChatActiveStoriesFilter
+	filter   func(u *UpdateChatActiveStories) bool
 	response func(client *Client, update *UpdateChatActiveStories) error
 }
 
@@ -1105,18 +738,18 @@ func (h *updateChatActiveStoriesHandler) HandleUpdate(client *Client, update TlO
 }
 
 // OnUpdateChatActiveStories registers a handler for UpdateChatActiveStories updates with default group (0)
-func (c *Client) OnUpdateChatActiveStories(handler func(client *Client, update *UpdateChatActiveStories) error, filter UpdateChatActiveStoriesFilter) {
+func (c *Client) OnUpdateChatActiveStories(handler func(client *Client, update *UpdateChatActiveStories) error, filter func(u *UpdateChatActiveStories) bool) {
 	c.AddUpdateChatActiveStoriesHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateChatActiveStoriesHandlerGroup registers a handler for UpdateChatActiveStories updates with a specific group
-func (c *Client) AddUpdateChatActiveStoriesHandlerGroup(handler func(client *Client, update *UpdateChatActiveStories) error, filter UpdateChatActiveStoriesFilter, group int) {
+func (c *Client) AddUpdateChatActiveStoriesHandlerGroup(handler func(client *Client, update *UpdateChatActiveStories) error, filter func(u *UpdateChatActiveStories) bool, group int) {
 	c.AddHandlerGroup(&updateChatActiveStoriesHandler{filter: filter, response: handler}, group)
 }
 
 // updateChatAddedToListHandler handles UpdateChatAddedToList updates
 type updateChatAddedToListHandler struct {
-	filter   UpdateChatAddedToListFilter
+	filter   func(u *UpdateChatAddedToList) bool
 	response func(client *Client, update *UpdateChatAddedToList) error
 }
 
@@ -1136,18 +769,18 @@ func (h *updateChatAddedToListHandler) HandleUpdate(client *Client, update TlObj
 }
 
 // OnUpdateChatAddedToList registers a handler for UpdateChatAddedToList updates with default group (0)
-func (c *Client) OnUpdateChatAddedToList(handler func(client *Client, update *UpdateChatAddedToList) error, filter UpdateChatAddedToListFilter) {
+func (c *Client) OnUpdateChatAddedToList(handler func(client *Client, update *UpdateChatAddedToList) error, filter func(u *UpdateChatAddedToList) bool) {
 	c.AddUpdateChatAddedToListHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateChatAddedToListHandlerGroup registers a handler for UpdateChatAddedToList updates with a specific group
-func (c *Client) AddUpdateChatAddedToListHandlerGroup(handler func(client *Client, update *UpdateChatAddedToList) error, filter UpdateChatAddedToListFilter, group int) {
+func (c *Client) AddUpdateChatAddedToListHandlerGroup(handler func(client *Client, update *UpdateChatAddedToList) error, filter func(u *UpdateChatAddedToList) bool, group int) {
 	c.AddHandlerGroup(&updateChatAddedToListHandler{filter: filter, response: handler}, group)
 }
 
 // updateChatAvailableReactionsHandler handles UpdateChatAvailableReactions updates
 type updateChatAvailableReactionsHandler struct {
-	filter   UpdateChatAvailableReactionsFilter
+	filter   func(u *UpdateChatAvailableReactions) bool
 	response func(client *Client, update *UpdateChatAvailableReactions) error
 }
 
@@ -1167,18 +800,18 @@ func (h *updateChatAvailableReactionsHandler) HandleUpdate(client *Client, updat
 }
 
 // OnUpdateChatAvailableReactions registers a handler for UpdateChatAvailableReactions updates with default group (0)
-func (c *Client) OnUpdateChatAvailableReactions(handler func(client *Client, update *UpdateChatAvailableReactions) error, filter UpdateChatAvailableReactionsFilter) {
+func (c *Client) OnUpdateChatAvailableReactions(handler func(client *Client, update *UpdateChatAvailableReactions) error, filter func(u *UpdateChatAvailableReactions) bool) {
 	c.AddUpdateChatAvailableReactionsHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateChatAvailableReactionsHandlerGroup registers a handler for UpdateChatAvailableReactions updates with a specific group
-func (c *Client) AddUpdateChatAvailableReactionsHandlerGroup(handler func(client *Client, update *UpdateChatAvailableReactions) error, filter UpdateChatAvailableReactionsFilter, group int) {
+func (c *Client) AddUpdateChatAvailableReactionsHandlerGroup(handler func(client *Client, update *UpdateChatAvailableReactions) error, filter func(u *UpdateChatAvailableReactions) bool, group int) {
 	c.AddHandlerGroup(&updateChatAvailableReactionsHandler{filter: filter, response: handler}, group)
 }
 
 // updateChatBackgroundHandler handles UpdateChatBackground updates
 type updateChatBackgroundHandler struct {
-	filter   UpdateChatBackgroundFilter
+	filter   func(u *UpdateChatBackground) bool
 	response func(client *Client, update *UpdateChatBackground) error
 }
 
@@ -1198,18 +831,18 @@ func (h *updateChatBackgroundHandler) HandleUpdate(client *Client, update TlObje
 }
 
 // OnUpdateChatBackground registers a handler for UpdateChatBackground updates with default group (0)
-func (c *Client) OnUpdateChatBackground(handler func(client *Client, update *UpdateChatBackground) error, filter UpdateChatBackgroundFilter) {
+func (c *Client) OnUpdateChatBackground(handler func(client *Client, update *UpdateChatBackground) error, filter func(u *UpdateChatBackground) bool) {
 	c.AddUpdateChatBackgroundHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateChatBackgroundHandlerGroup registers a handler for UpdateChatBackground updates with a specific group
-func (c *Client) AddUpdateChatBackgroundHandlerGroup(handler func(client *Client, update *UpdateChatBackground) error, filter UpdateChatBackgroundFilter, group int) {
+func (c *Client) AddUpdateChatBackgroundHandlerGroup(handler func(client *Client, update *UpdateChatBackground) error, filter func(u *UpdateChatBackground) bool, group int) {
 	c.AddHandlerGroup(&updateChatBackgroundHandler{filter: filter, response: handler}, group)
 }
 
 // updateChatBlockListHandler handles UpdateChatBlockList updates
 type updateChatBlockListHandler struct {
-	filter   UpdateChatBlockListFilter
+	filter   func(u *UpdateChatBlockList) bool
 	response func(client *Client, update *UpdateChatBlockList) error
 }
 
@@ -1229,18 +862,18 @@ func (h *updateChatBlockListHandler) HandleUpdate(client *Client, update TlObjec
 }
 
 // OnUpdateChatBlockList registers a handler for UpdateChatBlockList updates with default group (0)
-func (c *Client) OnUpdateChatBlockList(handler func(client *Client, update *UpdateChatBlockList) error, filter UpdateChatBlockListFilter) {
+func (c *Client) OnUpdateChatBlockList(handler func(client *Client, update *UpdateChatBlockList) error, filter func(u *UpdateChatBlockList) bool) {
 	c.AddUpdateChatBlockListHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateChatBlockListHandlerGroup registers a handler for UpdateChatBlockList updates with a specific group
-func (c *Client) AddUpdateChatBlockListHandlerGroup(handler func(client *Client, update *UpdateChatBlockList) error, filter UpdateChatBlockListFilter, group int) {
+func (c *Client) AddUpdateChatBlockListHandlerGroup(handler func(client *Client, update *UpdateChatBlockList) error, filter func(u *UpdateChatBlockList) bool, group int) {
 	c.AddHandlerGroup(&updateChatBlockListHandler{filter: filter, response: handler}, group)
 }
 
 // updateChatBoostHandler handles UpdateChatBoost updates
 type updateChatBoostHandler struct {
-	filter   UpdateChatBoostFilter
+	filter   func(u *UpdateChatBoost) bool
 	response func(client *Client, update *UpdateChatBoost) error
 }
 
@@ -1260,18 +893,18 @@ func (h *updateChatBoostHandler) HandleUpdate(client *Client, update TlObject) e
 }
 
 // OnUpdateChatBoost registers a handler for UpdateChatBoost updates with default group (0)
-func (c *Client) OnUpdateChatBoost(handler func(client *Client, update *UpdateChatBoost) error, filter UpdateChatBoostFilter) {
+func (c *Client) OnUpdateChatBoost(handler func(client *Client, update *UpdateChatBoost) error, filter func(u *UpdateChatBoost) bool) {
 	c.AddUpdateChatBoostHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateChatBoostHandlerGroup registers a handler for UpdateChatBoost updates with a specific group
-func (c *Client) AddUpdateChatBoostHandlerGroup(handler func(client *Client, update *UpdateChatBoost) error, filter UpdateChatBoostFilter, group int) {
+func (c *Client) AddUpdateChatBoostHandlerGroup(handler func(client *Client, update *UpdateChatBoost) error, filter func(u *UpdateChatBoost) bool, group int) {
 	c.AddHandlerGroup(&updateChatBoostHandler{filter: filter, response: handler}, group)
 }
 
 // updateChatBusinessBotManageBarHandler handles UpdateChatBusinessBotManageBar updates
 type updateChatBusinessBotManageBarHandler struct {
-	filter   UpdateChatBusinessBotManageBarFilter
+	filter   func(u *UpdateChatBusinessBotManageBar) bool
 	response func(client *Client, update *UpdateChatBusinessBotManageBar) error
 }
 
@@ -1291,18 +924,18 @@ func (h *updateChatBusinessBotManageBarHandler) HandleUpdate(client *Client, upd
 }
 
 // OnUpdateChatBusinessBotManageBar registers a handler for UpdateChatBusinessBotManageBar updates with default group (0)
-func (c *Client) OnUpdateChatBusinessBotManageBar(handler func(client *Client, update *UpdateChatBusinessBotManageBar) error, filter UpdateChatBusinessBotManageBarFilter) {
+func (c *Client) OnUpdateChatBusinessBotManageBar(handler func(client *Client, update *UpdateChatBusinessBotManageBar) error, filter func(u *UpdateChatBusinessBotManageBar) bool) {
 	c.AddUpdateChatBusinessBotManageBarHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateChatBusinessBotManageBarHandlerGroup registers a handler for UpdateChatBusinessBotManageBar updates with a specific group
-func (c *Client) AddUpdateChatBusinessBotManageBarHandlerGroup(handler func(client *Client, update *UpdateChatBusinessBotManageBar) error, filter UpdateChatBusinessBotManageBarFilter, group int) {
+func (c *Client) AddUpdateChatBusinessBotManageBarHandlerGroup(handler func(client *Client, update *UpdateChatBusinessBotManageBar) error, filter func(u *UpdateChatBusinessBotManageBar) bool, group int) {
 	c.AddHandlerGroup(&updateChatBusinessBotManageBarHandler{filter: filter, response: handler}, group)
 }
 
 // updateChatDefaultDisableNotificationHandler handles UpdateChatDefaultDisableNotification updates
 type updateChatDefaultDisableNotificationHandler struct {
-	filter   UpdateChatDefaultDisableNotificationFilter
+	filter   func(u *UpdateChatDefaultDisableNotification) bool
 	response func(client *Client, update *UpdateChatDefaultDisableNotification) error
 }
 
@@ -1322,18 +955,18 @@ func (h *updateChatDefaultDisableNotificationHandler) HandleUpdate(client *Clien
 }
 
 // OnUpdateChatDefaultDisableNotification registers a handler for UpdateChatDefaultDisableNotification updates with default group (0)
-func (c *Client) OnUpdateChatDefaultDisableNotification(handler func(client *Client, update *UpdateChatDefaultDisableNotification) error, filter UpdateChatDefaultDisableNotificationFilter) {
+func (c *Client) OnUpdateChatDefaultDisableNotification(handler func(client *Client, update *UpdateChatDefaultDisableNotification) error, filter func(u *UpdateChatDefaultDisableNotification) bool) {
 	c.AddUpdateChatDefaultDisableNotificationHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateChatDefaultDisableNotificationHandlerGroup registers a handler for UpdateChatDefaultDisableNotification updates with a specific group
-func (c *Client) AddUpdateChatDefaultDisableNotificationHandlerGroup(handler func(client *Client, update *UpdateChatDefaultDisableNotification) error, filter UpdateChatDefaultDisableNotificationFilter, group int) {
+func (c *Client) AddUpdateChatDefaultDisableNotificationHandlerGroup(handler func(client *Client, update *UpdateChatDefaultDisableNotification) error, filter func(u *UpdateChatDefaultDisableNotification) bool, group int) {
 	c.AddHandlerGroup(&updateChatDefaultDisableNotificationHandler{filter: filter, response: handler}, group)
 }
 
 // updateChatDraftMessageHandler handles UpdateChatDraftMessage updates
 type updateChatDraftMessageHandler struct {
-	filter   UpdateChatDraftMessageFilter
+	filter   func(u *UpdateChatDraftMessage) bool
 	response func(client *Client, update *UpdateChatDraftMessage) error
 }
 
@@ -1353,18 +986,18 @@ func (h *updateChatDraftMessageHandler) HandleUpdate(client *Client, update TlOb
 }
 
 // OnUpdateChatDraftMessage registers a handler for UpdateChatDraftMessage updates with default group (0)
-func (c *Client) OnUpdateChatDraftMessage(handler func(client *Client, update *UpdateChatDraftMessage) error, filter UpdateChatDraftMessageFilter) {
+func (c *Client) OnUpdateChatDraftMessage(handler func(client *Client, update *UpdateChatDraftMessage) error, filter func(u *UpdateChatDraftMessage) bool) {
 	c.AddUpdateChatDraftMessageHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateChatDraftMessageHandlerGroup registers a handler for UpdateChatDraftMessage updates with a specific group
-func (c *Client) AddUpdateChatDraftMessageHandlerGroup(handler func(client *Client, update *UpdateChatDraftMessage) error, filter UpdateChatDraftMessageFilter, group int) {
+func (c *Client) AddUpdateChatDraftMessageHandlerGroup(handler func(client *Client, update *UpdateChatDraftMessage) error, filter func(u *UpdateChatDraftMessage) bool, group int) {
 	c.AddHandlerGroup(&updateChatDraftMessageHandler{filter: filter, response: handler}, group)
 }
 
 // updateChatEmojiStatusHandler handles UpdateChatEmojiStatus updates
 type updateChatEmojiStatusHandler struct {
-	filter   UpdateChatEmojiStatusFilter
+	filter   func(u *UpdateChatEmojiStatus) bool
 	response func(client *Client, update *UpdateChatEmojiStatus) error
 }
 
@@ -1384,18 +1017,18 @@ func (h *updateChatEmojiStatusHandler) HandleUpdate(client *Client, update TlObj
 }
 
 // OnUpdateChatEmojiStatus registers a handler for UpdateChatEmojiStatus updates with default group (0)
-func (c *Client) OnUpdateChatEmojiStatus(handler func(client *Client, update *UpdateChatEmojiStatus) error, filter UpdateChatEmojiStatusFilter) {
+func (c *Client) OnUpdateChatEmojiStatus(handler func(client *Client, update *UpdateChatEmojiStatus) error, filter func(u *UpdateChatEmojiStatus) bool) {
 	c.AddUpdateChatEmojiStatusHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateChatEmojiStatusHandlerGroup registers a handler for UpdateChatEmojiStatus updates with a specific group
-func (c *Client) AddUpdateChatEmojiStatusHandlerGroup(handler func(client *Client, update *UpdateChatEmojiStatus) error, filter UpdateChatEmojiStatusFilter, group int) {
+func (c *Client) AddUpdateChatEmojiStatusHandlerGroup(handler func(client *Client, update *UpdateChatEmojiStatus) error, filter func(u *UpdateChatEmojiStatus) bool, group int) {
 	c.AddHandlerGroup(&updateChatEmojiStatusHandler{filter: filter, response: handler}, group)
 }
 
 // updateChatFoldersHandler handles UpdateChatFolders updates
 type updateChatFoldersHandler struct {
-	filter   UpdateChatFoldersFilter
+	filter   func(u *UpdateChatFolders) bool
 	response func(client *Client, update *UpdateChatFolders) error
 }
 
@@ -1415,18 +1048,18 @@ func (h *updateChatFoldersHandler) HandleUpdate(client *Client, update TlObject)
 }
 
 // OnUpdateChatFolders registers a handler for UpdateChatFolders updates with default group (0)
-func (c *Client) OnUpdateChatFolders(handler func(client *Client, update *UpdateChatFolders) error, filter UpdateChatFoldersFilter) {
+func (c *Client) OnUpdateChatFolders(handler func(client *Client, update *UpdateChatFolders) error, filter func(u *UpdateChatFolders) bool) {
 	c.AddUpdateChatFoldersHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateChatFoldersHandlerGroup registers a handler for UpdateChatFolders updates with a specific group
-func (c *Client) AddUpdateChatFoldersHandlerGroup(handler func(client *Client, update *UpdateChatFolders) error, filter UpdateChatFoldersFilter, group int) {
+func (c *Client) AddUpdateChatFoldersHandlerGroup(handler func(client *Client, update *UpdateChatFolders) error, filter func(u *UpdateChatFolders) bool, group int) {
 	c.AddHandlerGroup(&updateChatFoldersHandler{filter: filter, response: handler}, group)
 }
 
 // updateChatHasProtectedContentHandler handles UpdateChatHasProtectedContent updates
 type updateChatHasProtectedContentHandler struct {
-	filter   UpdateChatHasProtectedContentFilter
+	filter   func(u *UpdateChatHasProtectedContent) bool
 	response func(client *Client, update *UpdateChatHasProtectedContent) error
 }
 
@@ -1446,18 +1079,18 @@ func (h *updateChatHasProtectedContentHandler) HandleUpdate(client *Client, upda
 }
 
 // OnUpdateChatHasProtectedContent registers a handler for UpdateChatHasProtectedContent updates with default group (0)
-func (c *Client) OnUpdateChatHasProtectedContent(handler func(client *Client, update *UpdateChatHasProtectedContent) error, filter UpdateChatHasProtectedContentFilter) {
+func (c *Client) OnUpdateChatHasProtectedContent(handler func(client *Client, update *UpdateChatHasProtectedContent) error, filter func(u *UpdateChatHasProtectedContent) bool) {
 	c.AddUpdateChatHasProtectedContentHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateChatHasProtectedContentHandlerGroup registers a handler for UpdateChatHasProtectedContent updates with a specific group
-func (c *Client) AddUpdateChatHasProtectedContentHandlerGroup(handler func(client *Client, update *UpdateChatHasProtectedContent) error, filter UpdateChatHasProtectedContentFilter, group int) {
+func (c *Client) AddUpdateChatHasProtectedContentHandlerGroup(handler func(client *Client, update *UpdateChatHasProtectedContent) error, filter func(u *UpdateChatHasProtectedContent) bool, group int) {
 	c.AddHandlerGroup(&updateChatHasProtectedContentHandler{filter: filter, response: handler}, group)
 }
 
 // updateChatHasScheduledMessagesHandler handles UpdateChatHasScheduledMessages updates
 type updateChatHasScheduledMessagesHandler struct {
-	filter   UpdateChatHasScheduledMessagesFilter
+	filter   func(u *UpdateChatHasScheduledMessages) bool
 	response func(client *Client, update *UpdateChatHasScheduledMessages) error
 }
 
@@ -1477,18 +1110,18 @@ func (h *updateChatHasScheduledMessagesHandler) HandleUpdate(client *Client, upd
 }
 
 // OnUpdateChatHasScheduledMessages registers a handler for UpdateChatHasScheduledMessages updates with default group (0)
-func (c *Client) OnUpdateChatHasScheduledMessages(handler func(client *Client, update *UpdateChatHasScheduledMessages) error, filter UpdateChatHasScheduledMessagesFilter) {
+func (c *Client) OnUpdateChatHasScheduledMessages(handler func(client *Client, update *UpdateChatHasScheduledMessages) error, filter func(u *UpdateChatHasScheduledMessages) bool) {
 	c.AddUpdateChatHasScheduledMessagesHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateChatHasScheduledMessagesHandlerGroup registers a handler for UpdateChatHasScheduledMessages updates with a specific group
-func (c *Client) AddUpdateChatHasScheduledMessagesHandlerGroup(handler func(client *Client, update *UpdateChatHasScheduledMessages) error, filter UpdateChatHasScheduledMessagesFilter, group int) {
+func (c *Client) AddUpdateChatHasScheduledMessagesHandlerGroup(handler func(client *Client, update *UpdateChatHasScheduledMessages) error, filter func(u *UpdateChatHasScheduledMessages) bool, group int) {
 	c.AddHandlerGroup(&updateChatHasScheduledMessagesHandler{filter: filter, response: handler}, group)
 }
 
 // updateChatIsMarkedAsUnreadHandler handles UpdateChatIsMarkedAsUnread updates
 type updateChatIsMarkedAsUnreadHandler struct {
-	filter   UpdateChatIsMarkedAsUnreadFilter
+	filter   func(u *UpdateChatIsMarkedAsUnread) bool
 	response func(client *Client, update *UpdateChatIsMarkedAsUnread) error
 }
 
@@ -1508,18 +1141,18 @@ func (h *updateChatIsMarkedAsUnreadHandler) HandleUpdate(client *Client, update 
 }
 
 // OnUpdateChatIsMarkedAsUnread registers a handler for UpdateChatIsMarkedAsUnread updates with default group (0)
-func (c *Client) OnUpdateChatIsMarkedAsUnread(handler func(client *Client, update *UpdateChatIsMarkedAsUnread) error, filter UpdateChatIsMarkedAsUnreadFilter) {
+func (c *Client) OnUpdateChatIsMarkedAsUnread(handler func(client *Client, update *UpdateChatIsMarkedAsUnread) error, filter func(u *UpdateChatIsMarkedAsUnread) bool) {
 	c.AddUpdateChatIsMarkedAsUnreadHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateChatIsMarkedAsUnreadHandlerGroup registers a handler for UpdateChatIsMarkedAsUnread updates with a specific group
-func (c *Client) AddUpdateChatIsMarkedAsUnreadHandlerGroup(handler func(client *Client, update *UpdateChatIsMarkedAsUnread) error, filter UpdateChatIsMarkedAsUnreadFilter, group int) {
+func (c *Client) AddUpdateChatIsMarkedAsUnreadHandlerGroup(handler func(client *Client, update *UpdateChatIsMarkedAsUnread) error, filter func(u *UpdateChatIsMarkedAsUnread) bool, group int) {
 	c.AddHandlerGroup(&updateChatIsMarkedAsUnreadHandler{filter: filter, response: handler}, group)
 }
 
 // updateChatIsTranslatableHandler handles UpdateChatIsTranslatable updates
 type updateChatIsTranslatableHandler struct {
-	filter   UpdateChatIsTranslatableFilter
+	filter   func(u *UpdateChatIsTranslatable) bool
 	response func(client *Client, update *UpdateChatIsTranslatable) error
 }
 
@@ -1539,18 +1172,18 @@ func (h *updateChatIsTranslatableHandler) HandleUpdate(client *Client, update Tl
 }
 
 // OnUpdateChatIsTranslatable registers a handler for UpdateChatIsTranslatable updates with default group (0)
-func (c *Client) OnUpdateChatIsTranslatable(handler func(client *Client, update *UpdateChatIsTranslatable) error, filter UpdateChatIsTranslatableFilter) {
+func (c *Client) OnUpdateChatIsTranslatable(handler func(client *Client, update *UpdateChatIsTranslatable) error, filter func(u *UpdateChatIsTranslatable) bool) {
 	c.AddUpdateChatIsTranslatableHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateChatIsTranslatableHandlerGroup registers a handler for UpdateChatIsTranslatable updates with a specific group
-func (c *Client) AddUpdateChatIsTranslatableHandlerGroup(handler func(client *Client, update *UpdateChatIsTranslatable) error, filter UpdateChatIsTranslatableFilter, group int) {
+func (c *Client) AddUpdateChatIsTranslatableHandlerGroup(handler func(client *Client, update *UpdateChatIsTranslatable) error, filter func(u *UpdateChatIsTranslatable) bool, group int) {
 	c.AddHandlerGroup(&updateChatIsTranslatableHandler{filter: filter, response: handler}, group)
 }
 
 // updateChatLastMessageHandler handles UpdateChatLastMessage updates
 type updateChatLastMessageHandler struct {
-	filter   UpdateChatLastMessageFilter
+	filter   func(u *UpdateChatLastMessage) bool
 	response func(client *Client, update *UpdateChatLastMessage) error
 }
 
@@ -1570,18 +1203,18 @@ func (h *updateChatLastMessageHandler) HandleUpdate(client *Client, update TlObj
 }
 
 // OnUpdateChatLastMessage registers a handler for UpdateChatLastMessage updates with default group (0)
-func (c *Client) OnUpdateChatLastMessage(handler func(client *Client, update *UpdateChatLastMessage) error, filter UpdateChatLastMessageFilter) {
+func (c *Client) OnUpdateChatLastMessage(handler func(client *Client, update *UpdateChatLastMessage) error, filter func(u *UpdateChatLastMessage) bool) {
 	c.AddUpdateChatLastMessageHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateChatLastMessageHandlerGroup registers a handler for UpdateChatLastMessage updates with a specific group
-func (c *Client) AddUpdateChatLastMessageHandlerGroup(handler func(client *Client, update *UpdateChatLastMessage) error, filter UpdateChatLastMessageFilter, group int) {
+func (c *Client) AddUpdateChatLastMessageHandlerGroup(handler func(client *Client, update *UpdateChatLastMessage) error, filter func(u *UpdateChatLastMessage) bool, group int) {
 	c.AddHandlerGroup(&updateChatLastMessageHandler{filter: filter, response: handler}, group)
 }
 
 // updateChatMemberHandler handles UpdateChatMember updates
 type updateChatMemberHandler struct {
-	filter   UpdateChatMemberFilter
+	filter   func(u *UpdateChatMember) bool
 	response func(client *Client, update *UpdateChatMember) error
 }
 
@@ -1601,18 +1234,18 @@ func (h *updateChatMemberHandler) HandleUpdate(client *Client, update TlObject) 
 }
 
 // OnUpdateChatMember registers a handler for UpdateChatMember updates with default group (0)
-func (c *Client) OnUpdateChatMember(handler func(client *Client, update *UpdateChatMember) error, filter UpdateChatMemberFilter) {
+func (c *Client) OnUpdateChatMember(handler func(client *Client, update *UpdateChatMember) error, filter func(u *UpdateChatMember) bool) {
 	c.AddUpdateChatMemberHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateChatMemberHandlerGroup registers a handler for UpdateChatMember updates with a specific group
-func (c *Client) AddUpdateChatMemberHandlerGroup(handler func(client *Client, update *UpdateChatMember) error, filter UpdateChatMemberFilter, group int) {
+func (c *Client) AddUpdateChatMemberHandlerGroup(handler func(client *Client, update *UpdateChatMember) error, filter func(u *UpdateChatMember) bool, group int) {
 	c.AddHandlerGroup(&updateChatMemberHandler{filter: filter, response: handler}, group)
 }
 
 // updateChatMessageAutoDeleteTimeHandler handles UpdateChatMessageAutoDeleteTime updates
 type updateChatMessageAutoDeleteTimeHandler struct {
-	filter   UpdateChatMessageAutoDeleteTimeFilter
+	filter   func(u *UpdateChatMessageAutoDeleteTime) bool
 	response func(client *Client, update *UpdateChatMessageAutoDeleteTime) error
 }
 
@@ -1632,18 +1265,18 @@ func (h *updateChatMessageAutoDeleteTimeHandler) HandleUpdate(client *Client, up
 }
 
 // OnUpdateChatMessageAutoDeleteTime registers a handler for UpdateChatMessageAutoDeleteTime updates with default group (0)
-func (c *Client) OnUpdateChatMessageAutoDeleteTime(handler func(client *Client, update *UpdateChatMessageAutoDeleteTime) error, filter UpdateChatMessageAutoDeleteTimeFilter) {
+func (c *Client) OnUpdateChatMessageAutoDeleteTime(handler func(client *Client, update *UpdateChatMessageAutoDeleteTime) error, filter func(u *UpdateChatMessageAutoDeleteTime) bool) {
 	c.AddUpdateChatMessageAutoDeleteTimeHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateChatMessageAutoDeleteTimeHandlerGroup registers a handler for UpdateChatMessageAutoDeleteTime updates with a specific group
-func (c *Client) AddUpdateChatMessageAutoDeleteTimeHandlerGroup(handler func(client *Client, update *UpdateChatMessageAutoDeleteTime) error, filter UpdateChatMessageAutoDeleteTimeFilter, group int) {
+func (c *Client) AddUpdateChatMessageAutoDeleteTimeHandlerGroup(handler func(client *Client, update *UpdateChatMessageAutoDeleteTime) error, filter func(u *UpdateChatMessageAutoDeleteTime) bool, group int) {
 	c.AddHandlerGroup(&updateChatMessageAutoDeleteTimeHandler{filter: filter, response: handler}, group)
 }
 
 // updateChatMessageSenderHandler handles UpdateChatMessageSender updates
 type updateChatMessageSenderHandler struct {
-	filter   UpdateChatMessageSenderFilter
+	filter   func(u *UpdateChatMessageSender) bool
 	response func(client *Client, update *UpdateChatMessageSender) error
 }
 
@@ -1663,18 +1296,18 @@ func (h *updateChatMessageSenderHandler) HandleUpdate(client *Client, update TlO
 }
 
 // OnUpdateChatMessageSender registers a handler for UpdateChatMessageSender updates with default group (0)
-func (c *Client) OnUpdateChatMessageSender(handler func(client *Client, update *UpdateChatMessageSender) error, filter UpdateChatMessageSenderFilter) {
+func (c *Client) OnUpdateChatMessageSender(handler func(client *Client, update *UpdateChatMessageSender) error, filter func(u *UpdateChatMessageSender) bool) {
 	c.AddUpdateChatMessageSenderHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateChatMessageSenderHandlerGroup registers a handler for UpdateChatMessageSender updates with a specific group
-func (c *Client) AddUpdateChatMessageSenderHandlerGroup(handler func(client *Client, update *UpdateChatMessageSender) error, filter UpdateChatMessageSenderFilter, group int) {
+func (c *Client) AddUpdateChatMessageSenderHandlerGroup(handler func(client *Client, update *UpdateChatMessageSender) error, filter func(u *UpdateChatMessageSender) bool, group int) {
 	c.AddHandlerGroup(&updateChatMessageSenderHandler{filter: filter, response: handler}, group)
 }
 
 // updateChatNotificationSettingsHandler handles UpdateChatNotificationSettings updates
 type updateChatNotificationSettingsHandler struct {
-	filter   UpdateChatNotificationSettingsFilter
+	filter   func(u *UpdateChatNotificationSettings) bool
 	response func(client *Client, update *UpdateChatNotificationSettings) error
 }
 
@@ -1694,18 +1327,18 @@ func (h *updateChatNotificationSettingsHandler) HandleUpdate(client *Client, upd
 }
 
 // OnUpdateChatNotificationSettings registers a handler for UpdateChatNotificationSettings updates with default group (0)
-func (c *Client) OnUpdateChatNotificationSettings(handler func(client *Client, update *UpdateChatNotificationSettings) error, filter UpdateChatNotificationSettingsFilter) {
+func (c *Client) OnUpdateChatNotificationSettings(handler func(client *Client, update *UpdateChatNotificationSettings) error, filter func(u *UpdateChatNotificationSettings) bool) {
 	c.AddUpdateChatNotificationSettingsHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateChatNotificationSettingsHandlerGroup registers a handler for UpdateChatNotificationSettings updates with a specific group
-func (c *Client) AddUpdateChatNotificationSettingsHandlerGroup(handler func(client *Client, update *UpdateChatNotificationSettings) error, filter UpdateChatNotificationSettingsFilter, group int) {
+func (c *Client) AddUpdateChatNotificationSettingsHandlerGroup(handler func(client *Client, update *UpdateChatNotificationSettings) error, filter func(u *UpdateChatNotificationSettings) bool, group int) {
 	c.AddHandlerGroup(&updateChatNotificationSettingsHandler{filter: filter, response: handler}, group)
 }
 
 // updateChatOnlineMemberCountHandler handles UpdateChatOnlineMemberCount updates
 type updateChatOnlineMemberCountHandler struct {
-	filter   UpdateChatOnlineMemberCountFilter
+	filter   func(u *UpdateChatOnlineMemberCount) bool
 	response func(client *Client, update *UpdateChatOnlineMemberCount) error
 }
 
@@ -1725,18 +1358,18 @@ func (h *updateChatOnlineMemberCountHandler) HandleUpdate(client *Client, update
 }
 
 // OnUpdateChatOnlineMemberCount registers a handler for UpdateChatOnlineMemberCount updates with default group (0)
-func (c *Client) OnUpdateChatOnlineMemberCount(handler func(client *Client, update *UpdateChatOnlineMemberCount) error, filter UpdateChatOnlineMemberCountFilter) {
+func (c *Client) OnUpdateChatOnlineMemberCount(handler func(client *Client, update *UpdateChatOnlineMemberCount) error, filter func(u *UpdateChatOnlineMemberCount) bool) {
 	c.AddUpdateChatOnlineMemberCountHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateChatOnlineMemberCountHandlerGroup registers a handler for UpdateChatOnlineMemberCount updates with a specific group
-func (c *Client) AddUpdateChatOnlineMemberCountHandlerGroup(handler func(client *Client, update *UpdateChatOnlineMemberCount) error, filter UpdateChatOnlineMemberCountFilter, group int) {
+func (c *Client) AddUpdateChatOnlineMemberCountHandlerGroup(handler func(client *Client, update *UpdateChatOnlineMemberCount) error, filter func(u *UpdateChatOnlineMemberCount) bool, group int) {
 	c.AddHandlerGroup(&updateChatOnlineMemberCountHandler{filter: filter, response: handler}, group)
 }
 
 // updateChatPendingJoinRequestsHandler handles UpdateChatPendingJoinRequests updates
 type updateChatPendingJoinRequestsHandler struct {
-	filter   UpdateChatPendingJoinRequestsFilter
+	filter   func(u *UpdateChatPendingJoinRequests) bool
 	response func(client *Client, update *UpdateChatPendingJoinRequests) error
 }
 
@@ -1756,18 +1389,18 @@ func (h *updateChatPendingJoinRequestsHandler) HandleUpdate(client *Client, upda
 }
 
 // OnUpdateChatPendingJoinRequests registers a handler for UpdateChatPendingJoinRequests updates with default group (0)
-func (c *Client) OnUpdateChatPendingJoinRequests(handler func(client *Client, update *UpdateChatPendingJoinRequests) error, filter UpdateChatPendingJoinRequestsFilter) {
+func (c *Client) OnUpdateChatPendingJoinRequests(handler func(client *Client, update *UpdateChatPendingJoinRequests) error, filter func(u *UpdateChatPendingJoinRequests) bool) {
 	c.AddUpdateChatPendingJoinRequestsHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateChatPendingJoinRequestsHandlerGroup registers a handler for UpdateChatPendingJoinRequests updates with a specific group
-func (c *Client) AddUpdateChatPendingJoinRequestsHandlerGroup(handler func(client *Client, update *UpdateChatPendingJoinRequests) error, filter UpdateChatPendingJoinRequestsFilter, group int) {
+func (c *Client) AddUpdateChatPendingJoinRequestsHandlerGroup(handler func(client *Client, update *UpdateChatPendingJoinRequests) error, filter func(u *UpdateChatPendingJoinRequests) bool, group int) {
 	c.AddHandlerGroup(&updateChatPendingJoinRequestsHandler{filter: filter, response: handler}, group)
 }
 
 // updateChatPermissionsHandler handles UpdateChatPermissions updates
 type updateChatPermissionsHandler struct {
-	filter   UpdateChatPermissionsFilter
+	filter   func(u *UpdateChatPermissions) bool
 	response func(client *Client, update *UpdateChatPermissions) error
 }
 
@@ -1787,18 +1420,18 @@ func (h *updateChatPermissionsHandler) HandleUpdate(client *Client, update TlObj
 }
 
 // OnUpdateChatPermissions registers a handler for UpdateChatPermissions updates with default group (0)
-func (c *Client) OnUpdateChatPermissions(handler func(client *Client, update *UpdateChatPermissions) error, filter UpdateChatPermissionsFilter) {
+func (c *Client) OnUpdateChatPermissions(handler func(client *Client, update *UpdateChatPermissions) error, filter func(u *UpdateChatPermissions) bool) {
 	c.AddUpdateChatPermissionsHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateChatPermissionsHandlerGroup registers a handler for UpdateChatPermissions updates with a specific group
-func (c *Client) AddUpdateChatPermissionsHandlerGroup(handler func(client *Client, update *UpdateChatPermissions) error, filter UpdateChatPermissionsFilter, group int) {
+func (c *Client) AddUpdateChatPermissionsHandlerGroup(handler func(client *Client, update *UpdateChatPermissions) error, filter func(u *UpdateChatPermissions) bool, group int) {
 	c.AddHandlerGroup(&updateChatPermissionsHandler{filter: filter, response: handler}, group)
 }
 
 // updateChatPhotoHandler handles UpdateChatPhoto updates
 type updateChatPhotoHandler struct {
-	filter   UpdateChatPhotoFilter
+	filter   func(u *UpdateChatPhoto) bool
 	response func(client *Client, update *UpdateChatPhoto) error
 }
 
@@ -1818,18 +1451,18 @@ func (h *updateChatPhotoHandler) HandleUpdate(client *Client, update TlObject) e
 }
 
 // OnUpdateChatPhoto registers a handler for UpdateChatPhoto updates with default group (0)
-func (c *Client) OnUpdateChatPhoto(handler func(client *Client, update *UpdateChatPhoto) error, filter UpdateChatPhotoFilter) {
+func (c *Client) OnUpdateChatPhoto(handler func(client *Client, update *UpdateChatPhoto) error, filter func(u *UpdateChatPhoto) bool) {
 	c.AddUpdateChatPhotoHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateChatPhotoHandlerGroup registers a handler for UpdateChatPhoto updates with a specific group
-func (c *Client) AddUpdateChatPhotoHandlerGroup(handler func(client *Client, update *UpdateChatPhoto) error, filter UpdateChatPhotoFilter, group int) {
+func (c *Client) AddUpdateChatPhotoHandlerGroup(handler func(client *Client, update *UpdateChatPhoto) error, filter func(u *UpdateChatPhoto) bool, group int) {
 	c.AddHandlerGroup(&updateChatPhotoHandler{filter: filter, response: handler}, group)
 }
 
 // updateChatPositionHandler handles UpdateChatPosition updates
 type updateChatPositionHandler struct {
-	filter   UpdateChatPositionFilter
+	filter   func(u *UpdateChatPosition) bool
 	response func(client *Client, update *UpdateChatPosition) error
 }
 
@@ -1849,18 +1482,18 @@ func (h *updateChatPositionHandler) HandleUpdate(client *Client, update TlObject
 }
 
 // OnUpdateChatPosition registers a handler for UpdateChatPosition updates with default group (0)
-func (c *Client) OnUpdateChatPosition(handler func(client *Client, update *UpdateChatPosition) error, filter UpdateChatPositionFilter) {
+func (c *Client) OnUpdateChatPosition(handler func(client *Client, update *UpdateChatPosition) error, filter func(u *UpdateChatPosition) bool) {
 	c.AddUpdateChatPositionHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateChatPositionHandlerGroup registers a handler for UpdateChatPosition updates with a specific group
-func (c *Client) AddUpdateChatPositionHandlerGroup(handler func(client *Client, update *UpdateChatPosition) error, filter UpdateChatPositionFilter, group int) {
+func (c *Client) AddUpdateChatPositionHandlerGroup(handler func(client *Client, update *UpdateChatPosition) error, filter func(u *UpdateChatPosition) bool, group int) {
 	c.AddHandlerGroup(&updateChatPositionHandler{filter: filter, response: handler}, group)
 }
 
 // updateChatReadInboxHandler handles UpdateChatReadInbox updates
 type updateChatReadInboxHandler struct {
-	filter   UpdateChatReadInboxFilter
+	filter   func(u *UpdateChatReadInbox) bool
 	response func(client *Client, update *UpdateChatReadInbox) error
 }
 
@@ -1880,18 +1513,18 @@ func (h *updateChatReadInboxHandler) HandleUpdate(client *Client, update TlObjec
 }
 
 // OnUpdateChatReadInbox registers a handler for UpdateChatReadInbox updates with default group (0)
-func (c *Client) OnUpdateChatReadInbox(handler func(client *Client, update *UpdateChatReadInbox) error, filter UpdateChatReadInboxFilter) {
+func (c *Client) OnUpdateChatReadInbox(handler func(client *Client, update *UpdateChatReadInbox) error, filter func(u *UpdateChatReadInbox) bool) {
 	c.AddUpdateChatReadInboxHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateChatReadInboxHandlerGroup registers a handler for UpdateChatReadInbox updates with a specific group
-func (c *Client) AddUpdateChatReadInboxHandlerGroup(handler func(client *Client, update *UpdateChatReadInbox) error, filter UpdateChatReadInboxFilter, group int) {
+func (c *Client) AddUpdateChatReadInboxHandlerGroup(handler func(client *Client, update *UpdateChatReadInbox) error, filter func(u *UpdateChatReadInbox) bool, group int) {
 	c.AddHandlerGroup(&updateChatReadInboxHandler{filter: filter, response: handler}, group)
 }
 
 // updateChatReadOutboxHandler handles UpdateChatReadOutbox updates
 type updateChatReadOutboxHandler struct {
-	filter   UpdateChatReadOutboxFilter
+	filter   func(u *UpdateChatReadOutbox) bool
 	response func(client *Client, update *UpdateChatReadOutbox) error
 }
 
@@ -1911,18 +1544,18 @@ func (h *updateChatReadOutboxHandler) HandleUpdate(client *Client, update TlObje
 }
 
 // OnUpdateChatReadOutbox registers a handler for UpdateChatReadOutbox updates with default group (0)
-func (c *Client) OnUpdateChatReadOutbox(handler func(client *Client, update *UpdateChatReadOutbox) error, filter UpdateChatReadOutboxFilter) {
+func (c *Client) OnUpdateChatReadOutbox(handler func(client *Client, update *UpdateChatReadOutbox) error, filter func(u *UpdateChatReadOutbox) bool) {
 	c.AddUpdateChatReadOutboxHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateChatReadOutboxHandlerGroup registers a handler for UpdateChatReadOutbox updates with a specific group
-func (c *Client) AddUpdateChatReadOutboxHandlerGroup(handler func(client *Client, update *UpdateChatReadOutbox) error, filter UpdateChatReadOutboxFilter, group int) {
+func (c *Client) AddUpdateChatReadOutboxHandlerGroup(handler func(client *Client, update *UpdateChatReadOutbox) error, filter func(u *UpdateChatReadOutbox) bool, group int) {
 	c.AddHandlerGroup(&updateChatReadOutboxHandler{filter: filter, response: handler}, group)
 }
 
 // updateChatRemovedFromListHandler handles UpdateChatRemovedFromList updates
 type updateChatRemovedFromListHandler struct {
-	filter   UpdateChatRemovedFromListFilter
+	filter   func(u *UpdateChatRemovedFromList) bool
 	response func(client *Client, update *UpdateChatRemovedFromList) error
 }
 
@@ -1942,18 +1575,18 @@ func (h *updateChatRemovedFromListHandler) HandleUpdate(client *Client, update T
 }
 
 // OnUpdateChatRemovedFromList registers a handler for UpdateChatRemovedFromList updates with default group (0)
-func (c *Client) OnUpdateChatRemovedFromList(handler func(client *Client, update *UpdateChatRemovedFromList) error, filter UpdateChatRemovedFromListFilter) {
+func (c *Client) OnUpdateChatRemovedFromList(handler func(client *Client, update *UpdateChatRemovedFromList) error, filter func(u *UpdateChatRemovedFromList) bool) {
 	c.AddUpdateChatRemovedFromListHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateChatRemovedFromListHandlerGroup registers a handler for UpdateChatRemovedFromList updates with a specific group
-func (c *Client) AddUpdateChatRemovedFromListHandlerGroup(handler func(client *Client, update *UpdateChatRemovedFromList) error, filter UpdateChatRemovedFromListFilter, group int) {
+func (c *Client) AddUpdateChatRemovedFromListHandlerGroup(handler func(client *Client, update *UpdateChatRemovedFromList) error, filter func(u *UpdateChatRemovedFromList) bool, group int) {
 	c.AddHandlerGroup(&updateChatRemovedFromListHandler{filter: filter, response: handler}, group)
 }
 
 // updateChatReplyMarkupHandler handles UpdateChatReplyMarkup updates
 type updateChatReplyMarkupHandler struct {
-	filter   UpdateChatReplyMarkupFilter
+	filter   func(u *UpdateChatReplyMarkup) bool
 	response func(client *Client, update *UpdateChatReplyMarkup) error
 }
 
@@ -1973,18 +1606,18 @@ func (h *updateChatReplyMarkupHandler) HandleUpdate(client *Client, update TlObj
 }
 
 // OnUpdateChatReplyMarkup registers a handler for UpdateChatReplyMarkup updates with default group (0)
-func (c *Client) OnUpdateChatReplyMarkup(handler func(client *Client, update *UpdateChatReplyMarkup) error, filter UpdateChatReplyMarkupFilter) {
+func (c *Client) OnUpdateChatReplyMarkup(handler func(client *Client, update *UpdateChatReplyMarkup) error, filter func(u *UpdateChatReplyMarkup) bool) {
 	c.AddUpdateChatReplyMarkupHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateChatReplyMarkupHandlerGroup registers a handler for UpdateChatReplyMarkup updates with a specific group
-func (c *Client) AddUpdateChatReplyMarkupHandlerGroup(handler func(client *Client, update *UpdateChatReplyMarkup) error, filter UpdateChatReplyMarkupFilter, group int) {
+func (c *Client) AddUpdateChatReplyMarkupHandlerGroup(handler func(client *Client, update *UpdateChatReplyMarkup) error, filter func(u *UpdateChatReplyMarkup) bool, group int) {
 	c.AddHandlerGroup(&updateChatReplyMarkupHandler{filter: filter, response: handler}, group)
 }
 
 // updateChatRevenueAmountHandler handles UpdateChatRevenueAmount updates
 type updateChatRevenueAmountHandler struct {
-	filter   UpdateChatRevenueAmountFilter
+	filter   func(u *UpdateChatRevenueAmount) bool
 	response func(client *Client, update *UpdateChatRevenueAmount) error
 }
 
@@ -2004,18 +1637,18 @@ func (h *updateChatRevenueAmountHandler) HandleUpdate(client *Client, update TlO
 }
 
 // OnUpdateChatRevenueAmount registers a handler for UpdateChatRevenueAmount updates with default group (0)
-func (c *Client) OnUpdateChatRevenueAmount(handler func(client *Client, update *UpdateChatRevenueAmount) error, filter UpdateChatRevenueAmountFilter) {
+func (c *Client) OnUpdateChatRevenueAmount(handler func(client *Client, update *UpdateChatRevenueAmount) error, filter func(u *UpdateChatRevenueAmount) bool) {
 	c.AddUpdateChatRevenueAmountHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateChatRevenueAmountHandlerGroup registers a handler for UpdateChatRevenueAmount updates with a specific group
-func (c *Client) AddUpdateChatRevenueAmountHandlerGroup(handler func(client *Client, update *UpdateChatRevenueAmount) error, filter UpdateChatRevenueAmountFilter, group int) {
+func (c *Client) AddUpdateChatRevenueAmountHandlerGroup(handler func(client *Client, update *UpdateChatRevenueAmount) error, filter func(u *UpdateChatRevenueAmount) bool, group int) {
 	c.AddHandlerGroup(&updateChatRevenueAmountHandler{filter: filter, response: handler}, group)
 }
 
 // updateChatThemeHandler handles UpdateChatTheme updates
 type updateChatThemeHandler struct {
-	filter   UpdateChatThemeFilter
+	filter   func(u *UpdateChatTheme) bool
 	response func(client *Client, update *UpdateChatTheme) error
 }
 
@@ -2035,18 +1668,18 @@ func (h *updateChatThemeHandler) HandleUpdate(client *Client, update TlObject) e
 }
 
 // OnUpdateChatTheme registers a handler for UpdateChatTheme updates with default group (0)
-func (c *Client) OnUpdateChatTheme(handler func(client *Client, update *UpdateChatTheme) error, filter UpdateChatThemeFilter) {
+func (c *Client) OnUpdateChatTheme(handler func(client *Client, update *UpdateChatTheme) error, filter func(u *UpdateChatTheme) bool) {
 	c.AddUpdateChatThemeHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateChatThemeHandlerGroup registers a handler for UpdateChatTheme updates with a specific group
-func (c *Client) AddUpdateChatThemeHandlerGroup(handler func(client *Client, update *UpdateChatTheme) error, filter UpdateChatThemeFilter, group int) {
+func (c *Client) AddUpdateChatThemeHandlerGroup(handler func(client *Client, update *UpdateChatTheme) error, filter func(u *UpdateChatTheme) bool, group int) {
 	c.AddHandlerGroup(&updateChatThemeHandler{filter: filter, response: handler}, group)
 }
 
 // updateChatTitleHandler handles UpdateChatTitle updates
 type updateChatTitleHandler struct {
-	filter   UpdateChatTitleFilter
+	filter   func(u *UpdateChatTitle) bool
 	response func(client *Client, update *UpdateChatTitle) error
 }
 
@@ -2066,18 +1699,18 @@ func (h *updateChatTitleHandler) HandleUpdate(client *Client, update TlObject) e
 }
 
 // OnUpdateChatTitle registers a handler for UpdateChatTitle updates with default group (0)
-func (c *Client) OnUpdateChatTitle(handler func(client *Client, update *UpdateChatTitle) error, filter UpdateChatTitleFilter) {
+func (c *Client) OnUpdateChatTitle(handler func(client *Client, update *UpdateChatTitle) error, filter func(u *UpdateChatTitle) bool) {
 	c.AddUpdateChatTitleHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateChatTitleHandlerGroup registers a handler for UpdateChatTitle updates with a specific group
-func (c *Client) AddUpdateChatTitleHandlerGroup(handler func(client *Client, update *UpdateChatTitle) error, filter UpdateChatTitleFilter, group int) {
+func (c *Client) AddUpdateChatTitleHandlerGroup(handler func(client *Client, update *UpdateChatTitle) error, filter func(u *UpdateChatTitle) bool, group int) {
 	c.AddHandlerGroup(&updateChatTitleHandler{filter: filter, response: handler}, group)
 }
 
 // updateChatUnreadMentionCountHandler handles UpdateChatUnreadMentionCount updates
 type updateChatUnreadMentionCountHandler struct {
-	filter   UpdateChatUnreadMentionCountFilter
+	filter   func(u *UpdateChatUnreadMentionCount) bool
 	response func(client *Client, update *UpdateChatUnreadMentionCount) error
 }
 
@@ -2097,18 +1730,18 @@ func (h *updateChatUnreadMentionCountHandler) HandleUpdate(client *Client, updat
 }
 
 // OnUpdateChatUnreadMentionCount registers a handler for UpdateChatUnreadMentionCount updates with default group (0)
-func (c *Client) OnUpdateChatUnreadMentionCount(handler func(client *Client, update *UpdateChatUnreadMentionCount) error, filter UpdateChatUnreadMentionCountFilter) {
+func (c *Client) OnUpdateChatUnreadMentionCount(handler func(client *Client, update *UpdateChatUnreadMentionCount) error, filter func(u *UpdateChatUnreadMentionCount) bool) {
 	c.AddUpdateChatUnreadMentionCountHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateChatUnreadMentionCountHandlerGroup registers a handler for UpdateChatUnreadMentionCount updates with a specific group
-func (c *Client) AddUpdateChatUnreadMentionCountHandlerGroup(handler func(client *Client, update *UpdateChatUnreadMentionCount) error, filter UpdateChatUnreadMentionCountFilter, group int) {
+func (c *Client) AddUpdateChatUnreadMentionCountHandlerGroup(handler func(client *Client, update *UpdateChatUnreadMentionCount) error, filter func(u *UpdateChatUnreadMentionCount) bool, group int) {
 	c.AddHandlerGroup(&updateChatUnreadMentionCountHandler{filter: filter, response: handler}, group)
 }
 
 // updateChatUnreadPollVoteCountHandler handles UpdateChatUnreadPollVoteCount updates
 type updateChatUnreadPollVoteCountHandler struct {
-	filter   UpdateChatUnreadPollVoteCountFilter
+	filter   func(u *UpdateChatUnreadPollVoteCount) bool
 	response func(client *Client, update *UpdateChatUnreadPollVoteCount) error
 }
 
@@ -2128,18 +1761,18 @@ func (h *updateChatUnreadPollVoteCountHandler) HandleUpdate(client *Client, upda
 }
 
 // OnUpdateChatUnreadPollVoteCount registers a handler for UpdateChatUnreadPollVoteCount updates with default group (0)
-func (c *Client) OnUpdateChatUnreadPollVoteCount(handler func(client *Client, update *UpdateChatUnreadPollVoteCount) error, filter UpdateChatUnreadPollVoteCountFilter) {
+func (c *Client) OnUpdateChatUnreadPollVoteCount(handler func(client *Client, update *UpdateChatUnreadPollVoteCount) error, filter func(u *UpdateChatUnreadPollVoteCount) bool) {
 	c.AddUpdateChatUnreadPollVoteCountHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateChatUnreadPollVoteCountHandlerGroup registers a handler for UpdateChatUnreadPollVoteCount updates with a specific group
-func (c *Client) AddUpdateChatUnreadPollVoteCountHandlerGroup(handler func(client *Client, update *UpdateChatUnreadPollVoteCount) error, filter UpdateChatUnreadPollVoteCountFilter, group int) {
+func (c *Client) AddUpdateChatUnreadPollVoteCountHandlerGroup(handler func(client *Client, update *UpdateChatUnreadPollVoteCount) error, filter func(u *UpdateChatUnreadPollVoteCount) bool, group int) {
 	c.AddHandlerGroup(&updateChatUnreadPollVoteCountHandler{filter: filter, response: handler}, group)
 }
 
 // updateChatUnreadReactionCountHandler handles UpdateChatUnreadReactionCount updates
 type updateChatUnreadReactionCountHandler struct {
-	filter   UpdateChatUnreadReactionCountFilter
+	filter   func(u *UpdateChatUnreadReactionCount) bool
 	response func(client *Client, update *UpdateChatUnreadReactionCount) error
 }
 
@@ -2159,18 +1792,18 @@ func (h *updateChatUnreadReactionCountHandler) HandleUpdate(client *Client, upda
 }
 
 // OnUpdateChatUnreadReactionCount registers a handler for UpdateChatUnreadReactionCount updates with default group (0)
-func (c *Client) OnUpdateChatUnreadReactionCount(handler func(client *Client, update *UpdateChatUnreadReactionCount) error, filter UpdateChatUnreadReactionCountFilter) {
+func (c *Client) OnUpdateChatUnreadReactionCount(handler func(client *Client, update *UpdateChatUnreadReactionCount) error, filter func(u *UpdateChatUnreadReactionCount) bool) {
 	c.AddUpdateChatUnreadReactionCountHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateChatUnreadReactionCountHandlerGroup registers a handler for UpdateChatUnreadReactionCount updates with a specific group
-func (c *Client) AddUpdateChatUnreadReactionCountHandlerGroup(handler func(client *Client, update *UpdateChatUnreadReactionCount) error, filter UpdateChatUnreadReactionCountFilter, group int) {
+func (c *Client) AddUpdateChatUnreadReactionCountHandlerGroup(handler func(client *Client, update *UpdateChatUnreadReactionCount) error, filter func(u *UpdateChatUnreadReactionCount) bool, group int) {
 	c.AddHandlerGroup(&updateChatUnreadReactionCountHandler{filter: filter, response: handler}, group)
 }
 
 // updateChatVideoChatHandler handles UpdateChatVideoChat updates
 type updateChatVideoChatHandler struct {
-	filter   UpdateChatVideoChatFilter
+	filter   func(u *UpdateChatVideoChat) bool
 	response func(client *Client, update *UpdateChatVideoChat) error
 }
 
@@ -2190,18 +1823,18 @@ func (h *updateChatVideoChatHandler) HandleUpdate(client *Client, update TlObjec
 }
 
 // OnUpdateChatVideoChat registers a handler for UpdateChatVideoChat updates with default group (0)
-func (c *Client) OnUpdateChatVideoChat(handler func(client *Client, update *UpdateChatVideoChat) error, filter UpdateChatVideoChatFilter) {
+func (c *Client) OnUpdateChatVideoChat(handler func(client *Client, update *UpdateChatVideoChat) error, filter func(u *UpdateChatVideoChat) bool) {
 	c.AddUpdateChatVideoChatHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateChatVideoChatHandlerGroup registers a handler for UpdateChatVideoChat updates with a specific group
-func (c *Client) AddUpdateChatVideoChatHandlerGroup(handler func(client *Client, update *UpdateChatVideoChat) error, filter UpdateChatVideoChatFilter, group int) {
+func (c *Client) AddUpdateChatVideoChatHandlerGroup(handler func(client *Client, update *UpdateChatVideoChat) error, filter func(u *UpdateChatVideoChat) bool, group int) {
 	c.AddHandlerGroup(&updateChatVideoChatHandler{filter: filter, response: handler}, group)
 }
 
 // updateChatViewAsTopicsHandler handles UpdateChatViewAsTopics updates
 type updateChatViewAsTopicsHandler struct {
-	filter   UpdateChatViewAsTopicsFilter
+	filter   func(u *UpdateChatViewAsTopics) bool
 	response func(client *Client, update *UpdateChatViewAsTopics) error
 }
 
@@ -2221,18 +1854,18 @@ func (h *updateChatViewAsTopicsHandler) HandleUpdate(client *Client, update TlOb
 }
 
 // OnUpdateChatViewAsTopics registers a handler for UpdateChatViewAsTopics updates with default group (0)
-func (c *Client) OnUpdateChatViewAsTopics(handler func(client *Client, update *UpdateChatViewAsTopics) error, filter UpdateChatViewAsTopicsFilter) {
+func (c *Client) OnUpdateChatViewAsTopics(handler func(client *Client, update *UpdateChatViewAsTopics) error, filter func(u *UpdateChatViewAsTopics) bool) {
 	c.AddUpdateChatViewAsTopicsHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateChatViewAsTopicsHandlerGroup registers a handler for UpdateChatViewAsTopics updates with a specific group
-func (c *Client) AddUpdateChatViewAsTopicsHandlerGroup(handler func(client *Client, update *UpdateChatViewAsTopics) error, filter UpdateChatViewAsTopicsFilter, group int) {
+func (c *Client) AddUpdateChatViewAsTopicsHandlerGroup(handler func(client *Client, update *UpdateChatViewAsTopics) error, filter func(u *UpdateChatViewAsTopics) bool, group int) {
 	c.AddHandlerGroup(&updateChatViewAsTopicsHandler{filter: filter, response: handler}, group)
 }
 
 // updateConnectionStateHandler handles UpdateConnectionState updates
 type updateConnectionStateHandler struct {
-	filter   UpdateConnectionStateFilter
+	filter   func(u *UpdateConnectionState) bool
 	response func(client *Client, update *UpdateConnectionState) error
 }
 
@@ -2252,18 +1885,18 @@ func (h *updateConnectionStateHandler) HandleUpdate(client *Client, update TlObj
 }
 
 // OnUpdateConnectionState registers a handler for UpdateConnectionState updates with default group (0)
-func (c *Client) OnUpdateConnectionState(handler func(client *Client, update *UpdateConnectionState) error, filter UpdateConnectionStateFilter) {
+func (c *Client) OnUpdateConnectionState(handler func(client *Client, update *UpdateConnectionState) error, filter func(u *UpdateConnectionState) bool) {
 	c.AddUpdateConnectionStateHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateConnectionStateHandlerGroup registers a handler for UpdateConnectionState updates with a specific group
-func (c *Client) AddUpdateConnectionStateHandlerGroup(handler func(client *Client, update *UpdateConnectionState) error, filter UpdateConnectionStateFilter, group int) {
+func (c *Client) AddUpdateConnectionStateHandlerGroup(handler func(client *Client, update *UpdateConnectionState) error, filter func(u *UpdateConnectionState) bool, group int) {
 	c.AddHandlerGroup(&updateConnectionStateHandler{filter: filter, response: handler}, group)
 }
 
 // updateContactCloseBirthdaysHandler handles UpdateContactCloseBirthdays updates
 type updateContactCloseBirthdaysHandler struct {
-	filter   UpdateContactCloseBirthdaysFilter
+	filter   func(u *UpdateContactCloseBirthdays) bool
 	response func(client *Client, update *UpdateContactCloseBirthdays) error
 }
 
@@ -2283,18 +1916,18 @@ func (h *updateContactCloseBirthdaysHandler) HandleUpdate(client *Client, update
 }
 
 // OnUpdateContactCloseBirthdays registers a handler for UpdateContactCloseBirthdays updates with default group (0)
-func (c *Client) OnUpdateContactCloseBirthdays(handler func(client *Client, update *UpdateContactCloseBirthdays) error, filter UpdateContactCloseBirthdaysFilter) {
+func (c *Client) OnUpdateContactCloseBirthdays(handler func(client *Client, update *UpdateContactCloseBirthdays) error, filter func(u *UpdateContactCloseBirthdays) bool) {
 	c.AddUpdateContactCloseBirthdaysHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateContactCloseBirthdaysHandlerGroup registers a handler for UpdateContactCloseBirthdays updates with a specific group
-func (c *Client) AddUpdateContactCloseBirthdaysHandlerGroup(handler func(client *Client, update *UpdateContactCloseBirthdays) error, filter UpdateContactCloseBirthdaysFilter, group int) {
+func (c *Client) AddUpdateContactCloseBirthdaysHandlerGroup(handler func(client *Client, update *UpdateContactCloseBirthdays) error, filter func(u *UpdateContactCloseBirthdays) bool, group int) {
 	c.AddHandlerGroup(&updateContactCloseBirthdaysHandler{filter: filter, response: handler}, group)
 }
 
 // updateDefaultBackgroundHandler handles UpdateDefaultBackground updates
 type updateDefaultBackgroundHandler struct {
-	filter   UpdateDefaultBackgroundFilter
+	filter   func(u *UpdateDefaultBackground) bool
 	response func(client *Client, update *UpdateDefaultBackground) error
 }
 
@@ -2314,18 +1947,18 @@ func (h *updateDefaultBackgroundHandler) HandleUpdate(client *Client, update TlO
 }
 
 // OnUpdateDefaultBackground registers a handler for UpdateDefaultBackground updates with default group (0)
-func (c *Client) OnUpdateDefaultBackground(handler func(client *Client, update *UpdateDefaultBackground) error, filter UpdateDefaultBackgroundFilter) {
+func (c *Client) OnUpdateDefaultBackground(handler func(client *Client, update *UpdateDefaultBackground) error, filter func(u *UpdateDefaultBackground) bool) {
 	c.AddUpdateDefaultBackgroundHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateDefaultBackgroundHandlerGroup registers a handler for UpdateDefaultBackground updates with a specific group
-func (c *Client) AddUpdateDefaultBackgroundHandlerGroup(handler func(client *Client, update *UpdateDefaultBackground) error, filter UpdateDefaultBackgroundFilter, group int) {
+func (c *Client) AddUpdateDefaultBackgroundHandlerGroup(handler func(client *Client, update *UpdateDefaultBackground) error, filter func(u *UpdateDefaultBackground) bool, group int) {
 	c.AddHandlerGroup(&updateDefaultBackgroundHandler{filter: filter, response: handler}, group)
 }
 
 // updateDefaultPaidReactionTypeHandler handles UpdateDefaultPaidReactionType updates
 type updateDefaultPaidReactionTypeHandler struct {
-	filter   UpdateDefaultPaidReactionTypeFilter
+	filter   func(u *UpdateDefaultPaidReactionType) bool
 	response func(client *Client, update *UpdateDefaultPaidReactionType) error
 }
 
@@ -2345,18 +1978,18 @@ func (h *updateDefaultPaidReactionTypeHandler) HandleUpdate(client *Client, upda
 }
 
 // OnUpdateDefaultPaidReactionType registers a handler for UpdateDefaultPaidReactionType updates with default group (0)
-func (c *Client) OnUpdateDefaultPaidReactionType(handler func(client *Client, update *UpdateDefaultPaidReactionType) error, filter UpdateDefaultPaidReactionTypeFilter) {
+func (c *Client) OnUpdateDefaultPaidReactionType(handler func(client *Client, update *UpdateDefaultPaidReactionType) error, filter func(u *UpdateDefaultPaidReactionType) bool) {
 	c.AddUpdateDefaultPaidReactionTypeHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateDefaultPaidReactionTypeHandlerGroup registers a handler for UpdateDefaultPaidReactionType updates with a specific group
-func (c *Client) AddUpdateDefaultPaidReactionTypeHandlerGroup(handler func(client *Client, update *UpdateDefaultPaidReactionType) error, filter UpdateDefaultPaidReactionTypeFilter, group int) {
+func (c *Client) AddUpdateDefaultPaidReactionTypeHandlerGroup(handler func(client *Client, update *UpdateDefaultPaidReactionType) error, filter func(u *UpdateDefaultPaidReactionType) bool, group int) {
 	c.AddHandlerGroup(&updateDefaultPaidReactionTypeHandler{filter: filter, response: handler}, group)
 }
 
 // updateDefaultReactionTypeHandler handles UpdateDefaultReactionType updates
 type updateDefaultReactionTypeHandler struct {
-	filter   UpdateDefaultReactionTypeFilter
+	filter   func(u *UpdateDefaultReactionType) bool
 	response func(client *Client, update *UpdateDefaultReactionType) error
 }
 
@@ -2376,18 +2009,18 @@ func (h *updateDefaultReactionTypeHandler) HandleUpdate(client *Client, update T
 }
 
 // OnUpdateDefaultReactionType registers a handler for UpdateDefaultReactionType updates with default group (0)
-func (c *Client) OnUpdateDefaultReactionType(handler func(client *Client, update *UpdateDefaultReactionType) error, filter UpdateDefaultReactionTypeFilter) {
+func (c *Client) OnUpdateDefaultReactionType(handler func(client *Client, update *UpdateDefaultReactionType) error, filter func(u *UpdateDefaultReactionType) bool) {
 	c.AddUpdateDefaultReactionTypeHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateDefaultReactionTypeHandlerGroup registers a handler for UpdateDefaultReactionType updates with a specific group
-func (c *Client) AddUpdateDefaultReactionTypeHandlerGroup(handler func(client *Client, update *UpdateDefaultReactionType) error, filter UpdateDefaultReactionTypeFilter, group int) {
+func (c *Client) AddUpdateDefaultReactionTypeHandlerGroup(handler func(client *Client, update *UpdateDefaultReactionType) error, filter func(u *UpdateDefaultReactionType) bool, group int) {
 	c.AddHandlerGroup(&updateDefaultReactionTypeHandler{filter: filter, response: handler}, group)
 }
 
 // updateDeleteMessagesHandler handles UpdateDeleteMessages updates
 type updateDeleteMessagesHandler struct {
-	filter   UpdateDeleteMessagesFilter
+	filter   func(u *UpdateDeleteMessages) bool
 	response func(client *Client, update *UpdateDeleteMessages) error
 }
 
@@ -2407,18 +2040,18 @@ func (h *updateDeleteMessagesHandler) HandleUpdate(client *Client, update TlObje
 }
 
 // OnUpdateDeleteMessages registers a handler for UpdateDeleteMessages updates with default group (0)
-func (c *Client) OnUpdateDeleteMessages(handler func(client *Client, update *UpdateDeleteMessages) error, filter UpdateDeleteMessagesFilter) {
+func (c *Client) OnUpdateDeleteMessages(handler func(client *Client, update *UpdateDeleteMessages) error, filter func(u *UpdateDeleteMessages) bool) {
 	c.AddUpdateDeleteMessagesHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateDeleteMessagesHandlerGroup registers a handler for UpdateDeleteMessages updates with a specific group
-func (c *Client) AddUpdateDeleteMessagesHandlerGroup(handler func(client *Client, update *UpdateDeleteMessages) error, filter UpdateDeleteMessagesFilter, group int) {
+func (c *Client) AddUpdateDeleteMessagesHandlerGroup(handler func(client *Client, update *UpdateDeleteMessages) error, filter func(u *UpdateDeleteMessages) bool, group int) {
 	c.AddHandlerGroup(&updateDeleteMessagesHandler{filter: filter, response: handler}, group)
 }
 
 // updateDiceEmojisHandler handles UpdateDiceEmojis updates
 type updateDiceEmojisHandler struct {
-	filter   UpdateDiceEmojisFilter
+	filter   func(u *UpdateDiceEmojis) bool
 	response func(client *Client, update *UpdateDiceEmojis) error
 }
 
@@ -2438,18 +2071,18 @@ func (h *updateDiceEmojisHandler) HandleUpdate(client *Client, update TlObject) 
 }
 
 // OnUpdateDiceEmojis registers a handler for UpdateDiceEmojis updates with default group (0)
-func (c *Client) OnUpdateDiceEmojis(handler func(client *Client, update *UpdateDiceEmojis) error, filter UpdateDiceEmojisFilter) {
+func (c *Client) OnUpdateDiceEmojis(handler func(client *Client, update *UpdateDiceEmojis) error, filter func(u *UpdateDiceEmojis) bool) {
 	c.AddUpdateDiceEmojisHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateDiceEmojisHandlerGroup registers a handler for UpdateDiceEmojis updates with a specific group
-func (c *Client) AddUpdateDiceEmojisHandlerGroup(handler func(client *Client, update *UpdateDiceEmojis) error, filter UpdateDiceEmojisFilter, group int) {
+func (c *Client) AddUpdateDiceEmojisHandlerGroup(handler func(client *Client, update *UpdateDiceEmojis) error, filter func(u *UpdateDiceEmojis) bool, group int) {
 	c.AddHandlerGroup(&updateDiceEmojisHandler{filter: filter, response: handler}, group)
 }
 
 // updateDirectMessagesChatTopicHandler handles UpdateDirectMessagesChatTopic updates
 type updateDirectMessagesChatTopicHandler struct {
-	filter   UpdateDirectMessagesChatTopicFilter
+	filter   func(u *UpdateDirectMessagesChatTopic) bool
 	response func(client *Client, update *UpdateDirectMessagesChatTopic) error
 }
 
@@ -2469,18 +2102,18 @@ func (h *updateDirectMessagesChatTopicHandler) HandleUpdate(client *Client, upda
 }
 
 // OnUpdateDirectMessagesChatTopic registers a handler for UpdateDirectMessagesChatTopic updates with default group (0)
-func (c *Client) OnUpdateDirectMessagesChatTopic(handler func(client *Client, update *UpdateDirectMessagesChatTopic) error, filter UpdateDirectMessagesChatTopicFilter) {
+func (c *Client) OnUpdateDirectMessagesChatTopic(handler func(client *Client, update *UpdateDirectMessagesChatTopic) error, filter func(u *UpdateDirectMessagesChatTopic) bool) {
 	c.AddUpdateDirectMessagesChatTopicHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateDirectMessagesChatTopicHandlerGroup registers a handler for UpdateDirectMessagesChatTopic updates with a specific group
-func (c *Client) AddUpdateDirectMessagesChatTopicHandlerGroup(handler func(client *Client, update *UpdateDirectMessagesChatTopic) error, filter UpdateDirectMessagesChatTopicFilter, group int) {
+func (c *Client) AddUpdateDirectMessagesChatTopicHandlerGroup(handler func(client *Client, update *UpdateDirectMessagesChatTopic) error, filter func(u *UpdateDirectMessagesChatTopic) bool, group int) {
 	c.AddHandlerGroup(&updateDirectMessagesChatTopicHandler{filter: filter, response: handler}, group)
 }
 
 // updateEmojiChatThemesHandler handles UpdateEmojiChatThemes updates
 type updateEmojiChatThemesHandler struct {
-	filter   UpdateEmojiChatThemesFilter
+	filter   func(u *UpdateEmojiChatThemes) bool
 	response func(client *Client, update *UpdateEmojiChatThemes) error
 }
 
@@ -2500,18 +2133,18 @@ func (h *updateEmojiChatThemesHandler) HandleUpdate(client *Client, update TlObj
 }
 
 // OnUpdateEmojiChatThemes registers a handler for UpdateEmojiChatThemes updates with default group (0)
-func (c *Client) OnUpdateEmojiChatThemes(handler func(client *Client, update *UpdateEmojiChatThemes) error, filter UpdateEmojiChatThemesFilter) {
+func (c *Client) OnUpdateEmojiChatThemes(handler func(client *Client, update *UpdateEmojiChatThemes) error, filter func(u *UpdateEmojiChatThemes) bool) {
 	c.AddUpdateEmojiChatThemesHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateEmojiChatThemesHandlerGroup registers a handler for UpdateEmojiChatThemes updates with a specific group
-func (c *Client) AddUpdateEmojiChatThemesHandlerGroup(handler func(client *Client, update *UpdateEmojiChatThemes) error, filter UpdateEmojiChatThemesFilter, group int) {
+func (c *Client) AddUpdateEmojiChatThemesHandlerGroup(handler func(client *Client, update *UpdateEmojiChatThemes) error, filter func(u *UpdateEmojiChatThemes) bool, group int) {
 	c.AddHandlerGroup(&updateEmojiChatThemesHandler{filter: filter, response: handler}, group)
 }
 
 // updateFavoriteStickersHandler handles UpdateFavoriteStickers updates
 type updateFavoriteStickersHandler struct {
-	filter   UpdateFavoriteStickersFilter
+	filter   func(u *UpdateFavoriteStickers) bool
 	response func(client *Client, update *UpdateFavoriteStickers) error
 }
 
@@ -2531,18 +2164,18 @@ func (h *updateFavoriteStickersHandler) HandleUpdate(client *Client, update TlOb
 }
 
 // OnUpdateFavoriteStickers registers a handler for UpdateFavoriteStickers updates with default group (0)
-func (c *Client) OnUpdateFavoriteStickers(handler func(client *Client, update *UpdateFavoriteStickers) error, filter UpdateFavoriteStickersFilter) {
+func (c *Client) OnUpdateFavoriteStickers(handler func(client *Client, update *UpdateFavoriteStickers) error, filter func(u *UpdateFavoriteStickers) bool) {
 	c.AddUpdateFavoriteStickersHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateFavoriteStickersHandlerGroup registers a handler for UpdateFavoriteStickers updates with a specific group
-func (c *Client) AddUpdateFavoriteStickersHandlerGroup(handler func(client *Client, update *UpdateFavoriteStickers) error, filter UpdateFavoriteStickersFilter, group int) {
+func (c *Client) AddUpdateFavoriteStickersHandlerGroup(handler func(client *Client, update *UpdateFavoriteStickers) error, filter func(u *UpdateFavoriteStickers) bool, group int) {
 	c.AddHandlerGroup(&updateFavoriteStickersHandler{filter: filter, response: handler}, group)
 }
 
 // updateFileHandler handles UpdateFile updates
 type updateFileHandler struct {
-	filter   UpdateFileFilter
+	filter   func(u *UpdateFile) bool
 	response func(client *Client, update *UpdateFile) error
 }
 
@@ -2562,18 +2195,18 @@ func (h *updateFileHandler) HandleUpdate(client *Client, update TlObject) error 
 }
 
 // OnUpdateFile registers a handler for UpdateFile updates with default group (0)
-func (c *Client) OnUpdateFile(handler func(client *Client, update *UpdateFile) error, filter UpdateFileFilter) {
+func (c *Client) OnUpdateFile(handler func(client *Client, update *UpdateFile) error, filter func(u *UpdateFile) bool) {
 	c.AddUpdateFileHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateFileHandlerGroup registers a handler for UpdateFile updates with a specific group
-func (c *Client) AddUpdateFileHandlerGroup(handler func(client *Client, update *UpdateFile) error, filter UpdateFileFilter, group int) {
+func (c *Client) AddUpdateFileHandlerGroup(handler func(client *Client, update *UpdateFile) error, filter func(u *UpdateFile) bool, group int) {
 	c.AddHandlerGroup(&updateFileHandler{filter: filter, response: handler}, group)
 }
 
 // updateFileAddedToDownloadsHandler handles UpdateFileAddedToDownloads updates
 type updateFileAddedToDownloadsHandler struct {
-	filter   UpdateFileAddedToDownloadsFilter
+	filter   func(u *UpdateFileAddedToDownloads) bool
 	response func(client *Client, update *UpdateFileAddedToDownloads) error
 }
 
@@ -2593,18 +2226,18 @@ func (h *updateFileAddedToDownloadsHandler) HandleUpdate(client *Client, update 
 }
 
 // OnUpdateFileAddedToDownloads registers a handler for UpdateFileAddedToDownloads updates with default group (0)
-func (c *Client) OnUpdateFileAddedToDownloads(handler func(client *Client, update *UpdateFileAddedToDownloads) error, filter UpdateFileAddedToDownloadsFilter) {
+func (c *Client) OnUpdateFileAddedToDownloads(handler func(client *Client, update *UpdateFileAddedToDownloads) error, filter func(u *UpdateFileAddedToDownloads) bool) {
 	c.AddUpdateFileAddedToDownloadsHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateFileAddedToDownloadsHandlerGroup registers a handler for UpdateFileAddedToDownloads updates with a specific group
-func (c *Client) AddUpdateFileAddedToDownloadsHandlerGroup(handler func(client *Client, update *UpdateFileAddedToDownloads) error, filter UpdateFileAddedToDownloadsFilter, group int) {
+func (c *Client) AddUpdateFileAddedToDownloadsHandlerGroup(handler func(client *Client, update *UpdateFileAddedToDownloads) error, filter func(u *UpdateFileAddedToDownloads) bool, group int) {
 	c.AddHandlerGroup(&updateFileAddedToDownloadsHandler{filter: filter, response: handler}, group)
 }
 
 // updateFileDownloadHandler handles UpdateFileDownload updates
 type updateFileDownloadHandler struct {
-	filter   UpdateFileDownloadFilter
+	filter   func(u *UpdateFileDownload) bool
 	response func(client *Client, update *UpdateFileDownload) error
 }
 
@@ -2624,18 +2257,18 @@ func (h *updateFileDownloadHandler) HandleUpdate(client *Client, update TlObject
 }
 
 // OnUpdateFileDownload registers a handler for UpdateFileDownload updates with default group (0)
-func (c *Client) OnUpdateFileDownload(handler func(client *Client, update *UpdateFileDownload) error, filter UpdateFileDownloadFilter) {
+func (c *Client) OnUpdateFileDownload(handler func(client *Client, update *UpdateFileDownload) error, filter func(u *UpdateFileDownload) bool) {
 	c.AddUpdateFileDownloadHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateFileDownloadHandlerGroup registers a handler for UpdateFileDownload updates with a specific group
-func (c *Client) AddUpdateFileDownloadHandlerGroup(handler func(client *Client, update *UpdateFileDownload) error, filter UpdateFileDownloadFilter, group int) {
+func (c *Client) AddUpdateFileDownloadHandlerGroup(handler func(client *Client, update *UpdateFileDownload) error, filter func(u *UpdateFileDownload) bool, group int) {
 	c.AddHandlerGroup(&updateFileDownloadHandler{filter: filter, response: handler}, group)
 }
 
 // updateFileDownloadsHandler handles UpdateFileDownloads updates
 type updateFileDownloadsHandler struct {
-	filter   UpdateFileDownloadsFilter
+	filter   func(u *UpdateFileDownloads) bool
 	response func(client *Client, update *UpdateFileDownloads) error
 }
 
@@ -2655,18 +2288,18 @@ func (h *updateFileDownloadsHandler) HandleUpdate(client *Client, update TlObjec
 }
 
 // OnUpdateFileDownloads registers a handler for UpdateFileDownloads updates with default group (0)
-func (c *Client) OnUpdateFileDownloads(handler func(client *Client, update *UpdateFileDownloads) error, filter UpdateFileDownloadsFilter) {
+func (c *Client) OnUpdateFileDownloads(handler func(client *Client, update *UpdateFileDownloads) error, filter func(u *UpdateFileDownloads) bool) {
 	c.AddUpdateFileDownloadsHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateFileDownloadsHandlerGroup registers a handler for UpdateFileDownloads updates with a specific group
-func (c *Client) AddUpdateFileDownloadsHandlerGroup(handler func(client *Client, update *UpdateFileDownloads) error, filter UpdateFileDownloadsFilter, group int) {
+func (c *Client) AddUpdateFileDownloadsHandlerGroup(handler func(client *Client, update *UpdateFileDownloads) error, filter func(u *UpdateFileDownloads) bool, group int) {
 	c.AddHandlerGroup(&updateFileDownloadsHandler{filter: filter, response: handler}, group)
 }
 
 // updateFileGenerationStartHandler handles UpdateFileGenerationStart updates
 type updateFileGenerationStartHandler struct {
-	filter   UpdateFileGenerationStartFilter
+	filter   func(u *UpdateFileGenerationStart) bool
 	response func(client *Client, update *UpdateFileGenerationStart) error
 }
 
@@ -2686,18 +2319,18 @@ func (h *updateFileGenerationStartHandler) HandleUpdate(client *Client, update T
 }
 
 // OnUpdateFileGenerationStart registers a handler for UpdateFileGenerationStart updates with default group (0)
-func (c *Client) OnUpdateFileGenerationStart(handler func(client *Client, update *UpdateFileGenerationStart) error, filter UpdateFileGenerationStartFilter) {
+func (c *Client) OnUpdateFileGenerationStart(handler func(client *Client, update *UpdateFileGenerationStart) error, filter func(u *UpdateFileGenerationStart) bool) {
 	c.AddUpdateFileGenerationStartHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateFileGenerationStartHandlerGroup registers a handler for UpdateFileGenerationStart updates with a specific group
-func (c *Client) AddUpdateFileGenerationStartHandlerGroup(handler func(client *Client, update *UpdateFileGenerationStart) error, filter UpdateFileGenerationStartFilter, group int) {
+func (c *Client) AddUpdateFileGenerationStartHandlerGroup(handler func(client *Client, update *UpdateFileGenerationStart) error, filter func(u *UpdateFileGenerationStart) bool, group int) {
 	c.AddHandlerGroup(&updateFileGenerationStartHandler{filter: filter, response: handler}, group)
 }
 
 // updateFileGenerationStopHandler handles UpdateFileGenerationStop updates
 type updateFileGenerationStopHandler struct {
-	filter   UpdateFileGenerationStopFilter
+	filter   func(u *UpdateFileGenerationStop) bool
 	response func(client *Client, update *UpdateFileGenerationStop) error
 }
 
@@ -2717,18 +2350,18 @@ func (h *updateFileGenerationStopHandler) HandleUpdate(client *Client, update Tl
 }
 
 // OnUpdateFileGenerationStop registers a handler for UpdateFileGenerationStop updates with default group (0)
-func (c *Client) OnUpdateFileGenerationStop(handler func(client *Client, update *UpdateFileGenerationStop) error, filter UpdateFileGenerationStopFilter) {
+func (c *Client) OnUpdateFileGenerationStop(handler func(client *Client, update *UpdateFileGenerationStop) error, filter func(u *UpdateFileGenerationStop) bool) {
 	c.AddUpdateFileGenerationStopHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateFileGenerationStopHandlerGroup registers a handler for UpdateFileGenerationStop updates with a specific group
-func (c *Client) AddUpdateFileGenerationStopHandlerGroup(handler func(client *Client, update *UpdateFileGenerationStop) error, filter UpdateFileGenerationStopFilter, group int) {
+func (c *Client) AddUpdateFileGenerationStopHandlerGroup(handler func(client *Client, update *UpdateFileGenerationStop) error, filter func(u *UpdateFileGenerationStop) bool, group int) {
 	c.AddHandlerGroup(&updateFileGenerationStopHandler{filter: filter, response: handler}, group)
 }
 
 // updateFileRemovedFromDownloadsHandler handles UpdateFileRemovedFromDownloads updates
 type updateFileRemovedFromDownloadsHandler struct {
-	filter   UpdateFileRemovedFromDownloadsFilter
+	filter   func(u *UpdateFileRemovedFromDownloads) bool
 	response func(client *Client, update *UpdateFileRemovedFromDownloads) error
 }
 
@@ -2748,18 +2381,18 @@ func (h *updateFileRemovedFromDownloadsHandler) HandleUpdate(client *Client, upd
 }
 
 // OnUpdateFileRemovedFromDownloads registers a handler for UpdateFileRemovedFromDownloads updates with default group (0)
-func (c *Client) OnUpdateFileRemovedFromDownloads(handler func(client *Client, update *UpdateFileRemovedFromDownloads) error, filter UpdateFileRemovedFromDownloadsFilter) {
+func (c *Client) OnUpdateFileRemovedFromDownloads(handler func(client *Client, update *UpdateFileRemovedFromDownloads) error, filter func(u *UpdateFileRemovedFromDownloads) bool) {
 	c.AddUpdateFileRemovedFromDownloadsHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateFileRemovedFromDownloadsHandlerGroup registers a handler for UpdateFileRemovedFromDownloads updates with a specific group
-func (c *Client) AddUpdateFileRemovedFromDownloadsHandlerGroup(handler func(client *Client, update *UpdateFileRemovedFromDownloads) error, filter UpdateFileRemovedFromDownloadsFilter, group int) {
+func (c *Client) AddUpdateFileRemovedFromDownloadsHandlerGroup(handler func(client *Client, update *UpdateFileRemovedFromDownloads) error, filter func(u *UpdateFileRemovedFromDownloads) bool, group int) {
 	c.AddHandlerGroup(&updateFileRemovedFromDownloadsHandler{filter: filter, response: handler}, group)
 }
 
 // updateForumTopicHandler handles UpdateForumTopic updates
 type updateForumTopicHandler struct {
-	filter   UpdateForumTopicFilter
+	filter   func(u *UpdateForumTopic) bool
 	response func(client *Client, update *UpdateForumTopic) error
 }
 
@@ -2779,18 +2412,18 @@ func (h *updateForumTopicHandler) HandleUpdate(client *Client, update TlObject) 
 }
 
 // OnUpdateForumTopic registers a handler for UpdateForumTopic updates with default group (0)
-func (c *Client) OnUpdateForumTopic(handler func(client *Client, update *UpdateForumTopic) error, filter UpdateForumTopicFilter) {
+func (c *Client) OnUpdateForumTopic(handler func(client *Client, update *UpdateForumTopic) error, filter func(u *UpdateForumTopic) bool) {
 	c.AddUpdateForumTopicHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateForumTopicHandlerGroup registers a handler for UpdateForumTopic updates with a specific group
-func (c *Client) AddUpdateForumTopicHandlerGroup(handler func(client *Client, update *UpdateForumTopic) error, filter UpdateForumTopicFilter, group int) {
+func (c *Client) AddUpdateForumTopicHandlerGroup(handler func(client *Client, update *UpdateForumTopic) error, filter func(u *UpdateForumTopic) bool, group int) {
 	c.AddHandlerGroup(&updateForumTopicHandler{filter: filter, response: handler}, group)
 }
 
 // updateForumTopicInfoHandler handles UpdateForumTopicInfo updates
 type updateForumTopicInfoHandler struct {
-	filter   UpdateForumTopicInfoFilter
+	filter   func(u *UpdateForumTopicInfo) bool
 	response func(client *Client, update *UpdateForumTopicInfo) error
 }
 
@@ -2810,18 +2443,18 @@ func (h *updateForumTopicInfoHandler) HandleUpdate(client *Client, update TlObje
 }
 
 // OnUpdateForumTopicInfo registers a handler for UpdateForumTopicInfo updates with default group (0)
-func (c *Client) OnUpdateForumTopicInfo(handler func(client *Client, update *UpdateForumTopicInfo) error, filter UpdateForumTopicInfoFilter) {
+func (c *Client) OnUpdateForumTopicInfo(handler func(client *Client, update *UpdateForumTopicInfo) error, filter func(u *UpdateForumTopicInfo) bool) {
 	c.AddUpdateForumTopicInfoHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateForumTopicInfoHandlerGroup registers a handler for UpdateForumTopicInfo updates with a specific group
-func (c *Client) AddUpdateForumTopicInfoHandlerGroup(handler func(client *Client, update *UpdateForumTopicInfo) error, filter UpdateForumTopicInfoFilter, group int) {
+func (c *Client) AddUpdateForumTopicInfoHandlerGroup(handler func(client *Client, update *UpdateForumTopicInfo) error, filter func(u *UpdateForumTopicInfo) bool, group int) {
 	c.AddHandlerGroup(&updateForumTopicInfoHandler{filter: filter, response: handler}, group)
 }
 
 // updateFreezeStateHandler handles UpdateFreezeState updates
 type updateFreezeStateHandler struct {
-	filter   UpdateFreezeStateFilter
+	filter   func(u *UpdateFreezeState) bool
 	response func(client *Client, update *UpdateFreezeState) error
 }
 
@@ -2841,18 +2474,18 @@ func (h *updateFreezeStateHandler) HandleUpdate(client *Client, update TlObject)
 }
 
 // OnUpdateFreezeState registers a handler for UpdateFreezeState updates with default group (0)
-func (c *Client) OnUpdateFreezeState(handler func(client *Client, update *UpdateFreezeState) error, filter UpdateFreezeStateFilter) {
+func (c *Client) OnUpdateFreezeState(handler func(client *Client, update *UpdateFreezeState) error, filter func(u *UpdateFreezeState) bool) {
 	c.AddUpdateFreezeStateHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateFreezeStateHandlerGroup registers a handler for UpdateFreezeState updates with a specific group
-func (c *Client) AddUpdateFreezeStateHandlerGroup(handler func(client *Client, update *UpdateFreezeState) error, filter UpdateFreezeStateFilter, group int) {
+func (c *Client) AddUpdateFreezeStateHandlerGroup(handler func(client *Client, update *UpdateFreezeState) error, filter func(u *UpdateFreezeState) bool, group int) {
 	c.AddHandlerGroup(&updateFreezeStateHandler{filter: filter, response: handler}, group)
 }
 
 // updateGiftAuctionStateHandler handles UpdateGiftAuctionState updates
 type updateGiftAuctionStateHandler struct {
-	filter   UpdateGiftAuctionStateFilter
+	filter   func(u *UpdateGiftAuctionState) bool
 	response func(client *Client, update *UpdateGiftAuctionState) error
 }
 
@@ -2872,18 +2505,18 @@ func (h *updateGiftAuctionStateHandler) HandleUpdate(client *Client, update TlOb
 }
 
 // OnUpdateGiftAuctionState registers a handler for UpdateGiftAuctionState updates with default group (0)
-func (c *Client) OnUpdateGiftAuctionState(handler func(client *Client, update *UpdateGiftAuctionState) error, filter UpdateGiftAuctionStateFilter) {
+func (c *Client) OnUpdateGiftAuctionState(handler func(client *Client, update *UpdateGiftAuctionState) error, filter func(u *UpdateGiftAuctionState) bool) {
 	c.AddUpdateGiftAuctionStateHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateGiftAuctionStateHandlerGroup registers a handler for UpdateGiftAuctionState updates with a specific group
-func (c *Client) AddUpdateGiftAuctionStateHandlerGroup(handler func(client *Client, update *UpdateGiftAuctionState) error, filter UpdateGiftAuctionStateFilter, group int) {
+func (c *Client) AddUpdateGiftAuctionStateHandlerGroup(handler func(client *Client, update *UpdateGiftAuctionState) error, filter func(u *UpdateGiftAuctionState) bool, group int) {
 	c.AddHandlerGroup(&updateGiftAuctionStateHandler{filter: filter, response: handler}, group)
 }
 
 // updateGroupCallHandler handles UpdateGroupCall updates
 type updateGroupCallHandler struct {
-	filter   UpdateGroupCallFilter
+	filter   func(u *UpdateGroupCall) bool
 	response func(client *Client, update *UpdateGroupCall) error
 }
 
@@ -2903,18 +2536,18 @@ func (h *updateGroupCallHandler) HandleUpdate(client *Client, update TlObject) e
 }
 
 // OnUpdateGroupCall registers a handler for UpdateGroupCall updates with default group (0)
-func (c *Client) OnUpdateGroupCall(handler func(client *Client, update *UpdateGroupCall) error, filter UpdateGroupCallFilter) {
+func (c *Client) OnUpdateGroupCall(handler func(client *Client, update *UpdateGroupCall) error, filter func(u *UpdateGroupCall) bool) {
 	c.AddUpdateGroupCallHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateGroupCallHandlerGroup registers a handler for UpdateGroupCall updates with a specific group
-func (c *Client) AddUpdateGroupCallHandlerGroup(handler func(client *Client, update *UpdateGroupCall) error, filter UpdateGroupCallFilter, group int) {
+func (c *Client) AddUpdateGroupCallHandlerGroup(handler func(client *Client, update *UpdateGroupCall) error, filter func(u *UpdateGroupCall) bool, group int) {
 	c.AddHandlerGroup(&updateGroupCallHandler{filter: filter, response: handler}, group)
 }
 
 // updateGroupCallMessageLevelsHandler handles UpdateGroupCallMessageLevels updates
 type updateGroupCallMessageLevelsHandler struct {
-	filter   UpdateGroupCallMessageLevelsFilter
+	filter   func(u *UpdateGroupCallMessageLevels) bool
 	response func(client *Client, update *UpdateGroupCallMessageLevels) error
 }
 
@@ -2934,18 +2567,18 @@ func (h *updateGroupCallMessageLevelsHandler) HandleUpdate(client *Client, updat
 }
 
 // OnUpdateGroupCallMessageLevels registers a handler for UpdateGroupCallMessageLevels updates with default group (0)
-func (c *Client) OnUpdateGroupCallMessageLevels(handler func(client *Client, update *UpdateGroupCallMessageLevels) error, filter UpdateGroupCallMessageLevelsFilter) {
+func (c *Client) OnUpdateGroupCallMessageLevels(handler func(client *Client, update *UpdateGroupCallMessageLevels) error, filter func(u *UpdateGroupCallMessageLevels) bool) {
 	c.AddUpdateGroupCallMessageLevelsHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateGroupCallMessageLevelsHandlerGroup registers a handler for UpdateGroupCallMessageLevels updates with a specific group
-func (c *Client) AddUpdateGroupCallMessageLevelsHandlerGroup(handler func(client *Client, update *UpdateGroupCallMessageLevels) error, filter UpdateGroupCallMessageLevelsFilter, group int) {
+func (c *Client) AddUpdateGroupCallMessageLevelsHandlerGroup(handler func(client *Client, update *UpdateGroupCallMessageLevels) error, filter func(u *UpdateGroupCallMessageLevels) bool, group int) {
 	c.AddHandlerGroup(&updateGroupCallMessageLevelsHandler{filter: filter, response: handler}, group)
 }
 
 // updateGroupCallMessagesDeletedHandler handles UpdateGroupCallMessagesDeleted updates
 type updateGroupCallMessagesDeletedHandler struct {
-	filter   UpdateGroupCallMessagesDeletedFilter
+	filter   func(u *UpdateGroupCallMessagesDeleted) bool
 	response func(client *Client, update *UpdateGroupCallMessagesDeleted) error
 }
 
@@ -2965,18 +2598,18 @@ func (h *updateGroupCallMessagesDeletedHandler) HandleUpdate(client *Client, upd
 }
 
 // OnUpdateGroupCallMessagesDeleted registers a handler for UpdateGroupCallMessagesDeleted updates with default group (0)
-func (c *Client) OnUpdateGroupCallMessagesDeleted(handler func(client *Client, update *UpdateGroupCallMessagesDeleted) error, filter UpdateGroupCallMessagesDeletedFilter) {
+func (c *Client) OnUpdateGroupCallMessagesDeleted(handler func(client *Client, update *UpdateGroupCallMessagesDeleted) error, filter func(u *UpdateGroupCallMessagesDeleted) bool) {
 	c.AddUpdateGroupCallMessagesDeletedHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateGroupCallMessagesDeletedHandlerGroup registers a handler for UpdateGroupCallMessagesDeleted updates with a specific group
-func (c *Client) AddUpdateGroupCallMessagesDeletedHandlerGroup(handler func(client *Client, update *UpdateGroupCallMessagesDeleted) error, filter UpdateGroupCallMessagesDeletedFilter, group int) {
+func (c *Client) AddUpdateGroupCallMessagesDeletedHandlerGroup(handler func(client *Client, update *UpdateGroupCallMessagesDeleted) error, filter func(u *UpdateGroupCallMessagesDeleted) bool, group int) {
 	c.AddHandlerGroup(&updateGroupCallMessagesDeletedHandler{filter: filter, response: handler}, group)
 }
 
 // updateGroupCallMessageSendFailedHandler handles UpdateGroupCallMessageSendFailed updates
 type updateGroupCallMessageSendFailedHandler struct {
-	filter   UpdateGroupCallMessageSendFailedFilter
+	filter   func(u *UpdateGroupCallMessageSendFailed) bool
 	response func(client *Client, update *UpdateGroupCallMessageSendFailed) error
 }
 
@@ -2996,18 +2629,18 @@ func (h *updateGroupCallMessageSendFailedHandler) HandleUpdate(client *Client, u
 }
 
 // OnUpdateGroupCallMessageSendFailed registers a handler for UpdateGroupCallMessageSendFailed updates with default group (0)
-func (c *Client) OnUpdateGroupCallMessageSendFailed(handler func(client *Client, update *UpdateGroupCallMessageSendFailed) error, filter UpdateGroupCallMessageSendFailedFilter) {
+func (c *Client) OnUpdateGroupCallMessageSendFailed(handler func(client *Client, update *UpdateGroupCallMessageSendFailed) error, filter func(u *UpdateGroupCallMessageSendFailed) bool) {
 	c.AddUpdateGroupCallMessageSendFailedHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateGroupCallMessageSendFailedHandlerGroup registers a handler for UpdateGroupCallMessageSendFailed updates with a specific group
-func (c *Client) AddUpdateGroupCallMessageSendFailedHandlerGroup(handler func(client *Client, update *UpdateGroupCallMessageSendFailed) error, filter UpdateGroupCallMessageSendFailedFilter, group int) {
+func (c *Client) AddUpdateGroupCallMessageSendFailedHandlerGroup(handler func(client *Client, update *UpdateGroupCallMessageSendFailed) error, filter func(u *UpdateGroupCallMessageSendFailed) bool, group int) {
 	c.AddHandlerGroup(&updateGroupCallMessageSendFailedHandler{filter: filter, response: handler}, group)
 }
 
 // updateGroupCallParticipantHandler handles UpdateGroupCallParticipant updates
 type updateGroupCallParticipantHandler struct {
-	filter   UpdateGroupCallParticipantFilter
+	filter   func(u *UpdateGroupCallParticipant) bool
 	response func(client *Client, update *UpdateGroupCallParticipant) error
 }
 
@@ -3027,18 +2660,18 @@ func (h *updateGroupCallParticipantHandler) HandleUpdate(client *Client, update 
 }
 
 // OnUpdateGroupCallParticipant registers a handler for UpdateGroupCallParticipant updates with default group (0)
-func (c *Client) OnUpdateGroupCallParticipant(handler func(client *Client, update *UpdateGroupCallParticipant) error, filter UpdateGroupCallParticipantFilter) {
+func (c *Client) OnUpdateGroupCallParticipant(handler func(client *Client, update *UpdateGroupCallParticipant) error, filter func(u *UpdateGroupCallParticipant) bool) {
 	c.AddUpdateGroupCallParticipantHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateGroupCallParticipantHandlerGroup registers a handler for UpdateGroupCallParticipant updates with a specific group
-func (c *Client) AddUpdateGroupCallParticipantHandlerGroup(handler func(client *Client, update *UpdateGroupCallParticipant) error, filter UpdateGroupCallParticipantFilter, group int) {
+func (c *Client) AddUpdateGroupCallParticipantHandlerGroup(handler func(client *Client, update *UpdateGroupCallParticipant) error, filter func(u *UpdateGroupCallParticipant) bool, group int) {
 	c.AddHandlerGroup(&updateGroupCallParticipantHandler{filter: filter, response: handler}, group)
 }
 
 // updateGroupCallParticipantsHandler handles UpdateGroupCallParticipants updates
 type updateGroupCallParticipantsHandler struct {
-	filter   UpdateGroupCallParticipantsFilter
+	filter   func(u *UpdateGroupCallParticipants) bool
 	response func(client *Client, update *UpdateGroupCallParticipants) error
 }
 
@@ -3058,18 +2691,18 @@ func (h *updateGroupCallParticipantsHandler) HandleUpdate(client *Client, update
 }
 
 // OnUpdateGroupCallParticipants registers a handler for UpdateGroupCallParticipants updates with default group (0)
-func (c *Client) OnUpdateGroupCallParticipants(handler func(client *Client, update *UpdateGroupCallParticipants) error, filter UpdateGroupCallParticipantsFilter) {
+func (c *Client) OnUpdateGroupCallParticipants(handler func(client *Client, update *UpdateGroupCallParticipants) error, filter func(u *UpdateGroupCallParticipants) bool) {
 	c.AddUpdateGroupCallParticipantsHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateGroupCallParticipantsHandlerGroup registers a handler for UpdateGroupCallParticipants updates with a specific group
-func (c *Client) AddUpdateGroupCallParticipantsHandlerGroup(handler func(client *Client, update *UpdateGroupCallParticipants) error, filter UpdateGroupCallParticipantsFilter, group int) {
+func (c *Client) AddUpdateGroupCallParticipantsHandlerGroup(handler func(client *Client, update *UpdateGroupCallParticipants) error, filter func(u *UpdateGroupCallParticipants) bool, group int) {
 	c.AddHandlerGroup(&updateGroupCallParticipantsHandler{filter: filter, response: handler}, group)
 }
 
 // updateGroupCallVerificationStateHandler handles UpdateGroupCallVerificationState updates
 type updateGroupCallVerificationStateHandler struct {
-	filter   UpdateGroupCallVerificationStateFilter
+	filter   func(u *UpdateGroupCallVerificationState) bool
 	response func(client *Client, update *UpdateGroupCallVerificationState) error
 }
 
@@ -3089,18 +2722,18 @@ func (h *updateGroupCallVerificationStateHandler) HandleUpdate(client *Client, u
 }
 
 // OnUpdateGroupCallVerificationState registers a handler for UpdateGroupCallVerificationState updates with default group (0)
-func (c *Client) OnUpdateGroupCallVerificationState(handler func(client *Client, update *UpdateGroupCallVerificationState) error, filter UpdateGroupCallVerificationStateFilter) {
+func (c *Client) OnUpdateGroupCallVerificationState(handler func(client *Client, update *UpdateGroupCallVerificationState) error, filter func(u *UpdateGroupCallVerificationState) bool) {
 	c.AddUpdateGroupCallVerificationStateHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateGroupCallVerificationStateHandlerGroup registers a handler for UpdateGroupCallVerificationState updates with a specific group
-func (c *Client) AddUpdateGroupCallVerificationStateHandlerGroup(handler func(client *Client, update *UpdateGroupCallVerificationState) error, filter UpdateGroupCallVerificationStateFilter, group int) {
+func (c *Client) AddUpdateGroupCallVerificationStateHandlerGroup(handler func(client *Client, update *UpdateGroupCallVerificationState) error, filter func(u *UpdateGroupCallVerificationState) bool, group int) {
 	c.AddHandlerGroup(&updateGroupCallVerificationStateHandler{filter: filter, response: handler}, group)
 }
 
 // updateHavePendingNotificationsHandler handles UpdateHavePendingNotifications updates
 type updateHavePendingNotificationsHandler struct {
-	filter   UpdateHavePendingNotificationsFilter
+	filter   func(u *UpdateHavePendingNotifications) bool
 	response func(client *Client, update *UpdateHavePendingNotifications) error
 }
 
@@ -3120,18 +2753,18 @@ func (h *updateHavePendingNotificationsHandler) HandleUpdate(client *Client, upd
 }
 
 // OnUpdateHavePendingNotifications registers a handler for UpdateHavePendingNotifications updates with default group (0)
-func (c *Client) OnUpdateHavePendingNotifications(handler func(client *Client, update *UpdateHavePendingNotifications) error, filter UpdateHavePendingNotificationsFilter) {
+func (c *Client) OnUpdateHavePendingNotifications(handler func(client *Client, update *UpdateHavePendingNotifications) error, filter func(u *UpdateHavePendingNotifications) bool) {
 	c.AddUpdateHavePendingNotificationsHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateHavePendingNotificationsHandlerGroup registers a handler for UpdateHavePendingNotifications updates with a specific group
-func (c *Client) AddUpdateHavePendingNotificationsHandlerGroup(handler func(client *Client, update *UpdateHavePendingNotifications) error, filter UpdateHavePendingNotificationsFilter, group int) {
+func (c *Client) AddUpdateHavePendingNotificationsHandlerGroup(handler func(client *Client, update *UpdateHavePendingNotifications) error, filter func(u *UpdateHavePendingNotifications) bool, group int) {
 	c.AddHandlerGroup(&updateHavePendingNotificationsHandler{filter: filter, response: handler}, group)
 }
 
 // updateInstalledStickerSetsHandler handles UpdateInstalledStickerSets updates
 type updateInstalledStickerSetsHandler struct {
-	filter   UpdateInstalledStickerSetsFilter
+	filter   func(u *UpdateInstalledStickerSets) bool
 	response func(client *Client, update *UpdateInstalledStickerSets) error
 }
 
@@ -3151,18 +2784,18 @@ func (h *updateInstalledStickerSetsHandler) HandleUpdate(client *Client, update 
 }
 
 // OnUpdateInstalledStickerSets registers a handler for UpdateInstalledStickerSets updates with default group (0)
-func (c *Client) OnUpdateInstalledStickerSets(handler func(client *Client, update *UpdateInstalledStickerSets) error, filter UpdateInstalledStickerSetsFilter) {
+func (c *Client) OnUpdateInstalledStickerSets(handler func(client *Client, update *UpdateInstalledStickerSets) error, filter func(u *UpdateInstalledStickerSets) bool) {
 	c.AddUpdateInstalledStickerSetsHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateInstalledStickerSetsHandlerGroup registers a handler for UpdateInstalledStickerSets updates with a specific group
-func (c *Client) AddUpdateInstalledStickerSetsHandlerGroup(handler func(client *Client, update *UpdateInstalledStickerSets) error, filter UpdateInstalledStickerSetsFilter, group int) {
+func (c *Client) AddUpdateInstalledStickerSetsHandlerGroup(handler func(client *Client, update *UpdateInstalledStickerSets) error, filter func(u *UpdateInstalledStickerSets) bool, group int) {
 	c.AddHandlerGroup(&updateInstalledStickerSetsHandler{filter: filter, response: handler}, group)
 }
 
 // updateLanguagePackStringsHandler handles UpdateLanguagePackStrings updates
 type updateLanguagePackStringsHandler struct {
-	filter   UpdateLanguagePackStringsFilter
+	filter   func(u *UpdateLanguagePackStrings) bool
 	response func(client *Client, update *UpdateLanguagePackStrings) error
 }
 
@@ -3182,18 +2815,18 @@ func (h *updateLanguagePackStringsHandler) HandleUpdate(client *Client, update T
 }
 
 // OnUpdateLanguagePackStrings registers a handler for UpdateLanguagePackStrings updates with default group (0)
-func (c *Client) OnUpdateLanguagePackStrings(handler func(client *Client, update *UpdateLanguagePackStrings) error, filter UpdateLanguagePackStringsFilter) {
+func (c *Client) OnUpdateLanguagePackStrings(handler func(client *Client, update *UpdateLanguagePackStrings) error, filter func(u *UpdateLanguagePackStrings) bool) {
 	c.AddUpdateLanguagePackStringsHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateLanguagePackStringsHandlerGroup registers a handler for UpdateLanguagePackStrings updates with a specific group
-func (c *Client) AddUpdateLanguagePackStringsHandlerGroup(handler func(client *Client, update *UpdateLanguagePackStrings) error, filter UpdateLanguagePackStringsFilter, group int) {
+func (c *Client) AddUpdateLanguagePackStringsHandlerGroup(handler func(client *Client, update *UpdateLanguagePackStrings) error, filter func(u *UpdateLanguagePackStrings) bool, group int) {
 	c.AddHandlerGroup(&updateLanguagePackStringsHandler{filter: filter, response: handler}, group)
 }
 
 // updateLiveStoryTopDonorsHandler handles UpdateLiveStoryTopDonors updates
 type updateLiveStoryTopDonorsHandler struct {
-	filter   UpdateLiveStoryTopDonorsFilter
+	filter   func(u *UpdateLiveStoryTopDonors) bool
 	response func(client *Client, update *UpdateLiveStoryTopDonors) error
 }
 
@@ -3213,18 +2846,18 @@ func (h *updateLiveStoryTopDonorsHandler) HandleUpdate(client *Client, update Tl
 }
 
 // OnUpdateLiveStoryTopDonors registers a handler for UpdateLiveStoryTopDonors updates with default group (0)
-func (c *Client) OnUpdateLiveStoryTopDonors(handler func(client *Client, update *UpdateLiveStoryTopDonors) error, filter UpdateLiveStoryTopDonorsFilter) {
+func (c *Client) OnUpdateLiveStoryTopDonors(handler func(client *Client, update *UpdateLiveStoryTopDonors) error, filter func(u *UpdateLiveStoryTopDonors) bool) {
 	c.AddUpdateLiveStoryTopDonorsHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateLiveStoryTopDonorsHandlerGroup registers a handler for UpdateLiveStoryTopDonors updates with a specific group
-func (c *Client) AddUpdateLiveStoryTopDonorsHandlerGroup(handler func(client *Client, update *UpdateLiveStoryTopDonors) error, filter UpdateLiveStoryTopDonorsFilter, group int) {
+func (c *Client) AddUpdateLiveStoryTopDonorsHandlerGroup(handler func(client *Client, update *UpdateLiveStoryTopDonors) error, filter func(u *UpdateLiveStoryTopDonors) bool, group int) {
 	c.AddHandlerGroup(&updateLiveStoryTopDonorsHandler{filter: filter, response: handler}, group)
 }
 
 // updateManagedBotHandler handles UpdateManagedBot updates
 type updateManagedBotHandler struct {
-	filter   UpdateManagedBotFilter
+	filter   func(u *UpdateManagedBot) bool
 	response func(client *Client, update *UpdateManagedBot) error
 }
 
@@ -3244,18 +2877,18 @@ func (h *updateManagedBotHandler) HandleUpdate(client *Client, update TlObject) 
 }
 
 // OnUpdateManagedBot registers a handler for UpdateManagedBot updates with default group (0)
-func (c *Client) OnUpdateManagedBot(handler func(client *Client, update *UpdateManagedBot) error, filter UpdateManagedBotFilter) {
+func (c *Client) OnUpdateManagedBot(handler func(client *Client, update *UpdateManagedBot) error, filter func(u *UpdateManagedBot) bool) {
 	c.AddUpdateManagedBotHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateManagedBotHandlerGroup registers a handler for UpdateManagedBot updates with a specific group
-func (c *Client) AddUpdateManagedBotHandlerGroup(handler func(client *Client, update *UpdateManagedBot) error, filter UpdateManagedBotFilter, group int) {
+func (c *Client) AddUpdateManagedBotHandlerGroup(handler func(client *Client, update *UpdateManagedBot) error, filter func(u *UpdateManagedBot) bool, group int) {
 	c.AddHandlerGroup(&updateManagedBotHandler{filter: filter, response: handler}, group)
 }
 
 // updateMessageContainsUnreadPollVotesHandler handles UpdateMessageContainsUnreadPollVotes updates
 type updateMessageContainsUnreadPollVotesHandler struct {
-	filter   UpdateMessageContainsUnreadPollVotesFilter
+	filter   func(u *UpdateMessageContainsUnreadPollVotes) bool
 	response func(client *Client, update *UpdateMessageContainsUnreadPollVotes) error
 }
 
@@ -3275,18 +2908,18 @@ func (h *updateMessageContainsUnreadPollVotesHandler) HandleUpdate(client *Clien
 }
 
 // OnUpdateMessageContainsUnreadPollVotes registers a handler for UpdateMessageContainsUnreadPollVotes updates with default group (0)
-func (c *Client) OnUpdateMessageContainsUnreadPollVotes(handler func(client *Client, update *UpdateMessageContainsUnreadPollVotes) error, filter UpdateMessageContainsUnreadPollVotesFilter) {
+func (c *Client) OnUpdateMessageContainsUnreadPollVotes(handler func(client *Client, update *UpdateMessageContainsUnreadPollVotes) error, filter func(u *UpdateMessageContainsUnreadPollVotes) bool) {
 	c.AddUpdateMessageContainsUnreadPollVotesHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateMessageContainsUnreadPollVotesHandlerGroup registers a handler for UpdateMessageContainsUnreadPollVotes updates with a specific group
-func (c *Client) AddUpdateMessageContainsUnreadPollVotesHandlerGroup(handler func(client *Client, update *UpdateMessageContainsUnreadPollVotes) error, filter UpdateMessageContainsUnreadPollVotesFilter, group int) {
+func (c *Client) AddUpdateMessageContainsUnreadPollVotesHandlerGroup(handler func(client *Client, update *UpdateMessageContainsUnreadPollVotes) error, filter func(u *UpdateMessageContainsUnreadPollVotes) bool, group int) {
 	c.AddHandlerGroup(&updateMessageContainsUnreadPollVotesHandler{filter: filter, response: handler}, group)
 }
 
 // updateMessageContentHandler handles UpdateMessageContent updates
 type updateMessageContentHandler struct {
-	filter   UpdateMessageContentFilter
+	filter   func(u *UpdateMessageContent) bool
 	response func(client *Client, update *UpdateMessageContent) error
 }
 
@@ -3306,18 +2939,18 @@ func (h *updateMessageContentHandler) HandleUpdate(client *Client, update TlObje
 }
 
 // OnUpdateMessageContent registers a handler for UpdateMessageContent updates with default group (0)
-func (c *Client) OnUpdateMessageContent(handler func(client *Client, update *UpdateMessageContent) error, filter UpdateMessageContentFilter) {
+func (c *Client) OnUpdateMessageContent(handler func(client *Client, update *UpdateMessageContent) error, filter func(u *UpdateMessageContent) bool) {
 	c.AddUpdateMessageContentHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateMessageContentHandlerGroup registers a handler for UpdateMessageContent updates with a specific group
-func (c *Client) AddUpdateMessageContentHandlerGroup(handler func(client *Client, update *UpdateMessageContent) error, filter UpdateMessageContentFilter, group int) {
+func (c *Client) AddUpdateMessageContentHandlerGroup(handler func(client *Client, update *UpdateMessageContent) error, filter func(u *UpdateMessageContent) bool, group int) {
 	c.AddHandlerGroup(&updateMessageContentHandler{filter: filter, response: handler}, group)
 }
 
 // updateMessageContentOpenedHandler handles UpdateMessageContentOpened updates
 type updateMessageContentOpenedHandler struct {
-	filter   UpdateMessageContentOpenedFilter
+	filter   func(u *UpdateMessageContentOpened) bool
 	response func(client *Client, update *UpdateMessageContentOpened) error
 }
 
@@ -3337,18 +2970,18 @@ func (h *updateMessageContentOpenedHandler) HandleUpdate(client *Client, update 
 }
 
 // OnUpdateMessageContentOpened registers a handler for UpdateMessageContentOpened updates with default group (0)
-func (c *Client) OnUpdateMessageContentOpened(handler func(client *Client, update *UpdateMessageContentOpened) error, filter UpdateMessageContentOpenedFilter) {
+func (c *Client) OnUpdateMessageContentOpened(handler func(client *Client, update *UpdateMessageContentOpened) error, filter func(u *UpdateMessageContentOpened) bool) {
 	c.AddUpdateMessageContentOpenedHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateMessageContentOpenedHandlerGroup registers a handler for UpdateMessageContentOpened updates with a specific group
-func (c *Client) AddUpdateMessageContentOpenedHandlerGroup(handler func(client *Client, update *UpdateMessageContentOpened) error, filter UpdateMessageContentOpenedFilter, group int) {
+func (c *Client) AddUpdateMessageContentOpenedHandlerGroup(handler func(client *Client, update *UpdateMessageContentOpened) error, filter func(u *UpdateMessageContentOpened) bool, group int) {
 	c.AddHandlerGroup(&updateMessageContentOpenedHandler{filter: filter, response: handler}, group)
 }
 
 // updateMessageEditedHandler handles UpdateMessageEdited updates
 type updateMessageEditedHandler struct {
-	filter   UpdateMessageEditedFilter
+	filter   func(u *UpdateMessageEdited) bool
 	response func(client *Client, update *UpdateMessageEdited) error
 }
 
@@ -3368,18 +3001,18 @@ func (h *updateMessageEditedHandler) HandleUpdate(client *Client, update TlObjec
 }
 
 // OnUpdateMessageEdited registers a handler for UpdateMessageEdited updates with default group (0)
-func (c *Client) OnUpdateMessageEdited(handler func(client *Client, update *UpdateMessageEdited) error, filter UpdateMessageEditedFilter) {
+func (c *Client) OnUpdateMessageEdited(handler func(client *Client, update *UpdateMessageEdited) error, filter func(u *UpdateMessageEdited) bool) {
 	c.AddUpdateMessageEditedHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateMessageEditedHandlerGroup registers a handler for UpdateMessageEdited updates with a specific group
-func (c *Client) AddUpdateMessageEditedHandlerGroup(handler func(client *Client, update *UpdateMessageEdited) error, filter UpdateMessageEditedFilter, group int) {
+func (c *Client) AddUpdateMessageEditedHandlerGroup(handler func(client *Client, update *UpdateMessageEdited) error, filter func(u *UpdateMessageEdited) bool, group int) {
 	c.AddHandlerGroup(&updateMessageEditedHandler{filter: filter, response: handler}, group)
 }
 
 // updateMessageFactCheckHandler handles UpdateMessageFactCheck updates
 type updateMessageFactCheckHandler struct {
-	filter   UpdateMessageFactCheckFilter
+	filter   func(u *UpdateMessageFactCheck) bool
 	response func(client *Client, update *UpdateMessageFactCheck) error
 }
 
@@ -3399,18 +3032,18 @@ func (h *updateMessageFactCheckHandler) HandleUpdate(client *Client, update TlOb
 }
 
 // OnUpdateMessageFactCheck registers a handler for UpdateMessageFactCheck updates with default group (0)
-func (c *Client) OnUpdateMessageFactCheck(handler func(client *Client, update *UpdateMessageFactCheck) error, filter UpdateMessageFactCheckFilter) {
+func (c *Client) OnUpdateMessageFactCheck(handler func(client *Client, update *UpdateMessageFactCheck) error, filter func(u *UpdateMessageFactCheck) bool) {
 	c.AddUpdateMessageFactCheckHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateMessageFactCheckHandlerGroup registers a handler for UpdateMessageFactCheck updates with a specific group
-func (c *Client) AddUpdateMessageFactCheckHandlerGroup(handler func(client *Client, update *UpdateMessageFactCheck) error, filter UpdateMessageFactCheckFilter, group int) {
+func (c *Client) AddUpdateMessageFactCheckHandlerGroup(handler func(client *Client, update *UpdateMessageFactCheck) error, filter func(u *UpdateMessageFactCheck) bool, group int) {
 	c.AddHandlerGroup(&updateMessageFactCheckHandler{filter: filter, response: handler}, group)
 }
 
 // updateMessageInteractionInfoHandler handles UpdateMessageInteractionInfo updates
 type updateMessageInteractionInfoHandler struct {
-	filter   UpdateMessageInteractionInfoFilter
+	filter   func(u *UpdateMessageInteractionInfo) bool
 	response func(client *Client, update *UpdateMessageInteractionInfo) error
 }
 
@@ -3430,18 +3063,18 @@ func (h *updateMessageInteractionInfoHandler) HandleUpdate(client *Client, updat
 }
 
 // OnUpdateMessageInteractionInfo registers a handler for UpdateMessageInteractionInfo updates with default group (0)
-func (c *Client) OnUpdateMessageInteractionInfo(handler func(client *Client, update *UpdateMessageInteractionInfo) error, filter UpdateMessageInteractionInfoFilter) {
+func (c *Client) OnUpdateMessageInteractionInfo(handler func(client *Client, update *UpdateMessageInteractionInfo) error, filter func(u *UpdateMessageInteractionInfo) bool) {
 	c.AddUpdateMessageInteractionInfoHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateMessageInteractionInfoHandlerGroup registers a handler for UpdateMessageInteractionInfo updates with a specific group
-func (c *Client) AddUpdateMessageInteractionInfoHandlerGroup(handler func(client *Client, update *UpdateMessageInteractionInfo) error, filter UpdateMessageInteractionInfoFilter, group int) {
+func (c *Client) AddUpdateMessageInteractionInfoHandlerGroup(handler func(client *Client, update *UpdateMessageInteractionInfo) error, filter func(u *UpdateMessageInteractionInfo) bool, group int) {
 	c.AddHandlerGroup(&updateMessageInteractionInfoHandler{filter: filter, response: handler}, group)
 }
 
 // updateMessageIsPinnedHandler handles UpdateMessageIsPinned updates
 type updateMessageIsPinnedHandler struct {
-	filter   UpdateMessageIsPinnedFilter
+	filter   func(u *UpdateMessageIsPinned) bool
 	response func(client *Client, update *UpdateMessageIsPinned) error
 }
 
@@ -3461,18 +3094,18 @@ func (h *updateMessageIsPinnedHandler) HandleUpdate(client *Client, update TlObj
 }
 
 // OnUpdateMessageIsPinned registers a handler for UpdateMessageIsPinned updates with default group (0)
-func (c *Client) OnUpdateMessageIsPinned(handler func(client *Client, update *UpdateMessageIsPinned) error, filter UpdateMessageIsPinnedFilter) {
+func (c *Client) OnUpdateMessageIsPinned(handler func(client *Client, update *UpdateMessageIsPinned) error, filter func(u *UpdateMessageIsPinned) bool) {
 	c.AddUpdateMessageIsPinnedHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateMessageIsPinnedHandlerGroup registers a handler for UpdateMessageIsPinned updates with a specific group
-func (c *Client) AddUpdateMessageIsPinnedHandlerGroup(handler func(client *Client, update *UpdateMessageIsPinned) error, filter UpdateMessageIsPinnedFilter, group int) {
+func (c *Client) AddUpdateMessageIsPinnedHandlerGroup(handler func(client *Client, update *UpdateMessageIsPinned) error, filter func(u *UpdateMessageIsPinned) bool, group int) {
 	c.AddHandlerGroup(&updateMessageIsPinnedHandler{filter: filter, response: handler}, group)
 }
 
 // updateMessageLiveLocationViewedHandler handles UpdateMessageLiveLocationViewed updates
 type updateMessageLiveLocationViewedHandler struct {
-	filter   UpdateMessageLiveLocationViewedFilter
+	filter   func(u *UpdateMessageLiveLocationViewed) bool
 	response func(client *Client, update *UpdateMessageLiveLocationViewed) error
 }
 
@@ -3492,18 +3125,18 @@ func (h *updateMessageLiveLocationViewedHandler) HandleUpdate(client *Client, up
 }
 
 // OnUpdateMessageLiveLocationViewed registers a handler for UpdateMessageLiveLocationViewed updates with default group (0)
-func (c *Client) OnUpdateMessageLiveLocationViewed(handler func(client *Client, update *UpdateMessageLiveLocationViewed) error, filter UpdateMessageLiveLocationViewedFilter) {
+func (c *Client) OnUpdateMessageLiveLocationViewed(handler func(client *Client, update *UpdateMessageLiveLocationViewed) error, filter func(u *UpdateMessageLiveLocationViewed) bool) {
 	c.AddUpdateMessageLiveLocationViewedHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateMessageLiveLocationViewedHandlerGroup registers a handler for UpdateMessageLiveLocationViewed updates with a specific group
-func (c *Client) AddUpdateMessageLiveLocationViewedHandlerGroup(handler func(client *Client, update *UpdateMessageLiveLocationViewed) error, filter UpdateMessageLiveLocationViewedFilter, group int) {
+func (c *Client) AddUpdateMessageLiveLocationViewedHandlerGroup(handler func(client *Client, update *UpdateMessageLiveLocationViewed) error, filter func(u *UpdateMessageLiveLocationViewed) bool, group int) {
 	c.AddHandlerGroup(&updateMessageLiveLocationViewedHandler{filter: filter, response: handler}, group)
 }
 
 // updateMessageMentionReadHandler handles UpdateMessageMentionRead updates
 type updateMessageMentionReadHandler struct {
-	filter   UpdateMessageMentionReadFilter
+	filter   func(u *UpdateMessageMentionRead) bool
 	response func(client *Client, update *UpdateMessageMentionRead) error
 }
 
@@ -3523,18 +3156,18 @@ func (h *updateMessageMentionReadHandler) HandleUpdate(client *Client, update Tl
 }
 
 // OnUpdateMessageMentionRead registers a handler for UpdateMessageMentionRead updates with default group (0)
-func (c *Client) OnUpdateMessageMentionRead(handler func(client *Client, update *UpdateMessageMentionRead) error, filter UpdateMessageMentionReadFilter) {
+func (c *Client) OnUpdateMessageMentionRead(handler func(client *Client, update *UpdateMessageMentionRead) error, filter func(u *UpdateMessageMentionRead) bool) {
 	c.AddUpdateMessageMentionReadHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateMessageMentionReadHandlerGroup registers a handler for UpdateMessageMentionRead updates with a specific group
-func (c *Client) AddUpdateMessageMentionReadHandlerGroup(handler func(client *Client, update *UpdateMessageMentionRead) error, filter UpdateMessageMentionReadFilter, group int) {
+func (c *Client) AddUpdateMessageMentionReadHandlerGroup(handler func(client *Client, update *UpdateMessageMentionRead) error, filter func(u *UpdateMessageMentionRead) bool, group int) {
 	c.AddHandlerGroup(&updateMessageMentionReadHandler{filter: filter, response: handler}, group)
 }
 
 // updateMessageReactionHandler handles UpdateMessageReaction updates
 type updateMessageReactionHandler struct {
-	filter   UpdateMessageReactionFilter
+	filter   func(u *UpdateMessageReaction) bool
 	response func(client *Client, update *UpdateMessageReaction) error
 }
 
@@ -3554,18 +3187,18 @@ func (h *updateMessageReactionHandler) HandleUpdate(client *Client, update TlObj
 }
 
 // OnUpdateMessageReaction registers a handler for UpdateMessageReaction updates with default group (0)
-func (c *Client) OnUpdateMessageReaction(handler func(client *Client, update *UpdateMessageReaction) error, filter UpdateMessageReactionFilter) {
+func (c *Client) OnUpdateMessageReaction(handler func(client *Client, update *UpdateMessageReaction) error, filter func(u *UpdateMessageReaction) bool) {
 	c.AddUpdateMessageReactionHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateMessageReactionHandlerGroup registers a handler for UpdateMessageReaction updates with a specific group
-func (c *Client) AddUpdateMessageReactionHandlerGroup(handler func(client *Client, update *UpdateMessageReaction) error, filter UpdateMessageReactionFilter, group int) {
+func (c *Client) AddUpdateMessageReactionHandlerGroup(handler func(client *Client, update *UpdateMessageReaction) error, filter func(u *UpdateMessageReaction) bool, group int) {
 	c.AddHandlerGroup(&updateMessageReactionHandler{filter: filter, response: handler}, group)
 }
 
 // updateMessageReactionsHandler handles UpdateMessageReactions updates
 type updateMessageReactionsHandler struct {
-	filter   UpdateMessageReactionsFilter
+	filter   func(u *UpdateMessageReactions) bool
 	response func(client *Client, update *UpdateMessageReactions) error
 }
 
@@ -3585,18 +3218,18 @@ func (h *updateMessageReactionsHandler) HandleUpdate(client *Client, update TlOb
 }
 
 // OnUpdateMessageReactions registers a handler for UpdateMessageReactions updates with default group (0)
-func (c *Client) OnUpdateMessageReactions(handler func(client *Client, update *UpdateMessageReactions) error, filter UpdateMessageReactionsFilter) {
+func (c *Client) OnUpdateMessageReactions(handler func(client *Client, update *UpdateMessageReactions) error, filter func(u *UpdateMessageReactions) bool) {
 	c.AddUpdateMessageReactionsHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateMessageReactionsHandlerGroup registers a handler for UpdateMessageReactions updates with a specific group
-func (c *Client) AddUpdateMessageReactionsHandlerGroup(handler func(client *Client, update *UpdateMessageReactions) error, filter UpdateMessageReactionsFilter, group int) {
+func (c *Client) AddUpdateMessageReactionsHandlerGroup(handler func(client *Client, update *UpdateMessageReactions) error, filter func(u *UpdateMessageReactions) bool, group int) {
 	c.AddHandlerGroup(&updateMessageReactionsHandler{filter: filter, response: handler}, group)
 }
 
 // updateMessageSendAcknowledgedHandler handles UpdateMessageSendAcknowledged updates
 type updateMessageSendAcknowledgedHandler struct {
-	filter   UpdateMessageSendAcknowledgedFilter
+	filter   func(u *UpdateMessageSendAcknowledged) bool
 	response func(client *Client, update *UpdateMessageSendAcknowledged) error
 }
 
@@ -3616,18 +3249,18 @@ func (h *updateMessageSendAcknowledgedHandler) HandleUpdate(client *Client, upda
 }
 
 // OnUpdateMessageSendAcknowledged registers a handler for UpdateMessageSendAcknowledged updates with default group (0)
-func (c *Client) OnUpdateMessageSendAcknowledged(handler func(client *Client, update *UpdateMessageSendAcknowledged) error, filter UpdateMessageSendAcknowledgedFilter) {
+func (c *Client) OnUpdateMessageSendAcknowledged(handler func(client *Client, update *UpdateMessageSendAcknowledged) error, filter func(u *UpdateMessageSendAcknowledged) bool) {
 	c.AddUpdateMessageSendAcknowledgedHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateMessageSendAcknowledgedHandlerGroup registers a handler for UpdateMessageSendAcknowledged updates with a specific group
-func (c *Client) AddUpdateMessageSendAcknowledgedHandlerGroup(handler func(client *Client, update *UpdateMessageSendAcknowledged) error, filter UpdateMessageSendAcknowledgedFilter, group int) {
+func (c *Client) AddUpdateMessageSendAcknowledgedHandlerGroup(handler func(client *Client, update *UpdateMessageSendAcknowledged) error, filter func(u *UpdateMessageSendAcknowledged) bool, group int) {
 	c.AddHandlerGroup(&updateMessageSendAcknowledgedHandler{filter: filter, response: handler}, group)
 }
 
 // updateMessageSendFailedHandler handles UpdateMessageSendFailed updates
 type updateMessageSendFailedHandler struct {
-	filter   UpdateMessageSendFailedFilter
+	filter   func(u *UpdateMessageSendFailed) bool
 	response func(client *Client, update *UpdateMessageSendFailed) error
 }
 
@@ -3647,18 +3280,18 @@ func (h *updateMessageSendFailedHandler) HandleUpdate(client *Client, update TlO
 }
 
 // OnUpdateMessageSendFailed registers a handler for UpdateMessageSendFailed updates with default group (0)
-func (c *Client) OnUpdateMessageSendFailed(handler func(client *Client, update *UpdateMessageSendFailed) error, filter UpdateMessageSendFailedFilter) {
+func (c *Client) OnUpdateMessageSendFailed(handler func(client *Client, update *UpdateMessageSendFailed) error, filter func(u *UpdateMessageSendFailed) bool) {
 	c.AddUpdateMessageSendFailedHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateMessageSendFailedHandlerGroup registers a handler for UpdateMessageSendFailed updates with a specific group
-func (c *Client) AddUpdateMessageSendFailedHandlerGroup(handler func(client *Client, update *UpdateMessageSendFailed) error, filter UpdateMessageSendFailedFilter, group int) {
+func (c *Client) AddUpdateMessageSendFailedHandlerGroup(handler func(client *Client, update *UpdateMessageSendFailed) error, filter func(u *UpdateMessageSendFailed) bool, group int) {
 	c.AddHandlerGroup(&updateMessageSendFailedHandler{filter: filter, response: handler}, group)
 }
 
 // updateMessageSendSucceededHandler handles UpdateMessageSendSucceeded updates
 type updateMessageSendSucceededHandler struct {
-	filter   UpdateMessageSendSucceededFilter
+	filter   func(u *UpdateMessageSendSucceeded) bool
 	response func(client *Client, update *UpdateMessageSendSucceeded) error
 }
 
@@ -3678,18 +3311,18 @@ func (h *updateMessageSendSucceededHandler) HandleUpdate(client *Client, update 
 }
 
 // OnUpdateMessageSendSucceeded registers a handler for UpdateMessageSendSucceeded updates with default group (0)
-func (c *Client) OnUpdateMessageSendSucceeded(handler func(client *Client, update *UpdateMessageSendSucceeded) error, filter UpdateMessageSendSucceededFilter) {
+func (c *Client) OnUpdateMessageSendSucceeded(handler func(client *Client, update *UpdateMessageSendSucceeded) error, filter func(u *UpdateMessageSendSucceeded) bool) {
 	c.AddUpdateMessageSendSucceededHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateMessageSendSucceededHandlerGroup registers a handler for UpdateMessageSendSucceeded updates with a specific group
-func (c *Client) AddUpdateMessageSendSucceededHandlerGroup(handler func(client *Client, update *UpdateMessageSendSucceeded) error, filter UpdateMessageSendSucceededFilter, group int) {
+func (c *Client) AddUpdateMessageSendSucceededHandlerGroup(handler func(client *Client, update *UpdateMessageSendSucceeded) error, filter func(u *UpdateMessageSendSucceeded) bool, group int) {
 	c.AddHandlerGroup(&updateMessageSendSucceededHandler{filter: filter, response: handler}, group)
 }
 
 // updateMessageSuggestedPostInfoHandler handles UpdateMessageSuggestedPostInfo updates
 type updateMessageSuggestedPostInfoHandler struct {
-	filter   UpdateMessageSuggestedPostInfoFilter
+	filter   func(u *UpdateMessageSuggestedPostInfo) bool
 	response func(client *Client, update *UpdateMessageSuggestedPostInfo) error
 }
 
@@ -3709,18 +3342,18 @@ func (h *updateMessageSuggestedPostInfoHandler) HandleUpdate(client *Client, upd
 }
 
 // OnUpdateMessageSuggestedPostInfo registers a handler for UpdateMessageSuggestedPostInfo updates with default group (0)
-func (c *Client) OnUpdateMessageSuggestedPostInfo(handler func(client *Client, update *UpdateMessageSuggestedPostInfo) error, filter UpdateMessageSuggestedPostInfoFilter) {
+func (c *Client) OnUpdateMessageSuggestedPostInfo(handler func(client *Client, update *UpdateMessageSuggestedPostInfo) error, filter func(u *UpdateMessageSuggestedPostInfo) bool) {
 	c.AddUpdateMessageSuggestedPostInfoHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateMessageSuggestedPostInfoHandlerGroup registers a handler for UpdateMessageSuggestedPostInfo updates with a specific group
-func (c *Client) AddUpdateMessageSuggestedPostInfoHandlerGroup(handler func(client *Client, update *UpdateMessageSuggestedPostInfo) error, filter UpdateMessageSuggestedPostInfoFilter, group int) {
+func (c *Client) AddUpdateMessageSuggestedPostInfoHandlerGroup(handler func(client *Client, update *UpdateMessageSuggestedPostInfo) error, filter func(u *UpdateMessageSuggestedPostInfo) bool, group int) {
 	c.AddHandlerGroup(&updateMessageSuggestedPostInfoHandler{filter: filter, response: handler}, group)
 }
 
 // updateMessageUnreadReactionsHandler handles UpdateMessageUnreadReactions updates
 type updateMessageUnreadReactionsHandler struct {
-	filter   UpdateMessageUnreadReactionsFilter
+	filter   func(u *UpdateMessageUnreadReactions) bool
 	response func(client *Client, update *UpdateMessageUnreadReactions) error
 }
 
@@ -3740,18 +3373,18 @@ func (h *updateMessageUnreadReactionsHandler) HandleUpdate(client *Client, updat
 }
 
 // OnUpdateMessageUnreadReactions registers a handler for UpdateMessageUnreadReactions updates with default group (0)
-func (c *Client) OnUpdateMessageUnreadReactions(handler func(client *Client, update *UpdateMessageUnreadReactions) error, filter UpdateMessageUnreadReactionsFilter) {
+func (c *Client) OnUpdateMessageUnreadReactions(handler func(client *Client, update *UpdateMessageUnreadReactions) error, filter func(u *UpdateMessageUnreadReactions) bool) {
 	c.AddUpdateMessageUnreadReactionsHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateMessageUnreadReactionsHandlerGroup registers a handler for UpdateMessageUnreadReactions updates with a specific group
-func (c *Client) AddUpdateMessageUnreadReactionsHandlerGroup(handler func(client *Client, update *UpdateMessageUnreadReactions) error, filter UpdateMessageUnreadReactionsFilter, group int) {
+func (c *Client) AddUpdateMessageUnreadReactionsHandlerGroup(handler func(client *Client, update *UpdateMessageUnreadReactions) error, filter func(u *UpdateMessageUnreadReactions) bool, group int) {
 	c.AddHandlerGroup(&updateMessageUnreadReactionsHandler{filter: filter, response: handler}, group)
 }
 
 // updateNewBusinessCallbackQueryHandler handles UpdateNewBusinessCallbackQuery updates
 type updateNewBusinessCallbackQueryHandler struct {
-	filter   UpdateNewBusinessCallbackQueryFilter
+	filter   func(u *UpdateNewBusinessCallbackQuery) bool
 	response func(client *Client, update *UpdateNewBusinessCallbackQuery) error
 }
 
@@ -3771,18 +3404,18 @@ func (h *updateNewBusinessCallbackQueryHandler) HandleUpdate(client *Client, upd
 }
 
 // OnUpdateNewBusinessCallbackQuery registers a handler for UpdateNewBusinessCallbackQuery updates with default group (0)
-func (c *Client) OnUpdateNewBusinessCallbackQuery(handler func(client *Client, update *UpdateNewBusinessCallbackQuery) error, filter UpdateNewBusinessCallbackQueryFilter) {
+func (c *Client) OnUpdateNewBusinessCallbackQuery(handler func(client *Client, update *UpdateNewBusinessCallbackQuery) error, filter func(u *UpdateNewBusinessCallbackQuery) bool) {
 	c.AddUpdateNewBusinessCallbackQueryHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateNewBusinessCallbackQueryHandlerGroup registers a handler for UpdateNewBusinessCallbackQuery updates with a specific group
-func (c *Client) AddUpdateNewBusinessCallbackQueryHandlerGroup(handler func(client *Client, update *UpdateNewBusinessCallbackQuery) error, filter UpdateNewBusinessCallbackQueryFilter, group int) {
+func (c *Client) AddUpdateNewBusinessCallbackQueryHandlerGroup(handler func(client *Client, update *UpdateNewBusinessCallbackQuery) error, filter func(u *UpdateNewBusinessCallbackQuery) bool, group int) {
 	c.AddHandlerGroup(&updateNewBusinessCallbackQueryHandler{filter: filter, response: handler}, group)
 }
 
 // updateNewBusinessMessageHandler handles UpdateNewBusinessMessage updates
 type updateNewBusinessMessageHandler struct {
-	filter   UpdateNewBusinessMessageFilter
+	filter   func(u *UpdateNewBusinessMessage) bool
 	response func(client *Client, update *UpdateNewBusinessMessage) error
 }
 
@@ -3802,18 +3435,18 @@ func (h *updateNewBusinessMessageHandler) HandleUpdate(client *Client, update Tl
 }
 
 // OnUpdateNewBusinessMessage registers a handler for UpdateNewBusinessMessage updates with default group (0)
-func (c *Client) OnUpdateNewBusinessMessage(handler func(client *Client, update *UpdateNewBusinessMessage) error, filter UpdateNewBusinessMessageFilter) {
+func (c *Client) OnUpdateNewBusinessMessage(handler func(client *Client, update *UpdateNewBusinessMessage) error, filter func(u *UpdateNewBusinessMessage) bool) {
 	c.AddUpdateNewBusinessMessageHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateNewBusinessMessageHandlerGroup registers a handler for UpdateNewBusinessMessage updates with a specific group
-func (c *Client) AddUpdateNewBusinessMessageHandlerGroup(handler func(client *Client, update *UpdateNewBusinessMessage) error, filter UpdateNewBusinessMessageFilter, group int) {
+func (c *Client) AddUpdateNewBusinessMessageHandlerGroup(handler func(client *Client, update *UpdateNewBusinessMessage) error, filter func(u *UpdateNewBusinessMessage) bool, group int) {
 	c.AddHandlerGroup(&updateNewBusinessMessageHandler{filter: filter, response: handler}, group)
 }
 
 // updateNewCallbackQueryHandler handles UpdateNewCallbackQuery updates
 type updateNewCallbackQueryHandler struct {
-	filter   UpdateNewCallbackQueryFilter
+	filter   func(u *UpdateNewCallbackQuery) bool
 	response func(client *Client, update *UpdateNewCallbackQuery) error
 }
 
@@ -3833,18 +3466,18 @@ func (h *updateNewCallbackQueryHandler) HandleUpdate(client *Client, update TlOb
 }
 
 // OnUpdateNewCallbackQuery registers a handler for UpdateNewCallbackQuery updates with default group (0)
-func (c *Client) OnUpdateNewCallbackQuery(handler func(client *Client, update *UpdateNewCallbackQuery) error, filter UpdateNewCallbackQueryFilter) {
+func (c *Client) OnUpdateNewCallbackQuery(handler func(client *Client, update *UpdateNewCallbackQuery) error, filter func(u *UpdateNewCallbackQuery) bool) {
 	c.AddUpdateNewCallbackQueryHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateNewCallbackQueryHandlerGroup registers a handler for UpdateNewCallbackQuery updates with a specific group
-func (c *Client) AddUpdateNewCallbackQueryHandlerGroup(handler func(client *Client, update *UpdateNewCallbackQuery) error, filter UpdateNewCallbackQueryFilter, group int) {
+func (c *Client) AddUpdateNewCallbackQueryHandlerGroup(handler func(client *Client, update *UpdateNewCallbackQuery) error, filter func(u *UpdateNewCallbackQuery) bool, group int) {
 	c.AddHandlerGroup(&updateNewCallbackQueryHandler{filter: filter, response: handler}, group)
 }
 
 // updateNewCallSignalingDataHandler handles UpdateNewCallSignalingData updates
 type updateNewCallSignalingDataHandler struct {
-	filter   UpdateNewCallSignalingDataFilter
+	filter   func(u *UpdateNewCallSignalingData) bool
 	response func(client *Client, update *UpdateNewCallSignalingData) error
 }
 
@@ -3864,18 +3497,18 @@ func (h *updateNewCallSignalingDataHandler) HandleUpdate(client *Client, update 
 }
 
 // OnUpdateNewCallSignalingData registers a handler for UpdateNewCallSignalingData updates with default group (0)
-func (c *Client) OnUpdateNewCallSignalingData(handler func(client *Client, update *UpdateNewCallSignalingData) error, filter UpdateNewCallSignalingDataFilter) {
+func (c *Client) OnUpdateNewCallSignalingData(handler func(client *Client, update *UpdateNewCallSignalingData) error, filter func(u *UpdateNewCallSignalingData) bool) {
 	c.AddUpdateNewCallSignalingDataHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateNewCallSignalingDataHandlerGroup registers a handler for UpdateNewCallSignalingData updates with a specific group
-func (c *Client) AddUpdateNewCallSignalingDataHandlerGroup(handler func(client *Client, update *UpdateNewCallSignalingData) error, filter UpdateNewCallSignalingDataFilter, group int) {
+func (c *Client) AddUpdateNewCallSignalingDataHandlerGroup(handler func(client *Client, update *UpdateNewCallSignalingData) error, filter func(u *UpdateNewCallSignalingData) bool, group int) {
 	c.AddHandlerGroup(&updateNewCallSignalingDataHandler{filter: filter, response: handler}, group)
 }
 
 // updateNewChatHandler handles UpdateNewChat updates
 type updateNewChatHandler struct {
-	filter   UpdateNewChatFilter
+	filter   func(u *UpdateNewChat) bool
 	response func(client *Client, update *UpdateNewChat) error
 }
 
@@ -3895,18 +3528,18 @@ func (h *updateNewChatHandler) HandleUpdate(client *Client, update TlObject) err
 }
 
 // OnUpdateNewChat registers a handler for UpdateNewChat updates with default group (0)
-func (c *Client) OnUpdateNewChat(handler func(client *Client, update *UpdateNewChat) error, filter UpdateNewChatFilter) {
+func (c *Client) OnUpdateNewChat(handler func(client *Client, update *UpdateNewChat) error, filter func(u *UpdateNewChat) bool) {
 	c.AddUpdateNewChatHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateNewChatHandlerGroup registers a handler for UpdateNewChat updates with a specific group
-func (c *Client) AddUpdateNewChatHandlerGroup(handler func(client *Client, update *UpdateNewChat) error, filter UpdateNewChatFilter, group int) {
+func (c *Client) AddUpdateNewChatHandlerGroup(handler func(client *Client, update *UpdateNewChat) error, filter func(u *UpdateNewChat) bool, group int) {
 	c.AddHandlerGroup(&updateNewChatHandler{filter: filter, response: handler}, group)
 }
 
 // updateNewChatJoinRequestHandler handles UpdateNewChatJoinRequest updates
 type updateNewChatJoinRequestHandler struct {
-	filter   UpdateNewChatJoinRequestFilter
+	filter   func(u *UpdateNewChatJoinRequest) bool
 	response func(client *Client, update *UpdateNewChatJoinRequest) error
 }
 
@@ -3926,18 +3559,18 @@ func (h *updateNewChatJoinRequestHandler) HandleUpdate(client *Client, update Tl
 }
 
 // OnUpdateNewChatJoinRequest registers a handler for UpdateNewChatJoinRequest updates with default group (0)
-func (c *Client) OnUpdateNewChatJoinRequest(handler func(client *Client, update *UpdateNewChatJoinRequest) error, filter UpdateNewChatJoinRequestFilter) {
+func (c *Client) OnUpdateNewChatJoinRequest(handler func(client *Client, update *UpdateNewChatJoinRequest) error, filter func(u *UpdateNewChatJoinRequest) bool) {
 	c.AddUpdateNewChatJoinRequestHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateNewChatJoinRequestHandlerGroup registers a handler for UpdateNewChatJoinRequest updates with a specific group
-func (c *Client) AddUpdateNewChatJoinRequestHandlerGroup(handler func(client *Client, update *UpdateNewChatJoinRequest) error, filter UpdateNewChatJoinRequestFilter, group int) {
+func (c *Client) AddUpdateNewChatJoinRequestHandlerGroup(handler func(client *Client, update *UpdateNewChatJoinRequest) error, filter func(u *UpdateNewChatJoinRequest) bool, group int) {
 	c.AddHandlerGroup(&updateNewChatJoinRequestHandler{filter: filter, response: handler}, group)
 }
 
 // updateNewChosenInlineResultHandler handles UpdateNewChosenInlineResult updates
 type updateNewChosenInlineResultHandler struct {
-	filter   UpdateNewChosenInlineResultFilter
+	filter   func(u *UpdateNewChosenInlineResult) bool
 	response func(client *Client, update *UpdateNewChosenInlineResult) error
 }
 
@@ -3957,18 +3590,18 @@ func (h *updateNewChosenInlineResultHandler) HandleUpdate(client *Client, update
 }
 
 // OnUpdateNewChosenInlineResult registers a handler for UpdateNewChosenInlineResult updates with default group (0)
-func (c *Client) OnUpdateNewChosenInlineResult(handler func(client *Client, update *UpdateNewChosenInlineResult) error, filter UpdateNewChosenInlineResultFilter) {
+func (c *Client) OnUpdateNewChosenInlineResult(handler func(client *Client, update *UpdateNewChosenInlineResult) error, filter func(u *UpdateNewChosenInlineResult) bool) {
 	c.AddUpdateNewChosenInlineResultHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateNewChosenInlineResultHandlerGroup registers a handler for UpdateNewChosenInlineResult updates with a specific group
-func (c *Client) AddUpdateNewChosenInlineResultHandlerGroup(handler func(client *Client, update *UpdateNewChosenInlineResult) error, filter UpdateNewChosenInlineResultFilter, group int) {
+func (c *Client) AddUpdateNewChosenInlineResultHandlerGroup(handler func(client *Client, update *UpdateNewChosenInlineResult) error, filter func(u *UpdateNewChosenInlineResult) bool, group int) {
 	c.AddHandlerGroup(&updateNewChosenInlineResultHandler{filter: filter, response: handler}, group)
 }
 
 // updateNewCustomEventHandler handles UpdateNewCustomEvent updates
 type updateNewCustomEventHandler struct {
-	filter   UpdateNewCustomEventFilter
+	filter   func(u *UpdateNewCustomEvent) bool
 	response func(client *Client, update *UpdateNewCustomEvent) error
 }
 
@@ -3988,18 +3621,18 @@ func (h *updateNewCustomEventHandler) HandleUpdate(client *Client, update TlObje
 }
 
 // OnUpdateNewCustomEvent registers a handler for UpdateNewCustomEvent updates with default group (0)
-func (c *Client) OnUpdateNewCustomEvent(handler func(client *Client, update *UpdateNewCustomEvent) error, filter UpdateNewCustomEventFilter) {
+func (c *Client) OnUpdateNewCustomEvent(handler func(client *Client, update *UpdateNewCustomEvent) error, filter func(u *UpdateNewCustomEvent) bool) {
 	c.AddUpdateNewCustomEventHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateNewCustomEventHandlerGroup registers a handler for UpdateNewCustomEvent updates with a specific group
-func (c *Client) AddUpdateNewCustomEventHandlerGroup(handler func(client *Client, update *UpdateNewCustomEvent) error, filter UpdateNewCustomEventFilter, group int) {
+func (c *Client) AddUpdateNewCustomEventHandlerGroup(handler func(client *Client, update *UpdateNewCustomEvent) error, filter func(u *UpdateNewCustomEvent) bool, group int) {
 	c.AddHandlerGroup(&updateNewCustomEventHandler{filter: filter, response: handler}, group)
 }
 
 // updateNewCustomQueryHandler handles UpdateNewCustomQuery updates
 type updateNewCustomQueryHandler struct {
-	filter   UpdateNewCustomQueryFilter
+	filter   func(u *UpdateNewCustomQuery) bool
 	response func(client *Client, update *UpdateNewCustomQuery) error
 }
 
@@ -4019,18 +3652,18 @@ func (h *updateNewCustomQueryHandler) HandleUpdate(client *Client, update TlObje
 }
 
 // OnUpdateNewCustomQuery registers a handler for UpdateNewCustomQuery updates with default group (0)
-func (c *Client) OnUpdateNewCustomQuery(handler func(client *Client, update *UpdateNewCustomQuery) error, filter UpdateNewCustomQueryFilter) {
+func (c *Client) OnUpdateNewCustomQuery(handler func(client *Client, update *UpdateNewCustomQuery) error, filter func(u *UpdateNewCustomQuery) bool) {
 	c.AddUpdateNewCustomQueryHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateNewCustomQueryHandlerGroup registers a handler for UpdateNewCustomQuery updates with a specific group
-func (c *Client) AddUpdateNewCustomQueryHandlerGroup(handler func(client *Client, update *UpdateNewCustomQuery) error, filter UpdateNewCustomQueryFilter, group int) {
+func (c *Client) AddUpdateNewCustomQueryHandlerGroup(handler func(client *Client, update *UpdateNewCustomQuery) error, filter func(u *UpdateNewCustomQuery) bool, group int) {
 	c.AddHandlerGroup(&updateNewCustomQueryHandler{filter: filter, response: handler}, group)
 }
 
 // updateNewGroupCallMessageHandler handles UpdateNewGroupCallMessage updates
 type updateNewGroupCallMessageHandler struct {
-	filter   UpdateNewGroupCallMessageFilter
+	filter   func(u *UpdateNewGroupCallMessage) bool
 	response func(client *Client, update *UpdateNewGroupCallMessage) error
 }
 
@@ -4050,18 +3683,18 @@ func (h *updateNewGroupCallMessageHandler) HandleUpdate(client *Client, update T
 }
 
 // OnUpdateNewGroupCallMessage registers a handler for UpdateNewGroupCallMessage updates with default group (0)
-func (c *Client) OnUpdateNewGroupCallMessage(handler func(client *Client, update *UpdateNewGroupCallMessage) error, filter UpdateNewGroupCallMessageFilter) {
+func (c *Client) OnUpdateNewGroupCallMessage(handler func(client *Client, update *UpdateNewGroupCallMessage) error, filter func(u *UpdateNewGroupCallMessage) bool) {
 	c.AddUpdateNewGroupCallMessageHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateNewGroupCallMessageHandlerGroup registers a handler for UpdateNewGroupCallMessage updates with a specific group
-func (c *Client) AddUpdateNewGroupCallMessageHandlerGroup(handler func(client *Client, update *UpdateNewGroupCallMessage) error, filter UpdateNewGroupCallMessageFilter, group int) {
+func (c *Client) AddUpdateNewGroupCallMessageHandlerGroup(handler func(client *Client, update *UpdateNewGroupCallMessage) error, filter func(u *UpdateNewGroupCallMessage) bool, group int) {
 	c.AddHandlerGroup(&updateNewGroupCallMessageHandler{filter: filter, response: handler}, group)
 }
 
 // updateNewGroupCallPaidReactionHandler handles UpdateNewGroupCallPaidReaction updates
 type updateNewGroupCallPaidReactionHandler struct {
-	filter   UpdateNewGroupCallPaidReactionFilter
+	filter   func(u *UpdateNewGroupCallPaidReaction) bool
 	response func(client *Client, update *UpdateNewGroupCallPaidReaction) error
 }
 
@@ -4081,18 +3714,18 @@ func (h *updateNewGroupCallPaidReactionHandler) HandleUpdate(client *Client, upd
 }
 
 // OnUpdateNewGroupCallPaidReaction registers a handler for UpdateNewGroupCallPaidReaction updates with default group (0)
-func (c *Client) OnUpdateNewGroupCallPaidReaction(handler func(client *Client, update *UpdateNewGroupCallPaidReaction) error, filter UpdateNewGroupCallPaidReactionFilter) {
+func (c *Client) OnUpdateNewGroupCallPaidReaction(handler func(client *Client, update *UpdateNewGroupCallPaidReaction) error, filter func(u *UpdateNewGroupCallPaidReaction) bool) {
 	c.AddUpdateNewGroupCallPaidReactionHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateNewGroupCallPaidReactionHandlerGroup registers a handler for UpdateNewGroupCallPaidReaction updates with a specific group
-func (c *Client) AddUpdateNewGroupCallPaidReactionHandlerGroup(handler func(client *Client, update *UpdateNewGroupCallPaidReaction) error, filter UpdateNewGroupCallPaidReactionFilter, group int) {
+func (c *Client) AddUpdateNewGroupCallPaidReactionHandlerGroup(handler func(client *Client, update *UpdateNewGroupCallPaidReaction) error, filter func(u *UpdateNewGroupCallPaidReaction) bool, group int) {
 	c.AddHandlerGroup(&updateNewGroupCallPaidReactionHandler{filter: filter, response: handler}, group)
 }
 
 // updateNewGuestQueryHandler handles UpdateNewGuestQuery updates
 type updateNewGuestQueryHandler struct {
-	filter   UpdateNewGuestQueryFilter
+	filter   func(u *UpdateNewGuestQuery) bool
 	response func(client *Client, update *UpdateNewGuestQuery) error
 }
 
@@ -4112,18 +3745,18 @@ func (h *updateNewGuestQueryHandler) HandleUpdate(client *Client, update TlObjec
 }
 
 // OnUpdateNewGuestQuery registers a handler for UpdateNewGuestQuery updates with default group (0)
-func (c *Client) OnUpdateNewGuestQuery(handler func(client *Client, update *UpdateNewGuestQuery) error, filter UpdateNewGuestQueryFilter) {
+func (c *Client) OnUpdateNewGuestQuery(handler func(client *Client, update *UpdateNewGuestQuery) error, filter func(u *UpdateNewGuestQuery) bool) {
 	c.AddUpdateNewGuestQueryHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateNewGuestQueryHandlerGroup registers a handler for UpdateNewGuestQuery updates with a specific group
-func (c *Client) AddUpdateNewGuestQueryHandlerGroup(handler func(client *Client, update *UpdateNewGuestQuery) error, filter UpdateNewGuestQueryFilter, group int) {
+func (c *Client) AddUpdateNewGuestQueryHandlerGroup(handler func(client *Client, update *UpdateNewGuestQuery) error, filter func(u *UpdateNewGuestQuery) bool, group int) {
 	c.AddHandlerGroup(&updateNewGuestQueryHandler{filter: filter, response: handler}, group)
 }
 
 // updateNewInlineCallbackQueryHandler handles UpdateNewInlineCallbackQuery updates
 type updateNewInlineCallbackQueryHandler struct {
-	filter   UpdateNewInlineCallbackQueryFilter
+	filter   func(u *UpdateNewInlineCallbackQuery) bool
 	response func(client *Client, update *UpdateNewInlineCallbackQuery) error
 }
 
@@ -4143,18 +3776,18 @@ func (h *updateNewInlineCallbackQueryHandler) HandleUpdate(client *Client, updat
 }
 
 // OnUpdateNewInlineCallbackQuery registers a handler for UpdateNewInlineCallbackQuery updates with default group (0)
-func (c *Client) OnUpdateNewInlineCallbackQuery(handler func(client *Client, update *UpdateNewInlineCallbackQuery) error, filter UpdateNewInlineCallbackQueryFilter) {
+func (c *Client) OnUpdateNewInlineCallbackQuery(handler func(client *Client, update *UpdateNewInlineCallbackQuery) error, filter func(u *UpdateNewInlineCallbackQuery) bool) {
 	c.AddUpdateNewInlineCallbackQueryHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateNewInlineCallbackQueryHandlerGroup registers a handler for UpdateNewInlineCallbackQuery updates with a specific group
-func (c *Client) AddUpdateNewInlineCallbackQueryHandlerGroup(handler func(client *Client, update *UpdateNewInlineCallbackQuery) error, filter UpdateNewInlineCallbackQueryFilter, group int) {
+func (c *Client) AddUpdateNewInlineCallbackQueryHandlerGroup(handler func(client *Client, update *UpdateNewInlineCallbackQuery) error, filter func(u *UpdateNewInlineCallbackQuery) bool, group int) {
 	c.AddHandlerGroup(&updateNewInlineCallbackQueryHandler{filter: filter, response: handler}, group)
 }
 
 // updateNewInlineQueryHandler handles UpdateNewInlineQuery updates
 type updateNewInlineQueryHandler struct {
-	filter   UpdateNewInlineQueryFilter
+	filter   func(u *UpdateNewInlineQuery) bool
 	response func(client *Client, update *UpdateNewInlineQuery) error
 }
 
@@ -4174,18 +3807,18 @@ func (h *updateNewInlineQueryHandler) HandleUpdate(client *Client, update TlObje
 }
 
 // OnUpdateNewInlineQuery registers a handler for UpdateNewInlineQuery updates with default group (0)
-func (c *Client) OnUpdateNewInlineQuery(handler func(client *Client, update *UpdateNewInlineQuery) error, filter UpdateNewInlineQueryFilter) {
+func (c *Client) OnUpdateNewInlineQuery(handler func(client *Client, update *UpdateNewInlineQuery) error, filter func(u *UpdateNewInlineQuery) bool) {
 	c.AddUpdateNewInlineQueryHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateNewInlineQueryHandlerGroup registers a handler for UpdateNewInlineQuery updates with a specific group
-func (c *Client) AddUpdateNewInlineQueryHandlerGroup(handler func(client *Client, update *UpdateNewInlineQuery) error, filter UpdateNewInlineQueryFilter, group int) {
+func (c *Client) AddUpdateNewInlineQueryHandlerGroup(handler func(client *Client, update *UpdateNewInlineQuery) error, filter func(u *UpdateNewInlineQuery) bool, group int) {
 	c.AddHandlerGroup(&updateNewInlineQueryHandler{filter: filter, response: handler}, group)
 }
 
 // updateNewMessageHandler handles UpdateNewMessage updates
 type updateNewMessageHandler struct {
-	filter   UpdateNewMessageFilter
+	filter   func(u *UpdateNewMessage) bool
 	response func(client *Client, update *UpdateNewMessage) error
 }
 
@@ -4205,18 +3838,18 @@ func (h *updateNewMessageHandler) HandleUpdate(client *Client, update TlObject) 
 }
 
 // OnUpdateNewMessage registers a handler for UpdateNewMessage updates with default group (0)
-func (c *Client) OnUpdateNewMessage(handler func(client *Client, update *UpdateNewMessage) error, filter UpdateNewMessageFilter) {
+func (c *Client) OnUpdateNewMessage(handler func(client *Client, update *UpdateNewMessage) error, filter func(u *UpdateNewMessage) bool) {
 	c.AddUpdateNewMessageHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateNewMessageHandlerGroup registers a handler for UpdateNewMessage updates with a specific group
-func (c *Client) AddUpdateNewMessageHandlerGroup(handler func(client *Client, update *UpdateNewMessage) error, filter UpdateNewMessageFilter, group int) {
+func (c *Client) AddUpdateNewMessageHandlerGroup(handler func(client *Client, update *UpdateNewMessage) error, filter func(u *UpdateNewMessage) bool, group int) {
 	c.AddHandlerGroup(&updateNewMessageHandler{filter: filter, response: handler}, group)
 }
 
 // updateNewOauthRequestHandler handles UpdateNewOauthRequest updates
 type updateNewOauthRequestHandler struct {
-	filter   UpdateNewOauthRequestFilter
+	filter   func(u *UpdateNewOauthRequest) bool
 	response func(client *Client, update *UpdateNewOauthRequest) error
 }
 
@@ -4236,18 +3869,18 @@ func (h *updateNewOauthRequestHandler) HandleUpdate(client *Client, update TlObj
 }
 
 // OnUpdateNewOauthRequest registers a handler for UpdateNewOauthRequest updates with default group (0)
-func (c *Client) OnUpdateNewOauthRequest(handler func(client *Client, update *UpdateNewOauthRequest) error, filter UpdateNewOauthRequestFilter) {
+func (c *Client) OnUpdateNewOauthRequest(handler func(client *Client, update *UpdateNewOauthRequest) error, filter func(u *UpdateNewOauthRequest) bool) {
 	c.AddUpdateNewOauthRequestHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateNewOauthRequestHandlerGroup registers a handler for UpdateNewOauthRequest updates with a specific group
-func (c *Client) AddUpdateNewOauthRequestHandlerGroup(handler func(client *Client, update *UpdateNewOauthRequest) error, filter UpdateNewOauthRequestFilter, group int) {
+func (c *Client) AddUpdateNewOauthRequestHandlerGroup(handler func(client *Client, update *UpdateNewOauthRequest) error, filter func(u *UpdateNewOauthRequest) bool, group int) {
 	c.AddHandlerGroup(&updateNewOauthRequestHandler{filter: filter, response: handler}, group)
 }
 
 // updateNewPreCheckoutQueryHandler handles UpdateNewPreCheckoutQuery updates
 type updateNewPreCheckoutQueryHandler struct {
-	filter   UpdateNewPreCheckoutQueryFilter
+	filter   func(u *UpdateNewPreCheckoutQuery) bool
 	response func(client *Client, update *UpdateNewPreCheckoutQuery) error
 }
 
@@ -4267,18 +3900,18 @@ func (h *updateNewPreCheckoutQueryHandler) HandleUpdate(client *Client, update T
 }
 
 // OnUpdateNewPreCheckoutQuery registers a handler for UpdateNewPreCheckoutQuery updates with default group (0)
-func (c *Client) OnUpdateNewPreCheckoutQuery(handler func(client *Client, update *UpdateNewPreCheckoutQuery) error, filter UpdateNewPreCheckoutQueryFilter) {
+func (c *Client) OnUpdateNewPreCheckoutQuery(handler func(client *Client, update *UpdateNewPreCheckoutQuery) error, filter func(u *UpdateNewPreCheckoutQuery) bool) {
 	c.AddUpdateNewPreCheckoutQueryHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateNewPreCheckoutQueryHandlerGroup registers a handler for UpdateNewPreCheckoutQuery updates with a specific group
-func (c *Client) AddUpdateNewPreCheckoutQueryHandlerGroup(handler func(client *Client, update *UpdateNewPreCheckoutQuery) error, filter UpdateNewPreCheckoutQueryFilter, group int) {
+func (c *Client) AddUpdateNewPreCheckoutQueryHandlerGroup(handler func(client *Client, update *UpdateNewPreCheckoutQuery) error, filter func(u *UpdateNewPreCheckoutQuery) bool, group int) {
 	c.AddHandlerGroup(&updateNewPreCheckoutQueryHandler{filter: filter, response: handler}, group)
 }
 
 // updateNewShippingQueryHandler handles UpdateNewShippingQuery updates
 type updateNewShippingQueryHandler struct {
-	filter   UpdateNewShippingQueryFilter
+	filter   func(u *UpdateNewShippingQuery) bool
 	response func(client *Client, update *UpdateNewShippingQuery) error
 }
 
@@ -4298,18 +3931,18 @@ func (h *updateNewShippingQueryHandler) HandleUpdate(client *Client, update TlOb
 }
 
 // OnUpdateNewShippingQuery registers a handler for UpdateNewShippingQuery updates with default group (0)
-func (c *Client) OnUpdateNewShippingQuery(handler func(client *Client, update *UpdateNewShippingQuery) error, filter UpdateNewShippingQueryFilter) {
+func (c *Client) OnUpdateNewShippingQuery(handler func(client *Client, update *UpdateNewShippingQuery) error, filter func(u *UpdateNewShippingQuery) bool) {
 	c.AddUpdateNewShippingQueryHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateNewShippingQueryHandlerGroup registers a handler for UpdateNewShippingQuery updates with a specific group
-func (c *Client) AddUpdateNewShippingQueryHandlerGroup(handler func(client *Client, update *UpdateNewShippingQuery) error, filter UpdateNewShippingQueryFilter, group int) {
+func (c *Client) AddUpdateNewShippingQueryHandlerGroup(handler func(client *Client, update *UpdateNewShippingQuery) error, filter func(u *UpdateNewShippingQuery) bool, group int) {
 	c.AddHandlerGroup(&updateNewShippingQueryHandler{filter: filter, response: handler}, group)
 }
 
 // updateNotificationHandler handles UpdateNotification updates
 type updateNotificationHandler struct {
-	filter   UpdateNotificationFilter
+	filter   func(u *UpdateNotification) bool
 	response func(client *Client, update *UpdateNotification) error
 }
 
@@ -4329,18 +3962,18 @@ func (h *updateNotificationHandler) HandleUpdate(client *Client, update TlObject
 }
 
 // OnUpdateNotification registers a handler for UpdateNotification updates with default group (0)
-func (c *Client) OnUpdateNotification(handler func(client *Client, update *UpdateNotification) error, filter UpdateNotificationFilter) {
+func (c *Client) OnUpdateNotification(handler func(client *Client, update *UpdateNotification) error, filter func(u *UpdateNotification) bool) {
 	c.AddUpdateNotificationHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateNotificationHandlerGroup registers a handler for UpdateNotification updates with a specific group
-func (c *Client) AddUpdateNotificationHandlerGroup(handler func(client *Client, update *UpdateNotification) error, filter UpdateNotificationFilter, group int) {
+func (c *Client) AddUpdateNotificationHandlerGroup(handler func(client *Client, update *UpdateNotification) error, filter func(u *UpdateNotification) bool, group int) {
 	c.AddHandlerGroup(&updateNotificationHandler{filter: filter, response: handler}, group)
 }
 
 // updateNotificationGroupHandler handles UpdateNotificationGroup updates
 type updateNotificationGroupHandler struct {
-	filter   UpdateNotificationGroupFilter
+	filter   func(u *UpdateNotificationGroup) bool
 	response func(client *Client, update *UpdateNotificationGroup) error
 }
 
@@ -4360,18 +3993,18 @@ func (h *updateNotificationGroupHandler) HandleUpdate(client *Client, update TlO
 }
 
 // OnUpdateNotificationGroup registers a handler for UpdateNotificationGroup updates with default group (0)
-func (c *Client) OnUpdateNotificationGroup(handler func(client *Client, update *UpdateNotificationGroup) error, filter UpdateNotificationGroupFilter) {
+func (c *Client) OnUpdateNotificationGroup(handler func(client *Client, update *UpdateNotificationGroup) error, filter func(u *UpdateNotificationGroup) bool) {
 	c.AddUpdateNotificationGroupHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateNotificationGroupHandlerGroup registers a handler for UpdateNotificationGroup updates with a specific group
-func (c *Client) AddUpdateNotificationGroupHandlerGroup(handler func(client *Client, update *UpdateNotificationGroup) error, filter UpdateNotificationGroupFilter, group int) {
+func (c *Client) AddUpdateNotificationGroupHandlerGroup(handler func(client *Client, update *UpdateNotificationGroup) error, filter func(u *UpdateNotificationGroup) bool, group int) {
 	c.AddHandlerGroup(&updateNotificationGroupHandler{filter: filter, response: handler}, group)
 }
 
 // updateOptionHandler handles UpdateOption updates
 type updateOptionHandler struct {
-	filter   UpdateOptionFilter
+	filter   func(u *UpdateOption) bool
 	response func(client *Client, update *UpdateOption) error
 }
 
@@ -4391,18 +4024,18 @@ func (h *updateOptionHandler) HandleUpdate(client *Client, update TlObject) erro
 }
 
 // OnUpdateOption registers a handler for UpdateOption updates with default group (0)
-func (c *Client) OnUpdateOption(handler func(client *Client, update *UpdateOption) error, filter UpdateOptionFilter) {
+func (c *Client) OnUpdateOption(handler func(client *Client, update *UpdateOption) error, filter func(u *UpdateOption) bool) {
 	c.AddUpdateOptionHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateOptionHandlerGroup registers a handler for UpdateOption updates with a specific group
-func (c *Client) AddUpdateOptionHandlerGroup(handler func(client *Client, update *UpdateOption) error, filter UpdateOptionFilter, group int) {
+func (c *Client) AddUpdateOptionHandlerGroup(handler func(client *Client, update *UpdateOption) error, filter func(u *UpdateOption) bool, group int) {
 	c.AddHandlerGroup(&updateOptionHandler{filter: filter, response: handler}, group)
 }
 
 // updateOwnedStarCountHandler handles UpdateOwnedStarCount updates
 type updateOwnedStarCountHandler struct {
-	filter   UpdateOwnedStarCountFilter
+	filter   func(u *UpdateOwnedStarCount) bool
 	response func(client *Client, update *UpdateOwnedStarCount) error
 }
 
@@ -4422,18 +4055,18 @@ func (h *updateOwnedStarCountHandler) HandleUpdate(client *Client, update TlObje
 }
 
 // OnUpdateOwnedStarCount registers a handler for UpdateOwnedStarCount updates with default group (0)
-func (c *Client) OnUpdateOwnedStarCount(handler func(client *Client, update *UpdateOwnedStarCount) error, filter UpdateOwnedStarCountFilter) {
+func (c *Client) OnUpdateOwnedStarCount(handler func(client *Client, update *UpdateOwnedStarCount) error, filter func(u *UpdateOwnedStarCount) bool) {
 	c.AddUpdateOwnedStarCountHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateOwnedStarCountHandlerGroup registers a handler for UpdateOwnedStarCount updates with a specific group
-func (c *Client) AddUpdateOwnedStarCountHandlerGroup(handler func(client *Client, update *UpdateOwnedStarCount) error, filter UpdateOwnedStarCountFilter, group int) {
+func (c *Client) AddUpdateOwnedStarCountHandlerGroup(handler func(client *Client, update *UpdateOwnedStarCount) error, filter func(u *UpdateOwnedStarCount) bool, group int) {
 	c.AddHandlerGroup(&updateOwnedStarCountHandler{filter: filter, response: handler}, group)
 }
 
 // updateOwnedTonCountHandler handles UpdateOwnedTonCount updates
 type updateOwnedTonCountHandler struct {
-	filter   UpdateOwnedTonCountFilter
+	filter   func(u *UpdateOwnedTonCount) bool
 	response func(client *Client, update *UpdateOwnedTonCount) error
 }
 
@@ -4453,18 +4086,18 @@ func (h *updateOwnedTonCountHandler) HandleUpdate(client *Client, update TlObjec
 }
 
 // OnUpdateOwnedTonCount registers a handler for UpdateOwnedTonCount updates with default group (0)
-func (c *Client) OnUpdateOwnedTonCount(handler func(client *Client, update *UpdateOwnedTonCount) error, filter UpdateOwnedTonCountFilter) {
+func (c *Client) OnUpdateOwnedTonCount(handler func(client *Client, update *UpdateOwnedTonCount) error, filter func(u *UpdateOwnedTonCount) bool) {
 	c.AddUpdateOwnedTonCountHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateOwnedTonCountHandlerGroup registers a handler for UpdateOwnedTonCount updates with a specific group
-func (c *Client) AddUpdateOwnedTonCountHandlerGroup(handler func(client *Client, update *UpdateOwnedTonCount) error, filter UpdateOwnedTonCountFilter, group int) {
+func (c *Client) AddUpdateOwnedTonCountHandlerGroup(handler func(client *Client, update *UpdateOwnedTonCount) error, filter func(u *UpdateOwnedTonCount) bool, group int) {
 	c.AddHandlerGroup(&updateOwnedTonCountHandler{filter: filter, response: handler}, group)
 }
 
 // updatePaidMediaPurchasedHandler handles UpdatePaidMediaPurchased updates
 type updatePaidMediaPurchasedHandler struct {
-	filter   UpdatePaidMediaPurchasedFilter
+	filter   func(u *UpdatePaidMediaPurchased) bool
 	response func(client *Client, update *UpdatePaidMediaPurchased) error
 }
 
@@ -4484,18 +4117,18 @@ func (h *updatePaidMediaPurchasedHandler) HandleUpdate(client *Client, update Tl
 }
 
 // OnUpdatePaidMediaPurchased registers a handler for UpdatePaidMediaPurchased updates with default group (0)
-func (c *Client) OnUpdatePaidMediaPurchased(handler func(client *Client, update *UpdatePaidMediaPurchased) error, filter UpdatePaidMediaPurchasedFilter) {
+func (c *Client) OnUpdatePaidMediaPurchased(handler func(client *Client, update *UpdatePaidMediaPurchased) error, filter func(u *UpdatePaidMediaPurchased) bool) {
 	c.AddUpdatePaidMediaPurchasedHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdatePaidMediaPurchasedHandlerGroup registers a handler for UpdatePaidMediaPurchased updates with a specific group
-func (c *Client) AddUpdatePaidMediaPurchasedHandlerGroup(handler func(client *Client, update *UpdatePaidMediaPurchased) error, filter UpdatePaidMediaPurchasedFilter, group int) {
+func (c *Client) AddUpdatePaidMediaPurchasedHandlerGroup(handler func(client *Client, update *UpdatePaidMediaPurchased) error, filter func(u *UpdatePaidMediaPurchased) bool, group int) {
 	c.AddHandlerGroup(&updatePaidMediaPurchasedHandler{filter: filter, response: handler}, group)
 }
 
 // updatePendingTextMessageHandler handles UpdatePendingTextMessage updates
 type updatePendingTextMessageHandler struct {
-	filter   UpdatePendingTextMessageFilter
+	filter   func(u *UpdatePendingTextMessage) bool
 	response func(client *Client, update *UpdatePendingTextMessage) error
 }
 
@@ -4515,18 +4148,18 @@ func (h *updatePendingTextMessageHandler) HandleUpdate(client *Client, update Tl
 }
 
 // OnUpdatePendingTextMessage registers a handler for UpdatePendingTextMessage updates with default group (0)
-func (c *Client) OnUpdatePendingTextMessage(handler func(client *Client, update *UpdatePendingTextMessage) error, filter UpdatePendingTextMessageFilter) {
+func (c *Client) OnUpdatePendingTextMessage(handler func(client *Client, update *UpdatePendingTextMessage) error, filter func(u *UpdatePendingTextMessage) bool) {
 	c.AddUpdatePendingTextMessageHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdatePendingTextMessageHandlerGroup registers a handler for UpdatePendingTextMessage updates with a specific group
-func (c *Client) AddUpdatePendingTextMessageHandlerGroup(handler func(client *Client, update *UpdatePendingTextMessage) error, filter UpdatePendingTextMessageFilter, group int) {
+func (c *Client) AddUpdatePendingTextMessageHandlerGroup(handler func(client *Client, update *UpdatePendingTextMessage) error, filter func(u *UpdatePendingTextMessage) bool, group int) {
 	c.AddHandlerGroup(&updatePendingTextMessageHandler{filter: filter, response: handler}, group)
 }
 
 // updatePollHandler handles UpdatePoll updates
 type updatePollHandler struct {
-	filter   UpdatePollFilter
+	filter   func(u *UpdatePoll) bool
 	response func(client *Client, update *UpdatePoll) error
 }
 
@@ -4546,18 +4179,18 @@ func (h *updatePollHandler) HandleUpdate(client *Client, update TlObject) error 
 }
 
 // OnUpdatePoll registers a handler for UpdatePoll updates with default group (0)
-func (c *Client) OnUpdatePoll(handler func(client *Client, update *UpdatePoll) error, filter UpdatePollFilter) {
+func (c *Client) OnUpdatePoll(handler func(client *Client, update *UpdatePoll) error, filter func(u *UpdatePoll) bool) {
 	c.AddUpdatePollHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdatePollHandlerGroup registers a handler for UpdatePoll updates with a specific group
-func (c *Client) AddUpdatePollHandlerGroup(handler func(client *Client, update *UpdatePoll) error, filter UpdatePollFilter, group int) {
+func (c *Client) AddUpdatePollHandlerGroup(handler func(client *Client, update *UpdatePoll) error, filter func(u *UpdatePoll) bool, group int) {
 	c.AddHandlerGroup(&updatePollHandler{filter: filter, response: handler}, group)
 }
 
 // updatePollAnswerHandler handles UpdatePollAnswer updates
 type updatePollAnswerHandler struct {
-	filter   UpdatePollAnswerFilter
+	filter   func(u *UpdatePollAnswer) bool
 	response func(client *Client, update *UpdatePollAnswer) error
 }
 
@@ -4577,18 +4210,18 @@ func (h *updatePollAnswerHandler) HandleUpdate(client *Client, update TlObject) 
 }
 
 // OnUpdatePollAnswer registers a handler for UpdatePollAnswer updates with default group (0)
-func (c *Client) OnUpdatePollAnswer(handler func(client *Client, update *UpdatePollAnswer) error, filter UpdatePollAnswerFilter) {
+func (c *Client) OnUpdatePollAnswer(handler func(client *Client, update *UpdatePollAnswer) error, filter func(u *UpdatePollAnswer) bool) {
 	c.AddUpdatePollAnswerHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdatePollAnswerHandlerGroup registers a handler for UpdatePollAnswer updates with a specific group
-func (c *Client) AddUpdatePollAnswerHandlerGroup(handler func(client *Client, update *UpdatePollAnswer) error, filter UpdatePollAnswerFilter, group int) {
+func (c *Client) AddUpdatePollAnswerHandlerGroup(handler func(client *Client, update *UpdatePollAnswer) error, filter func(u *UpdatePollAnswer) bool, group int) {
 	c.AddHandlerGroup(&updatePollAnswerHandler{filter: filter, response: handler}, group)
 }
 
 // updateProfileAccentColorsHandler handles UpdateProfileAccentColors updates
 type updateProfileAccentColorsHandler struct {
-	filter   UpdateProfileAccentColorsFilter
+	filter   func(u *UpdateProfileAccentColors) bool
 	response func(client *Client, update *UpdateProfileAccentColors) error
 }
 
@@ -4608,18 +4241,18 @@ func (h *updateProfileAccentColorsHandler) HandleUpdate(client *Client, update T
 }
 
 // OnUpdateProfileAccentColors registers a handler for UpdateProfileAccentColors updates with default group (0)
-func (c *Client) OnUpdateProfileAccentColors(handler func(client *Client, update *UpdateProfileAccentColors) error, filter UpdateProfileAccentColorsFilter) {
+func (c *Client) OnUpdateProfileAccentColors(handler func(client *Client, update *UpdateProfileAccentColors) error, filter func(u *UpdateProfileAccentColors) bool) {
 	c.AddUpdateProfileAccentColorsHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateProfileAccentColorsHandlerGroup registers a handler for UpdateProfileAccentColors updates with a specific group
-func (c *Client) AddUpdateProfileAccentColorsHandlerGroup(handler func(client *Client, update *UpdateProfileAccentColors) error, filter UpdateProfileAccentColorsFilter, group int) {
+func (c *Client) AddUpdateProfileAccentColorsHandlerGroup(handler func(client *Client, update *UpdateProfileAccentColors) error, filter func(u *UpdateProfileAccentColors) bool, group int) {
 	c.AddHandlerGroup(&updateProfileAccentColorsHandler{filter: filter, response: handler}, group)
 }
 
 // updateQuickReplyShortcutHandler handles UpdateQuickReplyShortcut updates
 type updateQuickReplyShortcutHandler struct {
-	filter   UpdateQuickReplyShortcutFilter
+	filter   func(u *UpdateQuickReplyShortcut) bool
 	response func(client *Client, update *UpdateQuickReplyShortcut) error
 }
 
@@ -4639,18 +4272,18 @@ func (h *updateQuickReplyShortcutHandler) HandleUpdate(client *Client, update Tl
 }
 
 // OnUpdateQuickReplyShortcut registers a handler for UpdateQuickReplyShortcut updates with default group (0)
-func (c *Client) OnUpdateQuickReplyShortcut(handler func(client *Client, update *UpdateQuickReplyShortcut) error, filter UpdateQuickReplyShortcutFilter) {
+func (c *Client) OnUpdateQuickReplyShortcut(handler func(client *Client, update *UpdateQuickReplyShortcut) error, filter func(u *UpdateQuickReplyShortcut) bool) {
 	c.AddUpdateQuickReplyShortcutHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateQuickReplyShortcutHandlerGroup registers a handler for UpdateQuickReplyShortcut updates with a specific group
-func (c *Client) AddUpdateQuickReplyShortcutHandlerGroup(handler func(client *Client, update *UpdateQuickReplyShortcut) error, filter UpdateQuickReplyShortcutFilter, group int) {
+func (c *Client) AddUpdateQuickReplyShortcutHandlerGroup(handler func(client *Client, update *UpdateQuickReplyShortcut) error, filter func(u *UpdateQuickReplyShortcut) bool, group int) {
 	c.AddHandlerGroup(&updateQuickReplyShortcutHandler{filter: filter, response: handler}, group)
 }
 
 // updateQuickReplyShortcutDeletedHandler handles UpdateQuickReplyShortcutDeleted updates
 type updateQuickReplyShortcutDeletedHandler struct {
-	filter   UpdateQuickReplyShortcutDeletedFilter
+	filter   func(u *UpdateQuickReplyShortcutDeleted) bool
 	response func(client *Client, update *UpdateQuickReplyShortcutDeleted) error
 }
 
@@ -4670,18 +4303,18 @@ func (h *updateQuickReplyShortcutDeletedHandler) HandleUpdate(client *Client, up
 }
 
 // OnUpdateQuickReplyShortcutDeleted registers a handler for UpdateQuickReplyShortcutDeleted updates with default group (0)
-func (c *Client) OnUpdateQuickReplyShortcutDeleted(handler func(client *Client, update *UpdateQuickReplyShortcutDeleted) error, filter UpdateQuickReplyShortcutDeletedFilter) {
+func (c *Client) OnUpdateQuickReplyShortcutDeleted(handler func(client *Client, update *UpdateQuickReplyShortcutDeleted) error, filter func(u *UpdateQuickReplyShortcutDeleted) bool) {
 	c.AddUpdateQuickReplyShortcutDeletedHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateQuickReplyShortcutDeletedHandlerGroup registers a handler for UpdateQuickReplyShortcutDeleted updates with a specific group
-func (c *Client) AddUpdateQuickReplyShortcutDeletedHandlerGroup(handler func(client *Client, update *UpdateQuickReplyShortcutDeleted) error, filter UpdateQuickReplyShortcutDeletedFilter, group int) {
+func (c *Client) AddUpdateQuickReplyShortcutDeletedHandlerGroup(handler func(client *Client, update *UpdateQuickReplyShortcutDeleted) error, filter func(u *UpdateQuickReplyShortcutDeleted) bool, group int) {
 	c.AddHandlerGroup(&updateQuickReplyShortcutDeletedHandler{filter: filter, response: handler}, group)
 }
 
 // updateQuickReplyShortcutMessagesHandler handles UpdateQuickReplyShortcutMessages updates
 type updateQuickReplyShortcutMessagesHandler struct {
-	filter   UpdateQuickReplyShortcutMessagesFilter
+	filter   func(u *UpdateQuickReplyShortcutMessages) bool
 	response func(client *Client, update *UpdateQuickReplyShortcutMessages) error
 }
 
@@ -4701,18 +4334,18 @@ func (h *updateQuickReplyShortcutMessagesHandler) HandleUpdate(client *Client, u
 }
 
 // OnUpdateQuickReplyShortcutMessages registers a handler for UpdateQuickReplyShortcutMessages updates with default group (0)
-func (c *Client) OnUpdateQuickReplyShortcutMessages(handler func(client *Client, update *UpdateQuickReplyShortcutMessages) error, filter UpdateQuickReplyShortcutMessagesFilter) {
+func (c *Client) OnUpdateQuickReplyShortcutMessages(handler func(client *Client, update *UpdateQuickReplyShortcutMessages) error, filter func(u *UpdateQuickReplyShortcutMessages) bool) {
 	c.AddUpdateQuickReplyShortcutMessagesHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateQuickReplyShortcutMessagesHandlerGroup registers a handler for UpdateQuickReplyShortcutMessages updates with a specific group
-func (c *Client) AddUpdateQuickReplyShortcutMessagesHandlerGroup(handler func(client *Client, update *UpdateQuickReplyShortcutMessages) error, filter UpdateQuickReplyShortcutMessagesFilter, group int) {
+func (c *Client) AddUpdateQuickReplyShortcutMessagesHandlerGroup(handler func(client *Client, update *UpdateQuickReplyShortcutMessages) error, filter func(u *UpdateQuickReplyShortcutMessages) bool, group int) {
 	c.AddHandlerGroup(&updateQuickReplyShortcutMessagesHandler{filter: filter, response: handler}, group)
 }
 
 // updateQuickReplyShortcutsHandler handles UpdateQuickReplyShortcuts updates
 type updateQuickReplyShortcutsHandler struct {
-	filter   UpdateQuickReplyShortcutsFilter
+	filter   func(u *UpdateQuickReplyShortcuts) bool
 	response func(client *Client, update *UpdateQuickReplyShortcuts) error
 }
 
@@ -4732,18 +4365,18 @@ func (h *updateQuickReplyShortcutsHandler) HandleUpdate(client *Client, update T
 }
 
 // OnUpdateQuickReplyShortcuts registers a handler for UpdateQuickReplyShortcuts updates with default group (0)
-func (c *Client) OnUpdateQuickReplyShortcuts(handler func(client *Client, update *UpdateQuickReplyShortcuts) error, filter UpdateQuickReplyShortcutsFilter) {
+func (c *Client) OnUpdateQuickReplyShortcuts(handler func(client *Client, update *UpdateQuickReplyShortcuts) error, filter func(u *UpdateQuickReplyShortcuts) bool) {
 	c.AddUpdateQuickReplyShortcutsHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateQuickReplyShortcutsHandlerGroup registers a handler for UpdateQuickReplyShortcuts updates with a specific group
-func (c *Client) AddUpdateQuickReplyShortcutsHandlerGroup(handler func(client *Client, update *UpdateQuickReplyShortcuts) error, filter UpdateQuickReplyShortcutsFilter, group int) {
+func (c *Client) AddUpdateQuickReplyShortcutsHandlerGroup(handler func(client *Client, update *UpdateQuickReplyShortcuts) error, filter func(u *UpdateQuickReplyShortcuts) bool, group int) {
 	c.AddHandlerGroup(&updateQuickReplyShortcutsHandler{filter: filter, response: handler}, group)
 }
 
 // updateReactionNotificationSettingsHandler handles UpdateReactionNotificationSettings updates
 type updateReactionNotificationSettingsHandler struct {
-	filter   UpdateReactionNotificationSettingsFilter
+	filter   func(u *UpdateReactionNotificationSettings) bool
 	response func(client *Client, update *UpdateReactionNotificationSettings) error
 }
 
@@ -4763,18 +4396,18 @@ func (h *updateReactionNotificationSettingsHandler) HandleUpdate(client *Client,
 }
 
 // OnUpdateReactionNotificationSettings registers a handler for UpdateReactionNotificationSettings updates with default group (0)
-func (c *Client) OnUpdateReactionNotificationSettings(handler func(client *Client, update *UpdateReactionNotificationSettings) error, filter UpdateReactionNotificationSettingsFilter) {
+func (c *Client) OnUpdateReactionNotificationSettings(handler func(client *Client, update *UpdateReactionNotificationSettings) error, filter func(u *UpdateReactionNotificationSettings) bool) {
 	c.AddUpdateReactionNotificationSettingsHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateReactionNotificationSettingsHandlerGroup registers a handler for UpdateReactionNotificationSettings updates with a specific group
-func (c *Client) AddUpdateReactionNotificationSettingsHandlerGroup(handler func(client *Client, update *UpdateReactionNotificationSettings) error, filter UpdateReactionNotificationSettingsFilter, group int) {
+func (c *Client) AddUpdateReactionNotificationSettingsHandlerGroup(handler func(client *Client, update *UpdateReactionNotificationSettings) error, filter func(u *UpdateReactionNotificationSettings) bool, group int) {
 	c.AddHandlerGroup(&updateReactionNotificationSettingsHandler{filter: filter, response: handler}, group)
 }
 
 // updateRecentStickersHandler handles UpdateRecentStickers updates
 type updateRecentStickersHandler struct {
-	filter   UpdateRecentStickersFilter
+	filter   func(u *UpdateRecentStickers) bool
 	response func(client *Client, update *UpdateRecentStickers) error
 }
 
@@ -4794,18 +4427,18 @@ func (h *updateRecentStickersHandler) HandleUpdate(client *Client, update TlObje
 }
 
 // OnUpdateRecentStickers registers a handler for UpdateRecentStickers updates with default group (0)
-func (c *Client) OnUpdateRecentStickers(handler func(client *Client, update *UpdateRecentStickers) error, filter UpdateRecentStickersFilter) {
+func (c *Client) OnUpdateRecentStickers(handler func(client *Client, update *UpdateRecentStickers) error, filter func(u *UpdateRecentStickers) bool) {
 	c.AddUpdateRecentStickersHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateRecentStickersHandlerGroup registers a handler for UpdateRecentStickers updates with a specific group
-func (c *Client) AddUpdateRecentStickersHandlerGroup(handler func(client *Client, update *UpdateRecentStickers) error, filter UpdateRecentStickersFilter, group int) {
+func (c *Client) AddUpdateRecentStickersHandlerGroup(handler func(client *Client, update *UpdateRecentStickers) error, filter func(u *UpdateRecentStickers) bool, group int) {
 	c.AddHandlerGroup(&updateRecentStickersHandler{filter: filter, response: handler}, group)
 }
 
 // updatesHandler handles Updates updates
 type updatesHandler struct {
-	filter   UpdatesFilter
+	filter   func(u *Updates) bool
 	response func(client *Client, update *Updates) error
 }
 
@@ -4825,18 +4458,18 @@ func (h *updatesHandler) HandleUpdate(client *Client, update TlObject) error {
 }
 
 // OnUpdates registers a handler for Updates updates with default group (0)
-func (c *Client) OnUpdates(handler func(client *Client, update *Updates) error, filter UpdatesFilter) {
+func (c *Client) OnUpdates(handler func(client *Client, update *Updates) error, filter func(u *Updates) bool) {
 	c.AddUpdatesHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdatesHandlerGroup registers a handler for Updates updates with a specific group
-func (c *Client) AddUpdatesHandlerGroup(handler func(client *Client, update *Updates) error, filter UpdatesFilter, group int) {
+func (c *Client) AddUpdatesHandlerGroup(handler func(client *Client, update *Updates) error, filter func(u *Updates) bool, group int) {
 	c.AddHandlerGroup(&updatesHandler{filter: filter, response: handler}, group)
 }
 
 // updateSavedAnimationsHandler handles UpdateSavedAnimations updates
 type updateSavedAnimationsHandler struct {
-	filter   UpdateSavedAnimationsFilter
+	filter   func(u *UpdateSavedAnimations) bool
 	response func(client *Client, update *UpdateSavedAnimations) error
 }
 
@@ -4856,18 +4489,18 @@ func (h *updateSavedAnimationsHandler) HandleUpdate(client *Client, update TlObj
 }
 
 // OnUpdateSavedAnimations registers a handler for UpdateSavedAnimations updates with default group (0)
-func (c *Client) OnUpdateSavedAnimations(handler func(client *Client, update *UpdateSavedAnimations) error, filter UpdateSavedAnimationsFilter) {
+func (c *Client) OnUpdateSavedAnimations(handler func(client *Client, update *UpdateSavedAnimations) error, filter func(u *UpdateSavedAnimations) bool) {
 	c.AddUpdateSavedAnimationsHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateSavedAnimationsHandlerGroup registers a handler for UpdateSavedAnimations updates with a specific group
-func (c *Client) AddUpdateSavedAnimationsHandlerGroup(handler func(client *Client, update *UpdateSavedAnimations) error, filter UpdateSavedAnimationsFilter, group int) {
+func (c *Client) AddUpdateSavedAnimationsHandlerGroup(handler func(client *Client, update *UpdateSavedAnimations) error, filter func(u *UpdateSavedAnimations) bool, group int) {
 	c.AddHandlerGroup(&updateSavedAnimationsHandler{filter: filter, response: handler}, group)
 }
 
 // updateSavedMessagesTagsHandler handles UpdateSavedMessagesTags updates
 type updateSavedMessagesTagsHandler struct {
-	filter   UpdateSavedMessagesTagsFilter
+	filter   func(u *UpdateSavedMessagesTags) bool
 	response func(client *Client, update *UpdateSavedMessagesTags) error
 }
 
@@ -4887,18 +4520,18 @@ func (h *updateSavedMessagesTagsHandler) HandleUpdate(client *Client, update TlO
 }
 
 // OnUpdateSavedMessagesTags registers a handler for UpdateSavedMessagesTags updates with default group (0)
-func (c *Client) OnUpdateSavedMessagesTags(handler func(client *Client, update *UpdateSavedMessagesTags) error, filter UpdateSavedMessagesTagsFilter) {
+func (c *Client) OnUpdateSavedMessagesTags(handler func(client *Client, update *UpdateSavedMessagesTags) error, filter func(u *UpdateSavedMessagesTags) bool) {
 	c.AddUpdateSavedMessagesTagsHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateSavedMessagesTagsHandlerGroup registers a handler for UpdateSavedMessagesTags updates with a specific group
-func (c *Client) AddUpdateSavedMessagesTagsHandlerGroup(handler func(client *Client, update *UpdateSavedMessagesTags) error, filter UpdateSavedMessagesTagsFilter, group int) {
+func (c *Client) AddUpdateSavedMessagesTagsHandlerGroup(handler func(client *Client, update *UpdateSavedMessagesTags) error, filter func(u *UpdateSavedMessagesTags) bool, group int) {
 	c.AddHandlerGroup(&updateSavedMessagesTagsHandler{filter: filter, response: handler}, group)
 }
 
 // updateSavedMessagesTopicHandler handles UpdateSavedMessagesTopic updates
 type updateSavedMessagesTopicHandler struct {
-	filter   UpdateSavedMessagesTopicFilter
+	filter   func(u *UpdateSavedMessagesTopic) bool
 	response func(client *Client, update *UpdateSavedMessagesTopic) error
 }
 
@@ -4918,18 +4551,18 @@ func (h *updateSavedMessagesTopicHandler) HandleUpdate(client *Client, update Tl
 }
 
 // OnUpdateSavedMessagesTopic registers a handler for UpdateSavedMessagesTopic updates with default group (0)
-func (c *Client) OnUpdateSavedMessagesTopic(handler func(client *Client, update *UpdateSavedMessagesTopic) error, filter UpdateSavedMessagesTopicFilter) {
+func (c *Client) OnUpdateSavedMessagesTopic(handler func(client *Client, update *UpdateSavedMessagesTopic) error, filter func(u *UpdateSavedMessagesTopic) bool) {
 	c.AddUpdateSavedMessagesTopicHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateSavedMessagesTopicHandlerGroup registers a handler for UpdateSavedMessagesTopic updates with a specific group
-func (c *Client) AddUpdateSavedMessagesTopicHandlerGroup(handler func(client *Client, update *UpdateSavedMessagesTopic) error, filter UpdateSavedMessagesTopicFilter, group int) {
+func (c *Client) AddUpdateSavedMessagesTopicHandlerGroup(handler func(client *Client, update *UpdateSavedMessagesTopic) error, filter func(u *UpdateSavedMessagesTopic) bool, group int) {
 	c.AddHandlerGroup(&updateSavedMessagesTopicHandler{filter: filter, response: handler}, group)
 }
 
 // updateSavedMessagesTopicCountHandler handles UpdateSavedMessagesTopicCount updates
 type updateSavedMessagesTopicCountHandler struct {
-	filter   UpdateSavedMessagesTopicCountFilter
+	filter   func(u *UpdateSavedMessagesTopicCount) bool
 	response func(client *Client, update *UpdateSavedMessagesTopicCount) error
 }
 
@@ -4949,18 +4582,18 @@ func (h *updateSavedMessagesTopicCountHandler) HandleUpdate(client *Client, upda
 }
 
 // OnUpdateSavedMessagesTopicCount registers a handler for UpdateSavedMessagesTopicCount updates with default group (0)
-func (c *Client) OnUpdateSavedMessagesTopicCount(handler func(client *Client, update *UpdateSavedMessagesTopicCount) error, filter UpdateSavedMessagesTopicCountFilter) {
+func (c *Client) OnUpdateSavedMessagesTopicCount(handler func(client *Client, update *UpdateSavedMessagesTopicCount) error, filter func(u *UpdateSavedMessagesTopicCount) bool) {
 	c.AddUpdateSavedMessagesTopicCountHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateSavedMessagesTopicCountHandlerGroup registers a handler for UpdateSavedMessagesTopicCount updates with a specific group
-func (c *Client) AddUpdateSavedMessagesTopicCountHandlerGroup(handler func(client *Client, update *UpdateSavedMessagesTopicCount) error, filter UpdateSavedMessagesTopicCountFilter, group int) {
+func (c *Client) AddUpdateSavedMessagesTopicCountHandlerGroup(handler func(client *Client, update *UpdateSavedMessagesTopicCount) error, filter func(u *UpdateSavedMessagesTopicCount) bool, group int) {
 	c.AddHandlerGroup(&updateSavedMessagesTopicCountHandler{filter: filter, response: handler}, group)
 }
 
 // updateSavedNotificationSoundsHandler handles UpdateSavedNotificationSounds updates
 type updateSavedNotificationSoundsHandler struct {
-	filter   UpdateSavedNotificationSoundsFilter
+	filter   func(u *UpdateSavedNotificationSounds) bool
 	response func(client *Client, update *UpdateSavedNotificationSounds) error
 }
 
@@ -4980,18 +4613,18 @@ func (h *updateSavedNotificationSoundsHandler) HandleUpdate(client *Client, upda
 }
 
 // OnUpdateSavedNotificationSounds registers a handler for UpdateSavedNotificationSounds updates with default group (0)
-func (c *Client) OnUpdateSavedNotificationSounds(handler func(client *Client, update *UpdateSavedNotificationSounds) error, filter UpdateSavedNotificationSoundsFilter) {
+func (c *Client) OnUpdateSavedNotificationSounds(handler func(client *Client, update *UpdateSavedNotificationSounds) error, filter func(u *UpdateSavedNotificationSounds) bool) {
 	c.AddUpdateSavedNotificationSoundsHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateSavedNotificationSoundsHandlerGroup registers a handler for UpdateSavedNotificationSounds updates with a specific group
-func (c *Client) AddUpdateSavedNotificationSoundsHandlerGroup(handler func(client *Client, update *UpdateSavedNotificationSounds) error, filter UpdateSavedNotificationSoundsFilter, group int) {
+func (c *Client) AddUpdateSavedNotificationSoundsHandlerGroup(handler func(client *Client, update *UpdateSavedNotificationSounds) error, filter func(u *UpdateSavedNotificationSounds) bool, group int) {
 	c.AddHandlerGroup(&updateSavedNotificationSoundsHandler{filter: filter, response: handler}, group)
 }
 
 // updateScopeNotificationSettingsHandler handles UpdateScopeNotificationSettings updates
 type updateScopeNotificationSettingsHandler struct {
-	filter   UpdateScopeNotificationSettingsFilter
+	filter   func(u *UpdateScopeNotificationSettings) bool
 	response func(client *Client, update *UpdateScopeNotificationSettings) error
 }
 
@@ -5011,18 +4644,18 @@ func (h *updateScopeNotificationSettingsHandler) HandleUpdate(client *Client, up
 }
 
 // OnUpdateScopeNotificationSettings registers a handler for UpdateScopeNotificationSettings updates with default group (0)
-func (c *Client) OnUpdateScopeNotificationSettings(handler func(client *Client, update *UpdateScopeNotificationSettings) error, filter UpdateScopeNotificationSettingsFilter) {
+func (c *Client) OnUpdateScopeNotificationSettings(handler func(client *Client, update *UpdateScopeNotificationSettings) error, filter func(u *UpdateScopeNotificationSettings) bool) {
 	c.AddUpdateScopeNotificationSettingsHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateScopeNotificationSettingsHandlerGroup registers a handler for UpdateScopeNotificationSettings updates with a specific group
-func (c *Client) AddUpdateScopeNotificationSettingsHandlerGroup(handler func(client *Client, update *UpdateScopeNotificationSettings) error, filter UpdateScopeNotificationSettingsFilter, group int) {
+func (c *Client) AddUpdateScopeNotificationSettingsHandlerGroup(handler func(client *Client, update *UpdateScopeNotificationSettings) error, filter func(u *UpdateScopeNotificationSettings) bool, group int) {
 	c.AddHandlerGroup(&updateScopeNotificationSettingsHandler{filter: filter, response: handler}, group)
 }
 
 // updateSecretChatHandler handles UpdateSecretChat updates
 type updateSecretChatHandler struct {
-	filter   UpdateSecretChatFilter
+	filter   func(u *UpdateSecretChat) bool
 	response func(client *Client, update *UpdateSecretChat) error
 }
 
@@ -5042,18 +4675,18 @@ func (h *updateSecretChatHandler) HandleUpdate(client *Client, update TlObject) 
 }
 
 // OnUpdateSecretChat registers a handler for UpdateSecretChat updates with default group (0)
-func (c *Client) OnUpdateSecretChat(handler func(client *Client, update *UpdateSecretChat) error, filter UpdateSecretChatFilter) {
+func (c *Client) OnUpdateSecretChat(handler func(client *Client, update *UpdateSecretChat) error, filter func(u *UpdateSecretChat) bool) {
 	c.AddUpdateSecretChatHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateSecretChatHandlerGroup registers a handler for UpdateSecretChat updates with a specific group
-func (c *Client) AddUpdateSecretChatHandlerGroup(handler func(client *Client, update *UpdateSecretChat) error, filter UpdateSecretChatFilter, group int) {
+func (c *Client) AddUpdateSecretChatHandlerGroup(handler func(client *Client, update *UpdateSecretChat) error, filter func(u *UpdateSecretChat) bool, group int) {
 	c.AddHandlerGroup(&updateSecretChatHandler{filter: filter, response: handler}, group)
 }
 
 // updateServiceNotificationHandler handles UpdateServiceNotification updates
 type updateServiceNotificationHandler struct {
-	filter   UpdateServiceNotificationFilter
+	filter   func(u *UpdateServiceNotification) bool
 	response func(client *Client, update *UpdateServiceNotification) error
 }
 
@@ -5073,18 +4706,18 @@ func (h *updateServiceNotificationHandler) HandleUpdate(client *Client, update T
 }
 
 // OnUpdateServiceNotification registers a handler for UpdateServiceNotification updates with default group (0)
-func (c *Client) OnUpdateServiceNotification(handler func(client *Client, update *UpdateServiceNotification) error, filter UpdateServiceNotificationFilter) {
+func (c *Client) OnUpdateServiceNotification(handler func(client *Client, update *UpdateServiceNotification) error, filter func(u *UpdateServiceNotification) bool) {
 	c.AddUpdateServiceNotificationHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateServiceNotificationHandlerGroup registers a handler for UpdateServiceNotification updates with a specific group
-func (c *Client) AddUpdateServiceNotificationHandlerGroup(handler func(client *Client, update *UpdateServiceNotification) error, filter UpdateServiceNotificationFilter, group int) {
+func (c *Client) AddUpdateServiceNotificationHandlerGroup(handler func(client *Client, update *UpdateServiceNotification) error, filter func(u *UpdateServiceNotification) bool, group int) {
 	c.AddHandlerGroup(&updateServiceNotificationHandler{filter: filter, response: handler}, group)
 }
 
 // updateSpeechRecognitionTrialHandler handles UpdateSpeechRecognitionTrial updates
 type updateSpeechRecognitionTrialHandler struct {
-	filter   UpdateSpeechRecognitionTrialFilter
+	filter   func(u *UpdateSpeechRecognitionTrial) bool
 	response func(client *Client, update *UpdateSpeechRecognitionTrial) error
 }
 
@@ -5104,18 +4737,18 @@ func (h *updateSpeechRecognitionTrialHandler) HandleUpdate(client *Client, updat
 }
 
 // OnUpdateSpeechRecognitionTrial registers a handler for UpdateSpeechRecognitionTrial updates with default group (0)
-func (c *Client) OnUpdateSpeechRecognitionTrial(handler func(client *Client, update *UpdateSpeechRecognitionTrial) error, filter UpdateSpeechRecognitionTrialFilter) {
+func (c *Client) OnUpdateSpeechRecognitionTrial(handler func(client *Client, update *UpdateSpeechRecognitionTrial) error, filter func(u *UpdateSpeechRecognitionTrial) bool) {
 	c.AddUpdateSpeechRecognitionTrialHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateSpeechRecognitionTrialHandlerGroup registers a handler for UpdateSpeechRecognitionTrial updates with a specific group
-func (c *Client) AddUpdateSpeechRecognitionTrialHandlerGroup(handler func(client *Client, update *UpdateSpeechRecognitionTrial) error, filter UpdateSpeechRecognitionTrialFilter, group int) {
+func (c *Client) AddUpdateSpeechRecognitionTrialHandlerGroup(handler func(client *Client, update *UpdateSpeechRecognitionTrial) error, filter func(u *UpdateSpeechRecognitionTrial) bool, group int) {
 	c.AddHandlerGroup(&updateSpeechRecognitionTrialHandler{filter: filter, response: handler}, group)
 }
 
 // updateSpeedLimitNotificationHandler handles UpdateSpeedLimitNotification updates
 type updateSpeedLimitNotificationHandler struct {
-	filter   UpdateSpeedLimitNotificationFilter
+	filter   func(u *UpdateSpeedLimitNotification) bool
 	response func(client *Client, update *UpdateSpeedLimitNotification) error
 }
 
@@ -5135,18 +4768,18 @@ func (h *updateSpeedLimitNotificationHandler) HandleUpdate(client *Client, updat
 }
 
 // OnUpdateSpeedLimitNotification registers a handler for UpdateSpeedLimitNotification updates with default group (0)
-func (c *Client) OnUpdateSpeedLimitNotification(handler func(client *Client, update *UpdateSpeedLimitNotification) error, filter UpdateSpeedLimitNotificationFilter) {
+func (c *Client) OnUpdateSpeedLimitNotification(handler func(client *Client, update *UpdateSpeedLimitNotification) error, filter func(u *UpdateSpeedLimitNotification) bool) {
 	c.AddUpdateSpeedLimitNotificationHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateSpeedLimitNotificationHandlerGroup registers a handler for UpdateSpeedLimitNotification updates with a specific group
-func (c *Client) AddUpdateSpeedLimitNotificationHandlerGroup(handler func(client *Client, update *UpdateSpeedLimitNotification) error, filter UpdateSpeedLimitNotificationFilter, group int) {
+func (c *Client) AddUpdateSpeedLimitNotificationHandlerGroup(handler func(client *Client, update *UpdateSpeedLimitNotification) error, filter func(u *UpdateSpeedLimitNotification) bool, group int) {
 	c.AddHandlerGroup(&updateSpeedLimitNotificationHandler{filter: filter, response: handler}, group)
 }
 
 // updateStakeDiceStateHandler handles UpdateStakeDiceState updates
 type updateStakeDiceStateHandler struct {
-	filter   UpdateStakeDiceStateFilter
+	filter   func(u *UpdateStakeDiceState) bool
 	response func(client *Client, update *UpdateStakeDiceState) error
 }
 
@@ -5166,18 +4799,18 @@ func (h *updateStakeDiceStateHandler) HandleUpdate(client *Client, update TlObje
 }
 
 // OnUpdateStakeDiceState registers a handler for UpdateStakeDiceState updates with default group (0)
-func (c *Client) OnUpdateStakeDiceState(handler func(client *Client, update *UpdateStakeDiceState) error, filter UpdateStakeDiceStateFilter) {
+func (c *Client) OnUpdateStakeDiceState(handler func(client *Client, update *UpdateStakeDiceState) error, filter func(u *UpdateStakeDiceState) bool) {
 	c.AddUpdateStakeDiceStateHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateStakeDiceStateHandlerGroup registers a handler for UpdateStakeDiceState updates with a specific group
-func (c *Client) AddUpdateStakeDiceStateHandlerGroup(handler func(client *Client, update *UpdateStakeDiceState) error, filter UpdateStakeDiceStateFilter, group int) {
+func (c *Client) AddUpdateStakeDiceStateHandlerGroup(handler func(client *Client, update *UpdateStakeDiceState) error, filter func(u *UpdateStakeDiceState) bool, group int) {
 	c.AddHandlerGroup(&updateStakeDiceStateHandler{filter: filter, response: handler}, group)
 }
 
 // updateStarRevenueStatusHandler handles UpdateStarRevenueStatus updates
 type updateStarRevenueStatusHandler struct {
-	filter   UpdateStarRevenueStatusFilter
+	filter   func(u *UpdateStarRevenueStatus) bool
 	response func(client *Client, update *UpdateStarRevenueStatus) error
 }
 
@@ -5197,18 +4830,18 @@ func (h *updateStarRevenueStatusHandler) HandleUpdate(client *Client, update TlO
 }
 
 // OnUpdateStarRevenueStatus registers a handler for UpdateStarRevenueStatus updates with default group (0)
-func (c *Client) OnUpdateStarRevenueStatus(handler func(client *Client, update *UpdateStarRevenueStatus) error, filter UpdateStarRevenueStatusFilter) {
+func (c *Client) OnUpdateStarRevenueStatus(handler func(client *Client, update *UpdateStarRevenueStatus) error, filter func(u *UpdateStarRevenueStatus) bool) {
 	c.AddUpdateStarRevenueStatusHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateStarRevenueStatusHandlerGroup registers a handler for UpdateStarRevenueStatus updates with a specific group
-func (c *Client) AddUpdateStarRevenueStatusHandlerGroup(handler func(client *Client, update *UpdateStarRevenueStatus) error, filter UpdateStarRevenueStatusFilter, group int) {
+func (c *Client) AddUpdateStarRevenueStatusHandlerGroup(handler func(client *Client, update *UpdateStarRevenueStatus) error, filter func(u *UpdateStarRevenueStatus) bool, group int) {
 	c.AddHandlerGroup(&updateStarRevenueStatusHandler{filter: filter, response: handler}, group)
 }
 
 // updateStickerSetHandler handles UpdateStickerSet updates
 type updateStickerSetHandler struct {
-	filter   UpdateStickerSetFilter
+	filter   func(u *UpdateStickerSet) bool
 	response func(client *Client, update *UpdateStickerSet) error
 }
 
@@ -5228,18 +4861,18 @@ func (h *updateStickerSetHandler) HandleUpdate(client *Client, update TlObject) 
 }
 
 // OnUpdateStickerSet registers a handler for UpdateStickerSet updates with default group (0)
-func (c *Client) OnUpdateStickerSet(handler func(client *Client, update *UpdateStickerSet) error, filter UpdateStickerSetFilter) {
+func (c *Client) OnUpdateStickerSet(handler func(client *Client, update *UpdateStickerSet) error, filter func(u *UpdateStickerSet) bool) {
 	c.AddUpdateStickerSetHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateStickerSetHandlerGroup registers a handler for UpdateStickerSet updates with a specific group
-func (c *Client) AddUpdateStickerSetHandlerGroup(handler func(client *Client, update *UpdateStickerSet) error, filter UpdateStickerSetFilter, group int) {
+func (c *Client) AddUpdateStickerSetHandlerGroup(handler func(client *Client, update *UpdateStickerSet) error, filter func(u *UpdateStickerSet) bool, group int) {
 	c.AddHandlerGroup(&updateStickerSetHandler{filter: filter, response: handler}, group)
 }
 
 // updateStoryHandler handles UpdateStory updates
 type updateStoryHandler struct {
-	filter   UpdateStoryFilter
+	filter   func(u *UpdateStory) bool
 	response func(client *Client, update *UpdateStory) error
 }
 
@@ -5259,18 +4892,18 @@ func (h *updateStoryHandler) HandleUpdate(client *Client, update TlObject) error
 }
 
 // OnUpdateStory registers a handler for UpdateStory updates with default group (0)
-func (c *Client) OnUpdateStory(handler func(client *Client, update *UpdateStory) error, filter UpdateStoryFilter) {
+func (c *Client) OnUpdateStory(handler func(client *Client, update *UpdateStory) error, filter func(u *UpdateStory) bool) {
 	c.AddUpdateStoryHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateStoryHandlerGroup registers a handler for UpdateStory updates with a specific group
-func (c *Client) AddUpdateStoryHandlerGroup(handler func(client *Client, update *UpdateStory) error, filter UpdateStoryFilter, group int) {
+func (c *Client) AddUpdateStoryHandlerGroup(handler func(client *Client, update *UpdateStory) error, filter func(u *UpdateStory) bool, group int) {
 	c.AddHandlerGroup(&updateStoryHandler{filter: filter, response: handler}, group)
 }
 
 // updateStoryDeletedHandler handles UpdateStoryDeleted updates
 type updateStoryDeletedHandler struct {
-	filter   UpdateStoryDeletedFilter
+	filter   func(u *UpdateStoryDeleted) bool
 	response func(client *Client, update *UpdateStoryDeleted) error
 }
 
@@ -5290,18 +4923,18 @@ func (h *updateStoryDeletedHandler) HandleUpdate(client *Client, update TlObject
 }
 
 // OnUpdateStoryDeleted registers a handler for UpdateStoryDeleted updates with default group (0)
-func (c *Client) OnUpdateStoryDeleted(handler func(client *Client, update *UpdateStoryDeleted) error, filter UpdateStoryDeletedFilter) {
+func (c *Client) OnUpdateStoryDeleted(handler func(client *Client, update *UpdateStoryDeleted) error, filter func(u *UpdateStoryDeleted) bool) {
 	c.AddUpdateStoryDeletedHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateStoryDeletedHandlerGroup registers a handler for UpdateStoryDeleted updates with a specific group
-func (c *Client) AddUpdateStoryDeletedHandlerGroup(handler func(client *Client, update *UpdateStoryDeleted) error, filter UpdateStoryDeletedFilter, group int) {
+func (c *Client) AddUpdateStoryDeletedHandlerGroup(handler func(client *Client, update *UpdateStoryDeleted) error, filter func(u *UpdateStoryDeleted) bool, group int) {
 	c.AddHandlerGroup(&updateStoryDeletedHandler{filter: filter, response: handler}, group)
 }
 
 // updateStoryListChatCountHandler handles UpdateStoryListChatCount updates
 type updateStoryListChatCountHandler struct {
-	filter   UpdateStoryListChatCountFilter
+	filter   func(u *UpdateStoryListChatCount) bool
 	response func(client *Client, update *UpdateStoryListChatCount) error
 }
 
@@ -5321,18 +4954,18 @@ func (h *updateStoryListChatCountHandler) HandleUpdate(client *Client, update Tl
 }
 
 // OnUpdateStoryListChatCount registers a handler for UpdateStoryListChatCount updates with default group (0)
-func (c *Client) OnUpdateStoryListChatCount(handler func(client *Client, update *UpdateStoryListChatCount) error, filter UpdateStoryListChatCountFilter) {
+func (c *Client) OnUpdateStoryListChatCount(handler func(client *Client, update *UpdateStoryListChatCount) error, filter func(u *UpdateStoryListChatCount) bool) {
 	c.AddUpdateStoryListChatCountHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateStoryListChatCountHandlerGroup registers a handler for UpdateStoryListChatCount updates with a specific group
-func (c *Client) AddUpdateStoryListChatCountHandlerGroup(handler func(client *Client, update *UpdateStoryListChatCount) error, filter UpdateStoryListChatCountFilter, group int) {
+func (c *Client) AddUpdateStoryListChatCountHandlerGroup(handler func(client *Client, update *UpdateStoryListChatCount) error, filter func(u *UpdateStoryListChatCount) bool, group int) {
 	c.AddHandlerGroup(&updateStoryListChatCountHandler{filter: filter, response: handler}, group)
 }
 
 // updateStoryPostFailedHandler handles UpdateStoryPostFailed updates
 type updateStoryPostFailedHandler struct {
-	filter   UpdateStoryPostFailedFilter
+	filter   func(u *UpdateStoryPostFailed) bool
 	response func(client *Client, update *UpdateStoryPostFailed) error
 }
 
@@ -5352,18 +4985,18 @@ func (h *updateStoryPostFailedHandler) HandleUpdate(client *Client, update TlObj
 }
 
 // OnUpdateStoryPostFailed registers a handler for UpdateStoryPostFailed updates with default group (0)
-func (c *Client) OnUpdateStoryPostFailed(handler func(client *Client, update *UpdateStoryPostFailed) error, filter UpdateStoryPostFailedFilter) {
+func (c *Client) OnUpdateStoryPostFailed(handler func(client *Client, update *UpdateStoryPostFailed) error, filter func(u *UpdateStoryPostFailed) bool) {
 	c.AddUpdateStoryPostFailedHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateStoryPostFailedHandlerGroup registers a handler for UpdateStoryPostFailed updates with a specific group
-func (c *Client) AddUpdateStoryPostFailedHandlerGroup(handler func(client *Client, update *UpdateStoryPostFailed) error, filter UpdateStoryPostFailedFilter, group int) {
+func (c *Client) AddUpdateStoryPostFailedHandlerGroup(handler func(client *Client, update *UpdateStoryPostFailed) error, filter func(u *UpdateStoryPostFailed) bool, group int) {
 	c.AddHandlerGroup(&updateStoryPostFailedHandler{filter: filter, response: handler}, group)
 }
 
 // updateStoryPostSucceededHandler handles UpdateStoryPostSucceeded updates
 type updateStoryPostSucceededHandler struct {
-	filter   UpdateStoryPostSucceededFilter
+	filter   func(u *UpdateStoryPostSucceeded) bool
 	response func(client *Client, update *UpdateStoryPostSucceeded) error
 }
 
@@ -5383,18 +5016,18 @@ func (h *updateStoryPostSucceededHandler) HandleUpdate(client *Client, update Tl
 }
 
 // OnUpdateStoryPostSucceeded registers a handler for UpdateStoryPostSucceeded updates with default group (0)
-func (c *Client) OnUpdateStoryPostSucceeded(handler func(client *Client, update *UpdateStoryPostSucceeded) error, filter UpdateStoryPostSucceededFilter) {
+func (c *Client) OnUpdateStoryPostSucceeded(handler func(client *Client, update *UpdateStoryPostSucceeded) error, filter func(u *UpdateStoryPostSucceeded) bool) {
 	c.AddUpdateStoryPostSucceededHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateStoryPostSucceededHandlerGroup registers a handler for UpdateStoryPostSucceeded updates with a specific group
-func (c *Client) AddUpdateStoryPostSucceededHandlerGroup(handler func(client *Client, update *UpdateStoryPostSucceeded) error, filter UpdateStoryPostSucceededFilter, group int) {
+func (c *Client) AddUpdateStoryPostSucceededHandlerGroup(handler func(client *Client, update *UpdateStoryPostSucceeded) error, filter func(u *UpdateStoryPostSucceeded) bool, group int) {
 	c.AddHandlerGroup(&updateStoryPostSucceededHandler{filter: filter, response: handler}, group)
 }
 
 // updateStoryStealthModeHandler handles UpdateStoryStealthMode updates
 type updateStoryStealthModeHandler struct {
-	filter   UpdateStoryStealthModeFilter
+	filter   func(u *UpdateStoryStealthMode) bool
 	response func(client *Client, update *UpdateStoryStealthMode) error
 }
 
@@ -5414,18 +5047,18 @@ func (h *updateStoryStealthModeHandler) HandleUpdate(client *Client, update TlOb
 }
 
 // OnUpdateStoryStealthMode registers a handler for UpdateStoryStealthMode updates with default group (0)
-func (c *Client) OnUpdateStoryStealthMode(handler func(client *Client, update *UpdateStoryStealthMode) error, filter UpdateStoryStealthModeFilter) {
+func (c *Client) OnUpdateStoryStealthMode(handler func(client *Client, update *UpdateStoryStealthMode) error, filter func(u *UpdateStoryStealthMode) bool) {
 	c.AddUpdateStoryStealthModeHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateStoryStealthModeHandlerGroup registers a handler for UpdateStoryStealthMode updates with a specific group
-func (c *Client) AddUpdateStoryStealthModeHandlerGroup(handler func(client *Client, update *UpdateStoryStealthMode) error, filter UpdateStoryStealthModeFilter, group int) {
+func (c *Client) AddUpdateStoryStealthModeHandlerGroup(handler func(client *Client, update *UpdateStoryStealthMode) error, filter func(u *UpdateStoryStealthMode) bool, group int) {
 	c.AddHandlerGroup(&updateStoryStealthModeHandler{filter: filter, response: handler}, group)
 }
 
 // updateSuggestedActionsHandler handles UpdateSuggestedActions updates
 type updateSuggestedActionsHandler struct {
-	filter   UpdateSuggestedActionsFilter
+	filter   func(u *UpdateSuggestedActions) bool
 	response func(client *Client, update *UpdateSuggestedActions) error
 }
 
@@ -5445,18 +5078,18 @@ func (h *updateSuggestedActionsHandler) HandleUpdate(client *Client, update TlOb
 }
 
 // OnUpdateSuggestedActions registers a handler for UpdateSuggestedActions updates with default group (0)
-func (c *Client) OnUpdateSuggestedActions(handler func(client *Client, update *UpdateSuggestedActions) error, filter UpdateSuggestedActionsFilter) {
+func (c *Client) OnUpdateSuggestedActions(handler func(client *Client, update *UpdateSuggestedActions) error, filter func(u *UpdateSuggestedActions) bool) {
 	c.AddUpdateSuggestedActionsHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateSuggestedActionsHandlerGroup registers a handler for UpdateSuggestedActions updates with a specific group
-func (c *Client) AddUpdateSuggestedActionsHandlerGroup(handler func(client *Client, update *UpdateSuggestedActions) error, filter UpdateSuggestedActionsFilter, group int) {
+func (c *Client) AddUpdateSuggestedActionsHandlerGroup(handler func(client *Client, update *UpdateSuggestedActions) error, filter func(u *UpdateSuggestedActions) bool, group int) {
 	c.AddHandlerGroup(&updateSuggestedActionsHandler{filter: filter, response: handler}, group)
 }
 
 // updateSupergroupHandler handles UpdateSupergroup updates
 type updateSupergroupHandler struct {
-	filter   UpdateSupergroupFilter
+	filter   func(u *UpdateSupergroup) bool
 	response func(client *Client, update *UpdateSupergroup) error
 }
 
@@ -5476,18 +5109,18 @@ func (h *updateSupergroupHandler) HandleUpdate(client *Client, update TlObject) 
 }
 
 // OnUpdateSupergroup registers a handler for UpdateSupergroup updates with default group (0)
-func (c *Client) OnUpdateSupergroup(handler func(client *Client, update *UpdateSupergroup) error, filter UpdateSupergroupFilter) {
+func (c *Client) OnUpdateSupergroup(handler func(client *Client, update *UpdateSupergroup) error, filter func(u *UpdateSupergroup) bool) {
 	c.AddUpdateSupergroupHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateSupergroupHandlerGroup registers a handler for UpdateSupergroup updates with a specific group
-func (c *Client) AddUpdateSupergroupHandlerGroup(handler func(client *Client, update *UpdateSupergroup) error, filter UpdateSupergroupFilter, group int) {
+func (c *Client) AddUpdateSupergroupHandlerGroup(handler func(client *Client, update *UpdateSupergroup) error, filter func(u *UpdateSupergroup) bool, group int) {
 	c.AddHandlerGroup(&updateSupergroupHandler{filter: filter, response: handler}, group)
 }
 
 // updateSupergroupFullInfoHandler handles UpdateSupergroupFullInfo updates
 type updateSupergroupFullInfoHandler struct {
-	filter   UpdateSupergroupFullInfoFilter
+	filter   func(u *UpdateSupergroupFullInfo) bool
 	response func(client *Client, update *UpdateSupergroupFullInfo) error
 }
 
@@ -5507,18 +5140,18 @@ func (h *updateSupergroupFullInfoHandler) HandleUpdate(client *Client, update Tl
 }
 
 // OnUpdateSupergroupFullInfo registers a handler for UpdateSupergroupFullInfo updates with default group (0)
-func (c *Client) OnUpdateSupergroupFullInfo(handler func(client *Client, update *UpdateSupergroupFullInfo) error, filter UpdateSupergroupFullInfoFilter) {
+func (c *Client) OnUpdateSupergroupFullInfo(handler func(client *Client, update *UpdateSupergroupFullInfo) error, filter func(u *UpdateSupergroupFullInfo) bool) {
 	c.AddUpdateSupergroupFullInfoHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateSupergroupFullInfoHandlerGroup registers a handler for UpdateSupergroupFullInfo updates with a specific group
-func (c *Client) AddUpdateSupergroupFullInfoHandlerGroup(handler func(client *Client, update *UpdateSupergroupFullInfo) error, filter UpdateSupergroupFullInfoFilter, group int) {
+func (c *Client) AddUpdateSupergroupFullInfoHandlerGroup(handler func(client *Client, update *UpdateSupergroupFullInfo) error, filter func(u *UpdateSupergroupFullInfo) bool, group int) {
 	c.AddHandlerGroup(&updateSupergroupFullInfoHandler{filter: filter, response: handler}, group)
 }
 
 // updateTermsOfServiceHandler handles UpdateTermsOfService updates
 type updateTermsOfServiceHandler struct {
-	filter   UpdateTermsOfServiceFilter
+	filter   func(u *UpdateTermsOfService) bool
 	response func(client *Client, update *UpdateTermsOfService) error
 }
 
@@ -5538,18 +5171,18 @@ func (h *updateTermsOfServiceHandler) HandleUpdate(client *Client, update TlObje
 }
 
 // OnUpdateTermsOfService registers a handler for UpdateTermsOfService updates with default group (0)
-func (c *Client) OnUpdateTermsOfService(handler func(client *Client, update *UpdateTermsOfService) error, filter UpdateTermsOfServiceFilter) {
+func (c *Client) OnUpdateTermsOfService(handler func(client *Client, update *UpdateTermsOfService) error, filter func(u *UpdateTermsOfService) bool) {
 	c.AddUpdateTermsOfServiceHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateTermsOfServiceHandlerGroup registers a handler for UpdateTermsOfService updates with a specific group
-func (c *Client) AddUpdateTermsOfServiceHandlerGroup(handler func(client *Client, update *UpdateTermsOfService) error, filter UpdateTermsOfServiceFilter, group int) {
+func (c *Client) AddUpdateTermsOfServiceHandlerGroup(handler func(client *Client, update *UpdateTermsOfService) error, filter func(u *UpdateTermsOfService) bool, group int) {
 	c.AddHandlerGroup(&updateTermsOfServiceHandler{filter: filter, response: handler}, group)
 }
 
 // updateTextCompositionStylesHandler handles UpdateTextCompositionStyles updates
 type updateTextCompositionStylesHandler struct {
-	filter   UpdateTextCompositionStylesFilter
+	filter   func(u *UpdateTextCompositionStyles) bool
 	response func(client *Client, update *UpdateTextCompositionStyles) error
 }
 
@@ -5569,18 +5202,18 @@ func (h *updateTextCompositionStylesHandler) HandleUpdate(client *Client, update
 }
 
 // OnUpdateTextCompositionStyles registers a handler for UpdateTextCompositionStyles updates with default group (0)
-func (c *Client) OnUpdateTextCompositionStyles(handler func(client *Client, update *UpdateTextCompositionStyles) error, filter UpdateTextCompositionStylesFilter) {
+func (c *Client) OnUpdateTextCompositionStyles(handler func(client *Client, update *UpdateTextCompositionStyles) error, filter func(u *UpdateTextCompositionStyles) bool) {
 	c.AddUpdateTextCompositionStylesHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateTextCompositionStylesHandlerGroup registers a handler for UpdateTextCompositionStyles updates with a specific group
-func (c *Client) AddUpdateTextCompositionStylesHandlerGroup(handler func(client *Client, update *UpdateTextCompositionStyles) error, filter UpdateTextCompositionStylesFilter, group int) {
+func (c *Client) AddUpdateTextCompositionStylesHandlerGroup(handler func(client *Client, update *UpdateTextCompositionStyles) error, filter func(u *UpdateTextCompositionStyles) bool, group int) {
 	c.AddHandlerGroup(&updateTextCompositionStylesHandler{filter: filter, response: handler}, group)
 }
 
 // updateTonRevenueStatusHandler handles UpdateTonRevenueStatus updates
 type updateTonRevenueStatusHandler struct {
-	filter   UpdateTonRevenueStatusFilter
+	filter   func(u *UpdateTonRevenueStatus) bool
 	response func(client *Client, update *UpdateTonRevenueStatus) error
 }
 
@@ -5600,18 +5233,18 @@ func (h *updateTonRevenueStatusHandler) HandleUpdate(client *Client, update TlOb
 }
 
 // OnUpdateTonRevenueStatus registers a handler for UpdateTonRevenueStatus updates with default group (0)
-func (c *Client) OnUpdateTonRevenueStatus(handler func(client *Client, update *UpdateTonRevenueStatus) error, filter UpdateTonRevenueStatusFilter) {
+func (c *Client) OnUpdateTonRevenueStatus(handler func(client *Client, update *UpdateTonRevenueStatus) error, filter func(u *UpdateTonRevenueStatus) bool) {
 	c.AddUpdateTonRevenueStatusHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateTonRevenueStatusHandlerGroup registers a handler for UpdateTonRevenueStatus updates with a specific group
-func (c *Client) AddUpdateTonRevenueStatusHandlerGroup(handler func(client *Client, update *UpdateTonRevenueStatus) error, filter UpdateTonRevenueStatusFilter, group int) {
+func (c *Client) AddUpdateTonRevenueStatusHandlerGroup(handler func(client *Client, update *UpdateTonRevenueStatus) error, filter func(u *UpdateTonRevenueStatus) bool, group int) {
 	c.AddHandlerGroup(&updateTonRevenueStatusHandler{filter: filter, response: handler}, group)
 }
 
 // updateTopicMessageCountHandler handles UpdateTopicMessageCount updates
 type updateTopicMessageCountHandler struct {
-	filter   UpdateTopicMessageCountFilter
+	filter   func(u *UpdateTopicMessageCount) bool
 	response func(client *Client, update *UpdateTopicMessageCount) error
 }
 
@@ -5631,18 +5264,18 @@ func (h *updateTopicMessageCountHandler) HandleUpdate(client *Client, update TlO
 }
 
 // OnUpdateTopicMessageCount registers a handler for UpdateTopicMessageCount updates with default group (0)
-func (c *Client) OnUpdateTopicMessageCount(handler func(client *Client, update *UpdateTopicMessageCount) error, filter UpdateTopicMessageCountFilter) {
+func (c *Client) OnUpdateTopicMessageCount(handler func(client *Client, update *UpdateTopicMessageCount) error, filter func(u *UpdateTopicMessageCount) bool) {
 	c.AddUpdateTopicMessageCountHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateTopicMessageCountHandlerGroup registers a handler for UpdateTopicMessageCount updates with a specific group
-func (c *Client) AddUpdateTopicMessageCountHandlerGroup(handler func(client *Client, update *UpdateTopicMessageCount) error, filter UpdateTopicMessageCountFilter, group int) {
+func (c *Client) AddUpdateTopicMessageCountHandlerGroup(handler func(client *Client, update *UpdateTopicMessageCount) error, filter func(u *UpdateTopicMessageCount) bool, group int) {
 	c.AddHandlerGroup(&updateTopicMessageCountHandler{filter: filter, response: handler}, group)
 }
 
 // updateTrendingStickerSetsHandler handles UpdateTrendingStickerSets updates
 type updateTrendingStickerSetsHandler struct {
-	filter   UpdateTrendingStickerSetsFilter
+	filter   func(u *UpdateTrendingStickerSets) bool
 	response func(client *Client, update *UpdateTrendingStickerSets) error
 }
 
@@ -5662,18 +5295,18 @@ func (h *updateTrendingStickerSetsHandler) HandleUpdate(client *Client, update T
 }
 
 // OnUpdateTrendingStickerSets registers a handler for UpdateTrendingStickerSets updates with default group (0)
-func (c *Client) OnUpdateTrendingStickerSets(handler func(client *Client, update *UpdateTrendingStickerSets) error, filter UpdateTrendingStickerSetsFilter) {
+func (c *Client) OnUpdateTrendingStickerSets(handler func(client *Client, update *UpdateTrendingStickerSets) error, filter func(u *UpdateTrendingStickerSets) bool) {
 	c.AddUpdateTrendingStickerSetsHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateTrendingStickerSetsHandlerGroup registers a handler for UpdateTrendingStickerSets updates with a specific group
-func (c *Client) AddUpdateTrendingStickerSetsHandlerGroup(handler func(client *Client, update *UpdateTrendingStickerSets) error, filter UpdateTrendingStickerSetsFilter, group int) {
+func (c *Client) AddUpdateTrendingStickerSetsHandlerGroup(handler func(client *Client, update *UpdateTrendingStickerSets) error, filter func(u *UpdateTrendingStickerSets) bool, group int) {
 	c.AddHandlerGroup(&updateTrendingStickerSetsHandler{filter: filter, response: handler}, group)
 }
 
 // updateTrustedMiniAppBotsHandler handles UpdateTrustedMiniAppBots updates
 type updateTrustedMiniAppBotsHandler struct {
-	filter   UpdateTrustedMiniAppBotsFilter
+	filter   func(u *UpdateTrustedMiniAppBots) bool
 	response func(client *Client, update *UpdateTrustedMiniAppBots) error
 }
 
@@ -5693,18 +5326,18 @@ func (h *updateTrustedMiniAppBotsHandler) HandleUpdate(client *Client, update Tl
 }
 
 // OnUpdateTrustedMiniAppBots registers a handler for UpdateTrustedMiniAppBots updates with default group (0)
-func (c *Client) OnUpdateTrustedMiniAppBots(handler func(client *Client, update *UpdateTrustedMiniAppBots) error, filter UpdateTrustedMiniAppBotsFilter) {
+func (c *Client) OnUpdateTrustedMiniAppBots(handler func(client *Client, update *UpdateTrustedMiniAppBots) error, filter func(u *UpdateTrustedMiniAppBots) bool) {
 	c.AddUpdateTrustedMiniAppBotsHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateTrustedMiniAppBotsHandlerGroup registers a handler for UpdateTrustedMiniAppBots updates with a specific group
-func (c *Client) AddUpdateTrustedMiniAppBotsHandlerGroup(handler func(client *Client, update *UpdateTrustedMiniAppBots) error, filter UpdateTrustedMiniAppBotsFilter, group int) {
+func (c *Client) AddUpdateTrustedMiniAppBotsHandlerGroup(handler func(client *Client, update *UpdateTrustedMiniAppBots) error, filter func(u *UpdateTrustedMiniAppBots) bool, group int) {
 	c.AddHandlerGroup(&updateTrustedMiniAppBotsHandler{filter: filter, response: handler}, group)
 }
 
 // updateUnconfirmedSessionHandler handles UpdateUnconfirmedSession updates
 type updateUnconfirmedSessionHandler struct {
-	filter   UpdateUnconfirmedSessionFilter
+	filter   func(u *UpdateUnconfirmedSession) bool
 	response func(client *Client, update *UpdateUnconfirmedSession) error
 }
 
@@ -5724,18 +5357,18 @@ func (h *updateUnconfirmedSessionHandler) HandleUpdate(client *Client, update Tl
 }
 
 // OnUpdateUnconfirmedSession registers a handler for UpdateUnconfirmedSession updates with default group (0)
-func (c *Client) OnUpdateUnconfirmedSession(handler func(client *Client, update *UpdateUnconfirmedSession) error, filter UpdateUnconfirmedSessionFilter) {
+func (c *Client) OnUpdateUnconfirmedSession(handler func(client *Client, update *UpdateUnconfirmedSession) error, filter func(u *UpdateUnconfirmedSession) bool) {
 	c.AddUpdateUnconfirmedSessionHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateUnconfirmedSessionHandlerGroup registers a handler for UpdateUnconfirmedSession updates with a specific group
-func (c *Client) AddUpdateUnconfirmedSessionHandlerGroup(handler func(client *Client, update *UpdateUnconfirmedSession) error, filter UpdateUnconfirmedSessionFilter, group int) {
+func (c *Client) AddUpdateUnconfirmedSessionHandlerGroup(handler func(client *Client, update *UpdateUnconfirmedSession) error, filter func(u *UpdateUnconfirmedSession) bool, group int) {
 	c.AddHandlerGroup(&updateUnconfirmedSessionHandler{filter: filter, response: handler}, group)
 }
 
 // updateUnreadChatCountHandler handles UpdateUnreadChatCount updates
 type updateUnreadChatCountHandler struct {
-	filter   UpdateUnreadChatCountFilter
+	filter   func(u *UpdateUnreadChatCount) bool
 	response func(client *Client, update *UpdateUnreadChatCount) error
 }
 
@@ -5755,18 +5388,18 @@ func (h *updateUnreadChatCountHandler) HandleUpdate(client *Client, update TlObj
 }
 
 // OnUpdateUnreadChatCount registers a handler for UpdateUnreadChatCount updates with default group (0)
-func (c *Client) OnUpdateUnreadChatCount(handler func(client *Client, update *UpdateUnreadChatCount) error, filter UpdateUnreadChatCountFilter) {
+func (c *Client) OnUpdateUnreadChatCount(handler func(client *Client, update *UpdateUnreadChatCount) error, filter func(u *UpdateUnreadChatCount) bool) {
 	c.AddUpdateUnreadChatCountHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateUnreadChatCountHandlerGroup registers a handler for UpdateUnreadChatCount updates with a specific group
-func (c *Client) AddUpdateUnreadChatCountHandlerGroup(handler func(client *Client, update *UpdateUnreadChatCount) error, filter UpdateUnreadChatCountFilter, group int) {
+func (c *Client) AddUpdateUnreadChatCountHandlerGroup(handler func(client *Client, update *UpdateUnreadChatCount) error, filter func(u *UpdateUnreadChatCount) bool, group int) {
 	c.AddHandlerGroup(&updateUnreadChatCountHandler{filter: filter, response: handler}, group)
 }
 
 // updateUnreadMessageCountHandler handles UpdateUnreadMessageCount updates
 type updateUnreadMessageCountHandler struct {
-	filter   UpdateUnreadMessageCountFilter
+	filter   func(u *UpdateUnreadMessageCount) bool
 	response func(client *Client, update *UpdateUnreadMessageCount) error
 }
 
@@ -5786,18 +5419,18 @@ func (h *updateUnreadMessageCountHandler) HandleUpdate(client *Client, update Tl
 }
 
 // OnUpdateUnreadMessageCount registers a handler for UpdateUnreadMessageCount updates with default group (0)
-func (c *Client) OnUpdateUnreadMessageCount(handler func(client *Client, update *UpdateUnreadMessageCount) error, filter UpdateUnreadMessageCountFilter) {
+func (c *Client) OnUpdateUnreadMessageCount(handler func(client *Client, update *UpdateUnreadMessageCount) error, filter func(u *UpdateUnreadMessageCount) bool) {
 	c.AddUpdateUnreadMessageCountHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateUnreadMessageCountHandlerGroup registers a handler for UpdateUnreadMessageCount updates with a specific group
-func (c *Client) AddUpdateUnreadMessageCountHandlerGroup(handler func(client *Client, update *UpdateUnreadMessageCount) error, filter UpdateUnreadMessageCountFilter, group int) {
+func (c *Client) AddUpdateUnreadMessageCountHandlerGroup(handler func(client *Client, update *UpdateUnreadMessageCount) error, filter func(u *UpdateUnreadMessageCount) bool, group int) {
 	c.AddHandlerGroup(&updateUnreadMessageCountHandler{filter: filter, response: handler}, group)
 }
 
 // updateUserHandler handles UpdateUser updates
 type updateUserHandler struct {
-	filter   UpdateUserFilter
+	filter   func(u *UpdateUser) bool
 	response func(client *Client, update *UpdateUser) error
 }
 
@@ -5817,18 +5450,18 @@ func (h *updateUserHandler) HandleUpdate(client *Client, update TlObject) error 
 }
 
 // OnUpdateUser registers a handler for UpdateUser updates with default group (0)
-func (c *Client) OnUpdateUser(handler func(client *Client, update *UpdateUser) error, filter UpdateUserFilter) {
+func (c *Client) OnUpdateUser(handler func(client *Client, update *UpdateUser) error, filter func(u *UpdateUser) bool) {
 	c.AddUpdateUserHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateUserHandlerGroup registers a handler for UpdateUser updates with a specific group
-func (c *Client) AddUpdateUserHandlerGroup(handler func(client *Client, update *UpdateUser) error, filter UpdateUserFilter, group int) {
+func (c *Client) AddUpdateUserHandlerGroup(handler func(client *Client, update *UpdateUser) error, filter func(u *UpdateUser) bool, group int) {
 	c.AddHandlerGroup(&updateUserHandler{filter: filter, response: handler}, group)
 }
 
 // updateUserFullInfoHandler handles UpdateUserFullInfo updates
 type updateUserFullInfoHandler struct {
-	filter   UpdateUserFullInfoFilter
+	filter   func(u *UpdateUserFullInfo) bool
 	response func(client *Client, update *UpdateUserFullInfo) error
 }
 
@@ -5848,18 +5481,18 @@ func (h *updateUserFullInfoHandler) HandleUpdate(client *Client, update TlObject
 }
 
 // OnUpdateUserFullInfo registers a handler for UpdateUserFullInfo updates with default group (0)
-func (c *Client) OnUpdateUserFullInfo(handler func(client *Client, update *UpdateUserFullInfo) error, filter UpdateUserFullInfoFilter) {
+func (c *Client) OnUpdateUserFullInfo(handler func(client *Client, update *UpdateUserFullInfo) error, filter func(u *UpdateUserFullInfo) bool) {
 	c.AddUpdateUserFullInfoHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateUserFullInfoHandlerGroup registers a handler for UpdateUserFullInfo updates with a specific group
-func (c *Client) AddUpdateUserFullInfoHandlerGroup(handler func(client *Client, update *UpdateUserFullInfo) error, filter UpdateUserFullInfoFilter, group int) {
+func (c *Client) AddUpdateUserFullInfoHandlerGroup(handler func(client *Client, update *UpdateUserFullInfo) error, filter func(u *UpdateUserFullInfo) bool, group int) {
 	c.AddHandlerGroup(&updateUserFullInfoHandler{filter: filter, response: handler}, group)
 }
 
 // updateUserPrivacySettingRulesHandler handles UpdateUserPrivacySettingRules updates
 type updateUserPrivacySettingRulesHandler struct {
-	filter   UpdateUserPrivacySettingRulesFilter
+	filter   func(u *UpdateUserPrivacySettingRules) bool
 	response func(client *Client, update *UpdateUserPrivacySettingRules) error
 }
 
@@ -5879,18 +5512,18 @@ func (h *updateUserPrivacySettingRulesHandler) HandleUpdate(client *Client, upda
 }
 
 // OnUpdateUserPrivacySettingRules registers a handler for UpdateUserPrivacySettingRules updates with default group (0)
-func (c *Client) OnUpdateUserPrivacySettingRules(handler func(client *Client, update *UpdateUserPrivacySettingRules) error, filter UpdateUserPrivacySettingRulesFilter) {
+func (c *Client) OnUpdateUserPrivacySettingRules(handler func(client *Client, update *UpdateUserPrivacySettingRules) error, filter func(u *UpdateUserPrivacySettingRules) bool) {
 	c.AddUpdateUserPrivacySettingRulesHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateUserPrivacySettingRulesHandlerGroup registers a handler for UpdateUserPrivacySettingRules updates with a specific group
-func (c *Client) AddUpdateUserPrivacySettingRulesHandlerGroup(handler func(client *Client, update *UpdateUserPrivacySettingRules) error, filter UpdateUserPrivacySettingRulesFilter, group int) {
+func (c *Client) AddUpdateUserPrivacySettingRulesHandlerGroup(handler func(client *Client, update *UpdateUserPrivacySettingRules) error, filter func(u *UpdateUserPrivacySettingRules) bool, group int) {
 	c.AddHandlerGroup(&updateUserPrivacySettingRulesHandler{filter: filter, response: handler}, group)
 }
 
 // updateUserStatusHandler handles UpdateUserStatus updates
 type updateUserStatusHandler struct {
-	filter   UpdateUserStatusFilter
+	filter   func(u *UpdateUserStatus) bool
 	response func(client *Client, update *UpdateUserStatus) error
 }
 
@@ -5910,18 +5543,18 @@ func (h *updateUserStatusHandler) HandleUpdate(client *Client, update TlObject) 
 }
 
 // OnUpdateUserStatus registers a handler for UpdateUserStatus updates with default group (0)
-func (c *Client) OnUpdateUserStatus(handler func(client *Client, update *UpdateUserStatus) error, filter UpdateUserStatusFilter) {
+func (c *Client) OnUpdateUserStatus(handler func(client *Client, update *UpdateUserStatus) error, filter func(u *UpdateUserStatus) bool) {
 	c.AddUpdateUserStatusHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateUserStatusHandlerGroup registers a handler for UpdateUserStatus updates with a specific group
-func (c *Client) AddUpdateUserStatusHandlerGroup(handler func(client *Client, update *UpdateUserStatus) error, filter UpdateUserStatusFilter, group int) {
+func (c *Client) AddUpdateUserStatusHandlerGroup(handler func(client *Client, update *UpdateUserStatus) error, filter func(u *UpdateUserStatus) bool, group int) {
 	c.AddHandlerGroup(&updateUserStatusHandler{filter: filter, response: handler}, group)
 }
 
 // updateVideoPublishedHandler handles UpdateVideoPublished updates
 type updateVideoPublishedHandler struct {
-	filter   UpdateVideoPublishedFilter
+	filter   func(u *UpdateVideoPublished) bool
 	response func(client *Client, update *UpdateVideoPublished) error
 }
 
@@ -5941,18 +5574,18 @@ func (h *updateVideoPublishedHandler) HandleUpdate(client *Client, update TlObje
 }
 
 // OnUpdateVideoPublished registers a handler for UpdateVideoPublished updates with default group (0)
-func (c *Client) OnUpdateVideoPublished(handler func(client *Client, update *UpdateVideoPublished) error, filter UpdateVideoPublishedFilter) {
+func (c *Client) OnUpdateVideoPublished(handler func(client *Client, update *UpdateVideoPublished) error, filter func(u *UpdateVideoPublished) bool) {
 	c.AddUpdateVideoPublishedHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateVideoPublishedHandlerGroup registers a handler for UpdateVideoPublished updates with a specific group
-func (c *Client) AddUpdateVideoPublishedHandlerGroup(handler func(client *Client, update *UpdateVideoPublished) error, filter UpdateVideoPublishedFilter, group int) {
+func (c *Client) AddUpdateVideoPublishedHandlerGroup(handler func(client *Client, update *UpdateVideoPublished) error, filter func(u *UpdateVideoPublished) bool, group int) {
 	c.AddHandlerGroup(&updateVideoPublishedHandler{filter: filter, response: handler}, group)
 }
 
 // updateWebAppMessageSentHandler handles UpdateWebAppMessageSent updates
 type updateWebAppMessageSentHandler struct {
-	filter   UpdateWebAppMessageSentFilter
+	filter   func(u *UpdateWebAppMessageSent) bool
 	response func(client *Client, update *UpdateWebAppMessageSent) error
 }
 
@@ -5972,24 +5605,24 @@ func (h *updateWebAppMessageSentHandler) HandleUpdate(client *Client, update TlO
 }
 
 // OnUpdateWebAppMessageSent registers a handler for UpdateWebAppMessageSent updates with default group (0)
-func (c *Client) OnUpdateWebAppMessageSent(handler func(client *Client, update *UpdateWebAppMessageSent) error, filter UpdateWebAppMessageSentFilter) {
+func (c *Client) OnUpdateWebAppMessageSent(handler func(client *Client, update *UpdateWebAppMessageSent) error, filter func(u *UpdateWebAppMessageSent) bool) {
 	c.AddUpdateWebAppMessageSentHandlerGroup(handler, filter, 0)
 }
 
 // AddUpdateWebAppMessageSentHandlerGroup registers a handler for UpdateWebAppMessageSent updates with a specific group
-func (c *Client) AddUpdateWebAppMessageSentHandlerGroup(handler func(client *Client, update *UpdateWebAppMessageSent) error, filter UpdateWebAppMessageSentFilter, group int) {
+func (c *Client) AddUpdateWebAppMessageSentHandlerGroup(handler func(client *Client, update *UpdateWebAppMessageSent) error, filter func(u *UpdateWebAppMessageSent) bool, group int) {
 	c.AddHandlerGroup(&updateWebAppMessageSentHandler{filter: filter, response: handler}, group)
 }
 
 // MessageHandler handles Message updates
 type MessageHandler struct {
 	Options  MatchingOptions
-	Filter   MessageFilter
+	Filter   func(msg *Message) bool
 	Response func(client *Client, message *Message) error
 }
 
 // NewMessageHandler creates a new MessageHandler
-func NewMessageHandler(response func(client *Client, message *Message) error, filter MessageFilter) *MessageHandler {
+func NewMessageHandler(response func(client *Client, message *Message) error, filter func(msg *Message) bool) *MessageHandler {
 	return &MessageHandler{
 		Options:  DefaultMatchingOptions(),
 		Filter:   filter,
@@ -6021,13 +5654,23 @@ func (h *MessageHandler) SetOptions(options MatchingOptions) *MessageHandler {
 }
 
 // OnMessage registers a handler for NewMessage updates with default group (0)
-func (c *Client) OnMessage(handler func(client *Client, message *Message) error, filter MessageFilter) *MessageHandler {
+func (c *Client) OnMessage(handler func(client *Client, message *Message) error, filter func(msg *Message) bool) *MessageHandler {
 	return c.OnMessageGroup(handler, filter, 0)
 }
 
 // OnMessageGroup registers a handler for NewMessage updates with a specific group
-func (c *Client) OnMessageGroup(handler func(client *Client, message *Message) error, filter MessageFilter, group int) *MessageHandler {
+func (c *Client) OnMessageGroup(handler func(client *Client, message *Message) error, filter func(msg *Message) bool, group int) *MessageHandler {
 	h := NewMessageHandler(handler, filter)
 	c.AddHandlerGroup(h, group)
 	return h
+}
+
+// NewUpdateNewMessageFilter creates an UpdateNewMessage filter from a Message filter
+func NewUpdateNewMessageFilter(filter func(msg *Message) bool) func(u *UpdateNewMessage) bool {
+	return func(u *UpdateNewMessage) bool {
+		if u.Message == nil {
+			return false
+		}
+		return filter(u.Message)
+	}
 }

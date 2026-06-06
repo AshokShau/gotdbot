@@ -77,7 +77,7 @@ func main() {
 	if err := bot.Start(); err != nil {
 		log.Fatalf("Failed to start bot: %v", err)
 	}
-	
+
 	bot.Idle()
 }
 ```
@@ -87,12 +87,22 @@ func main() {
 ## Advanced Usage
 
 ### Composable Filters
-Filters allow you to precisely target which updates your handlers should process.
+Filters allow you to precisely target which updates your handlers should process. They are located in the `filters` sub-packages.
 
 ```go
+import (
+    "github.com/AshokShau/gotdbot/filters/message"
+)
+
+// ...
+
 // Only handle incoming text messages in private chats
-bot.OnMessage(handlePrivate, gotdbot.And(gotdbot.Private, gotdbot.Incoming))
+bot.OnMessage(handlePrivate, message.And(message.Private, message.Incoming))
 ```
+
+Available filter packages:
+- `github.com/AshokShau/gotdbot/filters/message` - Filters for `gotdbot.Message`
+- `github.com/AshokShau/gotdbot/filters/callbackquery` - Filters for `gotdbot.UpdateNewCallbackQuery`
 
 ### Conversations
 The `Ask` method makes it easy to handle multi-step interactions.
@@ -100,13 +110,12 @@ The `Ask` method makes it easy to handle multi-step interactions.
 ```go
 bot.OnCommand("rename", func(c *gotdbot.Client, u *gotdbot.Message) error {
     u.ReplyText(c, "What is your new name?", nil)
-    
-    // Wait for the next message from this user in this chat
+	
     res, err := c.Ask(u.ChatId, &gotdbot.WaitMessageOpts{
-        Timeout: 30 * time.Second,
+    Timeout: 30 * time.Second,
     })
     if err != nil {
-        return err
+    return err
     }
     
     u.ReplyText(c, "Nice to meet you, " + res.GetText(), nil)

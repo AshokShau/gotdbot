@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/AshokShau/gotdbot"
+	"github.com/AshokShau/gotdbot/filters/message"
 )
 
 func main() {
@@ -92,10 +93,11 @@ func main() {
 		return err
 	})
 
+	// Example using a filter to only echo private messages
 	bot.OnMessage(func(c *gotdbot.Client, u *gotdbot.Message) error {
 		_, err := c.ForwardMessages(u.ChatId, u.ChatId, []int64{u.Id}, &gotdbot.ForwardMessagesOpts{SendCopy: true})
 		return err
-	}, nil)
+	}, message.Private)
 
 	err = bot.Start()
 	if err != nil {

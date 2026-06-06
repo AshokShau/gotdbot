@@ -9,6 +9,7 @@ import (
 	"strings"
 
 	"github.com/AshokShau/gotdbot"
+	"github.com/AshokShau/gotdbot/filters/message"
 )
 
 var (
@@ -60,10 +61,12 @@ func setupClient(c *gotdbot.Client) {
 			return cloneHandler(client, msg)
 		}
 		return nil
-	}, func(u *gotdbot.UpdateNewMessage) bool {
-		msg := u.Message
-		return msg != nil && msg.IsPrivate() && msg.ForwardInfo != nil && msg.ForwardInfo.Origin != nil
-	})
+	}, gotdbot.NewUpdateNewMessageFilter(message.And(
+		message.Private,
+		func(msg *gotdbot.Message) bool {
+			return msg.ForwardInfo != nil && msg.ForwardInfo.Origin != nil
+		},
+	)))
 
 	c.OnCommand("start", func(c *gotdbot.Client, msg *gotdbot.Message) error {
 		_, err := msg.ReplyText(c, "Hello! I am a bot managed by ClientManager.", nil)
