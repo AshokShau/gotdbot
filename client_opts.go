@@ -12,6 +12,7 @@ import (
 type AutoRetry struct {
 	ChatNotFound    bool
 	MessageNotFound bool
+	MaxFloodWait    time.Duration
 }
 
 type ClientOpts struct {

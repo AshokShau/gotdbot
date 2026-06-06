@@ -8,6 +8,7 @@ import (
 	"errors"
 	"fmt"
 	"os"
+	"strconv"
 
 	"os/signal"
 	"regexp"
@@ -556,7 +557,26 @@ func (c *Client) Send(req TlObject) (TlObject, error) {
 }
 
 func (c *Client) handleAutoRetry(req map[string]interface{}, errObj *Error, isChatAttemptedLoad, isMessageAttemptedLoad *bool) bool {
-	if errObj.Code != 400 || c.config.AutoRetry == nil {
+	if c.config.AutoRetry == nil {
+		return false
+	}
+
+	if errObj.Code == 429 && c.config.AutoRetry.MaxFloodWait > 0 {
+		prefix := "Too Many Requests: retry after "
+		if strings.HasPrefix(errObj.Message, prefix) {
+			seconds, err := strconv.Atoi(strings.TrimPrefix(errObj.Message, prefix))
+			if err == nil {
+				waitTime := time.Duration(seconds) * time.Second
+				if waitTime <= c.config.AutoRetry.MaxFloodWait {
+					c.Logger.Info("Flood wait", "seconds", seconds)
+					time.Sleep(waitTime)
+					return true
+				}
+			}
+		}
+	}
+
+	if errObj.Code != 400 {
 		return false
 	}
 
