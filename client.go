@@ -7,8 +7,8 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"log/slog"
 	"os"
+
 	"os/signal"
 	"regexp"
 	"sort"
@@ -17,6 +17,8 @@ import (
 	"sync/atomic"
 	"syscall"
 	"time"
+
+	"github.com/AshokShau/gotdbot/logger"
 
 	"github.com/AshokShau/gotdbot/internal/qrcode"
 	"github.com/AshokShau/gotdbot/internal/tdjson"
@@ -32,7 +34,7 @@ type Client struct {
 	// phoneNumber is set if the user is logging in with a phone number.
 	phoneNumber string
 	config      *ClientOpts
-	Logger      *slog.Logger
+	Logger      *logger.Logger
 
 	updates chan TlObject
 	stop    chan struct{}

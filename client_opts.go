@@ -5,6 +5,8 @@ import (
 	"os"
 	"runtime"
 	"time"
+
+	"github.com/AshokShau/gotdbot/logger"
 )
 
 type AutoRetry struct {
@@ -31,7 +33,7 @@ type ClientOpts struct {
 	SystemVersion           string
 	ApplicationVersion      string
 	TDLibOptions            *TDLibOptions
-	Logger                  *slog.Logger
+	Logger                  *logger.Logger
 	QrMode                  bool
 	AuthorizationTimeout    time.Duration
 	LogVerbosityLevel       int32
@@ -204,7 +206,7 @@ func DefaultClientConfig() *ClientOpts {
 		DeviceModel:             "Gotdbot",
 		SystemVersion:           runtime.GOOS,
 		ApplicationVersion:      "Gotdbot " + Version,
-		Logger:                  slog.New(slog.NewTextHandler(os.Stdout, nil)),
+		Logger:                  logger.New(logger.WithLevel(slog.LevelInfo), logger.WithOutput(os.Stdout)),
 		QrMode:                  false,
 		AuthorizationTimeout:    60 * time.Second,
 		LogVerbosityLevel:       2,
