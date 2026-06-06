@@ -141,10 +141,10 @@ func NewClient(apiID int32, apiHash, tokenOrPhone string, config *ClientOpts) (*
 	c.panicHandler = config.PanicHandler
 	c.errorHandler = config.ErrorHandler
 
-	c.OnGroup("updateAuthorizationState", c.authHandler, -100)
-	c.OnGroup("updateMessageSendSucceeded", c.messageSendSucceededHandler, -99)
-	c.OnGroup("updateMessageSendFailed", c.messageSendFailedHandler, -98)
-	c.OnGroup("updateConnectionState", c.connectionStateHandler, -97)
+	c.AddUpdateAuthorizationStateHandlerGroup(c.authHandler, nil, -100)
+	c.AddUpdateMessageSendSucceededHandlerGroup(c.messageSendSucceededHandler, nil, -99)
+	c.AddUpdateMessageSendFailedHandlerGroup(c.messageSendFailedHandler, nil, -98)
+	c.AddUpdateConnectionStateHandlerGroup(c.connectionStateHandler, nil, -97)
 	return c, nil
 
 }
@@ -293,12 +293,7 @@ func (c *Client) processor() {
 	}
 }
 
-func (c *Client) authHandler(client *Client, update TlObject) error {
-	authState, ok := update.(*UpdateAuthorizationState)
-	if !ok {
-		return nil
-	}
-
+func (c *Client) authHandler(client *Client, authState *UpdateAuthorizationState) error {
 	c.Logger.Debug("Authorization state update", "state", authState.AuthorizationState.GetType())
 
 	switch authState.AuthorizationState.GetType() {
@@ -471,24 +466,14 @@ func (c *Client) authHandler(client *Client, update TlObject) error {
 	return nil
 }
 
-func (c *Client) connectionStateHandler(client *Client, update TlObject) error {
-	u, ok := update.(*UpdateConnectionState)
-	if !ok {
-		return nil
-	}
-
+func (c *Client) connectionStateHandler(client *Client, u *UpdateConnectionState) error {
 	state := u.State.GetType()
 	state = strings.TrimPrefix(state, "connectionState")
 	c.Logger.Info("Connection state changed", "state", state)
 	return nil
 }
 
-func (c *Client) messageSendSucceededHandler(client *Client, update TlObject) error {
-	u, ok := update.(*UpdateMessageSendSucceeded)
-	if !ok {
-		return nil
-	}
-
+func (c *Client) messageSendSucceededHandler(client *Client, u *UpdateMessageSendSucceeded) error {
 	key := fmt.Sprintf("%d:%d", u.Message.ChatId, u.OldMessageId)
 	if ch, ok := c.pendingMessages.Load(key); ok {
 		ch.(chan TlObject) <- u
@@ -498,11 +483,7 @@ func (c *Client) messageSendSucceededHandler(client *Client, update TlObject) er
 	return nil
 }
 
-func (c *Client) messageSendFailedHandler(client *Client, update TlObject) error {
-	u, ok := update.(*UpdateMessageSendFailed)
-	if !ok {
-		return nil
-	}
+func (c *Client) messageSendFailedHandler(client *Client, u *UpdateMessageSendFailed) error {
 	key := fmt.Sprintf("%d:%d", u.Message.ChatId, u.OldMessageId)
 	if ch, ok := c.pendingMessages.Load(key); ok {
 		ch.(chan TlObject) <- u

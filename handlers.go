@@ -98,22 +98,7 @@ func (h *CommandHandler) CheckUpdate(client *Client, update TlObject) bool {
 		return false
 	}
 
-	var text string
-	if textContent, ok := msg.Content.(*MessageText); ok {
-		text = textContent.Text.Text
-	} else if photoContent, ok := msg.Content.(*MessagePhoto); ok {
-		text = photoContent.Caption.Text
-	} else if videoContent, ok := msg.Content.(*MessageVideo); ok {
-		text = videoContent.Caption.Text
-	} else if documentContent, ok := msg.Content.(*MessageDocument); ok {
-		text = documentContent.Caption.Text
-	} else if audioContent, ok := msg.Content.(*MessageAudio); ok {
-		text = audioContent.Caption.Text
-	} else if animationContent, ok := msg.Content.(*MessageAnimation); ok {
-		text = animationContent.Caption.Text
-	} else if voiceContent, ok := msg.Content.(*MessageVoiceNote); ok {
-		text = voiceContent.Caption.Text
-	}
+	text := msg.GetText()
 
 	if text == "" {
 		return false
@@ -191,34 +176,6 @@ func getMessageFromUpdate(update TlObject) (*Message, bool) {
 		}
 	}
 	return nil, false
-}
-
-type funcHandler struct {
-	check  func(client *Client, update TlObject) bool
-	handle func(client *Client, update TlObject) error
-}
-
-func (h *funcHandler) CheckUpdate(client *Client, update TlObject) bool {
-	return h.check(client, update)
-}
-
-func (h *funcHandler) HandleUpdate(client *Client, update TlObject) error {
-	return h.handle(client, update)
-}
-
-// On registers a handler for a specific update type with the default group (0).
-func (c *Client) On(updateType string, handler func(client *Client, update TlObject) error) {
-	c.OnGroup(updateType, handler, 0)
-}
-
-// OnGroup registers a handler for a specific update type with a specific group.
-func (c *Client) OnGroup(updateType string, handler func(client *Client, update TlObject) error, group int) {
-	c.AddHandlerGroup(&funcHandler{
-		check: func(client *Client, update TlObject) bool {
-			return update.GetType() == updateType
-		},
-		handle: handler,
-	}, group)
 }
 
 // AddHandler adds a handler with the default group (0).
