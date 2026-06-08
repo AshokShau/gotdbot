@@ -7,7 +7,8 @@ import (
 	"strings"
 )
 
-func GetFormattedText(c *Client, text string, entities []TextEntity, parseMode string) (*FormattedText, error) {
+// GetFormattedText returns a FormattedText object from the given text, entities and parse mode.
+func (c *Client) GetFormattedText(text string, entities []TextEntity, parseMode string) (*FormattedText, error) {
 	if len(entities) > 0 {
 		return &FormattedText{
 			Text:     text,
@@ -126,7 +127,7 @@ func (c *Client) SendTextMessage(chatId int64, text string, opts *SendTextMessag
 		opts = &SendTextMessageOpts{}
 	}
 
-	formattedText, err := GetFormattedText(c, text, opts.Entities, opts.ParseMode)
+	formattedText, err := c.GetFormattedText(text, opts.Entities, opts.ParseMode)
 	if err != nil {
 		return nil, err
 	}
@@ -181,7 +182,7 @@ func (c *Client) SendPhoto(chatId int64, photo InputFile, opts *SendPhotoOpts) (
 		opts = &SendPhotoOpts{}
 	}
 
-	caption, err := GetFormattedText(c, opts.Caption, opts.CaptionEntities, opts.ParseMode)
+	caption, err := c.GetFormattedText(opts.Caption, opts.CaptionEntities, opts.ParseMode)
 	if err != nil {
 		return nil, err
 	}
@@ -235,7 +236,7 @@ func (c *Client) SendVideo(chatId int64, video InputFile, opts *SendVideoOpts) (
 		opts = &SendVideoOpts{}
 	}
 
-	caption, err := GetFormattedText(c, opts.Caption, opts.CaptionEntities, opts.ParseMode)
+	caption, err := c.GetFormattedText(opts.Caption, opts.CaptionEntities, opts.ParseMode)
 	if err != nil {
 		return nil, err
 	}
@@ -289,7 +290,7 @@ func (c *Client) SendAnimation(chatId int64, animation InputFile, opts *SendAnim
 		opts = &SendAnimationOpts{}
 	}
 
-	caption, err := GetFormattedText(c, opts.Caption, opts.CaptionEntities, opts.ParseMode)
+	caption, err := c.GetFormattedText(opts.Caption, opts.CaptionEntities, opts.ParseMode)
 	if err != nil {
 		return nil, err
 	}
@@ -339,7 +340,7 @@ func (c *Client) SendAudio(chatId int64, audio InputFile, opts *SendAudioOpts) (
 		opts = &SendAudioOpts{}
 	}
 
-	caption, err := GetFormattedText(c, opts.Caption, opts.CaptionEntities, opts.ParseMode)
+	caption, err := c.GetFormattedText(opts.Caption, opts.CaptionEntities, opts.ParseMode)
 	if err != nil {
 		return nil, err
 	}
@@ -385,7 +386,7 @@ func (c *Client) SendDocument(chatId int64, document InputFile, opts *SendDocume
 		opts = &SendDocumentOpts{}
 	}
 
-	caption, err := GetFormattedText(c, opts.Caption, opts.CaptionEntities, opts.ParseMode)
+	caption, err := c.GetFormattedText(opts.Caption, opts.CaptionEntities, opts.ParseMode)
 	if err != nil {
 		return nil, err
 	}
@@ -429,7 +430,7 @@ func (c *Client) SendVoice(chatId int64, voice InputFile, opts *SendVoiceOpts) (
 		opts = &SendVoiceOpts{}
 	}
 
-	caption, err := GetFormattedText(c, opts.Caption, opts.CaptionEntities, opts.ParseMode)
+	caption, err := c.GetFormattedText(opts.Caption, opts.CaptionEntities, opts.ParseMode)
 	if err != nil {
 		return nil, err
 	}
@@ -549,7 +550,7 @@ func (c *Client) SendCopy(chatId int64, fromChatId int64, messageId int64, opts 
 		opts = &SendCopyOpts{}
 	}
 
-	caption, err := GetFormattedText(c, opts.NewCaption, opts.NewCaptionEntities, opts.ParseMode)
+	caption, err := c.GetFormattedText(opts.NewCaption, opts.NewCaptionEntities, opts.ParseMode)
 	if err != nil {
 		return nil, err
 	}
@@ -621,7 +622,7 @@ func (c *Client) EditTextMessage(chatId int64, messageId int64, text string, opt
 		}
 	}
 
-	formattedText, err := GetFormattedText(c, text, opts.Entities, opts.ParseMode)
+	formattedText, err := c.GetFormattedText(text, opts.Entities, opts.ParseMode)
 	if err != nil {
 		return nil, err
 	}
@@ -664,7 +665,7 @@ func (c *Client) EditCaption(chatId int64, messageId int64, caption string, opts
 		}
 	}
 
-	formattedText, err := GetFormattedText(c, caption, opts.Entities, opts.ParseMode)
+	formattedText, err := c.GetFormattedText(caption, opts.Entities, opts.ParseMode)
 	if err != nil {
 		return nil, err
 	}
@@ -860,7 +861,7 @@ func (c *Client) SendInvoice(chatId int64, invoice *Invoice, title string, descr
 	if opts == nil {
 		opts = &SendInvoiceOpts{}
 	}
-	paidMediaCaption, err := GetFormattedText(c, opts.PaidMediaCaption, opts.PaidMediaEntities, opts.ParseMode)
+	paidMediaCaption, err := c.GetFormattedText(opts.PaidMediaCaption, opts.PaidMediaEntities, opts.ParseMode)
 	if err != nil {
 		return nil, err
 	}
@@ -945,7 +946,7 @@ func (c *Client) SendPaidMedia(chatId int64, starCount int64, paidMedia []InputP
 	if opts == nil {
 		opts = &SendPaidMediaOpts{}
 	}
-	caption, err := GetFormattedText(c, opts.Caption, opts.CaptionEntities, opts.ParseMode)
+	caption, err := c.GetFormattedText(opts.Caption, opts.CaptionEntities, opts.ParseMode)
 	if err != nil {
 		return nil, err
 	}
@@ -995,11 +996,11 @@ func (c *Client) SendPoll(chatId int64, question string, options []InputPollOpti
 	if opts == nil {
 		opts = &SendPollOpts{}
 	}
-	formattedQuestion, err := GetFormattedText(c, question, opts.QuestionEntities, opts.ParseMode)
+	formattedQuestion, err := c.GetFormattedText(question, opts.QuestionEntities, opts.ParseMode)
 	if err != nil {
 		return nil, err
 	}
-	description, err := GetFormattedText(c, opts.Description, opts.DescriptionEntities, opts.ParseMode)
+	description, err := c.GetFormattedText(opts.Description, opts.DescriptionEntities, opts.ParseMode)
 	if err != nil {
 		return nil, err
 	}

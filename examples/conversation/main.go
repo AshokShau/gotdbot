@@ -51,6 +51,6 @@ func main() {
 	if me.Usernames != nil && len(me.Usernames.ActiveUsernames) > 0 {
 		username = me.Usernames.ActiveUsernames[0]
 	}
-	bot.Logger.Info("Logged in", "username", username, "id", me.Id)
+	bot.Info("Logged in", "username", username, "id", me.Id)
 	bot.Idle()
 }
