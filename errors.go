@@ -5,10 +5,12 @@ import (
 )
 
 var (
-	// EndGroups stops the iteration of subsequent groups.
+	// EndGroups stops processing all remaining groups.
 	EndGroups = errors.New("group iteration ended")
-	// ContinueGroups continues iterating over the current group.
+	// ContinueGroups skips remaining handlers in the current group and continues with the next group.
 	ContinueGroups = errors.New("group iteration continued")
+	// ContinueHandlers continues processing the remaining handlers in the same group.
+	ContinueHandlers = errors.New("handler iteration continued")
 
 	ConversationCancelled = errors.New("conversation cancelled")
 	ConversationTimeout   = errors.New("conversation wait timeout")

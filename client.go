@@ -7,14 +7,19 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"log/slog"
 	"os"
+	"strconv"
+
 	"os/signal"
 	"regexp"
+	"sort"
 	"strings"
 	"sync"
+	"sync/atomic"
 	"syscall"
 	"time"
+
+	"github.com/AshokShau/gotdbot/logger"
 
 	"github.com/AshokShau/gotdbot/internal/qrcode"
 	"github.com/AshokShau/gotdbot/internal/tdjson"
@@ -30,17 +35,24 @@ type Client struct {
 	// phoneNumber is set if the user is logging in with a phone number.
 	phoneNumber string
 	config      *ClientOpts
-	Logger      *slog.Logger
+	Logger      *logger.Logger
 
 	updates chan TlObject
 	stop    chan struct{}
 	closed  chan struct{}
 	wg      sync.WaitGroup
 
-	Dispatcher *Dispatcher
+	handlers     atomic.Pointer[map[int][]Handler]
+	hMu          sync.Mutex
+	panicHandler func(client *Client, update TlObject, r interface{})
+	errorHandler func(client *Client, update TlObject, err error) error
 
 	pendingRequests sync.Map // map[string]chan TlObject
 	pendingMessages sync.Map // map[string]chan TlObject
+
+	waiters     map[string]*Waiter
+	waiterCount int64
+	wMu         sync.RWMutex
 
 	// Auth state management
 	authErrorChan chan error
@@ -124,17 +136,18 @@ func NewClient(apiID int32, apiHash, tokenOrPhone string, config *ClientOpts) (*
 		authErrorChan: make(chan error, 1),
 	}
 
-	if config.Dispatcher != nil {
-		c.Dispatcher = config.Dispatcher
-	} else {
-		c.Dispatcher = NewDispatcher(nil)
-	}
+	handlers := make(map[int][]Handler)
+	c.handlers.Store(&handlers)
+	c.waiters = make(map[string]*Waiter)
+	c.panicHandler = config.PanicHandler
+	c.errorHandler = config.ErrorHandler
 
-	c.Dispatcher.AddHandlerToGroup(&internalHandler{client: c, handleFunc: c.authHandler, updateType: "updateAuthorizationState"}, -999)
-	c.Dispatcher.AddHandlerToGroup(&internalHandler{client: c, handleFunc: c.messageSendSucceededHandler, updateType: "updateMessageSendSucceeded"}, -998)
-	c.Dispatcher.AddHandlerToGroup(&internalHandler{client: c, handleFunc: c.messageSendFailedHandler, updateType: "updateMessageSendFailed"}, -997)
-	c.Dispatcher.AddHandlerToGroup(&internalHandler{client: c, handleFunc: c.connectionStateHandler, updateType: "updateConnectionState"}, -2)
+	c.AddUpdateAuthorizationStateHandlerGroup(c.authHandler, nil, -100)
+	c.AddUpdateMessageSendSucceededHandlerGroup(c.messageSendSucceededHandler, nil, -99)
+	c.AddUpdateMessageSendFailedHandlerGroup(c.messageSendFailedHandler, nil, -98)
+	c.AddUpdateConnectionStateHandlerGroup(c.connectionStateHandler, nil, -97)
 	return c, nil
+
 }
 
 // initClient initializes the client's internal state and processor loop exactly once.
@@ -178,6 +191,30 @@ func (c *Client) Idle() {
 	c.Close()
 }
 
+// Debug logs a message at debug level.
+func (c *Client) Debug(msg string, args ...any) { c.Logger.Debug(msg, args...) }
+
+// Info logs a message at info level.
+func (c *Client) Info(msg string, args ...any) { c.Logger.Info(msg, args...) }
+
+// Warn logs a message at warn level.
+func (c *Client) Warn(msg string, args ...any) { c.Logger.Warn(msg, args...) }
+
+// Error logs a message at error level.
+func (c *Client) Error(msg string, args ...any) { c.Logger.Error(msg, args...) }
+
+// Debugf logs a formatted message at debug level.
+func (c *Client) Debugf(format string, args ...any) { c.Logger.Debugf(format, args...) }
+
+// Infof logs a formatted message at info level.
+func (c *Client) Infof(format string, args ...any) { c.Logger.Infof(format, args...) }
+
+// Warnf logs a formatted message at warn level.
+func (c *Client) Warnf(format string, args ...any) { c.Logger.Warnf(format, args...) }
+
+// Errorf logs a formatted message at error level.
+func (c *Client) Errorf(format string, args ...any) { c.Logger.Errorf(format, args...) }
+
 // Close Closes the TDLib instance. All databases will be flushed to disk and properly closed. After the close completes, updateAuthorizationState with authorizationStateClosed will be sent. Can be called before initialization
 func (c *Client) Close() {
 	c.closeOnce.Do(func() {
@@ -186,14 +223,13 @@ func (c *Client) Close() {
 		select {
 		case <-c.closed:
 		case <-time.After(5 * time.Second):
-			c.Logger.Warn("Timeout waiting for TDLib to close")
+			c.Warn("Timeout waiting for TDLib to close")
 		}
 
 		close(c.stop)
 		c.wg.Wait()
 	})
 }
-
 func (c *Client) processor() {
 	defer c.wg.Done()
 	for {
@@ -201,18 +237,89 @@ func (c *Client) processor() {
 		case <-c.stop:
 			return
 		case update := <-c.updates:
-			c.Dispatcher.ProcessUpdate(c, update)
+			updateType := update.GetType()
+
+			go func() {
+				defer func() {
+					if r := recover(); r != nil {
+						if c.panicHandler != nil {
+							c.panicHandler(c, update, r)
+						} else {
+							c.Error("Panic in handler", "panic", r)
+						}
+					}
+				}()
+
+				c.wMu.RLock()
+				if len(c.waiters) > 0 {
+					var matchedWaiters []*Waiter
+					for _, w := range c.waiters {
+						if w.Filter(c, update) {
+							matchedWaiters = append(matchedWaiters, w)
+						}
+					}
+					c.wMu.RUnlock()
+
+					for _, w := range matchedWaiters {
+						select {
+						case w.C <- update:
+						default:
+						}
+					}
+				} else {
+					c.wMu.RUnlock()
+				}
+
+				handlersMap := *c.handlers.Load()
+				groups := make([]int, 0, len(handlersMap))
+				for k := range handlersMap {
+					groups = append(groups, k)
+				}
+				sort.Ints(groups)
+
+				handleError := func(err error) error {
+					if err == nil {
+						return nil
+					}
+					if errors.Is(err, EndGroups) || errors.Is(err, ContinueGroups) || errors.Is(err, ContinueHandlers) {
+						return err
+					}
+					if c.errorHandler != nil {
+						return c.errorHandler(c, update, err)
+					}
+					c.Error("Handler error", "error", err, "type", updateType)
+					return nil
+				}
+
+				for _, group := range groups {
+					groupHandlers := handlersMap[group]
+					for _, h := range groupHandlers {
+						if h.CheckUpdate(c, update) {
+							err := h.HandleUpdate(c, update)
+							action := handleError(err)
+
+							if errors.Is(action, EndGroups) {
+								return
+							}
+							if errors.Is(action, ContinueGroups) {
+								break // Move to next group
+							}
+							if errors.Is(action, ContinueHandlers) {
+								continue // Move to next handler in the same group
+							}
+							// Handler matched and succeeded, move to next group
+							goto nextGroup
+						}
+					}
+				nextGroup:
+				}
+			}()
 		}
 	}
 }
 
-func (c *Client) authHandler(client *Client, update TlObject) error {
-	authState, ok := update.(*UpdateAuthorizationState)
-	if !ok {
-		return nil
-	}
-
-	c.Logger.Debug("Authorization state update", "state", authState.AuthorizationState.GetType())
+func (c *Client) authHandler(client *Client, authState *UpdateAuthorizationState) error {
+	c.Debug("Authorization state update", "state", authState.AuthorizationState.GetType())
 
 	switch authState.AuthorizationState.GetType() {
 	case "authorizationStateWaitTdlibParameters":
@@ -221,7 +328,7 @@ func (c *Client) authHandler(client *Client, update TlObject) error {
 				if opt := toOptionValue(v); opt != nil {
 					err := c.SetOption(k, &SetOptionOpts{Value: opt})
 					if err != nil {
-						c.Logger.Error("Error setting option", "option", k, "error", err)
+						c.Error("Error setting option", "option", k, "error", err)
 					}
 				}
 			})
@@ -246,7 +353,7 @@ func (c *Client) authHandler(client *Client, update TlObject) error {
 			},
 		)
 		if err != nil {
-			c.Logger.Error("Error setting tdlib parameters", "error", err)
+			c.Error("Error setting tdlib parameters", "error", err)
 			c.authErrorChan <- err
 		}
 
@@ -254,7 +361,7 @@ func (c *Client) authHandler(client *Client, update TlObject) error {
 		if c.botToken != "" {
 			err := c.CheckAuthenticationBotToken(c.botToken)
 			if err != nil {
-				c.Logger.Error("Error checking bot token", "error", err)
+				c.Error("Error checking bot token", "error", err)
 				c.authErrorChan <- err
 			}
 		} else {
@@ -262,13 +369,13 @@ func (c *Client) authHandler(client *Client, update TlObject) error {
 			if c.config.QrMode {
 				err := c.RequestQrCodeAuthentication(nil)
 				if err != nil {
-					c.Logger.Error("Error requesting QR code", "error", err)
+					c.Error("Error requesting QR code", "error", err)
 					c.authErrorChan <- err
 				}
 			} else if c.phoneNumber != "" {
 				err := c.SetAuthenticationPhoneNumber(c.phoneNumber, nil)
 				if err != nil {
-					c.Logger.Error("Error setting phone number", "error", err)
+					c.Error("Error setting phone number", "error", err)
 					c.authErrorChan <- err
 				}
 			} else {
@@ -278,7 +385,7 @@ func (c *Client) authHandler(client *Client, update TlObject) error {
 				phone = strings.TrimSpace(phone)
 				err := c.SetAuthenticationPhoneNumber(phone, nil)
 				if err != nil {
-					c.Logger.Error("Error setting phone number", "error", err)
+					c.Error("Error setting phone number", "error", err)
 					c.authErrorChan <- err
 				}
 			}
@@ -343,17 +450,17 @@ func (c *Client) authHandler(client *Client, update TlObject) error {
 
 		err := c.RegisterUser(firstName, lastName, nil)
 		if err != nil {
-			c.Logger.Error("Error registering user", "error", err)
+			c.Error("Error registering user", "error", err)
 			c.authErrorChan <- err
 		}
 	case "authorizationStateWaitPremiumPurchase":
-		c.Logger.Info("Account is limited and requires Telegram Premium. Please purchase Telegram Premium to continue.")
+		c.Info("Account is limited and requires Telegram Premium. Please purchase Telegram Premium to continue.")
 		c.authErrorChan <- WaitPremiumPurchase
 	case "authorizationStateReady":
 		c.isAuthorized = true
 		me, err := c.GetMe()
 		if err != nil {
-			c.Logger.Error("Failed to get me", "error", err)
+			c.Error("Failed to get me", "error", err)
 			c.authErrorChan <- err
 			return nil
 		}
@@ -364,7 +471,7 @@ func (c *Client) authHandler(client *Client, update TlObject) error {
 		if me.Usernames != nil && len(me.Usernames.ActiveUsernames) > 0 {
 			username = me.Usernames.ActiveUsernames[0]
 		}
-		c.Logger.Info("Logged in", "user_id", me.Id, "username", username)
+		c.Info("Logged in", "user_id", me.Id, "username", username)
 
 		select {
 		case c.authErrorChan <- nil:
@@ -384,24 +491,14 @@ func (c *Client) authHandler(client *Client, update TlObject) error {
 	return nil
 }
 
-func (c *Client) connectionStateHandler(client *Client, update TlObject) error {
-	u, ok := update.(*UpdateConnectionState)
-	if !ok {
-		return nil
-	}
-
+func (c *Client) connectionStateHandler(client *Client, u *UpdateConnectionState) error {
 	state := u.State.GetType()
 	state = strings.TrimPrefix(state, "connectionState")
-	c.Logger.Info("Connection state changed", "state", state)
+	c.Info("Connection state changed", "state", state)
 	return nil
 }
 
-func (c *Client) messageSendSucceededHandler(client *Client, update TlObject) error {
-	u, ok := update.(*UpdateMessageSendSucceeded)
-	if !ok {
-		return nil
-	}
-
+func (c *Client) messageSendSucceededHandler(client *Client, u *UpdateMessageSendSucceeded) error {
 	key := fmt.Sprintf("%d:%d", u.Message.ChatId, u.OldMessageId)
 	if ch, ok := c.pendingMessages.Load(key); ok {
 		ch.(chan TlObject) <- u
@@ -411,11 +508,7 @@ func (c *Client) messageSendSucceededHandler(client *Client, update TlObject) er
 	return nil
 }
 
-func (c *Client) messageSendFailedHandler(client *Client, update TlObject) error {
-	u, ok := update.(*UpdateMessageSendFailed)
-	if !ok {
-		return nil
-	}
+func (c *Client) messageSendFailedHandler(client *Client, u *UpdateMessageSendFailed) error {
 	key := fmt.Sprintf("%d:%d", u.Message.ChatId, u.OldMessageId)
 	if ch, ok := c.pendingMessages.Load(key); ok {
 		ch.(chan TlObject) <- u
@@ -488,7 +581,26 @@ func (c *Client) Send(req TlObject) (TlObject, error) {
 }
 
 func (c *Client) handleAutoRetry(req map[string]interface{}, errObj *Error, isChatAttemptedLoad, isMessageAttemptedLoad *bool) bool {
-	if errObj.Code != 400 || c.config.AutoRetry == nil {
+	if c.config.AutoRetry == nil {
+		return false
+	}
+
+	if errObj.Code == 429 && c.config.AutoRetry.MaxFloodWait > 0 {
+		prefix := "Too Many Requests: retry after "
+		if strings.HasPrefix(errObj.Message, prefix) {
+			seconds, err := strconv.Atoi(strings.TrimPrefix(errObj.Message, prefix))
+			if err == nil {
+				waitTime := time.Duration(seconds) * time.Second
+				if waitTime <= c.config.AutoRetry.MaxFloodWait {
+					c.Info("Flood wait", "seconds", seconds)
+					time.Sleep(waitTime)
+					return true
+				}
+			}
+		}
+	}
+
+	if errObj.Code != 400 {
 		return false
 	}
 
@@ -502,14 +614,14 @@ func (c *Client) handleAutoRetry(req map[string]interface{}, errObj *Error, isCh
 			messageId = int64(mId)
 		}
 		if chatId != 0 && messageId != 0 {
-			c.Logger.Debug("Attempting to load message", "chat_id", chatId, "message_id", messageId)
+			c.Debug("Attempting to load message", "chat_id", chatId, "message_id", messageId)
 			msg, loadErr := c.GetMessage(chatId, messageId)
 			if loadErr == nil && msg != nil {
-				c.Logger.Debug("Successfully loaded message, retrying request", "chat_id", chatId, "message_id", messageId)
+				c.Debug("Successfully loaded message, retrying request", "chat_id", chatId, "message_id", messageId)
 				return true
 			}
 
-			c.Logger.Debug("Failed to load message", "chat_id", chatId, "message_id", messageId, "error", loadErr)
+			c.Debug("Failed to load message", "chat_id", chatId, "message_id", messageId, "error", loadErr)
 		}
 	}
 
@@ -520,10 +632,10 @@ func (c *Client) handleAutoRetry(req map[string]interface{}, errObj *Error, isCh
 			chatId = int64(cId)
 		}
 		if chatId != 0 {
-			c.Logger.Debug("Attempting to load chat", "chat_id", chatId)
+			c.Debug("Attempting to load chat", "chat_id", chatId)
 			chat, loadErr := c.GetChat(chatId)
 			if loadErr == nil && chat != nil {
-				c.Logger.Debug("Successfully loaded chat, retrying request", "chat_id", chatId)
+				c.Debug("Successfully loaded chat, retrying request", "chat_id", chatId)
 				if replyToMap, ok := req["reply_to"].(map[string]interface{}); ok {
 					if mId, ok := replyToMap["message_id"].(float64); ok {
 						replyToMessageId := int64(mId)
@@ -536,7 +648,7 @@ func (c *Client) handleAutoRetry(req map[string]interface{}, errObj *Error, isCh
 				return true
 			}
 
-			c.Logger.Debug("Failed to load chat", "chat_id", chatId, "error", loadErr)
+			c.Debug("Failed to load chat", "chat_id", chatId, "error", loadErr)
 		}
 	}
 	return false
@@ -662,4 +774,33 @@ func toOptionValue(v interface{}) OptionValue {
 
 func Bool(b bool) *bool {
 	return &b
+}
+
+type Waiter struct {
+	Filter func(client *Client, update TlObject) bool
+	C      chan TlObject
+}
+
+// WaitFor registers a waiter for a specific client and blocks until a matching update arrives or timeout occurs.
+func (c *Client) WaitFor(filter func(client *Client, update TlObject) bool, timeout time.Duration) (TlObject, error) {
+	ch := make(chan TlObject, 1)
+	idNum := atomic.AddInt64(&c.waiterCount, 1)
+	id := fmt.Sprintf("%d", idNum)
+
+	c.wMu.Lock()
+	c.waiters[id] = &Waiter{Filter: filter, C: ch}
+	c.wMu.Unlock()
+
+	defer func() {
+		c.wMu.Lock()
+		delete(c.waiters, id)
+		c.wMu.Unlock()
+	}()
+
+	select {
+	case u := <-ch:
+		return u, nil
+	case <-time.After(timeout):
+		return nil, ConversationTimeout
+	}
 }

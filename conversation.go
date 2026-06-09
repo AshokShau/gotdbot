@@ -12,7 +12,7 @@ type WaitMessageOpts struct {
 }
 
 // Ask waits for a new message in the specified chat.
-func (c *Context) Ask(chatId int64, opts *WaitMessageOpts) (*Message, error) {
+func (c *Client) Ask(chatId int64, opts *WaitMessageOpts) (*Message, error) {
 	if opts == nil {
 		opts = &WaitMessageOpts{Timeout: 1 * time.Minute}
 	}
@@ -21,15 +21,17 @@ func (c *Context) Ask(chatId int64, opts *WaitMessageOpts) (*Message, error) {
 	cancellationFilter := opts.CancellationFilter
 	timeout := opts.Timeout
 
-	msgFilter := func(client *Client, ctx *Context) bool {
-		if ctx.EffectiveChatId != chatId {
-			return false
-		}
-		if ctx.Update.UpdateNewMessage == nil {
+	msgFilter := func(client *Client, update TlObject) bool {
+		u, ok := update.(*UpdateNewMessage)
+		if !ok {
 			return false
 		}
 
-		msg := ctx.Update.UpdateNewMessage.Message
+		msg := u.Message
+		if msg.ChatId != chatId {
+			return false
+		}
+
 		if cancellationFilter != nil && cancellationFilter(msg) {
 			return true
 		}

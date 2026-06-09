@@ -3,79 +3,54 @@ package main
 //go:generate go run ../../scripts/tools/get_tdjson.go
 
 import (
-	"errors"
-	"fmt"
 	"log"
-	"time"
 
 	"github.com/AshokShau/gotdbot"
-	"github.com/AshokShau/gotdbot/handlers"
-	"github.com/AshokShau/gotdbot/handlers/filters"
 )
 
 func main() {
 	apiID := int32(6)
-	apiHash := "API_HASH"
-	botToken := "BOT_TOKEN"
+	apiHash := ""
+	botToken := ""
 
 	bot, err := gotdbot.NewClient(apiID, apiHash, botToken, &gotdbot.ClientOpts{LibraryPath: "./libtdjson.so.1.8.64"})
 	if err != nil {
 		panic(err)
 	}
 
-	dispatcher := bot.Dispatcher
+	bot.OnCommand("start", func(c *gotdbot.Client, u *gotdbot.Message) error {
+		_, err := c.SendTextMessage(u.ChatId, "Hello! I am a conversation bot powered by gotdbot "+gotdbot.Version+". What's your name?", &gotdbot.SendTextMessageOpts{ReplyToMessageID: u.Id})
+		if err != nil {
+			log.Printf("Error sending message: %v", err)
+			return err
+		}
 
-	dispatcher.AddHandler(handlers.NewCommand("start", func(c *gotdbot.Client, ctx *gotdbot.Context) error {
-		msg := ctx.EffectiveMessage
-		_, err := msg.ReplyText(c, "Welcome! Use /survey to start the survey.\nSend /cancel to stop talking to me", nil)
+		res, err := c.Ask(u.ChatId, &gotdbot.WaitMessageOpts{
+			Filter: func(m *gotdbot.Message) bool {
+				return m.SenderId.GetType() == "messageSenderUser"
+			},
+		})
+
+		if err != nil {
+			log.Printf("Error asking: %v", err)
+			return err
+		}
+
+		text := res.GetText()
+		_, err = c.SendTextMessage(u.ChatId, "Hello "+text+"!", &gotdbot.SendTextMessageOpts{ReplyToMessageID: res.Id})
 		return err
-	}))
-
-	dispatcher.AddHandler(handlers.NewCommand("survey", func(c *gotdbot.Client, ctx *gotdbot.Context) error {
-		chatId := ctx.EffectiveChatId
-		msg := ctx.EffectiveMessage
-
-		timeOut := 30 * time.Second
-		stopFilter := filters.Text.And(filters.SenderID(msg.SenderID())).And(filters.Command("cancel"))
-
-		_, err = msg.ReplyText(c, "What is your name?", nil)
-		if err != nil {
-			return err
-		}
-
-		nameMsg, err := ctx.Ask(chatId, &gotdbot.WaitMessageOpts{Timeout: timeOut, Filter: filters.Text.And(filters.SenderID(msg.SenderID())), CancellationFilter: stopFilter})
-		if err != nil {
-			_, _ = msg.ReplyText(c, err.Error(), nil)
-			return nil
-		}
-
-		_, err = msg.ReplyText(c, fmt.Sprintf("I see! Please send me a photo of yourself, %s.", nameMsg.Text()), &gotdbot.SendTextMessageOpts{ReplyMarkup: &gotdbot.ReplyMarkupForceReply{InputFieldPlaceholder: "Send a picture"}})
-		if err != nil {
-			return err
-		}
-
-		picMsg, err := ctx.Ask(chatId, &gotdbot.WaitMessageOpts{Timeout: timeOut, Filter: filters.Photo.And(filters.SenderID(msg.SenderID())), CancellationFilter: stopFilter})
-		if err != nil {
-			if errors.Is(err, gotdbot.ConversationCancelled) {
-				_, _ = msg.ReplyText(c, "Survey cancelled. Send /survey to start again.", nil)
-				return nil
-			}
-
-			_, _ = msg.ReplyText(c, "Timeout !", nil)
-			return nil
-		}
-
-		_, err = msg.ReplyPhoto(c, gotdbot.InputFileRemote{Id: picMsg.RemoteFileID()}, &gotdbot.SendPhotoOpts{Caption: fmt.Sprintf("Nice to meet you, %s!", nameMsg.Text())})
-		if err != nil {
-			return err
-		}
-
-		return nil
-	}))
+	})
 
 	err = bot.Start()
 	if err != nil {
 		log.Fatalf("Failed to start bot: %v", err)
 	}
+
+	me, _ := bot.GetMe()
+	username := ""
+	if me.Usernames != nil && len(me.Usernames.ActiveUsernames) > 0 {
+		username = me.Usernames.ActiveUsernames[0]
+	}
+	bot.Info("Logged in", "username", username, "id", me.Id)
 	bot.Idle()
 }

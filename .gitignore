@@ -2,6 +2,6 @@
 .idea
 *.so
 database
-libtdjson.so.*
 *.binlog
 db_*
+libtdjson.so.*

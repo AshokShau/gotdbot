@@ -5,14 +5,20 @@ import (
 	"os"
 	"runtime"
 	"time"
+
+	"github.com/AshokShau/gotdbot/logger"
 )
 
 type AutoRetry struct {
 	ChatNotFound    bool
 	MessageNotFound bool
+	MaxFloodWait    time.Duration
 }
 
 type ClientOpts struct {
+	PanicHandler func(client *Client, update TlObject, r interface{})
+	ErrorHandler func(client *Client, update TlObject, err error) error
+
 	LibraryPath             string
 	UseTestDC               bool
 	DatabaseDirectory       string
@@ -28,16 +34,12 @@ type ClientOpts struct {
 	SystemVersion           string
 	ApplicationVersion      string
 	TDLibOptions            *TDLibOptions
-	Logger                  *slog.Logger
+	Logger                  *logger.Logger
 	QrMode                  bool
 	AuthorizationTimeout    time.Duration
 	LogVerbosityLevel       int32
 	LogStream               LogStream
 	AutoRetry               *AutoRetry
-
-	// Dispatcher is the dispatcher to use for this client.
-	// If nil, a new dispatcher will be created.
-	Dispatcher *Dispatcher
 }
 
 // TDLibOptions contains TDLib options that can be set
@@ -205,7 +207,7 @@ func DefaultClientConfig() *ClientOpts {
 		DeviceModel:             "Gotdbot",
 		SystemVersion:           runtime.GOOS,
 		ApplicationVersion:      "Gotdbot " + Version,
-		Logger:                  slog.New(slog.NewTextHandler(os.Stdout, nil)),
+		Logger:                  logger.New(logger.WithLevel(slog.LevelInfo), logger.WithOutput(os.Stdout)),
 		QrMode:                  false,
 		AuthorizationTimeout:    60 * time.Second,
 		LogVerbosityLevel:       2,
