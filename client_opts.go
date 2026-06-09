@@ -40,6 +40,7 @@ type ClientOpts struct {
 	LogVerbosityLevel       int32
 	LogStream               LogStream
 	AutoRetry               *AutoRetry
+	ParseMode               string
 }
 
 // TDLibOptions contains TDLib options that can be set
@@ -212,5 +213,6 @@ func DefaultClientConfig() *ClientOpts {
 		AuthorizationTimeout:    60 * time.Second,
 		LogVerbosityLevel:       2,
 		AutoRetry:               &AutoRetry{},
+		ParseMode:               "",
 	}
 }

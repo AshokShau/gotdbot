@@ -14,7 +14,13 @@ func (c *Client) GetFormattedText(text string, entities []TextEntity, parseMode 
 			Text:     text,
 			Entities: entities,
 		}, nil
-	} else if parseMode != "" {
+	}
+
+	if parseMode == "" {
+		parseMode = c.config.ParseMode
+	}
+
+	if parseMode != "" {
 		ft, err := c.ParseText(text, parseMode)
 		if err == nil {
 			return ft, nil

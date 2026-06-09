@@ -108,6 +108,9 @@ func NewClient(apiID int32, apiHash, tokenOrPhone string, config *ClientOpts) (*
 		if config.AutoRetry == nil {
 			config.AutoRetry = def.AutoRetry
 		}
+		if config.ParseMode == "" {
+			config.ParseMode = def.ParseMode
+		}
 	}
 
 	if err := tdjson.Init(config.LibraryPath); err != nil {
