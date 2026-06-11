@@ -108,23 +108,30 @@ func (c *Client) sendMessageWithContent(
 
 // SendTextMessageOpts contains optional parameters for SendTextMessage
 type SendTextMessageOpts struct {
-	ParseMode             string
-	Entities              []TextEntity
-	DisableWebPagePreview bool
-	Url                   string
-	ForceSmallMedia       bool
-	ForceLargeMedia       bool
-	ShowAboveText         bool
-	DisableNotification   bool
-	ProtectContent        bool
-	AllowPaidBroadcast    bool
-	TopicId               MessageTopic
-	Quote                 *InputTextQuote
-	ReplyTo               InputMessageReplyTo
-	ReplyToMessageID      int64
-	ReplyMarkup           ReplyMarkup
-	ClearDraft            bool
-	EffectId              int64
+	ParseMode                         string
+	Entities                          []TextEntity
+	DisableWebPagePreview             bool
+	Url                               string
+	ForceSmallMedia                   bool
+	ForceLargeMedia                   bool
+	ShowAboveText                     bool
+	DisableNotification               bool
+	ProtectContent                    bool
+	AllowPaidBroadcast                bool
+	TopicId                           MessageTopic
+	Quote                             *InputTextQuote
+	ReplyTo                           InputMessageReplyTo
+	ReplyToMessageID                  int64
+	ReplyMarkup                       ReplyMarkup
+	ClearDraft                        bool
+	EffectId                          int64
+	FromBackground                    bool
+	OnlyPreview                       bool
+	PaidMessageStarCount              int64
+	SchedulingState                   MessageSchedulingState
+	SendingId                         int32
+	SuggestedPostInfo                 *InputSuggestedPostInfo
+	UpdateOrderOfInstalledStickerSets bool
 }
 
 // SendTextMessage sends a text message to chat
@@ -153,33 +160,48 @@ func (c *Client) SendTextMessage(chatId int64, text string, opts *SendTextMessag
 	}
 
 	return c.sendMessageWithContent(chatId, content, &MessageSendOptions{
-		DisableNotification: opts.DisableNotification,
-		ProtectContent:      opts.ProtectContent,
-		AllowPaidBroadcast:  opts.AllowPaidBroadcast,
-		EffectId:            opts.EffectId,
+		DisableNotification:               opts.DisableNotification,
+		ProtectContent:                    opts.ProtectContent,
+		AllowPaidBroadcast:                opts.AllowPaidBroadcast,
+		EffectId:                          opts.EffectId,
+		FromBackground:                    opts.FromBackground,
+		OnlyPreview:                       opts.OnlyPreview,
+		PaidMessageStarCount:              opts.PaidMessageStarCount,
+		SchedulingState:                   opts.SchedulingState,
+		SendingId:                         opts.SendingId,
+		SuggestedPostInfo:                 opts.SuggestedPostInfo,
+		UpdateOrderOfInstalledStickerSets: opts.UpdateOrderOfInstalledStickerSets,
 	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
 }
 
 // SendPhotoOpts contains optional parameters for SendPhoto
 type SendPhotoOpts struct {
-	Caption             string
-	CaptionEntities     []TextEntity
-	ParseMode           string
-	AddedStickerFileIds []int32
-	Width               int32
-	Height              int32
-	SelfDestructType    MessageSelfDestructType
-	DisableNotification bool
-	ProtectContent      bool
-	AllowPaidBroadcast  bool
-	HasSpoiler          bool
-	TopicId             MessageTopic
-	Quote               *InputTextQuote
-	ReplyTo             InputMessageReplyTo
-	ReplyToMessageID    int64
-	ReplyMarkup         ReplyMarkup
-	Thumbnail           *InputThumbnail
-	EffectId            int64
+	Caption                           string
+	CaptionEntities                   []TextEntity
+	ParseMode                         string
+	AddedStickerFileIds               []int32
+	Width                             int32
+	Height                            int32
+	SelfDestructType                  MessageSelfDestructType
+	DisableNotification               bool
+	ProtectContent                    bool
+	AllowPaidBroadcast                bool
+	HasSpoiler                        bool
+	ShowCaptionAboveMedia             bool
+	TopicId                           MessageTopic
+	Quote                             *InputTextQuote
+	ReplyTo                           InputMessageReplyTo
+	ReplyToMessageID                  int64
+	ReplyMarkup                       ReplyMarkup
+	Thumbnail                         *InputThumbnail
+	EffectId                          int64
+	FromBackground                    bool
+	OnlyPreview                       bool
+	PaidMessageStarCount              int64
+	SchedulingState                   MessageSchedulingState
+	SendingId                         int32
+	SuggestedPostInfo                 *InputSuggestedPostInfo
+	UpdateOrderOfInstalledStickerSets bool
 }
 
 // SendPhoto sends a photo to chat
@@ -194,46 +216,66 @@ func (c *Client) SendPhoto(chatId int64, photo InputFile, opts *SendPhotoOpts) (
 	}
 
 	content := &InputMessagePhoto{
-		Photo:               photo,
-		Thumbnail:           opts.Thumbnail,
-		AddedStickerFileIds: opts.AddedStickerFileIds,
-		Width:               opts.Width,
-		Height:              opts.Height,
-		Caption:             caption,
-		SelfDestructType:    opts.SelfDestructType,
-		HasSpoiler:          opts.HasSpoiler,
+		Photo: &InputPhoto{
+			Photo:               photo,
+			Thumbnail:           opts.Thumbnail,
+			AddedStickerFileIds: opts.AddedStickerFileIds,
+			Width:               opts.Width,
+			Height:              opts.Height,
+		},
+		Caption:               caption,
+		SelfDestructType:      opts.SelfDestructType,
+		HasSpoiler:            opts.HasSpoiler,
+		ShowCaptionAboveMedia: opts.ShowCaptionAboveMedia,
 	}
 
 	return c.sendMessageWithContent(chatId, content, &MessageSendOptions{
-		DisableNotification: opts.DisableNotification,
-		ProtectContent:      opts.ProtectContent,
-		AllowPaidBroadcast:  opts.AllowPaidBroadcast,
-		EffectId:            opts.EffectId,
+		DisableNotification:               opts.DisableNotification,
+		ProtectContent:                    opts.ProtectContent,
+		AllowPaidBroadcast:                opts.AllowPaidBroadcast,
+		EffectId:                          opts.EffectId,
+		FromBackground:                    opts.FromBackground,
+		OnlyPreview:                       opts.OnlyPreview,
+		PaidMessageStarCount:              opts.PaidMessageStarCount,
+		SchedulingState:                   opts.SchedulingState,
+		SendingId:                         opts.SendingId,
+		SuggestedPostInfo:                 opts.SuggestedPostInfo,
+		UpdateOrderOfInstalledStickerSets: opts.UpdateOrderOfInstalledStickerSets,
 	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
 }
 
 // SendVideoOpts contains optional parameters for SendVideo
 type SendVideoOpts struct {
-	Caption             string
-	CaptionEntities     []TextEntity
-	ParseMode           string
-	AddedStickerFileIds []int32
-	SupportsStreaming   bool
-	Duration            int32
-	Width               int32
-	Height              int32
-	SelfDestructType    MessageSelfDestructType
-	DisableNotification bool
-	ProtectContent      bool
-	AllowPaidBroadcast  bool
-	HasSpoiler          bool
-	TopicId             MessageTopic
-	Quote               *InputTextQuote
-	ReplyTo             InputMessageReplyTo
-	ReplyToMessageID    int64
-	ReplyMarkup         ReplyMarkup
-	Thumbnail           *InputThumbnail
-	EffectId            int64
+	Caption                           string
+	CaptionEntities                   []TextEntity
+	ParseMode                         string
+	AddedStickerFileIds               []int32
+	SupportsStreaming                 bool
+	Duration                          int32
+	Width                             int32
+	Height                            int32
+	SelfDestructType                  MessageSelfDestructType
+	DisableNotification               bool
+	ProtectContent                    bool
+	AllowPaidBroadcast                bool
+	HasSpoiler                        bool
+	ShowCaptionAboveMedia             bool
+	TopicId                           MessageTopic
+	Quote                             *InputTextQuote
+	ReplyTo                           InputMessageReplyTo
+	ReplyToMessageID                  int64
+	ReplyMarkup                       ReplyMarkup
+	Thumbnail                         *InputThumbnail
+	EffectId                          int64
+	StartTimestamp                    int32
+	Cover                             InputFile
+	FromBackground                    bool
+	OnlyPreview                       bool
+	PaidMessageStarCount              int64
+	SchedulingState                   MessageSchedulingState
+	SendingId                         int32
+	SuggestedPostInfo                 *InputSuggestedPostInfo
+	UpdateOrderOfInstalledStickerSets bool
 }
 
 // SendVideo sends a video to chat
@@ -248,46 +290,66 @@ func (c *Client) SendVideo(chatId int64, video InputFile, opts *SendVideoOpts) (
 	}
 
 	content := &InputMessageVideo{
-		Video:               video,
-		Thumbnail:           opts.Thumbnail,
-		AddedStickerFileIds: opts.AddedStickerFileIds,
-		Duration:            opts.Duration,
-		Width:               opts.Width,
-		Height:              opts.Height,
-		SupportsStreaming:   opts.SupportsStreaming,
-		Caption:             caption,
-		SelfDestructType:    opts.SelfDestructType,
-		HasSpoiler:          opts.HasSpoiler,
+		Video: &InputVideo{
+			Video:               video,
+			Thumbnail:           opts.Thumbnail,
+			AddedStickerFileIds: opts.AddedStickerFileIds,
+			Duration:            opts.Duration,
+			Width:               opts.Width,
+			Height:              opts.Height,
+			SupportsStreaming:   opts.SupportsStreaming,
+			StartTimestamp:      opts.StartTimestamp,
+			Cover:               opts.Cover,
+		},
+		Caption:               caption,
+		SelfDestructType:      opts.SelfDestructType,
+		HasSpoiler:            opts.HasSpoiler,
+		ShowCaptionAboveMedia: opts.ShowCaptionAboveMedia,
 	}
 
 	return c.sendMessageWithContent(chatId, content, &MessageSendOptions{
-		DisableNotification: opts.DisableNotification,
-		ProtectContent:      opts.ProtectContent,
-		AllowPaidBroadcast:  opts.AllowPaidBroadcast,
-		EffectId:            opts.EffectId,
+		DisableNotification:               opts.DisableNotification,
+		ProtectContent:                    opts.ProtectContent,
+		AllowPaidBroadcast:                opts.AllowPaidBroadcast,
+		EffectId:                          opts.EffectId,
+		FromBackground:                    opts.FromBackground,
+		OnlyPreview:                       opts.OnlyPreview,
+		PaidMessageStarCount:              opts.PaidMessageStarCount,
+		SchedulingState:                   opts.SchedulingState,
+		SendingId:                         opts.SendingId,
+		SuggestedPostInfo:                 opts.SuggestedPostInfo,
+		UpdateOrderOfInstalledStickerSets: opts.UpdateOrderOfInstalledStickerSets,
 	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
 }
 
 // SendAnimationOpts contains optional parameters for SendAnimation
 type SendAnimationOpts struct {
-	Caption             string
-	CaptionEntities     []TextEntity
-	ParseMode           string
-	AddedStickerFileIds []int32
-	Duration            int32
-	Width               int32
-	Height              int32
-	DisableNotification bool
-	ProtectContent      bool
-	AllowPaidBroadcast  bool
-	HasSpoiler          bool
-	TopicId             MessageTopic
-	Quote               *InputTextQuote
-	ReplyTo             InputMessageReplyTo
-	ReplyToMessageID    int64
-	ReplyMarkup         ReplyMarkup
-	Thumbnail           *InputThumbnail
-	EffectId            int64
+	Caption                           string
+	CaptionEntities                   []TextEntity
+	ParseMode                         string
+	AddedStickerFileIds               []int32
+	Duration                          int32
+	Width                             int32
+	Height                            int32
+	DisableNotification               bool
+	ProtectContent                    bool
+	AllowPaidBroadcast                bool
+	HasSpoiler                        bool
+	ShowCaptionAboveMedia             bool
+	TopicId                           MessageTopic
+	Quote                             *InputTextQuote
+	ReplyTo                           InputMessageReplyTo
+	ReplyToMessageID                  int64
+	ReplyMarkup                       ReplyMarkup
+	Thumbnail                         *InputThumbnail
+	EffectId                          int64
+	FromBackground                    bool
+	OnlyPreview                       bool
+	PaidMessageStarCount              int64
+	SchedulingState                   MessageSchedulingState
+	SendingId                         int32
+	SuggestedPostInfo                 *InputSuggestedPostInfo
+	UpdateOrderOfInstalledStickerSets bool
 }
 
 // SendAnimation sends an animation to chat
@@ -302,42 +364,59 @@ func (c *Client) SendAnimation(chatId int64, animation InputFile, opts *SendAnim
 	}
 
 	content := &InputMessageAnimation{
-		Animation:           animation,
-		Thumbnail:           opts.Thumbnail,
-		AddedStickerFileIds: opts.AddedStickerFileIds,
-		Duration:            opts.Duration,
-		Width:               opts.Width,
-		Height:              opts.Height,
-		Caption:             caption,
-		HasSpoiler:          opts.HasSpoiler,
+		Animation: &InputAnimation{
+			Animation:           animation,
+			Thumbnail:           opts.Thumbnail,
+			AddedStickerFileIds: opts.AddedStickerFileIds,
+			Duration:            opts.Duration,
+			Width:               opts.Width,
+			Height:              opts.Height,
+		},
+		Caption:               caption,
+		HasSpoiler:            opts.HasSpoiler,
+		ShowCaptionAboveMedia: opts.ShowCaptionAboveMedia,
 	}
 
 	return c.sendMessageWithContent(chatId, content, &MessageSendOptions{
-		DisableNotification: opts.DisableNotification,
-		ProtectContent:      opts.ProtectContent,
-		AllowPaidBroadcast:  opts.AllowPaidBroadcast,
-		EffectId:            opts.EffectId,
+		DisableNotification:               opts.DisableNotification,
+		ProtectContent:                    opts.ProtectContent,
+		AllowPaidBroadcast:                opts.AllowPaidBroadcast,
+		EffectId:                          opts.EffectId,
+		FromBackground:                    opts.FromBackground,
+		OnlyPreview:                       opts.OnlyPreview,
+		PaidMessageStarCount:              opts.PaidMessageStarCount,
+		SchedulingState:                   opts.SchedulingState,
+		SendingId:                         opts.SendingId,
+		SuggestedPostInfo:                 opts.SuggestedPostInfo,
+		UpdateOrderOfInstalledStickerSets: opts.UpdateOrderOfInstalledStickerSets,
 	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
 }
 
 // SendAudioOpts contains optional parameters for SendAudio
 type SendAudioOpts struct {
-	Caption             string
-	CaptionEntities     []TextEntity
-	ParseMode           string
-	Title               string
-	Performer           string
-	Duration            int32
-	DisableNotification bool
-	ProtectContent      bool
-	AllowPaidBroadcast  bool
-	TopicId             MessageTopic
-	Quote               *InputTextQuote
-	ReplyTo             InputMessageReplyTo
-	ReplyToMessageID    int64
-	ReplyMarkup         ReplyMarkup
-	AlbumCoverThumbnail *InputThumbnail
-	EffectId            int64
+	Caption                           string
+	CaptionEntities                   []TextEntity
+	ParseMode                         string
+	Title                             string
+	Performer                         string
+	Duration                          int32
+	DisableNotification               bool
+	ProtectContent                    bool
+	AllowPaidBroadcast                bool
+	TopicId                           MessageTopic
+	Quote                             *InputTextQuote
+	ReplyTo                           InputMessageReplyTo
+	ReplyToMessageID                  int64
+	ReplyMarkup                       ReplyMarkup
+	AlbumCoverThumbnail               *InputThumbnail
+	EffectId                          int64
+	FromBackground                    bool
+	OnlyPreview                       bool
+	PaidMessageStarCount              int64
+	SchedulingState                   MessageSchedulingState
+	SendingId                         int32
+	SuggestedPostInfo                 *InputSuggestedPostInfo
+	UpdateOrderOfInstalledStickerSets bool
 }
 
 // SendAudio sends an audio to chat
@@ -352,38 +431,54 @@ func (c *Client) SendAudio(chatId int64, audio InputFile, opts *SendAudioOpts) (
 	}
 
 	content := &InputMessageAudio{
-		Audio:               audio,
-		AlbumCoverThumbnail: opts.AlbumCoverThumbnail,
-		Title:               opts.Title,
-		Performer:           opts.Performer,
-		Duration:            opts.Duration,
-		Caption:             caption,
+		Audio: &InputAudio{
+			Audio:               audio,
+			AlbumCoverThumbnail: opts.AlbumCoverThumbnail,
+			Title:               opts.Title,
+			Performer:           opts.Performer,
+			Duration:            opts.Duration,
+		},
+		Caption: caption,
 	}
 
 	return c.sendMessageWithContent(chatId, content, &MessageSendOptions{
-		DisableNotification: opts.DisableNotification,
-		ProtectContent:      opts.ProtectContent,
-		AllowPaidBroadcast:  opts.AllowPaidBroadcast,
-		EffectId:            opts.EffectId,
+		DisableNotification:               opts.DisableNotification,
+		ProtectContent:                    opts.ProtectContent,
+		AllowPaidBroadcast:                opts.AllowPaidBroadcast,
+		EffectId:                          opts.EffectId,
+		FromBackground:                    opts.FromBackground,
+		OnlyPreview:                       opts.OnlyPreview,
+		PaidMessageStarCount:              opts.PaidMessageStarCount,
+		SchedulingState:                   opts.SchedulingState,
+		SendingId:                         opts.SendingId,
+		SuggestedPostInfo:                 opts.SuggestedPostInfo,
+		UpdateOrderOfInstalledStickerSets: opts.UpdateOrderOfInstalledStickerSets,
 	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
 }
 
 // SendDocumentOpts contains optional parameters for SendDocument
 type SendDocumentOpts struct {
-	Caption                     string
-	CaptionEntities             []TextEntity
-	ParseMode                   string
-	DisableContentTypeDetection bool
-	DisableNotification         bool
-	ProtectContent              bool
-	AllowPaidBroadcast          bool
-	TopicId                     MessageTopic
-	Quote                       *InputTextQuote
-	ReplyTo                     InputMessageReplyTo
-	ReplyToMessageID            int64
-	ReplyMarkup                 ReplyMarkup
-	Thumbnail                   *InputThumbnail
-	EffectId                    int64
+	Caption                           string
+	CaptionEntities                   []TextEntity
+	ParseMode                         string
+	DisableContentTypeDetection       bool
+	DisableNotification               bool
+	ProtectContent                    bool
+	AllowPaidBroadcast                bool
+	TopicId                           MessageTopic
+	Quote                             *InputTextQuote
+	ReplyTo                           InputMessageReplyTo
+	ReplyToMessageID                  int64
+	ReplyMarkup                       ReplyMarkup
+	Thumbnail                         *InputThumbnail
+	EffectId                          int64
+	FromBackground                    bool
+	OnlyPreview                       bool
+	PaidMessageStarCount              int64
+	SchedulingState                   MessageSchedulingState
+	SendingId                         int32
+	SuggestedPostInfo                 *InputSuggestedPostInfo
+	UpdateOrderOfInstalledStickerSets bool
 }
 
 // SendDocument sends a document to chat
@@ -398,36 +493,53 @@ func (c *Client) SendDocument(chatId int64, document InputFile, opts *SendDocume
 	}
 
 	content := &InputMessageDocument{
-		Document:                    document,
-		Thumbnail:                   opts.Thumbnail,
-		DisableContentTypeDetection: opts.DisableContentTypeDetection,
-		Caption:                     caption,
+		Document: &InputDocument{
+			Document:                    document,
+			Thumbnail:                   opts.Thumbnail,
+			DisableContentTypeDetection: opts.DisableContentTypeDetection,
+		},
+		Caption: caption,
 	}
 
 	return c.sendMessageWithContent(chatId, content, &MessageSendOptions{
-		DisableNotification: opts.DisableNotification,
-		ProtectContent:      opts.ProtectContent,
-		AllowPaidBroadcast:  opts.AllowPaidBroadcast,
-		EffectId:            opts.EffectId,
+		DisableNotification:               opts.DisableNotification,
+		ProtectContent:                    opts.ProtectContent,
+		AllowPaidBroadcast:                opts.AllowPaidBroadcast,
+		EffectId:                          opts.EffectId,
+		FromBackground:                    opts.FromBackground,
+		OnlyPreview:                       opts.OnlyPreview,
+		PaidMessageStarCount:              opts.PaidMessageStarCount,
+		SchedulingState:                   opts.SchedulingState,
+		SendingId:                         opts.SendingId,
+		SuggestedPostInfo:                 opts.SuggestedPostInfo,
+		UpdateOrderOfInstalledStickerSets: opts.UpdateOrderOfInstalledStickerSets,
 	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
 }
 
 // SendVoiceOpts contains optional parameters for SendVoice
 type SendVoiceOpts struct {
-	Caption             string
-	CaptionEntities     []TextEntity
-	ParseMode           string
-	Duration            int32
-	Waveform            []byte
-	DisableNotification bool
-	ProtectContent      bool
-	AllowPaidBroadcast  bool
-	TopicId             MessageTopic
-	Quote               *InputTextQuote
-	ReplyTo             InputMessageReplyTo
-	ReplyToMessageID    int64
-	ReplyMarkup         ReplyMarkup
-	EffectId            int64
+	Caption                           string
+	CaptionEntities                   []TextEntity
+	ParseMode                         string
+	Duration                          int32
+	Waveform                          []byte
+	DisableNotification               bool
+	ProtectContent                    bool
+	AllowPaidBroadcast                bool
+	TopicId                           MessageTopic
+	Quote                             *InputTextQuote
+	ReplyTo                           InputMessageReplyTo
+	ReplyToMessageID                  int64
+	ReplyMarkup                       ReplyMarkup
+	EffectId                          int64
+	SelfDestructType                  MessageSelfDestructType
+	FromBackground                    bool
+	OnlyPreview                       bool
+	PaidMessageStarCount              int64
+	SchedulingState                   MessageSchedulingState
+	SendingId                         int32
+	SuggestedPostInfo                 *InputSuggestedPostInfo
+	UpdateOrderOfInstalledStickerSets bool
 }
 
 // SendVoice sends a voice note to chat
@@ -442,34 +554,50 @@ func (c *Client) SendVoice(chatId int64, voice InputFile, opts *SendVoiceOpts) (
 	}
 
 	content := &InputMessageVoiceNote{
-		VoiceNote: voice,
-		Waveform:  opts.Waveform,
-		Duration:  opts.Duration,
-		Caption:   caption,
+		VoiceNote:        voice,
+		Waveform:         opts.Waveform,
+		Duration:         opts.Duration,
+		Caption:          caption,
+		SelfDestructType: opts.SelfDestructType,
 	}
 
 	return c.sendMessageWithContent(chatId, content, &MessageSendOptions{
-		DisableNotification: opts.DisableNotification,
-		ProtectContent:      opts.ProtectContent,
-		AllowPaidBroadcast:  opts.AllowPaidBroadcast,
-		EffectId:            opts.EffectId,
+		DisableNotification:               opts.DisableNotification,
+		ProtectContent:                    opts.ProtectContent,
+		AllowPaidBroadcast:                opts.AllowPaidBroadcast,
+		EffectId:                          opts.EffectId,
+		FromBackground:                    opts.FromBackground,
+		OnlyPreview:                       opts.OnlyPreview,
+		PaidMessageStarCount:              opts.PaidMessageStarCount,
+		SchedulingState:                   opts.SchedulingState,
+		SendingId:                         opts.SendingId,
+		SuggestedPostInfo:                 opts.SuggestedPostInfo,
+		UpdateOrderOfInstalledStickerSets: opts.UpdateOrderOfInstalledStickerSets,
 	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
 }
 
 // SendVideoNoteOpts contains optional parameters for SendVideoNote
 type SendVideoNoteOpts struct {
-	Duration            int32
-	Length              int32
-	DisableNotification bool
-	ProtectContent      bool
-	AllowPaidBroadcast  bool
-	TopicId             MessageTopic
-	Quote               *InputTextQuote
-	ReplyTo             InputMessageReplyTo
-	ReplyToMessageID    int64
-	ReplyMarkup         ReplyMarkup
-	Thumbnail           *InputThumbnail
-	EffectId            int64
+	Duration                          int32
+	Length                            int32
+	DisableNotification               bool
+	ProtectContent                    bool
+	AllowPaidBroadcast                bool
+	TopicId                           MessageTopic
+	Quote                             *InputTextQuote
+	ReplyTo                           InputMessageReplyTo
+	ReplyToMessageID                  int64
+	ReplyMarkup                       ReplyMarkup
+	Thumbnail                         *InputThumbnail
+	EffectId                          int64
+	SelfDestructType                  MessageSelfDestructType
+	FromBackground                    bool
+	OnlyPreview                       bool
+	PaidMessageStarCount              int64
+	SchedulingState                   MessageSchedulingState
+	SendingId                         int32
+	SuggestedPostInfo                 *InputSuggestedPostInfo
+	UpdateOrderOfInstalledStickerSets bool
 }
 
 // SendVideoNote sends a video note to chat
@@ -479,35 +607,50 @@ func (c *Client) SendVideoNote(chatId int64, videoNote InputFile, opts *SendVide
 	}
 
 	content := &InputMessageVideoNote{
-		VideoNote: videoNote,
-		Thumbnail: opts.Thumbnail,
-		Duration:  opts.Duration,
-		Length:    opts.Length,
+		VideoNote:        videoNote,
+		Thumbnail:        opts.Thumbnail,
+		Duration:         opts.Duration,
+		Length:           opts.Length,
+		SelfDestructType: opts.SelfDestructType,
 	}
 
 	return c.sendMessageWithContent(chatId, content, &MessageSendOptions{
-		DisableNotification: opts.DisableNotification,
-		ProtectContent:      opts.ProtectContent,
-		AllowPaidBroadcast:  opts.AllowPaidBroadcast,
-		EffectId:            opts.EffectId,
+		DisableNotification:               opts.DisableNotification,
+		ProtectContent:                    opts.ProtectContent,
+		AllowPaidBroadcast:                opts.AllowPaidBroadcast,
+		EffectId:                          opts.EffectId,
+		FromBackground:                    opts.FromBackground,
+		OnlyPreview:                       opts.OnlyPreview,
+		PaidMessageStarCount:              opts.PaidMessageStarCount,
+		SchedulingState:                   opts.SchedulingState,
+		SendingId:                         opts.SendingId,
+		SuggestedPostInfo:                 opts.SuggestedPostInfo,
+		UpdateOrderOfInstalledStickerSets: opts.UpdateOrderOfInstalledStickerSets,
 	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
 }
 
 // SendStickerOpts contains optional parameters for SendSticker
 type SendStickerOpts struct {
-	Emoji               string
-	Width               int32
-	Height              int32
-	DisableNotification bool
-	ProtectContent      bool
-	AllowPaidBroadcast  bool
-	TopicId             MessageTopic
-	Quote               *InputTextQuote
-	ReplyTo             InputMessageReplyTo
-	ReplyToMessageID    int64
-	ReplyMarkup         ReplyMarkup
-	Thumbnail           *InputThumbnail
-	EffectId            int64
+	Emoji                             string
+	Width                             int32
+	Height                            int32
+	DisableNotification               bool
+	ProtectContent                    bool
+	AllowPaidBroadcast                bool
+	TopicId                           MessageTopic
+	Quote                             *InputTextQuote
+	ReplyTo                           InputMessageReplyTo
+	ReplyToMessageID                  int64
+	ReplyMarkup                       ReplyMarkup
+	Thumbnail                         *InputThumbnail
+	EffectId                          int64
+	FromBackground                    bool
+	OnlyPreview                       bool
+	PaidMessageStarCount              int64
+	SchedulingState                   MessageSchedulingState
+	SendingId                         int32
+	SuggestedPostInfo                 *InputSuggestedPostInfo
+	UpdateOrderOfInstalledStickerSets bool
 }
 
 // SendSticker sends a sticker to chat
@@ -525,29 +668,44 @@ func (c *Client) SendSticker(chatId int64, sticker InputFile, opts *SendStickerO
 	}
 
 	return c.sendMessageWithContent(chatId, content, &MessageSendOptions{
-		DisableNotification: opts.DisableNotification,
-		ProtectContent:      opts.ProtectContent,
-		AllowPaidBroadcast:  opts.AllowPaidBroadcast,
-		EffectId:            opts.EffectId,
+		DisableNotification:               opts.DisableNotification,
+		ProtectContent:                    opts.ProtectContent,
+		AllowPaidBroadcast:                opts.AllowPaidBroadcast,
+		EffectId:                          opts.EffectId,
+		FromBackground:                    opts.FromBackground,
+		OnlyPreview:                       opts.OnlyPreview,
+		PaidMessageStarCount:              opts.PaidMessageStarCount,
+		SchedulingState:                   opts.SchedulingState,
+		SendingId:                         opts.SendingId,
+		SuggestedPostInfo:                 opts.SuggestedPostInfo,
+		UpdateOrderOfInstalledStickerSets: opts.UpdateOrderOfInstalledStickerSets,
 	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
 }
 
 // SendCopyOpts contains optional parameters for SendCopy
 type SendCopyOpts struct {
-	InGameShare         bool
-	ReplaceCaption      bool
-	NewCaption          string
-	NewCaptionEntities  []TextEntity
-	ParseMode           string
-	DisableNotification bool
-	ProtectContent      bool
-	AllowPaidBroadcast  bool
-	TopicId             MessageTopic
-	Quote               *InputTextQuote
-	ReplyTo             InputMessageReplyTo
-	ReplyMarkup         ReplyMarkup
-	ReplyToMessageID    int64
-	EffectId            int64
+	InGameShare                       bool
+	ReplaceCaption                    bool
+	NewCaption                        string
+	NewCaptionEntities                []TextEntity
+	ParseMode                         string
+	DisableNotification               bool
+	ProtectContent                    bool
+	AllowPaidBroadcast                bool
+	TopicId                           MessageTopic
+	Quote                             *InputTextQuote
+	ReplyTo                           InputMessageReplyTo
+	ReplyMarkup                       ReplyMarkup
+	ReplyToMessageID                  int64
+	EffectId                          int64
+	NewShowCaptionAboveMedia          bool
+	FromBackground                    bool
+	OnlyPreview                       bool
+	PaidMessageStarCount              int64
+	SchedulingState                   MessageSchedulingState
+	SendingId                         int32
+	SuggestedPostInfo                 *InputSuggestedPostInfo
+	UpdateOrderOfInstalledStickerSets bool
 }
 
 // SendCopy copies a message to chat
@@ -565,25 +723,42 @@ func (c *Client) SendCopy(chatId int64, fromChatId int64, messageId int64, opts 
 		MessageId:   messageId,
 		InGameShare: opts.InGameShare,
 		CopyOptions: &MessageCopyOptions{
-			SendCopy:       true,
-			ReplaceCaption: opts.ReplaceCaption,
-			NewCaption:     caption,
+			SendCopy:                 true,
+			ReplaceCaption:           opts.ReplaceCaption,
+			NewCaption:               caption,
+			NewShowCaptionAboveMedia: opts.NewShowCaptionAboveMedia,
 		},
 	}
 
 	return c.sendMessageWithContent(chatId, content, &MessageSendOptions{
-		DisableNotification: opts.DisableNotification,
-		ProtectContent:      opts.ProtectContent,
-		AllowPaidBroadcast:  opts.AllowPaidBroadcast,
-		EffectId:            opts.EffectId,
+		DisableNotification:               opts.DisableNotification,
+		ProtectContent:                    opts.ProtectContent,
+		AllowPaidBroadcast:                opts.AllowPaidBroadcast,
+		EffectId:                          opts.EffectId,
+		FromBackground:                    opts.FromBackground,
+		OnlyPreview:                       opts.OnlyPreview,
+		PaidMessageStarCount:              opts.PaidMessageStarCount,
+		SchedulingState:                   opts.SchedulingState,
+		SendingId:                         opts.SendingId,
+		SuggestedPostInfo:                 opts.SuggestedPostInfo,
+		UpdateOrderOfInstalledStickerSets: opts.UpdateOrderOfInstalledStickerSets,
 	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
 }
 
 // ForwardMessageOpts contains optional parameters for ForwardMessage
 type ForwardMessageOpts struct {
-	InGameShare         bool
-	DisableNotification bool
-	EffectId            int64
+	InGameShare                       bool
+	DisableNotification               bool
+	EffectId                          int64
+	ReplaceVideoStartTimestamp        bool
+	NewVideoStartTimestamp            int32
+	FromBackground                    bool
+	OnlyPreview                       bool
+	PaidMessageStarCount              int64
+	ProtectContent                    bool
+	SchedulingState                   MessageSchedulingState
+	SendingId                         int32
+	UpdateOrderOfInstalledStickerSets bool
 }
 
 // ForwardMessage forwards a message to chat
@@ -593,14 +768,23 @@ func (c *Client) ForwardMessage(chatId int64, fromChatId int64, messageId int64,
 	}
 
 	content := &InputMessageForwarded{
-		FromChatId:  fromChatId,
-		MessageId:   messageId,
-		InGameShare: opts.InGameShare,
+		FromChatId:                 fromChatId,
+		MessageId:                  messageId,
+		InGameShare:                opts.InGameShare,
+		ReplaceVideoStartTimestamp: opts.ReplaceVideoStartTimestamp,
+		NewVideoStartTimestamp:     opts.NewVideoStartTimestamp,
 	}
 
 	return c.sendMessageWithContent(chatId, content, &MessageSendOptions{
-		DisableNotification: opts.DisableNotification,
-		EffectId:            opts.EffectId,
+		DisableNotification:               opts.DisableNotification,
+		EffectId:                          opts.EffectId,
+		FromBackground:                    opts.FromBackground,
+		OnlyPreview:                       opts.OnlyPreview,
+		PaidMessageStarCount:              opts.PaidMessageStarCount,
+		ProtectContent:                    opts.ProtectContent,
+		SchedulingState:                   opts.SchedulingState,
+		SendingId:                         opts.SendingId,
+		UpdateOrderOfInstalledStickerSets: opts.UpdateOrderOfInstalledStickerSets,
 	}, nil, nil, nil, 0, nil)
 }
 
@@ -721,15 +905,22 @@ func (c *Client) ParseText(text string, parseMode string) (*FormattedText, error
 
 // SendChecklistOpts contains optional parameters for SendChecklist
 type SendChecklistOpts struct {
-	DisableNotification bool
-	ProtectContent      bool
-	AllowPaidBroadcast  bool
-	TopicId             MessageTopic
-	Quote               *InputTextQuote
-	ReplyTo             InputMessageReplyTo
-	ReplyToMessageID    int64
-	ReplyMarkup         ReplyMarkup
-	EffectId            int64
+	DisableNotification               bool
+	ProtectContent                    bool
+	AllowPaidBroadcast                bool
+	TopicId                           MessageTopic
+	Quote                             *InputTextQuote
+	ReplyTo                           InputMessageReplyTo
+	ReplyToMessageID                  int64
+	ReplyMarkup                       ReplyMarkup
+	EffectId                          int64
+	FromBackground                    bool
+	OnlyPreview                       bool
+	PaidMessageStarCount              int64
+	SchedulingState                   MessageSchedulingState
+	SendingId                         int32
+	SuggestedPostInfo                 *InputSuggestedPostInfo
+	UpdateOrderOfInstalledStickerSets bool
 }
 
 // SendChecklist sends a checklist to chat
@@ -741,24 +932,38 @@ func (c *Client) SendChecklist(chatId int64, checklist *InputChecklist, opts *Se
 		Checklist: checklist,
 	}
 	return c.sendMessageWithContent(chatId, content, &MessageSendOptions{
-		DisableNotification: opts.DisableNotification,
-		ProtectContent:      opts.ProtectContent,
-		AllowPaidBroadcast:  opts.AllowPaidBroadcast,
-		EffectId:            opts.EffectId,
+		DisableNotification:               opts.DisableNotification,
+		ProtectContent:                    opts.ProtectContent,
+		AllowPaidBroadcast:                opts.AllowPaidBroadcast,
+		EffectId:                          opts.EffectId,
+		FromBackground:                    opts.FromBackground,
+		OnlyPreview:                       opts.OnlyPreview,
+		PaidMessageStarCount:              opts.PaidMessageStarCount,
+		SchedulingState:                   opts.SchedulingState,
+		SendingId:                         opts.SendingId,
+		SuggestedPostInfo:                 opts.SuggestedPostInfo,
+		UpdateOrderOfInstalledStickerSets: opts.UpdateOrderOfInstalledStickerSets,
 	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
 }
 
 // SendContactOpts contains optional parameters for SendContact
 type SendContactOpts struct {
-	DisableNotification bool
-	ProtectContent      bool
-	AllowPaidBroadcast  bool
-	TopicId             MessageTopic
-	Quote               *InputTextQuote
-	ReplyTo             InputMessageReplyTo
-	ReplyToMessageID    int64
-	ReplyMarkup         ReplyMarkup
-	EffectId            int64
+	DisableNotification               bool
+	ProtectContent                    bool
+	AllowPaidBroadcast                bool
+	TopicId                           MessageTopic
+	Quote                             *InputTextQuote
+	ReplyTo                           InputMessageReplyTo
+	ReplyToMessageID                  int64
+	ReplyMarkup                       ReplyMarkup
+	EffectId                          int64
+	FromBackground                    bool
+	OnlyPreview                       bool
+	PaidMessageStarCount              int64
+	SchedulingState                   MessageSchedulingState
+	SendingId                         int32
+	SuggestedPostInfo                 *InputSuggestedPostInfo
+	UpdateOrderOfInstalledStickerSets bool
 }
 
 // SendContact sends a contact to chat
@@ -770,25 +975,39 @@ func (c *Client) SendContact(chatId int64, contact *Contact, opts *SendContactOp
 		Contact: contact,
 	}
 	return c.sendMessageWithContent(chatId, content, &MessageSendOptions{
-		DisableNotification: opts.DisableNotification,
-		ProtectContent:      opts.ProtectContent,
-		AllowPaidBroadcast:  opts.AllowPaidBroadcast,
-		EffectId:            opts.EffectId,
+		DisableNotification:               opts.DisableNotification,
+		ProtectContent:                    opts.ProtectContent,
+		AllowPaidBroadcast:                opts.AllowPaidBroadcast,
+		EffectId:                          opts.EffectId,
+		FromBackground:                    opts.FromBackground,
+		OnlyPreview:                       opts.OnlyPreview,
+		PaidMessageStarCount:              opts.PaidMessageStarCount,
+		SchedulingState:                   opts.SchedulingState,
+		SendingId:                         opts.SendingId,
+		SuggestedPostInfo:                 opts.SuggestedPostInfo,
+		UpdateOrderOfInstalledStickerSets: opts.UpdateOrderOfInstalledStickerSets,
 	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
 }
 
 // SendDiceOpts contains optional parameters for SendDice
 type SendDiceOpts struct {
-	ClearDraft          bool
-	DisableNotification bool
-	ProtectContent      bool
-	AllowPaidBroadcast  bool
-	TopicId             MessageTopic
-	Quote               *InputTextQuote
-	ReplyTo             InputMessageReplyTo
-	ReplyToMessageID    int64
-	ReplyMarkup         ReplyMarkup
-	EffectId            int64
+	ClearDraft                        bool
+	DisableNotification               bool
+	ProtectContent                    bool
+	AllowPaidBroadcast                bool
+	TopicId                           MessageTopic
+	Quote                             *InputTextQuote
+	ReplyTo                           InputMessageReplyTo
+	ReplyToMessageID                  int64
+	ReplyMarkup                       ReplyMarkup
+	EffectId                          int64
+	FromBackground                    bool
+	OnlyPreview                       bool
+	PaidMessageStarCount              int64
+	SchedulingState                   MessageSchedulingState
+	SendingId                         int32
+	SuggestedPostInfo                 *InputSuggestedPostInfo
+	UpdateOrderOfInstalledStickerSets bool
 }
 
 // SendDice sends a dice to chat
@@ -801,24 +1020,38 @@ func (c *Client) SendDice(chatId int64, emoji string, opts *SendDiceOpts) (*Mess
 		ClearDraft: opts.ClearDraft,
 	}
 	return c.sendMessageWithContent(chatId, content, &MessageSendOptions{
-		DisableNotification: opts.DisableNotification,
-		ProtectContent:      opts.ProtectContent,
-		AllowPaidBroadcast:  opts.AllowPaidBroadcast,
-		EffectId:            opts.EffectId,
+		DisableNotification:               opts.DisableNotification,
+		ProtectContent:                    opts.ProtectContent,
+		AllowPaidBroadcast:                opts.AllowPaidBroadcast,
+		EffectId:                          opts.EffectId,
+		FromBackground:                    opts.FromBackground,
+		OnlyPreview:                       opts.OnlyPreview,
+		PaidMessageStarCount:              opts.PaidMessageStarCount,
+		SchedulingState:                   opts.SchedulingState,
+		SendingId:                         opts.SendingId,
+		SuggestedPostInfo:                 opts.SuggestedPostInfo,
+		UpdateOrderOfInstalledStickerSets: opts.UpdateOrderOfInstalledStickerSets,
 	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
 }
 
 // SendGameOpts contains optional parameters for SendGame
 type SendGameOpts struct {
-	DisableNotification bool
-	ProtectContent      bool
-	AllowPaidBroadcast  bool
-	TopicId             MessageTopic
-	Quote               *InputTextQuote
-	ReplyTo             InputMessageReplyTo
-	ReplyToMessageID    int64
-	ReplyMarkup         ReplyMarkup
-	EffectId            int64
+	DisableNotification               bool
+	ProtectContent                    bool
+	AllowPaidBroadcast                bool
+	TopicId                           MessageTopic
+	Quote                             *InputTextQuote
+	ReplyTo                           InputMessageReplyTo
+	ReplyToMessageID                  int64
+	ReplyMarkup                       ReplyMarkup
+	EffectId                          int64
+	FromBackground                    bool
+	OnlyPreview                       bool
+	PaidMessageStarCount              int64
+	SchedulingState                   MessageSchedulingState
+	SendingId                         int32
+	SuggestedPostInfo                 *InputSuggestedPostInfo
+	UpdateOrderOfInstalledStickerSets bool
 }
 
 // SendGame sends a game to chat
@@ -831,35 +1064,49 @@ func (c *Client) SendGame(chatId int64, botUserId int64, gameShortName string, o
 		GameShortName: gameShortName,
 	}
 	return c.sendMessageWithContent(chatId, content, &MessageSendOptions{
-		DisableNotification: opts.DisableNotification,
-		ProtectContent:      opts.ProtectContent,
-		AllowPaidBroadcast:  opts.AllowPaidBroadcast,
-		EffectId:            opts.EffectId,
+		DisableNotification:               opts.DisableNotification,
+		ProtectContent:                    opts.ProtectContent,
+		AllowPaidBroadcast:                opts.AllowPaidBroadcast,
+		EffectId:                          opts.EffectId,
+		FromBackground:                    opts.FromBackground,
+		OnlyPreview:                       opts.OnlyPreview,
+		PaidMessageStarCount:              opts.PaidMessageStarCount,
+		SchedulingState:                   opts.SchedulingState,
+		SendingId:                         opts.SendingId,
+		SuggestedPostInfo:                 opts.SuggestedPostInfo,
+		UpdateOrderOfInstalledStickerSets: opts.UpdateOrderOfInstalledStickerSets,
 	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
 }
 
 // SendInvoiceOpts contains optional parameters for SendInvoice
 type SendInvoiceOpts struct {
-	PaidMedia           *InputPaidMedia
-	PaidMediaCaption    string
-	PaidMediaEntities   []TextEntity
-	ParseMode           string
-	PhotoHeight         int32
-	PhotoSize           int32
-	PhotoUrl            string
-	PhotoWidth          int32
-	ProviderData        string
-	ProviderToken       string
-	StartParameter      string
-	DisableNotification bool
-	ProtectContent      bool
-	AllowPaidBroadcast  bool
-	TopicId             MessageTopic
-	Quote               *InputTextQuote
-	ReplyTo             InputMessageReplyTo
-	ReplyToMessageID    int64
-	ReplyMarkup         ReplyMarkup
-	EffectId            int64
+	PaidMedia                         *InputPaidMedia
+	PaidMediaCaption                  string
+	PaidMediaEntities                 []TextEntity
+	ParseMode                         string
+	PhotoHeight                       int32
+	PhotoSize                         int32
+	PhotoUrl                          string
+	PhotoWidth                        int32
+	ProviderData                      string
+	ProviderToken                     string
+	StartParameter                    string
+	DisableNotification               bool
+	ProtectContent                    bool
+	AllowPaidBroadcast                bool
+	TopicId                           MessageTopic
+	Quote                             *InputTextQuote
+	ReplyTo                           InputMessageReplyTo
+	ReplyToMessageID                  int64
+	ReplyMarkup                       ReplyMarkup
+	EffectId                          int64
+	FromBackground                    bool
+	OnlyPreview                       bool
+	PaidMessageStarCount              int64
+	SchedulingState                   MessageSchedulingState
+	SendingId                         int32
+	SuggestedPostInfo                 *InputSuggestedPostInfo
+	UpdateOrderOfInstalledStickerSets bool
 }
 
 // SendInvoice sends an invoice to chat
@@ -887,27 +1134,41 @@ func (c *Client) SendInvoice(chatId int64, invoice *Invoice, title string, descr
 		Title:            title,
 	}
 	return c.sendMessageWithContent(chatId, content, &MessageSendOptions{
-		DisableNotification: opts.DisableNotification,
-		ProtectContent:      opts.ProtectContent,
-		AllowPaidBroadcast:  opts.AllowPaidBroadcast,
-		EffectId:            opts.EffectId,
+		DisableNotification:               opts.DisableNotification,
+		ProtectContent:                    opts.ProtectContent,
+		AllowPaidBroadcast:                opts.AllowPaidBroadcast,
+		EffectId:                          opts.EffectId,
+		FromBackground:                    opts.FromBackground,
+		OnlyPreview:                       opts.OnlyPreview,
+		PaidMessageStarCount:              opts.PaidMessageStarCount,
+		SchedulingState:                   opts.SchedulingState,
+		SendingId:                         opts.SendingId,
+		SuggestedPostInfo:                 opts.SuggestedPostInfo,
+		UpdateOrderOfInstalledStickerSets: opts.UpdateOrderOfInstalledStickerSets,
 	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
 }
 
 // SendLocationOpts contains optional parameters for SendLocation
 type SendLocationOpts struct {
-	Heading              int32
-	LivePeriod           int32
-	ProximityAlertRadius int32
-	DisableNotification  bool
-	ProtectContent       bool
-	AllowPaidBroadcast   bool
-	TopicId              MessageTopic
-	Quote                *InputTextQuote
-	ReplyTo              InputMessageReplyTo
-	ReplyToMessageID     int64
-	ReplyMarkup          ReplyMarkup
-	EffectId             int64
+	Heading                           int32
+	LivePeriod                        int32
+	ProximityAlertRadius              int32
+	DisableNotification               bool
+	ProtectContent                    bool
+	AllowPaidBroadcast                bool
+	TopicId                           MessageTopic
+	Quote                             *InputTextQuote
+	ReplyTo                           InputMessageReplyTo
+	ReplyToMessageID                  int64
+	ReplyMarkup                       ReplyMarkup
+	EffectId                          int64
+	FromBackground                    bool
+	OnlyPreview                       bool
+	PaidMessageStarCount              int64
+	SchedulingState                   MessageSchedulingState
+	SendingId                         int32
+	SuggestedPostInfo                 *InputSuggestedPostInfo
+	UpdateOrderOfInstalledStickerSets bool
 }
 
 // SendLocation sends a location to chat
@@ -915,36 +1176,61 @@ func (c *Client) SendLocation(chatId int64, location *Location, opts *SendLocati
 	if opts == nil {
 		opts = &SendLocationOpts{}
 	}
-	content := &InputMessageLocation{
-		Heading:              opts.Heading,
-		LivePeriod:           opts.LivePeriod,
-		Location:             location,
-		ProximityAlertRadius: opts.ProximityAlertRadius,
+
+	var content InputMessageContent
+	if opts.LivePeriod > 0 {
+		content = &InputMessageLiveLocation{
+			Location: &LiveLocation{
+				Location:             location,
+				LivePeriod:           opts.LivePeriod,
+				Heading:              opts.Heading,
+				ProximityAlertRadius: opts.ProximityAlertRadius,
+			},
+		}
+	} else {
+		content = &InputMessageLocation{
+			Location: location,
+		}
 	}
+
 	return c.sendMessageWithContent(chatId, content, &MessageSendOptions{
-		DisableNotification: opts.DisableNotification,
-		ProtectContent:      opts.ProtectContent,
-		AllowPaidBroadcast:  opts.AllowPaidBroadcast,
-		EffectId:            opts.EffectId,
+		DisableNotification:               opts.DisableNotification,
+		ProtectContent:                    opts.ProtectContent,
+		AllowPaidBroadcast:                opts.AllowPaidBroadcast,
+		EffectId:                          opts.EffectId,
+		FromBackground:                    opts.FromBackground,
+		OnlyPreview:                       opts.OnlyPreview,
+		PaidMessageStarCount:              opts.PaidMessageStarCount,
+		SchedulingState:                   opts.SchedulingState,
+		SendingId:                         opts.SendingId,
+		SuggestedPostInfo:                 opts.SuggestedPostInfo,
+		UpdateOrderOfInstalledStickerSets: opts.UpdateOrderOfInstalledStickerSets,
 	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
 }
 
 // SendPaidMediaOpts contains optional parameters for SendPaidMedia
 type SendPaidMediaOpts struct {
-	Caption               string
-	CaptionEntities       []TextEntity
-	ParseMode             string
-	Payload               string
-	ShowCaptionAboveMedia bool
-	DisableNotification   bool
-	ProtectContent        bool
-	AllowPaidBroadcast    bool
-	TopicId               MessageTopic
-	Quote                 *InputTextQuote
-	ReplyTo               InputMessageReplyTo
-	ReplyToMessageID      int64
-	ReplyMarkup           ReplyMarkup
-	EffectId              int64
+	Caption                           string
+	CaptionEntities                   []TextEntity
+	ParseMode                         string
+	Payload                           string
+	ShowCaptionAboveMedia             bool
+	DisableNotification               bool
+	ProtectContent                    bool
+	AllowPaidBroadcast                bool
+	TopicId                           MessageTopic
+	Quote                             *InputTextQuote
+	ReplyTo                           InputMessageReplyTo
+	ReplyToMessageID                  int64
+	ReplyMarkup                       ReplyMarkup
+	EffectId                          int64
+	FromBackground                    bool
+	OnlyPreview                       bool
+	PaidMessageStarCount              int64
+	SchedulingState                   MessageSchedulingState
+	SendingId                         int32
+	SuggestedPostInfo                 *InputSuggestedPostInfo
+	UpdateOrderOfInstalledStickerSets bool
 }
 
 // SendPaidMedia sends paid media to chat
@@ -964,37 +1250,54 @@ func (c *Client) SendPaidMedia(chatId int64, starCount int64, paidMedia []InputP
 		StarCount:             starCount,
 	}
 	return c.sendMessageWithContent(chatId, content, &MessageSendOptions{
-		DisableNotification: opts.DisableNotification,
-		ProtectContent:      opts.ProtectContent,
-		AllowPaidBroadcast:  opts.AllowPaidBroadcast,
-		EffectId:            opts.EffectId,
+		DisableNotification:               opts.DisableNotification,
+		ProtectContent:                    opts.ProtectContent,
+		AllowPaidBroadcast:                opts.AllowPaidBroadcast,
+		EffectId:                          opts.EffectId,
+		FromBackground:                    opts.FromBackground,
+		OnlyPreview:                       opts.OnlyPreview,
+		PaidMessageStarCount:              opts.PaidMessageStarCount,
+		SchedulingState:                   opts.SchedulingState,
+		SendingId:                         opts.SendingId,
+		SuggestedPostInfo:                 opts.SuggestedPostInfo,
+		UpdateOrderOfInstalledStickerSets: opts.UpdateOrderOfInstalledStickerSets,
 	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
 }
 
 // SendPollOpts contains optional parameters for SendPoll
 type SendPollOpts struct {
-	AllowsMultipleAnswers  bool
-	AllowsRevoting         bool
-	CloseDate              int32
-	Description            string
-	DescriptionEntities    []TextEntity
-	ParseMode              string
-	HideResultsUntilCloses bool
-	IsAnonymous            bool
-	IsClosed               bool
-	OpenPeriod             int32
-	QuestionEntities       []TextEntity
-	ShuffleOptions         bool
-	Type                   InputPollType
-	DisableNotification    bool
-	ProtectContent         bool
-	AllowPaidBroadcast     bool
-	TopicId                MessageTopic
-	Quote                  *InputTextQuote
-	ReplyTo                InputMessageReplyTo
-	ReplyToMessageID       int64
-	ReplyMarkup            ReplyMarkup
-	EffectId               int64
+	AllowsMultipleAnswers             bool
+	AllowsRevoting                    bool
+	CloseDate                         int32
+	Description                       string
+	DescriptionEntities               []TextEntity
+	ParseMode                         string
+	HideResultsUntilCloses            bool
+	IsAnonymous                       bool
+	IsClosed                          bool
+	OpenPeriod                        int32
+	QuestionEntities                  []TextEntity
+	ShuffleOptions                    bool
+	Type                              InputPollType
+	DisableNotification               bool
+	ProtectContent                    bool
+	AllowPaidBroadcast                bool
+	TopicId                           MessageTopic
+	Quote                             *InputTextQuote
+	ReplyTo                           InputMessageReplyTo
+	ReplyToMessageID                  int64
+	ReplyMarkup                       ReplyMarkup
+	EffectId                          int64
+	Media                             InputPollMedia
+	MembersOnly                       bool
+	CountryCodes                      []string
+	FromBackground                    bool
+	OnlyPreview                       bool
+	PaidMessageStarCount              int64
+	SchedulingState                   MessageSchedulingState
+	SendingId                         int32
+	SuggestedPostInfo                 *InputSuggestedPostInfo
+	UpdateOrderOfInstalledStickerSets bool
 }
 
 // SendPoll sends a poll to chat
@@ -1023,27 +1326,44 @@ func (c *Client) SendPoll(chatId int64, question string, options []InputPollOpti
 		Question:               formattedQuestion,
 		ShuffleOptions:         opts.ShuffleOptions,
 		Type:                   opts.Type,
+		Media:                  opts.Media,
+		MembersOnly:            opts.MembersOnly,
+		CountryCodes:           opts.CountryCodes,
 	}
 	return c.sendMessageWithContent(chatId, content, &MessageSendOptions{
-		DisableNotification: opts.DisableNotification,
-		ProtectContent:      opts.ProtectContent,
-		AllowPaidBroadcast:  opts.AllowPaidBroadcast,
-		EffectId:            opts.EffectId,
+		DisableNotification:               opts.DisableNotification,
+		ProtectContent:                    opts.ProtectContent,
+		AllowPaidBroadcast:                opts.AllowPaidBroadcast,
+		EffectId:                          opts.EffectId,
+		FromBackground:                    opts.FromBackground,
+		OnlyPreview:                       opts.OnlyPreview,
+		PaidMessageStarCount:              opts.PaidMessageStarCount,
+		SchedulingState:                   opts.SchedulingState,
+		SendingId:                         opts.SendingId,
+		SuggestedPostInfo:                 opts.SuggestedPostInfo,
+		UpdateOrderOfInstalledStickerSets: opts.UpdateOrderOfInstalledStickerSets,
 	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
 }
 
 // SendStakeDiceOpts contains optional parameters for SendStakeDice
 type SendStakeDiceOpts struct {
-	ClearDraft          bool
-	DisableNotification bool
-	ProtectContent      bool
-	AllowPaidBroadcast  bool
-	TopicId             MessageTopic
-	Quote               *InputTextQuote
-	ReplyTo             InputMessageReplyTo
-	ReplyToMessageID    int64
-	ReplyMarkup         ReplyMarkup
-	EffectId            int64
+	ClearDraft                        bool
+	DisableNotification               bool
+	ProtectContent                    bool
+	AllowPaidBroadcast                bool
+	TopicId                           MessageTopic
+	Quote                             *InputTextQuote
+	ReplyTo                           InputMessageReplyTo
+	ReplyToMessageID                  int64
+	ReplyMarkup                       ReplyMarkup
+	EffectId                          int64
+	FromBackground                    bool
+	OnlyPreview                       bool
+	PaidMessageStarCount              int64
+	SchedulingState                   MessageSchedulingState
+	SendingId                         int32
+	SuggestedPostInfo                 *InputSuggestedPostInfo
+	UpdateOrderOfInstalledStickerSets bool
 }
 
 // SendStakeDice sends a stake dice to chat
@@ -1057,24 +1377,38 @@ func (c *Client) SendStakeDice(chatId int64, stakeToncoinAmount int64, stateHash
 		StateHash:          stateHash,
 	}
 	return c.sendMessageWithContent(chatId, content, &MessageSendOptions{
-		DisableNotification: opts.DisableNotification,
-		ProtectContent:      opts.ProtectContent,
-		AllowPaidBroadcast:  opts.AllowPaidBroadcast,
-		EffectId:            opts.EffectId,
+		DisableNotification:               opts.DisableNotification,
+		ProtectContent:                    opts.ProtectContent,
+		AllowPaidBroadcast:                opts.AllowPaidBroadcast,
+		EffectId:                          opts.EffectId,
+		FromBackground:                    opts.FromBackground,
+		OnlyPreview:                       opts.OnlyPreview,
+		PaidMessageStarCount:              opts.PaidMessageStarCount,
+		SchedulingState:                   opts.SchedulingState,
+		SendingId:                         opts.SendingId,
+		SuggestedPostInfo:                 opts.SuggestedPostInfo,
+		UpdateOrderOfInstalledStickerSets: opts.UpdateOrderOfInstalledStickerSets,
 	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
 }
 
 // SendStoryOpts contains optional parameters for SendStory
 type SendStoryOpts struct {
-	DisableNotification bool
-	ProtectContent      bool
-	AllowPaidBroadcast  bool
-	TopicId             MessageTopic
-	Quote               *InputTextQuote
-	ReplyTo             InputMessageReplyTo
-	ReplyToMessageID    int64
-	ReplyMarkup         ReplyMarkup
-	EffectId            int64
+	DisableNotification               bool
+	ProtectContent                    bool
+	AllowPaidBroadcast                bool
+	TopicId                           MessageTopic
+	Quote                             *InputTextQuote
+	ReplyTo                           InputMessageReplyTo
+	ReplyToMessageID                  int64
+	ReplyMarkup                       ReplyMarkup
+	EffectId                          int64
+	FromBackground                    bool
+	OnlyPreview                       bool
+	PaidMessageStarCount              int64
+	SchedulingState                   MessageSchedulingState
+	SendingId                         int32
+	SuggestedPostInfo                 *InputSuggestedPostInfo
+	UpdateOrderOfInstalledStickerSets bool
 }
 
 // SendStory sends a story to chat
@@ -1087,24 +1421,38 @@ func (c *Client) SendStory(chatId int64, storyPosterChatId int64, storyId int32,
 		StoryPosterChatId: storyPosterChatId,
 	}
 	return c.sendMessageWithContent(chatId, content, &MessageSendOptions{
-		DisableNotification: opts.DisableNotification,
-		ProtectContent:      opts.ProtectContent,
-		AllowPaidBroadcast:  opts.AllowPaidBroadcast,
-		EffectId:            opts.EffectId,
+		DisableNotification:               opts.DisableNotification,
+		ProtectContent:                    opts.ProtectContent,
+		AllowPaidBroadcast:                opts.AllowPaidBroadcast,
+		EffectId:                          opts.EffectId,
+		FromBackground:                    opts.FromBackground,
+		OnlyPreview:                       opts.OnlyPreview,
+		PaidMessageStarCount:              opts.PaidMessageStarCount,
+		SchedulingState:                   opts.SchedulingState,
+		SendingId:                         opts.SendingId,
+		SuggestedPostInfo:                 opts.SuggestedPostInfo,
+		UpdateOrderOfInstalledStickerSets: opts.UpdateOrderOfInstalledStickerSets,
 	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
 }
 
 // SendVenueOpts contains optional parameters for SendVenue
 type SendVenueOpts struct {
-	DisableNotification bool
-	ProtectContent      bool
-	AllowPaidBroadcast  bool
-	TopicId             MessageTopic
-	Quote               *InputTextQuote
-	ReplyTo             InputMessageReplyTo
-	ReplyToMessageID    int64
-	ReplyMarkup         ReplyMarkup
-	EffectId            int64
+	DisableNotification               bool
+	ProtectContent                    bool
+	AllowPaidBroadcast                bool
+	TopicId                           MessageTopic
+	Quote                             *InputTextQuote
+	ReplyTo                           InputMessageReplyTo
+	ReplyToMessageID                  int64
+	ReplyMarkup                       ReplyMarkup
+	EffectId                          int64
+	FromBackground                    bool
+	OnlyPreview                       bool
+	PaidMessageStarCount              int64
+	SchedulingState                   MessageSchedulingState
+	SendingId                         int32
+	SuggestedPostInfo                 *InputSuggestedPostInfo
+	UpdateOrderOfInstalledStickerSets bool
 }
 
 // SendVenue sends a venue to chat
@@ -1116,9 +1464,16 @@ func (c *Client) SendVenue(chatId int64, venue *Venue, opts *SendVenueOpts) (*Me
 		Venue: venue,
 	}
 	return c.sendMessageWithContent(chatId, content, &MessageSendOptions{
-		DisableNotification: opts.DisableNotification,
-		ProtectContent:      opts.ProtectContent,
-		AllowPaidBroadcast:  opts.AllowPaidBroadcast,
-		EffectId:            opts.EffectId,
+		DisableNotification:               opts.DisableNotification,
+		ProtectContent:                    opts.ProtectContent,
+		AllowPaidBroadcast:                opts.AllowPaidBroadcast,
+		EffectId:                          opts.EffectId,
+		FromBackground:                    opts.FromBackground,
+		OnlyPreview:                       opts.OnlyPreview,
+		PaidMessageStarCount:              opts.PaidMessageStarCount,
+		SchedulingState:                   opts.SchedulingState,
+		SendingId:                         opts.SendingId,
+		SuggestedPostInfo:                 opts.SuggestedPostInfo,
+		UpdateOrderOfInstalledStickerSets: opts.UpdateOrderOfInstalledStickerSets,
 	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
 }

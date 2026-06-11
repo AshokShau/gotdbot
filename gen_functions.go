@@ -666,7 +666,7 @@ func (t AddQuickReplyShortcutInlineQueryResultMessage) MarshalJSON() ([]byte, er
 
 // AddQuickReplyShortcutMessage Adds a message to a quick reply shortcut. If shortcut doesn't exist and there are less than getOption("quick_reply_shortcut_count_max") shortcuts, then a new shortcut is created.
 type AddQuickReplyShortcutMessage struct {
-	// The content of the message to be added; inputMessagePaidMedia, inputMessageForwarded and inputMessageLocation with live_period aren't supported
+	// The content of the message to be added; inputMessagePaidMedia, inputMessageForwarded and inputMessageLiveLocation
 	InputMessageContent InputMessageContent `json:"input_message_content"`
 	// Identifier of a quick reply message in the same shortcut to be replied; pass 0 if none
 	ReplyToMessageId int64 `json:"reply_to_message_id"`
@@ -871,6 +871,29 @@ func (t AddTextCompositionStyle) MarshalJSON() ([]byte, error) {
 	})
 }
 
+// AddWebBrowserSettingsException Adds a special handling for the opening of the specified URL
+type AddWebBrowserSettingsException struct {
+	// Pass true if the specified website must be opened in an external browser; pass false to open it in the in-app browser. There can be at most 100 exceptions in each list of the exceptions
+	OpenExternalBrowser bool `json:"open_external_browser"`
+	// URL of the website
+	Url string `json:"url"`
+}
+
+func (t AddWebBrowserSettingsException) GetType() string {
+	return "addWebBrowserSettingsException"
+}
+
+func (t AddWebBrowserSettingsException) MarshalJSON() ([]byte, error) {
+	type Alias AddWebBrowserSettingsException
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "addWebBrowserSettingsException",
+		Alias:   (*Alias)(&t),
+	})
+}
+
 // AllowBotToSendMessages Allows the specified bot to send messages to the user
 type AllowBotToSendMessages struct {
 	// Identifier of the target bot
@@ -940,6 +963,31 @@ func (t AnswerCallbackQuery) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "answerCallbackQuery",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// AnswerChatJoinRequestQuery Sets the result of a chat join query; for bots only
+type AnswerChatJoinRequestQuery struct {
+	// Identifier of the query
+	QueryId int64 `json:"query_id,string"`
+	// The result
+	Result ChatJoinRequestResult `json:"result"`
+	// URL of the Web App to open
+	Url string `json:"url"`
+}
+
+func (t AnswerChatJoinRequestQuery) GetType() string {
+	return "answerChatJoinRequestQuery"
+}
+
+func (t AnswerChatJoinRequestQuery) MarshalJSON() ([]byte, error) {
+	type Alias AnswerChatJoinRequestQuery
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "answerChatJoinRequestQuery",
 		Alias:   (*Alias)(&t),
 	})
 }
@@ -1540,6 +1588,29 @@ func (t ChangeStickerSet) MarshalJSON() ([]byte, error) {
 	})
 }
 
+// ChangeWebBrowserSettings Changes web browser settings
+type ChangeWebBrowserSettings struct {
+	// Pass true if a close button must be shown in the in-app browser; for Android app only
+	DisplayCloseButton bool `json:"display_close_button"`
+	// Pass true if links must be opened in an external browser by default
+	OpenExternalBrowser bool `json:"open_external_browser"`
+}
+
+func (t ChangeWebBrowserSettings) GetType() string {
+	return "changeWebBrowserSettings"
+}
+
+func (t ChangeWebBrowserSettings) MarshalJSON() ([]byte, error) {
+	type Alias ChangeWebBrowserSettings
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "changeWebBrowserSettings",
+		Alias:   (*Alias)(&t),
+	})
+}
+
 // CheckAuthenticationBotToken Checks the authentication token of a bot; to log in as a bot. Works only when the current authorization state is authorizationStateWaitPhoneNumber. Can be used instead of setAuthenticationPhoneNumber and checkAuthenticationCode to log in
 type CheckAuthenticationBotToken struct {
 	// The bot token
@@ -1695,6 +1766,29 @@ func (t CheckAuthenticationPremiumPurchase) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "checkAuthenticationPremiumPurchase",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// CheckAuthenticationWebToken Checks a web token to log in to the corresponding account; for official Telegram apps only. Works only when the current authorization state is
+type CheckAuthenticationWebToken struct {
+	// Identifier of the datacenter of the user
+	DcId int32 `json:"dc_id"`
+	// The token to check
+	Token string `json:"token"`
+}
+
+func (t CheckAuthenticationWebToken) GetType() string {
+	return "checkAuthenticationWebToken"
+}
+
+func (t CheckAuthenticationWebToken) MarshalJSON() ([]byte, error) {
+	type Alias CheckAuthenticationWebToken
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "checkAuthenticationWebToken",
 		Alias:   (*Alias)(&t),
 	})
 }
@@ -2484,6 +2578,27 @@ func (t ComposeTextWithAi) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "composeTextWithAi",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// ConfirmBusinessConnectedBot Confirms an unconfirmed business connection of the current user from another device
+type ConfirmBusinessConnectedBot struct {
+	// User identifier of the bot
+	BotUserId int64 `json:"bot_user_id"`
+}
+
+func (t ConfirmBusinessConnectedBot) GetType() string {
+	return "confirmBusinessConnectedBot"
+}
+
+func (t ConfirmBusinessConnectedBot) MarshalJSON() ([]byte, error) {
+	type Alias ConfirmBusinessConnectedBot
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "confirmBusinessConnectedBot",
 		Alias:   (*Alias)(&t),
 	})
 }
@@ -4543,16 +4658,10 @@ type EditBusinessMessageLiveLocation struct {
 	BusinessConnectionId string `json:"business_connection_id"`
 	// The chat the message belongs to
 	ChatId int64 `json:"chat_id"`
-	// The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
-	Heading int32 `json:"heading"`
-	// New time relative to the message send date, for which the location can be updated, in seconds. If 0x7FFFFFFF specified, then the location can be updated forever.
-	LivePeriod int32 `json:"live_period"`
-	// New location content of the message; pass null to stop sharing the live location
-	Location *Location `json:"location,omitempty"`
+	// New live location of the message; pass null to stop sharing the live location. If the new live_period isn't set to 0x7FFFFFFF,
+	Location *LiveLocation `json:"location,omitempty"`
 	// Identifier of the message
 	MessageId int64 `json:"message_id"`
-	// The new maximum distance for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled
-	ProximityAlertRadius int32 `json:"proximity_alert_radius"`
 	// The new message reply markup; pass null if none
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
 }
@@ -4634,7 +4743,7 @@ type EditBusinessMessageText struct {
 	BusinessConnectionId string `json:"business_connection_id"`
 	// The chat the message belongs to
 	ChatId int64 `json:"chat_id"`
-	// New text content of the message. Must be of type inputMessageText
+	// New text content of the message. Must be of type inputMessageText or inputMessageRichMessage
 	InputMessageContent InputMessageContent `json:"input_message_content"`
 	// Identifier of the message
 	MessageId int64 `json:"message_id"`
@@ -4873,16 +4982,10 @@ func (t EditInlineMessageCaption) MarshalJSON() ([]byte, error) {
 
 // EditInlineMessageLiveLocation Edits the content of a live location in an inline message sent via a bot; for bots only
 type EditInlineMessageLiveLocation struct {
-	// The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
-	Heading int32 `json:"heading"`
 	// Inline message identifier
 	InlineMessageId string `json:"inline_message_id"`
-	// New time relative to the message send date, for which the location can be updated, in seconds. If 0x7FFFFFFF specified, then the location can be updated forever.
-	LivePeriod int32 `json:"live_period"`
-	// New location content of the message; pass null to stop sharing the live location
-	Location *Location `json:"location,omitempty"`
-	// The new maximum distance for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled
-	ProximityAlertRadius int32 `json:"proximity_alert_radius"`
+	// New live location of the message; pass null to stop sharing the live location. If the new live_period isn't set to 0x7FFFFFFF,
+	Location *LiveLocation `json:"location,omitempty"`
 	// The new message reply markup; pass null if none
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
 }
@@ -4954,7 +5057,7 @@ func (t EditInlineMessageReplyMarkup) MarshalJSON() ([]byte, error) {
 type EditInlineMessageText struct {
 	// Inline message identifier
 	InlineMessageId string `json:"inline_message_id"`
-	// New text content of the message. Must be of type inputMessageText
+	// New text content of the message. Must be of type inputMessageText or inputMessageRichMessage
 	InputMessageContent InputMessageContent `json:"input_message_content"`
 	// The new message reply markup; pass null if none
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
@@ -5035,16 +5138,10 @@ func (t EditMessageChecklist) MarshalJSON() ([]byte, error) {
 type EditMessageLiveLocation struct {
 	// The chat the message belongs to
 	ChatId int64 `json:"chat_id"`
-	// The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
-	Heading int32 `json:"heading"`
-	// New time relative to the message send date, for which the location can be updated, in seconds. If 0x7FFFFFFF specified, then the location can be updated forever.
-	LivePeriod int32 `json:"live_period"`
-	// New location content of the message; pass null to stop sharing the live location
-	Location *Location `json:"location,omitempty"`
+	// New live location of the message; pass null to stop sharing the live location. If the new live_period isn't set to 0x7FFFFFFF,
+	Location *LiveLocation `json:"location,omitempty"`
 	// Identifier of the message. Use messageProperties.can_be_edited to check whether the message can be edited
 	MessageId int64 `json:"message_id"`
-	// The new maximum distance for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled
-	ProximityAlertRadius int32 `json:"proximity_alert_radius"`
 	// The new message reply markup; pass null if none; for bots only
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
 }
@@ -5145,7 +5242,7 @@ func (t EditMessageSchedulingState) MarshalJSON() ([]byte, error) {
 type EditMessageText struct {
 	// The chat the message belongs to
 	ChatId int64 `json:"chat_id"`
-	// New text content of the message. Must be of type inputMessageText
+	// New text content of the message. Must be of type inputMessageText or inputMessageRichMessage
 	InputMessageContent InputMessageContent `json:"input_message_content"`
 	// Identifier of the message. Use messageProperties.can_be_edited to check whether the message can be edited
 	MessageId int64 `json:"message_id"`
@@ -5197,7 +5294,7 @@ func (t EditProxy) MarshalJSON() ([]byte, error) {
 
 // EditQuickReplyMessage Asynchronously edits the text, media or caption of a quick reply message. Use quickReplyMessage.can_be_edited to check whether a message can be edited.
 type EditQuickReplyMessage struct {
-	// New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageChecklist, inputMessageDocument, inputMessagePhoto, inputMessageText, or inputMessageVideo
+	// New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageChecklist, inputMessageDocument, inputMessagePhoto, inputMessageRichMessage, inputMessageText, or inputMessageVideo
 	InputMessageContent InputMessageContent `json:"input_message_content"`
 	// Identifier of the message
 	MessageId int64 `json:"message_id"`
@@ -5558,7 +5655,7 @@ func (t GetAccountTtl) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// GetActiveSessions Returns all active sessions of the current user
+// GetActiveSessions Returns all active sessions of the current user. Additionally, getBusinessConnectedBot must be used to show the bot on top of active sessions
 type GetActiveSessions struct {
 }
 
@@ -6213,7 +6310,7 @@ func (t GetBusinessChatLinks) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// GetBusinessConnectedBot Returns the business bot that is connected to the current user account. Returns a 404 error if there is no connected bot
+// GetBusinessConnectedBot Returns information about the business bot that is connected to the current user account. Returns a 404 error if there is no connected bot
 type GetBusinessConnectedBot struct {
 }
 
@@ -7325,7 +7422,7 @@ func (t GetChatSimilarChats) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// GetChatSparseMessagePositions Returns sparse positions of messages of the specified type in the chat to be used for shared media scroll implementation. Returns the results in reverse chronological order (i.e., in order of decreasing message_id).
+// GetChatSparseMessagePositions Returns sparse positions of messages of the specified type in the chat to be used for Shared Media scroll implementation. Returns the results in reverse chronological order (i.e., in order of decreasing message_id).
 type GetChatSparseMessagePositions struct {
 	// Identifier of the chat in which to return information about message positions
 	ChatId int64 `json:"chat_id"`
@@ -7633,6 +7730,27 @@ func (t GetCountries) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "getCountries",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// GetCountry Returns information about an existing country. Can be called before authorization
+type GetCountry struct {
+	// A two-letter ISO 3166-1 alpha-2 country code
+	CountryCode string `json:"country_code"`
+}
+
+func (t GetCountry) GetType() string {
+	return "getCountry"
+}
+
+func (t GetCountry) MarshalJSON() ([]byte, error) {
+	type Alias GetCountry
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getCountry",
 		Alias:   (*Alias)(&t),
 	})
 }
@@ -8137,7 +8255,7 @@ func (t GetExternalLink) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// GetExternalLinkInfo Returns information about an action to be done when the current user clicks an external link. Don't use this method for links from secret chats if link preview is disabled in secret chats
+// GetExternalLinkInfo Returns information about an action to be done when the current user clicks an external link. Don't use this method for links from secret chats
 type GetExternalLinkInfo struct {
 	// The link
 	Link string `json:"link"`
@@ -8384,6 +8502,29 @@ func (t GetForumTopics) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "getForumTopics",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// GetFullRichMessage Returns the full version of a rich message
+type GetFullRichMessage struct {
+	// Identifier of the chat the messages belong to
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message
+	MessageId int64 `json:"message_id"`
+}
+
+func (t GetFullRichMessage) GetType() string {
+	return "getFullRichMessage"
+}
+
+func (t GetFullRichMessage) MarshalJSON() ([]byte, error) {
+	type Alias GetFullRichMessage
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getFullRichMessage",
 		Alias:   (*Alias)(&t),
 	})
 }
@@ -9060,6 +9201,27 @@ func (t GetLinkPreview) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "getLinkPreview",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// GetLinkWebBrowserType Returns a type of the web browser which must be used to open the link
+type GetLinkWebBrowserType struct {
+	// The HTTP link
+	Link string `json:"link"`
+}
+
+func (t GetLinkWebBrowserType) GetType() string {
+	return "getLinkWebBrowserType"
+}
+
+func (t GetLinkWebBrowserType) MarshalJSON() ([]byte, error) {
+	type Alias GetLinkWebBrowserType
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "getLinkWebBrowserType",
 		Alias:   (*Alias)(&t),
 	})
 }
@@ -12952,7 +13114,7 @@ func (t IsProfileAudio) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// JoinChat Adds the current user as a new member to a chat. Private and secret chats can't be joined using this method. May return an error with a message "INVITE_REQUEST_SENT" if only a join request was created
+// JoinChat Adds the current user as a new member to a chat. Private and secret chats can't be joined using this method
 type JoinChat struct {
 	// Chat identifier
 	ChatId int64 `json:"chat_id"`
@@ -12973,7 +13135,7 @@ func (t JoinChat) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// JoinChatByInviteLink Uses an invite link to add the current user to the chat if possible. May return an error with a message "INVITE_REQUEST_SENT" if only a join request was created
+// JoinChatByInviteLink Uses an invite link to add the current user to the chat if possible
 type JoinChatByInviteLink struct {
 	// Invite link to use
 	InviteLink string `json:"invite_link"`
@@ -14349,6 +14511,25 @@ func (t RemoveAllFilesFromDownloads) MarshalJSON() ([]byte, error) {
 	})
 }
 
+// RemoveAllWebBrowserSettingsExceptions Removes special handling for the opening of all links
+type RemoveAllWebBrowserSettingsExceptions struct {
+}
+
+func (t RemoveAllWebBrowserSettingsExceptions) GetType() string {
+	return "removeAllWebBrowserSettingsExceptions"
+}
+
+func (t RemoveAllWebBrowserSettingsExceptions) MarshalJSON() ([]byte, error) {
+	type Alias RemoveAllWebBrowserSettingsExceptions
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "removeAllWebBrowserSettingsExceptions",
+		Alias:   (*Alias)(&t),
+	})
+}
+
 // RemoveBusinessConnectedBotFromChat Removes the connected business bot from a specific chat by adding the chat to businessRecipients.excluded_chat_ids
 type RemoveBusinessConnectedBotFromChat struct {
 	// Chat identifier
@@ -14917,6 +15098,27 @@ func (t RemoveTopChat) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "removeTopChat",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// RemoveWebBrowserSettingsException Removes a special handling for the opening of the specified URL
+type RemoveWebBrowserSettingsException struct {
+	// URL of the website
+	Url string `json:"url"`
+}
+
+func (t RemoveWebBrowserSettingsException) GetType() string {
+	return "removeWebBrowserSettingsException"
+}
+
+func (t RemoveWebBrowserSettingsException) MarshalJSON() ([]byte, error) {
+	type Alias RemoveWebBrowserSettingsException
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "removeWebBrowserSettingsException",
 		Alias:   (*Alias)(&t),
 	})
 }
@@ -16107,7 +16309,7 @@ func (t SearchChatMessages) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// SearchChatRecentLocationMessages Returns information about the recent locations of chat members that were sent to the chat. Returns up to 1 location message per user
+// SearchChatRecentLocationMessages Returns information about the recent live locations of chat members that were sent to the chat. Returns at most one live location message per user
 type SearchChatRecentLocationMessages struct {
 	// Chat identifier
 	ChatId int64 `json:"chat_id"`
@@ -16136,6 +16338,8 @@ type SearchChats struct {
 	Limit int32 `json:"limit"`
 	// Query to search for. If the query is empty, returns up to 50 recently found chats
 	Query string `json:"query"`
+	// Additional filter for type of the chats to be returned; pass null to search for chats of all types
+	TypeFilter SearchChatTypeFilter `json:"type_filter,omitempty"`
 }
 
 func (t SearchChats) GetType() string {
@@ -16159,6 +16363,8 @@ type SearchChatsOnServer struct {
 	Limit int32 `json:"limit"`
 	// Query to search for
 	Query string `json:"query"`
+	// Additional filter for type of the chats to be returned; pass null to search for chats of all types
+	TypeFilter SearchChatTypeFilter `json:"type_filter,omitempty"`
 }
 
 func (t SearchChatsOnServer) GetType() string {
@@ -16415,6 +16621,8 @@ func (t SearchPublicChat) MarshalJSON() ([]byte, error) {
 type SearchPublicChats struct {
 	// Query to search for
 	Query string `json:"query"`
+	// Additional filter for type of the chats to be returned; pass null to search for chats of all types
+	TypeFilter SearchChatTypeFilter `json:"type_filter,omitempty"`
 }
 
 func (t SearchPublicChats) GetType() string {
@@ -16594,6 +16802,8 @@ type SearchRecentlyFoundChats struct {
 	Limit int32 `json:"limit"`
 	// Query to search for
 	Query string `json:"query"`
+	// Additional filter for type of the chats to be returned; pass null to search for chats of all types
+	TypeFilter SearchChatTypeFilter `json:"type_filter,omitempty"`
 }
 
 func (t SearchRecentlyFoundChats) GetType() string {
@@ -17520,6 +17730,33 @@ func (t SendResoldGift) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "sendResoldGift",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// SendRichMessageDraft Sends a draft for a being generated rich message; for bots only
+type SendRichMessageDraft struct {
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Unique identifier of the draft
+	DraftId int64 `json:"draft_id,string"`
+	// The forum topic identifier in which the message will be sent; pass 0 if none
+	ForumTopicId int32 `json:"forum_topic_id"`
+	// Draft of the message
+	Message *InputRichMessage `json:"message"`
+}
+
+func (t SendRichMessageDraft) GetType() string {
+	return "sendRichMessageDraft"
+}
+
+func (t SendRichMessageDraft) MarshalJSON() ([]byte, error) {
+	type Alias SendRichMessageDraft
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "sendRichMessageDraft",
 		Alias:   (*Alias)(&t),
 	})
 }
@@ -21131,7 +21368,7 @@ func (t SynchronizeLanguagePack) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// TerminateAllOtherSessions Terminates all other sessions of the current user
+// TerminateAllOtherSessions Terminates all other sessions of the current user. Additionally, the user must be suggested to delete the connected business bot using deleteBusinessConnectedBot if there is any
 type TerminateAllOtherSessions struct {
 }
 
@@ -22307,6 +22544,10 @@ func (t ToggleSupergroupIsForum) MarshalJSON() ([]byte, error) {
 
 // ToggleSupergroupJoinByRequest Toggles whether all users directly joining the supergroup need to be approved by supergroup administrators; requires can_restrict_members administrator right
 type ToggleSupergroupJoinByRequest struct {
+	// Pass true to apply the change to the existing invite links, including primary links
+	ApplyToInviteLinks bool `json:"apply_to_invite_links"`
+	// Identifier of the bot which will be the guard bot in the group; pass 0 if none; ignored if join_by_request == false.
+	GuardBotUserId int64 `json:"guard_bot_user_id"`
 	// New value of join_by_request
 	JoinByRequest bool `json:"join_by_request"`
 	// Identifier of the supergroup that isn't a broadcast group and isn't a channel direct message group

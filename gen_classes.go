@@ -2032,6 +2032,95 @@ func UnmarshalChatEventAction(data []byte) (ChatEventAction, error) {
 	}
 }
 
+// ChatJoinRequestResult Describes result of a chat join request
+//   - ChatJoinRequestResultApproved
+//   - ChatJoinRequestResultDeclined
+//   - ChatJoinRequestResultQueued
+type ChatJoinRequestResult interface {
+	TlObject
+	chatJoinRequestResult()
+}
+
+// UnmarshalChatJoinRequestResult unmarshals the JSON into the correct concrete implementation of ChatJoinRequestResult
+func UnmarshalChatJoinRequestResult(data []byte) (ChatJoinRequestResult, error) {
+	var typeObj struct {
+		Type string `json:"@type"`
+	}
+	if err := json.Unmarshal(data, &typeObj); err != nil {
+		return nil, err
+	}
+	switch typeObj.Type {
+	case "chatJoinRequestResultApproved":
+		var obj ChatJoinRequestResultApproved
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "chatJoinRequestResultDeclined":
+		var obj ChatJoinRequestResultDeclined
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "chatJoinRequestResultQueued":
+		var obj ChatJoinRequestResultQueued
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	default:
+		return nil, fmt.Errorf("unknown type: %s", typeObj.Type)
+	}
+}
+
+// ChatJoinResult Describes result of join of a chat by the current user
+//   - ChatJoinResultDeclined
+//   - ChatJoinResultGuardBotApprovalRequired
+//   - ChatJoinResultRequestSent
+//   - ChatJoinResultSuccess
+type ChatJoinResult interface {
+	TlObject
+	chatJoinResult()
+}
+
+// UnmarshalChatJoinResult unmarshals the JSON into the correct concrete implementation of ChatJoinResult
+func UnmarshalChatJoinResult(data []byte) (ChatJoinResult, error) {
+	var typeObj struct {
+		Type string `json:"@type"`
+	}
+	if err := json.Unmarshal(data, &typeObj); err != nil {
+		return nil, err
+	}
+	switch typeObj.Type {
+	case "chatJoinResultDeclined":
+		var obj ChatJoinResultDeclined
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "chatJoinResultGuardBotApprovalRequired":
+		var obj ChatJoinResultGuardBotApprovalRequired
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "chatJoinResultRequestSent":
+		var obj ChatJoinResultRequestSent
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "chatJoinResultSuccess":
+		var obj ChatJoinResultSuccess
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	default:
+		return nil, fmt.Errorf("unknown type: %s", typeObj.Type)
+	}
+}
+
 // ChatList Describes a list of chats
 //   - ChatListArchive
 //   - ChatListFolder
@@ -2962,6 +3051,54 @@ func UnmarshalDiffEntityType(data []byte) (DiffEntityType, error) {
 		return &obj, nil
 	case "diffEntityTypeReplace":
 		var obj DiffEntityTypeReplace
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	default:
+		return nil, fmt.Errorf("unknown type: %s", typeObj.Type)
+	}
+}
+
+// DraftMessageContent Content of the message draft
+//   - DraftMessageContentRichMessage
+//   - DraftMessageContentText
+//   - DraftMessageContentVideoNote
+//   - DraftMessageContentVoiceNote
+type DraftMessageContent interface {
+	TlObject
+	draftMessageContent()
+}
+
+// UnmarshalDraftMessageContent unmarshals the JSON into the correct concrete implementation of DraftMessageContent
+func UnmarshalDraftMessageContent(data []byte) (DraftMessageContent, error) {
+	var typeObj struct {
+		Type string `json:"@type"`
+	}
+	if err := json.Unmarshal(data, &typeObj); err != nil {
+		return nil, err
+	}
+	switch typeObj.Type {
+	case "draftMessageContentRichMessage":
+		var obj DraftMessageContentRichMessage
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "draftMessageContentText":
+		var obj DraftMessageContentText
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "draftMessageContentVideoNote":
+		var obj DraftMessageContentVideoNote
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "draftMessageContentVoiceNote":
+		var obj DraftMessageContentVoiceNote
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -4443,10 +4580,12 @@ func UnmarshalInputInvoice(data []byte) (InputInvoice, error) {
 //   - InputMessageForwarded
 //   - InputMessageGame
 //   - InputMessageInvoice
+//   - InputMessageLiveLocation
 //   - InputMessageLocation
 //   - InputMessagePaidMedia
 //   - InputMessagePhoto
 //   - InputMessagePoll
+//   - InputMessageRichMessage
 //   - InputMessageStakeDice
 //   - InputMessageSticker
 //   - InputMessageStory
@@ -4523,6 +4662,12 @@ func UnmarshalInputMessageContent(data []byte) (InputMessageContent, error) {
 			return nil, err
 		}
 		return &obj, nil
+	case "inputMessageLiveLocation":
+		var obj InputMessageLiveLocation
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
 	case "inputMessageLocation":
 		var obj InputMessageLocation
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -4543,6 +4688,12 @@ func UnmarshalInputMessageContent(data []byte) (InputMessageContent, error) {
 		return &obj, nil
 	case "inputMessagePoll":
 		var obj InputMessagePoll
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "inputMessageRichMessage":
+		var obj InputMessageRichMessage
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -4860,6 +5011,89 @@ func UnmarshalInputPassportElementErrorSource(data []byte) (InputPassportElement
 		return &obj, nil
 	case "inputPassportElementErrorSourceUnspecified":
 		var obj InputPassportElementErrorSourceUnspecified
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	default:
+		return nil, fmt.Errorf("unknown type: %s", typeObj.Type)
+	}
+}
+
+// InputPollMedia The content of a poll media to send
+//   - InputPollMediaAnimation
+//   - InputPollMediaAudio
+//   - InputPollMediaDocument
+//   - InputPollMediaLink
+//   - InputPollMediaLocation
+//   - InputPollMediaPhoto
+//   - InputPollMediaSticker
+//   - InputPollMediaVenue
+//   - InputPollMediaVideo
+type InputPollMedia interface {
+	TlObject
+	inputPollMedia()
+}
+
+// UnmarshalInputPollMedia unmarshals the JSON into the correct concrete implementation of InputPollMedia
+func UnmarshalInputPollMedia(data []byte) (InputPollMedia, error) {
+	var typeObj struct {
+		Type string `json:"@type"`
+	}
+	if err := json.Unmarshal(data, &typeObj); err != nil {
+		return nil, err
+	}
+	switch typeObj.Type {
+	case "inputPollMediaAnimation":
+		var obj InputPollMediaAnimation
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "inputPollMediaAudio":
+		var obj InputPollMediaAudio
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "inputPollMediaDocument":
+		var obj InputPollMediaDocument
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "inputPollMediaLink":
+		var obj InputPollMediaLink
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "inputPollMediaLocation":
+		var obj InputPollMediaLocation
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "inputPollMediaPhoto":
+		var obj InputPollMediaPhoto
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "inputPollMediaSticker":
+		var obj InputPollMediaSticker
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "inputPollMediaVenue":
+		var obj InputPollMediaVenue
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "inputPollMediaVideo":
+		var obj InputPollMediaVideo
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -6247,6 +6481,7 @@ func UnmarshalMaskPoint(data []byte) (MaskPoint, error) {
 //   - MessageGroupCall
 //   - MessageInviteVideoChatParticipants
 //   - MessageInvoice
+//   - MessageLiveLocation
 //   - MessageLocation
 //   - MessageManagedBotCreated
 //   - MessagePaidMedia
@@ -6265,6 +6500,7 @@ func UnmarshalMaskPoint(data []byte) (MaskPoint, error) {
 //   - MessagePremiumGiftCode
 //   - MessageProximityAlertTriggered
 //   - MessageRefundedUpgradedGift
+//   - MessageRichMessage
 //   - MessageScreenshotTaken
 //   - MessageStakeDice
 //   - MessageSticker
@@ -6636,6 +6872,12 @@ func UnmarshalMessageContent(data []byte) (MessageContent, error) {
 			return nil, err
 		}
 		return &obj, nil
+	case "messageLiveLocation":
+		var obj MessageLiveLocation
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
 	case "messageLocation":
 		var obj MessageLocation
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -6740,6 +6982,12 @@ func UnmarshalMessageContent(data []byte) (MessageContent, error) {
 		return &obj, nil
 	case "messageRefundedUpgradedGift":
 		var obj MessageRefundedUpgradedGift
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "messageRichMessage":
+		var obj MessageRichMessage
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -7703,15 +7951,18 @@ func UnmarshalOptionValue(data []byte) (OptionValue, error) {
 //   - PageBlockKicker
 //   - PageBlockList
 //   - PageBlockMap
+//   - PageBlockMathematicalExpression
 //   - PageBlockParagraph
 //   - PageBlockPhoto
 //   - PageBlockPreformatted
 //   - PageBlockPullQuote
 //   - PageBlockRelatedArticles
+//   - PageBlockSectionHeading
 //   - PageBlockSlideshow
 //   - PageBlockSubheader
 //   - PageBlockSubtitle
 //   - PageBlockTable
+//   - PageBlockThinking
 //   - PageBlockTitle
 //   - PageBlockVideo
 //   - PageBlockVoiceNote
@@ -7831,6 +8082,12 @@ func UnmarshalPageBlock(data []byte) (PageBlock, error) {
 			return nil, err
 		}
 		return &obj, nil
+	case "pageBlockMathematicalExpression":
+		var obj PageBlockMathematicalExpression
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
 	case "pageBlockParagraph":
 		var obj PageBlockParagraph
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -7861,6 +8118,12 @@ func UnmarshalPageBlock(data []byte) (PageBlock, error) {
 			return nil, err
 		}
 		return &obj, nil
+	case "pageBlockSectionHeading":
+		var obj PageBlockSectionHeading
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
 	case "pageBlockSlideshow":
 		var obj PageBlockSlideshow
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -7881,6 +8144,12 @@ func UnmarshalPageBlock(data []byte) (PageBlock, error) {
 		return &obj, nil
 	case "pageBlockTable":
 		var obj PageBlockTable
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "pageBlockThinking":
+		var obj PageBlockThinking
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -8541,6 +8810,89 @@ func UnmarshalPhoneNumberCodeType(data []byte) (PhoneNumberCodeType, error) {
 	}
 }
 
+// PollMedia Contains the media in a poll
+//   - PollMediaAnimation
+//   - PollMediaAudio
+//   - PollMediaDocument
+//   - PollMediaLink
+//   - PollMediaLocation
+//   - PollMediaPhoto
+//   - PollMediaSticker
+//   - PollMediaVenue
+//   - PollMediaVideo
+type PollMedia interface {
+	TlObject
+	pollMedia()
+}
+
+// UnmarshalPollMedia unmarshals the JSON into the correct concrete implementation of PollMedia
+func UnmarshalPollMedia(data []byte) (PollMedia, error) {
+	var typeObj struct {
+		Type string `json:"@type"`
+	}
+	if err := json.Unmarshal(data, &typeObj); err != nil {
+		return nil, err
+	}
+	switch typeObj.Type {
+	case "pollMediaAnimation":
+		var obj PollMediaAnimation
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "pollMediaAudio":
+		var obj PollMediaAudio
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "pollMediaDocument":
+		var obj PollMediaDocument
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "pollMediaLink":
+		var obj PollMediaLink
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "pollMediaLocation":
+		var obj PollMediaLocation
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "pollMediaPhoto":
+		var obj PollMediaPhoto
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "pollMediaSticker":
+		var obj PollMediaSticker
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "pollMediaVenue":
+		var obj PollMediaVenue
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "pollMediaVideo":
+		var obj PollMediaVideo
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	default:
+		return nil, fmt.Errorf("unknown type: %s", typeObj.Type)
+	}
+}
+
 // PollType Describes the type of poll
 //   - PollTypeQuiz
 //   - PollTypeRegular
@@ -8863,6 +9215,7 @@ func UnmarshalPremiumFeature(data []byte) (PremiumFeature, error) {
 //   - PremiumLimitTypeCreatedPublicChatCount
 //   - PremiumLimitTypeCustomTextCompositionStyleCount
 //   - PremiumLimitTypeFavoriteStickerCount
+//   - PremiumLimitTypeMessageTextLength
 //   - PremiumLimitTypeMonthlyPostedStoryCount
 //   - PremiumLimitTypeOwnedBotCount
 //   - PremiumLimitTypePinnedArchivedChatCount
@@ -8939,6 +9292,12 @@ func UnmarshalPremiumLimitType(data []byte) (PremiumLimitType, error) {
 		return &obj, nil
 	case "premiumLimitTypeFavoriteStickerCount":
 		var obj PremiumLimitTypeFavoriteStickerCount
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "premiumLimitTypeMessageTextLength":
+		var obj PremiumLimitTypeMessageTextLength
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -10199,18 +10558,63 @@ func UnmarshalRevenueWithdrawalState(data []byte) (RevenueWithdrawalState, error
 	}
 }
 
+// RichMessageSource Describes source of a rich message
+//   - RichMessageSourceHtml
+//   - RichMessageSourceMarkdown
+type RichMessageSource interface {
+	TlObject
+	richMessageSource()
+}
+
+// UnmarshalRichMessageSource unmarshals the JSON into the correct concrete implementation of RichMessageSource
+func UnmarshalRichMessageSource(data []byte) (RichMessageSource, error) {
+	var typeObj struct {
+		Type string `json:"@type"`
+	}
+	if err := json.Unmarshal(data, &typeObj); err != nil {
+		return nil, err
+	}
+	switch typeObj.Type {
+	case "richMessageSourceHtml":
+		var obj RichMessageSourceHtml
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "richMessageSourceMarkdown":
+		var obj RichMessageSourceMarkdown
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	default:
+		return nil, fmt.Errorf("unknown type: %s", typeObj.Type)
+	}
+}
+
 // RichText Describes a formatted text object
 //   - RichTextAnchor
 //   - RichTextAnchorLink
+//   - RichTextBankCardNumber
 //   - RichTextBold
+//   - RichTextBotCommand
+//   - RichTextCashtag
+//   - RichTextCustomEmoji
+//   - RichTextDateTime
 //   - RichTextEmailAddress
 //   - RichTextFixed
+//   - RichTextHashtag
 //   - RichTextIcon
 //   - RichTextItalic
 //   - RichTextMarked
+//   - RichTextMathematicalExpression
+//   - RichTextMention
+//   - RichTextMentionName
 //   - RichTextPhoneNumber
 //   - RichTextPlain
 //   - RichTextReference
+//   - RichTextReferenceLink
+//   - RichTextSpoiler
 //   - RichTextStrikethrough
 //   - RichTextSubscript
 //   - RichTextSuperscript
@@ -10243,8 +10647,38 @@ func UnmarshalRichText(data []byte) (RichText, error) {
 			return nil, err
 		}
 		return &obj, nil
+	case "richTextBankCardNumber":
+		var obj RichTextBankCardNumber
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
 	case "richTextBold":
 		var obj RichTextBold
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "richTextBotCommand":
+		var obj RichTextBotCommand
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "richTextCashtag":
+		var obj RichTextCashtag
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "richTextCustomEmoji":
+		var obj RichTextCustomEmoji
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "richTextDateTime":
+		var obj RichTextDateTime
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -10257,6 +10691,12 @@ func UnmarshalRichText(data []byte) (RichText, error) {
 		return &obj, nil
 	case "richTextFixed":
 		var obj RichTextFixed
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "richTextHashtag":
+		var obj RichTextHashtag
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -10279,6 +10719,24 @@ func UnmarshalRichText(data []byte) (RichText, error) {
 			return nil, err
 		}
 		return &obj, nil
+	case "richTextMathematicalExpression":
+		var obj RichTextMathematicalExpression
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "richTextMention":
+		var obj RichTextMention
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "richTextMentionName":
+		var obj RichTextMentionName
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
 	case "richTextPhoneNumber":
 		var obj RichTextPhoneNumber
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -10293,6 +10751,18 @@ func UnmarshalRichText(data []byte) (RichText, error) {
 		return &obj, nil
 	case "richTextReference":
 		var obj RichTextReference
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "richTextReferenceLink":
+		var obj RichTextReferenceLink
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "richTextSpoiler":
+		var obj RichTextSpoiler
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -10379,7 +10849,41 @@ func UnmarshalSavedMessagesTopicType(data []byte) (SavedMessagesTopicType, error
 	}
 }
 
-// SearchMessagesChatTypeFilter Represents a filter for type of the chats in which to search messages
+// SearchChatTypeFilter Represents a filter for type of the chats to search for
+//   - SearchChatTypeFilterBot
+//   - SearchChatTypeFilterChannel
+type SearchChatTypeFilter interface {
+	TlObject
+	searchChatTypeFilter()
+}
+
+// UnmarshalSearchChatTypeFilter unmarshals the JSON into the correct concrete implementation of SearchChatTypeFilter
+func UnmarshalSearchChatTypeFilter(data []byte) (SearchChatTypeFilter, error) {
+	var typeObj struct {
+		Type string `json:"@type"`
+	}
+	if err := json.Unmarshal(data, &typeObj); err != nil {
+		return nil, err
+	}
+	switch typeObj.Type {
+	case "searchChatTypeFilterBot":
+		var obj SearchChatTypeFilterBot
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "searchChatTypeFilterChannel":
+		var obj SearchChatTypeFilterChannel
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	default:
+		return nil, fmt.Errorf("unknown type: %s", typeObj.Type)
+	}
+}
+
+// SearchMessagesChatTypeFilter Represents a filter for type of the chats in which to search for messages
 //   - SearchMessagesChatTypeFilterChannel
 //   - SearchMessagesChatTypeFilterGroup
 //   - SearchMessagesChatTypeFilterPrivate
@@ -10648,24 +11152,148 @@ func UnmarshalSentGift(data []byte) (SentGift, error) {
 	}
 }
 
-// SessionType Represents the type of session
-//   - SessionTypeAndroid
-//   - SessionTypeApple
-//   - SessionTypeBrave
-//   - SessionTypeChrome
-//   - SessionTypeEdge
-//   - SessionTypeFirefox
-//   - SessionTypeIpad
-//   - SessionTypeIphone
-//   - SessionTypeLinux
-//   - SessionTypeMac
-//   - SessionTypeOpera
-//   - SessionTypeSafari
-//   - SessionTypeUbuntu
-//   - SessionTypeUnknown
-//   - SessionTypeVivaldi
-//   - SessionTypeWindows
-//   - SessionTypeXbox
+// SessionDeviceType Represents the type of device from which session was created
+//   - SessionDeviceTypeAndroid
+//   - SessionDeviceTypeApple
+//   - SessionDeviceTypeBrave
+//   - SessionDeviceTypeChrome
+//   - SessionDeviceTypeEdge
+//   - SessionDeviceTypeFirefox
+//   - SessionDeviceTypeIpad
+//   - SessionDeviceTypeIphone
+//   - SessionDeviceTypeLinux
+//   - SessionDeviceTypeMac
+//   - SessionDeviceTypeOpera
+//   - SessionDeviceTypeSafari
+//   - SessionDeviceTypeUbuntu
+//   - SessionDeviceTypeUnknown
+//   - SessionDeviceTypeVivaldi
+//   - SessionDeviceTypeWindows
+//   - SessionDeviceTypeXbox
+type SessionDeviceType interface {
+	TlObject
+	sessionDeviceType()
+}
+
+// UnmarshalSessionDeviceType unmarshals the JSON into the correct concrete implementation of SessionDeviceType
+func UnmarshalSessionDeviceType(data []byte) (SessionDeviceType, error) {
+	var typeObj struct {
+		Type string `json:"@type"`
+	}
+	if err := json.Unmarshal(data, &typeObj); err != nil {
+		return nil, err
+	}
+	switch typeObj.Type {
+	case "sessionDeviceTypeAndroid":
+		var obj SessionDeviceTypeAndroid
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "sessionDeviceTypeApple":
+		var obj SessionDeviceTypeApple
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "sessionDeviceTypeBrave":
+		var obj SessionDeviceTypeBrave
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "sessionDeviceTypeChrome":
+		var obj SessionDeviceTypeChrome
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "sessionDeviceTypeEdge":
+		var obj SessionDeviceTypeEdge
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "sessionDeviceTypeFirefox":
+		var obj SessionDeviceTypeFirefox
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "sessionDeviceTypeIpad":
+		var obj SessionDeviceTypeIpad
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "sessionDeviceTypeIphone":
+		var obj SessionDeviceTypeIphone
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "sessionDeviceTypeLinux":
+		var obj SessionDeviceTypeLinux
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "sessionDeviceTypeMac":
+		var obj SessionDeviceTypeMac
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "sessionDeviceTypeOpera":
+		var obj SessionDeviceTypeOpera
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "sessionDeviceTypeSafari":
+		var obj SessionDeviceTypeSafari
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "sessionDeviceTypeUbuntu":
+		var obj SessionDeviceTypeUbuntu
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "sessionDeviceTypeUnknown":
+		var obj SessionDeviceTypeUnknown
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "sessionDeviceTypeVivaldi":
+		var obj SessionDeviceTypeVivaldi
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "sessionDeviceTypeWindows":
+		var obj SessionDeviceTypeWindows
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "sessionDeviceTypeXbox":
+		var obj SessionDeviceTypeXbox
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	default:
+		return nil, fmt.Errorf("unknown type: %s", typeObj.Type)
+	}
+}
+
+// SessionType Describes type of user session
+//   - SessionTypeConnectedBot
+//   - SessionTypeDevice
 type SessionType interface {
 	TlObject
 	sessionType()
@@ -10680,104 +11308,14 @@ func UnmarshalSessionType(data []byte) (SessionType, error) {
 		return nil, err
 	}
 	switch typeObj.Type {
-	case "sessionTypeAndroid":
-		var obj SessionTypeAndroid
+	case "sessionTypeConnectedBot":
+		var obj SessionTypeConnectedBot
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
 		return &obj, nil
-	case "sessionTypeApple":
-		var obj SessionTypeApple
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, err
-		}
-		return &obj, nil
-	case "sessionTypeBrave":
-		var obj SessionTypeBrave
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, err
-		}
-		return &obj, nil
-	case "sessionTypeChrome":
-		var obj SessionTypeChrome
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, err
-		}
-		return &obj, nil
-	case "sessionTypeEdge":
-		var obj SessionTypeEdge
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, err
-		}
-		return &obj, nil
-	case "sessionTypeFirefox":
-		var obj SessionTypeFirefox
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, err
-		}
-		return &obj, nil
-	case "sessionTypeIpad":
-		var obj SessionTypeIpad
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, err
-		}
-		return &obj, nil
-	case "sessionTypeIphone":
-		var obj SessionTypeIphone
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, err
-		}
-		return &obj, nil
-	case "sessionTypeLinux":
-		var obj SessionTypeLinux
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, err
-		}
-		return &obj, nil
-	case "sessionTypeMac":
-		var obj SessionTypeMac
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, err
-		}
-		return &obj, nil
-	case "sessionTypeOpera":
-		var obj SessionTypeOpera
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, err
-		}
-		return &obj, nil
-	case "sessionTypeSafari":
-		var obj SessionTypeSafari
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, err
-		}
-		return &obj, nil
-	case "sessionTypeUbuntu":
-		var obj SessionTypeUbuntu
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, err
-		}
-		return &obj, nil
-	case "sessionTypeUnknown":
-		var obj SessionTypeUnknown
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, err
-		}
-		return &obj, nil
-	case "sessionTypeVivaldi":
-		var obj SessionTypeVivaldi
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, err
-		}
-		return &obj, nil
-	case "sessionTypeWindows":
-		var obj SessionTypeWindows
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, err
-		}
-		return &obj, nil
-	case "sessionTypeXbox":
-		var obj SessionTypeXbox
+	case "sessionTypeDevice":
+		var obj SessionTypeDevice
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -12992,6 +13530,7 @@ func UnmarshalTransactionDirection(data []byte) (TransactionDirection, error) {
 //   - UpdateChatHasScheduledMessages
 //   - UpdateChatIsMarkedAsUnread
 //   - UpdateChatIsTranslatable
+//   - UpdateChatJoinResult
 //   - UpdateChatLastMessage
 //   - UpdateChatMember
 //   - UpdateChatMessageAutoDeleteTime
@@ -13087,7 +13626,7 @@ func UnmarshalTransactionDirection(data []byte) (TransactionDirection, error) {
 //   - UpdateOwnedStarCount
 //   - UpdateOwnedTonCount
 //   - UpdatePaidMediaPurchased
-//   - UpdatePendingTextMessage
+//   - UpdatePendingMessage
 //   - UpdatePoll
 //   - UpdatePollAnswer
 //   - UpdateProfileAccentColors
@@ -13134,6 +13673,7 @@ func UnmarshalTransactionDirection(data []byte) (TransactionDirection, error) {
 //   - UpdateUserStatus
 //   - UpdateVideoPublished
 //   - UpdateWebAppMessageSent
+//   - UpdateWebBrowserSettings
 type Update interface {
 	TlObject
 	update()
@@ -13372,6 +13912,12 @@ func UnmarshalUpdate(data []byte) (Update, error) {
 		return &obj, nil
 	case "updateChatIsTranslatable":
 		var obj UpdateChatIsTranslatable
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "updateChatJoinResult":
+		var obj UpdateChatJoinResult
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -13946,8 +14492,8 @@ func UnmarshalUpdate(data []byte) (Update, error) {
 			return nil, err
 		}
 		return &obj, nil
-	case "updatePendingTextMessage":
-		var obj UpdatePendingTextMessage
+	case "updatePendingMessage":
+		var obj UpdatePendingMessage
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -14224,6 +14770,12 @@ func UnmarshalUpdate(data []byte) (Update, error) {
 		return &obj, nil
 	case "updateWebAppMessageSent":
 		var obj UpdateWebAppMessageSent
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "updateWebBrowserSettings":
+		var obj UpdateWebBrowserSettings
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -14789,6 +15341,40 @@ func UnmarshalWebAppOpenMode(data []byte) (WebAppOpenMode, error) {
 		return &obj, nil
 	case "webAppOpenModeFullSize":
 		var obj WebAppOpenModeFullSize
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	default:
+		return nil, fmt.Errorf("unknown type: %s", typeObj.Type)
+	}
+}
+
+// WebBrowserType Describes the type of web browser
+//   - WebBrowserTypeExternal
+//   - WebBrowserTypeInApp
+type WebBrowserType interface {
+	TlObject
+	webBrowserType()
+}
+
+// UnmarshalWebBrowserType unmarshals the JSON into the correct concrete implementation of WebBrowserType
+func UnmarshalWebBrowserType(data []byte) (WebBrowserType, error) {
+	var typeObj struct {
+		Type string `json:"@type"`
+	}
+	if err := json.Unmarshal(data, &typeObj); err != nil {
+		return nil, err
+	}
+	switch typeObj.Type {
+	case "webBrowserTypeExternal":
+		var obj WebBrowserTypeExternal
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "webBrowserTypeInApp":
+		var obj WebBrowserTypeInApp
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}

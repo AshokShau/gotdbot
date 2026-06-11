@@ -3516,7 +3516,7 @@ func (t BusinessChatLinks) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// BusinessConnectedBot Describes a bot connected to a business account
+// BusinessConnectedBot Describes a business bot connected to an account
 type BusinessConnectedBot struct {
 	// User identifier of the bot
 	BotUserId int64 `json:"bot_user_id"`
@@ -3537,6 +3537,33 @@ func (t BusinessConnectedBot) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "businessConnectedBot",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// BusinessConnectedBotInfo Describes a connection of a bot to an account
+type BusinessConnectedBotInfo struct {
+	// Information about the bot
+	Bot *BusinessConnectedBot `json:"bot"`
+	// Point in time (Unix timestamp) when the bot was added; may be 0 if unknown
+	ConnectionDate int32 `json:"connection_date"`
+	// Model of the device that was used for the bot connection, as provided by the application; may be empty if unknown
+	DeviceModel string `json:"device_model,omitempty"`
+	// A human-readable description of the location from which the bot was connected, based on the IP address; may be empty if unknown
+	Location string `json:"location,omitempty"`
+}
+
+func (t BusinessConnectedBotInfo) GetType() string {
+	return "businessConnectedBotInfo"
+}
+
+func (t BusinessConnectedBotInfo) MarshalJSON() ([]byte, error) {
+	type Alias BusinessConnectedBotInfo
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "businessConnectedBotInfo",
 		Alias:   (*Alias)(&t),
 	})
 }
@@ -8737,6 +8764,69 @@ func (t ChatJoinRequest) MarshalJSON() ([]byte, error) {
 	})
 }
 
+// ChatJoinRequestResultApproved The request was approved
+type ChatJoinRequestResultApproved struct {
+}
+
+func (t ChatJoinRequestResultApproved) GetType() string {
+	return "chatJoinRequestResultApproved"
+}
+
+func (t ChatJoinRequestResultApproved) chatJoinRequestResult() {}
+
+func (t ChatJoinRequestResultApproved) MarshalJSON() ([]byte, error) {
+	type Alias ChatJoinRequestResultApproved
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "chatJoinRequestResultApproved",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// ChatJoinRequestResultDeclined The request was decline
+type ChatJoinRequestResultDeclined struct {
+}
+
+func (t ChatJoinRequestResultDeclined) GetType() string {
+	return "chatJoinRequestResultDeclined"
+}
+
+func (t ChatJoinRequestResultDeclined) chatJoinRequestResult() {}
+
+func (t ChatJoinRequestResultDeclined) MarshalJSON() ([]byte, error) {
+	type Alias ChatJoinRequestResultDeclined
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "chatJoinRequestResultDeclined",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// ChatJoinRequestResultQueued The request was postponed without a decision
+type ChatJoinRequestResultQueued struct {
+}
+
+func (t ChatJoinRequestResultQueued) GetType() string {
+	return "chatJoinRequestResultQueued"
+}
+
+func (t ChatJoinRequestResultQueued) chatJoinRequestResult() {}
+
+func (t ChatJoinRequestResultQueued) MarshalJSON() ([]byte, error) {
+	type Alias ChatJoinRequestResultQueued
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "chatJoinRequestResultQueued",
+		Alias:   (*Alias)(&t),
+	})
+}
+
 // ChatJoinRequests Contains a list of requests to join a chat
 type ChatJoinRequests struct {
 	// List of the requests
@@ -8779,6 +8869,98 @@ func (t ChatJoinRequestsInfo) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "chatJoinRequestsInfo",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// ChatJoinResultDeclined The join was declined by the guard bot
+type ChatJoinResultDeclined struct {
+}
+
+func (t ChatJoinResultDeclined) GetType() string {
+	return "chatJoinResultDeclined"
+}
+
+func (t ChatJoinResultDeclined) chatJoinResult() {}
+
+func (t ChatJoinResultDeclined) MarshalJSON() ([]byte, error) {
+	type Alias ChatJoinResultDeclined
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "chatJoinResultDeclined",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// ChatJoinResultGuardBotApprovalRequired An approval from a guard bot through a Web App is required to join the chat
+type ChatJoinResultGuardBotApprovalRequired struct {
+	// Identifier of the guard bot
+	BotUserId int64 `json:"bot_user_id"`
+	// Unique identifier of the join request, which will be used in updateChatJoinResult
+	QueryId int64 `json:"query_id"`
+	// The URL of the Web App to open
+	Url *WebAppUrl `json:"url"`
+}
+
+func (t ChatJoinResultGuardBotApprovalRequired) GetType() string {
+	return "chatJoinResultGuardBotApprovalRequired"
+}
+
+func (t ChatJoinResultGuardBotApprovalRequired) chatJoinResult() {}
+
+func (t ChatJoinResultGuardBotApprovalRequired) MarshalJSON() ([]byte, error) {
+	type Alias ChatJoinResultGuardBotApprovalRequired
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "chatJoinResultGuardBotApprovalRequired",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// ChatJoinResultRequestSent The join request was sent and have to be approved by administrators of the chat
+type ChatJoinResultRequestSent struct {
+}
+
+func (t ChatJoinResultRequestSent) GetType() string {
+	return "chatJoinResultRequestSent"
+}
+
+func (t ChatJoinResultRequestSent) chatJoinResult() {}
+
+func (t ChatJoinResultRequestSent) MarshalJSON() ([]byte, error) {
+	type Alias ChatJoinResultRequestSent
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "chatJoinResultRequestSent",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// ChatJoinResultSuccess The chat was joined successfully
+type ChatJoinResultSuccess struct {
+	// Identifier of the chat
+	ChatId int64 `json:"chat_id"`
+}
+
+func (t ChatJoinResultSuccess) GetType() string {
+	return "chatJoinResultSuccess"
+}
+
+func (t ChatJoinResultSuccess) chatJoinResult() {}
+
+func (t ChatJoinResultSuccess) MarshalJSON() ([]byte, error) {
+	type Alias ChatJoinResultSuccess
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "chatJoinResultSuccess",
 		Alias:   (*Alias)(&t),
 	})
 }
@@ -9453,7 +9635,7 @@ type ChatPermissions struct {
 	CanReactToMessages bool `json:"can_react_to_messages"`
 	// True, if the user can send music files
 	CanSendAudios bool `json:"can_send_audios"`
-	// True, if the user can send text messages, contacts, giveaways, giveaway winners, invoices, locations, and venues
+	// True, if the user can send text messages, rich messages, contacts, giveaways, giveaway winners, invoices, locations, and venues
 	CanSendBasicMessages bool `json:"can_send_basic_messages"`
 	// True, if the user can send documents
 	CanSendDocuments bool `json:"can_send_documents"`
@@ -12496,12 +12678,12 @@ func (t DownloadedFileCounts) MarshalJSON() ([]byte, error) {
 
 // DraftMessage Contains information about a message draft
 type DraftMessage struct {
+	// Content of the message draft
+	Content DraftMessageContent `json:"content"`
 	// Point in time (Unix timestamp) when the draft was created
 	Date int32 `json:"date"`
 	// Identifier of the effect to apply to the message when it is sent; 0 if none
 	EffectId int64 `json:"effect_id,string"`
-	// Content of the message draft; must be of the type inputMessageText, inputMessageVideoNote, or inputMessageVoiceNote
-	InputMessageText InputMessageContent `json:"input_message_text"`
 	// Information about the message to be replied; inputMessageReplyToStory is unsupported; may be null if none
 	ReplyTo InputMessageReplyTo `json:"reply_to,omitempty"`
 	// Information about the suggested post; may be null if none
@@ -12526,8 +12708,8 @@ func (t DraftMessage) MarshalJSON() ([]byte, error) {
 func (t *DraftMessage) UnmarshalJSON(data []byte) error {
 	type Alias DraftMessage
 	aux := &struct {
-		InputMessageText json.RawMessage `json:"input_message_text"`
-		ReplyTo          json.RawMessage `json:"reply_to"`
+		Content json.RawMessage `json:"content"`
+		ReplyTo json.RawMessage `json:"reply_to"`
 		*Alias
 	}{
 		Alias: (*Alias)(t),
@@ -12537,12 +12719,12 @@ func (t *DraftMessage) UnmarshalJSON(data []byte) error {
 		return err
 	}
 
-	if aux.InputMessageText != nil {
-		v, err := UnmarshalInputMessageContent(aux.InputMessageText)
+	if aux.Content != nil {
+		v, err := UnmarshalDraftMessageContent(aux.Content)
 		if err != nil {
 			return err
 		}
-		t.InputMessageText = v
+		t.Content = v
 	}
 	if aux.ReplyTo != nil {
 		v, err := UnmarshalInputMessageReplyTo(aux.ReplyTo)
@@ -12550,6 +12732,158 @@ func (t *DraftMessage) UnmarshalJSON(data []byte) error {
 			return err
 		}
 		t.ReplyTo = v
+	}
+	return nil
+}
+
+// DraftMessageContentRichMessage A rich message draft; not supported in setChatDraftMessage
+type DraftMessageContentRichMessage struct {
+	// The rich message; the message must not have not yet uploaded media
+	Message *RichMessage `json:"message"`
+}
+
+func (t DraftMessageContentRichMessage) GetType() string {
+	return "draftMessageContentRichMessage"
+}
+
+func (t DraftMessageContentRichMessage) draftMessageContent() {}
+
+func (t DraftMessageContentRichMessage) MarshalJSON() ([]byte, error) {
+	type Alias DraftMessageContentRichMessage
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "draftMessageContentRichMessage",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// DraftMessageContentText A text message draft
+type DraftMessageContentText struct {
+	// Options to be used for generation of a link preview; may be null if none; pass null to use default link preview options
+	LinkPreviewOptions *LinkPreviewOptions `json:"link_preview_options,omitempty"`
+	// Formatted text to be saved as a draft; 0-getOption("message_text_length_max") characters
+	Text *FormattedText `json:"text"`
+}
+
+func (t DraftMessageContentText) GetType() string {
+	return "draftMessageContentText"
+}
+
+func (t DraftMessageContentText) draftMessageContent() {}
+
+func (t DraftMessageContentText) MarshalJSON() ([]byte, error) {
+	type Alias DraftMessageContentText
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "draftMessageContentText",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// DraftMessageContentVideoNote A video note message draft
+type DraftMessageContentVideoNote struct {
+	// Duration of the video, in seconds; 0-60
+	Duration int32 `json:"duration"`
+	// Path to the file with the video note
+	FilePath string `json:"file_path"`
+	// Video width and height; must be positive and not greater than 640
+	Length int32 `json:"length"`
+	// Video note self-destruct type; may be null if none; pass null if none; private chats only
+	SelfDestructType MessageSelfDestructType `json:"self_destruct_type,omitempty"`
+}
+
+func (t DraftMessageContentVideoNote) GetType() string {
+	return "draftMessageContentVideoNote"
+}
+
+func (t DraftMessageContentVideoNote) draftMessageContent() {}
+
+func (t DraftMessageContentVideoNote) MarshalJSON() ([]byte, error) {
+	type Alias DraftMessageContentVideoNote
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "draftMessageContentVideoNote",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+func (t *DraftMessageContentVideoNote) UnmarshalJSON(data []byte) error {
+	type Alias DraftMessageContentVideoNote
+	aux := &struct {
+		SelfDestructType json.RawMessage `json:"self_destruct_type"`
+		*Alias
+	}{
+		Alias: (*Alias)(t),
+	}
+
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+
+	if aux.SelfDestructType != nil {
+		v, err := UnmarshalMessageSelfDestructType(aux.SelfDestructType)
+		if err != nil {
+			return err
+		}
+		t.SelfDestructType = v
+	}
+	return nil
+}
+
+// DraftMessageContentVoiceNote A voice note message draft
+type DraftMessageContentVoiceNote struct {
+	// Duration of the voice note, in seconds
+	Duration int32 `json:"duration"`
+	// Path to the file with the voice note
+	FilePath string `json:"file_path"`
+	// Voice note self-destruct type; may be null if none; pass null if none; private chats only
+	SelfDestructType MessageSelfDestructType `json:"self_destruct_type,omitempty"`
+	// Waveform representation of the voice note in 5-bit format
+	Waveform []byte `json:"waveform"`
+}
+
+func (t DraftMessageContentVoiceNote) GetType() string {
+	return "draftMessageContentVoiceNote"
+}
+
+func (t DraftMessageContentVoiceNote) draftMessageContent() {}
+
+func (t DraftMessageContentVoiceNote) MarshalJSON() ([]byte, error) {
+	type Alias DraftMessageContentVoiceNote
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "draftMessageContentVoiceNote",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+func (t *DraftMessageContentVoiceNote) UnmarshalJSON(data []byte) error {
+	type Alias DraftMessageContentVoiceNote
+	aux := &struct {
+		SelfDestructType json.RawMessage `json:"self_destruct_type"`
+		*Alias
+	}{
+		Alias: (*Alias)(t),
+	}
+
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+
+	if aux.SelfDestructType != nil {
+		v, err := UnmarshalMessageSelfDestructType(aux.SelfDestructType)
+		if err != nil {
+			return err
+		}
+		t.SelfDestructType = v
 	}
 	return nil
 }
@@ -17326,6 +17660,112 @@ func (t InlineQueryResultVoiceNote) MarshalJSON() ([]byte, error) {
 	})
 }
 
+// InputAnimation An animation to be sent
+type InputAnimation struct {
+	// File identifiers of the stickers added to the animation, if applicable
+	AddedStickerFileIds []int32 `json:"added_sticker_file_ids"`
+	// Animation file to be sent
+	Animation InputFile `json:"animation"`
+	// Duration of the animation, in seconds; may be replaced by the server
+	Duration int32 `json:"duration"`
+	// Height of the animation; may be replaced by the server
+	Height int32 `json:"height"`
+	// Animation thumbnail; pass null to skip thumbnail uploading
+	Thumbnail *InputThumbnail `json:"thumbnail,omitempty"`
+	// Width of the animation; may be replaced by the server
+	Width int32 `json:"width"`
+}
+
+func (t InputAnimation) GetType() string {
+	return "inputAnimation"
+}
+
+func (t InputAnimation) MarshalJSON() ([]byte, error) {
+	type Alias InputAnimation
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "inputAnimation",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+func (t *InputAnimation) UnmarshalJSON(data []byte) error {
+	type Alias InputAnimation
+	aux := &struct {
+		Animation json.RawMessage `json:"animation"`
+		*Alias
+	}{
+		Alias: (*Alias)(t),
+	}
+
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+
+	if aux.Animation != nil {
+		v, err := UnmarshalInputFile(aux.Animation)
+		if err != nil {
+			return err
+		}
+		t.Animation = v
+	}
+	return nil
+}
+
+// InputAudio An audio to be sent
+type InputAudio struct {
+	// Thumbnail of the cover for the album; pass null to skip thumbnail uploading
+	AlbumCoverThumbnail *InputThumbnail `json:"album_cover_thumbnail,omitempty"`
+	// Audio file to be sent
+	Audio InputFile `json:"audio"`
+	// Duration of the audio, in seconds; may be replaced by the server
+	Duration int32 `json:"duration"`
+	// Performer of the audio; 0-64 characters, may be replaced by the server
+	Performer string `json:"performer"`
+	// Title of the audio; 0-64 characters; may be replaced by the server
+	Title string `json:"title"`
+}
+
+func (t InputAudio) GetType() string {
+	return "inputAudio"
+}
+
+func (t InputAudio) MarshalJSON() ([]byte, error) {
+	type Alias InputAudio
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "inputAudio",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+func (t *InputAudio) UnmarshalJSON(data []byte) error {
+	type Alias InputAudio
+	aux := &struct {
+		Audio json.RawMessage `json:"audio"`
+		*Alias
+	}{
+		Alias: (*Alias)(t),
+	}
+
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+
+	if aux.Audio != nil {
+		v, err := UnmarshalInputFile(aux.Audio)
+		if err != nil {
+			return err
+		}
+		t.Audio = v
+	}
+	return nil
+}
+
 // InputBackgroundLocal A background from a local file
 type InputBackgroundLocal struct {
 	// Background file to use. Only inputFileLocal and inputFileGenerated are supported. The file must be in JPEG format for wallpapers and in PNG format for patterns
@@ -17867,6 +18307,54 @@ func (t InputCredentialsSaved) MarshalJSON() ([]byte, error) {
 	})
 }
 
+// InputDocument A document (general file) to be sent
+type InputDocument struct {
+	// Pass true to disable automatic file type detection and send the document as a file. Always true for files sent to secret chats
+	DisableContentTypeDetection bool `json:"disable_content_type_detection"`
+	// File to be sent
+	Document InputFile `json:"document"`
+	// Document thumbnail; pass null to skip thumbnail uploading
+	Thumbnail *InputThumbnail `json:"thumbnail,omitempty"`
+}
+
+func (t InputDocument) GetType() string {
+	return "inputDocument"
+}
+
+func (t InputDocument) MarshalJSON() ([]byte, error) {
+	type Alias InputDocument
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "inputDocument",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+func (t *InputDocument) UnmarshalJSON(data []byte) error {
+	type Alias InputDocument
+	aux := &struct {
+		Document json.RawMessage `json:"document"`
+		*Alias
+	}{
+		Alias: (*Alias)(t),
+	}
+
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+
+	if aux.Document != nil {
+		v, err := UnmarshalInputFile(aux.Document)
+		if err != nil {
+			return err
+		}
+		t.Document = v
+	}
+	return nil
+}
+
 // InputFileGenerated A file generated by the application. The application must handle updates updateFileGenerationStart and updateFileGenerationStop to generate the file when asked by TDLib
 type InputFileGenerated struct {
 	// String specifying the conversion applied to the original file; must be persistent across application restarts. Conversions beginning with '#' are reserved for internal TDLib usage
@@ -18096,7 +18584,7 @@ func (t *InputIdentityDocument) UnmarshalJSON(data []byte) error {
 type InputInlineQueryResultAnimation struct {
 	// Unique identifier of the query result
 	Id string `json:"id"`
-	// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageAnimation, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
+	// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageAnimation, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue or inputMessageContact
 	InputMessageContent InputMessageContent `json:"input_message_content"`
 	// The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
@@ -18172,7 +18660,7 @@ type InputInlineQueryResultArticle struct {
 	Description string `json:"description"`
 	// Unique identifier of the query result
 	Id string `json:"id"`
-	// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
+	// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue or inputMessageContact
 	InputMessageContent InputMessageContent `json:"input_message_content"`
 	// The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
@@ -18244,7 +18732,7 @@ type InputInlineQueryResultAudio struct {
 	AudioUrl string `json:"audio_url"`
 	// Unique identifier of the query result
 	Id string `json:"id"`
-	// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageAudio, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
+	// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageAudio, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue or inputMessageContact
 	InputMessageContent InputMessageContent `json:"input_message_content"`
 	// Performer of the audio file
 	Performer string `json:"performer"`
@@ -18308,7 +18796,7 @@ type InputInlineQueryResultContact struct {
 	Contact *Contact `json:"contact"`
 	// Unique identifier of the query result
 	Id string `json:"id"`
-	// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
+	// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue or inputMessageContact
 	InputMessageContent InputMessageContent `json:"input_message_content"`
 	// The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
@@ -18376,7 +18864,7 @@ type InputInlineQueryResultDocument struct {
 	DocumentUrl string `json:"document_url"`
 	// Unique identifier of the query result
 	Id string `json:"id"`
-	// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageDocument, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
+	// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageDocument, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue or inputMessageContact
 	InputMessageContent InputMessageContent `json:"input_message_content"`
 	// MIME type of the file content; only "application/pdf" and "application/zip" are currently allowed
 	MimeType string `json:"mime_type"`
@@ -18494,7 +18982,7 @@ func (t *InputInlineQueryResultGame) UnmarshalJSON(data []byte) error {
 type InputInlineQueryResultLocation struct {
 	// Unique identifier of the query result
 	Id string `json:"id"`
-	// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
+	// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue or inputMessageContact
 	InputMessageContent InputMessageContent `json:"input_message_content"`
 	// Amount of time relative to the message sent time until the location can be updated, in seconds
 	LivePeriod int32 `json:"live_period"`
@@ -18566,7 +19054,7 @@ type InputInlineQueryResultPhoto struct {
 	Description string `json:"description"`
 	// Unique identifier of the query result
 	Id string `json:"id"`
-	// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessagePhoto, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
+	// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessagePhoto, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue or inputMessageContact
 	InputMessageContent InputMessageContent `json:"input_message_content"`
 	// Height of the photo
 	PhotoHeight int32 `json:"photo_height"`
@@ -18634,7 +19122,7 @@ func (t *InputInlineQueryResultPhoto) UnmarshalJSON(data []byte) error {
 type InputInlineQueryResultSticker struct {
 	// Unique identifier of the query result
 	Id string `json:"id"`
-	// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageSticker, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
+	// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageSticker, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue or inputMessageContact
 	InputMessageContent InputMessageContent `json:"input_message_content"`
 	// The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
@@ -18700,7 +19188,7 @@ func (t *InputInlineQueryResultSticker) UnmarshalJSON(data []byte) error {
 type InputInlineQueryResultVenue struct {
 	// Unique identifier of the query result
 	Id string `json:"id"`
-	// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
+	// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue or inputMessageContact
 	InputMessageContent InputMessageContent `json:"input_message_content"`
 	// The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
@@ -18768,7 +19256,7 @@ type InputInlineQueryResultVideo struct {
 	Description string `json:"description"`
 	// Unique identifier of the query result
 	Id string `json:"id"`
-	// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageVideo, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
+	// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageVideo, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue or inputMessageContact
 	InputMessageContent InputMessageContent `json:"input_message_content"`
 	// MIME type of the content of the video URL, only "text/html" or "video/mp4" are currently supported
 	MimeType string `json:"mime_type"`
@@ -18840,7 +19328,7 @@ func (t *InputInlineQueryResultVideo) UnmarshalJSON(data []byte) error {
 type InputInlineQueryResultVoiceNote struct {
 	// Unique identifier of the query result
 	Id string `json:"id"`
-	// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageVoiceNote, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
+	// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageVoiceNote, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue or inputMessageContact
 	InputMessageContent InputMessageContent `json:"input_message_content"`
 	// The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
@@ -18996,24 +19484,14 @@ func (t *InputInvoiceTelegram) UnmarshalJSON(data []byte) error {
 
 // InputMessageAnimation An animation message (GIF-style).
 type InputMessageAnimation struct {
-	// File identifiers of the stickers added to the animation, if applicable
-	AddedStickerFileIds []int32 `json:"added_sticker_file_ids"`
-	// Animation file to be sent
-	Animation InputFile `json:"animation"`
+	// The animation to be sent
+	Animation *InputAnimation `json:"animation"`
 	// Animation caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
 	Caption *FormattedText `json:"caption,omitempty"`
-	// Duration of the animation, in seconds
-	Duration int32 `json:"duration"`
 	// True, if the animation preview must be covered by a spoiler animation; not supported in secret chats
 	HasSpoiler bool `json:"has_spoiler"`
-	// Height of the animation; may be replaced by the server
-	Height int32 `json:"height"`
 	// True, if the caption must be shown above the animation; otherwise, the caption must be shown below the animation; not supported in secret chats
 	ShowCaptionAboveMedia bool `json:"show_caption_above_media"`
-	// Animation thumbnail; pass null to skip thumbnail uploading
-	Thumbnail *InputThumbnail `json:"thumbnail,omitempty"`
-	// Width of the animation; may be replaced by the server
-	Width int32 `json:"width"`
 }
 
 func (t InputMessageAnimation) GetType() string {
@@ -19033,43 +19511,12 @@ func (t InputMessageAnimation) MarshalJSON() ([]byte, error) {
 	})
 }
 
-func (t *InputMessageAnimation) UnmarshalJSON(data []byte) error {
-	type Alias InputMessageAnimation
-	aux := &struct {
-		Animation json.RawMessage `json:"animation"`
-		*Alias
-	}{
-		Alias: (*Alias)(t),
-	}
-
-	if err := json.Unmarshal(data, &aux); err != nil {
-		return err
-	}
-
-	if aux.Animation != nil {
-		v, err := UnmarshalInputFile(aux.Animation)
-		if err != nil {
-			return err
-		}
-		t.Animation = v
-	}
-	return nil
-}
-
 // InputMessageAudio An audio message
 type InputMessageAudio struct {
-	// Thumbnail of the cover for the album; pass null to skip thumbnail uploading
-	AlbumCoverThumbnail *InputThumbnail `json:"album_cover_thumbnail,omitempty"`
-	// Audio file to be sent
-	Audio InputFile `json:"audio"`
+	// Audio to be sent
+	Audio *InputAudio `json:"audio"`
 	// Audio caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
 	Caption *FormattedText `json:"caption,omitempty"`
-	// Duration of the audio, in seconds; may be replaced by the server
-	Duration int32 `json:"duration"`
-	// Performer of the audio; 0-64 characters, may be replaced by the server
-	Performer string `json:"performer"`
-	// Title of the audio; 0-64 characters; may be replaced by the server
-	Title string `json:"title"`
 }
 
 func (t InputMessageAudio) GetType() string {
@@ -19087,29 +19534,6 @@ func (t InputMessageAudio) MarshalJSON() ([]byte, error) {
 		TypeStr: "inputMessageAudio",
 		Alias:   (*Alias)(&t),
 	})
-}
-
-func (t *InputMessageAudio) UnmarshalJSON(data []byte) error {
-	type Alias InputMessageAudio
-	aux := &struct {
-		Audio json.RawMessage `json:"audio"`
-		*Alias
-	}{
-		Alias: (*Alias)(t),
-	}
-
-	if err := json.Unmarshal(data, &aux); err != nil {
-		return err
-	}
-
-	if aux.Audio != nil {
-		v, err := UnmarshalInputFile(aux.Audio)
-		if err != nil {
-			return err
-		}
-		t.Audio = v
-	}
-	return nil
 }
 
 // InputMessageChecklist A message with a checklist. Checklists can't be sent to secret chats, channel chats and channel direct messages chats; for Telegram Premium users only
@@ -19160,7 +19584,7 @@ func (t InputMessageContact) MarshalJSON() ([]byte, error) {
 
 // InputMessageDice A dice message
 type InputMessageDice struct {
-	// True, if the chat message draft must be deleted
+	// Pass true to delete message draft in the chat
 	ClearDraft bool `json:"clear_draft"`
 	// Emoji on which the dice throw animation is based
 	Emoji string `json:"emoji"`
@@ -19187,12 +19611,8 @@ func (t InputMessageDice) MarshalJSON() ([]byte, error) {
 type InputMessageDocument struct {
 	// Document caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
 	Caption *FormattedText `json:"caption,omitempty"`
-	// Pass true to disable automatic file type detection and send the document as a file. Always true for files sent to secret chats
-	DisableContentTypeDetection bool `json:"disable_content_type_detection"`
 	// Document to be sent
-	Document InputFile `json:"document"`
-	// Document thumbnail; pass null to skip thumbnail uploading
-	Thumbnail *InputThumbnail `json:"thumbnail,omitempty"`
+	Document *InputDocument `json:"document"`
 }
 
 func (t InputMessageDocument) GetType() string {
@@ -19210,29 +19630,6 @@ func (t InputMessageDocument) MarshalJSON() ([]byte, error) {
 		TypeStr: "inputMessageDocument",
 		Alias:   (*Alias)(&t),
 	})
-}
-
-func (t *InputMessageDocument) UnmarshalJSON(data []byte) error {
-	type Alias InputMessageDocument
-	aux := &struct {
-		Document json.RawMessage `json:"document"`
-		*Alias
-	}{
-		Alias: (*Alias)(t),
-	}
-
-	if err := json.Unmarshal(data, &aux); err != nil {
-		return err
-	}
-
-	if aux.Document != nil {
-		v, err := UnmarshalInputFile(aux.Document)
-		if err != nil {
-			return err
-		}
-		t.Document = v
-	}
-	return nil
 }
 
 // InputMessageForwarded A forwarded message
@@ -19340,16 +19737,33 @@ func (t InputMessageInvoice) MarshalJSON() ([]byte, error) {
 	})
 }
 
+// InputMessageLiveLocation A message with a live location
+type InputMessageLiveLocation struct {
+	// Initial state of the live location to be sent. Live period must be equal to 0x7FFFFFFF for permanent live locations, or between 60 and 86400
+	Location *LiveLocation `json:"location"`
+}
+
+func (t InputMessageLiveLocation) GetType() string {
+	return "inputMessageLiveLocation"
+}
+
+func (t InputMessageLiveLocation) inputMessageContent() {}
+
+func (t InputMessageLiveLocation) MarshalJSON() ([]byte, error) {
+	type Alias InputMessageLiveLocation
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "inputMessageLiveLocation",
+		Alias:   (*Alias)(&t),
+	})
+}
+
 // InputMessageLocation A message with a location
 type InputMessageLocation struct {
-	// For live locations, a direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
-	Heading int32 `json:"heading"`
-	// Period for which the location can be updated, in seconds; must be between 60 and 86400 for a temporary live location, 0x7FFFFFFF for permanent live location, and 0 otherwise
-	LivePeriod int32 `json:"live_period"`
 	// Location to be sent
 	Location *Location `json:"location"`
-	// For live locations, a maximum distance to another chat member for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled. Can't be enabled in channels and Saved Messages
-	ProximityAlertRadius int32 `json:"proximity_alert_radius"`
 }
 
 func (t InputMessageLocation) GetType() string {
@@ -19402,26 +19816,16 @@ func (t InputMessagePaidMedia) MarshalJSON() ([]byte, error) {
 
 // InputMessagePhoto A photo message
 type InputMessagePhoto struct {
-	// File identifiers of the stickers added to the photo, if applicable
-	AddedStickerFileIds []int32 `json:"added_sticker_file_ids"`
 	// Photo caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
 	Caption *FormattedText `json:"caption,omitempty"`
 	// True, if the photo preview must be covered by a spoiler animation; not supported in secret chats
 	HasSpoiler bool `json:"has_spoiler"`
-	// Photo height
-	Height int32 `json:"height"`
-	// Photo to send. The photo must be at most 10 MB in size. The photo's width and height must not exceed 10000 in total. Width and height ratio must be at most 20
-	Photo InputFile `json:"photo"`
+	// Photo to be sent
+	Photo *InputPhoto `json:"photo"`
 	// Photo self-destruct type; pass null if none; private chats only
 	SelfDestructType MessageSelfDestructType `json:"self_destruct_type,omitempty"`
 	// True, if the caption must be shown above the photo; otherwise, the caption must be shown below the photo; not supported in secret chats
 	ShowCaptionAboveMedia bool `json:"show_caption_above_media"`
-	// Photo thumbnail to be sent; pass null to skip thumbnail uploading. The thumbnail is sent to the other party only in secret chats
-	Thumbnail *InputThumbnail `json:"thumbnail,omitempty"`
-	// Video of the live photo; not supported in secret chats; pass null if the photo isn't a live photo
-	Video InputFile `json:"video,omitempty"`
-	// Photo width
-	Width int32 `json:"width"`
 }
 
 func (t InputMessagePhoto) GetType() string {
@@ -19444,9 +19848,7 @@ func (t InputMessagePhoto) MarshalJSON() ([]byte, error) {
 func (t *InputMessagePhoto) UnmarshalJSON(data []byte) error {
 	type Alias InputMessagePhoto
 	aux := &struct {
-		Photo            json.RawMessage `json:"photo"`
 		SelfDestructType json.RawMessage `json:"self_destruct_type"`
-		Video            json.RawMessage `json:"video"`
 		*Alias
 	}{
 		Alias: (*Alias)(t),
@@ -19456,26 +19858,12 @@ func (t *InputMessagePhoto) UnmarshalJSON(data []byte) error {
 		return err
 	}
 
-	if aux.Photo != nil {
-		v, err := UnmarshalInputFile(aux.Photo)
-		if err != nil {
-			return err
-		}
-		t.Photo = v
-	}
 	if aux.SelfDestructType != nil {
 		v, err := UnmarshalMessageSelfDestructType(aux.SelfDestructType)
 		if err != nil {
 			return err
 		}
 		t.SelfDestructType = v
-	}
-	if aux.Video != nil {
-		v, err := UnmarshalInputFile(aux.Video)
-		if err != nil {
-			return err
-		}
-		t.Video = v
 	}
 	return nil
 }
@@ -19498,8 +19886,8 @@ type InputMessagePoll struct {
 	IsAnonymous bool `json:"is_anonymous"`
 	// True, if the poll needs to be sent already closed; for bots only
 	IsClosed bool `json:"is_closed"`
-	// Media attached to the poll; pass null if none. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, non-live inputMessageLocation,
-	Media InputMessageContent `json:"media,omitempty"`
+	// Media attached to the poll; pass null if none. Must be one of the following types: inputPollMediaAnimation, inputPollMediaAudio, inputPollMediaDocument, inputPollMediaLocation,
+	Media InputPollMedia `json:"media,omitempty"`
 	// True, if only the users that are members of the chat for more than a day will be able to vote; for channel chats only
 	MembersOnly bool `json:"members_only"`
 	// Amount of time the poll will be active after creation, in seconds; 0-getOption("poll_open_period_max"); pass 0 if not specified
@@ -19546,7 +19934,7 @@ func (t *InputMessagePoll) UnmarshalJSON(data []byte) error {
 	}
 
 	if aux.Media != nil {
-		v, err := UnmarshalInputMessageContent(aux.Media)
+		v, err := UnmarshalInputPollMedia(aux.Media)
 		if err != nil {
 			return err
 		}
@@ -19647,9 +20035,34 @@ func (t InputMessageReplyToStory) MarshalJSON() ([]byte, error) {
 	})
 }
 
+// InputMessageRichMessage A rich message
+type InputMessageRichMessage struct {
+	// Pass true to delete message draft in the chat
+	ClearDraft bool `json:"clear_draft"`
+	// The rich message to send
+	Message *InputRichMessage `json:"message"`
+}
+
+func (t InputMessageRichMessage) GetType() string {
+	return "inputMessageRichMessage"
+}
+
+func (t InputMessageRichMessage) inputMessageContent() {}
+
+func (t InputMessageRichMessage) MarshalJSON() ([]byte, error) {
+	type Alias InputMessageRichMessage
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "inputMessageRichMessage",
+		Alias:   (*Alias)(&t),
+	})
+}
+
 // InputMessageStakeDice A stake dice message
 type InputMessageStakeDice struct {
-	// True, if the chat message draft must be deleted
+	// Pass true to delete message draft in the chat
 	ClearDraft bool `json:"clear_draft"`
 	// The Toncoin amount that will be staked; in the smallest units of the currency. Must be in the range
 	StakeToncoinAmount int64 `json:"stake_toncoin_amount"`
@@ -19755,7 +20168,7 @@ func (t InputMessageStory) MarshalJSON() ([]byte, error) {
 
 // InputMessageText A text message
 type InputMessageText struct {
-	// True, if the chat message draft must be deleted
+	// Pass true to delete message draft in the chat
 	ClearDraft bool `json:"clear_draft"`
 	// Options to be used for generation of a link preview; may be null if none; pass null to use default link preview options
 	LinkPreviewOptions *LinkPreviewOptions `json:"link_preview_options,omitempty"`
@@ -19805,32 +20218,16 @@ func (t InputMessageVenue) MarshalJSON() ([]byte, error) {
 
 // InputMessageVideo A video message
 type InputMessageVideo struct {
-	// File identifiers of the stickers added to the video, if applicable
-	AddedStickerFileIds []int32 `json:"added_sticker_file_ids"`
 	// Video caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
 	Caption *FormattedText `json:"caption,omitempty"`
-	// Cover of the video; pass null to skip cover uploading; not supported in secret chats and for self-destructing messages
-	Cover InputFile `json:"cover,omitempty"`
-	// Duration of the video, in seconds
-	Duration int32 `json:"duration"`
 	// True, if the video preview must be covered by a spoiler animation; not supported in secret chats
 	HasSpoiler bool `json:"has_spoiler"`
-	// Video height
-	Height int32 `json:"height"`
 	// Video self-destruct type; pass null if none; private chats only
 	SelfDestructType MessageSelfDestructType `json:"self_destruct_type,omitempty"`
 	// True, if the caption must be shown above the video; otherwise, the caption must be shown below the video; not supported in secret chats
 	ShowCaptionAboveMedia bool `json:"show_caption_above_media"`
-	// Timestamp from which the video playing must start, in seconds
-	StartTimestamp int32 `json:"start_timestamp"`
-	// True, if the video is expected to be streamed
-	SupportsStreaming bool `json:"supports_streaming"`
-	// Video thumbnail; pass null to skip thumbnail uploading
-	Thumbnail *InputThumbnail `json:"thumbnail,omitempty"`
-	// Video to be sent. The video is expected to be re-encoded to MPEG4 format with H.264 codec by the sender
-	Video InputFile `json:"video"`
-	// Video width
-	Width int32 `json:"width"`
+	// Video to be sent
+	Video *InputVideo `json:"video"`
 }
 
 func (t InputMessageVideo) GetType() string {
@@ -19853,9 +20250,7 @@ func (t InputMessageVideo) MarshalJSON() ([]byte, error) {
 func (t *InputMessageVideo) UnmarshalJSON(data []byte) error {
 	type Alias InputMessageVideo
 	aux := &struct {
-		Cover            json.RawMessage `json:"cover"`
 		SelfDestructType json.RawMessage `json:"self_destruct_type"`
-		Video            json.RawMessage `json:"video"`
 		*Alias
 	}{
 		Alias: (*Alias)(t),
@@ -19865,26 +20260,12 @@ func (t *InputMessageVideo) UnmarshalJSON(data []byte) error {
 		return err
 	}
 
-	if aux.Cover != nil {
-		v, err := UnmarshalInputFile(aux.Cover)
-		if err != nil {
-			return err
-		}
-		t.Cover = v
-	}
 	if aux.SelfDestructType != nil {
 		v, err := UnmarshalMessageSelfDestructType(aux.SelfDestructType)
 		if err != nil {
 			return err
 		}
 		t.SelfDestructType = v
-	}
-	if aux.Video != nil {
-		v, err := UnmarshalInputFile(aux.Video)
-		if err != nil {
-			return err
-		}
-		t.Video = v
 	}
 	return nil
 }
@@ -19953,7 +20334,7 @@ func (t *InputMessageVideoNote) UnmarshalJSON(data []byte) error {
 
 // InputMessageVoiceNote A voice note message
 type InputMessageVoiceNote struct {
-	// Voice note caption; may be null if empty; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
+	// Voice note caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
 	Caption *FormattedText `json:"caption,omitempty"`
 	// Duration of the voice note, in seconds
 	Duration int32 `json:"duration"`
@@ -20797,10 +21178,308 @@ func (t *InputPersonalDocument) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
+// InputPhoto A photo to be sent
+type InputPhoto struct {
+	// File identifiers of the stickers added to the photo, if applicable
+	AddedStickerFileIds []int32 `json:"added_sticker_file_ids"`
+	// Photo height; may be replaced by the server
+	Height int32 `json:"height"`
+	// Photo to be sent. The photo must be at most 10 MB in size. The photo's width and height must not exceed 10000 in total. Width and height ratio must be at most 20
+	Photo InputFile `json:"photo"`
+	// Photo thumbnail; pass null to skip thumbnail uploading. The thumbnail is sent to the other party only in secret chats
+	Thumbnail *InputThumbnail `json:"thumbnail,omitempty"`
+	// Video of the live photo; not supported in secret chats; pass null if the photo isn't a live photo
+	Video InputFile `json:"video,omitempty"`
+	// Photo width; may be replaced by the server
+	Width int32 `json:"width"`
+}
+
+func (t InputPhoto) GetType() string {
+	return "inputPhoto"
+}
+
+func (t InputPhoto) MarshalJSON() ([]byte, error) {
+	type Alias InputPhoto
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "inputPhoto",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+func (t *InputPhoto) UnmarshalJSON(data []byte) error {
+	type Alias InputPhoto
+	aux := &struct {
+		Photo json.RawMessage `json:"photo"`
+		Video json.RawMessage `json:"video"`
+		*Alias
+	}{
+		Alias: (*Alias)(t),
+	}
+
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+
+	if aux.Photo != nil {
+		v, err := UnmarshalInputFile(aux.Photo)
+		if err != nil {
+			return err
+		}
+		t.Photo = v
+	}
+	if aux.Video != nil {
+		v, err := UnmarshalInputFile(aux.Video)
+		if err != nil {
+			return err
+		}
+		t.Video = v
+	}
+	return nil
+}
+
+// InputPollMediaAnimation An animation
+type InputPollMediaAnimation struct {
+	// The animation to be sent
+	Animation *InputAnimation `json:"animation"`
+}
+
+func (t InputPollMediaAnimation) GetType() string {
+	return "inputPollMediaAnimation"
+}
+
+func (t InputPollMediaAnimation) inputPollMedia() {}
+
+func (t InputPollMediaAnimation) MarshalJSON() ([]byte, error) {
+	type Alias InputPollMediaAnimation
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "inputPollMediaAnimation",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// InputPollMediaAudio An audio
+type InputPollMediaAudio struct {
+	// The audio to be sent
+	Audio *InputAudio `json:"audio"`
+}
+
+func (t InputPollMediaAudio) GetType() string {
+	return "inputPollMediaAudio"
+}
+
+func (t InputPollMediaAudio) inputPollMedia() {}
+
+func (t InputPollMediaAudio) MarshalJSON() ([]byte, error) {
+	type Alias InputPollMediaAudio
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "inputPollMediaAudio",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// InputPollMediaDocument A document (general file)
+type InputPollMediaDocument struct {
+	// The document to be sent
+	Document *InputDocument `json:"document"`
+}
+
+func (t InputPollMediaDocument) GetType() string {
+	return "inputPollMediaDocument"
+}
+
+func (t InputPollMediaDocument) inputPollMedia() {}
+
+func (t InputPollMediaDocument) MarshalJSON() ([]byte, error) {
+	type Alias InputPollMediaDocument
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "inputPollMediaDocument",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// InputPollMediaLink A link
+type InputPollMediaLink struct {
+	// URL of the link
+	Url string `json:"url"`
+}
+
+func (t InputPollMediaLink) GetType() string {
+	return "inputPollMediaLink"
+}
+
+func (t InputPollMediaLink) inputPollMedia() {}
+
+func (t InputPollMediaLink) MarshalJSON() ([]byte, error) {
+	type Alias InputPollMediaLink
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "inputPollMediaLink",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// InputPollMediaLocation A location
+type InputPollMediaLocation struct {
+	// Location to be sent
+	Location *Location `json:"location"`
+}
+
+func (t InputPollMediaLocation) GetType() string {
+	return "inputPollMediaLocation"
+}
+
+func (t InputPollMediaLocation) inputPollMedia() {}
+
+func (t InputPollMediaLocation) MarshalJSON() ([]byte, error) {
+	type Alias InputPollMediaLocation
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "inputPollMediaLocation",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// InputPollMediaPhoto A photo
+type InputPollMediaPhoto struct {
+	// Photo to be sent
+	Photo *InputPhoto `json:"photo"`
+}
+
+func (t InputPollMediaPhoto) GetType() string {
+	return "inputPollMediaPhoto"
+}
+
+func (t InputPollMediaPhoto) inputPollMedia() {}
+
+func (t InputPollMediaPhoto) MarshalJSON() ([]byte, error) {
+	type Alias InputPollMediaPhoto
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "inputPollMediaPhoto",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// InputPollMediaSticker A sticker
+type InputPollMediaSticker struct {
+	// Sticker height
+	Height int32 `json:"height"`
+	// Sticker to be sent
+	Sticker InputFile `json:"sticker"`
+	// Sticker thumbnail; pass null to skip thumbnail uploading
+	Thumbnail *InputThumbnail `json:"thumbnail,omitempty"`
+	// Sticker width
+	Width int32 `json:"width"`
+}
+
+func (t InputPollMediaSticker) GetType() string {
+	return "inputPollMediaSticker"
+}
+
+func (t InputPollMediaSticker) inputPollMedia() {}
+
+func (t InputPollMediaSticker) MarshalJSON() ([]byte, error) {
+	type Alias InputPollMediaSticker
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "inputPollMediaSticker",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+func (t *InputPollMediaSticker) UnmarshalJSON(data []byte) error {
+	type Alias InputPollMediaSticker
+	aux := &struct {
+		Sticker json.RawMessage `json:"sticker"`
+		*Alias
+	}{
+		Alias: (*Alias)(t),
+	}
+
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+
+	if aux.Sticker != nil {
+		v, err := UnmarshalInputFile(aux.Sticker)
+		if err != nil {
+			return err
+		}
+		t.Sticker = v
+	}
+	return nil
+}
+
+// InputPollMediaVenue A venue
+type InputPollMediaVenue struct {
+	// Venue to send
+	Venue *Venue `json:"venue"`
+}
+
+func (t InputPollMediaVenue) GetType() string {
+	return "inputPollMediaVenue"
+}
+
+func (t InputPollMediaVenue) inputPollMedia() {}
+
+func (t InputPollMediaVenue) MarshalJSON() ([]byte, error) {
+	type Alias InputPollMediaVenue
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "inputPollMediaVenue",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// InputPollMediaVideo A video
+type InputPollMediaVideo struct {
+	// The video to be sent
+	Video *InputVideo `json:"video"`
+}
+
+func (t InputPollMediaVideo) GetType() string {
+	return "inputPollMediaVideo"
+}
+
+func (t InputPollMediaVideo) inputPollMedia() {}
+
+func (t InputPollMediaVideo) MarshalJSON() ([]byte, error) {
+	type Alias InputPollMediaVideo
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "inputPollMediaVideo",
+		Alias:   (*Alias)(&t),
+	})
+}
+
 // InputPollOption Describes one answer option of a poll to be created
 type InputPollOption struct {
 	// Option media; pass null if none; ignored in addPollOption. Must be one of the following types:
-	Media InputMessageContent `json:"media,omitempty"`
+	Media InputPollMedia `json:"media,omitempty"`
 	// Option text; 1-100 characters. Only custom emoji entities are allowed to be added and only by Premium users
 	Text *FormattedText `json:"text"`
 }
@@ -20834,7 +21513,7 @@ func (t *InputPollOption) UnmarshalJSON(data []byte) error {
 	}
 
 	if aux.Media != nil {
-		v, err := UnmarshalInputMessageContent(aux.Media)
+		v, err := UnmarshalInputPollMedia(aux.Media)
 		if err != nil {
 			return err
 		}
@@ -20850,7 +21529,7 @@ type InputPollTypeQuiz struct {
 	// Text that is shown when the user chooses an incorrect answer or taps on the lamp icon; 0-200 characters with at most 2 line feeds
 	Explanation *FormattedText `json:"explanation"`
 	// Media that is shown when the user chooses an incorrect answer or taps on the lamp icon; pass null if none. Must be one of the following types:
-	ExplanationMedia InputMessageContent `json:"explanation_media,omitempty"`
+	ExplanationMedia InputPollMedia `json:"explanation_media,omitempty"`
 }
 
 func (t InputPollTypeQuiz) GetType() string {
@@ -20884,7 +21563,7 @@ func (t *InputPollTypeQuiz) UnmarshalJSON(data []byte) error {
 	}
 
 	if aux.ExplanationMedia != nil {
-		v, err := UnmarshalInputMessageContent(aux.ExplanationMedia)
+		v, err := UnmarshalInputPollMedia(aux.ExplanationMedia)
 		if err != nil {
 			return err
 		}
@@ -20914,6 +21593,54 @@ func (t InputPollTypeRegular) MarshalJSON() ([]byte, error) {
 		TypeStr: "inputPollTypeRegular",
 		Alias:   (*Alias)(&t),
 	})
+}
+
+// InputRichMessage A rich message to send
+type InputRichMessage struct {
+	// Pass true to enable detection of URLs, email addresses and other automatic blocks
+	DetectAutomaticBlocks bool `json:"detect_automatic_blocks"`
+	// Pass true if the message must be shown from right to left
+	IsRtl bool `json:"is_rtl"`
+	// Source of the rich message
+	Source RichMessageSource `json:"source"`
+}
+
+func (t InputRichMessage) GetType() string {
+	return "inputRichMessage"
+}
+
+func (t InputRichMessage) MarshalJSON() ([]byte, error) {
+	type Alias InputRichMessage
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "inputRichMessage",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+func (t *InputRichMessage) UnmarshalJSON(data []byte) error {
+	type Alias InputRichMessage
+	aux := &struct {
+		Source json.RawMessage `json:"source"`
+		*Alias
+	}{
+		Alias: (*Alias)(t),
+	}
+
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+
+	if aux.Source != nil {
+		v, err := UnmarshalRichMessageSource(aux.Source)
+		if err != nil {
+			return err
+		}
+		t.Source = v
+	}
+	return nil
 }
 
 // InputSticker A sticker to be added to a sticker set
@@ -21481,6 +22208,74 @@ func (t *InputThumbnail) UnmarshalJSON(data []byte) error {
 			return err
 		}
 		t.Thumbnail = v
+	}
+	return nil
+}
+
+// InputVideo A video to be sent
+type InputVideo struct {
+	// File identifiers of the stickers added to the video, if applicable
+	AddedStickerFileIds []int32 `json:"added_sticker_file_ids"`
+	// Cover of the video; pass null to skip cover uploading; not supported in secret chats and for self-destructing messages
+	Cover InputFile `json:"cover,omitempty"`
+	// Duration of the video, in seconds
+	Duration int32 `json:"duration"`
+	// Video height
+	Height int32 `json:"height"`
+	// Timestamp from which the video playing must start, in seconds
+	StartTimestamp int32 `json:"start_timestamp"`
+	// True, if the video is expected to be streamed
+	SupportsStreaming bool `json:"supports_streaming"`
+	// Video thumbnail; pass null to skip thumbnail uploading
+	Thumbnail *InputThumbnail `json:"thumbnail,omitempty"`
+	// Video file to be sent. The video is expected to be re-encoded to MPEG4 format with H.264 codec by the sender
+	Video InputFile `json:"video"`
+	// Video width
+	Width int32 `json:"width"`
+}
+
+func (t InputVideo) GetType() string {
+	return "inputVideo"
+}
+
+func (t InputVideo) MarshalJSON() ([]byte, error) {
+	type Alias InputVideo
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "inputVideo",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+func (t *InputVideo) UnmarshalJSON(data []byte) error {
+	type Alias InputVideo
+	aux := &struct {
+		Cover json.RawMessage `json:"cover"`
+		Video json.RawMessage `json:"video"`
+		*Alias
+	}{
+		Alias: (*Alias)(t),
+	}
+
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+
+	if aux.Cover != nil {
+		v, err := UnmarshalInputFile(aux.Cover)
+		if err != nil {
+			return err
+		}
+		t.Cover = v
+	}
+	if aux.Video != nil {
+		v, err := UnmarshalInputFile(aux.Video)
+		if err != nil {
+			return err
+		}
+		t.Video = v
 	}
 	return nil
 }
@@ -23933,7 +24728,7 @@ type LinkPreview struct {
 	ShowLargeMedia bool `json:"show_large_media"`
 	// True, if media must be shown above link preview description; otherwise, the media must be shown below the description
 	ShowMediaAboveDescription bool `json:"show_media_above_description"`
-	// Short name of the site (e.g., Google Docs, App Store)
+	// Short name of the website (e.g., Google Docs, App Store)
 	SiteName string `json:"site_name"`
 	// True, if there is no need to show an ordinary open URL confirmation, when opening the URL from the preview, because the URL is shown in the message text in clear
 	SkipConfirmation bool `json:"skip_confirmation"`
@@ -24155,7 +24950,7 @@ func (t LinkPreviewTypeApp) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// LinkPreviewTypeArticle The link is a link to a web site
+// LinkPreviewTypeArticle The link is a link to a website
 type LinkPreviewTypeArticle struct {
 	// Article's main photo; may be null
 	Photo *Photo `json:"photo,omitempty"`
@@ -25106,6 +25901,33 @@ func (t LinkPreviewTypeWebApp) MarshalJSON() ([]byte, error) {
 	})
 }
 
+// LiveLocation A live location
+type LiveLocation struct {
+	// The direction in which the location moves, in degrees; 1-360; 0 if unknown
+	Heading int32 `json:"heading"`
+	// Time relative to the message send date, for which the location can be updated, in seconds; if 0x7FFFFFFF, then location can be updated forever
+	LivePeriod int32 `json:"live_period"`
+	// The current location
+	Location *Location `json:"location"`
+	// The maximum distance to another chat member for proximity alerts, in meters (0-100000). 0 if the notification is disabled.
+	ProximityAlertRadius int32 `json:"proximity_alert_radius"`
+}
+
+func (t LiveLocation) GetType() string {
+	return "liveLocation"
+}
+
+func (t LiveLocation) MarshalJSON() ([]byte, error) {
+	type Alias LiveLocation
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "liveLocation",
+		Alias:   (*Alias)(&t),
+	})
+}
+
 // LiveStoryDonors Contains a list of users and chats that spend most money on paid messages and reactions in a live story
 type LiveStoryDonors struct {
 	// List of top donors in the live story
@@ -25407,7 +26229,7 @@ type MainWebApp struct {
 	// The mode in which the Web App must be opened
 	Mode WebAppOpenMode `json:"mode"`
 	// URL of the Web App to open
-	Url string `json:"url"`
+	Url *WebAppUrl `json:"url"`
 }
 
 func (t MainWebApp) GetType() string {
@@ -27899,18 +28721,35 @@ func (t *MessageLinkInfo) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-// MessageLocation A message with a location
-type MessageLocation struct {
+// MessageLiveLocation A message with a live location
+type MessageLiveLocation struct {
 	// Left time for which the location can be updated, in seconds. If 0, then the location can't be updated anymore. The update updateMessageContent is not sent when this field changes
 	ExpiresIn int32 `json:"expires_in"`
-	// For live locations, a direction in which the location moves, in degrees; 1-360. If 0 the direction is unknown
-	Heading int32 `json:"heading"`
-	// Time relative to the message send date, for which the location can be updated, in seconds; if 0x7FFFFFFF, then location can be updated forever
-	LivePeriod int32 `json:"live_period"`
-	// The location description
+	// The current location
+	Location *LiveLocation `json:"location"`
+}
+
+func (t MessageLiveLocation) GetType() string {
+	return "messageLiveLocation"
+}
+
+func (t MessageLiveLocation) messageContent() {}
+
+func (t MessageLiveLocation) MarshalJSON() ([]byte, error) {
+	type Alias MessageLiveLocation
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "messageLiveLocation",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// MessageLocation A message with a location
+type MessageLocation struct {
+	// The location
 	Location *Location `json:"location"`
-	// For live locations, a maximum distance to another chat member for proximity alerts, in meters (0-100000). 0 if the notification is disabled. Available only to the message sender
-	ProximityAlertRadius int32 `json:"proximity_alert_radius"`
 }
 
 func (t MessageLocation) GetType() string {
@@ -28424,8 +29263,8 @@ type MessagePoll struct {
 	CanAddOption bool `json:"can_add_option"`
 	// Description of the poll
 	Description *FormattedText `json:"description"`
-	// Media attached to the poll; may be null if none. If present, currently, can be only of the types messageAnimation, messageAudio, messageDocument, messageLocation, messagePhoto, messageVenue, or messageVideo without caption
-	Media MessageContent `json:"media,omitempty"`
+	// Media attached to the poll; may be null if none. If present, currently, can be only of the types pollMediaAnimation, pollMediaAudio, pollMediaDocument, pollMediaLocation, pollMediaPhoto, pollMediaVenue, or pollMediaVideo
+	Media PollMedia `json:"media,omitempty"`
 	// Information about the poll
 	Poll *Poll `json:"poll"`
 }
@@ -28461,7 +29300,7 @@ func (t *MessagePoll) UnmarshalJSON(data []byte) error {
 	}
 
 	if aux.Media != nil {
-		v, err := UnmarshalMessageContent(aux.Media)
+		v, err := UnmarshalPollMedia(aux.Media)
 		if err != nil {
 			return err
 		}
@@ -29212,6 +30051,29 @@ func (t MessageReplyToStory) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "messageReplyToStory",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// MessageRichMessage A rich message; the message can have multiple media of the same type, all of which must be shown in the corresponding profile tab
+type MessageRichMessage struct {
+	// The rich message
+	Message *RichMessage `json:"message"`
+}
+
+func (t MessageRichMessage) GetType() string {
+	return "messageRichMessage"
+}
+
+func (t MessageRichMessage) messageContent() {}
+
+func (t MessageRichMessage) MarshalJSON() ([]byte, error) {
+	type Alias MessageRichMessage
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "messageRichMessage",
 		Alias:   (*Alias)(&t),
 	})
 }
@@ -31908,8 +32770,10 @@ func (t PageBlockAnchor) MarshalJSON() ([]byte, error) {
 type PageBlockAnimation struct {
 	// Animation file; may be null
 	Animation *Animation `json:"animation,omitempty"`
-	// Animation caption
-	Caption *PageBlockCaption `json:"caption"`
+	// Animation caption; may be null if none
+	Caption *PageBlockCaption `json:"caption,omitempty"`
+	// True, if the animation preview must be covered by a spoiler animation
+	HasSpoiler bool `json:"has_spoiler"`
 	// True, if the animation must be played automatically
 	NeedAutoplay bool `json:"need_autoplay"`
 }
@@ -31935,8 +32799,8 @@ func (t PageBlockAnimation) MarshalJSON() ([]byte, error) {
 type PageBlockAudio struct {
 	// Audio file; may be null
 	Audio *Audio `json:"audio,omitempty"`
-	// Audio file caption
-	Caption *PageBlockCaption `json:"caption"`
+	// Audio file caption; may be null if none
+	Caption *PageBlockCaption `json:"caption,omitempty"`
 }
 
 func (t PageBlockAudio) GetType() string {
@@ -31956,7 +32820,7 @@ func (t PageBlockAudio) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// PageBlockAuthorDate The author and publishing date of a page
+// PageBlockAuthorDate The author and publishing date of a page; instant view only
 type PageBlockAuthorDate struct {
 	// Author
 	Author RichText `json:"author"`
@@ -32006,10 +32870,10 @@ func (t *PageBlockAuthorDate) UnmarshalJSON(data []byte) error {
 
 // PageBlockBlockQuote A block quote
 type PageBlockBlockQuote struct {
-	// Quote credit
-	Credit RichText `json:"credit"`
-	// Quote text
-	Text RichText `json:"text"`
+	// Quote blocks
+	Blocks []PageBlock `json:"blocks"`
+	// Quote credit; may be null if none
+	Credit RichText `json:"credit,omitempty"`
 }
 
 func (t PageBlockBlockQuote) GetType() string {
@@ -32032,8 +32896,8 @@ func (t PageBlockBlockQuote) MarshalJSON() ([]byte, error) {
 func (t *PageBlockBlockQuote) UnmarshalJSON(data []byte) error {
 	type Alias PageBlockBlockQuote
 	aux := &struct {
-		Credit json.RawMessage `json:"credit"`
-		Text   json.RawMessage `json:"text"`
+		Blocks []json.RawMessage `json:"blocks"`
+		Credit json.RawMessage   `json:"credit"`
 		*Alias
 	}{
 		Alias: (*Alias)(t),
@@ -32043,6 +32907,16 @@ func (t *PageBlockBlockQuote) UnmarshalJSON(data []byte) error {
 		return err
 	}
 
+	if aux.Blocks != nil {
+		t.Blocks = make([]PageBlock, len(aux.Blocks))
+		for i, raw := range aux.Blocks {
+			v, err := UnmarshalPageBlock(raw)
+			if err != nil {
+				return err
+			}
+			t.Blocks[i] = v
+		}
+	}
 	if aux.Credit != nil {
 		v, err := UnmarshalRichText(aux.Credit)
 		if err != nil {
@@ -32050,20 +32924,13 @@ func (t *PageBlockBlockQuote) UnmarshalJSON(data []byte) error {
 		}
 		t.Credit = v
 	}
-	if aux.Text != nil {
-		v, err := UnmarshalRichText(aux.Text)
-		if err != nil {
-			return err
-		}
-		t.Text = v
-	}
 	return nil
 }
 
 // PageBlockCaption Contains a caption of another block
 type PageBlockCaption struct {
-	// Block credit (like HTML tag <cite>)
-	Credit RichText `json:"credit"`
+	// Block credit (like HTML tag <cite>); may be null if none
+	Credit RichText `json:"credit,omitempty"`
 	// Content of the caption
 	Text RichText `json:"text"`
 }
@@ -32114,7 +32981,7 @@ func (t *PageBlockCaption) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-// PageBlockChatLink A link to a chat
+// PageBlockChatLink A link to a chat; instant view only
 type PageBlockChatLink struct {
 	// Identifier of the accent color for chat title and background of chat photo
 	AccentColorId int32 `json:"accent_color_id"`
@@ -32145,10 +33012,10 @@ func (t PageBlockChatLink) MarshalJSON() ([]byte, error) {
 
 // PageBlockCollage A collage
 type PageBlockCollage struct {
-	// Block caption
-	Caption *PageBlockCaption `json:"caption"`
 	// Collage item contents
-	PageBlocks []PageBlock `json:"page_blocks"`
+	Blocks []PageBlock `json:"blocks"`
+	// Block caption; may be null if none
+	Caption *PageBlockCaption `json:"caption,omitempty"`
 }
 
 func (t PageBlockCollage) GetType() string {
@@ -32171,7 +33038,7 @@ func (t PageBlockCollage) MarshalJSON() ([]byte, error) {
 func (t *PageBlockCollage) UnmarshalJSON(data []byte) error {
 	type Alias PageBlockCollage
 	aux := &struct {
-		PageBlocks []json.RawMessage `json:"page_blocks"`
+		Blocks []json.RawMessage `json:"blocks"`
 		*Alias
 	}{
 		Alias: (*Alias)(t),
@@ -32181,20 +33048,20 @@ func (t *PageBlockCollage) UnmarshalJSON(data []byte) error {
 		return err
 	}
 
-	if aux.PageBlocks != nil {
-		t.PageBlocks = make([]PageBlock, len(aux.PageBlocks))
-		for i, raw := range aux.PageBlocks {
+	if aux.Blocks != nil {
+		t.Blocks = make([]PageBlock, len(aux.Blocks))
+		for i, raw := range aux.Blocks {
 			v, err := UnmarshalPageBlock(raw)
 			if err != nil {
 				return err
 			}
-			t.PageBlocks[i] = v
+			t.Blocks[i] = v
 		}
 	}
 	return nil
 }
 
-// PageBlockCover A page cover
+// PageBlockCover A page cover; instant view only
 type PageBlockCover struct {
 	// Cover
 	Cover PageBlock `json:"cover"`
@@ -32242,12 +33109,12 @@ func (t *PageBlockCover) UnmarshalJSON(data []byte) error {
 
 // PageBlockDetails A collapsible block
 type PageBlockDetails struct {
+	// Block contents
+	Blocks []PageBlock `json:"blocks"`
 	// Always visible heading for the block
 	Header RichText `json:"header"`
 	// True, if the block is open by default
 	IsOpen bool `json:"is_open"`
-	// Block contents
-	PageBlocks []PageBlock `json:"page_blocks"`
 }
 
 func (t PageBlockDetails) GetType() string {
@@ -32270,8 +33137,8 @@ func (t PageBlockDetails) MarshalJSON() ([]byte, error) {
 func (t *PageBlockDetails) UnmarshalJSON(data []byte) error {
 	type Alias PageBlockDetails
 	aux := &struct {
-		Header     json.RawMessage   `json:"header"`
-		PageBlocks []json.RawMessage `json:"page_blocks"`
+		Blocks []json.RawMessage `json:"blocks"`
+		Header json.RawMessage   `json:"header"`
 		*Alias
 	}{
 		Alias: (*Alias)(t),
@@ -32281,22 +33148,22 @@ func (t *PageBlockDetails) UnmarshalJSON(data []byte) error {
 		return err
 	}
 
+	if aux.Blocks != nil {
+		t.Blocks = make([]PageBlock, len(aux.Blocks))
+		for i, raw := range aux.Blocks {
+			v, err := UnmarshalPageBlock(raw)
+			if err != nil {
+				return err
+			}
+			t.Blocks[i] = v
+		}
+	}
 	if aux.Header != nil {
 		v, err := UnmarshalRichText(aux.Header)
 		if err != nil {
 			return err
 		}
 		t.Header = v
-	}
-	if aux.PageBlocks != nil {
-		t.PageBlocks = make([]PageBlock, len(aux.PageBlocks))
-		for i, raw := range aux.PageBlocks {
-			v, err := UnmarshalPageBlock(raw)
-			if err != nil {
-				return err
-			}
-			t.PageBlocks[i] = v
-		}
 	}
 	return nil
 }
@@ -32322,12 +33189,12 @@ func (t PageBlockDivider) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// PageBlockEmbedded An embedded web page
+// PageBlockEmbedded An embedded web page; instant view only
 type PageBlockEmbedded struct {
 	// True, if scrolling needs to be allowed
 	AllowScrolling bool `json:"allow_scrolling"`
-	// Block caption
-	Caption *PageBlockCaption `json:"caption"`
+	// Block caption; may be null if none
+	Caption *PageBlockCaption `json:"caption,omitempty"`
 	// Block height; 0 if unknown
 	Height int32 `json:"height"`
 	// HTML-markup of the embedded page
@@ -32359,18 +33226,18 @@ func (t PageBlockEmbedded) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// PageBlockEmbeddedPost An embedded post
+// PageBlockEmbeddedPost An embedded post; instant view only
 type PageBlockEmbeddedPost struct {
 	// Post author
 	Author string `json:"author"`
 	// Post author photo; may be null
 	AuthorPhoto *Photo `json:"author_photo,omitempty"`
-	// Post caption
-	Caption *PageBlockCaption `json:"caption"`
+	// Post content
+	Blocks []PageBlock `json:"blocks"`
+	// Post caption; may be null if none
+	Caption *PageBlockCaption `json:"caption,omitempty"`
 	// Point in time (Unix timestamp) when the post was created; 0 if unknown
 	Date int32 `json:"date"`
-	// Post content
-	PageBlocks []PageBlock `json:"page_blocks"`
 	// URL of the embedded post
 	Url string `json:"url"`
 }
@@ -32395,7 +33262,7 @@ func (t PageBlockEmbeddedPost) MarshalJSON() ([]byte, error) {
 func (t *PageBlockEmbeddedPost) UnmarshalJSON(data []byte) error {
 	type Alias PageBlockEmbeddedPost
 	aux := &struct {
-		PageBlocks []json.RawMessage `json:"page_blocks"`
+		Blocks []json.RawMessage `json:"blocks"`
 		*Alias
 	}{
 		Alias: (*Alias)(t),
@@ -32405,14 +33272,14 @@ func (t *PageBlockEmbeddedPost) UnmarshalJSON(data []byte) error {
 		return err
 	}
 
-	if aux.PageBlocks != nil {
-		t.PageBlocks = make([]PageBlock, len(aux.PageBlocks))
-		for i, raw := range aux.PageBlocks {
+	if aux.Blocks != nil {
+		t.Blocks = make([]PageBlock, len(aux.Blocks))
+		for i, raw := range aux.Blocks {
 			v, err := UnmarshalPageBlock(raw)
 			if err != nil {
 				return err
 			}
-			t.PageBlocks[i] = v
+			t.Blocks[i] = v
 		}
 	}
 	return nil
@@ -32464,7 +33331,7 @@ func (t *PageBlockFooter) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-// PageBlockHeader A header
+// PageBlockHeader A header; instant view only
 type PageBlockHeader struct {
 	// Header
 	Header RichText `json:"header"`
@@ -32573,7 +33440,7 @@ func (t PageBlockHorizontalAlignmentRight) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// PageBlockKicker A kicker
+// PageBlockKicker A kicker; instant view only
 type PageBlockKicker struct {
 	// Kicker
 	Kicker RichText `json:"kicker"`
@@ -32644,10 +33511,18 @@ func (t PageBlockList) MarshalJSON() ([]byte, error) {
 
 // PageBlockListItem Describes an item of a list page block
 type PageBlockListItem struct {
+	// Item blocks
+	Blocks []PageBlock `json:"blocks"`
+	// True, if the item has a checkbox
+	HasCheckbox bool `json:"has_checkbox"`
+	// True, if the item is checked
+	IsChecked bool `json:"is_checked"`
 	// Item label
 	Label string `json:"label"`
-	// Item blocks
-	PageBlocks []PageBlock `json:"page_blocks"`
+	// Type of the item numbering type; must be one of "a" for a lowercase letters, "A" for an uppercase letters, "i" for lowercase Roman numerals, "I" for uppercase Roman numerals,
+	Type string `json:"type"`
+	// Value of the item; 0 for unordered lists
+	Value int32 `json:"value"`
 }
 
 func (t PageBlockListItem) GetType() string {
@@ -32668,7 +33543,7 @@ func (t PageBlockListItem) MarshalJSON() ([]byte, error) {
 func (t *PageBlockListItem) UnmarshalJSON(data []byte) error {
 	type Alias PageBlockListItem
 	aux := &struct {
-		PageBlocks []json.RawMessage `json:"page_blocks"`
+		Blocks []json.RawMessage `json:"blocks"`
 		*Alias
 	}{
 		Alias: (*Alias)(t),
@@ -32678,14 +33553,14 @@ func (t *PageBlockListItem) UnmarshalJSON(data []byte) error {
 		return err
 	}
 
-	if aux.PageBlocks != nil {
-		t.PageBlocks = make([]PageBlock, len(aux.PageBlocks))
-		for i, raw := range aux.PageBlocks {
+	if aux.Blocks != nil {
+		t.Blocks = make([]PageBlock, len(aux.Blocks))
+		for i, raw := range aux.Blocks {
 			v, err := UnmarshalPageBlock(raw)
 			if err != nil {
 				return err
 			}
-			t.PageBlocks[i] = v
+			t.Blocks[i] = v
 		}
 	}
 	return nil
@@ -32693,8 +33568,8 @@ func (t *PageBlockListItem) UnmarshalJSON(data []byte) error {
 
 // PageBlockMap A map
 type PageBlockMap struct {
-	// Block caption
-	Caption *PageBlockCaption `json:"caption"`
+	// Block caption; may be null if none
+	Caption *PageBlockCaption `json:"caption,omitempty"`
 	// Map height
 	Height int32 `json:"height"`
 	// Location of the map center
@@ -32718,6 +33593,29 @@ func (t PageBlockMap) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "pageBlockMap",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// PageBlockMathematicalExpression A mathematical expression
+type PageBlockMathematicalExpression struct {
+	// The expression in LaTeX format
+	Expression string `json:"expression"`
+}
+
+func (t PageBlockMathematicalExpression) GetType() string {
+	return "pageBlockMathematicalExpression"
+}
+
+func (t PageBlockMathematicalExpression) pageBlock() {}
+
+func (t PageBlockMathematicalExpression) MarshalJSON() ([]byte, error) {
+	type Alias PageBlockMathematicalExpression
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "pageBlockMathematicalExpression",
 		Alias:   (*Alias)(&t),
 	})
 }
@@ -32770,11 +33668,13 @@ func (t *PageBlockParagraph) UnmarshalJSON(data []byte) error {
 
 // PageBlockPhoto A photo
 type PageBlockPhoto struct {
-	// Photo caption
-	Caption *PageBlockCaption `json:"caption"`
+	// Photo caption; may be null if none
+	Caption *PageBlockCaption `json:"caption,omitempty"`
+	// True, if the photo preview must be covered by a spoiler animation
+	HasSpoiler bool `json:"has_spoiler"`
 	// Photo file; may be null
 	Photo *Photo `json:"photo,omitempty"`
-	// URL that needs to be opened when the photo is clicked
+	// URL that needs to be opened when the photo is clicked; instant view only
 	Url string `json:"url"`
 }
 
@@ -32845,8 +33745,8 @@ func (t *PageBlockPreformatted) UnmarshalJSON(data []byte) error {
 
 // PageBlockPullQuote A pull quote
 type PageBlockPullQuote struct {
-	// Quote credit
-	Credit RichText `json:"credit"`
+	// Quote credit; may be null if none
+	Credit RichText `json:"credit,omitempty"`
 	// Quote text
 	Text RichText `json:"text"`
 }
@@ -32930,7 +33830,7 @@ func (t PageBlockRelatedArticle) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// PageBlockRelatedArticles Related articles
+// PageBlockRelatedArticles Related articles; instant view only
 type PageBlockRelatedArticles struct {
 	// List of related articles
 	Articles []PageBlockRelatedArticle `json:"articles"`
@@ -32978,12 +33878,60 @@ func (t *PageBlockRelatedArticles) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
+// PageBlockSectionHeading A section heading
+type PageBlockSectionHeading struct {
+	// Relative size of the text font; 1-6, 1 is the largest, 6 is the smallest
+	Size int32 `json:"size"`
+	// Text of the section heading
+	Text RichText `json:"text"`
+}
+
+func (t PageBlockSectionHeading) GetType() string {
+	return "pageBlockSectionHeading"
+}
+
+func (t PageBlockSectionHeading) pageBlock() {}
+
+func (t PageBlockSectionHeading) MarshalJSON() ([]byte, error) {
+	type Alias PageBlockSectionHeading
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "pageBlockSectionHeading",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+func (t *PageBlockSectionHeading) UnmarshalJSON(data []byte) error {
+	type Alias PageBlockSectionHeading
+	aux := &struct {
+		Text json.RawMessage `json:"text"`
+		*Alias
+	}{
+		Alias: (*Alias)(t),
+	}
+
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+
+	if aux.Text != nil {
+		v, err := UnmarshalRichText(aux.Text)
+		if err != nil {
+			return err
+		}
+		t.Text = v
+	}
+	return nil
+}
+
 // PageBlockSlideshow A slideshow
 type PageBlockSlideshow struct {
-	// Block caption
-	Caption *PageBlockCaption `json:"caption"`
 	// Slideshow item contents
-	PageBlocks []PageBlock `json:"page_blocks"`
+	Blocks []PageBlock `json:"blocks"`
+	// Block caption; may be null if none
+	Caption *PageBlockCaption `json:"caption,omitempty"`
 }
 
 func (t PageBlockSlideshow) GetType() string {
@@ -33006,7 +33954,7 @@ func (t PageBlockSlideshow) MarshalJSON() ([]byte, error) {
 func (t *PageBlockSlideshow) UnmarshalJSON(data []byte) error {
 	type Alias PageBlockSlideshow
 	aux := &struct {
-		PageBlocks []json.RawMessage `json:"page_blocks"`
+		Blocks []json.RawMessage `json:"blocks"`
 		*Alias
 	}{
 		Alias: (*Alias)(t),
@@ -33016,20 +33964,20 @@ func (t *PageBlockSlideshow) UnmarshalJSON(data []byte) error {
 		return err
 	}
 
-	if aux.PageBlocks != nil {
-		t.PageBlocks = make([]PageBlock, len(aux.PageBlocks))
-		for i, raw := range aux.PageBlocks {
+	if aux.Blocks != nil {
+		t.Blocks = make([]PageBlock, len(aux.Blocks))
+		for i, raw := range aux.Blocks {
 			v, err := UnmarshalPageBlock(raw)
 			if err != nil {
 				return err
 			}
-			t.PageBlocks[i] = v
+			t.Blocks[i] = v
 		}
 	}
 	return nil
 }
 
-// PageBlockSubheader A subheader
+// PageBlockSubheader A subheader; instant view only
 type PageBlockSubheader struct {
 	// Subheader
 	Subheader RichText `json:"subheader"`
@@ -33075,7 +34023,7 @@ func (t *PageBlockSubheader) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-// PageBlockSubtitle The subtitle of a page
+// PageBlockSubtitle The subtitle of a page; instant view only
 type PageBlockSubtitle struct {
 	// Subtitle
 	Subtitle RichText `json:"subtitle"`
@@ -33123,8 +34071,8 @@ func (t *PageBlockSubtitle) UnmarshalJSON(data []byte) error {
 
 // PageBlockTable A table
 type PageBlockTable struct {
-	// Table caption
-	Caption RichText `json:"caption"`
+	// Table caption; may be null if none
+	Caption RichText `json:"caption,omitempty"`
 	// Table cells
 	Cells [][]PageBlockTableCell `json:"cells"`
 	// True, if the table is bordered
@@ -33243,7 +34191,53 @@ func (t *PageBlockTableCell) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-// PageBlockTitle The title of a page
+// PageBlockThinking A "Thinking..." placeholder; for pending rich messages only
+type PageBlockThinking struct {
+	// Text of the placeholder
+	Text RichText `json:"text"`
+}
+
+func (t PageBlockThinking) GetType() string {
+	return "pageBlockThinking"
+}
+
+func (t PageBlockThinking) pageBlock() {}
+
+func (t PageBlockThinking) MarshalJSON() ([]byte, error) {
+	type Alias PageBlockThinking
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "pageBlockThinking",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+func (t *PageBlockThinking) UnmarshalJSON(data []byte) error {
+	type Alias PageBlockThinking
+	aux := &struct {
+		Text json.RawMessage `json:"text"`
+		*Alias
+	}{
+		Alias: (*Alias)(t),
+	}
+
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+
+	if aux.Text != nil {
+		v, err := UnmarshalRichText(aux.Text)
+		if err != nil {
+			return err
+		}
+		t.Text = v
+	}
+	return nil
+}
+
+// PageBlockTitle The title of a page; instant view only
 type PageBlockTitle struct {
 	// Title
 	Title RichText `json:"title"`
@@ -33354,8 +34348,10 @@ func (t PageBlockVerticalAlignmentTop) MarshalJSON() ([]byte, error) {
 
 // PageBlockVideo A video
 type PageBlockVideo struct {
-	// Video caption
-	Caption *PageBlockCaption `json:"caption"`
+	// Video caption; may be null if none
+	Caption *PageBlockCaption `json:"caption,omitempty"`
+	// True, if the video preview must be covered by a spoiler animation
+	HasSpoiler bool `json:"has_spoiler"`
 	// True, if the video must be looped
 	IsLooped bool `json:"is_looped"`
 	// True, if the video must be played automatically
@@ -33383,8 +34379,8 @@ func (t PageBlockVideo) MarshalJSON() ([]byte, error) {
 
 // PageBlockVoiceNote A voice note
 type PageBlockVoiceNote struct {
-	// Voice note caption
-	Caption *PageBlockCaption `json:"caption"`
+	// Voice note caption; may be null if none
+	Caption *PageBlockCaption `json:"caption,omitempty"`
 	// Voice note; may be null
 	VoiceNote *VoiceNote `json:"voice_note,omitempty"`
 }
@@ -35405,6 +36401,8 @@ type Poll struct {
 	AllowsRevoting bool `json:"allows_revoting"`
 	// True, if the current user can get voters in the poll using getPollVoters
 	CanGetVoters bool `json:"can_get_voters"`
+	// True, if the current user can see results of the poll
+	CanSeeResults bool `json:"can_see_results"`
 	// Point in time (Unix timestamp) when the poll will automatically be closed
 	CloseDate int32 `json:"close_date"`
 	// The list of two-letter ISO 3166-1 alpha-2 codes of countries, users from which will be able to vote. If empty, then all users can participate in the poll
@@ -35492,6 +36490,225 @@ func (t *Poll) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
+// PollMediaAnimation An animation
+type PollMediaAnimation struct {
+	// The animation
+	Animation *Animation `json:"animation"`
+}
+
+func (t PollMediaAnimation) GetType() string {
+	return "pollMediaAnimation"
+}
+
+func (t PollMediaAnimation) pollMedia() {}
+
+func (t PollMediaAnimation) MarshalJSON() ([]byte, error) {
+	type Alias PollMediaAnimation
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "pollMediaAnimation",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// PollMediaAudio An audio
+type PollMediaAudio struct {
+	// The audio
+	Audio *Audio `json:"audio"`
+}
+
+func (t PollMediaAudio) GetType() string {
+	return "pollMediaAudio"
+}
+
+func (t PollMediaAudio) pollMedia() {}
+
+func (t PollMediaAudio) MarshalJSON() ([]byte, error) {
+	type Alias PollMediaAudio
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "pollMediaAudio",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// PollMediaDocument A document (general file)
+type PollMediaDocument struct {
+	// The document
+	Document *Document `json:"document"`
+}
+
+func (t PollMediaDocument) GetType() string {
+	return "pollMediaDocument"
+}
+
+func (t PollMediaDocument) pollMedia() {}
+
+func (t PollMediaDocument) MarshalJSON() ([]byte, error) {
+	type Alias PollMediaDocument
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "pollMediaDocument",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// PollMediaLink A link
+type PollMediaLink struct {
+	// Preview of the link; may be null if unknown
+	LinkPreview *LinkPreview `json:"link_preview,omitempty"`
+	// URL of the link
+	Url string `json:"url"`
+}
+
+func (t PollMediaLink) GetType() string {
+	return "pollMediaLink"
+}
+
+func (t PollMediaLink) pollMedia() {}
+
+func (t PollMediaLink) MarshalJSON() ([]byte, error) {
+	type Alias PollMediaLink
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "pollMediaLink",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// PollMediaLocation A location
+type PollMediaLocation struct {
+	// The location
+	Location *Location `json:"location"`
+}
+
+func (t PollMediaLocation) GetType() string {
+	return "pollMediaLocation"
+}
+
+func (t PollMediaLocation) pollMedia() {}
+
+func (t PollMediaLocation) MarshalJSON() ([]byte, error) {
+	type Alias PollMediaLocation
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "pollMediaLocation",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// PollMediaPhoto A photo
+type PollMediaPhoto struct {
+	// The photo
+	Photo *Photo `json:"photo"`
+	// The video representing the live photo; may be null if the photo is static
+	Video *Video `json:"video,omitempty"`
+}
+
+func (t PollMediaPhoto) GetType() string {
+	return "pollMediaPhoto"
+}
+
+func (t PollMediaPhoto) pollMedia() {}
+
+func (t PollMediaPhoto) MarshalJSON() ([]byte, error) {
+	type Alias PollMediaPhoto
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "pollMediaPhoto",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// PollMediaSticker A sticker
+type PollMediaSticker struct {
+	// The sticker
+	Sticker *Sticker `json:"sticker"`
+}
+
+func (t PollMediaSticker) GetType() string {
+	return "pollMediaSticker"
+}
+
+func (t PollMediaSticker) pollMedia() {}
+
+func (t PollMediaSticker) MarshalJSON() ([]byte, error) {
+	type Alias PollMediaSticker
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "pollMediaSticker",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// PollMediaVenue A venue
+type PollMediaVenue struct {
+	// The venue
+	Venue *Venue `json:"venue"`
+}
+
+func (t PollMediaVenue) GetType() string {
+	return "pollMediaVenue"
+}
+
+func (t PollMediaVenue) pollMedia() {}
+
+func (t PollMediaVenue) MarshalJSON() ([]byte, error) {
+	type Alias PollMediaVenue
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "pollMediaVenue",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// PollMediaVideo A video
+type PollMediaVideo struct {
+	// Alternative qualities of the video
+	AlternativeVideos []AlternativeVideo `json:"alternative_videos"`
+	// Cover of the video; may be null if none
+	Cover *Photo `json:"cover,omitempty"`
+	// Timestamp from which the video playing must start, in seconds
+	StartTimestamp int32 `json:"start_timestamp"`
+	// Available storyboards for the video
+	Storyboards []VideoStoryboard `json:"storyboards"`
+	// The video description
+	Video *Video `json:"video"`
+}
+
+func (t PollMediaVideo) GetType() string {
+	return "pollMediaVideo"
+}
+
+func (t PollMediaVideo) pollMedia() {}
+
+func (t PollMediaVideo) MarshalJSON() ([]byte, error) {
+	type Alias PollMediaVideo
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "pollMediaVideo",
+		Alias:   (*Alias)(&t),
+	})
+}
+
 // PollOption Describes one answer option of a poll
 type PollOption struct {
 	// Point in time (Unix timestamp) when the option was added; 0 if the option existed from creation of the poll
@@ -35504,8 +36721,8 @@ type PollOption struct {
 	IsBeingChosen bool `json:"is_being_chosen"`
 	// True, if the option was chosen by the user
 	IsChosen bool `json:"is_chosen"`
-	// Option media; may be null if none. If present, currently, can be only of the types messageAnimation, messageLocation, messagePhoto, messageSticker, messageVenue, or messageVideo without caption
-	Media MessageContent `json:"media,omitempty"`
+	// Option media; may be null if none. If present, currently, can be only of the types pollMediaAnimation, pollMediaLink, pollMediaLocation, pollMediaPhoto, pollMediaSticker, pollMediaVenue, or pollMediaVideo
+	Media PollMedia `json:"media,omitempty"`
 	// Identifiers of recent voters for the option, if the poll is non-anonymous and poll results are available
 	RecentVoterIds []MessageSender `json:"recent_voter_ids"`
 	// Option text; 1-100 characters; may contain only custom emoji entities
@@ -35554,7 +36771,7 @@ func (t *PollOption) UnmarshalJSON(data []byte) error {
 		t.Author = v
 	}
 	if aux.Media != nil {
-		v, err := UnmarshalMessageContent(aux.Media)
+		v, err := UnmarshalPollMedia(aux.Media)
 		if err != nil {
 			return err
 		}
@@ -35607,7 +36824,7 @@ type PollTypeQuiz struct {
 	// Text that is shown when the user chooses an incorrect answer or taps on the lamp icon; empty for a yet unanswered poll
 	Explanation *FormattedText `json:"explanation"`
 	// Media that is shown when the user chooses an incorrect answer or taps on the lamp icon; may be null if none or the poll is unanswered yet.
-	ExplanationMedia MessageContent `json:"explanation_media,omitempty"`
+	ExplanationMedia PollMedia `json:"explanation_media,omitempty"`
 }
 
 func (t PollTypeQuiz) GetType() string {
@@ -35641,7 +36858,7 @@ func (t *PollTypeQuiz) UnmarshalJSON(data []byte) error {
 	}
 
 	if aux.ExplanationMedia != nil {
-		v, err := UnmarshalMessageContent(aux.ExplanationMedia)
+		v, err := UnmarshalPollMedia(aux.ExplanationMedia)
 		if err != nil {
 			return err
 		}
@@ -37004,6 +38221,27 @@ func (t PremiumLimitTypeFavoriteStickerCount) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "premiumLimitTypeFavoriteStickerCount",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// PremiumLimitTypeMessageTextLength The maximum length of text of sent messages
+type PremiumLimitTypeMessageTextLength struct {
+}
+
+func (t PremiumLimitTypeMessageTextLength) GetType() string {
+	return "premiumLimitTypeMessageTextLength"
+}
+
+func (t PremiumLimitTypeMessageTextLength) premiumLimitType() {}
+
+func (t PremiumLimitTypeMessageTextLength) MarshalJSON() ([]byte, error) {
+	type Alias PremiumLimitTypeMessageTextLength
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "premiumLimitTypeMessageTextLength",
 		Alias:   (*Alias)(&t),
 	})
 }
@@ -41026,6 +42264,103 @@ func (t RevenueWithdrawalStateSucceeded) MarshalJSON() ([]byte, error) {
 	})
 }
 
+// RichMessage Describes a message with rich formatting
+type RichMessage struct {
+	// Content of the message
+	Blocks []PageBlock `json:"blocks"`
+	// True, if the object contains the full message. Otherwise, getFullRichMessage must be used to get the full message
+	IsFull bool `json:"is_full"`
+	// True, if the message must be shown from right to left
+	IsRtl bool `json:"is_rtl"`
+}
+
+func (t RichMessage) GetType() string {
+	return "richMessage"
+}
+
+func (t RichMessage) MarshalJSON() ([]byte, error) {
+	type Alias RichMessage
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "richMessage",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+func (t *RichMessage) UnmarshalJSON(data []byte) error {
+	type Alias RichMessage
+	aux := &struct {
+		Blocks []json.RawMessage `json:"blocks"`
+		*Alias
+	}{
+		Alias: (*Alias)(t),
+	}
+
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+
+	if aux.Blocks != nil {
+		t.Blocks = make([]PageBlock, len(aux.Blocks))
+		for i, raw := range aux.Blocks {
+			v, err := UnmarshalPageBlock(raw)
+			if err != nil {
+				return err
+			}
+			t.Blocks[i] = v
+		}
+	}
+	return nil
+}
+
+// RichMessageSourceHtml An HTML-formatted rich message; for bots only
+type RichMessageSourceHtml struct {
+	// HTML-formatted text of the message
+	Text string `json:"text"`
+}
+
+func (t RichMessageSourceHtml) GetType() string {
+	return "richMessageSourceHtml"
+}
+
+func (t RichMessageSourceHtml) richMessageSource() {}
+
+func (t RichMessageSourceHtml) MarshalJSON() ([]byte, error) {
+	type Alias RichMessageSourceHtml
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "richMessageSourceHtml",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// RichMessageSourceMarkdown A Markdown-formatted rich message; for bots only
+type RichMessageSourceMarkdown struct {
+	// Markdown-formatted text of the message
+	Text string `json:"text"`
+}
+
+func (t RichMessageSourceMarkdown) GetType() string {
+	return "richMessageSourceMarkdown"
+}
+
+func (t RichMessageSourceMarkdown) richMessageSource() {}
+
+func (t RichMessageSourceMarkdown) MarshalJSON() ([]byte, error) {
+	type Alias RichMessageSourceMarkdown
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "richMessageSourceMarkdown",
+		Alias:   (*Alias)(&t),
+	})
+}
+
 // RichTextAnchor An anchor
 type RichTextAnchor struct {
 	// Anchor name
@@ -41055,7 +42390,7 @@ type RichTextAnchorLink struct {
 	AnchorName string `json:"anchor_name"`
 	// The link text
 	Text RichText `json:"text"`
-	// An HTTP URL, opening the anchor
+	// An HTTP URL that opens the anchor
 	Url string `json:"url"`
 }
 
@@ -41078,6 +42413,54 @@ func (t RichTextAnchorLink) MarshalJSON() ([]byte, error) {
 
 func (t *RichTextAnchorLink) UnmarshalJSON(data []byte) error {
 	type Alias RichTextAnchorLink
+	aux := &struct {
+		Text json.RawMessage `json:"text"`
+		*Alias
+	}{
+		Alias: (*Alias)(t),
+	}
+
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+
+	if aux.Text != nil {
+		v, err := UnmarshalRichText(aux.Text)
+		if err != nil {
+			return err
+		}
+		t.Text = v
+	}
+	return nil
+}
+
+// RichTextBankCardNumber A bank card number
+type RichTextBankCardNumber struct {
+	// The number of the bank card
+	BankCardNumber string `json:"bank_card_number"`
+	// Text
+	Text RichText `json:"text"`
+}
+
+func (t RichTextBankCardNumber) GetType() string {
+	return "richTextBankCardNumber"
+}
+
+func (t RichTextBankCardNumber) richText() {}
+
+func (t RichTextBankCardNumber) MarshalJSON() ([]byte, error) {
+	type Alias RichTextBankCardNumber
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "richTextBankCardNumber",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+func (t *RichTextBankCardNumber) UnmarshalJSON(data []byte) error {
+	type Alias RichTextBankCardNumber
 	aux := &struct {
 		Text json.RawMessage `json:"text"`
 		*Alias
@@ -41145,7 +42528,186 @@ func (t *RichTextBold) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-// RichTextEmailAddress A rich text email link
+// RichTextBotCommand A bot command
+type RichTextBotCommand struct {
+	// The bot command
+	BotCommand string `json:"bot_command"`
+	// Text
+	Text RichText `json:"text"`
+}
+
+func (t RichTextBotCommand) GetType() string {
+	return "richTextBotCommand"
+}
+
+func (t RichTextBotCommand) richText() {}
+
+func (t RichTextBotCommand) MarshalJSON() ([]byte, error) {
+	type Alias RichTextBotCommand
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "richTextBotCommand",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+func (t *RichTextBotCommand) UnmarshalJSON(data []byte) error {
+	type Alias RichTextBotCommand
+	aux := &struct {
+		Text json.RawMessage `json:"text"`
+		*Alias
+	}{
+		Alias: (*Alias)(t),
+	}
+
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+
+	if aux.Text != nil {
+		v, err := UnmarshalRichText(aux.Text)
+		if err != nil {
+			return err
+		}
+		t.Text = v
+	}
+	return nil
+}
+
+// RichTextCashtag A cashtag
+type RichTextCashtag struct {
+	// The cashtag
+	Cashtag string `json:"cashtag"`
+	// Text
+	Text RichText `json:"text"`
+}
+
+func (t RichTextCashtag) GetType() string {
+	return "richTextCashtag"
+}
+
+func (t RichTextCashtag) richText() {}
+
+func (t RichTextCashtag) MarshalJSON() ([]byte, error) {
+	type Alias RichTextCashtag
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "richTextCashtag",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+func (t *RichTextCashtag) UnmarshalJSON(data []byte) error {
+	type Alias RichTextCashtag
+	aux := &struct {
+		Text json.RawMessage `json:"text"`
+		*Alias
+	}{
+		Alias: (*Alias)(t),
+	}
+
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+
+	if aux.Text != nil {
+		v, err := UnmarshalRichText(aux.Text)
+		if err != nil {
+			return err
+		}
+		t.Text = v
+	}
+	return nil
+}
+
+// RichTextCustomEmoji A custom emoji
+type RichTextCustomEmoji struct {
+	// Alternative text for the custom emoji
+	AlternativeText string `json:"alternative_text"`
+	// Unique identifier of the custom emoji
+	CustomEmojiId int64 `json:"custom_emoji_id,string"`
+}
+
+func (t RichTextCustomEmoji) GetType() string {
+	return "richTextCustomEmoji"
+}
+
+func (t RichTextCustomEmoji) richText() {}
+
+func (t RichTextCustomEmoji) MarshalJSON() ([]byte, error) {
+	type Alias RichTextCustomEmoji
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "richTextCustomEmoji",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// RichTextDateTime A date and time
+type RichTextDateTime struct {
+	// Date and time formatting type; may be null if none and the original text must not be changed
+	FormattingType DateTimeFormattingType `json:"formatting_type,omitempty"`
+	// Original text
+	Text RichText `json:"text"`
+	// Point in time (Unix timestamp) representing the date and time
+	UnixTime int32 `json:"unix_time"`
+}
+
+func (t RichTextDateTime) GetType() string {
+	return "richTextDateTime"
+}
+
+func (t RichTextDateTime) richText() {}
+
+func (t RichTextDateTime) MarshalJSON() ([]byte, error) {
+	type Alias RichTextDateTime
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "richTextDateTime",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+func (t *RichTextDateTime) UnmarshalJSON(data []byte) error {
+	type Alias RichTextDateTime
+	aux := &struct {
+		FormattingType json.RawMessage `json:"formatting_type"`
+		Text           json.RawMessage `json:"text"`
+		*Alias
+	}{
+		Alias: (*Alias)(t),
+	}
+
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+
+	if aux.FormattingType != nil {
+		v, err := UnmarshalDateTimeFormattingType(aux.FormattingType)
+		if err != nil {
+			return err
+		}
+		t.FormattingType = v
+	}
+	if aux.Text != nil {
+		v, err := UnmarshalRichText(aux.Text)
+		if err != nil {
+			return err
+		}
+		t.Text = v
+	}
+	return nil
+}
+
+// RichTextEmailAddress A rich text email address
 type RichTextEmailAddress struct {
 	// Email address
 	EmailAddress string `json:"email_address"`
@@ -41239,7 +42801,55 @@ func (t *RichTextFixed) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-// RichTextIcon A small image inside the text
+// RichTextHashtag A hashtag
+type RichTextHashtag struct {
+	// The hashtag
+	Hashtag string `json:"hashtag"`
+	// Text
+	Text RichText `json:"text"`
+}
+
+func (t RichTextHashtag) GetType() string {
+	return "richTextHashtag"
+}
+
+func (t RichTextHashtag) richText() {}
+
+func (t RichTextHashtag) MarshalJSON() ([]byte, error) {
+	type Alias RichTextHashtag
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "richTextHashtag",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+func (t *RichTextHashtag) UnmarshalJSON(data []byte) error {
+	type Alias RichTextHashtag
+	aux := &struct {
+		Text json.RawMessage `json:"text"`
+		*Alias
+	}{
+		Alias: (*Alias)(t),
+	}
+
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+
+	if aux.Text != nil {
+		v, err := UnmarshalRichText(aux.Text)
+		if err != nil {
+			return err
+		}
+		t.Text = v
+	}
+	return nil
+}
+
+// RichTextIcon A small image inside the text; instant view only
 type RichTextIcon struct {
 	// The image represented as a document. The image can be in GIF, JPEG or PNG format
 	Document *Document `json:"document"`
@@ -41358,6 +42968,125 @@ func (t *RichTextMarked) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
+// RichTextMathematicalExpression A mathematical expression
+type RichTextMathematicalExpression struct {
+	// The expression in LaTeX format
+	Expression string `json:"expression"`
+}
+
+func (t RichTextMathematicalExpression) GetType() string {
+	return "richTextMathematicalExpression"
+}
+
+func (t RichTextMathematicalExpression) richText() {}
+
+func (t RichTextMathematicalExpression) MarshalJSON() ([]byte, error) {
+	type Alias RichTextMathematicalExpression
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "richTextMathematicalExpression",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// RichTextMention A mention of a Telegram user or chat by a username
+type RichTextMention struct {
+	// Text
+	Text RichText `json:"text"`
+	// The username
+	Username string `json:"username"`
+}
+
+func (t RichTextMention) GetType() string {
+	return "richTextMention"
+}
+
+func (t RichTextMention) richText() {}
+
+func (t RichTextMention) MarshalJSON() ([]byte, error) {
+	type Alias RichTextMention
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "richTextMention",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+func (t *RichTextMention) UnmarshalJSON(data []byte) error {
+	type Alias RichTextMention
+	aux := &struct {
+		Text json.RawMessage `json:"text"`
+		*Alias
+	}{
+		Alias: (*Alias)(t),
+	}
+
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+
+	if aux.Text != nil {
+		v, err := UnmarshalRichText(aux.Text)
+		if err != nil {
+			return err
+		}
+		t.Text = v
+	}
+	return nil
+}
+
+// RichTextMentionName A rich text that serves as a mention of a user
+type RichTextMentionName struct {
+	// Text
+	Text RichText `json:"text"`
+	// Identifier of the mentioned user
+	UserId int64 `json:"user_id"`
+}
+
+func (t RichTextMentionName) GetType() string {
+	return "richTextMentionName"
+}
+
+func (t RichTextMentionName) richText() {}
+
+func (t RichTextMentionName) MarshalJSON() ([]byte, error) {
+	type Alias RichTextMentionName
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "richTextMentionName",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+func (t *RichTextMentionName) UnmarshalJSON(data []byte) error {
+	type Alias RichTextMentionName
+	aux := &struct {
+		Text json.RawMessage `json:"text"`
+		*Alias
+	}{
+		Alias: (*Alias)(t),
+	}
+
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+
+	if aux.Text != nil {
+		v, err := UnmarshalRichText(aux.Text)
+		if err != nil {
+			return err
+		}
+		t.Text = v
+	}
+	return nil
+}
+
 // RichTextPhoneNumber A rich text phone number
 type RichTextPhoneNumber struct {
 	// Phone number
@@ -41429,14 +43158,12 @@ func (t RichTextPlain) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// RichTextReference A reference to a richTexts object on the same page
+// RichTextReference A reference
 type RichTextReference struct {
-	// The name of a richTextAnchor object, which is the first element of the target richTexts object
-	AnchorName string `json:"anchor_name"`
-	// The text
+	// Reference name
+	Name string `json:"name"`
+	// Text of the reference
 	Text RichText `json:"text"`
-	// An HTTP URL, opening the reference
-	Url string `json:"url"`
 }
 
 func (t RichTextReference) GetType() string {
@@ -41458,6 +43185,56 @@ func (t RichTextReference) MarshalJSON() ([]byte, error) {
 
 func (t *RichTextReference) UnmarshalJSON(data []byte) error {
 	type Alias RichTextReference
+	aux := &struct {
+		Text json.RawMessage `json:"text"`
+		*Alias
+	}{
+		Alias: (*Alias)(t),
+	}
+
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+
+	if aux.Text != nil {
+		v, err := UnmarshalRichText(aux.Text)
+		if err != nil {
+			return err
+		}
+		t.Text = v
+	}
+	return nil
+}
+
+// RichTextReferenceLink A link to a reference on the same page
+type RichTextReferenceLink struct {
+	// The reference name
+	ReferenceName string `json:"reference_name"`
+	// The link text
+	Text RichText `json:"text"`
+	// An HTTP URL that opens the reference
+	Url string `json:"url"`
+}
+
+func (t RichTextReferenceLink) GetType() string {
+	return "richTextReferenceLink"
+}
+
+func (t RichTextReferenceLink) richText() {}
+
+func (t RichTextReferenceLink) MarshalJSON() ([]byte, error) {
+	type Alias RichTextReferenceLink
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "richTextReferenceLink",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+func (t *RichTextReferenceLink) UnmarshalJSON(data []byte) error {
+	type Alias RichTextReferenceLink
 	aux := &struct {
 		Text json.RawMessage `json:"text"`
 		*Alias
@@ -41524,6 +43301,52 @@ func (t *RichTexts) UnmarshalJSON(data []byte) error {
 			}
 			t.Texts[i] = v
 		}
+	}
+	return nil
+}
+
+// RichTextSpoiler A spoilered rich text
+type RichTextSpoiler struct {
+	// Text
+	Text RichText `json:"text"`
+}
+
+func (t RichTextSpoiler) GetType() string {
+	return "richTextSpoiler"
+}
+
+func (t RichTextSpoiler) richText() {}
+
+func (t RichTextSpoiler) MarshalJSON() ([]byte, error) {
+	type Alias RichTextSpoiler
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "richTextSpoiler",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+func (t *RichTextSpoiler) UnmarshalJSON(data []byte) error {
+	type Alias RichTextSpoiler
+	aux := &struct {
+		Text json.RawMessage `json:"text"`
+		*Alias
+	}{
+		Alias: (*Alias)(t),
+	}
+
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+
+	if aux.Text != nil {
+		v, err := UnmarshalRichText(aux.Text)
+		if err != nil {
+			return err
+		}
+		t.Text = v
 	}
 	return nil
 }
@@ -41714,7 +43537,7 @@ func (t *RichTextUnderline) UnmarshalJSON(data []byte) error {
 
 // RichTextUrl A rich text URL link
 type RichTextUrl struct {
-	// True, if the URL has cached instant view server-side
+	// True, if the URL has cached instant view server-side; instant view only
 	IsCached bool `json:"is_cached"`
 	// Text
 	Text RichText `json:"text"`
@@ -42054,6 +43877,48 @@ func (t ScopeNotificationSettings) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "scopeNotificationSettings",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// SearchChatTypeFilterBot Returns only private chats with bots
+type SearchChatTypeFilterBot struct {
+}
+
+func (t SearchChatTypeFilterBot) GetType() string {
+	return "searchChatTypeFilterBot"
+}
+
+func (t SearchChatTypeFilterBot) searchChatTypeFilter() {}
+
+func (t SearchChatTypeFilterBot) MarshalJSON() ([]byte, error) {
+	type Alias SearchChatTypeFilterBot
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "searchChatTypeFilterBot",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// SearchChatTypeFilterChannel Returns only channel chats
+type SearchChatTypeFilterChannel struct {
+}
+
+func (t SearchChatTypeFilterChannel) GetType() string {
+	return "searchChatTypeFilterChannel"
+}
+
+func (t SearchChatTypeFilterChannel) searchChatTypeFilter() {}
+
+func (t SearchChatTypeFilterChannel) MarshalJSON() ([]byte, error) {
+	type Alias SearchChatTypeFilterChannel
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "searchChatTypeFilterChannel",
 		Alias:   (*Alias)(&t),
 	})
 }
@@ -42718,6 +44583,8 @@ type Session struct {
 	CanAcceptSecretChats bool `json:"can_accept_secret_chats"`
 	// Model of the device the application has been run or is running on, as provided by the application
 	DeviceModel string `json:"device_model"`
+	// Session device type based on the system and application version, which can be used to display a corresponding icon
+	DeviceType SessionDeviceType `json:"device_type"`
 	// Session identifier
 	Id int64 `json:"id,string"`
 	// IP address from which the session was created, in human-readable format
@@ -42740,8 +44607,6 @@ type Session struct {
 	Platform string `json:"platform"`
 	// Version of the operating system the application has been run or is running on, as provided by the application
 	SystemVersion string `json:"system_version"`
-	// Session type based on the system and application version, which can be used to display a corresponding icon
-	Type SessionType `json:"type"`
 }
 
 func (t Session) GetType() string {
@@ -42762,7 +44627,7 @@ func (t Session) MarshalJSON() ([]byte, error) {
 func (t *Session) UnmarshalJSON(data []byte) error {
 	type Alias Session
 	aux := &struct {
-		Type json.RawMessage `json:"type"`
+		DeviceType json.RawMessage `json:"device_type"`
 		*Alias
 	}{
 		Alias: (*Alias)(t),
@@ -42772,14 +44637,371 @@ func (t *Session) UnmarshalJSON(data []byte) error {
 		return err
 	}
 
-	if aux.Type != nil {
-		v, err := UnmarshalSessionType(aux.Type)
+	if aux.DeviceType != nil {
+		v, err := UnmarshalSessionDeviceType(aux.DeviceType)
 		if err != nil {
 			return err
 		}
-		t.Type = v
+		t.DeviceType = v
 	}
 	return nil
+}
+
+// SessionDeviceTypeAndroid The session is running on an Android device
+type SessionDeviceTypeAndroid struct {
+}
+
+func (t SessionDeviceTypeAndroid) GetType() string {
+	return "sessionDeviceTypeAndroid"
+}
+
+func (t SessionDeviceTypeAndroid) sessionDeviceType() {}
+
+func (t SessionDeviceTypeAndroid) MarshalJSON() ([]byte, error) {
+	type Alias SessionDeviceTypeAndroid
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "sessionDeviceTypeAndroid",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// SessionDeviceTypeApple The session is running on a generic Apple device
+type SessionDeviceTypeApple struct {
+}
+
+func (t SessionDeviceTypeApple) GetType() string {
+	return "sessionDeviceTypeApple"
+}
+
+func (t SessionDeviceTypeApple) sessionDeviceType() {}
+
+func (t SessionDeviceTypeApple) MarshalJSON() ([]byte, error) {
+	type Alias SessionDeviceTypeApple
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "sessionDeviceTypeApple",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// SessionDeviceTypeBrave The session is running on the Brave browser
+type SessionDeviceTypeBrave struct {
+}
+
+func (t SessionDeviceTypeBrave) GetType() string {
+	return "sessionDeviceTypeBrave"
+}
+
+func (t SessionDeviceTypeBrave) sessionDeviceType() {}
+
+func (t SessionDeviceTypeBrave) MarshalJSON() ([]byte, error) {
+	type Alias SessionDeviceTypeBrave
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "sessionDeviceTypeBrave",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// SessionDeviceTypeChrome The session is running on the Chrome browser
+type SessionDeviceTypeChrome struct {
+}
+
+func (t SessionDeviceTypeChrome) GetType() string {
+	return "sessionDeviceTypeChrome"
+}
+
+func (t SessionDeviceTypeChrome) sessionDeviceType() {}
+
+func (t SessionDeviceTypeChrome) MarshalJSON() ([]byte, error) {
+	type Alias SessionDeviceTypeChrome
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "sessionDeviceTypeChrome",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// SessionDeviceTypeEdge The session is running on the Edge browser
+type SessionDeviceTypeEdge struct {
+}
+
+func (t SessionDeviceTypeEdge) GetType() string {
+	return "sessionDeviceTypeEdge"
+}
+
+func (t SessionDeviceTypeEdge) sessionDeviceType() {}
+
+func (t SessionDeviceTypeEdge) MarshalJSON() ([]byte, error) {
+	type Alias SessionDeviceTypeEdge
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "sessionDeviceTypeEdge",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// SessionDeviceTypeFirefox The session is running on the Firefox browser
+type SessionDeviceTypeFirefox struct {
+}
+
+func (t SessionDeviceTypeFirefox) GetType() string {
+	return "sessionDeviceTypeFirefox"
+}
+
+func (t SessionDeviceTypeFirefox) sessionDeviceType() {}
+
+func (t SessionDeviceTypeFirefox) MarshalJSON() ([]byte, error) {
+	type Alias SessionDeviceTypeFirefox
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "sessionDeviceTypeFirefox",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// SessionDeviceTypeIpad The session is running on an iPad device
+type SessionDeviceTypeIpad struct {
+}
+
+func (t SessionDeviceTypeIpad) GetType() string {
+	return "sessionDeviceTypeIpad"
+}
+
+func (t SessionDeviceTypeIpad) sessionDeviceType() {}
+
+func (t SessionDeviceTypeIpad) MarshalJSON() ([]byte, error) {
+	type Alias SessionDeviceTypeIpad
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "sessionDeviceTypeIpad",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// SessionDeviceTypeIphone The session is running on an iPhone device
+type SessionDeviceTypeIphone struct {
+}
+
+func (t SessionDeviceTypeIphone) GetType() string {
+	return "sessionDeviceTypeIphone"
+}
+
+func (t SessionDeviceTypeIphone) sessionDeviceType() {}
+
+func (t SessionDeviceTypeIphone) MarshalJSON() ([]byte, error) {
+	type Alias SessionDeviceTypeIphone
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "sessionDeviceTypeIphone",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// SessionDeviceTypeLinux The session is running on a Linux device
+type SessionDeviceTypeLinux struct {
+}
+
+func (t SessionDeviceTypeLinux) GetType() string {
+	return "sessionDeviceTypeLinux"
+}
+
+func (t SessionDeviceTypeLinux) sessionDeviceType() {}
+
+func (t SessionDeviceTypeLinux) MarshalJSON() ([]byte, error) {
+	type Alias SessionDeviceTypeLinux
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "sessionDeviceTypeLinux",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// SessionDeviceTypeMac The session is running on a Mac device
+type SessionDeviceTypeMac struct {
+}
+
+func (t SessionDeviceTypeMac) GetType() string {
+	return "sessionDeviceTypeMac"
+}
+
+func (t SessionDeviceTypeMac) sessionDeviceType() {}
+
+func (t SessionDeviceTypeMac) MarshalJSON() ([]byte, error) {
+	type Alias SessionDeviceTypeMac
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "sessionDeviceTypeMac",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// SessionDeviceTypeOpera The session is running on the Opera browser
+type SessionDeviceTypeOpera struct {
+}
+
+func (t SessionDeviceTypeOpera) GetType() string {
+	return "sessionDeviceTypeOpera"
+}
+
+func (t SessionDeviceTypeOpera) sessionDeviceType() {}
+
+func (t SessionDeviceTypeOpera) MarshalJSON() ([]byte, error) {
+	type Alias SessionDeviceTypeOpera
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "sessionDeviceTypeOpera",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// SessionDeviceTypeSafari The session is running on the Safari browser
+type SessionDeviceTypeSafari struct {
+}
+
+func (t SessionDeviceTypeSafari) GetType() string {
+	return "sessionDeviceTypeSafari"
+}
+
+func (t SessionDeviceTypeSafari) sessionDeviceType() {}
+
+func (t SessionDeviceTypeSafari) MarshalJSON() ([]byte, error) {
+	type Alias SessionDeviceTypeSafari
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "sessionDeviceTypeSafari",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// SessionDeviceTypeUbuntu The session is running on an Ubuntu device
+type SessionDeviceTypeUbuntu struct {
+}
+
+func (t SessionDeviceTypeUbuntu) GetType() string {
+	return "sessionDeviceTypeUbuntu"
+}
+
+func (t SessionDeviceTypeUbuntu) sessionDeviceType() {}
+
+func (t SessionDeviceTypeUbuntu) MarshalJSON() ([]byte, error) {
+	type Alias SessionDeviceTypeUbuntu
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "sessionDeviceTypeUbuntu",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// SessionDeviceTypeUnknown The session is running on an unknown type of device
+type SessionDeviceTypeUnknown struct {
+}
+
+func (t SessionDeviceTypeUnknown) GetType() string {
+	return "sessionDeviceTypeUnknown"
+}
+
+func (t SessionDeviceTypeUnknown) sessionDeviceType() {}
+
+func (t SessionDeviceTypeUnknown) MarshalJSON() ([]byte, error) {
+	type Alias SessionDeviceTypeUnknown
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "sessionDeviceTypeUnknown",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// SessionDeviceTypeVivaldi The session is running on the Vivaldi browser
+type SessionDeviceTypeVivaldi struct {
+}
+
+func (t SessionDeviceTypeVivaldi) GetType() string {
+	return "sessionDeviceTypeVivaldi"
+}
+
+func (t SessionDeviceTypeVivaldi) sessionDeviceType() {}
+
+func (t SessionDeviceTypeVivaldi) MarshalJSON() ([]byte, error) {
+	type Alias SessionDeviceTypeVivaldi
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "sessionDeviceTypeVivaldi",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// SessionDeviceTypeWindows The session is running on a Windows device
+type SessionDeviceTypeWindows struct {
+}
+
+func (t SessionDeviceTypeWindows) GetType() string {
+	return "sessionDeviceTypeWindows"
+}
+
+func (t SessionDeviceTypeWindows) sessionDeviceType() {}
+
+func (t SessionDeviceTypeWindows) MarshalJSON() ([]byte, error) {
+	type Alias SessionDeviceTypeWindows
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "sessionDeviceTypeWindows",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// SessionDeviceTypeXbox The session is running on an Xbox console
+type SessionDeviceTypeXbox struct {
+}
+
+func (t SessionDeviceTypeXbox) GetType() string {
+	return "sessionDeviceTypeXbox"
+}
+
+func (t SessionDeviceTypeXbox) sessionDeviceType() {}
+
+func (t SessionDeviceTypeXbox) MarshalJSON() ([]byte, error) {
+	type Alias SessionDeviceTypeXbox
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "sessionDeviceTypeXbox",
+		Alias:   (*Alias)(&t),
+	})
 }
 
 // Sessions Contains a list of sessions
@@ -42805,359 +45027,48 @@ func (t Sessions) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// SessionTypeAndroid The session is running on an Android device
-type SessionTypeAndroid struct {
+// SessionTypeConnectedBot A business bot connected to the current user's account
+type SessionTypeConnectedBot struct {
+	// User identifier of the bot. Use deleteBusinessConnectedBot to remove it or confirmBusinessConnectedBot to confirm it if it isn't confirmed yet
+	BotUserId int64 `json:"bot_user_id"`
 }
 
-func (t SessionTypeAndroid) GetType() string {
-	return "sessionTypeAndroid"
+func (t SessionTypeConnectedBot) GetType() string {
+	return "sessionTypeConnectedBot"
 }
 
-func (t SessionTypeAndroid) sessionType() {}
+func (t SessionTypeConnectedBot) sessionType() {}
 
-func (t SessionTypeAndroid) MarshalJSON() ([]byte, error) {
-	type Alias SessionTypeAndroid
+func (t SessionTypeConnectedBot) MarshalJSON() ([]byte, error) {
+	type Alias SessionTypeConnectedBot
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
-		TypeStr: "sessionTypeAndroid",
+		TypeStr: "sessionTypeConnectedBot",
 		Alias:   (*Alias)(&t),
 	})
 }
 
-// SessionTypeApple The session is running on a generic Apple device
-type SessionTypeApple struct {
+// SessionTypeDevice A regular session from a device
+type SessionTypeDevice struct {
+	// Unique identifier of the session. Use terminateSession to terminate it or confirmSession to confirm it if it isn't confirmed yet
+	SessionId int64 `json:"session_id,string"`
 }
 
-func (t SessionTypeApple) GetType() string {
-	return "sessionTypeApple"
+func (t SessionTypeDevice) GetType() string {
+	return "sessionTypeDevice"
 }
 
-func (t SessionTypeApple) sessionType() {}
+func (t SessionTypeDevice) sessionType() {}
 
-func (t SessionTypeApple) MarshalJSON() ([]byte, error) {
-	type Alias SessionTypeApple
+func (t SessionTypeDevice) MarshalJSON() ([]byte, error) {
+	type Alias SessionTypeDevice
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
-		TypeStr: "sessionTypeApple",
-		Alias:   (*Alias)(&t),
-	})
-}
-
-// SessionTypeBrave The session is running on the Brave browser
-type SessionTypeBrave struct {
-}
-
-func (t SessionTypeBrave) GetType() string {
-	return "sessionTypeBrave"
-}
-
-func (t SessionTypeBrave) sessionType() {}
-
-func (t SessionTypeBrave) MarshalJSON() ([]byte, error) {
-	type Alias SessionTypeBrave
-	return json.Marshal(&struct {
-		TypeStr string `json:"@type"`
-		*Alias
-	}{
-		TypeStr: "sessionTypeBrave",
-		Alias:   (*Alias)(&t),
-	})
-}
-
-// SessionTypeChrome The session is running on the Chrome browser
-type SessionTypeChrome struct {
-}
-
-func (t SessionTypeChrome) GetType() string {
-	return "sessionTypeChrome"
-}
-
-func (t SessionTypeChrome) sessionType() {}
-
-func (t SessionTypeChrome) MarshalJSON() ([]byte, error) {
-	type Alias SessionTypeChrome
-	return json.Marshal(&struct {
-		TypeStr string `json:"@type"`
-		*Alias
-	}{
-		TypeStr: "sessionTypeChrome",
-		Alias:   (*Alias)(&t),
-	})
-}
-
-// SessionTypeEdge The session is running on the Edge browser
-type SessionTypeEdge struct {
-}
-
-func (t SessionTypeEdge) GetType() string {
-	return "sessionTypeEdge"
-}
-
-func (t SessionTypeEdge) sessionType() {}
-
-func (t SessionTypeEdge) MarshalJSON() ([]byte, error) {
-	type Alias SessionTypeEdge
-	return json.Marshal(&struct {
-		TypeStr string `json:"@type"`
-		*Alias
-	}{
-		TypeStr: "sessionTypeEdge",
-		Alias:   (*Alias)(&t),
-	})
-}
-
-// SessionTypeFirefox The session is running on the Firefox browser
-type SessionTypeFirefox struct {
-}
-
-func (t SessionTypeFirefox) GetType() string {
-	return "sessionTypeFirefox"
-}
-
-func (t SessionTypeFirefox) sessionType() {}
-
-func (t SessionTypeFirefox) MarshalJSON() ([]byte, error) {
-	type Alias SessionTypeFirefox
-	return json.Marshal(&struct {
-		TypeStr string `json:"@type"`
-		*Alias
-	}{
-		TypeStr: "sessionTypeFirefox",
-		Alias:   (*Alias)(&t),
-	})
-}
-
-// SessionTypeIpad The session is running on an iPad device
-type SessionTypeIpad struct {
-}
-
-func (t SessionTypeIpad) GetType() string {
-	return "sessionTypeIpad"
-}
-
-func (t SessionTypeIpad) sessionType() {}
-
-func (t SessionTypeIpad) MarshalJSON() ([]byte, error) {
-	type Alias SessionTypeIpad
-	return json.Marshal(&struct {
-		TypeStr string `json:"@type"`
-		*Alias
-	}{
-		TypeStr: "sessionTypeIpad",
-		Alias:   (*Alias)(&t),
-	})
-}
-
-// SessionTypeIphone The session is running on an iPhone device
-type SessionTypeIphone struct {
-}
-
-func (t SessionTypeIphone) GetType() string {
-	return "sessionTypeIphone"
-}
-
-func (t SessionTypeIphone) sessionType() {}
-
-func (t SessionTypeIphone) MarshalJSON() ([]byte, error) {
-	type Alias SessionTypeIphone
-	return json.Marshal(&struct {
-		TypeStr string `json:"@type"`
-		*Alias
-	}{
-		TypeStr: "sessionTypeIphone",
-		Alias:   (*Alias)(&t),
-	})
-}
-
-// SessionTypeLinux The session is running on a Linux device
-type SessionTypeLinux struct {
-}
-
-func (t SessionTypeLinux) GetType() string {
-	return "sessionTypeLinux"
-}
-
-func (t SessionTypeLinux) sessionType() {}
-
-func (t SessionTypeLinux) MarshalJSON() ([]byte, error) {
-	type Alias SessionTypeLinux
-	return json.Marshal(&struct {
-		TypeStr string `json:"@type"`
-		*Alias
-	}{
-		TypeStr: "sessionTypeLinux",
-		Alias:   (*Alias)(&t),
-	})
-}
-
-// SessionTypeMac The session is running on a Mac device
-type SessionTypeMac struct {
-}
-
-func (t SessionTypeMac) GetType() string {
-	return "sessionTypeMac"
-}
-
-func (t SessionTypeMac) sessionType() {}
-
-func (t SessionTypeMac) MarshalJSON() ([]byte, error) {
-	type Alias SessionTypeMac
-	return json.Marshal(&struct {
-		TypeStr string `json:"@type"`
-		*Alias
-	}{
-		TypeStr: "sessionTypeMac",
-		Alias:   (*Alias)(&t),
-	})
-}
-
-// SessionTypeOpera The session is running on the Opera browser
-type SessionTypeOpera struct {
-}
-
-func (t SessionTypeOpera) GetType() string {
-	return "sessionTypeOpera"
-}
-
-func (t SessionTypeOpera) sessionType() {}
-
-func (t SessionTypeOpera) MarshalJSON() ([]byte, error) {
-	type Alias SessionTypeOpera
-	return json.Marshal(&struct {
-		TypeStr string `json:"@type"`
-		*Alias
-	}{
-		TypeStr: "sessionTypeOpera",
-		Alias:   (*Alias)(&t),
-	})
-}
-
-// SessionTypeSafari The session is running on the Safari browser
-type SessionTypeSafari struct {
-}
-
-func (t SessionTypeSafari) GetType() string {
-	return "sessionTypeSafari"
-}
-
-func (t SessionTypeSafari) sessionType() {}
-
-func (t SessionTypeSafari) MarshalJSON() ([]byte, error) {
-	type Alias SessionTypeSafari
-	return json.Marshal(&struct {
-		TypeStr string `json:"@type"`
-		*Alias
-	}{
-		TypeStr: "sessionTypeSafari",
-		Alias:   (*Alias)(&t),
-	})
-}
-
-// SessionTypeUbuntu The session is running on an Ubuntu device
-type SessionTypeUbuntu struct {
-}
-
-func (t SessionTypeUbuntu) GetType() string {
-	return "sessionTypeUbuntu"
-}
-
-func (t SessionTypeUbuntu) sessionType() {}
-
-func (t SessionTypeUbuntu) MarshalJSON() ([]byte, error) {
-	type Alias SessionTypeUbuntu
-	return json.Marshal(&struct {
-		TypeStr string `json:"@type"`
-		*Alias
-	}{
-		TypeStr: "sessionTypeUbuntu",
-		Alias:   (*Alias)(&t),
-	})
-}
-
-// SessionTypeUnknown The session is running on an unknown type of device
-type SessionTypeUnknown struct {
-}
-
-func (t SessionTypeUnknown) GetType() string {
-	return "sessionTypeUnknown"
-}
-
-func (t SessionTypeUnknown) sessionType() {}
-
-func (t SessionTypeUnknown) MarshalJSON() ([]byte, error) {
-	type Alias SessionTypeUnknown
-	return json.Marshal(&struct {
-		TypeStr string `json:"@type"`
-		*Alias
-	}{
-		TypeStr: "sessionTypeUnknown",
-		Alias:   (*Alias)(&t),
-	})
-}
-
-// SessionTypeVivaldi The session is running on the Vivaldi browser
-type SessionTypeVivaldi struct {
-}
-
-func (t SessionTypeVivaldi) GetType() string {
-	return "sessionTypeVivaldi"
-}
-
-func (t SessionTypeVivaldi) sessionType() {}
-
-func (t SessionTypeVivaldi) MarshalJSON() ([]byte, error) {
-	type Alias SessionTypeVivaldi
-	return json.Marshal(&struct {
-		TypeStr string `json:"@type"`
-		*Alias
-	}{
-		TypeStr: "sessionTypeVivaldi",
-		Alias:   (*Alias)(&t),
-	})
-}
-
-// SessionTypeWindows The session is running on a Windows device
-type SessionTypeWindows struct {
-}
-
-func (t SessionTypeWindows) GetType() string {
-	return "sessionTypeWindows"
-}
-
-func (t SessionTypeWindows) sessionType() {}
-
-func (t SessionTypeWindows) MarshalJSON() ([]byte, error) {
-	type Alias SessionTypeWindows
-	return json.Marshal(&struct {
-		TypeStr string `json:"@type"`
-		*Alias
-	}{
-		TypeStr: "sessionTypeWindows",
-		Alias:   (*Alias)(&t),
-	})
-}
-
-// SessionTypeXbox The session is running on an Xbox console
-type SessionTypeXbox struct {
-}
-
-func (t SessionTypeXbox) GetType() string {
-	return "sessionTypeXbox"
-}
-
-func (t SessionTypeXbox) sessionType() {}
-
-func (t SessionTypeXbox) MarshalJSON() ([]byte, error) {
-	type Alias SessionTypeXbox
-	return json.Marshal(&struct {
-		TypeStr string `json:"@type"`
-		*Alias
-	}{
-		TypeStr: "sessionTypeXbox",
+		TypeStr: "sessionTypeDevice",
 		Alias:   (*Alias)(&t),
 	})
 }
@@ -48703,7 +50614,7 @@ type Supergroup struct {
 	IsForum bool `json:"is_forum"`
 	// True, if the slow mode is enabled in the supergroup
 	IsSlowModeEnabled bool `json:"is_slow_mode_enabled"`
-	// True, if all users directly joining the supergroup need to be approved by supergroup administrators. May be true only for non-broadcast supergroups with username, location, or a linked chat
+	// True, if all users directly joining the supergroup need to be approved by supergroup administrators
 	JoinByRequest bool `json:"join_by_request"`
 	// True, if users need to join the supergroup before they can send messages. May be false only for discussion supergroups and channel direct messages groups
 	JoinToSendMessages bool `json:"join_to_send_messages"`
@@ -48813,6 +50724,8 @@ type SupergroupFullInfo struct {
 	DirectMessagesChatId int64 `json:"direct_messages_chat_id"`
 	// Number of saved to profile gifts for channels without can_post_messages administrator right, otherwise, the total number of received gifts
 	GiftCount int32 `json:"gift_count"`
+	// User identifier of the guard bot in the group; for chat administrators only
+	GuardBotUserId int64 `json:"guard_bot_user_id"`
 	// True, if aggressive anti-spam checks are enabled in the supergroup. The value of this field is only available to chat administrators
 	HasAggressiveAntiSpamEnabled bool `json:"has_aggressive_anti_spam_enabled"`
 	// True, if non-administrators can receive only administrators and bots using getSupergroupMembers or searchChatMembers
@@ -51513,14 +53426,14 @@ func (t TrendingStickerSets) MarshalJSON() ([]byte, error) {
 
 // UnconfirmedSession Contains information about an unconfirmed session
 type UnconfirmedSession struct {
+	// Point in time (Unix timestamp) when the user has logged in or the business bot was connected
+	Date int32 `json:"date"`
 	// Model of the device that was used for the session creation, as provided by the application
 	DeviceModel string `json:"device_model"`
-	// Session identifier
-	Id int64 `json:"id,string"`
 	// A human-readable description of the location from which the session was created, based on the IP address
 	Location string `json:"location"`
-	// Point in time (Unix timestamp) when the user has logged in
-	LogInDate int32 `json:"log_in_date"`
+	// Session type
+	Type SessionType `json:"type"`
 }
 
 func (t UnconfirmedSession) GetType() string {
@@ -51536,6 +53449,29 @@ func (t UnconfirmedSession) MarshalJSON() ([]byte, error) {
 		TypeStr: "unconfirmedSession",
 		Alias:   (*Alias)(&t),
 	})
+}
+
+func (t *UnconfirmedSession) UnmarshalJSON(data []byte) error {
+	type Alias UnconfirmedSession
+	aux := &struct {
+		Type json.RawMessage `json:"type"`
+		*Alias
+	}{
+		Alias: (*Alias)(t),
+	}
+
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+
+	if aux.Type != nil {
+		v, err := UnmarshalSessionType(aux.Type)
+		if err != nil {
+			return err
+		}
+		t.Type = v
+	}
+	return nil
 }
 
 // UnreadReaction Contains information about an unread reaction to a message
@@ -52721,6 +54657,56 @@ func (t UpdateChatIsTranslatable) MarshalJSON() ([]byte, error) {
 		TypeStr: "updateChatIsTranslatable",
 		Alias:   (*Alias)(&t),
 	})
+}
+
+// UpdateChatJoinResult A join request from the user was completed
+type UpdateChatJoinResult struct {
+	// Identifier of the joined chat, or 0 if the request wasn't approved
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the join request query as received in chatJoinResultGuardBotApprovalRequired. If the corresponding Web App is stiil open, then it must be closed
+	QueryId int64 `json:"query_id,string"`
+	// Result of the join
+	Result ChatJoinRequestResult `json:"result"`
+}
+
+func (t UpdateChatJoinResult) GetType() string {
+	return "updateChatJoinResult"
+}
+
+func (t UpdateChatJoinResult) update() {}
+
+func (t UpdateChatJoinResult) MarshalJSON() ([]byte, error) {
+	type Alias UpdateChatJoinResult
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "updateChatJoinResult",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+func (t *UpdateChatJoinResult) UnmarshalJSON(data []byte) error {
+	type Alias UpdateChatJoinResult
+	aux := &struct {
+		Result json.RawMessage `json:"result"`
+		*Alias
+	}{
+		Alias: (*Alias)(t),
+	}
+
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+
+	if aux.Result != nil {
+		v, err := UnmarshalChatJoinRequestResult(aux.Result)
+		if err != nil {
+			return err
+		}
+		t.Result = v
+	}
+	return nil
 }
 
 // UpdateChatLastMessage The last message of a chat was changed
@@ -55007,6 +56993,8 @@ type UpdateNewChatJoinRequest struct {
 	ChatId int64 `json:"chat_id"`
 	// The invite link, which was used to send join request; may be null
 	InviteLink *ChatInviteLink `json:"invite_link,omitempty"`
+	// Identifier of the join request query, which can be used in answerChatJoinRequestQuery; 0 if none
+	QueryId int64 `json:"query_id,string"`
 	// Join request
 	Request *ChatJoinRequest `json:"request"`
 	// Chat identifier of the private chat with the user
@@ -55641,33 +57629,56 @@ func (t UpdatePaidMediaPurchased) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// UpdatePendingTextMessage A new pending text message was received in a chat with a bot. The message must be shown in the chat for at most getOption("pending_text_message_period") seconds,
-type UpdatePendingTextMessage struct {
+// UpdatePendingMessage A new pending text or rich message was received in a chat with a bot. The message must be shown in the chat for at most getOption("pending_text_message_period") seconds,
+type UpdatePendingMessage struct {
 	// Chat identifier
 	ChatId int64 `json:"chat_id"`
+	// Content of the message; always of the type messageText or messageRichMessage
+	Content MessageContent `json:"content"`
 	// Unique identifier of the message draft within the message thread
 	DraftId int64 `json:"draft_id,string"`
 	// The forum topic identifier in which the message will be sent; 0 if none
 	ForumTopicId int32 `json:"forum_topic_id"`
-	// Text of the pending message
-	Text *FormattedText `json:"text"`
 }
 
-func (t UpdatePendingTextMessage) GetType() string {
-	return "updatePendingTextMessage"
+func (t UpdatePendingMessage) GetType() string {
+	return "updatePendingMessage"
 }
 
-func (t UpdatePendingTextMessage) update() {}
+func (t UpdatePendingMessage) update() {}
 
-func (t UpdatePendingTextMessage) MarshalJSON() ([]byte, error) {
-	type Alias UpdatePendingTextMessage
+func (t UpdatePendingMessage) MarshalJSON() ([]byte, error) {
+	type Alias UpdatePendingMessage
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{
-		TypeStr: "updatePendingTextMessage",
+		TypeStr: "updatePendingMessage",
 		Alias:   (*Alias)(&t),
 	})
+}
+
+func (t *UpdatePendingMessage) UnmarshalJSON(data []byte) error {
+	type Alias UpdatePendingMessage
+	aux := &struct {
+		Content json.RawMessage `json:"content"`
+		*Alias
+	}{
+		Alias: (*Alias)(t),
+	}
+
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+
+	if aux.Content != nil {
+		v, err := UnmarshalMessageContent(aux.Content)
+		if err != nil {
+			return err
+		}
+		t.Content = v
+	}
+	return nil
 }
 
 // UpdatePoll A poll was updated; for bots only
@@ -56843,6 +58854,8 @@ func (t UpdateTrustedMiniAppBots) MarshalJSON() ([]byte, error) {
 type UpdateUnconfirmedSession struct {
 	// The unconfirmed session; may be null if none
 	Session *UnconfirmedSession `json:"session,omitempty"`
+	// The total number of unconfirmed sessions
+	UnconfirmedSessionCount int32 `json:"unconfirmed_session_count"`
 }
 
 func (t UpdateUnconfirmedSession) GetType() string {
@@ -57156,6 +59169,29 @@ func (t UpdateWebAppMessageSent) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "updateWebAppMessageSent",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// UpdateWebBrowserSettings Web browser settings have been updated
+type UpdateWebBrowserSettings struct {
+	// New settings
+	Settings *WebBrowserSettings `json:"settings"`
+}
+
+func (t UpdateWebBrowserSettings) GetType() string {
+	return "updateWebBrowserSettings"
+}
+
+func (t UpdateWebBrowserSettings) update() {}
+
+func (t UpdateWebBrowserSettings) MarshalJSON() ([]byte, error) {
+	type Alias UpdateWebBrowserSettings
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "updateWebBrowserSettings",
 		Alias:   (*Alias)(&t),
 	})
 }
@@ -59205,6 +61241,8 @@ type UserTypeBot struct {
 	HasTopics bool `json:"has_topics"`
 	// Placeholder for inline queries (displayed on the application input field)
 	InlineQueryPlaceholder string `json:"inline_query_placeholder"`
+	// True, if the bot can be set as a guard bot in supergroup chats
+	IsGuard bool `json:"is_guard"`
 	// True, if the bot supports inline queries
 	IsInline bool `json:"is_inline"`
 	// True, if the location of the user is expected to be sent with every inline query to this bot
@@ -59739,8 +61777,8 @@ func (t WebApp) MarshalJSON() ([]byte, error) {
 type WebAppInfo struct {
 	// Unique identifier for the Web App launch
 	LaunchId int64 `json:"launch_id,string"`
-	// A Web App URL to open in a web view
-	Url string `json:"url"`
+	// The Web App URL to open in a web view
+	Url *WebAppUrl `json:"url"`
 }
 
 func (t WebAppInfo) GetType() string {
@@ -59869,16 +61907,135 @@ func (t *WebAppOpenParameters) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
+// WebAppUrl Contains information about a Web App URL
+type WebAppUrl struct {
+	// True, if events from the Web App must be accepted only from the same origin as the URL
+	RequireSameOrigin bool `json:"require_same_origin"`
+	// The Web App URL to open in a web view
+	Url string `json:"url"`
+}
+
+func (t WebAppUrl) GetType() string {
+	return "webAppUrl"
+}
+
+func (t WebAppUrl) MarshalJSON() ([]byte, error) {
+	type Alias WebAppUrl
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "webAppUrl",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// WebBrowserSettings Describes web browser settings
+type WebBrowserSettings struct {
+	// True, if a close button must be shown in the in-app browser; for Android app only
+	DisplayCloseButton bool `json:"display_close_button"`
+	// The list of websites which must always be opened in an external browser
+	ExternalExceptions []WebDomainException `json:"external_exceptions"`
+	// The list of websites which must always be opened in the in-app browser
+	InAppExceptions []WebDomainException `json:"in_app_exceptions"`
+	// True, if links are opened in an external browser by default
+	OpenExternalBrowser bool `json:"open_external_browser"`
+}
+
+func (t WebBrowserSettings) GetType() string {
+	return "webBrowserSettings"
+}
+
+func (t WebBrowserSettings) MarshalJSON() ([]byte, error) {
+	type Alias WebBrowserSettings
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "webBrowserSettings",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// WebBrowserTypeExternal An external web browser
+type WebBrowserTypeExternal struct {
+}
+
+func (t WebBrowserTypeExternal) GetType() string {
+	return "webBrowserTypeExternal"
+}
+
+func (t WebBrowserTypeExternal) webBrowserType() {}
+
+func (t WebBrowserTypeExternal) MarshalJSON() ([]byte, error) {
+	type Alias WebBrowserTypeExternal
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "webBrowserTypeExternal",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// WebBrowserTypeInApp The in-app browser
+type WebBrowserTypeInApp struct {
+}
+
+func (t WebBrowserTypeInApp) GetType() string {
+	return "webBrowserTypeInApp"
+}
+
+func (t WebBrowserTypeInApp) webBrowserType() {}
+
+func (t WebBrowserTypeInApp) MarshalJSON() ([]byte, error) {
+	type Alias WebBrowserTypeInApp
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "webBrowserTypeInApp",
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// WebDomainException Describes an exception for built-in browser usage
+type WebDomainException struct {
+	// Domain of the URL. All URLs on the domain and subdomains of the domain are subject to the exception
+	Domain string `json:"domain"`
+	// Identifier of the custom emoji with favicon of the website; may be 0 if unknown, in which case the first letter of the domain must be used
+	FaviconCustomEmojiId int64 `json:"favicon_custom_emoji_id,string"`
+	// Title of the website
+	Title string `json:"title"`
+	// URL for which the exception is done
+	Url string `json:"url"`
+}
+
+func (t WebDomainException) GetType() string {
+	return "webDomainException"
+}
+
+func (t WebDomainException) MarshalJSON() ([]byte, error) {
+	type Alias WebDomainException
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{
+		TypeStr: "webDomainException",
+		Alias:   (*Alias)(&t),
+	})
+}
+
 // WebPageInstantView Describes an instant view page for a web page
 type WebPageInstantView struct {
+	// Content of the instant view page
+	Blocks []PageBlock `json:"blocks"`
 	// An internal link to be opened to leave feedback about the instant view
 	FeedbackLink InternalLinkType `json:"feedback_link"`
 	// True, if the instant view contains the full page. A network request might be needed to get the full instant view
 	IsFull bool `json:"is_full"`
 	// True, if the instant view must be shown from right to left
 	IsRtl bool `json:"is_rtl"`
-	// Content of the instant view page
-	PageBlocks []PageBlock `json:"page_blocks"`
 	// Version of the instant view; currently, can be 1 or 2
 	Version int32 `json:"version"`
 	// Number of the instant view views; 0 if unknown
@@ -59903,8 +62060,8 @@ func (t WebPageInstantView) MarshalJSON() ([]byte, error) {
 func (t *WebPageInstantView) UnmarshalJSON(data []byte) error {
 	type Alias WebPageInstantView
 	aux := &struct {
+		Blocks       []json.RawMessage `json:"blocks"`
 		FeedbackLink json.RawMessage   `json:"feedback_link"`
-		PageBlocks   []json.RawMessage `json:"page_blocks"`
 		*Alias
 	}{
 		Alias: (*Alias)(t),
@@ -59914,22 +62071,22 @@ func (t *WebPageInstantView) UnmarshalJSON(data []byte) error {
 		return err
 	}
 
+	if aux.Blocks != nil {
+		t.Blocks = make([]PageBlock, len(aux.Blocks))
+		for i, raw := range aux.Blocks {
+			v, err := UnmarshalPageBlock(raw)
+			if err != nil {
+				return err
+			}
+			t.Blocks[i] = v
+		}
+	}
 	if aux.FeedbackLink != nil {
 		v, err := UnmarshalInternalLinkType(aux.FeedbackLink)
 		if err != nil {
 			return err
 		}
 		t.FeedbackLink = v
-	}
-	if aux.PageBlocks != nil {
-		t.PageBlocks = make([]PageBlock, len(aux.PageBlocks))
-		for i, raw := range aux.PageBlocks {
-			v, err := UnmarshalPageBlock(raw)
-			if err != nil {
-				return err
-			}
-			t.PageBlocks[i] = v
-		}
 	}
 	return nil
 }
@@ -60702,6 +62859,12 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "businessConnectedBot":
 		var obj BusinessConnectedBot
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "businessConnectedBotInfo":
+		var obj BusinessConnectedBotInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, 0, "", err
 		}
@@ -61828,6 +63991,24 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 			return nil, 0, "", err
 		}
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "chatJoinRequestResultApproved":
+		var obj ChatJoinRequestResultApproved
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "chatJoinRequestResultDeclined":
+		var obj ChatJoinRequestResultDeclined
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "chatJoinRequestResultQueued":
+		var obj ChatJoinRequestResultQueued
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatJoinRequests":
 		var obj ChatJoinRequests
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -61836,6 +64017,30 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "chatJoinRequestsInfo":
 		var obj ChatJoinRequestsInfo
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "chatJoinResultDeclined":
+		var obj ChatJoinResultDeclined
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "chatJoinResultGuardBotApprovalRequired":
+		var obj ChatJoinResultGuardBotApprovalRequired
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "chatJoinResultRequestSent":
+		var obj ChatJoinResultRequestSent
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "chatJoinResultSuccess":
+		var obj ChatJoinResultSuccess
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, 0, "", err
 		}
@@ -62598,6 +64803,30 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "draftMessage":
 		var obj DraftMessage
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "draftMessageContentRichMessage":
+		var obj DraftMessageContentRichMessage
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "draftMessageContentText":
+		var obj DraftMessageContentText
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "draftMessageContentVideoNote":
+		var obj DraftMessageContentVideoNote
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "draftMessageContentVoiceNote":
+		var obj DraftMessageContentVoiceNote
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, 0, "", err
 		}
@@ -63646,6 +65875,18 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 			return nil, 0, "", err
 		}
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "inputAnimation":
+		var obj InputAnimation
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "inputAudio":
+		var obj InputAudio
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputBackgroundLocal":
 		var obj InputBackgroundLocal
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -63756,6 +65997,12 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputCredentialsSaved":
 		var obj InputCredentialsSaved
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "inputDocument":
+		var obj InputDocument
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, 0, "", err
 		}
@@ -63946,6 +66193,12 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 			return nil, 0, "", err
 		}
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "inputMessageLiveLocation":
+		var obj InputMessageLiveLocation
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputMessageLocation":
 		var obj InputMessageLocation
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -63984,6 +66237,12 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputMessageReplyToStory":
 		var obj InputMessageReplyToStory
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "inputMessageRichMessage":
+		var obj InputMessageRichMessage
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, 0, "", err
 		}
@@ -64198,6 +66457,66 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 			return nil, 0, "", err
 		}
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "inputPhoto":
+		var obj InputPhoto
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "inputPollMediaAnimation":
+		var obj InputPollMediaAnimation
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "inputPollMediaAudio":
+		var obj InputPollMediaAudio
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "inputPollMediaDocument":
+		var obj InputPollMediaDocument
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "inputPollMediaLink":
+		var obj InputPollMediaLink
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "inputPollMediaLocation":
+		var obj InputPollMediaLocation
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "inputPollMediaPhoto":
+		var obj InputPollMediaPhoto
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "inputPollMediaSticker":
+		var obj InputPollMediaSticker
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "inputPollMediaVenue":
+		var obj InputPollMediaVenue
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "inputPollMediaVideo":
+		var obj InputPollMediaVideo
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputPollOption":
 		var obj InputPollOption
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -64212,6 +66531,12 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputPollTypeRegular":
 		var obj InputPollTypeRegular
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "inputRichMessage":
+		var obj InputRichMessage
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, 0, "", err
 		}
@@ -64308,6 +66633,12 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputThumbnail":
 		var obj InputThumbnail
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "inputVideo":
+		var obj InputVideo
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, 0, "", err
 		}
@@ -65116,6 +67447,12 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 			return nil, 0, "", err
 		}
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "liveLocation":
+		var obj LiveLocation
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "liveStoryDonors":
 		var obj LiveStoryDonors
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -65650,6 +67987,12 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 			return nil, 0, "", err
 		}
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "messageLiveLocation":
+		var obj MessageLiveLocation
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageLocation":
 		var obj MessageLocation
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -65856,6 +68199,12 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageReplyToStory":
 		var obj MessageReplyToStory
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "messageRichMessage":
+		var obj MessageRichMessage
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, 0, "", err
 		}
@@ -66538,6 +68887,12 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 			return nil, 0, "", err
 		}
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "pageBlockMathematicalExpression":
+		var obj PageBlockMathematicalExpression
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pageBlockParagraph":
 		var obj PageBlockParagraph
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -66574,6 +68929,12 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 			return nil, 0, "", err
 		}
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "pageBlockSectionHeading":
+		var obj PageBlockSectionHeading
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pageBlockSlideshow":
 		var obj PageBlockSlideshow
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -66600,6 +68961,12 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pageBlockTableCell":
 		var obj PageBlockTableCell
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "pageBlockThinking":
+		var obj PageBlockThinking
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, 0, "", err
 		}
@@ -67090,6 +69457,60 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 			return nil, 0, "", err
 		}
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "pollMediaAnimation":
+		var obj PollMediaAnimation
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "pollMediaAudio":
+		var obj PollMediaAudio
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "pollMediaDocument":
+		var obj PollMediaDocument
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "pollMediaLink":
+		var obj PollMediaLink
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "pollMediaLocation":
+		var obj PollMediaLocation
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "pollMediaPhoto":
+		var obj PollMediaPhoto
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "pollMediaSticker":
+		var obj PollMediaSticker
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "pollMediaVenue":
+		var obj PollMediaVenue
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "pollMediaVideo":
+		var obj PollMediaVideo
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pollOption":
 		var obj PollOption
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -67434,6 +69855,12 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "premiumLimitTypeFavoriteStickerCount":
 		var obj PremiumLimitTypeFavoriteStickerCount
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "premiumLimitTypeMessageTextLength":
+		var obj PremiumLimitTypeMessageTextLength
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, 0, "", err
 		}
@@ -68374,6 +70801,24 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 			return nil, 0, "", err
 		}
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "richMessage":
+		var obj RichMessage
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "richMessageSourceHtml":
+		var obj RichMessageSourceHtml
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "richMessageSourceMarkdown":
+		var obj RichMessageSourceMarkdown
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "richTextAnchor":
 		var obj RichTextAnchor
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -68386,8 +70831,38 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 			return nil, 0, "", err
 		}
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "richTextBankCardNumber":
+		var obj RichTextBankCardNumber
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "richTextBold":
 		var obj RichTextBold
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "richTextBotCommand":
+		var obj RichTextBotCommand
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "richTextCashtag":
+		var obj RichTextCashtag
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "richTextCustomEmoji":
+		var obj RichTextCustomEmoji
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "richTextDateTime":
+		var obj RichTextDateTime
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, 0, "", err
 		}
@@ -68400,6 +70875,12 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "richTextFixed":
 		var obj RichTextFixed
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "richTextHashtag":
+		var obj RichTextHashtag
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, 0, "", err
 		}
@@ -68422,6 +70903,24 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 			return nil, 0, "", err
 		}
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "richTextMathematicalExpression":
+		var obj RichTextMathematicalExpression
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "richTextMention":
+		var obj RichTextMention
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "richTextMentionName":
+		var obj RichTextMentionName
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "richTextPhoneNumber":
 		var obj RichTextPhoneNumber
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -68440,8 +70939,20 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 			return nil, 0, "", err
 		}
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "richTextReferenceLink":
+		var obj RichTextReferenceLink
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "richTexts":
 		var obj RichTexts
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "richTextSpoiler":
+		var obj RichTextSpoiler
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, 0, "", err
 		}
@@ -68532,6 +71043,18 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "scopeNotificationSettings":
 		var obj ScopeNotificationSettings
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "searchChatTypeFilterBot":
+		var obj SearchChatTypeFilterBot
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "searchChatTypeFilterChannel":
+		var obj SearchChatTypeFilterChannel
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, 0, "", err
 		}
@@ -68716,110 +71239,122 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 			return nil, 0, "", err
 		}
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "sessionDeviceTypeAndroid":
+		var obj SessionDeviceTypeAndroid
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "sessionDeviceTypeApple":
+		var obj SessionDeviceTypeApple
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "sessionDeviceTypeBrave":
+		var obj SessionDeviceTypeBrave
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "sessionDeviceTypeChrome":
+		var obj SessionDeviceTypeChrome
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "sessionDeviceTypeEdge":
+		var obj SessionDeviceTypeEdge
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "sessionDeviceTypeFirefox":
+		var obj SessionDeviceTypeFirefox
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "sessionDeviceTypeIpad":
+		var obj SessionDeviceTypeIpad
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "sessionDeviceTypeIphone":
+		var obj SessionDeviceTypeIphone
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "sessionDeviceTypeLinux":
+		var obj SessionDeviceTypeLinux
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "sessionDeviceTypeMac":
+		var obj SessionDeviceTypeMac
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "sessionDeviceTypeOpera":
+		var obj SessionDeviceTypeOpera
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "sessionDeviceTypeSafari":
+		var obj SessionDeviceTypeSafari
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "sessionDeviceTypeUbuntu":
+		var obj SessionDeviceTypeUbuntu
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "sessionDeviceTypeUnknown":
+		var obj SessionDeviceTypeUnknown
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "sessionDeviceTypeVivaldi":
+		var obj SessionDeviceTypeVivaldi
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "sessionDeviceTypeWindows":
+		var obj SessionDeviceTypeWindows
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "sessionDeviceTypeXbox":
+		var obj SessionDeviceTypeXbox
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "sessions":
 		var obj Sessions
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, 0, "", err
 		}
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
-	case "sessionTypeAndroid":
-		var obj SessionTypeAndroid
+	case "sessionTypeConnectedBot":
+		var obj SessionTypeConnectedBot
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, 0, "", err
 		}
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
-	case "sessionTypeApple":
-		var obj SessionTypeApple
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, 0, "", err
-		}
-		return &obj, typeObj.ClientId, typeObj.Extra, nil
-	case "sessionTypeBrave":
-		var obj SessionTypeBrave
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, 0, "", err
-		}
-		return &obj, typeObj.ClientId, typeObj.Extra, nil
-	case "sessionTypeChrome":
-		var obj SessionTypeChrome
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, 0, "", err
-		}
-		return &obj, typeObj.ClientId, typeObj.Extra, nil
-	case "sessionTypeEdge":
-		var obj SessionTypeEdge
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, 0, "", err
-		}
-		return &obj, typeObj.ClientId, typeObj.Extra, nil
-	case "sessionTypeFirefox":
-		var obj SessionTypeFirefox
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, 0, "", err
-		}
-		return &obj, typeObj.ClientId, typeObj.Extra, nil
-	case "sessionTypeIpad":
-		var obj SessionTypeIpad
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, 0, "", err
-		}
-		return &obj, typeObj.ClientId, typeObj.Extra, nil
-	case "sessionTypeIphone":
-		var obj SessionTypeIphone
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, 0, "", err
-		}
-		return &obj, typeObj.ClientId, typeObj.Extra, nil
-	case "sessionTypeLinux":
-		var obj SessionTypeLinux
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, 0, "", err
-		}
-		return &obj, typeObj.ClientId, typeObj.Extra, nil
-	case "sessionTypeMac":
-		var obj SessionTypeMac
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, 0, "", err
-		}
-		return &obj, typeObj.ClientId, typeObj.Extra, nil
-	case "sessionTypeOpera":
-		var obj SessionTypeOpera
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, 0, "", err
-		}
-		return &obj, typeObj.ClientId, typeObj.Extra, nil
-	case "sessionTypeSafari":
-		var obj SessionTypeSafari
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, 0, "", err
-		}
-		return &obj, typeObj.ClientId, typeObj.Extra, nil
-	case "sessionTypeUbuntu":
-		var obj SessionTypeUbuntu
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, 0, "", err
-		}
-		return &obj, typeObj.ClientId, typeObj.Extra, nil
-	case "sessionTypeUnknown":
-		var obj SessionTypeUnknown
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, 0, "", err
-		}
-		return &obj, typeObj.ClientId, typeObj.Extra, nil
-	case "sessionTypeVivaldi":
-		var obj SessionTypeVivaldi
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, 0, "", err
-		}
-		return &obj, typeObj.ClientId, typeObj.Extra, nil
-	case "sessionTypeWindows":
-		var obj SessionTypeWindows
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, 0, "", err
-		}
-		return &obj, typeObj.ClientId, typeObj.Extra, nil
-	case "sessionTypeXbox":
-		var obj SessionTypeXbox
+	case "sessionTypeDevice":
+		var obj SessionTypeDevice
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, 0, "", err
 		}
@@ -70834,6 +73369,12 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 			return nil, 0, "", err
 		}
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "updateChatJoinResult":
+		var obj UpdateChatJoinResult
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateChatLastMessage":
 		var obj UpdateChatLastMessage
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -71404,8 +73945,8 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 			return nil, 0, "", err
 		}
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
-	case "updatePendingTextMessage":
-		var obj UpdatePendingTextMessage
+	case "updatePendingMessage":
+		var obj UpdatePendingMessage
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, 0, "", err
 		}
@@ -71688,6 +74229,12 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateWebAppMessageSent":
 		var obj UpdateWebAppMessageSent
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "updateWebBrowserSettings":
+		var obj UpdateWebBrowserSettings
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, 0, "", err
 		}
@@ -72222,6 +74769,36 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "webAppOpenParameters":
 		var obj WebAppOpenParameters
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "webAppUrl":
+		var obj WebAppUrl
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "webBrowserSettings":
+		var obj WebBrowserSettings
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "webBrowserTypeExternal":
+		var obj WebBrowserTypeExternal
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "webBrowserTypeInApp":
+		var obj WebBrowserTypeInApp
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "webDomainException":
+		var obj WebDomainException
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, 0, "", err
 		}

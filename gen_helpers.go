@@ -275,8 +275,8 @@ func (c *Chat) EditBusinessMessageChecklist(client *Client, businessConnectionId
 
 // EditBusinessMessageLiveLocation Edits the content of a live location in a message sent on behalf of a business account; for bots only
 // It is a helper method for Client.EditBusinessMessageLiveLocation
-func (c *Chat) EditBusinessMessageLiveLocation(client *Client, businessConnectionId string, heading int32, livePeriod int32, messageId int64, proximityAlertRadius int32, opts *EditBusinessMessageLiveLocationOpts) (*BusinessMessage, error) {
-	return client.EditBusinessMessageLiveLocation(businessConnectionId, c.Id, heading, livePeriod, messageId, proximityAlertRadius, opts)
+func (c *Chat) EditBusinessMessageLiveLocation(client *Client, businessConnectionId string, messageId int64, opts *EditBusinessMessageLiveLocationOpts) (*BusinessMessage, error) {
+	return client.EditBusinessMessageLiveLocation(businessConnectionId, c.Id, messageId, opts)
 }
 
 // EditBusinessMessageMedia Edits the media content of a message with a text, an animation, an audio, a document, a photo or a video in a message sent on behalf of a business account; for bots only
@@ -329,8 +329,8 @@ func (c *Chat) EditMessageChecklist(client *Client, checklist *InputChecklist, m
 
 // EditMessageLiveLocation Edits the message content of a live location. Messages can be edited for a limited period of time specified in the live location.
 // It is a helper method for Client.EditMessageLiveLocation
-func (c *Chat) EditMessageLiveLocation(client *Client, heading int32, livePeriod int32, messageId int64, proximityAlertRadius int32, opts *EditMessageLiveLocationOpts) (*Message, error) {
-	return client.EditMessageLiveLocation(c.Id, heading, livePeriod, messageId, proximityAlertRadius, opts)
+func (c *Chat) EditMessageLiveLocation(client *Client, messageId int64, opts *EditMessageLiveLocationOpts) (*Message, error) {
+	return client.EditMessageLiveLocation(c.Id, messageId, opts)
 }
 
 // EditMessageMedia Edits the media content of a message, including message caption. If only the caption needs to be edited, use editMessageCaption instead.
@@ -567,7 +567,7 @@ func (c *Chat) GetSimilarChats(client *Client) (*Chats, error) {
 	return client.GetChatSimilarChats(c.Id)
 }
 
-// GetSparseMessagePositions Returns sparse positions of messages of the specified type in the chat to be used for shared media scroll implementation. Returns the results in reverse chronological order (i.e., in order of decreasing message_id).
+// GetSparseMessagePositions Returns sparse positions of messages of the specified type in the chat to be used for Shared Media scroll implementation. Returns the results in reverse chronological order (i.e., in order of decreasing message_id).
 // It is a helper method for Client.GetChatSparseMessagePositions
 func (c *Chat) GetSparseMessagePositions(client *Client, filter SearchMessagesFilter, fromMessageId int64, limit int32, savedMessagesTopicId int64) (*MessagePositions, error) {
 	return client.GetChatSparseMessagePositions(c.Id, filter, fromMessageId, limit, savedMessagesTopicId)
@@ -637,6 +637,12 @@ func (c *Chat) GetForumTopicLink(client *Client, forumTopicId int32) (*MessageLi
 // It is a helper method for Client.GetForumTopics
 func (c *Chat) GetForumTopics(client *Client, limit int32, offsetDate int32, offsetForumTopicId int32, offsetMessageId int64, query string) (*ForumTopics, error) {
 	return client.GetForumTopics(c.Id, limit, offsetDate, offsetForumTopicId, offsetMessageId, query)
+}
+
+// GetFullRichMessage Returns the full version of a rich message
+// It is a helper method for Client.GetFullRichMessage
+func (c *Chat) GetFullRichMessage(client *Client, messageId int64) (*RichMessage, error) {
+	return client.GetFullRichMessage(c.Id, messageId)
 }
 
 // GetGameHighScores Returns the high scores for a game and some part of the high score table in the range of the specified user; for bots only
@@ -863,7 +869,7 @@ func (c *Chat) GetVideoMessageAdvertisements(client *Client, messageId int64) (*
 
 // GetWebAppLinkUrl Returns an HTTPS URL of a Web App to open after a link of the type internalLinkTypeWebApp is clicked
 // It is a helper method for Client.GetWebAppLinkUrl
-func (c *Chat) GetWebAppLinkUrl(client *Client, botUserId int64, parameters *WebAppOpenParameters, startParameter string, webAppShortName string, opts *GetWebAppLinkUrlOpts) (*HttpUrl, error) {
+func (c *Chat) GetWebAppLinkUrl(client *Client, botUserId int64, parameters *WebAppOpenParameters, startParameter string, webAppShortName string, opts *GetWebAppLinkUrlOpts) (*WebAppUrl, error) {
 	return client.GetWebAppLinkUrl(botUserId, c.Id, parameters, startParameter, webAppShortName, opts)
 }
 
@@ -873,9 +879,9 @@ func (c *Chat) ImportMessages(client *Client, attachedFiles []InputFile, message
 	return client.ImportMessages(attachedFiles, c.Id, messageFile)
 }
 
-// Join Adds the current user as a new member to a chat. Private and secret chats can't be joined using this method. May return an error with a message "INVITE_REQUEST_SENT" if only a join request was created
+// Join Adds the current user as a new member to a chat. Private and secret chats can't be joined using this method
 // It is a helper method for Client.JoinChat
-func (c *Chat) Join(client *Client) error {
+func (c *Chat) Join(client *Client) (ChatJoinResult, error) {
 	return client.JoinChat(c.Id)
 }
 
@@ -1137,7 +1143,7 @@ func (c *Chat) SearchMessages(client *Client, fromMessageId int64, limit int32, 
 	return client.SearchChatMessages(c.Id, fromMessageId, limit, offset, query, opts)
 }
 
-// SearchRecentLocationMessages Returns information about the recent locations of chat members that were sent to the chat. Returns up to 1 location message per user
+// SearchRecentLocationMessages Returns information about the recent live locations of chat members that were sent to the chat. Returns at most one live location message per user
 // It is a helper method for Client.SearchChatRecentLocationMessages
 func (c *Chat) SearchRecentLocationMessages(client *Client, limit int32) (*Messages, error) {
 	return client.SearchChatRecentLocationMessages(c.Id, limit)
@@ -1201,6 +1207,12 @@ func (c *Chat) SendMessageViewMetrics(client *Client, activeTimeInViewMs int32, 
 // It is a helper method for Client.SendQuickReplyShortcutMessages
 func (c *Chat) SendQuickReplyShortcutMessages(client *Client, sendingId int32, shortcutId int32) (*Messages, error) {
 	return client.SendQuickReplyShortcutMessages(c.Id, sendingId, shortcutId)
+}
+
+// SendRichMessageDraft Sends a draft for a being generated rich message; for bots only
+// It is a helper method for Client.SendRichMessageDraft
+func (c *Chat) SendRichMessageDraft(client *Client, draftId int64, forumTopicId int32, message *InputRichMessage) error {
+	return client.SendRichMessageDraft(c.Id, draftId, forumTopicId, message)
 }
 
 // SendTextMessageDraft Sends a draft for a being generated text message; for bots only
@@ -1787,8 +1799,8 @@ func (m *Message) EditBusinessChecklist(client *Client, businessConnectionId str
 
 // EditBusinessLiveLocation Edits the content of a live location in a message sent on behalf of a business account; for bots only
 // It is a helper method for Client.EditBusinessMessageLiveLocation
-func (m *Message) EditBusinessLiveLocation(client *Client, businessConnectionId string, heading int32, livePeriod int32, proximityAlertRadius int32, opts *EditBusinessMessageLiveLocationOpts) (*BusinessMessage, error) {
-	return client.EditBusinessMessageLiveLocation(businessConnectionId, m.ChatId, heading, livePeriod, m.Id, proximityAlertRadius, opts)
+func (m *Message) EditBusinessLiveLocation(client *Client, businessConnectionId string, opts *EditBusinessMessageLiveLocationOpts) (*BusinessMessage, error) {
+	return client.EditBusinessMessageLiveLocation(businessConnectionId, m.ChatId, m.Id, opts)
 }
 
 // EditBusinessMedia Edits the media content of a message with a text, an animation, an audio, a document, a photo or a video in a message sent on behalf of a business account; for bots only
@@ -1817,8 +1829,8 @@ func (m *Message) EditChecklist(client *Client, checklist *InputChecklist, opts 
 
 // EditLiveLocation Edits the message content of a live location. Messages can be edited for a limited period of time specified in the live location.
 // It is a helper method for Client.EditMessageLiveLocation
-func (m *Message) EditLiveLocation(client *Client, heading int32, livePeriod int32, proximityAlertRadius int32, opts *EditMessageLiveLocationOpts) (*Message, error) {
-	return client.EditMessageLiveLocation(m.ChatId, heading, livePeriod, m.Id, proximityAlertRadius, opts)
+func (m *Message) EditLiveLocation(client *Client, opts *EditMessageLiveLocationOpts) (*Message, error) {
+	return client.EditMessageLiveLocation(m.ChatId, m.Id, opts)
 }
 
 // EditMedia Edits the media content of a message, including message caption. If only the caption needs to be edited, use editMessageCaption instead.
@@ -1861,6 +1873,12 @@ func (m *Message) GetCallbackQuery(client *Client, callbackQueryId int64) (*Mess
 // It is a helper method for Client.GetChatMessagePosition
 func (m *Message) GetChatPosition(client *Client, filter SearchMessagesFilter, opts *GetChatMessagePositionOpts) (*Count, error) {
 	return client.GetChatMessagePosition(m.ChatId, filter, m.Id, opts)
+}
+
+// GetFullRich Returns the full version of a rich message
+// It is a helper method for Client.GetFullRichMessage
+func (m *Message) GetFullRich(client *Client) (*RichMessage, error) {
+	return client.GetFullRichMessage(m.ChatId, m.Id)
 }
 
 // GetGameHighScores Returns the high scores for a game and some part of the high score table in the range of the specified user; for bots only
