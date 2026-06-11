@@ -17,7 +17,7 @@ func main() {
 	apiHash := ""
 	botToken := ""
 
-	bot, err := gotdbot.NewClient(apiID, apiHash, botToken, &gotdbot.ClientOpts{LibraryPath: "./libtdjson.so.1.8.64"})
+	bot, err := gotdbot.NewClient(apiID, apiHash, botToken, &gotdbot.ClientOpts{LibraryPath: "./libtdjson.so.1.8.65"})
 	if err != nil {
 		panic(err)
 	}
@@ -69,12 +69,12 @@ func main() {
 
 		uptime := time.Since(startTime).Round(time.Second)
 		reply := fmt.Sprintf(
-			"🟢 Go runtime stats\n\n"+
+			"Go runtime stats\n\n"+
 				"• Goroutines : %d\n"+
 				"• CPUs       : %d\n"+
 				"• GOMAXPROCS : %d\n"+
 				"• Uptime     : %s\n\n"+
-				"🧠 Memory\n"+
+				"Memory\n"+
 				"• Alloc      : %.2f MB\n"+
 				"• HeapAlloc  : %.2f MB\n"+
 				"• Sys        : %.2f MB\n"+
@@ -109,6 +109,6 @@ func main() {
 	if me.Usernames != nil && len(me.Usernames.ActiveUsernames) > 0 {
 		username = me.Usernames.ActiveUsernames[0]
 	}
-	bot.Info("Logged in", "username", username, "id", me.Id)
+	bot.Logger.Info("Logged in", "username", username, "id", me.Id)
 	bot.Idle()
 }
