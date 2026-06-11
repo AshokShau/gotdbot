@@ -2,7 +2,7 @@
 
 ![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/AshokShau/gotdbot)
 [![Go Reference](https://pkg.go.dev/badge/github.com/AshokShau/gotdbot.svg)](https://pkg.go.dev/github.com/AshokShau/gotdbot)
-[![License](https://img.shields.io/github/license/AshokShau/gotdbot)](LICENSE)
+[![License](https://img.shields.io/github/license/AshokShau/gotdbot)](../LICENSE)
 
 **gotdbot** is a powerful, pure Go wrapper for [TDLib](https://github.com/tdlib/td) (Telegram Database Library). It provides a simple, idiomatic, and highly performant way to build Telegram clients and bots.
 
@@ -137,10 +137,10 @@ msg.React(c, []gotdbot.ReactionType{&gotdbot.ReactionTypeEmoji{Emoji: "👍"}}, 
 
 ## Examples
 
-Explore the [examples](./examples) directory for more detailed implementations:
-- [**Echo Bot**](./examples/echoBot): Basic functionality.
-- [**Conversation Bot**](./examples/conversation): Using the `Ask` API.
-- [**Multi Bot**](./examples/echoMultiBot): Managing multiple clients.
+Explore the [examples](../examples) directory for more detailed implementations:
+- [**Echo Bot**](../examples/echoBot): Basic functionality.
+- [**Conversation Bot**](../examples/conversation): Using the `Ask` API.
+- [**Multi Bot**](../examples/echoMultiBot): Managing multiple clients.
 
 ---
 
