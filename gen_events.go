@@ -1181,6 +1181,37 @@ func (c *Client) AddUpdateChatIsTranslatableHandlerGroup(handler func(client *Cl
 	c.AddHandlerGroup(&updateChatIsTranslatableHandler{filter: filter, response: handler}, group)
 }
 
+// updateChatJoinResultHandler handles UpdateChatJoinResult updates
+type updateChatJoinResultHandler struct {
+	filter   func(u *UpdateChatJoinResult) bool
+	response func(client *Client, update *UpdateChatJoinResult) error
+}
+
+func (h *updateChatJoinResultHandler) CheckUpdate(client *Client, update TlObject) bool {
+	u, ok := update.(*UpdateChatJoinResult)
+	if !ok {
+		return false
+	}
+	if h.filter != nil && !h.filter(u) {
+		return false
+	}
+	return true
+}
+
+func (h *updateChatJoinResultHandler) HandleUpdate(client *Client, update TlObject) error {
+	return h.response(client, update.(*UpdateChatJoinResult))
+}
+
+// OnUpdateChatJoinResult registers a handler for UpdateChatJoinResult updates with default group (0)
+func (c *Client) OnUpdateChatJoinResult(handler func(client *Client, update *UpdateChatJoinResult) error, filter func(u *UpdateChatJoinResult) bool) {
+	c.AddUpdateChatJoinResultHandlerGroup(handler, filter, 0)
+}
+
+// AddUpdateChatJoinResultHandlerGroup registers a handler for UpdateChatJoinResult updates with a specific group
+func (c *Client) AddUpdateChatJoinResultHandlerGroup(handler func(client *Client, update *UpdateChatJoinResult) error, filter func(u *UpdateChatJoinResult) bool, group int) {
+	c.AddHandlerGroup(&updateChatJoinResultHandler{filter: filter, response: handler}, group)
+}
+
 // updateChatLastMessageHandler handles UpdateChatLastMessage updates
 type updateChatLastMessageHandler struct {
 	filter   func(u *UpdateChatLastMessage) bool
@@ -4126,14 +4157,14 @@ func (c *Client) AddUpdatePaidMediaPurchasedHandlerGroup(handler func(client *Cl
 	c.AddHandlerGroup(&updatePaidMediaPurchasedHandler{filter: filter, response: handler}, group)
 }
 
-// updatePendingTextMessageHandler handles UpdatePendingTextMessage updates
-type updatePendingTextMessageHandler struct {
-	filter   func(u *UpdatePendingTextMessage) bool
-	response func(client *Client, update *UpdatePendingTextMessage) error
+// updatePendingMessageHandler handles UpdatePendingMessage updates
+type updatePendingMessageHandler struct {
+	filter   func(u *UpdatePendingMessage) bool
+	response func(client *Client, update *UpdatePendingMessage) error
 }
 
-func (h *updatePendingTextMessageHandler) CheckUpdate(client *Client, update TlObject) bool {
-	u, ok := update.(*UpdatePendingTextMessage)
+func (h *updatePendingMessageHandler) CheckUpdate(client *Client, update TlObject) bool {
+	u, ok := update.(*UpdatePendingMessage)
 	if !ok {
 		return false
 	}
@@ -4143,18 +4174,18 @@ func (h *updatePendingTextMessageHandler) CheckUpdate(client *Client, update TlO
 	return true
 }
 
-func (h *updatePendingTextMessageHandler) HandleUpdate(client *Client, update TlObject) error {
-	return h.response(client, update.(*UpdatePendingTextMessage))
+func (h *updatePendingMessageHandler) HandleUpdate(client *Client, update TlObject) error {
+	return h.response(client, update.(*UpdatePendingMessage))
 }
 
-// OnUpdatePendingTextMessage registers a handler for UpdatePendingTextMessage updates with default group (0)
-func (c *Client) OnUpdatePendingTextMessage(handler func(client *Client, update *UpdatePendingTextMessage) error, filter func(u *UpdatePendingTextMessage) bool) {
-	c.AddUpdatePendingTextMessageHandlerGroup(handler, filter, 0)
+// OnUpdatePendingMessage registers a handler for UpdatePendingMessage updates with default group (0)
+func (c *Client) OnUpdatePendingMessage(handler func(client *Client, update *UpdatePendingMessage) error, filter func(u *UpdatePendingMessage) bool) {
+	c.AddUpdatePendingMessageHandlerGroup(handler, filter, 0)
 }
 
-// AddUpdatePendingTextMessageHandlerGroup registers a handler for UpdatePendingTextMessage updates with a specific group
-func (c *Client) AddUpdatePendingTextMessageHandlerGroup(handler func(client *Client, update *UpdatePendingTextMessage) error, filter func(u *UpdatePendingTextMessage) bool, group int) {
-	c.AddHandlerGroup(&updatePendingTextMessageHandler{filter: filter, response: handler}, group)
+// AddUpdatePendingMessageHandlerGroup registers a handler for UpdatePendingMessage updates with a specific group
+func (c *Client) AddUpdatePendingMessageHandlerGroup(handler func(client *Client, update *UpdatePendingMessage) error, filter func(u *UpdatePendingMessage) bool, group int) {
+	c.AddHandlerGroup(&updatePendingMessageHandler{filter: filter, response: handler}, group)
 }
 
 // updatePollHandler handles UpdatePoll updates
@@ -5612,6 +5643,37 @@ func (c *Client) OnUpdateWebAppMessageSent(handler func(client *Client, update *
 // AddUpdateWebAppMessageSentHandlerGroup registers a handler for UpdateWebAppMessageSent updates with a specific group
 func (c *Client) AddUpdateWebAppMessageSentHandlerGroup(handler func(client *Client, update *UpdateWebAppMessageSent) error, filter func(u *UpdateWebAppMessageSent) bool, group int) {
 	c.AddHandlerGroup(&updateWebAppMessageSentHandler{filter: filter, response: handler}, group)
+}
+
+// updateWebBrowserSettingsHandler handles UpdateWebBrowserSettings updates
+type updateWebBrowserSettingsHandler struct {
+	filter   func(u *UpdateWebBrowserSettings) bool
+	response func(client *Client, update *UpdateWebBrowserSettings) error
+}
+
+func (h *updateWebBrowserSettingsHandler) CheckUpdate(client *Client, update TlObject) bool {
+	u, ok := update.(*UpdateWebBrowserSettings)
+	if !ok {
+		return false
+	}
+	if h.filter != nil && !h.filter(u) {
+		return false
+	}
+	return true
+}
+
+func (h *updateWebBrowserSettingsHandler) HandleUpdate(client *Client, update TlObject) error {
+	return h.response(client, update.(*UpdateWebBrowserSettings))
+}
+
+// OnUpdateWebBrowserSettings registers a handler for UpdateWebBrowserSettings updates with default group (0)
+func (c *Client) OnUpdateWebBrowserSettings(handler func(client *Client, update *UpdateWebBrowserSettings) error, filter func(u *UpdateWebBrowserSettings) bool) {
+	c.AddUpdateWebBrowserSettingsHandlerGroup(handler, filter, 0)
+}
+
+// AddUpdateWebBrowserSettingsHandlerGroup registers a handler for UpdateWebBrowserSettings updates with a specific group
+func (c *Client) AddUpdateWebBrowserSettingsHandlerGroup(handler func(client *Client, update *UpdateWebBrowserSettings) error, filter func(u *UpdateWebBrowserSettings) bool, group int) {
+	c.AddHandlerGroup(&updateWebBrowserSettingsHandler{filter: filter, response: handler}, group)
 }
 
 // MessageHandler handles Message updates

@@ -59,6 +59,12 @@ type AddRecentStickerOpts struct {
 	IsAttached bool
 }
 
+// AddWebBrowserSettingsExceptionOpts contains optional parameters for AddWebBrowserSettingsException
+type AddWebBrowserSettingsExceptionOpts struct {
+	// Pass true if the specified website must be opened in an external browser; pass false to open it in the in-app browser. There can be at most 100 exceptions in each list of the exceptions
+	OpenExternalBrowser bool
+}
+
 // AllowUnpaidMessagesFromUserOpts contains optional parameters for AllowUnpaidMessagesFromUser
 type AllowUnpaidMessagesFromUserOpts struct {
 	// Pass true to refund the user previously paid messages
@@ -113,6 +119,14 @@ type ChangeStickerSetOpts struct {
 	IsArchived bool
 	// The new value of is_installed
 	IsInstalled bool
+}
+
+// ChangeWebBrowserSettingsOpts contains optional parameters for ChangeWebBrowserSettings
+type ChangeWebBrowserSettingsOpts struct {
+	// Pass true if a close button must be shown in the in-app browser; for Android app only
+	DisplayCloseButton bool
+	// Pass true if links must be opened in an external browser by default
+	OpenExternalBrowser bool
 }
 
 // ClearAllDraftMessagesOpts contains optional parameters for ClearAllDraftMessages
@@ -327,8 +341,8 @@ type EditBusinessMessageChecklistOpts struct {
 
 // EditBusinessMessageLiveLocationOpts contains optional parameters for EditBusinessMessageLiveLocation
 type EditBusinessMessageLiveLocationOpts struct {
-	// New location content of the message; pass null to stop sharing the live location
-	Location *Location
+	// New live location of the message; pass null to stop sharing the live location. If the new live_period isn't set to 0x7FFFFFFF,
+	Location *LiveLocation
 	// The new message reply markup; pass null if none
 	ReplyMarkup ReplyMarkup
 }
@@ -375,8 +389,8 @@ type EditInlineMessageCaptionOpts struct {
 
 // EditInlineMessageLiveLocationOpts contains optional parameters for EditInlineMessageLiveLocation
 type EditInlineMessageLiveLocationOpts struct {
-	// New location content of the message; pass null to stop sharing the live location
-	Location *Location
+	// New live location of the message; pass null to stop sharing the live location. If the new live_period isn't set to 0x7FFFFFFF,
+	Location *LiveLocation
 	// The new message reply markup; pass null if none
 	ReplyMarkup ReplyMarkup
 }
@@ -417,8 +431,8 @@ type EditMessageChecklistOpts struct {
 
 // EditMessageLiveLocationOpts contains optional parameters for EditMessageLiveLocation
 type EditMessageLiveLocationOpts struct {
-	// New location content of the message; pass null to stop sharing the live location
-	Location *Location
+	// New live location of the message; pass null to stop sharing the live location. If the new live_period isn't set to 0x7FFFFFFF,
+	Location *LiveLocation
 	// The new message reply markup; pass null if none; for bots only
 	ReplyMarkup ReplyMarkup
 }
@@ -1079,6 +1093,18 @@ type SearchChatMessagesOpts struct {
 	TopicId MessageTopic
 }
 
+// SearchChatsOpts contains optional parameters for SearchChats
+type SearchChatsOpts struct {
+	// Additional filter for type of the chats to be returned; pass null to search for chats of all types
+	TypeFilter SearchChatTypeFilter
+}
+
+// SearchChatsOnServerOpts contains optional parameters for SearchChatsOnServer
+type SearchChatsOnServerOpts struct {
+	// Additional filter for type of the chats to be returned; pass null to search for chats of all types
+	TypeFilter SearchChatTypeFilter
+}
+
 // SearchContactsOpts contains optional parameters for SearchContacts
 type SearchContactsOpts struct {
 	// Query to search for; may be empty to return all contacts
@@ -1117,6 +1143,18 @@ type SearchMessagesOpts struct {
 	ChatTypeFilter SearchMessagesChatTypeFilter
 	// Additional filter for messages to search; pass null to search for all messages. Filters searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction,
 	Filter SearchMessagesFilter
+}
+
+// SearchPublicChatsOpts contains optional parameters for SearchPublicChats
+type SearchPublicChatsOpts struct {
+	// Additional filter for type of the chats to be returned; pass null to search for chats of all types
+	TypeFilter SearchChatTypeFilter
+}
+
+// SearchRecentlyFoundChatsOpts contains optional parameters for SearchRecentlyFoundChats
+type SearchRecentlyFoundChatsOpts struct {
+	// Additional filter for type of the chats to be returned; pass null to search for chats of all types
+	TypeFilter SearchChatTypeFilter
 }
 
 // SearchSavedMessagesOpts contains optional parameters for SearchSavedMessages
@@ -1799,6 +1837,8 @@ type ToggleSupergroupIsForumOpts struct {
 
 // ToggleSupergroupJoinByRequestOpts contains optional parameters for ToggleSupergroupJoinByRequest
 type ToggleSupergroupJoinByRequestOpts struct {
+	// Pass true to apply the change to the existing invite links, including primary links
+	ApplyToInviteLinks bool
 	// New value of join_by_request
 	JoinByRequest bool
 }

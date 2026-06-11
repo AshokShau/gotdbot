@@ -82,6 +82,8 @@ type (
 	UpdateChatIsMarkedAsUnread func(u *gotdbot.UpdateChatIsMarkedAsUnread) bool
 	// UpdateChatIsTranslatable Translation of chat messages was enabled or disabled
 	UpdateChatIsTranslatable func(u *gotdbot.UpdateChatIsTranslatable) bool
+	// UpdateChatJoinResult A join request from the user was completed
+	UpdateChatJoinResult func(u *gotdbot.UpdateChatJoinResult) bool
 	// UpdateChatLastMessage The last message of a chat was changed
 	UpdateChatLastMessage func(u *gotdbot.UpdateChatLastMessage) bool
 	// UpdateChatMember User rights changed in a chat; for bots only
@@ -272,8 +274,8 @@ type (
 	UpdateOwnedTonCount func(u *gotdbot.UpdateOwnedTonCount) bool
 	// UpdatePaidMediaPurchased Paid media were purchased by a user; for bots only
 	UpdatePaidMediaPurchased func(u *gotdbot.UpdatePaidMediaPurchased) bool
-	// UpdatePendingTextMessage A new pending text message was received in a chat with a bot. The message must be shown in the chat for at most getOption("pending_text_message_period") seconds,
-	UpdatePendingTextMessage func(u *gotdbot.UpdatePendingTextMessage) bool
+	// UpdatePendingMessage A new pending text or rich message was received in a chat with a bot. The message must be shown in the chat for at most getOption("pending_text_message_period") seconds,
+	UpdatePendingMessage func(u *gotdbot.UpdatePendingMessage) bool
 	// UpdatePoll A poll was updated; for bots only
 	UpdatePoll func(u *gotdbot.UpdatePoll) bool
 	// UpdatePollAnswer A user changed the answer to a poll; for bots only
@@ -368,6 +370,8 @@ type (
 	UpdateVideoPublished func(u *gotdbot.UpdateVideoPublished) bool
 	// UpdateWebAppMessageSent A message was sent by an opened Web App, so the Web App needs to be closed
 	UpdateWebAppMessageSent func(u *gotdbot.UpdateWebAppMessageSent) bool
+	// UpdateWebBrowserSettings Web browser settings have been updated
+	UpdateWebBrowserSettings func(u *gotdbot.UpdateWebBrowserSettings) bool
 	// Message is a filter for Message type
 	Message func(msg *gotdbot.Message) bool
 )

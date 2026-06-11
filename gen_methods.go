@@ -445,6 +445,18 @@ func (c *Client) AddTextCompositionStyle(name string) error {
 	return err
 }
 
+// AddWebBrowserSettingsException Adds a special handling for the opening of the specified URL
+func (c *Client) AddWebBrowserSettingsException(url string, opts *AddWebBrowserSettingsExceptionOpts) error {
+	req := &AddWebBrowserSettingsException{
+		Url: url,
+	}
+	if opts != nil {
+		req.OpenExternalBrowser = opts.OpenExternalBrowser
+	}
+	_, err := c.Send(req)
+	return err
+}
+
 // AllowBotToSendMessages Allows the specified bot to send messages to the user
 func (c *Client) AllowBotToSendMessages(botUserId int64) error {
 	req := &AllowBotToSendMessages{
@@ -476,6 +488,17 @@ func (c *Client) AnswerCallbackQuery(cacheTime int32, callbackQueryId int64, tex
 	}
 	if opts != nil {
 		req.ShowAlert = opts.ShowAlert
+	}
+	_, err := c.Send(req)
+	return err
+}
+
+// AnswerChatJoinRequestQuery Sets the result of a chat join query; for bots only
+func (c *Client) AnswerChatJoinRequestQuery(queryId int64, result ChatJoinRequestResult, url string) error {
+	req := &AnswerChatJoinRequestQuery{
+		QueryId: queryId,
+		Result:  result,
+		Url:     url,
 	}
 	_, err := c.Send(req)
 	return err
@@ -776,6 +799,17 @@ func (c *Client) ChangeStickerSet(setId int64, opts *ChangeStickerSetOpts) error
 	return err
 }
 
+// ChangeWebBrowserSettings Changes web browser settings
+func (c *Client) ChangeWebBrowserSettings(opts *ChangeWebBrowserSettingsOpts) error {
+	req := &ChangeWebBrowserSettings{}
+	if opts != nil {
+		req.DisplayCloseButton = opts.DisplayCloseButton
+		req.OpenExternalBrowser = opts.OpenExternalBrowser
+	}
+	_, err := c.Send(req)
+	return err
+}
+
 // CheckAuthenticationBotToken Checks the authentication token of a bot; to log in as a bot. Works only when the current authorization state is authorizationStateWaitPhoneNumber. Can be used instead of setAuthenticationPhoneNumber and checkAuthenticationCode to log in
 func (c *Client) CheckAuthenticationBotToken(token string) error {
 	req := &CheckAuthenticationBotToken{
@@ -840,6 +874,16 @@ func (c *Client) CheckAuthenticationPremiumPurchase(amount int64, currency strin
 		Amount:          amount,
 		Currency:        currency,
 		PremiumDayCount: premiumDayCount,
+	}
+	_, err := c.Send(req)
+	return err
+}
+
+// CheckAuthenticationWebToken Checks a web token to log in to the corresponding account; for official Telegram apps only. Works only when the current authorization state is
+func (c *Client) CheckAuthenticationWebToken(dcId int32, token string) error {
+	req := &CheckAuthenticationWebToken{
+		DcId:  dcId,
+		Token: token,
 	}
 	_, err := c.Send(req)
 	return err
@@ -1205,6 +1249,15 @@ func (c *Client) ComposeTextWithAi(styleName string, text *FormattedText, transl
 		return nil, err
 	}
 	return resp.(*FormattedText), nil
+}
+
+// ConfirmBusinessConnectedBot Confirms an unconfirmed business connection of the current user from another device
+func (c *Client) ConfirmBusinessConnectedBot(botUserId int64) error {
+	req := &ConfirmBusinessConnectedBot{
+		BotUserId: botUserId,
+	}
+	_, err := c.Send(req)
+	return err
 }
 
 // ConfirmQrCodeAuthentication Confirms QR code authentication on another device. Returns created session on success
@@ -2247,14 +2300,11 @@ func (c *Client) EditBusinessMessageChecklist(businessConnectionId string, chatI
 }
 
 // EditBusinessMessageLiveLocation Edits the content of a live location in a message sent on behalf of a business account; for bots only
-func (c *Client) EditBusinessMessageLiveLocation(businessConnectionId string, chatId int64, heading int32, livePeriod int32, messageId int64, proximityAlertRadius int32, opts *EditBusinessMessageLiveLocationOpts) (*BusinessMessage, error) {
+func (c *Client) EditBusinessMessageLiveLocation(businessConnectionId string, chatId int64, messageId int64, opts *EditBusinessMessageLiveLocationOpts) (*BusinessMessage, error) {
 	req := &EditBusinessMessageLiveLocation{
 		BusinessConnectionId: businessConnectionId,
 		ChatId:               chatId,
-		Heading:              heading,
-		LivePeriod:           livePeriod,
 		MessageId:            messageId,
-		ProximityAlertRadius: proximityAlertRadius,
 	}
 	if opts != nil {
 		req.Location = opts.Location
@@ -2437,12 +2487,9 @@ func (c *Client) EditInlineMessageCaption(inlineMessageId string, opts *EditInli
 }
 
 // EditInlineMessageLiveLocation Edits the content of a live location in an inline message sent via a bot; for bots only
-func (c *Client) EditInlineMessageLiveLocation(heading int32, inlineMessageId string, livePeriod int32, proximityAlertRadius int32, opts *EditInlineMessageLiveLocationOpts) error {
+func (c *Client) EditInlineMessageLiveLocation(inlineMessageId string, opts *EditInlineMessageLiveLocationOpts) error {
 	req := &EditInlineMessageLiveLocation{
-		Heading:              heading,
-		InlineMessageId:      inlineMessageId,
-		LivePeriod:           livePeriod,
-		ProximityAlertRadius: proximityAlertRadius,
+		InlineMessageId: inlineMessageId,
 	}
 	if opts != nil {
 		req.Location = opts.Location
@@ -2526,13 +2573,10 @@ func (c *Client) EditMessageChecklist(chatId int64, checklist *InputChecklist, m
 }
 
 // EditMessageLiveLocation Edits the message content of a live location. Messages can be edited for a limited period of time specified in the live location.
-func (c *Client) EditMessageLiveLocation(chatId int64, heading int32, livePeriod int32, messageId int64, proximityAlertRadius int32, opts *EditMessageLiveLocationOpts) (*Message, error) {
+func (c *Client) EditMessageLiveLocation(chatId int64, messageId int64, opts *EditMessageLiveLocationOpts) (*Message, error) {
 	req := &EditMessageLiveLocation{
-		ChatId:               chatId,
-		Heading:              heading,
-		LivePeriod:           livePeriod,
-		MessageId:            messageId,
-		ProximityAlertRadius: proximityAlertRadius,
+		ChatId:    chatId,
+		MessageId: messageId,
 	}
 	if opts != nil {
 		req.Location = opts.Location
@@ -2810,7 +2854,7 @@ func (c *Client) GetAccountTtl() (*AccountTtl, error) {
 	return resp.(*AccountTtl), nil
 }
 
-// GetActiveSessions Returns all active sessions of the current user
+// GetActiveSessions Returns all active sessions of the current user. Additionally, getBusinessConnectedBot must be used to show the bot on top of active sessions
 func (c *Client) GetActiveSessions() (*Sessions, error) {
 	req := &GetActiveSessions{}
 	resp, err := c.Send(req)
@@ -3177,14 +3221,14 @@ func (c *Client) GetBusinessChatLinks() (*BusinessChatLinks, error) {
 	return resp.(*BusinessChatLinks), nil
 }
 
-// GetBusinessConnectedBot Returns the business bot that is connected to the current user account. Returns a 404 error if there is no connected bot
-func (c *Client) GetBusinessConnectedBot() (*BusinessConnectedBot, error) {
+// GetBusinessConnectedBot Returns information about the business bot that is connected to the current user account. Returns a 404 error if there is no connected bot
+func (c *Client) GetBusinessConnectedBot() (*BusinessConnectedBotInfo, error) {
 	req := &GetBusinessConnectedBot{}
 	resp, err := c.Send(req)
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*BusinessConnectedBot), nil
+	return resp.(*BusinessConnectedBotInfo), nil
 }
 
 // GetBusinessConnection Returns information about a business connection by its identifier; for bots only
@@ -3833,7 +3877,7 @@ func (c *Client) GetChatSimilarChats(chatId int64) (*Chats, error) {
 	return resp.(*Chats), nil
 }
 
-// GetChatSparseMessagePositions Returns sparse positions of messages of the specified type in the chat to be used for shared media scroll implementation. Returns the results in reverse chronological order (i.e., in order of decreasing message_id).
+// GetChatSparseMessagePositions Returns sparse positions of messages of the specified type in the chat to be used for Shared Media scroll implementation. Returns the results in reverse chronological order (i.e., in order of decreasing message_id).
 func (c *Client) GetChatSparseMessagePositions(chatId int64, filter SearchMessagesFilter, fromMessageId int64, limit int32, savedMessagesTopicId int64) (*MessagePositions, error) {
 	req := &GetChatSparseMessagePositions{
 		ChatId:               chatId,
@@ -4009,6 +4053,18 @@ func (c *Client) GetCountries() (*Countries, error) {
 		return nil, err
 	}
 	return resp.(*Countries), nil
+}
+
+// GetCountry Returns information about an existing country. Can be called before authorization
+func (c *Client) GetCountry(countryCode string) (*CountryInfo, error) {
+	req := &GetCountry{
+		CountryCode: countryCode,
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*CountryInfo), nil
 }
 
 // GetCountryCode Uses the current IP address to find the current country. Returns two-letter ISO 3166-1 alpha-2 country code. Can be called before authorization
@@ -4289,7 +4345,7 @@ func (c *Client) GetExternalLink(link string, opts *GetExternalLinkOpts) (*HttpU
 	return resp.(*HttpUrl), nil
 }
 
-// GetExternalLinkInfo Returns information about an action to be done when the current user clicks an external link. Don't use this method for links from secret chats if link preview is disabled in secret chats
+// GetExternalLinkInfo Returns information about an action to be done when the current user clicks an external link. Don't use this method for links from secret chats
 func (c *Client) GetExternalLinkInfo(link string) (LoginUrlInfo, error) {
 	req := &GetExternalLinkInfo{
 		Link: link,
@@ -4427,6 +4483,19 @@ func (c *Client) GetForumTopics(chatId int64, limit int32, offsetDate int32, off
 		return nil, err
 	}
 	return resp.(*ForumTopics), nil
+}
+
+// GetFullRichMessage Returns the full version of a rich message
+func (c *Client) GetFullRichMessage(chatId int64, messageId int64) (*RichMessage, error) {
+	req := &GetFullRichMessage{
+		ChatId:    chatId,
+		MessageId: messageId,
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*RichMessage), nil
 }
 
 // GetGameHighScores Returns the high scores for a game and some part of the high score table in the range of the specified user; for bots only
@@ -4818,6 +4887,18 @@ func (c *Client) GetLinkPreview(text *FormattedText, opts *GetLinkPreviewOpts) (
 		return nil, err
 	}
 	return resp.(*LinkPreview), nil
+}
+
+// GetLinkWebBrowserType Returns a type of the web browser which must be used to open the link
+func (c *Client) GetLinkWebBrowserType(link string) (WebBrowserType, error) {
+	req := &GetLinkWebBrowserType{
+		Link: link,
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(WebBrowserType), nil
 }
 
 // GetLiveStoryAvailableMessageSenders Returns the list of message sender identifiers, on whose behalf messages can be sent to a live story
@@ -6855,7 +6936,7 @@ func (c *Client) GetVideoMessageAdvertisements(chatId int64, messageId int64) (*
 }
 
 // GetWebAppLinkUrl Returns an HTTPS URL of a Web App to open after a link of the type internalLinkTypeWebApp is clicked
-func (c *Client) GetWebAppLinkUrl(botUserId int64, chatId int64, parameters *WebAppOpenParameters, startParameter string, webAppShortName string, opts *GetWebAppLinkUrlOpts) (*HttpUrl, error) {
+func (c *Client) GetWebAppLinkUrl(botUserId int64, chatId int64, parameters *WebAppOpenParameters, startParameter string, webAppShortName string, opts *GetWebAppLinkUrlOpts) (*WebAppUrl, error) {
 	req := &GetWebAppLinkUrl{
 		BotUserId:       botUserId,
 		ChatId:          chatId,
@@ -6870,7 +6951,7 @@ func (c *Client) GetWebAppLinkUrl(botUserId int64, chatId int64, parameters *Web
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*HttpUrl), nil
+	return resp.(*WebAppUrl), nil
 }
 
 // GetWebAppPlaceholder Returns a default placeholder for Web Apps of a bot. This is an offline method. Returns a 404 error if the placeholder isn't known
@@ -6886,7 +6967,7 @@ func (c *Client) GetWebAppPlaceholder(botUserId int64) (*Outline, error) {
 }
 
 // GetWebAppUrl Returns an HTTPS URL of a Web App to open from the side menu, a keyboardButtonTypeWebApp button, or an inlineQueryResultsButtonTypeWebApp button
-func (c *Client) GetWebAppUrl(botUserId int64, parameters *WebAppOpenParameters, url string) (*HttpUrl, error) {
+func (c *Client) GetWebAppUrl(botUserId int64, parameters *WebAppOpenParameters, url string) (*WebAppUrl, error) {
 	req := &GetWebAppUrl{
 		BotUserId:  botUserId,
 		Parameters: parameters,
@@ -6896,7 +6977,7 @@ func (c *Client) GetWebAppUrl(botUserId int64, parameters *WebAppOpenParameters,
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*HttpUrl), nil
+	return resp.(*WebAppUrl), nil
 }
 
 // GetWebPageInstantView Returns an instant view version of a web page if available. This is an offline method if only_local is true. Returns a 404 error if the web page has no instant view page
@@ -7017,17 +7098,20 @@ func (c *Client) IsProfileAudio(fileId int32) error {
 	return err
 }
 
-// JoinChat Adds the current user as a new member to a chat. Private and secret chats can't be joined using this method. May return an error with a message "INVITE_REQUEST_SENT" if only a join request was created
-func (c *Client) JoinChat(chatId int64) error {
+// JoinChat Adds the current user as a new member to a chat. Private and secret chats can't be joined using this method
+func (c *Client) JoinChat(chatId int64) (ChatJoinResult, error) {
 	req := &JoinChat{
 		ChatId: chatId,
 	}
-	_, err := c.Send(req)
-	return err
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(ChatJoinResult), nil
 }
 
-// JoinChatByInviteLink Uses an invite link to add the current user to the chat if possible. May return an error with a message "INVITE_REQUEST_SENT" if only a join request was created
-func (c *Client) JoinChatByInviteLink(inviteLink string) (*Chat, error) {
+// JoinChatByInviteLink Uses an invite link to add the current user to the chat if possible
+func (c *Client) JoinChatByInviteLink(inviteLink string) (ChatJoinResult, error) {
 	req := &JoinChatByInviteLink{
 		InviteLink: inviteLink,
 	}
@@ -7035,7 +7119,7 @@ func (c *Client) JoinChatByInviteLink(inviteLink string) (*Chat, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Chat), nil
+	return resp.(ChatJoinResult), nil
 }
 
 // JoinGroupCall Joins a regular group call that is not bound to a chat
@@ -7704,6 +7788,13 @@ func (c *Client) RemoveAllFilesFromDownloads(opts *RemoveAllFilesFromDownloadsOp
 	return err
 }
 
+// RemoveAllWebBrowserSettingsExceptions Removes special handling for the opening of all links
+func (c *Client) RemoveAllWebBrowserSettingsExceptions() error {
+	req := &RemoveAllWebBrowserSettingsExceptions{}
+	_, err := c.Send(req)
+	return err
+}
+
 // RemoveBusinessConnectedBotFromChat Removes the connected business bot from a specific chat by adding the chat to businessRecipients.excluded_chat_ids
 func (c *Client) RemoveBusinessConnectedBotFromChat(chatId int64) error {
 	req := &RemoveBusinessConnectedBotFromChat{
@@ -7956,6 +8047,15 @@ func (c *Client) RemoveTopChat(category TopChatCategory, chatId int64) error {
 	req := &RemoveTopChat{
 		Category: category,
 		ChatId:   chatId,
+	}
+	_, err := c.Send(req)
+	return err
+}
+
+// RemoveWebBrowserSettingsException Removes a special handling for the opening of the specified URL
+func (c *Client) RemoveWebBrowserSettingsException(url string) error {
+	req := &RemoveWebBrowserSettingsException{
+		Url: url,
 	}
 	_, err := c.Send(req)
 	return err
@@ -8554,7 +8654,7 @@ func (c *Client) SearchChatMessages(chatId int64, fromMessageId int64, limit int
 	return resp.(*FoundChatMessages), nil
 }
 
-// SearchChatRecentLocationMessages Returns information about the recent locations of chat members that were sent to the chat. Returns up to 1 location message per user
+// SearchChatRecentLocationMessages Returns information about the recent live locations of chat members that were sent to the chat. Returns at most one live location message per user
 func (c *Client) SearchChatRecentLocationMessages(chatId int64, limit int32) (*Messages, error) {
 	req := &SearchChatRecentLocationMessages{
 		ChatId: chatId,
@@ -8568,10 +8668,13 @@ func (c *Client) SearchChatRecentLocationMessages(chatId int64, limit int32) (*M
 }
 
 // SearchChats Searches for the specified query in the title and username of already known chats. This is an offline method. Returns chats in the order seen in the main chat list
-func (c *Client) SearchChats(limit int32, query string) (*Chats, error) {
+func (c *Client) SearchChats(limit int32, query string, opts *SearchChatsOpts) (*Chats, error) {
 	req := &SearchChats{
 		Limit: limit,
 		Query: query,
+	}
+	if opts != nil {
+		req.TypeFilter = opts.TypeFilter
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -8581,10 +8684,13 @@ func (c *Client) SearchChats(limit int32, query string) (*Chats, error) {
 }
 
 // SearchChatsOnServer Searches for the specified query in the title and username of already known chats via request to the server. Returns chats in the order seen in the main chat list
-func (c *Client) SearchChatsOnServer(limit int32, query string) (*Chats, error) {
+func (c *Client) SearchChatsOnServer(limit int32, query string, opts *SearchChatsOnServerOpts) (*Chats, error) {
 	req := &SearchChatsOnServer{
 		Limit: limit,
 		Query: query,
+	}
+	if opts != nil {
+		req.TypeFilter = opts.TypeFilter
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -8735,9 +8841,12 @@ func (c *Client) SearchPublicChat(username string) (*Chat, error) {
 }
 
 // SearchPublicChats Searches public chats by looking for specified query in their username and title. Currently, only private chats, supergroups and channels can be public. Returns a meaningful number of results.
-func (c *Client) SearchPublicChats(query string) (*Chats, error) {
+func (c *Client) SearchPublicChats(query string, opts *SearchPublicChatsOpts) (*Chats, error) {
 	req := &SearchPublicChats{
 		Query: query,
+	}
+	if opts != nil {
+		req.TypeFilter = opts.TypeFilter
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -8834,10 +8943,13 @@ func (c *Client) SearchQuote(quote *FormattedText, quotePosition int32, text *Fo
 }
 
 // SearchRecentlyFoundChats Searches for the specified query in the title and username of up to 50 recently found chats. This is an offline method
-func (c *Client) SearchRecentlyFoundChats(limit int32, query string) (*Chats, error) {
+func (c *Client) SearchRecentlyFoundChats(limit int32, query string, opts *SearchRecentlyFoundChatsOpts) (*Chats, error) {
 	req := &SearchRecentlyFoundChats{
 		Limit: limit,
 		Query: query,
+	}
+	if opts != nil {
+		req.TypeFilter = opts.TypeFilter
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -9344,6 +9456,18 @@ func (c *Client) SendResoldGift(giftName string, ownerId MessageSender, price Gi
 		return nil, err
 	}
 	return resp.(GiftResaleResult), nil
+}
+
+// SendRichMessageDraft Sends a draft for a being generated rich message; for bots only
+func (c *Client) SendRichMessageDraft(chatId int64, draftId int64, forumTopicId int32, message *InputRichMessage) error {
+	req := &SendRichMessageDraft{
+		ChatId:       chatId,
+		DraftId:      draftId,
+		ForumTopicId: forumTopicId,
+		Message:      message,
+	}
+	_, err := c.Send(req)
+	return err
 }
 
 // SendTextMessageDraft Sends a draft for a being generated text message; for bots only
@@ -11052,7 +11176,7 @@ func (c *Client) SynchronizeLanguagePack(languagePackId string) error {
 	return err
 }
 
-// TerminateAllOtherSessions Terminates all other sessions of the current user
+// TerminateAllOtherSessions Terminates all other sessions of the current user. Additionally, the user must be suggested to delete the connected business bot using deleteBusinessConnectedBot if there is any
 func (c *Client) TerminateAllOtherSessions() error {
 	req := &TerminateAllOtherSessions{}
 	_, err := c.Send(req)
@@ -11653,11 +11777,13 @@ func (c *Client) ToggleSupergroupIsForum(supergroupId int64, opts *ToggleSupergr
 }
 
 // ToggleSupergroupJoinByRequest Toggles whether all users directly joining the supergroup need to be approved by supergroup administrators; requires can_restrict_members administrator right
-func (c *Client) ToggleSupergroupJoinByRequest(supergroupId int64, opts *ToggleSupergroupJoinByRequestOpts) error {
+func (c *Client) ToggleSupergroupJoinByRequest(guardBotUserId int64, supergroupId int64, opts *ToggleSupergroupJoinByRequestOpts) error {
 	req := &ToggleSupergroupJoinByRequest{
-		SupergroupId: supergroupId,
+		GuardBotUserId: guardBotUserId,
+		SupergroupId:   supergroupId,
 	}
 	if opts != nil {
+		req.ApplyToInviteLinks = opts.ApplyToInviteLinks
 		req.JoinByRequest = opts.JoinByRequest
 	}
 	_, err := c.Send(req)
