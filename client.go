@@ -321,8 +321,8 @@ func (c *Client) sendAuthError(err error) {
 func (c *Client) authHandler(client *Client, authState *UpdateAuthorizationState) error {
 	c.Logger.Debug("Authorization state update", "state", authState.AuthorizationState.GetType())
 
-	switch authState.AuthorizationState.GetType() {
-	case "authorizationStateWaitTdlibParameters":
+	switch state := authState.AuthorizationState.(type) {
+	case *AuthorizationStateWaitTdlibParameters:
 		if c.config.TDLibOptions != nil {
 			c.config.TDLibOptions.forEachSet(func(k string, v interface{}) {
 				if opt := toOptionValue(v); opt != nil {
@@ -357,7 +357,7 @@ func (c *Client) authHandler(client *Client, authState *UpdateAuthorizationState
 			c.sendAuthError(err)
 		}
 
-	case "authorizationStateWaitPhoneNumber":
+	case *AuthorizationStateWaitPhoneNumber:
 		if c.botToken != "" {
 			err := c.CheckAuthenticationBotToken(c.botToken)
 			if err != nil {
@@ -390,8 +390,8 @@ func (c *Client) authHandler(client *Client, authState *UpdateAuthorizationState
 			}
 		}
 
-	case "authorizationStateWaitOtherDeviceConfirmation":
-		link := authState.AuthorizationState.(*AuthorizationStateWaitOtherDeviceConfirmation).Link
+	case *AuthorizationStateWaitOtherDeviceConfirmation:
+		link := state.Link
 		fmt.Printf("Scan the QR code below: or open the link in Telegram: %s\n", link)
 		q, err := qrcode.NewQRCode(link)
 		if err != nil {
@@ -400,10 +400,9 @@ func (c *Client) authHandler(client *Client, authState *UpdateAuthorizationState
 			fmt.Println(q.ToSmallString(false))
 		}
 
-	case "authorizationStateWaitCode":
-		codeInfo := authState.AuthorizationState.(*AuthorizationStateWaitCode).CodeInfo
-		codeType := codeInfo.Type.GetType()
-		codeType = strings.TrimPrefix(codeType, "authenticationCodeType")
+	case *AuthorizationStateWaitCode:
+		codeInfo := state.CodeInfo
+		codeType := strings.TrimPrefix(codeInfo.Type.GetType(), "authenticationCodeType")
 		reader := bufio.NewReader(os.Stdin)
 		for {
 			fmt.Printf("Enter the code received via %s: ", codeType)
@@ -420,8 +419,8 @@ func (c *Client) authHandler(client *Client, authState *UpdateAuthorizationState
 			break
 		}
 
-	case "authorizationStateWaitPassword":
-		hint := authState.AuthorizationState.(*AuthorizationStateWaitPassword).PasswordHint
+	case *AuthorizationStateWaitPassword:
+		hint := state.PasswordHint
 		reader := bufio.NewReader(os.Stdin)
 		for {
 			fmt.Printf("Enter your 2FA password (hint: %s): ", hint)
@@ -438,7 +437,7 @@ func (c *Client) authHandler(client *Client, authState *UpdateAuthorizationState
 			break
 		}
 
-	case "authorizationStateWaitRegistration":
+	case *AuthorizationStateWaitRegistration:
 		reader := bufio.NewReader(os.Stdin)
 		fmt.Print("Enter first name: ")
 		firstName, _ := reader.ReadString('\n')
@@ -453,11 +452,11 @@ func (c *Client) authHandler(client *Client, authState *UpdateAuthorizationState
 			c.sendAuthError(err)
 		}
 
-	case "authorizationStateWaitPremiumPurchase":
+	case *AuthorizationStateWaitPremiumPurchase:
 		c.Logger.Warn("Account is limited and requires Telegram Premium.")
 		c.sendAuthError(WaitPremiumPurchase)
 
-	case "authorizationStateReady":
+	case *AuthorizationStateReady:
 		c.isAuthorized = true
 		me, err := c.GetMe()
 		if err != nil {
@@ -476,7 +475,7 @@ func (c *Client) authHandler(client *Client, authState *UpdateAuthorizationState
 
 		c.sendAuthError(nil)
 
-	case "authorizationStateClosed":
+	case *AuthorizationStateClosed:
 		if !c.isAuthorized {
 			c.sendAuthError(fmt.Errorf("authorization closed unexpectedly"))
 		}
@@ -490,8 +489,7 @@ func (c *Client) authHandler(client *Client, authState *UpdateAuthorizationState
 }
 
 func (c *Client) connectionStateHandler(client *Client, u *UpdateConnectionState) error {
-	state := u.State.GetType()
-	state = strings.TrimPrefix(state, "connectionState")
+	state := strings.TrimPrefix(u.State.GetType(), "connectionState")
 	c.Logger.Info("Connection state changed", "state", state)
 	return nil
 }
@@ -566,11 +564,9 @@ func (c *Client) SendWithContext(ctx context.Context, req TlObject) (TlObject, e
 
 		select {
 		case res := <-ch:
-			if res.GetType() == "error" {
-				if errObj, ok := res.(*Error); ok {
-					resultErr = errObj
-					result = res
-				}
+			if errObj, ok := res.(*Error); ok {
+				resultErr = errObj
+				result = res
 			} else {
 				result = res
 			}
@@ -672,7 +668,7 @@ func (c *Client) handleAutoRetry(reqMap map[string]interface{}, errObj *Error, i
 
 // waitMessage waits for the message to be sent and returns the final message.
 func (c *Client) waitMessage(msg *Message) (*Message, error) {
-	if msg.SendingState == nil || msg.SendingState.GetType() != "messageSendingStatePending" {
+	if _, ok := msg.SendingState.(*MessageSendingStatePending); !ok {
 		return msg, nil
 	}
 
@@ -719,7 +715,7 @@ func (c *Client) waitMessages(msgs *Messages) (*Messages, error) {
 		key := fmt.Sprintf("%d:%d", msg.ChatId, msg.Id)
 		ch := make(chan TlObject, 1)
 		entries[i] = pendingEntry{key: key, ch: ch}
-		if msg.SendingState != nil && msg.SendingState.GetType() == "messageSendingStatePending" {
+		if _, ok := msg.SendingState.(*MessageSendingStatePending); ok {
 			c.pendingMessages.Store(key, ch)
 		} else {
 			ch <- msg

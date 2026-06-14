@@ -82,18 +82,18 @@ func buildFormatString(format DateTimeFormattingType) string {
 			formatStr += "w"
 		}
 		if f.DatePrecision != nil {
-			switch f.DatePrecision.GetType() {
-			case "dateTimePartPrecisionShort":
+			switch f.DatePrecision.(type) {
+			case *DateTimePartPrecisionShort:
 				formatStr += "d"
-			case "dateTimePartPrecisionLong":
+			case *DateTimePartPrecisionLong:
 				formatStr += "D"
 			}
 		}
 		if f.TimePrecision != nil {
-			switch f.TimePrecision.GetType() {
-			case "dateTimePartPrecisionShort":
+			switch f.TimePrecision.(type) {
+			case *DateTimePartPrecisionShort:
 				formatStr += "t"
-			case "dateTimePartPrecisionLong":
+			case *DateTimePartPrecisionLong:
 				formatStr += "T"
 			}
 		}
@@ -104,18 +104,18 @@ func buildFormatString(format DateTimeFormattingType) string {
 			formatStr += "w"
 		}
 		if f.DatePrecision != nil {
-			switch f.DatePrecision.GetType() {
-			case "dateTimePartPrecisionShort":
+			switch f.DatePrecision.(type) {
+			case *DateTimePartPrecisionShort:
 				formatStr += "d"
-			case "dateTimePartPrecisionLong":
+			case *DateTimePartPrecisionLong:
 				formatStr += "D"
 			}
 		}
 		if f.TimePrecision != nil {
-			switch f.TimePrecision.GetType() {
-			case "dateTimePartPrecisionShort":
+			switch f.TimePrecision.(type) {
+			case *DateTimePartPrecisionShort:
 				formatStr += "t"
-			case "dateTimePartPrecisionLong":
+			case *DateTimePartPrecisionLong:
 				formatStr += "T"
 			}
 		}
