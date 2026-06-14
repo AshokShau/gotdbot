@@ -42,7 +42,7 @@ func (c *Client) Ask(chatId int64, opts *WaitMessageOpts) (*Message, error) {
 		return true
 	}
 
-	u, err := c.WaitFor(msgFilter, timeout)
+	u, err := c.WaitForChat(chatId, msgFilter, timeout)
 	if err != nil {
 		return nil, err
 	}

@@ -1,6 +1,7 @@
 package gotdbot
 
 import (
+	"sort"
 	"strings"
 )
 
@@ -188,9 +189,9 @@ func (c *Client) AddHandlerGroup(handler Handler, group int) {
 	c.hMu.Lock()
 	defer c.hMu.Unlock()
 
-	oldMap := *c.handlers.Load()
-	newMap := make(map[int][]Handler, len(oldMap))
-	for k, v := range oldMap {
+	oldData := c.handlers.Load()
+	newMap := make(map[int][]Handler, len(oldData.handlers))
+	for k, v := range oldData.handlers {
 		newMap[k] = v
 	}
 
@@ -199,7 +200,17 @@ func (c *Client) AddHandlerGroup(handler Handler, group int) {
 	handlers = append(handlers, handler)
 
 	newMap[group] = handlers
-	c.handlers.Store(&newMap)
+
+	groups := make([]int, 0, len(newMap))
+	for k := range newMap {
+		groups = append(groups, k)
+	}
+	sort.Ints(groups)
+
+	c.handlers.Store(&handlersData{
+		handlers: newMap,
+		groups:   groups,
+	})
 }
 
 // OnCommand registers a new command handler with the default group (0).

@@ -11,6 +11,11 @@ type TlObject interface {
 	GetType() string
 }
 
+type tlFunction interface {
+	TlObject
+	setExtra(extra string)
+}
+
 // ActiveStoryState Describes state of active stories posted by a chat
 //   - ActiveStoryStateLive
 //   - ActiveStoryStateRead
