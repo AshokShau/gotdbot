@@ -691,7 +691,7 @@ type Animation struct {
 	Duration int32 `json:"duration"`
 	// Original name of the file; as defined by the sender
 	FileName string `json:"file_name"`
-	// True, if stickers were added to the animation. The list of corresponding sticker set can be received using getAttachedStickerSets
+	// True, if stickers were added to the animation. The list of corresponding sticker sets can be received using getAttachedStickerSets
 	HasStickers bool `json:"has_stickers"`
 	// Height of the animation
 	Height int32 `json:"height"`
@@ -1734,7 +1734,7 @@ type AutoDownloadSettings struct {
 	PreloadLargeVideos bool `json:"preload_large_videos"`
 	// True, if the next audio track needs to be preloaded while the user is listening to an audio file
 	PreloadNextAudio bool `json:"preload_next_audio"`
-	// True, if stories needs to be preloaded
+	// True, if stories need to be preloaded
 	PreloadStories bool `json:"preload_stories"`
 	// True, if "use less data for calls" option needs to be enabled
 	UseLessDataForCalls bool `json:"use_less_data_for_calls"`
@@ -3925,7 +3925,7 @@ func (t BusinessFeatureUpgradedStories) MarshalJSON() ([]byte, error) {
 
 // BusinessGreetingMessageSettings Describes settings for greeting messages that are automatically sent by a Telegram Business account as response to incoming messages in an inactive private chat
 type BusinessGreetingMessageSettings struct {
-	// The number of days after which a chat will be considered as inactive; currently, must be on of 7, 14, 21, or 28
+	// The number of days after which a chat will be considered as inactive; currently, must be one of 7, 14, 21, or 28
 	InactivityDays int32 `json:"inactivity_days"`
 	// Chosen recipients of the greeting messages
 	Recipients *BusinessRecipients `json:"recipients"`
@@ -3954,7 +3954,7 @@ type BusinessInfo struct {
 	AwayMessageSettings *BusinessAwayMessageSettings `json:"away_message_settings,omitempty"`
 	// The greeting message; may be null if none or the Business account is not of the current user
 	GreetingMessageSettings *BusinessGreetingMessageSettings `json:"greeting_message_settings,omitempty"`
-	// Opening hours of the business in the local time; may be null if none. The hours are guaranteed to be valid and has already been split by week days.
+	// Opening hours of the business in the local time; may be null if none. The hours are guaranteed to be valid and have already been split by week days.
 	LocalOpeningHours *BusinessOpeningHours `json:"local_opening_hours,omitempty"`
 	// Location of the business; may be null if none
 	Location *BusinessLocation `json:"location,omitempty"`
@@ -3962,7 +3962,7 @@ type BusinessInfo struct {
 	NextCloseIn int32 `json:"next_close_in"`
 	// Time left before the business will open the next time, in seconds; 0 if unknown. An updateUserFullInfo update is not triggered when value of this field changes
 	NextOpenIn int32 `json:"next_open_in"`
-	// Opening hours of the business; may be null if none. The hours are guaranteed to be valid and has already been split by week days
+	// Opening hours of the business; may be null if none. The hours are guaranteed to be valid and have already been split by week days
 	OpeningHours *BusinessOpeningHours `json:"opening_hours,omitempty"`
 	// Information about start page of the account; may be null if none
 	StartPage *BusinessStartPage `json:"start_page,omitempty"`
@@ -8785,7 +8785,7 @@ func (t ChatJoinRequestResultApproved) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// ChatJoinRequestResultDeclined The request was decline
+// ChatJoinRequestResultDeclined The request was declined
 type ChatJoinRequestResultDeclined struct {
 }
 
@@ -15027,7 +15027,7 @@ type Gift struct {
 	Background *GiftBackground `json:"background"`
 	// Number of Telegram Stars that can be claimed by the receiver instead of the regular gift by default. If the gift was paid with just bought Telegram Stars, then full value can be claimed
 	DefaultSellStarCount int64 `json:"default_sell_star_count"`
-	// Point in time (Unix timestamp) when the gift was send for the first time; for sold out gifts only
+	// Point in time (Unix timestamp) when the gift was sent for the first time; for sold out gifts only
 	FirstSendDate int32 `json:"first_send_date"`
 	// True, if the gift can be used to customize the user's name, and backgrounds of profile photo, reply header, and link preview
 	HasColors bool `json:"has_colors"`
@@ -15037,11 +15037,11 @@ type Gift struct {
 	IsForBirthday bool `json:"is_for_birthday"`
 	// True, if the gift can be bought only by Telegram Premium subscribers
 	IsPremium bool `json:"is_premium"`
-	// Point in time (Unix timestamp) when the gift was send for the last time; for sold out gifts only
+	// Point in time (Unix timestamp) when the gift was sent for the last time; for sold out gifts only
 	LastSendDate int32 `json:"last_send_date"`
 	// Point in time (Unix timestamp) when the gift can be sent next time by the current user; may be 0 or a date in the past.
 	NextSendDate int32 `json:"next_send_date"`
-	// Number of times the gift can be purchased all users; may be null if not limited
+	// Number of times the gift can be purchased by all users; may be null if not limited
 	OverallLimits *GiftPurchaseLimits `json:"overall_limits,omitempty"`
 	// Identifier of the chat that published the gift; 0 if none
 	PublisherChatId int64 `json:"publisher_chat_id"`
@@ -28345,7 +28345,7 @@ func (t MessageGiveawayCreated) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// MessageGiveawayPrizeStars A Telegram Stars were received by the current user from a giveaway
+// MessageGiveawayPrizeStars Telegram Stars were received by the current user from a giveaway
 type MessageGiveawayPrizeStars struct {
 	// Identifier of the supergroup or channel chat, which was automatically boosted by the winners of the giveaway
 	BoostedChatId int64 `json:"boosted_chat_id"`
@@ -30874,7 +30874,7 @@ func (t MessageSuggestBirthdate) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// MessageSuggestedPostApprovalFailed Approval of suggested post has failed, because the user which proposed the post had no enough funds
+// MessageSuggestedPostApprovalFailed Approval of suggested post has failed, because the user who proposed the post didn't have enough funds
 type MessageSuggestedPostApprovalFailed struct {
 	// Price of the suggested post
 	Price SuggestedPostPrice `json:"price"`
@@ -31293,7 +31293,7 @@ func (t MessageUnsupported) MarshalJSON() ([]byte, error) {
 type MessageUpgradedGift struct {
 	// True, if the gift can be transferred to another owner; only for the receiver of the gift
 	CanBeTransferred bool `json:"can_be_transferred"`
-	// Point in time (Unix timestamp) when the gift can be used to craft another gift can be in the past; only for the receiver of the gift
+	// Point in time (Unix timestamp) when the gift can be used to craft another gift; can be in the past; only for the receiver of the gift
 	CraftDate int32 `json:"craft_date"`
 	// Number of Telegram Stars that must be paid to drop original details of the upgraded gift; 0 if not available; only for the receiver of the gift
 	DropOriginalDetailsStarCount int64 `json:"drop_original_details_star_count"`
@@ -33519,7 +33519,7 @@ type PageBlockListItem struct {
 	IsChecked bool `json:"is_checked"`
 	// Item label
 	Label string `json:"label"`
-	// Type of the item numbering type; must be one of "a" for a lowercase letters, "A" for an uppercase letters, "i" for lowercase Roman numerals, "I" for uppercase Roman numerals,
+	// Type of the item numbering type; must be one of "a" for lowercase letters, "A" for uppercase letters, "i" for lowercase Roman numerals, "I" for uppercase Roman numerals,
 	Type string `json:"type"`
 	// Value of the item; 0 for unordered lists
 	Value int32 `json:"value"`
@@ -41245,7 +41245,7 @@ type ReceivedGift struct {
 	CanBeUpgraded bool `json:"can_be_upgraded"`
 	// Identifiers of collections to which the gift is added; only for the receiver of the gift
 	CollectionIds []int32 `json:"collection_ids"`
-	// Point in time (Unix timestamp) when the gift can be used to craft another gift can be in the past; only for the receiver of the gift
+	// Point in time (Unix timestamp) when the gift can be used to craft another gift; can be in the past; only for the receiver of the gift
 	CraftDate int32 `json:"craft_date"`
 	// Point in time (Unix timestamp) when the gift was sent
 	Date int32 `json:"date"`
@@ -46118,7 +46118,7 @@ type StarSubscription struct {
 	Id string `json:"id"`
 	// True, if the subscription was canceled
 	IsCanceled bool `json:"is_canceled"`
-	// True, if the subscription expires soon and there are no enough Telegram Stars on the user's balance to extend it
+	// True, if the subscription expires soon and there aren't enough Telegram Stars on the user's balance to extend it
 	IsExpiring bool `json:"is_expiring"`
 	// The subscription plan
 	Pricing *StarSubscriptionPricing `json:"pricing"`
@@ -46247,7 +46247,7 @@ func (t StarSubscriptionTypeBot) MarshalJSON() ([]byte, error) {
 type StarSubscriptionTypeChannel struct {
 	// True, if the subscription is active and the user can use the method reuseStarSubscription to join the subscribed chat again
 	CanReuse bool `json:"can_reuse"`
-	// The invite link that can be used to renew the subscription if it has been expired; may be empty, if the link isn't available anymore
+	// The invite link that can be used to renew the subscription if it has expired; may be empty if the link isn't available anymore
 	InviteLink string `json:"invite_link,omitempty"`
 }
 
@@ -48826,7 +48826,7 @@ type Story struct {
 	Content StoryContent `json:"content"`
 	// Point in time (Unix timestamp) when the story was published
 	Date int32 `json:"date"`
-	// True, if users viewed the story can't be received, because the story has expired more than getOption("story_viewers_expiration_delay") seconds ago
+	// True, if users who viewed the story can't be received, because the story has expired more than getOption("story_viewers_expiration_delay") seconds ago
 	HasExpiredViewers bool `json:"has_expired_viewers"`
 	// Unique story identifier among stories posted by the given chat
 	Id int32 `json:"id"`
@@ -49112,7 +49112,7 @@ func (t StoryAreaTypeMessage) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// StoryAreaTypeSuggestedReaction An area pointing to a suggested reaction. App needs to show a clickable reaction on the area and call setStoryReaction when the are is clicked
+// StoryAreaTypeSuggestedReaction An area pointing to a suggested reaction. App needs to show a clickable reaction on the area and call setStoryReaction when the area is clicked
 type StoryAreaTypeSuggestedReaction struct {
 	// True, if reaction has a dark background
 	IsDark bool `json:"is_dark"`
@@ -51551,7 +51551,7 @@ func (t Text) MarshalJSON() ([]byte, error) {
 
 // TextCompositionStyle Describes a style that can be used to compose a text
 type TextCompositionStyle struct {
-	// User identifier of the creator of the style; 0 if none of unknown
+	// User identifier of the creator of the style; 0 if none or unknown
 	CreatorUserId int64 `json:"creator_user_id"`
 	// Identifier of the custom emoji corresponding to the style; 0 if none
 	CustomEmojiId int64 `json:"custom_emoji_id,string"`
@@ -53578,7 +53578,7 @@ func (t UpdateActiveEmojiReactions) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// UpdateActiveGiftAuctions The list of auctions in which participate the current user has changed
+// UpdateActiveGiftAuctions The list of auctions in which the current user participates has changed
 type UpdateActiveGiftAuctions struct {
 	// New states of the auctions
 	States []GiftAuctionState `json:"states"`
@@ -53647,7 +53647,7 @@ func (t UpdateActiveNotifications) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// UpdateAgeVerificationParameters The parameters for age verification of the current user's account has changed
+// UpdateAgeVerificationParameters The parameters for age verification of the current user's account have changed
 type UpdateAgeVerificationParameters struct {
 	// Parameters for the age verification; may be null if age verification isn't needed
 	Parameters *AgeVerificationParameters `json:"parameters,omitempty"`
@@ -53697,7 +53697,7 @@ func (t UpdateAnimatedEmojiMessageClicked) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// UpdateAnimationSearchParameters The parameters of animation search through getOption("animation_search_bot_username") bot has changed
+// UpdateAnimationSearchParameters The parameters of animation search through getOption("animation_search_bot_username") bot have changed
 type UpdateAnimationSearchParameters struct {
 	// The new list of emojis suggested for searching
 	Emojis []string `json:"emojis"`
@@ -54663,7 +54663,7 @@ func (t UpdateChatIsTranslatable) MarshalJSON() ([]byte, error) {
 type UpdateChatJoinResult struct {
 	// Identifier of the joined chat, or 0 if the request wasn't approved
 	ChatId int64 `json:"chat_id"`
-	// Identifier of the join request query as received in chatJoinResultGuardBotApprovalRequired. If the corresponding Web App is stiil open, then it must be closed
+	// Identifier of the join request query as received in chatJoinResultGuardBotApprovalRequired. If the corresponding Web App is still open, then it must be closed
 	QueryId int64 `json:"query_id,string"`
 	// Result of the join
 	Result ChatJoinRequestResult `json:"result"`
@@ -58206,7 +58206,7 @@ func (t *UpdateServiceNotification) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-// UpdateSpeechRecognitionTrial The parameters of speech recognition without Telegram Premium subscription has changed
+// UpdateSpeechRecognitionTrial The parameters of speech recognition without Telegram Premium subscription have changed
 type UpdateSpeechRecognitionTrial struct {
 	// Number of left speech recognition attempts this week
 	LeftCount int32 `json:"left_count"`
@@ -58235,7 +58235,7 @@ func (t UpdateSpeechRecognitionTrial) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// UpdateSpeedLimitNotification Download or upload file speed for the user was limited, but it can be restored by subscription to Telegram Premium. The notification can be postponed until a being downloaded or uploaded file is visible to the user.
+// UpdateSpeedLimitNotification Download or upload file speed for the user was limited, but it can be restored by subscription to Telegram Premium. The notification can be postponed until a file being downloaded or uploaded is visible to the user.
 type UpdateSpeedLimitNotification struct {
 	// True, if upload speed was limited; false, if download speed was limited
 	IsUpload bool `json:"is_upload"`
@@ -59214,7 +59214,7 @@ type UpgradedGift struct {
 	Id int64 `json:"id,string"`
 	// True, if the gift was used to craft another gift
 	IsBurned bool `json:"is_burned"`
-	// True, if the gift was craft from another gifts
+	// True, if the gift was crafted from other gifts
 	IsCrafted bool `json:"is_crafted"`
 	// True, if the original gift could have been bought only by Telegram Premium subscribers
 	IsPremium bool `json:"is_premium"`
@@ -59832,7 +59832,7 @@ func (t *UpgradedGiftOriginOffer) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-// UpgradedGiftOriginPrepaidUpgrade The sender or receiver of the message has paid for upgraid of the gift, which has been completed
+// UpgradedGiftOriginPrepaidUpgrade The sender or receiver of the message has paid for upgrade of the gift, which has been completed
 type UpgradedGiftOriginPrepaidUpgrade struct {
 }
 

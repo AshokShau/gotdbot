@@ -65,7 +65,7 @@ func (t AcceptOauthRequest) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// AcceptTermsOfService Accepts Telegram terms of services
+// AcceptTermsOfService Accepts Telegram terms of service
 type AcceptTermsOfService struct {
 	Extra string `json:"@extra,omitempty"` // @extra field
 	// Terms of service identifier
@@ -8446,7 +8446,7 @@ type GetChatInviteLinks struct {
 	ChatId int64 `json:"chat_id"`
 	// User identifier of a chat administrator. Must be an identifier of the current user for non-owner
 	CreatorUserId int64 `json:"creator_user_id"`
-	// Pass true if revoked links needs to be returned instead of active or expired
+	// Pass true if revoked links need to be returned instead of active or expired
 	IsRevoked bool `json:"is_revoked"`
 	// The maximum number of invite links to return; up to 100
 	Limit int32 `json:"limit"`
@@ -9300,7 +9300,7 @@ func (t GetConnectedAffiliateProgram) MarshalJSON() ([]byte, error) {
 // GetConnectedAffiliatePrograms Returns affiliate programs that were connected to the given affiliate
 type GetConnectedAffiliatePrograms struct {
 	Extra string `json:"@extra,omitempty"` // @extra field
-	// The affiliate to which the affiliate program were connected
+	// The affiliate to which the affiliate programs were connected
 	Affiliate AffiliateType `json:"affiliate"`
 	// The maximum number of affiliate programs to return
 	Limit int32 `json:"limit"`
@@ -13511,7 +13511,7 @@ func (t GetRecoveryEmailAddress) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// GetRemoteFile Returns information about a file by its remote identifier. This is an offline method. Can be used to register a URL as a file for further uploading, or sending as a message. Even the request succeeds, the file can be used only if it is still accessible to the user.
+// GetRemoteFile Returns information about a file by its remote identifier. This is an offline method. Can be used to register a URL as a file for further uploading, or sending as a message. Even if the request succeeds, the file can be used only if it is still accessible to the user.
 type GetRemoteFile struct {
 	Extra string `json:"@extra,omitempty"` // @extra field
 	// File type; pass null if unknown
@@ -14014,7 +14014,7 @@ type GetStarSubscriptions struct {
 	Extra string `json:"@extra,omitempty"` // @extra field
 	// Offset of the first subscription to return as received from the previous request; use empty string to get the first chunk of results
 	Offset string `json:"offset"`
-	// Pass true to receive only expiring subscriptions for which there are no enough Telegram Stars to extend
+	// Pass true to receive only expiring subscriptions for which there aren't enough Telegram Stars to extend
 	OnlyExpiring bool `json:"only_expiring"`
 }
 
@@ -24415,7 +24415,7 @@ func (t SetPassportElement) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// SetPassportElementErrors Informs the user who some of the elements in their Telegram Passport contain errors; for bots only. The user will not be able to resend the elements, until the errors are fixed
+// SetPassportElementErrors Informs the user that some of the elements in their Telegram Passport contain errors; for bots only. The user will not be able to resend the elements, until the errors are fixed
 type SetPassportElementErrors struct {
 	Extra string `json:"@extra,omitempty"` // @extra field
 	// The errors
@@ -27918,7 +27918,7 @@ type UpgradeGift struct {
 	KeepOriginalDetails bool `json:"keep_original_details"`
 	// Identifier of the gift
 	ReceivedGiftId string `json:"received_gift_id"`
-	// The Telegram Star amount required to pay for the upgrade. It the gift has prepaid_upgrade_star_count > 0, then pass 0, otherwise, pass gift.upgrade_star_count
+	// The Telegram Star amount required to pay for the upgrade. If the gift has prepaid_upgrade_star_count > 0, then pass 0, otherwise, pass gift.upgrade_star_count
 	StarCount int64 `json:"star_count"`
 }
 
@@ -27944,7 +27944,7 @@ func (t UpgradeGift) MarshalJSON() ([]byte, error) {
 // UploadStickerFile Uploads a file with a sticker; returns the uploaded file
 type UploadStickerFile struct {
 	Extra string `json:"@extra,omitempty"` // @extra field
-	// File file to upload; must fit in a 512x512 square. For WEBP stickers the file must be in WEBP or PNG format, which will be converted to WEBP server-side.
+	// File to upload; must fit in a 512x512 square. For WEBP stickers the file must be in WEBP or PNG format, which will be converted to WEBP server-side.
 	Sticker InputFile `json:"sticker"`
 	// Sticker format
 	StickerFormat StickerFormat `json:"sticker_format"`

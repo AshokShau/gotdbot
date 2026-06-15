@@ -571,7 +571,7 @@ type GetChatInviteLinkMembersOpts struct {
 
 // GetChatInviteLinksOpts contains optional parameters for GetChatInviteLinks
 type GetChatInviteLinksOpts struct {
-	// Pass true if revoked links needs to be returned instead of active or expired
+	// Pass true if revoked links need to be returned instead of active or expired
 	IsRevoked bool
 }
 
@@ -805,7 +805,7 @@ type GetStarRevenueStatisticsOpts struct {
 
 // GetStarSubscriptionsOpts contains optional parameters for GetStarSubscriptions
 type GetStarSubscriptionsOpts struct {
-	// Pass true to receive only expiring subscriptions for which there are no enough Telegram Stars to extend
+	// Pass true to receive only expiring subscriptions for which there aren't enough Telegram Stars to extend
 	OnlyExpiring bool
 }
 

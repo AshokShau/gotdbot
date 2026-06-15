@@ -30,7 +30,7 @@ func (c *Client) AcceptOauthRequest(matchCode string, url string, opts *AcceptOa
 	return resp.(*HttpUrl), nil
 }
 
-// AcceptTermsOfService Accepts Telegram terms of services
+// AcceptTermsOfService Accepts Telegram terms of service
 func (c *Client) AcceptTermsOfService(termsOfServiceId string) error {
 	req := &AcceptTermsOfService{
 		TermsOfServiceId: termsOfServiceId,
@@ -5962,7 +5962,7 @@ func (c *Client) GetRecoveryEmailAddress(password string) (*RecoveryEmailAddress
 	return resp.(*RecoveryEmailAddress), nil
 }
 
-// GetRemoteFile Returns information about a file by its remote identifier. This is an offline method. Can be used to register a URL as a file for further uploading, or sending as a message. Even the request succeeds, the file can be used only if it is still accessible to the user.
+// GetRemoteFile Returns information about a file by its remote identifier. This is an offline method. Can be used to register a URL as a file for further uploading, or sending as a message. Even if the request succeeds, the file can be used only if it is still accessible to the user.
 func (c *Client) GetRemoteFile(remoteFileId string, opts *GetRemoteFileOpts) (*File, error) {
 	req := &GetRemoteFile{
 		RemoteFileId: remoteFileId,
@@ -10556,7 +10556,7 @@ func (c *Client) SetPassportElement(element InputPassportElement, password strin
 	return resp.(PassportElement), nil
 }
 
-// SetPassportElementErrors Informs the user who some of the elements in their Telegram Passport contain errors; for bots only. The user will not be able to resend the elements, until the errors are fixed
+// SetPassportElementErrors Informs the user that some of the elements in their Telegram Passport contain errors; for bots only. The user will not be able to resend the elements, until the errors are fixed
 func (c *Client) SetPassportElementErrors(errors []InputPassportElementError, userId int64) error {
 	req := &SetPassportElementErrors{
 		Errors: errors,
