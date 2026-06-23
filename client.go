@@ -705,81 +705,68 @@ func (c *Client) waitMessages(msgs *Messages) (*Messages, error) {
 	}
 
 	totalCount := len(msgs.Messages)
-	type pendingEntry struct {
-		key string
-		ch  chan TlObject
+	type result struct {
+		res TlObject
+		idx int
 	}
-	entries := make([]pendingEntry, totalCount)
+
+	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
+	defer cancel()
+
+	resChan := make(chan result, totalCount)
+	entries := make([]string, totalCount)
+
 	for i := range msgs.Messages {
 		msg := &msgs.Messages[i]
-		key := fmt.Sprintf("%d:%d", msg.ChatId, msg.Id)
-		ch := make(chan TlObject, 1)
-		entries[i] = pendingEntry{key: key, ch: ch}
-		if _, ok := msg.SendingState.(*MessageSendingStatePending); ok {
-			c.pendingMessages.Store(key, ch)
-		} else {
-			ch <- msg
+		if _, ok := msg.SendingState.(*MessageSendingStatePending); !ok {
+			resChan <- result{res: msg, idx: i}
+			continue
 		}
+
+		key := fmt.Sprintf("%d:%d", msg.ChatId, msg.Id)
+		entries[i] = key
+		ch := make(chan TlObject, 1)
+		c.pendingMessages.Store(key, ch)
+
+		go func(idx int, cch chan TlObject) {
+			select {
+			case r := <-cch:
+				resChan <- result{res: r, idx: idx}
+			case <-ctx.Done():
+			}
+		}(i, ch)
 	}
 
 	defer func() {
-		for _, e := range entries {
-			c.pendingMessages.Delete(e.key)
+		for _, key := range entries {
+			if key != "" {
+				c.pendingMessages.Delete(key)
+			}
 		}
 	}()
 
 	errs := make([]error, totalCount)
 	receivedCount := 0
-	timeout := time.After(30 * time.Second)
 
 	for receivedCount < totalCount {
-		var res TlObject
-		var resIdx int
-		found := false
-
-		aggregated := make(chan struct {
-			res TlObject
-			idx int
-		}, totalCount)
-		for i, e := range entries {
-			i, e := i, e
-			go func() {
-				select {
-				case r := <-e.ch:
-					aggregated <- struct {
-						res TlObject
-						idx int
-					}{r, i}
-				case <-timeout:
-				}
-			}()
-		}
-
 		select {
-		case item := <-aggregated:
-			res = item.res
-			resIdx = item.idx
-			found = true
-		case <-timeout:
+		case item := <-resChan:
+			res := item.res
+			resIdx := item.idx
+			if errObj, ok := res.(*Error); ok {
+				errs[resIdx] = errObj
+			} else if u, ok := res.(*UpdateMessageSendFailed); ok {
+				errs[resIdx] = u.Error
+				msgs.Messages[resIdx] = *u.Message
+			} else if finalMsg, ok := res.(*Message); ok {
+				msgs.Messages[resIdx] = *finalMsg
+			} else if u, ok := res.(*UpdateMessageSendSucceeded); ok {
+				msgs.Messages[resIdx] = *u.Message
+			}
+			receivedCount++
+		case <-ctx.Done():
 			return msgs, errors.Join(errs...)
 		}
-
-		if !found {
-			break
-		}
-
-		if errObj, ok := res.(*Error); ok {
-			errs[resIdx] = errObj
-		} else if u, ok := res.(*UpdateMessageSendFailed); ok {
-			errs[resIdx] = u.Error
-			msgs.Messages[resIdx] = *u.Message
-		} else if finalMsg, ok := res.(*Message); ok {
-			msgs.Messages[resIdx] = *finalMsg
-		} else if u, ok := res.(*UpdateMessageSendSucceeded); ok {
-			msgs.Messages[resIdx] = *u.Message
-		}
-
-		receivedCount++
 	}
 
 	return msgs, errors.Join(errs...)
