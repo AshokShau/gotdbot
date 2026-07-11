@@ -10,17 +10,17 @@ type (
 	UpdateAccentColors func(u *gotdbot.UpdateAccentColors) bool
 	// UpdateActiveEmojiReactions The list of active emoji reactions has changed
 	UpdateActiveEmojiReactions func(u *gotdbot.UpdateActiveEmojiReactions) bool
-	// UpdateActiveGiftAuctions The list of auctions in which participate the current user has changed
+	// UpdateActiveGiftAuctions The list of auctions in which the current user participates has changed
 	UpdateActiveGiftAuctions func(u *gotdbot.UpdateActiveGiftAuctions) bool
 	// UpdateActiveLiveLocationMessages The list of messages with active live location that need to be updated by the application has changed. The list is persistent across application restarts only if the message database is used
 	UpdateActiveLiveLocationMessages func(u *gotdbot.UpdateActiveLiveLocationMessages) bool
 	// UpdateActiveNotifications Contains active notifications that were shown on previous application launches. This update is sent only if the message database is used. In that case it comes once before any updateNotification and updateNotificationGroup update
 	UpdateActiveNotifications func(u *gotdbot.UpdateActiveNotifications) bool
-	// UpdateAgeVerificationParameters The parameters for age verification of the current user's account has changed
+	// UpdateAgeVerificationParameters The parameters for age verification of the current user's account have changed
 	UpdateAgeVerificationParameters func(u *gotdbot.UpdateAgeVerificationParameters) bool
 	// UpdateAnimatedEmojiMessageClicked Some animated emoji message was clicked and a big animated sticker must be played if the message is visible on the screen. chatActionWatchingAnimations with the text of the message needs to be sent if the sticker is played
 	UpdateAnimatedEmojiMessageClicked func(u *gotdbot.UpdateAnimatedEmojiMessageClicked) bool
-	// UpdateAnimationSearchParameters The parameters of animation search through getOption("animation_search_bot_username") bot has changed
+	// UpdateAnimationSearchParameters The parameters of animation search through getOption("animation_search_bot_username") bot have changed
 	UpdateAnimationSearchParameters func(u *gotdbot.UpdateAnimationSearchParameters) bool
 	// UpdateApplicationRecaptchaVerificationRequired A request can't be completed unless reCAPTCHA verification is performed; for official mobile applications only.
 	UpdateApplicationRecaptchaVerificationRequired func(u *gotdbot.UpdateApplicationRecaptchaVerificationRequired) bool
@@ -312,9 +312,9 @@ type (
 	UpdateSecretChat func(u *gotdbot.UpdateSecretChat) bool
 	// UpdateServiceNotification A service notification from the server was received. Upon receiving this the application must show a popup with the content of the notification
 	UpdateServiceNotification func(u *gotdbot.UpdateServiceNotification) bool
-	// UpdateSpeechRecognitionTrial The parameters of speech recognition without Telegram Premium subscription has changed
+	// UpdateSpeechRecognitionTrial The parameters of speech recognition without Telegram Premium subscription have changed
 	UpdateSpeechRecognitionTrial func(u *gotdbot.UpdateSpeechRecognitionTrial) bool
-	// UpdateSpeedLimitNotification Download or upload file speed for the user was limited, but it can be restored by subscription to Telegram Premium. The notification can be postponed until a being downloaded or uploaded file is visible to the user.
+	// UpdateSpeedLimitNotification Download or upload file speed for the user was limited, but it can be restored by subscription to Telegram Premium. The notification can be postponed until a file being downloaded or uploaded is visible to the user.
 	UpdateSpeedLimitNotification func(u *gotdbot.UpdateSpeedLimitNotification) bool
 	// UpdateStakeDiceState The stake dice state has changed
 	UpdateStakeDiceState func(u *gotdbot.UpdateStakeDiceState) bool

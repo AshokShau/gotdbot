@@ -22,6 +22,11 @@ func generateClasses(classes map[string]*TLClass) {
 	sb.WriteString("\tGetType() string\n")
 	sb.WriteString("}\n\n")
 
+	sb.WriteString("type tlFunction interface {\n")
+	sb.WriteString("\tTlObject\n")
+	sb.WriteString("\tsetExtra(extra string)\n")
+	sb.WriteString("}\n\n")
+
 	sortedNames := sortKeysAZ(classes)
 	for _, name := range sortedNames {
 		cls := classes[name]
@@ -146,7 +151,7 @@ func generateObjects(types []TLType, classes map[string]*TLClass) {
 			fmt.Fprintf(&sb, "func (t %s) %s() {}\n\n", structName, methodName)
 		}
 
-		// MarshalJSON (only @type)
+		// MarshalJSON
 		fmt.Fprintf(&sb, "func (t %s) MarshalJSON() ([]byte, error) {\n", structName)
 		fmt.Fprintf(&sb, "\ttype Alias %s\n", structName)
 		sb.WriteString("\treturn json.Marshal(&struct {\n")
@@ -254,6 +259,7 @@ func generateFunctions(functions []TLType, classes map[string]*TLClass) {
 		structName := toCamelCase(t.Name)
 		fmt.Fprintf(&sb, "// %s %s\n", structName, formatDesc(t.Description))
 		fmt.Fprintf(&sb, "type %s struct {\n", structName)
+		sb.WriteString("\tExtra string `json:\"@extra,omitempty\"` // @extra field\n")
 
 		for _, p := range t.Params {
 			goType := toGoType(p.Type, classes)
@@ -274,18 +280,22 @@ func generateFunctions(functions []TLType, classes map[string]*TLClass) {
 		}
 		sb.WriteString("}\n\n")
 
+		fmt.Fprintf(&sb, "func (t *%s) setExtra(extra string) { t.Extra = extra }\n\n", structName)
+
 		fmt.Fprintf(&sb, "func (t %s) GetType() string {\n", structName)
 		fmt.Fprintf(&sb, "\treturn \"%s\"\n", t.Name)
 		sb.WriteString("}\n\n")
 
-		// MarshalJSON (only @type)
+		// MarshalJSON
 		fmt.Fprintf(&sb, "func (t %s) MarshalJSON() ([]byte, error) {\n", structName)
 		fmt.Fprintf(&sb, "\ttype Alias %s\n", structName)
 		sb.WriteString("\treturn json.Marshal(&struct {\n")
 		sb.WriteString("\t\tTypeStr string `json:\"@type\"`\n")
+		sb.WriteString("\t\tExtra   string `json:\"@extra,omitempty\"`\n")
 		sb.WriteString("\t\t*Alias\n")
 		sb.WriteString("\t}{\n")
 		fmt.Fprintf(&sb, "\t\tTypeStr: \"%s\",\n", t.Name)
+		sb.WriteString("\t\tExtra:   t.Extra,\n")
 		sb.WriteString("\t\tAlias:   (*Alias)(&t),\n")
 		sb.WriteString("\t})\n")
 		sb.WriteString("}\n\n")

@@ -11,6 +11,11 @@ type TlObject interface {
 	GetType() string
 }
 
+type tlFunction interface {
+	TlObject
+	setExtra(extra string)
+}
+
 // ActiveStoryState Describes state of active stories posted by a chat
 //   - ActiveStoryStateLive
 //   - ActiveStoryStateRead
@@ -4792,7 +4797,7 @@ func UnmarshalInputMessageReplyTo(data []byte) (InputMessageReplyTo, error) {
 	}
 }
 
-// InputPaidMediaType Describes type of paid media to sent
+// InputPaidMediaType Describes type of paid media to send
 //   - InputPaidMediaTypePhoto
 //   - InputPaidMediaTypeVideo
 type InputPaidMediaType interface {

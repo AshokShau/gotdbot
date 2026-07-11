@@ -27,7 +27,8 @@ func main() {
 
 		res, err := c.Ask(u.ChatId, &gotdbot.WaitMessageOpts{
 			Filter: func(m *gotdbot.Message) bool {
-				return m.SenderId.GetType() == "messageSenderUser"
+				_, ok := m.SenderId.(*gotdbot.MessageSenderUser)
+				return ok
 			},
 		})
 

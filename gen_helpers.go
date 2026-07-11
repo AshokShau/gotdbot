@@ -2163,7 +2163,7 @@ func (m *Message) UnpinChat(client *Client) error {
 	return client.UnpinChatMessage(m.ChatId, m.Id)
 }
 
-// Get Returns information about a file by its remote identifier. This is an offline method. Can be used to register a URL as a file for further uploading, or sending as a message. Even the request succeeds, the file can be used only if it is still accessible to the user.
+// Get Returns information about a file by its remote identifier. This is an offline method. Can be used to register a URL as a file for further uploading, or sending as a message. Even if the request succeeds, the file can be used only if it is still accessible to the user.
 // It is a helper method for Client.GetRemoteFile
 func (r *RemoteFile) Get(client *Client, opts *GetRemoteFileOpts) (*File, error) {
 	return client.GetRemoteFile(r.Id, opts)
@@ -2379,7 +2379,7 @@ func (u *User) SetMenuButton(client *Client, menuButton *BotMenuButton) error {
 	return client.SetMenuButton(menuButton, u.Id)
 }
 
-// SetPassportElementErrors Informs the user who some of the elements in their Telegram Passport contain errors; for bots only. The user will not be able to resend the elements, until the errors are fixed
+// SetPassportElementErrors Informs the user that some of the elements in their Telegram Passport contain errors; for bots only. The user will not be able to resend the elements, until the errors are fixed
 // It is a helper method for Client.SetPassportElementErrors
 func (u *User) SetPassportElementErrors(client *Client, errors []InputPassportElementError) error {
 	return client.SetPassportElementErrors(errors, u.Id)
