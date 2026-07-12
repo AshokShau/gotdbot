@@ -58,10 +58,8 @@ func main() {
 		arch := goarch
 		if arch == "amd64" {
 			arch = "x86_64"
-		} else if arch == "arm64" {
-			arch = "aarch64"
 		}
-		filename = fmt.Sprintf("TDLib-tdjson-linux-%s.tar.gz", arch)
+		filename = fmt.Sprintf("TDLib-tdjson-linux-%s-shared.tar.gz", arch)
 		matchFunc = func(name string) bool {
 			return strings.HasPrefix(name, "libtdjson.so")
 		}
@@ -70,7 +68,7 @@ func main() {
 		if arch == "amd64" {
 			arch = "x86_64"
 		}
-		filename = fmt.Sprintf("TDLib-tdjson-macos-%s.tar.gz", arch)
+		filename = fmt.Sprintf("TDLib-tdjson-macos-%s-shared.tar.gz", arch)
 		matchFunc = func(name string) bool {
 			return strings.HasPrefix(name, "libtdjson") && strings.HasSuffix(name, ".dylib")
 		}
@@ -78,15 +76,24 @@ func main() {
 		arch := goarch
 		if arch == "amd64" {
 			arch = "x64"
-		} else if arch == "386" {
-			arch = "x86"
 		}
-		filename = fmt.Sprintf("TDLib-tdjson-windows-%s.zip", arch)
+		filename = fmt.Sprintf("TDLib-tdjson-windows-%s-shared.zip", arch)
 		matchFunc = func(name string) bool {
 			return strings.HasSuffix(name, ".dll")
 		}
+	case "android":
+		arch := goarch
+		if arch == "amd64" {
+			arch = "x86_64"
+		} else if arch == "arm64" {
+			arch = "aarch64"
+		}
+		filename = fmt.Sprintf("TDLib-tdjson-android-%s-shared.tar.gz", arch)
+		matchFunc = func(name string) bool {
+			return strings.HasPrefix(name, "libtdjson.so")
+		}
 	default:
-		panic("unsupported OS: " + goos + "please build TDLib manually following https://tdlib.github.io/td/build.html?language=Go")
+		panic("unsupported OS: " + goos + ", please build TDLib manually following https://tdlib.github.io/td/build.html?language=Go")
 	}
 
 	downloadURL := fmt.Sprintf("https://github.com/%s/%s/releases/download/%s/%s", repoOwner, repoName, version, filename)
