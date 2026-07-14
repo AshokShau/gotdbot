@@ -128,6 +128,8 @@ type (
 	UpdateChatVideoChat func(u *gotdbot.UpdateChatVideoChat) bool
 	// UpdateChatViewAsTopics A chat default appearance has changed
 	UpdateChatViewAsTopics func(u *gotdbot.UpdateChatViewAsTopics) bool
+	// UpdateCommunity Some data of a community has changed. This update is guaranteed to come before the community identifier is returned to the application
+	UpdateCommunity func(u *gotdbot.UpdateCommunity) bool
 	// UpdateConnectionState The connection state has changed. This update must be used only to show a human-readable description of the connection state
 	UpdateConnectionState func(u *gotdbot.UpdateConnectionState) bool
 	// UpdateContactCloseBirthdays The list of contacts that had birthdays recently or will have birthday soon has changed
@@ -170,6 +172,8 @@ type (
 	UpdateFreezeState func(u *gotdbot.UpdateFreezeState) bool
 	// UpdateGiftAuctionState State of a gift auction was updated
 	UpdateGiftAuctionState func(u *gotdbot.UpdateGiftAuctionState) bool
+	// UpdateGramRevenueStatus The TON Gram revenue earned by the current user has changed. If Gram transaction screen of the chat is opened, then getTonTransactions may be called to fetch new transactions
+	UpdateGramRevenueStatus func(u *gotdbot.UpdateGramRevenueStatus) bool
 	// UpdateGroupCall Information about a group call was updated
 	UpdateGroupCall func(u *gotdbot.UpdateGroupCall) bool
 	// UpdateGroupCallMessageLevels The levels of live story group call messages have changed
@@ -268,10 +272,10 @@ type (
 	UpdateNotificationGroup func(u *gotdbot.UpdateNotificationGroup) bool
 	// UpdateOption An option changed its value
 	UpdateOption func(u *gotdbot.UpdateOption) bool
+	// UpdateOwnedGramCount The number of TON Grams owned by the current user has changed
+	UpdateOwnedGramCount func(u *gotdbot.UpdateOwnedGramCount) bool
 	// UpdateOwnedStarCount The number of Telegram Stars owned by the current user has changed
 	UpdateOwnedStarCount func(u *gotdbot.UpdateOwnedStarCount) bool
-	// UpdateOwnedTonCount The number of Toncoins owned by the current user has changed
-	UpdateOwnedTonCount func(u *gotdbot.UpdateOwnedTonCount) bool
 	// UpdatePaidMediaPurchased Paid media were purchased by a user; for bots only
 	UpdatePaidMediaPurchased func(u *gotdbot.UpdatePaidMediaPurchased) bool
 	// UpdatePendingMessage A new pending text or rich message was received in a chat with a bot. The message must be shown in the chat for at most getOption("pending_text_message_period") seconds,
@@ -344,8 +348,6 @@ type (
 	UpdateTermsOfService func(u *gotdbot.UpdateTermsOfService) bool
 	// UpdateTextCompositionStyles The styles supported for text composition have changed
 	UpdateTextCompositionStyles func(u *gotdbot.UpdateTextCompositionStyles) bool
-	// UpdateTonRevenueStatus The Toncoin revenue earned by the current user has changed. If Toncoin transaction screen of the chat is opened, then getTonTransactions may be called to fetch new transactions
-	UpdateTonRevenueStatus func(u *gotdbot.UpdateTonRevenueStatus) bool
 	// UpdateTopicMessageCount Number of messages in a topic has changed; for Saved Messages and channel direct messages chat topics only
 	UpdateTopicMessageCount func(u *gotdbot.UpdateTopicMessageCount) bool
 	// UpdateTrendingStickerSets The list of trending sticker sets was updated or some of them were viewed
@@ -366,6 +368,8 @@ type (
 	UpdateUserPrivacySettingRules func(u *gotdbot.UpdateUserPrivacySettingRules) bool
 	// UpdateUserStatus The user went online or offline
 	UpdateUserStatus func(u *gotdbot.UpdateUserStatus) bool
+	// UpdateUserSubscription Subscription of a user to the bot was changed; for bots only
+	UpdateUserSubscription func(u *gotdbot.UpdateUserSubscription) bool
 	// UpdateVideoPublished An automatically scheduled message with video has been successfully sent after conversion
 	UpdateVideoPublished func(u *gotdbot.UpdateVideoPublished) bool
 	// UpdateWebAppMessageSent A message was sent by an opened Web App, so the Web App needs to be closed

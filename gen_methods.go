@@ -293,12 +293,9 @@ func (c *Client) AddPollOption(chatId int64, messageId int64, option *InputPollO
 }
 
 // AddProfileAudio Adds an audio file to the beginning of the profile audio files of the current user
-func (c *Client) AddProfileAudio(audio InputFile, duration int32, performer string, title string) error {
+func (c *Client) AddProfileAudio(audio *InputAudio) error {
 	req := &AddProfileAudio{
-		Audio:     audio,
-		Duration:  duration,
-		Performer: performer,
-		Title:     title,
+		Audio: audio,
 	}
 	_, err := c.Send(req)
 	return err
@@ -412,7 +409,7 @@ func (c *Client) AddSavedNotificationSound(sound InputFile) (*NotificationSound,
 }
 
 // AddStickerToSet Adds a new sticker to a set
-func (c *Client) AddStickerToSet(name string, sticker *InputSticker, userId int64) error {
+func (c *Client) AddStickerToSet(name string, sticker *NewSticker, userId int64) error {
 	req := &AddStickerToSet{
 		Name:    name,
 		Sticker: sticker,
@@ -436,7 +433,7 @@ func (c *Client) AddStoryAlbumStories(chatId int64, storyAlbumId int32, storyIds
 	return resp.(*StoryAlbum), nil
 }
 
-// AddTextCompositionStyle Adds a custom text composition style to the list of used by the user styles. May return an error with a message "TONES_SAVED_TOO_MANY" if the maximum number of added custom styles has been reached
+// AddTextCompositionStyle Adds a custom text composition style to the list of used by the user styles. May return an error with a message "TONES_SAVED_TOO_MANY"
 func (c *Client) AddTextCompositionStyle(name string) error {
 	req := &AddTextCompositionStyle{
 		Name: name,
@@ -1234,6 +1231,24 @@ func (c *Client) CommitPendingPaidMessageReactions(chatId int64, messageId int64
 	return err
 }
 
+// ComposeRichMessageWithAi Changes a rich message using an AI model. May return an error with a message "AICOMPOSE_FLOOD_PREMIUM" if Telegram Premium is required to send further requests
+func (c *Client) ComposeRichMessageWithAi(customPrompt string, message *InputRichMessage, styleName string, translateToLanguageCode string, opts *ComposeRichMessageWithAiOpts) (*RichMessage, error) {
+	req := &ComposeRichMessageWithAi{
+		CustomPrompt:            customPrompt,
+		Message:                 message,
+		StyleName:               styleName,
+		TranslateToLanguageCode: translateToLanguageCode,
+	}
+	if opts != nil {
+		req.AddEmojis = opts.AddEmojis
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*RichMessage), nil
+}
+
 // ComposeTextWithAi Changes text using an AI model; must not be used in secret chats. May return an error with a message "AICOMPOSE_FLOOD_PREMIUM" if Telegram Premium is required to send further requests
 func (c *Client) ComposeTextWithAi(styleName string, text *FormattedText, translateToLanguageCode string, opts *ComposeTextWithAiOpts) (*FormattedText, error) {
 	req := &ComposeTextWithAi{
@@ -1510,7 +1525,7 @@ func (c *Client) CreateNewSecretChat(userId int64) (*Chat, error) {
 }
 
 // CreateNewStickerSet Creates a new sticker set. Returns the newly created sticker set
-func (c *Client) CreateNewStickerSet(name string, stickerType StickerType, stickers []InputSticker, title string, userId int64, opts *CreateNewStickerSetOpts) (*StickerSet, error) {
+func (c *Client) CreateNewStickerSet(name string, stickerType StickerType, stickers []NewSticker, title string, userId int64, opts *CreateNewStickerSetOpts) (*StickerSet, error) {
 	req := &CreateNewStickerSet{
 		Name:        name,
 		StickerType: stickerType,
@@ -1562,6 +1577,22 @@ func (c *Client) CreatePrivateChat(userId int64, opts *CreatePrivateChatOpts) (*
 		return nil, err
 	}
 	return resp.(*Chat), nil
+}
+
+// CreateRichMessageWithAi Creates a new rich message using an AI model. May return an error with a message "AICOMPOSE_FLOOD_PREMIUM" if Telegram Premium is required to send further requests
+func (c *Client) CreateRichMessageWithAi(languageCode string, prompt string, opts *CreateRichMessageWithAiOpts) (*RichMessage, error) {
+	req := &CreateRichMessageWithAi{
+		LanguageCode: languageCode,
+		Prompt:       prompt,
+	}
+	if opts != nil {
+		req.AddEmojis = opts.AddEmojis
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*RichMessage), nil
 }
 
 // CreateSecretChat Returns an existing chat corresponding to a known secret chat
@@ -1915,6 +1946,17 @@ func (c *Client) DeleteDirectMessagesChatTopicMessagesByDate(chatId int64, maxDa
 		MaxDate: maxDate,
 		MinDate: minDate,
 		TopicId: topicId,
+	}
+	_, err := c.Send(req)
+	return err
+}
+
+// DeleteEphemeralMessage Deletes an ephemeral message; for bots only
+func (c *Client) DeleteEphemeralMessage(chatId int64, ephemeralMessageId int32, receiverUserId int64) error {
+	req := &DeleteEphemeralMessage{
+		ChatId:             chatId,
+		EphemeralMessageId: ephemeralMessageId,
+		ReceiverUserId:     receiverUserId,
 	}
 	_, err := c.Send(req)
 	return err
@@ -2457,6 +2499,21 @@ func (c *Client) EditCustomLanguagePackInfo(info *LanguagePackInfo) error {
 	return err
 }
 
+// EditEphemeralMessage Edits the text, caption or reply markup of an ephemeral message sent by the bot; for bots only
+func (c *Client) EditEphemeralMessage(chatId int64, ephemeralMessageId int32, receiverUserId int64, opts *EditEphemeralMessageOpts) error {
+	req := &EditEphemeralMessage{
+		ChatId:             chatId,
+		EphemeralMessageId: ephemeralMessageId,
+		ReceiverUserId:     receiverUserId,
+	}
+	if opts != nil {
+		req.InputMessageContent = opts.InputMessageContent
+		req.ReplyMarkup = opts.ReplyMarkup
+	}
+	_, err := c.Send(req)
+	return err
+}
+
 // EditForumTopic Edits title and icon of a topic in a forum supergroup chat or a chat with a bot with topics; for supergroup chats requires can_manage_topics administrator right
 func (c *Client) EditForumTopic(chatId int64, forumTopicId int32, iconCustomEmojiId int64, name string, opts *EditForumTopicOpts) error {
 	req := &EditForumTopic{
@@ -2524,7 +2581,7 @@ func (c *Client) EditInlineMessageReplyMarkup(inlineMessageId string, opts *Edit
 	return err
 }
 
-// EditInlineMessageText Edits the text of an inline text or game message sent via a bot; for bots only
+// EditInlineMessageText Edits the text of an inline text or game message sent via the bot; for bots only
 func (c *Client) EditInlineMessageText(inlineMessageId string, inputMessageContent InputMessageContent, opts *EditInlineMessageTextOpts) error {
 	req := &EditInlineMessageText{
 		InlineMessageId:     inlineMessageId,
@@ -2810,6 +2867,18 @@ func (c *Client) FinishFileGeneration(generationId int64, opts *FinishFileGenera
 	}
 	_, err := c.Send(req)
 	return err
+}
+
+// FixRichMessageWithAi Fixes a rich message using an AI model. May return an error with a message "AICOMPOSE_FLOOD_PREMIUM" if Telegram Premium is required to send further requests
+func (c *Client) FixRichMessageWithAi(message *InputRichMessage) (*RichMessage, error) {
+	req := &FixRichMessageWithAi{
+		Message: message,
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*RichMessage), nil
 }
 
 // FixTextWithAi Fixes text using an AI model; must not be used in secret chats. May return an error with a message "AICOMPOSE_FLOOD_PREMIUM" if Telegram Premium is required to send further requests
@@ -4077,7 +4146,7 @@ func (c *Client) GetCountryCode() (*Text, error) {
 	return resp.(*Text), nil
 }
 
-// GetCountryFlagEmoji Returns an emoji for the given country. Returns an empty string on failure. Can be called synchronously
+// GetCountryFlagEmoji Returns an emoji for the flag of the given country. Returns an empty string on failure. Can be called synchronously
 func (c *Client) GetCountryFlagEmoji(countryCode string) (*Text, error) {
 	req := &GetCountryFlagEmoji{
 		CountryCode: countryCode,
@@ -4600,6 +4669,31 @@ func (c *Client) GetGiveawayInfo(chatId int64, messageId int64) (GiveawayInfo, e
 	return resp.(GiveawayInfo), nil
 }
 
+// GetGramRevenueStatistics Returns detailed TON Gram revenue statistics of the current user
+func (c *Client) GetGramRevenueStatistics(opts *GetGramRevenueStatisticsOpts) (*GramRevenueStatistics, error) {
+	req := &GetGramRevenueStatistics{}
+	if opts != nil {
+		req.IsDark = opts.IsDark
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*GramRevenueStatistics), nil
+}
+
+// GetGramWithdrawalUrl Returns a URL for TON Gram withdrawal from the current user's account. The user must have at least 10 Grams to withdraw
+func (c *Client) GetGramWithdrawalUrl(password string) (*HttpUrl, error) {
+	req := &GetGramWithdrawalUrl{
+		Password: password,
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*HttpUrl), nil
+}
+
 // GetGreetingStickers Returns greeting stickers from regular sticker sets that can be used for the start page of other users
 func (c *Client) GetGreetingStickers() (*Stickers, error) {
 	req := &GetGreetingStickers{}
@@ -4690,6 +4784,19 @@ func (c *Client) GetGroupsInCommon(limit int32, offsetChatId int64, userId int64
 		return nil, err
 	}
 	return resp.(*Chats), nil
+}
+
+// GetGuardBotWebAppUrl Returns an HTTPS URL of a Web App of a guard bot to open after receiving chatJoinResultGuardBotApprovalRequired
+func (c *Client) GetGuardBotWebAppUrl(parameters *WebAppOpenParameters, queryId int64) (*WebAppUrl, error) {
+	req := &GetGuardBotWebAppUrl{
+		Parameters: parameters,
+		QueryId:    queryId,
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*WebAppUrl), nil
 }
 
 // GetImportedContactCount Returns the total number of imported contacts
@@ -6643,20 +6750,7 @@ func (c *Client) GetTimeZones() (*TimeZones, error) {
 	return resp.(*TimeZones), nil
 }
 
-// GetTonRevenueStatistics Returns detailed Toncoin revenue statistics of the current user
-func (c *Client) GetTonRevenueStatistics(opts *GetTonRevenueStatisticsOpts) (*TonRevenueStatistics, error) {
-	req := &GetTonRevenueStatistics{}
-	if opts != nil {
-		req.IsDark = opts.IsDark
-	}
-	resp, err := c.Send(req)
-	if err != nil {
-		return nil, err
-	}
-	return resp.(*TonRevenueStatistics), nil
-}
-
-// GetTonTransactions Returns the list of Toncoin transactions of the current user
+// GetTonTransactions Returns the list of TON blockchain transactions of the current user
 func (c *Client) GetTonTransactions(limit int32, offset string, opts *GetTonTransactionsOpts) (*TonTransactions, error) {
 	req := &GetTonTransactions{
 		Limit:  limit,
@@ -6670,18 +6764,6 @@ func (c *Client) GetTonTransactions(limit int32, offset string, opts *GetTonTran
 		return nil, err
 	}
 	return resp.(*TonTransactions), nil
-}
-
-// GetTonWithdrawalUrl Returns a URL for Toncoin withdrawal from the current user's account. The user must have at least 10 toncoins to withdraw
-func (c *Client) GetTonWithdrawalUrl(password string) (*HttpUrl, error) {
-	req := &GetTonWithdrawalUrl{
-		Password: password,
-	}
-	resp, err := c.Send(req)
-	if err != nil {
-		return nil, err
-	}
-	return resp.(*HttpUrl), nil
 }
 
 // GetTopChats Returns a list of frequently used chats
@@ -8203,7 +8285,7 @@ func (c *Client) ReplacePrimaryChatInviteLink(chatId int64) (*ChatInviteLink, er
 }
 
 // ReplaceStickerInSet Replaces existing sticker in a set. The function is equivalent to removeStickerFromSet, then addStickerToSet, then setStickerPositionInSet
-func (c *Client) ReplaceStickerInSet(name string, newSticker *InputSticker, oldSticker InputFile, userId int64) error {
+func (c *Client) ReplaceStickerInSet(name string, newSticker *NewSticker, oldSticker InputFile, userId int64) error {
 	req := &ReplaceStickerInSet{
 		Name:       name,
 		NewSticker: newSticker,
@@ -9264,6 +9346,28 @@ func (c *Client) SendEmailAddressVerificationCode(emailAddress string) (*EmailAd
 		return nil, err
 	}
 	return resp.(*EmailAddressAuthenticationCodeInfo), nil
+}
+
+// SendEphemeralMessage Sends an ephemeral message which will be received only by one bot in a chat. Currently, only ephemeral bot commands and replies to bot ephemeral messages can be sent using the method.
+func (c *Client) SendEphemeralMessage(callbackQueryId int64, chatId int64, inputMessageContent InputMessageContent, receiverUserId int64, sendingId int32, opts *SendEphemeralMessageOpts) (*Message, error) {
+	req := &SendEphemeralMessage{
+		CallbackQueryId:     callbackQueryId,
+		ChatId:              chatId,
+		InputMessageContent: inputMessageContent,
+		ReceiverUserId:      receiverUserId,
+		SendingId:           sendingId,
+	}
+	if opts != nil {
+		req.OnlyPreview = opts.OnlyPreview
+		req.ReplyMarkup = opts.ReplyMarkup
+		req.ReplyTo = opts.ReplyTo
+		req.TopicId = opts.TopicId
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*Message), nil
 }
 
 // SendGift Sends a gift to another user or channel chat. May return an error with a message "STARGIFT_USAGE_LIMITED" if the gift was sold out
@@ -11897,6 +12001,21 @@ func (c *Client) TransferGift(businessConnectionId string, newOwnerId MessageSen
 	return err
 }
 
+// TranslateMessageRichMessage Extracts rich message of the given message and translates it to the given language
+func (c *Client) TranslateMessageRichMessage(chatId int64, messageId int64, toLanguageCode string, tone string) (*RichMessage, error) {
+	req := &TranslateMessageRichMessage{
+		ChatId:         chatId,
+		MessageId:      messageId,
+		ToLanguageCode: toLanguageCode,
+		Tone:           tone,
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*RichMessage), nil
+}
+
 // TranslateMessageText Extracts text or caption of the given message and translates it to the given language; must not be used in secret chats. If the current user is a Telegram Premium user, then text formatting is preserved
 func (c *Client) TranslateMessageText(chatId int64, messageId int64, toLanguageCode string, tone string) (*FormattedText, error) {
 	req := &TranslateMessageText{
@@ -11910,6 +12029,20 @@ func (c *Client) TranslateMessageText(chatId int64, messageId int64, toLanguageC
 		return nil, err
 	}
 	return resp.(*FormattedText), nil
+}
+
+// TranslateRichMessage Translates a rich message to the given language
+func (c *Client) TranslateRichMessage(message *InputRichMessage, toLanguageCode string, tone string) (*RichMessage, error) {
+	req := &TranslateRichMessage{
+		Message:        message,
+		ToLanguageCode: toLanguageCode,
+		Tone:           tone,
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*RichMessage), nil
 }
 
 // TranslateText Translates a text to the given language; must not be used in secret chats. If the current user is a Telegram Premium user, then text formatting is preserved
