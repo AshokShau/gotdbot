@@ -791,14 +791,14 @@ func (m *Message) ReplyPoll(c *Client, question string, options []InputPollOptio
 }
 
 // ReplyStakeDice replies to the message with a stake dice.
-func (m *Message) ReplyStakeDice(c *Client, stakeToncoinAmount int64, stateHash string, opts *SendStakeDiceOpts) (*Message, error) {
+func (m *Message) ReplyStakeDice(c *Client, stakeGramAmount int64, stateHash string, opts *SendStakeDiceOpts) (*Message, error) {
 	if opts == nil {
 		opts = &SendStakeDiceOpts{}
 	}
 	if opts.ReplyToMessageID == 0 {
 		opts.ReplyToMessageID = m.Id
 	}
-	return c.SendStakeDice(m.ChatId, stakeToncoinAmount, stateHash, opts)
+	return c.SendStakeDice(m.ChatId, stakeGramAmount, stateHash, opts)
 }
 
 // ReplyStory replies to the message with a story.

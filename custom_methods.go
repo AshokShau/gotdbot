@@ -554,9 +554,11 @@ func (c *Client) SendVoice(chatId int64, voice InputFile, opts *SendVoiceOpts) (
 	}
 
 	content := &InputMessageVoiceNote{
-		VoiceNote:        voice,
-		Waveform:         opts.Waveform,
-		Duration:         opts.Duration,
+		VoiceNote: &InputVoiceNote{
+			VoiceNote: voice,
+			Waveform:  opts.Waveform,
+			Duration:  opts.Duration,
+		},
 		Caption:          caption,
 		SelfDestructType: opts.SelfDestructType,
 	}
@@ -607,10 +609,12 @@ func (c *Client) SendVideoNote(chatId int64, videoNote InputFile, opts *SendVide
 	}
 
 	content := &InputMessageVideoNote{
-		VideoNote:        videoNote,
-		Thumbnail:        opts.Thumbnail,
-		Duration:         opts.Duration,
-		Length:           opts.Length,
+		VideoNote: &InputVideoNote{
+			VideoNote: videoNote,
+			Thumbnail: opts.Thumbnail,
+			Duration:  opts.Duration,
+			Length:    opts.Length,
+		},
 		SelfDestructType: opts.SelfDestructType,
 	}
 
@@ -660,11 +664,13 @@ func (c *Client) SendSticker(chatId int64, sticker InputFile, opts *SendStickerO
 	}
 
 	content := &InputMessageSticker{
-		Sticker:   sticker,
-		Thumbnail: opts.Thumbnail,
-		Width:     opts.Width,
-		Height:    opts.Height,
-		Emoji:     opts.Emoji,
+		Sticker: &InputSticker{
+			Sticker:   sticker,
+			Thumbnail: opts.Thumbnail,
+			Width:     opts.Width,
+			Height:    opts.Height,
+		},
+		Emoji: opts.Emoji,
 	}
 
 	return c.sendMessageWithContent(chatId, content, &MessageSendOptions{
@@ -1367,14 +1373,14 @@ type SendStakeDiceOpts struct {
 }
 
 // SendStakeDice sends a stake dice to chat
-func (c *Client) SendStakeDice(chatId int64, stakeToncoinAmount int64, stateHash string, opts *SendStakeDiceOpts) (*Message, error) {
+func (c *Client) SendStakeDice(chatId int64, stakeGramAmount int64, stateHash string, opts *SendStakeDiceOpts) (*Message, error) {
 	if opts == nil {
 		opts = &SendStakeDiceOpts{}
 	}
 	content := &InputMessageStakeDice{
-		ClearDraft:         opts.ClearDraft,
-		StakeToncoinAmount: stakeToncoinAmount,
-		StateHash:          stateHash,
+		ClearDraft:      opts.ClearDraft,
+		StakeGramAmount: stakeGramAmount,
+		StateHash:       stateHash,
 	}
 	return c.sendMessageWithContent(chatId, content, &MessageSendOptions{
 		DisableNotification:               opts.DisableNotification,
