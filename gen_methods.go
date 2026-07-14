@@ -9367,7 +9367,7 @@ func (c *Client) SendEphemeralMessage(callbackQueryId int64, chatId int64, input
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Message), nil
+	return c.waitMessage(resp.(*Message))
 }
 
 // SendGift Sends a gift to another user or channel chat. May return an error with a message "STARGIFT_USAGE_LIMITED" if the gift was sold out
