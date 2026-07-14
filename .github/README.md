@@ -34,7 +34,7 @@ go get github.com/AshokShau/gotdbot
 - **TDLib**: Compiled `libtdjson` shared library.
 
 #### Quick TDLib Setup
-You can use the built-in tool to automatically download the latest precompiled TDLib binaries for your platform:
+You can use the built-in tool to automatically download the latest [precompiled TDLib binaries](https://github.com/FallenProjects/tdlib-build/releases) for your platform:
 
 ```bash
 go run github.com/AshokShau/gotdbot/scripts/tools

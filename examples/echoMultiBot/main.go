@@ -22,7 +22,7 @@ var (
 )
 
 func main() {
-	manager = gotdbot.NewClientManager("./libtdjson.so.1.8.65")
+	manager = gotdbot.NewClientManager("./libtdjson.so.1.8.66")
 
 	splitTokens := strings.Split(tokens, ",")
 
