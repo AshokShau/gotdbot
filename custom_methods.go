@@ -3,7 +3,6 @@ package gotdbot
 import (
 	"fmt"
 	"html"
-	"os"
 	"strings"
 )
 
@@ -20,22 +19,7 @@ func (c *Client) GetFormattedText(text string, entities []TextEntity, parseMode 
 		parseMode = c.config.ParseMode
 	}
 
-	if parseMode != "" {
-		ft, err := c.ParseText(text, parseMode)
-		if err == nil {
-			return ft, nil
-		}
-		return nil, err
-	}
-	return &FormattedText{Text: text}, nil
-}
-
-func GetInputFile(path string) InputFile {
-	if _, err := os.Stat(path); err == nil {
-		return InputFileLocal{Path: path}
-	}
-
-	return InputFileRemote{Id: path}
+	return c.ParseText(text, parseMode)
 }
 
 // EscapeHTML escapes HTML characters in the given text.
