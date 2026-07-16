@@ -70,6 +70,8 @@ func (c *Client) sendMessageWithContent(
 	replyTo InputMessageReplyTo,
 	replyToMessageId int64,
 	replyMarkup ReplyMarkup,
+	callbackQueryId int64,
+	receiverUserId int64,
 ) (*Message, error) {
 	if replyToMessageId > 0 {
 		replyTo = &InputMessageReplyToMessage{
@@ -80,6 +82,23 @@ func (c *Client) sendMessageWithContent(
 
 	if c.config.LoadMessagesBeforeReply && replyToMessageId > 0 {
 		_, _ = c.GetMessage(chatId, replyToMessageId)
+	}
+
+	if receiverUserId != 0 || callbackQueryId > 0 {
+		var sendingId int32
+		var onlyPreview bool
+
+		if options != nil {
+			sendingId = options.SendingId
+			onlyPreview = options.OnlyPreview
+		}
+
+		return c.SendEphemeralMessage(callbackQueryId, chatId, content, receiverUserId, sendingId, &SendEphemeralMessageOpts{
+			OnlyPreview: onlyPreview,
+			ReplyMarkup: replyMarkup,
+			ReplyTo:     replyTo,
+			TopicId:     topicId,
+		})
 	}
 
 	return c.SendMessage(chatId, content, &SendMessageOpts{
@@ -116,6 +135,8 @@ type SendTextMessageOpts struct {
 	SendingId                         int32
 	SuggestedPostInfo                 *InputSuggestedPostInfo
 	UpdateOrderOfInstalledStickerSets bool
+	CallbackQueryID                   int64
+	ReceiverUserID                    int64
 }
 
 // SendTextMessage sends a text message to chat
@@ -155,7 +176,7 @@ func (c *Client) SendTextMessage(chatId int64, text string, opts *SendTextMessag
 		SendingId:                         opts.SendingId,
 		SuggestedPostInfo:                 opts.SuggestedPostInfo,
 		UpdateOrderOfInstalledStickerSets: opts.UpdateOrderOfInstalledStickerSets,
-	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
+	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup, opts.CallbackQueryID, opts.ReceiverUserID)
 }
 
 // SendPhotoOpts contains optional parameters for SendPhoto
@@ -186,6 +207,8 @@ type SendPhotoOpts struct {
 	SendingId                         int32
 	SuggestedPostInfo                 *InputSuggestedPostInfo
 	UpdateOrderOfInstalledStickerSets bool
+	CallbackQueryID                   int64
+	ReceiverUserID                    int64
 }
 
 // SendPhoto sends a photo to chat
@@ -225,7 +248,7 @@ func (c *Client) SendPhoto(chatId int64, photo InputFile, opts *SendPhotoOpts) (
 		SendingId:                         opts.SendingId,
 		SuggestedPostInfo:                 opts.SuggestedPostInfo,
 		UpdateOrderOfInstalledStickerSets: opts.UpdateOrderOfInstalledStickerSets,
-	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
+	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup, opts.CallbackQueryID, opts.ReceiverUserID)
 }
 
 // SendVideoOpts contains optional parameters for SendVideo
@@ -260,6 +283,8 @@ type SendVideoOpts struct {
 	SendingId                         int32
 	SuggestedPostInfo                 *InputSuggestedPostInfo
 	UpdateOrderOfInstalledStickerSets bool
+	CallbackQueryID                   int64
+	ReceiverUserID                    int64
 }
 
 // SendVideo sends a video to chat
@@ -303,7 +328,7 @@ func (c *Client) SendVideo(chatId int64, video InputFile, opts *SendVideoOpts) (
 		SendingId:                         opts.SendingId,
 		SuggestedPostInfo:                 opts.SuggestedPostInfo,
 		UpdateOrderOfInstalledStickerSets: opts.UpdateOrderOfInstalledStickerSets,
-	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
+	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup, opts.CallbackQueryID, opts.ReceiverUserID)
 }
 
 // SendAnimationOpts contains optional parameters for SendAnimation
@@ -334,6 +359,8 @@ type SendAnimationOpts struct {
 	SendingId                         int32
 	SuggestedPostInfo                 *InputSuggestedPostInfo
 	UpdateOrderOfInstalledStickerSets bool
+	CallbackQueryID                   int64
+	ReceiverUserID                    int64
 }
 
 // SendAnimation sends an animation to chat
@@ -373,7 +400,7 @@ func (c *Client) SendAnimation(chatId int64, animation InputFile, opts *SendAnim
 		SendingId:                         opts.SendingId,
 		SuggestedPostInfo:                 opts.SuggestedPostInfo,
 		UpdateOrderOfInstalledStickerSets: opts.UpdateOrderOfInstalledStickerSets,
-	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
+	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup, opts.CallbackQueryID, opts.ReceiverUserID)
 }
 
 // SendAudioOpts contains optional parameters for SendAudio
@@ -401,6 +428,8 @@ type SendAudioOpts struct {
 	SendingId                         int32
 	SuggestedPostInfo                 *InputSuggestedPostInfo
 	UpdateOrderOfInstalledStickerSets bool
+	CallbackQueryID                   int64
+	ReceiverUserID                    int64
 }
 
 // SendAudio sends an audio to chat
@@ -437,7 +466,7 @@ func (c *Client) SendAudio(chatId int64, audio InputFile, opts *SendAudioOpts) (
 		SendingId:                         opts.SendingId,
 		SuggestedPostInfo:                 opts.SuggestedPostInfo,
 		UpdateOrderOfInstalledStickerSets: opts.UpdateOrderOfInstalledStickerSets,
-	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
+	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup, opts.CallbackQueryID, opts.ReceiverUserID)
 }
 
 // SendDocumentOpts contains optional parameters for SendDocument
@@ -463,6 +492,8 @@ type SendDocumentOpts struct {
 	SendingId                         int32
 	SuggestedPostInfo                 *InputSuggestedPostInfo
 	UpdateOrderOfInstalledStickerSets bool
+	CallbackQueryID                   int64
+	ReceiverUserID                    int64
 }
 
 // SendDocument sends a document to chat
@@ -497,7 +528,7 @@ func (c *Client) SendDocument(chatId int64, document InputFile, opts *SendDocume
 		SendingId:                         opts.SendingId,
 		SuggestedPostInfo:                 opts.SuggestedPostInfo,
 		UpdateOrderOfInstalledStickerSets: opts.UpdateOrderOfInstalledStickerSets,
-	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
+	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup, opts.CallbackQueryID, opts.ReceiverUserID)
 }
 
 // SendVoiceOpts contains optional parameters for SendVoice
@@ -524,6 +555,8 @@ type SendVoiceOpts struct {
 	SendingId                         int32
 	SuggestedPostInfo                 *InputSuggestedPostInfo
 	UpdateOrderOfInstalledStickerSets bool
+	CallbackQueryID                   int64
+	ReceiverUserID                    int64
 }
 
 // SendVoice sends a voice note to chat
@@ -559,7 +592,7 @@ func (c *Client) SendVoice(chatId int64, voice InputFile, opts *SendVoiceOpts) (
 		SendingId:                         opts.SendingId,
 		SuggestedPostInfo:                 opts.SuggestedPostInfo,
 		UpdateOrderOfInstalledStickerSets: opts.UpdateOrderOfInstalledStickerSets,
-	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
+	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup, opts.CallbackQueryID, opts.ReceiverUserID)
 }
 
 // SendVideoNoteOpts contains optional parameters for SendVideoNote
@@ -584,6 +617,8 @@ type SendVideoNoteOpts struct {
 	SendingId                         int32
 	SuggestedPostInfo                 *InputSuggestedPostInfo
 	UpdateOrderOfInstalledStickerSets bool
+	CallbackQueryID                   int64
+	ReceiverUserID                    int64
 }
 
 // SendVideoNote sends a video note to chat
@@ -614,7 +649,7 @@ func (c *Client) SendVideoNote(chatId int64, videoNote InputFile, opts *SendVide
 		SendingId:                         opts.SendingId,
 		SuggestedPostInfo:                 opts.SuggestedPostInfo,
 		UpdateOrderOfInstalledStickerSets: opts.UpdateOrderOfInstalledStickerSets,
-	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
+	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup, opts.CallbackQueryID, opts.ReceiverUserID)
 }
 
 // SendStickerOpts contains optional parameters for SendSticker
@@ -639,6 +674,8 @@ type SendStickerOpts struct {
 	SendingId                         int32
 	SuggestedPostInfo                 *InputSuggestedPostInfo
 	UpdateOrderOfInstalledStickerSets bool
+	CallbackQueryID                   int64
+	ReceiverUserID                    int64
 }
 
 // SendSticker sends a sticker to chat
@@ -669,7 +706,7 @@ func (c *Client) SendSticker(chatId int64, sticker InputFile, opts *SendStickerO
 		SendingId:                         opts.SendingId,
 		SuggestedPostInfo:                 opts.SuggestedPostInfo,
 		UpdateOrderOfInstalledStickerSets: opts.UpdateOrderOfInstalledStickerSets,
-	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
+	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup, opts.CallbackQueryID, opts.ReceiverUserID)
 }
 
 // SendCopyOpts contains optional parameters for SendCopy
@@ -732,7 +769,116 @@ func (c *Client) SendCopy(chatId int64, fromChatId int64, messageId int64, opts 
 		SendingId:                         opts.SendingId,
 		SuggestedPostInfo:                 opts.SuggestedPostInfo,
 		UpdateOrderOfInstalledStickerSets: opts.UpdateOrderOfInstalledStickerSets,
-	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
+	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup, 0, 0)
+}
+
+// EditEphemeralMessageTextOpts contains optional parameters for EditEphemeralMessageText
+type EditEphemeralMessageTextOpts struct {
+	ParseMode             string
+	Entities              []TextEntity
+	DisableWebPagePreview bool
+	Url                   string
+	ForceSmallMedia       bool
+	ForceLargeMedia       bool
+	ShowAboveText         bool
+	ReplyMarkup           ReplyMarkup
+}
+
+// EditEphemeralMessageText edits the text of an ephemeral message
+func (c *Client) EditEphemeralMessageText(chatId int64, ephemeralMessageId int32, receiverUserId int64, text string, opts *EditEphemeralMessageTextOpts) error {
+	if opts == nil {
+		opts = &EditEphemeralMessageTextOpts{}
+	}
+
+	formattedText, err := c.GetFormattedText(text, opts.Entities, opts.ParseMode)
+	if err != nil {
+		return err
+	}
+
+	linkPreviewOptions := &LinkPreviewOptions{
+		IsDisabled:      opts.DisableWebPagePreview,
+		Url:             opts.Url,
+		ForceSmallMedia: opts.ForceSmallMedia,
+		ForceLargeMedia: opts.ForceLargeMedia,
+		ShowAboveText:   opts.ShowAboveText,
+	}
+
+	content := &InputMessageText{
+		Text:               formattedText,
+		LinkPreviewOptions: linkPreviewOptions,
+	}
+
+	return c.EditEphemeralMessage(chatId, ephemeralMessageId, receiverUserId, &EditEphemeralMessageOpts{
+		InputMessageContent: content,
+		ReplyMarkup:         opts.ReplyMarkup,
+	})
+}
+
+// EditEphemeralMessageMediaOpts contains optional parameters for EditEphemeralMessageMedia
+type EditEphemeralMessageMediaOpts struct {
+	ReplyMarkup ReplyMarkup
+}
+
+// EditEphemeralMessageMedia edits the media content of an ephemeral message
+func (c *Client) EditEphemeralMessageMedia(chatId int64, ephemeralMessageId int32, receiverUserId int64, content InputMessageContent, opts *EditEphemeralMessageMediaOpts) error {
+	if opts == nil {
+		opts = &EditEphemeralMessageMediaOpts{}
+	}
+
+	return c.EditEphemeralMessage(chatId, ephemeralMessageId, receiverUserId, &EditEphemeralMessageOpts{
+		InputMessageContent: content,
+		ReplyMarkup:         opts.ReplyMarkup,
+	})
+}
+
+// EditEphemeralMessageCaptionOpts contains optional parameters for EditEphemeralMessageCaption
+type EditEphemeralMessageCaptionOpts struct {
+	ParseMode   string
+	Entities    []TextEntity
+	ReplyMarkup ReplyMarkup
+}
+
+// EditEphemeralMessageCaption edits the caption of an ephemeral message
+func (c *Client) EditEphemeralMessageCaption(chatId int64, ephemeralMessageId int32, receiverUserId int64, content InputMessageContent, opts *EditEphemeralMessageCaptionOpts) error {
+	if opts == nil {
+		opts = &EditEphemeralMessageCaptionOpts{}
+	}
+	/*
+		formattedText, err := c.GetFormattedText(caption, opts.Entities, opts.ParseMode)
+
+		if err != nil {
+			return err
+		}
+
+		switch t := content.(type) {
+		case *InputMessageAnimation:
+			t.Caption = formattedText
+		case *InputMessageAudio:
+			t.Caption = formattedText
+		case *InputMessageDocument:
+			t.Caption = formattedText
+		case *InputMessagePhoto:
+			t.Caption = formattedText
+		case *InputMessageVideo:
+			t.Caption = formattedText
+		case *InputMessageVoiceNote:
+			t.Caption = formattedText
+		default:
+			return fmt.Errorf("unsupported content type for caption editing: %T", content)
+		}
+	*/
+
+	return c.EditEphemeralMessage(chatId, ephemeralMessageId, receiverUserId, &EditEphemeralMessageOpts{
+		InputMessageContent: content,
+		ReplyMarkup:         opts.ReplyMarkup,
+	})
+}
+
+// EditEphemeralMessageReplyMarkup edits the reply markup of an ephemeral message
+func (c *Client) EditEphemeralMessageReplyMarkup(chatId int64, ephemeralMessageId int32, receiverUserId int64, replyMarkup ReplyMarkup) error {
+	return c.EditEphemeralMessage(chatId, ephemeralMessageId, receiverUserId, &EditEphemeralMessageOpts{
+		ReplyMarkup: replyMarkup,
+	})
 }
 
 // ForwardMessageOpts contains optional parameters for ForwardMessage
@@ -775,7 +921,7 @@ func (c *Client) ForwardMessage(chatId int64, fromChatId int64, messageId int64,
 		SchedulingState:                   opts.SchedulingState,
 		SendingId:                         opts.SendingId,
 		UpdateOrderOfInstalledStickerSets: opts.UpdateOrderOfInstalledStickerSets,
-	}, nil, nil, nil, 0, nil)
+	}, nil, nil, nil, 0, nil, 0, 0)
 }
 
 // EditTextMessageOpts contains optional parameters for EditTextMessage
@@ -933,7 +1079,7 @@ func (c *Client) SendChecklist(chatId int64, checklist *InputChecklist, opts *Se
 		SendingId:                         opts.SendingId,
 		SuggestedPostInfo:                 opts.SuggestedPostInfo,
 		UpdateOrderOfInstalledStickerSets: opts.UpdateOrderOfInstalledStickerSets,
-	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
+	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup, 0, 0)
 }
 
 // SendContactOpts contains optional parameters for SendContact
@@ -954,6 +1100,8 @@ type SendContactOpts struct {
 	SendingId                         int32
 	SuggestedPostInfo                 *InputSuggestedPostInfo
 	UpdateOrderOfInstalledStickerSets bool
+	CallbackQueryID                   int64
+	ReceiverUserID                    int64
 }
 
 // SendContact sends a contact to chat
@@ -976,7 +1124,7 @@ func (c *Client) SendContact(chatId int64, contact *Contact, opts *SendContactOp
 		SendingId:                         opts.SendingId,
 		SuggestedPostInfo:                 opts.SuggestedPostInfo,
 		UpdateOrderOfInstalledStickerSets: opts.UpdateOrderOfInstalledStickerSets,
-	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
+	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup, opts.CallbackQueryID, opts.ReceiverUserID)
 }
 
 // SendDiceOpts contains optional parameters for SendDice
@@ -1021,7 +1169,7 @@ func (c *Client) SendDice(chatId int64, emoji string, opts *SendDiceOpts) (*Mess
 		SendingId:                         opts.SendingId,
 		SuggestedPostInfo:                 opts.SuggestedPostInfo,
 		UpdateOrderOfInstalledStickerSets: opts.UpdateOrderOfInstalledStickerSets,
-	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
+	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup, 0, 0)
 }
 
 // SendGameOpts contains optional parameters for SendGame
@@ -1065,7 +1213,7 @@ func (c *Client) SendGame(chatId int64, botUserId int64, gameShortName string, o
 		SendingId:                         opts.SendingId,
 		SuggestedPostInfo:                 opts.SuggestedPostInfo,
 		UpdateOrderOfInstalledStickerSets: opts.UpdateOrderOfInstalledStickerSets,
-	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
+	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup, 0, 0)
 }
 
 // SendInvoiceOpts contains optional parameters for SendInvoice
@@ -1135,7 +1283,7 @@ func (c *Client) SendInvoice(chatId int64, invoice *Invoice, title string, descr
 		SendingId:                         opts.SendingId,
 		SuggestedPostInfo:                 opts.SuggestedPostInfo,
 		UpdateOrderOfInstalledStickerSets: opts.UpdateOrderOfInstalledStickerSets,
-	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
+	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup, 0, 0)
 }
 
 // SendLocationOpts contains optional parameters for SendLocation
@@ -1159,6 +1307,8 @@ type SendLocationOpts struct {
 	SendingId                         int32
 	SuggestedPostInfo                 *InputSuggestedPostInfo
 	UpdateOrderOfInstalledStickerSets bool
+	CallbackQueryID                   int64
+	ReceiverUserID                    int64
 }
 
 // SendLocation sends a location to chat
@@ -1195,7 +1345,7 @@ func (c *Client) SendLocation(chatId int64, location *Location, opts *SendLocati
 		SendingId:                         opts.SendingId,
 		SuggestedPostInfo:                 opts.SuggestedPostInfo,
 		UpdateOrderOfInstalledStickerSets: opts.UpdateOrderOfInstalledStickerSets,
-	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
+	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup, opts.CallbackQueryID, opts.ReceiverUserID)
 }
 
 // SendPaidMediaOpts contains optional parameters for SendPaidMedia
@@ -1251,7 +1401,7 @@ func (c *Client) SendPaidMedia(chatId int64, starCount int64, paidMedia []InputP
 		SendingId:                         opts.SendingId,
 		SuggestedPostInfo:                 opts.SuggestedPostInfo,
 		UpdateOrderOfInstalledStickerSets: opts.UpdateOrderOfInstalledStickerSets,
-	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
+	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup, 0, 0)
 }
 
 // SendPollOpts contains optional parameters for SendPoll
@@ -1332,7 +1482,7 @@ func (c *Client) SendPoll(chatId int64, question string, options []InputPollOpti
 		SendingId:                         opts.SendingId,
 		SuggestedPostInfo:                 opts.SuggestedPostInfo,
 		UpdateOrderOfInstalledStickerSets: opts.UpdateOrderOfInstalledStickerSets,
-	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
+	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup, 0, 0)
 }
 
 // SendStakeDiceOpts contains optional parameters for SendStakeDice
@@ -1378,7 +1528,7 @@ func (c *Client) SendStakeDice(chatId int64, stakeGramAmount int64, stateHash st
 		SendingId:                         opts.SendingId,
 		SuggestedPostInfo:                 opts.SuggestedPostInfo,
 		UpdateOrderOfInstalledStickerSets: opts.UpdateOrderOfInstalledStickerSets,
-	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
+	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup, 0, 0)
 }
 
 // SendStoryOpts contains optional parameters for SendStory
@@ -1422,7 +1572,7 @@ func (c *Client) SendStory(chatId int64, storyPosterChatId int64, storyId int32,
 		SendingId:                         opts.SendingId,
 		SuggestedPostInfo:                 opts.SuggestedPostInfo,
 		UpdateOrderOfInstalledStickerSets: opts.UpdateOrderOfInstalledStickerSets,
-	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
+	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup, 0, 0)
 }
 
 // SendVenueOpts contains optional parameters for SendVenue
@@ -1443,6 +1593,8 @@ type SendVenueOpts struct {
 	SendingId                         int32
 	SuggestedPostInfo                 *InputSuggestedPostInfo
 	UpdateOrderOfInstalledStickerSets bool
+	CallbackQueryID                   int64
+	ReceiverUserID                    int64
 }
 
 // SendVenue sends a venue to chat
@@ -1465,7 +1617,7 @@ func (c *Client) SendVenue(chatId int64, venue *Venue, opts *SendVenueOpts) (*Me
 		SendingId:                         opts.SendingId,
 		SuggestedPostInfo:                 opts.SuggestedPostInfo,
 		UpdateOrderOfInstalledStickerSets: opts.UpdateOrderOfInstalledStickerSets,
-	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
+	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup, opts.CallbackQueryID, opts.ReceiverUserID)
 }
 
 // EditContent edits a message with the given content.
@@ -1528,7 +1680,7 @@ func (c *Client) SendRichMessage(chatId int64, richMessage *InputRichMessage, op
 		SendingId:                         opts.SendingId,
 		SuggestedPostInfo:                 opts.SuggestedPostInfo,
 		UpdateOrderOfInstalledStickerSets: opts.UpdateOrderOfInstalledStickerSets,
-	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
+	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup, 0, 0)
 }
 
 type SendForwardedOpts struct {
@@ -1575,5 +1727,5 @@ func (c *Client) SendForwarded(chatId int64, fromChatId int64, messageId int64, 
 		SchedulingState:                   opts.SchedulingState,
 		SendingId:                         opts.SendingId,
 		UpdateOrderOfInstalledStickerSets: opts.UpdateOrderOfInstalledStickerSets,
-	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup)
+	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup, 0, 0)
 }
