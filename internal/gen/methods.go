@@ -113,7 +113,7 @@ func generateMethods(functions []TLType, classes map[string]*TLClass) {
 			sb.WriteString("\tresp, err := c.Send(req)\n")
 			sb.WriteString("\tif err != nil {\n\t\treturn nil, err\n\t}\n")
 
-			if methodName == "SendMessage" {
+			if methodName == "SendMessage" || methodName == "SendEphemeralMessage" {
 				sb.WriteString("\treturn c.waitMessage(resp.(*Message))\n")
 			} else if methodName == "SendMessageAlbum" {
 				sb.WriteString("\treturn c.waitMessages(resp.(*Messages))\n")

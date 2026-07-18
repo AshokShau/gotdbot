@@ -13,7 +13,7 @@ func main() {
 	apiHash := ""
 	botToken := ""
 
-	bot, err := gotdbot.NewClient(apiID, apiHash, botToken, &gotdbot.ClientOpts{LibraryPath: "./libtdjson.so.1.8.65"})
+	bot, err := gotdbot.NewClient(apiID, apiHash, botToken, &gotdbot.ClientOpts{LibraryPath: "./libtdjson.so.1.8.66"})
 	if err != nil {
 		panic(err)
 	}

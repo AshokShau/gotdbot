@@ -155,6 +155,12 @@ type ClickChatSponsoredMessageOpts struct {
 	IsMediaClick bool
 }
 
+// ComposeRichMessageWithAiOpts contains optional parameters for ComposeRichMessageWithAi
+type ComposeRichMessageWithAiOpts struct {
+	// Pass true to add emoji to the text
+	AddEmojis bool
+}
+
 // ComposeTextWithAiOpts contains optional parameters for ComposeTextWithAi
 type ComposeTextWithAiOpts struct {
 	// Pass true to add emoji to the text
@@ -227,6 +233,12 @@ type CreateNewSupergroupChatOpts struct {
 type CreatePrivateChatOpts struct {
 	// Pass true to create the chat without a network request. In this case all information about the chat except its type, title and photo can be incorrect
 	Force bool
+}
+
+// CreateRichMessageWithAiOpts contains optional parameters for CreateRichMessageWithAi
+type CreateRichMessageWithAiOpts struct {
+	// Pass true to add emoji to the text
+	AddEmojis bool
 }
 
 // CreateSupergroupChatOpts contains optional parameters for CreateSupergroupChat
@@ -369,6 +381,14 @@ type EditBusinessMessageTextOpts struct {
 type EditChatInviteLinkOpts struct {
 	// Pass true if users joining the chat via the link need to be approved by chat administrators. In this case, member_limit must be 0
 	CreatesJoinRequest bool
+}
+
+// EditEphemeralMessageOpts contains optional parameters for EditEphemeralMessage
+type EditEphemeralMessageOpts struct {
+	// New content of the message; pass null to edit only reply markup. Must be one of the following types: inputMessageText, inputMessageAnimation,
+	InputMessageContent InputMessageContent
+	// The new message reply markup; pass null if none
+	ReplyMarkup ReplyMarkup
 }
 
 // EditForumTopicOpts contains optional parameters for EditForumTopic
@@ -659,6 +679,12 @@ type GetExternalLinkOpts struct {
 	AllowWriteAccess bool
 }
 
+// GetGramRevenueStatisticsOpts contains optional parameters for GetGramRevenueStatistics
+type GetGramRevenueStatisticsOpts struct {
+	// Pass true if a dark theme is used by the application
+	IsDark bool
+}
+
 // GetGroupCallStreamSegmentOpts contains optional parameters for GetGroupCallStreamSegment
 type GetGroupCallStreamSegmentOpts struct {
 	// Video quality as received from tgcalls; pass null to get the worst available quality
@@ -861,12 +887,6 @@ type GetStoryStatisticsOpts struct {
 type GetSupergroupMembersOpts struct {
 	// The type of users to return; pass null to use supergroupMembersFilterRecent
 	Filter SupergroupMembersFilter
-}
-
-// GetTonRevenueStatisticsOpts contains optional parameters for GetTonRevenueStatistics
-type GetTonRevenueStatisticsOpts struct {
-	// Pass true if a dark theme is used by the application
-	IsDark bool
 }
 
 // GetTonTransactionsOpts contains optional parameters for GetTonTransactions
@@ -1222,6 +1242,18 @@ type SendChatActionOpts struct {
 	// The action description; pass null to cancel the currently active action
 	Action ChatAction
 	// Identifier of the topic in which the action is performed; pass null if none
+	TopicId MessageTopic
+}
+
+// SendEphemeralMessageOpts contains optional parameters for SendEphemeralMessage
+type SendEphemeralMessageOpts struct {
+	// Pass true to get a fake message instead of actually sending them
+	OnlyPreview bool
+	// Markup for replying to the message; pass null if none; for bots only
+	ReplyMarkup ReplyMarkup
+	// Information about the message to be replied; pass null if none. The message can be an incoming ephemeral message
+	ReplyTo InputMessageReplyTo
+	// Topic in which the message will be sent; pass null if none
 	TopicId MessageTopic
 }
 

@@ -706,14 +706,8 @@ func (t AddPollOption) MarshalJSON() ([]byte, error) {
 // AddProfileAudio Adds an audio file to the beginning of the profile audio files of the current user
 type AddProfileAudio struct {
 	Extra string `json:"@extra,omitempty"` // @extra field
-	// The audio file to be added
-	Audio InputFile `json:"audio"`
-	// Duration of the audio, in seconds; may be replaced by the server; ignored for already uploaded files
-	Duration int32 `json:"duration"`
-	// Performer of the audio; 0-64 characters, may be replaced by the server; ignored for already uploaded files
-	Performer string `json:"performer"`
-	// Title of the audio; 0-64 characters; may be replaced by the server; ignored for already uploaded files
-	Title string `json:"title"`
+	// The audio to add
+	Audio *InputAudio `json:"audio"`
 }
 
 func (t *AddProfileAudio) setExtra(extra string) { t.Extra = extra }
@@ -971,7 +965,7 @@ type AddStickerToSet struct {
 	// Sticker set name. The sticker set must be owned by the current user, and contain less than 200 stickers for custom emoji sticker sets and less than 120 otherwise
 	Name string `json:"name"`
 	// Sticker to add to the set
-	Sticker *InputSticker `json:"sticker"`
+	Sticker *NewSticker `json:"sticker"`
 	// Sticker set owner; ignored for regular users
 	UserId int64 `json:"user_id"`
 }
@@ -1025,7 +1019,7 @@ func (t AddStoryAlbumStories) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// AddTextCompositionStyle Adds a custom text composition style to the list of used by the user styles. May return an error with a message "TONES_SAVED_TOO_MANY" if the maximum number of added custom styles has been reached
+// AddTextCompositionStyle Adds a custom text composition style to the list of used by the user styles. May return an error with a message "TONES_SAVED_TOO_MANY"
 type AddTextCompositionStyle struct {
 	Extra string `json:"@extra,omitempty"` // @extra field
 	// Name of the style
@@ -3115,6 +3109,40 @@ func (t CommitPendingPaidMessageReactions) MarshalJSON() ([]byte, error) {
 	})
 }
 
+// ComposeRichMessageWithAi Changes a rich message using an AI model. May return an error with a message "AICOMPOSE_FLOOD_PREMIUM" if Telegram Premium is required to send further requests
+type ComposeRichMessageWithAi struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// Pass true to add emoji to the text
+	AddEmojis bool `json:"add_emojis"`
+	// Custom prompt that will be used instead of style_name; 0-getOption("text_composition_style_prompt_length_max") characters
+	CustomPrompt string `json:"custom_prompt"`
+	// The original message
+	Message *InputRichMessage `json:"message"`
+	// Name of the style of the resulted text; handle updateTextCompositionStyles to get the list of supported styles; pass an empty string to keep the current style of the text or if a custom prompt is used
+	StyleName string `json:"style_name"`
+	// Pass a language code to which the text will be translated; pass an empty string if translation isn't needed. See translateText.to_language_code for the list of supported values
+	TranslateToLanguageCode string `json:"translate_to_language_code"`
+}
+
+func (t *ComposeRichMessageWithAi) setExtra(extra string) { t.Extra = extra }
+
+func (t ComposeRichMessageWithAi) GetType() string {
+	return "composeRichMessageWithAi"
+}
+
+func (t ComposeRichMessageWithAi) MarshalJSON() ([]byte, error) {
+	type Alias ComposeRichMessageWithAi
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{
+		TypeStr: "composeRichMessageWithAi",
+		Extra:   t.Extra,
+		Alias:   (*Alias)(&t),
+	})
+}
+
 // ComposeTextWithAi Changes text using an AI model; must not be used in secret chats. May return an error with a message "AICOMPOSE_FLOOD_PREMIUM" if Telegram Premium is required to send further requests
 type ComposeTextWithAi struct {
 	Extra string `json:"@extra,omitempty"` // @extra field
@@ -3699,7 +3727,7 @@ type CreateNewStickerSet struct {
 	// Type of the stickers in the set
 	StickerType StickerType `json:"sticker_type"`
 	// List of stickers to be added to the set; 1-200 stickers for custom emoji sticker sets, and 1-120 stickers otherwise. For TGS stickers, uploadStickerFile must be used before the sticker is shown
-	Stickers []InputSticker `json:"stickers"`
+	Stickers []NewSticker `json:"stickers"`
 	// Sticker set title; 1-64 characters
 	Title string `json:"title"`
 	// Sticker set owner; ignored for regular users
@@ -3786,6 +3814,36 @@ func (t CreatePrivateChat) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "createPrivateChat",
+		Extra:   t.Extra,
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// CreateRichMessageWithAi Creates a new rich message using an AI model. May return an error with a message "AICOMPOSE_FLOOD_PREMIUM" if Telegram Premium is required to send further requests
+type CreateRichMessageWithAi struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// Pass true to add emoji to the text
+	AddEmojis bool `json:"add_emojis"`
+	// Pass a language code in which the text will be created
+	LanguageCode string `json:"language_code"`
+	// Prompt that will be used to create the message; 0-getOption("text_composition_style_prompt_length_max") characters
+	Prompt string `json:"prompt"`
+}
+
+func (t *CreateRichMessageWithAi) setExtra(extra string) { t.Extra = extra }
+
+func (t CreateRichMessageWithAi) GetType() string {
+	return "createRichMessageWithAi"
+}
+
+func (t CreateRichMessageWithAi) MarshalJSON() ([]byte, error) {
+	type Alias CreateRichMessageWithAi
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{
+		TypeStr: "createRichMessageWithAi",
 		Extra:   t.Extra,
 		Alias:   (*Alias)(&t),
 	})
@@ -4668,6 +4726,36 @@ func (t DeleteDirectMessagesChatTopicMessagesByDate) MarshalJSON() ([]byte, erro
 		*Alias
 	}{
 		TypeStr: "deleteDirectMessagesChatTopicMessagesByDate",
+		Extra:   t.Extra,
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// DeleteEphemeralMessage Deletes an ephemeral message; for bots only
+type DeleteEphemeralMessage struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Identifiers of the message to be deleted
+	EphemeralMessageId int32 `json:"ephemeral_message_id"`
+	// Identifier of the user who received the message
+	ReceiverUserId int64 `json:"receiver_user_id"`
+}
+
+func (t *DeleteEphemeralMessage) setExtra(extra string) { t.Extra = extra }
+
+func (t DeleteEphemeralMessage) GetType() string {
+	return "deleteEphemeralMessage"
+}
+
+func (t DeleteEphemeralMessage) MarshalJSON() ([]byte, error) {
+	type Alias DeleteEphemeralMessage
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{
+		TypeStr: "deleteEphemeralMessage",
 		Extra:   t.Extra,
 		Alias:   (*Alias)(&t),
 	})
@@ -5979,6 +6067,40 @@ func (t EditCustomLanguagePackInfo) MarshalJSON() ([]byte, error) {
 	})
 }
 
+// EditEphemeralMessage Edits the text, caption or reply markup of an ephemeral message sent by the bot; for bots only
+type EditEphemeralMessage struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// The chat the message belongs to
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the ephemeral message
+	EphemeralMessageId int32 `json:"ephemeral_message_id"`
+	// New content of the message; pass null to edit only reply markup. Must be one of the following types: inputMessageText, inputMessageAnimation,
+	InputMessageContent InputMessageContent `json:"input_message_content,omitempty"`
+	// Identifier of the user who received the message
+	ReceiverUserId int64 `json:"receiver_user_id"`
+	// The new message reply markup; pass null if none
+	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
+}
+
+func (t *EditEphemeralMessage) setExtra(extra string) { t.Extra = extra }
+
+func (t EditEphemeralMessage) GetType() string {
+	return "editEphemeralMessage"
+}
+
+func (t EditEphemeralMessage) MarshalJSON() ([]byte, error) {
+	type Alias EditEphemeralMessage
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{
+		TypeStr: "editEphemeralMessage",
+		Extra:   t.Extra,
+		Alias:   (*Alias)(&t),
+	})
+}
+
 // EditForumTopic Edits title and icon of a topic in a forum supergroup chat or a chat with a bot with topics; for supergroup chats requires can_manage_topics administrator right
 type EditForumTopic struct {
 	Extra string `json:"@extra,omitempty"` // @extra field
@@ -6133,12 +6255,12 @@ func (t EditInlineMessageReplyMarkup) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// EditInlineMessageText Edits the text of an inline text or game message sent via a bot; for bots only
+// EditInlineMessageText Edits the text of an inline text or game message sent via the bot; for bots only
 type EditInlineMessageText struct {
 	Extra string `json:"@extra,omitempty"` // @extra field
 	// Inline message identifier
 	InlineMessageId string `json:"inline_message_id"`
-	// New text content of the message. Must be of type inputMessageText or inputMessageRichMessage
+	// New text content of the message. Must be of type inputMessageText or inputMessageRichMessage; file upload isn't supported
 	InputMessageContent InputMessageContent `json:"input_message_content"`
 	// The new message reply markup; pass null if none
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
@@ -6762,6 +6884,32 @@ func (t FinishFileGeneration) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "finishFileGeneration",
+		Extra:   t.Extra,
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// FixRichMessageWithAi Fixes a rich message using an AI model. May return an error with a message "AICOMPOSE_FLOOD_PREMIUM" if Telegram Premium is required to send further requests
+type FixRichMessageWithAi struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// The original message
+	Message *InputRichMessage `json:"message"`
+}
+
+func (t *FixRichMessageWithAi) setExtra(extra string) { t.Extra = extra }
+
+func (t FixRichMessageWithAi) GetType() string {
+	return "fixRichMessageWithAi"
+}
+
+func (t FixRichMessageWithAi) MarshalJSON() ([]byte, error) {
+	type Alias FixRichMessageWithAi
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{
+		TypeStr: "fixRichMessageWithAi",
 		Extra:   t.Extra,
 		Alias:   (*Alias)(&t),
 	})
@@ -9449,7 +9597,7 @@ func (t GetCountryCode) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// GetCountryFlagEmoji Returns an emoji for the given country. Returns an empty string on failure. Can be called synchronously
+// GetCountryFlagEmoji Returns an emoji for the flag of the given country. Returns an empty string on failure. Can be called synchronously
 type GetCountryFlagEmoji struct {
 	Extra string `json:"@extra,omitempty"` // @extra field
 	// A two-letter ISO 3166-1 alpha-2 country code as received from getCountries
@@ -10599,6 +10747,58 @@ func (t GetGiveawayInfo) MarshalJSON() ([]byte, error) {
 	})
 }
 
+// GetGramRevenueStatistics Returns detailed TON Gram revenue statistics of the current user
+type GetGramRevenueStatistics struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// Pass true if a dark theme is used by the application
+	IsDark bool `json:"is_dark"`
+}
+
+func (t *GetGramRevenueStatistics) setExtra(extra string) { t.Extra = extra }
+
+func (t GetGramRevenueStatistics) GetType() string {
+	return "getGramRevenueStatistics"
+}
+
+func (t GetGramRevenueStatistics) MarshalJSON() ([]byte, error) {
+	type Alias GetGramRevenueStatistics
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{
+		TypeStr: "getGramRevenueStatistics",
+		Extra:   t.Extra,
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// GetGramWithdrawalUrl Returns a URL for TON Gram withdrawal from the current user's account. The user must have at least 10 Grams to withdraw
+type GetGramWithdrawalUrl struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// The 2-step verification password of the current user
+	Password string `json:"password"`
+}
+
+func (t *GetGramWithdrawalUrl) setExtra(extra string) { t.Extra = extra }
+
+func (t GetGramWithdrawalUrl) GetType() string {
+	return "getGramWithdrawalUrl"
+}
+
+func (t GetGramWithdrawalUrl) MarshalJSON() ([]byte, error) {
+	type Alias GetGramWithdrawalUrl
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{
+		TypeStr: "getGramWithdrawalUrl",
+		Extra:   t.Extra,
+		Alias:   (*Alias)(&t),
+	})
+}
+
 // GetGreetingStickers Returns greeting stickers from regular sticker sets that can be used for the start page of other users
 type GetGreetingStickers struct {
 	Extra string `json:"@extra,omitempty"` // @extra field
@@ -10790,6 +10990,34 @@ func (t GetGroupsInCommon) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "getGroupsInCommon",
+		Extra:   t.Extra,
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// GetGuardBotWebAppUrl Returns an HTTPS URL of a Web App of a guard bot to open after receiving chatJoinResultGuardBotApprovalRequired
+type GetGuardBotWebAppUrl struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// Parameters to use to open the Web App
+	Parameters *WebAppOpenParameters `json:"parameters"`
+	// Unique identifier of the join request as received in chatJoinResultGuardBotApprovalRequired
+	QueryId int64 `json:"query_id,string"`
+}
+
+func (t *GetGuardBotWebAppUrl) setExtra(extra string) { t.Extra = extra }
+
+func (t GetGuardBotWebAppUrl) GetType() string {
+	return "getGuardBotWebAppUrl"
+}
+
+func (t GetGuardBotWebAppUrl) MarshalJSON() ([]byte, error) {
+	type Alias GetGuardBotWebAppUrl
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{
+		TypeStr: "getGuardBotWebAppUrl",
 		Extra:   t.Extra,
 		Alias:   (*Alias)(&t),
 	})
@@ -14973,33 +15201,7 @@ func (t GetTimeZones) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// GetTonRevenueStatistics Returns detailed Toncoin revenue statistics of the current user
-type GetTonRevenueStatistics struct {
-	Extra string `json:"@extra,omitempty"` // @extra field
-	// Pass true if a dark theme is used by the application
-	IsDark bool `json:"is_dark"`
-}
-
-func (t *GetTonRevenueStatistics) setExtra(extra string) { t.Extra = extra }
-
-func (t GetTonRevenueStatistics) GetType() string {
-	return "getTonRevenueStatistics"
-}
-
-func (t GetTonRevenueStatistics) MarshalJSON() ([]byte, error) {
-	type Alias GetTonRevenueStatistics
-	return json.Marshal(&struct {
-		TypeStr string `json:"@type"`
-		Extra   string `json:"@extra,omitempty"`
-		*Alias
-	}{
-		TypeStr: "getTonRevenueStatistics",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
-}
-
-// GetTonTransactions Returns the list of Toncoin transactions of the current user
+// GetTonTransactions Returns the list of TON blockchain transactions of the current user
 type GetTonTransactions struct {
 	Extra string `json:"@extra,omitempty"` // @extra field
 	// Direction of the transactions to receive; pass null to get all transactions
@@ -15024,32 +15226,6 @@ func (t GetTonTransactions) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "getTonTransactions",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
-}
-
-// GetTonWithdrawalUrl Returns a URL for Toncoin withdrawal from the current user's account. The user must have at least 10 toncoins to withdraw
-type GetTonWithdrawalUrl struct {
-	Extra string `json:"@extra,omitempty"` // @extra field
-	// The 2-step verification password of the current user
-	Password string `json:"password"`
-}
-
-func (t *GetTonWithdrawalUrl) setExtra(extra string) { t.Extra = extra }
-
-func (t GetTonWithdrawalUrl) GetType() string {
-	return "getTonWithdrawalUrl"
-}
-
-func (t GetTonWithdrawalUrl) MarshalJSON() ([]byte, error) {
-	type Alias GetTonWithdrawalUrl
-	return json.Marshal(&struct {
-		TypeStr string `json:"@type"`
-		Extra   string `json:"@extra,omitempty"`
-		*Alias
-	}{
-		TypeStr: "getTonWithdrawalUrl",
 		Extra:   t.Extra,
 		Alias:   (*Alias)(&t),
 	})
@@ -18801,7 +18977,7 @@ type ReplaceStickerInSet struct {
 	// Sticker set name. The sticker set must be owned by the current user
 	Name string `json:"name"`
 	// Sticker to add to the set
-	NewSticker *InputSticker `json:"new_sticker"`
+	NewSticker *NewSticker `json:"new_sticker"`
 	// Sticker to remove from the set
 	OldSticker InputFile `json:"old_sticker"`
 	// Sticker set owner; ignored for regular users
@@ -21157,6 +21333,48 @@ func (t SendEmailAddressVerificationCode) MarshalJSON() ([]byte, error) {
 	})
 }
 
+// SendEphemeralMessage Sends an ephemeral message which will be received only by one bot in a chat. Currently, only ephemeral bot commands and replies to bot ephemeral messages can be sent using the method.
+type SendEphemeralMessage struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// Identifier of the callback query which triggered the message; for bots only
+	CallbackQueryId int64 `json:"callback_query_id,string"`
+	// Target chat
+	ChatId int64 `json:"chat_id"`
+	// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageAnimation,
+	InputMessageContent InputMessageContent `json:"input_message_content"`
+	// Pass true to get a fake message instead of actually sending them
+	OnlyPreview bool `json:"only_preview"`
+	// Identifier of the user who will receive the message
+	ReceiverUserId int64 `json:"receiver_user_id"`
+	// Markup for replying to the message; pass null if none; for bots only
+	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
+	// Information about the message to be replied; pass null if none. The message can be an incoming ephemeral message
+	ReplyTo InputMessageReplyTo `json:"reply_to,omitempty"`
+	// Non-persistent identifier, which will be returned back in messageSendingStatePending object and can be used to match sent messages and corresponding updateNewMessage updates
+	SendingId int32 `json:"sending_id"`
+	// Topic in which the message will be sent; pass null if none
+	TopicId MessageTopic `json:"topic_id,omitempty"`
+}
+
+func (t *SendEphemeralMessage) setExtra(extra string) { t.Extra = extra }
+
+func (t SendEphemeralMessage) GetType() string {
+	return "sendEphemeralMessage"
+}
+
+func (t SendEphemeralMessage) MarshalJSON() ([]byte, error) {
+	type Alias SendEphemeralMessage
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{
+		TypeStr: "sendEphemeralMessage",
+		Extra:   t.Extra,
+		Alias:   (*Alias)(&t),
+	})
+}
+
 // SendGift Sends a gift to another user or channel chat. May return an error with a message "STARGIFT_USAGE_LIMITED" if the gift was sold out
 type SendGift struct {
 	Extra string `json:"@extra,omitempty"` // @extra field
@@ -21588,7 +21806,7 @@ type SendRichMessageDraft struct {
 	DraftId int64 `json:"draft_id,string"`
 	// The forum topic identifier in which the message will be sent; pass 0 if none
 	ForumTopicId int32 `json:"forum_topic_id"`
-	// Draft of the message
+	// Draft of the message; file upload isn't supported
 	Message *InputRichMessage `json:"message"`
 }
 
@@ -27711,6 +27929,38 @@ func (t TransferGift) MarshalJSON() ([]byte, error) {
 	})
 }
 
+// TranslateMessageRichMessage Extracts rich message of the given message and translates it to the given language
+type TranslateMessageRichMessage struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// Identifier of the chat to which the message belongs
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message
+	MessageId int64 `json:"message_id"`
+	// Language code of the language to which the message is translated. See translateText.to_language_code for the list of supported values
+	ToLanguageCode string `json:"to_language_code"`
+	// Tone of the translation; see translateText.tone for the list of supported values
+	Tone string `json:"tone"`
+}
+
+func (t *TranslateMessageRichMessage) setExtra(extra string) { t.Extra = extra }
+
+func (t TranslateMessageRichMessage) GetType() string {
+	return "translateMessageRichMessage"
+}
+
+func (t TranslateMessageRichMessage) MarshalJSON() ([]byte, error) {
+	type Alias TranslateMessageRichMessage
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{
+		TypeStr: "translateMessageRichMessage",
+		Extra:   t.Extra,
+		Alias:   (*Alias)(&t),
+	})
+}
+
 // TranslateMessageText Extracts text or caption of the given message and translates it to the given language; must not be used in secret chats. If the current user is a Telegram Premium user, then text formatting is preserved
 type TranslateMessageText struct {
 	Extra string `json:"@extra,omitempty"` // @extra field
@@ -27738,6 +27988,36 @@ func (t TranslateMessageText) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "translateMessageText",
+		Extra:   t.Extra,
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// TranslateRichMessage Translates a rich message to the given language
+type TranslateRichMessage struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// Rich message to translate
+	Message *InputRichMessage `json:"message"`
+	// Language code of the language to which the message is translated. See translateText.to_language_code for the list of supported values
+	ToLanguageCode string `json:"to_language_code"`
+	// Tone of the translation; see translateText.tone for the list of supported values
+	Tone string `json:"tone"`
+}
+
+func (t *TranslateRichMessage) setExtra(extra string) { t.Extra = extra }
+
+func (t TranslateRichMessage) GetType() string {
+	return "translateRichMessage"
+}
+
+func (t TranslateRichMessage) MarshalJSON() ([]byte, error) {
+	type Alias TranslateRichMessage
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{
+		TypeStr: "translateRichMessage",
 		Extra:   t.Extra,
 		Alias:   (*Alias)(&t),
 	})

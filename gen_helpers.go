@@ -225,6 +225,12 @@ func (c *Chat) DeleteDirectMessagesTopicMessagesByDate(client *Client, maxDate i
 	return client.DeleteDirectMessagesChatTopicMessagesByDate(c.Id, maxDate, minDate, topicId)
 }
 
+// DeleteEphemeralMessage Deletes an ephemeral message; for bots only
+// It is a helper method for Client.DeleteEphemeralMessage
+func (c *Chat) DeleteEphemeralMessage(client *Client, ephemeralMessageId int32, receiverUserId int64) error {
+	return client.DeleteEphemeralMessage(c.Id, ephemeralMessageId, receiverUserId)
+}
+
 // DeleteForumTopic Deletes all messages from a topic in a forum supergroup chat or a chat with a bot with topics; requires can_delete_messages administrator right in the supergroup
 // It is a helper method for Client.DeleteForumTopic
 func (c *Chat) DeleteForumTopic(client *Client, forumTopicId int32) error {
@@ -307,6 +313,12 @@ func (c *Chat) EditInviteLink(client *Client, expirationDate int32, inviteLink s
 // It is a helper method for Client.EditChatSubscriptionInviteLink
 func (c *Chat) EditSubscriptionInviteLink(client *Client, inviteLink string, name string) (*ChatInviteLink, error) {
 	return client.EditChatSubscriptionInviteLink(c.Id, inviteLink, name)
+}
+
+// EditEphemeralMessage Edits the text, caption or reply markup of an ephemeral message sent by the bot; for bots only
+// It is a helper method for Client.EditEphemeralMessage
+func (c *Chat) EditEphemeralMessage(client *Client, ephemeralMessageId int32, receiverUserId int64, opts *EditEphemeralMessageOpts) error {
+	return client.EditEphemeralMessage(c.Id, ephemeralMessageId, receiverUserId, opts)
 }
 
 // EditForumTopic Edits title and icon of a topic in a forum supergroup chat or a chat with a bot with topics; for supergroup chats requires can_manage_topics administrator right
@@ -1179,6 +1191,12 @@ func (c *Chat) SendAction(client *Client, businessConnectionId string, opts *Sen
 	return client.SendChatAction(businessConnectionId, c.Id, opts)
 }
 
+// SendEphemeralMessage Sends an ephemeral message which will be received only by one bot in a chat. Currently, only ephemeral bot commands and replies to bot ephemeral messages can be sent using the method.
+// It is a helper method for Client.SendEphemeralMessage
+func (c *Chat) SendEphemeralMessage(client *Client, callbackQueryId int64, inputMessageContent InputMessageContent, receiverUserId int64, sendingId int32, opts *SendEphemeralMessageOpts) (*Message, error) {
+	return client.SendEphemeralMessage(callbackQueryId, c.Id, inputMessageContent, receiverUserId, sendingId, opts)
+}
+
 // SendInlineQueryResultMessage Sends the result of an inline query as a message. Returns the sent message. Always clears a chat draft message
 // It is a helper method for Client.SendInlineQueryResultMessage
 func (c *Chat) SendInlineQueryResultMessage(client *Client, queryId int64, resultId string, opts *SendInlineQueryResultMessageOpts) (*Message, error) {
@@ -1543,6 +1561,12 @@ func (c *Chat) ToggleGeneralForumTopicIsHidden(client *Client, opts *ToggleGener
 // It is a helper method for Client.TransferChatOwnership
 func (c *Chat) TransferOwnership(client *Client, password string, userId int64) error {
 	return client.TransferChatOwnership(c.Id, password, userId)
+}
+
+// TranslateMessageRichMessage Extracts rich message of the given message and translates it to the given language
+// It is a helper method for Client.TranslateMessageRichMessage
+func (c *Chat) TranslateMessageRichMessage(client *Client, messageId int64, toLanguageCode string, tone string) (*RichMessage, error) {
+	return client.TranslateMessageRichMessage(c.Id, messageId, toLanguageCode, tone)
 }
 
 // TranslateMessageText Extracts text or caption of the given message and translates it to the given language; must not be used in secret chats. If the current user is a Telegram Premium user, then text formatting is preserved
@@ -2151,6 +2175,12 @@ func (m *Message) Summarize(client *Client, tone string, translateToLanguageCode
 	return client.SummarizeMessage(m.ChatId, m.Id, tone, translateToLanguageCode)
 }
 
+// TranslateRichMessage Extracts rich message of the given message and translates it to the given language
+// It is a helper method for Client.TranslateMessageRichMessage
+func (m *Message) TranslateRichMessage(client *Client, toLanguageCode string, tone string) (*RichMessage, error) {
+	return client.TranslateMessageRichMessage(m.ChatId, m.Id, toLanguageCode, tone)
+}
+
 // TranslateText Extracts text or caption of the given message and translates it to the given language; must not be used in secret chats. If the current user is a Telegram Premium user, then text formatting is preserved
 // It is a helper method for Client.TranslateMessageText
 func (m *Message) TranslateText(client *Client, toLanguageCode string, tone string) (*FormattedText, error) {
@@ -2183,7 +2213,7 @@ func (u *User) AddContact(client *Client, opts *AddContactOpts) error {
 
 // AddStickerToSet Adds a new sticker to a set
 // It is a helper method for Client.AddStickerToSet
-func (u *User) AddStickerToSet(client *Client, name string, sticker *InputSticker) error {
+func (u *User) AddStickerToSet(client *Client, name string, sticker *NewSticker) error {
 	return client.AddStickerToSet(name, sticker, u.Id)
 }
 
@@ -2213,7 +2243,7 @@ func (u *User) CreateNewSecretChat(client *Client) (*Chat, error) {
 
 // CreateNewStickerSet Creates a new sticker set. Returns the newly created sticker set
 // It is a helper method for Client.CreateNewStickerSet
-func (u *User) CreateNewStickerSet(client *Client, name string, stickerType StickerType, stickers []InputSticker, title string, opts *CreateNewStickerSetOpts) (*StickerSet, error) {
+func (u *User) CreateNewStickerSet(client *Client, name string, stickerType StickerType, stickers []NewSticker, title string, opts *CreateNewStickerSetOpts) (*StickerSet, error) {
 	return client.CreateNewStickerSet(name, stickerType, stickers, title, u.Id, opts)
 }
 
@@ -2339,7 +2369,7 @@ func (u *User) RefundStarPayment(client *Client, telegramPaymentChargeId string)
 
 // ReplaceStickerInSet Replaces existing sticker in a set. The function is equivalent to removeStickerFromSet, then addStickerToSet, then setStickerPositionInSet
 // It is a helper method for Client.ReplaceStickerInSet
-func (u *User) ReplaceStickerInSet(client *Client, name string, newSticker *InputSticker, oldSticker InputFile) error {
+func (u *User) ReplaceStickerInSet(client *Client, name string, newSticker *NewSticker, oldSticker InputFile) error {
 	return client.ReplaceStickerInSet(name, newSticker, oldSticker, u.Id)
 }
 
