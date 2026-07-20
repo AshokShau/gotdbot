@@ -84,7 +84,7 @@ func (c *Client) AddChatMember(chatId int64, forwardLimit int32, userId int64) (
 	return resp.(*FailedToAddMembers), nil
 }
 
-// AddChatMembers Adds multiple new members to a chat; requires can_invite_users member right. Currently, this method is only available for supergroups and channels.
+// AddChatMembers Adds multiple new members to a chat; requires can_invite_users member right. Currently, this method is available only in supergroups and channels.
 func (c *Client) AddChatMembers(chatId int64, userIds []int64) (*FailedToAddMembers, error) {
 	req := &AddChatMembers{
 		ChatId:  chatId,
@@ -2457,7 +2457,7 @@ func (c *Client) EditChatFolderInviteLink(chatFolderId int32, chatIds []int64, i
 	return resp.(*ChatFolderInviteLink), nil
 }
 
-// EditChatInviteLink Edits a non-primary invite link for a chat. Available for basic groups, supergroups, and channels.
+// EditChatInviteLink Edits a non-primary invite link for a chat. Available in basic groups, supergroups, and channels.
 func (c *Client) EditChatInviteLink(chatId int64, expirationDate int32, inviteLink string, memberLimit int32, name string, opts *EditChatInviteLinkOpts) (*ChatInviteLink, error) {
 	req := &EditChatInviteLink{
 		ChatId:         chatId,
@@ -3508,7 +3508,7 @@ func (c *Client) GetChatBoostStatus(chatId int64) (*ChatBoostStatus, error) {
 	return resp.(*ChatBoostStatus), nil
 }
 
-// GetChatEventLog Returns a list of service actions taken by chat members and administrators in the last 48 hours. Available only for supergroups and channels. Requires administrator rights. Returns results in reverse chronological order (i.e., in order of decreasing event_id)
+// GetChatEventLog Returns a list of service actions taken by chat members and administrators in the last 48 hours. Available only in supergroups and channels. Requires administrator rights. Returns results in reverse chronological order (i.e., in order of decreasing event_id)
 func (c *Client) GetChatEventLog(chatId int64, fromEventId int64, limit int32, query string, userIds []int64, opts *GetChatEventLogOpts) (*ChatEvents, error) {
 	req := &GetChatEventLog{
 		ChatId:      chatId,
@@ -3800,7 +3800,7 @@ func (c *Client) GetChatNotificationSettingsExceptions(opts *GetChatNotification
 	return resp.(*Chats), nil
 }
 
-// GetChatOwnerAfterLeaving Returns the user who will become the owner of the chat after 7 days if the current user does not return to the supergroup or channel during that period or immediately for basic groups; requires owner privileges in the chat.
+// GetChatOwnerAfterLeaving Returns the user who will become the owner of the chat after 7 days if the current user does not return to the supergroup or channel during that period or immediately for basic groups;
 func (c *Client) GetChatOwnerAfterLeaving(chatId int64) (*User, error) {
 	req := &GetChatOwnerAfterLeaving{
 		ChatId: chatId,
@@ -7756,7 +7756,7 @@ func (c *Client) ReadChatList(chatList ChatList) error {
 	return err
 }
 
-// ReaddQuickReplyShortcutMessages Readds quick reply messages which failed to add. Can be called only for messages for which messageSendingStateFailed.can_retry is true and after specified in messageSendingStateFailed.retry_after time passed.
+// ReaddQuickReplyShortcutMessages Re-adds quick reply messages which failed to add. Can be called only for messages for which messageSendingStateFailed.can_retry is true and after specified in messageSendingStateFailed.retry_after time passed.
 func (c *Client) ReaddQuickReplyShortcutMessages(messageIds []int64, shortcutName string) (*QuickReplyMessages, error) {
 	req := &ReaddQuickReplyShortcutMessages{
 		MessageIds:   messageIds,
@@ -8582,7 +8582,7 @@ func (c *Client) ReuseStarSubscription(subscriptionId string) error {
 	return err
 }
 
-// RevokeChatInviteLink Revokes invite link for a chat. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links.
+// RevokeChatInviteLink Revokes invite link for a chat. Available in basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links.
 func (c *Client) RevokeChatInviteLink(chatId int64, inviteLink string) (*ChatInviteLinks, error) {
 	req := &RevokeChatInviteLink{
 		ChatId:     chatId,

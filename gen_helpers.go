@@ -9,7 +9,7 @@ func (c *Chat) AddMember(client *Client, forwardLimit int32, userId int64) (*Fai
 	return client.AddChatMember(c.Id, forwardLimit, userId)
 }
 
-// AddMembers Adds multiple new members to a chat; requires can_invite_users member right. Currently, this method is only available for supergroups and channels.
+// AddMembers Adds multiple new members to a chat; requires can_invite_users member right. Currently, this method is available only in supergroups and channels.
 // It is a helper method for Client.AddChatMembers
 func (c *Chat) AddMembers(client *Client, userIds []int64) (*FailedToAddMembers, error) {
 	return client.AddChatMembers(c.Id, userIds)
@@ -303,7 +303,7 @@ func (c *Chat) EditBusinessMessageText(client *Client, businessConnectionId stri
 	return client.EditBusinessMessageText(businessConnectionId, c.Id, inputMessageContent, messageId, opts)
 }
 
-// EditInviteLink Edits a non-primary invite link for a chat. Available for basic groups, supergroups, and channels.
+// EditInviteLink Edits a non-primary invite link for a chat. Available in basic groups, supergroups, and channels.
 // It is a helper method for Client.EditChatInviteLink
 func (c *Chat) EditInviteLink(client *Client, expirationDate int32, inviteLink string, memberLimit int32, name string, opts *EditChatInviteLinkOpts) (*ChatInviteLink, error) {
 	return client.EditChatInviteLink(c.Id, expirationDate, inviteLink, memberLimit, name, opts)
@@ -447,7 +447,7 @@ func (c *Chat) GetBoostStatus(client *Client) (*ChatBoostStatus, error) {
 	return client.GetChatBoostStatus(c.Id)
 }
 
-// GetEventLog Returns a list of service actions taken by chat members and administrators in the last 48 hours. Available only for supergroups and channels. Requires administrator rights. Returns results in reverse chronological order (i.e., in order of decreasing event_id)
+// GetEventLog Returns a list of service actions taken by chat members and administrators in the last 48 hours. Available only in supergroups and channels. Requires administrator rights. Returns results in reverse chronological order (i.e., in order of decreasing event_id)
 // It is a helper method for Client.GetChatEventLog
 func (c *Chat) GetEventLog(client *Client, fromEventId int64, limit int32, query string, userIds []int64, opts *GetChatEventLogOpts) (*ChatEvents, error) {
 	return client.GetChatEventLog(c.Id, fromEventId, limit, query, userIds, opts)
@@ -525,7 +525,7 @@ func (c *Chat) GetMessagePosition(client *Client, filter SearchMessagesFilter, m
 	return client.GetChatMessagePosition(c.Id, filter, messageId, opts)
 }
 
-// GetOwnerAfterLeaving Returns the user who will become the owner of the chat after 7 days if the current user does not return to the supergroup or channel during that period or immediately for basic groups; requires owner privileges in the chat.
+// GetOwnerAfterLeaving Returns the user who will become the owner of the chat after 7 days if the current user does not return to the supergroup or channel during that period or immediately for basic groups;
 // It is a helper method for Client.GetChatOwnerAfterLeaving
 func (c *Chat) GetOwnerAfterLeaving(client *Client) (*User, error) {
 	return client.GetChatOwnerAfterLeaving(c.Id)
@@ -1131,7 +1131,7 @@ func (c *Chat) ResendMessages(client *Client, messageIds []int64, paidMessageSta
 	return client.ResendMessages(c.Id, messageIds, paidMessageStarCount, opts)
 }
 
-// RevokeInviteLink Revokes invite link for a chat. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links.
+// RevokeInviteLink Revokes invite link for a chat. Available in basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links.
 // It is a helper method for Client.RevokeChatInviteLink
 func (c *Chat) RevokeInviteLink(client *Client, inviteLink string) (*ChatInviteLinks, error) {
 	return client.RevokeChatInviteLink(c.Id, inviteLink)

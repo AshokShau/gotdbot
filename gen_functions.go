@@ -203,7 +203,7 @@ func (t AddChatMember) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// AddChatMembers Adds multiple new members to a chat; requires can_invite_users member right. Currently, this method is only available for supergroups and channels.
+// AddChatMembers Adds multiple new members to a chat; requires can_invite_users member right. Currently, this method is available only in supergroups and channels.
 type AddChatMembers struct {
 	Extra string `json:"@extra,omitempty"` // @extra field
 	// Chat identifier
@@ -5975,7 +5975,7 @@ func (t EditChatFolderInviteLink) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// EditChatInviteLink Edits a non-primary invite link for a chat. Available for basic groups, supergroups, and channels.
+// EditChatInviteLink Edits a non-primary invite link for a chat. Available in basic groups, supergroups, and channels.
 type EditChatInviteLink struct {
 	Extra string `json:"@extra,omitempty"` // @extra field
 	// Chat identifier
@@ -8273,7 +8273,7 @@ func (t GetChatBoostStatus) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// GetChatEventLog Returns a list of service actions taken by chat members and administrators in the last 48 hours. Available only for supergroups and channels. Requires administrator rights. Returns results in reverse chronological order (i.e., in order of decreasing event_id)
+// GetChatEventLog Returns a list of service actions taken by chat members and administrators in the last 48 hours. Available only in supergroups and channels. Requires administrator rights. Returns results in reverse chronological order (i.e., in order of decreasing event_id)
 type GetChatEventLog struct {
 	Extra string `json:"@extra,omitempty"` // @extra field
 	// Chat identifier
@@ -8863,7 +8863,7 @@ func (t GetChatNotificationSettingsExceptions) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// GetChatOwnerAfterLeaving Returns the user who will become the owner of the chat after 7 days if the current user does not return to the supergroup or channel during that period or immediately for basic groups; requires owner privileges in the chat.
+// GetChatOwnerAfterLeaving Returns the user who will become the owner of the chat after 7 days if the current user does not return to the supergroup or channel during that period or immediately for basic groups;
 type GetChatOwnerAfterLeaving struct {
 	Extra string `json:"@extra,omitempty"` // @extra field
 	// Chat identifier
@@ -17595,10 +17595,10 @@ func (t ReadChatList) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// ReaddQuickReplyShortcutMessages Readds quick reply messages which failed to add. Can be called only for messages for which messageSendingStateFailed.can_retry is true and after specified in messageSendingStateFailed.retry_after time passed.
+// ReaddQuickReplyShortcutMessages Re-adds quick reply messages which failed to add. Can be called only for messages for which messageSendingStateFailed.can_retry is true and after specified in messageSendingStateFailed.retry_after time passed.
 type ReaddQuickReplyShortcutMessages struct {
 	Extra string `json:"@extra,omitempty"` // @extra field
-	// Identifiers of the quick reply messages to readd. Message identifiers must be in a strictly increasing order
+	// Identifiers of the quick reply messages to re-add. Message identifiers must be in a strictly increasing order
 	MessageIds []int64 `json:"message_ids"`
 	// Name of the target shortcut
 	ShortcutName string `json:"shortcut_name"`
@@ -19725,7 +19725,7 @@ func (t ReuseStarSubscription) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// RevokeChatInviteLink Revokes invite link for a chat. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links.
+// RevokeChatInviteLink Revokes invite link for a chat. Available in basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links.
 type RevokeChatInviteLink struct {
 	Extra string `json:"@extra,omitempty"` // @extra field
 	// Chat identifier

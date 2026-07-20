@@ -16196,7 +16196,7 @@ func (t GiveawayParticipantStatusAlreadyWasMember) MarshalJSON() ([]byte, error)
 	})
 }
 
-// GiveawayParticipantStatusDisallowedCountry The user can't participate in the giveaway, because they phone number is from a disallowed country
+// GiveawayParticipantStatusDisallowedCountry The user can't participate in the giveaway, because their phone number is from a disallowed country
 type GiveawayParticipantStatusDisallowedCountry struct {
 	// A two-letter ISO 3166-1 alpha-2 country code of the user's country
 	UserCountryCode string `json:"user_country_code"`
@@ -51161,7 +51161,7 @@ func (t *StoryInteractionTypeView) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-// StoryListArchive The list of stories, shown in the Arvhive chat list
+// StoryListArchive The list of stories, shown in the Archive chat list
 type StoryListArchive struct {
 }
 
