@@ -831,49 +831,6 @@ func (c *Client) EditEphemeralMessageMedia(chatId int64, ephemeralMessageId int3
 	})
 }
 
-// EditEphemeralMessageCaptionOpts contains optional parameters for EditEphemeralMessageCaption
-type EditEphemeralMessageCaptionOpts struct {
-	ParseMode   string
-	Entities    []TextEntity
-	ReplyMarkup ReplyMarkup
-}
-
-// EditEphemeralMessageCaption edits the caption of an ephemeral message
-func (c *Client) EditEphemeralMessageCaption(chatId int64, ephemeralMessageId int32, receiverUserId int64, content InputMessageContent, opts *EditEphemeralMessageCaptionOpts) error {
-	if opts == nil {
-		opts = &EditEphemeralMessageCaptionOpts{}
-	}
-	/*
-		formattedText, err := c.GetFormattedText(caption, opts.Entities, opts.ParseMode)
-
-		if err != nil {
-			return err
-		}
-
-		switch t := content.(type) {
-		case *InputMessageAnimation:
-			t.Caption = formattedText
-		case *InputMessageAudio:
-			t.Caption = formattedText
-		case *InputMessageDocument:
-			t.Caption = formattedText
-		case *InputMessagePhoto:
-			t.Caption = formattedText
-		case *InputMessageVideo:
-			t.Caption = formattedText
-		case *InputMessageVoiceNote:
-			t.Caption = formattedText
-		default:
-			return fmt.Errorf("unsupported content type for caption editing: %T", content)
-		}
-	*/
-
-	return c.EditEphemeralMessage(chatId, ephemeralMessageId, receiverUserId, &EditEphemeralMessageOpts{
-		InputMessageContent: content,
-		ReplyMarkup:         opts.ReplyMarkup,
-	})
-}
-
 // EditEphemeralMessageReplyMarkup edits the reply markup of an ephemeral message
 func (c *Client) EditEphemeralMessageReplyMarkup(chatId int64, ephemeralMessageId int32, receiverUserId int64, replyMarkup ReplyMarkup) error {
 	return c.EditEphemeralMessage(chatId, ephemeralMessageId, receiverUserId, &EditEphemeralMessageOpts{

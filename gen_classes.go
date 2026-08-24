@@ -858,6 +858,7 @@ func UnmarshalBusinessFeature(data []byte) (BusinessFeature, error) {
 // ButtonStyle Describes style of a button
 //   - ButtonStyleDanger
 //   - ButtonStyleDefault
+//   - ButtonStyleLink
 //   - ButtonStylePrimary
 //   - ButtonStyleSuccess
 type ButtonStyle interface {
@@ -882,6 +883,12 @@ func UnmarshalButtonStyle(data []byte) (ButtonStyle, error) {
 		return &obj, nil
 	case "buttonStyleDefault":
 		var obj ButtonStyleDefault
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "buttonStyleLink":
+		var obj ButtonStyleLink
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -3121,6 +3128,7 @@ func UnmarshalDiffEntityType(data []byte) (DiffEntityType, error) {
 }
 
 // DraftMessageContent Content of the message draft
+//   - DraftMessageContentInputRichMessage
 //   - DraftMessageContentRichMessage
 //   - DraftMessageContentText
 //   - DraftMessageContentVideoNote
@@ -3139,6 +3147,12 @@ func UnmarshalDraftMessageContent(data []byte) (DraftMessageContent, error) {
 		return nil, err
 	}
 	switch typeObj.Type {
+	case "draftMessageContentInputRichMessage":
+		var obj DraftMessageContentInputRichMessage
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
 	case "draftMessageContentRichMessage":
 		var obj DraftMessageContentRichMessage
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -3976,6 +3990,7 @@ func UnmarshalGroupCallVideoQuality(data []byte) (GroupCallVideoQuality, error) 
 //   - InlineKeyboardButtonTypeCallbackGame
 //   - InlineKeyboardButtonTypeCallbackWithPassword
 //   - InlineKeyboardButtonTypeCopyText
+//   - InlineKeyboardButtonTypeDisabled
 //   - InlineKeyboardButtonTypeLoginUrl
 //   - InlineKeyboardButtonTypeSwitchInline
 //   - InlineKeyboardButtonTypeUrl
@@ -4021,6 +4036,12 @@ func UnmarshalInlineKeyboardButtonType(data []byte) (InlineKeyboardButtonType, e
 		return &obj, nil
 	case "inlineKeyboardButtonTypeCopyText":
 		var obj InlineKeyboardButtonTypeCopyText
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "inlineKeyboardButtonTypeDisabled":
+		var obj InlineKeyboardButtonTypeDisabled
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -4864,9 +4885,12 @@ func UnmarshalInputMessageReplyTo(data []byte) (InputMessageReplyTo, error) {
 //   - InputPageBlockAnimation
 //   - InputPageBlockAudio
 //   - InputPageBlockBlockQuote
+//   - InputPageBlockButtonRow
 //   - InputPageBlockCollage
 //   - InputPageBlockDetails
 //   - InputPageBlockDivider
+//   - InputPageBlockDocument
+//   - InputPageBlockExpandableBlockQuote
 //   - InputPageBlockFooter
 //   - InputPageBlockList
 //   - InputPageBlockMap
@@ -4919,6 +4943,12 @@ func UnmarshalInputPageBlock(data []byte) (InputPageBlock, error) {
 			return nil, err
 		}
 		return &obj, nil
+	case "inputPageBlockButtonRow":
+		var obj InputPageBlockButtonRow
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
 	case "inputPageBlockCollage":
 		var obj InputPageBlockCollage
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -4933,6 +4963,18 @@ func UnmarshalInputPageBlock(data []byte) (InputPageBlock, error) {
 		return &obj, nil
 	case "inputPageBlockDivider":
 		var obj InputPageBlockDivider
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "inputPageBlockDocument":
+		var obj InputPageBlockDocument
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "inputPageBlockExpandableBlockQuote":
+		var obj InputPageBlockExpandableBlockQuote
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -6677,6 +6719,7 @@ func UnmarshalMaskPoint(data []byte) (MaskPoint, error) {
 //   - MessageChatHasProtectedContentToggled
 //   - MessageChatJoinByLink
 //   - MessageChatJoinByRequest
+//   - MessageChatJoinFromCommunity
 //   - MessageChatOwnerChanged
 //   - MessageChatOwnerLeft
 //   - MessageChatRemovedFromCommunity
@@ -6706,9 +6749,9 @@ func UnmarshalMaskPoint(data []byte) (MaskPoint, error) {
 //   - MessageGame
 //   - MessageGameScore
 //   - MessageGift
+//   - MessageGiftedGrams
 //   - MessageGiftedPremium
 //   - MessageGiftedStars
-//   - MessageGiftedTon
 //   - MessageGiveaway
 //   - MessageGiveawayCompleted
 //   - MessageGiveawayCreated
@@ -6876,6 +6919,12 @@ func UnmarshalMessageContent(data []byte) (MessageContent, error) {
 		return &obj, nil
 	case "messageChatJoinByRequest":
 		var obj MessageChatJoinByRequest
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "messageChatJoinFromCommunity":
+		var obj MessageChatJoinFromCommunity
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -7054,6 +7103,12 @@ func UnmarshalMessageContent(data []byte) (MessageContent, error) {
 			return nil, err
 		}
 		return &obj, nil
+	case "messageGiftedGrams":
+		var obj MessageGiftedGrams
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
 	case "messageGiftedPremium":
 		var obj MessageGiftedPremium
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -7062,12 +7117,6 @@ func UnmarshalMessageContent(data []byte) (MessageContent, error) {
 		return &obj, nil
 	case "messageGiftedStars":
 		var obj MessageGiftedStars
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, err
-		}
-		return &obj, nil
-	case "messageGiftedTon":
-		var obj MessageGiftedTon
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -8187,13 +8236,16 @@ func UnmarshalOptionValue(data []byte) (OptionValue, error) {
 //   - PageBlockAudio
 //   - PageBlockAuthorDate
 //   - PageBlockBlockQuote
+//   - PageBlockButtonRow
 //   - PageBlockChatLink
 //   - PageBlockCollage
 //   - PageBlockCover
 //   - PageBlockDetails
 //   - PageBlockDivider
+//   - PageBlockDocument
 //   - PageBlockEmbedded
 //   - PageBlockEmbeddedPost
+//   - PageBlockExpandableBlockQuote
 //   - PageBlockFooter
 //   - PageBlockHeader
 //   - PageBlockKicker
@@ -8212,6 +8264,7 @@ func UnmarshalOptionValue(data []byte) (OptionValue, error) {
 //   - PageBlockTable
 //   - PageBlockThinking
 //   - PageBlockTitle
+//   - PageBlockUnsupported
 //   - PageBlockVideo
 //   - PageBlockVoiceNote
 type PageBlock interface {
@@ -8258,6 +8311,12 @@ func UnmarshalPageBlock(data []byte) (PageBlock, error) {
 			return nil, err
 		}
 		return &obj, nil
+	case "pageBlockButtonRow":
+		var obj PageBlockButtonRow
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
 	case "pageBlockChatLink":
 		var obj PageBlockChatLink
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -8288,6 +8347,12 @@ func UnmarshalPageBlock(data []byte) (PageBlock, error) {
 			return nil, err
 		}
 		return &obj, nil
+	case "pageBlockDocument":
+		var obj PageBlockDocument
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
 	case "pageBlockEmbedded":
 		var obj PageBlockEmbedded
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -8296,6 +8361,12 @@ func UnmarshalPageBlock(data []byte) (PageBlock, error) {
 		return &obj, nil
 	case "pageBlockEmbeddedPost":
 		var obj PageBlockEmbeddedPost
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "pageBlockExpandableBlockQuote":
+		var obj PageBlockExpandableBlockQuote
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -8404,6 +8475,12 @@ func UnmarshalPageBlock(data []byte) (PageBlock, error) {
 		return &obj, nil
 	case "pageBlockTitle":
 		var obj PageBlockTitle
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "pageBlockUnsupported":
+		var obj PageBlockUnsupported
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -10860,6 +10937,7 @@ func UnmarshalRichMessageSource(data []byte) (RichMessageSource, error) {
 //   - RichTextBankCardNumber
 //   - RichTextBold
 //   - RichTextBotCommand
+//   - RichTextButton
 //   - RichTextCashtag
 //   - RichTextCustomEmoji
 //   - RichTextDateTime
@@ -10924,6 +11002,12 @@ func UnmarshalRichText(data []byte) (RichText, error) {
 		return &obj, nil
 	case "richTextBotCommand":
 		var obj RichTextBotCommand
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "richTextButton":
+		var obj RichTextButton
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -11154,6 +11238,7 @@ func UnmarshalSearchChatTypeFilter(data []byte) (SearchChatTypeFilter, error) {
 
 // SearchMessagesChatTypeFilter Represents a filter for type of the chats in which to search for messages
 //   - SearchMessagesChatTypeFilterChannel
+//   - SearchMessagesChatTypeFilterCommunity
 //   - SearchMessagesChatTypeFilterGroup
 //   - SearchMessagesChatTypeFilterPrivate
 type SearchMessagesChatTypeFilter interface {
@@ -11172,6 +11257,12 @@ func UnmarshalSearchMessagesChatTypeFilter(data []byte) (SearchMessagesChatTypeF
 	switch typeObj.Type {
 	case "searchMessagesChatTypeFilterChannel":
 		var obj SearchMessagesChatTypeFilterChannel
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "searchMessagesChatTypeFilterCommunity":
+		var obj SearchMessagesChatTypeFilterCommunity
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -13797,6 +13888,7 @@ func UnmarshalTransactionDirection(data []byte) (TransactionDirection, error) {
 //   - UpdateChatFolders
 //   - UpdateChatHasProtectedContent
 //   - UpdateChatHasScheduledMessages
+//   - UpdateChatHasWelcomeMessages
 //   - UpdateChatIsMarkedAsUnread
 //   - UpdateChatIsTranslatable
 //   - UpdateChatJoinResult
@@ -13822,7 +13914,9 @@ func UnmarshalTransactionDirection(data []byte) (TransactionDirection, error) {
 //   - UpdateChatUnreadReactionCount
 //   - UpdateChatVideoChat
 //   - UpdateChatViewAsTopics
+//   - UpdateChatWelcomeMessages
 //   - UpdateCommunity
+//   - UpdateCommunityFullInfo
 //   - UpdateConnectionState
 //   - UpdateContactCloseBirthdays
 //   - UpdateDefaultBackground
@@ -13861,6 +13955,7 @@ func UnmarshalTransactionDirection(data []byte) (TransactionDirection, error) {
 //   - UpdateMessageContent
 //   - UpdateMessageContentOpened
 //   - UpdateMessageEdited
+//   - UpdateMessageEphemeralContent
 //   - UpdateMessageFactCheck
 //   - UpdateMessageInteractionInfo
 //   - UpdateMessageIsPinned
@@ -13920,6 +14015,7 @@ func UnmarshalTransactionDirection(data []byte) (TransactionDirection, error) {
 //   - UpdateStakeDiceState
 //   - UpdateStarRevenueStatus
 //   - UpdateStickerSet
+//   - UpdateStopMessageDraft
 //   - UpdateStory
 //   - UpdateStoryDeleted
 //   - UpdateStoryListChatCount
@@ -14175,6 +14271,12 @@ func UnmarshalUpdate(data []byte) (Update, error) {
 			return nil, err
 		}
 		return &obj, nil
+	case "updateChatHasWelcomeMessages":
+		var obj UpdateChatHasWelcomeMessages
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
 	case "updateChatIsMarkedAsUnread":
 		var obj UpdateChatIsMarkedAsUnread
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -14325,8 +14427,20 @@ func UnmarshalUpdate(data []byte) (Update, error) {
 			return nil, err
 		}
 		return &obj, nil
+	case "updateChatWelcomeMessages":
+		var obj UpdateChatWelcomeMessages
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
 	case "updateCommunity":
 		var obj UpdateCommunity
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "updateCommunityFullInfo":
+		var obj UpdateCommunityFullInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -14555,6 +14669,12 @@ func UnmarshalUpdate(data []byte) (Update, error) {
 		return &obj, nil
 	case "updateMessageEdited":
 		var obj UpdateMessageEdited
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "updateMessageEphemeralContent":
+		var obj UpdateMessageEphemeralContent
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -14909,6 +15029,12 @@ func UnmarshalUpdate(data []byte) (Update, error) {
 		return &obj, nil
 	case "updateStickerSet":
 		var obj UpdateStickerSet
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "updateStopMessageDraft":
+		var obj UpdateStopMessageDraft
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}

@@ -1119,6 +1119,37 @@ func (c *Client) AddUpdateChatHasScheduledMessagesHandlerGroup(handler func(clie
 	c.AddHandlerGroup(&updateChatHasScheduledMessagesHandler{filter: filter, response: handler}, group)
 }
 
+// updateChatHasWelcomeMessagesHandler handles UpdateChatHasWelcomeMessages updates
+type updateChatHasWelcomeMessagesHandler struct {
+	filter   func(u *UpdateChatHasWelcomeMessages) bool
+	response func(client *Client, update *UpdateChatHasWelcomeMessages) error
+}
+
+func (h *updateChatHasWelcomeMessagesHandler) CheckUpdate(client *Client, update TlObject) bool {
+	u, ok := update.(*UpdateChatHasWelcomeMessages)
+	if !ok {
+		return false
+	}
+	if h.filter != nil && !h.filter(u) {
+		return false
+	}
+	return true
+}
+
+func (h *updateChatHasWelcomeMessagesHandler) HandleUpdate(client *Client, update TlObject) error {
+	return h.response(client, update.(*UpdateChatHasWelcomeMessages))
+}
+
+// OnUpdateChatHasWelcomeMessages registers a handler for UpdateChatHasWelcomeMessages updates with default group (0)
+func (c *Client) OnUpdateChatHasWelcomeMessages(handler func(client *Client, update *UpdateChatHasWelcomeMessages) error, filter func(u *UpdateChatHasWelcomeMessages) bool) {
+	c.AddUpdateChatHasWelcomeMessagesHandlerGroup(handler, filter, 0)
+}
+
+// AddUpdateChatHasWelcomeMessagesHandlerGroup registers a handler for UpdateChatHasWelcomeMessages updates with a specific group
+func (c *Client) AddUpdateChatHasWelcomeMessagesHandlerGroup(handler func(client *Client, update *UpdateChatHasWelcomeMessages) error, filter func(u *UpdateChatHasWelcomeMessages) bool, group int) {
+	c.AddHandlerGroup(&updateChatHasWelcomeMessagesHandler{filter: filter, response: handler}, group)
+}
+
 // updateChatIsMarkedAsUnreadHandler handles UpdateChatIsMarkedAsUnread updates
 type updateChatIsMarkedAsUnreadHandler struct {
 	filter   func(u *UpdateChatIsMarkedAsUnread) bool
@@ -1894,6 +1925,37 @@ func (c *Client) AddUpdateChatViewAsTopicsHandlerGroup(handler func(client *Clie
 	c.AddHandlerGroup(&updateChatViewAsTopicsHandler{filter: filter, response: handler}, group)
 }
 
+// updateChatWelcomeMessagesHandler handles UpdateChatWelcomeMessages updates
+type updateChatWelcomeMessagesHandler struct {
+	filter   func(u *UpdateChatWelcomeMessages) bool
+	response func(client *Client, update *UpdateChatWelcomeMessages) error
+}
+
+func (h *updateChatWelcomeMessagesHandler) CheckUpdate(client *Client, update TlObject) bool {
+	u, ok := update.(*UpdateChatWelcomeMessages)
+	if !ok {
+		return false
+	}
+	if h.filter != nil && !h.filter(u) {
+		return false
+	}
+	return true
+}
+
+func (h *updateChatWelcomeMessagesHandler) HandleUpdate(client *Client, update TlObject) error {
+	return h.response(client, update.(*UpdateChatWelcomeMessages))
+}
+
+// OnUpdateChatWelcomeMessages registers a handler for UpdateChatWelcomeMessages updates with default group (0)
+func (c *Client) OnUpdateChatWelcomeMessages(handler func(client *Client, update *UpdateChatWelcomeMessages) error, filter func(u *UpdateChatWelcomeMessages) bool) {
+	c.AddUpdateChatWelcomeMessagesHandlerGroup(handler, filter, 0)
+}
+
+// AddUpdateChatWelcomeMessagesHandlerGroup registers a handler for UpdateChatWelcomeMessages updates with a specific group
+func (c *Client) AddUpdateChatWelcomeMessagesHandlerGroup(handler func(client *Client, update *UpdateChatWelcomeMessages) error, filter func(u *UpdateChatWelcomeMessages) bool, group int) {
+	c.AddHandlerGroup(&updateChatWelcomeMessagesHandler{filter: filter, response: handler}, group)
+}
+
 // updateCommunityHandler handles UpdateCommunity updates
 type updateCommunityHandler struct {
 	filter   func(u *UpdateCommunity) bool
@@ -1923,6 +1985,37 @@ func (c *Client) OnUpdateCommunity(handler func(client *Client, update *UpdateCo
 // AddUpdateCommunityHandlerGroup registers a handler for UpdateCommunity updates with a specific group
 func (c *Client) AddUpdateCommunityHandlerGroup(handler func(client *Client, update *UpdateCommunity) error, filter func(u *UpdateCommunity) bool, group int) {
 	c.AddHandlerGroup(&updateCommunityHandler{filter: filter, response: handler}, group)
+}
+
+// updateCommunityFullInfoHandler handles UpdateCommunityFullInfo updates
+type updateCommunityFullInfoHandler struct {
+	filter   func(u *UpdateCommunityFullInfo) bool
+	response func(client *Client, update *UpdateCommunityFullInfo) error
+}
+
+func (h *updateCommunityFullInfoHandler) CheckUpdate(client *Client, update TlObject) bool {
+	u, ok := update.(*UpdateCommunityFullInfo)
+	if !ok {
+		return false
+	}
+	if h.filter != nil && !h.filter(u) {
+		return false
+	}
+	return true
+}
+
+func (h *updateCommunityFullInfoHandler) HandleUpdate(client *Client, update TlObject) error {
+	return h.response(client, update.(*UpdateCommunityFullInfo))
+}
+
+// OnUpdateCommunityFullInfo registers a handler for UpdateCommunityFullInfo updates with default group (0)
+func (c *Client) OnUpdateCommunityFullInfo(handler func(client *Client, update *UpdateCommunityFullInfo) error, filter func(u *UpdateCommunityFullInfo) bool) {
+	c.AddUpdateCommunityFullInfoHandlerGroup(handler, filter, 0)
+}
+
+// AddUpdateCommunityFullInfoHandlerGroup registers a handler for UpdateCommunityFullInfo updates with a specific group
+func (c *Client) AddUpdateCommunityFullInfoHandlerGroup(handler func(client *Client, update *UpdateCommunityFullInfo) error, filter func(u *UpdateCommunityFullInfo) bool, group int) {
+	c.AddHandlerGroup(&updateCommunityFullInfoHandler{filter: filter, response: handler}, group)
 }
 
 // updateConnectionStateHandler handles UpdateConnectionState updates
@@ -3101,6 +3194,37 @@ func (c *Client) OnUpdateMessageEdited(handler func(client *Client, update *Upda
 // AddUpdateMessageEditedHandlerGroup registers a handler for UpdateMessageEdited updates with a specific group
 func (c *Client) AddUpdateMessageEditedHandlerGroup(handler func(client *Client, update *UpdateMessageEdited) error, filter func(u *UpdateMessageEdited) bool, group int) {
 	c.AddHandlerGroup(&updateMessageEditedHandler{filter: filter, response: handler}, group)
+}
+
+// updateMessageEphemeralContentHandler handles UpdateMessageEphemeralContent updates
+type updateMessageEphemeralContentHandler struct {
+	filter   func(u *UpdateMessageEphemeralContent) bool
+	response func(client *Client, update *UpdateMessageEphemeralContent) error
+}
+
+func (h *updateMessageEphemeralContentHandler) CheckUpdate(client *Client, update TlObject) bool {
+	u, ok := update.(*UpdateMessageEphemeralContent)
+	if !ok {
+		return false
+	}
+	if h.filter != nil && !h.filter(u) {
+		return false
+	}
+	return true
+}
+
+func (h *updateMessageEphemeralContentHandler) HandleUpdate(client *Client, update TlObject) error {
+	return h.response(client, update.(*UpdateMessageEphemeralContent))
+}
+
+// OnUpdateMessageEphemeralContent registers a handler for UpdateMessageEphemeralContent updates with default group (0)
+func (c *Client) OnUpdateMessageEphemeralContent(handler func(client *Client, update *UpdateMessageEphemeralContent) error, filter func(u *UpdateMessageEphemeralContent) bool) {
+	c.AddUpdateMessageEphemeralContentHandlerGroup(handler, filter, 0)
+}
+
+// AddUpdateMessageEphemeralContentHandlerGroup registers a handler for UpdateMessageEphemeralContent updates with a specific group
+func (c *Client) AddUpdateMessageEphemeralContentHandlerGroup(handler func(client *Client, update *UpdateMessageEphemeralContent) error, filter func(u *UpdateMessageEphemeralContent) bool, group int) {
+	c.AddHandlerGroup(&updateMessageEphemeralContentHandler{filter: filter, response: handler}, group)
 }
 
 // updateMessageFactCheckHandler handles UpdateMessageFactCheck updates
@@ -4961,6 +5085,37 @@ func (c *Client) OnUpdateStickerSet(handler func(client *Client, update *UpdateS
 // AddUpdateStickerSetHandlerGroup registers a handler for UpdateStickerSet updates with a specific group
 func (c *Client) AddUpdateStickerSetHandlerGroup(handler func(client *Client, update *UpdateStickerSet) error, filter func(u *UpdateStickerSet) bool, group int) {
 	c.AddHandlerGroup(&updateStickerSetHandler{filter: filter, response: handler}, group)
+}
+
+// updateStopMessageDraftHandler handles UpdateStopMessageDraft updates
+type updateStopMessageDraftHandler struct {
+	filter   func(u *UpdateStopMessageDraft) bool
+	response func(client *Client, update *UpdateStopMessageDraft) error
+}
+
+func (h *updateStopMessageDraftHandler) CheckUpdate(client *Client, update TlObject) bool {
+	u, ok := update.(*UpdateStopMessageDraft)
+	if !ok {
+		return false
+	}
+	if h.filter != nil && !h.filter(u) {
+		return false
+	}
+	return true
+}
+
+func (h *updateStopMessageDraftHandler) HandleUpdate(client *Client, update TlObject) error {
+	return h.response(client, update.(*UpdateStopMessageDraft))
+}
+
+// OnUpdateStopMessageDraft registers a handler for UpdateStopMessageDraft updates with default group (0)
+func (c *Client) OnUpdateStopMessageDraft(handler func(client *Client, update *UpdateStopMessageDraft) error, filter func(u *UpdateStopMessageDraft) bool) {
+	c.AddUpdateStopMessageDraftHandlerGroup(handler, filter, 0)
+}
+
+// AddUpdateStopMessageDraftHandlerGroup registers a handler for UpdateStopMessageDraft updates with a specific group
+func (c *Client) AddUpdateStopMessageDraftHandlerGroup(handler func(client *Client, update *UpdateStopMessageDraft) error, filter func(u *UpdateStopMessageDraft) bool, group int) {
+	c.AddHandlerGroup(&updateStopMessageDraftHandler{filter: filter, response: handler}, group)
 }
 
 // updateStoryHandler handles UpdateStory updates

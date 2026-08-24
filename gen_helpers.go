@@ -21,6 +21,12 @@ func (c *Chat) AddToList(client *Client, chatList ChatList) error {
 	return client.AddChatToList(c.Id, chatList)
 }
 
+// AddWelcomeMessage Adds a message to the list of welcome messages of a chat; requires can_send_welcome_messages administrator right in the chat. There can be up to getOption("welcome_message_count_max") welcome messages in a chat
+// It is a helper method for Client.AddChatWelcomeMessage
+func (c *Chat) AddWelcomeMessage(client *Client, inputMessageContent InputMessageContent) error {
+	return client.AddChatWelcomeMessage(c.Id, inputMessageContent)
+}
+
 // AddChecklistTasks Adds tasks to a checklist in a message
 // It is a helper method for Client.AddChecklistTasks
 func (c *Chat) AddChecklistTasks(client *Client, messageId int64, tasks []InputChecklistTask) error {
@@ -141,6 +147,12 @@ func (c *Chat) CreateSubscriptionInviteLink(client *Client, name string, subscri
 	return client.CreateChatSubscriptionInviteLink(c.Id, name, subscriptionPricing)
 }
 
+// CreateCommunity Creates a new community for the given chat. Returns identifier of the created community
+// It is a helper method for Client.CreateCommunity
+func (c *Chat) CreateCommunity(client *Client, name string, opts *CreateCommunityOpts) (*CommunityId, error) {
+	return client.CreateCommunity(c.Id, name, opts)
+}
+
 // CreateForumTopic Creates a topic in a forum supergroup chat or a chat with a bot with topics; requires can_manage_topics administrator or can_create_topics member right in the supergroup
 // It is a helper method for Client.CreateForumTopic
 func (c *Chat) CreateForumTopic(client *Client, icon *ForumTopicIcon, name string, opts *CreateForumTopicOpts) (*ForumTopicInfo, error) {
@@ -163,6 +175,12 @@ func (c *Chat) DeclineGroupCallInvitation(client *Client, messageId int64) error
 // It is a helper method for Client.DeclineSuggestedPost
 func (c *Chat) DeclineSuggestedPost(client *Client, comment string, messageId int64) error {
 	return client.DeclineSuggestedPost(c.Id, comment, messageId)
+}
+
+// DeleteAllWelcomeMessages Deletes all welcome messages of a chat; requires can_send_welcome_messages administrator right in the chat
+// It is a helper method for Client.DeleteAllChatWelcomeMessages
+func (c *Chat) DeleteAllWelcomeMessages(client *Client) error {
+	return client.DeleteAllChatWelcomeMessages(c.Id)
 }
 
 // DeleteAllRecentMessageReactionsFromSender Deletes all recent reactions added by the specified sender in a chat. Supported only for basic groups and supergroups; requires can_delete_messages administrator right
@@ -213,6 +231,12 @@ func (c *Chat) DeleteReplyMarkup(client *Client, messageId int64) error {
 	return client.DeleteChatReplyMarkup(c.Id, messageId)
 }
 
+// DeleteWelcomeMessage Deletes a welcome message of a chat; requires can_send_welcome_messages administrator right in the chat
+// It is a helper method for Client.DeleteChatWelcomeMessage
+func (c *Chat) DeleteWelcomeMessage(client *Client, welcomeMessageId int32) error {
+	return client.DeleteChatWelcomeMessage(c.Id, welcomeMessageId)
+}
+
 // DeleteDirectMessagesTopicHistory Deletes all messages in the topic in a channel direct messages chat administered by the current user
 // It is a helper method for Client.DeleteDirectMessagesChatTopicHistory
 func (c *Chat) DeleteDirectMessagesTopicHistory(client *Client, topicId int64) error {
@@ -235,6 +259,12 @@ func (c *Chat) DeleteEphemeralMessage(client *Client, ephemeralMessageId int32, 
 // It is a helper method for Client.DeleteForumTopic
 func (c *Chat) DeleteForumTopic(client *Client, forumTopicId int32) error {
 	return client.DeleteForumTopic(c.Id, forumTopicId)
+}
+
+// DeleteMessageEphemeralContent Removes message ephemeral content and reverts message state to the original
+// It is a helper method for Client.DeleteMessageEphemeralContent
+func (c *Chat) DeleteMessageEphemeralContent(client *Client, messageId int64) error {
+	return client.DeleteMessageEphemeralContent(c.Id, messageId)
 }
 
 // DeleteMessageReactionsFromSender Deletes all reactions added by the specified sender on a message
@@ -315,10 +345,22 @@ func (c *Chat) EditSubscriptionInviteLink(client *Client, inviteLink string, nam
 	return client.EditChatSubscriptionInviteLink(c.Id, inviteLink, name)
 }
 
-// EditEphemeralMessage Edits the text, caption or reply markup of an ephemeral message sent by the bot; for bots only
+// EditWelcomeMessage Edits a welcome message of a chat; requires can_send_welcome_messages administrator right in the chat
+// It is a helper method for Client.EditChatWelcomeMessage
+func (c *Chat) EditWelcomeMessage(client *Client, inputMessageContent InputMessageContent, welcomeMessageId int32) error {
+	return client.EditChatWelcomeMessage(c.Id, inputMessageContent, welcomeMessageId)
+}
+
+// EditEphemeralMessage Edits the text, media, or reply markup of an ephemeral message sent by the bot; for bots only
 // It is a helper method for Client.EditEphemeralMessage
 func (c *Chat) EditEphemeralMessage(client *Client, ephemeralMessageId int32, receiverUserId int64, opts *EditEphemeralMessageOpts) error {
 	return client.EditEphemeralMessage(c.Id, ephemeralMessageId, receiverUserId, opts)
+}
+
+// EditEphemeralMessageCaption Edits the caption and reply markup of an ephemeral message sent by the bot; for bots only
+// It is a helper method for Client.EditEphemeralMessageCaption
+func (c *Chat) EditEphemeralMessageCaption(client *Client, ephemeralMessageId int32, receiverUserId int64, opts *EditEphemeralMessageCaptionOpts) error {
+	return client.EditEphemeralMessageCaption(c.Id, ephemeralMessageId, receiverUserId, opts)
 }
 
 // EditForumTopic Edits title and icon of a topic in a forum supergroup chat or a chat with a bot with topics; for supergroup chats requires can_manage_topics administrator right
@@ -903,6 +945,12 @@ func (c *Chat) Leave(client *Client) error {
 	return client.LeaveChat(c.Id)
 }
 
+// LoadWelcomeMessages Loads welcome messages of a chat; requires can_send_welcome_messages administrator right in the chat. The loaded messages will be sent through updateChatWelcomeMessages
+// It is a helper method for Client.LoadChatWelcomeMessages
+func (c *Chat) LoadWelcomeMessages(client *Client) error {
+	return client.LoadChatWelcomeMessages(c.Id)
+}
+
 // LoadDirectMessagesTopics Loads more topics in a channel direct messages chat administered by the current user. The loaded topics will be sent through updateDirectMessagesChatTopic.
 // It is a helper method for Client.LoadDirectMessagesChatTopics
 func (c *Chat) LoadDirectMessagesTopics(client *Client, limit int32) error {
@@ -1229,8 +1277,8 @@ func (c *Chat) SendQuickReplyShortcutMessages(client *Client, sendingId int32, s
 
 // SendRichMessageDraft Sends a draft for a being generated rich message; for bots only
 // It is a helper method for Client.SendRichMessageDraft
-func (c *Chat) SendRichMessageDraft(client *Client, draftId int64, forumTopicId int32, message *InputRichMessage) error {
-	return client.SendRichMessageDraft(c.Id, draftId, forumTopicId, message)
+func (c *Chat) SendRichMessageDraft(client *Client, draftId int64, forumTopicId int32, message *InputRichMessage, opts *SendRichMessageDraftOpts) error {
+	return client.SendRichMessageDraft(c.Id, draftId, forumTopicId, message, opts)
 }
 
 // SendTextMessageDraft Sends a draft for a being generated text message; for bots only
@@ -1471,6 +1519,12 @@ func (c *Chat) StartLiveStory(client *Client, paidMessageStarCount int64, privac
 // It is a helper method for Client.StopBusinessPoll
 func (c *Chat) StopBusinessPoll(client *Client, businessConnectionId string, messageId int64, opts *StopBusinessPollOpts) (*BusinessMessage, error) {
 	return client.StopBusinessPoll(businessConnectionId, c.Id, messageId, opts)
+}
+
+// StopPendingMessage Stops a pending message generation by a bot
+// It is a helper method for Client.StopPendingMessage
+func (c *Chat) StopPendingMessage(client *Client, draftId int64, opts *StopPendingMessageOpts) error {
+	return client.StopPendingMessage(c.Id, draftId, opts)
 }
 
 // StopPoll Stops a poll
@@ -1795,6 +1849,12 @@ func (m *Message) DeclineSuggestedPost(client *Client, comment string) error {
 // It is a helper method for Client.DeleteChatReplyMarkup
 func (m *Message) DeleteChatReplyMarkup(client *Client) error {
 	return client.DeleteChatReplyMarkup(m.ChatId, m.Id)
+}
+
+// DeleteEphemeralContent Removes message ephemeral content and reverts message state to the original
+// It is a helper method for Client.DeleteMessageEphemeralContent
+func (m *Message) DeleteEphemeralContent(client *Client) error {
+	return client.DeleteMessageEphemeralContent(m.ChatId, m.Id)
 }
 
 // DeleteReactionsFromSender Deletes all reactions added by the specified sender on a message
