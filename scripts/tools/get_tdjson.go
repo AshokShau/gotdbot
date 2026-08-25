@@ -16,7 +16,7 @@ import (
 const (
 	repoOwner = "FallenProjects"
 	repoName  = "tdlib-build"
-	version   = "v1.8.66"
+	version   = "v1.8.67"
 )
 
 // writeFile writes from an io.Reader to a file named name and ensures the file
