@@ -233,11 +233,7 @@ func (c *Client) processor() {
 				c.wMu.RLock()
 				if len(c.waiters) > 0 {
 					var matchedWaiters []*Waiter
-
-					var chatID int64
-					if msg, ok := getMessageFromUpdate(update); ok {
-						chatID = msg.ChatId
-					}
+					chatID := getChatIDFromUpdate(update)
 
 					collectWaiters := func(id int64) {
 						if inner, ok := c.waiters[id]; ok {

@@ -179,6 +179,35 @@ func getMessageFromUpdate(update TlObject) (*Message, bool) {
 	return nil, false
 }
 
+func getChatIDFromUpdate(update TlObject) int64 {
+	if msg, ok := getMessageFromUpdate(update); ok && msg != nil {
+		return msg.ChatId
+	}
+	switch u := update.(type) {
+	case *UpdateNewCallbackQuery:
+		return u.ChatId
+	case *UpdateMessageEdited:
+		return u.ChatId
+	case *UpdateMessageContent:
+		return u.ChatId
+	case *UpdateMessageEphemeralContent:
+		return u.ChatId
+	case *UpdateMessageLiveLocationViewed:
+		return u.ChatId
+	case *UpdateMessageInteractionInfo:
+		return u.ChatId
+	case *UpdateMessageSendSucceeded:
+		if u.Message != nil {
+			return u.Message.ChatId
+		}
+	case *UpdateMessageSendFailed:
+		if u.Message != nil {
+			return u.Message.ChatId
+		}
+	}
+	return 0
+}
+
 // AddHandler adds a handler with the default group (0).
 func (c *Client) AddHandler(handler Handler) {
 	c.AddHandlerGroup(handler, 0)
