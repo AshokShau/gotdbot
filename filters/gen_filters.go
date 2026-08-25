@@ -78,6 +78,8 @@ type (
 	UpdateChatHasProtectedContent func(u *gotdbot.UpdateChatHasProtectedContent) bool
 	// UpdateChatHasScheduledMessages A chat's has_scheduled_messages field has changed
 	UpdateChatHasScheduledMessages func(u *gotdbot.UpdateChatHasScheduledMessages) bool
+	// UpdateChatHasWelcomeMessages A chat's has_welcome_messages field has changed
+	UpdateChatHasWelcomeMessages func(u *gotdbot.UpdateChatHasWelcomeMessages) bool
 	// UpdateChatIsMarkedAsUnread A chat was marked as unread or was read
 	UpdateChatIsMarkedAsUnread func(u *gotdbot.UpdateChatIsMarkedAsUnread) bool
 	// UpdateChatIsTranslatable Translation of chat messages was enabled or disabled
@@ -128,8 +130,12 @@ type (
 	UpdateChatVideoChat func(u *gotdbot.UpdateChatVideoChat) bool
 	// UpdateChatViewAsTopics A chat default appearance has changed
 	UpdateChatViewAsTopics func(u *gotdbot.UpdateChatViewAsTopics) bool
+	// UpdateChatWelcomeMessages The list of welcome messages of a chat has changed
+	UpdateChatWelcomeMessages func(u *gotdbot.UpdateChatWelcomeMessages) bool
 	// UpdateCommunity Some data of a community has changed. This update is guaranteed to come before the community identifier is returned to the application
 	UpdateCommunity func(u *gotdbot.UpdateCommunity) bool
+	// UpdateCommunityFullInfo Some data in communityFullInfo has been changed
+	UpdateCommunityFullInfo func(u *gotdbot.UpdateCommunityFullInfo) bool
 	// UpdateConnectionState The connection state has changed. This update must be used only to show a human-readable description of the connection state
 	UpdateConnectionState func(u *gotdbot.UpdateConnectionState) bool
 	// UpdateContactCloseBirthdays The list of contacts that had birthdays recently or will have birthday soon has changed
@@ -206,6 +212,8 @@ type (
 	UpdateMessageContentOpened func(u *gotdbot.UpdateMessageContentOpened) bool
 	// UpdateMessageEdited A message was edited. Changes in the message content will come in a separate updateMessageContent
 	UpdateMessageEdited func(u *gotdbot.UpdateMessageEdited) bool
+	// UpdateMessageEphemeralContent The message ephemeral content has changed
+	UpdateMessageEphemeralContent func(u *gotdbot.UpdateMessageEphemeralContent) bool
 	// UpdateMessageFactCheck A fact-check added to a message was changed
 	UpdateMessageFactCheck func(u *gotdbot.UpdateMessageFactCheck) bool
 	// UpdateMessageInteractionInfo The information about interactions with a message has changed
@@ -326,6 +334,8 @@ type (
 	UpdateStarRevenueStatus func(u *gotdbot.UpdateStarRevenueStatus) bool
 	// UpdateStickerSet A sticker set has changed
 	UpdateStickerSet func(u *gotdbot.UpdateStickerSet) bool
+	// UpdateStopMessageDraft A message draft generation was stopped by the user
+	UpdateStopMessageDraft func(u *gotdbot.UpdateStopMessageDraft) bool
 	// UpdateStory A story was changed
 	UpdateStory func(u *gotdbot.UpdateStory) bool
 	// UpdateStoryDeleted A story became inaccessible

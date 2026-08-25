@@ -259,6 +259,34 @@ func (t AddChatToList) MarshalJSON() ([]byte, error) {
 	})
 }
 
+// AddChatWelcomeMessage Adds a message to the list of welcome messages of a chat; requires can_send_welcome_messages administrator right in the chat. There can be up to getOption("welcome_message_count_max") welcome messages in a chat
+type AddChatWelcomeMessage struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// The identifier of the chat
+	ChatId int64 `json:"chat_id"`
+	// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageAnimation,
+	InputMessageContent InputMessageContent `json:"input_message_content"`
+}
+
+func (t *AddChatWelcomeMessage) setExtra(extra string) { t.Extra = extra }
+
+func (t AddChatWelcomeMessage) GetType() string {
+	return "addChatWelcomeMessage"
+}
+
+func (t AddChatWelcomeMessage) MarshalJSON() ([]byte, error) {
+	type Alias AddChatWelcomeMessage
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{
+		TypeStr: "addChatWelcomeMessage",
+		Extra:   t.Extra,
+		Alias:   (*Alias)(&t),
+	})
+}
+
 // AddChecklistTasks Adds tasks to a checklist in a message
 type AddChecklistTasks struct {
 	Extra string `json:"@extra,omitempty"` // @extra field
@@ -3543,6 +3571,36 @@ func (t CreateChatSubscriptionInviteLink) MarshalJSON() ([]byte, error) {
 	})
 }
 
+// CreateCommunity Creates a new community for the given chat. Returns identifier of the created community
+type CreateCommunity struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// Identifier of the chat in the community; only chats with owned bots and owned basic group, supergroup and channel chats are allowed;
+	ChatId int64 `json:"chat_id"`
+	// Pass true if the chat will be visible only to administrators of the community
+	IsChatHidden bool `json:"is_chat_hidden"`
+	// Name of the new community
+	Name string `json:"name"`
+}
+
+func (t *CreateCommunity) setExtra(extra string) { t.Extra = extra }
+
+func (t CreateCommunity) GetType() string {
+	return "createCommunity"
+}
+
+func (t CreateCommunity) MarshalJSON() ([]byte, error) {
+	type Alias CreateCommunity
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{
+		TypeStr: "createCommunity",
+		Extra:   t.Extra,
+		Alias:   (*Alias)(&t),
+	})
+}
+
 // CreateForumTopic Creates a topic in a forum supergroup chat or a chat with a bot with topics; requires can_manage_topics administrator or can_create_topics member right in the supergroup
 type CreateForumTopic struct {
 	Extra string `json:"@extra,omitempty"` // @extra field
@@ -4195,6 +4253,32 @@ func (t DeleteAllCallMessages) MarshalJSON() ([]byte, error) {
 	})
 }
 
+// DeleteAllChatWelcomeMessages Deletes all welcome messages of a chat; requires can_send_welcome_messages administrator right in the chat
+type DeleteAllChatWelcomeMessages struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// The identifier of the chat
+	ChatId int64 `json:"chat_id"`
+}
+
+func (t *DeleteAllChatWelcomeMessages) setExtra(extra string) { t.Extra = extra }
+
+func (t DeleteAllChatWelcomeMessages) GetType() string {
+	return "deleteAllChatWelcomeMessages"
+}
+
+func (t DeleteAllChatWelcomeMessages) MarshalJSON() ([]byte, error) {
+	type Alias DeleteAllChatWelcomeMessages
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{
+		TypeStr: "deleteAllChatWelcomeMessages",
+		Extra:   t.Extra,
+		Alias:   (*Alias)(&t),
+	})
+}
+
 // DeleteAllRecentMessageReactionsFromSender Deletes all recent reactions added by the specified sender in a chat. Supported only for basic groups and supergroups; requires can_delete_messages administrator right
 type DeleteAllRecentMessageReactionsFromSender struct {
 	Extra string `json:"@extra,omitempty"` // @extra field
@@ -4617,6 +4701,34 @@ func (t DeleteChatReplyMarkup) MarshalJSON() ([]byte, error) {
 	})
 }
 
+// DeleteChatWelcomeMessage Deletes a welcome message of a chat; requires can_send_welcome_messages administrator right in the chat
+type DeleteChatWelcomeMessage struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// The identifier of the chat
+	ChatId int64 `json:"chat_id"`
+	// The identifier of the welcome message
+	WelcomeMessageId int32 `json:"welcome_message_id"`
+}
+
+func (t *DeleteChatWelcomeMessage) setExtra(extra string) { t.Extra = extra }
+
+func (t DeleteChatWelcomeMessage) GetType() string {
+	return "deleteChatWelcomeMessage"
+}
+
+func (t DeleteChatWelcomeMessage) MarshalJSON() ([]byte, error) {
+	type Alias DeleteChatWelcomeMessage
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{
+		TypeStr: "deleteChatWelcomeMessage",
+		Extra:   t.Extra,
+		Alias:   (*Alias)(&t),
+	})
+}
+
 // DeleteCommands Deletes commands supported by the bot for the given user scope and language; for bots only
 type DeleteCommands struct {
 	Extra string `json:"@extra,omitempty"` // @extra field
@@ -4736,7 +4848,7 @@ type DeleteEphemeralMessage struct {
 	Extra string `json:"@extra,omitempty"` // @extra field
 	// Chat identifier
 	ChatId int64 `json:"chat_id"`
-	// Identifiers of the message to be deleted
+	// Identifier of the message to be deleted
 	EphemeralMessageId int32 `json:"ephemeral_message_id"`
 	// Identifier of the user who received the message
 	ReceiverUserId int64 `json:"receiver_user_id"`
@@ -4924,6 +5036,34 @@ func (t DeleteLanguagePack) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "deleteLanguagePack",
+		Extra:   t.Extra,
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// DeleteMessageEphemeralContent Removes message ephemeral content and reverts message state to the original
+type DeleteMessageEphemeralContent struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// The chat the message belongs to
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message
+	MessageId int64 `json:"message_id"`
+}
+
+func (t *DeleteMessageEphemeralContent) setExtra(extra string) { t.Extra = extra }
+
+func (t DeleteMessageEphemeralContent) GetType() string {
+	return "deleteMessageEphemeralContent"
+}
+
+func (t DeleteMessageEphemeralContent) MarshalJSON() ([]byte, error) {
+	type Alias DeleteMessageEphemeralContent
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{
+		TypeStr: "deleteMessageEphemeralContent",
 		Extra:   t.Extra,
 		Alias:   (*Alias)(&t),
 	})
@@ -5915,6 +6055,38 @@ func (t EditBusinessStory) MarshalJSON() ([]byte, error) {
 	})
 }
 
+// EditCallbackQueryMessage Edits the message from which a callback query has originated with an ephemeral message; for bots only
+type EditCallbackQueryMessage struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// Identifier of the callback query
+	CallbackQueryId int64 `json:"callback_query_id,string"`
+	// New content of the message. Must be one of the following types: inputMessageText, inputMessageAnimation,
+	InputMessageContent InputMessageContent `json:"input_message_content"`
+	// Pass true if the content of the message must be protected from forwarding and saving
+	ProtectContent bool `json:"protect_content"`
+	// The new message reply markup; pass null if none
+	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
+}
+
+func (t *EditCallbackQueryMessage) setExtra(extra string) { t.Extra = extra }
+
+func (t EditCallbackQueryMessage) GetType() string {
+	return "editCallbackQueryMessage"
+}
+
+func (t EditCallbackQueryMessage) MarshalJSON() ([]byte, error) {
+	type Alias EditCallbackQueryMessage
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{
+		TypeStr: "editCallbackQueryMessage",
+		Extra:   t.Extra,
+		Alias:   (*Alias)(&t),
+	})
+}
+
 // EditChatFolder Edits existing chat folder. Returns information about the edited chat folder
 type EditChatFolder struct {
 	Extra string `json:"@extra,omitempty"` // @extra field
@@ -6041,6 +6213,36 @@ func (t EditChatSubscriptionInviteLink) MarshalJSON() ([]byte, error) {
 	})
 }
 
+// EditChatWelcomeMessage Edits a welcome message of a chat; requires can_send_welcome_messages administrator right in the chat
+type EditChatWelcomeMessage struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// The identifier of the chat
+	ChatId int64 `json:"chat_id"`
+	// New content of the message. Must be one of the following types: inputMessageText, inputMessageAnimation,
+	InputMessageContent InputMessageContent `json:"input_message_content"`
+	// The identifier of the welcome message
+	WelcomeMessageId int32 `json:"welcome_message_id"`
+}
+
+func (t *EditChatWelcomeMessage) setExtra(extra string) { t.Extra = extra }
+
+func (t EditChatWelcomeMessage) GetType() string {
+	return "editChatWelcomeMessage"
+}
+
+func (t EditChatWelcomeMessage) MarshalJSON() ([]byte, error) {
+	type Alias EditChatWelcomeMessage
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{
+		TypeStr: "editChatWelcomeMessage",
+		Extra:   t.Extra,
+		Alias:   (*Alias)(&t),
+	})
+}
+
 // EditCustomLanguagePackInfo Edits information about a custom local language pack in the current localization target. Can be called before authorization
 type EditCustomLanguagePackInfo struct {
 	Extra string `json:"@extra,omitempty"` // @extra field
@@ -6067,7 +6269,7 @@ func (t EditCustomLanguagePackInfo) MarshalJSON() ([]byte, error) {
 	})
 }
 
-// EditEphemeralMessage Edits the text, caption or reply markup of an ephemeral message sent by the bot; for bots only
+// EditEphemeralMessage Edits the text, media, or reply markup of an ephemeral message sent by the bot; for bots only
 type EditEphemeralMessage struct {
 	Extra string `json:"@extra,omitempty"` // @extra field
 	// The chat the message belongs to
@@ -6096,6 +6298,42 @@ func (t EditEphemeralMessage) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "editEphemeralMessage",
+		Extra:   t.Extra,
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// EditEphemeralMessageCaption Edits the caption and reply markup of an ephemeral message sent by the bot; for bots only
+type EditEphemeralMessageCaption struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// New message content caption; pass null to remove caption; 0-getOption("message_caption_length_max") characters
+	Caption *FormattedText `json:"caption,omitempty"`
+	// The chat the message belongs to
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the ephemeral message
+	EphemeralMessageId int32 `json:"ephemeral_message_id"`
+	// Identifier of the user who received the message
+	ReceiverUserId int64 `json:"receiver_user_id"`
+	// The new message reply markup; pass null if none
+	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
+	// Pass true to show the caption above the media; otherwise, the caption will be shown below the media. May be true only for animation, photo, and video messages
+	ShowCaptionAboveMedia bool `json:"show_caption_above_media"`
+}
+
+func (t *EditEphemeralMessageCaption) setExtra(extra string) { t.Extra = extra }
+
+func (t EditEphemeralMessageCaption) GetType() string {
+	return "editEphemeralMessageCaption"
+}
+
+func (t EditEphemeralMessageCaption) MarshalJSON() ([]byte, error) {
+	type Alias EditEphemeralMessageCaption
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{
+		TypeStr: "editEphemeralMessageCaption",
 		Extra:   t.Extra,
 		Alias:   (*Alias)(&t),
 	})
@@ -15900,7 +16138,7 @@ type GiftPremiumWithStars struct {
 	StarCount int64 `json:"star_count"`
 	// Text to show to the user receiving Telegram Premium; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, and DateTime entities are allowed
 	Text *FormattedText `json:"text"`
-	// Identifier of the user which will receive Telegram Premium
+	// Identifier of the user who will receive Telegram Premium
 	UserId int64 `json:"user_id"`
 }
 
@@ -16466,6 +16704,58 @@ func (t LoadChats) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "loadChats",
+		Extra:   t.Extra,
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// LoadChatWelcomeMessages Loads welcome messages of a chat; requires can_send_welcome_messages administrator right in the chat. The loaded messages will be sent through updateChatWelcomeMessages
+type LoadChatWelcomeMessages struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// The identifier of the chat
+	ChatId int64 `json:"chat_id"`
+}
+
+func (t *LoadChatWelcomeMessages) setExtra(extra string) { t.Extra = extra }
+
+func (t LoadChatWelcomeMessages) GetType() string {
+	return "loadChatWelcomeMessages"
+}
+
+func (t LoadChatWelcomeMessages) MarshalJSON() ([]byte, error) {
+	type Alias LoadChatWelcomeMessages
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{
+		TypeStr: "loadChatWelcomeMessages",
+		Extra:   t.Extra,
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// LoadCommunityFullInfo Returns full information about a community. The data will be sent through update.
+type LoadCommunityFullInfo struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// Community identifier
+	CommunityId int64 `json:"community_id"`
+}
+
+func (t *LoadCommunityFullInfo) setExtra(extra string) { t.Extra = extra }
+
+func (t LoadCommunityFullInfo) GetType() string {
+	return "loadCommunityFullInfo"
+}
+
+func (t LoadCommunityFullInfo) MarshalJSON() ([]byte, error) {
+	type Alias LoadCommunityFullInfo
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{
+		TypeStr: "loadCommunityFullInfo",
 		Extra:   t.Extra,
 		Alias:   (*Alias)(&t),
 	})
@@ -21344,8 +21634,12 @@ type SendEphemeralMessage struct {
 	InputMessageContent InputMessageContent `json:"input_message_content"`
 	// Pass true to get a fake message instead of actually sending them
 	OnlyPreview bool `json:"only_preview"`
+	// Pass true if the content of the message must be protected from forwarding and saving; for bots only
+	ProtectContent bool `json:"protect_content"`
 	// Identifier of the user who will receive the message
 	ReceiverUserId int64 `json:"receiver_user_id"`
+	// Pass true if the ephemeral message must replace the message from which the callback query originated; for bots only
+	ReplaceCallbackQueryMessage bool `json:"replace_callback_query_message"`
 	// Markup for replying to the message; pass null if none; for bots only
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
 	// Information about the message to be replied; pass null if none. The message can be an incoming ephemeral message
@@ -21772,10 +22066,14 @@ type SendResoldGift struct {
 	Extra string `json:"@extra,omitempty"` // @extra field
 	// Name of the upgraded gift to send
 	GiftName string `json:"gift_name"`
+	// Pass true to show gift text and sender only to the gift receiver; otherwise, everyone will be able to see them
+	IsPrivate bool `json:"is_private"`
 	// Identifier of the user or the channel chat that will receive the gift
 	OwnerId MessageSender `json:"owner_id"`
 	// The price that the user agreed to pay for the gift
 	Price GiftResalePrice `json:"price"`
+	// Text to show along with the gift; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, and DateTime entities are allowed.
+	Text *FormattedText `json:"text"`
 }
 
 func (t *SendResoldGift) setExtra(extra string) { t.Extra = extra }
@@ -21800,12 +22098,16 @@ func (t SendResoldGift) MarshalJSON() ([]byte, error) {
 // SendRichMessageDraft Sends a draft for a being generated rich message; for bots only
 type SendRichMessageDraft struct {
 	Extra string `json:"@extra,omitempty"` // @extra field
+	// Pass true to show the user a button to stop further drafts
+	CanStop bool `json:"can_stop"`
 	// Chat identifier
 	ChatId int64 `json:"chat_id"`
 	// Unique identifier of the draft
 	DraftId int64 `json:"draft_id,string"`
 	// The forum topic identifier in which the message will be sent; pass 0 if none
 	ForumTopicId int32 `json:"forum_topic_id"`
+	// Pass true to keep the current draft when the user stops further generation
+	KeepOnStop bool `json:"keep_on_stop"`
 	// Draft of the message; file upload isn't supported
 	Message *InputRichMessage `json:"message"`
 }
@@ -21832,12 +22134,16 @@ func (t SendRichMessageDraft) MarshalJSON() ([]byte, error) {
 // SendTextMessageDraft Sends a draft for a being generated text message; for bots only
 type SendTextMessageDraft struct {
 	Extra string `json:"@extra,omitempty"` // @extra field
+	// Pass true to show the user a button to stop further drafts
+	CanStop bool `json:"can_stop"`
 	// Chat identifier
 	ChatId int64 `json:"chat_id"`
 	// Unique identifier of the draft
 	DraftId int64 `json:"draft_id,string"`
 	// The forum topic identifier in which the message will be sent; pass 0 if none
 	ForumTopicId int32 `json:"forum_topic_id"`
+	// Pass true to keep the current draft when the user stops further generation
+	KeepOnStop bool `json:"keep_on_stop"`
 	// Draft text of the message; pass null to show a "Thinking..." placeholder
 	Text *FormattedText `json:"text,omitempty"`
 }
@@ -22996,7 +23302,7 @@ type SetChatDraftMessage struct {
 	Extra string `json:"@extra,omitempty"` // @extra field
 	// Chat identifier
 	ChatId int64 `json:"chat_id"`
-	// New draft message; pass null to remove the draft. All files in draft message content must be of the type inputFileLocal. Media thumbnails and captions are ignored
+	// New draft message; pass null to remove the draft
 	DraftMessage *DraftMessage `json:"draft_message,omitempty"`
 	// Topic in which the draft will be changed; pass null to change the draft for the chat itself
 	TopicId MessageTopic `json:"topic_id,omitempty"`
@@ -23114,7 +23420,7 @@ type SetChatMemberTag struct {
 	ChatId int64 `json:"chat_id"`
 	// The new tag of the member in the chat; 0-16 characters without emoji
 	Tag string `json:"tag"`
-	// Identifier of the user, which tag is changed. Chats can't have member tags
+	// Identifier of the user whose tag is changed. Chats can't have member tags
 	UserId int64 `json:"user_id"`
 }
 
@@ -23498,6 +23804,34 @@ func (t SetCommands) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "setCommands",
+		Extra:   t.Extra,
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// SetCommunityName Changes name of the given community; requires can_change_info administrator right in the community
+type SetCommunityName struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// Identifier of the community
+	CommunityId int64 `json:"community_id"`
+	// New name of the community
+	Name string `json:"name"`
+}
+
+func (t *SetCommunityName) setExtra(extra string) { t.Extra = extra }
+
+func (t SetCommunityName) GetType() string {
+	return "setCommunityName"
+}
+
+func (t SetCommunityName) MarshalJSON() ([]byte, error) {
+	type Alias SetCommunityName
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{
+		TypeStr: "setCommunityName",
 		Extra:   t.Extra,
 		Alias:   (*Alias)(&t),
 	})
@@ -26052,6 +26386,36 @@ func (t StopBusinessPoll) MarshalJSON() ([]byte, error) {
 		*Alias
 	}{
 		TypeStr: "stopBusinessPoll",
+		Extra:   t.Extra,
+		Alias:   (*Alias)(&t),
+	})
+}
+
+// StopPendingMessage Stops a pending message generation by a bot
+type StopPendingMessage struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// Identifier of the chat with the bot
+	ChatId int64 `json:"chat_id"`
+	// Unique identifier of the message draft within the message thread
+	DraftId int64 `json:"draft_id,string"`
+	// Identifier of the topic in which the action is performed; pass null if none
+	TopicId MessageTopic `json:"topic_id,omitempty"`
+}
+
+func (t *StopPendingMessage) setExtra(extra string) { t.Extra = extra }
+
+func (t StopPendingMessage) GetType() string {
+	return "stopPendingMessage"
+}
+
+func (t StopPendingMessage) MarshalJSON() ([]byte, error) {
+	type Alias StopPendingMessage
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{
+		TypeStr: "stopPendingMessage",
 		Extra:   t.Extra,
 		Alias:   (*Alias)(&t),
 	})

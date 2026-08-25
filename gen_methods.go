@@ -107,6 +107,16 @@ func (c *Client) AddChatToList(chatId int64, chatList ChatList) error {
 	return err
 }
 
+// AddChatWelcomeMessage Adds a message to the list of welcome messages of a chat; requires can_send_welcome_messages administrator right in the chat. There can be up to getOption("welcome_message_count_max") welcome messages in a chat
+func (c *Client) AddChatWelcomeMessage(chatId int64, inputMessageContent InputMessageContent) error {
+	req := &AddChatWelcomeMessage{
+		ChatId:              chatId,
+		InputMessageContent: inputMessageContent,
+	}
+	_, err := c.Send(req)
+	return err
+}
+
 // AddChecklistTasks Adds tasks to a checklist in a message
 func (c *Client) AddChecklistTasks(chatId int64, messageId int64, tasks []InputChecklistTask) error {
 	req := &AddChecklistTasks{
@@ -1439,6 +1449,22 @@ func (c *Client) CreateChatSubscriptionInviteLink(chatId int64, name string, sub
 	return resp.(*ChatInviteLink), nil
 }
 
+// CreateCommunity Creates a new community for the given chat. Returns identifier of the created community
+func (c *Client) CreateCommunity(chatId int64, name string, opts *CreateCommunityOpts) (*CommunityId, error) {
+	req := &CreateCommunity{
+		ChatId: chatId,
+		Name:   name,
+	}
+	if opts != nil {
+		req.IsChatHidden = opts.IsChatHidden
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*CommunityId), nil
+}
+
 // CreateForumTopic Creates a topic in a forum supergroup chat or a chat with a bot with topics; requires can_manage_topics administrator or can_create_topics member right in the supergroup
 func (c *Client) CreateForumTopic(chatId int64, icon *ForumTopicIcon, name string, opts *CreateForumTopicOpts) (*ForumTopicInfo, error) {
 	req := &CreateForumTopic{
@@ -1750,6 +1776,15 @@ func (c *Client) DeleteAllCallMessages(opts *DeleteAllCallMessagesOpts) error {
 	return err
 }
 
+// DeleteAllChatWelcomeMessages Deletes all welcome messages of a chat; requires can_send_welcome_messages administrator right in the chat
+func (c *Client) DeleteAllChatWelcomeMessages(chatId int64) error {
+	req := &DeleteAllChatWelcomeMessages{
+		ChatId: chatId,
+	}
+	_, err := c.Send(req)
+	return err
+}
+
 // DeleteAllRecentMessageReactionsFromSender Deletes all recent reactions added by the specified sender in a chat. Supported only for basic groups and supergroups; requires can_delete_messages administrator right
 func (c *Client) DeleteAllRecentMessageReactionsFromSender(chatId int64, senderId MessageSender) error {
 	req := &DeleteAllRecentMessageReactionsFromSender{
@@ -1907,6 +1942,16 @@ func (c *Client) DeleteChatReplyMarkup(chatId int64, messageId int64) error {
 	return err
 }
 
+// DeleteChatWelcomeMessage Deletes a welcome message of a chat; requires can_send_welcome_messages administrator right in the chat
+func (c *Client) DeleteChatWelcomeMessage(chatId int64, welcomeMessageId int32) error {
+	req := &DeleteChatWelcomeMessage{
+		ChatId:           chatId,
+		WelcomeMessageId: welcomeMessageId,
+	}
+	_, err := c.Send(req)
+	return err
+}
+
 // DeleteCommands Deletes commands supported by the bot for the given user scope and language; for bots only
 func (c *Client) DeleteCommands(languageCode string, opts *DeleteCommandsOpts) error {
 	req := &DeleteCommands{
@@ -2021,6 +2066,16 @@ func (c *Client) DeleteGroupCallMessagesBySender(groupCallId int32, senderId Mes
 func (c *Client) DeleteLanguagePack(languagePackId string) error {
 	req := &DeleteLanguagePack{
 		LanguagePackId: languagePackId,
+	}
+	_, err := c.Send(req)
+	return err
+}
+
+// DeleteMessageEphemeralContent Removes message ephemeral content and reverts message state to the original
+func (c *Client) DeleteMessageEphemeralContent(chatId int64, messageId int64) error {
+	req := &DeleteMessageEphemeralContent{
+		ChatId:    chatId,
+		MessageId: messageId,
 	}
 	_, err := c.Send(req)
 	return err
@@ -2429,6 +2484,20 @@ func (c *Client) EditBusinessStory(areas *InputStoryAreas, caption *FormattedTex
 	return resp.(*Story), nil
 }
 
+// EditCallbackQueryMessage Edits the message from which a callback query has originated with an ephemeral message; for bots only
+func (c *Client) EditCallbackQueryMessage(callbackQueryId int64, inputMessageContent InputMessageContent, opts *EditCallbackQueryMessageOpts) error {
+	req := &EditCallbackQueryMessage{
+		CallbackQueryId:     callbackQueryId,
+		InputMessageContent: inputMessageContent,
+	}
+	if opts != nil {
+		req.ProtectContent = opts.ProtectContent
+		req.ReplyMarkup = opts.ReplyMarkup
+	}
+	_, err := c.Send(req)
+	return err
+}
+
 // EditChatFolder Edits existing chat folder. Returns information about the edited chat folder
 func (c *Client) EditChatFolder(chatFolderId int32, folder *ChatFolder) (*ChatFolderInfo, error) {
 	req := &EditChatFolder{
@@ -2490,6 +2559,17 @@ func (c *Client) EditChatSubscriptionInviteLink(chatId int64, inviteLink string,
 	return resp.(*ChatInviteLink), nil
 }
 
+// EditChatWelcomeMessage Edits a welcome message of a chat; requires can_send_welcome_messages administrator right in the chat
+func (c *Client) EditChatWelcomeMessage(chatId int64, inputMessageContent InputMessageContent, welcomeMessageId int32) error {
+	req := &EditChatWelcomeMessage{
+		ChatId:              chatId,
+		InputMessageContent: inputMessageContent,
+		WelcomeMessageId:    welcomeMessageId,
+	}
+	_, err := c.Send(req)
+	return err
+}
+
 // EditCustomLanguagePackInfo Edits information about a custom local language pack in the current localization target. Can be called before authorization
 func (c *Client) EditCustomLanguagePackInfo(info *LanguagePackInfo) error {
 	req := &EditCustomLanguagePackInfo{
@@ -2499,7 +2579,7 @@ func (c *Client) EditCustomLanguagePackInfo(info *LanguagePackInfo) error {
 	return err
 }
 
-// EditEphemeralMessage Edits the text, caption or reply markup of an ephemeral message sent by the bot; for bots only
+// EditEphemeralMessage Edits the text, media, or reply markup of an ephemeral message sent by the bot; for bots only
 func (c *Client) EditEphemeralMessage(chatId int64, ephemeralMessageId int32, receiverUserId int64, opts *EditEphemeralMessageOpts) error {
 	req := &EditEphemeralMessage{
 		ChatId:             chatId,
@@ -2509,6 +2589,22 @@ func (c *Client) EditEphemeralMessage(chatId int64, ephemeralMessageId int32, re
 	if opts != nil {
 		req.InputMessageContent = opts.InputMessageContent
 		req.ReplyMarkup = opts.ReplyMarkup
+	}
+	_, err := c.Send(req)
+	return err
+}
+
+// EditEphemeralMessageCaption Edits the caption and reply markup of an ephemeral message sent by the bot; for bots only
+func (c *Client) EditEphemeralMessageCaption(chatId int64, ephemeralMessageId int32, receiverUserId int64, opts *EditEphemeralMessageCaptionOpts) error {
+	req := &EditEphemeralMessageCaption{
+		ChatId:             chatId,
+		EphemeralMessageId: ephemeralMessageId,
+		ReceiverUserId:     receiverUserId,
+	}
+	if opts != nil {
+		req.Caption = opts.Caption
+		req.ReplyMarkup = opts.ReplyMarkup
+		req.ShowCaptionAboveMedia = opts.ShowCaptionAboveMedia
 	}
 	_, err := c.Send(req)
 	return err
@@ -7308,6 +7404,24 @@ func (c *Client) LoadChats(limit int32, opts *LoadChatsOpts) error {
 	return err
 }
 
+// LoadChatWelcomeMessages Loads welcome messages of a chat; requires can_send_welcome_messages administrator right in the chat. The loaded messages will be sent through updateChatWelcomeMessages
+func (c *Client) LoadChatWelcomeMessages(chatId int64) error {
+	req := &LoadChatWelcomeMessages{
+		ChatId: chatId,
+	}
+	_, err := c.Send(req)
+	return err
+}
+
+// LoadCommunityFullInfo Returns full information about a community. The data will be sent through update.
+func (c *Client) LoadCommunityFullInfo(communityId int64) error {
+	req := &LoadCommunityFullInfo{
+		CommunityId: communityId,
+	}
+	_, err := c.Send(req)
+	return err
+}
+
 // LoadDirectMessagesChatTopics Loads more topics in a channel direct messages chat administered by the current user. The loaded topics will be sent through updateDirectMessagesChatTopic.
 func (c *Client) LoadDirectMessagesChatTopics(chatId int64, limit int32) error {
 	req := &LoadDirectMessagesChatTopics{
@@ -9359,6 +9473,8 @@ func (c *Client) SendEphemeralMessage(callbackQueryId int64, chatId int64, input
 	}
 	if opts != nil {
 		req.OnlyPreview = opts.OnlyPreview
+		req.ProtectContent = opts.ProtectContent
+		req.ReplaceCallbackQueryMessage = opts.ReplaceCallbackQueryMessage
 		req.ReplyMarkup = opts.ReplyMarkup
 		req.ReplyTo = opts.ReplyTo
 		req.TopicId = opts.TopicId
@@ -9549,11 +9665,15 @@ func (c *Client) SendQuickReplyShortcutMessages(chatId int64, sendingId int32, s
 }
 
 // SendResoldGift Sends an upgraded gift that is available for resale to another user or channel chat; gifts already owned by the current user
-func (c *Client) SendResoldGift(giftName string, ownerId MessageSender, price GiftResalePrice) (GiftResaleResult, error) {
+func (c *Client) SendResoldGift(giftName string, ownerId MessageSender, price GiftResalePrice, text *FormattedText, opts *SendResoldGiftOpts) (GiftResaleResult, error) {
 	req := &SendResoldGift{
 		GiftName: giftName,
 		OwnerId:  ownerId,
 		Price:    price,
+		Text:     text,
+	}
+	if opts != nil {
+		req.IsPrivate = opts.IsPrivate
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -9563,12 +9683,16 @@ func (c *Client) SendResoldGift(giftName string, ownerId MessageSender, price Gi
 }
 
 // SendRichMessageDraft Sends a draft for a being generated rich message; for bots only
-func (c *Client) SendRichMessageDraft(chatId int64, draftId int64, forumTopicId int32, message *InputRichMessage) error {
+func (c *Client) SendRichMessageDraft(chatId int64, draftId int64, forumTopicId int32, message *InputRichMessage, opts *SendRichMessageDraftOpts) error {
 	req := &SendRichMessageDraft{
 		ChatId:       chatId,
 		DraftId:      draftId,
 		ForumTopicId: forumTopicId,
 		Message:      message,
+	}
+	if opts != nil {
+		req.CanStop = opts.CanStop
+		req.KeepOnStop = opts.KeepOnStop
 	}
 	_, err := c.Send(req)
 	return err
@@ -9582,6 +9706,8 @@ func (c *Client) SendTextMessageDraft(chatId int64, draftId int64, forumTopicId 
 		ForumTopicId: forumTopicId,
 	}
 	if opts != nil {
+		req.CanStop = opts.CanStop
+		req.KeepOnStop = opts.KeepOnStop
 		req.Text = opts.Text
 	}
 	_, err := c.Send(req)
@@ -10209,6 +10335,16 @@ func (c *Client) SetCommands(commands []BotCommand, languageCode string, opts *S
 	}
 	if opts != nil {
 		req.Scope = opts.Scope
+	}
+	_, err := c.Send(req)
+	return err
+}
+
+// SetCommunityName Changes name of the given community; requires can_change_info administrator right in the community
+func (c *Client) SetCommunityName(communityId int64, name string) error {
+	req := &SetCommunityName{
+		CommunityId: communityId,
+		Name:        name,
 	}
 	_, err := c.Send(req)
 	return err
@@ -11221,6 +11357,19 @@ func (c *Client) StopBusinessPoll(businessConnectionId string, chatId int64, mes
 		return nil, err
 	}
 	return resp.(*BusinessMessage), nil
+}
+
+// StopPendingMessage Stops a pending message generation by a bot
+func (c *Client) StopPendingMessage(chatId int64, draftId int64, opts *StopPendingMessageOpts) error {
+	req := &StopPendingMessage{
+		ChatId:  chatId,
+		DraftId: draftId,
+	}
+	if opts != nil {
+		req.TopicId = opts.TopicId
+	}
+	_, err := c.Send(req)
+	return err
 }
 
 // StopPoll Stops a poll

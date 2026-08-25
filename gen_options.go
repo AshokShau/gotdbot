@@ -191,6 +191,12 @@ type CreateChatInviteLinkOpts struct {
 	CreatesJoinRequest bool
 }
 
+// CreateCommunityOpts contains optional parameters for CreateCommunity
+type CreateCommunityOpts struct {
+	// Pass true if the chat will be visible only to administrators of the community
+	IsChatHidden bool
+}
+
 // CreateForumTopicOpts contains optional parameters for CreateForumTopic
 type CreateForumTopicOpts struct {
 	// Pass true if the name of the topic wasn't entered explicitly; for chats with bots only
@@ -377,6 +383,14 @@ type EditBusinessMessageTextOpts struct {
 	ReplyMarkup ReplyMarkup
 }
 
+// EditCallbackQueryMessageOpts contains optional parameters for EditCallbackQueryMessage
+type EditCallbackQueryMessageOpts struct {
+	// Pass true if the content of the message must be protected from forwarding and saving
+	ProtectContent bool
+	// The new message reply markup; pass null if none
+	ReplyMarkup ReplyMarkup
+}
+
 // EditChatInviteLinkOpts contains optional parameters for EditChatInviteLink
 type EditChatInviteLinkOpts struct {
 	// Pass true if users joining the chat via the link need to be approved by chat administrators. In this case, member_limit must be 0
@@ -389,6 +403,16 @@ type EditEphemeralMessageOpts struct {
 	InputMessageContent InputMessageContent
 	// The new message reply markup; pass null if none
 	ReplyMarkup ReplyMarkup
+}
+
+// EditEphemeralMessageCaptionOpts contains optional parameters for EditEphemeralMessageCaption
+type EditEphemeralMessageCaptionOpts struct {
+	// New message content caption; pass null to remove caption; 0-getOption("message_caption_length_max") characters
+	Caption *FormattedText
+	// The new message reply markup; pass null if none
+	ReplyMarkup ReplyMarkup
+	// Pass true to show the caption above the media; otherwise, the caption will be shown below the media. May be true only for animation, photo, and video messages
+	ShowCaptionAboveMedia bool
 }
 
 // EditForumTopicOpts contains optional parameters for EditForumTopic
@@ -1249,6 +1273,10 @@ type SendChatActionOpts struct {
 type SendEphemeralMessageOpts struct {
 	// Pass true to get a fake message instead of actually sending them
 	OnlyPreview bool
+	// Pass true if the content of the message must be protected from forwarding and saving; for bots only
+	ProtectContent bool
+	// Pass true if the ephemeral message must replace the message from which the callback query originated; for bots only
+	ReplaceCallbackQueryMessage bool
 	// Markup for replying to the message; pass null if none; for bots only
 	ReplyMarkup ReplyMarkup
 	// Information about the message to be replied; pass null if none. The message can be an incoming ephemeral message
@@ -1311,8 +1339,26 @@ type SendPhoneNumberCodeOpts struct {
 	Settings *PhoneNumberAuthenticationSettings
 }
 
+// SendResoldGiftOpts contains optional parameters for SendResoldGift
+type SendResoldGiftOpts struct {
+	// Pass true to show gift text and sender only to the gift receiver; otherwise, everyone will be able to see them
+	IsPrivate bool
+}
+
+// SendRichMessageDraftOpts contains optional parameters for SendRichMessageDraft
+type SendRichMessageDraftOpts struct {
+	// Pass true to show the user a button to stop further drafts
+	CanStop bool
+	// Pass true to keep the current draft when the user stops further generation
+	KeepOnStop bool
+}
+
 // SendTextMessageDraftOpts contains optional parameters for SendTextMessageDraft
 type SendTextMessageDraftOpts struct {
+	// Pass true to show the user a button to stop further drafts
+	CanStop bool
+	// Pass true to keep the current draft when the user stops further generation
+	KeepOnStop bool
 	// Draft text of the message; pass null to show a "Thinking..." placeholder
 	Text *FormattedText
 }
@@ -1415,7 +1461,7 @@ type SetChatDirectMessagesGroupOpts struct {
 
 // SetChatDraftMessageOpts contains optional parameters for SetChatDraftMessage
 type SetChatDraftMessageOpts struct {
-	// New draft message; pass null to remove the draft. All files in draft message content must be of the type inputFileLocal. Media thumbnails and captions are ignored
+	// New draft message; pass null to remove the draft
 	DraftMessage *DraftMessage
 	// Topic in which the draft will be changed; pass null to change the draft for the chat itself
 	TopicId MessageTopic
@@ -1637,6 +1683,12 @@ type StartLiveStoryOpts struct {
 type StopBusinessPollOpts struct {
 	// The new message reply markup; pass null if none
 	ReplyMarkup ReplyMarkup
+}
+
+// StopPendingMessageOpts contains optional parameters for StopPendingMessage
+type StopPendingMessageOpts struct {
+	// Identifier of the topic in which the action is performed; pass null if none
+	TopicId MessageTopic
 }
 
 // StopPollOpts contains optional parameters for StopPoll

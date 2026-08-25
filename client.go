@@ -233,11 +233,7 @@ func (c *Client) processor() {
 				c.wMu.RLock()
 				if len(c.waiters) > 0 {
 					var matchedWaiters []*Waiter
-
-					var chatID int64
-					if msg, ok := getMessageFromUpdate(update); ok {
-						chatID = msg.ChatId
-					}
+					chatID := getChatIDFromUpdate(update)
 
 					collectWaiters := func(id int64) {
 						if inner, ok := c.waiters[id]; ok {
@@ -509,6 +505,11 @@ func (c *Client) messageSendFailedHandler(client *Client, u *UpdateMessageSendFa
 		ch.(chan TlObject) <- u
 		c.pendingMessages.Delete(key)
 	}
+	if u.Message.Id != 0 {
+		go func() {
+			_ = c.DeleteMessages(u.Message.ChatId, []int64{u.Message.Id}, &DeleteMessagesOpts{Revoke: false})
+		}()
+	}
 	return nil
 }
 
@@ -757,11 +758,15 @@ func (c *Client) waitMessages(msgs *Messages) (*Messages, error) {
 				errs[resIdx] = errObj
 			} else if u, ok := res.(*UpdateMessageSendFailed); ok {
 				errs[resIdx] = u.Error
-				msgs.Messages[resIdx] = *u.Message
+				if u.Message != nil {
+					msgs.Messages[resIdx] = *u.Message
+				}
 			} else if finalMsg, ok := res.(*Message); ok {
 				msgs.Messages[resIdx] = *finalMsg
 			} else if u, ok := res.(*UpdateMessageSendSucceeded); ok {
-				msgs.Messages[resIdx] = *u.Message
+				if u.Message != nil {
+					msgs.Messages[resIdx] = *u.Message
+				}
 			}
 			receivedCount++
 		case <-ctx.Done():
