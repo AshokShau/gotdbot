@@ -26,11 +26,7 @@ func (t AcceptCall) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "acceptCall",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "acceptCall", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // AcceptOauthRequest Accepts an OAuth authorization request. Returns an HTTP URL to open after successful authorization.
@@ -58,11 +54,7 @@ func (t AcceptOauthRequest) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "acceptOauthRequest",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "acceptOauthRequest", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // AcceptTermsOfService Accepts Telegram terms of service
@@ -84,11 +76,7 @@ func (t AcceptTermsOfService) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "acceptTermsOfService",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "acceptTermsOfService", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ActivateStoryStealthMode Activates stealth mode for stories, which hides all views of stories from the current user in the last "story_stealth_mode_past_period" seconds
@@ -108,11 +96,7 @@ func (t ActivateStoryStealthMode) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "activateStoryStealthMode",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "activateStoryStealthMode", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // AddBotMediaPreview Adds a new media preview to the beginning of the list of media previews of a bot. Returns the added preview after addition is completed server-side. The total number of previews must not exceed getOption("bot_media_preview_count_max") for the given language
@@ -138,11 +122,7 @@ func (t AddBotMediaPreview) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "addBotMediaPreview",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "addBotMediaPreview", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // AddChatFolderByInviteLink Adds a chat folder by an invite link
@@ -166,11 +146,7 @@ func (t AddChatFolderByInviteLink) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "addChatFolderByInviteLink",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "addChatFolderByInviteLink", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // AddChatMember Adds a new member to a chat; requires can_invite_users member right. Members can't be added to private or secret chats. Returns information about members that weren't added
@@ -196,11 +172,7 @@ func (t AddChatMember) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "addChatMember",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "addChatMember", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // AddChatMembers Adds multiple new members to a chat; requires can_invite_users member right. Currently, this method is available only in supergroups and channels.
@@ -224,11 +196,7 @@ func (t AddChatMembers) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "addChatMembers",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "addChatMembers", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // AddChatToList Adds a chat to a chat list. A chat can't be simultaneously in Main and Archive chat lists, so it is automatically removed from another one if needed
@@ -252,11 +220,7 @@ func (t AddChatToList) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "addChatToList",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "addChatToList", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // AddChatWelcomeMessage Adds a message to the list of welcome messages of a chat; requires can_send_welcome_messages administrator right in the chat. There can be up to getOption("welcome_message_count_max") welcome messages in a chat
@@ -280,11 +244,7 @@ func (t AddChatWelcomeMessage) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "addChatWelcomeMessage",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "addChatWelcomeMessage", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // AddChecklistTasks Adds tasks to a checklist in a message
@@ -310,11 +270,7 @@ func (t AddChecklistTasks) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "addChecklistTasks",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "addChecklistTasks", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // AddContact Adds a user to the contact list or edits an existing contact by their user identifier
@@ -340,11 +296,7 @@ func (t AddContact) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "addContact",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "addContact", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // AddCustomServerLanguagePack Adds a custom server language pack to the list of installed language packs in current localization target. Can be called before authorization
@@ -366,11 +318,7 @@ func (t AddCustomServerLanguagePack) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "addCustomServerLanguagePack",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "addCustomServerLanguagePack", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // AddFavoriteSticker Adds a new sticker to the list of favorite stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first.
@@ -392,11 +340,7 @@ func (t AddFavoriteSticker) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "addFavoriteSticker",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "addFavoriteSticker", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // AddFileToDownloads Adds a file from a message to the list of file downloads. Download progress and completion of the download will be notified through updateFile updates.
@@ -424,11 +368,7 @@ func (t AddFileToDownloads) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "addFileToDownloads",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "addFileToDownloads", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // AddGiftCollectionGifts Adds gifts to the beginning of a previously created collection. If the collection is owned by a channel chat, then requires can_post_messages administrator right in the channel chat. Returns the changed collection
@@ -454,11 +394,7 @@ func (t AddGiftCollectionGifts) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "addGiftCollectionGifts",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "addGiftCollectionGifts", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // AddLocalMessage Adds a local message to a chat. The message is persistent across application restarts only if the message database is used. Returns the added message
@@ -488,11 +424,7 @@ func (t AddLocalMessage) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "addLocalMessage",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "addLocalMessage", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // AddLoginPasskey Adds a passkey allowed to be used for the login by the current user and returns the added passkey. Call getPasskeyParameters to get parameters for creating of the passkey
@@ -516,11 +448,7 @@ func (t AddLoginPasskey) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "addLoginPasskey",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "addLoginPasskey", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // AddLogMessage Adds a message to TDLib internal log. Can be called synchronously
@@ -544,11 +472,7 @@ func (t AddLogMessage) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "addLogMessage",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "addLogMessage", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // AddMessageReaction Adds a reaction or a tag to a message. Use getMessageAvailableReactions to receive the list of available reactions for the message
@@ -578,11 +502,7 @@ func (t AddMessageReaction) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "addMessageReaction",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "addMessageReaction", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // AddNetworkStatistics Adds the specified data to data usage statistics. Can be called before authorization
@@ -604,11 +524,7 @@ func (t AddNetworkStatistics) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "addNetworkStatistics",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "addNetworkStatistics", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // AddOffer Sends a suggested post based on a previously sent message in a channel direct messages chat. Can be also used to suggest price or time change for an existing suggested post.
@@ -634,11 +550,7 @@ func (t AddOffer) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "addOffer",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "addOffer", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // AddPendingLiveStoryReaction Adds pending paid reaction in a live story group call. Can't be used in live stories posted by the current user.
@@ -662,11 +574,7 @@ func (t AddPendingLiveStoryReaction) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "addPendingLiveStoryReaction",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "addPendingLiveStoryReaction", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // AddPendingPaidMessageReaction Adds the paid message reaction to a message. Use getMessageAvailableReactions to check whether the reaction is available for the message
@@ -694,11 +602,7 @@ func (t AddPendingPaidMessageReaction) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "addPendingPaidMessageReaction",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "addPendingPaidMessageReaction", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // AddPollOption Adds an option to a poll
@@ -724,11 +628,7 @@ func (t AddPollOption) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "addPollOption",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "addPollOption", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // AddProfileAudio Adds an audio file to the beginning of the profile audio files of the current user
@@ -750,11 +650,7 @@ func (t AddProfileAudio) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "addProfileAudio",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "addProfileAudio", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // AddProxy Adds a proxy server for network requests. Can be called before authorization
@@ -780,11 +676,7 @@ func (t AddProxy) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "addProxy",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "addProxy", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // AddQuickReplyShortcutInlineQueryResultMessage Adds a message to a quick reply shortcut via inline bot. If shortcut doesn't exist and there are less than getOption("quick_reply_shortcut_count_max") shortcuts, then a new shortcut is created.
@@ -814,11 +706,7 @@ func (t AddQuickReplyShortcutInlineQueryResultMessage) MarshalJSON() ([]byte, er
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "addQuickReplyShortcutInlineQueryResultMessage",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "addQuickReplyShortcutInlineQueryResultMessage", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // AddQuickReplyShortcutMessage Adds a message to a quick reply shortcut. If shortcut doesn't exist and there are less than getOption("quick_reply_shortcut_count_max") shortcuts, then a new shortcut is created.
@@ -844,11 +732,7 @@ func (t AddQuickReplyShortcutMessage) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "addQuickReplyShortcutMessage",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "addQuickReplyShortcutMessage", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // AddQuickReplyShortcutMessageAlbum Adds 2-10 messages grouped together into an album to a quick reply shortcut. Currently, only audio, document, photo and video messages can be grouped into an album.
@@ -874,11 +758,7 @@ func (t AddQuickReplyShortcutMessageAlbum) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "addQuickReplyShortcutMessageAlbum",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "addQuickReplyShortcutMessageAlbum", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // AddRecentlyFoundChat Adds a chat to the list of recently found chats. The chat is added to the beginning of the list. If the chat is already in the list, it will be removed from the list first
@@ -900,11 +780,7 @@ func (t AddRecentlyFoundChat) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "addRecentlyFoundChat",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "addRecentlyFoundChat", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // AddRecentSticker Manually adds a new sticker to the list of recently used stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first.
@@ -928,11 +804,7 @@ func (t AddRecentSticker) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "addRecentSticker",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "addRecentSticker", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // AddSavedAnimation Manually adds a new animation to the list of saved animations. The new animation is added to the beginning of the list. If the animation was already in the list, it is removed first.
@@ -954,11 +826,7 @@ func (t AddSavedAnimation) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "addSavedAnimation",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "addSavedAnimation", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // AddSavedNotificationSound Adds a new notification sound to the list of saved notification sounds. The new notification sound is added to the top of the list. If it is already in the list, its position isn't changed
@@ -980,11 +848,7 @@ func (t AddSavedNotificationSound) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "addSavedNotificationSound",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "addSavedNotificationSound", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // AddStickerToSet Adds a new sticker to a set
@@ -1010,11 +874,7 @@ func (t AddStickerToSet) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "addStickerToSet",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "addStickerToSet", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // AddStoryAlbumStories Adds stories to the beginning of a previously created story album. If the album is owned by a supergroup or a channel chat, then
@@ -1040,11 +900,7 @@ func (t AddStoryAlbumStories) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "addStoryAlbumStories",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "addStoryAlbumStories", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // AddTextCompositionStyle Adds a custom text composition style to the list of used by the user styles. May return an error with a message "TONES_SAVED_TOO_MANY"
@@ -1066,11 +922,7 @@ func (t AddTextCompositionStyle) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "addTextCompositionStyle",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "addTextCompositionStyle", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // AddWebBrowserSettingsException Adds a special handling for the opening of the specified URL
@@ -1094,11 +946,7 @@ func (t AddWebBrowserSettingsException) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "addWebBrowserSettingsException",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "addWebBrowserSettingsException", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // AllowBotToSendMessages Allows the specified bot to send messages to the user
@@ -1120,11 +968,7 @@ func (t AllowBotToSendMessages) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "allowBotToSendMessages",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "allowBotToSendMessages", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // AllowUnpaidMessagesFromUser Allows the specified user to send unpaid private messages to the current user by adding a rule to userPrivacySettingAllowUnpaidMessages
@@ -1148,11 +992,7 @@ func (t AllowUnpaidMessagesFromUser) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "allowUnpaidMessagesFromUser",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "allowUnpaidMessagesFromUser", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // AnswerCallbackQuery Sets the result of a callback query; for bots only
@@ -1182,11 +1022,7 @@ func (t AnswerCallbackQuery) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "answerCallbackQuery",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "answerCallbackQuery", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // AnswerChatJoinRequestQuery Sets the result of a chat join query; for bots only
@@ -1212,11 +1048,7 @@ func (t AnswerChatJoinRequestQuery) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "answerChatJoinRequestQuery",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "answerChatJoinRequestQuery", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // AnswerCustomQuery Answers a custom query; for bots only
@@ -1240,11 +1072,7 @@ func (t AnswerCustomQuery) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "answerCustomQuery",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "answerCustomQuery", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // AnswerGuestQuery Sets the result of a guest query; for bots only
@@ -1268,11 +1096,7 @@ func (t AnswerGuestQuery) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "answerGuestQuery",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "answerGuestQuery", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // AnswerInlineQuery Sets the result of an inline query; for bots only
@@ -1304,11 +1128,7 @@ func (t AnswerInlineQuery) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "answerInlineQuery",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "answerInlineQuery", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // AnswerPreCheckoutQuery Sets the result of a pre-checkout query; for bots only
@@ -1332,11 +1152,7 @@ func (t AnswerPreCheckoutQuery) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "answerPreCheckoutQuery",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "answerPreCheckoutQuery", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // AnswerShippingQuery Sets the result of a shipping query; for bots only
@@ -1362,11 +1178,7 @@ func (t AnswerShippingQuery) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "answerShippingQuery",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "answerShippingQuery", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // AnswerWebAppQuery Sets the result of interaction with a Web App and sends corresponding message on behalf of the user to the chat from which the query originated; for bots only
@@ -1390,11 +1202,7 @@ func (t AnswerWebAppQuery) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "answerWebAppQuery",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "answerWebAppQuery", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ApplyPremiumGiftCode Applies a Telegram Premium gift code
@@ -1416,11 +1224,7 @@ func (t ApplyPremiumGiftCode) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "applyPremiumGiftCode",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "applyPremiumGiftCode", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ApproveSuggestedPost Approves a suggested post in a channel direct messages chat
@@ -1446,11 +1250,7 @@ func (t ApproveSuggestedPost) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "approveSuggestedPost",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "approveSuggestedPost", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // AssignStoreTransaction Informs server about an in-store purchase. For official applications only
@@ -1474,11 +1274,7 @@ func (t AssignStoreTransaction) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "assignStoreTransaction",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "assignStoreTransaction", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // BanChatMember Bans a member in a chat; requires can_restrict_members administrator right. Members can't be banned in private or secret chats. In supergroups and channels, the user will not be able to return to the group on their own using invite links, etc., unless unbanned first
@@ -1506,11 +1302,7 @@ func (t BanChatMember) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "banChatMember",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "banChatMember", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // BanGroupCallParticipants Bans users from a group call not bound to a chat; requires groupCall.is_owned. Only the owner of the group call can invite the banned users back
@@ -1534,11 +1326,7 @@ func (t BanGroupCallParticipants) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "banGroupCallParticipants",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "banGroupCallParticipants", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // BlockMessageSenderFromReplies Blocks an original sender of a message in the Replies chat
@@ -1566,11 +1354,7 @@ func (t BlockMessageSenderFromReplies) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "blockMessageSenderFromReplies",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "blockMessageSenderFromReplies", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // BoostChat Boosts a chat and returns the list of available chat boost slots for the current user after the boost
@@ -1594,11 +1378,7 @@ func (t BoostChat) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "boostChat",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "boostChat", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // BuyGiftUpgrade Pays for upgrade of a regular gift that is owned by another user or channel chat
@@ -1624,11 +1404,7 @@ func (t BuyGiftUpgrade) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "buyGiftUpgrade",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "buyGiftUpgrade", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CanBotSendMessages Checks whether the specified bot can send messages to the user. Returns a 404 error if can't and the access can be granted by call to allowBotToSendMessages
@@ -1650,11 +1426,7 @@ func (t CanBotSendMessages) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "canBotSendMessages",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "canBotSendMessages", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CancelDownloadFile Stops the downloading of a file. If a file has already been downloaded, does nothing
@@ -1678,11 +1450,7 @@ func (t CancelDownloadFile) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "cancelDownloadFile",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "cancelDownloadFile", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CancelPasswordReset Cancels reset of 2-step verification password. The method can be called if passwordState.pending_reset_date > 0
@@ -1702,11 +1470,7 @@ func (t CancelPasswordReset) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "cancelPasswordReset",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "cancelPasswordReset", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CancelPreliminaryUploadFile Stops the preliminary uploading of a file. Supported only for files uploaded by using preliminaryUploadFile
@@ -1728,11 +1492,7 @@ func (t CancelPreliminaryUploadFile) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "cancelPreliminaryUploadFile",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "cancelPreliminaryUploadFile", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CancelRecoveryEmailAddressVerification Cancels verification of the 2-step verification recovery email address
@@ -1752,11 +1512,7 @@ func (t CancelRecoveryEmailAddressVerification) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "cancelRecoveryEmailAddressVerification",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "cancelRecoveryEmailAddressVerification", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CanPostStory Checks whether the current user can post a story on behalf of a chat; requires can_post_stories administrator right for supergroup and channel chats
@@ -1778,11 +1534,7 @@ func (t CanPostStory) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "canPostStory",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "canPostStory", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CanPurchaseFromStore Checks whether an in-store purchase is possible. Must be called before any in-store purchase. For official applications only
@@ -1804,11 +1556,7 @@ func (t CanPurchaseFromStore) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "canPurchaseFromStore",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "canPurchaseFromStore", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CanSendGift Checks whether a gift with next_send_date in the future can be sent already
@@ -1830,11 +1578,7 @@ func (t CanSendGift) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "canSendGift",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "canSendGift", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CanSendMessageToUser Checks whether the current user can message another user or try to create a chat with them
@@ -1858,11 +1602,7 @@ func (t CanSendMessageToUser) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "canSendMessageToUser",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "canSendMessageToUser", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CanTransferOwnership Checks whether the current session can be used to transfer a chat ownership to another user
@@ -1882,11 +1622,7 @@ func (t CanTransferOwnership) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "canTransferOwnership",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "canTransferOwnership", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ChangeImportedContacts Changes imported contacts using the list of contacts saved on the device. Imports newly added contacts and, if at least the file database is enabled, deletes recently deleted contacts.
@@ -1908,11 +1644,7 @@ func (t ChangeImportedContacts) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "changeImportedContacts",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "changeImportedContacts", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ChangeStickerSet Installs/uninstalls or activates/archives a sticker set
@@ -1938,11 +1670,7 @@ func (t ChangeStickerSet) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "changeStickerSet",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "changeStickerSet", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ChangeWebBrowserSettings Changes web browser settings
@@ -1966,11 +1694,7 @@ func (t ChangeWebBrowserSettings) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "changeWebBrowserSettings",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "changeWebBrowserSettings", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CheckAuthenticationBotToken Checks the authentication token of a bot; to log in as a bot. Works only when the current authorization state is authorizationStateWaitPhoneNumber. Can be used instead of setAuthenticationPhoneNumber and checkAuthenticationCode to log in
@@ -1992,11 +1716,7 @@ func (t CheckAuthenticationBotToken) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "checkAuthenticationBotToken",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "checkAuthenticationBotToken", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CheckAuthenticationCode Checks the authentication code. Works only when the current authorization state is authorizationStateWaitCode
@@ -2018,11 +1738,7 @@ func (t CheckAuthenticationCode) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "checkAuthenticationCode",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "checkAuthenticationCode", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CheckAuthenticationEmailCode Checks the authentication of an email address. Works only when the current authorization state is authorizationStateWaitEmailCode
@@ -2044,11 +1760,7 @@ func (t CheckAuthenticationEmailCode) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "checkAuthenticationEmailCode",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "checkAuthenticationEmailCode", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CheckAuthenticationPasskey Checks a passkey to log in to the corresponding account. Call getAuthenticationPasskeyParameters to get parameters for the passkey. Works only when the current authorization state is
@@ -2078,11 +1790,7 @@ func (t CheckAuthenticationPasskey) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "checkAuthenticationPasskey",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "checkAuthenticationPasskey", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CheckAuthenticationPassword Checks the 2-step verification password for correctness. Works only when the current authorization state is authorizationStateWaitPassword
@@ -2104,11 +1812,7 @@ func (t CheckAuthenticationPassword) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "checkAuthenticationPassword",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "checkAuthenticationPassword", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CheckAuthenticationPasswordRecoveryCode Checks whether a 2-step verification password recovery code sent to an email address is valid. Works only when the current authorization state is authorizationStateWaitPassword
@@ -2130,11 +1834,7 @@ func (t CheckAuthenticationPasswordRecoveryCode) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "checkAuthenticationPasswordRecoveryCode",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "checkAuthenticationPasswordRecoveryCode", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CheckAuthenticationPremiumPurchase Checks whether an in-store purchase of Telegram Premium is possible before authorization. Works only when the current authorization state is authorizationStateWaitPremiumPurchase
@@ -2160,11 +1860,7 @@ func (t CheckAuthenticationPremiumPurchase) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "checkAuthenticationPremiumPurchase",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "checkAuthenticationPremiumPurchase", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CheckAuthenticationWebToken Checks a web token to log in to the corresponding account; for official Telegram apps only. Works only when the current authorization state is
@@ -2188,11 +1884,7 @@ func (t CheckAuthenticationWebToken) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "checkAuthenticationWebToken",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "checkAuthenticationWebToken", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CheckBotUsername Checks whether a username can be set for a new bot. Use checkChatUsername to check username for other chat types
@@ -2214,11 +1906,7 @@ func (t CheckBotUsername) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "checkBotUsername",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "checkBotUsername", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CheckChatFolderInviteLink Checks the validity of an invite link for a chat folder and returns information about the corresponding chat folder
@@ -2240,11 +1928,7 @@ func (t CheckChatFolderInviteLink) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "checkChatFolderInviteLink",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "checkChatFolderInviteLink", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CheckChatInviteLink Checks the validity of an invite link for a chat and returns information about the corresponding chat
@@ -2266,11 +1950,7 @@ func (t CheckChatInviteLink) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "checkChatInviteLink",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "checkChatInviteLink", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CheckChatUsername Checks whether a username can be set for a chat
@@ -2294,11 +1974,7 @@ func (t CheckChatUsername) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "checkChatUsername",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "checkChatUsername", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CheckCreatedPublicChatsLimit Checks whether the maximum number of owned public chats has been reached. Returns corresponding error if the limit was reached. The limit can be increased with Telegram Premium
@@ -2320,11 +1996,7 @@ func (t CheckCreatedPublicChatsLimit) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "checkCreatedPublicChatsLimit",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "checkCreatedPublicChatsLimit", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CheckEmailAddressVerificationCode Checks the email address verification code for Telegram Passport
@@ -2346,11 +2018,7 @@ func (t CheckEmailAddressVerificationCode) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "checkEmailAddressVerificationCode",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "checkEmailAddressVerificationCode", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CheckLoginEmailAddressCode Checks the login email address authentication
@@ -2372,11 +2040,7 @@ func (t CheckLoginEmailAddressCode) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "checkLoginEmailAddressCode",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "checkLoginEmailAddressCode", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CheckOauthRequestMatchCode Checks a match-code for an OAuth authorization request. If fails, then the authorization request has failed. Otherwise,
@@ -2400,11 +2064,7 @@ func (t CheckOauthRequestMatchCode) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "checkOauthRequestMatchCode",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "checkOauthRequestMatchCode", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CheckPasswordRecoveryCode Checks whether a 2-step verification password recovery code sent to an email address is valid
@@ -2426,11 +2086,7 @@ func (t CheckPasswordRecoveryCode) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "checkPasswordRecoveryCode",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "checkPasswordRecoveryCode", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CheckPhoneNumberCode Checks the authentication code and completes the request for which the code was sent if appropriate
@@ -2452,11 +2108,7 @@ func (t CheckPhoneNumberCode) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "checkPhoneNumberCode",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "checkPhoneNumberCode", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CheckPremiumGiftCode Returns information about a Telegram Premium gift code
@@ -2478,11 +2130,7 @@ func (t CheckPremiumGiftCode) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "checkPremiumGiftCode",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "checkPremiumGiftCode", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CheckQuickReplyShortcutName Checks validness of a name for a quick reply shortcut. Can be called synchronously
@@ -2504,11 +2152,7 @@ func (t CheckQuickReplyShortcutName) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "checkQuickReplyShortcutName",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "checkQuickReplyShortcutName", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CheckRecoveryEmailAddressCode Checks the 2-step verification recovery email address verification code
@@ -2530,11 +2174,7 @@ func (t CheckRecoveryEmailAddressCode) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "checkRecoveryEmailAddressCode",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "checkRecoveryEmailAddressCode", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CheckStickerSetName Checks whether a name can be used for a new sticker set
@@ -2556,11 +2196,7 @@ func (t CheckStickerSetName) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "checkStickerSetName",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "checkStickerSetName", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CheckWebAppFileDownload Checks whether a file can be downloaded and saved locally by Web App request
@@ -2586,11 +2222,7 @@ func (t CheckWebAppFileDownload) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "checkWebAppFileDownload",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "checkWebAppFileDownload", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CleanFileName Removes potentially dangerous characters from the name of a file. Returns an empty string on failure. Can be called synchronously
@@ -2612,11 +2244,7 @@ func (t CleanFileName) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "cleanFileName",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "cleanFileName", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ClearAllDraftMessages Clears message drafts in all chats
@@ -2638,11 +2266,7 @@ func (t ClearAllDraftMessages) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "clearAllDraftMessages",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "clearAllDraftMessages", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ClearAutosaveSettingsExceptions Clears the list of all autosave settings exceptions. The method is guaranteed to work only after at least one call to getAutosaveSettings
@@ -2662,11 +2286,7 @@ func (t ClearAutosaveSettingsExceptions) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "clearAutosaveSettingsExceptions",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "clearAutosaveSettingsExceptions", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ClearImportedContacts Clears all imported contacts, contact list remains unchanged
@@ -2686,11 +2306,7 @@ func (t ClearImportedContacts) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "clearImportedContacts",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "clearImportedContacts", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ClearRecentEmojiStatuses Clears the list of recently used emoji statuses for self status
@@ -2710,11 +2326,7 @@ func (t ClearRecentEmojiStatuses) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "clearRecentEmojiStatuses",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "clearRecentEmojiStatuses", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ClearRecentlyFoundChats Clears the list of recently found chats
@@ -2734,11 +2346,7 @@ func (t ClearRecentlyFoundChats) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "clearRecentlyFoundChats",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "clearRecentlyFoundChats", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ClearRecentReactions Clears the list of recently used reactions
@@ -2758,11 +2366,7 @@ func (t ClearRecentReactions) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "clearRecentReactions",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "clearRecentReactions", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ClearRecentStickers Clears the list of recently used stickers
@@ -2784,11 +2388,7 @@ func (t ClearRecentStickers) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "clearRecentStickers",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "clearRecentStickers", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ClearSearchedForTags Clears the list of recently searched for hashtags or cashtags
@@ -2810,11 +2410,7 @@ func (t ClearSearchedForTags) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "clearSearchedForTags",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "clearSearchedForTags", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ClickAnimatedEmojiMessage Informs TDLib that a message with an animated emoji was clicked by the user. Returns a big animated sticker to be played or a 404 error if usual animation needs to be played
@@ -2838,11 +2434,7 @@ func (t ClickAnimatedEmojiMessage) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "clickAnimatedEmojiMessage",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "clickAnimatedEmojiMessage", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ClickChatSponsoredMessage Informs TDLib that the user opened the sponsored chat via the button, the name, the chat photo, a mention in the sponsored message text, or the media in the sponsored message
@@ -2870,11 +2462,7 @@ func (t ClickChatSponsoredMessage) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "clickChatSponsoredMessage",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "clickChatSponsoredMessage", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ClickPremiumSubscriptionButton Informs TDLib that the user clicked Premium subscription button on the Premium features screen
@@ -2894,11 +2482,7 @@ func (t ClickPremiumSubscriptionButton) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "clickPremiumSubscriptionButton",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "clickPremiumSubscriptionButton", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ClickVideoMessageAdvertisement Informs TDLib that the user clicked a video message advertisement
@@ -2920,11 +2504,7 @@ func (t ClickVideoMessageAdvertisement) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "clickVideoMessageAdvertisement",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "clickVideoMessageAdvertisement", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // Close Closes the TDLib instance. All databases will be flushed to disk and properly closed. After the close completes, updateAuthorizationState with authorizationStateClosed will be sent. Can be called before initialization
@@ -2944,11 +2524,7 @@ func (t Close) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "close",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "close", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CloseChat Informs TDLib that the chat is closed by the user. Many useful activities depend on the chat being opened or closed
@@ -2970,11 +2546,7 @@ func (t CloseChat) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "closeChat",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "closeChat", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CloseGiftAuction Informs TDLib that a gift auction was closed by the user
@@ -2996,11 +2568,7 @@ func (t CloseGiftAuction) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "closeGiftAuction",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "closeGiftAuction", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CloseSecretChat Closes a secret chat, effectively transferring its state to secretChatStateClosed
@@ -3022,11 +2590,7 @@ func (t CloseSecretChat) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "closeSecretChat",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "closeSecretChat", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CloseStory Informs TDLib that a story is closed by the user
@@ -3050,11 +2614,7 @@ func (t CloseStory) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "closeStory",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "closeStory", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CloseWebApp Informs TDLib that a previously opened Web App was closed
@@ -3076,11 +2636,7 @@ func (t CloseWebApp) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "closeWebApp",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "closeWebApp", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CommitPendingLiveStoryReactions Applies all pending paid reactions in a live story group call
@@ -3102,11 +2658,7 @@ func (t CommitPendingLiveStoryReactions) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "commitPendingLiveStoryReactions",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "commitPendingLiveStoryReactions", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CommitPendingPaidMessageReactions Applies all pending paid reactions on a message
@@ -3130,11 +2682,7 @@ func (t CommitPendingPaidMessageReactions) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "commitPendingPaidMessageReactions",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "commitPendingPaidMessageReactions", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ComposeRichMessageWithAi Changes a rich message using an AI model. May return an error with a message "AICOMPOSE_FLOOD_PREMIUM" if Telegram Premium is required to send further requests
@@ -3164,11 +2712,7 @@ func (t ComposeRichMessageWithAi) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "composeRichMessageWithAi",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "composeRichMessageWithAi", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ComposeTextWithAi Changes text using an AI model; must not be used in secret chats. May return an error with a message "AICOMPOSE_FLOOD_PREMIUM" if Telegram Premium is required to send further requests
@@ -3196,11 +2740,7 @@ func (t ComposeTextWithAi) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "composeTextWithAi",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "composeTextWithAi", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ConfirmBusinessConnectedBot Confirms an unconfirmed business connection of the current user from another device
@@ -3222,11 +2762,7 @@ func (t ConfirmBusinessConnectedBot) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "confirmBusinessConnectedBot",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "confirmBusinessConnectedBot", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ConfirmQrCodeAuthentication Confirms QR code authentication on another device. Returns created session on success
@@ -3248,11 +2784,7 @@ func (t ConfirmQrCodeAuthentication) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "confirmQrCodeAuthentication",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "confirmQrCodeAuthentication", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ConfirmSession Confirms an unconfirmed session of the current user from another device
@@ -3274,11 +2806,7 @@ func (t ConfirmSession) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "confirmSession",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "confirmSession", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ConnectAffiliateProgram Connects an affiliate program to the given affiliate. Returns information about the connected affiliate program
@@ -3302,11 +2830,7 @@ func (t ConnectAffiliateProgram) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "connectAffiliateProgram",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "connectAffiliateProgram", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CraftGift Crafts a new gift from other gifts that will be permanently lost
@@ -3328,11 +2852,7 @@ func (t CraftGift) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "craftGift",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "craftGift", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CreateBasicGroupChat Returns an existing chat corresponding to a known basic group
@@ -3356,11 +2876,7 @@ func (t CreateBasicGroupChat) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "createBasicGroupChat",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "createBasicGroupChat", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CreateBot Creates a bot which will be managed by another bot. Returns the created bot. May return an error with a message "BOT_CREATE_LIMIT_EXCEEDED"
@@ -3388,11 +2904,7 @@ func (t CreateBot) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "createBot",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "createBot", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CreateBusinessChatLink Creates a business chat link for the current account. Requires Telegram Business subscription. There can be up to getOption("business_chat_link_count_max") links created. Returns the created link
@@ -3414,11 +2926,7 @@ func (t CreateBusinessChatLink) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "createBusinessChatLink",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "createBusinessChatLink", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CreateCall Creates a new call
@@ -3444,11 +2952,7 @@ func (t CreateCall) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "createCall",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "createCall", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CreateChatFolder Creates new chat folder. Returns information about the created chat folder. There can be up to getOption("chat_folder_count_max") chat folders, but the limit can be increased with Telegram Premium
@@ -3470,11 +2974,7 @@ func (t CreateChatFolder) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "createChatFolder",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "createChatFolder", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CreateChatFolderInviteLink Creates a new invite link for a chat folder. A link can be created for a chat folder if it has only pinned and included chats
@@ -3500,11 +3000,7 @@ func (t CreateChatFolderInviteLink) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "createChatFolderInviteLink",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "createChatFolderInviteLink", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CreateChatInviteLink Creates a new invite link for a chat. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat
@@ -3534,11 +3030,7 @@ func (t CreateChatInviteLink) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "createChatInviteLink",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "createChatInviteLink", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CreateChatSubscriptionInviteLink Creates a new subscription invite link for a channel chat. Requires can_invite_users right in the chat
@@ -3564,11 +3056,7 @@ func (t CreateChatSubscriptionInviteLink) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "createChatSubscriptionInviteLink",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "createChatSubscriptionInviteLink", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CreateCommunity Creates a new community for the given chat. Returns identifier of the created community
@@ -3594,11 +3082,7 @@ func (t CreateCommunity) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "createCommunity",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "createCommunity", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CreateForumTopic Creates a topic in a forum supergroup chat or a chat with a bot with topics; requires can_manage_topics administrator or can_create_topics member right in the supergroup
@@ -3626,11 +3110,7 @@ func (t CreateForumTopic) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "createForumTopic",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "createForumTopic", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CreateGiftCollection Creates a collection from gifts on the current user's or a channel's profile page; requires can_post_messages administrator right in the channel chat.
@@ -3656,11 +3136,7 @@ func (t CreateGiftCollection) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "createGiftCollection",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "createGiftCollection", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CreateGroupCall Creates a new group call that isn't bound to a chat
@@ -3682,11 +3158,7 @@ func (t CreateGroupCall) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "createGroupCall",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "createGroupCall", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CreateInvoiceLink Creates a link for the given invoice; for bots only
@@ -3710,11 +3182,7 @@ func (t CreateInvoiceLink) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "createInvoiceLink",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "createInvoiceLink", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CreateNewBasicGroupChat Creates a new basic group and sends a corresponding messageBasicGroupChatCreate. Returns information about the newly created chat
@@ -3740,11 +3208,7 @@ func (t CreateNewBasicGroupChat) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "createNewBasicGroupChat",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "createNewBasicGroupChat", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CreateNewSecretChat Creates a new secret chat. Returns the newly created chat
@@ -3766,11 +3230,7 @@ func (t CreateNewSecretChat) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "createNewSecretChat",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "createNewSecretChat", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CreateNewStickerSet Creates a new sticker set. Returns the newly created sticker set
@@ -3804,11 +3264,7 @@ func (t CreateNewStickerSet) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "createNewStickerSet",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "createNewStickerSet", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CreateNewSupergroupChat Creates a new supergroup or channel and sends a corresponding messageSupergroupChatCreate. Returns the newly created chat
@@ -3842,11 +3298,7 @@ func (t CreateNewSupergroupChat) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "createNewSupergroupChat",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "createNewSupergroupChat", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CreatePrivateChat Returns an existing chat corresponding to a given user
@@ -3870,11 +3322,7 @@ func (t CreatePrivateChat) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "createPrivateChat",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "createPrivateChat", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CreateRichMessageWithAi Creates a new rich message using an AI model. May return an error with a message "AICOMPOSE_FLOOD_PREMIUM" if Telegram Premium is required to send further requests
@@ -3900,11 +3348,7 @@ func (t CreateRichMessageWithAi) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "createRichMessageWithAi",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "createRichMessageWithAi", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CreateSecretChat Returns an existing chat corresponding to a known secret chat
@@ -3926,11 +3370,7 @@ func (t CreateSecretChat) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "createSecretChat",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "createSecretChat", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CreateStoryAlbum Creates an album of stories; requires can_edit_stories administrator right for supergroup and channel chats
@@ -3956,11 +3396,7 @@ func (t CreateStoryAlbum) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "createStoryAlbum",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "createStoryAlbum", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CreateSupergroupChat Returns an existing chat corresponding to a known supergroup or channel
@@ -3984,11 +3420,7 @@ func (t CreateSupergroupChat) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "createSupergroupChat",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "createSupergroupChat", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CreateTemporaryPassword Creates a new temporary password for processing payments
@@ -4012,11 +3444,7 @@ func (t CreateTemporaryPassword) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "createTemporaryPassword",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "createTemporaryPassword", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CreateTextCompositionStyle Creates a custom text composition style. May return an error with a message "TONES_SAVED_TOO_MANY" if the maximum number of added custom styles has been reached
@@ -4044,11 +3472,7 @@ func (t CreateTextCompositionStyle) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "createTextCompositionStyle",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "createTextCompositionStyle", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CreateVideoChat Creates a video chat (a group call bound to a chat); for basic groups, supergroups and channels only; requires can_manage_video_chats administrator right
@@ -4076,11 +3500,7 @@ func (t CreateVideoChat) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "createVideoChat",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "createVideoChat", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DeclineGroupCallInvitation Declines an invitation to an active group call via messageGroupCall. Can be called both by the sender and the receiver of the invitation
@@ -4104,11 +3524,7 @@ func (t DeclineGroupCallInvitation) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "declineGroupCallInvitation",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "declineGroupCallInvitation", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DeclineOauthRequest Declines an OAuth authorization request
@@ -4130,11 +3546,7 @@ func (t DeclineOauthRequest) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "declineOauthRequest",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "declineOauthRequest", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DeclineSuggestedPost Declines a suggested post in a channel direct messages chat
@@ -4160,11 +3572,7 @@ func (t DeclineSuggestedPost) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "declineSuggestedPost",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "declineSuggestedPost", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DecryptGroupCallData Decrypts group call data received by tgcalls
@@ -4192,11 +3600,7 @@ func (t DecryptGroupCallData) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "decryptGroupCallData",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "decryptGroupCallData", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DeleteAccount Deletes the account of the current user, deleting all information associated with the user from the server. The phone number of the account can be used to create a new account.
@@ -4220,11 +3624,7 @@ func (t DeleteAccount) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "deleteAccount",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deleteAccount", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DeleteAllCallMessages Deletes all call messages
@@ -4246,11 +3646,7 @@ func (t DeleteAllCallMessages) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "deleteAllCallMessages",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deleteAllCallMessages", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DeleteAllChatWelcomeMessages Deletes all welcome messages of a chat; requires can_send_welcome_messages administrator right in the chat
@@ -4272,11 +3668,7 @@ func (t DeleteAllChatWelcomeMessages) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "deleteAllChatWelcomeMessages",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deleteAllChatWelcomeMessages", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DeleteAllRecentMessageReactionsFromSender Deletes all recent reactions added by the specified sender in a chat. Supported only for basic groups and supergroups; requires can_delete_messages administrator right
@@ -4300,11 +3692,7 @@ func (t DeleteAllRecentMessageReactionsFromSender) MarshalJSON() ([]byte, error)
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "deleteAllRecentMessageReactionsFromSender",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deleteAllRecentMessageReactionsFromSender", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DeleteAllRevokedChatInviteLinks Deletes all revoked chat invite links created by a given chat administrator. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
@@ -4328,11 +3716,7 @@ func (t DeleteAllRevokedChatInviteLinks) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "deleteAllRevokedChatInviteLinks",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deleteAllRevokedChatInviteLinks", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DeleteBotMediaPreviews Deletes media previews from the list of media previews of a bot
@@ -4358,11 +3742,7 @@ func (t DeleteBotMediaPreviews) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "deleteBotMediaPreviews",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deleteBotMediaPreviews", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DeleteBusinessChatLink Deletes a business chat link of the current account
@@ -4384,11 +3764,7 @@ func (t DeleteBusinessChatLink) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "deleteBusinessChatLink",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deleteBusinessChatLink", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DeleteBusinessConnectedBot Deletes the business bot that is connected to the current user account
@@ -4410,11 +3786,7 @@ func (t DeleteBusinessConnectedBot) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "deleteBusinessConnectedBot",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deleteBusinessConnectedBot", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DeleteBusinessMessages Deletes messages on behalf of a business account; for bots only
@@ -4438,11 +3810,7 @@ func (t DeleteBusinessMessages) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "deleteBusinessMessages",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deleteBusinessMessages", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DeleteBusinessStory Deletes a story posted by the bot on behalf of a business account; for bots only
@@ -4466,11 +3834,7 @@ func (t DeleteBusinessStory) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "deleteBusinessStory",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deleteBusinessStory", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DeleteChat Deletes a chat along with all messages in the corresponding chat for all chat members. For group chats this will release the usernames and remove all members.
@@ -4492,11 +3856,7 @@ func (t DeleteChat) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "deleteChat",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deleteChat", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DeleteChatBackground Deletes background in a specific chat
@@ -4520,11 +3880,7 @@ func (t DeleteChatBackground) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "deleteChatBackground",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deleteChatBackground", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DeleteChatFolder Deletes existing chat folder
@@ -4548,11 +3904,7 @@ func (t DeleteChatFolder) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "deleteChatFolder",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deleteChatFolder", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DeleteChatFolderInviteLink Deletes an invite link for a chat folder
@@ -4576,11 +3928,7 @@ func (t DeleteChatFolderInviteLink) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "deleteChatFolderInviteLink",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deleteChatFolderInviteLink", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DeleteChatHistory Deletes all messages in the chat. Use chat.can_be_deleted_only_for_self and chat.can_be_deleted_for_all_users fields to find whether and how the method can be applied to the chat
@@ -4606,11 +3954,7 @@ func (t DeleteChatHistory) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "deleteChatHistory",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deleteChatHistory", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DeleteChatMessagesByDate Deletes all messages between the specified dates in a chat. Supported only for private chats and basic groups. Messages sent in the last 30 seconds will not be deleted
@@ -4638,11 +3982,7 @@ func (t DeleteChatMessagesByDate) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "deleteChatMessagesByDate",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deleteChatMessagesByDate", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DeleteChatMessagesBySender Deletes all messages sent by the specified message sender in a chat. Supported only for supergroups; requires can_delete_messages administrator right
@@ -4666,11 +4006,7 @@ func (t DeleteChatMessagesBySender) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "deleteChatMessagesBySender",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deleteChatMessagesBySender", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DeleteChatReplyMarkup Deletes the default reply markup from a chat. Must be called after a one-time keyboard or a replyMarkupForceReply reply markup has been used or dismissed
@@ -4694,11 +4030,7 @@ func (t DeleteChatReplyMarkup) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "deleteChatReplyMarkup",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deleteChatReplyMarkup", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DeleteChatWelcomeMessage Deletes a welcome message of a chat; requires can_send_welcome_messages administrator right in the chat
@@ -4722,11 +4054,7 @@ func (t DeleteChatWelcomeMessage) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "deleteChatWelcomeMessage",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deleteChatWelcomeMessage", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DeleteCommands Deletes commands supported by the bot for the given user scope and language; for bots only
@@ -4750,11 +4078,7 @@ func (t DeleteCommands) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "deleteCommands",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deleteCommands", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DeleteDefaultBackground Deletes default background for chats
@@ -4776,11 +4100,7 @@ func (t DeleteDefaultBackground) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "deleteDefaultBackground",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deleteDefaultBackground", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DeleteDirectMessagesChatTopicHistory Deletes all messages in the topic in a channel direct messages chat administered by the current user
@@ -4804,11 +4124,7 @@ func (t DeleteDirectMessagesChatTopicHistory) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "deleteDirectMessagesChatTopicHistory",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deleteDirectMessagesChatTopicHistory", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DeleteDirectMessagesChatTopicMessagesByDate Deletes all messages between the specified dates in the topic in a channel direct messages chat administered by the current user. Messages sent in the last 30 seconds will not be deleted
@@ -4836,11 +4152,7 @@ func (t DeleteDirectMessagesChatTopicMessagesByDate) MarshalJSON() ([]byte, erro
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "deleteDirectMessagesChatTopicMessagesByDate",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deleteDirectMessagesChatTopicMessagesByDate", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DeleteEphemeralMessage Deletes an ephemeral message; for bots only
@@ -4866,11 +4178,7 @@ func (t DeleteEphemeralMessage) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "deleteEphemeralMessage",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deleteEphemeralMessage", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DeleteFile Deletes a file from the TDLib file cache
@@ -4892,11 +4200,7 @@ func (t DeleteFile) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "deleteFile",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deleteFile", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DeleteForumTopic Deletes all messages from a topic in a forum supergroup chat or a chat with a bot with topics; requires can_delete_messages administrator right in the supergroup
@@ -4920,11 +4224,7 @@ func (t DeleteForumTopic) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "deleteForumTopic",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deleteForumTopic", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DeleteGiftCollection Deletes a gift collection. If the collection is owned by a channel chat, then requires can_post_messages administrator right in the channel chat
@@ -4948,11 +4248,7 @@ func (t DeleteGiftCollection) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "deleteGiftCollection",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deleteGiftCollection", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DeleteGroupCallMessages Deletes messages in a group call; for live story calls only. Requires groupCallMessage.can_be_deleted right
@@ -4978,11 +4274,7 @@ func (t DeleteGroupCallMessages) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "deleteGroupCallMessages",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deleteGroupCallMessages", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DeleteGroupCallMessagesBySender Deletes all messages sent by the specified message sender in a group call; for live story calls only. Requires groupCall.can_delete_messages right
@@ -5008,11 +4300,7 @@ func (t DeleteGroupCallMessagesBySender) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "deleteGroupCallMessagesBySender",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deleteGroupCallMessagesBySender", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DeleteLanguagePack Deletes all information about a language pack in the current localization target. The language pack which is currently in use (including base language pack) or is being synchronized can't be deleted.
@@ -5034,11 +4322,7 @@ func (t DeleteLanguagePack) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "deleteLanguagePack",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deleteLanguagePack", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DeleteMessageEphemeralContent Removes message ephemeral content and reverts message state to the original
@@ -5062,11 +4346,7 @@ func (t DeleteMessageEphemeralContent) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "deleteMessageEphemeralContent",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deleteMessageEphemeralContent", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DeleteMessageReactionsFromSender Deletes all reactions added by the specified sender on a message
@@ -5092,11 +4372,7 @@ func (t DeleteMessageReactionsFromSender) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "deleteMessageReactionsFromSender",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deleteMessageReactionsFromSender", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DeleteMessages Deletes messages
@@ -5122,11 +4398,7 @@ func (t DeleteMessages) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "deleteMessages",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deleteMessages", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DeletePassportElement Deletes a Telegram Passport element
@@ -5148,11 +4420,7 @@ func (t DeletePassportElement) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "deletePassportElement",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deletePassportElement", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DeletePollOption Deletes an option from a poll
@@ -5178,11 +4446,7 @@ func (t DeletePollOption) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "deletePollOption",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deletePollOption", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DeleteProfilePhoto Deletes a profile photo
@@ -5204,11 +4468,7 @@ func (t DeleteProfilePhoto) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "deleteProfilePhoto",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deleteProfilePhoto", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DeleteQuickReplyShortcut Deletes a quick reply shortcut
@@ -5230,11 +4490,7 @@ func (t DeleteQuickReplyShortcut) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "deleteQuickReplyShortcut",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deleteQuickReplyShortcut", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DeleteQuickReplyShortcutMessages Deletes specified quick reply messages
@@ -5258,11 +4514,7 @@ func (t DeleteQuickReplyShortcutMessages) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "deleteQuickReplyShortcutMessages",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deleteQuickReplyShortcutMessages", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DeleteRevokedChatInviteLink Deletes revoked chat invite links. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
@@ -5286,11 +4538,7 @@ func (t DeleteRevokedChatInviteLink) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "deleteRevokedChatInviteLink",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deleteRevokedChatInviteLink", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DeleteSavedCredentials Deletes saved credentials for all payment provider bots
@@ -5310,11 +4558,7 @@ func (t DeleteSavedCredentials) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "deleteSavedCredentials",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deleteSavedCredentials", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DeleteSavedMessagesTopicHistory Deletes all messages in a Saved Messages topic
@@ -5336,11 +4580,7 @@ func (t DeleteSavedMessagesTopicHistory) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "deleteSavedMessagesTopicHistory",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deleteSavedMessagesTopicHistory", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DeleteSavedMessagesTopicMessagesByDate Deletes all messages between the specified dates in a Saved Messages topic. Messages sent in the last 30 seconds will not be deleted
@@ -5366,11 +4606,7 @@ func (t DeleteSavedMessagesTopicMessagesByDate) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "deleteSavedMessagesTopicMessagesByDate",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deleteSavedMessagesTopicMessagesByDate", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DeleteSavedOrderInfo Deletes saved order information
@@ -5390,11 +4626,7 @@ func (t DeleteSavedOrderInfo) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "deleteSavedOrderInfo",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deleteSavedOrderInfo", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DeleteStickerSet Completely deletes a sticker set
@@ -5416,11 +4648,7 @@ func (t DeleteStickerSet) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "deleteStickerSet",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deleteStickerSet", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DeleteStory Deletes a previously posted story. Can be called only if story.can_be_deleted == true
@@ -5444,11 +4672,7 @@ func (t DeleteStory) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "deleteStory",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deleteStory", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DeleteStoryAlbum Deletes a story album. If the album is owned by a supergroup or a channel chat, then requires can_edit_stories administrator right in the chat
@@ -5472,11 +4696,7 @@ func (t DeleteStoryAlbum) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "deleteStoryAlbum",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deleteStoryAlbum", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DeleteTextCompositionStyle Deletes a custom text composition style that was created by the current user
@@ -5498,11 +4718,7 @@ func (t DeleteTextCompositionStyle) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "deleteTextCompositionStyle",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deleteTextCompositionStyle", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // Destroy Closes the TDLib instance, destroying all local data without a proper logout. The current user session will remain in the list of all active sessions. All local data will be destroyed.
@@ -5522,11 +4738,7 @@ func (t Destroy) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "destroy",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "destroy", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DisableAllSupergroupUsernames Disables all active non-editable usernames of a supergroup or channel, requires owner privileges in the supergroup or channel
@@ -5548,11 +4760,7 @@ func (t DisableAllSupergroupUsernames) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "disableAllSupergroupUsernames",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "disableAllSupergroupUsernames", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DisableProxy Disables the currently enabled proxy. Can be called before authorization
@@ -5572,11 +4780,7 @@ func (t DisableProxy) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "disableProxy",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "disableProxy", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DiscardCall Discards a call
@@ -5608,11 +4812,7 @@ func (t DiscardCall) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "discardCall",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "discardCall", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DisconnectAffiliateProgram Disconnects an affiliate program from the given affiliate and immediately deactivates its referral link. Returns updated information about the disconnected affiliate program
@@ -5636,11 +4836,7 @@ func (t DisconnectAffiliateProgram) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "disconnectAffiliateProgram",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "disconnectAffiliateProgram", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DisconnectAllWebsites Disconnects all websites from the current user's Telegram account
@@ -5660,11 +4856,7 @@ func (t DisconnectAllWebsites) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "disconnectAllWebsites",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "disconnectAllWebsites", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DisconnectWebsite Disconnects website from the current user's Telegram account
@@ -5686,11 +4878,7 @@ func (t DisconnectWebsite) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "disconnectWebsite",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "disconnectWebsite", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DownloadFile Downloads a file from the cloud. Download progress and completion of the download will be notified through updateFile updates
@@ -5720,11 +4908,7 @@ func (t DownloadFile) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "downloadFile",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "downloadFile", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DropGiftOriginalDetails Drops original details for an upgraded gift
@@ -5748,11 +4932,7 @@ func (t DropGiftOriginalDetails) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "dropGiftOriginalDetails",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "dropGiftOriginalDetails", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // EditBotMediaPreview Replaces media preview in the list of media previews of a bot. Returns the new preview after edit is completed server-side
@@ -5780,11 +4960,7 @@ func (t EditBotMediaPreview) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "editBotMediaPreview",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "editBotMediaPreview", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // EditBusinessChatLink Edits a business chat link of the current account. Requires Telegram Business subscription. Returns the edited link
@@ -5808,11 +4984,7 @@ func (t EditBusinessChatLink) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "editBusinessChatLink",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "editBusinessChatLink", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // EditBusinessMessageCaption Edits the caption of a message sent on behalf of a business account; for bots only
@@ -5844,11 +5016,7 @@ func (t EditBusinessMessageCaption) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "editBusinessMessageCaption",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "editBusinessMessageCaption", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // EditBusinessMessageChecklist Edits the content of a checklist in a message sent on behalf of a business account; for bots only
@@ -5878,11 +5046,7 @@ func (t EditBusinessMessageChecklist) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "editBusinessMessageChecklist",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "editBusinessMessageChecklist", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // EditBusinessMessageLiveLocation Edits the content of a live location in a message sent on behalf of a business account; for bots only
@@ -5912,11 +5076,7 @@ func (t EditBusinessMessageLiveLocation) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "editBusinessMessageLiveLocation",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "editBusinessMessageLiveLocation", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // EditBusinessMessageMedia Edits the media content of a message with a text, an animation, an audio, a document, a photo or a video in a message sent on behalf of a business account; for bots only
@@ -5946,11 +5106,7 @@ func (t EditBusinessMessageMedia) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "editBusinessMessageMedia",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "editBusinessMessageMedia", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // EditBusinessMessageReplyMarkup Edits the reply markup of a message sent on behalf of a business account; for bots only
@@ -5978,11 +5134,7 @@ func (t EditBusinessMessageReplyMarkup) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "editBusinessMessageReplyMarkup",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "editBusinessMessageReplyMarkup", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // EditBusinessMessageText Edits the text of a text or game message sent on behalf of a business account; for bots only
@@ -6012,11 +5164,7 @@ func (t EditBusinessMessageText) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "editBusinessMessageText",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "editBusinessMessageText", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // EditBusinessStory Changes a story posted by the bot on behalf of a business account; for bots only
@@ -6048,11 +5196,7 @@ func (t EditBusinessStory) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "editBusinessStory",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "editBusinessStory", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // EditCallbackQueryMessage Edits the message from which a callback query has originated with an ephemeral message; for bots only
@@ -6080,11 +5224,7 @@ func (t EditCallbackQueryMessage) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "editCallbackQueryMessage",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "editCallbackQueryMessage", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // EditChatFolder Edits existing chat folder. Returns information about the edited chat folder
@@ -6108,11 +5248,7 @@ func (t EditChatFolder) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "editChatFolder",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "editChatFolder", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // EditChatFolderInviteLink Edits an invite link for a chat folder
@@ -6140,11 +5276,7 @@ func (t EditChatFolderInviteLink) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "editChatFolderInviteLink",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "editChatFolderInviteLink", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // EditChatInviteLink Edits a non-primary invite link for a chat. Available in basic groups, supergroups, and channels.
@@ -6176,11 +5308,7 @@ func (t EditChatInviteLink) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "editChatInviteLink",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "editChatInviteLink", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // EditChatSubscriptionInviteLink Edits a subscription invite link for a channel chat. Requires can_invite_users right in the chat for own links and owner privileges for other links
@@ -6206,11 +5334,7 @@ func (t EditChatSubscriptionInviteLink) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "editChatSubscriptionInviteLink",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "editChatSubscriptionInviteLink", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // EditChatWelcomeMessage Edits a welcome message of a chat; requires can_send_welcome_messages administrator right in the chat
@@ -6236,11 +5360,7 @@ func (t EditChatWelcomeMessage) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "editChatWelcomeMessage",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "editChatWelcomeMessage", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // EditCustomLanguagePackInfo Edits information about a custom local language pack in the current localization target. Can be called before authorization
@@ -6262,11 +5382,7 @@ func (t EditCustomLanguagePackInfo) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "editCustomLanguagePackInfo",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "editCustomLanguagePackInfo", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // EditEphemeralMessage Edits the text, media, or reply markup of an ephemeral message sent by the bot; for bots only
@@ -6296,11 +5412,7 @@ func (t EditEphemeralMessage) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "editEphemeralMessage",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "editEphemeralMessage", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // EditEphemeralMessageCaption Edits the caption and reply markup of an ephemeral message sent by the bot; for bots only
@@ -6332,11 +5444,7 @@ func (t EditEphemeralMessageCaption) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "editEphemeralMessageCaption",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "editEphemeralMessageCaption", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // EditForumTopic Edits title and icon of a topic in a forum supergroup chat or a chat with a bot with topics; for supergroup chats requires can_manage_topics administrator right
@@ -6366,11 +5474,7 @@ func (t EditForumTopic) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "editForumTopic",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "editForumTopic", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // EditInlineMessageCaption Edits the caption of an inline message sent via a bot; for bots only
@@ -6398,11 +5502,7 @@ func (t EditInlineMessageCaption) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "editInlineMessageCaption",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "editInlineMessageCaption", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // EditInlineMessageLiveLocation Edits the content of a live location in an inline message sent via a bot; for bots only
@@ -6428,11 +5528,7 @@ func (t EditInlineMessageLiveLocation) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "editInlineMessageLiveLocation",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "editInlineMessageLiveLocation", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // EditInlineMessageMedia Edits the media content of a message with a text, an animation, an audio, a document, a photo or a video in an inline message sent via a bot; for bots only
@@ -6458,11 +5554,7 @@ func (t EditInlineMessageMedia) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "editInlineMessageMedia",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "editInlineMessageMedia", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // EditInlineMessageReplyMarkup Edits the reply markup of an inline message sent via a bot; for bots only
@@ -6486,11 +5578,7 @@ func (t EditInlineMessageReplyMarkup) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "editInlineMessageReplyMarkup",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "editInlineMessageReplyMarkup", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // EditInlineMessageText Edits the text of an inline text or game message sent via the bot; for bots only
@@ -6516,11 +5604,7 @@ func (t EditInlineMessageText) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "editInlineMessageText",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "editInlineMessageText", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // EditMessageCaption Edits the message content caption. Returns the edited message after the edit is completed on the server side
@@ -6550,11 +5634,7 @@ func (t EditMessageCaption) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "editMessageCaption",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "editMessageCaption", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // EditMessageChecklist Edits the message content of a checklist. Returns the edited message after the edit is completed on the server side
@@ -6582,11 +5662,7 @@ func (t EditMessageChecklist) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "editMessageChecklist",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "editMessageChecklist", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // EditMessageLiveLocation Edits the message content of a live location. Messages can be edited for a limited period of time specified in the live location.
@@ -6614,11 +5690,7 @@ func (t EditMessageLiveLocation) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "editMessageLiveLocation",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "editMessageLiveLocation", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // EditMessageMedia Edits the media content of a message, including message caption. If only the caption needs to be edited, use editMessageCaption instead.
@@ -6646,11 +5718,7 @@ func (t EditMessageMedia) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "editMessageMedia",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "editMessageMedia", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // EditMessageReplyMarkup Edits the message reply markup; for bots only. Returns the edited message after the edit is completed on the server side
@@ -6676,11 +5744,7 @@ func (t EditMessageReplyMarkup) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "editMessageReplyMarkup",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "editMessageReplyMarkup", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // EditMessageSchedulingState Edits the time when a scheduled message will be sent. Scheduling state of all messages in the same album or forwarded together with the message will be also changed
@@ -6706,11 +5770,7 @@ func (t EditMessageSchedulingState) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "editMessageSchedulingState",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "editMessageSchedulingState", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // EditMessageText Edits the text of a message (or a text of a game message). Returns the edited message after the edit is completed on the server side
@@ -6738,11 +5798,7 @@ func (t EditMessageText) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "editMessageText",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "editMessageText", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // EditProxy Edits an existing proxy server for network requests. Can be called before authorization
@@ -6770,11 +5826,7 @@ func (t EditProxy) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "editProxy",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "editProxy", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // EditQuickReplyMessage Asynchronously edits the text, media or caption of a quick reply message. Use quickReplyMessage.can_be_edited to check whether a message can be edited.
@@ -6800,11 +5852,7 @@ func (t EditQuickReplyMessage) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "editQuickReplyMessage",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "editQuickReplyMessage", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // EditStarSubscription Cancels or re-enables Telegram Star subscription
@@ -6828,11 +5876,7 @@ func (t EditStarSubscription) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "editStarSubscription",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "editStarSubscription", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // EditStory Changes content and caption of a story. Can be called only if story.can_be_edited == true
@@ -6862,11 +5906,7 @@ func (t EditStory) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "editStory",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "editStory", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // EditStoryCover Changes cover of a video story. Can be called only if story.can_be_edited == true and the story isn't being edited now
@@ -6892,11 +5932,7 @@ func (t EditStoryCover) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "editStoryCover",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "editStoryCover", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // EditTextCompositionStyle Edits a custom text composition style that was created by the current user
@@ -6926,11 +5962,7 @@ func (t EditTextCompositionStyle) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "editTextCompositionStyle",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "editTextCompositionStyle", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // EditUserStarSubscription Cancels or re-enables Telegram Star subscription for a user; for bots only
@@ -6956,11 +5988,7 @@ func (t EditUserStarSubscription) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "editUserStarSubscription",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "editUserStarSubscription", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // EnableProxy Enables a proxy. Only one proxy can be enabled at a time. Can be called before authorization
@@ -6982,11 +6010,7 @@ func (t EnableProxy) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "enableProxy",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "enableProxy", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // EncryptGroupCallData Encrypts group call data before sending them over network using tgcalls
@@ -7014,11 +6038,7 @@ func (t EncryptGroupCallData) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "encryptGroupCallData",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "encryptGroupCallData", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // EndGroupCall Ends a group call. Requires groupCall.can_be_managed right for video chats and live stories or groupCall.is_owned otherwise
@@ -7040,11 +6060,7 @@ func (t EndGroupCall) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "endGroupCall",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "endGroupCall", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // EndGroupCallRecording Ends recording of an active group call; for video chats only. Requires groupCall.can_be_managed right
@@ -7066,11 +6082,7 @@ func (t EndGroupCallRecording) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "endGroupCallRecording",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "endGroupCallRecording", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // EndGroupCallScreenSharing Ends screen sharing in a joined group call; not supported in live stories
@@ -7092,11 +6104,7 @@ func (t EndGroupCallScreenSharing) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "endGroupCallScreenSharing",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "endGroupCallScreenSharing", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // FinishFileGeneration Finishes the file generation
@@ -7120,11 +6128,7 @@ func (t FinishFileGeneration) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "finishFileGeneration",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "finishFileGeneration", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // FixRichMessageWithAi Fixes a rich message using an AI model. May return an error with a message "AICOMPOSE_FLOOD_PREMIUM" if Telegram Premium is required to send further requests
@@ -7146,11 +6150,7 @@ func (t FixRichMessageWithAi) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "fixRichMessageWithAi",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "fixRichMessageWithAi", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // FixTextWithAi Fixes text using an AI model; must not be used in secret chats. May return an error with a message "AICOMPOSE_FLOOD_PREMIUM" if Telegram Premium is required to send further requests
@@ -7172,11 +6172,7 @@ func (t FixTextWithAi) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "fixTextWithAi",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "fixTextWithAi", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ForwardMessages Forwards previously sent messages. Returns the forwarded messages in the same order as the message identifiers passed in message_ids. If a message can't be forwarded, null will be returned instead of the message
@@ -7210,11 +6206,7 @@ func (t ForwardMessages) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "forwardMessages",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "forwardMessages", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetAccountTtl Returns the period of inactivity after which the account of the current user will automatically be deleted
@@ -7234,11 +6226,7 @@ func (t GetAccountTtl) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getAccountTtl",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getAccountTtl", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetActiveSessions Returns all active sessions of the current user. Additionally, getBusinessConnectedBot must be used to show the bot on top of active sessions
@@ -7258,11 +6246,7 @@ func (t GetActiveSessions) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getActiveSessions",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getActiveSessions", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetAllPassportElements Returns all available Telegram Passport elements
@@ -7284,11 +6268,7 @@ func (t GetAllPassportElements) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getAllPassportElements",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getAllPassportElements", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetAllStickerEmojis Returns unique emoji that correspond to stickers to be found by the getStickers(sticker_type, query, 1000000, chat_id)
@@ -7316,11 +6296,7 @@ func (t GetAllStickerEmojis) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getAllStickerEmojis",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getAllStickerEmojis", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetAnimatedEmoji Returns an animated emoji corresponding to a given emoji. Returns a 404 error if the emoji has no animated emoji
@@ -7342,11 +6318,7 @@ func (t GetAnimatedEmoji) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getAnimatedEmoji",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getAnimatedEmoji", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetApplicationConfig Returns application config, provided by the server. Can be called before authorization
@@ -7366,11 +6338,7 @@ func (t GetApplicationConfig) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getApplicationConfig",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getApplicationConfig", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetApplicationDownloadLink Returns the link for downloading official Telegram application to be used when the current user invites friends to Telegram
@@ -7390,11 +6358,7 @@ func (t GetApplicationDownloadLink) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getApplicationDownloadLink",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getApplicationDownloadLink", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetArchiveChatListSettings Returns settings for automatic moving of chats to and from the Archive chat lists
@@ -7414,11 +6378,7 @@ func (t GetArchiveChatListSettings) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getArchiveChatListSettings",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getArchiveChatListSettings", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetArchivedStickerSets Returns a list of archived sticker sets
@@ -7444,11 +6404,7 @@ func (t GetArchivedStickerSets) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getArchivedStickerSets",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getArchivedStickerSets", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetAttachedStickerSets Returns a list of sticker sets attached to a file, including regular, mask, and emoji sticker sets. Currently, only animations, photos, and videos can have attached sticker sets
@@ -7470,11 +6426,7 @@ func (t GetAttachedStickerSets) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getAttachedStickerSets",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getAttachedStickerSets", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetAttachmentMenuBot Returns information about a bot that can be added to attachment or side menu
@@ -7496,11 +6448,7 @@ func (t GetAttachmentMenuBot) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getAttachmentMenuBot",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getAttachmentMenuBot", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetAuthenticationPasskeyParameters Returns parameters for authentication using a passkey as JSON-serialized string
@@ -7520,11 +6468,7 @@ func (t GetAuthenticationPasskeyParameters) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getAuthenticationPasskeyParameters",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getAuthenticationPasskeyParameters", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetAuthorizationState Returns the current authorization state. This is an offline method. For informational purposes only. Use updateAuthorizationState instead to maintain the current authorization state. Can be called before initialization
@@ -7544,11 +6488,7 @@ func (t GetAuthorizationState) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getAuthorizationState",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getAuthorizationState", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetAutoDownloadSettingsPresets Returns auto-download settings presets for the current user
@@ -7568,11 +6508,7 @@ func (t GetAutoDownloadSettingsPresets) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getAutoDownloadSettingsPresets",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getAutoDownloadSettingsPresets", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetAutosaveSettings Returns autosave settings for the current user
@@ -7592,11 +6528,7 @@ func (t GetAutosaveSettings) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getAutosaveSettings",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getAutosaveSettings", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetAvailableChatBoostSlots Returns the list of available chat boost slots for the current user
@@ -7616,11 +6548,7 @@ func (t GetAvailableChatBoostSlots) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getAvailableChatBoostSlots",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getAvailableChatBoostSlots", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetAvailableGifts Returns gifts that can be sent to other users and channel chats
@@ -7640,11 +6568,7 @@ func (t GetAvailableGifts) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getAvailableGifts",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getAvailableGifts", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetBackgroundUrl Constructs a persistent HTTP URL for a background
@@ -7668,11 +6592,7 @@ func (t GetBackgroundUrl) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getBackgroundUrl",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getBackgroundUrl", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetBankCardInfo Returns information about a bank card
@@ -7694,11 +6614,7 @@ func (t GetBankCardInfo) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getBankCardInfo",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getBankCardInfo", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetBasicGroup Returns information about a basic group by its identifier. This is an offline method if the current user is not a bot
@@ -7720,11 +6636,7 @@ func (t GetBasicGroup) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getBasicGroup",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getBasicGroup", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetBasicGroupFullInfo Returns full information about a basic group by its identifier
@@ -7746,11 +6658,7 @@ func (t GetBasicGroupFullInfo) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getBasicGroupFullInfo",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getBasicGroupFullInfo", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetBlockedMessageSenders Returns users and chats that were blocked by the current user
@@ -7776,11 +6684,7 @@ func (t GetBlockedMessageSenders) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getBlockedMessageSenders",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getBlockedMessageSenders", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetBotInfoDescription Returns the text shown in the chat with a bot if the chat is empty in the given language. Can be called only if userTypeBot.can_be_edited == true
@@ -7804,11 +6708,7 @@ func (t GetBotInfoDescription) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getBotInfoDescription",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getBotInfoDescription", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetBotInfoShortDescription Returns the text shown on a bot's profile page and sent together with the link when users share the bot in the given language. Can be called only if userTypeBot.can_be_edited == true
@@ -7832,11 +6732,7 @@ func (t GetBotInfoShortDescription) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getBotInfoShortDescription",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getBotInfoShortDescription", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetBotMediaPreviewInfo Returns the list of media previews for the given language and the list of languages for which the bot has dedicated previews
@@ -7860,11 +6756,7 @@ func (t GetBotMediaPreviewInfo) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getBotMediaPreviewInfo",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getBotMediaPreviewInfo", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetBotMediaPreviews Returns the list of media previews of a bot
@@ -7886,11 +6778,7 @@ func (t GetBotMediaPreviews) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getBotMediaPreviews",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getBotMediaPreviews", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetBotName Returns the name of a bot in the given language. Can be called only if userTypeBot.can_be_edited == true
@@ -7914,11 +6802,7 @@ func (t GetBotName) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getBotName",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getBotName", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetBotSimilarBotCount Returns approximate number of bots similar to the given bot
@@ -7942,11 +6826,7 @@ func (t GetBotSimilarBotCount) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getBotSimilarBotCount",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getBotSimilarBotCount", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetBotSimilarBots Returns a list of bots similar to the given bot
@@ -7968,11 +6848,7 @@ func (t GetBotSimilarBots) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getBotSimilarBots",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getBotSimilarBots", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetBusinessAccountStarAmount Returns the Telegram Star amount owned by a business account; for bots only
@@ -7994,11 +6870,7 @@ func (t GetBusinessAccountStarAmount) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getBusinessAccountStarAmount",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getBusinessAccountStarAmount", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetBusinessChatLinkInfo Returns information about a business chat link
@@ -8020,11 +6892,7 @@ func (t GetBusinessChatLinkInfo) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getBusinessChatLinkInfo",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getBusinessChatLinkInfo", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetBusinessChatLinks Returns business chat links created for the current account
@@ -8044,11 +6912,7 @@ func (t GetBusinessChatLinks) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getBusinessChatLinks",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getBusinessChatLinks", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetBusinessConnectedBot Returns information about the business bot that is connected to the current user account. Returns a 404 error if there is no connected bot
@@ -8068,11 +6932,7 @@ func (t GetBusinessConnectedBot) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getBusinessConnectedBot",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getBusinessConnectedBot", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetBusinessConnection Returns information about a business connection by its identifier; for bots only
@@ -8094,11 +6954,7 @@ func (t GetBusinessConnection) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getBusinessConnection",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getBusinessConnection", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetBusinessFeatures Returns information about features, available to Business users
@@ -8120,11 +6976,7 @@ func (t GetBusinessFeatures) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getBusinessFeatures",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getBusinessFeatures", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetCallbackQueryAnswer Sends a callback query to a bot and returns an answer. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires
@@ -8150,11 +7002,7 @@ func (t GetCallbackQueryAnswer) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getCallbackQueryAnswer",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getCallbackQueryAnswer", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetCallbackQueryMessage Returns information about a message with the callback button that originated a callback query; for bots only
@@ -8180,11 +7028,7 @@ func (t GetCallbackQueryMessage) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getCallbackQueryMessage",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getCallbackQueryMessage", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetChat Returns information about a chat by its identifier. This is an offline method if the current user is not a bot
@@ -8206,11 +7050,7 @@ func (t GetChat) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getChat",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getChat", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetChatActiveStories Returns the list of active stories posted by the given chat
@@ -8232,11 +7072,7 @@ func (t GetChatActiveStories) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getChatActiveStories",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getChatActiveStories", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetChatAdministrators Returns a list of administrators of the chat with their custom titles
@@ -8258,11 +7094,7 @@ func (t GetChatAdministrators) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getChatAdministrators",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getChatAdministrators", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetChatArchivedStories Returns the list of all stories posted by the given chat; requires can_edit_stories administrator right in the chat.
@@ -8288,11 +7120,7 @@ func (t GetChatArchivedStories) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getChatArchivedStories",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getChatArchivedStories", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetChatAvailableMessageSenders Returns the list of message sender identifiers, which can be used to send messages in a chat
@@ -8314,11 +7142,7 @@ func (t GetChatAvailableMessageSenders) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getChatAvailableMessageSenders",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getChatAvailableMessageSenders", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetChatAvailablePaidMessageReactionSenders Returns the list of message sender identifiers, which can be used to send a paid reaction in a chat
@@ -8340,11 +7164,7 @@ func (t GetChatAvailablePaidMessageReactionSenders) MarshalJSON() ([]byte, error
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getChatAvailablePaidMessageReactionSenders",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getChatAvailablePaidMessageReactionSenders", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetChatBoostFeatures Returns the list of features available for different chat boost levels. This is an offline method
@@ -8366,11 +7186,7 @@ func (t GetChatBoostFeatures) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getChatBoostFeatures",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getChatBoostFeatures", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetChatBoostLevelFeatures Returns the list of features available on the specific chat boost level. This is an offline method
@@ -8394,11 +7210,7 @@ func (t GetChatBoostLevelFeatures) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getChatBoostLevelFeatures",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getChatBoostLevelFeatures", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetChatBoostLink Returns an HTTPS link to boost the specified supergroup or channel chat
@@ -8420,11 +7232,7 @@ func (t GetChatBoostLink) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getChatBoostLink",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getChatBoostLink", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetChatBoostLinkInfo Returns information about a link to boost a chat. Can be called for any internal link of the type internalLinkTypeChatBoost
@@ -8446,11 +7254,7 @@ func (t GetChatBoostLinkInfo) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getChatBoostLinkInfo",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getChatBoostLinkInfo", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetChatBoosts Returns the list of boosts applied to a chat; requires administrator rights in the chat
@@ -8478,11 +7282,7 @@ func (t GetChatBoosts) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getChatBoosts",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getChatBoosts", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetChatBoostStatus Returns the current boost status for a supergroup or a channel chat
@@ -8504,11 +7304,7 @@ func (t GetChatBoostStatus) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getChatBoostStatus",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getChatBoostStatus", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetChatEventLog Returns a list of service actions taken by chat members and administrators in the last 48 hours. Available only in supergroups and channels. Requires administrator rights. Returns results in reverse chronological order (i.e., in order of decreasing event_id)
@@ -8540,11 +7336,7 @@ func (t GetChatEventLog) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getChatEventLog",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getChatEventLog", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetChatFolder Returns information about a chat folder by its identifier
@@ -8566,11 +7358,7 @@ func (t GetChatFolder) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getChatFolder",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getChatFolder", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetChatFolderChatCount Returns approximate number of chats in a being created chat folder. Main and archive chat lists must be fully preloaded for this function to work correctly
@@ -8592,11 +7380,7 @@ func (t GetChatFolderChatCount) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getChatFolderChatCount",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getChatFolderChatCount", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetChatFolderChatsToLeave Returns identifiers of pinned or always included chats from a chat folder, which are suggested to be left when the chat folder is deleted
@@ -8618,11 +7402,7 @@ func (t GetChatFolderChatsToLeave) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getChatFolderChatsToLeave",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getChatFolderChatsToLeave", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetChatFolderDefaultIconName Returns default icon name for a folder. Can be called synchronously
@@ -8644,11 +7424,7 @@ func (t GetChatFolderDefaultIconName) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getChatFolderDefaultIconName",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getChatFolderDefaultIconName", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetChatFolderInviteLinks Returns invite links created by the current user for a shareable chat folder
@@ -8670,11 +7446,7 @@ func (t GetChatFolderInviteLinks) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getChatFolderInviteLinks",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getChatFolderInviteLinks", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetChatFolderNewChats Returns new chats added to a shareable chat folder by its owner. The method must be called at most once in getOption("chat_folder_new_chats_update_period") for the given chat folder
@@ -8696,11 +7468,7 @@ func (t GetChatFolderNewChats) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getChatFolderNewChats",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getChatFolderNewChats", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetChatHistory Returns messages in a chat. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id).
@@ -8730,11 +7498,7 @@ func (t GetChatHistory) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getChatHistory",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getChatHistory", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetChatInviteLink Returns information about an invite link. Requires administrator privileges and can_invite_users right in the chat to get own links and owner privileges to get other links
@@ -8758,11 +7522,7 @@ func (t GetChatInviteLink) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getChatInviteLink",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getChatInviteLink", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetChatInviteLinkCounts Returns the list of chat administrators with number of their invite links. Requires owner privileges in the chat
@@ -8784,11 +7544,7 @@ func (t GetChatInviteLinkCounts) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getChatInviteLinkCounts",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getChatInviteLinkCounts", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetChatInviteLinkMembers Returns chat members joined a chat via an invite link. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
@@ -8818,11 +7574,7 @@ func (t GetChatInviteLinkMembers) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getChatInviteLinkMembers",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getChatInviteLinkMembers", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetChatInviteLinks Returns invite links for a chat created by specified administrator. Requires administrator privileges and can_invite_users right in the chat to get own links and owner privileges to get other links
@@ -8854,11 +7606,7 @@ func (t GetChatInviteLinks) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getChatInviteLinks",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getChatInviteLinks", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetChatJoinRequests Returns pending join requests in a chat
@@ -8888,11 +7636,7 @@ func (t GetChatJoinRequests) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getChatJoinRequests",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getChatJoinRequests", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetChatListsToAddChat Returns chat lists to which the chat can be added. This is an offline method
@@ -8914,11 +7658,7 @@ func (t GetChatListsToAddChat) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getChatListsToAddChat",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getChatListsToAddChat", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetChatMember Returns information about a single member of a chat
@@ -8942,11 +7682,7 @@ func (t GetChatMember) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getChatMember",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getChatMember", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetChatMessageByDate Returns the last message sent in a chat no later than the specified date. Returns a 404 error if such message doesn't exist
@@ -8970,11 +7706,7 @@ func (t GetChatMessageByDate) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getChatMessageByDate",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getChatMessageByDate", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetChatMessageCalendar Returns information about the next messages of the specified type in the chat split by days. Returns the results in reverse chronological order. Can return partial result for the last returned day. Behavior of this method depends on the value of the option "utc_time_offset"
@@ -9002,11 +7734,7 @@ func (t GetChatMessageCalendar) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getChatMessageCalendar",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getChatMessageCalendar", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetChatMessageCount Returns approximate number of messages of the specified type in the chat or its topic
@@ -9034,11 +7762,7 @@ func (t GetChatMessageCount) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getChatMessageCount",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getChatMessageCount", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetChatMessagePosition Returns approximate 1-based position of a message among messages, which can be found by the specified filter in the chat and topic. Cannot be used in secret chats
@@ -9066,11 +7790,7 @@ func (t GetChatMessagePosition) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getChatMessagePosition",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getChatMessagePosition", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetChatNotificationSettingsExceptions Returns the list of chats with non-default notification settings for new messages
@@ -9094,11 +7814,7 @@ func (t GetChatNotificationSettingsExceptions) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getChatNotificationSettingsExceptions",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getChatNotificationSettingsExceptions", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetChatOwnerAfterLeaving Returns the user who will become the owner of the chat after 7 days if the current user does not return to the supergroup or channel during that period or immediately for basic groups;
@@ -9120,11 +7836,7 @@ func (t GetChatOwnerAfterLeaving) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getChatOwnerAfterLeaving",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getChatOwnerAfterLeaving", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetChatPinnedMessage Returns information about a newest pinned message in the chat. Returns a 404 error if the message doesn't exist
@@ -9146,11 +7858,7 @@ func (t GetChatPinnedMessage) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getChatPinnedMessage",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getChatPinnedMessage", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetChatPostedToChatPageStories Returns the list of stories that posted by the given chat to its chat page. If from_story_id == 0, then pinned stories are returned first.
@@ -9176,11 +7884,7 @@ func (t GetChatPostedToChatPageStories) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getChatPostedToChatPageStories",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getChatPostedToChatPageStories", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetChatRevenueStatistics Returns detailed revenue statistics about a chat. Currently, this method can be used only
@@ -9204,11 +7908,7 @@ func (t GetChatRevenueStatistics) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getChatRevenueStatistics",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getChatRevenueStatistics", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetChatRevenueTransactions Returns the list of revenue transactions for a chat. Currently, this method can be used only
@@ -9234,11 +7934,7 @@ func (t GetChatRevenueTransactions) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getChatRevenueTransactions",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getChatRevenueTransactions", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetChatRevenueWithdrawalUrl Returns a URL for chat revenue withdrawal; requires owner privileges in the channel chat or the bot. Currently, this method can be used only
@@ -9262,11 +7958,7 @@ func (t GetChatRevenueWithdrawalUrl) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getChatRevenueWithdrawalUrl",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getChatRevenueWithdrawalUrl", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetChats Returns an ordered list of chats from the beginning of a chat list. For informational purposes only. Use loadChats and updates processing instead to maintain chat lists in a consistent state
@@ -9290,11 +7982,7 @@ func (t GetChats) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getChats",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getChats", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetChatScheduledMessages Returns all scheduled messages in a chat. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id)
@@ -9316,11 +8004,7 @@ func (t GetChatScheduledMessages) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getChatScheduledMessages",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getChatScheduledMessages", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetChatsForChatFolderInviteLink Returns identifiers of chats from a chat folder, suitable for adding to a chat folder invite link
@@ -9342,11 +8026,7 @@ func (t GetChatsForChatFolderInviteLink) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getChatsForChatFolderInviteLink",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getChatsForChatFolderInviteLink", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetChatSimilarChatCount Returns approximate number of chats similar to the given chat
@@ -9370,11 +8050,7 @@ func (t GetChatSimilarChatCount) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getChatSimilarChatCount",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getChatSimilarChatCount", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetChatSimilarChats Returns a list of chats similar to the given chat
@@ -9396,11 +8072,7 @@ func (t GetChatSimilarChats) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getChatSimilarChats",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getChatSimilarChats", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetChatSparseMessagePositions Returns sparse positions of messages of the specified type in the chat to be used for Shared Media scroll implementation. Returns the results in reverse chronological order (i.e., in order of decreasing message_id).
@@ -9430,11 +8102,7 @@ func (t GetChatSparseMessagePositions) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getChatSparseMessagePositions",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getChatSparseMessagePositions", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetChatSponsoredMessages Returns sponsored messages to be shown in a chat; for channel chats and chats with bots only
@@ -9456,11 +8124,7 @@ func (t GetChatSponsoredMessages) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getChatSponsoredMessages",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getChatSponsoredMessages", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetChatStatistics Returns detailed statistics about a chat. Currently, this method can be used only for supergroups and channels. Can be used only if supergroupFullInfo.can_get_statistics == true
@@ -9484,11 +8148,7 @@ func (t GetChatStatistics) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getChatStatistics",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getChatStatistics", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetChatsToPostStories Returns supergroup and channel chats in which the current user has the right to post stories. The chats must be rechecked with canPostStory before actually trying to post a story there
@@ -9508,11 +8168,7 @@ func (t GetChatsToPostStories) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getChatsToPostStories",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getChatsToPostStories", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetChatStoryAlbums Returns the list of story albums owned by the given chat
@@ -9534,11 +8190,7 @@ func (t GetChatStoryAlbums) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getChatStoryAlbums",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getChatStoryAlbums", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetChatStoryInteractions Returns interactions with a story posted in a chat. Can be used only if story is posted on behalf of a chat and the user is an administrator in the chat
@@ -9570,11 +8222,7 @@ func (t GetChatStoryInteractions) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getChatStoryInteractions",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getChatStoryInteractions", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetCloseFriends Returns all close friends of the current user
@@ -9594,11 +8242,7 @@ func (t GetCloseFriends) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getCloseFriends",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getCloseFriends", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetCollectibleItemInfo Returns information about a given collectible item that was purchased at https://fragment.com
@@ -9620,11 +8264,7 @@ func (t GetCollectibleItemInfo) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getCollectibleItemInfo",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getCollectibleItemInfo", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetCommands Returns the list of commands supported by the bot for the given user scope and language; for bots only
@@ -9648,11 +8288,7 @@ func (t GetCommands) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getCommands",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getCommands", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetConnectedAffiliateProgram Returns an affiliate program that was connected to the given affiliate by identifier of the bot that created the program
@@ -9676,11 +8312,7 @@ func (t GetConnectedAffiliateProgram) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getConnectedAffiliateProgram",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getConnectedAffiliateProgram", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetConnectedAffiliatePrograms Returns affiliate programs that were connected to the given affiliate
@@ -9706,11 +8338,7 @@ func (t GetConnectedAffiliatePrograms) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getConnectedAffiliatePrograms",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getConnectedAffiliatePrograms", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetConnectedWebsites Returns all website where the current user used Telegram to log in
@@ -9730,11 +8358,7 @@ func (t GetConnectedWebsites) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getConnectedWebsites",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getConnectedWebsites", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetContacts Returns all contacts of the user
@@ -9754,11 +8378,7 @@ func (t GetContacts) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getContacts",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getContacts", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetCountries Returns information about existing countries. Can be called before authorization
@@ -9778,11 +8398,7 @@ func (t GetCountries) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getCountries",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getCountries", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetCountry Returns information about an existing country. Can be called before authorization
@@ -9804,11 +8420,7 @@ func (t GetCountry) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getCountry",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getCountry", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetCountryCode Uses the current IP address to find the current country. Returns two-letter ISO 3166-1 alpha-2 country code. Can be called before authorization
@@ -9828,11 +8440,7 @@ func (t GetCountryCode) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getCountryCode",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getCountryCode", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetCountryFlagEmoji Returns an emoji for the flag of the given country. Returns an empty string on failure. Can be called synchronously
@@ -9854,11 +8462,7 @@ func (t GetCountryFlagEmoji) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getCountryFlagEmoji",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getCountryFlagEmoji", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetCreatedPublicChats Returns a list of public chats of the specified type, owned by the user
@@ -9880,11 +8484,7 @@ func (t GetCreatedPublicChats) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getCreatedPublicChats",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getCreatedPublicChats", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetCurrentState Returns all updates needed to restore current TDLib state, i.e. all actual updateAuthorizationState/updateUser/updateNewChat and others. This is especially useful if TDLib is run in a separate process. Can be called before initialization
@@ -9904,11 +8504,7 @@ func (t GetCurrentState) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getCurrentState",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getCurrentState", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetCurrentWeather Returns the current weather in the given location
@@ -9930,11 +8526,7 @@ func (t GetCurrentWeather) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getCurrentWeather",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getCurrentWeather", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetCustomEmojiReactionAnimations Returns TGS stickers with generic animations for custom emoji reactions
@@ -9954,11 +8546,7 @@ func (t GetCustomEmojiReactionAnimations) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getCustomEmojiReactionAnimations",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getCustomEmojiReactionAnimations", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetCustomEmojiStickers Returns the list of custom emoji stickers by their identifiers. Stickers are returned in arbitrary order. Only found stickers are returned
@@ -9980,11 +8568,7 @@ func (t GetCustomEmojiStickers) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getCustomEmojiStickers",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getCustomEmojiStickers", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetDatabaseStatistics Returns database statistics
@@ -10004,11 +8588,7 @@ func (t GetDatabaseStatistics) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getDatabaseStatistics",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getDatabaseStatistics", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetDeepLinkInfo Returns information about a tg:// deep link. Use "tg://need_update_for_some_feature" or "tg:some_unsupported_feature" for testing. Returns a 404 error for unknown links. Can be called before authorization
@@ -10030,11 +8610,7 @@ func (t GetDeepLinkInfo) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getDeepLinkInfo",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getDeepLinkInfo", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetDefaultBackgroundCustomEmojiStickers Returns default list of custom emoji stickers for reply background
@@ -10054,11 +8630,7 @@ func (t GetDefaultBackgroundCustomEmojiStickers) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getDefaultBackgroundCustomEmojiStickers",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getDefaultBackgroundCustomEmojiStickers", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetDefaultChatEmojiStatuses Returns default emoji statuses for chats
@@ -10078,11 +8650,7 @@ func (t GetDefaultChatEmojiStatuses) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getDefaultChatEmojiStatuses",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getDefaultChatEmojiStatuses", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetDefaultChatPhotoCustomEmojiStickers Returns default list of custom emoji stickers for placing on a chat photo
@@ -10102,11 +8670,7 @@ func (t GetDefaultChatPhotoCustomEmojiStickers) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getDefaultChatPhotoCustomEmojiStickers",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getDefaultChatPhotoCustomEmojiStickers", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetDefaultEmojiStatuses Returns default emoji statuses for self status
@@ -10126,11 +8690,7 @@ func (t GetDefaultEmojiStatuses) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getDefaultEmojiStatuses",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getDefaultEmojiStatuses", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetDefaultMessageAutoDeleteTime Returns default message auto-delete time setting for new chats
@@ -10150,11 +8710,7 @@ func (t GetDefaultMessageAutoDeleteTime) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getDefaultMessageAutoDeleteTime",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getDefaultMessageAutoDeleteTime", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetDefaultProfilePhotoCustomEmojiStickers Returns default list of custom emoji stickers for placing on a profile photo
@@ -10174,11 +8730,7 @@ func (t GetDefaultProfilePhotoCustomEmojiStickers) MarshalJSON() ([]byte, error)
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getDefaultProfilePhotoCustomEmojiStickers",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getDefaultProfilePhotoCustomEmojiStickers", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetDirectMessagesChatTopic Returns information about the topic in a channel direct messages chat administered by the current user
@@ -10202,11 +8754,7 @@ func (t GetDirectMessagesChatTopic) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getDirectMessagesChatTopic",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getDirectMessagesChatTopic", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetDirectMessagesChatTopicHistory Returns messages in the topic in a channel direct messages chat administered by the current user. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id)
@@ -10236,11 +8784,7 @@ func (t GetDirectMessagesChatTopicHistory) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getDirectMessagesChatTopicHistory",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getDirectMessagesChatTopicHistory", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetDirectMessagesChatTopicMessageByDate Returns the last message sent in the topic in a channel direct messages chat administered by the current user no later than the specified date
@@ -10266,11 +8810,7 @@ func (t GetDirectMessagesChatTopicMessageByDate) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getDirectMessagesChatTopicMessageByDate",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getDirectMessagesChatTopicMessageByDate", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetDirectMessagesChatTopicRevenue Returns the total number of Telegram Stars received by the channel chat for direct messages from the given topic
@@ -10294,11 +8834,7 @@ func (t GetDirectMessagesChatTopicRevenue) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getDirectMessagesChatTopicRevenue",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getDirectMessagesChatTopicRevenue", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetDisallowedChatEmojiStatuses Returns the list of emoji statuses, which can't be used as chat emoji status, even if they are from a sticker set with is_allowed_as_chat_emoji_status == true
@@ -10318,11 +8854,7 @@ func (t GetDisallowedChatEmojiStatuses) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getDisallowedChatEmojiStatuses",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getDisallowedChatEmojiStatuses", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetEmojiCategories Returns available emoji categories
@@ -10344,11 +8876,7 @@ func (t GetEmojiCategories) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getEmojiCategories",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getEmojiCategories", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetEmojiReaction Returns information about an emoji reaction. Returns a 404 error if the reaction is not found
@@ -10370,11 +8898,7 @@ func (t GetEmojiReaction) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getEmojiReaction",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getEmojiReaction", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetEmojiSuggestionsUrl Returns an HTTP URL which can be used to automatically log in to the translation platform and suggest new emoji replacements. The URL will be valid for 30 seconds after generation
@@ -10396,11 +8920,7 @@ func (t GetEmojiSuggestionsUrl) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getEmojiSuggestionsUrl",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getEmojiSuggestionsUrl", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetExternalLink Returns an HTTP URL which can be used to automatically authorize the current user on a website after clicking an HTTP link.
@@ -10424,11 +8944,7 @@ func (t GetExternalLink) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getExternalLink",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getExternalLink", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetExternalLinkInfo Returns information about an action to be done when the current user clicks an external link. Don't use this method for links from secret chats
@@ -10450,11 +8966,7 @@ func (t GetExternalLinkInfo) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getExternalLinkInfo",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getExternalLinkInfo", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetFavoriteStickers Returns favorite stickers
@@ -10474,11 +8986,7 @@ func (t GetFavoriteStickers) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getFavoriteStickers",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getFavoriteStickers", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetFile Returns information about a file. This is an offline method
@@ -10500,11 +9008,7 @@ func (t GetFile) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getFile",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getFile", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetFileDownloadedPrefixSize Returns file downloaded prefix size from a given offset, in bytes
@@ -10528,11 +9032,7 @@ func (t GetFileDownloadedPrefixSize) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getFileDownloadedPrefixSize",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getFileDownloadedPrefixSize", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetFileExtension Returns the extension of a file, guessed by its MIME type. Returns an empty string on failure. Can be called synchronously
@@ -10554,11 +9054,7 @@ func (t GetFileExtension) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getFileExtension",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getFileExtension", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetFileMimeType Returns the MIME type of a file, guessed by its extension. Returns an empty string on failure. Can be called synchronously
@@ -10580,11 +9076,7 @@ func (t GetFileMimeType) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getFileMimeType",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getFileMimeType", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetForumTopic Returns information about a topic in a forum supergroup chat or a chat with a bot with topics
@@ -10608,11 +9100,7 @@ func (t GetForumTopic) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getForumTopic",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getForumTopic", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetForumTopicDefaultIcons Returns the list of custom emoji, which can be used as forum topic icon by all users
@@ -10632,11 +9120,7 @@ func (t GetForumTopicDefaultIcons) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getForumTopicDefaultIcons",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getForumTopicDefaultIcons", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetForumTopicHistory Returns messages in a topic in a forum supergroup chat or a chat with a bot with topics. The messages are returned in reverse chronological order
@@ -10666,11 +9150,7 @@ func (t GetForumTopicHistory) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getForumTopicHistory",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getForumTopicHistory", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetForumTopicLink Returns an HTTPS link to a topic in a forum supergroup chat. This is an offline method
@@ -10694,11 +9174,7 @@ func (t GetForumTopicLink) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getForumTopicLink",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getForumTopicLink", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetForumTopics Returns found forum topics in a forum supergroup chat or a chat with a bot with topics. This is a temporary method for getting information about topic list from the server
@@ -10730,11 +9206,7 @@ func (t GetForumTopics) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getForumTopics",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getForumTopics", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetFullRichMessage Returns the full version of a rich message
@@ -10758,11 +9230,7 @@ func (t GetFullRichMessage) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getFullRichMessage",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getFullRichMessage", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetGameHighScores Returns the high scores for a game and some part of the high score table in the range of the specified user; for bots only
@@ -10788,11 +9256,7 @@ func (t GetGameHighScores) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getGameHighScores",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getGameHighScores", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetGiftAuctionAcquiredGifts Returns the gifts that were acquired by the current user on a gift auction
@@ -10814,11 +9278,7 @@ func (t GetGiftAuctionAcquiredGifts) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getGiftAuctionAcquiredGifts",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getGiftAuctionAcquiredGifts", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetGiftAuctionState Returns auction state for a gift
@@ -10840,11 +9300,7 @@ func (t GetGiftAuctionState) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getGiftAuctionState",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getGiftAuctionState", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetGiftChatThemes Returns available to the current user gift chat themes
@@ -10868,11 +9324,7 @@ func (t GetGiftChatThemes) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getGiftChatThemes",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getGiftChatThemes", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetGiftCollections Returns collections of gifts owned by the given user or chat
@@ -10894,11 +9346,7 @@ func (t GetGiftCollections) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getGiftCollections",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getGiftCollections", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetGiftsForCrafting Returns upgraded gifts of the current user who can be used to craft another gifts
@@ -10924,11 +9372,7 @@ func (t GetGiftsForCrafting) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getGiftsForCrafting",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getGiftsForCrafting", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetGiftUpgradePreview Returns examples of possible upgraded gifts for a regular gift
@@ -10950,11 +9394,7 @@ func (t GetGiftUpgradePreview) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getGiftUpgradePreview",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getGiftUpgradePreview", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetGiveawayInfo Returns information about a giveaway
@@ -10978,11 +9418,7 @@ func (t GetGiveawayInfo) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getGiveawayInfo",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getGiveawayInfo", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetGramRevenueStatistics Returns detailed TON Gram revenue statistics of the current user
@@ -11004,11 +9440,7 @@ func (t GetGramRevenueStatistics) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getGramRevenueStatistics",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getGramRevenueStatistics", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetGramWithdrawalUrl Returns a URL for TON Gram withdrawal from the current user's account. The user must have at least 10 Grams to withdraw
@@ -11030,11 +9462,7 @@ func (t GetGramWithdrawalUrl) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getGramWithdrawalUrl",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getGramWithdrawalUrl", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetGreetingStickers Returns greeting stickers from regular sticker sets that can be used for the start page of other users
@@ -11054,11 +9482,7 @@ func (t GetGreetingStickers) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getGreetingStickers",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getGreetingStickers", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetGrossingWebAppBots Returns the most grossing Web App bots
@@ -11082,11 +9506,7 @@ func (t GetGrossingWebAppBots) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getGrossingWebAppBots",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getGrossingWebAppBots", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetGroupCall Returns information about a group call
@@ -11108,11 +9528,7 @@ func (t GetGroupCall) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getGroupCall",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getGroupCall", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetGroupCallParticipants Returns information about participants of a non-joined group call that is not bound to a chat
@@ -11136,11 +9552,7 @@ func (t GetGroupCallParticipants) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getGroupCallParticipants",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getGroupCallParticipants", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetGroupCallStreams Returns information about available streams in a video chat or a live story
@@ -11162,11 +9574,7 @@ func (t GetGroupCallStreams) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getGroupCallStreams",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getGroupCallStreams", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetGroupCallStreamSegment Returns a file with a segment of a video chat or live story in a modified OGG format for audio or MPEG-4 format for video
@@ -11196,11 +9604,7 @@ func (t GetGroupCallStreamSegment) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getGroupCallStreamSegment",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getGroupCallStreamSegment", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetGroupsInCommon Returns a list of common group chats with a given user. Chats are sorted by their type and creation date
@@ -11226,11 +9630,7 @@ func (t GetGroupsInCommon) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getGroupsInCommon",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getGroupsInCommon", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetGuardBotWebAppUrl Returns an HTTPS URL of a Web App of a guard bot to open after receiving chatJoinResultGuardBotApprovalRequired
@@ -11254,11 +9654,7 @@ func (t GetGuardBotWebAppUrl) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getGuardBotWebAppUrl",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getGuardBotWebAppUrl", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetImportedContactCount Returns the total number of imported contacts
@@ -11278,11 +9674,7 @@ func (t GetImportedContactCount) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getImportedContactCount",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getImportedContactCount", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetInactiveSupergroupChats Returns a list of recently inactive supergroups and channels. Can be used when user reaches limit on the number of joined supergroups and channels and receives the error "CHANNELS_TOO_MUCH". Also, the limit can be increased with Telegram Premium
@@ -11302,11 +9694,7 @@ func (t GetInactiveSupergroupChats) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getInactiveSupergroupChats",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getInactiveSupergroupChats", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetInlineGameHighScores Returns game high scores and some part of the high score table in the range of the specified user; for bots only
@@ -11330,11 +9718,7 @@ func (t GetInlineGameHighScores) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getInlineGameHighScores",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getInlineGameHighScores", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetInlineQueryResults Sends an inline query to a bot and returns its results. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires
@@ -11364,11 +9748,7 @@ func (t GetInlineQueryResults) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getInlineQueryResults",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getInlineQueryResults", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetInstalledBackgrounds Returns backgrounds installed by the user
@@ -11390,11 +9770,7 @@ func (t GetInstalledBackgrounds) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getInstalledBackgrounds",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getInstalledBackgrounds", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetInstalledStickerSets Returns a list of installed sticker sets
@@ -11416,11 +9792,7 @@ func (t GetInstalledStickerSets) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getInstalledStickerSets",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getInstalledStickerSets", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetInternalLink Returns an HTTPS or a tg: link with the given type. Can be called before authorization
@@ -11444,11 +9816,7 @@ func (t GetInternalLink) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getInternalLink",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getInternalLink", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetInternalLinkType Returns information about the type of internal link. Returns a 404 error if the link is not internal. Can be called before authorization
@@ -11470,11 +9838,7 @@ func (t GetInternalLinkType) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getInternalLinkType",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getInternalLinkType", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetJsonString Converts a JsonValue object to corresponding JSON-serialized string. Can be called synchronously
@@ -11496,11 +9860,7 @@ func (t GetJsonString) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getJsonString",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getJsonString", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetJsonValue Converts a JSON-serialized string to corresponding JsonValue object. Can be called synchronously
@@ -11522,11 +9882,7 @@ func (t GetJsonValue) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getJsonValue",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getJsonValue", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetKeywordEmojis Returns emojis matching the keyword. Supported only if the file database is enabled. Order of results is unspecified
@@ -11550,11 +9906,7 @@ func (t GetKeywordEmojis) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getKeywordEmojis",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getKeywordEmojis", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetLanguagePackInfo Returns information about a language pack. Returned language pack identifier may be different from a provided one. Can be called before authorization
@@ -11576,11 +9928,7 @@ func (t GetLanguagePackInfo) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getLanguagePackInfo",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getLanguagePackInfo", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetLanguagePackString Returns a string stored in the local database from the specified localization target and language pack by its key. Returns a 404 error if the string is not found. Can be called synchronously
@@ -11608,11 +9956,7 @@ func (t GetLanguagePackString) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getLanguagePackString",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getLanguagePackString", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetLanguagePackStrings Returns strings from a language pack in the current localization target by their keys. Can be called before authorization
@@ -11636,11 +9980,7 @@ func (t GetLanguagePackStrings) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getLanguagePackStrings",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getLanguagePackStrings", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetLinkPreview Returns a link preview by the text of a message. Do not call this function too often. Returns a 404 error if the text has no link preview
@@ -11664,11 +10004,7 @@ func (t GetLinkPreview) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getLinkPreview",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getLinkPreview", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetLinkWebBrowserType Returns a type of the web browser which must be used to open the link
@@ -11690,11 +10026,7 @@ func (t GetLinkWebBrowserType) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getLinkWebBrowserType",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getLinkWebBrowserType", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetLiveStoryAvailableMessageSenders Returns the list of message sender identifiers, on whose behalf messages can be sent to a live story
@@ -11716,11 +10048,7 @@ func (t GetLiveStoryAvailableMessageSenders) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getLiveStoryAvailableMessageSenders",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getLiveStoryAvailableMessageSenders", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetLiveStoryRtmpUrl Returns RTMP URL for streaming to a live story; requires can_post_stories administrator right for channel chats
@@ -11742,11 +10070,7 @@ func (t GetLiveStoryRtmpUrl) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getLiveStoryRtmpUrl",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getLiveStoryRtmpUrl", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetLiveStoryStreamer Returns information about the user or the chat that streams to a live story; for live stories that aren't an RTMP stream only
@@ -11768,11 +10092,7 @@ func (t GetLiveStoryStreamer) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getLiveStoryStreamer",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getLiveStoryStreamer", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetLiveStoryTopDonors Returns the list of top live story donors
@@ -11794,11 +10114,7 @@ func (t GetLiveStoryTopDonors) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getLiveStoryTopDonors",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getLiveStoryTopDonors", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetLocalizationTargetInfo Returns information about the current localization target. This is an offline method if only_local is true. Can be called before authorization
@@ -11820,11 +10136,7 @@ func (t GetLocalizationTargetInfo) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getLocalizationTargetInfo",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getLocalizationTargetInfo", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetLoginPasskeys Returns the list of passkeys allowed to be used for the login by the current user
@@ -11844,11 +10156,7 @@ func (t GetLoginPasskeys) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getLoginPasskeys",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getLoginPasskeys", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetLoginUrl Returns an HTTP URL which can be used to automatically authorize the user on a website after clicking an inline button of type inlineKeyboardButtonTypeLoginUrl.
@@ -11876,11 +10184,7 @@ func (t GetLoginUrl) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getLoginUrl",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getLoginUrl", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetLoginUrlInfo Returns information about a button of type inlineKeyboardButtonTypeLoginUrl. The method needs to be called when the user presses the button
@@ -11906,11 +10210,7 @@ func (t GetLoginUrlInfo) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getLoginUrlInfo",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getLoginUrlInfo", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetLogStream Returns information about currently used log stream for internal logging of TDLib. Can be called synchronously
@@ -11930,11 +10230,7 @@ func (t GetLogStream) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getLogStream",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getLogStream", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetLogTags Returns the list of available TDLib internal log tags, for example, ["actor", "binlog", "connections", "notifications", "proxy"]. Can be called synchronously
@@ -11954,11 +10250,7 @@ func (t GetLogTags) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getLogTags",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getLogTags", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetLogTagVerbosityLevel Returns current verbosity level for a specified TDLib internal log tag. Can be called synchronously
@@ -11980,11 +10272,7 @@ func (t GetLogTagVerbosityLevel) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getLogTagVerbosityLevel",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getLogTagVerbosityLevel", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetLogVerbosityLevel Returns current verbosity level of the internal logging of TDLib. Can be called synchronously
@@ -12004,11 +10292,7 @@ func (t GetLogVerbosityLevel) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getLogVerbosityLevel",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getLogVerbosityLevel", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetMainWebApp Returns information needed to open the main Web App of a bot
@@ -12036,11 +10320,7 @@ func (t GetMainWebApp) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getMainWebApp",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getMainWebApp", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetManagedBotAccessSettings Returns access settings of a managed bot; for bots only
@@ -12062,11 +10342,7 @@ func (t GetManagedBotAccessSettings) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getManagedBotAccessSettings",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getManagedBotAccessSettings", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetManagedBotToken Returns token of a managed bot; for bots only
@@ -12090,11 +10366,7 @@ func (t GetManagedBotToken) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getManagedBotToken",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getManagedBotToken", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetMapThumbnailFile Returns information about a file with a map thumbnail in PNG format. Only map thumbnail files with size less than 1MB can be downloaded
@@ -12126,11 +10398,7 @@ func (t GetMapThumbnailFile) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getMapThumbnailFile",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getMapThumbnailFile", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetMarkdownText Replaces text entities with Markdown formatting in a human-friendly format. Entities that can't be represented in Markdown unambiguously are kept as is. Can be called synchronously
@@ -12152,11 +10420,7 @@ func (t GetMarkdownText) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getMarkdownText",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getMarkdownText", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetMe Returns the current user
@@ -12176,11 +10440,7 @@ func (t GetMe) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getMe",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getMe", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetMenuButton Returns menu button set by the bot for the given user; for bots only
@@ -12202,11 +10462,7 @@ func (t GetMenuButton) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getMenuButton",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getMenuButton", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetMessage Returns information about a message. Returns a 404 error if the message doesn't exist
@@ -12230,11 +10486,7 @@ func (t GetMessage) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getMessage",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getMessage", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetMessageAddedReactions Returns reactions added for a message, along with their sender
@@ -12264,11 +10516,7 @@ func (t GetMessageAddedReactions) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getMessageAddedReactions",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getMessageAddedReactions", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetMessageAuthor Returns information about actual author of a message sent on behalf of a channel. The method can be called if messageProperties.can_get_author == true
@@ -12292,11 +10540,7 @@ func (t GetMessageAuthor) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getMessageAuthor",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getMessageAuthor", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetMessageAvailableReactions Returns reactions, which can be added to a message. The list can change after updateActiveEmojiReactions, updateChatAvailableReactions for the chat, or updateMessageInteractionInfo for the message
@@ -12322,11 +10566,7 @@ func (t GetMessageAvailableReactions) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getMessageAvailableReactions",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getMessageAvailableReactions", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetMessageEffect Returns information about a message effect. Returns a 404 error if the effect is not found
@@ -12348,11 +10588,7 @@ func (t GetMessageEffect) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getMessageEffect",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getMessageEffect", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetMessageEmbeddingCode Returns an HTML code for embedding the message. Available only if messageProperties.can_get_embedding_code
@@ -12378,11 +10614,7 @@ func (t GetMessageEmbeddingCode) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getMessageEmbeddingCode",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getMessageEmbeddingCode", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetMessageFileType Returns information about a file with messages exported from another application
@@ -12404,11 +10636,7 @@ func (t GetMessageFileType) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getMessageFileType",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getMessageFileType", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetMessageImportConfirmationText Returns a confirmation text to be shown to the user before starting message import
@@ -12430,11 +10658,7 @@ func (t GetMessageImportConfirmationText) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getMessageImportConfirmationText",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getMessageImportConfirmationText", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetMessageLink Returns an HTTPS link to a message in a chat. Available only if messageProperties.can_get_link, or if messageProperties.can_get_media_timestamp_links and a media timestamp link is generated. This is an offline method
@@ -12468,11 +10692,7 @@ func (t GetMessageLink) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getMessageLink",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getMessageLink", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetMessageLinkInfo Returns information about a public or private message link. Can be called for any internal link of the type internalLinkTypeMessage
@@ -12494,11 +10714,7 @@ func (t GetMessageLinkInfo) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getMessageLinkInfo",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getMessageLinkInfo", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetMessageLocally Returns information about a message, if it is available without sending network request. Returns a 404 error if message isn't available locally. This is an offline method
@@ -12522,11 +10738,7 @@ func (t GetMessageLocally) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getMessageLocally",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getMessageLocally", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetMessageProperties Returns properties of a message. This is an offline method
@@ -12550,11 +10762,7 @@ func (t GetMessageProperties) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getMessageProperties",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getMessageProperties", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetMessagePublicForwards Returns forwarded copies of a channel message to different public channels and public reposts as a story. Can be used only if messageProperties.can_get_statistics == true. For optimal performance, the number of returned messages and stories is chosen by TDLib
@@ -12582,11 +10790,7 @@ func (t GetMessagePublicForwards) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getMessagePublicForwards",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getMessagePublicForwards", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetMessageReadDate Returns read date of a recent outgoing message in a private chat. The method can be called if messageProperties.can_get_read_date == true
@@ -12610,11 +10814,7 @@ func (t GetMessageReadDate) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getMessageReadDate",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getMessageReadDate", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetMessages Returns information about messages. If a message is not found, returns null on the corresponding position of the result
@@ -12638,11 +10838,7 @@ func (t GetMessages) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getMessages",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getMessages", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetMessageStatistics Returns detailed statistics about a message. Can be used only if messageProperties.can_get_statistics == true
@@ -12668,11 +10864,7 @@ func (t GetMessageStatistics) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getMessageStatistics",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getMessageStatistics", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetMessageThread Returns information about a message thread. Can be used only if messageProperties.can_get_message_thread == true
@@ -12696,11 +10888,7 @@ func (t GetMessageThread) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getMessageThread",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getMessageThread", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetMessageThreadHistory Returns messages in a message thread of a message. Can be used only if messageProperties.can_get_message_thread == true. Message thread of a channel message is in the channel's linked supergroup.
@@ -12730,11 +10918,7 @@ func (t GetMessageThreadHistory) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getMessageThreadHistory",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getMessageThreadHistory", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetMessageViewers Returns viewers of a recent outgoing message in a basic group or a supergroup chat. For video notes and voice notes only users, opened content of the message, are returned. The method can be called if messageProperties.can_get_viewers == true
@@ -12758,11 +10942,7 @@ func (t GetMessageViewers) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getMessageViewers",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getMessageViewers", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetNetworkStatistics Returns network data usage statistics. Can be called before authorization
@@ -12784,11 +10964,7 @@ func (t GetNetworkStatistics) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getNetworkStatistics",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getNetworkStatistics", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetNewChatPrivacySettings Returns privacy settings for new chat creation
@@ -12808,11 +10984,7 @@ func (t GetNewChatPrivacySettings) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getNewChatPrivacySettings",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getNewChatPrivacySettings", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetOauthLinkInfo Returns information about an OAuth deep link. Use checkOauthRequestMatchCode, acceptOauthRequest or declineOauthRequest to process the link
@@ -12836,11 +11008,7 @@ func (t GetOauthLinkInfo) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getOauthLinkInfo",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getOauthLinkInfo", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetOption Returns the value of an option by its name. (Check the list of available options on https://core.telegram.org/tdlib/options.) Can be called before authorization. Can be called synchronously for options "version" and "commit_hash"
@@ -12862,11 +11030,7 @@ func (t GetOption) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getOption",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getOption", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetOwnedBots Returns the list of bots owned by the current user
@@ -12886,11 +11050,7 @@ func (t GetOwnedBots) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getOwnedBots",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getOwnedBots", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetOwnedStickerSets Returns sticker sets owned by the current user
@@ -12914,11 +11074,7 @@ func (t GetOwnedStickerSets) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getOwnedStickerSets",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getOwnedStickerSets", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetPaidMessageRevenue Returns the total number of Telegram Stars received by the current user for paid messages from the given user
@@ -12940,11 +11096,7 @@ func (t GetPaidMessageRevenue) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getPaidMessageRevenue",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getPaidMessageRevenue", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetPasskeyParameters Returns parameters for creating of a new passkey as JSON-serialized string
@@ -12964,11 +11116,7 @@ func (t GetPasskeyParameters) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getPasskeyParameters",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getPasskeyParameters", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetPassportAuthorizationForm Returns a Telegram Passport authorization form for sharing data with a service
@@ -12996,11 +11144,7 @@ func (t GetPassportAuthorizationForm) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getPassportAuthorizationForm",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getPassportAuthorizationForm", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetPassportAuthorizationFormAvailableElements Returns already available Telegram Passport elements suitable for completing a Telegram Passport authorization form. Result can be received only once for each authorization form
@@ -13024,11 +11168,7 @@ func (t GetPassportAuthorizationFormAvailableElements) MarshalJSON() ([]byte, er
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getPassportAuthorizationFormAvailableElements",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getPassportAuthorizationFormAvailableElements", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetPassportElement Returns one of the available Telegram Passport elements
@@ -13052,11 +11192,7 @@ func (t GetPassportElement) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getPassportElement",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getPassportElement", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetPasswordState Returns the current state of 2-step verification
@@ -13076,11 +11212,7 @@ func (t GetPasswordState) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getPasswordState",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getPasswordState", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetPaymentForm Returns an invoice payment form. This method must be called when the user presses inline button of the type inlineKeyboardButtonTypeBuy, or wants to buy access to media in a messagePaidMedia message
@@ -13104,11 +11236,7 @@ func (t GetPaymentForm) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getPaymentForm",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getPaymentForm", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetPaymentReceipt Returns information about a successful payment
@@ -13132,11 +11260,7 @@ func (t GetPaymentReceipt) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getPaymentReceipt",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getPaymentReceipt", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetPersonalChatHistory Returns messages in the personal chat of a given user; for bots only
@@ -13160,11 +11284,7 @@ func (t GetPersonalChatHistory) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getPersonalChatHistory",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getPersonalChatHistory", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetPhoneNumberInfo Returns information about a phone number by its prefix. Can be called before authorization
@@ -13186,11 +11306,7 @@ func (t GetPhoneNumberInfo) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getPhoneNumberInfo",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getPhoneNumberInfo", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetPhoneNumberInfoSync Returns information about a phone number by its prefix synchronously. getCountries must be called at least once after changing localization to the specified language if properly localized country information is expected. Can be called synchronously
@@ -13214,11 +11330,7 @@ func (t GetPhoneNumberInfoSync) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getPhoneNumberInfoSync",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getPhoneNumberInfoSync", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetPollOptionProperties Returns properties of a poll option. This is an offline method
@@ -13244,11 +11356,7 @@ func (t GetPollOptionProperties) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getPollOptionProperties",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getPollOptionProperties", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetPollVoters Returns message senders voted for the specified option in a poll; use poll.can_get_voters to check whether the method can be used.
@@ -13278,11 +11386,7 @@ func (t GetPollVoters) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getPollVoters",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getPollVoters", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetPollVoteStatistics Returns statistics of poll votes in a poll
@@ -13308,11 +11412,7 @@ func (t GetPollVoteStatistics) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getPollVoteStatistics",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getPollVoteStatistics", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetPreferredCountryLanguage Returns an IETF language tag of the language preferred in the country, which must be used to fill native fields in Telegram Passport personal details. Returns a 404 error if unknown
@@ -13334,11 +11434,7 @@ func (t GetPreferredCountryLanguage) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getPreferredCountryLanguage",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getPreferredCountryLanguage", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetPremiumFeatures Returns information about features, available to Premium users
@@ -13360,11 +11456,7 @@ func (t GetPremiumFeatures) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getPremiumFeatures",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getPremiumFeatures", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetPremiumGiftPaymentOptions Returns available options for gifting Telegram Premium to a user
@@ -13384,11 +11476,7 @@ func (t GetPremiumGiftPaymentOptions) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getPremiumGiftPaymentOptions",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getPremiumGiftPaymentOptions", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetPremiumGiveawayPaymentOptions Returns available options for creating of Telegram Premium giveaway or manual distribution of Telegram Premium among chat members
@@ -13410,11 +11498,7 @@ func (t GetPremiumGiveawayPaymentOptions) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getPremiumGiveawayPaymentOptions",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getPremiumGiveawayPaymentOptions", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetPremiumInfoSticker Returns the sticker to be used as representation of the Telegram Premium subscription
@@ -13436,11 +11520,7 @@ func (t GetPremiumInfoSticker) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getPremiumInfoSticker",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getPremiumInfoSticker", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetPremiumLimit Returns information about a limit, increased for Premium users. Returns a 404 error if the limit is unknown
@@ -13462,11 +11542,7 @@ func (t GetPremiumLimit) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getPremiumLimit",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getPremiumLimit", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetPremiumState Returns state of Telegram Premium subscription and promotion videos for Premium features
@@ -13486,11 +11562,7 @@ func (t GetPremiumState) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getPremiumState",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getPremiumState", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetPremiumStickerExamples Returns examples of premium stickers for demonstration purposes
@@ -13510,11 +11582,7 @@ func (t GetPremiumStickerExamples) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getPremiumStickerExamples",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getPremiumStickerExamples", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetPremiumStickers Returns premium stickers from regular sticker sets
@@ -13536,11 +11604,7 @@ func (t GetPremiumStickers) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getPremiumStickers",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getPremiumStickers", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetPreparedInlineMessage Saves an inline message to be sent by the given user
@@ -13564,11 +11628,7 @@ func (t GetPreparedInlineMessage) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getPreparedInlineMessage",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getPreparedInlineMessage", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetPreparedKeyboardButton Returns a keyboard button prepared by the bot for the user. The button will be of the type keyboardButtonTypeRequestUsers, keyboardButtonTypeRequestChat, or keyboardButtonTypeRequestManagedBot
@@ -13592,11 +11652,7 @@ func (t GetPreparedKeyboardButton) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getPreparedKeyboardButton",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getPreparedKeyboardButton", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetProxies Returns the list of proxies that are currently set up. Can be called before authorization
@@ -13616,11 +11672,7 @@ func (t GetProxies) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getProxies",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getProxies", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetPublicPostSearchLimits Checks public post search limits without actually performing the search
@@ -13642,11 +11694,7 @@ func (t GetPublicPostSearchLimits) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getPublicPostSearchLimits",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getPublicPostSearchLimits", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetPushReceiverId Returns a globally unique push notification subscription identifier for identification of an account, which has received a push notification. Can be called synchronously
@@ -13668,11 +11716,7 @@ func (t GetPushReceiverId) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getPushReceiverId",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getPushReceiverId", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetReadDatePrivacySettings Returns privacy settings for message read date
@@ -13692,11 +11736,7 @@ func (t GetReadDatePrivacySettings) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getReadDatePrivacySettings",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getReadDatePrivacySettings", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetReceivedGift Returns information about a received gift
@@ -13718,11 +11758,7 @@ func (t GetReceivedGift) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getReceivedGift",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getReceivedGift", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetReceivedGifts Returns gifts received by the given user or chat
@@ -13770,11 +11806,7 @@ func (t GetReceivedGifts) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getReceivedGifts",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getReceivedGifts", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetRecentEmojiStatuses Returns recent emoji statuses for self status
@@ -13794,11 +11826,7 @@ func (t GetRecentEmojiStatuses) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getRecentEmojiStatuses",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getRecentEmojiStatuses", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetRecentInlineBots Returns up to 20 recently used inline bots in the order of their last usage
@@ -13818,11 +11846,7 @@ func (t GetRecentInlineBots) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getRecentInlineBots",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getRecentInlineBots", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetRecentlyOpenedChats Returns recently opened chats. This is an offline method. Returns chats in the order of last opening
@@ -13844,11 +11868,7 @@ func (t GetRecentlyOpenedChats) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getRecentlyOpenedChats",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getRecentlyOpenedChats", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetRecentlyVisitedTMeUrls Returns t.me URLs recently visited by a newly registered user
@@ -13870,11 +11890,7 @@ func (t GetRecentlyVisitedTMeUrls) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getRecentlyVisitedTMeUrls",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getRecentlyVisitedTMeUrls", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetRecentStickers Returns a list of recently used stickers
@@ -13896,11 +11912,7 @@ func (t GetRecentStickers) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getRecentStickers",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getRecentStickers", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetRecommendedChatFolders Returns recommended chat folders for the current user
@@ -13920,11 +11932,7 @@ func (t GetRecommendedChatFolders) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getRecommendedChatFolders",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getRecommendedChatFolders", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetRecommendedChats Returns a list of channel chats recommended to the current user
@@ -13944,11 +11952,7 @@ func (t GetRecommendedChats) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getRecommendedChats",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getRecommendedChats", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetRecoveryEmailAddress Returns a 2-step verification recovery email address that was previously set up. This method can be used to verify a password provided by the user
@@ -13970,11 +11974,7 @@ func (t GetRecoveryEmailAddress) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getRecoveryEmailAddress",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getRecoveryEmailAddress", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetRemoteFile Returns information about a file by its remote identifier. This is an offline method. Can be used to register a URL as a file for further uploading, or sending as a message. Even if the request succeeds, the file can be used only if it is still accessible to the user.
@@ -13998,11 +11998,7 @@ func (t GetRemoteFile) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getRemoteFile",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getRemoteFile", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetRepliedMessage Returns information about a non-bundled message that is replied by a given message. Also, returns the pinned message for messagePinMessage,
@@ -14026,11 +12022,7 @@ func (t GetRepliedMessage) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getRepliedMessage",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getRepliedMessage", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetSavedAnimations Returns saved animations
@@ -14050,11 +12042,7 @@ func (t GetSavedAnimations) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getSavedAnimations",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getSavedAnimations", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetSavedMessagesTags Returns tags used in Saved Messages or a Saved Messages topic
@@ -14076,11 +12064,7 @@ func (t GetSavedMessagesTags) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getSavedMessagesTags",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getSavedMessagesTags", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetSavedMessagesTopicHistory Returns messages in a Saved Messages topic. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id)
@@ -14108,11 +12092,7 @@ func (t GetSavedMessagesTopicHistory) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getSavedMessagesTopicHistory",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getSavedMessagesTopicHistory", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetSavedMessagesTopicMessageByDate Returns the last message sent in a Saved Messages topic no later than the specified date
@@ -14136,11 +12116,7 @@ func (t GetSavedMessagesTopicMessageByDate) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getSavedMessagesTopicMessageByDate",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getSavedMessagesTopicMessageByDate", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetSavedNotificationSound Returns saved notification sound by its identifier. Returns a 404 error if there is no saved notification sound with the specified identifier
@@ -14162,11 +12138,7 @@ func (t GetSavedNotificationSound) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getSavedNotificationSound",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getSavedNotificationSound", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetSavedNotificationSounds Returns the list of saved notification sounds. If a sound isn't in the list, then default sound needs to be used
@@ -14186,11 +12158,7 @@ func (t GetSavedNotificationSounds) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getSavedNotificationSounds",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getSavedNotificationSounds", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetSavedOrderInfo Returns saved order information. Returns a 404 error if there is no saved order information
@@ -14210,11 +12178,7 @@ func (t GetSavedOrderInfo) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getSavedOrderInfo",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getSavedOrderInfo", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetScopeNotificationSettings Returns the notification settings for chats of a given type
@@ -14236,11 +12200,7 @@ func (t GetScopeNotificationSettings) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getScopeNotificationSettings",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getScopeNotificationSettings", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetSearchedForTags Returns recently searched for hashtags or cashtags by their prefix
@@ -14264,11 +12224,7 @@ func (t GetSearchedForTags) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getSearchedForTags",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getSearchedForTags", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetSearchSponsoredChats Returns sponsored chats to be shown in the search results
@@ -14290,11 +12246,7 @@ func (t GetSearchSponsoredChats) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getSearchSponsoredChats",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getSearchSponsoredChats", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetSecretChat Returns information about a secret chat by its identifier. This is an offline method
@@ -14316,11 +12268,7 @@ func (t GetSecretChat) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getSecretChat",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getSecretChat", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetStakeDiceState Returns the current state of stake dice
@@ -14340,11 +12288,7 @@ func (t GetStakeDiceState) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getStakeDiceState",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getStakeDiceState", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetStarAdAccountUrl Returns a URL for a Telegram Ad platform account that can be used to set up advertisements for the chat paid in the owned Telegram Stars
@@ -14366,11 +12310,7 @@ func (t GetStarAdAccountUrl) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getStarAdAccountUrl",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getStarAdAccountUrl", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetStarGiftPaymentOptions Returns available options for Telegram Stars gifting
@@ -14392,11 +12332,7 @@ func (t GetStarGiftPaymentOptions) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getStarGiftPaymentOptions",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getStarGiftPaymentOptions", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetStarGiveawayPaymentOptions Returns available options for Telegram Star giveaway creation
@@ -14416,11 +12352,7 @@ func (t GetStarGiveawayPaymentOptions) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getStarGiveawayPaymentOptions",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getStarGiveawayPaymentOptions", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetStarPaymentOptions Returns available options for Telegram Stars purchase
@@ -14440,11 +12372,7 @@ func (t GetStarPaymentOptions) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getStarPaymentOptions",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getStarPaymentOptions", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetStarRevenueStatistics Returns detailed Telegram Star revenue statistics
@@ -14468,11 +12396,7 @@ func (t GetStarRevenueStatistics) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getStarRevenueStatistics",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getStarRevenueStatistics", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetStarSubscriptions Returns the list of Telegram Star subscriptions for the current user
@@ -14496,11 +12420,7 @@ func (t GetStarSubscriptions) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getStarSubscriptions",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getStarSubscriptions", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetStarTransactions Returns the list of Telegram Star transactions for the specified owner
@@ -14530,11 +12450,7 @@ func (t GetStarTransactions) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getStarTransactions",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getStarTransactions", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetStarWithdrawalUrl Returns a URL for Telegram Star withdrawal
@@ -14560,11 +12476,7 @@ func (t GetStarWithdrawalUrl) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getStarWithdrawalUrl",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getStarWithdrawalUrl", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetStatisticalGraph Loads an asynchronous or a zoomed in statistical graph
@@ -14590,11 +12502,7 @@ func (t GetStatisticalGraph) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getStatisticalGraph",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getStatisticalGraph", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetStickerEmojis Returns emoji corresponding to a sticker. The list is only for informational purposes, because a sticker is always sent with a fixed emoji from the corresponding Sticker object
@@ -14616,11 +12524,7 @@ func (t GetStickerEmojis) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getStickerEmojis",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getStickerEmojis", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetStickerOutline Returns outline of a sticker. This is an offline method. Returns a 404 error if the outline isn't known
@@ -14646,11 +12550,7 @@ func (t GetStickerOutline) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getStickerOutline",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getStickerOutline", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetStickerOutlineSvgPath Returns outline of a sticker as an SVG path. This is an offline method. Returns an empty string if the outline isn't known
@@ -14676,11 +12576,7 @@ func (t GetStickerOutlineSvgPath) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getStickerOutlineSvgPath",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getStickerOutlineSvgPath", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetStickers Returns stickers from the installed sticker sets that correspond to any of the given emoji or can be found by sticker-specific keywords. If the query is non-empty, then favorite, recently used or trending stickers may also be returned
@@ -14708,11 +12604,7 @@ func (t GetStickers) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getStickers",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getStickers", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetStickerSet Returns information about a sticker set by its identifier
@@ -14734,11 +12626,7 @@ func (t GetStickerSet) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getStickerSet",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getStickerSet", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetStickerSetName Returns name of a sticker set by its identifier
@@ -14760,11 +12648,7 @@ func (t GetStickerSetName) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getStickerSetName",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getStickerSetName", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetStorageStatistics Returns storage usage statistics. Can be called before authorization
@@ -14786,11 +12670,7 @@ func (t GetStorageStatistics) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getStorageStatistics",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getStorageStatistics", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetStorageStatisticsFast Quickly returns approximate storage usage statistics. Can be called before authorization
@@ -14810,11 +12690,7 @@ func (t GetStorageStatisticsFast) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getStorageStatisticsFast",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getStorageStatisticsFast", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetStory Returns a story
@@ -14840,11 +12716,7 @@ func (t GetStory) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getStory",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getStory", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetStoryAlbumStories Returns the list of stories added to the given story album. For optimal performance, the number of returned stories is chosen by TDLib
@@ -14872,11 +12744,7 @@ func (t GetStoryAlbumStories) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getStoryAlbumStories",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getStoryAlbumStories", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetStoryAvailableReactions Returns reactions, which can be chosen for a story
@@ -14898,11 +12766,7 @@ func (t GetStoryAvailableReactions) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getStoryAvailableReactions",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getStoryAvailableReactions", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetStoryInteractions Returns interactions with a story. The method can be called only for stories posted on behalf of the current user
@@ -14936,11 +12800,7 @@ func (t GetStoryInteractions) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getStoryInteractions",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getStoryInteractions", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetStoryNotificationSettingsExceptions Returns the list of chats with non-default notification settings for stories
@@ -14960,11 +12820,7 @@ func (t GetStoryNotificationSettingsExceptions) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getStoryNotificationSettingsExceptions",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getStoryNotificationSettingsExceptions", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetStoryPublicForwards Returns forwards of a story as a message to public chats and reposts by public channels. Can be used only if the story is posted on behalf of the current user or story.can_get_statistics == true.
@@ -14992,11 +12848,7 @@ func (t GetStoryPublicForwards) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getStoryPublicForwards",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getStoryPublicForwards", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetStoryStatistics Returns detailed statistics about a story. Can be used only if story.can_get_statistics == true
@@ -15022,11 +12874,7 @@ func (t GetStoryStatistics) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getStoryStatistics",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getStoryStatistics", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetSuggestedFileName Returns suggested name for saving a file in a given directory
@@ -15050,11 +12898,7 @@ func (t GetSuggestedFileName) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getSuggestedFileName",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getSuggestedFileName", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetSuggestedStickerSetName Returns a suggested name for a new sticker set with a given title
@@ -15076,11 +12920,7 @@ func (t GetSuggestedStickerSetName) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getSuggestedStickerSetName",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getSuggestedStickerSetName", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetSuitableDiscussionChats Returns a list of basic group and supergroup chats, which can be used as a discussion group for a channel. Returned basic group chats must be first upgraded to supergroups before they can be set as a discussion group.
@@ -15100,11 +12940,7 @@ func (t GetSuitableDiscussionChats) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getSuitableDiscussionChats",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getSuitableDiscussionChats", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetSuitablePersonalChats Returns a list of channel chats, which can be used as a personal chat
@@ -15124,11 +12960,7 @@ func (t GetSuitablePersonalChats) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getSuitablePersonalChats",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getSuitablePersonalChats", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetSupergroup Returns information about a supergroup or a channel by its identifier. This is an offline method if the current user is not a bot
@@ -15150,11 +12982,7 @@ func (t GetSupergroup) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getSupergroup",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getSupergroup", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetSupergroupFullInfo Returns full information about a supergroup or a channel by its identifier, cached for up to 1 minute
@@ -15176,11 +13004,7 @@ func (t GetSupergroupFullInfo) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getSupergroupFullInfo",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getSupergroupFullInfo", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetSupergroupMembers Returns information about members or banned users in a supergroup or channel. Can be used only if supergroupFullInfo.can_get_members == true; additionally, administrator privileges may be required for some filters
@@ -15208,11 +13032,7 @@ func (t GetSupergroupMembers) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getSupergroupMembers",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getSupergroupMembers", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetSupportName Returns localized name of the Telegram support user; for Telegram support only
@@ -15232,11 +13052,7 @@ func (t GetSupportName) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getSupportName",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getSupportName", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetSupportUser Returns a user who can be contacted to get support
@@ -15256,11 +13072,7 @@ func (t GetSupportUser) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getSupportUser",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getSupportUser", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetTemporaryPasswordState Returns information about the current temporary password
@@ -15280,11 +13092,7 @@ func (t GetTemporaryPasswordState) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getTemporaryPasswordState",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getTemporaryPasswordState", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetTextCompositionStyleExample Returns an example of usage of a custom text composition style
@@ -15308,11 +13116,7 @@ func (t GetTextCompositionStyleExample) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getTextCompositionStyleExample",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getTextCompositionStyleExample", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetTextEntities Returns all entities (mentions, hashtags, cashtags, bot commands, bank card numbers, URLs, and email addresses) found in the text. Can be called synchronously
@@ -15334,11 +13138,7 @@ func (t GetTextEntities) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getTextEntities",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getTextEntities", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetThemedChatEmojiStatuses Returns up to 8 emoji statuses, which must be shown in the emoji status list for chats
@@ -15358,11 +13158,7 @@ func (t GetThemedChatEmojiStatuses) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getThemedChatEmojiStatuses",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getThemedChatEmojiStatuses", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetThemedEmojiStatuses Returns up to 8 emoji statuses, which must be shown right after the default Premium Badge in the emoji status list for self status
@@ -15382,11 +13178,7 @@ func (t GetThemedEmojiStatuses) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getThemedEmojiStatuses",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getThemedEmojiStatuses", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetThemeParametersJsonString Converts a themeParameters object to corresponding JSON-serialized string. Can be called synchronously
@@ -15408,11 +13200,7 @@ func (t GetThemeParametersJsonString) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getThemeParametersJsonString",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getThemeParametersJsonString", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetTimeZones Returns the list of supported time zones
@@ -15432,11 +13220,7 @@ func (t GetTimeZones) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getTimeZones",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getTimeZones", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetTonTransactions Returns the list of TON blockchain transactions of the current user
@@ -15462,11 +13246,7 @@ func (t GetTonTransactions) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getTonTransactions",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getTonTransactions", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetTopChats Returns a list of frequently used chats
@@ -15490,11 +13270,7 @@ func (t GetTopChats) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getTopChats",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getTopChats", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetTrendingStickerSets Returns a list of trending sticker sets. For optimal performance, the number of returned sticker sets is chosen by TDLib
@@ -15520,11 +13296,7 @@ func (t GetTrendingStickerSets) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getTrendingStickerSets",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getTrendingStickerSets", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetUpgradedGift Returns information about an upgraded gift by its name
@@ -15546,11 +13318,7 @@ func (t GetUpgradedGift) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getUpgradedGift",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getUpgradedGift", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetUpgradedGiftEmojiStatuses Returns available upgraded gift emoji statuses for self status
@@ -15570,11 +13338,7 @@ func (t GetUpgradedGiftEmojiStatuses) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getUpgradedGiftEmojiStatuses",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getUpgradedGiftEmojiStatuses", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetUpgradedGiftsPromotionalAnimation Returns promotional animation for upgraded gifts
@@ -15594,11 +13358,7 @@ func (t GetUpgradedGiftsPromotionalAnimation) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getUpgradedGiftsPromotionalAnimation",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getUpgradedGiftsPromotionalAnimation", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetUpgradedGiftValueInfo Returns information about value of an upgraded gift by its name
@@ -15620,11 +13380,7 @@ func (t GetUpgradedGiftValueInfo) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getUpgradedGiftValueInfo",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getUpgradedGiftValueInfo", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetUpgradedGiftVariants Returns all possible variants of upgraded gifts for a regular gift
@@ -15650,11 +13406,7 @@ func (t GetUpgradedGiftVariants) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getUpgradedGiftVariants",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getUpgradedGiftVariants", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetUpgradedGiftWithdrawalUrl Returns a URL for upgraded gift withdrawal in the TON blockchain as an NFT; requires owner privileges for gifts owned by a chat
@@ -15678,11 +13430,7 @@ func (t GetUpgradedGiftWithdrawalUrl) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getUpgradedGiftWithdrawalUrl",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getUpgradedGiftWithdrawalUrl", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetUser Returns information about a user by their identifier. This is an offline method if the current user is not a bot
@@ -15704,11 +13452,7 @@ func (t GetUser) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getUser",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getUser", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetUserChatBoosts Returns the list of boosts applied to a chat by a given user; requires administrator rights in the chat; for bots only
@@ -15732,11 +13476,7 @@ func (t GetUserChatBoosts) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getUserChatBoosts",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getUserChatBoosts", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetUserFullInfo Returns full information about a user by their identifier
@@ -15758,11 +13498,7 @@ func (t GetUserFullInfo) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getUserFullInfo",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getUserFullInfo", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetUserLink Returns an HTTPS link, which can be used to get information about the current user
@@ -15782,11 +13518,7 @@ func (t GetUserLink) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getUserLink",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getUserLink", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetUserPrivacySettingRules Returns the current privacy settings
@@ -15808,11 +13540,7 @@ func (t GetUserPrivacySettingRules) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getUserPrivacySettingRules",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getUserPrivacySettingRules", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetUserProfileAudios Returns the list of profile audio files of a user
@@ -15838,11 +13566,7 @@ func (t GetUserProfileAudios) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getUserProfileAudios",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getUserProfileAudios", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetUserProfilePhotos Returns the profile photos of a user. Personal and public photo aren't returned
@@ -15868,11 +13592,7 @@ func (t GetUserProfilePhotos) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getUserProfilePhotos",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getUserProfilePhotos", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetUserSupportInfo Returns support information for the given user; for Telegram support only
@@ -15894,11 +13614,7 @@ func (t GetUserSupportInfo) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getUserSupportInfo",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getUserSupportInfo", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetVideoChatAvailableParticipants Returns the list of participant identifiers, on whose behalf a video chat in the chat can be joined
@@ -15920,11 +13636,7 @@ func (t GetVideoChatAvailableParticipants) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getVideoChatAvailableParticipants",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getVideoChatAvailableParticipants", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetVideoChatInviteLink Returns invite link to a video chat in a public chat
@@ -15948,11 +13660,7 @@ func (t GetVideoChatInviteLink) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getVideoChatInviteLink",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getVideoChatInviteLink", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetVideoChatRtmpUrl Returns RTMP URL for streaming to the video chat of a chat; requires can_manage_video_chats administrator right
@@ -15974,11 +13682,7 @@ func (t GetVideoChatRtmpUrl) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getVideoChatRtmpUrl",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getVideoChatRtmpUrl", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetVideoMessageAdvertisements Returns advertisements to be shown while a video from a message is watched. Available only if messageProperties.can_get_video_advertisements
@@ -16002,11 +13706,7 @@ func (t GetVideoMessageAdvertisements) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getVideoMessageAdvertisements",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getVideoMessageAdvertisements", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetWebAppLinkUrl Returns an HTTPS URL of a Web App to open after a link of the type internalLinkTypeWebApp is clicked
@@ -16038,11 +13738,7 @@ func (t GetWebAppLinkUrl) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getWebAppLinkUrl",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getWebAppLinkUrl", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetWebAppPlaceholder Returns a default placeholder for Web Apps of a bot. This is an offline method. Returns a 404 error if the placeholder isn't known
@@ -16064,11 +13760,7 @@ func (t GetWebAppPlaceholder) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getWebAppPlaceholder",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getWebAppPlaceholder", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetWebAppUrl Returns an HTTPS URL of a Web App to open from the side menu, a keyboardButtonTypeWebApp button, or an inlineQueryResultsButtonTypeWebApp button
@@ -16094,11 +13786,7 @@ func (t GetWebAppUrl) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getWebAppUrl",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getWebAppUrl", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetWebPageInstantView Returns an instant view version of a web page if available. This is an offline method if only_local is true. Returns a 404 error if the web page has no instant view page
@@ -16122,11 +13810,7 @@ func (t GetWebPageInstantView) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "getWebPageInstantView",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "getWebPageInstantView", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GiftPremiumWithStars Allows to buy a Telegram Premium subscription for another user with payment in Telegram Stars; for bots only
@@ -16154,11 +13838,7 @@ func (t GiftPremiumWithStars) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "giftPremiumWithStars",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "giftPremiumWithStars", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // HideContactCloseBirthdays Hides the list of contacts that have close birthdays for 24 hours
@@ -16178,11 +13858,7 @@ func (t HideContactCloseBirthdays) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "hideContactCloseBirthdays",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "hideContactCloseBirthdays", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // HideSuggestedAction Hides a suggested action
@@ -16204,11 +13880,7 @@ func (t HideSuggestedAction) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "hideSuggestedAction",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "hideSuggestedAction", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ImportContacts Adds new contacts or edits existing contacts by their phone numbers; contacts' user identifiers are ignored
@@ -16230,11 +13902,7 @@ func (t ImportContacts) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "importContacts",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "importContacts", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ImportMessages Imports messages exported from another application
@@ -16260,11 +13928,7 @@ func (t ImportMessages) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "importMessages",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "importMessages", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // IncreaseGiftAuctionBid Increases a bid for an auction gift without changing gift text and receiver
@@ -16288,11 +13952,7 @@ func (t IncreaseGiftAuctionBid) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "increaseGiftAuctionBid",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "increaseGiftAuctionBid", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // InviteGroupCallParticipant Invites a user to an active group call; for group calls not bound to a chat only. Sends a service message of the type messageGroupCall.
@@ -16318,11 +13978,7 @@ func (t InviteGroupCallParticipant) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "inviteGroupCallParticipant",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inviteGroupCallParticipant", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // InviteVideoChatParticipants Invites users to an active video chat. Sends a service message of the type messageInviteVideoChatParticipants to the chat bound to the group call
@@ -16346,11 +14002,7 @@ func (t InviteVideoChatParticipants) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "inviteVideoChatParticipants",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inviteVideoChatParticipants", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // IsLoginEmailAddressRequired Checks whether the current user is required to set login email address
@@ -16370,11 +14022,7 @@ func (t IsLoginEmailAddressRequired) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "isLoginEmailAddressRequired",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "isLoginEmailAddressRequired", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // IsProfileAudio Checks whether a file is in the profile audio files of the current user. Returns a 404 error if it isn't
@@ -16396,11 +14044,7 @@ func (t IsProfileAudio) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "isProfileAudio",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "isProfileAudio", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // JoinChat Adds the current user as a new member to a chat. Private and secret chats can't be joined using this method
@@ -16422,11 +14066,7 @@ func (t JoinChat) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "joinChat",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "joinChat", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // JoinChatByInviteLink Uses an invite link to add the current user to the chat if possible
@@ -16448,11 +14088,7 @@ func (t JoinChatByInviteLink) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "joinChatByInviteLink",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "joinChatByInviteLink", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // JoinGroupCall Joins a regular group call that is not bound to a chat
@@ -16476,11 +14112,7 @@ func (t JoinGroupCall) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "joinGroupCall",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "joinGroupCall", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // JoinLiveStory Joins a group call of an active live story. Returns join response payload for tgcalls
@@ -16504,11 +14136,7 @@ func (t JoinLiveStory) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "joinLiveStory",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "joinLiveStory", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // JoinVideoChat Joins an active video chat. Returns join response payload for tgcalls
@@ -16536,11 +14164,7 @@ func (t JoinVideoChat) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "joinVideoChat",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "joinVideoChat", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // LaunchPrepaidGiveaway Launches a prepaid giveaway
@@ -16568,11 +14192,7 @@ func (t LaunchPrepaidGiveaway) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "launchPrepaidGiveaway",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "launchPrepaidGiveaway", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // LeaveChat Removes the current user from chat members. Private and secret chats can't be left using this method
@@ -16594,11 +14214,7 @@ func (t LeaveChat) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "leaveChat",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "leaveChat", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // LeaveGroupCall Leaves a group call
@@ -16620,11 +14236,7 @@ func (t LeaveGroupCall) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "leaveGroupCall",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "leaveGroupCall", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ListenToAudio Informs TDLib that an audio was listened by the user
@@ -16648,11 +14260,7 @@ func (t ListenToAudio) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "listenToAudio",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "listenToAudio", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // LoadActiveStories Loads more active stories from a story list. The loaded stories will be sent through updates. Active stories are sorted by
@@ -16674,11 +14282,7 @@ func (t LoadActiveStories) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "loadActiveStories",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "loadActiveStories", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // LoadChats Loads more chats from a chat list. The loaded chats and their positions in the chat list will be sent through updates. Chats are sorted by the pair (chat.position.order, chat.id) in descending order. Returns a 404 error if all chats have been loaded
@@ -16702,11 +14306,7 @@ func (t LoadChats) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "loadChats",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "loadChats", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // LoadChatWelcomeMessages Loads welcome messages of a chat; requires can_send_welcome_messages administrator right in the chat. The loaded messages will be sent through updateChatWelcomeMessages
@@ -16728,11 +14328,7 @@ func (t LoadChatWelcomeMessages) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "loadChatWelcomeMessages",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "loadChatWelcomeMessages", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // LoadCommunityFullInfo Returns full information about a community. The data will be sent through update.
@@ -16754,11 +14350,7 @@ func (t LoadCommunityFullInfo) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "loadCommunityFullInfo",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "loadCommunityFullInfo", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // LoadDirectMessagesChatTopics Loads more topics in a channel direct messages chat administered by the current user. The loaded topics will be sent through updateDirectMessagesChatTopic.
@@ -16782,11 +14374,7 @@ func (t LoadDirectMessagesChatTopics) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "loadDirectMessagesChatTopics",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "loadDirectMessagesChatTopics", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // LoadGroupCallParticipants Loads more participants of a group call; not supported in live stories. The loaded participants will be received through updates.
@@ -16810,11 +14398,7 @@ func (t LoadGroupCallParticipants) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "loadGroupCallParticipants",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "loadGroupCallParticipants", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // LoadQuickReplyShortcutMessages Loads quick reply messages that can be sent by a given quick reply shortcut. The loaded messages will be sent through updateQuickReplyShortcutMessages
@@ -16836,11 +14420,7 @@ func (t LoadQuickReplyShortcutMessages) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "loadQuickReplyShortcutMessages",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "loadQuickReplyShortcutMessages", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // LoadQuickReplyShortcuts Loads quick reply shortcuts created by the current user. The loaded data will be sent through updateQuickReplyShortcut and updateQuickReplyShortcuts
@@ -16860,11 +14440,7 @@ func (t LoadQuickReplyShortcuts) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "loadQuickReplyShortcuts",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "loadQuickReplyShortcuts", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // LoadSavedMessagesTopics Loads more Saved Messages topics. The loaded topics will be sent through updateSavedMessagesTopic. Topics are sorted by their topic.order in descending order. Returns a 404 error if all topics have been loaded
@@ -16886,11 +14462,7 @@ func (t LoadSavedMessagesTopics) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "loadSavedMessagesTopics",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "loadSavedMessagesTopics", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // LogOut Closes the TDLib instance after a proper logout. Requires an available network connection. All local data will be destroyed. After the logout completes, updateAuthorizationState with authorizationStateClosed will be sent
@@ -16910,11 +14482,7 @@ func (t LogOut) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "logOut",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "logOut", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // MarkChecklistTasksAsDone Adds tasks of a checklist in a message as done or not done
@@ -16942,11 +14510,7 @@ func (t MarkChecklistTasksAsDone) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "markChecklistTasksAsDone",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "markChecklistTasksAsDone", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // OpenBotSimilarBot Informs TDLib that a bot was opened from the list of similar bots
@@ -16970,11 +14534,7 @@ func (t OpenBotSimilarBot) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "openBotSimilarBot",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "openBotSimilarBot", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // OpenChat Informs TDLib that the chat is opened by the user. Many useful activities depend on the chat being opened or closed (e.g., in supergroups and channels all updates are received only for opened chats)
@@ -16996,11 +14556,7 @@ func (t OpenChat) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "openChat",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "openChat", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // OpenChatSimilarChat Informs TDLib that a chat was opened from the list of similar chats. The method is independent of openChat and closeChat methods
@@ -17024,11 +14580,7 @@ func (t OpenChatSimilarChat) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "openChatSimilarChat",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "openChatSimilarChat", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // OpenGiftAuction Informs TDLib that a gift auction was opened by the user
@@ -17050,11 +14602,7 @@ func (t OpenGiftAuction) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "openGiftAuction",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "openGiftAuction", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // OpenMessageContent Informs TDLib that the message content has been opened (e.g., the user has opened a photo, video, document, location or venue, or has listened to an audio file or voice note message).
@@ -17078,11 +14626,7 @@ func (t OpenMessageContent) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "openMessageContent",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "openMessageContent", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // OpenSponsoredChat Informs TDLib that the user opened a sponsored chat
@@ -17104,11 +14648,7 @@ func (t OpenSponsoredChat) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "openSponsoredChat",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "openSponsoredChat", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // OpenStory Informs TDLib that a story is opened and is being viewed by the user
@@ -17132,11 +14672,7 @@ func (t OpenStory) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "openStory",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "openStory", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // OpenWebApp Informs TDLib that a Web App is being opened from the attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button.
@@ -17168,11 +14704,7 @@ func (t OpenWebApp) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "openWebApp",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "openWebApp", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // OptimizeStorage Optimizes storage usage, i.e. deletes some files and returns new storage usage statistics. Secret thumbnails can't be deleted
@@ -17210,11 +14742,7 @@ func (t OptimizeStorage) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "optimizeStorage",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "optimizeStorage", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ParseMarkdown Parses Markdown entities in a human-friendly format, ignoring markup errors. Can be called synchronously
@@ -17236,11 +14764,7 @@ func (t ParseMarkdown) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "parseMarkdown",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "parseMarkdown", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ParseTextEntities Parses Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, BlockQuote, ExpandableBlockQuote, Code, Pre, PreCode, TextUrl,
@@ -17264,11 +14788,7 @@ func (t ParseTextEntities) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "parseTextEntities",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "parseTextEntities", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // PinChatMessage Pins a message in a chat. A message can be pinned only if messageProperties.can_be_pinned
@@ -17296,11 +14816,7 @@ func (t PinChatMessage) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "pinChatMessage",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pinChatMessage", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // PingProxy Computes time needed to receive a response from a Telegram server through a proxy. Can be called before authorization
@@ -17322,11 +14838,7 @@ func (t PingProxy) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "pingProxy",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pingProxy", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // PlaceGiftAuctionBid Places a bid on an auction gift
@@ -17356,11 +14868,7 @@ func (t PlaceGiftAuctionBid) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "placeGiftAuctionBid",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "placeGiftAuctionBid", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // PostStory Posts a new story on behalf of a chat; requires can_post_stories administrator right for supergroup and channel chats. Returns a temporary story
@@ -17400,11 +14908,7 @@ func (t PostStory) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "postStory",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "postStory", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // PreliminaryUploadFile Preliminarily uploads a file to the cloud before sending it in a message, which can be useful for uploading of being recorded voice and video notes.
@@ -17430,11 +14934,7 @@ func (t PreliminaryUploadFile) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "preliminaryUploadFile",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "preliminaryUploadFile", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ProcessChatFolderNewChats Process new chats added to a shareable chat folder by its owner
@@ -17458,11 +14958,7 @@ func (t ProcessChatFolderNewChats) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "processChatFolderNewChats",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "processChatFolderNewChats", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ProcessChatHasProtectedContentDisableRequest Processes request to disable has_protected_content in a chat
@@ -17488,11 +14984,7 @@ func (t ProcessChatHasProtectedContentDisableRequest) MarshalJSON() ([]byte, err
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "processChatHasProtectedContentDisableRequest",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "processChatHasProtectedContentDisableRequest", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ProcessChatJoinRequest Handles a pending join request in a chat
@@ -17518,11 +15010,7 @@ func (t ProcessChatJoinRequest) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "processChatJoinRequest",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "processChatJoinRequest", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ProcessChatJoinRequests Handles all pending join requests for a given link in a chat
@@ -17548,11 +15036,7 @@ func (t ProcessChatJoinRequests) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "processChatJoinRequests",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "processChatJoinRequests", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ProcessGiftPurchaseOffer Handles a pending gift purchase offer
@@ -17576,11 +15060,7 @@ func (t ProcessGiftPurchaseOffer) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "processGiftPurchaseOffer",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "processGiftPurchaseOffer", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ProcessPushNotification Handles a push notification. Returns error with code 406 if the push notification is not supported and connection to the server is required to fetch new data. Can be called before authorization
@@ -17602,11 +15082,7 @@ func (t ProcessPushNotification) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "processPushNotification",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "processPushNotification", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // RateSpeechRecognition Rates recognized speech in a video note or a voice note message
@@ -17632,11 +15108,7 @@ func (t RateSpeechRecognition) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "rateSpeechRecognition",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "rateSpeechRecognition", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ReadAllChatMentions Marks all mentions in a chat as read
@@ -17658,11 +15130,7 @@ func (t ReadAllChatMentions) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "readAllChatMentions",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "readAllChatMentions", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ReadAllChatPollVotes Marks all poll votes in a chat as read
@@ -17684,11 +15152,7 @@ func (t ReadAllChatPollVotes) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "readAllChatPollVotes",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "readAllChatPollVotes", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ReadAllChatReactions Marks all reactions in a chat as read
@@ -17710,11 +15174,7 @@ func (t ReadAllChatReactions) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "readAllChatReactions",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "readAllChatReactions", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ReadAllDirectMessagesChatTopicReactions Removes all unread reactions in the topic in a channel direct messages chat administered by the current user
@@ -17738,11 +15198,7 @@ func (t ReadAllDirectMessagesChatTopicReactions) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "readAllDirectMessagesChatTopicReactions",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "readAllDirectMessagesChatTopicReactions", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ReadAllForumTopicMentions Marks all mentions in a topic in a forum supergroup chat as read
@@ -17766,11 +15222,7 @@ func (t ReadAllForumTopicMentions) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "readAllForumTopicMentions",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "readAllForumTopicMentions", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ReadAllForumTopicPollVotes Marks all poll votes in a topic in a forum supergroup chat as read
@@ -17794,11 +15246,7 @@ func (t ReadAllForumTopicPollVotes) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "readAllForumTopicPollVotes",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "readAllForumTopicPollVotes", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ReadAllForumTopicReactions Marks all reactions in a topic in a forum supergroup chat or a chat with a bot with topics as read
@@ -17822,11 +15270,7 @@ func (t ReadAllForumTopicReactions) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "readAllForumTopicReactions",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "readAllForumTopicReactions", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ReadBusinessMessage Reads a message on behalf of a business account; for bots only
@@ -17852,11 +15296,7 @@ func (t ReadBusinessMessage) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "readBusinessMessage",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "readBusinessMessage", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ReadChatList Traverses all chats in a chat list and marks all messages in the chats as read
@@ -17878,11 +15318,7 @@ func (t ReadChatList) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "readChatList",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "readChatList", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ReaddQuickReplyShortcutMessages Re-adds quick reply messages which failed to add. Can be called only for messages for which messageSendingStateFailed.can_retry is true and after specified in messageSendingStateFailed.retry_after time passed.
@@ -17906,11 +15342,7 @@ func (t ReaddQuickReplyShortcutMessages) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "readdQuickReplyShortcutMessages",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "readdQuickReplyShortcutMessages", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ReadFilePart Reads a part of a file from the TDLib file cache and returns read bytes. This method is intended to be used only if the application has no direct access to TDLib's file system, because it is usually slower than a direct read from the file
@@ -17936,11 +15368,7 @@ func (t ReadFilePart) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "readFilePart",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "readFilePart", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // RecognizeSpeech Recognizes speech in a video note or a voice note message
@@ -17964,11 +15392,7 @@ func (t RecognizeSpeech) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "recognizeSpeech",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "recognizeSpeech", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // RecoverAuthenticationPassword Recovers the 2-step verification password with a password recovery code sent to an email address that was previously set up. Works only when the current authorization state is authorizationStateWaitPassword
@@ -17994,11 +15418,7 @@ func (t RecoverAuthenticationPassword) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "recoverAuthenticationPassword",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "recoverAuthenticationPassword", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // RecoverPassword Recovers the 2-step verification password using a recovery code sent to an email address that was previously set up
@@ -18024,11 +15444,7 @@ func (t RecoverPassword) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "recoverPassword",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "recoverPassword", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // RefundStarPayment Refunds a previously done payment in Telegram Stars; for bots only
@@ -18052,11 +15468,7 @@ func (t RefundStarPayment) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "refundStarPayment",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "refundStarPayment", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // RegisterDevice Registers the currently used device for receiving push notifications. Returns a globally unique identifier of the push notification subscription
@@ -18080,11 +15492,7 @@ func (t RegisterDevice) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "registerDevice",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "registerDevice", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // RegisterUser Finishes user registration. Works only when the current authorization state is authorizationStateWaitRegistration
@@ -18110,11 +15518,7 @@ func (t RegisterUser) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "registerUser",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "registerUser", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // RemoveAllFilesFromDownloads Removes all files from the file download list
@@ -18140,11 +15544,7 @@ func (t RemoveAllFilesFromDownloads) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "removeAllFilesFromDownloads",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "removeAllFilesFromDownloads", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // RemoveAllWebBrowserSettingsExceptions Removes special handling for the opening of all links
@@ -18164,11 +15564,7 @@ func (t RemoveAllWebBrowserSettingsExceptions) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "removeAllWebBrowserSettingsExceptions",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "removeAllWebBrowserSettingsExceptions", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // RemoveBusinessConnectedBotFromChat Removes the connected business bot from a specific chat by adding the chat to businessRecipients.excluded_chat_ids
@@ -18190,11 +15586,7 @@ func (t RemoveBusinessConnectedBotFromChat) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "removeBusinessConnectedBotFromChat",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "removeBusinessConnectedBotFromChat", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // RemoveChatActionBar Removes a chat action bar without any other action
@@ -18216,11 +15608,7 @@ func (t RemoveChatActionBar) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "removeChatActionBar",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "removeChatActionBar", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // RemoveContacts Removes users from the contact list
@@ -18242,11 +15630,7 @@ func (t RemoveContacts) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "removeContacts",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "removeContacts", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // RemoveFavoriteSticker Removes a sticker from the list of favorite stickers
@@ -18268,11 +15652,7 @@ func (t RemoveFavoriteSticker) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "removeFavoriteSticker",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "removeFavoriteSticker", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // RemoveFileFromDownloads Removes a file from the file download list
@@ -18296,11 +15676,7 @@ func (t RemoveFileFromDownloads) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "removeFileFromDownloads",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "removeFileFromDownloads", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // RemoveGiftCollectionGifts Removes gifts from a collection. If the collection is owned by a channel chat, then requires can_post_messages administrator right in the channel chat. Returns the changed collection
@@ -18326,11 +15702,7 @@ func (t RemoveGiftCollectionGifts) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "removeGiftCollectionGifts",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "removeGiftCollectionGifts", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // RemoveInstalledBackground Removes background from the list of installed backgrounds
@@ -18352,11 +15724,7 @@ func (t RemoveInstalledBackground) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "removeInstalledBackground",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "removeInstalledBackground", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // RemoveLoginPasskey Removes a passkey from the list of passkeys allowed to be used for the login by the current user
@@ -18378,11 +15746,7 @@ func (t RemoveLoginPasskey) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "removeLoginPasskey",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "removeLoginPasskey", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // RemoveMessageReaction Removes a reaction from a message. A chosen reaction can always be removed
@@ -18408,11 +15772,7 @@ func (t RemoveMessageReaction) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "removeMessageReaction",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "removeMessageReaction", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // RemoveMessageSenderBotVerification Removes the verification status of a user or a chat by an owned bot
@@ -18436,11 +15796,7 @@ func (t RemoveMessageSenderBotVerification) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "removeMessageSenderBotVerification",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "removeMessageSenderBotVerification", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // RemoveNotification Removes an active notification from notification list. Needs to be called only if the notification is removed by the current user
@@ -18464,11 +15820,7 @@ func (t RemoveNotification) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "removeNotification",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "removeNotification", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // RemoveNotificationGroup Removes a group of active notifications. Needs to be called only if the notification group is removed by the current user
@@ -18492,11 +15844,7 @@ func (t RemoveNotificationGroup) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "removeNotificationGroup",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "removeNotificationGroup", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // RemovePendingLiveStoryReactions Removes all pending paid reactions in a live story group call
@@ -18518,11 +15866,7 @@ func (t RemovePendingLiveStoryReactions) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "removePendingLiveStoryReactions",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "removePendingLiveStoryReactions", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // RemovePendingPaidMessageReactions Removes all pending paid reactions on a message
@@ -18546,11 +15890,7 @@ func (t RemovePendingPaidMessageReactions) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "removePendingPaidMessageReactions",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "removePendingPaidMessageReactions", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // RemoveProfileAudio Removes an audio file from the profile audio files of the current user
@@ -18572,11 +15912,7 @@ func (t RemoveProfileAudio) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "removeProfileAudio",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "removeProfileAudio", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // RemoveProxy Removes a proxy server. Can be called before authorization
@@ -18598,11 +15934,7 @@ func (t RemoveProxy) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "removeProxy",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "removeProxy", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // RemoveRecentHashtag Removes a hashtag from the list of recently used hashtags
@@ -18624,11 +15956,7 @@ func (t RemoveRecentHashtag) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "removeRecentHashtag",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "removeRecentHashtag", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // RemoveRecentlyFoundChat Removes a chat from the list of recently found chats
@@ -18650,11 +15978,7 @@ func (t RemoveRecentlyFoundChat) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "removeRecentlyFoundChat",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "removeRecentlyFoundChat", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // RemoveRecentSticker Removes a sticker from the list of recently used stickers
@@ -18678,11 +16002,7 @@ func (t RemoveRecentSticker) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "removeRecentSticker",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "removeRecentSticker", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // RemoveSavedAnimation Removes an animation from the list of saved animations
@@ -18704,11 +16024,7 @@ func (t RemoveSavedAnimation) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "removeSavedAnimation",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "removeSavedAnimation", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // RemoveSavedNotificationSound Removes a notification sound from the list of saved notification sounds
@@ -18730,11 +16046,7 @@ func (t RemoveSavedNotificationSound) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "removeSavedNotificationSound",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "removeSavedNotificationSound", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // RemoveSearchedForTag Removes a hashtag or a cashtag from the list of recently searched for hashtags or cashtags
@@ -18756,11 +16068,7 @@ func (t RemoveSearchedForTag) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "removeSearchedForTag",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "removeSearchedForTag", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // RemoveStickerFromSet Removes a sticker from the set to which it belongs. The sticker set must be owned by the current user
@@ -18782,11 +16090,7 @@ func (t RemoveStickerFromSet) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "removeStickerFromSet",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "removeStickerFromSet", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // RemoveStoryAlbumStories Removes stories from an album. If the album is owned by a supergroup or a channel chat, then
@@ -18812,11 +16116,7 @@ func (t RemoveStoryAlbumStories) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "removeStoryAlbumStories",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "removeStoryAlbumStories", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // RemoveTextCompositionStyle Removes a custom text composition style from the list of used by the user styles. If the style was created by the current user, then it can only be deleted
@@ -18838,11 +16138,7 @@ func (t RemoveTextCompositionStyle) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "removeTextCompositionStyle",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "removeTextCompositionStyle", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // RemoveTopChat Removes a chat from the list of frequently used chats. Supported only if the chat info database is enabled
@@ -18866,11 +16162,7 @@ func (t RemoveTopChat) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "removeTopChat",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "removeTopChat", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // RemoveWebBrowserSettingsException Removes a special handling for the opening of the specified URL
@@ -18892,11 +16184,7 @@ func (t RemoveWebBrowserSettingsException) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "removeWebBrowserSettingsException",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "removeWebBrowserSettingsException", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ReorderActiveUsernames Changes order of active usernames of the current user
@@ -18918,11 +16206,7 @@ func (t ReorderActiveUsernames) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "reorderActiveUsernames",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reorderActiveUsernames", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ReorderBotActiveUsernames Changes order of active usernames of a bot. Can be called only if userTypeBot.can_be_edited == true
@@ -18946,11 +16230,7 @@ func (t ReorderBotActiveUsernames) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "reorderBotActiveUsernames",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reorderBotActiveUsernames", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ReorderBotMediaPreviews Changes order of media previews in the list of media previews of a bot
@@ -18976,11 +16256,7 @@ func (t ReorderBotMediaPreviews) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "reorderBotMediaPreviews",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reorderBotMediaPreviews", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ReorderChatFolders Changes the order of chat folders
@@ -19004,11 +16280,7 @@ func (t ReorderChatFolders) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "reorderChatFolders",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reorderChatFolders", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ReorderGiftCollectionGifts Changes order of gifts in a collection. If the collection is owned by a channel chat, then requires can_post_messages administrator right in the channel chat. Returns the changed collection
@@ -19034,11 +16306,7 @@ func (t ReorderGiftCollectionGifts) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "reorderGiftCollectionGifts",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reorderGiftCollectionGifts", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ReorderGiftCollections Changes order of gift collections. If the collections are owned by a channel chat, then requires can_post_messages administrator right in the channel chat
@@ -19062,11 +16330,7 @@ func (t ReorderGiftCollections) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "reorderGiftCollections",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reorderGiftCollections", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ReorderInstalledStickerSets Changes the order of installed sticker sets
@@ -19090,11 +16354,7 @@ func (t ReorderInstalledStickerSets) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "reorderInstalledStickerSets",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reorderInstalledStickerSets", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ReorderQuickReplyShortcuts Changes the order of quick reply shortcuts
@@ -19116,11 +16376,7 @@ func (t ReorderQuickReplyShortcuts) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "reorderQuickReplyShortcuts",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reorderQuickReplyShortcuts", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ReorderStoryAlbums Changes order of story albums. If the albums are owned by a supergroup or a channel chat, then requires can_edit_stories administrator right in the chat
@@ -19144,11 +16400,7 @@ func (t ReorderStoryAlbums) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "reorderStoryAlbums",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reorderStoryAlbums", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ReorderStoryAlbumStories Changes order of stories in an album. If the album is owned by a supergroup or a channel chat, then
@@ -19174,11 +16426,7 @@ func (t ReorderStoryAlbumStories) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "reorderStoryAlbumStories",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reorderStoryAlbumStories", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ReorderSupergroupActiveUsernames Changes order of active usernames of a supergroup or channel, requires owner privileges in the supergroup or channel
@@ -19202,11 +16450,7 @@ func (t ReorderSupergroupActiveUsernames) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "reorderSupergroupActiveUsernames",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reorderSupergroupActiveUsernames", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ReplaceLiveStoryRtmpUrl Replaces the current RTMP URL for streaming to a live story; requires owner privileges for channel chats
@@ -19228,11 +16472,7 @@ func (t ReplaceLiveStoryRtmpUrl) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "replaceLiveStoryRtmpUrl",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "replaceLiveStoryRtmpUrl", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ReplacePrimaryChatInviteLink Replaces current primary invite link for a chat with a new primary invite link. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right
@@ -19254,11 +16494,7 @@ func (t ReplacePrimaryChatInviteLink) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "replacePrimaryChatInviteLink",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "replacePrimaryChatInviteLink", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ReplaceStickerInSet Replaces existing sticker in a set. The function is equivalent to removeStickerFromSet, then addStickerToSet, then setStickerPositionInSet
@@ -19286,11 +16522,7 @@ func (t ReplaceStickerInSet) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "replaceStickerInSet",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "replaceStickerInSet", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ReplaceVideoChatRtmpUrl Replaces the current RTMP URL for streaming to the video chat of a chat; requires owner privileges in the chat
@@ -19312,11 +16544,7 @@ func (t ReplaceVideoChatRtmpUrl) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "replaceVideoChatRtmpUrl",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "replaceVideoChatRtmpUrl", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ReportAuthenticationCodeMissing Reports that authentication code wasn't delivered via SMS; for official mobile applications only. Works only when the current authorization state is authorizationStateWaitCode
@@ -19338,11 +16566,7 @@ func (t ReportAuthenticationCodeMissing) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "reportAuthenticationCodeMissing",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reportAuthenticationCodeMissing", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ReportChat Reports a chat to the Telegram moderators. A chat can be reported only from the chat action bar, or if chat.can_be_reported
@@ -19370,11 +16594,7 @@ func (t ReportChat) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "reportChat",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reportChat", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ReportChatPhoto Reports a chat photo to the Telegram moderators. A chat photo can be reported only if chat.can_be_reported
@@ -19402,11 +16622,7 @@ func (t ReportChatPhoto) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "reportChatPhoto",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reportChatPhoto", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ReportChatSponsoredMessage Reports a sponsored message to Telegram moderators
@@ -19432,11 +16648,7 @@ func (t ReportChatSponsoredMessage) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "reportChatSponsoredMessage",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reportChatSponsoredMessage", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ReportMessageReactions Reports reactions set on a message to the Telegram moderators. Reactions on a message can be reported only if messageProperties.can_report_reactions
@@ -19462,11 +16674,7 @@ func (t ReportMessageReactions) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "reportMessageReactions",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reportMessageReactions", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ReportPhoneNumberCodeMissing Reports that authentication code wasn't delivered via SMS to the specified phone number; for official mobile applications only
@@ -19488,11 +16696,7 @@ func (t ReportPhoneNumberCodeMissing) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "reportPhoneNumberCodeMissing",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reportPhoneNumberCodeMissing", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ReportSponsoredChat Reports a sponsored chat to Telegram moderators
@@ -19516,11 +16720,7 @@ func (t ReportSponsoredChat) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "reportSponsoredChat",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reportSponsoredChat", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ReportStory Reports a story to the Telegram moderators
@@ -19548,11 +16748,7 @@ func (t ReportStory) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "reportStory",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reportStory", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ReportSupergroupAntiSpamFalsePositive Reports a false deletion of a message by aggressive anti-spam checks; requires administrator rights in the supergroup. Can be called only for messages from chatEventMessageDeleted with can_report_anti_spam_false_positive == true
@@ -19576,11 +16772,7 @@ func (t ReportSupergroupAntiSpamFalsePositive) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "reportSupergroupAntiSpamFalsePositive",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reportSupergroupAntiSpamFalsePositive", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ReportSupergroupSpam Reports messages in a supergroup as spam; requires administrator rights in the supergroup
@@ -19604,11 +16796,7 @@ func (t ReportSupergroupSpam) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "reportSupergroupSpam",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reportSupergroupSpam", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ReportVideoMessageAdvertisement Reports a video message advertisement to Telegram moderators
@@ -19632,11 +16820,7 @@ func (t ReportVideoMessageAdvertisement) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "reportVideoMessageAdvertisement",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reportVideoMessageAdvertisement", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // RequestAuthenticationPasswordRecovery Requests to send a 2-step verification password recovery code to an email address that was previously set up. Works only when the current authorization state is authorizationStateWaitPassword
@@ -19656,11 +16840,7 @@ func (t RequestAuthenticationPasswordRecovery) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "requestAuthenticationPasswordRecovery",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "requestAuthenticationPasswordRecovery", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // RequestPasswordRecovery Requests to send a 2-step verification password recovery code to an email address that was previously set up
@@ -19680,11 +16860,7 @@ func (t RequestPasswordRecovery) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "requestPasswordRecovery",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "requestPasswordRecovery", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // RequestQrCodeAuthentication Requests QR code authentication by scanning a QR code on another logged in device. Works only when the current authorization state is authorizationStateWaitPhoneNumber,
@@ -19706,11 +16882,7 @@ func (t RequestQrCodeAuthentication) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "requestQrCodeAuthentication",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "requestQrCodeAuthentication", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ResendAuthenticationCode Resends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitCode, the next_code_type of the result is not null
@@ -19732,11 +16904,7 @@ func (t ResendAuthenticationCode) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "resendAuthenticationCode",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "resendAuthenticationCode", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ResendEmailAddressVerificationCode Resends the code to verify an email address to be added to a user's Telegram Passport
@@ -19756,11 +16924,7 @@ func (t ResendEmailAddressVerificationCode) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "resendEmailAddressVerificationCode",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "resendEmailAddressVerificationCode", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ResendLoginEmailAddressCode Resends the login email address verification code
@@ -19780,11 +16944,7 @@ func (t ResendLoginEmailAddressCode) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "resendLoginEmailAddressCode",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "resendLoginEmailAddressCode", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ResendMessages Resends messages which failed to send. Can be called only for messages for which messageSendingStateFailed.can_retry is true and after specified in messageSendingStateFailed.retry_after time passed.
@@ -19812,11 +16972,7 @@ func (t ResendMessages) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "resendMessages",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "resendMessages", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ResendPhoneNumberCode Resends the authentication code sent to a phone number. Works only if the previously received authenticationCodeInfo next_code_type was not null and the server-specified timeout has passed
@@ -19838,11 +16994,7 @@ func (t ResendPhoneNumberCode) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "resendPhoneNumberCode",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "resendPhoneNumberCode", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ResendRecoveryEmailAddressCode Resends the 2-step verification recovery email address verification code
@@ -19862,11 +17014,7 @@ func (t ResendRecoveryEmailAddressCode) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "resendRecoveryEmailAddressCode",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "resendRecoveryEmailAddressCode", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ResetAllNotificationSettings Resets all chat and scope notification settings to their default values. By default, all chats are unmuted and message previews are shown
@@ -19886,11 +17034,7 @@ func (t ResetAllNotificationSettings) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "resetAllNotificationSettings",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "resetAllNotificationSettings", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ResetAuthenticationEmailAddress Resets the login email address. May return an error with a message "TASK_ALREADY_EXISTS" if reset is still pending.
@@ -19910,11 +17054,7 @@ func (t ResetAuthenticationEmailAddress) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "resetAuthenticationEmailAddress",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "resetAuthenticationEmailAddress", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ResetInstalledBackgrounds Resets list of installed backgrounds to its default value
@@ -19934,11 +17074,7 @@ func (t ResetInstalledBackgrounds) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "resetInstalledBackgrounds",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "resetInstalledBackgrounds", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ResetNetworkStatistics Resets all network data usage statistics to zero. Can be called before authorization
@@ -19958,11 +17094,7 @@ func (t ResetNetworkStatistics) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "resetNetworkStatistics",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "resetNetworkStatistics", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ResetPassword Removes 2-step verification password without previous password and access to recovery email address. The password can't be reset immediately and the request needs to be repeated after the specified time
@@ -19982,11 +17114,7 @@ func (t ResetPassword) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "resetPassword",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "resetPassword", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ReuseStarSubscription Reuses an active Telegram Star subscription to a channel chat and joins the chat again
@@ -20008,11 +17136,7 @@ func (t ReuseStarSubscription) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "reuseStarSubscription",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reuseStarSubscription", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // RevokeChatInviteLink Revokes invite link for a chat. Available in basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links.
@@ -20036,11 +17160,7 @@ func (t RevokeChatInviteLink) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "revokeChatInviteLink",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "revokeChatInviteLink", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // RevokeGroupCallInviteLink Revokes invite link for a group call. Requires groupCall.can_be_managed right for video chats or groupCall.is_owned otherwise
@@ -20062,11 +17182,7 @@ func (t RevokeGroupCallInviteLink) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "revokeGroupCallInviteLink",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "revokeGroupCallInviteLink", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SaveApplicationLogEvent Saves application log event on the server. Can be called before authorization
@@ -20092,11 +17208,7 @@ func (t SaveApplicationLogEvent) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "saveApplicationLogEvent",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "saveApplicationLogEvent", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SavePreparedInlineMessage Saves an inline message to be sent by the given user; for bots only
@@ -20122,11 +17234,7 @@ func (t SavePreparedInlineMessage) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "savePreparedInlineMessage",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "savePreparedInlineMessage", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SavePreparedKeyboardButton Saves a keyboard button to be shown to the given user; for bots only
@@ -20150,11 +17258,7 @@ func (t SavePreparedKeyboardButton) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "savePreparedKeyboardButton",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "savePreparedKeyboardButton", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SearchAffiliatePrograms Searches affiliate programs that can be connected to the given affiliate
@@ -20182,11 +17286,7 @@ func (t SearchAffiliatePrograms) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "searchAffiliatePrograms",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchAffiliatePrograms", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SearchBackground Searches for a background by its name
@@ -20208,11 +17308,7 @@ func (t SearchBackground) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "searchBackground",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchBackground", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SearchCallMessages Searches for call and group call messages. Returns the results in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
@@ -20238,11 +17334,7 @@ func (t SearchCallMessages) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "searchCallMessages",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchCallMessages", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SearchChatAffiliateProgram Searches a chat with an affiliate program. Returns the chat if found and the program is active
@@ -20266,11 +17358,7 @@ func (t SearchChatAffiliateProgram) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "searchChatAffiliateProgram",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchChatAffiliateProgram", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SearchChatMembers Searches for a specified query in the first name, last name and usernames of the members of a specified chat. Requires administrator rights if the chat is a channel
@@ -20298,11 +17386,7 @@ func (t SearchChatMembers) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "searchChatMembers",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchChatMembers", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SearchChatMessages Searches for messages with given words in the chat. Returns the results in reverse chronological order, i.e. in order of decreasing message_id. Cannot be used in secret chats with a non-empty query
@@ -20338,11 +17422,7 @@ func (t SearchChatMessages) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "searchChatMessages",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchChatMessages", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SearchChatRecentLocationMessages Returns information about the recent live locations of chat members that were sent to the chat. Returns at most one live location message per user
@@ -20366,11 +17446,7 @@ func (t SearchChatRecentLocationMessages) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "searchChatRecentLocationMessages",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchChatRecentLocationMessages", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SearchChats Searches for the specified query in the title and username of already known chats. This is an offline method. Returns chats in the order seen in the main chat list
@@ -20396,11 +17472,7 @@ func (t SearchChats) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "searchChats",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchChats", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SearchChatsOnServer Searches for the specified query in the title and username of already known chats via request to the server. Returns chats in the order seen in the main chat list
@@ -20426,11 +17498,7 @@ func (t SearchChatsOnServer) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "searchChatsOnServer",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchChatsOnServer", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SearchContacts Searches for the specified query in the first names, last names and usernames of the known user contacts
@@ -20454,11 +17522,7 @@ func (t SearchContacts) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "searchContacts",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchContacts", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SearchEmojis Searches for emojis by keywords. Supported only if the file database is enabled. Order of results is unspecified
@@ -20482,11 +17546,7 @@ func (t SearchEmojis) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "searchEmojis",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchEmojis", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SearchFileDownloads Searches for files in the file download list or recently downloaded files from the list
@@ -20516,11 +17576,7 @@ func (t SearchFileDownloads) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "searchFileDownloads",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchFileDownloads", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SearchGiftsForResale Returns upgraded gifts that can be bought from other owners using sendResoldGift
@@ -20554,11 +17610,7 @@ func (t SearchGiftsForResale) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "searchGiftsForResale",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchGiftsForResale", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SearchHashtags Searches for recently used hashtags by their prefix
@@ -20582,11 +17634,7 @@ func (t SearchHashtags) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "searchHashtags",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchHashtags", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SearchInstalledStickerSets Searches for installed sticker sets by looking for specified query in their title and name
@@ -20612,11 +17660,7 @@ func (t SearchInstalledStickerSets) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "searchInstalledStickerSets",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchInstalledStickerSets", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SearchMessages Searches for messages in all chats except secret chats. Returns the results in reverse chronological order (i.e., in order of decreasing (date, chat_id, message_id)).
@@ -20652,11 +17696,7 @@ func (t SearchMessages) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "searchMessages",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchMessages", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SearchOutgoingDocumentMessages Searches for outgoing messages with content of the type messageDocument in all chats except secret chats. Returns the results in reverse chronological order
@@ -20680,11 +17720,7 @@ func (t SearchOutgoingDocumentMessages) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "searchOutgoingDocumentMessages",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchOutgoingDocumentMessages", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SearchPublicChat Searches a public chat by its username. Currently, only private chats, supergroups and channels can be public. Returns the chat if found; otherwise, an error is returned
@@ -20706,11 +17742,7 @@ func (t SearchPublicChat) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "searchPublicChat",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchPublicChat", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SearchPublicChats Searches public chats by looking for specified query in their username and title. Currently, only private chats, supergroups and channels can be public. Returns a meaningful number of results.
@@ -20734,11 +17766,7 @@ func (t SearchPublicChats) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "searchPublicChats",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchPublicChats", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SearchPublicMessagesByTag Searches for public channel posts containing the given hashtag or cashtag. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
@@ -20764,11 +17792,7 @@ func (t SearchPublicMessagesByTag) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "searchPublicMessagesByTag",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchPublicMessagesByTag", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SearchPublicPosts Searches for public channel posts using the given query. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
@@ -20796,11 +17820,7 @@ func (t SearchPublicPosts) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "searchPublicPosts",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchPublicPosts", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SearchPublicStoriesByLocation Searches for public stories by the given address location. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
@@ -20826,11 +17846,7 @@ func (t SearchPublicStoriesByLocation) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "searchPublicStoriesByLocation",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchPublicStoriesByLocation", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SearchPublicStoriesByTag Searches for public stories containing the given hashtag or cashtag. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
@@ -20858,11 +17874,7 @@ func (t SearchPublicStoriesByTag) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "searchPublicStoriesByTag",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchPublicStoriesByTag", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SearchPublicStoriesByVenue Searches for public stories from the given venue. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
@@ -20890,11 +17902,7 @@ func (t SearchPublicStoriesByVenue) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "searchPublicStoriesByVenue",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchPublicStoriesByVenue", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SearchQuote Searches for a given quote in a text. Returns found quote start position in UTF-16 code units. Returns a 404 error if the quote is not found. Can be called synchronously
@@ -20920,11 +17928,7 @@ func (t SearchQuote) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "searchQuote",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchQuote", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SearchRecentlyFoundChats Searches for the specified query in the title and username of up to 50 recently found chats. This is an offline method
@@ -20950,11 +17954,7 @@ func (t SearchRecentlyFoundChats) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "searchRecentlyFoundChats",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchRecentlyFoundChats", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SearchSavedMessages Searches for messages tagged by the given reaction and with the given words in the Saved Messages chat; for Telegram Premium users only.
@@ -20986,11 +17986,7 @@ func (t SearchSavedMessages) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "searchSavedMessages",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchSavedMessages", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SearchSecretMessages Searches for messages in secret chats. Returns the results in reverse chronological order. For optimal performance, the number of returned messages is chosen by TDLib
@@ -21020,11 +18016,7 @@ func (t SearchSecretMessages) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "searchSecretMessages",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchSecretMessages", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SearchStickers Searches for stickers from public sticker sets that correspond to any of the given emoji
@@ -21056,11 +18048,7 @@ func (t SearchStickers) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "searchStickers",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchStickers", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SearchStickerSet Searches for a sticker set by its name
@@ -21084,11 +18072,7 @@ func (t SearchStickerSet) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "searchStickerSet",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchStickerSet", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SearchStickerSets Searches for sticker sets by looking for specified query in their title and name. Excludes installed sticker sets from the results
@@ -21112,11 +18096,7 @@ func (t SearchStickerSets) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "searchStickerSets",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchStickerSets", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SearchStringsByPrefix Searches specified query by word prefixes in the provided strings. Returns 0-based positions of strings that matched. Can be called synchronously
@@ -21144,11 +18124,7 @@ func (t SearchStringsByPrefix) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "searchStringsByPrefix",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchStringsByPrefix", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SearchTextCompositionStyle Searches a custom text composition style by its name
@@ -21170,11 +18146,7 @@ func (t SearchTextCompositionStyle) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "searchTextCompositionStyle",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchTextCompositionStyle", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SearchUserByPhoneNumber Searches a user by their phone number. Returns a 404 error if the user can't be found
@@ -21198,11 +18170,7 @@ func (t SearchUserByPhoneNumber) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "searchUserByPhoneNumber",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchUserByPhoneNumber", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SearchUserByToken Searches a user by a token from the user's link
@@ -21224,11 +18192,7 @@ func (t SearchUserByToken) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "searchUserByToken",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchUserByToken", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SearchWebApp Returns information about a Web App by its short name. Returns a 404 error if the Web App is not found
@@ -21252,11 +18216,7 @@ func (t SearchWebApp) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "searchWebApp",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchWebApp", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SellGift Sells a gift for Telegram Stars; requires owner privileges for gifts owned by a chat
@@ -21280,11 +18240,7 @@ func (t SellGift) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "sellGift",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sellGift", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SendAuthenticationFirebaseSms Sends Firebase Authentication SMS to the phone number of the user. Works only when the current authorization state is authorizationStateWaitCode and the server returned code of the type authenticationCodeTypeFirebaseAndroid or authenticationCodeTypeFirebaseIos
@@ -21306,11 +18262,7 @@ func (t SendAuthenticationFirebaseSms) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "sendAuthenticationFirebaseSms",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sendAuthenticationFirebaseSms", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SendBotStartMessage Invites a bot to a chat (if it is not yet a member) and sends it the /start command; requires can_invite_users member right. Bots can't be invited to a private chat other than the chat with the bot.
@@ -21336,11 +18288,7 @@ func (t SendBotStartMessage) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "sendBotStartMessage",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sendBotStartMessage", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SendBusinessMessage Sends a message on behalf of a business account; for bots only. Returns the message after it was sent
@@ -21376,11 +18324,7 @@ func (t SendBusinessMessage) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "sendBusinessMessage",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sendBusinessMessage", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SendBusinessMessageAlbum Sends 2-10 messages grouped together into an album on behalf of a business account; for bots only. Currently, only audio, document, photo and video messages can be grouped into an album.
@@ -21414,11 +18358,7 @@ func (t SendBusinessMessageAlbum) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "sendBusinessMessageAlbum",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sendBusinessMessageAlbum", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SendCallDebugInformation Sends debug information for a call to Telegram servers
@@ -21442,11 +18382,7 @@ func (t SendCallDebugInformation) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "sendCallDebugInformation",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sendCallDebugInformation", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SendCallLog Sends log file for a call to Telegram servers
@@ -21470,11 +18406,7 @@ func (t SendCallLog) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "sendCallLog",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sendCallLog", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SendCallRating Sends a call rating
@@ -21502,11 +18434,7 @@ func (t SendCallRating) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "sendCallRating",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sendCallRating", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SendCallSignalingData Sends call signaling data
@@ -21530,11 +18458,7 @@ func (t SendCallSignalingData) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "sendCallSignalingData",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sendCallSignalingData", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SendChatAction Sends a notification about user activity in a chat
@@ -21562,11 +18486,7 @@ func (t SendChatAction) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "sendChatAction",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sendChatAction", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SendCustomRequest Sends a custom request; for bots only
@@ -21590,11 +18510,7 @@ func (t SendCustomRequest) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "sendCustomRequest",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sendCustomRequest", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SendEmailAddressVerificationCode Sends a code to verify an email address to be added to a user's Telegram Passport
@@ -21616,11 +18532,7 @@ func (t SendEmailAddressVerificationCode) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "sendEmailAddressVerificationCode",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sendEmailAddressVerificationCode", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SendEphemeralMessage Sends an ephemeral message which will be received only by one bot in a chat. Currently, only ephemeral bot commands and replies to bot ephemeral messages can be sent using the method.
@@ -21662,11 +18574,7 @@ func (t SendEphemeralMessage) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "sendEphemeralMessage",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sendEphemeralMessage", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SendGift Sends a gift to another user or channel chat. May return an error with a message "STARGIFT_USAGE_LIMITED" if the gift was sold out
@@ -21696,11 +18604,7 @@ func (t SendGift) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "sendGift",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sendGift", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SendGiftPurchaseOffer Sends an offer to purchase an upgraded gift
@@ -21730,11 +18634,7 @@ func (t SendGiftPurchaseOffer) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "sendGiftPurchaseOffer",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sendGiftPurchaseOffer", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SendGroupCallMessage Sends a message to other participants of a group call. Requires groupCall.can_send_messages right
@@ -21760,11 +18660,7 @@ func (t SendGroupCallMessage) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "sendGroupCallMessage",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sendGroupCallMessage", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SendInlineQueryResultMessage Sends the result of an inline query as a message. Returns the sent message. Always clears a chat draft message
@@ -21798,11 +18694,7 @@ func (t SendInlineQueryResultMessage) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "sendInlineQueryResultMessage",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sendInlineQueryResultMessage", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SendMessage Sends a message. Returns the sent message
@@ -21834,11 +18726,7 @@ func (t SendMessage) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "sendMessage",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sendMessage", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SendMessageAlbum Sends 2-10 messages grouped together into an album. Currently, only audio, document, photo and video messages can be grouped into an album.
@@ -21868,11 +18756,7 @@ func (t SendMessageAlbum) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "sendMessageAlbum",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sendMessageAlbum", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SendMessageViewMetrics Informs TDLib about details of a message view by the user from a chat, a message thread or a forum topic history. The method must be called if
@@ -21904,11 +18788,7 @@ func (t SendMessageViewMetrics) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "sendMessageViewMetrics",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sendMessageViewMetrics", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SendPassportAuthorizationForm Sends a Telegram Passport authorization form, effectively sharing data with the service. This method must be called after getPassportAuthorizationFormAvailableElements if some previously available elements are going to be reused
@@ -21932,11 +18812,7 @@ func (t SendPassportAuthorizationForm) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "sendPassportAuthorizationForm",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sendPassportAuthorizationForm", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SendPaymentForm Sends a filled-out payment form to the bot for final verification
@@ -21968,11 +18844,7 @@ func (t SendPaymentForm) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "sendPaymentForm",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sendPaymentForm", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SendPhoneNumberCode Sends a code to the specified phone number. Aborts previous phone number verification if there was one. On success, returns information about the sent code
@@ -21998,11 +18870,7 @@ func (t SendPhoneNumberCode) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "sendPhoneNumberCode",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sendPhoneNumberCode", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SendPhoneNumberFirebaseSms Sends Firebase Authentication SMS to the specified phone number. Works only when received a code of the type authenticationCodeTypeFirebaseAndroid or authenticationCodeTypeFirebaseIos
@@ -22024,11 +18892,7 @@ func (t SendPhoneNumberFirebaseSms) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "sendPhoneNumberFirebaseSms",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sendPhoneNumberFirebaseSms", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SendQuickReplyShortcutMessages Sends messages from a quick reply shortcut. Requires Telegram Business subscription. Can't be used to send paid messages
@@ -22054,11 +18918,7 @@ func (t SendQuickReplyShortcutMessages) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "sendQuickReplyShortcutMessages",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sendQuickReplyShortcutMessages", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SendResoldGift Sends an upgraded gift that is available for resale to another user or channel chat; gifts already owned by the current user
@@ -22088,11 +18948,7 @@ func (t SendResoldGift) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "sendResoldGift",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sendResoldGift", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SendRichMessageDraft Sends a draft for a being generated rich message; for bots only
@@ -22124,11 +18980,7 @@ func (t SendRichMessageDraft) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "sendRichMessageDraft",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sendRichMessageDraft", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SendTextMessageDraft Sends a draft for a being generated text message; for bots only
@@ -22160,11 +19012,7 @@ func (t SendTextMessageDraft) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "sendTextMessageDraft",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sendTextMessageDraft", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SendWebAppCustomRequest Sends a custom request from a Web App
@@ -22190,11 +19038,7 @@ func (t SendWebAppCustomRequest) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "sendWebAppCustomRequest",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sendWebAppCustomRequest", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SendWebAppData Sends data received from a keyboardButtonTypeWebApp Web App to a bot
@@ -22220,11 +19064,7 @@ func (t SendWebAppData) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "sendWebAppData",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sendWebAppData", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetAccentColor Changes accent color and background custom emoji for the current user; for Telegram Premium users only
@@ -22248,11 +19088,7 @@ func (t SetAccentColor) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setAccentColor",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setAccentColor", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetAccountTtl Changes the period of inactivity after which the account of the current user will automatically be deleted
@@ -22274,11 +19110,7 @@ func (t SetAccountTtl) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setAccountTtl",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setAccountTtl", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetAlarm Succeeds after a specified amount of time has passed. Can be called before initialization
@@ -22300,11 +19132,7 @@ func (t SetAlarm) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setAlarm",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setAlarm", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetApplicationVerificationToken Informs TDLib that application or reCAPTCHA verification has been completed. Can be called before authorization
@@ -22328,11 +19156,7 @@ func (t SetApplicationVerificationToken) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setApplicationVerificationToken",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setApplicationVerificationToken", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetArchiveChatListSettings Changes settings for automatic moving of chats to and from the Archive chat lists
@@ -22354,11 +19178,7 @@ func (t SetArchiveChatListSettings) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setArchiveChatListSettings",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setArchiveChatListSettings", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetAuthenticationEmailAddress Sets the email address of the user and sends an authentication code to the email address. Works only when the current authorization state is authorizationStateWaitEmailAddress
@@ -22380,11 +19200,7 @@ func (t SetAuthenticationEmailAddress) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setAuthenticationEmailAddress",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setAuthenticationEmailAddress", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetAuthenticationPhoneNumber Sets the phone number of the user and sends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitPhoneNumber,
@@ -22408,11 +19224,7 @@ func (t SetAuthenticationPhoneNumber) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setAuthenticationPhoneNumber",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setAuthenticationPhoneNumber", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetAuthenticationPremiumPurchaseTransaction Informs server about an in-store purchase of Telegram Premium before authorization. Works only when the current authorization state is authorizationStateWaitPremiumPurchase
@@ -22442,11 +19254,7 @@ func (t SetAuthenticationPremiumPurchaseTransaction) MarshalJSON() ([]byte, erro
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setAuthenticationPremiumPurchaseTransaction",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setAuthenticationPremiumPurchaseTransaction", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetAutoDownloadSettings Sets auto-download settings
@@ -22470,11 +19278,7 @@ func (t SetAutoDownloadSettings) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setAutoDownloadSettings",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setAutoDownloadSettings", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetAutosaveSettings Sets autosave settings for the given scope. The method is guaranteed to work only after at least one call to getAutosaveSettings
@@ -22498,11 +19302,7 @@ func (t SetAutosaveSettings) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setAutosaveSettings",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setAutosaveSettings", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetBio Changes the bio of the current user
@@ -22524,11 +19324,7 @@ func (t SetBio) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setBio",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setBio", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetBirthdate Changes the birthdate of the current user
@@ -22550,11 +19346,7 @@ func (t SetBirthdate) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setBirthdate",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setBirthdate", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetBotInfoDescription Sets the text shown in the chat with a bot if the chat is empty. Can be called only if userTypeBot.can_be_edited == true
@@ -22580,11 +19372,7 @@ func (t SetBotInfoDescription) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setBotInfoDescription",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setBotInfoDescription", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetBotInfoShortDescription Sets the text shown on a bot's profile page and sent together with the link when users share the bot. Can be called only if userTypeBot.can_be_edited == true
@@ -22610,11 +19398,7 @@ func (t SetBotInfoShortDescription) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setBotInfoShortDescription",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setBotInfoShortDescription", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetBotName Sets the name of a bot. Can be called only if userTypeBot.can_be_edited == true
@@ -22640,11 +19424,7 @@ func (t SetBotName) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setBotName",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setBotName", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetBotProfilePhoto Changes a profile photo for a bot
@@ -22668,11 +19448,7 @@ func (t SetBotProfilePhoto) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setBotProfilePhoto",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setBotProfilePhoto", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetBotUpdatesStatus Informs the server about the number of pending bot updates if they haven't been processed for a long time; for bots only
@@ -22696,11 +19472,7 @@ func (t SetBotUpdatesStatus) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setBotUpdatesStatus",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setBotUpdatesStatus", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetBusinessAccountBio Changes the bio of a business account; for bots only
@@ -22724,11 +19496,7 @@ func (t SetBusinessAccountBio) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setBusinessAccountBio",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setBusinessAccountBio", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetBusinessAccountGiftSettings Changes settings for gift receiving of a business account; for bots only
@@ -22752,11 +19520,7 @@ func (t SetBusinessAccountGiftSettings) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setBusinessAccountGiftSettings",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setBusinessAccountGiftSettings", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetBusinessAccountName Changes the first and last name of a business account; for bots only
@@ -22782,11 +19546,7 @@ func (t SetBusinessAccountName) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setBusinessAccountName",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setBusinessAccountName", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetBusinessAccountProfilePhoto Changes a profile photo of a business account; for bots only
@@ -22812,11 +19572,7 @@ func (t SetBusinessAccountProfilePhoto) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setBusinessAccountProfilePhoto",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setBusinessAccountProfilePhoto", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetBusinessAccountUsername Changes the editable username of a business account; for bots only
@@ -22840,11 +19596,7 @@ func (t SetBusinessAccountUsername) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setBusinessAccountUsername",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setBusinessAccountUsername", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetBusinessAwayMessageSettings Changes the business away message settings of the current user. Requires Telegram Business subscription
@@ -22866,11 +19618,7 @@ func (t SetBusinessAwayMessageSettings) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setBusinessAwayMessageSettings",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setBusinessAwayMessageSettings", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetBusinessConnectedBot Adds or changes business bot that is connected to the current user account
@@ -22892,11 +19640,7 @@ func (t SetBusinessConnectedBot) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setBusinessConnectedBot",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setBusinessConnectedBot", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetBusinessGreetingMessageSettings Changes the business greeting message settings of the current user. Requires Telegram Business subscription
@@ -22918,11 +19662,7 @@ func (t SetBusinessGreetingMessageSettings) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setBusinessGreetingMessageSettings",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setBusinessGreetingMessageSettings", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetBusinessLocation Changes the business location of the current user. Requires Telegram Business subscription
@@ -22944,11 +19684,7 @@ func (t SetBusinessLocation) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setBusinessLocation",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setBusinessLocation", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetBusinessMessageIsPinned Pins or unpins a message sent on behalf of a business account; for bots only
@@ -22976,11 +19712,7 @@ func (t SetBusinessMessageIsPinned) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setBusinessMessageIsPinned",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setBusinessMessageIsPinned", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetBusinessOpeningHours Changes the business opening hours of the current user. Requires Telegram Business subscription
@@ -23002,11 +19734,7 @@ func (t SetBusinessOpeningHours) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setBusinessOpeningHours",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setBusinessOpeningHours", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetBusinessStartPage Changes the business start page of the current user. Requires Telegram Business subscription
@@ -23028,11 +19756,7 @@ func (t SetBusinessStartPage) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setBusinessStartPage",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setBusinessStartPage", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetChatAccentColor Changes accent color and background custom emoji of a channel chat. Requires can_change_info administrator right
@@ -23058,11 +19782,7 @@ func (t SetChatAccentColor) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setChatAccentColor",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setChatAccentColor", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetChatActiveStoriesList Changes story list in which stories from the chat are shown
@@ -23086,11 +19806,7 @@ func (t SetChatActiveStoriesList) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setChatActiveStoriesList",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setChatActiveStoriesList", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetChatAffiliateProgram Changes affiliate program for a bot
@@ -23114,11 +19830,7 @@ func (t SetChatAffiliateProgram) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setChatAffiliateProgram",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setChatAffiliateProgram", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetChatAvailableReactions Changes reactions, available in a chat. Available for basic groups, supergroups, and channels. Requires can_change_info member right
@@ -23142,11 +19854,7 @@ func (t SetChatAvailableReactions) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setChatAvailableReactions",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setChatAvailableReactions", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetChatBackground Sets the background in a specific chat. Supported only in private and secret chats with non-deleted users, and in chats with sufficient boost level and can_change_info administrator right
@@ -23176,11 +19884,7 @@ func (t SetChatBackground) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setChatBackground",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setChatBackground", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetChatClientData Changes application-specific data associated with a chat
@@ -23204,11 +19908,7 @@ func (t SetChatClientData) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setChatClientData",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setChatClientData", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetChatDescription Changes information about a chat. Available for basic groups, supergroups, and channels. Requires can_change_info member right
@@ -23232,11 +19932,7 @@ func (t SetChatDescription) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setChatDescription",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setChatDescription", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetChatDirectMessagesGroup Changes direct messages group settings for a channel chat; requires owner privileges in the chat
@@ -23262,11 +19958,7 @@ func (t SetChatDirectMessagesGroup) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setChatDirectMessagesGroup",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setChatDirectMessagesGroup", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetChatDiscussionGroup Changes the discussion group of a channel chat; requires can_change_info administrator right in the channel if it is specified
@@ -23290,11 +19982,7 @@ func (t SetChatDiscussionGroup) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setChatDiscussionGroup",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setChatDiscussionGroup", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetChatDraftMessage Changes the draft message in a chat or a topic
@@ -23320,11 +20008,7 @@ func (t SetChatDraftMessage) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setChatDraftMessage",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setChatDraftMessage", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetChatEmojiStatus Changes the emoji status of a chat. Use chatBoostLevelFeatures.can_set_emoji_status to check whether an emoji status can be set. Requires can_change_info administrator right
@@ -23348,11 +20032,7 @@ func (t SetChatEmojiStatus) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setChatEmojiStatus",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setChatEmojiStatus", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetChatLocation Changes the location of a chat. Available only for some location-based supergroups, use supergroupFullInfo.can_set_location to check whether the method is allowed to use
@@ -23376,11 +20056,7 @@ func (t SetChatLocation) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setChatLocation",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setChatLocation", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetChatMemberStatus Changes the status of a chat member; requires can_invite_users member right to add a chat member, can_promote_members administrator right to change administrator rights of the member,
@@ -23406,11 +20082,7 @@ func (t SetChatMemberStatus) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setChatMemberStatus",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setChatMemberStatus", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetChatMemberTag Changes the tag or custom title of a chat member; requires can_manage_tags administrator right to change tag of other users; for basic groups and supergroups only
@@ -23436,11 +20108,7 @@ func (t SetChatMemberTag) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setChatMemberTag",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setChatMemberTag", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetChatMessageAutoDeleteTime Changes the message auto-delete or self-destruct (for secret chats) time in a chat. Requires change_info administrator right in basic groups, supergroups and channels.
@@ -23464,11 +20132,7 @@ func (t SetChatMessageAutoDeleteTime) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setChatMessageAutoDeleteTime",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setChatMessageAutoDeleteTime", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetChatMessageSender Selects a message sender to send messages in a chat
@@ -23492,11 +20156,7 @@ func (t SetChatMessageSender) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setChatMessageSender",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setChatMessageSender", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetChatNotificationSettings Changes the notification settings of a chat. Notification settings of a chat with the current user (Saved Messages) can't be changed
@@ -23520,11 +20180,7 @@ func (t SetChatNotificationSettings) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setChatNotificationSettings",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setChatNotificationSettings", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetChatPaidMessageStarCount Changes the Telegram Star amount that must be paid to send a message to a supergroup chat; requires can_restrict_members administrator right and supergroupFullInfo.can_enable_paid_messages
@@ -23548,11 +20204,7 @@ func (t SetChatPaidMessageStarCount) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setChatPaidMessageStarCount",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setChatPaidMessageStarCount", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetChatPermissions Changes the chat members permissions. Supported only for basic groups and supergroups. Requires can_restrict_members administrator right
@@ -23576,11 +20228,7 @@ func (t SetChatPermissions) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setChatPermissions",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setChatPermissions", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetChatPhoto Changes the photo of a chat. Supported only for basic groups, supergroups and channels. Requires can_change_info member right
@@ -23604,11 +20252,7 @@ func (t SetChatPhoto) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setChatPhoto",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setChatPhoto", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetChatPinnedStories Changes the list of pinned stories on a chat page; requires can_edit_stories administrator right in the chat
@@ -23632,11 +20276,7 @@ func (t SetChatPinnedStories) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setChatPinnedStories",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setChatPinnedStories", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetChatProfileAccentColor Changes accent color and background custom emoji for profile of a supergroup or channel chat. Requires can_change_info administrator right
@@ -23662,11 +20302,7 @@ func (t SetChatProfileAccentColor) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setChatProfileAccentColor",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setChatProfileAccentColor", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetChatSlowModeDelay Changes the slow mode delay of a chat. Available only for supergroups; requires can_restrict_members administrator right
@@ -23690,11 +20326,7 @@ func (t SetChatSlowModeDelay) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setChatSlowModeDelay",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setChatSlowModeDelay", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetChatTheme Changes the chat theme. Supported only in private and secret chats
@@ -23718,11 +20350,7 @@ func (t SetChatTheme) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setChatTheme",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setChatTheme", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetChatTitle Changes the chat title. Supported only for basic groups, supergroups and channels. Requires can_change_info member right
@@ -23746,11 +20374,7 @@ func (t SetChatTitle) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setChatTitle",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setChatTitle", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetCloseFriends Changes the list of close friends of the current user
@@ -23772,11 +20396,7 @@ func (t SetCloseFriends) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setCloseFriends",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setCloseFriends", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetCommands Sets the list of commands supported by the bot for the given user scope and language; for bots only
@@ -23802,11 +20422,7 @@ func (t SetCommands) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setCommands",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setCommands", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetCommunityName Changes name of the given community; requires can_change_info administrator right in the community
@@ -23830,11 +20446,7 @@ func (t SetCommunityName) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setCommunityName",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setCommunityName", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetCustomEmojiStickerSetThumbnail Sets a custom emoji sticker set thumbnail
@@ -23858,11 +20470,7 @@ func (t SetCustomEmojiStickerSetThumbnail) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setCustomEmojiStickerSetThumbnail",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setCustomEmojiStickerSetThumbnail", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetCustomLanguagePack Adds or changes a custom local language pack to the current localization target
@@ -23886,11 +20494,7 @@ func (t SetCustomLanguagePack) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setCustomLanguagePack",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setCustomLanguagePack", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetCustomLanguagePackString Adds, edits or deletes a string in a custom local language pack. Can be called before authorization
@@ -23914,11 +20518,7 @@ func (t SetCustomLanguagePackString) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setCustomLanguagePackString",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setCustomLanguagePackString", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetDatabaseEncryptionKey Changes the database encryption key. Usually the encryption key is never changed and is stored in some OS keychain
@@ -23940,11 +20540,7 @@ func (t SetDatabaseEncryptionKey) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setDatabaseEncryptionKey",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setDatabaseEncryptionKey", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetDefaultBackground Sets default background for chats; adds the background to the list of installed backgrounds
@@ -23970,11 +20566,7 @@ func (t SetDefaultBackground) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setDefaultBackground",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setDefaultBackground", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetDefaultChannelAdministratorRights Sets default administrator rights for adding the bot to channel chats; for bots only
@@ -23996,11 +20588,7 @@ func (t SetDefaultChannelAdministratorRights) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setDefaultChannelAdministratorRights",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setDefaultChannelAdministratorRights", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetDefaultGroupAdministratorRights Sets default administrator rights for adding the bot to basic group and supergroup chats; for bots only
@@ -24022,11 +20610,7 @@ func (t SetDefaultGroupAdministratorRights) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setDefaultGroupAdministratorRights",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setDefaultGroupAdministratorRights", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetDefaultMessageAutoDeleteTime Changes the default message auto-delete time for new chats
@@ -24048,11 +20632,7 @@ func (t SetDefaultMessageAutoDeleteTime) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setDefaultMessageAutoDeleteTime",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setDefaultMessageAutoDeleteTime", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetDefaultReactionType Changes type of default reaction for the current user
@@ -24074,11 +20654,7 @@ func (t SetDefaultReactionType) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setDefaultReactionType",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setDefaultReactionType", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetDirectMessagesChatTopicIsMarkedAsUnread Changes the marked as unread state of the topic in a channel direct messages chat administered by the current user
@@ -24104,11 +20680,7 @@ func (t SetDirectMessagesChatTopicIsMarkedAsUnread) MarshalJSON() ([]byte, error
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setDirectMessagesChatTopicIsMarkedAsUnread",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setDirectMessagesChatTopicIsMarkedAsUnread", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetEmojiStatus Changes the emoji status of the current user; for Telegram Premium users only
@@ -24130,11 +20702,7 @@ func (t SetEmojiStatus) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setEmojiStatus",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setEmojiStatus", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetFileGenerationProgress Informs TDLib on a file generation progress
@@ -24160,11 +20728,7 @@ func (t SetFileGenerationProgress) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setFileGenerationProgress",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setFileGenerationProgress", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetForumTopicNotificationSettings Changes the notification settings of a forum topic in a forum supergroup chat or a chat with a bot with topics
@@ -24190,11 +20754,7 @@ func (t SetForumTopicNotificationSettings) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setForumTopicNotificationSettings",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setForumTopicNotificationSettings", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetGameScore Updates the game score of the specified user in the game; for bots only
@@ -24226,11 +20786,7 @@ func (t SetGameScore) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setGameScore",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setGameScore", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetGiftCollectionName Changes name of a gift collection. If the collection is owned by a channel chat, then requires can_post_messages administrator right in the channel chat. Returns the changed collection
@@ -24256,11 +20812,7 @@ func (t SetGiftCollectionName) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setGiftCollectionName",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setGiftCollectionName", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetGiftResalePrice Changes resale price of a unique gift owned by the current user
@@ -24284,11 +20836,7 @@ func (t SetGiftResalePrice) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setGiftResalePrice",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setGiftResalePrice", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetGiftSettings Changes settings for gift receiving for the current user
@@ -24310,11 +20858,7 @@ func (t SetGiftSettings) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setGiftSettings",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setGiftSettings", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetGroupCallPaidMessageStarCount Changes the minimum number of Telegram Stars that must be paid by general participant for each sent message to a live story call. Requires groupCall.can_be_managed right
@@ -24338,11 +20882,7 @@ func (t SetGroupCallPaidMessageStarCount) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setGroupCallPaidMessageStarCount",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setGroupCallPaidMessageStarCount", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetGroupCallParticipantIsSpeaking Informs TDLib that speaking state of a participant of an active group call has changed. Returns identifier of the participant if it is found
@@ -24368,11 +20908,7 @@ func (t SetGroupCallParticipantIsSpeaking) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setGroupCallParticipantIsSpeaking",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setGroupCallParticipantIsSpeaking", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetGroupCallParticipantVolumeLevel Changes volume level of a participant of an active group call; not supported for live stories. If the current user can manage the group call or is the owner of the group call,
@@ -24398,11 +20934,7 @@ func (t SetGroupCallParticipantVolumeLevel) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setGroupCallParticipantVolumeLevel",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setGroupCallParticipantVolumeLevel", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetInactiveSessionTtl Changes the period of inactivity after which sessions will automatically be terminated
@@ -24424,11 +20956,7 @@ func (t SetInactiveSessionTtl) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setInactiveSessionTtl",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setInactiveSessionTtl", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetInlineGameScore Updates the game score of the specified user in a game; for bots only
@@ -24458,11 +20986,7 @@ func (t SetInlineGameScore) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setInlineGameScore",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setInlineGameScore", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetLiveStoryMessageSender Selects a message sender to send messages in a live story call
@@ -24486,11 +21010,7 @@ func (t SetLiveStoryMessageSender) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setLiveStoryMessageSender",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setLiveStoryMessageSender", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetLoginEmailAddress Changes the login email address of the user. The email address can be changed only if the current user already has login email and passwordState.login_email_address_pattern is non-empty,
@@ -24512,11 +21032,7 @@ func (t SetLoginEmailAddress) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setLoginEmailAddress",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setLoginEmailAddress", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetLogStream Sets new log stream for internal logging of TDLib. Can be called synchronously
@@ -24538,11 +21054,7 @@ func (t SetLogStream) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setLogStream",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setLogStream", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetLogTagVerbosityLevel Sets the verbosity level for a specified TDLib internal log tag. Can be called synchronously
@@ -24566,11 +21078,7 @@ func (t SetLogTagVerbosityLevel) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setLogTagVerbosityLevel",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setLogTagVerbosityLevel", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetLogVerbosityLevel Sets the verbosity level of the internal logging of TDLib. Can be called synchronously
@@ -24592,11 +21100,7 @@ func (t SetLogVerbosityLevel) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setLogVerbosityLevel",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setLogVerbosityLevel", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetMainProfileTab Changes the main profile tab of the current user
@@ -24618,11 +21122,7 @@ func (t SetMainProfileTab) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setMainProfileTab",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setMainProfileTab", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetManagedBotAccessSettings Sets access settings of a managed bot; for bots only
@@ -24646,11 +21146,7 @@ func (t SetManagedBotAccessSettings) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setManagedBotAccessSettings",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setManagedBotAccessSettings", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetMenuButton Sets menu button for the given user or for all users; for bots only
@@ -24674,11 +21170,7 @@ func (t SetMenuButton) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setMenuButton",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setMenuButton", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetMessageFactCheck Changes the fact-check of a message. Can be only used if messageProperties.can_set_fact_check == true
@@ -24704,11 +21196,7 @@ func (t SetMessageFactCheck) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setMessageFactCheck",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setMessageFactCheck", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetMessageReactions Sets reactions on a message; for bots only
@@ -24736,11 +21224,7 @@ func (t SetMessageReactions) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setMessageReactions",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setMessageReactions", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetMessageSenderBlockList Changes the block list of a message sender. Currently, only users and supergroup chats can be blocked
@@ -24764,11 +21248,7 @@ func (t SetMessageSenderBlockList) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setMessageSenderBlockList",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setMessageSenderBlockList", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetMessageSenderBotVerification Changes the verification status of a user or a chat by an owned bot
@@ -24794,11 +21274,7 @@ func (t SetMessageSenderBotVerification) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setMessageSenderBotVerification",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setMessageSenderBotVerification", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetName Changes the first and last name of the current user
@@ -24822,11 +21298,7 @@ func (t SetName) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setName",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setName", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetNetworkType Sets the current network type. Can be called before authorization. Calling this method forces all network connections to reopen, mitigating the delay in switching between different networks,
@@ -24848,11 +21320,7 @@ func (t SetNetworkType) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setNetworkType",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setNetworkType", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetNewChatPrivacySettings Changes privacy settings for new chat creation; can be used only if getOption("can_set_new_chat_privacy_settings")
@@ -24874,11 +21342,7 @@ func (t SetNewChatPrivacySettings) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setNewChatPrivacySettings",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setNewChatPrivacySettings", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetOption Sets the value of an option. (Check the list of available options on https://core.telegram.org/tdlib/options.) Only writable options can be set. Can be called before authorization
@@ -24902,11 +21366,7 @@ func (t SetOption) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setOption",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setOption", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetPaidMessageReactionType Changes type of paid message reaction of the current user on a message. The message must have paid reaction added by the current user
@@ -24932,11 +21392,7 @@ func (t SetPaidMessageReactionType) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setPaidMessageReactionType",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setPaidMessageReactionType", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetPassportElement Adds an element to the user's Telegram Passport. May return an error with a message "PHONE_VERIFICATION_NEEDED" or "EMAIL_VERIFICATION_NEEDED" if the chosen phone number or the chosen email address must be verified first
@@ -24960,11 +21416,7 @@ func (t SetPassportElement) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setPassportElement",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setPassportElement", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetPassportElementErrors Informs the user that some of the elements in their Telegram Passport contain errors; for bots only. The user will not be able to resend the elements, until the errors are fixed
@@ -24988,11 +21440,7 @@ func (t SetPassportElementErrors) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setPassportElementErrors",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setPassportElementErrors", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetPassword Changes the 2-step verification password for the current user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed
@@ -25022,11 +21470,7 @@ func (t SetPassword) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setPassword",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setPassword", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetPersonalChat Changes the personal chat of the current user
@@ -25048,11 +21492,7 @@ func (t SetPersonalChat) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setPersonalChat",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setPersonalChat", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetPinnedChats Changes the order of pinned chats
@@ -25076,11 +21516,7 @@ func (t SetPinnedChats) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setPinnedChats",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setPinnedChats", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetPinnedForumTopics Changes the order of pinned topics in a forum supergroup chat or a chat with a bot with topics; requires can_manage_topics administrator right in the supergroup
@@ -25104,11 +21540,7 @@ func (t SetPinnedForumTopics) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setPinnedForumTopics",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setPinnedForumTopics", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetPinnedGifts Changes the list of pinned gifts on the current user's or the channel's profile page; requires can_post_messages administrator right in the channel chat
@@ -25132,11 +21564,7 @@ func (t SetPinnedGifts) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setPinnedGifts",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setPinnedGifts", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetPinnedSavedMessagesTopics Changes the order of pinned Saved Messages topics
@@ -25158,11 +21586,7 @@ func (t SetPinnedSavedMessagesTopics) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setPinnedSavedMessagesTopics",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setPinnedSavedMessagesTopics", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetPollAnswer Changes the user answer to a poll
@@ -25188,11 +21612,7 @@ func (t SetPollAnswer) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setPollAnswer",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setPollAnswer", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetProfileAccentColor Changes accent color and background custom emoji for profile of the current user; for Telegram Premium users only
@@ -25216,11 +21636,7 @@ func (t SetProfileAccentColor) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setProfileAccentColor",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setProfileAccentColor", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetProfileAudioPosition Changes position of an audio file in the profile audio files of the current user
@@ -25244,11 +21660,7 @@ func (t SetProfileAudioPosition) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setProfileAudioPosition",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setProfileAudioPosition", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetProfilePhoto Changes a profile photo for the current user
@@ -25272,11 +21684,7 @@ func (t SetProfilePhoto) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setProfilePhoto",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setProfilePhoto", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetQuickReplyShortcutName Changes name of a quick reply shortcut
@@ -25300,11 +21708,7 @@ func (t SetQuickReplyShortcutName) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setQuickReplyShortcutName",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setQuickReplyShortcutName", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetReactionNotificationSettings Changes notification settings for reactions
@@ -25326,11 +21730,7 @@ func (t SetReactionNotificationSettings) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setReactionNotificationSettings",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setReactionNotificationSettings", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetReadDatePrivacySettings Changes privacy settings for message read date
@@ -25352,11 +21752,7 @@ func (t SetReadDatePrivacySettings) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setReadDatePrivacySettings",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setReadDatePrivacySettings", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetRecoveryEmailAddress Changes the 2-step verification recovery email address of the user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed.
@@ -25380,11 +21776,7 @@ func (t SetRecoveryEmailAddress) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setRecoveryEmailAddress",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setRecoveryEmailAddress", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetSavedMessagesTagLabel Changes label of a Saved Messages tag; for Telegram Premium users only
@@ -25408,11 +21800,7 @@ func (t SetSavedMessagesTagLabel) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setSavedMessagesTagLabel",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setSavedMessagesTagLabel", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetScopeNotificationSettings Changes notification settings for chats of a given type
@@ -25436,11 +21824,7 @@ func (t SetScopeNotificationSettings) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setScopeNotificationSettings",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setScopeNotificationSettings", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetStickerEmojis Changes the list of emojis corresponding to a sticker. The sticker must belong to a regular or custom emoji sticker set that is owned by the current user
@@ -25464,11 +21848,7 @@ func (t SetStickerEmojis) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setStickerEmojis",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setStickerEmojis", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetStickerKeywords Changes the list of keywords of a sticker. The sticker must belong to a regular or custom emoji sticker set that is owned by the current user
@@ -25492,11 +21872,7 @@ func (t SetStickerKeywords) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setStickerKeywords",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setStickerKeywords", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetStickerMaskPosition Changes the mask position of a mask sticker. The sticker must belong to a mask sticker set that is owned by the current user
@@ -25520,11 +21896,7 @@ func (t SetStickerMaskPosition) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setStickerMaskPosition",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setStickerMaskPosition", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetStickerPositionInSet Changes the position of a sticker in the set to which it belongs. The sticker set must be owned by the current user
@@ -25548,11 +21920,7 @@ func (t SetStickerPositionInSet) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setStickerPositionInSet",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setStickerPositionInSet", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetStickerSetThumbnail Sets a sticker set thumbnail
@@ -25580,11 +21948,7 @@ func (t SetStickerSetThumbnail) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setStickerSetThumbnail",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setStickerSetThumbnail", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetStickerSetTitle Sets a sticker set title
@@ -25608,11 +21972,7 @@ func (t SetStickerSetTitle) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setStickerSetTitle",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setStickerSetTitle", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetStoryAlbumName Changes name of an album of stories. If the album is owned by a supergroup or a channel chat, then requires can_edit_stories administrator right in the chat. Returns the changed album
@@ -25638,11 +21998,7 @@ func (t SetStoryAlbumName) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setStoryAlbumName",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setStoryAlbumName", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetStoryPrivacySettings Changes privacy settings of a story. The method can be called only for stories posted on behalf of the current user and if story.can_set_privacy_settings == true
@@ -25666,11 +22022,7 @@ func (t SetStoryPrivacySettings) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setStoryPrivacySettings",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setStoryPrivacySettings", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetStoryReaction Changes chosen reaction on a story that has already been sent; not supported for live stories
@@ -25698,11 +22050,7 @@ func (t SetStoryReaction) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setStoryReaction",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setStoryReaction", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetSupergroupCustomEmojiStickerSet Changes the custom emoji sticker set of a supergroup; requires can_change_info administrator right. The chat must have at least chatBoostFeatures.min_custom_emoji_sticker_set_boost_level boost level to pass the corresponding color
@@ -25726,11 +22074,7 @@ func (t SetSupergroupCustomEmojiStickerSet) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setSupergroupCustomEmojiStickerSet",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setSupergroupCustomEmojiStickerSet", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetSupergroupMainProfileTab Changes the main profile tab of the channel; requires can_change_info administrator right
@@ -25754,11 +22098,7 @@ func (t SetSupergroupMainProfileTab) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setSupergroupMainProfileTab",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setSupergroupMainProfileTab", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetSupergroupStickerSet Changes the sticker set of a supergroup; requires can_change_info administrator right
@@ -25782,11 +22122,7 @@ func (t SetSupergroupStickerSet) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setSupergroupStickerSet",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setSupergroupStickerSet", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetSupergroupUnrestrictBoostCount Changes the number of times the supergroup must be boosted by a user to ignore slow mode and chat permission restrictions; requires can_restrict_members administrator right
@@ -25810,11 +22146,7 @@ func (t SetSupergroupUnrestrictBoostCount) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setSupergroupUnrestrictBoostCount",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setSupergroupUnrestrictBoostCount", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetSupergroupUsername Changes the editable username of a supergroup or channel, requires owner privileges in the supergroup or channel
@@ -25838,11 +22170,7 @@ func (t SetSupergroupUsername) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setSupergroupUsername",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setSupergroupUsername", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetTdlibParameters Sets the parameters for TDLib initialization. Works only when the current authorization state is authorizationStateWaitTdlibParameters
@@ -25890,11 +22218,7 @@ func (t SetTdlibParameters) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setTdlibParameters",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setTdlibParameters", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetUpgradedGiftColors Changes color scheme for the current user based on an owned or a hosted upgraded gift; for Telegram Premium users only
@@ -25916,11 +22240,7 @@ func (t SetUpgradedGiftColors) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setUpgradedGiftColors",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setUpgradedGiftColors", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetUserEmojiStatus Changes the emoji status of a user; for bots only
@@ -25944,11 +22264,7 @@ func (t SetUserEmojiStatus) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setUserEmojiStatus",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setUserEmojiStatus", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetUsername Changes the editable username of the current user
@@ -25970,11 +22286,7 @@ func (t SetUsername) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setUsername",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setUsername", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetUserNote Changes a note of a contact user
@@ -25998,11 +22310,7 @@ func (t SetUserNote) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setUserNote",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setUserNote", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetUserPersonalProfilePhoto Changes a personal profile photo of a contact user
@@ -26026,11 +22334,7 @@ func (t SetUserPersonalProfilePhoto) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setUserPersonalProfilePhoto",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setUserPersonalProfilePhoto", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetUserPrivacySettingRules Changes user privacy settings
@@ -26054,11 +22358,7 @@ func (t SetUserPrivacySettingRules) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setUserPrivacySettingRules",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setUserPrivacySettingRules", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetUserSupportInfo Sets support information for the given user; for Telegram support only
@@ -26082,11 +22382,7 @@ func (t SetUserSupportInfo) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setUserSupportInfo",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setUserSupportInfo", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetVideoChatDefaultParticipant Changes default participant identifier, on whose behalf a video chat in the chat will be joined
@@ -26110,11 +22406,7 @@ func (t SetVideoChatDefaultParticipant) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setVideoChatDefaultParticipant",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setVideoChatDefaultParticipant", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetVideoChatTitle Sets title of a video chat; requires groupCall.can_be_managed right
@@ -26138,11 +22430,7 @@ func (t SetVideoChatTitle) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "setVideoChatTitle",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "setVideoChatTitle", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ShareChatWithBot Shares a chat after pressing a keyboardButtonTypeRequestChat button with the bot
@@ -26170,11 +22458,7 @@ func (t ShareChatWithBot) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "shareChatWithBot",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "shareChatWithBot", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SharePhoneNumber Shares the phone number of the current user with a mutual contact. Supposed to be called when the user clicks on chatActionBarSharePhoneNumber
@@ -26196,11 +22480,7 @@ func (t SharePhoneNumber) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "sharePhoneNumber",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sharePhoneNumber", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ShareUsersWithBot Shares users after pressing a keyboardButtonTypeRequestUsers button with the bot
@@ -26228,11 +22508,7 @@ func (t ShareUsersWithBot) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "shareUsersWithBot",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "shareUsersWithBot", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // StartGroupCallRecording Starts recording of an active group call; for video chats only. Requires groupCall.can_be_managed right
@@ -26260,11 +22536,7 @@ func (t StartGroupCallRecording) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "startGroupCallRecording",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "startGroupCallRecording", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // StartGroupCallScreenSharing Starts screen sharing in a joined group call; not supported in live stories. Returns join response payload for tgcalls
@@ -26290,11 +22562,7 @@ func (t StartGroupCallScreenSharing) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "startGroupCallScreenSharing",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "startGroupCallScreenSharing", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // StartLiveStory Starts a new live story on behalf of a chat; requires can_post_stories administrator right for channel chats
@@ -26326,11 +22594,7 @@ func (t StartLiveStory) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "startLiveStory",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "startLiveStory", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // StartScheduledVideoChat Starts a scheduled video chat
@@ -26352,11 +22616,7 @@ func (t StartScheduledVideoChat) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "startScheduledVideoChat",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "startScheduledVideoChat", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // StopBusinessPoll Stops a poll sent on behalf of a business account; for bots only
@@ -26384,11 +22644,7 @@ func (t StopBusinessPoll) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "stopBusinessPoll",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "stopBusinessPoll", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // StopPendingMessage Stops a pending message generation by a bot
@@ -26414,11 +22670,7 @@ func (t StopPendingMessage) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "stopPendingMessage",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "stopPendingMessage", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // StopPoll Stops a poll
@@ -26444,11 +22696,7 @@ func (t StopPoll) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "stopPoll",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "stopPoll", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SuggestUserBirthdate Suggests a birthdate to another regular user with common messages and allowing non-paid messages
@@ -26472,11 +22720,7 @@ func (t SuggestUserBirthdate) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "suggestUserBirthdate",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "suggestUserBirthdate", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SuggestUserProfilePhoto Suggests a profile photo to another regular user with common messages and allowing non-paid messages
@@ -26500,11 +22744,7 @@ func (t SuggestUserProfilePhoto) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "suggestUserProfilePhoto",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "suggestUserProfilePhoto", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SummarizeMessage Summarizes content of the message with non-empty summary_language_code
@@ -26532,11 +22772,7 @@ func (t SummarizeMessage) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "summarizeMessage",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "summarizeMessage", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SynchronizeLanguagePack Fetches the latest versions of all strings from a language pack in the current localization target from the server.
@@ -26558,11 +22794,7 @@ func (t SynchronizeLanguagePack) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "synchronizeLanguagePack",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "synchronizeLanguagePack", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // TerminateAllOtherSessions Terminates all other sessions of the current user. Additionally, the user must be suggested to delete the connected business bot using deleteBusinessConnectedBot if there is any
@@ -26582,11 +22814,7 @@ func (t TerminateAllOtherSessions) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "terminateAllOtherSessions",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "terminateAllOtherSessions", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // TerminateSession Terminates a session of the current user
@@ -26608,11 +22836,7 @@ func (t TerminateSession) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "terminateSession",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "terminateSession", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // TestCallBytes Returns the received bytes; for testing only. This is an offline method. Can be called before authorization
@@ -26634,11 +22858,7 @@ func (t TestCallBytes) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "testCallBytes",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "testCallBytes", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // TestCallEmpty Does nothing; for testing only. This is an offline method. Can be called before authorization
@@ -26658,11 +22878,7 @@ func (t TestCallEmpty) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "testCallEmpty",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "testCallEmpty", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // TestCallString Returns the received string; for testing only. This is an offline method. Can be called before authorization
@@ -26684,11 +22900,7 @@ func (t TestCallString) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "testCallString",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "testCallString", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // TestCallVectorInt Returns the received vector of numbers; for testing only. This is an offline method. Can be called before authorization
@@ -26710,11 +22922,7 @@ func (t TestCallVectorInt) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "testCallVectorInt",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "testCallVectorInt", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // TestCallVectorIntObject Returns the received vector of objects containing a number; for testing only. This is an offline method. Can be called before authorization
@@ -26736,11 +22944,7 @@ func (t TestCallVectorIntObject) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "testCallVectorIntObject",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "testCallVectorIntObject", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // TestCallVectorString Returns the received vector of strings; for testing only. This is an offline method. Can be called before authorization
@@ -26762,11 +22966,7 @@ func (t TestCallVectorString) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "testCallVectorString",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "testCallVectorString", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // TestCallVectorStringObject Returns the received vector of objects containing a string; for testing only. This is an offline method. Can be called before authorization
@@ -26788,11 +22988,7 @@ func (t TestCallVectorStringObject) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "testCallVectorStringObject",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "testCallVectorStringObject", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // TestGetDifference Forces an updates.getDifference call to the Telegram servers; for testing only
@@ -26812,11 +23008,7 @@ func (t TestGetDifference) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "testGetDifference",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "testGetDifference", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // TestNetwork Sends a simple network request to the Telegram servers; for testing only. Can be called before authorization
@@ -26836,11 +23028,7 @@ func (t TestNetwork) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "testNetwork",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "testNetwork", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // TestProxy Sends a simple network request to the Telegram servers via proxy; for testing only. Can be called before authorization
@@ -26866,11 +23054,7 @@ func (t TestProxy) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "testProxy",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "testProxy", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // TestReturnError Returns the specified error and ensures that the Error object is used; for testing only. Can be called synchronously
@@ -26892,11 +23076,7 @@ func (t TestReturnError) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "testReturnError",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "testReturnError", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // TestSquareInt Returns the squared received number; for testing only. This is an offline method. Can be called before authorization
@@ -26918,11 +23098,7 @@ func (t TestSquareInt) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "testSquareInt",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "testSquareInt", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // TestUseUpdate Does nothing and ensures that the Update object is used; for testing only. This is an offline method. Can be called before authorization
@@ -26942,11 +23118,7 @@ func (t TestUseUpdate) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "testUseUpdate",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "testUseUpdate", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ToggleAllDownloadsArePaused Changes pause state of all files in the file download list
@@ -26968,11 +23140,7 @@ func (t ToggleAllDownloadsArePaused) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "toggleAllDownloadsArePaused",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "toggleAllDownloadsArePaused", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ToggleBotCanManageEmojiStatus Toggles whether the bot can manage emoji status of the current user
@@ -26996,11 +23164,7 @@ func (t ToggleBotCanManageEmojiStatus) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "toggleBotCanManageEmojiStatus",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "toggleBotCanManageEmojiStatus", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ToggleBotIsAddedToAttachmentMenu Adds or removes a bot to attachment and side menu. Bot can be added to the menu, only if userTypeBot.can_be_added_to_attachment_menu == true
@@ -27026,11 +23190,7 @@ func (t ToggleBotIsAddedToAttachmentMenu) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "toggleBotIsAddedToAttachmentMenu",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "toggleBotIsAddedToAttachmentMenu", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ToggleBotUsernameIsActive Changes active state for a username of a bot. The editable username can be disabled only if there are other active usernames.
@@ -27056,11 +23216,7 @@ func (t ToggleBotUsernameIsActive) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "toggleBotUsernameIsActive",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "toggleBotUsernameIsActive", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ToggleBusinessConnectedBotChatIsPaused Pauses or resumes the connected business bot in a specific chat
@@ -27084,11 +23240,7 @@ func (t ToggleBusinessConnectedBotChatIsPaused) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "toggleBusinessConnectedBotChatIsPaused",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "toggleBusinessConnectedBotChatIsPaused", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ToggleChatDefaultDisableNotification Changes the value of the default disable_notification parameter, used when a message is sent to a chat
@@ -27112,11 +23264,7 @@ func (t ToggleChatDefaultDisableNotification) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "toggleChatDefaultDisableNotification",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "toggleChatDefaultDisableNotification", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ToggleChatFolderTags Toggles whether chat folder tags are enabled
@@ -27138,11 +23286,7 @@ func (t ToggleChatFolderTags) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "toggleChatFolderTags",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "toggleChatFolderTags", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ToggleChatGiftNotifications Toggles whether notifications for new gifts received by a channel chat are sent to the current user; requires can_post_messages administrator right in the chat
@@ -27166,11 +23310,7 @@ func (t ToggleChatGiftNotifications) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "toggleChatGiftNotifications",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "toggleChatGiftNotifications", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ToggleChatHasProtectedContent Changes the ability of users to save, forward, or copy chat content. Requires owner privileges in basic groups, supergroups and channels.
@@ -27194,11 +23334,7 @@ func (t ToggleChatHasProtectedContent) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "toggleChatHasProtectedContent",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "toggleChatHasProtectedContent", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ToggleChatIsMarkedAsUnread Changes the marked as unread state of a chat
@@ -27222,11 +23358,7 @@ func (t ToggleChatIsMarkedAsUnread) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "toggleChatIsMarkedAsUnread",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "toggleChatIsMarkedAsUnread", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ToggleChatIsPinned Changes the pinned state of a chat. There can be up to getOption("pinned_chat_count_max")/getOption("pinned_archived_chat_count_max") pinned non-secret chats and the same number of secret chats in the main/archive chat list. The limit can be increased with Telegram Premium
@@ -27252,11 +23384,7 @@ func (t ToggleChatIsPinned) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "toggleChatIsPinned",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "toggleChatIsPinned", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ToggleChatIsTranslatable Changes the translatable state of a chat
@@ -27280,11 +23408,7 @@ func (t ToggleChatIsTranslatable) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "toggleChatIsTranslatable",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "toggleChatIsTranslatable", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ToggleChatViewAsTopics Changes the view_as_topics setting of a forum chat or Saved Messages
@@ -27308,11 +23432,7 @@ func (t ToggleChatViewAsTopics) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "toggleChatViewAsTopics",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "toggleChatViewAsTopics", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ToggleDirectMessagesChatTopicCanSendUnpaidMessages Allows to send unpaid messages to the given topic of the channel direct messages chat administered by the current user
@@ -27340,11 +23460,7 @@ func (t ToggleDirectMessagesChatTopicCanSendUnpaidMessages) MarshalJSON() ([]byt
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "toggleDirectMessagesChatTopicCanSendUnpaidMessages",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "toggleDirectMessagesChatTopicCanSendUnpaidMessages", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ToggleDownloadIsPaused Changes pause state of a file in the file download list
@@ -27368,11 +23484,7 @@ func (t ToggleDownloadIsPaused) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "toggleDownloadIsPaused",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "toggleDownloadIsPaused", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ToggleForumTopicIsClosed Toggles whether a topic is closed in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup unless the user is creator of the topic
@@ -27398,11 +23510,7 @@ func (t ToggleForumTopicIsClosed) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "toggleForumTopicIsClosed",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "toggleForumTopicIsClosed", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ToggleForumTopicIsPinned Changes the pinned state of a topic in a forum supergroup chat or a chat with a bot with topics; requires can_manage_topics administrator right in the supergroup.
@@ -27428,11 +23536,7 @@ func (t ToggleForumTopicIsPinned) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "toggleForumTopicIsPinned",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "toggleForumTopicIsPinned", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ToggleGeneralForumTopicIsHidden Toggles whether a General topic is hidden in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup
@@ -27456,11 +23560,7 @@ func (t ToggleGeneralForumTopicIsHidden) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "toggleGeneralForumTopicIsHidden",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "toggleGeneralForumTopicIsHidden", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ToggleGiftIsSaved Toggles whether a gift is shown on the current user's or the channel's profile page; requires can_post_messages administrator right in the channel chat
@@ -27484,11 +23584,7 @@ func (t ToggleGiftIsSaved) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "toggleGiftIsSaved",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "toggleGiftIsSaved", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ToggleGroupCallAreMessagesAllowed Toggles whether participants of a group call can send messages there. Requires groupCall.can_toggle_are_messages_allowed right
@@ -27512,11 +23608,7 @@ func (t ToggleGroupCallAreMessagesAllowed) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "toggleGroupCallAreMessagesAllowed",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "toggleGroupCallAreMessagesAllowed", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ToggleGroupCallIsMyVideoEnabled Toggles whether current user's video is enabled
@@ -27540,11 +23632,7 @@ func (t ToggleGroupCallIsMyVideoEnabled) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "toggleGroupCallIsMyVideoEnabled",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "toggleGroupCallIsMyVideoEnabled", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ToggleGroupCallIsMyVideoPaused Toggles whether current user's video is paused
@@ -27568,11 +23656,7 @@ func (t ToggleGroupCallIsMyVideoPaused) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "toggleGroupCallIsMyVideoPaused",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "toggleGroupCallIsMyVideoPaused", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ToggleGroupCallParticipantIsHandRaised Toggles whether a group call participant hand is rased; for video chats only
@@ -27598,11 +23682,7 @@ func (t ToggleGroupCallParticipantIsHandRaised) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "toggleGroupCallParticipantIsHandRaised",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "toggleGroupCallParticipantIsHandRaised", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ToggleGroupCallParticipantIsMuted Toggles whether a participant of an active group call is muted, unmuted, or allowed to unmute themselves; not supported for live stories
@@ -27628,11 +23708,7 @@ func (t ToggleGroupCallParticipantIsMuted) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "toggleGroupCallParticipantIsMuted",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "toggleGroupCallParticipantIsMuted", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ToggleGroupCallScreenSharingIsPaused Pauses or unpauses screen sharing in a joined group call; not supported in live stories
@@ -27656,11 +23732,7 @@ func (t ToggleGroupCallScreenSharingIsPaused) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "toggleGroupCallScreenSharingIsPaused",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "toggleGroupCallScreenSharingIsPaused", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ToggleHasSponsoredMessagesEnabled Toggles whether the current user has sponsored messages enabled. The setting has no effect for users without Telegram Premium for which sponsored messages are always enabled
@@ -27682,11 +23754,7 @@ func (t ToggleHasSponsoredMessagesEnabled) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "toggleHasSponsoredMessagesEnabled",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "toggleHasSponsoredMessagesEnabled", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ToggleSavedMessagesTopicIsPinned Changes the pinned state of a Saved Messages topic. There can be up to getOption("pinned_saved_messages_topic_count_max") pinned topics. The limit can be increased with Telegram Premium
@@ -27710,11 +23778,7 @@ func (t ToggleSavedMessagesTopicIsPinned) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "toggleSavedMessagesTopicIsPinned",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "toggleSavedMessagesTopicIsPinned", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ToggleSessionCanAcceptCalls Toggles whether a session can accept incoming calls
@@ -27738,11 +23802,7 @@ func (t ToggleSessionCanAcceptCalls) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "toggleSessionCanAcceptCalls",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "toggleSessionCanAcceptCalls", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ToggleSessionCanAcceptSecretChats Toggles whether a session can accept incoming secret chats
@@ -27766,11 +23826,7 @@ func (t ToggleSessionCanAcceptSecretChats) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "toggleSessionCanAcceptSecretChats",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "toggleSessionCanAcceptSecretChats", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ToggleStoryIsPostedToChatPage Toggles whether a story is accessible after expiration. Can be called only if story.can_toggle_is_posted_to_chat_page == true
@@ -27796,11 +23852,7 @@ func (t ToggleStoryIsPostedToChatPage) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "toggleStoryIsPostedToChatPage",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "toggleStoryIsPostedToChatPage", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ToggleSupergroupCanHaveSponsoredMessages Toggles whether sponsored messages are shown in the channel chat; requires owner privileges in the channel. The chat must have at least chatBoostFeatures.min_sponsored_message_disable_boost_level boost level to disable sponsored messages
@@ -27824,11 +23876,7 @@ func (t ToggleSupergroupCanHaveSponsoredMessages) MarshalJSON() ([]byte, error) 
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "toggleSupergroupCanHaveSponsoredMessages",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "toggleSupergroupCanHaveSponsoredMessages", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ToggleSupergroupHasAggressiveAntiSpamEnabled Toggles whether aggressive anti-spam checks are enabled in the supergroup. Can be called only if supergroupFullInfo.can_toggle_aggressive_anti_spam == true
@@ -27852,11 +23900,7 @@ func (t ToggleSupergroupHasAggressiveAntiSpamEnabled) MarshalJSON() ([]byte, err
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "toggleSupergroupHasAggressiveAntiSpamEnabled",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "toggleSupergroupHasAggressiveAntiSpamEnabled", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ToggleSupergroupHasAutomaticTranslation Toggles whether messages are automatically translated in the channel chat; requires can_change_info administrator right in the channel.
@@ -27880,11 +23924,7 @@ func (t ToggleSupergroupHasAutomaticTranslation) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "toggleSupergroupHasAutomaticTranslation",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "toggleSupergroupHasAutomaticTranslation", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ToggleSupergroupHasHiddenMembers Toggles whether non-administrators can receive only administrators and bots using getSupergroupMembers or searchChatMembers. Can be called only if supergroupFullInfo.can_hide_members == true
@@ -27908,11 +23948,7 @@ func (t ToggleSupergroupHasHiddenMembers) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "toggleSupergroupHasHiddenMembers",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "toggleSupergroupHasHiddenMembers", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ToggleSupergroupIsAllHistoryAvailable Toggles whether the message history of a supergroup is available to new members; requires can_change_info member right
@@ -27936,11 +23972,7 @@ func (t ToggleSupergroupIsAllHistoryAvailable) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "toggleSupergroupIsAllHistoryAvailable",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "toggleSupergroupIsAllHistoryAvailable", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ToggleSupergroupIsBroadcastGroup Upgrades supergroup to a broadcast group; requires owner privileges in the supergroup
@@ -27962,11 +23994,7 @@ func (t ToggleSupergroupIsBroadcastGroup) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "toggleSupergroupIsBroadcastGroup",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "toggleSupergroupIsBroadcastGroup", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ToggleSupergroupIsForum Toggles whether the supergroup is a forum; requires owner privileges in the supergroup. Discussion supergroups can't be converted to forums
@@ -27992,11 +24020,7 @@ func (t ToggleSupergroupIsForum) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "toggleSupergroupIsForum",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "toggleSupergroupIsForum", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ToggleSupergroupJoinByRequest Toggles whether all users directly joining the supergroup need to be approved by supergroup administrators; requires can_restrict_members administrator right
@@ -28024,11 +24048,7 @@ func (t ToggleSupergroupJoinByRequest) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "toggleSupergroupJoinByRequest",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "toggleSupergroupJoinByRequest", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ToggleSupergroupJoinToSendMessages Toggles whether joining is mandatory to send messages to a discussion supergroup; requires can_restrict_members administrator right
@@ -28052,11 +24072,7 @@ func (t ToggleSupergroupJoinToSendMessages) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "toggleSupergroupJoinToSendMessages",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "toggleSupergroupJoinToSendMessages", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ToggleSupergroupSignMessages Toggles whether sender signature or link to the account is added to sent messages in a channel; requires can_change_info member right
@@ -28082,11 +24098,7 @@ func (t ToggleSupergroupSignMessages) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "toggleSupergroupSignMessages",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "toggleSupergroupSignMessages", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ToggleSupergroupUsernameIsActive Changes active state for a username of a supergroup or channel, requires owner privileges in the supergroup or channel. The editable username can't be disabled.
@@ -28112,11 +24124,7 @@ func (t ToggleSupergroupUsernameIsActive) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "toggleSupergroupUsernameIsActive",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "toggleSupergroupUsernameIsActive", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ToggleUsernameIsActive Changes active state for a username of the current user. The editable username can't be disabled. May return an error with a message "USERNAMES_ACTIVE_TOO_MUCH" if the maximum number of active usernames has been reached
@@ -28140,11 +24148,7 @@ func (t ToggleUsernameIsActive) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "toggleUsernameIsActive",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "toggleUsernameIsActive", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ToggleVideoChatEnabledStartNotification Toggles whether the current user will receive a notification when the video chat starts; for scheduled video chats only
@@ -28168,11 +24172,7 @@ func (t ToggleVideoChatEnabledStartNotification) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "toggleVideoChatEnabledStartNotification",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "toggleVideoChatEnabledStartNotification", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ToggleVideoChatMuteNewParticipants Toggles whether new participants of a video chat can be unmuted only by administrators of the video chat. Requires groupCall.can_toggle_mute_new_participants right
@@ -28196,11 +24196,7 @@ func (t ToggleVideoChatMuteNewParticipants) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "toggleVideoChatMuteNewParticipants",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "toggleVideoChatMuteNewParticipants", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // TransferBusinessAccountStars Transfers Telegram Stars from the business account to the business bot; for bots only
@@ -28224,11 +24220,7 @@ func (t TransferBusinessAccountStars) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "transferBusinessAccountStars",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "transferBusinessAccountStars", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // TransferChatOwnership Changes the owner of a chat; for basic groups, supergroups and channel chats only; requires owner privileges in the chat. Use the method canTransferOwnership to check whether the ownership can be transferred from the current session
@@ -28254,11 +24246,7 @@ func (t TransferChatOwnership) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "transferChatOwnership",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "transferChatOwnership", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // TransferGift Sends an upgraded gift to another user or channel chat
@@ -28286,11 +24274,7 @@ func (t TransferGift) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "transferGift",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "transferGift", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // TranslateMessageRichMessage Extracts rich message of the given message and translates it to the given language
@@ -28318,11 +24302,7 @@ func (t TranslateMessageRichMessage) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "translateMessageRichMessage",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "translateMessageRichMessage", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // TranslateMessageText Extracts text or caption of the given message and translates it to the given language; must not be used in secret chats. If the current user is a Telegram Premium user, then text formatting is preserved
@@ -28350,11 +24330,7 @@ func (t TranslateMessageText) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "translateMessageText",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "translateMessageText", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // TranslateRichMessage Translates a rich message to the given language
@@ -28380,11 +24356,7 @@ func (t TranslateRichMessage) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "translateRichMessage",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "translateRichMessage", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // TranslateText Translates a text to the given language; must not be used in secret chats. If the current user is a Telegram Premium user, then text formatting is preserved
@@ -28410,11 +24382,7 @@ func (t TranslateText) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "translateText",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "translateText", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // UnpinAllChatMessages Removes all pinned messages from a chat; requires can_pin_messages member right if the chat is a basic group or supergroup, or can_edit_messages administrator right if the chat is a channel
@@ -28436,11 +24404,7 @@ func (t UnpinAllChatMessages) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "unpinAllChatMessages",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "unpinAllChatMessages", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // UnpinAllDirectMessagesChatTopicMessages Removes all pinned messages from the topic in a channel direct messages chat administered by the current user
@@ -28464,11 +24428,7 @@ func (t UnpinAllDirectMessagesChatTopicMessages) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "unpinAllDirectMessagesChatTopicMessages",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "unpinAllDirectMessagesChatTopicMessages", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // UnpinAllForumTopicMessages Removes all pinned messages from a topic in a forum supergroup chat or a chat with a bot with topics; requires can_pin_messages member right in the supergroup
@@ -28492,11 +24452,7 @@ func (t UnpinAllForumTopicMessages) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "unpinAllForumTopicMessages",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "unpinAllForumTopicMessages", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // UnpinChatMessage Removes a pinned message from a chat; requires can_pin_messages member right if the chat is a basic group or supergroup, or can_edit_messages administrator right if the chat is a channel
@@ -28520,11 +24476,7 @@ func (t UnpinChatMessage) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "unpinChatMessage",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "unpinChatMessage", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // UpgradeBasicGroupChatToSupergroupChat Creates a new supergroup from an existing basic group and sends a corresponding messageChatUpgradeTo and messageChatUpgradeFrom; requires owner privileges. Deactivates the original basic group
@@ -28546,11 +24498,7 @@ func (t UpgradeBasicGroupChatToSupergroupChat) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "upgradeBasicGroupChatToSupergroupChat",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "upgradeBasicGroupChatToSupergroupChat", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // UpgradeGift Upgrades a regular gift
@@ -28578,11 +24526,7 @@ func (t UpgradeGift) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "upgradeGift",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "upgradeGift", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // UploadStickerFile Uploads a file with a sticker; returns the uploaded file
@@ -28608,11 +24552,7 @@ func (t UploadStickerFile) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "uploadStickerFile",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "uploadStickerFile", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ValidateOrderInfo Validates the order information provided by a user and returns the available shipping options for a flexible invoice
@@ -28638,11 +24578,7 @@ func (t ValidateOrderInfo) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "validateOrderInfo",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "validateOrderInfo", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ViewMessages Informs TDLib that messages are being viewed by the user. Sponsored messages must be marked as viewed only when the entire text of the message is shown on the screen (excluding the button).
@@ -28670,11 +24606,7 @@ func (t ViewMessages) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "viewMessages",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "viewMessages", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ViewPremiumFeature Informs TDLib that the user viewed detailed information about a Premium feature on the Premium features screen
@@ -28696,11 +24628,7 @@ func (t ViewPremiumFeature) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "viewPremiumFeature",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "viewPremiumFeature", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ViewSponsoredChat Informs TDLib that the user fully viewed a sponsored chat
@@ -28722,11 +24650,7 @@ func (t ViewSponsoredChat) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "viewSponsoredChat",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "viewSponsoredChat", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ViewTrendingStickerSets Informs the server that some trending sticker sets have been viewed by the user
@@ -28748,11 +24672,7 @@ func (t ViewTrendingStickerSets) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "viewTrendingStickerSets",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "viewTrendingStickerSets", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ViewVideoMessageAdvertisement Informs TDLib that the user viewed a video message advertisement
@@ -28774,11 +24694,7 @@ func (t ViewVideoMessageAdvertisement) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "viewVideoMessageAdvertisement",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "viewVideoMessageAdvertisement", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // WriteGeneratedFilePart Writes a part of a generated file. This method is intended to be used only if the application has no direct access to TDLib's file system, because it is usually slower than a direct write to the destination file
@@ -28804,9 +24720,5 @@ func (t WriteGeneratedFilePart) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
-	}{
-		TypeStr: "writeGeneratedFilePart",
-		Extra:   t.Extra,
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "writeGeneratedFilePart", Extra: t.Extra, Alias: (*Alias)(&t)})
 }

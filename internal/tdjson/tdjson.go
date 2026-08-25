@@ -67,6 +67,12 @@ func Send(clientID int, request string) {
 	tdSend(int32(clientID), &reqBytes[0])
 }
 
+// SendBytes sends raw JSON request bytes to the TDLib client.
+func SendBytes(clientID int, request []byte) {
+	reqBytes := append(request, 0)
+	tdSend(int32(clientID), &reqBytes[0])
+}
+
 // Receive receives incoming updates and request responses.
 // Returns a JSON-serialized update or request response, or an empty string if the timeout expires.
 func Receive(timeout float64) string {

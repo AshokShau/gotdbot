@@ -527,25 +527,17 @@ func (c *Client) SendWithContext(ctx context.Context, req TlObject) (TlObject, e
 		reqType == "getrepliedmessage" || reqType == "getcallbackquerymessage"
 
 	fn, isFn := req.(tlFunction)
-	sendData, err := json.Marshal(req)
-	if err != nil {
-		return nil, err
-	}
-	var reqMap map[string]interface{}
-	if err := json.Unmarshal(sendData, &reqMap); err != nil {
-		return nil, err
-	}
 
 	for {
 		var extra string
 		if isFn {
 			extra = strconv.FormatUint(c.requestID.Add(1), 10)
 			fn.setExtra(extra)
+		}
 
-			sendData, err = json.Marshal(req)
-			if err != nil {
-				return nil, err
-			}
+		sendData, err := json.Marshal(req)
+		if err != nil {
+			return nil, err
 		}
 
 		var ch chan TlObject
@@ -554,23 +546,17 @@ func (c *Client) SendWithContext(ctx context.Context, req TlObject) (TlObject, e
 			c.pendingRequests.Store(extra, ch)
 		}
 
-		tdjson.Send(c.clientID, string(sendData))
+		tdjson.SendBytes(c.clientID, sendData)
 
 		if !isFn {
 			return nil, nil
 		}
 
 		var result TlObject
-		var resultErr error
 
 		select {
 		case res := <-ch:
-			if errObj, ok := res.(*Error); ok {
-				resultErr = errObj
-				result = res
-			} else {
-				result = res
-			}
+			result = res
 		case <-time.After(30 * time.Second):
 			c.pendingRequests.Delete(extra)
 			go func() { <-ch }()
@@ -581,22 +567,21 @@ func (c *Client) SendWithContext(ctx context.Context, req TlObject) (TlObject, e
 			return nil, ctx.Err()
 		}
 
-		if resultErr == nil {
+		errObj, isErr := result.(*Error)
+		if !isErr {
 			return result, nil
 		}
 
-		errObj := resultErr.(*Error)
-
-		if c.handleAutoRetry(reqMap, errObj, &isChatAttemptedLoad, &isMessageAttemptedLoad) {
+		if c.handleAutoRetry(req, errObj, &isChatAttemptedLoad, &isMessageAttemptedLoad) {
 			continue
 		}
 
-		return nil, resultErr
+		return nil, errObj
 	}
 }
 
 // handleAutoRetry decides whether to retry after a TDLib error.
-func (c *Client) handleAutoRetry(reqMap map[string]interface{}, errObj *Error, isChatAttemptedLoad, isMessageAttemptedLoad *bool) bool {
+func (c *Client) handleAutoRetry(req TlObject, errObj *Error, isChatAttemptedLoad, isMessageAttemptedLoad *bool) bool {
 	if c.config.AutoRetry == nil {
 		return false
 	}
@@ -622,13 +607,7 @@ func (c *Client) handleAutoRetry(reqMap map[string]interface{}, errObj *Error, i
 
 	if !*isMessageAttemptedLoad && errObj.Message == "Message not found" && c.config.AutoRetry.MessageNotFound {
 		*isMessageAttemptedLoad = true
-		var chatId, messageId int64
-		if cId, ok := reqMap["chat_id"].(float64); ok {
-			chatId = int64(cId)
-		}
-		if mId, ok := reqMap["message_id"].(float64); ok {
-			messageId = int64(mId)
-		}
+		chatId, messageId := extractChatAndMessageID(req)
 		if chatId != 0 && messageId != 0 {
 			c.Logger.Debug("Attempting to load message", "chat_id", chatId, "message_id", messageId)
 			msg, loadErr := c.GetMessage(chatId, messageId)
@@ -642,22 +621,14 @@ func (c *Client) handleAutoRetry(reqMap map[string]interface{}, errObj *Error, i
 
 	if !*isChatAttemptedLoad && errObj.Message == "Chat not found" && c.config.AutoRetry.ChatNotFound {
 		*isChatAttemptedLoad = true
-		var chatId int64
-		if cId, ok := reqMap["chat_id"].(float64); ok {
-			chatId = int64(cId)
-		}
+		chatId := extractChatID(req)
 		if chatId != 0 {
 			c.Logger.Debug("Attempting to load chat", "chat_id", chatId)
 			chat, loadErr := c.GetChat(chatId)
 			if loadErr == nil && chat != nil {
 				c.Logger.Debug("Successfully loaded chat, retrying request", "chat_id", chatId)
-				if replyToMap, ok := reqMap["reply_to"].(map[string]interface{}); ok {
-					if mId, ok := replyToMap["message_id"].(float64); ok {
-						replyToMessageId := int64(mId)
-						if replyToMessageId > 0 {
-							_, _ = c.GetMessage(chatId, replyToMessageId)
-						}
-					}
+				if replyToMessageId := extractReplyToMessageID(req); replyToMessageId > 0 {
+					_, _ = c.GetMessage(chatId, replyToMessageId)
 				}
 				return true
 			}
@@ -665,6 +636,87 @@ func (c *Client) handleAutoRetry(reqMap map[string]interface{}, errObj *Error, i
 		}
 	}
 	return false
+}
+
+func extractChatID(req TlObject) int64 {
+	switch v := req.(type) {
+	case *GetChat:
+		return v.ChatId
+	case *GetMessage:
+		return v.ChatId
+	case *SendMessage:
+		return v.ChatId
+	case *EditMessageText:
+		return v.ChatId
+	case *EditMessageCaption:
+		return v.ChatId
+	case *EditMessageReplyMarkup:
+		return v.ChatId
+	case *DeleteMessages:
+		return v.ChatId
+	case *ForwardMessages:
+		return v.ChatId
+	default:
+		data, err := json.Marshal(req)
+		if err != nil {
+			return 0
+		}
+		var reqMap map[string]interface{}
+		if err := json.Unmarshal(data, &reqMap); err != nil {
+			return 0
+		}
+		if cId, ok := reqMap["chat_id"].(float64); ok {
+			return int64(cId)
+		}
+		return 0
+	}
+}
+
+func extractChatAndMessageID(req TlObject) (int64, int64) {
+	switch v := req.(type) {
+	case *GetMessage:
+		return v.ChatId, v.MessageId
+	case *GetMessageLocally:
+		return v.ChatId, v.MessageId
+	case *GetRepliedMessage:
+		return v.ChatId, v.MessageId
+	case *GetCallbackQueryMessage:
+		return v.ChatId, v.MessageId
+	default:
+		data, err := json.Marshal(req)
+		if err != nil {
+			return 0, 0
+		}
+		var reqMap map[string]interface{}
+		if err := json.Unmarshal(data, &reqMap); err != nil {
+			return 0, 0
+		}
+		var chatId, messageId int64
+		if cId, ok := reqMap["chat_id"].(float64); ok {
+			chatId = int64(cId)
+		}
+		if mId, ok := reqMap["message_id"].(float64); ok {
+			messageId = int64(mId)
+		}
+		return chatId, messageId
+	}
+}
+
+func extractReplyToMessageID(req TlObject) int64 {
+	data, err := json.Marshal(req)
+	if err != nil {
+		return 0
+	}
+	var reqMap map[string]interface{}
+	if err := json.Unmarshal(data, &reqMap); err != nil {
+		return 0
+	}
+	if replyToMap, ok := reqMap["reply_to"].(map[string]interface{}); ok {
+		if mId, ok := replyToMap["message_id"].(float64); ok {
+			return int64(mId)
+		}
+	}
+	return 0
 }
 
 // waitMessage waits for the message to be sent and returns the final message.

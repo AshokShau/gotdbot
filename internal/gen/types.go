@@ -154,13 +154,7 @@ func generateObjects(types []TLType, classes map[string]*TLClass) {
 		// MarshalJSON
 		fmt.Fprintf(&sb, "func (t %s) MarshalJSON() ([]byte, error) {\n", structName)
 		fmt.Fprintf(&sb, "\ttype Alias %s\n", structName)
-		sb.WriteString("\treturn json.Marshal(&struct {\n")
-		sb.WriteString("\t\tTypeStr string `json:\"@type\"`\n")
-		sb.WriteString("\t\t*Alias\n")
-		sb.WriteString("\t}{\n")
-		fmt.Fprintf(&sb, "\t\tTypeStr: \"%s\",\n", t.Name)
-		sb.WriteString("\t\tAlias:   (*Alias)(&t),\n")
-		sb.WriteString("\t})\n")
+		fmt.Fprintf(&sb, "\treturn json.Marshal(&struct{ TypeStr string `json:\"@type\"`; *Alias }{TypeStr: \"%s\", Alias: (*Alias)(&t)})\n", t.Name)
 		sb.WriteString("}\n\n")
 
 		// UnmarshalJSON if needed
@@ -289,15 +283,7 @@ func generateFunctions(functions []TLType, classes map[string]*TLClass) {
 		// MarshalJSON
 		fmt.Fprintf(&sb, "func (t %s) MarshalJSON() ([]byte, error) {\n", structName)
 		fmt.Fprintf(&sb, "\ttype Alias %s\n", structName)
-		sb.WriteString("\treturn json.Marshal(&struct {\n")
-		sb.WriteString("\t\tTypeStr string `json:\"@type\"`\n")
-		sb.WriteString("\t\tExtra   string `json:\"@extra,omitempty\"`\n")
-		sb.WriteString("\t\t*Alias\n")
-		sb.WriteString("\t}{\n")
-		fmt.Fprintf(&sb, "\t\tTypeStr: \"%s\",\n", t.Name)
-		sb.WriteString("\t\tExtra:   t.Extra,\n")
-		sb.WriteString("\t\tAlias:   (*Alias)(&t),\n")
-		sb.WriteString("\t})\n")
+		fmt.Fprintf(&sb, "\treturn json.Marshal(&struct{ TypeStr string `json:\"@type\"`; Extra string `json:\"@extra,omitempty\"`; *Alias }{TypeStr: \"%s\", Extra: t.Extra, Alias: (*Alias)(&t)})\n", t.Name)
 		sb.WriteString("}\n\n")
 	}
 

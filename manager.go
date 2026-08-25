@@ -149,9 +149,8 @@ func (m *ClientManager) receiver() {
 
 				if ok {
 					if extra != "" {
-						if ch, ok := c.pendingRequests.Load(extra); ok {
+						if ch, loaded := c.pendingRequests.LoadAndDelete(extra); loaded {
 							ch.(chan TlObject) <- obj
-							c.pendingRequests.Delete(extra)
 							continue
 						}
 					}
