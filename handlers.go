@@ -69,7 +69,8 @@ type CommandHandler struct {
 	Triggers []rune
 	Command  string
 	Handler  func(client *Client, message *Message) error
-	Filter   func(msg *Message) bool
+	Filter   MessageFilter
+	filters  []MessageFilter
 }
 
 // NewCommandHandler creates a new CommandHandler.
@@ -80,6 +81,16 @@ func NewCommandHandler(command string, handler func(client *Client, message *Mes
 		Command:  strings.ToLower(command),
 		Handler:  handler,
 	}
+}
+
+// AddFilter adds one or more message filters to the CommandHandler. All filters must return true for the command to execute.
+func (h *CommandHandler) AddFilter(filters ...MessageFilter) *CommandHandler {
+	for _, f := range filters {
+		if f != nil {
+			h.filters = append(h.filters, f)
+		}
+	}
+	return h
 }
 
 // CheckUpdate checks if the update is a command that matches this handler.
@@ -97,6 +108,11 @@ func (h *CommandHandler) CheckUpdate(client *Client, update TlObject) bool {
 	msg = u.Message
 	if h.Filter != nil && !h.Filter(msg) {
 		return false
+	}
+	for _, f := range h.filters {
+		if !f(msg) {
+			return false
+		}
 	}
 
 	text := msg.GetText()
@@ -218,9 +234,12 @@ func (c *Client) AddHandlerGroup(handler Handler, group int) {
 	c.hMu.Lock()
 	defer c.hMu.Unlock()
 
-	oldData := c.handlers.Load()
-	newMap := make(map[int][]Handler, len(oldData.handlers))
-	for k, v := range oldData.handlers {
+	var oldHandlers map[int][]Handler
+	if oldData := c.handlers.Load(); oldData != nil {
+		oldHandlers = oldData.handlers
+	}
+	newMap := make(map[int][]Handler, len(oldHandlers))
+	for k, v := range oldHandlers {
 		newMap[k] = v
 	}
 

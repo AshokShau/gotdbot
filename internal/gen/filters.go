@@ -18,22 +18,19 @@ func generateEvents(types []TLType, classes map[string]*TLClass) {
 
 	var fsb strings.Builder
 	fsb.WriteString(header)
-	fsb.WriteString("package filters\n\n")
-	fsb.WriteString("import \"github.com/AshokShau/gotdbot\"\n\n")
-	fsb.WriteString("type (\n")
+	fsb.WriteString("package gotdbot\n\n")
 	for _, t := range updates {
 		structName := toCamelCase(t.Name)
-		fmt.Fprintf(&fsb, "\t// %s %s\n", structName, formatDesc(t.Description))
-		fmt.Fprintf(&fsb, "\t%s func(u *gotdbot.%s) bool\n", structName, structName)
+		fmt.Fprintf(&fsb, "// %sFilter filters %s updates.\n", structName, structName)
+		if desc := formatDesc(t.Description); desc != "" {
+			fmt.Fprintf(&fsb, "// %s\n", desc)
+		}
+		fmt.Fprintf(&fsb, "type %sFilter func(u *%s) bool\n\n", structName, structName)
 	}
-	fsb.WriteString("\t// Message is a filter for Message type\n")
-	fsb.WriteString("\tMessage func(msg *gotdbot.Message) bool\n")
-	fsb.WriteString(")\n")
+	fsb.WriteString("// MessageFilter filters Message objects.\n")
+	fsb.WriteString("type MessageFilter func(msg *Message) bool\n")
 
-	if err := os.MkdirAll("filters", 0755); err != nil {
-		log.Fatal(err)
-	}
-	if err := os.WriteFile("filters/gen_filters.go", []byte(fsb.String()), 0644); err != nil {
+	if err := os.WriteFile("gen_filters.go", []byte(fsb.String()), 0644); err != nil {
 		log.Fatal(err)
 	}
 
@@ -48,7 +45,7 @@ func generateEvents(types []TLType, classes map[string]*TLClass) {
 		unexportedHandlerName := strings.ToLower(name[:1]) + name[1:] + "Handler"
 
 		handlerFunc := "func(client *Client, update *" + structName + ") error"
-		filterType := "func(u *" + structName + ") bool"
+		filterType := structName + "Filter"
 
 		fmt.Fprintf(&sb, "// %s handles %s updates\n", unexportedHandlerName, structName)
 		fmt.Fprintf(&sb, "type %s struct {\n", unexportedHandlerName)
@@ -79,7 +76,7 @@ func generateEvents(types []TLType, classes map[string]*TLClass) {
 	}
 
 	msgHandlerFunc := "func(client *Client, message *Message) error"
-	msgFilterType := "func(msg *Message) bool"
+	msgFilterType := "MessageFilter"
 
 	sb.WriteString("// MessageHandler handles Message updates\n")
 	sb.WriteString(fmt.Sprintf("type MessageHandler struct {\n\tOptions  MatchingOptions\n\tFilter   %s\n\tResponse %s\n}\n\n", msgFilterType, msgHandlerFunc))
@@ -111,8 +108,8 @@ func generateEvents(types []TLType, classes map[string]*TLClass) {
 	sb.WriteString("\tc.AddHandlerGroup(h, group)\n")
 	sb.WriteString("\treturn h\n}\n\n")
 
-	sb.WriteString("// NewUpdateNewMessageFilter creates an UpdateNewMessage filter from a Message filter\n")
-	sb.WriteString("func NewUpdateNewMessageFilter(filter func(msg *Message) bool) func(u *UpdateNewMessage) bool {\n")
+	sb.WriteString("// NewUpdateNewMessageFilter creates an UpdateNewMessageFilter from a MessageFilter\n")
+	sb.WriteString("func NewUpdateNewMessageFilter(filter MessageFilter) UpdateNewMessageFilter {\n")
 	sb.WriteString("\treturn func(u *UpdateNewMessage) bool {\n\t\tif u.Message == nil {\n\t\t\treturn false\n\t\t}\n\t\treturn filter(u.Message)\n\t}\n}\n")
 
 	if err := os.WriteFile("gen_events.go", []byte(sb.String()), 0644); err != nil {

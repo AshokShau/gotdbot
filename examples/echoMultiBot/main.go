@@ -61,12 +61,9 @@ func setupClient(c *gotdbot.Client) {
 			return cloneHandler(client, msg)
 		}
 		return nil
-	}, gotdbot.NewUpdateNewMessageFilter(message.And(
-		message.Private,
-		func(msg *gotdbot.Message) bool {
-			return msg.ForwardInfo != nil && msg.ForwardInfo.Origin != nil
-		},
-	)))
+	}, gotdbot.NewUpdateNewMessageFilter(func(msg *gotdbot.Message) bool {
+		return message.Private(msg) && msg.ForwardInfo != nil && msg.ForwardInfo.Origin != nil
+	}))
 
 	c.OnCommand("start", func(c *gotdbot.Client, msg *gotdbot.Message) error {
 		_, err := msg.ReplyText(c, "Hello! I am a bot managed by ClientManager.", nil)

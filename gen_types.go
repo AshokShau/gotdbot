@@ -31,10 +31,7 @@ func (t AccentColor) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "accentColor",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "accentColor", Alias: (*Alias)(&t)})
 }
 
 // AcceptedGiftTypes Describes gift types that are accepted by a user
@@ -60,10 +57,7 @@ func (t AcceptedGiftTypes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "acceptedGiftTypes",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "acceptedGiftTypes", Alias: (*Alias)(&t)})
 }
 
 // AccountInfo Contains basic information about another user who started a chat with the current user
@@ -89,10 +83,7 @@ func (t AccountInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "accountInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "accountInfo", Alias: (*Alias)(&t)})
 }
 
 // AccountTtl Contains information about the period of inactivity after which the current user's account will automatically be deleted
@@ -110,10 +101,7 @@ func (t AccountTtl) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "accountTtl",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "accountTtl", Alias: (*Alias)(&t)})
 }
 
 // ActiveStoryStateLive The chat has an active live story
@@ -133,10 +121,7 @@ func (t ActiveStoryStateLive) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "activeStoryStateLive",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "activeStoryStateLive", Alias: (*Alias)(&t)})
 }
 
 // ActiveStoryStateRead The chat has active stories, all of which were read
@@ -154,10 +139,7 @@ func (t ActiveStoryStateRead) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "activeStoryStateRead",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "activeStoryStateRead", Alias: (*Alias)(&t)})
 }
 
 // ActiveStoryStateUnread The chat has some unread active stories
@@ -175,10 +157,7 @@ func (t ActiveStoryStateUnread) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "activeStoryStateUnread",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "activeStoryStateUnread", Alias: (*Alias)(&t)})
 }
 
 // AddedProxies Represents a list of added proxy servers
@@ -196,10 +175,7 @@ func (t AddedProxies) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "addedProxies",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "addedProxies", Alias: (*Alias)(&t)})
 }
 
 // AddedProxy Contains information about a proxy server added to the list of proxies
@@ -225,10 +201,7 @@ func (t AddedProxy) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "addedProxy",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "addedProxy", Alias: (*Alias)(&t)})
 }
 
 // AddedReaction Represents a reaction applied to a message
@@ -252,10 +225,7 @@ func (t AddedReaction) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "addedReaction",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "addedReaction", Alias: (*Alias)(&t)})
 }
 
 func (t *AddedReaction) UnmarshalJSON(data []byte) error {
@@ -308,10 +278,7 @@ func (t AddedReactions) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "addedReactions",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "addedReactions", Alias: (*Alias)(&t)})
 }
 
 // Address Describes an address
@@ -339,10 +306,7 @@ func (t Address) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "address",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "address", Alias: (*Alias)(&t)})
 }
 
 // AdvertisementSponsor Information about the sponsor of an advertisement
@@ -364,10 +328,7 @@ func (t AdvertisementSponsor) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "advertisementSponsor",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "advertisementSponsor", Alias: (*Alias)(&t)})
 }
 
 // AffiliateInfo Contains information about an affiliate that received commission from a Telegram Star transaction
@@ -389,10 +350,7 @@ func (t AffiliateInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "affiliateInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "affiliateInfo", Alias: (*Alias)(&t)})
 }
 
 // AffiliateProgramInfo Contains information about an active affiliate program
@@ -414,10 +372,7 @@ func (t AffiliateProgramInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "affiliateProgramInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "affiliateProgramInfo", Alias: (*Alias)(&t)})
 }
 
 // AffiliateProgramParameters Describes parameters of an affiliate program
@@ -437,10 +392,7 @@ func (t AffiliateProgramParameters) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "affiliateProgramParameters",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "affiliateProgramParameters", Alias: (*Alias)(&t)})
 }
 
 // AffiliateProgramSortOrderCreationDate The affiliate programs must be sorted by creation date
@@ -458,10 +410,7 @@ func (t AffiliateProgramSortOrderCreationDate) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "affiliateProgramSortOrderCreationDate",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "affiliateProgramSortOrderCreationDate", Alias: (*Alias)(&t)})
 }
 
 // AffiliateProgramSortOrderProfitability The affiliate programs must be sorted by the profitability
@@ -479,10 +428,7 @@ func (t AffiliateProgramSortOrderProfitability) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "affiliateProgramSortOrderProfitability",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "affiliateProgramSortOrderProfitability", Alias: (*Alias)(&t)})
 }
 
 // AffiliateProgramSortOrderRevenue The affiliate programs must be sorted by the expected revenue
@@ -500,10 +446,7 @@ func (t AffiliateProgramSortOrderRevenue) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "affiliateProgramSortOrderRevenue",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "affiliateProgramSortOrderRevenue", Alias: (*Alias)(&t)})
 }
 
 // AffiliateTypeBot The affiliate is a bot owned by the current user
@@ -523,10 +466,7 @@ func (t AffiliateTypeBot) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "affiliateTypeBot",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "affiliateTypeBot", Alias: (*Alias)(&t)})
 }
 
 // AffiliateTypeChannel The affiliate is a channel chat where the current user has can_post_messages administrator right
@@ -546,10 +486,7 @@ func (t AffiliateTypeChannel) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "affiliateTypeChannel",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "affiliateTypeChannel", Alias: (*Alias)(&t)})
 }
 
 // AffiliateTypeCurrentUser The affiliate is the current user
@@ -567,10 +504,7 @@ func (t AffiliateTypeCurrentUser) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "affiliateTypeCurrentUser",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "affiliateTypeCurrentUser", Alias: (*Alias)(&t)})
 }
 
 // AgeVerificationParameters Describes parameters for age verification of the current user
@@ -592,10 +526,7 @@ func (t AgeVerificationParameters) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "ageVerificationParameters",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "ageVerificationParameters", Alias: (*Alias)(&t)})
 }
 
 // AlternativeVideo Describes an alternative re-encoded quality of a video file
@@ -623,10 +554,7 @@ func (t AlternativeVideo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "alternativeVideo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "alternativeVideo", Alias: (*Alias)(&t)})
 }
 
 // AnimatedChatPhoto Animated variant of a chat photo in MPEG4 format
@@ -648,10 +576,7 @@ func (t AnimatedChatPhoto) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "animatedChatPhoto",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "animatedChatPhoto", Alias: (*Alias)(&t)})
 }
 
 // AnimatedEmoji Describes an animated or custom representation of an emoji
@@ -677,10 +602,7 @@ func (t AnimatedEmoji) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "animatedEmoji",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "animatedEmoji", Alias: (*Alias)(&t)})
 }
 
 // Animation Describes an animation file. The animation must be encoded in GIF or MPEG4 format
@@ -714,10 +636,7 @@ func (t Animation) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "animation",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "animation", Alias: (*Alias)(&t)})
 }
 
 // Animations Represents a list of animations
@@ -735,10 +654,7 @@ func (t Animations) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "animations",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "animations", Alias: (*Alias)(&t)})
 }
 
 // ArchiveChatListSettings Contains settings for automatic moving of chats to and from the Archive chat lists
@@ -760,10 +676,7 @@ func (t ArchiveChatListSettings) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "archiveChatListSettings",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "archiveChatListSettings", Alias: (*Alias)(&t)})
 }
 
 // AttachmentMenuBot Represents a bot, which can be added to attachment or side menu
@@ -825,10 +738,7 @@ func (t AttachmentMenuBot) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "attachmentMenuBot",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "attachmentMenuBot", Alias: (*Alias)(&t)})
 }
 
 // AttachmentMenuBotColor Describes a color to highlight a bot added to attachment menu
@@ -848,10 +758,7 @@ func (t AttachmentMenuBotColor) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "attachmentMenuBotColor",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "attachmentMenuBotColor", Alias: (*Alias)(&t)})
 }
 
 // AttributeCraftPersistenceProbability Describes chance of the crafted gift to have the backdrop or symbol of one of the original gifts
@@ -869,10 +776,7 @@ func (t AttributeCraftPersistenceProbability) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "attributeCraftPersistenceProbability",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "attributeCraftPersistenceProbability", Alias: (*Alias)(&t)})
 }
 
 // AuctionBid Describes a bid in an auction
@@ -894,10 +798,7 @@ func (t AuctionBid) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "auctionBid",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "auctionBid", Alias: (*Alias)(&t)})
 }
 
 // AuctionRound Describes a round of an auction
@@ -921,10 +822,7 @@ func (t AuctionRound) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "auctionRound",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "auctionRound", Alias: (*Alias)(&t)})
 }
 
 // AuctionStateActive Contains information about an ongoing or scheduled auction
@@ -968,10 +866,7 @@ func (t AuctionStateActive) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "auctionStateActive",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "auctionStateActive", Alias: (*Alias)(&t)})
 }
 
 // AuctionStateFinished Contains information about a finished auction
@@ -1003,10 +898,7 @@ func (t AuctionStateFinished) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "auctionStateFinished",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "auctionStateFinished", Alias: (*Alias)(&t)})
 }
 
 // Audio Describes an audio file. Audio is usually in MP3 or M4A format
@@ -1040,10 +932,7 @@ func (t Audio) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "audio",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "audio", Alias: (*Alias)(&t)})
 }
 
 // Audios Contains a list of audio files
@@ -1063,10 +952,7 @@ func (t Audios) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "audios",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "audios", Alias: (*Alias)(&t)})
 }
 
 // AuthenticationCodeInfo Information about the authentication code that was sent
@@ -1090,10 +976,7 @@ func (t AuthenticationCodeInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "authenticationCodeInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "authenticationCodeInfo", Alias: (*Alias)(&t)})
 }
 
 func (t *AuthenticationCodeInfo) UnmarshalJSON(data []byte) error {
@@ -1144,10 +1027,7 @@ func (t AuthenticationCodeTypeCall) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "authenticationCodeTypeCall",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "authenticationCodeTypeCall", Alias: (*Alias)(&t)})
 }
 
 // AuthenticationCodeTypeFirebaseAndroid A digit-only authentication code is delivered via Firebase Authentication to the official Android application
@@ -1169,10 +1049,7 @@ func (t AuthenticationCodeTypeFirebaseAndroid) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "authenticationCodeTypeFirebaseAndroid",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "authenticationCodeTypeFirebaseAndroid", Alias: (*Alias)(&t)})
 }
 
 func (t *AuthenticationCodeTypeFirebaseAndroid) UnmarshalJSON(data []byte) error {
@@ -1219,10 +1096,7 @@ func (t AuthenticationCodeTypeFirebaseIos) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "authenticationCodeTypeFirebaseIos",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "authenticationCodeTypeFirebaseIos", Alias: (*Alias)(&t)})
 }
 
 // AuthenticationCodeTypeFlashCall An authentication code is delivered by an immediately canceled call to the specified phone number. The phone number that calls is the code that must be entered automatically
@@ -1242,10 +1116,7 @@ func (t AuthenticationCodeTypeFlashCall) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "authenticationCodeTypeFlashCall",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "authenticationCodeTypeFlashCall", Alias: (*Alias)(&t)})
 }
 
 // AuthenticationCodeTypeFragment A digit-only authentication code is delivered to https://fragment.com. The user must be logged in there via a wallet owning the phone number's NFT
@@ -1267,10 +1138,7 @@ func (t AuthenticationCodeTypeFragment) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "authenticationCodeTypeFragment",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "authenticationCodeTypeFragment", Alias: (*Alias)(&t)})
 }
 
 // AuthenticationCodeTypeMissedCall An authentication code is delivered by an immediately canceled call to the specified phone number. The last digits of the phone number that calls are the code that must be entered manually by the user
@@ -1292,10 +1160,7 @@ func (t AuthenticationCodeTypeMissedCall) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "authenticationCodeTypeMissedCall",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "authenticationCodeTypeMissedCall", Alias: (*Alias)(&t)})
 }
 
 // AuthenticationCodeTypeSms A digit-only authentication code is delivered via an SMS message to the specified phone number; non-official applications may not receive this type of code
@@ -1315,10 +1180,7 @@ func (t AuthenticationCodeTypeSms) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "authenticationCodeTypeSms",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "authenticationCodeTypeSms", Alias: (*Alias)(&t)})
 }
 
 // AuthenticationCodeTypeSmsPhrase An authentication code is a phrase from multiple words delivered via an SMS message to the specified phone number; non-official applications may not receive this type of code
@@ -1338,10 +1200,7 @@ func (t AuthenticationCodeTypeSmsPhrase) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "authenticationCodeTypeSmsPhrase",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "authenticationCodeTypeSmsPhrase", Alias: (*Alias)(&t)})
 }
 
 // AuthenticationCodeTypeSmsWord An authentication code is a word delivered via an SMS message to the specified phone number; non-official applications may not receive this type of code
@@ -1361,10 +1220,7 @@ func (t AuthenticationCodeTypeSmsWord) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "authenticationCodeTypeSmsWord",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "authenticationCodeTypeSmsWord", Alias: (*Alias)(&t)})
 }
 
 // AuthenticationCodeTypeTelegramMessage A digit-only authentication code is delivered via a private Telegram message, which can be viewed from another active session
@@ -1384,10 +1240,7 @@ func (t AuthenticationCodeTypeTelegramMessage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "authenticationCodeTypeTelegramMessage",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "authenticationCodeTypeTelegramMessage", Alias: (*Alias)(&t)})
 }
 
 // AuthorizationStateClosed TDLib client is in its final state. All databases are closed and all resources are released. No other updates will be received after this. All queries will be responded to
@@ -1405,10 +1258,7 @@ func (t AuthorizationStateClosed) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "authorizationStateClosed",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "authorizationStateClosed", Alias: (*Alias)(&t)})
 }
 
 // AuthorizationStateClosing TDLib is closing, all subsequent queries will be answered with the error 500. Note that closing TDLib can take a while. All resources will be freed only after authorizationStateClosed has been received
@@ -1426,10 +1276,7 @@ func (t AuthorizationStateClosing) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "authorizationStateClosing",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "authorizationStateClosing", Alias: (*Alias)(&t)})
 }
 
 // AuthorizationStateLoggingOut The user is currently logging out
@@ -1447,10 +1294,7 @@ func (t AuthorizationStateLoggingOut) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "authorizationStateLoggingOut",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "authorizationStateLoggingOut", Alias: (*Alias)(&t)})
 }
 
 // AuthorizationStateReady The user has been successfully authorized. TDLib is now ready to answer general requests
@@ -1468,10 +1312,7 @@ func (t AuthorizationStateReady) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "authorizationStateReady",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "authorizationStateReady", Alias: (*Alias)(&t)})
 }
 
 // AuthorizationStateWaitCode TDLib needs the user's authentication code to authorize. Call checkAuthenticationCode to check the code
@@ -1491,10 +1332,7 @@ func (t AuthorizationStateWaitCode) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "authorizationStateWaitCode",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "authorizationStateWaitCode", Alias: (*Alias)(&t)})
 }
 
 // AuthorizationStateWaitEmailAddress TDLib needs the user's email address to authorize. Call setAuthenticationEmailAddress to provide the email address, or directly call checkAuthenticationEmailCode with Apple ID/Google ID token if allowed
@@ -1516,10 +1354,7 @@ func (t AuthorizationStateWaitEmailAddress) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "authorizationStateWaitEmailAddress",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "authorizationStateWaitEmailAddress", Alias: (*Alias)(&t)})
 }
 
 // AuthorizationStateWaitEmailCode TDLib needs the user's authentication code sent to an email address to authorize. Call checkAuthenticationEmailCode to provide the code
@@ -1545,10 +1380,7 @@ func (t AuthorizationStateWaitEmailCode) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "authorizationStateWaitEmailCode",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "authorizationStateWaitEmailCode", Alias: (*Alias)(&t)})
 }
 
 func (t *AuthorizationStateWaitEmailCode) UnmarshalJSON(data []byte) error {
@@ -1591,10 +1423,7 @@ func (t AuthorizationStateWaitOtherDeviceConfirmation) MarshalJSON() ([]byte, er
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "authorizationStateWaitOtherDeviceConfirmation",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "authorizationStateWaitOtherDeviceConfirmation", Alias: (*Alias)(&t)})
 }
 
 // AuthorizationStateWaitPassword The user has been authorized, but needs to enter a 2-step verification password to start using the application.
@@ -1620,10 +1449,7 @@ func (t AuthorizationStateWaitPassword) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "authorizationStateWaitPassword",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "authorizationStateWaitPassword", Alias: (*Alias)(&t)})
 }
 
 // AuthorizationStateWaitPhoneNumber TDLib needs the user's phone number to authorize. Call setAuthenticationPhoneNumber to provide the phone number,
@@ -1641,10 +1467,7 @@ func (t AuthorizationStateWaitPhoneNumber) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "authorizationStateWaitPhoneNumber",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "authorizationStateWaitPhoneNumber", Alias: (*Alias)(&t)})
 }
 
 // AuthorizationStateWaitPremiumPurchase The user must buy Telegram Premium as an in-store purchase to log in. Call checkAuthenticationPremiumPurchase and then setAuthenticationPremiumPurchaseTransaction
@@ -1670,10 +1493,7 @@ func (t AuthorizationStateWaitPremiumPurchase) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "authorizationStateWaitPremiumPurchase",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "authorizationStateWaitPremiumPurchase", Alias: (*Alias)(&t)})
 }
 
 // AuthorizationStateWaitRegistration The user is unregistered and needs to accept terms of service and enter their first name and last name to finish registration. Call registerUser to accept the terms of service and provide the data
@@ -1693,10 +1513,7 @@ func (t AuthorizationStateWaitRegistration) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "authorizationStateWaitRegistration",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "authorizationStateWaitRegistration", Alias: (*Alias)(&t)})
 }
 
 // AuthorizationStateWaitTdlibParameters Initialization parameters are needed. Call setTdlibParameters to provide them
@@ -1714,10 +1531,7 @@ func (t AuthorizationStateWaitTdlibParameters) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "authorizationStateWaitTdlibParameters",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "authorizationStateWaitTdlibParameters", Alias: (*Alias)(&t)})
 }
 
 // AutoDownloadSettings Contains auto-download settings
@@ -1751,10 +1565,7 @@ func (t AutoDownloadSettings) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "autoDownloadSettings",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "autoDownloadSettings", Alias: (*Alias)(&t)})
 }
 
 // AutoDownloadSettingsPresets Contains auto-download settings presets for the current user
@@ -1776,10 +1587,7 @@ func (t AutoDownloadSettingsPresets) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "autoDownloadSettingsPresets",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "autoDownloadSettingsPresets", Alias: (*Alias)(&t)})
 }
 
 // AutosaveSettings Describes autosave settings
@@ -1803,10 +1611,7 @@ func (t AutosaveSettings) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "autosaveSettings",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "autosaveSettings", Alias: (*Alias)(&t)})
 }
 
 // AutosaveSettingsException Contains autosave settings for a chat, which overrides default settings for the corresponding scope
@@ -1826,10 +1631,7 @@ func (t AutosaveSettingsException) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "autosaveSettingsException",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "autosaveSettingsException", Alias: (*Alias)(&t)})
 }
 
 // AutosaveSettingsScopeChannelChats Autosave settings applied to all channel chats without chat-specific settings
@@ -1847,10 +1649,7 @@ func (t AutosaveSettingsScopeChannelChats) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "autosaveSettingsScopeChannelChats",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "autosaveSettingsScopeChannelChats", Alias: (*Alias)(&t)})
 }
 
 // AutosaveSettingsScopeChat Autosave settings applied to a chat
@@ -1870,10 +1669,7 @@ func (t AutosaveSettingsScopeChat) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "autosaveSettingsScopeChat",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "autosaveSettingsScopeChat", Alias: (*Alias)(&t)})
 }
 
 // AutosaveSettingsScopeGroupChats Autosave settings applied to all basic group and supergroup chats without chat-specific settings
@@ -1891,10 +1687,7 @@ func (t AutosaveSettingsScopeGroupChats) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "autosaveSettingsScopeGroupChats",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "autosaveSettingsScopeGroupChats", Alias: (*Alias)(&t)})
 }
 
 // AutosaveSettingsScopePrivateChats Autosave settings applied to all private chats without chat-specific settings
@@ -1912,10 +1705,7 @@ func (t AutosaveSettingsScopePrivateChats) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "autosaveSettingsScopePrivateChats",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "autosaveSettingsScopePrivateChats", Alias: (*Alias)(&t)})
 }
 
 // AvailableGift Describes a gift that is available for purchase
@@ -1939,10 +1729,7 @@ func (t AvailableGift) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "availableGift",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "availableGift", Alias: (*Alias)(&t)})
 }
 
 // AvailableGifts Contains a list of gifts that can be sent to another user or channel chat
@@ -1960,10 +1747,7 @@ func (t AvailableGifts) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "availableGifts",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "availableGifts", Alias: (*Alias)(&t)})
 }
 
 // AvailableReaction Represents an available reaction
@@ -1983,10 +1767,7 @@ func (t AvailableReaction) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "availableReaction",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "availableReaction", Alias: (*Alias)(&t)})
 }
 
 func (t *AvailableReaction) UnmarshalJSON(data []byte) error {
@@ -2037,10 +1818,7 @@ func (t AvailableReactions) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "availableReactions",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "availableReactions", Alias: (*Alias)(&t)})
 }
 
 func (t *AvailableReactions) UnmarshalJSON(data []byte) error {
@@ -2091,10 +1869,7 @@ func (t Background) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "background",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "background", Alias: (*Alias)(&t)})
 }
 
 func (t *Background) UnmarshalJSON(data []byte) error {
@@ -2137,10 +1912,7 @@ func (t BackgroundFillFreeformGradient) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "backgroundFillFreeformGradient",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "backgroundFillFreeformGradient", Alias: (*Alias)(&t)})
 }
 
 // BackgroundFillGradient Describes a gradient fill of a background
@@ -2164,10 +1936,7 @@ func (t BackgroundFillGradient) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "backgroundFillGradient",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "backgroundFillGradient", Alias: (*Alias)(&t)})
 }
 
 // BackgroundFillSolid Describes a solid fill of a background
@@ -2187,10 +1956,7 @@ func (t BackgroundFillSolid) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "backgroundFillSolid",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "backgroundFillSolid", Alias: (*Alias)(&t)})
 }
 
 // Backgrounds Contains a list of backgrounds
@@ -2208,10 +1974,7 @@ func (t Backgrounds) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "backgrounds",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "backgrounds", Alias: (*Alias)(&t)})
 }
 
 // BackgroundTypeChatTheme A background from a chat theme based on an emoji; can be used only as a chat background in channels
@@ -2231,10 +1994,7 @@ func (t BackgroundTypeChatTheme) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "backgroundTypeChatTheme",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "backgroundTypeChatTheme", Alias: (*Alias)(&t)})
 }
 
 // BackgroundTypeFill A filled background
@@ -2254,10 +2014,7 @@ func (t BackgroundTypeFill) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "backgroundTypeFill",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "backgroundTypeFill", Alias: (*Alias)(&t)})
 }
 
 func (t *BackgroundTypeFill) UnmarshalJSON(data []byte) error {
@@ -2306,10 +2063,7 @@ func (t BackgroundTypePattern) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "backgroundTypePattern",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "backgroundTypePattern", Alias: (*Alias)(&t)})
 }
 
 func (t *BackgroundTypePattern) UnmarshalJSON(data []byte) error {
@@ -2354,10 +2108,7 @@ func (t BackgroundTypeWallpaper) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "backgroundTypeWallpaper",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "backgroundTypeWallpaper", Alias: (*Alias)(&t)})
 }
 
 // BankCardActionOpenUrl Describes an action associated with a bank card number
@@ -2377,10 +2128,7 @@ func (t BankCardActionOpenUrl) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "bankCardActionOpenUrl",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "bankCardActionOpenUrl", Alias: (*Alias)(&t)})
 }
 
 // BankCardInfo Information about a bank card
@@ -2400,10 +2148,7 @@ func (t BankCardInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "bankCardInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "bankCardInfo", Alias: (*Alias)(&t)})
 }
 
 // BasicGroup Represents a basic group of 0-200 users (must be upgraded to a supergroup to accommodate more than 200 users)
@@ -2429,10 +2174,7 @@ func (t BasicGroup) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "basicGroup",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "basicGroup", Alias: (*Alias)(&t)})
 }
 
 func (t *BasicGroup) UnmarshalJSON(data []byte) error {
@@ -2487,10 +2229,7 @@ func (t BasicGroupFullInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "basicGroupFullInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "basicGroupFullInfo", Alias: (*Alias)(&t)})
 }
 
 // Birthdate Represents a birthdate of a user
@@ -2512,10 +2251,7 @@ func (t Birthdate) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "birthdate",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "birthdate", Alias: (*Alias)(&t)})
 }
 
 // BlockListMain The main block list that disallows writing messages to the current user, receiving their status and photo, viewing of stories, and some other actions
@@ -2533,10 +2269,7 @@ func (t BlockListMain) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "blockListMain",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "blockListMain", Alias: (*Alias)(&t)})
 }
 
 // BlockListStories The block list that disallows viewing of stories of the current user
@@ -2554,10 +2287,7 @@ func (t BlockListStories) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "blockListStories",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "blockListStories", Alias: (*Alias)(&t)})
 }
 
 // BotAccessSettings Describes users that have access to a bot
@@ -2577,10 +2307,7 @@ func (t BotAccessSettings) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "botAccessSettings",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "botAccessSettings", Alias: (*Alias)(&t)})
 }
 
 // BotCommand Represents a command supported by a bot
@@ -2602,10 +2329,7 @@ func (t BotCommand) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "botCommand",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "botCommand", Alias: (*Alias)(&t)})
 }
 
 // BotCommands Contains a list of bot commands
@@ -2625,10 +2349,7 @@ func (t BotCommands) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "botCommands",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "botCommands", Alias: (*Alias)(&t)})
 }
 
 // BotCommandScopeAllChatAdministrators A scope covering all group and supergroup chat administrators
@@ -2646,10 +2367,7 @@ func (t BotCommandScopeAllChatAdministrators) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "botCommandScopeAllChatAdministrators",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "botCommandScopeAllChatAdministrators", Alias: (*Alias)(&t)})
 }
 
 // BotCommandScopeAllGroupChats A scope covering all group and supergroup chats
@@ -2667,10 +2385,7 @@ func (t BotCommandScopeAllGroupChats) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "botCommandScopeAllGroupChats",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "botCommandScopeAllGroupChats", Alias: (*Alias)(&t)})
 }
 
 // BotCommandScopeAllPrivateChats A scope covering all private chats
@@ -2688,10 +2403,7 @@ func (t BotCommandScopeAllPrivateChats) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "botCommandScopeAllPrivateChats",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "botCommandScopeAllPrivateChats", Alias: (*Alias)(&t)})
 }
 
 // BotCommandScopeChat A scope covering all members of a chat
@@ -2711,10 +2423,7 @@ func (t BotCommandScopeChat) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "botCommandScopeChat",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "botCommandScopeChat", Alias: (*Alias)(&t)})
 }
 
 // BotCommandScopeChatAdministrators A scope covering all administrators of a chat
@@ -2734,10 +2443,7 @@ func (t BotCommandScopeChatAdministrators) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "botCommandScopeChatAdministrators",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "botCommandScopeChatAdministrators", Alias: (*Alias)(&t)})
 }
 
 // BotCommandScopeChatMember A scope covering a member of a chat
@@ -2759,10 +2465,7 @@ func (t BotCommandScopeChatMember) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "botCommandScopeChatMember",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "botCommandScopeChatMember", Alias: (*Alias)(&t)})
 }
 
 // BotCommandScopeDefault A scope covering all users
@@ -2780,10 +2483,7 @@ func (t BotCommandScopeDefault) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "botCommandScopeDefault",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "botCommandScopeDefault", Alias: (*Alias)(&t)})
 }
 
 // BotInfo Contains information about a bot
@@ -2845,10 +2545,7 @@ func (t BotInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "botInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "botInfo", Alias: (*Alias)(&t)})
 }
 
 func (t *BotInfo) UnmarshalJSON(data []byte) error {
@@ -2915,10 +2612,7 @@ func (t BotMediaPreview) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "botMediaPreview",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "botMediaPreview", Alias: (*Alias)(&t)})
 }
 
 func (t *BotMediaPreview) UnmarshalJSON(data []byte) error {
@@ -2961,10 +2655,7 @@ func (t BotMediaPreviewInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "botMediaPreviewInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "botMediaPreviewInfo", Alias: (*Alias)(&t)})
 }
 
 // BotMediaPreviews Contains a list of media previews of a bot
@@ -2982,10 +2673,7 @@ func (t BotMediaPreviews) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "botMediaPreviews",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "botMediaPreviews", Alias: (*Alias)(&t)})
 }
 
 // BotMenuButton Describes a button to be shown instead of bot commands menu button
@@ -3005,10 +2693,7 @@ func (t BotMenuButton) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "botMenuButton",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "botMenuButton", Alias: (*Alias)(&t)})
 }
 
 // BotVerification Describes verification status provided by a bot
@@ -3030,10 +2715,7 @@ func (t BotVerification) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "botVerification",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "botVerification", Alias: (*Alias)(&t)})
 }
 
 // BotVerificationParameters Describes parameters of verification that is provided by a bot
@@ -3057,10 +2739,7 @@ func (t BotVerificationParameters) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "botVerificationParameters",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "botVerificationParameters", Alias: (*Alias)(&t)})
 }
 
 // BotWriteAccessAllowReasonAcceptedRequest The user accepted bot's request to send messages with allowBotToSendMessages
@@ -3078,10 +2757,7 @@ func (t BotWriteAccessAllowReasonAcceptedRequest) MarshalJSON() ([]byte, error) 
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "botWriteAccessAllowReasonAcceptedRequest",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "botWriteAccessAllowReasonAcceptedRequest", Alias: (*Alias)(&t)})
 }
 
 // BotWriteAccessAllowReasonAddedToAttachmentMenu The user added the bot to attachment or side menu using toggleBotIsAddedToAttachmentMenu
@@ -3099,10 +2775,7 @@ func (t BotWriteAccessAllowReasonAddedToAttachmentMenu) MarshalJSON() ([]byte, e
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "botWriteAccessAllowReasonAddedToAttachmentMenu",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "botWriteAccessAllowReasonAddedToAttachmentMenu", Alias: (*Alias)(&t)})
 }
 
 // BotWriteAccessAllowReasonConnectedWebsite The user connected a website by logging in using Telegram Login Widget on it
@@ -3122,10 +2795,7 @@ func (t BotWriteAccessAllowReasonConnectedWebsite) MarshalJSON() ([]byte, error)
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "botWriteAccessAllowReasonConnectedWebsite",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "botWriteAccessAllowReasonConnectedWebsite", Alias: (*Alias)(&t)})
 }
 
 // BotWriteAccessAllowReasonLaunchedWebApp The user launched a Web App using getWebAppLinkUrl
@@ -3145,10 +2815,7 @@ func (t BotWriteAccessAllowReasonLaunchedWebApp) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "botWriteAccessAllowReasonLaunchedWebApp",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "botWriteAccessAllowReasonLaunchedWebApp", Alias: (*Alias)(&t)})
 }
 
 // BuiltInThemeArctic Arctic light theme
@@ -3166,10 +2833,7 @@ func (t BuiltInThemeArctic) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "builtInThemeArctic",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "builtInThemeArctic", Alias: (*Alias)(&t)})
 }
 
 // BuiltInThemeClassic Classic light theme
@@ -3187,10 +2851,7 @@ func (t BuiltInThemeClassic) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "builtInThemeClassic",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "builtInThemeClassic", Alias: (*Alias)(&t)})
 }
 
 // BuiltInThemeDay Regular light theme
@@ -3208,10 +2869,7 @@ func (t BuiltInThemeDay) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "builtInThemeDay",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "builtInThemeDay", Alias: (*Alias)(&t)})
 }
 
 // BuiltInThemeNight Regular dark theme
@@ -3229,10 +2887,7 @@ func (t BuiltInThemeNight) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "builtInThemeNight",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "builtInThemeNight", Alias: (*Alias)(&t)})
 }
 
 // BuiltInThemeTinted Tinted dark theme
@@ -3250,10 +2905,7 @@ func (t BuiltInThemeTinted) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "builtInThemeTinted",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "builtInThemeTinted", Alias: (*Alias)(&t)})
 }
 
 // BusinessAwayMessageScheduleAlways Send away messages always
@@ -3271,10 +2923,7 @@ func (t BusinessAwayMessageScheduleAlways) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "businessAwayMessageScheduleAlways",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "businessAwayMessageScheduleAlways", Alias: (*Alias)(&t)})
 }
 
 // BusinessAwayMessageScheduleCustom Send away messages only in the specified time span
@@ -3296,10 +2945,7 @@ func (t BusinessAwayMessageScheduleCustom) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "businessAwayMessageScheduleCustom",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "businessAwayMessageScheduleCustom", Alias: (*Alias)(&t)})
 }
 
 // BusinessAwayMessageScheduleOutsideOfOpeningHours Send away messages outside of the business opening hours
@@ -3317,10 +2963,7 @@ func (t BusinessAwayMessageScheduleOutsideOfOpeningHours) MarshalJSON() ([]byte,
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "businessAwayMessageScheduleOutsideOfOpeningHours",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "businessAwayMessageScheduleOutsideOfOpeningHours", Alias: (*Alias)(&t)})
 }
 
 // BusinessAwayMessageSettings Describes settings for messages that are automatically sent by a Telegram Business account when it is away
@@ -3344,10 +2987,7 @@ func (t BusinessAwayMessageSettings) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "businessAwayMessageSettings",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "businessAwayMessageSettings", Alias: (*Alias)(&t)})
 }
 
 func (t *BusinessAwayMessageSettings) UnmarshalJSON(data []byte) error {
@@ -3394,10 +3034,7 @@ func (t BusinessBotManageBar) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "businessBotManageBar",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "businessBotManageBar", Alias: (*Alias)(&t)})
 }
 
 // BusinessBotRights Describes rights of a business bot
@@ -3441,10 +3078,7 @@ func (t BusinessBotRights) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "businessBotRights",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "businessBotRights", Alias: (*Alias)(&t)})
 }
 
 // BusinessChatLink Contains information about a business chat link
@@ -3468,10 +3102,7 @@ func (t BusinessChatLink) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "businessChatLink",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "businessChatLink", Alias: (*Alias)(&t)})
 }
 
 // BusinessChatLinkInfo Contains information about a business chat link
@@ -3491,10 +3122,7 @@ func (t BusinessChatLinkInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "businessChatLinkInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "businessChatLinkInfo", Alias: (*Alias)(&t)})
 }
 
 // BusinessChatLinks Contains a list of business chat links created by the user
@@ -3512,10 +3140,7 @@ func (t BusinessChatLinks) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "businessChatLinks",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "businessChatLinks", Alias: (*Alias)(&t)})
 }
 
 // BusinessConnectedBot Describes a business bot connected to an account
@@ -3537,10 +3162,7 @@ func (t BusinessConnectedBot) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "businessConnectedBot",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "businessConnectedBot", Alias: (*Alias)(&t)})
 }
 
 // BusinessConnectedBotInfo Describes a connection of a bot to an account
@@ -3564,10 +3186,7 @@ func (t BusinessConnectedBotInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "businessConnectedBotInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "businessConnectedBotInfo", Alias: (*Alias)(&t)})
 }
 
 // BusinessConnection Describes a connection of the bot with a business account
@@ -3595,10 +3214,7 @@ func (t BusinessConnection) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "businessConnection",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "businessConnection", Alias: (*Alias)(&t)})
 }
 
 // BusinessFeatureAccountLinks The ability to create links to the business account with predefined message text
@@ -3616,10 +3232,7 @@ func (t BusinessFeatureAccountLinks) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "businessFeatureAccountLinks",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "businessFeatureAccountLinks", Alias: (*Alias)(&t)})
 }
 
 // BusinessFeatureAwayMessage The ability to set up an away message
@@ -3637,10 +3250,7 @@ func (t BusinessFeatureAwayMessage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "businessFeatureAwayMessage",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "businessFeatureAwayMessage", Alias: (*Alias)(&t)})
 }
 
 // BusinessFeatureBots The ability to connect a bot to the account
@@ -3658,10 +3268,7 @@ func (t BusinessFeatureBots) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "businessFeatureBots",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "businessFeatureBots", Alias: (*Alias)(&t)})
 }
 
 // BusinessFeatureChatFolderTags The ability to display folder names for each chat in the chat list
@@ -3679,10 +3286,7 @@ func (t BusinessFeatureChatFolderTags) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "businessFeatureChatFolderTags",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "businessFeatureChatFolderTags", Alias: (*Alias)(&t)})
 }
 
 // BusinessFeatureEmojiStatus The ability to show an emoji status along with the business name
@@ -3700,10 +3304,7 @@ func (t BusinessFeatureEmojiStatus) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "businessFeatureEmojiStatus",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "businessFeatureEmojiStatus", Alias: (*Alias)(&t)})
 }
 
 // BusinessFeatureGreetingMessage The ability to set up a greeting message
@@ -3721,10 +3322,7 @@ func (t BusinessFeatureGreetingMessage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "businessFeatureGreetingMessage",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "businessFeatureGreetingMessage", Alias: (*Alias)(&t)})
 }
 
 // BusinessFeatureLocation The ability to set location
@@ -3742,10 +3340,7 @@ func (t BusinessFeatureLocation) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "businessFeatureLocation",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "businessFeatureLocation", Alias: (*Alias)(&t)})
 }
 
 // BusinessFeatureOpeningHours The ability to set opening hours
@@ -3763,10 +3358,7 @@ func (t BusinessFeatureOpeningHours) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "businessFeatureOpeningHours",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "businessFeatureOpeningHours", Alias: (*Alias)(&t)})
 }
 
 // BusinessFeaturePromotionAnimation Describes a promotion animation for a Business feature
@@ -3786,10 +3378,7 @@ func (t BusinessFeaturePromotionAnimation) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "businessFeaturePromotionAnimation",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "businessFeaturePromotionAnimation", Alias: (*Alias)(&t)})
 }
 
 func (t *BusinessFeaturePromotionAnimation) UnmarshalJSON(data []byte) error {
@@ -3830,10 +3419,7 @@ func (t BusinessFeatureQuickReplies) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "businessFeatureQuickReplies",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "businessFeatureQuickReplies", Alias: (*Alias)(&t)})
 }
 
 // BusinessFeatures Contains information about features, available to Business user accounts
@@ -3851,10 +3437,7 @@ func (t BusinessFeatures) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "businessFeatures",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "businessFeatures", Alias: (*Alias)(&t)})
 }
 
 func (t *BusinessFeatures) UnmarshalJSON(data []byte) error {
@@ -3898,10 +3481,7 @@ func (t BusinessFeatureStartPage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "businessFeatureStartPage",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "businessFeatureStartPage", Alias: (*Alias)(&t)})
 }
 
 // BusinessFeatureUpgradedStories Allowed to use many additional features for stories
@@ -3919,10 +3499,7 @@ func (t BusinessFeatureUpgradedStories) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "businessFeatureUpgradedStories",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "businessFeatureUpgradedStories", Alias: (*Alias)(&t)})
 }
 
 // BusinessGreetingMessageSettings Describes settings for greeting messages that are automatically sent by a Telegram Business account as response to incoming messages in an inactive private chat
@@ -3944,10 +3521,7 @@ func (t BusinessGreetingMessageSettings) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "businessGreetingMessageSettings",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "businessGreetingMessageSettings", Alias: (*Alias)(&t)})
 }
 
 // BusinessInfo Contains information about a Telegram Business account
@@ -3979,10 +3553,7 @@ func (t BusinessInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "businessInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "businessInfo", Alias: (*Alias)(&t)})
 }
 
 // BusinessLocation Represents a location of a business
@@ -4002,10 +3573,7 @@ func (t BusinessLocation) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "businessLocation",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "businessLocation", Alias: (*Alias)(&t)})
 }
 
 // BusinessMessage Describes a message from a business account as received by a bot
@@ -4025,10 +3593,7 @@ func (t BusinessMessage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "businessMessage",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "businessMessage", Alias: (*Alias)(&t)})
 }
 
 // BusinessMessages Contains a list of messages from a business account as received by a bot
@@ -4046,10 +3611,7 @@ func (t BusinessMessages) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "businessMessages",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "businessMessages", Alias: (*Alias)(&t)})
 }
 
 // BusinessOpeningHours Describes opening hours of a business
@@ -4069,10 +3631,7 @@ func (t BusinessOpeningHours) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "businessOpeningHours",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "businessOpeningHours", Alias: (*Alias)(&t)})
 }
 
 // BusinessOpeningHoursInterval Describes an interval of time when the business is open
@@ -4092,10 +3651,7 @@ func (t BusinessOpeningHoursInterval) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "businessOpeningHoursInterval",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "businessOpeningHoursInterval", Alias: (*Alias)(&t)})
 }
 
 // BusinessRecipients Describes private chats chosen for automatic interaction with a business
@@ -4125,10 +3681,7 @@ func (t BusinessRecipients) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "businessRecipients",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "businessRecipients", Alias: (*Alias)(&t)})
 }
 
 // BusinessStartPage Describes settings for a business account start page
@@ -4150,10 +3703,7 @@ func (t BusinessStartPage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "businessStartPage",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "businessStartPage", Alias: (*Alias)(&t)})
 }
 
 // ButtonStyleDanger The button has red color
@@ -4171,10 +3721,7 @@ func (t ButtonStyleDanger) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "buttonStyleDanger",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "buttonStyleDanger", Alias: (*Alias)(&t)})
 }
 
 // ButtonStyleDefault The button has default style
@@ -4192,10 +3739,7 @@ func (t ButtonStyleDefault) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "buttonStyleDefault",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "buttonStyleDefault", Alias: (*Alias)(&t)})
 }
 
 // ButtonStyleLink The button must be shown as a link. The style is allowed only for callback buttons in inlineButton
@@ -4213,10 +3757,7 @@ func (t ButtonStyleLink) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "buttonStyleLink",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "buttonStyleLink", Alias: (*Alias)(&t)})
 }
 
 // ButtonStylePrimary The button has dark blue color
@@ -4234,10 +3775,7 @@ func (t ButtonStylePrimary) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "buttonStylePrimary",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "buttonStylePrimary", Alias: (*Alias)(&t)})
 }
 
 // ButtonStyleSuccess The button has green color
@@ -4255,10 +3793,7 @@ func (t ButtonStyleSuccess) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "buttonStyleSuccess",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "buttonStyleSuccess", Alias: (*Alias)(&t)})
 }
 
 // Call Describes a call
@@ -4286,10 +3821,7 @@ func (t Call) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "call",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "call", Alias: (*Alias)(&t)})
 }
 
 func (t *Call) UnmarshalJSON(data []byte) error {
@@ -4334,10 +3866,7 @@ func (t CallbackQueryAnswer) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "callbackQueryAnswer",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "callbackQueryAnswer", Alias: (*Alias)(&t)})
 }
 
 // CallbackQueryPayloadData The payload for a general callback button
@@ -4357,10 +3886,7 @@ func (t CallbackQueryPayloadData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "callbackQueryPayloadData",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "callbackQueryPayloadData", Alias: (*Alias)(&t)})
 }
 
 // CallbackQueryPayloadDataWithPassword The payload for a callback button requiring password
@@ -4382,10 +3908,7 @@ func (t CallbackQueryPayloadDataWithPassword) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "callbackQueryPayloadDataWithPassword",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "callbackQueryPayloadDataWithPassword", Alias: (*Alias)(&t)})
 }
 
 // CallbackQueryPayloadGame The payload for a game callback button
@@ -4405,10 +3928,7 @@ func (t CallbackQueryPayloadGame) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "callbackQueryPayloadGame",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "callbackQueryPayloadGame", Alias: (*Alias)(&t)})
 }
 
 // CallDiscardReasonDeclined The call was ended before the conversation started. It was declined by the other party
@@ -4426,10 +3946,7 @@ func (t CallDiscardReasonDeclined) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "callDiscardReasonDeclined",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "callDiscardReasonDeclined", Alias: (*Alias)(&t)})
 }
 
 // CallDiscardReasonDisconnected The call was ended during the conversation because the users were disconnected
@@ -4447,10 +3964,7 @@ func (t CallDiscardReasonDisconnected) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "callDiscardReasonDisconnected",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "callDiscardReasonDisconnected", Alias: (*Alias)(&t)})
 }
 
 // CallDiscardReasonEmpty The call wasn't discarded, or the reason is unknown
@@ -4468,10 +3982,7 @@ func (t CallDiscardReasonEmpty) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "callDiscardReasonEmpty",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "callDiscardReasonEmpty", Alias: (*Alias)(&t)})
 }
 
 // CallDiscardReasonHungUp The call was ended because one of the parties hung up
@@ -4489,10 +4000,7 @@ func (t CallDiscardReasonHungUp) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "callDiscardReasonHungUp",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "callDiscardReasonHungUp", Alias: (*Alias)(&t)})
 }
 
 // CallDiscardReasonMissed The call was ended before the conversation started. It was canceled by the caller or missed by the other party
@@ -4510,10 +4018,7 @@ func (t CallDiscardReasonMissed) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "callDiscardReasonMissed",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "callDiscardReasonMissed", Alias: (*Alias)(&t)})
 }
 
 // CallDiscardReasonUpgradeToGroupCall The call was ended because it has been upgraded to a group call
@@ -4533,10 +4038,7 @@ func (t CallDiscardReasonUpgradeToGroupCall) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "callDiscardReasonUpgradeToGroupCall",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "callDiscardReasonUpgradeToGroupCall", Alias: (*Alias)(&t)})
 }
 
 // CallId Contains the call identifier
@@ -4554,10 +4056,7 @@ func (t CallId) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "callId",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "callId", Alias: (*Alias)(&t)})
 }
 
 // CallProblemDistortedSpeech The speech was distorted
@@ -4575,10 +4074,7 @@ func (t CallProblemDistortedSpeech) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "callProblemDistortedSpeech",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "callProblemDistortedSpeech", Alias: (*Alias)(&t)})
 }
 
 // CallProblemDistortedVideo The video was distorted
@@ -4596,10 +4092,7 @@ func (t CallProblemDistortedVideo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "callProblemDistortedVideo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "callProblemDistortedVideo", Alias: (*Alias)(&t)})
 }
 
 // CallProblemDropped The call ended unexpectedly
@@ -4617,10 +4110,7 @@ func (t CallProblemDropped) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "callProblemDropped",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "callProblemDropped", Alias: (*Alias)(&t)})
 }
 
 // CallProblemEcho The user heard their own voice
@@ -4638,10 +4128,7 @@ func (t CallProblemEcho) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "callProblemEcho",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "callProblemEcho", Alias: (*Alias)(&t)})
 }
 
 // CallProblemInterruptions The other side kept disappearing
@@ -4659,10 +4146,7 @@ func (t CallProblemInterruptions) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "callProblemInterruptions",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "callProblemInterruptions", Alias: (*Alias)(&t)})
 }
 
 // CallProblemNoise The user heard background noise
@@ -4680,10 +4164,7 @@ func (t CallProblemNoise) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "callProblemNoise",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "callProblemNoise", Alias: (*Alias)(&t)})
 }
 
 // CallProblemPixelatedVideo The video was pixelated
@@ -4701,10 +4182,7 @@ func (t CallProblemPixelatedVideo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "callProblemPixelatedVideo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "callProblemPixelatedVideo", Alias: (*Alias)(&t)})
 }
 
 // CallProblemSilentLocal The user couldn't hear the other side
@@ -4722,10 +4200,7 @@ func (t CallProblemSilentLocal) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "callProblemSilentLocal",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "callProblemSilentLocal", Alias: (*Alias)(&t)})
 }
 
 // CallProblemSilentRemote The other side couldn't hear the user
@@ -4743,10 +4218,7 @@ func (t CallProblemSilentRemote) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "callProblemSilentRemote",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "callProblemSilentRemote", Alias: (*Alias)(&t)})
 }
 
 // CallProtocol Specifies the supported call protocols
@@ -4772,10 +4244,7 @@ func (t CallProtocol) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "callProtocol",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "callProtocol", Alias: (*Alias)(&t)})
 }
 
 // CallServer Describes a server for relaying call data
@@ -4801,10 +4270,7 @@ func (t CallServer) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "callServer",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "callServer", Alias: (*Alias)(&t)})
 }
 
 func (t *CallServer) UnmarshalJSON(data []byte) error {
@@ -4849,10 +4315,7 @@ func (t CallServerTypeTelegramReflector) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "callServerTypeTelegramReflector",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "callServerTypeTelegramReflector", Alias: (*Alias)(&t)})
 }
 
 // CallServerTypeWebrtc A WebRTC server
@@ -4878,10 +4341,7 @@ func (t CallServerTypeWebrtc) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "callServerTypeWebrtc",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "callServerTypeWebrtc", Alias: (*Alias)(&t)})
 }
 
 // CallStateDiscarded The call has ended successfully
@@ -4907,10 +4367,7 @@ func (t CallStateDiscarded) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "callStateDiscarded",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "callStateDiscarded", Alias: (*Alias)(&t)})
 }
 
 func (t *CallStateDiscarded) UnmarshalJSON(data []byte) error {
@@ -4953,10 +4410,7 @@ func (t CallStateError) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "callStateError",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "callStateError", Alias: (*Alias)(&t)})
 }
 
 // CallStateExchangingKeys The call has been answered and encryption keys are being exchanged
@@ -4974,10 +4428,7 @@ func (t CallStateExchangingKeys) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "callStateExchangingKeys",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "callStateExchangingKeys", Alias: (*Alias)(&t)})
 }
 
 // CallStateHangingUp The call is hanging up after discardCall has been called
@@ -4995,10 +4446,7 @@ func (t CallStateHangingUp) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "callStateHangingUp",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "callStateHangingUp", Alias: (*Alias)(&t)})
 }
 
 // CallStatePending The call is pending, waiting to be accepted by a user
@@ -5020,10 +4468,7 @@ func (t CallStatePending) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "callStatePending",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "callStatePending", Alias: (*Alias)(&t)})
 }
 
 // CallStateReady The call is ready to use
@@ -5057,10 +4502,7 @@ func (t CallStateReady) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "callStateReady",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "callStateReady", Alias: (*Alias)(&t)})
 }
 
 // CanPostStoryResultActiveStoryLimitExceeded The limit for the number of active stories exceeded. The user can buy Telegram Premium, delete an active story, or wait for the oldest story to expire
@@ -5078,10 +4520,7 @@ func (t CanPostStoryResultActiveStoryLimitExceeded) MarshalJSON() ([]byte, error
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "canPostStoryResultActiveStoryLimitExceeded",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "canPostStoryResultActiveStoryLimitExceeded", Alias: (*Alias)(&t)})
 }
 
 // CanPostStoryResultBoostNeeded The chat must be boosted first by Telegram Premium subscribers to post more stories. Call getChatBoostStatus to get current boost status of the chat
@@ -5099,10 +4538,7 @@ func (t CanPostStoryResultBoostNeeded) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "canPostStoryResultBoostNeeded",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "canPostStoryResultBoostNeeded", Alias: (*Alias)(&t)})
 }
 
 // CanPostStoryResultLiveStoryIsActive The user or the chat has an active live story. The live story must be deleted first
@@ -5122,10 +4558,7 @@ func (t CanPostStoryResultLiveStoryIsActive) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "canPostStoryResultLiveStoryIsActive",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "canPostStoryResultLiveStoryIsActive", Alias: (*Alias)(&t)})
 }
 
 // CanPostStoryResultMonthlyLimitExceeded The monthly limit for the number of posted stories exceeded. The user needs to buy Telegram Premium or wait specified time
@@ -5145,10 +4578,7 @@ func (t CanPostStoryResultMonthlyLimitExceeded) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "canPostStoryResultMonthlyLimitExceeded",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "canPostStoryResultMonthlyLimitExceeded", Alias: (*Alias)(&t)})
 }
 
 // CanPostStoryResultOk A story can be sent
@@ -5168,10 +4598,7 @@ func (t CanPostStoryResultOk) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "canPostStoryResultOk",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "canPostStoryResultOk", Alias: (*Alias)(&t)})
 }
 
 // CanPostStoryResultPremiumNeeded The user must subscribe to Telegram Premium to be able to post stories
@@ -5189,10 +4616,7 @@ func (t CanPostStoryResultPremiumNeeded) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "canPostStoryResultPremiumNeeded",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "canPostStoryResultPremiumNeeded", Alias: (*Alias)(&t)})
 }
 
 // CanPostStoryResultWeeklyLimitExceeded The weekly limit for the number of posted stories exceeded. The user needs to buy Telegram Premium or wait specified time
@@ -5212,10 +4636,7 @@ func (t CanPostStoryResultWeeklyLimitExceeded) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "canPostStoryResultWeeklyLimitExceeded",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "canPostStoryResultWeeklyLimitExceeded", Alias: (*Alias)(&t)})
 }
 
 // CanSendGiftResultFail The gift can't be sent now by the current user
@@ -5235,10 +4656,7 @@ func (t CanSendGiftResultFail) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "canSendGiftResultFail",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "canSendGiftResultFail", Alias: (*Alias)(&t)})
 }
 
 // CanSendGiftResultOk The gift can be sent now by the current user
@@ -5256,10 +4674,7 @@ func (t CanSendGiftResultOk) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "canSendGiftResultOk",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "canSendGiftResultOk", Alias: (*Alias)(&t)})
 }
 
 // CanSendMessageToUserResultOk The user can be messaged
@@ -5277,10 +4692,7 @@ func (t CanSendMessageToUserResultOk) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "canSendMessageToUserResultOk",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "canSendMessageToUserResultOk", Alias: (*Alias)(&t)})
 }
 
 // CanSendMessageToUserResultUserHasPaidMessages The user can be messaged, but the messages are paid
@@ -5300,10 +4712,7 @@ func (t CanSendMessageToUserResultUserHasPaidMessages) MarshalJSON() ([]byte, er
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "canSendMessageToUserResultUserHasPaidMessages",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "canSendMessageToUserResultUserHasPaidMessages", Alias: (*Alias)(&t)})
 }
 
 // CanSendMessageToUserResultUserIsDeleted The user can't be messaged, because they are deleted or unknown
@@ -5321,10 +4730,7 @@ func (t CanSendMessageToUserResultUserIsDeleted) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "canSendMessageToUserResultUserIsDeleted",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "canSendMessageToUserResultUserIsDeleted", Alias: (*Alias)(&t)})
 }
 
 // CanSendMessageToUserResultUserRestrictsNewChats The user can't be messaged, because they restrict new chats with non-contacts
@@ -5342,10 +4748,7 @@ func (t CanSendMessageToUserResultUserRestrictsNewChats) MarshalJSON() ([]byte, 
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "canSendMessageToUserResultUserRestrictsNewChats",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "canSendMessageToUserResultUserRestrictsNewChats", Alias: (*Alias)(&t)})
 }
 
 // CanTransferOwnershipResultOk The session can be used
@@ -5363,10 +4766,7 @@ func (t CanTransferOwnershipResultOk) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "canTransferOwnershipResultOk",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "canTransferOwnershipResultOk", Alias: (*Alias)(&t)})
 }
 
 // CanTransferOwnershipResultPasswordNeeded The 2-step verification needs to be enabled first
@@ -5384,10 +4784,7 @@ func (t CanTransferOwnershipResultPasswordNeeded) MarshalJSON() ([]byte, error) 
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "canTransferOwnershipResultPasswordNeeded",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "canTransferOwnershipResultPasswordNeeded", Alias: (*Alias)(&t)})
 }
 
 // CanTransferOwnershipResultPasswordTooFresh The 2-step verification was enabled recently, user needs to wait
@@ -5407,10 +4804,7 @@ func (t CanTransferOwnershipResultPasswordTooFresh) MarshalJSON() ([]byte, error
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "canTransferOwnershipResultPasswordTooFresh",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "canTransferOwnershipResultPasswordTooFresh", Alias: (*Alias)(&t)})
 }
 
 // CanTransferOwnershipResultSessionTooFresh The session was created recently, user needs to wait
@@ -5430,10 +4824,7 @@ func (t CanTransferOwnershipResultSessionTooFresh) MarshalJSON() ([]byte, error)
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "canTransferOwnershipResultSessionTooFresh",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "canTransferOwnershipResultSessionTooFresh", Alias: (*Alias)(&t)})
 }
 
 // Chat A chat. (Can be a private chat, basic group, supergroup, or secret chat)
@@ -5537,10 +4928,7 @@ func (t Chat) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chat",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chat", Alias: (*Alias)(&t)})
 }
 
 func (t *Chat) UnmarshalJSON(data []byte) error {
@@ -5632,10 +5020,7 @@ func (t ChatActionBarAddContact) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatActionBarAddContact",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatActionBarAddContact", Alias: (*Alias)(&t)})
 }
 
 // ChatActionBarInviteMembers The chat is a recently created group chat to which new members can be invited
@@ -5653,10 +5038,7 @@ func (t ChatActionBarInviteMembers) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatActionBarInviteMembers",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatActionBarInviteMembers", Alias: (*Alias)(&t)})
 }
 
 // ChatActionBarJoinRequest The chat is a private chat with an administrator of a chat to which the user sent join request
@@ -5680,10 +5062,7 @@ func (t ChatActionBarJoinRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatActionBarJoinRequest",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatActionBarJoinRequest", Alias: (*Alias)(&t)})
 }
 
 // ChatActionBarReportAddBlock The chat is a private or secret chat, which can be reported using the method reportChat, or the other user can be blocked using the method setMessageSenderBlockList,
@@ -5705,10 +5084,7 @@ func (t ChatActionBarReportAddBlock) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatActionBarReportAddBlock",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatActionBarReportAddBlock", Alias: (*Alias)(&t)})
 }
 
 // ChatActionBarReportSpam The chat can be reported as spam using the method reportChat with an empty option_id and message_ids. If the chat is a private chat with a user with an emoji status, then a notice about emoji status usage must be shown
@@ -5728,10 +5104,7 @@ func (t ChatActionBarReportSpam) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatActionBarReportSpam",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatActionBarReportSpam", Alias: (*Alias)(&t)})
 }
 
 // ChatActionBarSharePhoneNumber The chat is a private or secret chat with a mutual contact and the user's phone number can be shared with the other user using the method sharePhoneNumber
@@ -5749,10 +5122,7 @@ func (t ChatActionBarSharePhoneNumber) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatActionBarSharePhoneNumber",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatActionBarSharePhoneNumber", Alias: (*Alias)(&t)})
 }
 
 // ChatActionCancel The user has canceled the previous action
@@ -5770,10 +5140,7 @@ func (t ChatActionCancel) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatActionCancel",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatActionCancel", Alias: (*Alias)(&t)})
 }
 
 // ChatActionChoosingContact The user is picking a contact to send
@@ -5791,10 +5158,7 @@ func (t ChatActionChoosingContact) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatActionChoosingContact",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatActionChoosingContact", Alias: (*Alias)(&t)})
 }
 
 // ChatActionChoosingLocation The user is picking a location or venue to send
@@ -5812,10 +5176,7 @@ func (t ChatActionChoosingLocation) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatActionChoosingLocation",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatActionChoosingLocation", Alias: (*Alias)(&t)})
 }
 
 // ChatActionChoosingSticker The user is picking a sticker to send
@@ -5833,10 +5194,7 @@ func (t ChatActionChoosingSticker) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatActionChoosingSticker",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatActionChoosingSticker", Alias: (*Alias)(&t)})
 }
 
 // ChatActionRecordingVideo The user is recording a video
@@ -5854,10 +5212,7 @@ func (t ChatActionRecordingVideo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatActionRecordingVideo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatActionRecordingVideo", Alias: (*Alias)(&t)})
 }
 
 // ChatActionRecordingVideoNote The user is recording a video note
@@ -5875,10 +5230,7 @@ func (t ChatActionRecordingVideoNote) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatActionRecordingVideoNote",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatActionRecordingVideoNote", Alias: (*Alias)(&t)})
 }
 
 // ChatActionRecordingVoiceNote The user is recording a voice note
@@ -5896,10 +5248,7 @@ func (t ChatActionRecordingVoiceNote) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatActionRecordingVoiceNote",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatActionRecordingVoiceNote", Alias: (*Alias)(&t)})
 }
 
 // ChatActionStartPlayingGame The user has started to play a game
@@ -5917,10 +5266,7 @@ func (t ChatActionStartPlayingGame) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatActionStartPlayingGame",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatActionStartPlayingGame", Alias: (*Alias)(&t)})
 }
 
 // ChatActionTyping The user is typing a message
@@ -5938,10 +5284,7 @@ func (t ChatActionTyping) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatActionTyping",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatActionTyping", Alias: (*Alias)(&t)})
 }
 
 // ChatActionUploadingDocument The user is uploading a document
@@ -5961,10 +5304,7 @@ func (t ChatActionUploadingDocument) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatActionUploadingDocument",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatActionUploadingDocument", Alias: (*Alias)(&t)})
 }
 
 // ChatActionUploadingPhoto The user is uploading a photo
@@ -5984,10 +5324,7 @@ func (t ChatActionUploadingPhoto) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatActionUploadingPhoto",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatActionUploadingPhoto", Alias: (*Alias)(&t)})
 }
 
 // ChatActionUploadingVideo The user is uploading a video
@@ -6007,10 +5344,7 @@ func (t ChatActionUploadingVideo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatActionUploadingVideo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatActionUploadingVideo", Alias: (*Alias)(&t)})
 }
 
 // ChatActionUploadingVideoNote The user is uploading a video note
@@ -6030,10 +5364,7 @@ func (t ChatActionUploadingVideoNote) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatActionUploadingVideoNote",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatActionUploadingVideoNote", Alias: (*Alias)(&t)})
 }
 
 // ChatActionUploadingVoiceNote The user is uploading a voice note
@@ -6053,10 +5384,7 @@ func (t ChatActionUploadingVoiceNote) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatActionUploadingVoiceNote",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatActionUploadingVoiceNote", Alias: (*Alias)(&t)})
 }
 
 // ChatActionWatchingAnimations The user is watching animations sent by the other party by clicking on an animated emoji
@@ -6076,10 +5404,7 @@ func (t ChatActionWatchingAnimations) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatActionWatchingAnimations",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatActionWatchingAnimations", Alias: (*Alias)(&t)})
 }
 
 // ChatActiveStories Describes active stories posted by a chat
@@ -6107,10 +5432,7 @@ func (t ChatActiveStories) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatActiveStories",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatActiveStories", Alias: (*Alias)(&t)})
 }
 
 func (t *ChatActiveStories) UnmarshalJSON(data []byte) error {
@@ -6157,10 +5479,7 @@ func (t ChatAdministrator) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatAdministrator",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatAdministrator", Alias: (*Alias)(&t)})
 }
 
 // ChatAdministratorRights Describes rights of the administrator
@@ -6212,10 +5531,7 @@ func (t ChatAdministratorRights) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatAdministratorRights",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatAdministratorRights", Alias: (*Alias)(&t)})
 }
 
 // ChatAdministrators Represents a list of chat administrators
@@ -6233,10 +5549,7 @@ func (t ChatAdministrators) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatAdministrators",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatAdministrators", Alias: (*Alias)(&t)})
 }
 
 // ChatAvailableReactionsAll All reactions are available in the chat, excluding the paid reaction and custom reactions in channel chats
@@ -6256,10 +5569,7 @@ func (t ChatAvailableReactionsAll) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatAvailableReactionsAll",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatAvailableReactionsAll", Alias: (*Alias)(&t)})
 }
 
 // ChatAvailableReactionsSome Only specific reactions are available in the chat
@@ -6281,10 +5591,7 @@ func (t ChatAvailableReactionsSome) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatAvailableReactionsSome",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatAvailableReactionsSome", Alias: (*Alias)(&t)})
 }
 
 func (t *ChatAvailableReactionsSome) UnmarshalJSON(data []byte) error {
@@ -6330,10 +5637,7 @@ func (t ChatBackground) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatBackground",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatBackground", Alias: (*Alias)(&t)})
 }
 
 // ChatBoost Describes a boost applied to a chat
@@ -6359,10 +5663,7 @@ func (t ChatBoost) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatBoost",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatBoost", Alias: (*Alias)(&t)})
 }
 
 func (t *ChatBoost) UnmarshalJSON(data []byte) error {
@@ -6421,10 +5722,7 @@ func (t ChatBoostFeatures) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatBoostFeatures",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatBoostFeatures", Alias: (*Alias)(&t)})
 }
 
 // ChatBoostLevelFeatures Contains a list of features available on a specific chat boost level
@@ -6470,10 +5768,7 @@ func (t ChatBoostLevelFeatures) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatBoostLevelFeatures",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatBoostLevelFeatures", Alias: (*Alias)(&t)})
 }
 
 // ChatBoostLink Contains an HTTPS link to boost a chat
@@ -6493,10 +5788,7 @@ func (t ChatBoostLink) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatBoostLink",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatBoostLink", Alias: (*Alias)(&t)})
 }
 
 // ChatBoostLinkInfo Contains information about a link to boost a chat
@@ -6516,10 +5808,7 @@ func (t ChatBoostLinkInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatBoostLinkInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatBoostLinkInfo", Alias: (*Alias)(&t)})
 }
 
 // ChatBoostSlot Describes a slot for chat boost
@@ -6545,10 +5834,7 @@ func (t ChatBoostSlot) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatBoostSlot",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatBoostSlot", Alias: (*Alias)(&t)})
 }
 
 // ChatBoostSlots Contains a list of chat boost slots
@@ -6566,10 +5852,7 @@ func (t ChatBoostSlots) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatBoostSlots",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatBoostSlots", Alias: (*Alias)(&t)})
 }
 
 // ChatBoostSourceGiftCode The chat created a Telegram Premium gift code for a user
@@ -6591,10 +5874,7 @@ func (t ChatBoostSourceGiftCode) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatBoostSourceGiftCode",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatBoostSourceGiftCode", Alias: (*Alias)(&t)})
 }
 
 // ChatBoostSourceGiveaway The chat created a giveaway
@@ -6622,10 +5902,7 @@ func (t ChatBoostSourceGiveaway) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatBoostSourceGiveaway",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatBoostSourceGiveaway", Alias: (*Alias)(&t)})
 }
 
 // ChatBoostSourcePremium A user with Telegram Premium subscription or gifted Telegram Premium boosted the chat
@@ -6645,10 +5922,7 @@ func (t ChatBoostSourcePremium) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatBoostSourcePremium",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatBoostSourcePremium", Alias: (*Alias)(&t)})
 }
 
 // ChatBoostStatus Describes current boost status of a chat
@@ -6684,10 +5958,7 @@ func (t ChatBoostStatus) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatBoostStatus",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatBoostStatus", Alias: (*Alias)(&t)})
 }
 
 // ChatEvent Represents a chat event
@@ -6711,10 +5982,7 @@ func (t ChatEvent) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEvent",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEvent", Alias: (*Alias)(&t)})
 }
 
 func (t *ChatEvent) UnmarshalJSON(data []byte) error {
@@ -6771,10 +6039,7 @@ func (t ChatEventAccentColorChanged) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventAccentColorChanged",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventAccentColorChanged", Alias: (*Alias)(&t)})
 }
 
 // ChatEventActiveUsernamesChanged The chat active usernames were changed
@@ -6796,10 +6061,7 @@ func (t ChatEventActiveUsernamesChanged) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventActiveUsernamesChanged",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventActiveUsernamesChanged", Alias: (*Alias)(&t)})
 }
 
 // ChatEventAutomaticTranslationToggled The has_automatic_translation setting of a channel was toggled
@@ -6819,10 +6081,7 @@ func (t ChatEventAutomaticTranslationToggled) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventAutomaticTranslationToggled",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventAutomaticTranslationToggled", Alias: (*Alias)(&t)})
 }
 
 // ChatEventAvailableReactionsChanged The chat available reactions were changed
@@ -6844,10 +6103,7 @@ func (t ChatEventAvailableReactionsChanged) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventAvailableReactionsChanged",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventAvailableReactionsChanged", Alias: (*Alias)(&t)})
 }
 
 func (t *ChatEventAvailableReactionsChanged) UnmarshalJSON(data []byte) error {
@@ -6900,10 +6156,7 @@ func (t ChatEventBackgroundChanged) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventBackgroundChanged",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventBackgroundChanged", Alias: (*Alias)(&t)})
 }
 
 // ChatEventCustomEmojiStickerSetChanged The supergroup sticker set with allowed custom emoji was changed
@@ -6925,10 +6178,7 @@ func (t ChatEventCustomEmojiStickerSetChanged) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventCustomEmojiStickerSetChanged",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventCustomEmojiStickerSetChanged", Alias: (*Alias)(&t)})
 }
 
 // ChatEventDescriptionChanged The chat description was changed
@@ -6950,10 +6200,7 @@ func (t ChatEventDescriptionChanged) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventDescriptionChanged",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventDescriptionChanged", Alias: (*Alias)(&t)})
 }
 
 // ChatEventEmojiStatusChanged The chat emoji status was changed
@@ -6975,10 +6222,7 @@ func (t ChatEventEmojiStatusChanged) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventEmojiStatusChanged",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventEmojiStatusChanged", Alias: (*Alias)(&t)})
 }
 
 // ChatEventForumTopicCreated A new forum topic was created
@@ -6998,10 +6242,7 @@ func (t ChatEventForumTopicCreated) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventForumTopicCreated",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventForumTopicCreated", Alias: (*Alias)(&t)})
 }
 
 // ChatEventForumTopicDeleted A forum topic was deleted
@@ -7021,10 +6262,7 @@ func (t ChatEventForumTopicDeleted) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventForumTopicDeleted",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventForumTopicDeleted", Alias: (*Alias)(&t)})
 }
 
 // ChatEventForumTopicEdited A forum topic was edited
@@ -7046,10 +6284,7 @@ func (t ChatEventForumTopicEdited) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventForumTopicEdited",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventForumTopicEdited", Alias: (*Alias)(&t)})
 }
 
 // ChatEventForumTopicPinned A pinned forum topic was changed
@@ -7071,10 +6306,7 @@ func (t ChatEventForumTopicPinned) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventForumTopicPinned",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventForumTopicPinned", Alias: (*Alias)(&t)})
 }
 
 // ChatEventForumTopicToggleIsClosed A forum topic was closed or reopened
@@ -7094,10 +6326,7 @@ func (t ChatEventForumTopicToggleIsClosed) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventForumTopicToggleIsClosed",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventForumTopicToggleIsClosed", Alias: (*Alias)(&t)})
 }
 
 // ChatEventForumTopicToggleIsHidden The General forum topic was hidden or unhidden
@@ -7117,10 +6346,7 @@ func (t ChatEventForumTopicToggleIsHidden) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventForumTopicToggleIsHidden",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventForumTopicToggleIsHidden", Alias: (*Alias)(&t)})
 }
 
 // ChatEventHasAggressiveAntiSpamEnabledToggled The has_aggressive_anti_spam_enabled setting of a supergroup was toggled
@@ -7140,10 +6366,7 @@ func (t ChatEventHasAggressiveAntiSpamEnabledToggled) MarshalJSON() ([]byte, err
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventHasAggressiveAntiSpamEnabledToggled",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventHasAggressiveAntiSpamEnabledToggled", Alias: (*Alias)(&t)})
 }
 
 // ChatEventHasProtectedContentToggled The has_protected_content setting of a channel was toggled
@@ -7163,10 +6386,7 @@ func (t ChatEventHasProtectedContentToggled) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventHasProtectedContentToggled",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventHasProtectedContentToggled", Alias: (*Alias)(&t)})
 }
 
 // ChatEventInviteLinkDeleted A revoked chat invite link was deleted
@@ -7186,10 +6406,7 @@ func (t ChatEventInviteLinkDeleted) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventInviteLinkDeleted",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventInviteLinkDeleted", Alias: (*Alias)(&t)})
 }
 
 // ChatEventInviteLinkEdited A chat invite link was edited
@@ -7211,10 +6428,7 @@ func (t ChatEventInviteLinkEdited) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventInviteLinkEdited",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventInviteLinkEdited", Alias: (*Alias)(&t)})
 }
 
 // ChatEventInviteLinkRevoked A chat invite link was revoked
@@ -7234,10 +6448,7 @@ func (t ChatEventInviteLinkRevoked) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventInviteLinkRevoked",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventInviteLinkRevoked", Alias: (*Alias)(&t)})
 }
 
 // ChatEventInvitesToggled The can_invite_users permission of a supergroup chat was toggled
@@ -7257,10 +6468,7 @@ func (t ChatEventInvitesToggled) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventInvitesToggled",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventInvitesToggled", Alias: (*Alias)(&t)})
 }
 
 // ChatEventIsAllHistoryAvailableToggled The is_all_history_available setting of a supergroup was toggled
@@ -7280,10 +6488,7 @@ func (t ChatEventIsAllHistoryAvailableToggled) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventIsAllHistoryAvailableToggled",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventIsAllHistoryAvailableToggled", Alias: (*Alias)(&t)})
 }
 
 // ChatEventIsForumToggled The is_forum setting of a channel was toggled
@@ -7303,10 +6508,7 @@ func (t ChatEventIsForumToggled) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventIsForumToggled",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventIsForumToggled", Alias: (*Alias)(&t)})
 }
 
 // ChatEventLinkedChatChanged The linked chat of a supergroup was changed
@@ -7328,10 +6530,7 @@ func (t ChatEventLinkedChatChanged) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventLinkedChatChanged",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventLinkedChatChanged", Alias: (*Alias)(&t)})
 }
 
 // ChatEventLocationChanged The supergroup location was changed
@@ -7353,10 +6552,7 @@ func (t ChatEventLocationChanged) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventLocationChanged",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventLocationChanged", Alias: (*Alias)(&t)})
 }
 
 // ChatEventLogFilters Represents a set of filters used to obtain a chat event log
@@ -7402,10 +6598,7 @@ func (t ChatEventLogFilters) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventLogFilters",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventLogFilters", Alias: (*Alias)(&t)})
 }
 
 // ChatEventMemberInvited A new chat member was invited
@@ -7427,10 +6620,7 @@ func (t ChatEventMemberInvited) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventMemberInvited",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventMemberInvited", Alias: (*Alias)(&t)})
 }
 
 func (t *ChatEventMemberInvited) UnmarshalJSON(data []byte) error {
@@ -7471,10 +6661,7 @@ func (t ChatEventMemberJoined) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventMemberJoined",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventMemberJoined", Alias: (*Alias)(&t)})
 }
 
 // ChatEventMemberJoinedByInviteLink A new member joined the chat via an invite link
@@ -7496,10 +6683,7 @@ func (t ChatEventMemberJoinedByInviteLink) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventMemberJoinedByInviteLink",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventMemberJoinedByInviteLink", Alias: (*Alias)(&t)})
 }
 
 // ChatEventMemberJoinedByRequest A new member was accepted to the chat by an administrator
@@ -7521,10 +6705,7 @@ func (t ChatEventMemberJoinedByRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventMemberJoinedByRequest",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventMemberJoinedByRequest", Alias: (*Alias)(&t)})
 }
 
 // ChatEventMemberLeft A member left the chat
@@ -7542,10 +6723,7 @@ func (t ChatEventMemberLeft) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventMemberLeft",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventMemberLeft", Alias: (*Alias)(&t)})
 }
 
 // ChatEventMemberPromoted A chat member has gained/lost administrator status, or the list of their administrator privileges has changed
@@ -7569,10 +6747,7 @@ func (t ChatEventMemberPromoted) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventMemberPromoted",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventMemberPromoted", Alias: (*Alias)(&t)})
 }
 
 func (t *ChatEventMemberPromoted) UnmarshalJSON(data []byte) error {
@@ -7627,10 +6802,7 @@ func (t ChatEventMemberRestricted) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventMemberRestricted",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventMemberRestricted", Alias: (*Alias)(&t)})
 }
 
 func (t *ChatEventMemberRestricted) UnmarshalJSON(data []byte) error {
@@ -7693,10 +6865,7 @@ func (t ChatEventMemberSubscriptionExtended) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventMemberSubscriptionExtended",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventMemberSubscriptionExtended", Alias: (*Alias)(&t)})
 }
 
 func (t *ChatEventMemberSubscriptionExtended) UnmarshalJSON(data []byte) error {
@@ -7751,10 +6920,7 @@ func (t ChatEventMemberTagChanged) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventMemberTagChanged",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventMemberTagChanged", Alias: (*Alias)(&t)})
 }
 
 // ChatEventMessageAutoDeleteTimeChanged The message auto-delete timer was changed
@@ -7776,10 +6942,7 @@ func (t ChatEventMessageAutoDeleteTimeChanged) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventMessageAutoDeleteTimeChanged",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventMessageAutoDeleteTimeChanged", Alias: (*Alias)(&t)})
 }
 
 // ChatEventMessageDeleted A message was deleted
@@ -7801,10 +6964,7 @@ func (t ChatEventMessageDeleted) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventMessageDeleted",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventMessageDeleted", Alias: (*Alias)(&t)})
 }
 
 // ChatEventMessageEdited A message was edited
@@ -7826,10 +6986,7 @@ func (t ChatEventMessageEdited) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventMessageEdited",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventMessageEdited", Alias: (*Alias)(&t)})
 }
 
 // ChatEventMessagePinned A message was pinned
@@ -7849,10 +7006,7 @@ func (t ChatEventMessagePinned) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventMessagePinned",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventMessagePinned", Alias: (*Alias)(&t)})
 }
 
 // ChatEventMessageUnpinned A message was unpinned
@@ -7872,10 +7026,7 @@ func (t ChatEventMessageUnpinned) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventMessageUnpinned",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventMessageUnpinned", Alias: (*Alias)(&t)})
 }
 
 // ChatEventPermissionsChanged The chat permissions were changed
@@ -7897,10 +7048,7 @@ func (t ChatEventPermissionsChanged) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventPermissionsChanged",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventPermissionsChanged", Alias: (*Alias)(&t)})
 }
 
 // ChatEventPhotoChanged The chat photo was changed
@@ -7922,10 +7070,7 @@ func (t ChatEventPhotoChanged) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventPhotoChanged",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventPhotoChanged", Alias: (*Alias)(&t)})
 }
 
 // ChatEventPollStopped A poll in a message was stopped
@@ -7945,10 +7090,7 @@ func (t ChatEventPollStopped) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventPollStopped",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventPollStopped", Alias: (*Alias)(&t)})
 }
 
 // ChatEventProfileAccentColorChanged The chat's profile accent color or profile background custom emoji were changed
@@ -7974,10 +7116,7 @@ func (t ChatEventProfileAccentColorChanged) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventProfileAccentColorChanged",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventProfileAccentColorChanged", Alias: (*Alias)(&t)})
 }
 
 // ChatEvents Contains a list of chat events
@@ -7995,10 +7134,7 @@ func (t ChatEvents) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEvents",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEvents", Alias: (*Alias)(&t)})
 }
 
 // ChatEventShowMessageSenderToggled The show_message_sender setting of a channel was toggled
@@ -8018,10 +7154,7 @@ func (t ChatEventShowMessageSenderToggled) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventShowMessageSenderToggled",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventShowMessageSenderToggled", Alias: (*Alias)(&t)})
 }
 
 // ChatEventSignMessagesToggled The sign_messages setting of a channel was toggled
@@ -8041,10 +7174,7 @@ func (t ChatEventSignMessagesToggled) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventSignMessagesToggled",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventSignMessagesToggled", Alias: (*Alias)(&t)})
 }
 
 // ChatEventSlowModeDelayChanged The slow_mode_delay setting of a supergroup was changed
@@ -8066,10 +7196,7 @@ func (t ChatEventSlowModeDelayChanged) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventSlowModeDelayChanged",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventSlowModeDelayChanged", Alias: (*Alias)(&t)})
 }
 
 // ChatEventStickerSetChanged The supergroup sticker set was changed
@@ -8091,10 +7218,7 @@ func (t ChatEventStickerSetChanged) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventStickerSetChanged",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventStickerSetChanged", Alias: (*Alias)(&t)})
 }
 
 // ChatEventTitleChanged The chat title was changed
@@ -8116,10 +7240,7 @@ func (t ChatEventTitleChanged) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventTitleChanged",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventTitleChanged", Alias: (*Alias)(&t)})
 }
 
 // ChatEventUsernameChanged The chat editable username was changed
@@ -8141,10 +7262,7 @@ func (t ChatEventUsernameChanged) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventUsernameChanged",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventUsernameChanged", Alias: (*Alias)(&t)})
 }
 
 // ChatEventVideoChatCreated A video chat was created
@@ -8164,10 +7282,7 @@ func (t ChatEventVideoChatCreated) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventVideoChatCreated",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventVideoChatCreated", Alias: (*Alias)(&t)})
 }
 
 // ChatEventVideoChatEnded A video chat was ended
@@ -8187,10 +7302,7 @@ func (t ChatEventVideoChatEnded) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventVideoChatEnded",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventVideoChatEnded", Alias: (*Alias)(&t)})
 }
 
 // ChatEventVideoChatMuteNewParticipantsToggled The mute_new_participants setting of a video chat was toggled
@@ -8210,10 +7322,7 @@ func (t ChatEventVideoChatMuteNewParticipantsToggled) MarshalJSON() ([]byte, err
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventVideoChatMuteNewParticipantsToggled",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventVideoChatMuteNewParticipantsToggled", Alias: (*Alias)(&t)})
 }
 
 // ChatEventVideoChatParticipantIsMutedToggled A video chat participant was muted or unmuted
@@ -8235,10 +7344,7 @@ func (t ChatEventVideoChatParticipantIsMutedToggled) MarshalJSON() ([]byte, erro
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventVideoChatParticipantIsMutedToggled",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventVideoChatParticipantIsMutedToggled", Alias: (*Alias)(&t)})
 }
 
 func (t *ChatEventVideoChatParticipantIsMutedToggled) UnmarshalJSON(data []byte) error {
@@ -8283,10 +7389,7 @@ func (t ChatEventVideoChatParticipantVolumeLevelChanged) MarshalJSON() ([]byte, 
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatEventVideoChatParticipantVolumeLevelChanged",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatEventVideoChatParticipantVolumeLevelChanged", Alias: (*Alias)(&t)})
 }
 
 func (t *ChatEventVideoChatParticipantVolumeLevelChanged) UnmarshalJSON(data []byte) error {
@@ -8355,10 +7458,7 @@ func (t ChatFolder) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatFolder",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatFolder", Alias: (*Alias)(&t)})
 }
 
 // ChatFolderIcon Represents an icon for a chat folder
@@ -8376,10 +7476,7 @@ func (t ChatFolderIcon) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatFolderIcon",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatFolderIcon", Alias: (*Alias)(&t)})
 }
 
 // ChatFolderInfo Contains basic information about a chat folder
@@ -8407,10 +7504,7 @@ func (t ChatFolderInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatFolderInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatFolderInfo", Alias: (*Alias)(&t)})
 }
 
 // ChatFolderInviteLink Contains a chat folder invite link
@@ -8432,10 +7526,7 @@ func (t ChatFolderInviteLink) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatFolderInviteLink",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatFolderInviteLink", Alias: (*Alias)(&t)})
 }
 
 // ChatFolderInviteLinkInfo Contains information about an invite link to a chat folder
@@ -8457,10 +7548,7 @@ func (t ChatFolderInviteLinkInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatFolderInviteLinkInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatFolderInviteLinkInfo", Alias: (*Alias)(&t)})
 }
 
 // ChatFolderInviteLinks Represents a list of chat folder invite links
@@ -8478,10 +7566,7 @@ func (t ChatFolderInviteLinks) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatFolderInviteLinks",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatFolderInviteLinks", Alias: (*Alias)(&t)})
 }
 
 // ChatFolderName Describes name of a chat folder
@@ -8501,10 +7586,7 @@ func (t ChatFolderName) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatFolderName",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatFolderName", Alias: (*Alias)(&t)})
 }
 
 // ChatInviteLink Contains a chat invite link
@@ -8548,10 +7630,7 @@ func (t ChatInviteLink) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatInviteLink",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatInviteLink", Alias: (*Alias)(&t)})
 }
 
 // ChatInviteLinkCount Describes a chat administrator with a number of active and revoked chat invite links
@@ -8573,10 +7652,7 @@ func (t ChatInviteLinkCount) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatInviteLinkCount",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatInviteLinkCount", Alias: (*Alias)(&t)})
 }
 
 // ChatInviteLinkCounts Contains a list of chat invite link counts
@@ -8594,10 +7670,7 @@ func (t ChatInviteLinkCounts) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatInviteLinkCounts",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatInviteLinkCounts", Alias: (*Alias)(&t)})
 }
 
 // ChatInviteLinkInfo Contains information about a chat invite link
@@ -8639,10 +7712,7 @@ func (t ChatInviteLinkInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatInviteLinkInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatInviteLinkInfo", Alias: (*Alias)(&t)})
 }
 
 func (t *ChatInviteLinkInfo) UnmarshalJSON(data []byte) error {
@@ -8689,10 +7759,7 @@ func (t ChatInviteLinkMember) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatInviteLinkMember",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatInviteLinkMember", Alias: (*Alias)(&t)})
 }
 
 // ChatInviteLinkMembers Contains a list of chat members joined a chat via an invite link
@@ -8712,10 +7779,7 @@ func (t ChatInviteLinkMembers) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatInviteLinkMembers",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatInviteLinkMembers", Alias: (*Alias)(&t)})
 }
 
 // ChatInviteLinks Contains a list of chat invite links
@@ -8735,10 +7799,7 @@ func (t ChatInviteLinks) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatInviteLinks",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatInviteLinks", Alias: (*Alias)(&t)})
 }
 
 // ChatInviteLinkSubscriptionInfo Contains information about subscription plan that must be paid by the user to use a chat invite link
@@ -8760,10 +7821,7 @@ func (t ChatInviteLinkSubscriptionInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatInviteLinkSubscriptionInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatInviteLinkSubscriptionInfo", Alias: (*Alias)(&t)})
 }
 
 // ChatJoinRequest Describes a user who sent a join request and waits for administrator approval
@@ -8785,10 +7843,7 @@ func (t ChatJoinRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatJoinRequest",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatJoinRequest", Alias: (*Alias)(&t)})
 }
 
 // ChatJoinRequestResultApproved The request was approved
@@ -8806,10 +7861,7 @@ func (t ChatJoinRequestResultApproved) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatJoinRequestResultApproved",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatJoinRequestResultApproved", Alias: (*Alias)(&t)})
 }
 
 // ChatJoinRequestResultDeclined The request was declined
@@ -8827,10 +7879,7 @@ func (t ChatJoinRequestResultDeclined) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatJoinRequestResultDeclined",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatJoinRequestResultDeclined", Alias: (*Alias)(&t)})
 }
 
 // ChatJoinRequestResultQueued The request was postponed without a decision
@@ -8848,10 +7897,7 @@ func (t ChatJoinRequestResultQueued) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatJoinRequestResultQueued",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatJoinRequestResultQueued", Alias: (*Alias)(&t)})
 }
 
 // ChatJoinRequests Contains a list of requests to join a chat
@@ -8871,10 +7917,7 @@ func (t ChatJoinRequests) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatJoinRequests",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatJoinRequests", Alias: (*Alias)(&t)})
 }
 
 // ChatJoinRequestsInfo Contains information about pending join requests for a chat
@@ -8894,10 +7937,7 @@ func (t ChatJoinRequestsInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatJoinRequestsInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatJoinRequestsInfo", Alias: (*Alias)(&t)})
 }
 
 // ChatJoinResultDeclined The join was declined by the guard bot
@@ -8915,10 +7955,7 @@ func (t ChatJoinResultDeclined) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatJoinResultDeclined",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatJoinResultDeclined", Alias: (*Alias)(&t)})
 }
 
 // ChatJoinResultGuardBotApprovalRequired An approval from a guard bot through a Web App is required to join the chat
@@ -8940,10 +7977,7 @@ func (t ChatJoinResultGuardBotApprovalRequired) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatJoinResultGuardBotApprovalRequired",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatJoinResultGuardBotApprovalRequired", Alias: (*Alias)(&t)})
 }
 
 // ChatJoinResultRequestSent The join request was sent and have to be approved by administrators of the chat
@@ -8961,10 +7995,7 @@ func (t ChatJoinResultRequestSent) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatJoinResultRequestSent",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatJoinResultRequestSent", Alias: (*Alias)(&t)})
 }
 
 // ChatJoinResultSuccess The chat was joined successfully
@@ -8984,10 +8015,7 @@ func (t ChatJoinResultSuccess) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatJoinResultSuccess",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatJoinResultSuccess", Alias: (*Alias)(&t)})
 }
 
 // ChatListArchive A list of chats usually located at the top of the main chat list. Unmuted chats are automatically moved from the Archive to the Main chat list when a new message arrives
@@ -9005,10 +8033,7 @@ func (t ChatListArchive) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatListArchive",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatListArchive", Alias: (*Alias)(&t)})
 }
 
 // ChatListFolder A list of chats added to a chat folder
@@ -9028,10 +8053,7 @@ func (t ChatListFolder) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatListFolder",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatListFolder", Alias: (*Alias)(&t)})
 }
 
 // ChatListMain A main list of chats
@@ -9049,10 +8071,7 @@ func (t ChatListMain) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatListMain",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatListMain", Alias: (*Alias)(&t)})
 }
 
 // ChatLists Contains a list of chat lists
@@ -9070,10 +8089,7 @@ func (t ChatLists) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatLists",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatLists", Alias: (*Alias)(&t)})
 }
 
 func (t *ChatLists) UnmarshalJSON(data []byte) error {
@@ -9119,10 +8135,7 @@ func (t ChatLocation) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatLocation",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatLocation", Alias: (*Alias)(&t)})
 }
 
 // ChatMember Describes a user or a chat as a member of another chat
@@ -9148,10 +8161,7 @@ func (t ChatMember) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatMember",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatMember", Alias: (*Alias)(&t)})
 }
 
 func (t *ChatMember) UnmarshalJSON(data []byte) error {
@@ -9202,10 +8212,7 @@ func (t ChatMembers) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatMembers",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatMembers", Alias: (*Alias)(&t)})
 }
 
 // ChatMembersFilterAdministrators Returns the owner and administrators
@@ -9223,10 +8230,7 @@ func (t ChatMembersFilterAdministrators) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatMembersFilterAdministrators",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatMembersFilterAdministrators", Alias: (*Alias)(&t)})
 }
 
 // ChatMembersFilterBanned Returns users banned from the chat; can be used only by administrators in a supergroup or in a channel
@@ -9244,10 +8248,7 @@ func (t ChatMembersFilterBanned) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatMembersFilterBanned",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatMembersFilterBanned", Alias: (*Alias)(&t)})
 }
 
 // ChatMembersFilterBots Returns bot members of the chat
@@ -9265,10 +8266,7 @@ func (t ChatMembersFilterBots) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatMembersFilterBots",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatMembersFilterBots", Alias: (*Alias)(&t)})
 }
 
 // ChatMembersFilterContacts Returns contacts of the user
@@ -9286,10 +8284,7 @@ func (t ChatMembersFilterContacts) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatMembersFilterContacts",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatMembersFilterContacts", Alias: (*Alias)(&t)})
 }
 
 // ChatMembersFilterMembers Returns all chat members, including restricted chat members
@@ -9307,10 +8302,7 @@ func (t ChatMembersFilterMembers) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatMembersFilterMembers",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatMembersFilterMembers", Alias: (*Alias)(&t)})
 }
 
 // ChatMembersFilterMention Returns users who can be mentioned in the chat
@@ -9330,10 +8322,7 @@ func (t ChatMembersFilterMention) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatMembersFilterMention",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatMembersFilterMention", Alias: (*Alias)(&t)})
 }
 
 func (t *ChatMembersFilterMention) UnmarshalJSON(data []byte) error {
@@ -9374,10 +8363,7 @@ func (t ChatMembersFilterRestricted) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatMembersFilterRestricted",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatMembersFilterRestricted", Alias: (*Alias)(&t)})
 }
 
 // ChatMemberStatusAdministrator The user is a member of the chat and has some additional privileges. In basic groups, administrators have all applicable rights.
@@ -9399,10 +8385,7 @@ func (t ChatMemberStatusAdministrator) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatMemberStatusAdministrator",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatMemberStatusAdministrator", Alias: (*Alias)(&t)})
 }
 
 // ChatMemberStatusBanned The user or the chat was banned (and hence is not a member of the chat). Implies the user can't return to the chat, view messages, or be used as a participant identifier to join a video chat of the chat
@@ -9422,10 +8405,7 @@ func (t ChatMemberStatusBanned) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatMemberStatusBanned",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatMemberStatusBanned", Alias: (*Alias)(&t)})
 }
 
 // ChatMemberStatusCreator The user is the owner of the chat and has all the administrator privileges
@@ -9447,10 +8427,7 @@ func (t ChatMemberStatusCreator) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatMemberStatusCreator",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatMemberStatusCreator", Alias: (*Alias)(&t)})
 }
 
 // ChatMemberStatusLeft The user or the chat is not a chat member
@@ -9468,10 +8445,7 @@ func (t ChatMemberStatusLeft) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatMemberStatusLeft",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatMemberStatusLeft", Alias: (*Alias)(&t)})
 }
 
 // ChatMemberStatusMember The user is a member of the chat, without any additional privileges or restrictions
@@ -9491,10 +8465,7 @@ func (t ChatMemberStatusMember) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatMemberStatusMember",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatMemberStatusMember", Alias: (*Alias)(&t)})
 }
 
 // ChatMemberStatusRestricted The user is under certain restrictions in the chat. Not supported in basic groups and channels
@@ -9518,10 +8489,7 @@ func (t ChatMemberStatusRestricted) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatMemberStatusRestricted",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatMemberStatusRestricted", Alias: (*Alias)(&t)})
 }
 
 // ChatMessageSender Represents a message sender, which can be used to send messages in a chat
@@ -9541,10 +8509,7 @@ func (t ChatMessageSender) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatMessageSender",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatMessageSender", Alias: (*Alias)(&t)})
 }
 
 func (t *ChatMessageSender) UnmarshalJSON(data []byte) error {
@@ -9585,10 +8550,7 @@ func (t ChatMessageSenders) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatMessageSenders",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatMessageSenders", Alias: (*Alias)(&t)})
 }
 
 // ChatNotificationSettings Contains information about notification settings for a chat or a forum topic
@@ -9636,10 +8598,7 @@ func (t ChatNotificationSettings) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatNotificationSettings",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatNotificationSettings", Alias: (*Alias)(&t)})
 }
 
 // ChatPermissions Describes actions that a user is allowed to take in a chat
@@ -9687,10 +8646,7 @@ func (t ChatPermissions) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatPermissions",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatPermissions", Alias: (*Alias)(&t)})
 }
 
 // ChatPhoto Describes a chat or user profile photo
@@ -9720,10 +8676,7 @@ func (t ChatPhoto) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatPhoto",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatPhoto", Alias: (*Alias)(&t)})
 }
 
 // ChatPhotoInfo Contains basic information about the photo of a chat
@@ -9749,10 +8702,7 @@ func (t ChatPhotoInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatPhotoInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatPhotoInfo", Alias: (*Alias)(&t)})
 }
 
 // ChatPhotos Contains a list of chat or user profile photos
@@ -9772,10 +8722,7 @@ func (t ChatPhotos) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatPhotos",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatPhotos", Alias: (*Alias)(&t)})
 }
 
 // ChatPhotoSticker Information about the sticker, which was used to create the chat photo. The sticker is shown at the center of the photo and occupies at most 67% of it
@@ -9795,10 +8742,7 @@ func (t ChatPhotoSticker) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatPhotoSticker",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatPhotoSticker", Alias: (*Alias)(&t)})
 }
 
 func (t *ChatPhotoSticker) UnmarshalJSON(data []byte) error {
@@ -9849,10 +8793,7 @@ func (t ChatPhotoStickerTypeCustomEmoji) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatPhotoStickerTypeCustomEmoji",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatPhotoStickerTypeCustomEmoji", Alias: (*Alias)(&t)})
 }
 
 // ChatPhotoStickerTypeRegularOrMask Information about the sticker, which was used to create the chat photo
@@ -9874,10 +8815,7 @@ func (t ChatPhotoStickerTypeRegularOrMask) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatPhotoStickerTypeRegularOrMask",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatPhotoStickerTypeRegularOrMask", Alias: (*Alias)(&t)})
 }
 
 // ChatPosition Describes a position of a chat in a chat list
@@ -9901,10 +8839,7 @@ func (t ChatPosition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatPosition",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatPosition", Alias: (*Alias)(&t)})
 }
 
 func (t *ChatPosition) UnmarshalJSON(data []byte) error {
@@ -9961,10 +8896,7 @@ func (t ChatRevenueAmount) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatRevenueAmount",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatRevenueAmount", Alias: (*Alias)(&t)})
 }
 
 // ChatRevenueStatistics A detailed statistics about revenue earned from sponsored messages in a chat
@@ -9988,10 +8920,7 @@ func (t ChatRevenueStatistics) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatRevenueStatistics",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatRevenueStatistics", Alias: (*Alias)(&t)})
 }
 
 func (t *ChatRevenueStatistics) UnmarshalJSON(data []byte) error {
@@ -10044,10 +8973,7 @@ func (t ChatRevenueTransaction) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatRevenueTransaction",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatRevenueTransaction", Alias: (*Alias)(&t)})
 }
 
 func (t *ChatRevenueTransaction) UnmarshalJSON(data []byte) error {
@@ -10092,10 +9018,7 @@ func (t ChatRevenueTransactions) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatRevenueTransactions",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatRevenueTransactions", Alias: (*Alias)(&t)})
 }
 
 // ChatRevenueTransactionTypeFragmentRefund Describes a refund for failed withdrawal of earnings through Fragment
@@ -10115,10 +9038,7 @@ func (t ChatRevenueTransactionTypeFragmentRefund) MarshalJSON() ([]byte, error) 
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatRevenueTransactionTypeFragmentRefund",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatRevenueTransactionTypeFragmentRefund", Alias: (*Alias)(&t)})
 }
 
 // ChatRevenueTransactionTypeFragmentWithdrawal Describes a withdrawal of earnings through Fragment
@@ -10140,10 +9060,7 @@ func (t ChatRevenueTransactionTypeFragmentWithdrawal) MarshalJSON() ([]byte, err
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatRevenueTransactionTypeFragmentWithdrawal",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatRevenueTransactionTypeFragmentWithdrawal", Alias: (*Alias)(&t)})
 }
 
 func (t *ChatRevenueTransactionTypeFragmentWithdrawal) UnmarshalJSON(data []byte) error {
@@ -10188,10 +9105,7 @@ func (t ChatRevenueTransactionTypeSponsoredMessageEarnings) MarshalJSON() ([]byt
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatRevenueTransactionTypeSponsoredMessageEarnings",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatRevenueTransactionTypeSponsoredMessageEarnings", Alias: (*Alias)(&t)})
 }
 
 // ChatRevenueTransactionTypeSuggestedPostEarnings Describes earnings from a published suggested post
@@ -10211,10 +9125,7 @@ func (t ChatRevenueTransactionTypeSuggestedPostEarnings) MarshalJSON() ([]byte, 
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatRevenueTransactionTypeSuggestedPostEarnings",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatRevenueTransactionTypeSuggestedPostEarnings", Alias: (*Alias)(&t)})
 }
 
 // ChatRevenueTransactionTypeUnsupported Describes an unsupported transaction
@@ -10232,10 +9143,7 @@ func (t ChatRevenueTransactionTypeUnsupported) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatRevenueTransactionTypeUnsupported",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatRevenueTransactionTypeUnsupported", Alias: (*Alias)(&t)})
 }
 
 // Chats Represents a list of chats
@@ -10255,10 +9163,7 @@ func (t Chats) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chats",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chats", Alias: (*Alias)(&t)})
 }
 
 // ChatSourceMtprotoProxy The chat is sponsored by the user's MTProxy server
@@ -10276,10 +9181,7 @@ func (t ChatSourceMtprotoProxy) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatSourceMtprotoProxy",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatSourceMtprotoProxy", Alias: (*Alias)(&t)})
 }
 
 // ChatSourcePublicServiceAnnouncement The chat contains a public service announcement
@@ -10301,10 +9203,7 @@ func (t ChatSourcePublicServiceAnnouncement) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatSourcePublicServiceAnnouncement",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatSourcePublicServiceAnnouncement", Alias: (*Alias)(&t)})
 }
 
 // ChatStatisticsAdministratorActionsInfo Contains statistics about administrator actions done by a user
@@ -10328,10 +9227,7 @@ func (t ChatStatisticsAdministratorActionsInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatStatisticsAdministratorActionsInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatStatisticsAdministratorActionsInfo", Alias: (*Alias)(&t)})
 }
 
 // ChatStatisticsChannel A detailed statistics about a channel chat
@@ -10393,10 +9289,7 @@ func (t ChatStatisticsChannel) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatStatisticsChannel",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatStatisticsChannel", Alias: (*Alias)(&t)})
 }
 
 func (t *ChatStatisticsChannel) UnmarshalJSON(data []byte) error {
@@ -10531,10 +9424,7 @@ func (t ChatStatisticsInteractionInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatStatisticsInteractionInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatStatisticsInteractionInfo", Alias: (*Alias)(&t)})
 }
 
 func (t *ChatStatisticsInteractionInfo) UnmarshalJSON(data []byte) error {
@@ -10577,10 +9467,7 @@ func (t ChatStatisticsInviterInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatStatisticsInviterInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatStatisticsInviterInfo", Alias: (*Alias)(&t)})
 }
 
 // ChatStatisticsMessageSenderInfo Contains statistics about messages sent by a user
@@ -10602,10 +9489,7 @@ func (t ChatStatisticsMessageSenderInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatStatisticsMessageSenderInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatStatisticsMessageSenderInfo", Alias: (*Alias)(&t)})
 }
 
 // ChatStatisticsObjectTypeMessage Describes a message sent in the chat
@@ -10625,10 +9509,7 @@ func (t ChatStatisticsObjectTypeMessage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatStatisticsObjectTypeMessage",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatStatisticsObjectTypeMessage", Alias: (*Alias)(&t)})
 }
 
 // ChatStatisticsObjectTypeStory Describes a story posted on behalf of the chat
@@ -10648,10 +9529,7 @@ func (t ChatStatisticsObjectTypeStory) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatStatisticsObjectTypeStory",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatStatisticsObjectTypeStory", Alias: (*Alias)(&t)})
 }
 
 // ChatStatisticsSupergroup A detailed statistics about a supergroup chat
@@ -10701,10 +9579,7 @@ func (t ChatStatisticsSupergroup) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatStatisticsSupergroup",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatStatisticsSupergroup", Alias: (*Alias)(&t)})
 }
 
 func (t *ChatStatisticsSupergroup) UnmarshalJSON(data []byte) error {
@@ -10803,10 +9678,7 @@ func (t ChatThemeEmoji) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatThemeEmoji",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatThemeEmoji", Alias: (*Alias)(&t)})
 }
 
 // ChatThemeGift A chat theme based on an upgraded gift
@@ -10826,10 +9698,7 @@ func (t ChatThemeGift) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatThemeGift",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatThemeGift", Alias: (*Alias)(&t)})
 }
 
 // ChatTypeBasicGroup A basic group (a chat with 0-200 other users)
@@ -10849,10 +9718,7 @@ func (t ChatTypeBasicGroup) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatTypeBasicGroup",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatTypeBasicGroup", Alias: (*Alias)(&t)})
 }
 
 // ChatTypePrivate An ordinary chat with a user
@@ -10872,10 +9738,7 @@ func (t ChatTypePrivate) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatTypePrivate",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatTypePrivate", Alias: (*Alias)(&t)})
 }
 
 // ChatTypeSecret A secret chat with a user
@@ -10897,10 +9760,7 @@ func (t ChatTypeSecret) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatTypeSecret",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatTypeSecret", Alias: (*Alias)(&t)})
 }
 
 // ChatTypeSupergroup A supergroup or channel (with unlimited members)
@@ -10922,10 +9782,7 @@ func (t ChatTypeSupergroup) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "chatTypeSupergroup",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "chatTypeSupergroup", Alias: (*Alias)(&t)})
 }
 
 // CheckChatUsernameResultOk The username can be set
@@ -10943,10 +9800,7 @@ func (t CheckChatUsernameResultOk) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "checkChatUsernameResultOk",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "checkChatUsernameResultOk", Alias: (*Alias)(&t)})
 }
 
 // CheckChatUsernameResultPublicChatsTooMany The user has too many chats with username, one of them must be made private first
@@ -10964,10 +9818,7 @@ func (t CheckChatUsernameResultPublicChatsTooMany) MarshalJSON() ([]byte, error)
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "checkChatUsernameResultPublicChatsTooMany",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "checkChatUsernameResultPublicChatsTooMany", Alias: (*Alias)(&t)})
 }
 
 // CheckChatUsernameResultPublicGroupsUnavailable The user can't be a member of a public supergroup
@@ -10985,10 +9836,7 @@ func (t CheckChatUsernameResultPublicGroupsUnavailable) MarshalJSON() ([]byte, e
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "checkChatUsernameResultPublicGroupsUnavailable",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "checkChatUsernameResultPublicGroupsUnavailable", Alias: (*Alias)(&t)})
 }
 
 // CheckChatUsernameResultUsernameInvalid The username is invalid
@@ -11006,10 +9854,7 @@ func (t CheckChatUsernameResultUsernameInvalid) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "checkChatUsernameResultUsernameInvalid",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "checkChatUsernameResultUsernameInvalid", Alias: (*Alias)(&t)})
 }
 
 // CheckChatUsernameResultUsernameOccupied The username is occupied
@@ -11027,10 +9872,7 @@ func (t CheckChatUsernameResultUsernameOccupied) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "checkChatUsernameResultUsernameOccupied",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "checkChatUsernameResultUsernameOccupied", Alias: (*Alias)(&t)})
 }
 
 // CheckChatUsernameResultUsernamePurchasable The username can be purchased at https://fragment.com. Information about the username can be received using getCollectibleItemInfo
@@ -11048,10 +9890,7 @@ func (t CheckChatUsernameResultUsernamePurchasable) MarshalJSON() ([]byte, error
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "checkChatUsernameResultUsernamePurchasable",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "checkChatUsernameResultUsernamePurchasable", Alias: (*Alias)(&t)})
 }
 
 // Checklist Describes a checklist
@@ -11079,10 +9918,7 @@ func (t Checklist) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "checklist",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "checklist", Alias: (*Alias)(&t)})
 }
 
 // ChecklistTask Describes a task in a checklist
@@ -11106,10 +9942,7 @@ func (t ChecklistTask) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "checklistTask",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "checklistTask", Alias: (*Alias)(&t)})
 }
 
 func (t *ChecklistTask) UnmarshalJSON(data []byte) error {
@@ -11150,10 +9983,7 @@ func (t CheckStickerSetNameResultNameInvalid) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "checkStickerSetNameResultNameInvalid",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "checkStickerSetNameResultNameInvalid", Alias: (*Alias)(&t)})
 }
 
 // CheckStickerSetNameResultNameOccupied The name is occupied
@@ -11171,10 +10001,7 @@ func (t CheckStickerSetNameResultNameOccupied) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "checkStickerSetNameResultNameOccupied",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "checkStickerSetNameResultNameOccupied", Alias: (*Alias)(&t)})
 }
 
 // CheckStickerSetNameResultOk The name can be set
@@ -11192,10 +10019,7 @@ func (t CheckStickerSetNameResultOk) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "checkStickerSetNameResultOk",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "checkStickerSetNameResultOk", Alias: (*Alias)(&t)})
 }
 
 // CloseBirthdayUser Describes a user who had or will have a birthday soon
@@ -11215,10 +10039,7 @@ func (t CloseBirthdayUser) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "closeBirthdayUser",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "closeBirthdayUser", Alias: (*Alias)(&t)})
 }
 
 // ClosedVectorPath Represents a closed vector path. The path begins at the end point of the last command. The coordinate system origin is in the upper-left corner
@@ -11236,10 +10057,7 @@ func (t ClosedVectorPath) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "closedVectorPath",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "closedVectorPath", Alias: (*Alias)(&t)})
 }
 
 func (t *ClosedVectorPath) UnmarshalJSON(data []byte) error {
@@ -11293,10 +10111,7 @@ func (t CollectibleItemInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "collectibleItemInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "collectibleItemInfo", Alias: (*Alias)(&t)})
 }
 
 // CollectibleItemTypePhoneNumber A phone number
@@ -11316,10 +10131,7 @@ func (t CollectibleItemTypePhoneNumber) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "collectibleItemTypePhoneNumber",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "collectibleItemTypePhoneNumber", Alias: (*Alias)(&t)})
 }
 
 // CollectibleItemTypeUsername A username
@@ -11339,10 +10151,7 @@ func (t CollectibleItemTypeUsername) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "collectibleItemTypeUsername",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "collectibleItemTypeUsername", Alias: (*Alias)(&t)})
 }
 
 // Community Represents a community consisting of supergroup chats, channel chats and chats with bots
@@ -11372,10 +10181,7 @@ func (t Community) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "community",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "community", Alias: (*Alias)(&t)})
 }
 
 func (t *Community) UnmarshalJSON(data []byte) error {
@@ -11424,10 +10230,7 @@ func (t CommunityAdministratorRights) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "communityAdministratorRights",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "communityAdministratorRights", Alias: (*Alias)(&t)})
 }
 
 // CommunityChat Describes a chat in a community
@@ -11449,10 +10252,7 @@ func (t CommunityChat) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "communityChat",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "communityChat", Alias: (*Alias)(&t)})
 }
 
 // CommunityFullInfo Contains full information about a community
@@ -11478,10 +10278,7 @@ func (t CommunityFullInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "communityFullInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "communityFullInfo", Alias: (*Alias)(&t)})
 }
 
 // CommunityId Contains identifier of a community
@@ -11499,10 +10296,7 @@ func (t CommunityId) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "communityId",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "communityId", Alias: (*Alias)(&t)})
 }
 
 // CommunityMemberStatusAdministrator The user is a member of the community and has some additional privileges
@@ -11524,10 +10318,7 @@ func (t CommunityMemberStatusAdministrator) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "communityMemberStatusAdministrator",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "communityMemberStatusAdministrator", Alias: (*Alias)(&t)})
 }
 
 // CommunityMemberStatusBanned The user or the chat was banned in the community; implies ban in all chats in the community
@@ -11545,10 +10336,7 @@ func (t CommunityMemberStatusBanned) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "communityMemberStatusBanned",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "communityMemberStatusBanned", Alias: (*Alias)(&t)})
 }
 
 // CommunityMemberStatusCreator The user is the owner of the community and has all the administrator privileges
@@ -11566,10 +10354,7 @@ func (t CommunityMemberStatusCreator) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "communityMemberStatusCreator",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "communityMemberStatusCreator", Alias: (*Alias)(&t)})
 }
 
 // CommunityMemberStatusLeft The user or the chat is not a community member
@@ -11587,10 +10372,7 @@ func (t CommunityMemberStatusLeft) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "communityMemberStatusLeft",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "communityMemberStatusLeft", Alias: (*Alias)(&t)})
 }
 
 // CommunityMemberStatusMember The user is a member of the community, without any additional privileges or restrictions
@@ -11608,10 +10390,7 @@ func (t CommunityMemberStatusMember) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "communityMemberStatusMember",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "communityMemberStatusMember", Alias: (*Alias)(&t)})
 }
 
 // CommunityPermissions Describes actions that a user is allowed to take in a community
@@ -11629,10 +10408,7 @@ func (t CommunityPermissions) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "communityPermissions",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "communityPermissions", Alias: (*Alias)(&t)})
 }
 
 // ConnectedAffiliateProgram Describes an affiliate program that was connected to an affiliate
@@ -11662,10 +10438,7 @@ func (t ConnectedAffiliateProgram) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "connectedAffiliateProgram",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "connectedAffiliateProgram", Alias: (*Alias)(&t)})
 }
 
 // ConnectedAffiliatePrograms Represents a list of affiliate programs that were connected to an affiliate
@@ -11687,10 +10460,7 @@ func (t ConnectedAffiliatePrograms) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "connectedAffiliatePrograms",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "connectedAffiliatePrograms", Alias: (*Alias)(&t)})
 }
 
 // ConnectedWebsite Contains information about one website the current user is logged in with Telegram
@@ -11724,10 +10494,7 @@ func (t ConnectedWebsite) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "connectedWebsite",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "connectedWebsite", Alias: (*Alias)(&t)})
 }
 
 // ConnectedWebsites Contains a list of websites the current user is logged in with Telegram
@@ -11745,10 +10512,7 @@ func (t ConnectedWebsites) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "connectedWebsites",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "connectedWebsites", Alias: (*Alias)(&t)})
 }
 
 // ConnectionStateConnecting Establishing a connection to the Telegram servers
@@ -11766,10 +10530,7 @@ func (t ConnectionStateConnecting) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "connectionStateConnecting",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "connectionStateConnecting", Alias: (*Alias)(&t)})
 }
 
 // ConnectionStateConnectingToProxy Establishing a connection with a proxy server
@@ -11787,10 +10548,7 @@ func (t ConnectionStateConnectingToProxy) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "connectionStateConnectingToProxy",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "connectionStateConnectingToProxy", Alias: (*Alias)(&t)})
 }
 
 // ConnectionStateReady There is a working connection to the Telegram servers
@@ -11808,10 +10566,7 @@ func (t ConnectionStateReady) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "connectionStateReady",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "connectionStateReady", Alias: (*Alias)(&t)})
 }
 
 // ConnectionStateUpdating Downloading data expected to be received while the application was offline
@@ -11829,10 +10584,7 @@ func (t ConnectionStateUpdating) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "connectionStateUpdating",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "connectionStateUpdating", Alias: (*Alias)(&t)})
 }
 
 // ConnectionStateWaitingForNetwork Waiting for the network to become available. Use setNetworkType to change the available network type
@@ -11850,10 +10602,7 @@ func (t ConnectionStateWaitingForNetwork) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "connectionStateWaitingForNetwork",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "connectionStateWaitingForNetwork", Alias: (*Alias)(&t)})
 }
 
 // Contact Describes a contact of a user
@@ -11879,10 +10628,7 @@ func (t Contact) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "contact",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "contact", Alias: (*Alias)(&t)})
 }
 
 // Count Contains a counter
@@ -11900,10 +10646,7 @@ func (t Count) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "count",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "count", Alias: (*Alias)(&t)})
 }
 
 // Countries Contains information about countries
@@ -11921,10 +10664,7 @@ func (t Countries) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "countries",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "countries", Alias: (*Alias)(&t)})
 }
 
 // CountryInfo Contains information about a country
@@ -11952,10 +10692,7 @@ func (t CountryInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "countryInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "countryInfo", Alias: (*Alias)(&t)})
 }
 
 // CraftGiftResultFail Crafting has failed
@@ -11973,10 +10710,7 @@ func (t CraftGiftResultFail) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "craftGiftResultFail",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "craftGiftResultFail", Alias: (*Alias)(&t)})
 }
 
 // CraftGiftResultInvalidGift Crafting isn't possible because one of the gifts isn't suitable for crafting
@@ -11994,10 +10728,7 @@ func (t CraftGiftResultInvalidGift) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "craftGiftResultInvalidGift",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "craftGiftResultInvalidGift", Alias: (*Alias)(&t)})
 }
 
 // CraftGiftResultSuccess Crafting was successful
@@ -12019,10 +10750,7 @@ func (t CraftGiftResultSuccess) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "craftGiftResultSuccess",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "craftGiftResultSuccess", Alias: (*Alias)(&t)})
 }
 
 // CraftGiftResultTooEarly Crafting isn't possible because one of the gifts can't be used for crafting yet
@@ -12042,10 +10770,7 @@ func (t CraftGiftResultTooEarly) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "craftGiftResultTooEarly",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "craftGiftResultTooEarly", Alias: (*Alias)(&t)})
 }
 
 // CreatedBasicGroupChat Contains information about a newly created basic group chat
@@ -12065,10 +10790,7 @@ func (t CreatedBasicGroupChat) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "createdBasicGroupChat",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "createdBasicGroupChat", Alias: (*Alias)(&t)})
 }
 
 // CurrentWeather Describes the current weather
@@ -12088,10 +10810,7 @@ func (t CurrentWeather) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "currentWeather",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "currentWeather", Alias: (*Alias)(&t)})
 }
 
 // CustomRequestResult Contains the result of a custom request
@@ -12109,10 +10828,7 @@ func (t CustomRequestResult) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "customRequestResult",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "customRequestResult", Alias: (*Alias)(&t)})
 }
 
 // Data Contains some binary data
@@ -12130,10 +10846,7 @@ func (t Data) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "data",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "data", Alias: (*Alias)(&t)})
 }
 
 // DatabaseStatistics Contains database statistics
@@ -12151,10 +10864,7 @@ func (t DatabaseStatistics) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "databaseStatistics",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "databaseStatistics", Alias: (*Alias)(&t)})
 }
 
 // Date Represents a date according to the Gregorian calendar
@@ -12176,10 +10886,7 @@ func (t Date) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "date",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "date", Alias: (*Alias)(&t)})
 }
 
 // DatedFile File with the date it was uploaded
@@ -12199,10 +10906,7 @@ func (t DatedFile) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "datedFile",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "datedFile", Alias: (*Alias)(&t)})
 }
 
 // DateRange Represents a date range
@@ -12222,10 +10926,7 @@ func (t DateRange) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "dateRange",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "dateRange", Alias: (*Alias)(&t)})
 }
 
 // DateTimeFormattingTypeAbsolute The date and time must be shown as absolute timestamps
@@ -12249,10 +10950,7 @@ func (t DateTimeFormattingTypeAbsolute) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "dateTimeFormattingTypeAbsolute",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "dateTimeFormattingTypeAbsolute", Alias: (*Alias)(&t)})
 }
 
 func (t *DateTimeFormattingTypeAbsolute) UnmarshalJSON(data []byte) error {
@@ -12301,10 +10999,7 @@ func (t DateTimeFormattingTypeRelative) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "dateTimeFormattingTypeRelative",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "dateTimeFormattingTypeRelative", Alias: (*Alias)(&t)})
 }
 
 // DateTimePartPrecisionLong Show the date or time in a long way (March 17, 2022 or 22:45:00)
@@ -12322,10 +11017,7 @@ func (t DateTimePartPrecisionLong) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "dateTimePartPrecisionLong",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "dateTimePartPrecisionLong", Alias: (*Alias)(&t)})
 }
 
 // DateTimePartPrecisionNone Don't show the date or time
@@ -12343,10 +11035,7 @@ func (t DateTimePartPrecisionNone) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "dateTimePartPrecisionNone",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "dateTimePartPrecisionNone", Alias: (*Alias)(&t)})
 }
 
 // DateTimePartPrecisionShort Show the date or time in a short way (17.03.22 or 22:45)
@@ -12364,10 +11053,7 @@ func (t DateTimePartPrecisionShort) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "dateTimePartPrecisionShort",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "dateTimePartPrecisionShort", Alias: (*Alias)(&t)})
 }
 
 // DeepLinkInfo Contains information about a tg: deep link
@@ -12387,10 +11073,7 @@ func (t DeepLinkInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "deepLinkInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deepLinkInfo", Alias: (*Alias)(&t)})
 }
 
 // DeviceTokenApplePush A token for Apple Push Notification service
@@ -12412,10 +11095,7 @@ func (t DeviceTokenApplePush) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "deviceTokenApplePush",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deviceTokenApplePush", Alias: (*Alias)(&t)})
 }
 
 // DeviceTokenApplePushVoIP A token for Apple Push Notification service VoIP notifications
@@ -12439,10 +11119,7 @@ func (t DeviceTokenApplePushVoIP) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "deviceTokenApplePushVoIP",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deviceTokenApplePushVoIP", Alias: (*Alias)(&t)})
 }
 
 // DeviceTokenBlackBerryPush A token for BlackBerry Push Service
@@ -12462,10 +11139,7 @@ func (t DeviceTokenBlackBerryPush) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "deviceTokenBlackBerryPush",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deviceTokenBlackBerryPush", Alias: (*Alias)(&t)})
 }
 
 // DeviceTokenFirebaseCloudMessaging A token for Firebase Cloud Messaging
@@ -12487,10 +11161,7 @@ func (t DeviceTokenFirebaseCloudMessaging) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "deviceTokenFirebaseCloudMessaging",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deviceTokenFirebaseCloudMessaging", Alias: (*Alias)(&t)})
 }
 
 // DeviceTokenHuaweiPush A token for HUAWEI Push Service
@@ -12512,10 +11183,7 @@ func (t DeviceTokenHuaweiPush) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "deviceTokenHuaweiPush",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deviceTokenHuaweiPush", Alias: (*Alias)(&t)})
 }
 
 // DeviceTokenMicrosoftPush A token for Microsoft Push Notification Service
@@ -12535,10 +11203,7 @@ func (t DeviceTokenMicrosoftPush) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "deviceTokenMicrosoftPush",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deviceTokenMicrosoftPush", Alias: (*Alias)(&t)})
 }
 
 // DeviceTokenMicrosoftPushVoIP A token for Microsoft Push Notification Service VoIP channel
@@ -12558,10 +11223,7 @@ func (t DeviceTokenMicrosoftPushVoIP) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "deviceTokenMicrosoftPushVoIP",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deviceTokenMicrosoftPushVoIP", Alias: (*Alias)(&t)})
 }
 
 // DeviceTokenSimplePush A token for Simple Push API for Firefox OS
@@ -12581,10 +11243,7 @@ func (t DeviceTokenSimplePush) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "deviceTokenSimplePush",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deviceTokenSimplePush", Alias: (*Alias)(&t)})
 }
 
 // DeviceTokenTizenPush A token for Tizen Push Service
@@ -12604,10 +11263,7 @@ func (t DeviceTokenTizenPush) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "deviceTokenTizenPush",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deviceTokenTizenPush", Alias: (*Alias)(&t)})
 }
 
 // DeviceTokenUbuntuPush A token for Ubuntu Push Client service
@@ -12627,10 +11283,7 @@ func (t DeviceTokenUbuntuPush) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "deviceTokenUbuntuPush",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deviceTokenUbuntuPush", Alias: (*Alias)(&t)})
 }
 
 // DeviceTokenWebPush A token for web Push API
@@ -12654,10 +11307,7 @@ func (t DeviceTokenWebPush) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "deviceTokenWebPush",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deviceTokenWebPush", Alias: (*Alias)(&t)})
 }
 
 // DeviceTokenWindowsPush A token for Windows Push Notification Services
@@ -12677,10 +11327,7 @@ func (t DeviceTokenWindowsPush) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "deviceTokenWindowsPush",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "deviceTokenWindowsPush", Alias: (*Alias)(&t)})
 }
 
 // DiceStickersRegular A regular animated sticker
@@ -12700,10 +11347,7 @@ func (t DiceStickersRegular) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "diceStickersRegular",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "diceStickersRegular", Alias: (*Alias)(&t)})
 }
 
 // DiceStickersSlotMachine Animated stickers to be combined into a slot machine
@@ -12731,10 +11375,7 @@ func (t DiceStickersSlotMachine) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "diceStickersSlotMachine",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "diceStickersSlotMachine", Alias: (*Alias)(&t)})
 }
 
 // DiffEntity Represents a change of a text
@@ -12756,10 +11397,7 @@ func (t DiffEntity) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "diffEntity",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "diffEntity", Alias: (*Alias)(&t)})
 }
 
 func (t *DiffEntity) UnmarshalJSON(data []byte) error {
@@ -12800,10 +11438,7 @@ func (t DiffEntityTypeDelete) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "diffEntityTypeDelete",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "diffEntityTypeDelete", Alias: (*Alias)(&t)})
 }
 
 // DiffEntityTypeInsert Addition of some text
@@ -12821,10 +11456,7 @@ func (t DiffEntityTypeInsert) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "diffEntityTypeInsert",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "diffEntityTypeInsert", Alias: (*Alias)(&t)})
 }
 
 // DiffEntityTypeReplace Change of some text
@@ -12844,10 +11476,7 @@ func (t DiffEntityTypeReplace) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "diffEntityTypeReplace",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "diffEntityTypeReplace", Alias: (*Alias)(&t)})
 }
 
 // DiffText A text with some changes highlighted
@@ -12867,10 +11496,7 @@ func (t DiffText) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "diffText",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "diffText", Alias: (*Alias)(&t)})
 }
 
 // DirectMessagesChatTopic Contains information about a topic in a channel direct messages chat administered by the current user
@@ -12910,10 +11536,7 @@ func (t DirectMessagesChatTopic) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "directMessagesChatTopic",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "directMessagesChatTopic", Alias: (*Alias)(&t)})
 }
 
 func (t *DirectMessagesChatTopic) UnmarshalJSON(data []byte) error {
@@ -12962,10 +11585,7 @@ func (t Document) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "document",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "document", Alias: (*Alias)(&t)})
 }
 
 // DownloadedFileCounts Contains number of being downloaded and recently downloaded files found
@@ -12987,10 +11607,7 @@ func (t DownloadedFileCounts) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "downloadedFileCounts",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "downloadedFileCounts", Alias: (*Alias)(&t)})
 }
 
 // DraftMessage Contains information about a message draft
@@ -13016,10 +11633,7 @@ func (t DraftMessage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "draftMessage",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "draftMessage", Alias: (*Alias)(&t)})
 }
 
 func (t *DraftMessage) UnmarshalJSON(data []byte) error {
@@ -13070,10 +11684,7 @@ func (t DraftMessageContentInputRichMessage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "draftMessageContentInputRichMessage",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "draftMessageContentInputRichMessage", Alias: (*Alias)(&t)})
 }
 
 // DraftMessageContentRichMessage A rich message draft; not supported in setChatDraftMessage
@@ -13093,10 +11704,7 @@ func (t DraftMessageContentRichMessage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "draftMessageContentRichMessage",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "draftMessageContentRichMessage", Alias: (*Alias)(&t)})
 }
 
 // DraftMessageContentText A text message draft
@@ -13118,10 +11726,7 @@ func (t DraftMessageContentText) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "draftMessageContentText",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "draftMessageContentText", Alias: (*Alias)(&t)})
 }
 
 // DraftMessageContentVideoNote A video note message draft
@@ -13147,10 +11752,7 @@ func (t DraftMessageContentVideoNote) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "draftMessageContentVideoNote",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "draftMessageContentVideoNote", Alias: (*Alias)(&t)})
 }
 
 func (t *DraftMessageContentVideoNote) UnmarshalJSON(data []byte) error {
@@ -13199,10 +11801,7 @@ func (t DraftMessageContentVoiceNote) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "draftMessageContentVoiceNote",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "draftMessageContentVoiceNote", Alias: (*Alias)(&t)})
 }
 
 func (t *DraftMessageContentVoiceNote) UnmarshalJSON(data []byte) error {
@@ -13245,10 +11844,7 @@ func (t EmailAddressAuthenticationAppleId) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "emailAddressAuthenticationAppleId",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "emailAddressAuthenticationAppleId", Alias: (*Alias)(&t)})
 }
 
 // EmailAddressAuthenticationCode An authentication code delivered to a user's email address
@@ -13268,10 +11864,7 @@ func (t EmailAddressAuthenticationCode) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "emailAddressAuthenticationCode",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "emailAddressAuthenticationCode", Alias: (*Alias)(&t)})
 }
 
 // EmailAddressAuthenticationCodeInfo Information about the email address authentication code that was sent
@@ -13291,10 +11884,7 @@ func (t EmailAddressAuthenticationCodeInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "emailAddressAuthenticationCodeInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "emailAddressAuthenticationCodeInfo", Alias: (*Alias)(&t)})
 }
 
 // EmailAddressAuthenticationGoogleId An authentication token received through Google ID
@@ -13314,10 +11904,7 @@ func (t EmailAddressAuthenticationGoogleId) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "emailAddressAuthenticationGoogleId",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "emailAddressAuthenticationGoogleId", Alias: (*Alias)(&t)})
 }
 
 // EmailAddressResetStateAvailable Email address can be reset after the given period. Call resetAuthenticationEmailAddress to reset it and allow the user to authorize with a code sent to the user's phone number
@@ -13337,10 +11924,7 @@ func (t EmailAddressResetStateAvailable) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "emailAddressResetStateAvailable",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "emailAddressResetStateAvailable", Alias: (*Alias)(&t)})
 }
 
 // EmailAddressResetStatePending Email address reset has already been requested. Call resetAuthenticationEmailAddress to check whether immediate reset is possible
@@ -13360,10 +11944,7 @@ func (t EmailAddressResetStatePending) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "emailAddressResetStatePending",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "emailAddressResetStatePending", Alias: (*Alias)(&t)})
 }
 
 // EmojiCategories Represents a list of emoji categories
@@ -13381,10 +11962,7 @@ func (t EmojiCategories) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "emojiCategories",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "emojiCategories", Alias: (*Alias)(&t)})
 }
 
 // EmojiCategory Describes an emoji category
@@ -13408,10 +11986,7 @@ func (t EmojiCategory) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "emojiCategory",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "emojiCategory", Alias: (*Alias)(&t)})
 }
 
 func (t *EmojiCategory) UnmarshalJSON(data []byte) error {
@@ -13452,10 +12027,7 @@ func (t EmojiCategorySourcePremium) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "emojiCategorySourcePremium",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "emojiCategorySourcePremium", Alias: (*Alias)(&t)})
 }
 
 // EmojiCategorySourceSearch The category contains a list of similar emoji to search for in getStickers and searchStickers for stickers,
@@ -13475,10 +12047,7 @@ func (t EmojiCategorySourceSearch) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "emojiCategorySourceSearch",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "emojiCategorySourceSearch", Alias: (*Alias)(&t)})
 }
 
 // EmojiCategoryTypeChatPhoto The category must be used for chat photo emoji selection
@@ -13496,10 +12065,7 @@ func (t EmojiCategoryTypeChatPhoto) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "emojiCategoryTypeChatPhoto",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "emojiCategoryTypeChatPhoto", Alias: (*Alias)(&t)})
 }
 
 // EmojiCategoryTypeDefault The category must be used by default (e.g., for custom emoji or animation search)
@@ -13517,10 +12083,7 @@ func (t EmojiCategoryTypeDefault) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "emojiCategoryTypeDefault",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "emojiCategoryTypeDefault", Alias: (*Alias)(&t)})
 }
 
 // EmojiCategoryTypeEmojiStatus The category must be used for emoji status selection
@@ -13538,10 +12101,7 @@ func (t EmojiCategoryTypeEmojiStatus) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "emojiCategoryTypeEmojiStatus",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "emojiCategoryTypeEmojiStatus", Alias: (*Alias)(&t)})
 }
 
 // EmojiCategoryTypeRegularStickers The category must be used by default for regular sticker selection. It may contain greeting emoji category and premium stickers
@@ -13559,10 +12119,7 @@ func (t EmojiCategoryTypeRegularStickers) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "emojiCategoryTypeRegularStickers",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "emojiCategoryTypeRegularStickers", Alias: (*Alias)(&t)})
 }
 
 // EmojiChatTheme Describes a chat theme based on an emoji
@@ -13584,10 +12141,7 @@ func (t EmojiChatTheme) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "emojiChatTheme",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "emojiChatTheme", Alias: (*Alias)(&t)})
 }
 
 // EmojiKeyword Represents an emoji with its keyword
@@ -13607,10 +12161,7 @@ func (t EmojiKeyword) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "emojiKeyword",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "emojiKeyword", Alias: (*Alias)(&t)})
 }
 
 // EmojiKeywords Represents a list of emojis with their keywords
@@ -13628,10 +12179,7 @@ func (t EmojiKeywords) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "emojiKeywords",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "emojiKeywords", Alias: (*Alias)(&t)})
 }
 
 // EmojiReaction Contains information about an emoji reaction
@@ -13667,10 +12215,7 @@ func (t EmojiReaction) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "emojiReaction",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "emojiReaction", Alias: (*Alias)(&t)})
 }
 
 // Emojis Represents a list of emojis
@@ -13688,10 +12233,7 @@ func (t Emojis) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "emojis",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "emojis", Alias: (*Alias)(&t)})
 }
 
 // EmojiStatus Describes an emoji to be shown instead of the Telegram Premium badge
@@ -13711,10 +12253,7 @@ func (t EmojiStatus) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "emojiStatus",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "emojiStatus", Alias: (*Alias)(&t)})
 }
 
 func (t *EmojiStatus) UnmarshalJSON(data []byte) error {
@@ -13755,10 +12294,7 @@ func (t EmojiStatusCustomEmojis) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "emojiStatusCustomEmojis",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "emojiStatusCustomEmojis", Alias: (*Alias)(&t)})
 }
 
 // EmojiStatuses Contains a list of emoji statuses
@@ -13776,10 +12312,7 @@ func (t EmojiStatuses) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "emojiStatuses",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "emojiStatuses", Alias: (*Alias)(&t)})
 }
 
 // EmojiStatusTypeCustomEmoji A custom emoji set as emoji status
@@ -13799,10 +12332,7 @@ func (t EmojiStatusTypeCustomEmoji) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "emojiStatusTypeCustomEmoji",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "emojiStatusTypeCustomEmoji", Alias: (*Alias)(&t)})
 }
 
 // EmojiStatusTypeUpgradedGift An upgraded gift set as emoji status
@@ -13832,10 +12362,7 @@ func (t EmojiStatusTypeUpgradedGift) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "emojiStatusTypeUpgradedGift",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "emojiStatusTypeUpgradedGift", Alias: (*Alias)(&t)})
 }
 
 // EncryptedCredentials Contains encrypted Telegram Passport data credentials
@@ -13857,10 +12384,7 @@ func (t EncryptedCredentials) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "encryptedCredentials",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "encryptedCredentials", Alias: (*Alias)(&t)})
 }
 
 // EncryptedPassportElement Contains information about an encrypted Telegram Passport element; for bots only
@@ -13894,10 +12418,7 @@ func (t EncryptedPassportElement) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "encryptedPassportElement",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "encryptedPassportElement", Alias: (*Alias)(&t)})
 }
 
 func (t *EncryptedPassportElement) UnmarshalJSON(data []byte) error {
@@ -13944,10 +12465,7 @@ func (t EphemeralMessageContent) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "ephemeralMessageContent",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "ephemeralMessageContent", Alias: (*Alias)(&t)})
 }
 
 func (t *EphemeralMessageContent) UnmarshalJSON(data []byte) error {
@@ -14014,10 +12532,7 @@ func (t Error) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "error",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "error", Alias: (*Alias)(&t)})
 }
 
 // FactCheck Describes a fact-check added to the message by an independent checker
@@ -14037,10 +12552,7 @@ func (t FactCheck) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "factCheck",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "factCheck", Alias: (*Alias)(&t)})
 }
 
 // FailedToAddMember Contains information about a user who has failed to be added to a chat
@@ -14062,10 +12574,7 @@ func (t FailedToAddMember) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "failedToAddMember",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "failedToAddMember", Alias: (*Alias)(&t)})
 }
 
 // FailedToAddMembers Represents a list of users that has failed to be added to a chat
@@ -14083,10 +12592,7 @@ func (t FailedToAddMembers) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "failedToAddMembers",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "failedToAddMembers", Alias: (*Alias)(&t)})
 }
 
 // File Represents a file
@@ -14112,10 +12618,7 @@ func (t File) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "file",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "file", Alias: (*Alias)(&t)})
 }
 
 // FileDownload Describes a file added to file download list
@@ -14141,10 +12644,7 @@ func (t FileDownload) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "fileDownload",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "fileDownload", Alias: (*Alias)(&t)})
 }
 
 // FileDownloadedPrefixSize Contains size of downloaded prefix of a file
@@ -14162,10 +12662,7 @@ func (t FileDownloadedPrefixSize) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "fileDownloadedPrefixSize",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "fileDownloadedPrefixSize", Alias: (*Alias)(&t)})
 }
 
 // FileTypeAnimation The file is an animation
@@ -14183,10 +12680,7 @@ func (t FileTypeAnimation) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "fileTypeAnimation",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "fileTypeAnimation", Alias: (*Alias)(&t)})
 }
 
 // FileTypeAudio The file is an audio file
@@ -14204,10 +12698,7 @@ func (t FileTypeAudio) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "fileTypeAudio",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "fileTypeAudio", Alias: (*Alias)(&t)})
 }
 
 // FileTypeDocument The file is a document
@@ -14225,10 +12716,7 @@ func (t FileTypeDocument) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "fileTypeDocument",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "fileTypeDocument", Alias: (*Alias)(&t)})
 }
 
 // FileTypeLivePhotoVideo The file is a video for a live photo
@@ -14246,10 +12734,7 @@ func (t FileTypeLivePhotoVideo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "fileTypeLivePhotoVideo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "fileTypeLivePhotoVideo", Alias: (*Alias)(&t)})
 }
 
 // FileTypeNone The data is not a file
@@ -14267,10 +12752,7 @@ func (t FileTypeNone) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "fileTypeNone",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "fileTypeNone", Alias: (*Alias)(&t)})
 }
 
 // FileTypeNotificationSound The file is a notification sound
@@ -14288,10 +12770,7 @@ func (t FileTypeNotificationSound) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "fileTypeNotificationSound",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "fileTypeNotificationSound", Alias: (*Alias)(&t)})
 }
 
 // FileTypePhoto The file is a photo
@@ -14309,10 +12788,7 @@ func (t FileTypePhoto) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "fileTypePhoto",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "fileTypePhoto", Alias: (*Alias)(&t)})
 }
 
 // FileTypePhotoStory The file is a photo published as a story
@@ -14330,10 +12806,7 @@ func (t FileTypePhotoStory) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "fileTypePhotoStory",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "fileTypePhotoStory", Alias: (*Alias)(&t)})
 }
 
 // FileTypeProfilePhoto The file is a profile photo
@@ -14351,10 +12824,7 @@ func (t FileTypeProfilePhoto) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "fileTypeProfilePhoto",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "fileTypeProfilePhoto", Alias: (*Alias)(&t)})
 }
 
 // FileTypeSecret The file was sent to a secret chat (the file type is not known to the server)
@@ -14372,10 +12842,7 @@ func (t FileTypeSecret) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "fileTypeSecret",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "fileTypeSecret", Alias: (*Alias)(&t)})
 }
 
 // FileTypeSecretThumbnail The file is a thumbnail of a file from a secret chat
@@ -14393,10 +12860,7 @@ func (t FileTypeSecretThumbnail) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "fileTypeSecretThumbnail",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "fileTypeSecretThumbnail", Alias: (*Alias)(&t)})
 }
 
 // FileTypeSecure The file is a file from Secure storage used for storing Telegram Passport files
@@ -14414,10 +12878,7 @@ func (t FileTypeSecure) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "fileTypeSecure",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "fileTypeSecure", Alias: (*Alias)(&t)})
 }
 
 // FileTypeSelfDestructingLivePhotoVideo The file is a self-destructing video for a live photo in a private chat
@@ -14435,10 +12896,7 @@ func (t FileTypeSelfDestructingLivePhotoVideo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "fileTypeSelfDestructingLivePhotoVideo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "fileTypeSelfDestructingLivePhotoVideo", Alias: (*Alias)(&t)})
 }
 
 // FileTypeSelfDestructingPhoto The file is a self-destructing photo in a private chat
@@ -14456,10 +12914,7 @@ func (t FileTypeSelfDestructingPhoto) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "fileTypeSelfDestructingPhoto",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "fileTypeSelfDestructingPhoto", Alias: (*Alias)(&t)})
 }
 
 // FileTypeSelfDestructingVideo The file is a self-destructing video in a private chat
@@ -14477,10 +12932,7 @@ func (t FileTypeSelfDestructingVideo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "fileTypeSelfDestructingVideo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "fileTypeSelfDestructingVideo", Alias: (*Alias)(&t)})
 }
 
 // FileTypeSelfDestructingVideoNote The file is a self-destructing video note in a private chat
@@ -14498,10 +12950,7 @@ func (t FileTypeSelfDestructingVideoNote) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "fileTypeSelfDestructingVideoNote",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "fileTypeSelfDestructingVideoNote", Alias: (*Alias)(&t)})
 }
 
 // FileTypeSelfDestructingVoiceNote The file is a self-destructing voice note in a private chat
@@ -14519,10 +12968,7 @@ func (t FileTypeSelfDestructingVoiceNote) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "fileTypeSelfDestructingVoiceNote",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "fileTypeSelfDestructingVoiceNote", Alias: (*Alias)(&t)})
 }
 
 // FileTypeSticker The file is a sticker
@@ -14540,10 +12986,7 @@ func (t FileTypeSticker) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "fileTypeSticker",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "fileTypeSticker", Alias: (*Alias)(&t)})
 }
 
 // FileTypeThumbnail The file is a thumbnail of another file
@@ -14561,10 +13004,7 @@ func (t FileTypeThumbnail) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "fileTypeThumbnail",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "fileTypeThumbnail", Alias: (*Alias)(&t)})
 }
 
 // FileTypeUnknown The file type is not yet known
@@ -14582,10 +13022,7 @@ func (t FileTypeUnknown) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "fileTypeUnknown",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "fileTypeUnknown", Alias: (*Alias)(&t)})
 }
 
 // FileTypeVideo The file is a video
@@ -14603,10 +13040,7 @@ func (t FileTypeVideo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "fileTypeVideo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "fileTypeVideo", Alias: (*Alias)(&t)})
 }
 
 // FileTypeVideoNote The file is a video note
@@ -14624,10 +13058,7 @@ func (t FileTypeVideoNote) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "fileTypeVideoNote",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "fileTypeVideoNote", Alias: (*Alias)(&t)})
 }
 
 // FileTypeVideoStory The file is a video published as a story
@@ -14645,10 +13076,7 @@ func (t FileTypeVideoStory) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "fileTypeVideoStory",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "fileTypeVideoStory", Alias: (*Alias)(&t)})
 }
 
 // FileTypeVoiceNote The file is a voice note
@@ -14666,10 +13094,7 @@ func (t FileTypeVoiceNote) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "fileTypeVoiceNote",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "fileTypeVoiceNote", Alias: (*Alias)(&t)})
 }
 
 // FileTypeWallpaper The file is a wallpaper or a background pattern
@@ -14687,10 +13112,7 @@ func (t FileTypeWallpaper) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "fileTypeWallpaper",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "fileTypeWallpaper", Alias: (*Alias)(&t)})
 }
 
 // FirebaseAuthenticationSettingsAndroid Settings for Firebase Authentication in the official Android application
@@ -14708,10 +13130,7 @@ func (t FirebaseAuthenticationSettingsAndroid) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "firebaseAuthenticationSettingsAndroid",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "firebaseAuthenticationSettingsAndroid", Alias: (*Alias)(&t)})
 }
 
 // FirebaseAuthenticationSettingsIos Settings for Firebase Authentication in the official iOS application
@@ -14733,10 +13152,7 @@ func (t FirebaseAuthenticationSettingsIos) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "firebaseAuthenticationSettingsIos",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "firebaseAuthenticationSettingsIos", Alias: (*Alias)(&t)})
 }
 
 // FirebaseDeviceVerificationParametersPlayIntegrity Device verification must be performed with the classic Play Integrity verification (https://developer.android.com/google/play/integrity/classic)
@@ -14758,10 +13174,7 @@ func (t FirebaseDeviceVerificationParametersPlayIntegrity) MarshalJSON() ([]byte
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "firebaseDeviceVerificationParametersPlayIntegrity",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "firebaseDeviceVerificationParametersPlayIntegrity", Alias: (*Alias)(&t)})
 }
 
 // FirebaseDeviceVerificationParametersSafetyNet Device verification must be performed with the SafetyNet Attestation API
@@ -14781,10 +13194,7 @@ func (t FirebaseDeviceVerificationParametersSafetyNet) MarshalJSON() ([]byte, er
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "firebaseDeviceVerificationParametersSafetyNet",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "firebaseDeviceVerificationParametersSafetyNet", Alias: (*Alias)(&t)})
 }
 
 // FixedText A text fixed using fixTextWithAi
@@ -14804,10 +13214,7 @@ func (t FixedText) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "fixedText",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "fixedText", Alias: (*Alias)(&t)})
 }
 
 // FormattedText A text with some entities
@@ -14827,10 +13234,7 @@ func (t FormattedText) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "formattedText",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "formattedText", Alias: (*Alias)(&t)})
 }
 
 // ForumTopic Describes a forum topic
@@ -14870,10 +13274,7 @@ func (t ForumTopic) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "forumTopic",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "forumTopic", Alias: (*Alias)(&t)})
 }
 
 // ForumTopicIcon Describes a forum topic icon
@@ -14893,10 +13294,7 @@ func (t ForumTopicIcon) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "forumTopicIcon",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "forumTopicIcon", Alias: (*Alias)(&t)})
 }
 
 // ForumTopicInfo Contains basic information about a forum topic
@@ -14934,10 +13332,7 @@ func (t ForumTopicInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "forumTopicInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "forumTopicInfo", Alias: (*Alias)(&t)})
 }
 
 func (t *ForumTopicInfo) UnmarshalJSON(data []byte) error {
@@ -14986,10 +13381,7 @@ func (t ForumTopics) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "forumTopics",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "forumTopics", Alias: (*Alias)(&t)})
 }
 
 // ForwardSource Contains information about the last message from which a new message was forwarded last time
@@ -15017,10 +13409,7 @@ func (t ForwardSource) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "forwardSource",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "forwardSource", Alias: (*Alias)(&t)})
 }
 
 func (t *ForwardSource) UnmarshalJSON(data []byte) error {
@@ -15063,10 +13452,7 @@ func (t FoundAffiliateProgram) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "foundAffiliateProgram",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "foundAffiliateProgram", Alias: (*Alias)(&t)})
 }
 
 // FoundAffiliatePrograms Represents a list of found affiliate programs
@@ -15088,10 +13474,7 @@ func (t FoundAffiliatePrograms) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "foundAffiliatePrograms",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "foundAffiliatePrograms", Alias: (*Alias)(&t)})
 }
 
 // FoundChatBoosts Contains a list of boosts applied to a chat
@@ -15113,10 +13496,7 @@ func (t FoundChatBoosts) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "foundChatBoosts",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "foundChatBoosts", Alias: (*Alias)(&t)})
 }
 
 // FoundChatMessages Contains a list of messages found by a search in a given chat
@@ -15138,10 +13518,7 @@ func (t FoundChatMessages) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "foundChatMessages",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "foundChatMessages", Alias: (*Alias)(&t)})
 }
 
 // FoundFileDownloads Contains a list of downloaded files, found by a search
@@ -15163,10 +13540,7 @@ func (t FoundFileDownloads) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "foundFileDownloads",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "foundFileDownloads", Alias: (*Alias)(&t)})
 }
 
 // FoundMessages Contains a list of messages found by a search
@@ -15188,10 +13562,7 @@ func (t FoundMessages) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "foundMessages",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "foundMessages", Alias: (*Alias)(&t)})
 }
 
 // FoundPosition Contains 0-based match position
@@ -15209,10 +13580,7 @@ func (t FoundPosition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "foundPosition",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "foundPosition", Alias: (*Alias)(&t)})
 }
 
 // FoundPositions Contains 0-based positions of matched objects
@@ -15232,10 +13600,7 @@ func (t FoundPositions) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "foundPositions",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "foundPositions", Alias: (*Alias)(&t)})
 }
 
 // FoundPublicPosts Contains a list of messages found by a public post search
@@ -15259,10 +13624,7 @@ func (t FoundPublicPosts) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "foundPublicPosts",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "foundPublicPosts", Alias: (*Alias)(&t)})
 }
 
 // FoundStories Contains a list of stories found by a search
@@ -15284,10 +13646,7 @@ func (t FoundStories) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "foundStories",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "foundStories", Alias: (*Alias)(&t)})
 }
 
 // FoundUsers Represents a list of found users
@@ -15307,10 +13666,7 @@ func (t FoundUsers) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "foundUsers",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "foundUsers", Alias: (*Alias)(&t)})
 }
 
 // FoundWebApp Contains information about a Web App found by its short name
@@ -15332,10 +13688,7 @@ func (t FoundWebApp) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "foundWebApp",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "foundWebApp", Alias: (*Alias)(&t)})
 }
 
 // Game Describes a game. Use getInternalLink with internalLinkTypeGame to share the game
@@ -15365,10 +13718,7 @@ func (t Game) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "game",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "game", Alias: (*Alias)(&t)})
 }
 
 // GameHighScore Contains one row of the game high score table
@@ -15390,10 +13740,7 @@ func (t GameHighScore) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "gameHighScore",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "gameHighScore", Alias: (*Alias)(&t)})
 }
 
 // GameHighScores Contains a list of game high scores
@@ -15411,10 +13758,7 @@ func (t GameHighScores) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "gameHighScores",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "gameHighScores", Alias: (*Alias)(&t)})
 }
 
 // Gift Describes a gift that can be sent to another user or channel chat
@@ -15464,10 +13808,7 @@ func (t Gift) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "gift",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "gift", Alias: (*Alias)(&t)})
 }
 
 // GiftAuction Describes an auction on which a gift can be purchased
@@ -15489,10 +13830,7 @@ func (t GiftAuction) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "giftAuction",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "giftAuction", Alias: (*Alias)(&t)})
 }
 
 // GiftAuctionAcquiredGift Represents a gift that was acquired by the current user on an auction
@@ -15524,10 +13862,7 @@ func (t GiftAuctionAcquiredGift) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "giftAuctionAcquiredGift",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "giftAuctionAcquiredGift", Alias: (*Alias)(&t)})
 }
 
 func (t *GiftAuctionAcquiredGift) UnmarshalJSON(data []byte) error {
@@ -15568,10 +13903,7 @@ func (t GiftAuctionAcquiredGifts) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "giftAuctionAcquiredGifts",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "giftAuctionAcquiredGifts", Alias: (*Alias)(&t)})
 }
 
 // GiftAuctionState Represent auction state of a gift
@@ -15591,10 +13923,7 @@ func (t GiftAuctionState) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "giftAuctionState",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "giftAuctionState", Alias: (*Alias)(&t)})
 }
 
 func (t *GiftAuctionState) UnmarshalJSON(data []byte) error {
@@ -15639,10 +13968,7 @@ func (t GiftBackground) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "giftBackground",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "giftBackground", Alias: (*Alias)(&t)})
 }
 
 // GiftChatTheme Describes a chat theme based on an upgraded gift
@@ -15664,10 +13990,7 @@ func (t GiftChatTheme) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "giftChatTheme",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "giftChatTheme", Alias: (*Alias)(&t)})
 }
 
 // GiftChatThemes Contains a list of chat themes based on upgraded gifts
@@ -15687,10 +14010,7 @@ func (t GiftChatThemes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "giftChatThemes",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "giftChatThemes", Alias: (*Alias)(&t)})
 }
 
 // GiftCollection Describes collection of gifts
@@ -15714,10 +14034,7 @@ func (t GiftCollection) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "giftCollection",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "giftCollection", Alias: (*Alias)(&t)})
 }
 
 // GiftCollections Contains a list of gift collections
@@ -15735,10 +14052,7 @@ func (t GiftCollections) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "giftCollections",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "giftCollections", Alias: (*Alias)(&t)})
 }
 
 // GiftForResale Describes a gift available for resale
@@ -15758,10 +14072,7 @@ func (t GiftForResale) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "giftForResale",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "giftForResale", Alias: (*Alias)(&t)})
 }
 
 // GiftForResaleOrderNumber The gifts will be sorted by their number from the smallest to the largest
@@ -15779,10 +14090,7 @@ func (t GiftForResaleOrderNumber) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "giftForResaleOrderNumber",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "giftForResaleOrderNumber", Alias: (*Alias)(&t)})
 }
 
 // GiftForResaleOrderPrice The gifts will be sorted by their price from the lowest to the highest
@@ -15800,10 +14108,7 @@ func (t GiftForResaleOrderPrice) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "giftForResaleOrderPrice",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "giftForResaleOrderPrice", Alias: (*Alias)(&t)})
 }
 
 // GiftForResaleOrderPriceChangeDate The gifts will be sorted by the last date when their price was changed from the newest to the oldest
@@ -15821,10 +14126,7 @@ func (t GiftForResaleOrderPriceChangeDate) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "giftForResaleOrderPriceChangeDate",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "giftForResaleOrderPriceChangeDate", Alias: (*Alias)(&t)})
 }
 
 // GiftPurchaseLimits Describes the maximum number of times that a specific gift can be purchased
@@ -15844,10 +14146,7 @@ func (t GiftPurchaseLimits) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "giftPurchaseLimits",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "giftPurchaseLimits", Alias: (*Alias)(&t)})
 }
 
 // GiftPurchaseOfferStateAccepted The offer was accepted
@@ -15865,10 +14164,7 @@ func (t GiftPurchaseOfferStateAccepted) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "giftPurchaseOfferStateAccepted",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "giftPurchaseOfferStateAccepted", Alias: (*Alias)(&t)})
 }
 
 // GiftPurchaseOfferStatePending The offer must be accepted or rejected
@@ -15886,10 +14182,7 @@ func (t GiftPurchaseOfferStatePending) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "giftPurchaseOfferStatePending",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "giftPurchaseOfferStatePending", Alias: (*Alias)(&t)})
 }
 
 // GiftPurchaseOfferStateRejected The offer was rejected
@@ -15907,10 +14200,7 @@ func (t GiftPurchaseOfferStateRejected) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "giftPurchaseOfferStateRejected",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "giftPurchaseOfferStateRejected", Alias: (*Alias)(&t)})
 }
 
 // GiftResaleParameters Describes parameters of a unique gift available for resale
@@ -15932,10 +14222,7 @@ func (t GiftResaleParameters) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "giftResaleParameters",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "giftResaleParameters", Alias: (*Alias)(&t)})
 }
 
 // GiftResalePriceGram Describes price of a resold gift in TON Grams
@@ -15955,10 +14242,7 @@ func (t GiftResalePriceGram) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "giftResalePriceGram",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "giftResalePriceGram", Alias: (*Alias)(&t)})
 }
 
 // GiftResalePriceStar Describes price of a resold gift in Telegram Stars
@@ -15978,10 +14262,7 @@ func (t GiftResalePriceStar) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "giftResalePriceStar",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "giftResalePriceStar", Alias: (*Alias)(&t)})
 }
 
 // GiftResaleResultOk Operation was successfully completed
@@ -16001,10 +14282,7 @@ func (t GiftResaleResultOk) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "giftResaleResultOk",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "giftResaleResultOk", Alias: (*Alias)(&t)})
 }
 
 // GiftResaleResultPriceIncreased Operation has failed, because price has increased. If the price has decreased, then the buying will succeed anyway
@@ -16024,10 +14302,7 @@ func (t GiftResaleResultPriceIncreased) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "giftResaleResultPriceIncreased",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "giftResaleResultPriceIncreased", Alias: (*Alias)(&t)})
 }
 
 func (t *GiftResaleResultPriceIncreased) UnmarshalJSON(data []byte) error {
@@ -16070,10 +14345,7 @@ func (t GiftSettings) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "giftSettings",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "giftSettings", Alias: (*Alias)(&t)})
 }
 
 // GiftsForCrafting Represents a list of gifts received by a user or a chat
@@ -16097,10 +14369,7 @@ func (t GiftsForCrafting) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "giftsForCrafting",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "giftsForCrafting", Alias: (*Alias)(&t)})
 }
 
 // GiftsForResale Describes gifts available for resale
@@ -16128,10 +14397,7 @@ func (t GiftsForResale) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "giftsForResale",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "giftsForResale", Alias: (*Alias)(&t)})
 }
 
 // GiftUpgradePreview Contains examples of possible upgraded gifts for the given regular gift
@@ -16157,10 +14423,7 @@ func (t GiftUpgradePreview) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "giftUpgradePreview",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "giftUpgradePreview", Alias: (*Alias)(&t)})
 }
 
 // GiftUpgradePrice Describes a price required to pay to upgrade a gift
@@ -16180,10 +14443,7 @@ func (t GiftUpgradePrice) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "giftUpgradePrice",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "giftUpgradePrice", Alias: (*Alias)(&t)})
 }
 
 // GiftUpgradeVariants Contains all possible variants of upgraded gifts for the given regular gift
@@ -16205,10 +14465,7 @@ func (t GiftUpgradeVariants) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "giftUpgradeVariants",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "giftUpgradeVariants", Alias: (*Alias)(&t)})
 }
 
 // GiveawayInfoCompleted Describes a completed giveaway
@@ -16242,10 +14499,7 @@ func (t GiveawayInfoCompleted) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "giveawayInfoCompleted",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "giveawayInfoCompleted", Alias: (*Alias)(&t)})
 }
 
 // GiveawayInfoOngoing Describes an ongoing giveaway
@@ -16269,10 +14523,7 @@ func (t GiveawayInfoOngoing) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "giveawayInfoOngoing",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "giveawayInfoOngoing", Alias: (*Alias)(&t)})
 }
 
 func (t *GiveawayInfoOngoing) UnmarshalJSON(data []byte) error {
@@ -16325,10 +14576,7 @@ func (t GiveawayParameters) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "giveawayParameters",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "giveawayParameters", Alias: (*Alias)(&t)})
 }
 
 // GiveawayParticipantStatusAdministrator The user can't participate in the giveaway, because they are an administrator in one of the chats that created the giveaway
@@ -16348,10 +14596,7 @@ func (t GiveawayParticipantStatusAdministrator) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "giveawayParticipantStatusAdministrator",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "giveawayParticipantStatusAdministrator", Alias: (*Alias)(&t)})
 }
 
 // GiveawayParticipantStatusAlreadyWasMember The user can't participate in the giveaway, because they have already been member of the chat
@@ -16371,10 +14616,7 @@ func (t GiveawayParticipantStatusAlreadyWasMember) MarshalJSON() ([]byte, error)
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "giveawayParticipantStatusAlreadyWasMember",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "giveawayParticipantStatusAlreadyWasMember", Alias: (*Alias)(&t)})
 }
 
 // GiveawayParticipantStatusDisallowedCountry The user can't participate in the giveaway, because their phone number is from a disallowed country
@@ -16394,10 +14636,7 @@ func (t GiveawayParticipantStatusDisallowedCountry) MarshalJSON() ([]byte, error
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "giveawayParticipantStatusDisallowedCountry",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "giveawayParticipantStatusDisallowedCountry", Alias: (*Alias)(&t)})
 }
 
 // GiveawayParticipantStatusEligible The user is eligible for the giveaway
@@ -16415,10 +14654,7 @@ func (t GiveawayParticipantStatusEligible) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "giveawayParticipantStatusEligible",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "giveawayParticipantStatusEligible", Alias: (*Alias)(&t)})
 }
 
 // GiveawayParticipantStatusParticipating The user participates in the giveaway
@@ -16436,10 +14672,7 @@ func (t GiveawayParticipantStatusParticipating) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "giveawayParticipantStatusParticipating",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "giveawayParticipantStatusParticipating", Alias: (*Alias)(&t)})
 }
 
 // GiveawayPrizePremium The giveaway sends Telegram Premium subscriptions to the winners
@@ -16459,10 +14692,7 @@ func (t GiveawayPrizePremium) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "giveawayPrizePremium",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "giveawayPrizePremium", Alias: (*Alias)(&t)})
 }
 
 // GiveawayPrizeStars The giveaway sends Telegram Stars to the winners
@@ -16482,10 +14712,7 @@ func (t GiveawayPrizeStars) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "giveawayPrizeStars",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "giveawayPrizeStars", Alias: (*Alias)(&t)})
 }
 
 // GramRevenueStatistics A detailed statistics about TON Grams earned by the current user
@@ -16507,10 +14734,7 @@ func (t GramRevenueStatistics) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "gramRevenueStatistics",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "gramRevenueStatistics", Alias: (*Alias)(&t)})
 }
 
 func (t *GramRevenueStatistics) UnmarshalJSON(data []byte) error {
@@ -16557,10 +14781,7 @@ func (t GramRevenueStatus) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "gramRevenueStatus",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "gramRevenueStatus", Alias: (*Alias)(&t)})
 }
 
 // GroupCall Describes a group call
@@ -16640,10 +14861,7 @@ func (t GroupCall) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "groupCall",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "groupCall", Alias: (*Alias)(&t)})
 }
 
 func (t *GroupCall) UnmarshalJSON(data []byte) error {
@@ -16684,10 +14902,7 @@ func (t GroupCallDataChannelMain) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "groupCallDataChannelMain",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "groupCallDataChannelMain", Alias: (*Alias)(&t)})
 }
 
 // GroupCallDataChannelScreenSharing The data channel for screen sharing
@@ -16705,10 +14920,7 @@ func (t GroupCallDataChannelScreenSharing) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "groupCallDataChannelScreenSharing",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "groupCallDataChannelScreenSharing", Alias: (*Alias)(&t)})
 }
 
 // GroupCallId Contains the group call identifier
@@ -16726,10 +14938,7 @@ func (t GroupCallId) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "groupCallId",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "groupCallId", Alias: (*Alias)(&t)})
 }
 
 // GroupCallInfo Contains information about a just created or just joined group call
@@ -16749,10 +14958,7 @@ func (t GroupCallInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "groupCallInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "groupCallInfo", Alias: (*Alias)(&t)})
 }
 
 // GroupCallJoinParameters Describes parameters used to join a group call
@@ -16776,10 +14982,7 @@ func (t GroupCallJoinParameters) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "groupCallJoinParameters",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "groupCallJoinParameters", Alias: (*Alias)(&t)})
 }
 
 // GroupCallMessage Represents a message sent in a group call
@@ -16809,10 +15012,7 @@ func (t GroupCallMessage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "groupCallMessage",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "groupCallMessage", Alias: (*Alias)(&t)})
 }
 
 func (t *GroupCallMessage) UnmarshalJSON(data []byte) error {
@@ -16865,10 +15065,7 @@ func (t GroupCallMessageLevel) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "groupCallMessageLevel",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "groupCallMessageLevel", Alias: (*Alias)(&t)})
 }
 
 // GroupCallParticipant Represents a group call participant
@@ -16920,10 +15117,7 @@ func (t GroupCallParticipant) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "groupCallParticipant",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "groupCallParticipant", Alias: (*Alias)(&t)})
 }
 
 func (t *GroupCallParticipant) UnmarshalJSON(data []byte) error {
@@ -16966,10 +15160,7 @@ func (t GroupCallParticipants) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "groupCallParticipants",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "groupCallParticipants", Alias: (*Alias)(&t)})
 }
 
 func (t *GroupCallParticipants) UnmarshalJSON(data []byte) error {
@@ -17017,10 +15208,7 @@ func (t GroupCallParticipantVideoInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "groupCallParticipantVideoInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "groupCallParticipantVideoInfo", Alias: (*Alias)(&t)})
 }
 
 // GroupCallRecentSpeaker Describes a recently speaking participant in a group call
@@ -17040,10 +15228,7 @@ func (t GroupCallRecentSpeaker) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "groupCallRecentSpeaker",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "groupCallRecentSpeaker", Alias: (*Alias)(&t)})
 }
 
 func (t *GroupCallRecentSpeaker) UnmarshalJSON(data []byte) error {
@@ -17088,10 +15273,7 @@ func (t GroupCallStream) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "groupCallStream",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "groupCallStream", Alias: (*Alias)(&t)})
 }
 
 // GroupCallStreams Represents a list of group call streams
@@ -17109,10 +15291,7 @@ func (t GroupCallStreams) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "groupCallStreams",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "groupCallStreams", Alias: (*Alias)(&t)})
 }
 
 // GroupCallVideoQualityFull The best available video quality
@@ -17130,10 +15309,7 @@ func (t GroupCallVideoQualityFull) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "groupCallVideoQualityFull",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "groupCallVideoQualityFull", Alias: (*Alias)(&t)})
 }
 
 // GroupCallVideoQualityMedium The medium video quality
@@ -17151,10 +15327,7 @@ func (t GroupCallVideoQualityMedium) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "groupCallVideoQualityMedium",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "groupCallVideoQualityMedium", Alias: (*Alias)(&t)})
 }
 
 // GroupCallVideoQualityThumbnail The worst available video quality
@@ -17172,10 +15345,7 @@ func (t GroupCallVideoQualityThumbnail) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "groupCallVideoQualityThumbnail",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "groupCallVideoQualityThumbnail", Alias: (*Alias)(&t)})
 }
 
 // GroupCallVideoSourceGroup Describes a group of video synchronization source identifiers
@@ -17195,10 +15365,7 @@ func (t GroupCallVideoSourceGroup) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "groupCallVideoSourceGroup",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "groupCallVideoSourceGroup", Alias: (*Alias)(&t)})
 }
 
 // Hashtags Contains a list of hashtags
@@ -17216,10 +15383,7 @@ func (t Hashtags) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "hashtags",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "hashtags", Alias: (*Alias)(&t)})
 }
 
 // HttpUrl Contains an HTTP URL
@@ -17237,10 +15401,7 @@ func (t HttpUrl) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "httpUrl",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "httpUrl", Alias: (*Alias)(&t)})
 }
 
 // IdentityDocument An identity document
@@ -17268,10 +15429,7 @@ func (t IdentityDocument) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "identityDocument",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "identityDocument", Alias: (*Alias)(&t)})
 }
 
 // ImportedContact Describes a contact to import
@@ -17295,10 +15453,7 @@ func (t ImportedContact) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "importedContact",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "importedContact", Alias: (*Alias)(&t)})
 }
 
 // ImportedContacts Represents the result of an importContacts request
@@ -17318,10 +15473,7 @@ func (t ImportedContacts) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "importedContacts",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "importedContacts", Alias: (*Alias)(&t)})
 }
 
 // InlineButton Represents a button inside a rich message
@@ -17343,10 +15495,7 @@ func (t InlineButton) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inlineButton",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inlineButton", Alias: (*Alias)(&t)})
 }
 
 func (t *InlineButton) UnmarshalJSON(data []byte) error {
@@ -17409,10 +15558,7 @@ func (t InlineKeyboardButton) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inlineKeyboardButton",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inlineKeyboardButton", Alias: (*Alias)(&t)})
 }
 
 func (t *InlineKeyboardButton) UnmarshalJSON(data []byte) error {
@@ -17461,10 +15607,7 @@ func (t InlineKeyboardButtonTypeBuy) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inlineKeyboardButtonTypeBuy",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inlineKeyboardButtonTypeBuy", Alias: (*Alias)(&t)})
 }
 
 // InlineKeyboardButtonTypeCallback A button that sends a callback query to a bot
@@ -17484,10 +15627,7 @@ func (t InlineKeyboardButtonTypeCallback) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inlineKeyboardButtonTypeCallback",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inlineKeyboardButtonTypeCallback", Alias: (*Alias)(&t)})
 }
 
 // InlineKeyboardButtonTypeCallbackGame A button with a game that sends a callback query to a bot. This button must be in the first column and row of the keyboard and can be attached only to a message with content of the type messageGame
@@ -17505,10 +15645,7 @@ func (t InlineKeyboardButtonTypeCallbackGame) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inlineKeyboardButtonTypeCallbackGame",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inlineKeyboardButtonTypeCallbackGame", Alias: (*Alias)(&t)})
 }
 
 // InlineKeyboardButtonTypeCallbackWithPassword A button that asks for the 2-step verification password of the current user and then sends a callback query to a bot
@@ -17528,10 +15665,7 @@ func (t InlineKeyboardButtonTypeCallbackWithPassword) MarshalJSON() ([]byte, err
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inlineKeyboardButtonTypeCallbackWithPassword",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inlineKeyboardButtonTypeCallbackWithPassword", Alias: (*Alias)(&t)})
 }
 
 // InlineKeyboardButtonTypeCopyText A button that copies specified text to clipboard
@@ -17551,10 +15685,7 @@ func (t InlineKeyboardButtonTypeCopyText) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inlineKeyboardButtonTypeCopyText",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inlineKeyboardButtonTypeCopyText", Alias: (*Alias)(&t)})
 }
 
 // InlineKeyboardButtonTypeDisabled A disabled button
@@ -17572,10 +15703,7 @@ func (t InlineKeyboardButtonTypeDisabled) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inlineKeyboardButtonTypeDisabled",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inlineKeyboardButtonTypeDisabled", Alias: (*Alias)(&t)})
 }
 
 // InlineKeyboardButtonTypeLoginUrl A button that opens a specified URL and automatically authorize the current user by calling getLoginUrlInfo; not supported in ephemeral messages
@@ -17599,10 +15727,7 @@ func (t InlineKeyboardButtonTypeLoginUrl) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inlineKeyboardButtonTypeLoginUrl",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inlineKeyboardButtonTypeLoginUrl", Alias: (*Alias)(&t)})
 }
 
 // InlineKeyboardButtonTypeSwitchInline A button that forces an inline query to the bot to be inserted in the input field
@@ -17624,10 +15749,7 @@ func (t InlineKeyboardButtonTypeSwitchInline) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inlineKeyboardButtonTypeSwitchInline",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inlineKeyboardButtonTypeSwitchInline", Alias: (*Alias)(&t)})
 }
 
 func (t *InlineKeyboardButtonTypeSwitchInline) UnmarshalJSON(data []byte) error {
@@ -17670,10 +15792,7 @@ func (t InlineKeyboardButtonTypeUrl) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inlineKeyboardButtonTypeUrl",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inlineKeyboardButtonTypeUrl", Alias: (*Alias)(&t)})
 }
 
 // InlineKeyboardButtonTypeUser A button with a user reference to be handled in the same way as textEntityTypeMentionName entities
@@ -17693,10 +15812,7 @@ func (t InlineKeyboardButtonTypeUser) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inlineKeyboardButtonTypeUser",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inlineKeyboardButtonTypeUser", Alias: (*Alias)(&t)})
 }
 
 // InlineKeyboardButtonTypeWebApp A button that opens a Web App by calling openWebApp
@@ -17716,10 +15832,7 @@ func (t InlineKeyboardButtonTypeWebApp) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inlineKeyboardButtonTypeWebApp",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inlineKeyboardButtonTypeWebApp", Alias: (*Alias)(&t)})
 }
 
 // InlineMessageId Contains identifier of a sent guest message
@@ -17737,10 +15850,7 @@ func (t InlineMessageId) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inlineMessageId",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inlineMessageId", Alias: (*Alias)(&t)})
 }
 
 // InlineQueryResultAnimation Represents an animation file
@@ -17764,10 +15874,7 @@ func (t InlineQueryResultAnimation) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inlineQueryResultAnimation",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inlineQueryResultAnimation", Alias: (*Alias)(&t)})
 }
 
 // InlineQueryResultArticle Represents a link to an article or web page
@@ -17795,10 +15902,7 @@ func (t InlineQueryResultArticle) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inlineQueryResultArticle",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inlineQueryResultArticle", Alias: (*Alias)(&t)})
 }
 
 // InlineQueryResultAudio Represents an audio file
@@ -17820,10 +15924,7 @@ func (t InlineQueryResultAudio) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inlineQueryResultAudio",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inlineQueryResultAudio", Alias: (*Alias)(&t)})
 }
 
 // InlineQueryResultContact Represents a user contact
@@ -17847,10 +15948,7 @@ func (t InlineQueryResultContact) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inlineQueryResultContact",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inlineQueryResultContact", Alias: (*Alias)(&t)})
 }
 
 // InlineQueryResultDocument Represents a document
@@ -17876,10 +15974,7 @@ func (t InlineQueryResultDocument) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inlineQueryResultDocument",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inlineQueryResultDocument", Alias: (*Alias)(&t)})
 }
 
 // InlineQueryResultGame Represents information about a game
@@ -17901,10 +15996,7 @@ func (t InlineQueryResultGame) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inlineQueryResultGame",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inlineQueryResultGame", Alias: (*Alias)(&t)})
 }
 
 // InlineQueryResultLocation Represents a point on the map
@@ -17930,10 +16022,7 @@ func (t InlineQueryResultLocation) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inlineQueryResultLocation",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inlineQueryResultLocation", Alias: (*Alias)(&t)})
 }
 
 // InlineQueryResultPhoto Represents a photo
@@ -17959,10 +16048,7 @@ func (t InlineQueryResultPhoto) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inlineQueryResultPhoto",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inlineQueryResultPhoto", Alias: (*Alias)(&t)})
 }
 
 // InlineQueryResults Represents the results of the inline query. Use sendInlineQueryResultMessage to send the result of the query
@@ -17986,10 +16072,7 @@ func (t InlineQueryResults) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inlineQueryResults",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inlineQueryResults", Alias: (*Alias)(&t)})
 }
 
 func (t *InlineQueryResults) UnmarshalJSON(data []byte) error {
@@ -18035,10 +16118,7 @@ func (t InlineQueryResultsButton) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inlineQueryResultsButton",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inlineQueryResultsButton", Alias: (*Alias)(&t)})
 }
 
 func (t *InlineQueryResultsButton) UnmarshalJSON(data []byte) error {
@@ -18081,10 +16161,7 @@ func (t InlineQueryResultsButtonTypeStartBot) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inlineQueryResultsButtonTypeStartBot",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inlineQueryResultsButtonTypeStartBot", Alias: (*Alias)(&t)})
 }
 
 // InlineQueryResultsButtonTypeWebApp Describes the button that opens a Web App by calling getWebAppUrl
@@ -18104,10 +16181,7 @@ func (t InlineQueryResultsButtonTypeWebApp) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inlineQueryResultsButtonTypeWebApp",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inlineQueryResultsButtonTypeWebApp", Alias: (*Alias)(&t)})
 }
 
 // InlineQueryResultSticker Represents a sticker
@@ -18129,10 +16203,7 @@ func (t InlineQueryResultSticker) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inlineQueryResultSticker",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inlineQueryResultSticker", Alias: (*Alias)(&t)})
 }
 
 // InlineQueryResultVenue Represents information about a venue
@@ -18156,10 +16227,7 @@ func (t InlineQueryResultVenue) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inlineQueryResultVenue",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inlineQueryResultVenue", Alias: (*Alias)(&t)})
 }
 
 // InlineQueryResultVideo Represents a video
@@ -18185,10 +16253,7 @@ func (t InlineQueryResultVideo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inlineQueryResultVideo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inlineQueryResultVideo", Alias: (*Alias)(&t)})
 }
 
 // InlineQueryResultVoiceNote Represents a voice note
@@ -18212,10 +16277,7 @@ func (t InlineQueryResultVoiceNote) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inlineQueryResultVoiceNote",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inlineQueryResultVoiceNote", Alias: (*Alias)(&t)})
 }
 
 // InputAnimation An animation to be sent
@@ -18243,10 +16305,7 @@ func (t InputAnimation) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputAnimation",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputAnimation", Alias: (*Alias)(&t)})
 }
 
 func (t *InputAnimation) UnmarshalJSON(data []byte) error {
@@ -18295,10 +16354,7 @@ func (t InputAudio) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputAudio",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputAudio", Alias: (*Alias)(&t)})
 }
 
 func (t *InputAudio) UnmarshalJSON(data []byte) error {
@@ -18341,10 +16397,7 @@ func (t InputBackgroundLocal) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputBackgroundLocal",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputBackgroundLocal", Alias: (*Alias)(&t)})
 }
 
 func (t *InputBackgroundLocal) UnmarshalJSON(data []byte) error {
@@ -18387,10 +16440,7 @@ func (t InputBackgroundPrevious) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputBackgroundPrevious",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputBackgroundPrevious", Alias: (*Alias)(&t)})
 }
 
 // InputBackgroundRemote A background from the server
@@ -18410,10 +16460,7 @@ func (t InputBackgroundRemote) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputBackgroundRemote",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputBackgroundRemote", Alias: (*Alias)(&t)})
 }
 
 // InputBusinessChatLink Describes a business chat link to create or edit
@@ -18433,10 +16480,7 @@ func (t InputBusinessChatLink) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputBusinessChatLink",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputBusinessChatLink", Alias: (*Alias)(&t)})
 }
 
 // InputBusinessStartPage Describes settings for a business account start page to set
@@ -18458,10 +16502,7 @@ func (t InputBusinessStartPage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputBusinessStartPage",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputBusinessStartPage", Alias: (*Alias)(&t)})
 }
 
 func (t *InputBusinessStartPage) UnmarshalJSON(data []byte) error {
@@ -18504,10 +16545,7 @@ func (t InputCallDiscarded) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputCallDiscarded",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputCallDiscarded", Alias: (*Alias)(&t)})
 }
 
 // InputCallFromMessage A call from a message of the type messageCall with non-zero messageCall.unique_id
@@ -18529,10 +16567,7 @@ func (t InputCallFromMessage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputCallFromMessage",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputCallFromMessage", Alias: (*Alias)(&t)})
 }
 
 // InputChatPhotoAnimation An animation in MPEG4 format; must be square, at most 10 seconds long, have width between 160 and 1280 and be at most 2MB in size
@@ -18554,10 +16589,7 @@ func (t InputChatPhotoAnimation) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputChatPhotoAnimation",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputChatPhotoAnimation", Alias: (*Alias)(&t)})
 }
 
 func (t *InputChatPhotoAnimation) UnmarshalJSON(data []byte) error {
@@ -18600,10 +16632,7 @@ func (t InputChatPhotoPrevious) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputChatPhotoPrevious",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputChatPhotoPrevious", Alias: (*Alias)(&t)})
 }
 
 // InputChatPhotoStatic A static photo in JPEG format
@@ -18623,10 +16652,7 @@ func (t InputChatPhotoStatic) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputChatPhotoStatic",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputChatPhotoStatic", Alias: (*Alias)(&t)})
 }
 
 func (t *InputChatPhotoStatic) UnmarshalJSON(data []byte) error {
@@ -18669,10 +16695,7 @@ func (t InputChatPhotoSticker) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputChatPhotoSticker",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputChatPhotoSticker", Alias: (*Alias)(&t)})
 }
 
 // InputChatThemeEmoji A theme based on an emoji
@@ -18692,10 +16715,7 @@ func (t InputChatThemeEmoji) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputChatThemeEmoji",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputChatThemeEmoji", Alias: (*Alias)(&t)})
 }
 
 // InputChatThemeGift A theme based on an upgraded gift
@@ -18715,10 +16735,7 @@ func (t InputChatThemeGift) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputChatThemeGift",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputChatThemeGift", Alias: (*Alias)(&t)})
 }
 
 // InputChecklist Describes a checklist to be sent
@@ -18742,10 +16759,7 @@ func (t InputChecklist) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputChecklist",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputChecklist", Alias: (*Alias)(&t)})
 }
 
 // InputChecklistTask Describes a task in a checklist to be sent
@@ -18765,10 +16779,7 @@ func (t InputChecklistTask) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputChecklistTask",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputChecklistTask", Alias: (*Alias)(&t)})
 }
 
 // InputCredentialsApplePay Applies if a user enters new credentials using Apple Pay
@@ -18788,10 +16799,7 @@ func (t InputCredentialsApplePay) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputCredentialsApplePay",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputCredentialsApplePay", Alias: (*Alias)(&t)})
 }
 
 // InputCredentialsGooglePay Applies if a user enters new credentials using Google Pay
@@ -18811,10 +16819,7 @@ func (t InputCredentialsGooglePay) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputCredentialsGooglePay",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputCredentialsGooglePay", Alias: (*Alias)(&t)})
 }
 
 // InputCredentialsNew Applies if a user enters new credentials on a payment provider website
@@ -18836,10 +16841,7 @@ func (t InputCredentialsNew) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputCredentialsNew",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputCredentialsNew", Alias: (*Alias)(&t)})
 }
 
 // InputCredentialsSaved Applies if a user chooses some previously saved payment credentials. To use their previously saved credentials, the user must have a valid temporary password
@@ -18859,10 +16861,7 @@ func (t InputCredentialsSaved) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputCredentialsSaved",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputCredentialsSaved", Alias: (*Alias)(&t)})
 }
 
 // InputDocument A document (general file) to be sent
@@ -18884,10 +16883,7 @@ func (t InputDocument) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputDocument",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputDocument", Alias: (*Alias)(&t)})
 }
 
 func (t *InputDocument) UnmarshalJSON(data []byte) error {
@@ -18934,10 +16930,7 @@ func (t InputFileGenerated) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputFileGenerated",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputFileGenerated", Alias: (*Alias)(&t)})
 }
 
 // InputFileId A file defined by its unique identifier
@@ -18957,10 +16950,7 @@ func (t InputFileId) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputFileId",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputFileId", Alias: (*Alias)(&t)})
 }
 
 // InputFileLocal A file defined by a local path
@@ -18980,10 +16970,7 @@ func (t InputFileLocal) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputFileLocal",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputFileLocal", Alias: (*Alias)(&t)})
 }
 
 // InputFileRemote A file defined by its remote identifier. The remote identifier is guaranteed to be usable only if the corresponding file is still accessible to the user and known to TDLib.
@@ -19003,10 +16990,7 @@ func (t InputFileRemote) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputFileRemote",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputFileRemote", Alias: (*Alias)(&t)})
 }
 
 // InputGroupCallLink The group call is accessible through a link
@@ -19026,10 +17010,7 @@ func (t InputGroupCallLink) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputGroupCallLink",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputGroupCallLink", Alias: (*Alias)(&t)})
 }
 
 // InputGroupCallMessage The group call is accessible through a message of the type messageGroupCall
@@ -19051,10 +17032,7 @@ func (t InputGroupCallMessage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputGroupCallMessage",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputGroupCallMessage", Alias: (*Alias)(&t)})
 }
 
 // InputIdentityDocument An identity document to be saved to Telegram Passport
@@ -19082,10 +17060,7 @@ func (t InputIdentityDocument) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputIdentityDocument",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputIdentityDocument", Alias: (*Alias)(&t)})
 }
 
 func (t *InputIdentityDocument) UnmarshalJSON(data []byte) error {
@@ -19175,10 +17150,7 @@ func (t InputInlineQueryResultAnimation) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputInlineQueryResultAnimation",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputInlineQueryResultAnimation", Alias: (*Alias)(&t)})
 }
 
 func (t *InputInlineQueryResultAnimation) UnmarshalJSON(data []byte) error {
@@ -19245,10 +17217,7 @@ func (t InputInlineQueryResultArticle) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputInlineQueryResultArticle",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputInlineQueryResultArticle", Alias: (*Alias)(&t)})
 }
 
 func (t *InputInlineQueryResultArticle) UnmarshalJSON(data []byte) error {
@@ -19311,10 +17280,7 @@ func (t InputInlineQueryResultAudio) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputInlineQueryResultAudio",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputInlineQueryResultAudio", Alias: (*Alias)(&t)})
 }
 
 func (t *InputInlineQueryResultAudio) UnmarshalJSON(data []byte) error {
@@ -19377,10 +17343,7 @@ func (t InputInlineQueryResultContact) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputInlineQueryResultContact",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputInlineQueryResultContact", Alias: (*Alias)(&t)})
 }
 
 func (t *InputInlineQueryResultContact) UnmarshalJSON(data []byte) error {
@@ -19449,10 +17412,7 @@ func (t InputInlineQueryResultDocument) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputInlineQueryResultDocument",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputInlineQueryResultDocument", Alias: (*Alias)(&t)})
 }
 
 func (t *InputInlineQueryResultDocument) UnmarshalJSON(data []byte) error {
@@ -19507,10 +17467,7 @@ func (t InputInlineQueryResultGame) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputInlineQueryResultGame",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputInlineQueryResultGame", Alias: (*Alias)(&t)})
 }
 
 func (t *InputInlineQueryResultGame) UnmarshalJSON(data []byte) error {
@@ -19569,10 +17526,7 @@ func (t InputInlineQueryResultLocation) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputInlineQueryResultLocation",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputInlineQueryResultLocation", Alias: (*Alias)(&t)})
 }
 
 func (t *InputInlineQueryResultLocation) UnmarshalJSON(data []byte) error {
@@ -19639,10 +17593,7 @@ func (t InputInlineQueryResultPhoto) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputInlineQueryResultPhoto",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputInlineQueryResultPhoto", Alias: (*Alias)(&t)})
 }
 
 func (t *InputInlineQueryResultPhoto) UnmarshalJSON(data []byte) error {
@@ -19705,10 +17656,7 @@ func (t InputInlineQueryResultSticker) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputInlineQueryResultSticker",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputInlineQueryResultSticker", Alias: (*Alias)(&t)})
 }
 
 func (t *InputInlineQueryResultSticker) UnmarshalJSON(data []byte) error {
@@ -19771,10 +17719,7 @@ func (t InputInlineQueryResultVenue) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputInlineQueryResultVenue",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputInlineQueryResultVenue", Alias: (*Alias)(&t)})
 }
 
 func (t *InputInlineQueryResultVenue) UnmarshalJSON(data []byte) error {
@@ -19845,10 +17790,7 @@ func (t InputInlineQueryResultVideo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputInlineQueryResultVideo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputInlineQueryResultVideo", Alias: (*Alias)(&t)})
 }
 
 func (t *InputInlineQueryResultVideo) UnmarshalJSON(data []byte) error {
@@ -19909,10 +17851,7 @@ func (t InputInlineQueryResultVoiceNote) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputInlineQueryResultVoiceNote",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputInlineQueryResultVoiceNote", Alias: (*Alias)(&t)})
 }
 
 func (t *InputInlineQueryResultVoiceNote) UnmarshalJSON(data []byte) error {
@@ -19965,10 +17904,7 @@ func (t InputInvoiceMessage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputInvoiceMessage",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputInvoiceMessage", Alias: (*Alias)(&t)})
 }
 
 // InputInvoiceName An invoice from a link of the type internalLinkTypeInvoice
@@ -19988,10 +17924,7 @@ func (t InputInvoiceName) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputInvoiceName",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputInvoiceName", Alias: (*Alias)(&t)})
 }
 
 // InputInvoiceTelegram An invoice for a payment toward Telegram; must not be used in the in-store apps
@@ -20011,10 +17944,7 @@ func (t InputInvoiceTelegram) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputInvoiceTelegram",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputInvoiceTelegram", Alias: (*Alias)(&t)})
 }
 
 func (t *InputInvoiceTelegram) UnmarshalJSON(data []byte) error {
@@ -20063,10 +17993,7 @@ func (t InputMessageAnimation) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputMessageAnimation",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputMessageAnimation", Alias: (*Alias)(&t)})
 }
 
 // InputMessageAudio An audio message
@@ -20088,10 +18015,7 @@ func (t InputMessageAudio) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputMessageAudio",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputMessageAudio", Alias: (*Alias)(&t)})
 }
 
 // InputMessageChecklist A message with a checklist. Checklists can't be sent to secret chats, channel chats and channel direct messages chats; for Telegram Premium users only
@@ -20111,10 +18035,7 @@ func (t InputMessageChecklist) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputMessageChecklist",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputMessageChecklist", Alias: (*Alias)(&t)})
 }
 
 // InputMessageContact A message containing a user contact
@@ -20134,10 +18055,7 @@ func (t InputMessageContact) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputMessageContact",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputMessageContact", Alias: (*Alias)(&t)})
 }
 
 // InputMessageDice A dice message
@@ -20159,10 +18077,7 @@ func (t InputMessageDice) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputMessageDice",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputMessageDice", Alias: (*Alias)(&t)})
 }
 
 // InputMessageDocument A document message (general file)
@@ -20184,10 +18099,7 @@ func (t InputMessageDocument) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputMessageDocument",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputMessageDocument", Alias: (*Alias)(&t)})
 }
 
 // InputMessageForwarded A forwarded message
@@ -20217,10 +18129,7 @@ func (t InputMessageForwarded) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputMessageForwarded",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputMessageForwarded", Alias: (*Alias)(&t)})
 }
 
 // InputMessageGame A message with a game; not supported for channels or secret chats
@@ -20242,10 +18151,7 @@ func (t InputMessageGame) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputMessageGame",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputMessageGame", Alias: (*Alias)(&t)})
 }
 
 // InputMessageInvoice A message with an invoice; can be used only by bots
@@ -20289,10 +18195,7 @@ func (t InputMessageInvoice) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputMessageInvoice",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputMessageInvoice", Alias: (*Alias)(&t)})
 }
 
 // InputMessageLiveLocation A message with a live location
@@ -20312,10 +18215,7 @@ func (t InputMessageLiveLocation) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputMessageLiveLocation",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputMessageLiveLocation", Alias: (*Alias)(&t)})
 }
 
 // InputMessageLocation A message with a location
@@ -20335,10 +18235,7 @@ func (t InputMessageLocation) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputMessageLocation",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputMessageLocation", Alias: (*Alias)(&t)})
 }
 
 // InputMessagePaidMedia A message with paid media; can be used only in channel chats with supergroupFullInfo.has_paid_media_allowed
@@ -20366,10 +18263,7 @@ func (t InputMessagePaidMedia) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputMessagePaidMedia",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputMessagePaidMedia", Alias: (*Alias)(&t)})
 }
 
 // InputMessagePhoto A photo message
@@ -20397,10 +18291,7 @@ func (t InputMessagePhoto) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputMessagePhoto",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputMessagePhoto", Alias: (*Alias)(&t)})
 }
 
 func (t *InputMessagePhoto) UnmarshalJSON(data []byte) error {
@@ -20471,10 +18362,7 @@ func (t InputMessagePoll) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputMessagePoll",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputMessagePoll", Alias: (*Alias)(&t)})
 }
 
 func (t *InputMessagePoll) UnmarshalJSON(data []byte) error {
@@ -20525,10 +18413,7 @@ func (t InputMessageReplyToEphemeralMessage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputMessageReplyToEphemeralMessage",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputMessageReplyToEphemeralMessage", Alias: (*Alias)(&t)})
 }
 
 // InputMessageReplyToExternalMessage Describes a message to be replied that is from a different chat or a forum topic; not supported in secret chats
@@ -20556,10 +18441,7 @@ func (t InputMessageReplyToExternalMessage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputMessageReplyToExternalMessage",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputMessageReplyToExternalMessage", Alias: (*Alias)(&t)})
 }
 
 // InputMessageReplyToMessage Describes a message to be replied in the same chat and forum topic
@@ -20585,10 +18467,7 @@ func (t InputMessageReplyToMessage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputMessageReplyToMessage",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputMessageReplyToMessage", Alias: (*Alias)(&t)})
 }
 
 // InputMessageReplyToStory Describes a story to be replied
@@ -20610,10 +18489,7 @@ func (t InputMessageReplyToStory) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputMessageReplyToStory",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputMessageReplyToStory", Alias: (*Alias)(&t)})
 }
 
 // InputMessageRichMessage A rich message
@@ -20635,10 +18511,7 @@ func (t InputMessageRichMessage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputMessageRichMessage",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputMessageRichMessage", Alias: (*Alias)(&t)})
 }
 
 // InputMessageStakeDice A stake dice message
@@ -20662,10 +18535,7 @@ func (t InputMessageStakeDice) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputMessageStakeDice",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputMessageStakeDice", Alias: (*Alias)(&t)})
 }
 
 // InputMessageSticker A sticker message
@@ -20687,10 +18557,7 @@ func (t InputMessageSticker) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputMessageSticker",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputMessageSticker", Alias: (*Alias)(&t)})
 }
 
 // InputMessageStory A message with a forwarded story. Stories can't be forwarded to secret chats. A story can be forwarded only if story.can_be_forwarded
@@ -20712,10 +18579,7 @@ func (t InputMessageStory) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputMessageStory",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputMessageStory", Alias: (*Alias)(&t)})
 }
 
 // InputMessageText A text message
@@ -20739,10 +18603,7 @@ func (t InputMessageText) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputMessageText",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputMessageText", Alias: (*Alias)(&t)})
 }
 
 // InputMessageVenue A message with information about a venue
@@ -20762,10 +18623,7 @@ func (t InputMessageVenue) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputMessageVenue",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputMessageVenue", Alias: (*Alias)(&t)})
 }
 
 // InputMessageVideo A video message
@@ -20793,10 +18651,7 @@ func (t InputMessageVideo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputMessageVideo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputMessageVideo", Alias: (*Alias)(&t)})
 }
 
 func (t *InputMessageVideo) UnmarshalJSON(data []byte) error {
@@ -20841,10 +18696,7 @@ func (t InputMessageVideoNote) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputMessageVideoNote",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputMessageVideoNote", Alias: (*Alias)(&t)})
 }
 
 func (t *InputMessageVideoNote) UnmarshalJSON(data []byte) error {
@@ -20891,10 +18743,7 @@ func (t InputMessageVoiceNote) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputMessageVoiceNote",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputMessageVoiceNote", Alias: (*Alias)(&t)})
 }
 
 func (t *InputMessageVoiceNote) UnmarshalJSON(data []byte) error {
@@ -20937,10 +18786,7 @@ func (t InputPageBlockAnchor) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPageBlockAnchor",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPageBlockAnchor", Alias: (*Alias)(&t)})
 }
 
 // InputPageBlockAnimation An animation
@@ -20964,10 +18810,7 @@ func (t InputPageBlockAnimation) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPageBlockAnimation",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPageBlockAnimation", Alias: (*Alias)(&t)})
 }
 
 // InputPageBlockAudio An audio file
@@ -20989,10 +18832,7 @@ func (t InputPageBlockAudio) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPageBlockAudio",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPageBlockAudio", Alias: (*Alias)(&t)})
 }
 
 // InputPageBlockBlockQuote A block quote
@@ -21014,10 +18854,7 @@ func (t InputPageBlockBlockQuote) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPageBlockBlockQuote",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPageBlockBlockQuote", Alias: (*Alias)(&t)})
 }
 
 func (t *InputPageBlockBlockQuote) UnmarshalJSON(data []byte) error {
@@ -21073,10 +18910,7 @@ func (t InputPageBlockButtonRow) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPageBlockButtonRow",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPageBlockButtonRow", Alias: (*Alias)(&t)})
 }
 
 func (t *InputPageBlockButtonRow) UnmarshalJSON(data []byte) error {
@@ -21121,10 +18955,7 @@ func (t InputPageBlockCollage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPageBlockCollage",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPageBlockCollage", Alias: (*Alias)(&t)})
 }
 
 func (t *InputPageBlockCollage) UnmarshalJSON(data []byte) error {
@@ -21174,10 +19005,7 @@ func (t InputPageBlockDetails) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPageBlockDetails",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPageBlockDetails", Alias: (*Alias)(&t)})
 }
 
 func (t *InputPageBlockDetails) UnmarshalJSON(data []byte) error {
@@ -21229,10 +19057,7 @@ func (t InputPageBlockDivider) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPageBlockDivider",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPageBlockDivider", Alias: (*Alias)(&t)})
 }
 
 // InputPageBlockDocument A general file
@@ -21254,10 +19079,7 @@ func (t InputPageBlockDocument) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPageBlockDocument",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPageBlockDocument", Alias: (*Alias)(&t)})
 }
 
 // InputPageBlockExpandableBlockQuote An expandable block quote
@@ -21279,10 +19101,7 @@ func (t InputPageBlockExpandableBlockQuote) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPageBlockExpandableBlockQuote",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPageBlockExpandableBlockQuote", Alias: (*Alias)(&t)})
 }
 
 func (t *InputPageBlockExpandableBlockQuote) UnmarshalJSON(data []byte) error {
@@ -21333,10 +19152,7 @@ func (t InputPageBlockFooter) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPageBlockFooter",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPageBlockFooter", Alias: (*Alias)(&t)})
 }
 
 func (t *InputPageBlockFooter) UnmarshalJSON(data []byte) error {
@@ -21379,10 +19195,7 @@ func (t InputPageBlockList) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPageBlockList",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPageBlockList", Alias: (*Alias)(&t)})
 }
 
 // InputPageBlockListItem Describes an item of a list page block to be sent
@@ -21408,10 +19221,7 @@ func (t InputPageBlockListItem) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPageBlockListItem",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPageBlockListItem", Alias: (*Alias)(&t)})
 }
 
 func (t *InputPageBlockListItem) UnmarshalJSON(data []byte) error {
@@ -21465,10 +19275,7 @@ func (t InputPageBlockMap) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPageBlockMap",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPageBlockMap", Alias: (*Alias)(&t)})
 }
 
 // InputPageBlockMathematicalExpression A mathematical expression
@@ -21488,10 +19295,7 @@ func (t InputPageBlockMathematicalExpression) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPageBlockMathematicalExpression",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPageBlockMathematicalExpression", Alias: (*Alias)(&t)})
 }
 
 // InputPageBlockParagraph A text paragraph
@@ -21511,10 +19315,7 @@ func (t InputPageBlockParagraph) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPageBlockParagraph",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPageBlockParagraph", Alias: (*Alias)(&t)})
 }
 
 func (t *InputPageBlockParagraph) UnmarshalJSON(data []byte) error {
@@ -21561,10 +19362,7 @@ func (t InputPageBlockPhoto) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPageBlockPhoto",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPageBlockPhoto", Alias: (*Alias)(&t)})
 }
 
 // InputPageBlockPreformatted A preformatted text paragraph
@@ -21586,10 +19384,7 @@ func (t InputPageBlockPreformatted) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPageBlockPreformatted",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPageBlockPreformatted", Alias: (*Alias)(&t)})
 }
 
 func (t *InputPageBlockPreformatted) UnmarshalJSON(data []byte) error {
@@ -21634,10 +19429,7 @@ func (t InputPageBlockPullQuote) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPageBlockPullQuote",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPageBlockPullQuote", Alias: (*Alias)(&t)})
 }
 
 func (t *InputPageBlockPullQuote) UnmarshalJSON(data []byte) error {
@@ -21690,10 +19482,7 @@ func (t InputPageBlockSectionHeading) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPageBlockSectionHeading",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPageBlockSectionHeading", Alias: (*Alias)(&t)})
 }
 
 func (t *InputPageBlockSectionHeading) UnmarshalJSON(data []byte) error {
@@ -21738,10 +19527,7 @@ func (t InputPageBlockSlideshow) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPageBlockSlideshow",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPageBlockSlideshow", Alias: (*Alias)(&t)})
 }
 
 func (t *InputPageBlockSlideshow) UnmarshalJSON(data []byte) error {
@@ -21795,10 +19581,7 @@ func (t InputPageBlockTable) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPageBlockTable",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPageBlockTable", Alias: (*Alias)(&t)})
 }
 
 func (t *InputPageBlockTable) UnmarshalJSON(data []byte) error {
@@ -21841,10 +19624,7 @@ func (t InputPageBlockThinking) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPageBlockThinking",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPageBlockThinking", Alias: (*Alias)(&t)})
 }
 
 func (t *InputPageBlockThinking) UnmarshalJSON(data []byte) error {
@@ -21891,10 +19671,7 @@ func (t InputPageBlockVideo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPageBlockVideo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPageBlockVideo", Alias: (*Alias)(&t)})
 }
 
 // InputPageBlockVoiceNote A voice note
@@ -21916,10 +19693,7 @@ func (t InputPageBlockVoiceNote) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPageBlockVoiceNote",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPageBlockVoiceNote", Alias: (*Alias)(&t)})
 }
 
 // InputPaidMedia Describes a paid media to be sent
@@ -21947,10 +19721,7 @@ func (t InputPaidMedia) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPaidMedia",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPaidMedia", Alias: (*Alias)(&t)})
 }
 
 func (t *InputPaidMedia) UnmarshalJSON(data []byte) error {
@@ -22001,10 +19772,7 @@ func (t InputPaidMediaTypePhoto) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPaidMediaTypePhoto",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPaidMediaTypePhoto", Alias: (*Alias)(&t)})
 }
 
 func (t *InputPaidMediaTypePhoto) UnmarshalJSON(data []byte) error {
@@ -22053,10 +19821,7 @@ func (t InputPaidMediaTypeVideo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPaidMediaTypeVideo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPaidMediaTypeVideo", Alias: (*Alias)(&t)})
 }
 
 func (t *InputPaidMediaTypeVideo) UnmarshalJSON(data []byte) error {
@@ -22099,10 +19864,7 @@ func (t InputPassportElementAddress) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPassportElementAddress",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPassportElementAddress", Alias: (*Alias)(&t)})
 }
 
 // InputPassportElementBankStatement A Telegram Passport element to be saved containing the user's bank statement
@@ -22122,10 +19884,7 @@ func (t InputPassportElementBankStatement) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPassportElementBankStatement",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPassportElementBankStatement", Alias: (*Alias)(&t)})
 }
 
 // InputPassportElementDriverLicense A Telegram Passport element to be saved containing the user's driver license
@@ -22145,10 +19904,7 @@ func (t InputPassportElementDriverLicense) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPassportElementDriverLicense",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPassportElementDriverLicense", Alias: (*Alias)(&t)})
 }
 
 // InputPassportElementEmailAddress A Telegram Passport element to be saved containing the user's email address
@@ -22168,10 +19924,7 @@ func (t InputPassportElementEmailAddress) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPassportElementEmailAddress",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPassportElementEmailAddress", Alias: (*Alias)(&t)})
 }
 
 // InputPassportElementError Contains the description of an error in a Telegram Passport element; for bots only
@@ -22193,10 +19946,7 @@ func (t InputPassportElementError) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPassportElementError",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPassportElementError", Alias: (*Alias)(&t)})
 }
 
 func (t *InputPassportElementError) UnmarshalJSON(data []byte) error {
@@ -22249,10 +19999,7 @@ func (t InputPassportElementErrorSourceDataField) MarshalJSON() ([]byte, error) 
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPassportElementErrorSourceDataField",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPassportElementErrorSourceDataField", Alias: (*Alias)(&t)})
 }
 
 // InputPassportElementErrorSourceFile The file contains an error. The error is considered resolved when the file changes
@@ -22272,10 +20019,7 @@ func (t InputPassportElementErrorSourceFile) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPassportElementErrorSourceFile",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPassportElementErrorSourceFile", Alias: (*Alias)(&t)})
 }
 
 // InputPassportElementErrorSourceFiles The list of attached files contains an error. The error is considered resolved when the file list changes
@@ -22295,10 +20039,7 @@ func (t InputPassportElementErrorSourceFiles) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPassportElementErrorSourceFiles",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPassportElementErrorSourceFiles", Alias: (*Alias)(&t)})
 }
 
 // InputPassportElementErrorSourceFrontSide The front side of the document contains an error. The error is considered resolved when the file with the front side of the document changes
@@ -22318,10 +20059,7 @@ func (t InputPassportElementErrorSourceFrontSide) MarshalJSON() ([]byte, error) 
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPassportElementErrorSourceFrontSide",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPassportElementErrorSourceFrontSide", Alias: (*Alias)(&t)})
 }
 
 // InputPassportElementErrorSourceReverseSide The reverse side of the document contains an error. The error is considered resolved when the file with the reverse side of the document changes
@@ -22341,10 +20079,7 @@ func (t InputPassportElementErrorSourceReverseSide) MarshalJSON() ([]byte, error
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPassportElementErrorSourceReverseSide",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPassportElementErrorSourceReverseSide", Alias: (*Alias)(&t)})
 }
 
 // InputPassportElementErrorSourceSelfie The selfie contains an error. The error is considered resolved when the file with the selfie changes
@@ -22364,10 +20099,7 @@ func (t InputPassportElementErrorSourceSelfie) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPassportElementErrorSourceSelfie",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPassportElementErrorSourceSelfie", Alias: (*Alias)(&t)})
 }
 
 // InputPassportElementErrorSourceTranslationFile One of the files containing the translation of the document contains an error. The error is considered resolved when the file with the translation changes
@@ -22387,10 +20119,7 @@ func (t InputPassportElementErrorSourceTranslationFile) MarshalJSON() ([]byte, e
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPassportElementErrorSourceTranslationFile",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPassportElementErrorSourceTranslationFile", Alias: (*Alias)(&t)})
 }
 
 // InputPassportElementErrorSourceTranslationFiles The translation of the document contains an error. The error is considered resolved when the list of files changes
@@ -22410,10 +20139,7 @@ func (t InputPassportElementErrorSourceTranslationFiles) MarshalJSON() ([]byte, 
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPassportElementErrorSourceTranslationFiles",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPassportElementErrorSourceTranslationFiles", Alias: (*Alias)(&t)})
 }
 
 // InputPassportElementErrorSourceUnspecified The element contains an error in an unspecified place. The error will be considered resolved when new data is added
@@ -22433,10 +20159,7 @@ func (t InputPassportElementErrorSourceUnspecified) MarshalJSON() ([]byte, error
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPassportElementErrorSourceUnspecified",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPassportElementErrorSourceUnspecified", Alias: (*Alias)(&t)})
 }
 
 // InputPassportElementIdentityCard A Telegram Passport element to be saved containing the user's identity card
@@ -22456,10 +20179,7 @@ func (t InputPassportElementIdentityCard) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPassportElementIdentityCard",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPassportElementIdentityCard", Alias: (*Alias)(&t)})
 }
 
 // InputPassportElementInternalPassport A Telegram Passport element to be saved containing the user's internal passport
@@ -22479,10 +20199,7 @@ func (t InputPassportElementInternalPassport) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPassportElementInternalPassport",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPassportElementInternalPassport", Alias: (*Alias)(&t)})
 }
 
 // InputPassportElementPassport A Telegram Passport element to be saved containing the user's passport
@@ -22502,10 +20219,7 @@ func (t InputPassportElementPassport) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPassportElementPassport",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPassportElementPassport", Alias: (*Alias)(&t)})
 }
 
 // InputPassportElementPassportRegistration A Telegram Passport element to be saved containing the user's passport registration
@@ -22525,10 +20239,7 @@ func (t InputPassportElementPassportRegistration) MarshalJSON() ([]byte, error) 
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPassportElementPassportRegistration",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPassportElementPassportRegistration", Alias: (*Alias)(&t)})
 }
 
 // InputPassportElementPersonalDetails A Telegram Passport element to be saved containing the user's personal details
@@ -22548,10 +20259,7 @@ func (t InputPassportElementPersonalDetails) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPassportElementPersonalDetails",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPassportElementPersonalDetails", Alias: (*Alias)(&t)})
 }
 
 // InputPassportElementPhoneNumber A Telegram Passport element to be saved containing the user's phone number
@@ -22571,10 +20279,7 @@ func (t InputPassportElementPhoneNumber) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPassportElementPhoneNumber",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPassportElementPhoneNumber", Alias: (*Alias)(&t)})
 }
 
 // InputPassportElementRentalAgreement A Telegram Passport element to be saved containing the user's rental agreement
@@ -22594,10 +20299,7 @@ func (t InputPassportElementRentalAgreement) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPassportElementRentalAgreement",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPassportElementRentalAgreement", Alias: (*Alias)(&t)})
 }
 
 // InputPassportElementTemporaryRegistration A Telegram Passport element to be saved containing the user's temporary registration
@@ -22617,10 +20319,7 @@ func (t InputPassportElementTemporaryRegistration) MarshalJSON() ([]byte, error)
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPassportElementTemporaryRegistration",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPassportElementTemporaryRegistration", Alias: (*Alias)(&t)})
 }
 
 // InputPassportElementUtilityBill A Telegram Passport element to be saved containing the user's utility bill
@@ -22640,10 +20339,7 @@ func (t InputPassportElementUtilityBill) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPassportElementUtilityBill",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPassportElementUtilityBill", Alias: (*Alias)(&t)})
 }
 
 // InputPersonalDocument A personal document to be saved to Telegram Passport
@@ -22663,10 +20359,7 @@ func (t InputPersonalDocument) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPersonalDocument",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPersonalDocument", Alias: (*Alias)(&t)})
 }
 
 func (t *InputPersonalDocument) UnmarshalJSON(data []byte) error {
@@ -22731,10 +20424,7 @@ func (t InputPhoto) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPhoto",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPhoto", Alias: (*Alias)(&t)})
 }
 
 func (t *InputPhoto) UnmarshalJSON(data []byte) error {
@@ -22785,10 +20475,7 @@ func (t InputPollMediaAnimation) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPollMediaAnimation",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPollMediaAnimation", Alias: (*Alias)(&t)})
 }
 
 // InputPollMediaAudio An audio
@@ -22808,10 +20495,7 @@ func (t InputPollMediaAudio) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPollMediaAudio",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPollMediaAudio", Alias: (*Alias)(&t)})
 }
 
 // InputPollMediaDocument A document (general file)
@@ -22831,10 +20515,7 @@ func (t InputPollMediaDocument) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPollMediaDocument",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPollMediaDocument", Alias: (*Alias)(&t)})
 }
 
 // InputPollMediaLink A link
@@ -22854,10 +20535,7 @@ func (t InputPollMediaLink) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPollMediaLink",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPollMediaLink", Alias: (*Alias)(&t)})
 }
 
 // InputPollMediaLocation A location
@@ -22877,10 +20555,7 @@ func (t InputPollMediaLocation) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPollMediaLocation",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPollMediaLocation", Alias: (*Alias)(&t)})
 }
 
 // InputPollMediaPhoto A photo
@@ -22900,10 +20575,7 @@ func (t InputPollMediaPhoto) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPollMediaPhoto",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPollMediaPhoto", Alias: (*Alias)(&t)})
 }
 
 // InputPollMediaSticker A sticker
@@ -22923,10 +20595,7 @@ func (t InputPollMediaSticker) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPollMediaSticker",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPollMediaSticker", Alias: (*Alias)(&t)})
 }
 
 // InputPollMediaVenue A venue
@@ -22946,10 +20615,7 @@ func (t InputPollMediaVenue) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPollMediaVenue",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPollMediaVenue", Alias: (*Alias)(&t)})
 }
 
 // InputPollMediaVideo A video
@@ -22969,10 +20635,7 @@ func (t InputPollMediaVideo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPollMediaVideo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPollMediaVideo", Alias: (*Alias)(&t)})
 }
 
 // InputPollOption Describes one answer option of a poll to be created
@@ -22992,10 +20655,7 @@ func (t InputPollOption) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPollOption",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPollOption", Alias: (*Alias)(&t)})
 }
 
 func (t *InputPollOption) UnmarshalJSON(data []byte) error {
@@ -23042,10 +20702,7 @@ func (t InputPollTypeQuiz) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPollTypeQuiz",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPollTypeQuiz", Alias: (*Alias)(&t)})
 }
 
 func (t *InputPollTypeQuiz) UnmarshalJSON(data []byte) error {
@@ -23088,10 +20745,7 @@ func (t InputPollTypeRegular) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputPollTypeRegular",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputPollTypeRegular", Alias: (*Alias)(&t)})
 }
 
 // InputRichMessage A rich message to send. Total length of all texts, including custom emoji alternative text and formula source, must not exceed getOption("rich_message_text_length_max").
@@ -23113,10 +20767,7 @@ func (t InputRichMessage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputRichMessage",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputRichMessage", Alias: (*Alias)(&t)})
 }
 
 func (t *InputRichMessage) UnmarshalJSON(data []byte) error {
@@ -23159,10 +20810,7 @@ func (t InputRichMessageMedia) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputRichMessageMedia",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputRichMessageMedia", Alias: (*Alias)(&t)})
 }
 
 func (t *InputRichMessageMedia) UnmarshalJSON(data []byte) error {
@@ -23209,10 +20857,7 @@ func (t InputSticker) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputSticker",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputSticker", Alias: (*Alias)(&t)})
 }
 
 func (t *InputSticker) UnmarshalJSON(data []byte) error {
@@ -23255,10 +20900,7 @@ func (t InputStoryArea) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputStoryArea",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputStoryArea", Alias: (*Alias)(&t)})
 }
 
 func (t *InputStoryArea) UnmarshalJSON(data []byte) error {
@@ -23299,10 +20941,7 @@ func (t InputStoryAreas) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputStoryAreas",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputStoryAreas", Alias: (*Alias)(&t)})
 }
 
 // InputStoryAreaTypeFoundVenue An area pointing to a venue found by the bot getOption("venue_search_bot_username")
@@ -23324,10 +20963,7 @@ func (t InputStoryAreaTypeFoundVenue) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputStoryAreaTypeFoundVenue",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputStoryAreaTypeFoundVenue", Alias: (*Alias)(&t)})
 }
 
 // InputStoryAreaTypeLink An area pointing to a HTTP or tg:// link
@@ -23347,10 +20983,7 @@ func (t InputStoryAreaTypeLink) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputStoryAreaTypeLink",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputStoryAreaTypeLink", Alias: (*Alias)(&t)})
 }
 
 // InputStoryAreaTypeLocation An area pointing to a location
@@ -23372,10 +21005,7 @@ func (t InputStoryAreaTypeLocation) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputStoryAreaTypeLocation",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputStoryAreaTypeLocation", Alias: (*Alias)(&t)})
 }
 
 // InputStoryAreaTypeMessage An area pointing to a message
@@ -23397,10 +21027,7 @@ func (t InputStoryAreaTypeMessage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputStoryAreaTypeMessage",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputStoryAreaTypeMessage", Alias: (*Alias)(&t)})
 }
 
 // InputStoryAreaTypePreviousVenue An area pointing to a venue already added to the story
@@ -23422,10 +21049,7 @@ func (t InputStoryAreaTypePreviousVenue) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputStoryAreaTypePreviousVenue",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputStoryAreaTypePreviousVenue", Alias: (*Alias)(&t)})
 }
 
 // InputStoryAreaTypeSuggestedReaction An area pointing to a suggested reaction
@@ -23449,10 +21073,7 @@ func (t InputStoryAreaTypeSuggestedReaction) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputStoryAreaTypeSuggestedReaction",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputStoryAreaTypeSuggestedReaction", Alias: (*Alias)(&t)})
 }
 
 func (t *InputStoryAreaTypeSuggestedReaction) UnmarshalJSON(data []byte) error {
@@ -23495,10 +21116,7 @@ func (t InputStoryAreaTypeUpgradedGift) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputStoryAreaTypeUpgradedGift",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputStoryAreaTypeUpgradedGift", Alias: (*Alias)(&t)})
 }
 
 // InputStoryAreaTypeWeather An area with information about weather
@@ -23522,10 +21140,7 @@ func (t InputStoryAreaTypeWeather) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputStoryAreaTypeWeather",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputStoryAreaTypeWeather", Alias: (*Alias)(&t)})
 }
 
 // InputStoryContentPhoto A photo story
@@ -23547,10 +21162,7 @@ func (t InputStoryContentPhoto) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputStoryContentPhoto",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputStoryContentPhoto", Alias: (*Alias)(&t)})
 }
 
 func (t *InputStoryContentPhoto) UnmarshalJSON(data []byte) error {
@@ -23601,10 +21213,7 @@ func (t InputStoryContentVideo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputStoryContentVideo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputStoryContentVideo", Alias: (*Alias)(&t)})
 }
 
 func (t *InputStoryContentVideo) UnmarshalJSON(data []byte) error {
@@ -23647,10 +21256,7 @@ func (t InputSuggestedPostInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputSuggestedPostInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputSuggestedPostInfo", Alias: (*Alias)(&t)})
 }
 
 func (t *InputSuggestedPostInfo) UnmarshalJSON(data []byte) error {
@@ -23693,10 +21299,7 @@ func (t InputTextQuote) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputTextQuote",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputTextQuote", Alias: (*Alias)(&t)})
 }
 
 // InputThumbnail A thumbnail to be sent along with a file; must be in JPEG or WEBP format for stickers, and less than 200 KB in size
@@ -23718,10 +21321,7 @@ func (t InputThumbnail) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputThumbnail",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputThumbnail", Alias: (*Alias)(&t)})
 }
 
 func (t *InputThumbnail) UnmarshalJSON(data []byte) error {
@@ -23778,10 +21378,7 @@ func (t InputVideo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputVideo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputVideo", Alias: (*Alias)(&t)})
 }
 
 func (t *InputVideo) UnmarshalJSON(data []byte) error {
@@ -23836,10 +21433,7 @@ func (t InputVideoNote) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputVideoNote",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputVideoNote", Alias: (*Alias)(&t)})
 }
 
 func (t *InputVideoNote) UnmarshalJSON(data []byte) error {
@@ -23884,10 +21478,7 @@ func (t InputVoiceNote) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inputVoiceNote",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inputVoiceNote", Alias: (*Alias)(&t)})
 }
 
 func (t *InputVoiceNote) UnmarshalJSON(data []byte) error {
@@ -23934,10 +21525,7 @@ func (t InternalLinkTypeAttachmentMenuBot) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypeAttachmentMenuBot",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypeAttachmentMenuBot", Alias: (*Alias)(&t)})
 }
 
 func (t *InternalLinkTypeAttachmentMenuBot) UnmarshalJSON(data []byte) error {
@@ -23980,10 +21568,7 @@ func (t InternalLinkTypeAuthenticationCode) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypeAuthenticationCode",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypeAuthenticationCode", Alias: (*Alias)(&t)})
 }
 
 // InternalLinkTypeBackground The link is a link to a background. Call searchBackground with the given background name to process the link.
@@ -24003,10 +21588,7 @@ func (t InternalLinkTypeBackground) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypeBackground",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypeBackground", Alias: (*Alias)(&t)})
 }
 
 // InternalLinkTypeBotAddToChannel The link is a link to a Telegram bot, which is expected to be added to a channel chat as an administrator. Call searchPublicChat with the given bot username and check that the user is a bot,
@@ -24028,10 +21610,7 @@ func (t InternalLinkTypeBotAddToChannel) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypeBotAddToChannel",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypeBotAddToChannel", Alias: (*Alias)(&t)})
 }
 
 // InternalLinkTypeBotStart The link is a link to a chat with a Telegram bot. Call searchPublicChat with the given bot username, check that the user is a bot, show START button in the chat with the bot,
@@ -24055,10 +21634,7 @@ func (t InternalLinkTypeBotStart) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypeBotStart",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypeBotStart", Alias: (*Alias)(&t)})
 }
 
 // InternalLinkTypeBotStartInGroup The link is a link to a Telegram bot, which is expected to be added to a group chat. Call searchPublicChat with the given bot username, check that the user is a bot and can be added to groups,
@@ -24082,10 +21658,7 @@ func (t InternalLinkTypeBotStartInGroup) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypeBotStartInGroup",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypeBotStartInGroup", Alias: (*Alias)(&t)})
 }
 
 // InternalLinkTypeBusinessChat The link is a link to a business chat. Use getBusinessChatLinkInfo with the provided link name to get information about the link,
@@ -24105,10 +21678,7 @@ func (t InternalLinkTypeBusinessChat) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypeBusinessChat",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypeBusinessChat", Alias: (*Alias)(&t)})
 }
 
 // InternalLinkTypeCallsPage The link is a link to the Call tab or page
@@ -24128,10 +21698,7 @@ func (t InternalLinkTypeCallsPage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypeCallsPage",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypeCallsPage", Alias: (*Alias)(&t)})
 }
 
 // InternalLinkTypeChatAffiliateProgram The link is an affiliate program link. Call searchChatAffiliateProgram with the given username and referrer to process the link
@@ -24153,10 +21720,7 @@ func (t InternalLinkTypeChatAffiliateProgram) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypeChatAffiliateProgram",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypeChatAffiliateProgram", Alias: (*Alias)(&t)})
 }
 
 // InternalLinkTypeChatBoost The link is a link to boost a Telegram chat. Call getChatBoostLinkInfo with the given URL to process the link.
@@ -24176,10 +21740,7 @@ func (t InternalLinkTypeChatBoost) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypeChatBoost",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypeChatBoost", Alias: (*Alias)(&t)})
 }
 
 // InternalLinkTypeChatFolderInvite The link is an invite link to a chat folder. Call checkChatFolderInviteLink with the given invite link to process the link.
@@ -24199,10 +21760,7 @@ func (t InternalLinkTypeChatFolderInvite) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypeChatFolderInvite",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypeChatFolderInvite", Alias: (*Alias)(&t)})
 }
 
 // InternalLinkTypeChatInvite The link is a chat invite link. Call checkChatInviteLink with the given invite link to process the link.
@@ -24222,10 +21780,7 @@ func (t InternalLinkTypeChatInvite) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypeChatInvite",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypeChatInvite", Alias: (*Alias)(&t)})
 }
 
 // InternalLinkTypeChatSelection The link is a link that allows to select some chats
@@ -24243,10 +21798,7 @@ func (t InternalLinkTypeChatSelection) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypeChatSelection",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypeChatSelection", Alias: (*Alias)(&t)})
 }
 
 // InternalLinkTypeContactsPage The link is a link to the Contacts tab or page
@@ -24266,10 +21818,7 @@ func (t InternalLinkTypeContactsPage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypeContactsPage",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypeContactsPage", Alias: (*Alias)(&t)})
 }
 
 // InternalLinkTypeDirectMessagesChat The link is a link to a channel direct messages chat by username of the channel. Call searchPublicChat with the given chat username to process the link.
@@ -24289,10 +21838,7 @@ func (t InternalLinkTypeDirectMessagesChat) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypeDirectMessagesChat",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypeDirectMessagesChat", Alias: (*Alias)(&t)})
 }
 
 // InternalLinkTypeGame The link is a link to a game. Call searchPublicChat with the given bot username, check that the user is a bot,
@@ -24314,10 +21860,7 @@ func (t InternalLinkTypeGame) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypeGame",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypeGame", Alias: (*Alias)(&t)})
 }
 
 // InternalLinkTypeGiftAuction The link is a link to a gift auction. Call getGiftAuctionState with the given auction identifier to process the link
@@ -24337,10 +21880,7 @@ func (t InternalLinkTypeGiftAuction) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypeGiftAuction",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypeGiftAuction", Alias: (*Alias)(&t)})
 }
 
 // InternalLinkTypeGiftCollection The link is a link to a gift collection. Call searchPublicChat with the given username, then call getReceivedGifts with the received gift owner identifier
@@ -24362,10 +21902,7 @@ func (t InternalLinkTypeGiftCollection) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypeGiftCollection",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypeGiftCollection", Alias: (*Alias)(&t)})
 }
 
 // InternalLinkTypeGroupCall The link is a link to a group call that isn't bound to a chat. Use getGroupCallParticipants to get the list of group call participants and show them on the join group call screen.
@@ -24385,10 +21922,7 @@ func (t InternalLinkTypeGroupCall) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypeGroupCall",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypeGroupCall", Alias: (*Alias)(&t)})
 }
 
 // InternalLinkTypeInstantView The link must be opened in an Instant View. Call getWebPageInstantView with the given URL to process the link.
@@ -24410,10 +21944,7 @@ func (t InternalLinkTypeInstantView) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypeInstantView",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypeInstantView", Alias: (*Alias)(&t)})
 }
 
 // InternalLinkTypeInvoice The link is a link to an invoice. Call getPaymentForm with the given invoice name to process the link
@@ -24433,10 +21964,7 @@ func (t InternalLinkTypeInvoice) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypeInvoice",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypeInvoice", Alias: (*Alias)(&t)})
 }
 
 // InternalLinkTypeLanguagePack The link is a link to a language pack. Call getLanguagePackInfo with the given language pack identifier to process the link.
@@ -24456,10 +21984,7 @@ func (t InternalLinkTypeLanguagePack) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypeLanguagePack",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypeLanguagePack", Alias: (*Alias)(&t)})
 }
 
 // InternalLinkTypeLiveStory The link is a link to a live story. Call searchPublicChat with the given chat username, then getChatActiveStories to get active stories in the chat,
@@ -24479,10 +22004,7 @@ func (t InternalLinkTypeLiveStory) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypeLiveStory",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypeLiveStory", Alias: (*Alias)(&t)})
 }
 
 // InternalLinkTypeMainWebApp The link is a link to the main Web App of a bot. Call searchPublicChat with the given bot username, check that the user is a bot and has the main Web App.
@@ -24506,10 +22028,7 @@ func (t InternalLinkTypeMainWebApp) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypeMainWebApp",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypeMainWebApp", Alias: (*Alias)(&t)})
 }
 
 func (t *InternalLinkTypeMainWebApp) UnmarshalJSON(data []byte) error {
@@ -24552,10 +22071,7 @@ func (t InternalLinkTypeMessage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypeMessage",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypeMessage", Alias: (*Alias)(&t)})
 }
 
 // InternalLinkTypeMessageDraft The link contains a message draft text. A share screen needs to be shown to the user, then the chosen chat must be opened and the text is added to the input field
@@ -24577,10 +22093,7 @@ func (t InternalLinkTypeMessageDraft) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypeMessageDraft",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypeMessageDraft", Alias: (*Alias)(&t)})
 }
 
 // InternalLinkTypeMyProfilePage The link is a link to the My Profile application page
@@ -24600,10 +22113,7 @@ func (t InternalLinkTypeMyProfilePage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypeMyProfilePage",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypeMyProfilePage", Alias: (*Alias)(&t)})
 }
 
 // InternalLinkTypeNewChannelChat The link is a link to the screen for creating a new channel chat
@@ -24621,10 +22131,7 @@ func (t InternalLinkTypeNewChannelChat) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypeNewChannelChat",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypeNewChannelChat", Alias: (*Alias)(&t)})
 }
 
 // InternalLinkTypeNewGroupChat The link is a link to the screen for creating a new group chat
@@ -24642,10 +22149,7 @@ func (t InternalLinkTypeNewGroupChat) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypeNewGroupChat",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypeNewGroupChat", Alias: (*Alias)(&t)})
 }
 
 // InternalLinkTypeNewPrivateChat The link is a link to the screen for creating a new private chat with a contact
@@ -24663,10 +22167,7 @@ func (t InternalLinkTypeNewPrivateChat) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypeNewPrivateChat",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypeNewPrivateChat", Alias: (*Alias)(&t)})
 }
 
 // InternalLinkTypeNewStory The link is a link to open the story posting interface
@@ -24686,10 +22187,7 @@ func (t InternalLinkTypeNewStory) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypeNewStory",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypeNewStory", Alias: (*Alias)(&t)})
 }
 
 func (t *InternalLinkTypeNewStory) UnmarshalJSON(data []byte) error {
@@ -24732,10 +22230,7 @@ func (t InternalLinkTypeOauth) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypeOauth",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypeOauth", Alias: (*Alias)(&t)})
 }
 
 // InternalLinkTypePassportDataRequest The link contains a request of Telegram passport data. Call getPassportAuthorizationForm with the given parameters to process the link if the link was received from outside of the application; otherwise, ignore it
@@ -24763,10 +22258,7 @@ func (t InternalLinkTypePassportDataRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypePassportDataRequest",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypePassportDataRequest", Alias: (*Alias)(&t)})
 }
 
 // InternalLinkTypePhoneNumberConfirmation The link can be used to confirm ownership of a phone number to prevent account deletion. Call sendPhoneNumberCode with the given phone number and with phoneNumberCodeTypeConfirmOwnership with the given hash to process the link.
@@ -24788,10 +22280,7 @@ func (t InternalLinkTypePhoneNumberConfirmation) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypePhoneNumberConfirmation",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypePhoneNumberConfirmation", Alias: (*Alias)(&t)})
 }
 
 // InternalLinkTypePremiumFeaturesPage The link is a link to the Premium features screen of the application from which the user can subscribe to Telegram Premium. Call getPremiumFeatures with the given referrer to process the link
@@ -24811,10 +22300,7 @@ func (t InternalLinkTypePremiumFeaturesPage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypePremiumFeaturesPage",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypePremiumFeaturesPage", Alias: (*Alias)(&t)})
 }
 
 // InternalLinkTypePremiumGiftCode The link is a link with a Telegram Premium gift code. Call checkPremiumGiftCode with the given code to process the link.
@@ -24834,10 +22320,7 @@ func (t InternalLinkTypePremiumGiftCode) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypePremiumGiftCode",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypePremiumGiftCode", Alias: (*Alias)(&t)})
 }
 
 // InternalLinkTypePremiumGiftPurchase The link is a link to the screen for gifting Telegram Premium subscriptions to friends via inputInvoiceTelegram with telegramPaymentPurposePremiumGift payments or in-store purchases
@@ -24857,10 +22340,7 @@ func (t InternalLinkTypePremiumGiftPurchase) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypePremiumGiftPurchase",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypePremiumGiftPurchase", Alias: (*Alias)(&t)})
 }
 
 // InternalLinkTypeProxy The link is a link to a proxy. Call addProxy with the given parameters to process the link and add the proxy
@@ -24880,10 +22360,7 @@ func (t InternalLinkTypeProxy) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypeProxy",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypeProxy", Alias: (*Alias)(&t)})
 }
 
 // InternalLinkTypePublicChat The link is a link to a chat by its username. Call searchPublicChat with the given chat username to process the link.
@@ -24907,10 +22384,7 @@ func (t InternalLinkTypePublicChat) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypePublicChat",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypePublicChat", Alias: (*Alias)(&t)})
 }
 
 // InternalLinkTypeQrCodeAuthentication The link can be used to login the current user on another device, but it must be scanned from QR-code using in-app camera. An alert similar to
@@ -24928,10 +22402,7 @@ func (t InternalLinkTypeQrCodeAuthentication) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypeQrCodeAuthentication",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypeQrCodeAuthentication", Alias: (*Alias)(&t)})
 }
 
 // InternalLinkTypeRequestManagedBot The link is a link to a dialog for creating of a managed bot. Call searchPublicChat with the given manager bot username.
@@ -24955,10 +22426,7 @@ func (t InternalLinkTypeRequestManagedBot) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypeRequestManagedBot",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypeRequestManagedBot", Alias: (*Alias)(&t)})
 }
 
 // InternalLinkTypeRestorePurchases The link forces restore of App Store purchases when opened. For official iOS application only
@@ -24976,10 +22444,7 @@ func (t InternalLinkTypeRestorePurchases) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypeRestorePurchases",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypeRestorePurchases", Alias: (*Alias)(&t)})
 }
 
 // InternalLinkTypeSavedMessages The link is a link to the Saved Messages chat. Call createPrivateChat with getOption("my_id") and open the chat
@@ -24997,10 +22462,7 @@ func (t InternalLinkTypeSavedMessages) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypeSavedMessages",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypeSavedMessages", Alias: (*Alias)(&t)})
 }
 
 // InternalLinkTypeSearch The link is a link to the global chat and messages search field
@@ -25018,10 +22480,7 @@ func (t InternalLinkTypeSearch) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypeSearch",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypeSearch", Alias: (*Alias)(&t)})
 }
 
 // InternalLinkTypeSettings The link is a link to application settings
@@ -25041,10 +22500,7 @@ func (t InternalLinkTypeSettings) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypeSettings",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypeSettings", Alias: (*Alias)(&t)})
 }
 
 func (t *InternalLinkTypeSettings) UnmarshalJSON(data []byte) error {
@@ -25089,10 +22545,7 @@ func (t InternalLinkTypeStarPurchase) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypeStarPurchase",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypeStarPurchase", Alias: (*Alias)(&t)})
 }
 
 // InternalLinkTypeStickerSet The link is a link to a sticker set. Call searchStickerSet with the given sticker set name to process the link and show the sticker set.
@@ -25114,10 +22567,7 @@ func (t InternalLinkTypeStickerSet) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypeStickerSet",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypeStickerSet", Alias: (*Alias)(&t)})
 }
 
 // InternalLinkTypeStory The link is a link to a story. Call searchPublicChat with the given poster username, then call getStory with the received chat identifier and the given story identifier, then show the story if received
@@ -25139,10 +22589,7 @@ func (t InternalLinkTypeStory) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypeStory",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypeStory", Alias: (*Alias)(&t)})
 }
 
 // InternalLinkTypeStoryAlbum The link is a link to an album of stories. Call searchPublicChat with the given username, then call getStoryAlbumStories with the received chat identifier
@@ -25164,10 +22611,7 @@ func (t InternalLinkTypeStoryAlbum) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypeStoryAlbum",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypeStoryAlbum", Alias: (*Alias)(&t)})
 }
 
 // InternalLinkTypeTextCompositionStyle The link is a link to a text composition style. Call searchTextCompositionStyle with the given style name to get information about the style.
@@ -25187,10 +22631,7 @@ func (t InternalLinkTypeTextCompositionStyle) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypeTextCompositionStyle",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypeTextCompositionStyle", Alias: (*Alias)(&t)})
 }
 
 // InternalLinkTypeTheme The link is a link to a cloud theme. TDLib has no theme support yet
@@ -25210,10 +22651,7 @@ func (t InternalLinkTypeTheme) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypeTheme",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypeTheme", Alias: (*Alias)(&t)})
 }
 
 // InternalLinkTypeUnknownDeepLink The link is an unknown tg: link. Call getDeepLinkInfo to process the link
@@ -25233,10 +22671,7 @@ func (t InternalLinkTypeUnknownDeepLink) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypeUnknownDeepLink",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypeUnknownDeepLink", Alias: (*Alias)(&t)})
 }
 
 // InternalLinkTypeUpgradedGift The link is a link to an upgraded gift. Call getUpgradedGift with the given name to process the link
@@ -25256,10 +22691,7 @@ func (t InternalLinkTypeUpgradedGift) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypeUpgradedGift",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypeUpgradedGift", Alias: (*Alias)(&t)})
 }
 
 // InternalLinkTypeUserPhoneNumber The link is a link to a user by its phone number. Call searchUserByPhoneNumber with the given phone number to process the link.
@@ -25283,10 +22715,7 @@ func (t InternalLinkTypeUserPhoneNumber) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypeUserPhoneNumber",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypeUserPhoneNumber", Alias: (*Alias)(&t)})
 }
 
 // InternalLinkTypeUserToken The link is a link to a user by a temporary token. Call searchUserByToken with the given token to process the link.
@@ -25306,10 +22735,7 @@ func (t InternalLinkTypeUserToken) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypeUserToken",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypeUserToken", Alias: (*Alias)(&t)})
 }
 
 // InternalLinkTypeVideoChat The link is a link to a video chat. Call searchPublicChat with the given chat username, and then joinVideoChat with the given invite hash to process the link
@@ -25333,10 +22759,7 @@ func (t InternalLinkTypeVideoChat) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypeVideoChat",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypeVideoChat", Alias: (*Alias)(&t)})
 }
 
 // InternalLinkTypeWebApp The link is a link to a Web App. Call searchPublicChat with the given bot username, check that the user is a bot. If the bot is restricted for the current user, then show an error message.
@@ -25362,10 +22785,7 @@ func (t InternalLinkTypeWebApp) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "internalLinkTypeWebApp",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "internalLinkTypeWebApp", Alias: (*Alias)(&t)})
 }
 
 func (t *InternalLinkTypeWebApp) UnmarshalJSON(data []byte) error {
@@ -25410,10 +22830,7 @@ func (t InviteGroupCallParticipantResultSuccess) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inviteGroupCallParticipantResultSuccess",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inviteGroupCallParticipantResultSuccess", Alias: (*Alias)(&t)})
 }
 
 // InviteGroupCallParticipantResultUserAlreadyParticipant The user can't be invited because they are already a participant of the call
@@ -25431,10 +22848,7 @@ func (t InviteGroupCallParticipantResultUserAlreadyParticipant) MarshalJSON() ([
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inviteGroupCallParticipantResultUserAlreadyParticipant",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inviteGroupCallParticipantResultUserAlreadyParticipant", Alias: (*Alias)(&t)})
 }
 
 // InviteGroupCallParticipantResultUserPrivacyRestricted The user can't be invited due to their privacy settings
@@ -25452,10 +22866,7 @@ func (t InviteGroupCallParticipantResultUserPrivacyRestricted) MarshalJSON() ([]
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inviteGroupCallParticipantResultUserPrivacyRestricted",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inviteGroupCallParticipantResultUserPrivacyRestricted", Alias: (*Alias)(&t)})
 }
 
 // InviteGroupCallParticipantResultUserWasBanned The user can't be invited because they were banned by the owner of the call and can be invited back only by the owner of the group call
@@ -25473,10 +22884,7 @@ func (t InviteGroupCallParticipantResultUserWasBanned) MarshalJSON() ([]byte, er
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inviteGroupCallParticipantResultUserWasBanned",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inviteGroupCallParticipantResultUserWasBanned", Alias: (*Alias)(&t)})
 }
 
 // InviteLinkChatTypeBasicGroup The link is an invite link for a basic group
@@ -25494,10 +22902,7 @@ func (t InviteLinkChatTypeBasicGroup) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inviteLinkChatTypeBasicGroup",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inviteLinkChatTypeBasicGroup", Alias: (*Alias)(&t)})
 }
 
 // InviteLinkChatTypeChannel The link is an invite link for a channel
@@ -25515,10 +22920,7 @@ func (t InviteLinkChatTypeChannel) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inviteLinkChatTypeChannel",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inviteLinkChatTypeChannel", Alias: (*Alias)(&t)})
 }
 
 // InviteLinkChatTypeSupergroup The link is an invite link for a supergroup
@@ -25536,10 +22938,7 @@ func (t InviteLinkChatTypeSupergroup) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "inviteLinkChatTypeSupergroup",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "inviteLinkChatTypeSupergroup", Alias: (*Alias)(&t)})
 }
 
 // Invoice Product invoice
@@ -25585,10 +22984,7 @@ func (t Invoice) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "invoice",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "invoice", Alias: (*Alias)(&t)})
 }
 
 // JsonObjectMember Represents one member of a JSON object
@@ -25608,10 +23004,7 @@ func (t JsonObjectMember) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "jsonObjectMember",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "jsonObjectMember", Alias: (*Alias)(&t)})
 }
 
 func (t *JsonObjectMember) UnmarshalJSON(data []byte) error {
@@ -25654,10 +23047,7 @@ func (t JsonValueArray) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "jsonValueArray",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "jsonValueArray", Alias: (*Alias)(&t)})
 }
 
 func (t *JsonValueArray) UnmarshalJSON(data []byte) error {
@@ -25703,10 +23093,7 @@ func (t JsonValueBoolean) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "jsonValueBoolean",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "jsonValueBoolean", Alias: (*Alias)(&t)})
 }
 
 // JsonValueNull Represents a null JSON value
@@ -25724,10 +23111,7 @@ func (t JsonValueNull) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "jsonValueNull",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "jsonValueNull", Alias: (*Alias)(&t)})
 }
 
 // JsonValueNumber Represents a numeric JSON value
@@ -25747,10 +23131,7 @@ func (t JsonValueNumber) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "jsonValueNumber",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "jsonValueNumber", Alias: (*Alias)(&t)})
 }
 
 // JsonValueObject Represents a JSON object
@@ -25770,10 +23151,7 @@ func (t JsonValueObject) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "jsonValueObject",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "jsonValueObject", Alias: (*Alias)(&t)})
 }
 
 // JsonValueString Represents a string JSON value
@@ -25793,10 +23171,7 @@ func (t JsonValueString) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "jsonValueString",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "jsonValueString", Alias: (*Alias)(&t)})
 }
 
 // KeyboardButton Represents a single button in a bot keyboard
@@ -25820,10 +23195,7 @@ func (t KeyboardButton) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "keyboardButton",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "keyboardButton", Alias: (*Alias)(&t)})
 }
 
 func (t *KeyboardButton) UnmarshalJSON(data []byte) error {
@@ -25876,10 +23248,7 @@ func (t KeyboardButtonSourceMessage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "keyboardButtonSourceMessage",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "keyboardButtonSourceMessage", Alias: (*Alias)(&t)})
 }
 
 // KeyboardButtonSourceWebApp The button is a prepared keyboard button from a Mini App received via getPreparedKeyboardButton
@@ -25901,10 +23270,7 @@ func (t KeyboardButtonSourceWebApp) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "keyboardButtonSourceWebApp",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "keyboardButtonSourceWebApp", Alias: (*Alias)(&t)})
 }
 
 // KeyboardButtonTypeRequestChat A button that requests a chat to be shared by the current user; available only in private chats. Use the method shareChatWithBot to complete the request
@@ -25948,10 +23314,7 @@ func (t KeyboardButtonTypeRequestChat) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "keyboardButtonTypeRequestChat",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "keyboardButtonTypeRequestChat", Alias: (*Alias)(&t)})
 }
 
 // KeyboardButtonTypeRequestLocation A button that sends the user's location when pressed; available only in private chats
@@ -25969,10 +23332,7 @@ func (t KeyboardButtonTypeRequestLocation) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "keyboardButtonTypeRequestLocation",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "keyboardButtonTypeRequestLocation", Alias: (*Alias)(&t)})
 }
 
 // KeyboardButtonTypeRequestManagedBot A button that requests creation of a managed bot by the current user; available only in private chats. Use the method createBot to complete the request
@@ -25996,10 +23356,7 @@ func (t KeyboardButtonTypeRequestManagedBot) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "keyboardButtonTypeRequestManagedBot",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "keyboardButtonTypeRequestManagedBot", Alias: (*Alias)(&t)})
 }
 
 // KeyboardButtonTypeRequestPhoneNumber A button that sends the user's phone number when pressed; available only in private chats
@@ -26017,10 +23374,7 @@ func (t KeyboardButtonTypeRequestPhoneNumber) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "keyboardButtonTypeRequestPhoneNumber",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "keyboardButtonTypeRequestPhoneNumber", Alias: (*Alias)(&t)})
 }
 
 // KeyboardButtonTypeRequestPoll A button that allows the user to create and send a poll when pressed; available only in private chats
@@ -26042,10 +23396,7 @@ func (t KeyboardButtonTypeRequestPoll) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "keyboardButtonTypeRequestPoll",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "keyboardButtonTypeRequestPoll", Alias: (*Alias)(&t)})
 }
 
 // KeyboardButtonTypeRequestUsers A button that requests users to be shared by the current user; available only in private chats. Use the method shareUsersWithBot to complete the request
@@ -26081,10 +23432,7 @@ func (t KeyboardButtonTypeRequestUsers) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "keyboardButtonTypeRequestUsers",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "keyboardButtonTypeRequestUsers", Alias: (*Alias)(&t)})
 }
 
 // KeyboardButtonTypeText A simple button, with text that must be sent when the button is pressed
@@ -26102,10 +23450,7 @@ func (t KeyboardButtonTypeText) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "keyboardButtonTypeText",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "keyboardButtonTypeText", Alias: (*Alias)(&t)})
 }
 
 // KeyboardButtonTypeWebApp A button that opens a Web App by calling getWebAppUrl
@@ -26125,10 +23470,7 @@ func (t KeyboardButtonTypeWebApp) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "keyboardButtonTypeWebApp",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "keyboardButtonTypeWebApp", Alias: (*Alias)(&t)})
 }
 
 // LabeledPricePart Portion of the price of a product (e.g., "delivery cost", "tax amount")
@@ -26148,10 +23490,7 @@ func (t LabeledPricePart) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "labeledPricePart",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "labeledPricePart", Alias: (*Alias)(&t)})
 }
 
 // LanguagePackInfo Contains information about a language pack
@@ -26193,10 +23532,7 @@ func (t LanguagePackInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "languagePackInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "languagePackInfo", Alias: (*Alias)(&t)})
 }
 
 // LanguagePackString Represents one language pack string
@@ -26216,10 +23552,7 @@ func (t LanguagePackString) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "languagePackString",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "languagePackString", Alias: (*Alias)(&t)})
 }
 
 func (t *LanguagePackString) UnmarshalJSON(data []byte) error {
@@ -26260,10 +23593,7 @@ func (t LanguagePackStrings) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "languagePackStrings",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "languagePackStrings", Alias: (*Alias)(&t)})
 }
 
 // LanguagePackStringValueDeleted A deleted language pack string, the value must be taken from the built-in English language pack
@@ -26281,10 +23611,7 @@ func (t LanguagePackStringValueDeleted) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "languagePackStringValueDeleted",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "languagePackStringValueDeleted", Alias: (*Alias)(&t)})
 }
 
 // LanguagePackStringValueOrdinary An ordinary language pack string
@@ -26304,10 +23631,7 @@ func (t LanguagePackStringValueOrdinary) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "languagePackStringValueOrdinary",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "languagePackStringValueOrdinary", Alias: (*Alias)(&t)})
 }
 
 // LanguagePackStringValuePluralized A language pack string which has different forms based on the number of some object it mentions. See https://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html for more information
@@ -26337,10 +23661,7 @@ func (t LanguagePackStringValuePluralized) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "languagePackStringValuePluralized",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "languagePackStringValuePluralized", Alias: (*Alias)(&t)})
 }
 
 // LinkPreview Describes a link preview
@@ -26382,10 +23703,7 @@ func (t LinkPreview) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "linkPreview",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "linkPreview", Alias: (*Alias)(&t)})
 }
 
 func (t *LinkPreview) UnmarshalJSON(data []byte) error {
@@ -26428,10 +23746,7 @@ func (t LinkPreviewAlbumMediaPhoto) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "linkPreviewAlbumMediaPhoto",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "linkPreviewAlbumMediaPhoto", Alias: (*Alias)(&t)})
 }
 
 // LinkPreviewAlbumMediaVideo The media is a video
@@ -26451,10 +23766,7 @@ func (t LinkPreviewAlbumMediaVideo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "linkPreviewAlbumMediaVideo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "linkPreviewAlbumMediaVideo", Alias: (*Alias)(&t)})
 }
 
 // LinkPreviewOptions Options to be used for generation of a link preview
@@ -26480,10 +23792,7 @@ func (t LinkPreviewOptions) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "linkPreviewOptions",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "linkPreviewOptions", Alias: (*Alias)(&t)})
 }
 
 // LinkPreviewTypeAlbum The link is a link to a media album consisting of photos and videos
@@ -26505,10 +23814,7 @@ func (t LinkPreviewTypeAlbum) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "linkPreviewTypeAlbum",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "linkPreviewTypeAlbum", Alias: (*Alias)(&t)})
 }
 
 func (t *LinkPreviewTypeAlbum) UnmarshalJSON(data []byte) error {
@@ -26554,10 +23860,7 @@ func (t LinkPreviewTypeAnimation) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "linkPreviewTypeAnimation",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "linkPreviewTypeAnimation", Alias: (*Alias)(&t)})
 }
 
 // LinkPreviewTypeApp The link is a link to an app at App Store or Google Play
@@ -26577,10 +23880,7 @@ func (t LinkPreviewTypeApp) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "linkPreviewTypeApp",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "linkPreviewTypeApp", Alias: (*Alias)(&t)})
 }
 
 // LinkPreviewTypeArticle The link is a link to a website
@@ -26600,10 +23900,7 @@ func (t LinkPreviewTypeArticle) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "linkPreviewTypeArticle",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "linkPreviewTypeArticle", Alias: (*Alias)(&t)})
 }
 
 // LinkPreviewTypeAudio The link is a link to an audio
@@ -26623,10 +23920,7 @@ func (t LinkPreviewTypeAudio) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "linkPreviewTypeAudio",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "linkPreviewTypeAudio", Alias: (*Alias)(&t)})
 }
 
 // LinkPreviewTypeBackground The link is a link to a background. Link preview title and description are available only for filled backgrounds
@@ -26648,10 +23942,7 @@ func (t LinkPreviewTypeBackground) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "linkPreviewTypeBackground",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "linkPreviewTypeBackground", Alias: (*Alias)(&t)})
 }
 
 func (t *LinkPreviewTypeBackground) UnmarshalJSON(data []byte) error {
@@ -26694,10 +23985,7 @@ func (t LinkPreviewTypeChannelBoost) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "linkPreviewTypeChannelBoost",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "linkPreviewTypeChannelBoost", Alias: (*Alias)(&t)})
 }
 
 // LinkPreviewTypeChat The link is a link to a chat
@@ -26721,10 +24009,7 @@ func (t LinkPreviewTypeChat) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "linkPreviewTypeChat",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "linkPreviewTypeChat", Alias: (*Alias)(&t)})
 }
 
 func (t *LinkPreviewTypeChat) UnmarshalJSON(data []byte) error {
@@ -26767,10 +24052,7 @@ func (t LinkPreviewTypeDirectMessagesChat) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "linkPreviewTypeDirectMessagesChat",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "linkPreviewTypeDirectMessagesChat", Alias: (*Alias)(&t)})
 }
 
 // LinkPreviewTypeDocument The link is a link to a general file
@@ -26790,10 +24072,7 @@ func (t LinkPreviewTypeDocument) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "linkPreviewTypeDocument",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "linkPreviewTypeDocument", Alias: (*Alias)(&t)})
 }
 
 // LinkPreviewTypeEmbeddedAnimationPlayer The link is a link to an animation player
@@ -26823,10 +24102,7 @@ func (t LinkPreviewTypeEmbeddedAnimationPlayer) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "linkPreviewTypeEmbeddedAnimationPlayer",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "linkPreviewTypeEmbeddedAnimationPlayer", Alias: (*Alias)(&t)})
 }
 
 // LinkPreviewTypeEmbeddedAudioPlayer The link is a link to an audio player
@@ -26856,10 +24132,7 @@ func (t LinkPreviewTypeEmbeddedAudioPlayer) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "linkPreviewTypeEmbeddedAudioPlayer",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "linkPreviewTypeEmbeddedAudioPlayer", Alias: (*Alias)(&t)})
 }
 
 // LinkPreviewTypeEmbeddedVideoPlayer The link is a link to a video player
@@ -26889,10 +24162,7 @@ func (t LinkPreviewTypeEmbeddedVideoPlayer) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "linkPreviewTypeEmbeddedVideoPlayer",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "linkPreviewTypeEmbeddedVideoPlayer", Alias: (*Alias)(&t)})
 }
 
 // LinkPreviewTypeExternalAudio The link is a link to an audio file
@@ -26916,10 +24186,7 @@ func (t LinkPreviewTypeExternalAudio) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "linkPreviewTypeExternalAudio",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "linkPreviewTypeExternalAudio", Alias: (*Alias)(&t)})
 }
 
 // LinkPreviewTypeExternalVideo The link is a link to a video file
@@ -26947,10 +24214,7 @@ func (t LinkPreviewTypeExternalVideo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "linkPreviewTypeExternalVideo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "linkPreviewTypeExternalVideo", Alias: (*Alias)(&t)})
 }
 
 // LinkPreviewTypeGiftAuction The link is a link to a gift auction
@@ -26972,10 +24236,7 @@ func (t LinkPreviewTypeGiftAuction) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "linkPreviewTypeGiftAuction",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "linkPreviewTypeGiftAuction", Alias: (*Alias)(&t)})
 }
 
 // LinkPreviewTypeGiftCollection The link is a link to a gift collection
@@ -26995,10 +24256,7 @@ func (t LinkPreviewTypeGiftCollection) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "linkPreviewTypeGiftCollection",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "linkPreviewTypeGiftCollection", Alias: (*Alias)(&t)})
 }
 
 // LinkPreviewTypeGroupCall The link is a link to a group call that isn't bound to a chat
@@ -27016,10 +24274,7 @@ func (t LinkPreviewTypeGroupCall) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "linkPreviewTypeGroupCall",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "linkPreviewTypeGroupCall", Alias: (*Alias)(&t)})
 }
 
 // LinkPreviewTypeInvoice The link is a link to an invoice
@@ -27037,10 +24292,7 @@ func (t LinkPreviewTypeInvoice) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "linkPreviewTypeInvoice",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "linkPreviewTypeInvoice", Alias: (*Alias)(&t)})
 }
 
 // LinkPreviewTypeLiveStory The link is a link to a live story group call
@@ -27062,10 +24314,7 @@ func (t LinkPreviewTypeLiveStory) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "linkPreviewTypeLiveStory",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "linkPreviewTypeLiveStory", Alias: (*Alias)(&t)})
 }
 
 // LinkPreviewTypeMessage The link is a link to a text or a poll Telegram message
@@ -27083,10 +24332,7 @@ func (t LinkPreviewTypeMessage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "linkPreviewTypeMessage",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "linkPreviewTypeMessage", Alias: (*Alias)(&t)})
 }
 
 // LinkPreviewTypePhoto The link is a link to a photo
@@ -27106,10 +24352,7 @@ func (t LinkPreviewTypePhoto) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "linkPreviewTypePhoto",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "linkPreviewTypePhoto", Alias: (*Alias)(&t)})
 }
 
 // LinkPreviewTypePremiumGiftCode The link is a link to a Telegram Premium gift code
@@ -27127,10 +24370,7 @@ func (t LinkPreviewTypePremiumGiftCode) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "linkPreviewTypePremiumGiftCode",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "linkPreviewTypePremiumGiftCode", Alias: (*Alias)(&t)})
 }
 
 // LinkPreviewTypeRequestManagedBot The link is a link to a dialog for creating of a managed bot
@@ -27148,10 +24388,7 @@ func (t LinkPreviewTypeRequestManagedBot) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "linkPreviewTypeRequestManagedBot",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "linkPreviewTypeRequestManagedBot", Alias: (*Alias)(&t)})
 }
 
 // LinkPreviewTypeShareableChatFolder The link is a link to a shareable chat folder
@@ -27169,10 +24406,7 @@ func (t LinkPreviewTypeShareableChatFolder) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "linkPreviewTypeShareableChatFolder",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "linkPreviewTypeShareableChatFolder", Alias: (*Alias)(&t)})
 }
 
 // LinkPreviewTypeSticker The link is a link to a sticker
@@ -27192,10 +24426,7 @@ func (t LinkPreviewTypeSticker) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "linkPreviewTypeSticker",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "linkPreviewTypeSticker", Alias: (*Alias)(&t)})
 }
 
 // LinkPreviewTypeStickerSet The link is a link to a sticker set
@@ -27215,10 +24446,7 @@ func (t LinkPreviewTypeStickerSet) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "linkPreviewTypeStickerSet",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "linkPreviewTypeStickerSet", Alias: (*Alias)(&t)})
 }
 
 // LinkPreviewTypeStory The link is a link to a story. Link preview description is unavailable
@@ -27240,10 +24468,7 @@ func (t LinkPreviewTypeStory) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "linkPreviewTypeStory",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "linkPreviewTypeStory", Alias: (*Alias)(&t)})
 }
 
 // LinkPreviewTypeStoryAlbum The link is a link to an album of stories
@@ -27265,10 +24490,7 @@ func (t LinkPreviewTypeStoryAlbum) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "linkPreviewTypeStoryAlbum",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "linkPreviewTypeStoryAlbum", Alias: (*Alias)(&t)})
 }
 
 // LinkPreviewTypeSupergroupBoost The link is a link to boost a supergroup chat
@@ -27288,10 +24510,7 @@ func (t LinkPreviewTypeSupergroupBoost) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "linkPreviewTypeSupergroupBoost",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "linkPreviewTypeSupergroupBoost", Alias: (*Alias)(&t)})
 }
 
 // LinkPreviewTypeTextCompositionStyle The link is a link to a text composition style
@@ -27311,10 +24530,7 @@ func (t LinkPreviewTypeTextCompositionStyle) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "linkPreviewTypeTextCompositionStyle",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "linkPreviewTypeTextCompositionStyle", Alias: (*Alias)(&t)})
 }
 
 // LinkPreviewTypeTheme The link is a link to a cloud theme. TDLib has no theme support yet
@@ -27336,10 +24552,7 @@ func (t LinkPreviewTypeTheme) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "linkPreviewTypeTheme",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "linkPreviewTypeTheme", Alias: (*Alias)(&t)})
 }
 
 // LinkPreviewTypeUnsupported The link preview type is unsupported yet
@@ -27357,10 +24570,7 @@ func (t LinkPreviewTypeUnsupported) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "linkPreviewTypeUnsupported",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "linkPreviewTypeUnsupported", Alias: (*Alias)(&t)})
 }
 
 // LinkPreviewTypeUpgradedGift The link is a link to an upgraded gift
@@ -27380,10 +24590,7 @@ func (t LinkPreviewTypeUpgradedGift) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "linkPreviewTypeUpgradedGift",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "linkPreviewTypeUpgradedGift", Alias: (*Alias)(&t)})
 }
 
 // LinkPreviewTypeUser The link is a link to a user
@@ -27405,10 +24612,7 @@ func (t LinkPreviewTypeUser) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "linkPreviewTypeUser",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "linkPreviewTypeUser", Alias: (*Alias)(&t)})
 }
 
 // LinkPreviewTypeVideo The link is a link to a video
@@ -27432,10 +24636,7 @@ func (t LinkPreviewTypeVideo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "linkPreviewTypeVideo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "linkPreviewTypeVideo", Alias: (*Alias)(&t)})
 }
 
 // LinkPreviewTypeVideoChat The link is a link to a video chat
@@ -27459,10 +24660,7 @@ func (t LinkPreviewTypeVideoChat) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "linkPreviewTypeVideoChat",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "linkPreviewTypeVideoChat", Alias: (*Alias)(&t)})
 }
 
 // LinkPreviewTypeVideoNote The link is a link to a video note message
@@ -27482,10 +24680,7 @@ func (t LinkPreviewTypeVideoNote) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "linkPreviewTypeVideoNote",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "linkPreviewTypeVideoNote", Alias: (*Alias)(&t)})
 }
 
 // LinkPreviewTypeVoiceNote The link is a link to a voice note message
@@ -27505,10 +24700,7 @@ func (t LinkPreviewTypeVoiceNote) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "linkPreviewTypeVoiceNote",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "linkPreviewTypeVoiceNote", Alias: (*Alias)(&t)})
 }
 
 // LinkPreviewTypeWebApp The link is a link to a Web App
@@ -27528,10 +24720,7 @@ func (t LinkPreviewTypeWebApp) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "linkPreviewTypeWebApp",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "linkPreviewTypeWebApp", Alias: (*Alias)(&t)})
 }
 
 // LiveLocation A live location
@@ -27555,10 +24744,7 @@ func (t LiveLocation) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "liveLocation",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "liveLocation", Alias: (*Alias)(&t)})
 }
 
 // LiveStoryDonors Contains a list of users and chats that spend most money on paid messages and reactions in a live story
@@ -27578,10 +24764,7 @@ func (t LiveStoryDonors) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "liveStoryDonors",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "liveStoryDonors", Alias: (*Alias)(&t)})
 }
 
 // LocalFile Represents a local file
@@ -27613,10 +24796,7 @@ func (t LocalFile) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "localFile",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "localFile", Alias: (*Alias)(&t)})
 }
 
 // LocalizationTargetInfo Contains information about the current localization target
@@ -27634,10 +24814,7 @@ func (t LocalizationTargetInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "localizationTargetInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "localizationTargetInfo", Alias: (*Alias)(&t)})
 }
 
 // Location Describes a location on planet Earth
@@ -27659,10 +24836,7 @@ func (t Location) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "location",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "location", Alias: (*Alias)(&t)})
 }
 
 // LocationAddress Describes an address of a location
@@ -27686,10 +24860,7 @@ func (t LocationAddress) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "locationAddress",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "locationAddress", Alias: (*Alias)(&t)})
 }
 
 // LoginUrlInfoOpen An HTTP URL needs to be open
@@ -27711,10 +24882,7 @@ func (t LoginUrlInfoOpen) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "loginUrlInfoOpen",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "loginUrlInfoOpen", Alias: (*Alias)(&t)})
 }
 
 // LoginUrlInfoRequestConfirmation An authorization confirmation dialog needs to be shown to the user
@@ -27740,10 +24908,7 @@ func (t LoginUrlInfoRequestConfirmation) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "loginUrlInfoRequestConfirmation",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "loginUrlInfoRequestConfirmation", Alias: (*Alias)(&t)})
 }
 
 // LogStreamDefault The log is written to stderr or an OS specific log
@@ -27761,10 +24926,7 @@ func (t LogStreamDefault) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "logStreamDefault",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "logStreamDefault", Alias: (*Alias)(&t)})
 }
 
 // LogStreamEmpty The log is written nowhere
@@ -27782,10 +24944,7 @@ func (t LogStreamEmpty) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "logStreamEmpty",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "logStreamEmpty", Alias: (*Alias)(&t)})
 }
 
 // LogStreamFile The log is written to a file
@@ -27809,10 +24968,7 @@ func (t LogStreamFile) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "logStreamFile",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "logStreamFile", Alias: (*Alias)(&t)})
 }
 
 // LogTags Contains a list of available TDLib internal log tags
@@ -27830,10 +24986,7 @@ func (t LogTags) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "logTags",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "logTags", Alias: (*Alias)(&t)})
 }
 
 // LogVerbosityLevel Contains a TDLib internal log verbosity level
@@ -27851,10 +25004,7 @@ func (t LogVerbosityLevel) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "logVerbosityLevel",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "logVerbosityLevel", Alias: (*Alias)(&t)})
 }
 
 // MainWebApp Contains information about the main Web App of a bot
@@ -27874,10 +25024,7 @@ func (t MainWebApp) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "mainWebApp",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "mainWebApp", Alias: (*Alias)(&t)})
 }
 
 func (t *MainWebApp) UnmarshalJSON(data []byte) error {
@@ -27918,10 +25065,7 @@ func (t MaskPointChin) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "maskPointChin",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "maskPointChin", Alias: (*Alias)(&t)})
 }
 
 // MaskPointEyes The mask is placed relatively to the eyes
@@ -27939,10 +25083,7 @@ func (t MaskPointEyes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "maskPointEyes",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "maskPointEyes", Alias: (*Alias)(&t)})
 }
 
 // MaskPointForehead The mask is placed relatively to the forehead
@@ -27960,10 +25101,7 @@ func (t MaskPointForehead) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "maskPointForehead",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "maskPointForehead", Alias: (*Alias)(&t)})
 }
 
 // MaskPointMouth The mask is placed relatively to the mouth
@@ -27981,10 +25119,7 @@ func (t MaskPointMouth) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "maskPointMouth",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "maskPointMouth", Alias: (*Alias)(&t)})
 }
 
 // MaskPosition Position on a photo where a mask is placed
@@ -28008,10 +25143,7 @@ func (t MaskPosition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "maskPosition",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "maskPosition", Alias: (*Alias)(&t)})
 }
 
 func (t *MaskPosition) UnmarshalJSON(data []byte) error {
@@ -28140,10 +25272,7 @@ func (t Message) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "message",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "message", Alias: (*Alias)(&t)})
 }
 
 func (t *Message) UnmarshalJSON(data []byte) error {
@@ -28260,10 +25389,7 @@ func (t MessageAnimatedEmoji) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageAnimatedEmoji",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageAnimatedEmoji", Alias: (*Alias)(&t)})
 }
 
 // MessageAnimation An animation message (GIF-style).
@@ -28291,10 +25417,7 @@ func (t MessageAnimation) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageAnimation",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageAnimation", Alias: (*Alias)(&t)})
 }
 
 // MessageAudio An audio message
@@ -28316,10 +25439,7 @@ func (t MessageAudio) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageAudio",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageAudio", Alias: (*Alias)(&t)})
 }
 
 // MessageAutoDeleteTime Contains default auto-delete timer setting for new chats
@@ -28337,10 +25457,7 @@ func (t MessageAutoDeleteTime) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageAutoDeleteTime",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageAutoDeleteTime", Alias: (*Alias)(&t)})
 }
 
 // MessageBasicGroupChatCreate A newly created basic group
@@ -28362,10 +25479,7 @@ func (t MessageBasicGroupChatCreate) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageBasicGroupChatCreate",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageBasicGroupChatCreate", Alias: (*Alias)(&t)})
 }
 
 // MessageBotWriteAccessAllowed The user allowed the bot to send messages
@@ -28385,10 +25499,7 @@ func (t MessageBotWriteAccessAllowed) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageBotWriteAccessAllowed",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageBotWriteAccessAllowed", Alias: (*Alias)(&t)})
 }
 
 func (t *MessageBotWriteAccessAllowed) UnmarshalJSON(data []byte) error {
@@ -28431,10 +25542,7 @@ func (t MessageCalendar) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageCalendar",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageCalendar", Alias: (*Alias)(&t)})
 }
 
 // MessageCalendarDay Contains information about found messages sent on a specific day
@@ -28454,10 +25562,7 @@ func (t MessageCalendarDay) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageCalendarDay",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageCalendarDay", Alias: (*Alias)(&t)})
 }
 
 // MessageCall A message with information about an ended call
@@ -28483,10 +25588,7 @@ func (t MessageCall) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageCall",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageCall", Alias: (*Alias)(&t)})
 }
 
 func (t *MessageCall) UnmarshalJSON(data []byte) error {
@@ -28529,10 +25631,7 @@ func (t MessageChatAddedToCommunity) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageChatAddedToCommunity",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageChatAddedToCommunity", Alias: (*Alias)(&t)})
 }
 
 // MessageChatAddMembers New chat members were added
@@ -28552,10 +25651,7 @@ func (t MessageChatAddMembers) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageChatAddMembers",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageChatAddMembers", Alias: (*Alias)(&t)})
 }
 
 // MessageChatBoost The chat was boosted by the sender of the message
@@ -28575,10 +25671,7 @@ func (t MessageChatBoost) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageChatBoost",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageChatBoost", Alias: (*Alias)(&t)})
 }
 
 // MessageChatChangePhoto An updated chat photo
@@ -28598,10 +25691,7 @@ func (t MessageChatChangePhoto) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageChatChangePhoto",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageChatChangePhoto", Alias: (*Alias)(&t)})
 }
 
 // MessageChatChangeTitle An updated chat title
@@ -28621,10 +25711,7 @@ func (t MessageChatChangeTitle) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageChatChangeTitle",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageChatChangeTitle", Alias: (*Alias)(&t)})
 }
 
 // MessageChatDeleteMember A chat member was deleted
@@ -28644,10 +25731,7 @@ func (t MessageChatDeleteMember) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageChatDeleteMember",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageChatDeleteMember", Alias: (*Alias)(&t)})
 }
 
 // MessageChatDeletePhoto A deleted chat photo
@@ -28665,10 +25749,7 @@ func (t MessageChatDeletePhoto) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageChatDeletePhoto",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageChatDeletePhoto", Alias: (*Alias)(&t)})
 }
 
 // MessageChatHasProtectedContentDisableRequested Chat has_protected_content setting was requested to be disabled
@@ -28688,10 +25769,7 @@ func (t MessageChatHasProtectedContentDisableRequested) MarshalJSON() ([]byte, e
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageChatHasProtectedContentDisableRequested",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageChatHasProtectedContentDisableRequested", Alias: (*Alias)(&t)})
 }
 
 // MessageChatHasProtectedContentToggled Chat has_protected_content setting was changed or request to change it was rejected
@@ -28715,10 +25793,7 @@ func (t MessageChatHasProtectedContentToggled) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageChatHasProtectedContentToggled",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageChatHasProtectedContentToggled", Alias: (*Alias)(&t)})
 }
 
 // MessageChatJoinByLink A new member joined the chat via an invite link
@@ -28736,10 +25811,7 @@ func (t MessageChatJoinByLink) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageChatJoinByLink",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageChatJoinByLink", Alias: (*Alias)(&t)})
 }
 
 // MessageChatJoinByRequest A new member was accepted to the chat by an administrator
@@ -28757,10 +25829,7 @@ func (t MessageChatJoinByRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageChatJoinByRequest",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageChatJoinByRequest", Alias: (*Alias)(&t)})
 }
 
 // MessageChatJoinFromCommunity A new member joined the chat from a community
@@ -28780,10 +25849,7 @@ func (t MessageChatJoinFromCommunity) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageChatJoinFromCommunity",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageChatJoinFromCommunity", Alias: (*Alias)(&t)})
 }
 
 // MessageChatOwnerChanged The owner of the chat has changed
@@ -28803,10 +25869,7 @@ func (t MessageChatOwnerChanged) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageChatOwnerChanged",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageChatOwnerChanged", Alias: (*Alias)(&t)})
 }
 
 // MessageChatOwnerLeft The owner of the chat has left
@@ -28826,10 +25889,7 @@ func (t MessageChatOwnerLeft) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageChatOwnerLeft",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageChatOwnerLeft", Alias: (*Alias)(&t)})
 }
 
 // MessageChatRemovedFromCommunity The chat was removed from a community
@@ -28847,10 +25907,7 @@ func (t MessageChatRemovedFromCommunity) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageChatRemovedFromCommunity",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageChatRemovedFromCommunity", Alias: (*Alias)(&t)})
 }
 
 // MessageChatSetBackground A new background was set in the chat
@@ -28874,10 +25931,7 @@ func (t MessageChatSetBackground) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageChatSetBackground",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageChatSetBackground", Alias: (*Alias)(&t)})
 }
 
 // MessageChatSetMessageAutoDeleteTime The auto-delete or self-destruct timer for messages in the chat has been changed
@@ -28899,10 +25953,7 @@ func (t MessageChatSetMessageAutoDeleteTime) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageChatSetMessageAutoDeleteTime",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageChatSetMessageAutoDeleteTime", Alias: (*Alias)(&t)})
 }
 
 // MessageChatSetTheme A theme in the chat has been changed
@@ -28922,10 +25973,7 @@ func (t MessageChatSetTheme) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageChatSetTheme",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageChatSetTheme", Alias: (*Alias)(&t)})
 }
 
 func (t *MessageChatSetTheme) UnmarshalJSON(data []byte) error {
@@ -28970,10 +26018,7 @@ func (t MessageChatShared) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageChatShared",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageChatShared", Alias: (*Alias)(&t)})
 }
 
 // MessageChatUpgradeFrom A supergroup has been created from a basic group
@@ -28995,10 +26040,7 @@ func (t MessageChatUpgradeFrom) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageChatUpgradeFrom",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageChatUpgradeFrom", Alias: (*Alias)(&t)})
 }
 
 // MessageChatUpgradeTo A basic group was upgraded to a supergroup and was deactivated as the result
@@ -29018,10 +26060,7 @@ func (t MessageChatUpgradeTo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageChatUpgradeTo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageChatUpgradeTo", Alias: (*Alias)(&t)})
 }
 
 // MessageChecklist A message with a checklist
@@ -29041,10 +26080,7 @@ func (t MessageChecklist) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageChecklist",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageChecklist", Alias: (*Alias)(&t)})
 }
 
 // MessageChecklistTasksAdded Some tasks were added to a checklist
@@ -29066,10 +26102,7 @@ func (t MessageChecklistTasksAdded) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageChecklistTasksAdded",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageChecklistTasksAdded", Alias: (*Alias)(&t)})
 }
 
 // MessageChecklistTasksDone Some tasks from a checklist were marked as done or not done
@@ -29093,10 +26126,7 @@ func (t MessageChecklistTasksDone) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageChecklistTasksDone",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageChecklistTasksDone", Alias: (*Alias)(&t)})
 }
 
 // MessageContact A message with a user contact
@@ -29116,10 +26146,7 @@ func (t MessageContact) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageContact",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageContact", Alias: (*Alias)(&t)})
 }
 
 // MessageContactRegistered A contact has registered with Telegram
@@ -29137,10 +26164,7 @@ func (t MessageContactRegistered) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageContactRegistered",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageContactRegistered", Alias: (*Alias)(&t)})
 }
 
 // MessageCopyOptions Options to be used when a message content is copied without reference to the original sender. Service messages, messages with messageInvoice, messagePaidMedia, messageGiveaway, or messageGiveawayWinners content can't be copied
@@ -29164,10 +26188,7 @@ func (t MessageCopyOptions) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageCopyOptions",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageCopyOptions", Alias: (*Alias)(&t)})
 }
 
 // MessageCustomServiceAction A non-standard action has happened in the chat
@@ -29187,10 +26208,7 @@ func (t MessageCustomServiceAction) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageCustomServiceAction",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageCustomServiceAction", Alias: (*Alias)(&t)})
 }
 
 // MessageDice A dice message. The dice value is randomly generated by the server
@@ -29218,10 +26236,7 @@ func (t MessageDice) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageDice",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageDice", Alias: (*Alias)(&t)})
 }
 
 func (t *MessageDice) UnmarshalJSON(data []byte) error {
@@ -29274,10 +26289,7 @@ func (t MessageDirectMessagePriceChanged) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageDirectMessagePriceChanged",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageDirectMessagePriceChanged", Alias: (*Alias)(&t)})
 }
 
 // MessageDocument A document message (general file)
@@ -29299,10 +26311,7 @@ func (t MessageDocument) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageDocument",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageDocument", Alias: (*Alias)(&t)})
 }
 
 // MessageEffect Contains information about an effect added to a message
@@ -29328,10 +26337,7 @@ func (t MessageEffect) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageEffect",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageEffect", Alias: (*Alias)(&t)})
 }
 
 func (t *MessageEffect) UnmarshalJSON(data []byte) error {
@@ -29376,10 +26382,7 @@ func (t MessageEffectTypeEmojiReaction) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageEffectTypeEmojiReaction",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageEffectTypeEmojiReaction", Alias: (*Alias)(&t)})
 }
 
 // MessageEffectTypePremiumSticker An effect from a premium sticker
@@ -29399,10 +26402,7 @@ func (t MessageEffectTypePremiumSticker) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageEffectTypePremiumSticker",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageEffectTypePremiumSticker", Alias: (*Alias)(&t)})
 }
 
 // MessageExpiredPhoto A self-destructed photo message
@@ -29420,10 +26420,7 @@ func (t MessageExpiredPhoto) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageExpiredPhoto",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageExpiredPhoto", Alias: (*Alias)(&t)})
 }
 
 // MessageExpiredVideo A self-destructed video message
@@ -29441,10 +26438,7 @@ func (t MessageExpiredVideo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageExpiredVideo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageExpiredVideo", Alias: (*Alias)(&t)})
 }
 
 // MessageExpiredVideoNote A self-destructed video note message
@@ -29462,10 +26456,7 @@ func (t MessageExpiredVideoNote) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageExpiredVideoNote",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageExpiredVideoNote", Alias: (*Alias)(&t)})
 }
 
 // MessageExpiredVoiceNote A self-destructed voice note message
@@ -29483,10 +26474,7 @@ func (t MessageExpiredVoiceNote) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageExpiredVoiceNote",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageExpiredVoiceNote", Alias: (*Alias)(&t)})
 }
 
 // MessageFileTypeGroup The messages were exported from a group chat
@@ -29506,10 +26494,7 @@ func (t MessageFileTypeGroup) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageFileTypeGroup",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageFileTypeGroup", Alias: (*Alias)(&t)})
 }
 
 // MessageFileTypePrivate The messages were exported from a private chat
@@ -29529,10 +26514,7 @@ func (t MessageFileTypePrivate) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageFileTypePrivate",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageFileTypePrivate", Alias: (*Alias)(&t)})
 }
 
 // MessageFileTypeUnknown The messages were exported from a chat of unknown type
@@ -29550,10 +26532,7 @@ func (t MessageFileTypeUnknown) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageFileTypeUnknown",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageFileTypeUnknown", Alias: (*Alias)(&t)})
 }
 
 // MessageForumTopicCreated A forum topic has been created
@@ -29577,10 +26556,7 @@ func (t MessageForumTopicCreated) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageForumTopicCreated",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageForumTopicCreated", Alias: (*Alias)(&t)})
 }
 
 // MessageForumTopicEdited A forum topic has been edited
@@ -29604,10 +26580,7 @@ func (t MessageForumTopicEdited) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageForumTopicEdited",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageForumTopicEdited", Alias: (*Alias)(&t)})
 }
 
 // MessageForumTopicIsClosedToggled A forum topic has been closed or opened
@@ -29627,10 +26600,7 @@ func (t MessageForumTopicIsClosedToggled) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageForumTopicIsClosedToggled",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageForumTopicIsClosedToggled", Alias: (*Alias)(&t)})
 }
 
 // MessageForumTopicIsHiddenToggled A General forum topic has been hidden or unhidden
@@ -29650,10 +26620,7 @@ func (t MessageForumTopicIsHiddenToggled) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageForumTopicIsHiddenToggled",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageForumTopicIsHiddenToggled", Alias: (*Alias)(&t)})
 }
 
 // MessageForwardInfo Contains information about a forwarded message
@@ -29677,10 +26644,7 @@ func (t MessageForwardInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageForwardInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageForwardInfo", Alias: (*Alias)(&t)})
 }
 
 func (t *MessageForwardInfo) UnmarshalJSON(data []byte) error {
@@ -29723,10 +26687,7 @@ func (t MessageGame) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageGame",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageGame", Alias: (*Alias)(&t)})
 }
 
 // MessageGameScore A new high score was achieved in a game
@@ -29750,10 +26711,7 @@ func (t MessageGameScore) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageGameScore",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageGameScore", Alias: (*Alias)(&t)})
 }
 
 // MessageGift A regular gift was received or sent by the current user, or the current user was notified about a channel gift
@@ -29809,10 +26767,7 @@ func (t MessageGift) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageGift",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageGift", Alias: (*Alias)(&t)})
 }
 
 func (t *MessageGift) UnmarshalJSON(data []byte) error {
@@ -29871,10 +26826,7 @@ func (t MessageGiftedGrams) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageGiftedGrams",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageGiftedGrams", Alias: (*Alias)(&t)})
 }
 
 // MessageGiftedPremium Telegram Premium was gifted to a user
@@ -29912,10 +26864,7 @@ func (t MessageGiftedPremium) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageGiftedPremium",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageGiftedPremium", Alias: (*Alias)(&t)})
 }
 
 // MessageGiftedStars Telegram Stars were gifted to a user
@@ -29951,10 +26900,7 @@ func (t MessageGiftedStars) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageGiftedStars",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageGiftedStars", Alias: (*Alias)(&t)})
 }
 
 // MessageGiveaway A giveaway
@@ -29980,10 +26926,7 @@ func (t MessageGiveaway) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageGiveaway",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageGiveaway", Alias: (*Alias)(&t)})
 }
 
 func (t *MessageGiveaway) UnmarshalJSON(data []byte) error {
@@ -30032,10 +26975,7 @@ func (t MessageGiveawayCompleted) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageGiveawayCompleted",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageGiveawayCompleted", Alias: (*Alias)(&t)})
 }
 
 // MessageGiveawayCreated A giveaway was created for the chat. Use telegramPaymentPurposePremiumGiveaway, storePaymentPurposePremiumGiveaway, telegramPaymentPurposeStarGiveaway, or storePaymentPurposeStarGiveaway to create a giveaway
@@ -30055,10 +26995,7 @@ func (t MessageGiveawayCreated) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageGiveawayCreated",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageGiveawayCreated", Alias: (*Alias)(&t)})
 }
 
 // MessageGiveawayPrizeStars Telegram Stars were received by the current user from a giveaway
@@ -30088,10 +27025,7 @@ func (t MessageGiveawayPrizeStars) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageGiveawayPrizeStars",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageGiveawayPrizeStars", Alias: (*Alias)(&t)})
 }
 
 // MessageGiveawayWinners A giveaway with public winners has been completed for the chat
@@ -30131,10 +27065,7 @@ func (t MessageGiveawayWinners) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageGiveawayWinners",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageGiveawayWinners", Alias: (*Alias)(&t)})
 }
 
 func (t *MessageGiveawayWinners) UnmarshalJSON(data []byte) error {
@@ -30187,10 +27118,7 @@ func (t MessageGroupCall) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageGroupCall",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageGroupCall", Alias: (*Alias)(&t)})
 }
 
 func (t *MessageGroupCall) UnmarshalJSON(data []byte) error {
@@ -30236,10 +27164,7 @@ func (t MessageImportInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageImportInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageImportInfo", Alias: (*Alias)(&t)})
 }
 
 // MessageInteractionInfo Contains information about interactions with a message
@@ -30263,10 +27188,7 @@ func (t MessageInteractionInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageInteractionInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageInteractionInfo", Alias: (*Alias)(&t)})
 }
 
 // MessageInviteVideoChatParticipants A message with information about an invitation to a video chat
@@ -30288,10 +27210,7 @@ func (t MessageInviteVideoChatParticipants) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageInviteVideoChatParticipants",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageInviteVideoChatParticipants", Alias: (*Alias)(&t)})
 }
 
 // MessageInvoice A message with an invoice from a bot. Use getInternalLink with internalLinkTypeBotStart to share the invoice
@@ -30327,10 +27246,7 @@ func (t MessageInvoice) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageInvoice",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageInvoice", Alias: (*Alias)(&t)})
 }
 
 func (t *MessageInvoice) UnmarshalJSON(data []byte) error {
@@ -30373,10 +27289,7 @@ func (t MessageLink) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageLink",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageLink", Alias: (*Alias)(&t)})
 }
 
 // MessageLinkInfo Contains information about a link to a message or a forum topic in a chat
@@ -30408,10 +27321,7 @@ func (t MessageLinkInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageLinkInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageLinkInfo", Alias: (*Alias)(&t)})
 }
 
 func (t *MessageLinkInfo) UnmarshalJSON(data []byte) error {
@@ -30456,10 +27366,7 @@ func (t MessageLiveLocation) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageLiveLocation",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageLiveLocation", Alias: (*Alias)(&t)})
 }
 
 // MessageLocation A message with a location
@@ -30479,10 +27386,7 @@ func (t MessageLocation) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageLocation",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageLocation", Alias: (*Alias)(&t)})
 }
 
 // MessageManagedBotCreated A bot managed by another bot was created by the user
@@ -30504,10 +27408,7 @@ func (t MessageManagedBotCreated) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageManagedBotCreated",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageManagedBotCreated", Alias: (*Alias)(&t)})
 }
 
 // MessageOriginChannel The message was originally a post in a channel
@@ -30531,10 +27432,7 @@ func (t MessageOriginChannel) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageOriginChannel",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageOriginChannel", Alias: (*Alias)(&t)})
 }
 
 // MessageOriginChat The message was originally sent on behalf of a chat
@@ -30556,10 +27454,7 @@ func (t MessageOriginChat) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageOriginChat",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageOriginChat", Alias: (*Alias)(&t)})
 }
 
 // MessageOriginHiddenUser The message was originally sent by a user who is hidden by their privacy settings
@@ -30579,10 +27474,7 @@ func (t MessageOriginHiddenUser) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageOriginHiddenUser",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageOriginHiddenUser", Alias: (*Alias)(&t)})
 }
 
 // MessageOriginUser The message was originally sent by a known user
@@ -30602,10 +27494,7 @@ func (t MessageOriginUser) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageOriginUser",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageOriginUser", Alias: (*Alias)(&t)})
 }
 
 // MessagePaidMedia A message with paid media
@@ -30631,10 +27520,7 @@ func (t MessagePaidMedia) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messagePaidMedia",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messagePaidMedia", Alias: (*Alias)(&t)})
 }
 
 func (t *MessagePaidMedia) UnmarshalJSON(data []byte) error {
@@ -30680,10 +27566,7 @@ func (t MessagePaidMessagePriceChanged) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messagePaidMessagePriceChanged",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messagePaidMessagePriceChanged", Alias: (*Alias)(&t)})
 }
 
 // MessagePaidMessagesRefunded Paid messages were refunded
@@ -30705,10 +27588,7 @@ func (t MessagePaidMessagesRefunded) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messagePaidMessagesRefunded",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messagePaidMessagesRefunded", Alias: (*Alias)(&t)})
 }
 
 // MessagePassportDataReceived Telegram Passport data has been received; for bots only
@@ -30730,10 +27610,7 @@ func (t MessagePassportDataReceived) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messagePassportDataReceived",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messagePassportDataReceived", Alias: (*Alias)(&t)})
 }
 
 // MessagePassportDataSent Telegram Passport data has been sent to a bot
@@ -30753,10 +27630,7 @@ func (t MessagePassportDataSent) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messagePassportDataSent",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messagePassportDataSent", Alias: (*Alias)(&t)})
 }
 
 func (t *MessagePassportDataSent) UnmarshalJSON(data []byte) error {
@@ -30812,10 +27686,7 @@ func (t MessagePaymentRefunded) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messagePaymentRefunded",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messagePaymentRefunded", Alias: (*Alias)(&t)})
 }
 
 func (t *MessagePaymentRefunded) UnmarshalJSON(data []byte) error {
@@ -30872,10 +27743,7 @@ func (t MessagePaymentSuccessful) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messagePaymentSuccessful",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messagePaymentSuccessful", Alias: (*Alias)(&t)})
 }
 
 // MessagePaymentSuccessfulBot A payment has been received by the bot or the business account
@@ -30913,10 +27781,7 @@ func (t MessagePaymentSuccessfulBot) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messagePaymentSuccessfulBot",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messagePaymentSuccessfulBot", Alias: (*Alias)(&t)})
 }
 
 // MessagePhoto A photo message
@@ -30946,10 +27811,7 @@ func (t MessagePhoto) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messagePhoto",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messagePhoto", Alias: (*Alias)(&t)})
 }
 
 // MessagePinMessage A message has been pinned
@@ -30969,10 +27831,7 @@ func (t MessagePinMessage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messagePinMessage",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messagePinMessage", Alias: (*Alias)(&t)})
 }
 
 // MessagePoll A message with a poll
@@ -30998,10 +27857,7 @@ func (t MessagePoll) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messagePoll",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messagePoll", Alias: (*Alias)(&t)})
 }
 
 func (t *MessagePoll) UnmarshalJSON(data []byte) error {
@@ -31048,10 +27904,7 @@ func (t MessagePollOptionAdded) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messagePollOptionAdded",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messagePollOptionAdded", Alias: (*Alias)(&t)})
 }
 
 // MessagePollOptionDeleted A message with information about a deleted poll option
@@ -31075,10 +27928,7 @@ func (t MessagePollOptionDeleted) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messagePollOptionDeleted",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messagePollOptionDeleted", Alias: (*Alias)(&t)})
 }
 
 // MessagePosition Contains information about a message in a specific position
@@ -31100,10 +27950,7 @@ func (t MessagePosition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messagePosition",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messagePosition", Alias: (*Alias)(&t)})
 }
 
 // MessagePositions Contains a list of message positions
@@ -31123,10 +27970,7 @@ func (t MessagePositions) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messagePositions",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messagePositions", Alias: (*Alias)(&t)})
 }
 
 // MessagePremiumGiftCode A Telegram Premium gift code was created for the user
@@ -31168,10 +28012,7 @@ func (t MessagePremiumGiftCode) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messagePremiumGiftCode",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messagePremiumGiftCode", Alias: (*Alias)(&t)})
 }
 
 func (t *MessagePremiumGiftCode) UnmarshalJSON(data []byte) error {
@@ -31288,10 +28129,7 @@ func (t MessageProperties) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageProperties",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageProperties", Alias: (*Alias)(&t)})
 }
 
 // MessageProximityAlertTriggered A user in the chat came within proximity alert range
@@ -31315,10 +28153,7 @@ func (t MessageProximityAlertTriggered) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageProximityAlertTriggered",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageProximityAlertTriggered", Alias: (*Alias)(&t)})
 }
 
 func (t *MessageProximityAlertTriggered) UnmarshalJSON(data []byte) error {
@@ -31375,10 +28210,7 @@ func (t MessageReaction) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageReaction",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageReaction", Alias: (*Alias)(&t)})
 }
 
 func (t *MessageReaction) UnmarshalJSON(data []byte) error {
@@ -31444,10 +28276,7 @@ func (t MessageReactions) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageReactions",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageReactions", Alias: (*Alias)(&t)})
 }
 
 // MessageReadDateMyPrivacyRestricted The read date is unknown due to privacy settings of the current user, but will be known if the user subscribes to Telegram Premium
@@ -31465,10 +28294,7 @@ func (t MessageReadDateMyPrivacyRestricted) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageReadDateMyPrivacyRestricted",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageReadDateMyPrivacyRestricted", Alias: (*Alias)(&t)})
 }
 
 // MessageReadDateRead Contains read date of the message
@@ -31488,10 +28314,7 @@ func (t MessageReadDateRead) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageReadDateRead",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageReadDateRead", Alias: (*Alias)(&t)})
 }
 
 // MessageReadDateTooOld The message is too old to get read date
@@ -31509,10 +28332,7 @@ func (t MessageReadDateTooOld) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageReadDateTooOld",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageReadDateTooOld", Alias: (*Alias)(&t)})
 }
 
 // MessageReadDateUnread The message is unread yet
@@ -31530,10 +28350,7 @@ func (t MessageReadDateUnread) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageReadDateUnread",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageReadDateUnread", Alias: (*Alias)(&t)})
 }
 
 // MessageReadDateUserPrivacyRestricted The read date is unknown due to privacy settings of the other user
@@ -31551,10 +28368,7 @@ func (t MessageReadDateUserPrivacyRestricted) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageReadDateUserPrivacyRestricted",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageReadDateUserPrivacyRestricted", Alias: (*Alias)(&t)})
 }
 
 // MessageRefundedUpgradedGift A gift which purchase, upgrade or transfer were refunded
@@ -31580,10 +28394,7 @@ func (t MessageRefundedUpgradedGift) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageRefundedUpgradedGift",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageRefundedUpgradedGift", Alias: (*Alias)(&t)})
 }
 
 func (t *MessageRefundedUpgradedGift) UnmarshalJSON(data []byte) error {
@@ -31648,10 +28459,7 @@ func (t MessageReplyInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageReplyInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageReplyInfo", Alias: (*Alias)(&t)})
 }
 
 func (t *MessageReplyInfo) UnmarshalJSON(data []byte) error {
@@ -31711,10 +28519,7 @@ func (t MessageReplyToMessage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageReplyToMessage",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageReplyToMessage", Alias: (*Alias)(&t)})
 }
 
 func (t *MessageReplyToMessage) UnmarshalJSON(data []byte) error {
@@ -31767,10 +28572,7 @@ func (t MessageReplyToStory) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageReplyToStory",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageReplyToStory", Alias: (*Alias)(&t)})
 }
 
 // MessageRichMessage A rich message; the message can have multiple media of the same type, all of which must be shown in the corresponding profile tab
@@ -31790,10 +28592,7 @@ func (t MessageRichMessage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageRichMessage",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageRichMessage", Alias: (*Alias)(&t)})
 }
 
 // Messages Contains a list of messages
@@ -31813,10 +28612,7 @@ func (t Messages) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messages",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messages", Alias: (*Alias)(&t)})
 }
 
 // MessageSchedulingStateSendAtDate The message will be sent at the specified date
@@ -31838,10 +28634,7 @@ func (t MessageSchedulingStateSendAtDate) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageSchedulingStateSendAtDate",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageSchedulingStateSendAtDate", Alias: (*Alias)(&t)})
 }
 
 // MessageSchedulingStateSendWhenOnline The message will be sent when the other user is online. Applicable to private chats only and when the exact online status of the other user is known
@@ -31859,10 +28652,7 @@ func (t MessageSchedulingStateSendWhenOnline) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageSchedulingStateSendWhenOnline",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageSchedulingStateSendWhenOnline", Alias: (*Alias)(&t)})
 }
 
 // MessageSchedulingStateSendWhenVideoProcessed The message will be sent when the video in the message is converted and optimized; can be used only by the server
@@ -31882,10 +28672,7 @@ func (t MessageSchedulingStateSendWhenVideoProcessed) MarshalJSON() ([]byte, err
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageSchedulingStateSendWhenVideoProcessed",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageSchedulingStateSendWhenVideoProcessed", Alias: (*Alias)(&t)})
 }
 
 // MessageScreenshotTaken A screenshot of a message in the chat has been taken
@@ -31903,10 +28690,7 @@ func (t MessageScreenshotTaken) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageScreenshotTaken",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageScreenshotTaken", Alias: (*Alias)(&t)})
 }
 
 // MessageSelfDestructTypeImmediately The message can be opened only once and will be self-destructed once closed
@@ -31924,10 +28708,7 @@ func (t MessageSelfDestructTypeImmediately) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageSelfDestructTypeImmediately",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageSelfDestructTypeImmediately", Alias: (*Alias)(&t)})
 }
 
 // MessageSelfDestructTypeTimer The message will be self-destructed in the specified time after its content was opened
@@ -31947,10 +28728,7 @@ func (t MessageSelfDestructTypeTimer) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageSelfDestructTypeTimer",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageSelfDestructTypeTimer", Alias: (*Alias)(&t)})
 }
 
 // MessageSenderChat The message was sent on behalf of a chat
@@ -31970,10 +28748,7 @@ func (t MessageSenderChat) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageSenderChat",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageSenderChat", Alias: (*Alias)(&t)})
 }
 
 // MessageSenders Represents a list of message senders
@@ -31993,10 +28768,7 @@ func (t MessageSenders) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageSenders",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageSenders", Alias: (*Alias)(&t)})
 }
 
 func (t *MessageSenders) UnmarshalJSON(data []byte) error {
@@ -32042,10 +28814,7 @@ func (t MessageSenderUser) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageSenderUser",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageSenderUser", Alias: (*Alias)(&t)})
 }
 
 // MessageSendingStateFailed The message failed to be sent
@@ -32077,10 +28846,7 @@ func (t MessageSendingStateFailed) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageSendingStateFailed",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageSendingStateFailed", Alias: (*Alias)(&t)})
 }
 
 // MessageSendingStatePending The message is being sent now, but has not yet been delivered to the server
@@ -32100,10 +28866,7 @@ func (t MessageSendingStatePending) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageSendingStatePending",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageSendingStatePending", Alias: (*Alias)(&t)})
 }
 
 // MessageSendOptions Options to be used when a message is sent
@@ -32141,10 +28904,7 @@ func (t MessageSendOptions) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageSendOptions",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageSendOptions", Alias: (*Alias)(&t)})
 }
 
 func (t *MessageSendOptions) UnmarshalJSON(data []byte) error {
@@ -32185,10 +28945,7 @@ func (t MessageSourceChatEventLog) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageSourceChatEventLog",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageSourceChatEventLog", Alias: (*Alias)(&t)})
 }
 
 // MessageSourceChatHistory The message is from a chat history
@@ -32206,10 +28963,7 @@ func (t MessageSourceChatHistory) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageSourceChatHistory",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageSourceChatHistory", Alias: (*Alias)(&t)})
 }
 
 // MessageSourceChatList The message is from a chat list or a forum topic list
@@ -32227,10 +28981,7 @@ func (t MessageSourceChatList) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageSourceChatList",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageSourceChatList", Alias: (*Alias)(&t)})
 }
 
 // MessageSourceDirectMessagesChatTopicHistory The message is from history of a topic in a channel direct messages chat administered by the current user
@@ -32248,10 +28999,7 @@ func (t MessageSourceDirectMessagesChatTopicHistory) MarshalJSON() ([]byte, erro
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageSourceDirectMessagesChatTopicHistory",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageSourceDirectMessagesChatTopicHistory", Alias: (*Alias)(&t)})
 }
 
 // MessageSourceForumTopicHistory The message is from history of a forum topic
@@ -32269,10 +29017,7 @@ func (t MessageSourceForumTopicHistory) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageSourceForumTopicHistory",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageSourceForumTopicHistory", Alias: (*Alias)(&t)})
 }
 
 // MessageSourceHistoryPreview The message is from chat, message thread or forum topic history preview
@@ -32290,10 +29035,7 @@ func (t MessageSourceHistoryPreview) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageSourceHistoryPreview",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageSourceHistoryPreview", Alias: (*Alias)(&t)})
 }
 
 // MessageSourceMessageThreadHistory The message is from history of a message thread
@@ -32311,10 +29053,7 @@ func (t MessageSourceMessageThreadHistory) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageSourceMessageThreadHistory",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageSourceMessageThreadHistory", Alias: (*Alias)(&t)})
 }
 
 // MessageSourceNotification The message is from a notification
@@ -32332,10 +29071,7 @@ func (t MessageSourceNotification) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageSourceNotification",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageSourceNotification", Alias: (*Alias)(&t)})
 }
 
 // MessageSourceOther The message is from some other source
@@ -32353,10 +29089,7 @@ func (t MessageSourceOther) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageSourceOther",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageSourceOther", Alias: (*Alias)(&t)})
 }
 
 // MessageSourceScreenshot The message was screenshotted; the source must be used only if the message content was visible during the screenshot
@@ -32374,10 +29107,7 @@ func (t MessageSourceScreenshot) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageSourceScreenshot",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageSourceScreenshot", Alias: (*Alias)(&t)})
 }
 
 // MessageSourceSearch The message is from search results, including file downloads, local file list, outgoing document messages, calendar
@@ -32395,10 +29125,7 @@ func (t MessageSourceSearch) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageSourceSearch",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageSourceSearch", Alias: (*Alias)(&t)})
 }
 
 // MessageStakeDice A stake dice message. The dice value is randomly generated by the server
@@ -32426,10 +29153,7 @@ func (t MessageStakeDice) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageStakeDice",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageStakeDice", Alias: (*Alias)(&t)})
 }
 
 func (t *MessageStakeDice) UnmarshalJSON(data []byte) error {
@@ -32480,10 +29204,7 @@ func (t MessageStatistics) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageStatistics",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageStatistics", Alias: (*Alias)(&t)})
 }
 
 func (t *MessageStatistics) UnmarshalJSON(data []byte) error {
@@ -32536,10 +29257,7 @@ func (t MessageSticker) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageSticker",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageSticker", Alias: (*Alias)(&t)})
 }
 
 // MessageStory A message with a forwarded story
@@ -32563,10 +29281,7 @@ func (t MessageStory) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageStory",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageStory", Alias: (*Alias)(&t)})
 }
 
 // MessageSuggestBirthdate A birthdate was suggested to be set
@@ -32586,10 +29301,7 @@ func (t MessageSuggestBirthdate) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageSuggestBirthdate",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageSuggestBirthdate", Alias: (*Alias)(&t)})
 }
 
 // MessageSuggestedPostApprovalFailed Approval of suggested post has failed, because the user who proposed the post didn't have enough funds
@@ -32611,10 +29323,7 @@ func (t MessageSuggestedPostApprovalFailed) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageSuggestedPostApprovalFailed",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageSuggestedPostApprovalFailed", Alias: (*Alias)(&t)})
 }
 
 func (t *MessageSuggestedPostApprovalFailed) UnmarshalJSON(data []byte) error {
@@ -32661,10 +29370,7 @@ func (t MessageSuggestedPostApproved) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageSuggestedPostApproved",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageSuggestedPostApproved", Alias: (*Alias)(&t)})
 }
 
 func (t *MessageSuggestedPostApproved) UnmarshalJSON(data []byte) error {
@@ -32709,10 +29415,7 @@ func (t MessageSuggestedPostDeclined) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageSuggestedPostDeclined",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageSuggestedPostDeclined", Alias: (*Alias)(&t)})
 }
 
 // MessageSuggestedPostPaid A suggested post was published for getOption("suggested_post_lifetime_min") seconds and payment for the post was received
@@ -32736,10 +29439,7 @@ func (t MessageSuggestedPostPaid) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageSuggestedPostPaid",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageSuggestedPostPaid", Alias: (*Alias)(&t)})
 }
 
 // MessageSuggestedPostRefunded A suggested post was refunded
@@ -32761,10 +29461,7 @@ func (t MessageSuggestedPostRefunded) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageSuggestedPostRefunded",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageSuggestedPostRefunded", Alias: (*Alias)(&t)})
 }
 
 func (t *MessageSuggestedPostRefunded) UnmarshalJSON(data []byte) error {
@@ -32807,10 +29504,7 @@ func (t MessageSuggestProfilePhoto) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageSuggestProfilePhoto",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageSuggestProfilePhoto", Alias: (*Alias)(&t)})
 }
 
 // MessageSupergroupChatCreate A newly created supergroup or channel
@@ -32830,10 +29524,7 @@ func (t MessageSupergroupChatCreate) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageSupergroupChatCreate",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageSupergroupChatCreate", Alias: (*Alias)(&t)})
 }
 
 // MessageText A text message
@@ -32857,10 +29548,7 @@ func (t MessageText) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageText",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageText", Alias: (*Alias)(&t)})
 }
 
 // MessageThreadInfo Contains information about a message thread
@@ -32888,10 +29576,7 @@ func (t MessageThreadInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageThreadInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageThreadInfo", Alias: (*Alias)(&t)})
 }
 
 // MessageTopicDirectMessages A topic in a channel direct messages chat administered by the current user
@@ -32911,10 +29596,7 @@ func (t MessageTopicDirectMessages) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageTopicDirectMessages",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageTopicDirectMessages", Alias: (*Alias)(&t)})
 }
 
 // MessageTopicForum A topic in a forum supergroup chat or a chat with a bot
@@ -32934,10 +29616,7 @@ func (t MessageTopicForum) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageTopicForum",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageTopicForum", Alias: (*Alias)(&t)})
 }
 
 // MessageTopicSavedMessages A topic in Saved Messages chat
@@ -32957,10 +29636,7 @@ func (t MessageTopicSavedMessages) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageTopicSavedMessages",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageTopicSavedMessages", Alias: (*Alias)(&t)})
 }
 
 // MessageTopicThread A topic in a non-forum supergroup chat
@@ -32980,10 +29656,7 @@ func (t MessageTopicThread) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageTopicThread",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageTopicThread", Alias: (*Alias)(&t)})
 }
 
 // MessageUnsupported A message content that is not supported in the current TDLib version
@@ -33001,10 +29674,7 @@ func (t MessageUnsupported) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageUnsupported",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageUnsupported", Alias: (*Alias)(&t)})
 }
 
 // MessageUpgradedGift An upgraded gift was received or sent by the current user, or the current user was notified about a channel gift
@@ -33054,10 +29724,7 @@ func (t MessageUpgradedGift) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageUpgradedGift",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageUpgradedGift", Alias: (*Alias)(&t)})
 }
 
 func (t *MessageUpgradedGift) UnmarshalJSON(data []byte) error {
@@ -33122,10 +29789,7 @@ func (t MessageUpgradedGiftPurchaseOffer) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageUpgradedGiftPurchaseOffer",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageUpgradedGiftPurchaseOffer", Alias: (*Alias)(&t)})
 }
 
 func (t *MessageUpgradedGiftPurchaseOffer) UnmarshalJSON(data []byte) error {
@@ -33182,10 +29846,7 @@ func (t MessageUpgradedGiftPurchaseOfferRejected) MarshalJSON() ([]byte, error) 
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageUpgradedGiftPurchaseOfferRejected",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageUpgradedGiftPurchaseOfferRejected", Alias: (*Alias)(&t)})
 }
 
 func (t *MessageUpgradedGiftPurchaseOfferRejected) UnmarshalJSON(data []byte) error {
@@ -33230,10 +29891,7 @@ func (t MessageUsersShared) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageUsersShared",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageUsersShared", Alias: (*Alias)(&t)})
 }
 
 // MessageVenue A message with information about a venue
@@ -33253,10 +29911,7 @@ func (t MessageVenue) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageVenue",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageVenue", Alias: (*Alias)(&t)})
 }
 
 // MessageVideo A video message
@@ -33292,10 +29947,7 @@ func (t MessageVideo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageVideo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageVideo", Alias: (*Alias)(&t)})
 }
 
 // MessageVideoChatEnded A message with information about an ended video chat
@@ -33315,10 +29967,7 @@ func (t MessageVideoChatEnded) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageVideoChatEnded",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageVideoChatEnded", Alias: (*Alias)(&t)})
 }
 
 // MessageVideoChatScheduled A new video chat was scheduled
@@ -33340,10 +29989,7 @@ func (t MessageVideoChatScheduled) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageVideoChatScheduled",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageVideoChatScheduled", Alias: (*Alias)(&t)})
 }
 
 // MessageVideoChatStarted A newly created video chat
@@ -33363,10 +30009,7 @@ func (t MessageVideoChatStarted) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageVideoChatStarted",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageVideoChatStarted", Alias: (*Alias)(&t)})
 }
 
 // MessageVideoNote A video note message
@@ -33390,10 +30033,7 @@ func (t MessageVideoNote) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageVideoNote",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageVideoNote", Alias: (*Alias)(&t)})
 }
 
 // MessageViewer Represents a viewer of a message
@@ -33413,10 +30053,7 @@ func (t MessageViewer) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageViewer",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageViewer", Alias: (*Alias)(&t)})
 }
 
 // MessageViewers Represents a list of message viewers
@@ -33434,10 +30071,7 @@ func (t MessageViewers) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageViewers",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageViewers", Alias: (*Alias)(&t)})
 }
 
 // MessageVoiceNote A voice note message
@@ -33461,10 +30095,7 @@ func (t MessageVoiceNote) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageVoiceNote",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageVoiceNote", Alias: (*Alias)(&t)})
 }
 
 // MessageWebAppDataReceived Data from a Web App has been received; for bots only
@@ -33486,10 +30117,7 @@ func (t MessageWebAppDataReceived) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageWebAppDataReceived",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageWebAppDataReceived", Alias: (*Alias)(&t)})
 }
 
 // MessageWebAppDataSent Data from a Web App has been sent to a bot
@@ -33509,10 +30137,7 @@ func (t MessageWebAppDataSent) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "messageWebAppDataSent",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "messageWebAppDataSent", Alias: (*Alias)(&t)})
 }
 
 // Minithumbnail Thumbnail image of a very poor quality and low resolution
@@ -33534,10 +30159,7 @@ func (t Minithumbnail) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "minithumbnail",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "minithumbnail", Alias: (*Alias)(&t)})
 }
 
 // NetworkStatistics A full list of available network statistic entries
@@ -33557,10 +30179,7 @@ func (t NetworkStatistics) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "networkStatistics",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "networkStatistics", Alias: (*Alias)(&t)})
 }
 
 func (t *NetworkStatistics) UnmarshalJSON(data []byte) error {
@@ -33612,10 +30231,7 @@ func (t NetworkStatisticsEntryCall) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "networkStatisticsEntryCall",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "networkStatisticsEntryCall", Alias: (*Alias)(&t)})
 }
 
 func (t *NetworkStatisticsEntryCall) UnmarshalJSON(data []byte) error {
@@ -33664,10 +30280,7 @@ func (t NetworkStatisticsEntryFile) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "networkStatisticsEntryFile",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "networkStatisticsEntryFile", Alias: (*Alias)(&t)})
 }
 
 func (t *NetworkStatisticsEntryFile) UnmarshalJSON(data []byte) error {
@@ -33716,10 +30329,7 @@ func (t NetworkTypeMobile) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "networkTypeMobile",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "networkTypeMobile", Alias: (*Alias)(&t)})
 }
 
 // NetworkTypeMobileRoaming A mobile roaming network
@@ -33737,10 +30347,7 @@ func (t NetworkTypeMobileRoaming) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "networkTypeMobileRoaming",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "networkTypeMobileRoaming", Alias: (*Alias)(&t)})
 }
 
 // NetworkTypeNone The network is not available
@@ -33758,10 +30365,7 @@ func (t NetworkTypeNone) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "networkTypeNone",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "networkTypeNone", Alias: (*Alias)(&t)})
 }
 
 // NetworkTypeOther A different network type (e.g., Ethernet network)
@@ -33779,10 +30383,7 @@ func (t NetworkTypeOther) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "networkTypeOther",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "networkTypeOther", Alias: (*Alias)(&t)})
 }
 
 // NetworkTypeWiFi A Wi-Fi network
@@ -33800,10 +30401,7 @@ func (t NetworkTypeWiFi) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "networkTypeWiFi",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "networkTypeWiFi", Alias: (*Alias)(&t)})
 }
 
 // NewChatPrivacySettings Contains privacy settings for chats with non-contacts
@@ -33823,10 +30421,7 @@ func (t NewChatPrivacySettings) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "newChatPrivacySettings",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "newChatPrivacySettings", Alias: (*Alias)(&t)})
 }
 
 // NewSticker A sticker to be added to a sticker set
@@ -33852,10 +30447,7 @@ func (t NewSticker) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "newSticker",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "newSticker", Alias: (*Alias)(&t)})
 }
 
 func (t *NewSticker) UnmarshalJSON(data []byte) error {
@@ -33910,10 +30502,7 @@ func (t Notification) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "notification",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "notification", Alias: (*Alias)(&t)})
 }
 
 func (t *Notification) UnmarshalJSON(data []byte) error {
@@ -33962,10 +30551,7 @@ func (t NotificationGroup) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "notificationGroup",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "notificationGroup", Alias: (*Alias)(&t)})
 }
 
 func (t *NotificationGroup) UnmarshalJSON(data []byte) error {
@@ -34006,10 +30592,7 @@ func (t NotificationGroupTypeCalls) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "notificationGroupTypeCalls",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "notificationGroupTypeCalls", Alias: (*Alias)(&t)})
 }
 
 // NotificationGroupTypeMentions A group containing notifications of type notificationTypeNewMessage and notificationTypeNewPushMessage with unread mentions of the current user, replies to their messages, or a pinned message
@@ -34027,10 +30610,7 @@ func (t NotificationGroupTypeMentions) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "notificationGroupTypeMentions",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "notificationGroupTypeMentions", Alias: (*Alias)(&t)})
 }
 
 // NotificationGroupTypeMessages A group containing notifications of type notificationTypeNewMessage and notificationTypeNewPushMessage with ordinary unread messages
@@ -34048,10 +30628,7 @@ func (t NotificationGroupTypeMessages) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "notificationGroupTypeMessages",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "notificationGroupTypeMessages", Alias: (*Alias)(&t)})
 }
 
 // NotificationGroupTypeSecretChat A group containing a notification of type notificationTypeNewSecretChat
@@ -34069,10 +30646,7 @@ func (t NotificationGroupTypeSecretChat) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "notificationGroupTypeSecretChat",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "notificationGroupTypeSecretChat", Alias: (*Alias)(&t)})
 }
 
 // NotificationSettingsScopeChannelChats Notification settings applied to all channel chats when the corresponding chat setting has a default value
@@ -34090,10 +30664,7 @@ func (t NotificationSettingsScopeChannelChats) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "notificationSettingsScopeChannelChats",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "notificationSettingsScopeChannelChats", Alias: (*Alias)(&t)})
 }
 
 // NotificationSettingsScopeGroupChats Notification settings applied to all basic group and supergroup chats when the corresponding chat setting has a default value
@@ -34111,10 +30682,7 @@ func (t NotificationSettingsScopeGroupChats) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "notificationSettingsScopeGroupChats",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "notificationSettingsScopeGroupChats", Alias: (*Alias)(&t)})
 }
 
 // NotificationSettingsScopePrivateChats Notification settings applied to all private and secret chats when the corresponding chat setting has a default value
@@ -34132,10 +30700,7 @@ func (t NotificationSettingsScopePrivateChats) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "notificationSettingsScopePrivateChats",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "notificationSettingsScopePrivateChats", Alias: (*Alias)(&t)})
 }
 
 // NotificationSound Describes a notification sound in MP3 format
@@ -34163,10 +30728,7 @@ func (t NotificationSound) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "notificationSound",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "notificationSound", Alias: (*Alias)(&t)})
 }
 
 // NotificationSounds Contains a list of notification sounds
@@ -34184,10 +30746,7 @@ func (t NotificationSounds) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "notificationSounds",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "notificationSounds", Alias: (*Alias)(&t)})
 }
 
 // NotificationTypeNewCall New call was received
@@ -34207,10 +30766,7 @@ func (t NotificationTypeNewCall) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "notificationTypeNewCall",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "notificationTypeNewCall", Alias: (*Alias)(&t)})
 }
 
 // NotificationTypeNewMessage New message was received
@@ -34232,10 +30788,7 @@ func (t NotificationTypeNewMessage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "notificationTypeNewMessage",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "notificationTypeNewMessage", Alias: (*Alias)(&t)})
 }
 
 // NotificationTypeNewPushMessage New message was received through a push notification
@@ -34263,10 +30816,7 @@ func (t NotificationTypeNewPushMessage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "notificationTypeNewPushMessage",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "notificationTypeNewPushMessage", Alias: (*Alias)(&t)})
 }
 
 func (t *NotificationTypeNewPushMessage) UnmarshalJSON(data []byte) error {
@@ -34315,10 +30865,7 @@ func (t NotificationTypeNewSecretChat) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "notificationTypeNewSecretChat",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "notificationTypeNewSecretChat", Alias: (*Alias)(&t)})
 }
 
 // OauthLinkInfo Information about the OAuth authorization
@@ -34362,10 +30909,7 @@ func (t OauthLinkInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "oauthLinkInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "oauthLinkInfo", Alias: (*Alias)(&t)})
 }
 
 // Ok An object of this type is returned on a successful function call for certain functions
@@ -34381,10 +30925,7 @@ func (t Ok) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "ok",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "ok", Alias: (*Alias)(&t)})
 }
 
 // OptionValueBoolean Represents a boolean option
@@ -34404,10 +30945,7 @@ func (t OptionValueBoolean) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "optionValueBoolean",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "optionValueBoolean", Alias: (*Alias)(&t)})
 }
 
 // OptionValueEmpty Represents an unknown option or an option which has a default value
@@ -34425,10 +30963,7 @@ func (t OptionValueEmpty) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "optionValueEmpty",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "optionValueEmpty", Alias: (*Alias)(&t)})
 }
 
 // OptionValueInteger Represents an integer option
@@ -34448,10 +30983,7 @@ func (t OptionValueInteger) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "optionValueInteger",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "optionValueInteger", Alias: (*Alias)(&t)})
 }
 
 // OptionValueString Represents a string option
@@ -34471,10 +31003,7 @@ func (t OptionValueString) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "optionValueString",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "optionValueString", Alias: (*Alias)(&t)})
 }
 
 // OrderInfo Order information
@@ -34498,10 +31027,7 @@ func (t OrderInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "orderInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "orderInfo", Alias: (*Alias)(&t)})
 }
 
 // Outline Represents outline of an image
@@ -34519,10 +31045,7 @@ func (t Outline) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "outline",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "outline", Alias: (*Alias)(&t)})
 }
 
 // PageBlockAnchor An invisible anchor on a page, which can be used in a URL to open the page from the specified anchor
@@ -34542,10 +31065,7 @@ func (t PageBlockAnchor) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pageBlockAnchor",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pageBlockAnchor", Alias: (*Alias)(&t)})
 }
 
 // PageBlockAnimation An animation
@@ -34571,10 +31091,7 @@ func (t PageBlockAnimation) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pageBlockAnimation",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pageBlockAnimation", Alias: (*Alias)(&t)})
 }
 
 // PageBlockAudio An audio file
@@ -34596,10 +31113,7 @@ func (t PageBlockAudio) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pageBlockAudio",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pageBlockAudio", Alias: (*Alias)(&t)})
 }
 
 // PageBlockAuthorDate The author and publishing date of a page; instant view only
@@ -34621,10 +31135,7 @@ func (t PageBlockAuthorDate) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pageBlockAuthorDate",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pageBlockAuthorDate", Alias: (*Alias)(&t)})
 }
 
 func (t *PageBlockAuthorDate) UnmarshalJSON(data []byte) error {
@@ -34669,10 +31180,7 @@ func (t PageBlockBlockQuote) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pageBlockBlockQuote",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pageBlockBlockQuote", Alias: (*Alias)(&t)})
 }
 
 func (t *PageBlockBlockQuote) UnmarshalJSON(data []byte) error {
@@ -34728,10 +31236,7 @@ func (t PageBlockButtonRow) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pageBlockButtonRow",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pageBlockButtonRow", Alias: (*Alias)(&t)})
 }
 
 func (t *PageBlockButtonRow) UnmarshalJSON(data []byte) error {
@@ -34774,10 +31279,7 @@ func (t PageBlockCaption) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pageBlockCaption",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pageBlockCaption", Alias: (*Alias)(&t)})
 }
 
 func (t *PageBlockCaption) UnmarshalJSON(data []byte) error {
@@ -34834,10 +31336,7 @@ func (t PageBlockChatLink) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pageBlockChatLink",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pageBlockChatLink", Alias: (*Alias)(&t)})
 }
 
 // PageBlockCollage A collage
@@ -34859,10 +31358,7 @@ func (t PageBlockCollage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pageBlockCollage",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pageBlockCollage", Alias: (*Alias)(&t)})
 }
 
 func (t *PageBlockCollage) UnmarshalJSON(data []byte) error {
@@ -34908,10 +31404,7 @@ func (t PageBlockCover) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pageBlockCover",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pageBlockCover", Alias: (*Alias)(&t)})
 }
 
 func (t *PageBlockCover) UnmarshalJSON(data []byte) error {
@@ -34958,10 +31451,7 @@ func (t PageBlockDetails) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pageBlockDetails",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pageBlockDetails", Alias: (*Alias)(&t)})
 }
 
 func (t *PageBlockDetails) UnmarshalJSON(data []byte) error {
@@ -35013,10 +31503,7 @@ func (t PageBlockDivider) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pageBlockDivider",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pageBlockDivider", Alias: (*Alias)(&t)})
 }
 
 // PageBlockDocument A general file
@@ -35038,10 +31525,7 @@ func (t PageBlockDocument) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pageBlockDocument",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pageBlockDocument", Alias: (*Alias)(&t)})
 }
 
 // PageBlockEmbedded An embedded web page; instant view only
@@ -35075,10 +31559,7 @@ func (t PageBlockEmbedded) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pageBlockEmbedded",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pageBlockEmbedded", Alias: (*Alias)(&t)})
 }
 
 // PageBlockEmbeddedPost An embedded post; instant view only
@@ -35108,10 +31589,7 @@ func (t PageBlockEmbeddedPost) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pageBlockEmbeddedPost",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pageBlockEmbeddedPost", Alias: (*Alias)(&t)})
 }
 
 func (t *PageBlockEmbeddedPost) UnmarshalJSON(data []byte) error {
@@ -35159,10 +31637,7 @@ func (t PageBlockExpandableBlockQuote) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pageBlockExpandableBlockQuote",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pageBlockExpandableBlockQuote", Alias: (*Alias)(&t)})
 }
 
 func (t *PageBlockExpandableBlockQuote) UnmarshalJSON(data []byte) error {
@@ -35213,10 +31688,7 @@ func (t PageBlockFooter) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pageBlockFooter",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pageBlockFooter", Alias: (*Alias)(&t)})
 }
 
 func (t *PageBlockFooter) UnmarshalJSON(data []byte) error {
@@ -35259,10 +31731,7 @@ func (t PageBlockHeader) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pageBlockHeader",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pageBlockHeader", Alias: (*Alias)(&t)})
 }
 
 func (t *PageBlockHeader) UnmarshalJSON(data []byte) error {
@@ -35303,10 +31772,7 @@ func (t PageBlockHorizontalAlignmentCenter) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pageBlockHorizontalAlignmentCenter",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pageBlockHorizontalAlignmentCenter", Alias: (*Alias)(&t)})
 }
 
 // PageBlockHorizontalAlignmentLeft The content must be left-aligned
@@ -35324,10 +31790,7 @@ func (t PageBlockHorizontalAlignmentLeft) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pageBlockHorizontalAlignmentLeft",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pageBlockHorizontalAlignmentLeft", Alias: (*Alias)(&t)})
 }
 
 // PageBlockHorizontalAlignmentRight The content must be right-aligned
@@ -35345,10 +31808,7 @@ func (t PageBlockHorizontalAlignmentRight) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pageBlockHorizontalAlignmentRight",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pageBlockHorizontalAlignmentRight", Alias: (*Alias)(&t)})
 }
 
 // PageBlockKicker A kicker; instant view only
@@ -35368,10 +31828,7 @@ func (t PageBlockKicker) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pageBlockKicker",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pageBlockKicker", Alias: (*Alias)(&t)})
 }
 
 func (t *PageBlockKicker) UnmarshalJSON(data []byte) error {
@@ -35414,10 +31871,7 @@ func (t PageBlockList) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pageBlockList",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pageBlockList", Alias: (*Alias)(&t)})
 }
 
 // PageBlockListItem Describes an item of a list page block
@@ -35445,10 +31899,7 @@ func (t PageBlockListItem) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pageBlockListItem",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pageBlockListItem", Alias: (*Alias)(&t)})
 }
 
 func (t *PageBlockListItem) UnmarshalJSON(data []byte) error {
@@ -35502,10 +31953,7 @@ func (t PageBlockMap) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pageBlockMap",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pageBlockMap", Alias: (*Alias)(&t)})
 }
 
 // PageBlockMathematicalExpression A mathematical expression
@@ -35525,10 +31973,7 @@ func (t PageBlockMathematicalExpression) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pageBlockMathematicalExpression",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pageBlockMathematicalExpression", Alias: (*Alias)(&t)})
 }
 
 // PageBlockParagraph A text paragraph
@@ -35548,10 +31993,7 @@ func (t PageBlockParagraph) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pageBlockParagraph",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pageBlockParagraph", Alias: (*Alias)(&t)})
 }
 
 func (t *PageBlockParagraph) UnmarshalJSON(data []byte) error {
@@ -35600,10 +32042,7 @@ func (t PageBlockPhoto) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pageBlockPhoto",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pageBlockPhoto", Alias: (*Alias)(&t)})
 }
 
 // PageBlockPreformatted A preformatted text paragraph
@@ -35625,10 +32064,7 @@ func (t PageBlockPreformatted) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pageBlockPreformatted",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pageBlockPreformatted", Alias: (*Alias)(&t)})
 }
 
 func (t *PageBlockPreformatted) UnmarshalJSON(data []byte) error {
@@ -35673,10 +32109,7 @@ func (t PageBlockPullQuote) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pageBlockPullQuote",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pageBlockPullQuote", Alias: (*Alias)(&t)})
 }
 
 func (t *PageBlockPullQuote) UnmarshalJSON(data []byte) error {
@@ -35735,10 +32168,7 @@ func (t PageBlockRelatedArticle) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pageBlockRelatedArticle",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pageBlockRelatedArticle", Alias: (*Alias)(&t)})
 }
 
 // PageBlockRelatedArticles Related articles; instant view only
@@ -35760,10 +32190,7 @@ func (t PageBlockRelatedArticles) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pageBlockRelatedArticles",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pageBlockRelatedArticles", Alias: (*Alias)(&t)})
 }
 
 func (t *PageBlockRelatedArticles) UnmarshalJSON(data []byte) error {
@@ -35808,10 +32235,7 @@ func (t PageBlockSectionHeading) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pageBlockSectionHeading",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pageBlockSectionHeading", Alias: (*Alias)(&t)})
 }
 
 func (t *PageBlockSectionHeading) UnmarshalJSON(data []byte) error {
@@ -35856,10 +32280,7 @@ func (t PageBlockSlideshow) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pageBlockSlideshow",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pageBlockSlideshow", Alias: (*Alias)(&t)})
 }
 
 func (t *PageBlockSlideshow) UnmarshalJSON(data []byte) error {
@@ -35905,10 +32326,7 @@ func (t PageBlockSubheader) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pageBlockSubheader",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pageBlockSubheader", Alias: (*Alias)(&t)})
 }
 
 func (t *PageBlockSubheader) UnmarshalJSON(data []byte) error {
@@ -35951,10 +32369,7 @@ func (t PageBlockSubtitle) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pageBlockSubtitle",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pageBlockSubtitle", Alias: (*Alias)(&t)})
 }
 
 func (t *PageBlockSubtitle) UnmarshalJSON(data []byte) error {
@@ -36005,10 +32420,7 @@ func (t PageBlockTable) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pageBlockTable",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pageBlockTable", Alias: (*Alias)(&t)})
 }
 
 func (t *PageBlockTable) UnmarshalJSON(data []byte) error {
@@ -36059,10 +32471,7 @@ func (t PageBlockTableCell) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pageBlockTableCell",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pageBlockTableCell", Alias: (*Alias)(&t)})
 }
 
 func (t *PageBlockTableCell) UnmarshalJSON(data []byte) error {
@@ -36121,10 +32530,7 @@ func (t PageBlockThinking) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pageBlockThinking",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pageBlockThinking", Alias: (*Alias)(&t)})
 }
 
 func (t *PageBlockThinking) UnmarshalJSON(data []byte) error {
@@ -36167,10 +32573,7 @@ func (t PageBlockTitle) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pageBlockTitle",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pageBlockTitle", Alias: (*Alias)(&t)})
 }
 
 func (t *PageBlockTitle) UnmarshalJSON(data []byte) error {
@@ -36211,10 +32614,7 @@ func (t PageBlockUnsupported) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pageBlockUnsupported",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pageBlockUnsupported", Alias: (*Alias)(&t)})
 }
 
 // PageBlockVerticalAlignmentBottom The content must be bottom-aligned
@@ -36232,10 +32632,7 @@ func (t PageBlockVerticalAlignmentBottom) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pageBlockVerticalAlignmentBottom",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pageBlockVerticalAlignmentBottom", Alias: (*Alias)(&t)})
 }
 
 // PageBlockVerticalAlignmentMiddle The content must be middle-aligned
@@ -36253,10 +32650,7 @@ func (t PageBlockVerticalAlignmentMiddle) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pageBlockVerticalAlignmentMiddle",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pageBlockVerticalAlignmentMiddle", Alias: (*Alias)(&t)})
 }
 
 // PageBlockVerticalAlignmentTop The content must be top-aligned
@@ -36274,10 +32668,7 @@ func (t PageBlockVerticalAlignmentTop) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pageBlockVerticalAlignmentTop",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pageBlockVerticalAlignmentTop", Alias: (*Alias)(&t)})
 }
 
 // PageBlockVideo A video
@@ -36305,10 +32696,7 @@ func (t PageBlockVideo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pageBlockVideo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pageBlockVideo", Alias: (*Alias)(&t)})
 }
 
 // PageBlockVoiceNote A voice note
@@ -36330,10 +32718,7 @@ func (t PageBlockVoiceNote) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pageBlockVoiceNote",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pageBlockVoiceNote", Alias: (*Alias)(&t)})
 }
 
 // PaidMediaPhoto The media is a photo
@@ -36355,10 +32740,7 @@ func (t PaidMediaPhoto) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "paidMediaPhoto",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "paidMediaPhoto", Alias: (*Alias)(&t)})
 }
 
 // PaidMediaPreview The media is hidden until the invoice is paid
@@ -36384,10 +32766,7 @@ func (t PaidMediaPreview) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "paidMediaPreview",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "paidMediaPreview", Alias: (*Alias)(&t)})
 }
 
 // PaidMediaUnsupported The media is unsupported
@@ -36405,10 +32784,7 @@ func (t PaidMediaUnsupported) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "paidMediaUnsupported",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "paidMediaUnsupported", Alias: (*Alias)(&t)})
 }
 
 // PaidMediaVideo The media is a video
@@ -36432,10 +32808,7 @@ func (t PaidMediaVideo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "paidMediaVideo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "paidMediaVideo", Alias: (*Alias)(&t)})
 }
 
 // PaidReactionTypeAnonymous An anonymous paid reaction
@@ -36453,10 +32826,7 @@ func (t PaidReactionTypeAnonymous) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "paidReactionTypeAnonymous",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "paidReactionTypeAnonymous", Alias: (*Alias)(&t)})
 }
 
 // PaidReactionTypeChat A paid reaction on behalf of an owned chat
@@ -36476,10 +32846,7 @@ func (t PaidReactionTypeChat) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "paidReactionTypeChat",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "paidReactionTypeChat", Alias: (*Alias)(&t)})
 }
 
 // PaidReactionTypeRegular A paid reaction on behalf of the current user
@@ -36497,10 +32864,7 @@ func (t PaidReactionTypeRegular) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "paidReactionTypeRegular",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "paidReactionTypeRegular", Alias: (*Alias)(&t)})
 }
 
 // PaidReactor Contains information about a user who added paid reactions
@@ -36526,10 +32890,7 @@ func (t PaidReactor) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "paidReactor",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "paidReactor", Alias: (*Alias)(&t)})
 }
 
 func (t *PaidReactor) UnmarshalJSON(data []byte) error {
@@ -36578,10 +32939,7 @@ func (t Passkey) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "passkey",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "passkey", Alias: (*Alias)(&t)})
 }
 
 // Passkeys Contains a list of passkeys
@@ -36599,10 +32957,7 @@ func (t Passkeys) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "passkeys",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "passkeys", Alias: (*Alias)(&t)})
 }
 
 // PassportAuthorizationForm Contains information about a Telegram Passport authorization form that was requested
@@ -36624,10 +32979,7 @@ func (t PassportAuthorizationForm) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "passportAuthorizationForm",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "passportAuthorizationForm", Alias: (*Alias)(&t)})
 }
 
 // PassportElementAddress A Telegram Passport element containing the user's address
@@ -36647,10 +32999,7 @@ func (t PassportElementAddress) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "passportElementAddress",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "passportElementAddress", Alias: (*Alias)(&t)})
 }
 
 // PassportElementBankStatement A Telegram Passport element containing the user's bank statement
@@ -36670,10 +33019,7 @@ func (t PassportElementBankStatement) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "passportElementBankStatement",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "passportElementBankStatement", Alias: (*Alias)(&t)})
 }
 
 // PassportElementDriverLicense A Telegram Passport element containing the user's driver license
@@ -36693,10 +33039,7 @@ func (t PassportElementDriverLicense) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "passportElementDriverLicense",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "passportElementDriverLicense", Alias: (*Alias)(&t)})
 }
 
 // PassportElementEmailAddress A Telegram Passport element containing the user's email address
@@ -36716,10 +33059,7 @@ func (t PassportElementEmailAddress) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "passportElementEmailAddress",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "passportElementEmailAddress", Alias: (*Alias)(&t)})
 }
 
 // PassportElementError Contains the description of an error in a Telegram Passport element
@@ -36741,10 +33081,7 @@ func (t PassportElementError) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "passportElementError",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "passportElementError", Alias: (*Alias)(&t)})
 }
 
 func (t *PassportElementError) UnmarshalJSON(data []byte) error {
@@ -36795,10 +33132,7 @@ func (t PassportElementErrorSourceDataField) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "passportElementErrorSourceDataField",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "passportElementErrorSourceDataField", Alias: (*Alias)(&t)})
 }
 
 // PassportElementErrorSourceFile The file contains an error. The error will be considered resolved when the file changes
@@ -36818,10 +33152,7 @@ func (t PassportElementErrorSourceFile) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "passportElementErrorSourceFile",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "passportElementErrorSourceFile", Alias: (*Alias)(&t)})
 }
 
 // PassportElementErrorSourceFiles The list of attached files contains an error. The error will be considered resolved when the list of files changes
@@ -36839,10 +33170,7 @@ func (t PassportElementErrorSourceFiles) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "passportElementErrorSourceFiles",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "passportElementErrorSourceFiles", Alias: (*Alias)(&t)})
 }
 
 // PassportElementErrorSourceFrontSide The front side of the document contains an error. The error will be considered resolved when the file with the front side changes
@@ -36860,10 +33188,7 @@ func (t PassportElementErrorSourceFrontSide) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "passportElementErrorSourceFrontSide",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "passportElementErrorSourceFrontSide", Alias: (*Alias)(&t)})
 }
 
 // PassportElementErrorSourceReverseSide The reverse side of the document contains an error. The error will be considered resolved when the file with the reverse side changes
@@ -36881,10 +33206,7 @@ func (t PassportElementErrorSourceReverseSide) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "passportElementErrorSourceReverseSide",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "passportElementErrorSourceReverseSide", Alias: (*Alias)(&t)})
 }
 
 // PassportElementErrorSourceSelfie The selfie with the document contains an error. The error will be considered resolved when the file with the selfie changes
@@ -36902,10 +33224,7 @@ func (t PassportElementErrorSourceSelfie) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "passportElementErrorSourceSelfie",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "passportElementErrorSourceSelfie", Alias: (*Alias)(&t)})
 }
 
 // PassportElementErrorSourceTranslationFile One of files with the translation of the document contains an error. The error will be considered resolved when the file changes
@@ -36925,10 +33244,7 @@ func (t PassportElementErrorSourceTranslationFile) MarshalJSON() ([]byte, error)
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "passportElementErrorSourceTranslationFile",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "passportElementErrorSourceTranslationFile", Alias: (*Alias)(&t)})
 }
 
 // PassportElementErrorSourceTranslationFiles The translation of the document contains an error. The error will be considered resolved when the list of translation files changes
@@ -36946,10 +33262,7 @@ func (t PassportElementErrorSourceTranslationFiles) MarshalJSON() ([]byte, error
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "passportElementErrorSourceTranslationFiles",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "passportElementErrorSourceTranslationFiles", Alias: (*Alias)(&t)})
 }
 
 // PassportElementErrorSourceUnspecified The element contains an error in an unspecified place. The error will be considered resolved when new data is added
@@ -36967,10 +33280,7 @@ func (t PassportElementErrorSourceUnspecified) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "passportElementErrorSourceUnspecified",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "passportElementErrorSourceUnspecified", Alias: (*Alias)(&t)})
 }
 
 // PassportElementIdentityCard A Telegram Passport element containing the user's identity card
@@ -36990,10 +33300,7 @@ func (t PassportElementIdentityCard) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "passportElementIdentityCard",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "passportElementIdentityCard", Alias: (*Alias)(&t)})
 }
 
 // PassportElementInternalPassport A Telegram Passport element containing the user's internal passport
@@ -37013,10 +33320,7 @@ func (t PassportElementInternalPassport) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "passportElementInternalPassport",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "passportElementInternalPassport", Alias: (*Alias)(&t)})
 }
 
 // PassportElementPassport A Telegram Passport element containing the user's passport
@@ -37036,10 +33340,7 @@ func (t PassportElementPassport) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "passportElementPassport",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "passportElementPassport", Alias: (*Alias)(&t)})
 }
 
 // PassportElementPassportRegistration A Telegram Passport element containing the user's passport registration pages
@@ -37059,10 +33360,7 @@ func (t PassportElementPassportRegistration) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "passportElementPassportRegistration",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "passportElementPassportRegistration", Alias: (*Alias)(&t)})
 }
 
 // PassportElementPersonalDetails A Telegram Passport element containing the user's personal details
@@ -37082,10 +33380,7 @@ func (t PassportElementPersonalDetails) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "passportElementPersonalDetails",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "passportElementPersonalDetails", Alias: (*Alias)(&t)})
 }
 
 // PassportElementPhoneNumber A Telegram Passport element containing the user's phone number
@@ -37105,10 +33400,7 @@ func (t PassportElementPhoneNumber) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "passportElementPhoneNumber",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "passportElementPhoneNumber", Alias: (*Alias)(&t)})
 }
 
 // PassportElementRentalAgreement A Telegram Passport element containing the user's rental agreement
@@ -37128,10 +33420,7 @@ func (t PassportElementRentalAgreement) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "passportElementRentalAgreement",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "passportElementRentalAgreement", Alias: (*Alias)(&t)})
 }
 
 // PassportElements Contains information about saved Telegram Passport elements
@@ -37149,10 +33438,7 @@ func (t PassportElements) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "passportElements",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "passportElements", Alias: (*Alias)(&t)})
 }
 
 func (t *PassportElements) UnmarshalJSON(data []byte) error {
@@ -37198,10 +33484,7 @@ func (t PassportElementsWithErrors) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "passportElementsWithErrors",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "passportElementsWithErrors", Alias: (*Alias)(&t)})
 }
 
 func (t *PassportElementsWithErrors) UnmarshalJSON(data []byte) error {
@@ -37247,10 +33530,7 @@ func (t PassportElementTemporaryRegistration) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "passportElementTemporaryRegistration",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "passportElementTemporaryRegistration", Alias: (*Alias)(&t)})
 }
 
 // PassportElementTypeAddress A Telegram Passport element containing the user's address
@@ -37268,10 +33548,7 @@ func (t PassportElementTypeAddress) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "passportElementTypeAddress",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "passportElementTypeAddress", Alias: (*Alias)(&t)})
 }
 
 // PassportElementTypeBankStatement A Telegram Passport element containing the user's bank statement
@@ -37289,10 +33566,7 @@ func (t PassportElementTypeBankStatement) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "passportElementTypeBankStatement",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "passportElementTypeBankStatement", Alias: (*Alias)(&t)})
 }
 
 // PassportElementTypeDriverLicense A Telegram Passport element containing the user's driver license
@@ -37310,10 +33584,7 @@ func (t PassportElementTypeDriverLicense) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "passportElementTypeDriverLicense",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "passportElementTypeDriverLicense", Alias: (*Alias)(&t)})
 }
 
 // PassportElementTypeEmailAddress A Telegram Passport element containing the user's email address
@@ -37331,10 +33602,7 @@ func (t PassportElementTypeEmailAddress) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "passportElementTypeEmailAddress",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "passportElementTypeEmailAddress", Alias: (*Alias)(&t)})
 }
 
 // PassportElementTypeIdentityCard A Telegram Passport element containing the user's identity card
@@ -37352,10 +33620,7 @@ func (t PassportElementTypeIdentityCard) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "passportElementTypeIdentityCard",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "passportElementTypeIdentityCard", Alias: (*Alias)(&t)})
 }
 
 // PassportElementTypeInternalPassport A Telegram Passport element containing the user's internal passport
@@ -37373,10 +33638,7 @@ func (t PassportElementTypeInternalPassport) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "passportElementTypeInternalPassport",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "passportElementTypeInternalPassport", Alias: (*Alias)(&t)})
 }
 
 // PassportElementTypePassport A Telegram Passport element containing the user's passport
@@ -37394,10 +33656,7 @@ func (t PassportElementTypePassport) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "passportElementTypePassport",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "passportElementTypePassport", Alias: (*Alias)(&t)})
 }
 
 // PassportElementTypePassportRegistration A Telegram Passport element containing the registration page of the user's passport
@@ -37415,10 +33674,7 @@ func (t PassportElementTypePassportRegistration) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "passportElementTypePassportRegistration",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "passportElementTypePassportRegistration", Alias: (*Alias)(&t)})
 }
 
 // PassportElementTypePersonalDetails A Telegram Passport element containing the user's personal details
@@ -37436,10 +33692,7 @@ func (t PassportElementTypePersonalDetails) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "passportElementTypePersonalDetails",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "passportElementTypePersonalDetails", Alias: (*Alias)(&t)})
 }
 
 // PassportElementTypePhoneNumber A Telegram Passport element containing the user's phone number
@@ -37457,10 +33710,7 @@ func (t PassportElementTypePhoneNumber) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "passportElementTypePhoneNumber",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "passportElementTypePhoneNumber", Alias: (*Alias)(&t)})
 }
 
 // PassportElementTypeRentalAgreement A Telegram Passport element containing the user's rental agreement
@@ -37478,10 +33728,7 @@ func (t PassportElementTypeRentalAgreement) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "passportElementTypeRentalAgreement",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "passportElementTypeRentalAgreement", Alias: (*Alias)(&t)})
 }
 
 // PassportElementTypeTemporaryRegistration A Telegram Passport element containing the user's temporary registration
@@ -37499,10 +33746,7 @@ func (t PassportElementTypeTemporaryRegistration) MarshalJSON() ([]byte, error) 
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "passportElementTypeTemporaryRegistration",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "passportElementTypeTemporaryRegistration", Alias: (*Alias)(&t)})
 }
 
 // PassportElementTypeUtilityBill A Telegram Passport element containing the user's utility bill
@@ -37520,10 +33764,7 @@ func (t PassportElementTypeUtilityBill) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "passportElementTypeUtilityBill",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "passportElementTypeUtilityBill", Alias: (*Alias)(&t)})
 }
 
 // PassportElementUtilityBill A Telegram Passport element containing the user's utility bill
@@ -37543,10 +33784,7 @@ func (t PassportElementUtilityBill) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "passportElementUtilityBill",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "passportElementUtilityBill", Alias: (*Alias)(&t)})
 }
 
 // PassportRequiredElement Contains a description of the required Telegram Passport element that was requested by a service
@@ -37564,10 +33802,7 @@ func (t PassportRequiredElement) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "passportRequiredElement",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "passportRequiredElement", Alias: (*Alias)(&t)})
 }
 
 // PassportSuitableElement Contains information about a Telegram Passport element that was requested by a service
@@ -37591,10 +33826,7 @@ func (t PassportSuitableElement) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "passportSuitableElement",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "passportSuitableElement", Alias: (*Alias)(&t)})
 }
 
 func (t *PassportSuitableElement) UnmarshalJSON(data []byte) error {
@@ -37647,10 +33879,7 @@ func (t PasswordState) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "passwordState",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "passwordState", Alias: (*Alias)(&t)})
 }
 
 // PaymentForm Contains information about an invoice payment form
@@ -37674,10 +33903,7 @@ func (t PaymentForm) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "paymentForm",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "paymentForm", Alias: (*Alias)(&t)})
 }
 
 func (t *PaymentForm) UnmarshalJSON(data []byte) error {
@@ -37734,10 +33960,7 @@ func (t PaymentFormTypeRegular) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "paymentFormTypeRegular",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "paymentFormTypeRegular", Alias: (*Alias)(&t)})
 }
 
 func (t *PaymentFormTypeRegular) UnmarshalJSON(data []byte) error {
@@ -37780,10 +34003,7 @@ func (t PaymentFormTypeStars) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "paymentFormTypeStars",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "paymentFormTypeStars", Alias: (*Alias)(&t)})
 }
 
 // PaymentFormTypeStarSubscription The payment form is for a payment in Telegram Stars for subscription
@@ -37803,10 +34023,7 @@ func (t PaymentFormTypeStarSubscription) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "paymentFormTypeStarSubscription",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "paymentFormTypeStarSubscription", Alias: (*Alias)(&t)})
 }
 
 // PaymentOption Describes an additional payment option
@@ -37826,10 +34043,7 @@ func (t PaymentOption) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "paymentOption",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "paymentOption", Alias: (*Alias)(&t)})
 }
 
 // PaymentProviderOther Some other payment provider, for which a web payment form must be shown
@@ -37849,10 +34063,7 @@ func (t PaymentProviderOther) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "paymentProviderOther",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "paymentProviderOther", Alias: (*Alias)(&t)})
 }
 
 // PaymentProviderSmartGlocal Smart Glocal payment provider
@@ -37874,10 +34085,7 @@ func (t PaymentProviderSmartGlocal) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "paymentProviderSmartGlocal",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "paymentProviderSmartGlocal", Alias: (*Alias)(&t)})
 }
 
 // PaymentProviderStripe Stripe payment provider
@@ -37903,10 +34111,7 @@ func (t PaymentProviderStripe) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "paymentProviderStripe",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "paymentProviderStripe", Alias: (*Alias)(&t)})
 }
 
 // PaymentReceipt Contains information about a successful payment
@@ -37930,10 +34135,7 @@ func (t PaymentReceipt) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "paymentReceipt",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "paymentReceipt", Alias: (*Alias)(&t)})
 }
 
 func (t *PaymentReceipt) UnmarshalJSON(data []byte) error {
@@ -37986,10 +34188,7 @@ func (t PaymentReceiptTypeRegular) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "paymentReceiptTypeRegular",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "paymentReceiptTypeRegular", Alias: (*Alias)(&t)})
 }
 
 // PaymentReceiptTypeStars The payment was done using Telegram Stars
@@ -38011,10 +34210,7 @@ func (t PaymentReceiptTypeStars) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "paymentReceiptTypeStars",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "paymentReceiptTypeStars", Alias: (*Alias)(&t)})
 }
 
 // PaymentResult Contains the result of a payment request
@@ -38034,10 +34230,7 @@ func (t PaymentResult) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "paymentResult",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "paymentResult", Alias: (*Alias)(&t)})
 }
 
 // PersonalDetails Contains the user's personal details
@@ -38073,10 +34266,7 @@ func (t PersonalDetails) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "personalDetails",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "personalDetails", Alias: (*Alias)(&t)})
 }
 
 // PersonalDocument A personal document, containing some information about a user
@@ -38096,10 +34286,7 @@ func (t PersonalDocument) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "personalDocument",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "personalDocument", Alias: (*Alias)(&t)})
 }
 
 // PhoneNumberAuthenticationSettings Contains settings for the authentication of the user's phone number
@@ -38129,10 +34316,7 @@ func (t PhoneNumberAuthenticationSettings) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "phoneNumberAuthenticationSettings",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "phoneNumberAuthenticationSettings", Alias: (*Alias)(&t)})
 }
 
 func (t *PhoneNumberAuthenticationSettings) UnmarshalJSON(data []byte) error {
@@ -38173,10 +34357,7 @@ func (t PhoneNumberCodeTypeChange) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "phoneNumberCodeTypeChange",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "phoneNumberCodeTypeChange", Alias: (*Alias)(&t)})
 }
 
 // PhoneNumberCodeTypeConfirmOwnership Confirms ownership of a phone number to prevent account deletion while handling links of the type internalLinkTypePhoneNumberConfirmation
@@ -38196,10 +34377,7 @@ func (t PhoneNumberCodeTypeConfirmOwnership) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "phoneNumberCodeTypeConfirmOwnership",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "phoneNumberCodeTypeConfirmOwnership", Alias: (*Alias)(&t)})
 }
 
 // PhoneNumberCodeTypeVerify Verifies ownership of a phone number to be added to the user's Telegram Passport
@@ -38217,10 +34395,7 @@ func (t PhoneNumberCodeTypeVerify) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "phoneNumberCodeTypeVerify",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "phoneNumberCodeTypeVerify", Alias: (*Alias)(&t)})
 }
 
 // PhoneNumberInfo Contains information about a phone number
@@ -38244,10 +34419,7 @@ func (t PhoneNumberInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "phoneNumberInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "phoneNumberInfo", Alias: (*Alias)(&t)})
 }
 
 // Photo Describes a photo
@@ -38269,10 +34441,7 @@ func (t Photo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "photo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "photo", Alias: (*Alias)(&t)})
 }
 
 // PhotoSize Describes an image in JPEG format
@@ -38298,10 +34467,7 @@ func (t PhotoSize) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "photoSize",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "photoSize", Alias: (*Alias)(&t)})
 }
 
 // Point A point on a Cartesian plane
@@ -38321,10 +34487,7 @@ func (t Point) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "point",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "point", Alias: (*Alias)(&t)})
 }
 
 // Poll Describes a poll
@@ -38376,10 +34539,7 @@ func (t Poll) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "poll",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "poll", Alias: (*Alias)(&t)})
 }
 
 func (t *Poll) UnmarshalJSON(data []byte) error {
@@ -38441,10 +34601,7 @@ func (t PollMediaAnimation) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pollMediaAnimation",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pollMediaAnimation", Alias: (*Alias)(&t)})
 }
 
 // PollMediaAudio An audio
@@ -38464,10 +34621,7 @@ func (t PollMediaAudio) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pollMediaAudio",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pollMediaAudio", Alias: (*Alias)(&t)})
 }
 
 // PollMediaDocument A document (general file)
@@ -38487,10 +34641,7 @@ func (t PollMediaDocument) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pollMediaDocument",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pollMediaDocument", Alias: (*Alias)(&t)})
 }
 
 // PollMediaLink A link
@@ -38512,10 +34663,7 @@ func (t PollMediaLink) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pollMediaLink",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pollMediaLink", Alias: (*Alias)(&t)})
 }
 
 // PollMediaLocation A location
@@ -38535,10 +34683,7 @@ func (t PollMediaLocation) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pollMediaLocation",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pollMediaLocation", Alias: (*Alias)(&t)})
 }
 
 // PollMediaPhoto A photo
@@ -38560,10 +34705,7 @@ func (t PollMediaPhoto) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pollMediaPhoto",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pollMediaPhoto", Alias: (*Alias)(&t)})
 }
 
 // PollMediaSticker A sticker
@@ -38583,10 +34725,7 @@ func (t PollMediaSticker) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pollMediaSticker",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pollMediaSticker", Alias: (*Alias)(&t)})
 }
 
 // PollMediaVenue A venue
@@ -38606,10 +34745,7 @@ func (t PollMediaVenue) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pollMediaVenue",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pollMediaVenue", Alias: (*Alias)(&t)})
 }
 
 // PollMediaVideo A video
@@ -38637,10 +34773,7 @@ func (t PollMediaVideo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pollMediaVideo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pollMediaVideo", Alias: (*Alias)(&t)})
 }
 
 // PollOption Describes one answer option of a poll
@@ -38676,10 +34809,7 @@ func (t PollOption) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pollOption",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pollOption", Alias: (*Alias)(&t)})
 }
 
 func (t *PollOption) UnmarshalJSON(data []byte) error {
@@ -38745,10 +34875,7 @@ func (t PollOptionProperties) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pollOptionProperties",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pollOptionProperties", Alias: (*Alias)(&t)})
 }
 
 // PollTypeQuiz A poll in quiz mode, which has predefined correct answers
@@ -38772,10 +34899,7 @@ func (t PollTypeQuiz) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pollTypeQuiz",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pollTypeQuiz", Alias: (*Alias)(&t)})
 }
 
 func (t *PollTypeQuiz) UnmarshalJSON(data []byte) error {
@@ -38816,10 +34940,7 @@ func (t PollTypeRegular) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pollTypeRegular",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pollTypeRegular", Alias: (*Alias)(&t)})
 }
 
 // PollVoter Represents a poll voter
@@ -38839,10 +34960,7 @@ func (t PollVoter) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pollVoter",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pollVoter", Alias: (*Alias)(&t)})
 }
 
 func (t *PollVoter) UnmarshalJSON(data []byte) error {
@@ -38883,10 +35001,7 @@ func (t PollVoteRestrictionReasonClosed) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pollVoteRestrictionReasonClosed",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pollVoteRestrictionReasonClosed", Alias: (*Alias)(&t)})
 }
 
 // PollVoteRestrictionReasonCountryRestricted The user is from a country, users from which aren't allowed to vote
@@ -38906,10 +35021,7 @@ func (t PollVoteRestrictionReasonCountryRestricted) MarshalJSON() ([]byte, error
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pollVoteRestrictionReasonCountryRestricted",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pollVoteRestrictionReasonCountryRestricted", Alias: (*Alias)(&t)})
 }
 
 // PollVoteRestrictionReasonMembershipRequired The user must be a member of the chat for at least a day to vote
@@ -38929,10 +35041,7 @@ func (t PollVoteRestrictionReasonMembershipRequired) MarshalJSON() ([]byte, erro
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pollVoteRestrictionReasonMembershipRequired",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pollVoteRestrictionReasonMembershipRequired", Alias: (*Alias)(&t)})
 }
 
 // PollVoteRestrictionReasonOther The poll can't be voted by the user due to some other reason
@@ -38950,10 +35059,7 @@ func (t PollVoteRestrictionReasonOther) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pollVoteRestrictionReasonOther",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pollVoteRestrictionReasonOther", Alias: (*Alias)(&t)})
 }
 
 // PollVoteRestrictionReasonScheduled The poll is from a scheduled message
@@ -38971,10 +35077,7 @@ func (t PollVoteRestrictionReasonScheduled) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pollVoteRestrictionReasonScheduled",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pollVoteRestrictionReasonScheduled", Alias: (*Alias)(&t)})
 }
 
 // PollVoteRestrictionReasonYetUnsent The poll isn't sent yet
@@ -38992,10 +35095,7 @@ func (t PollVoteRestrictionReasonYetUnsent) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pollVoteRestrictionReasonYetUnsent",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pollVoteRestrictionReasonYetUnsent", Alias: (*Alias)(&t)})
 }
 
 // PollVoters Represents a list of poll voters
@@ -39015,10 +35115,7 @@ func (t PollVoters) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pollVoters",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pollVoters", Alias: (*Alias)(&t)})
 }
 
 // PollVoteStatistics A detailed statistics about poll votes
@@ -39036,10 +35133,7 @@ func (t PollVoteStatistics) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pollVoteStatistics",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pollVoteStatistics", Alias: (*Alias)(&t)})
 }
 
 func (t *PollVoteStatistics) UnmarshalJSON(data []byte) error {
@@ -39080,10 +35174,7 @@ func (t PremiumFeatureAccentColor) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumFeatureAccentColor",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumFeatureAccentColor", Alias: (*Alias)(&t)})
 }
 
 // PremiumFeatureAdvancedChatManagement Ability to change position of the main chat list, archive and mute all new chats from non-contacts, and completely disable notifications about the user's contacts joined Telegram
@@ -39101,10 +35192,7 @@ func (t PremiumFeatureAdvancedChatManagement) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumFeatureAdvancedChatManagement",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumFeatureAdvancedChatManagement", Alias: (*Alias)(&t)})
 }
 
 // PremiumFeatureAnimatedProfilePhoto Profile photo animation on message and chat screens
@@ -39122,10 +35210,7 @@ func (t PremiumFeatureAnimatedProfilePhoto) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumFeatureAnimatedProfilePhoto",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumFeatureAnimatedProfilePhoto", Alias: (*Alias)(&t)})
 }
 
 // PremiumFeatureAppIcons Allowed to set a premium application icons
@@ -39143,10 +35228,7 @@ func (t PremiumFeatureAppIcons) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumFeatureAppIcons",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumFeatureAppIcons", Alias: (*Alias)(&t)})
 }
 
 // PremiumFeatureBackgroundForBoth The ability to set private chat background for both users
@@ -39164,10 +35246,7 @@ func (t PremiumFeatureBackgroundForBoth) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumFeatureBackgroundForBoth",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumFeatureBackgroundForBoth", Alias: (*Alias)(&t)})
 }
 
 // PremiumFeatureBusiness The ability to use Business features
@@ -39185,10 +35264,7 @@ func (t PremiumFeatureBusiness) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumFeatureBusiness",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumFeatureBusiness", Alias: (*Alias)(&t)})
 }
 
 // PremiumFeatureChatBoost The ability to boost chats
@@ -39206,10 +35282,7 @@ func (t PremiumFeatureChatBoost) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumFeatureChatBoost",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumFeatureChatBoost", Alias: (*Alias)(&t)})
 }
 
 // PremiumFeatureChecklists The ability to create and use checklist messages
@@ -39227,10 +35300,7 @@ func (t PremiumFeatureChecklists) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumFeatureChecklists",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumFeatureChecklists", Alias: (*Alias)(&t)})
 }
 
 // PremiumFeatureCustomEmoji Allowed to use custom emoji stickers in message texts and captions
@@ -39248,10 +35318,7 @@ func (t PremiumFeatureCustomEmoji) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumFeatureCustomEmoji",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumFeatureCustomEmoji", Alias: (*Alias)(&t)})
 }
 
 // PremiumFeatureDisabledAds Disabled ads
@@ -39269,10 +35336,7 @@ func (t PremiumFeatureDisabledAds) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumFeatureDisabledAds",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumFeatureDisabledAds", Alias: (*Alias)(&t)})
 }
 
 // PremiumFeatureEmojiStatus The ability to show an emoji status along with the user's name
@@ -39290,10 +35354,7 @@ func (t PremiumFeatureEmojiStatus) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumFeatureEmojiStatus",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumFeatureEmojiStatus", Alias: (*Alias)(&t)})
 }
 
 // PremiumFeatureForumTopicIcon The ability to set a custom emoji as a forum topic icon
@@ -39311,10 +35372,7 @@ func (t PremiumFeatureForumTopicIcon) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumFeatureForumTopicIcon",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumFeatureForumTopicIcon", Alias: (*Alias)(&t)})
 }
 
 // PremiumFeatureImprovedDownloadSpeed Improved download speed
@@ -39332,10 +35390,7 @@ func (t PremiumFeatureImprovedDownloadSpeed) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumFeatureImprovedDownloadSpeed",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumFeatureImprovedDownloadSpeed", Alias: (*Alias)(&t)})
 }
 
 // PremiumFeatureIncreasedLimits Increased limits
@@ -39353,10 +35408,7 @@ func (t PremiumFeatureIncreasedLimits) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumFeatureIncreasedLimits",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumFeatureIncreasedLimits", Alias: (*Alias)(&t)})
 }
 
 // PremiumFeatureIncreasedUploadFileSize Increased maximum upload file size
@@ -39374,10 +35426,7 @@ func (t PremiumFeatureIncreasedUploadFileSize) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumFeatureIncreasedUploadFileSize",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumFeatureIncreasedUploadFileSize", Alias: (*Alias)(&t)})
 }
 
 // PremiumFeatureLastSeenTimes The ability to view last seen and read times of other users even if they can't view last seen or read time for the current user
@@ -39395,10 +35444,7 @@ func (t PremiumFeatureLastSeenTimes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumFeatureLastSeenTimes",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumFeatureLastSeenTimes", Alias: (*Alias)(&t)})
 }
 
 // PremiumFeatureMessageEffects The ability to use all available message effects
@@ -39416,10 +35462,7 @@ func (t PremiumFeatureMessageEffects) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumFeatureMessageEffects",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumFeatureMessageEffects", Alias: (*Alias)(&t)})
 }
 
 // PremiumFeatureMessagePrivacy The ability to disallow incoming voice and video note messages in private chats using setUserPrivacySettingRules with userPrivacySettingAllowPrivateVoiceAndVideoNoteMessages
@@ -39437,10 +35480,7 @@ func (t PremiumFeatureMessagePrivacy) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumFeatureMessagePrivacy",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumFeatureMessagePrivacy", Alias: (*Alias)(&t)})
 }
 
 // PremiumFeaturePaidMessages The ability to require a payment for incoming messages in new chats
@@ -39458,10 +35498,7 @@ func (t PremiumFeaturePaidMessages) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumFeaturePaidMessages",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumFeaturePaidMessages", Alias: (*Alias)(&t)})
 }
 
 // PremiumFeatureProfileBadge A badge in the user's profile
@@ -39479,10 +35516,7 @@ func (t PremiumFeatureProfileBadge) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumFeatureProfileBadge",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumFeatureProfileBadge", Alias: (*Alias)(&t)})
 }
 
 // PremiumFeaturePromotionAnimation Describes a promotion animation for a Premium feature
@@ -39502,10 +35536,7 @@ func (t PremiumFeaturePromotionAnimation) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumFeaturePromotionAnimation",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumFeaturePromotionAnimation", Alias: (*Alias)(&t)})
 }
 
 func (t *PremiumFeaturePromotionAnimation) UnmarshalJSON(data []byte) error {
@@ -39546,10 +35577,7 @@ func (t PremiumFeatureProtectPrivateChatContent) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumFeatureProtectPrivateChatContent",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumFeatureProtectPrivateChatContent", Alias: (*Alias)(&t)})
 }
 
 // PremiumFeatureRealTimeChatTranslation Allowed to translate chat messages real-time
@@ -39567,10 +35595,7 @@ func (t PremiumFeatureRealTimeChatTranslation) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumFeatureRealTimeChatTranslation",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumFeatureRealTimeChatTranslation", Alias: (*Alias)(&t)})
 }
 
 // PremiumFeatureRichMessages The ability to send rich messages
@@ -39588,10 +35613,7 @@ func (t PremiumFeatureRichMessages) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumFeatureRichMessages",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumFeatureRichMessages", Alias: (*Alias)(&t)})
 }
 
 // PremiumFeatures Contains information about features, available to Premium users
@@ -39613,10 +35635,7 @@ func (t PremiumFeatures) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumFeatures",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumFeatures", Alias: (*Alias)(&t)})
 }
 
 func (t *PremiumFeatures) UnmarshalJSON(data []byte) error {
@@ -39668,10 +35687,7 @@ func (t PremiumFeatureSavedMessagesTags) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumFeatureSavedMessagesTags",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumFeatureSavedMessagesTags", Alias: (*Alias)(&t)})
 }
 
 // PremiumFeatureTextComposition The ability to compose text with AI
@@ -39689,10 +35705,7 @@ func (t PremiumFeatureTextComposition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumFeatureTextComposition",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumFeatureTextComposition", Alias: (*Alias)(&t)})
 }
 
 // PremiumFeatureUniqueReactions Allowed to use more reactions
@@ -39710,10 +35723,7 @@ func (t PremiumFeatureUniqueReactions) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumFeatureUniqueReactions",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumFeatureUniqueReactions", Alias: (*Alias)(&t)})
 }
 
 // PremiumFeatureUniqueStickers Allowed to use premium stickers with unique effects
@@ -39731,10 +35741,7 @@ func (t PremiumFeatureUniqueStickers) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumFeatureUniqueStickers",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumFeatureUniqueStickers", Alias: (*Alias)(&t)})
 }
 
 // PremiumFeatureUpgradedStories Allowed to use many additional features for stories
@@ -39752,10 +35759,7 @@ func (t PremiumFeatureUpgradedStories) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumFeatureUpgradedStories",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumFeatureUpgradedStories", Alias: (*Alias)(&t)})
 }
 
 // PremiumFeatureVoiceRecognition The ability to convert voice notes to text
@@ -39773,10 +35777,7 @@ func (t PremiumFeatureVoiceRecognition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumFeatureVoiceRecognition",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumFeatureVoiceRecognition", Alias: (*Alias)(&t)})
 }
 
 // PremiumGiftCodeInfo Contains information about a Telegram Premium gift code
@@ -39808,10 +35809,7 @@ func (t PremiumGiftCodeInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumGiftCodeInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumGiftCodeInfo", Alias: (*Alias)(&t)})
 }
 
 func (t *PremiumGiftCodeInfo) UnmarshalJSON(data []byte) error {
@@ -39864,10 +35862,7 @@ func (t PremiumGiftPaymentOption) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumGiftPaymentOption",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumGiftPaymentOption", Alias: (*Alias)(&t)})
 }
 
 // PremiumGiftPaymentOptions Contains a list of options for gifting Telegram Premium to a user
@@ -39885,10 +35880,7 @@ func (t PremiumGiftPaymentOptions) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumGiftPaymentOptions",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumGiftPaymentOptions", Alias: (*Alias)(&t)})
 }
 
 // PremiumGiveawayPaymentOption Describes an option for creating of Telegram Premium giveaway or manual distribution of Telegram Premium among chat members. Use telegramPaymentPurposePremiumGiftCodes or telegramPaymentPurposePremiumGiveaway for out-of-store payments
@@ -39916,10 +35908,7 @@ func (t PremiumGiveawayPaymentOption) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumGiveawayPaymentOption",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumGiveawayPaymentOption", Alias: (*Alias)(&t)})
 }
 
 // PremiumGiveawayPaymentOptions Contains a list of options for creating of Telegram Premium giveaway or manual distribution of Telegram Premium among chat members
@@ -39937,10 +35926,7 @@ func (t PremiumGiveawayPaymentOptions) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumGiveawayPaymentOptions",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumGiveawayPaymentOptions", Alias: (*Alias)(&t)})
 }
 
 // PremiumLimit Contains information about a limit, increased for Premium users
@@ -39962,10 +35948,7 @@ func (t PremiumLimit) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumLimit",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumLimit", Alias: (*Alias)(&t)})
 }
 
 func (t *PremiumLimit) UnmarshalJSON(data []byte) error {
@@ -40006,10 +35989,7 @@ func (t PremiumLimitTypeActiveStoryCount) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumLimitTypeActiveStoryCount",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumLimitTypeActiveStoryCount", Alias: (*Alias)(&t)})
 }
 
 // PremiumLimitTypeBioLength The maximum length of the user's bio
@@ -40027,10 +36007,7 @@ func (t PremiumLimitTypeBioLength) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumLimitTypeBioLength",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumLimitTypeBioLength", Alias: (*Alias)(&t)})
 }
 
 // PremiumLimitTypeCaptionLength The maximum length of sent media caption
@@ -40048,10 +36025,7 @@ func (t PremiumLimitTypeCaptionLength) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumLimitTypeCaptionLength",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumLimitTypeCaptionLength", Alias: (*Alias)(&t)})
 }
 
 // PremiumLimitTypeChatFolderChosenChatCount The maximum number of pinned and always included, or always excluded chats in a chat folder
@@ -40069,10 +36043,7 @@ func (t PremiumLimitTypeChatFolderChosenChatCount) MarshalJSON() ([]byte, error)
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumLimitTypeChatFolderChosenChatCount",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumLimitTypeChatFolderChosenChatCount", Alias: (*Alias)(&t)})
 }
 
 // PremiumLimitTypeChatFolderCount The maximum number of chat folders
@@ -40090,10 +36061,7 @@ func (t PremiumLimitTypeChatFolderCount) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumLimitTypeChatFolderCount",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumLimitTypeChatFolderCount", Alias: (*Alias)(&t)})
 }
 
 // PremiumLimitTypeChatFolderInviteLinkCount The maximum number of invite links for a chat folder
@@ -40111,10 +36079,7 @@ func (t PremiumLimitTypeChatFolderInviteLinkCount) MarshalJSON() ([]byte, error)
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumLimitTypeChatFolderInviteLinkCount",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumLimitTypeChatFolderInviteLinkCount", Alias: (*Alias)(&t)})
 }
 
 // PremiumLimitTypeCreatedPublicChatCount The maximum number of created public chats
@@ -40132,10 +36097,7 @@ func (t PremiumLimitTypeCreatedPublicChatCount) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumLimitTypeCreatedPublicChatCount",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumLimitTypeCreatedPublicChatCount", Alias: (*Alias)(&t)})
 }
 
 // PremiumLimitTypeCustomTextCompositionStyleCount The maximum number of added text composition styles
@@ -40153,10 +36115,7 @@ func (t PremiumLimitTypeCustomTextCompositionStyleCount) MarshalJSON() ([]byte, 
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumLimitTypeCustomTextCompositionStyleCount",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumLimitTypeCustomTextCompositionStyleCount", Alias: (*Alias)(&t)})
 }
 
 // PremiumLimitTypeFavoriteStickerCount The maximum number of favorite stickers
@@ -40174,10 +36133,7 @@ func (t PremiumLimitTypeFavoriteStickerCount) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumLimitTypeFavoriteStickerCount",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumLimitTypeFavoriteStickerCount", Alias: (*Alias)(&t)})
 }
 
 // PremiumLimitTypeMessageTextLength The maximum length of text of sent messages
@@ -40195,10 +36151,7 @@ func (t PremiumLimitTypeMessageTextLength) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumLimitTypeMessageTextLength",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumLimitTypeMessageTextLength", Alias: (*Alias)(&t)})
 }
 
 // PremiumLimitTypeMonthlyPostedStoryCount The maximum number of stories posted per month
@@ -40216,10 +36169,7 @@ func (t PremiumLimitTypeMonthlyPostedStoryCount) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumLimitTypeMonthlyPostedStoryCount",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumLimitTypeMonthlyPostedStoryCount", Alias: (*Alias)(&t)})
 }
 
 // PremiumLimitTypeOwnedBotCount The maximum number of owned bots
@@ -40237,10 +36187,7 @@ func (t PremiumLimitTypeOwnedBotCount) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumLimitTypeOwnedBotCount",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumLimitTypeOwnedBotCount", Alias: (*Alias)(&t)})
 }
 
 // PremiumLimitTypePinnedArchivedChatCount The maximum number of pinned chats in the archive chat list
@@ -40258,10 +36205,7 @@ func (t PremiumLimitTypePinnedArchivedChatCount) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumLimitTypePinnedArchivedChatCount",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumLimitTypePinnedArchivedChatCount", Alias: (*Alias)(&t)})
 }
 
 // PremiumLimitTypePinnedChatCount The maximum number of pinned chats in the main chat list
@@ -40279,10 +36223,7 @@ func (t PremiumLimitTypePinnedChatCount) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumLimitTypePinnedChatCount",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumLimitTypePinnedChatCount", Alias: (*Alias)(&t)})
 }
 
 // PremiumLimitTypePinnedSavedMessagesTopicCount The maximum number of pinned Saved Messages topics
@@ -40300,10 +36241,7 @@ func (t PremiumLimitTypePinnedSavedMessagesTopicCount) MarshalJSON() ([]byte, er
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumLimitTypePinnedSavedMessagesTopicCount",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumLimitTypePinnedSavedMessagesTopicCount", Alias: (*Alias)(&t)})
 }
 
 // PremiumLimitTypeSavedAnimationCount The maximum number of saved animations
@@ -40321,10 +36259,7 @@ func (t PremiumLimitTypeSavedAnimationCount) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumLimitTypeSavedAnimationCount",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumLimitTypeSavedAnimationCount", Alias: (*Alias)(&t)})
 }
 
 // PremiumLimitTypeShareableChatFolderCount The maximum number of added shareable chat folders
@@ -40342,10 +36277,7 @@ func (t PremiumLimitTypeShareableChatFolderCount) MarshalJSON() ([]byte, error) 
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumLimitTypeShareableChatFolderCount",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumLimitTypeShareableChatFolderCount", Alias: (*Alias)(&t)})
 }
 
 // PremiumLimitTypeSimilarChatCount The maximum number of received similar chats
@@ -40363,10 +36295,7 @@ func (t PremiumLimitTypeSimilarChatCount) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumLimitTypeSimilarChatCount",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumLimitTypeSimilarChatCount", Alias: (*Alias)(&t)})
 }
 
 // PremiumLimitTypeStoryCaptionLength The maximum length of captions of posted stories
@@ -40384,10 +36313,7 @@ func (t PremiumLimitTypeStoryCaptionLength) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumLimitTypeStoryCaptionLength",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumLimitTypeStoryCaptionLength", Alias: (*Alias)(&t)})
 }
 
 // PremiumLimitTypeStorySuggestedReactionAreaCount The maximum number of suggested reaction areas on a story
@@ -40405,10 +36331,7 @@ func (t PremiumLimitTypeStorySuggestedReactionAreaCount) MarshalJSON() ([]byte, 
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumLimitTypeStorySuggestedReactionAreaCount",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumLimitTypeStorySuggestedReactionAreaCount", Alias: (*Alias)(&t)})
 }
 
 // PremiumLimitTypeSupergroupCount The maximum number of joined supergroups and channels
@@ -40426,10 +36349,7 @@ func (t PremiumLimitTypeSupergroupCount) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumLimitTypeSupergroupCount",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumLimitTypeSupergroupCount", Alias: (*Alias)(&t)})
 }
 
 // PremiumLimitTypeWeeklyPostedStoryCount The maximum number of stories posted per week
@@ -40447,10 +36367,7 @@ func (t PremiumLimitTypeWeeklyPostedStoryCount) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumLimitTypeWeeklyPostedStoryCount",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumLimitTypeWeeklyPostedStoryCount", Alias: (*Alias)(&t)})
 }
 
 // PremiumPaymentOption Describes an option for buying Telegram Premium to a user
@@ -40478,10 +36395,7 @@ func (t PremiumPaymentOption) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumPaymentOption",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumPaymentOption", Alias: (*Alias)(&t)})
 }
 
 func (t *PremiumPaymentOption) UnmarshalJSON(data []byte) error {
@@ -40524,10 +36438,7 @@ func (t PremiumSourceBusinessFeature) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumSourceBusinessFeature",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumSourceBusinessFeature", Alias: (*Alias)(&t)})
 }
 
 func (t *PremiumSourceBusinessFeature) UnmarshalJSON(data []byte) error {
@@ -40570,10 +36481,7 @@ func (t PremiumSourceFeature) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumSourceFeature",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumSourceFeature", Alias: (*Alias)(&t)})
 }
 
 func (t *PremiumSourceFeature) UnmarshalJSON(data []byte) error {
@@ -40616,10 +36524,7 @@ func (t PremiumSourceLimitExceeded) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumSourceLimitExceeded",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumSourceLimitExceeded", Alias: (*Alias)(&t)})
 }
 
 func (t *PremiumSourceLimitExceeded) UnmarshalJSON(data []byte) error {
@@ -40662,10 +36567,7 @@ func (t PremiumSourceLink) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumSourceLink",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumSourceLink", Alias: (*Alias)(&t)})
 }
 
 // PremiumSourceSettings A user opened the Premium features screen from settings
@@ -40683,10 +36585,7 @@ func (t PremiumSourceSettings) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumSourceSettings",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumSourceSettings", Alias: (*Alias)(&t)})
 }
 
 // PremiumSourceStoryFeature A user tried to use a Premium story feature
@@ -40706,10 +36605,7 @@ func (t PremiumSourceStoryFeature) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumSourceStoryFeature",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumSourceStoryFeature", Alias: (*Alias)(&t)})
 }
 
 func (t *PremiumSourceStoryFeature) UnmarshalJSON(data []byte) error {
@@ -40756,10 +36652,7 @@ func (t PremiumState) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumState",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumState", Alias: (*Alias)(&t)})
 }
 
 // PremiumStatePaymentOption Describes an option for buying or upgrading Telegram Premium for self
@@ -40783,10 +36676,7 @@ func (t PremiumStatePaymentOption) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumStatePaymentOption",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumStatePaymentOption", Alias: (*Alias)(&t)})
 }
 
 // PremiumStoryFeatureCustomExpirationDuration The ability to set custom expiration duration for stories
@@ -40804,10 +36694,7 @@ func (t PremiumStoryFeatureCustomExpirationDuration) MarshalJSON() ([]byte, erro
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumStoryFeatureCustomExpirationDuration",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumStoryFeatureCustomExpirationDuration", Alias: (*Alias)(&t)})
 }
 
 // PremiumStoryFeatureLinksAndFormatting The ability to use links and formatting in story caption, and use inputStoryAreaTypeLink areas
@@ -40825,10 +36712,7 @@ func (t PremiumStoryFeatureLinksAndFormatting) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumStoryFeatureLinksAndFormatting",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumStoryFeatureLinksAndFormatting", Alias: (*Alias)(&t)})
 }
 
 // PremiumStoryFeaturePermanentViewsHistory The ability to check who opened the current user's stories after they expire
@@ -40846,10 +36730,7 @@ func (t PremiumStoryFeaturePermanentViewsHistory) MarshalJSON() ([]byte, error) 
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumStoryFeaturePermanentViewsHistory",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumStoryFeaturePermanentViewsHistory", Alias: (*Alias)(&t)})
 }
 
 // PremiumStoryFeaturePriorityOrder Stories of the current user are displayed before stories of non-Premium contacts, supergroups, and channels
@@ -40867,10 +36748,7 @@ func (t PremiumStoryFeaturePriorityOrder) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumStoryFeaturePriorityOrder",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumStoryFeaturePriorityOrder", Alias: (*Alias)(&t)})
 }
 
 // PremiumStoryFeatureSaveStories The ability to save other's unprotected stories
@@ -40888,10 +36766,7 @@ func (t PremiumStoryFeatureSaveStories) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumStoryFeatureSaveStories",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumStoryFeatureSaveStories", Alias: (*Alias)(&t)})
 }
 
 // PremiumStoryFeatureStealthMode The ability to hide the fact that the user viewed other's stories
@@ -40909,10 +36784,7 @@ func (t PremiumStoryFeatureStealthMode) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumStoryFeatureStealthMode",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumStoryFeatureStealthMode", Alias: (*Alias)(&t)})
 }
 
 // PremiumStoryFeatureVideoQuality The ability to choose better quality for viewed stories
@@ -40930,10 +36802,7 @@ func (t PremiumStoryFeatureVideoQuality) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "premiumStoryFeatureVideoQuality",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "premiumStoryFeatureVideoQuality", Alias: (*Alias)(&t)})
 }
 
 // PrepaidGiveaway Describes a prepaid giveaway
@@ -40959,10 +36828,7 @@ func (t PrepaidGiveaway) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "prepaidGiveaway",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "prepaidGiveaway", Alias: (*Alias)(&t)})
 }
 
 func (t *PrepaidGiveaway) UnmarshalJSON(data []byte) error {
@@ -41007,10 +36873,7 @@ func (t PreparedInlineMessage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "preparedInlineMessage",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "preparedInlineMessage", Alias: (*Alias)(&t)})
 }
 
 func (t *PreparedInlineMessage) UnmarshalJSON(data []byte) error {
@@ -41053,10 +36916,7 @@ func (t PreparedInlineMessageId) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "preparedInlineMessageId",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "preparedInlineMessageId", Alias: (*Alias)(&t)})
 }
 
 // ProductInfo Contains information about a product that can be paid with invoice
@@ -41078,10 +36938,7 @@ func (t ProductInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "productInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "productInfo", Alias: (*Alias)(&t)})
 }
 
 // ProfileAccentColor Contains information about supported accent color for user profile photo background
@@ -41107,10 +36964,7 @@ func (t ProfileAccentColor) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "profileAccentColor",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "profileAccentColor", Alias: (*Alias)(&t)})
 }
 
 // ProfileAccentColors Contains information about supported accent colors for user profile photo background in RGB format
@@ -41132,10 +36986,7 @@ func (t ProfileAccentColors) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "profileAccentColors",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "profileAccentColors", Alias: (*Alias)(&t)})
 }
 
 // ProfilePhoto Describes a user profile photo
@@ -41163,10 +37014,7 @@ func (t ProfilePhoto) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "profilePhoto",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "profilePhoto", Alias: (*Alias)(&t)})
 }
 
 // ProfileTabFiles A tab with documents posted by the channel
@@ -41184,10 +37032,7 @@ func (t ProfileTabFiles) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "profileTabFiles",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "profileTabFiles", Alias: (*Alias)(&t)})
 }
 
 // ProfileTabGifs A tab with animations posted by the channel
@@ -41205,10 +37050,7 @@ func (t ProfileTabGifs) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "profileTabGifs",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "profileTabGifs", Alias: (*Alias)(&t)})
 }
 
 // ProfileTabGifts A tab with gifts received by the user or the channel chat
@@ -41226,10 +37068,7 @@ func (t ProfileTabGifts) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "profileTabGifts",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "profileTabGifts", Alias: (*Alias)(&t)})
 }
 
 // ProfileTabLinks A tab with messages posted by the channel and containing links
@@ -41247,10 +37086,7 @@ func (t ProfileTabLinks) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "profileTabLinks",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "profileTabLinks", Alias: (*Alias)(&t)})
 }
 
 // ProfileTabMedia A tab with photos and videos posted by the channel
@@ -41268,10 +37104,7 @@ func (t ProfileTabMedia) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "profileTabMedia",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "profileTabMedia", Alias: (*Alias)(&t)})
 }
 
 // ProfileTabMusic A tab with audio messages posted by the channel
@@ -41289,10 +37122,7 @@ func (t ProfileTabMusic) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "profileTabMusic",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "profileTabMusic", Alias: (*Alias)(&t)})
 }
 
 // ProfileTabPosts A tab with stories posted by the user or the channel chat and saved to profile
@@ -41310,10 +37140,7 @@ func (t ProfileTabPosts) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "profileTabPosts",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "profileTabPosts", Alias: (*Alias)(&t)})
 }
 
 // ProfileTabVoice A tab with voice notes posted by the channel
@@ -41331,10 +37158,7 @@ func (t ProfileTabVoice) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "profileTabVoice",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "profileTabVoice", Alias: (*Alias)(&t)})
 }
 
 // Proxy Describes a proxy server
@@ -41356,10 +37180,7 @@ func (t Proxy) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "proxy",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "proxy", Alias: (*Alias)(&t)})
 }
 
 func (t *Proxy) UnmarshalJSON(data []byte) error {
@@ -41406,10 +37227,7 @@ func (t ProxyTypeHttp) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "proxyTypeHttp",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "proxyTypeHttp", Alias: (*Alias)(&t)})
 }
 
 // ProxyTypeMtproto An MTProto proxy server
@@ -41429,10 +37247,7 @@ func (t ProxyTypeMtproto) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "proxyTypeMtproto",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "proxyTypeMtproto", Alias: (*Alias)(&t)})
 }
 
 // ProxyTypeSocks5 A SOCKS5 proxy server
@@ -41454,10 +37269,7 @@ func (t ProxyTypeSocks5) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "proxyTypeSocks5",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "proxyTypeSocks5", Alias: (*Alias)(&t)})
 }
 
 // PublicChatTypeHasUsername The chat is public, because it has an active username
@@ -41475,10 +37287,7 @@ func (t PublicChatTypeHasUsername) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "publicChatTypeHasUsername",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "publicChatTypeHasUsername", Alias: (*Alias)(&t)})
 }
 
 // PublicChatTypeIsLocationBased The chat is public, because it is a location-based supergroup
@@ -41496,10 +37305,7 @@ func (t PublicChatTypeIsLocationBased) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "publicChatTypeIsLocationBased",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "publicChatTypeIsLocationBased", Alias: (*Alias)(&t)})
 }
 
 // PublicForwardMessage Contains a public forward as a message
@@ -41519,10 +37325,7 @@ func (t PublicForwardMessage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "publicForwardMessage",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "publicForwardMessage", Alias: (*Alias)(&t)})
 }
 
 // PublicForwards Represents a list of public forwards and reposts as a story of a message or a story
@@ -41544,10 +37347,7 @@ func (t PublicForwards) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "publicForwards",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "publicForwards", Alias: (*Alias)(&t)})
 }
 
 func (t *PublicForwards) UnmarshalJSON(data []byte) error {
@@ -41593,10 +37393,7 @@ func (t PublicForwardStory) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "publicForwardStory",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "publicForwardStory", Alias: (*Alias)(&t)})
 }
 
 // PublicPostSearchLimits Contains information about public post search limits
@@ -41622,10 +37419,7 @@ func (t PublicPostSearchLimits) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "publicPostSearchLimits",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "publicPostSearchLimits", Alias: (*Alias)(&t)})
 }
 
 // PushMessageContentAnimation An animation message (GIF-style).
@@ -41649,10 +37443,7 @@ func (t PushMessageContentAnimation) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pushMessageContentAnimation",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pushMessageContentAnimation", Alias: (*Alias)(&t)})
 }
 
 // PushMessageContentAudio An audio message
@@ -41674,10 +37465,7 @@ func (t PushMessageContentAudio) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pushMessageContentAudio",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pushMessageContentAudio", Alias: (*Alias)(&t)})
 }
 
 // PushMessageContentBasicGroupChatCreate A newly created basic group
@@ -41695,10 +37483,7 @@ func (t PushMessageContentBasicGroupChatCreate) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pushMessageContentBasicGroupChatCreate",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pushMessageContentBasicGroupChatCreate", Alias: (*Alias)(&t)})
 }
 
 // PushMessageContentChatAddMembers New chat members were invited to a group
@@ -41722,10 +37507,7 @@ func (t PushMessageContentChatAddMembers) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pushMessageContentChatAddMembers",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pushMessageContentChatAddMembers", Alias: (*Alias)(&t)})
 }
 
 // PushMessageContentChatChangePhoto A chat photo was edited
@@ -41743,10 +37525,7 @@ func (t PushMessageContentChatChangePhoto) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pushMessageContentChatChangePhoto",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pushMessageContentChatChangePhoto", Alias: (*Alias)(&t)})
 }
 
 // PushMessageContentChatChangeTitle A chat title was edited
@@ -41766,10 +37545,7 @@ func (t PushMessageContentChatChangeTitle) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pushMessageContentChatChangeTitle",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pushMessageContentChatChangeTitle", Alias: (*Alias)(&t)})
 }
 
 // PushMessageContentChatDeleteMember A chat member was deleted
@@ -41793,10 +37569,7 @@ func (t PushMessageContentChatDeleteMember) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pushMessageContentChatDeleteMember",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pushMessageContentChatDeleteMember", Alias: (*Alias)(&t)})
 }
 
 // PushMessageContentChatJoinByLink A new member joined the chat via an invite link
@@ -41814,10 +37587,7 @@ func (t PushMessageContentChatJoinByLink) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pushMessageContentChatJoinByLink",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pushMessageContentChatJoinByLink", Alias: (*Alias)(&t)})
 }
 
 // PushMessageContentChatJoinByRequest A new member was accepted to the chat by an administrator
@@ -41835,10 +37605,7 @@ func (t PushMessageContentChatJoinByRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pushMessageContentChatJoinByRequest",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pushMessageContentChatJoinByRequest", Alias: (*Alias)(&t)})
 }
 
 // PushMessageContentChatSetBackground A chat background was edited
@@ -41858,10 +37625,7 @@ func (t PushMessageContentChatSetBackground) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pushMessageContentChatSetBackground",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pushMessageContentChatSetBackground", Alias: (*Alias)(&t)})
 }
 
 // PushMessageContentChatSetTheme A chat theme was edited
@@ -41881,10 +37645,7 @@ func (t PushMessageContentChatSetTheme) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pushMessageContentChatSetTheme",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pushMessageContentChatSetTheme", Alias: (*Alias)(&t)})
 }
 
 // PushMessageContentChecklist A message with a checklist
@@ -41906,10 +37667,7 @@ func (t PushMessageContentChecklist) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pushMessageContentChecklist",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pushMessageContentChecklist", Alias: (*Alias)(&t)})
 }
 
 // PushMessageContentChecklistTasksAdded Some tasks were added to a checklist
@@ -41929,10 +37687,7 @@ func (t PushMessageContentChecklistTasksAdded) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pushMessageContentChecklistTasksAdded",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pushMessageContentChecklistTasksAdded", Alias: (*Alias)(&t)})
 }
 
 // PushMessageContentChecklistTasksDone Some tasks from a checklist were marked as done or not done
@@ -41952,10 +37707,7 @@ func (t PushMessageContentChecklistTasksDone) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pushMessageContentChecklistTasksDone",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pushMessageContentChecklistTasksDone", Alias: (*Alias)(&t)})
 }
 
 // PushMessageContentContact A message with a user contact
@@ -41977,10 +37729,7 @@ func (t PushMessageContentContact) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pushMessageContentContact",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pushMessageContentContact", Alias: (*Alias)(&t)})
 }
 
 // PushMessageContentContactRegistered A contact has registered with Telegram
@@ -42000,10 +37749,7 @@ func (t PushMessageContentContactRegistered) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pushMessageContentContactRegistered",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pushMessageContentContactRegistered", Alias: (*Alias)(&t)})
 }
 
 // PushMessageContentDocument A document message (a general file)
@@ -42025,10 +37771,7 @@ func (t PushMessageContentDocument) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pushMessageContentDocument",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pushMessageContentDocument", Alias: (*Alias)(&t)})
 }
 
 // PushMessageContentGame A message with a game
@@ -42050,10 +37793,7 @@ func (t PushMessageContentGame) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pushMessageContentGame",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pushMessageContentGame", Alias: (*Alias)(&t)})
 }
 
 // PushMessageContentGameScore A new high score was achieved in a game
@@ -42077,10 +37817,7 @@ func (t PushMessageContentGameScore) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pushMessageContentGameScore",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pushMessageContentGameScore", Alias: (*Alias)(&t)})
 }
 
 // PushMessageContentGift A message with a gift
@@ -42102,10 +37839,7 @@ func (t PushMessageContentGift) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pushMessageContentGift",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pushMessageContentGift", Alias: (*Alias)(&t)})
 }
 
 // PushMessageContentGiveaway A message with a giveaway
@@ -42129,10 +37863,7 @@ func (t PushMessageContentGiveaway) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pushMessageContentGiveaway",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pushMessageContentGiveaway", Alias: (*Alias)(&t)})
 }
 
 func (t *PushMessageContentGiveaway) UnmarshalJSON(data []byte) error {
@@ -42175,10 +37906,7 @@ func (t PushMessageContentHidden) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pushMessageContentHidden",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pushMessageContentHidden", Alias: (*Alias)(&t)})
 }
 
 // PushMessageContentInviteVideoChatParticipants An invitation of participants to a video chat or live stream
@@ -42198,10 +37926,7 @@ func (t PushMessageContentInviteVideoChatParticipants) MarshalJSON() ([]byte, er
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pushMessageContentInviteVideoChatParticipants",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pushMessageContentInviteVideoChatParticipants", Alias: (*Alias)(&t)})
 }
 
 // PushMessageContentInvoice A message with an invoice from a bot
@@ -42223,10 +37948,7 @@ func (t PushMessageContentInvoice) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pushMessageContentInvoice",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pushMessageContentInvoice", Alias: (*Alias)(&t)})
 }
 
 // PushMessageContentLocation A message with a location
@@ -42248,10 +37970,7 @@ func (t PushMessageContentLocation) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pushMessageContentLocation",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pushMessageContentLocation", Alias: (*Alias)(&t)})
 }
 
 // PushMessageContentMediaAlbum A media album
@@ -42279,10 +37998,7 @@ func (t PushMessageContentMediaAlbum) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pushMessageContentMediaAlbum",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pushMessageContentMediaAlbum", Alias: (*Alias)(&t)})
 }
 
 // PushMessageContentMessageForwards A forwarded messages
@@ -42302,10 +38018,7 @@ func (t PushMessageContentMessageForwards) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pushMessageContentMessageForwards",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pushMessageContentMessageForwards", Alias: (*Alias)(&t)})
 }
 
 // PushMessageContentPaidMedia A message with paid media
@@ -42327,10 +38040,7 @@ func (t PushMessageContentPaidMedia) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pushMessageContentPaidMedia",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pushMessageContentPaidMedia", Alias: (*Alias)(&t)})
 }
 
 // PushMessageContentPhoto A photo message
@@ -42356,10 +38066,7 @@ func (t PushMessageContentPhoto) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pushMessageContentPhoto",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pushMessageContentPhoto", Alias: (*Alias)(&t)})
 }
 
 // PushMessageContentPoll A message with a poll
@@ -42383,10 +38090,7 @@ func (t PushMessageContentPoll) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pushMessageContentPoll",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pushMessageContentPoll", Alias: (*Alias)(&t)})
 }
 
 // PushMessageContentPollOptionAdded An option was added to a poll
@@ -42406,10 +38110,7 @@ func (t PushMessageContentPollOptionAdded) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pushMessageContentPollOptionAdded",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pushMessageContentPollOptionAdded", Alias: (*Alias)(&t)})
 }
 
 // PushMessageContentPremiumGiftCode A message with a Telegram Premium gift code created for the user
@@ -42429,10 +38130,7 @@ func (t PushMessageContentPremiumGiftCode) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pushMessageContentPremiumGiftCode",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pushMessageContentPremiumGiftCode", Alias: (*Alias)(&t)})
 }
 
 // PushMessageContentProximityAlertTriggered A user in the chat came within proximity alert range from the current user
@@ -42452,10 +38150,7 @@ func (t PushMessageContentProximityAlertTriggered) MarshalJSON() ([]byte, error)
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pushMessageContentProximityAlertTriggered",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pushMessageContentProximityAlertTriggered", Alias: (*Alias)(&t)})
 }
 
 // PushMessageContentRecurringPayment A new recurring payment was made by the current user
@@ -42475,10 +38170,7 @@ func (t PushMessageContentRecurringPayment) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pushMessageContentRecurringPayment",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pushMessageContentRecurringPayment", Alias: (*Alias)(&t)})
 }
 
 // PushMessageContentScreenshotTaken A screenshot of a message in the chat has been taken
@@ -42496,10 +38188,7 @@ func (t PushMessageContentScreenshotTaken) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pushMessageContentScreenshotTaken",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pushMessageContentScreenshotTaken", Alias: (*Alias)(&t)})
 }
 
 // PushMessageContentSticker A message with a sticker
@@ -42523,10 +38212,7 @@ func (t PushMessageContentSticker) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pushMessageContentSticker",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pushMessageContentSticker", Alias: (*Alias)(&t)})
 }
 
 // PushMessageContentStory A message with a story
@@ -42548,10 +38234,7 @@ func (t PushMessageContentStory) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pushMessageContentStory",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pushMessageContentStory", Alias: (*Alias)(&t)})
 }
 
 // PushMessageContentSuggestBirthdate A birthdate was suggested to be set
@@ -42569,10 +38252,7 @@ func (t PushMessageContentSuggestBirthdate) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pushMessageContentSuggestBirthdate",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pushMessageContentSuggestBirthdate", Alias: (*Alias)(&t)})
 }
 
 // PushMessageContentSuggestProfilePhoto A profile photo was suggested to the user
@@ -42590,10 +38270,7 @@ func (t PushMessageContentSuggestProfilePhoto) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pushMessageContentSuggestProfilePhoto",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pushMessageContentSuggestProfilePhoto", Alias: (*Alias)(&t)})
 }
 
 // PushMessageContentText A text message
@@ -42615,10 +38292,7 @@ func (t PushMessageContentText) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pushMessageContentText",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pushMessageContentText", Alias: (*Alias)(&t)})
 }
 
 // PushMessageContentUpgradedGift A message with an upgraded gift
@@ -42640,10 +38314,7 @@ func (t PushMessageContentUpgradedGift) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pushMessageContentUpgradedGift",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pushMessageContentUpgradedGift", Alias: (*Alias)(&t)})
 }
 
 // PushMessageContentVideo A video message
@@ -42669,10 +38340,7 @@ func (t PushMessageContentVideo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pushMessageContentVideo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pushMessageContentVideo", Alias: (*Alias)(&t)})
 }
 
 // PushMessageContentVideoChatEnded A video chat or live stream has ended
@@ -42690,10 +38358,7 @@ func (t PushMessageContentVideoChatEnded) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pushMessageContentVideoChatEnded",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pushMessageContentVideoChatEnded", Alias: (*Alias)(&t)})
 }
 
 // PushMessageContentVideoChatStarted A video chat or live stream was started
@@ -42711,10 +38376,7 @@ func (t PushMessageContentVideoChatStarted) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pushMessageContentVideoChatStarted",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pushMessageContentVideoChatStarted", Alias: (*Alias)(&t)})
 }
 
 // PushMessageContentVideoNote A video note message
@@ -42736,10 +38398,7 @@ func (t PushMessageContentVideoNote) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pushMessageContentVideoNote",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pushMessageContentVideoNote", Alias: (*Alias)(&t)})
 }
 
 // PushMessageContentVoiceNote A voice note message
@@ -42761,10 +38420,7 @@ func (t PushMessageContentVoiceNote) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pushMessageContentVoiceNote",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pushMessageContentVoiceNote", Alias: (*Alias)(&t)})
 }
 
 // PushReceiverId Contains a globally unique push receiver identifier, which can be used to identify which account has received a push notification
@@ -42782,10 +38438,7 @@ func (t PushReceiverId) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "pushReceiverId",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "pushReceiverId", Alias: (*Alias)(&t)})
 }
 
 // QuickReplyMessage Describes a message that can be used for quick reply
@@ -42817,10 +38470,7 @@ func (t QuickReplyMessage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "quickReplyMessage",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "quickReplyMessage", Alias: (*Alias)(&t)})
 }
 
 func (t *QuickReplyMessage) UnmarshalJSON(data []byte) error {
@@ -42877,10 +38527,7 @@ func (t QuickReplyMessages) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "quickReplyMessages",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "quickReplyMessages", Alias: (*Alias)(&t)})
 }
 
 // QuickReplyShortcut Describes a shortcut that can be used for a quick reply
@@ -42904,10 +38551,7 @@ func (t QuickReplyShortcut) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "quickReplyShortcut",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "quickReplyShortcut", Alias: (*Alias)(&t)})
 }
 
 // ReactionNotificationSettings Contains information about notification settings for reactions and poll votes
@@ -42933,10 +38577,7 @@ func (t ReactionNotificationSettings) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "reactionNotificationSettings",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reactionNotificationSettings", Alias: (*Alias)(&t)})
 }
 
 func (t *ReactionNotificationSettings) UnmarshalJSON(data []byte) error {
@@ -42993,10 +38634,7 @@ func (t ReactionNotificationSourceAll) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "reactionNotificationSourceAll",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reactionNotificationSourceAll", Alias: (*Alias)(&t)})
 }
 
 // ReactionNotificationSourceContacts Notifications for reactions are shown only for reactions from contacts
@@ -43014,10 +38652,7 @@ func (t ReactionNotificationSourceContacts) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "reactionNotificationSourceContacts",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reactionNotificationSourceContacts", Alias: (*Alias)(&t)})
 }
 
 // ReactionNotificationSourceNone Notifications for reactions are disabled
@@ -43035,10 +38670,7 @@ func (t ReactionNotificationSourceNone) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "reactionNotificationSourceNone",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reactionNotificationSourceNone", Alias: (*Alias)(&t)})
 }
 
 // ReactionTypeCustomEmoji A reaction with a custom emoji
@@ -43058,10 +38690,7 @@ func (t ReactionTypeCustomEmoji) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "reactionTypeCustomEmoji",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reactionTypeCustomEmoji", Alias: (*Alias)(&t)})
 }
 
 // ReactionTypeEmoji A reaction with an emoji
@@ -43081,10 +38710,7 @@ func (t ReactionTypeEmoji) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "reactionTypeEmoji",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reactionTypeEmoji", Alias: (*Alias)(&t)})
 }
 
 // ReactionTypePaid The paid reaction in a channel chat
@@ -43102,10 +38728,7 @@ func (t ReactionTypePaid) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "reactionTypePaid",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reactionTypePaid", Alias: (*Alias)(&t)})
 }
 
 // ReactionUnavailabilityReasonAnonymousAdministrator The user is an anonymous administrator in the supergroup, but isn't a creator of it, so they can't vote on behalf of the supergroup
@@ -43123,10 +38746,7 @@ func (t ReactionUnavailabilityReasonAnonymousAdministrator) MarshalJSON() ([]byt
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "reactionUnavailabilityReasonAnonymousAdministrator",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reactionUnavailabilityReasonAnonymousAdministrator", Alias: (*Alias)(&t)})
 }
 
 // ReactionUnavailabilityReasonGuest The user isn't a member of the supergroup and can't send messages and reactions there without joining
@@ -43144,10 +38764,7 @@ func (t ReactionUnavailabilityReasonGuest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "reactionUnavailabilityReasonGuest",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reactionUnavailabilityReasonGuest", Alias: (*Alias)(&t)})
 }
 
 // ReactionUnavailabilityReasonRestricted The user is restricted in the chat
@@ -43165,10 +38782,7 @@ func (t ReactionUnavailabilityReasonRestricted) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "reactionUnavailabilityReasonRestricted",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reactionUnavailabilityReasonRestricted", Alias: (*Alias)(&t)})
 }
 
 // ReadDatePrivacySettings Contains privacy settings for message read date in private chats. Read dates are always shown to the users that can see online status of the current user regardless of this setting
@@ -43186,10 +38800,7 @@ func (t ReadDatePrivacySettings) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "readDatePrivacySettings",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "readDatePrivacySettings", Alias: (*Alias)(&t)})
 }
 
 // ReceivedGift Represents a gift received by a user or a chat
@@ -43251,10 +38862,7 @@ func (t ReceivedGift) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "receivedGift",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "receivedGift", Alias: (*Alias)(&t)})
 }
 
 func (t *ReceivedGift) UnmarshalJSON(data []byte) error {
@@ -43309,10 +38917,7 @@ func (t ReceivedGifts) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "receivedGifts",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "receivedGifts", Alias: (*Alias)(&t)})
 }
 
 // RecommendedChatFolder Describes a recommended chat folder
@@ -43332,10 +38937,7 @@ func (t RecommendedChatFolder) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "recommendedChatFolder",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "recommendedChatFolder", Alias: (*Alias)(&t)})
 }
 
 // RecommendedChatFolders Contains a list of recommended chat folders
@@ -43353,10 +38955,7 @@ func (t RecommendedChatFolders) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "recommendedChatFolders",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "recommendedChatFolders", Alias: (*Alias)(&t)})
 }
 
 // RecoveryEmailAddress Contains information about the current recovery email address
@@ -43374,10 +38973,7 @@ func (t RecoveryEmailAddress) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "recoveryEmailAddress",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "recoveryEmailAddress", Alias: (*Alias)(&t)})
 }
 
 // RemoteFile Represents a remote file
@@ -43403,10 +38999,7 @@ func (t RemoteFile) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "remoteFile",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "remoteFile", Alias: (*Alias)(&t)})
 }
 
 // ReplyMarkupForceReply Instructs application to force a reply to this message
@@ -43428,10 +39021,7 @@ func (t ReplyMarkupForceReply) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "replyMarkupForceReply",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "replyMarkupForceReply", Alias: (*Alias)(&t)})
 }
 
 // ReplyMarkupInlineKeyboard Contains an inline keyboard layout
@@ -43453,10 +39043,7 @@ func (t ReplyMarkupInlineKeyboard) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "replyMarkupInlineKeyboard",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "replyMarkupInlineKeyboard", Alias: (*Alias)(&t)})
 }
 
 // ReplyMarkupRemoveKeyboard Instructs application to remove the keyboard once this message has been received. This kind of keyboard can't be received in an incoming message; instead, updateChatReplyMarkup with reply_markup_message == null will be sent
@@ -43476,10 +39063,7 @@ func (t ReplyMarkupRemoveKeyboard) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "replyMarkupRemoveKeyboard",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "replyMarkupRemoveKeyboard", Alias: (*Alias)(&t)})
 }
 
 // ReplyMarkupShowKeyboard Contains a custom keyboard layout to quickly reply to bots
@@ -43511,10 +39095,7 @@ func (t ReplyMarkupShowKeyboard) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "replyMarkupShowKeyboard",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "replyMarkupShowKeyboard", Alias: (*Alias)(&t)})
 }
 
 // ReportChatResultMessagesRequired The user must choose messages to report and repeat the reportChat request with the chosen messages
@@ -43532,10 +39113,7 @@ func (t ReportChatResultMessagesRequired) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "reportChatResultMessagesRequired",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reportChatResultMessagesRequired", Alias: (*Alias)(&t)})
 }
 
 // ReportChatResultOk The chat was reported successfully
@@ -43553,10 +39131,7 @@ func (t ReportChatResultOk) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "reportChatResultOk",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reportChatResultOk", Alias: (*Alias)(&t)})
 }
 
 // ReportChatResultOptionRequired The user must choose an option to report the chat and repeat request with the chosen option
@@ -43578,10 +39153,7 @@ func (t ReportChatResultOptionRequired) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "reportChatResultOptionRequired",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reportChatResultOptionRequired", Alias: (*Alias)(&t)})
 }
 
 // ReportChatResultTextRequired The user must add additional text details to the report
@@ -43603,10 +39175,7 @@ func (t ReportChatResultTextRequired) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "reportChatResultTextRequired",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reportChatResultTextRequired", Alias: (*Alias)(&t)})
 }
 
 // ReportOption Describes an option to report an entity to Telegram
@@ -43626,10 +39195,7 @@ func (t ReportOption) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "reportOption",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reportOption", Alias: (*Alias)(&t)})
 }
 
 // ReportReasonChildAbuse The chat has child abuse related content
@@ -43647,10 +39213,7 @@ func (t ReportReasonChildAbuse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "reportReasonChildAbuse",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reportReasonChildAbuse", Alias: (*Alias)(&t)})
 }
 
 // ReportReasonCopyright The chat contains copyrighted content
@@ -43668,10 +39231,7 @@ func (t ReportReasonCopyright) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "reportReasonCopyright",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reportReasonCopyright", Alias: (*Alias)(&t)})
 }
 
 // ReportReasonCustom A custom reason provided by the user
@@ -43689,10 +39249,7 @@ func (t ReportReasonCustom) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "reportReasonCustom",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reportReasonCustom", Alias: (*Alias)(&t)})
 }
 
 // ReportReasonFake The chat represents a fake account
@@ -43710,10 +39267,7 @@ func (t ReportReasonFake) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "reportReasonFake",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reportReasonFake", Alias: (*Alias)(&t)})
 }
 
 // ReportReasonIllegalDrugs The chat has illegal drugs related content
@@ -43731,10 +39285,7 @@ func (t ReportReasonIllegalDrugs) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "reportReasonIllegalDrugs",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reportReasonIllegalDrugs", Alias: (*Alias)(&t)})
 }
 
 // ReportReasonPersonalDetails The chat contains messages with personal details
@@ -43752,10 +39303,7 @@ func (t ReportReasonPersonalDetails) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "reportReasonPersonalDetails",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reportReasonPersonalDetails", Alias: (*Alias)(&t)})
 }
 
 // ReportReasonPornography The chat contains pornographic messages
@@ -43773,10 +39321,7 @@ func (t ReportReasonPornography) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "reportReasonPornography",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reportReasonPornography", Alias: (*Alias)(&t)})
 }
 
 // ReportReasonSpam The chat contains spam messages
@@ -43794,10 +39339,7 @@ func (t ReportReasonSpam) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "reportReasonSpam",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reportReasonSpam", Alias: (*Alias)(&t)})
 }
 
 // ReportReasonUnrelatedLocation The location-based chat is unrelated to its stated location
@@ -43815,10 +39357,7 @@ func (t ReportReasonUnrelatedLocation) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "reportReasonUnrelatedLocation",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reportReasonUnrelatedLocation", Alias: (*Alias)(&t)})
 }
 
 // ReportReasonViolence The chat promotes violence
@@ -43836,10 +39375,7 @@ func (t ReportReasonViolence) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "reportReasonViolence",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reportReasonViolence", Alias: (*Alias)(&t)})
 }
 
 // ReportSponsoredResultAdsHidden Sponsored messages were hidden for the user in all chats
@@ -43857,10 +39393,7 @@ func (t ReportSponsoredResultAdsHidden) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "reportSponsoredResultAdsHidden",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reportSponsoredResultAdsHidden", Alias: (*Alias)(&t)})
 }
 
 // ReportSponsoredResultFailed The sponsored message is too old or not found
@@ -43878,10 +39411,7 @@ func (t ReportSponsoredResultFailed) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "reportSponsoredResultFailed",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reportSponsoredResultFailed", Alias: (*Alias)(&t)})
 }
 
 // ReportSponsoredResultOk The message was reported successfully
@@ -43899,10 +39429,7 @@ func (t ReportSponsoredResultOk) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "reportSponsoredResultOk",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reportSponsoredResultOk", Alias: (*Alias)(&t)})
 }
 
 // ReportSponsoredResultOptionRequired The user must choose an option to report the message and repeat request with the chosen option
@@ -43924,10 +39451,7 @@ func (t ReportSponsoredResultOptionRequired) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "reportSponsoredResultOptionRequired",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reportSponsoredResultOptionRequired", Alias: (*Alias)(&t)})
 }
 
 // ReportSponsoredResultPremiumRequired The user asked to hide sponsored messages, but Telegram Premium is required for this
@@ -43945,10 +39469,7 @@ func (t ReportSponsoredResultPremiumRequired) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "reportSponsoredResultPremiumRequired",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reportSponsoredResultPremiumRequired", Alias: (*Alias)(&t)})
 }
 
 // ReportStoryResultOk The story was reported successfully
@@ -43966,10 +39487,7 @@ func (t ReportStoryResultOk) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "reportStoryResultOk",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reportStoryResultOk", Alias: (*Alias)(&t)})
 }
 
 // ReportStoryResultOptionRequired The user must choose an option to report the story and repeat request with the chosen option
@@ -43991,10 +39509,7 @@ func (t ReportStoryResultOptionRequired) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "reportStoryResultOptionRequired",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reportStoryResultOptionRequired", Alias: (*Alias)(&t)})
 }
 
 // ReportStoryResultTextRequired The user must add additional text details to the report
@@ -44016,10 +39531,7 @@ func (t ReportStoryResultTextRequired) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "reportStoryResultTextRequired",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "reportStoryResultTextRequired", Alias: (*Alias)(&t)})
 }
 
 // ResendCodeReasonUserRequest The user requested to resend the code
@@ -44037,10 +39549,7 @@ func (t ResendCodeReasonUserRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "resendCodeReasonUserRequest",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "resendCodeReasonUserRequest", Alias: (*Alias)(&t)})
 }
 
 // ResendCodeReasonVerificationFailed The code is re-sent, because device verification has failed
@@ -44060,10 +39569,7 @@ func (t ResendCodeReasonVerificationFailed) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "resendCodeReasonVerificationFailed",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "resendCodeReasonVerificationFailed", Alias: (*Alias)(&t)})
 }
 
 // ResetPasswordResultDeclined The password reset request was declined
@@ -44083,10 +39589,7 @@ func (t ResetPasswordResultDeclined) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "resetPasswordResultDeclined",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "resetPasswordResultDeclined", Alias: (*Alias)(&t)})
 }
 
 // ResetPasswordResultOk The password was reset
@@ -44104,10 +39607,7 @@ func (t ResetPasswordResultOk) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "resetPasswordResultOk",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "resetPasswordResultOk", Alias: (*Alias)(&t)})
 }
 
 // ResetPasswordResultPending The password reset request is pending
@@ -44127,10 +39627,7 @@ func (t ResetPasswordResultPending) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "resetPasswordResultPending",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "resetPasswordResultPending", Alias: (*Alias)(&t)})
 }
 
 // RestrictionInfo Contains information about restrictions that must be applied to a chat or a message
@@ -44150,10 +39647,7 @@ func (t RestrictionInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "restrictionInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "restrictionInfo", Alias: (*Alias)(&t)})
 }
 
 // RevenueWithdrawalStateFailed Withdrawal failed
@@ -44171,10 +39665,7 @@ func (t RevenueWithdrawalStateFailed) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "revenueWithdrawalStateFailed",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "revenueWithdrawalStateFailed", Alias: (*Alias)(&t)})
 }
 
 // RevenueWithdrawalStatePending Withdrawal is pending
@@ -44192,10 +39683,7 @@ func (t RevenueWithdrawalStatePending) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "revenueWithdrawalStatePending",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "revenueWithdrawalStatePending", Alias: (*Alias)(&t)})
 }
 
 // RevenueWithdrawalStateSucceeded Withdrawal succeeded
@@ -44217,10 +39705,7 @@ func (t RevenueWithdrawalStateSucceeded) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "revenueWithdrawalStateSucceeded",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "revenueWithdrawalStateSucceeded", Alias: (*Alias)(&t)})
 }
 
 // RichMessage Describes a message with rich formatting
@@ -44242,10 +39727,7 @@ func (t RichMessage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "richMessage",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "richMessage", Alias: (*Alias)(&t)})
 }
 
 func (t *RichMessage) UnmarshalJSON(data []byte) error {
@@ -44291,10 +39773,7 @@ func (t RichMessageSourceBlocks) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "richMessageSourceBlocks",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "richMessageSourceBlocks", Alias: (*Alias)(&t)})
 }
 
 func (t *RichMessageSourceBlocks) UnmarshalJSON(data []byte) error {
@@ -44342,10 +39821,7 @@ func (t RichMessageSourceHtml) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "richMessageSourceHtml",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "richMessageSourceHtml", Alias: (*Alias)(&t)})
 }
 
 // RichMessageSourceMarkdown A Markdown-formatted rich message; for bots only
@@ -44367,10 +39843,7 @@ func (t RichMessageSourceMarkdown) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "richMessageSourceMarkdown",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "richMessageSourceMarkdown", Alias: (*Alias)(&t)})
 }
 
 // RichTextAnchor An anchor
@@ -44390,10 +39863,7 @@ func (t RichTextAnchor) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "richTextAnchor",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "richTextAnchor", Alias: (*Alias)(&t)})
 }
 
 // RichTextAnchorLink A link to an anchor on the same page
@@ -44417,10 +39887,7 @@ func (t RichTextAnchorLink) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "richTextAnchorLink",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "richTextAnchorLink", Alias: (*Alias)(&t)})
 }
 
 func (t *RichTextAnchorLink) UnmarshalJSON(data []byte) error {
@@ -44465,10 +39932,7 @@ func (t RichTextBankCardNumber) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "richTextBankCardNumber",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "richTextBankCardNumber", Alias: (*Alias)(&t)})
 }
 
 func (t *RichTextBankCardNumber) UnmarshalJSON(data []byte) error {
@@ -44511,10 +39975,7 @@ func (t RichTextBold) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "richTextBold",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "richTextBold", Alias: (*Alias)(&t)})
 }
 
 func (t *RichTextBold) UnmarshalJSON(data []byte) error {
@@ -44559,10 +40020,7 @@ func (t RichTextBotCommand) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "richTextBotCommand",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "richTextBotCommand", Alias: (*Alias)(&t)})
 }
 
 func (t *RichTextBotCommand) UnmarshalJSON(data []byte) error {
@@ -44605,10 +40063,7 @@ func (t RichTextButton) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "richTextButton",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "richTextButton", Alias: (*Alias)(&t)})
 }
 
 // RichTextCashtag A cashtag
@@ -44630,10 +40085,7 @@ func (t RichTextCashtag) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "richTextCashtag",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "richTextCashtag", Alias: (*Alias)(&t)})
 }
 
 func (t *RichTextCashtag) UnmarshalJSON(data []byte) error {
@@ -44678,10 +40130,7 @@ func (t RichTextCustomEmoji) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "richTextCustomEmoji",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "richTextCustomEmoji", Alias: (*Alias)(&t)})
 }
 
 // RichTextDateTime A date and time
@@ -44705,10 +40154,7 @@ func (t RichTextDateTime) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "richTextDateTime",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "richTextDateTime", Alias: (*Alias)(&t)})
 }
 
 func (t *RichTextDateTime) UnmarshalJSON(data []byte) error {
@@ -44761,10 +40207,7 @@ func (t RichTextDiff) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "richTextDiff",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "richTextDiff", Alias: (*Alias)(&t)})
 }
 
 func (t *RichTextDiff) UnmarshalJSON(data []byte) error {
@@ -44817,10 +40260,7 @@ func (t RichTextEmailAddress) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "richTextEmailAddress",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "richTextEmailAddress", Alias: (*Alias)(&t)})
 }
 
 func (t *RichTextEmailAddress) UnmarshalJSON(data []byte) error {
@@ -44863,10 +40303,7 @@ func (t RichTextFixed) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "richTextFixed",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "richTextFixed", Alias: (*Alias)(&t)})
 }
 
 func (t *RichTextFixed) UnmarshalJSON(data []byte) error {
@@ -44911,10 +40348,7 @@ func (t RichTextHashtag) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "richTextHashtag",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "richTextHashtag", Alias: (*Alias)(&t)})
 }
 
 func (t *RichTextHashtag) UnmarshalJSON(data []byte) error {
@@ -44961,10 +40395,7 @@ func (t RichTextIcon) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "richTextIcon",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "richTextIcon", Alias: (*Alias)(&t)})
 }
 
 // RichTextItalic An italicized rich text
@@ -44984,10 +40415,7 @@ func (t RichTextItalic) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "richTextItalic",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "richTextItalic", Alias: (*Alias)(&t)})
 }
 
 func (t *RichTextItalic) UnmarshalJSON(data []byte) error {
@@ -45030,10 +40458,7 @@ func (t RichTextMarked) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "richTextMarked",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "richTextMarked", Alias: (*Alias)(&t)})
 }
 
 func (t *RichTextMarked) UnmarshalJSON(data []byte) error {
@@ -45076,10 +40501,7 @@ func (t RichTextMathematicalExpression) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "richTextMathematicalExpression",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "richTextMathematicalExpression", Alias: (*Alias)(&t)})
 }
 
 // RichTextMention A mention of a Telegram user or chat by a username
@@ -45101,10 +40523,7 @@ func (t RichTextMention) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "richTextMention",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "richTextMention", Alias: (*Alias)(&t)})
 }
 
 func (t *RichTextMention) UnmarshalJSON(data []byte) error {
@@ -45149,10 +40568,7 @@ func (t RichTextMentionName) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "richTextMentionName",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "richTextMentionName", Alias: (*Alias)(&t)})
 }
 
 func (t *RichTextMentionName) UnmarshalJSON(data []byte) error {
@@ -45197,10 +40613,7 @@ func (t RichTextPhoneNumber) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "richTextPhoneNumber",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "richTextPhoneNumber", Alias: (*Alias)(&t)})
 }
 
 func (t *RichTextPhoneNumber) UnmarshalJSON(data []byte) error {
@@ -45243,10 +40656,7 @@ func (t RichTextPlain) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "richTextPlain",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "richTextPlain", Alias: (*Alias)(&t)})
 }
 
 // RichTextReference A reference
@@ -45268,10 +40678,7 @@ func (t RichTextReference) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "richTextReference",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "richTextReference", Alias: (*Alias)(&t)})
 }
 
 func (t *RichTextReference) UnmarshalJSON(data []byte) error {
@@ -45318,10 +40725,7 @@ func (t RichTextReferenceLink) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "richTextReferenceLink",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "richTextReferenceLink", Alias: (*Alias)(&t)})
 }
 
 func (t *RichTextReferenceLink) UnmarshalJSON(data []byte) error {
@@ -45364,10 +40768,7 @@ func (t RichTexts) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "richTexts",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "richTexts", Alias: (*Alias)(&t)})
 }
 
 func (t *RichTexts) UnmarshalJSON(data []byte) error {
@@ -45413,10 +40814,7 @@ func (t RichTextSpoiler) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "richTextSpoiler",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "richTextSpoiler", Alias: (*Alias)(&t)})
 }
 
 func (t *RichTextSpoiler) UnmarshalJSON(data []byte) error {
@@ -45459,10 +40857,7 @@ func (t RichTextStrikethrough) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "richTextStrikethrough",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "richTextStrikethrough", Alias: (*Alias)(&t)})
 }
 
 func (t *RichTextStrikethrough) UnmarshalJSON(data []byte) error {
@@ -45505,10 +40900,7 @@ func (t RichTextSubscript) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "richTextSubscript",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "richTextSubscript", Alias: (*Alias)(&t)})
 }
 
 func (t *RichTextSubscript) UnmarshalJSON(data []byte) error {
@@ -45551,10 +40943,7 @@ func (t RichTextSuperscript) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "richTextSuperscript",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "richTextSuperscript", Alias: (*Alias)(&t)})
 }
 
 func (t *RichTextSuperscript) UnmarshalJSON(data []byte) error {
@@ -45597,10 +40986,7 @@ func (t RichTextUnderline) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "richTextUnderline",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "richTextUnderline", Alias: (*Alias)(&t)})
 }
 
 func (t *RichTextUnderline) UnmarshalJSON(data []byte) error {
@@ -45647,10 +41033,7 @@ func (t RichTextUrl) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "richTextUrl",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "richTextUrl", Alias: (*Alias)(&t)})
 }
 
 func (t *RichTextUrl) UnmarshalJSON(data []byte) error {
@@ -45693,10 +41076,7 @@ func (t RtmpUrl) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "rtmpUrl",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "rtmpUrl", Alias: (*Alias)(&t)})
 }
 
 // SavedCredentials Contains information about saved payment credentials
@@ -45716,10 +41096,7 @@ func (t SavedCredentials) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "savedCredentials",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "savedCredentials", Alias: (*Alias)(&t)})
 }
 
 // SavedMessagesTag Represents a tag used in Saved Messages or a Saved Messages topic
@@ -45741,10 +41118,7 @@ func (t SavedMessagesTag) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "savedMessagesTag",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "savedMessagesTag", Alias: (*Alias)(&t)})
 }
 
 func (t *SavedMessagesTag) UnmarshalJSON(data []byte) error {
@@ -45785,10 +41159,7 @@ func (t SavedMessagesTags) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "savedMessagesTags",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "savedMessagesTags", Alias: (*Alias)(&t)})
 }
 
 // SavedMessagesTopic Contains information about a Saved Messages topic
@@ -45816,10 +41187,7 @@ func (t SavedMessagesTopic) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "savedMessagesTopic",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "savedMessagesTopic", Alias: (*Alias)(&t)})
 }
 
 func (t *SavedMessagesTopic) UnmarshalJSON(data []byte) error {
@@ -45860,10 +41228,7 @@ func (t SavedMessagesTopicTypeAuthorHidden) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "savedMessagesTopicTypeAuthorHidden",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "savedMessagesTopicTypeAuthorHidden", Alias: (*Alias)(&t)})
 }
 
 // SavedMessagesTopicTypeMyNotes Topic containing messages sent by the current user of forwarded from an unknown chat
@@ -45881,10 +41246,7 @@ func (t SavedMessagesTopicTypeMyNotes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "savedMessagesTopicTypeMyNotes",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "savedMessagesTopicTypeMyNotes", Alias: (*Alias)(&t)})
 }
 
 // SavedMessagesTopicTypeSavedFromChat Topic containing messages forwarded from a specific chat
@@ -45904,10 +41266,7 @@ func (t SavedMessagesTopicTypeSavedFromChat) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "savedMessagesTopicTypeSavedFromChat",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "savedMessagesTopicTypeSavedFromChat", Alias: (*Alias)(&t)})
 }
 
 // ScopeAutosaveSettings Contains autosave settings for an autosave settings scope
@@ -45929,10 +41288,7 @@ func (t ScopeAutosaveSettings) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "scopeAutosaveSettings",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "scopeAutosaveSettings", Alias: (*Alias)(&t)})
 }
 
 // ScopeNotificationSettings Contains information about notification settings for several chats
@@ -45966,10 +41322,7 @@ func (t ScopeNotificationSettings) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "scopeNotificationSettings",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "scopeNotificationSettings", Alias: (*Alias)(&t)})
 }
 
 // SearchChatTypeFilterBot Returns only private chats with bots
@@ -45987,10 +41340,7 @@ func (t SearchChatTypeFilterBot) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "searchChatTypeFilterBot",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchChatTypeFilterBot", Alias: (*Alias)(&t)})
 }
 
 // SearchChatTypeFilterChannel Returns only channel chats
@@ -46008,10 +41358,7 @@ func (t SearchChatTypeFilterChannel) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "searchChatTypeFilterChannel",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchChatTypeFilterChannel", Alias: (*Alias)(&t)})
 }
 
 // SearchMessagesChatTypeFilterChannel Returns only messages in channel chats
@@ -46029,10 +41376,7 @@ func (t SearchMessagesChatTypeFilterChannel) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "searchMessagesChatTypeFilterChannel",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchMessagesChatTypeFilterChannel", Alias: (*Alias)(&t)})
 }
 
 // SearchMessagesChatTypeFilterCommunity Returns only messages in the specified community
@@ -46052,10 +41396,7 @@ func (t SearchMessagesChatTypeFilterCommunity) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "searchMessagesChatTypeFilterCommunity",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchMessagesChatTypeFilterCommunity", Alias: (*Alias)(&t)})
 }
 
 // SearchMessagesChatTypeFilterGroup Returns only messages in basic group and supergroup chats
@@ -46073,10 +41414,7 @@ func (t SearchMessagesChatTypeFilterGroup) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "searchMessagesChatTypeFilterGroup",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchMessagesChatTypeFilterGroup", Alias: (*Alias)(&t)})
 }
 
 // SearchMessagesChatTypeFilterPrivate Returns only messages in private chats
@@ -46094,10 +41432,7 @@ func (t SearchMessagesChatTypeFilterPrivate) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "searchMessagesChatTypeFilterPrivate",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchMessagesChatTypeFilterPrivate", Alias: (*Alias)(&t)})
 }
 
 // SearchMessagesFilterAnimation Returns only animation messages
@@ -46115,10 +41450,7 @@ func (t SearchMessagesFilterAnimation) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "searchMessagesFilterAnimation",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchMessagesFilterAnimation", Alias: (*Alias)(&t)})
 }
 
 // SearchMessagesFilterAudio Returns only audio messages
@@ -46136,10 +41468,7 @@ func (t SearchMessagesFilterAudio) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "searchMessagesFilterAudio",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchMessagesFilterAudio", Alias: (*Alias)(&t)})
 }
 
 // SearchMessagesFilterChatPhoto Returns only messages containing chat photos
@@ -46157,10 +41486,7 @@ func (t SearchMessagesFilterChatPhoto) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "searchMessagesFilterChatPhoto",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchMessagesFilterChatPhoto", Alias: (*Alias)(&t)})
 }
 
 // SearchMessagesFilterDocument Returns only document messages
@@ -46178,10 +41504,7 @@ func (t SearchMessagesFilterDocument) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "searchMessagesFilterDocument",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchMessagesFilterDocument", Alias: (*Alias)(&t)})
 }
 
 // SearchMessagesFilterEmpty Returns all found messages, no filter is applied
@@ -46199,10 +41522,7 @@ func (t SearchMessagesFilterEmpty) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "searchMessagesFilterEmpty",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchMessagesFilterEmpty", Alias: (*Alias)(&t)})
 }
 
 // SearchMessagesFilterFailedToSend Returns only failed to send messages. This filter can be used only if the message database is used
@@ -46220,10 +41540,7 @@ func (t SearchMessagesFilterFailedToSend) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "searchMessagesFilterFailedToSend",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchMessagesFilterFailedToSend", Alias: (*Alias)(&t)})
 }
 
 // SearchMessagesFilterMention Returns only messages with mentions of the current user, or messages that are replies to their messages
@@ -46241,10 +41558,7 @@ func (t SearchMessagesFilterMention) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "searchMessagesFilterMention",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchMessagesFilterMention", Alias: (*Alias)(&t)})
 }
 
 // SearchMessagesFilterPhoto Returns only photo messages
@@ -46262,10 +41576,7 @@ func (t SearchMessagesFilterPhoto) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "searchMessagesFilterPhoto",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchMessagesFilterPhoto", Alias: (*Alias)(&t)})
 }
 
 // SearchMessagesFilterPhotoAndVideo Returns only photo and video messages
@@ -46283,10 +41594,7 @@ func (t SearchMessagesFilterPhotoAndVideo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "searchMessagesFilterPhotoAndVideo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchMessagesFilterPhotoAndVideo", Alias: (*Alias)(&t)})
 }
 
 // SearchMessagesFilterPinned Returns only pinned messages
@@ -46304,10 +41612,7 @@ func (t SearchMessagesFilterPinned) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "searchMessagesFilterPinned",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchMessagesFilterPinned", Alias: (*Alias)(&t)})
 }
 
 // SearchMessagesFilterPoll Returns only poll messages
@@ -46325,10 +41630,7 @@ func (t SearchMessagesFilterPoll) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "searchMessagesFilterPoll",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchMessagesFilterPoll", Alias: (*Alias)(&t)})
 }
 
 // SearchMessagesFilterUnreadMention Returns only messages with unread mentions of the current user, or messages that are replies to their messages. When using this filter the results can't be additionally filtered by a query or by the sending user
@@ -46346,10 +41648,7 @@ func (t SearchMessagesFilterUnreadMention) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "searchMessagesFilterUnreadMention",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchMessagesFilterUnreadMention", Alias: (*Alias)(&t)})
 }
 
 // SearchMessagesFilterUnreadPollVote Returns only messages with unread poll votes for the current user. When using this filter the results can't be additionally filtered by a query or by the sending user
@@ -46367,10 +41666,7 @@ func (t SearchMessagesFilterUnreadPollVote) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "searchMessagesFilterUnreadPollVote",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchMessagesFilterUnreadPollVote", Alias: (*Alias)(&t)})
 }
 
 // SearchMessagesFilterUnreadReaction Returns only messages with unread reactions for the current user. When using this filter the results can't be additionally filtered by a query or by the sending user
@@ -46388,10 +41684,7 @@ func (t SearchMessagesFilterUnreadReaction) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "searchMessagesFilterUnreadReaction",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchMessagesFilterUnreadReaction", Alias: (*Alias)(&t)})
 }
 
 // SearchMessagesFilterUrl Returns only messages containing URLs
@@ -46409,10 +41702,7 @@ func (t SearchMessagesFilterUrl) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "searchMessagesFilterUrl",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchMessagesFilterUrl", Alias: (*Alias)(&t)})
 }
 
 // SearchMessagesFilterVideo Returns only video messages
@@ -46430,10 +41720,7 @@ func (t SearchMessagesFilterVideo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "searchMessagesFilterVideo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchMessagesFilterVideo", Alias: (*Alias)(&t)})
 }
 
 // SearchMessagesFilterVideoNote Returns only video note messages
@@ -46451,10 +41738,7 @@ func (t SearchMessagesFilterVideoNote) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "searchMessagesFilterVideoNote",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchMessagesFilterVideoNote", Alias: (*Alias)(&t)})
 }
 
 // SearchMessagesFilterVoiceAndVideoNote Returns only voice and video note messages
@@ -46472,10 +41756,7 @@ func (t SearchMessagesFilterVoiceAndVideoNote) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "searchMessagesFilterVoiceAndVideoNote",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchMessagesFilterVoiceAndVideoNote", Alias: (*Alias)(&t)})
 }
 
 // SearchMessagesFilterVoiceNote Returns only voice note messages
@@ -46493,10 +41774,7 @@ func (t SearchMessagesFilterVoiceNote) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "searchMessagesFilterVoiceNote",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "searchMessagesFilterVoiceNote", Alias: (*Alias)(&t)})
 }
 
 // Seconds Contains a value representing a number of seconds
@@ -46514,10 +41792,7 @@ func (t Seconds) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "seconds",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "seconds", Alias: (*Alias)(&t)})
 }
 
 // SecretChat Represents a secret chat
@@ -46545,10 +41820,7 @@ func (t SecretChat) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "secretChat",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "secretChat", Alias: (*Alias)(&t)})
 }
 
 func (t *SecretChat) UnmarshalJSON(data []byte) error {
@@ -46589,10 +41861,7 @@ func (t SecretChatStateClosed) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "secretChatStateClosed",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "secretChatStateClosed", Alias: (*Alias)(&t)})
 }
 
 // SecretChatStatePending The secret chat is not yet created; waiting for the other user to get online
@@ -46610,10 +41879,7 @@ func (t SecretChatStatePending) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "secretChatStatePending",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "secretChatStatePending", Alias: (*Alias)(&t)})
 }
 
 // SecretChatStateReady The secret chat is ready to use
@@ -46631,10 +41897,7 @@ func (t SecretChatStateReady) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "secretChatStateReady",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "secretChatStateReady", Alias: (*Alias)(&t)})
 }
 
 // SentGiftRegular Regular gift
@@ -46654,10 +41917,7 @@ func (t SentGiftRegular) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "sentGiftRegular",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sentGiftRegular", Alias: (*Alias)(&t)})
 }
 
 // SentGiftUpgraded Upgraded gift
@@ -46677,10 +41937,7 @@ func (t SentGiftUpgraded) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "sentGiftUpgraded",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sentGiftUpgraded", Alias: (*Alias)(&t)})
 }
 
 // Session Contains information about one session in a Telegram application used by the current user. Sessions must be shown to the user in the returned order
@@ -46732,10 +41989,7 @@ func (t Session) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "session",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "session", Alias: (*Alias)(&t)})
 }
 
 func (t *Session) UnmarshalJSON(data []byte) error {
@@ -46776,10 +42030,7 @@ func (t SessionDeviceTypeAndroid) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "sessionDeviceTypeAndroid",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sessionDeviceTypeAndroid", Alias: (*Alias)(&t)})
 }
 
 // SessionDeviceTypeApple The session is running on a generic Apple device
@@ -46797,10 +42048,7 @@ func (t SessionDeviceTypeApple) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "sessionDeviceTypeApple",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sessionDeviceTypeApple", Alias: (*Alias)(&t)})
 }
 
 // SessionDeviceTypeBrave The session is running on the Brave browser
@@ -46818,10 +42066,7 @@ func (t SessionDeviceTypeBrave) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "sessionDeviceTypeBrave",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sessionDeviceTypeBrave", Alias: (*Alias)(&t)})
 }
 
 // SessionDeviceTypeChrome The session is running on the Chrome browser
@@ -46839,10 +42084,7 @@ func (t SessionDeviceTypeChrome) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "sessionDeviceTypeChrome",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sessionDeviceTypeChrome", Alias: (*Alias)(&t)})
 }
 
 // SessionDeviceTypeEdge The session is running on the Edge browser
@@ -46860,10 +42102,7 @@ func (t SessionDeviceTypeEdge) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "sessionDeviceTypeEdge",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sessionDeviceTypeEdge", Alias: (*Alias)(&t)})
 }
 
 // SessionDeviceTypeFirefox The session is running on the Firefox browser
@@ -46881,10 +42120,7 @@ func (t SessionDeviceTypeFirefox) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "sessionDeviceTypeFirefox",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sessionDeviceTypeFirefox", Alias: (*Alias)(&t)})
 }
 
 // SessionDeviceTypeIpad The session is running on an iPad device
@@ -46902,10 +42138,7 @@ func (t SessionDeviceTypeIpad) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "sessionDeviceTypeIpad",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sessionDeviceTypeIpad", Alias: (*Alias)(&t)})
 }
 
 // SessionDeviceTypeIphone The session is running on an iPhone device
@@ -46923,10 +42156,7 @@ func (t SessionDeviceTypeIphone) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "sessionDeviceTypeIphone",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sessionDeviceTypeIphone", Alias: (*Alias)(&t)})
 }
 
 // SessionDeviceTypeLinux The session is running on a Linux device
@@ -46944,10 +42174,7 @@ func (t SessionDeviceTypeLinux) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "sessionDeviceTypeLinux",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sessionDeviceTypeLinux", Alias: (*Alias)(&t)})
 }
 
 // SessionDeviceTypeMac The session is running on a Mac device
@@ -46965,10 +42192,7 @@ func (t SessionDeviceTypeMac) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "sessionDeviceTypeMac",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sessionDeviceTypeMac", Alias: (*Alias)(&t)})
 }
 
 // SessionDeviceTypeOpera The session is running on the Opera browser
@@ -46986,10 +42210,7 @@ func (t SessionDeviceTypeOpera) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "sessionDeviceTypeOpera",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sessionDeviceTypeOpera", Alias: (*Alias)(&t)})
 }
 
 // SessionDeviceTypeSafari The session is running on the Safari browser
@@ -47007,10 +42228,7 @@ func (t SessionDeviceTypeSafari) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "sessionDeviceTypeSafari",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sessionDeviceTypeSafari", Alias: (*Alias)(&t)})
 }
 
 // SessionDeviceTypeUbuntu The session is running on an Ubuntu device
@@ -47028,10 +42246,7 @@ func (t SessionDeviceTypeUbuntu) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "sessionDeviceTypeUbuntu",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sessionDeviceTypeUbuntu", Alias: (*Alias)(&t)})
 }
 
 // SessionDeviceTypeUnknown The session is running on an unknown type of device
@@ -47049,10 +42264,7 @@ func (t SessionDeviceTypeUnknown) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "sessionDeviceTypeUnknown",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sessionDeviceTypeUnknown", Alias: (*Alias)(&t)})
 }
 
 // SessionDeviceTypeVivaldi The session is running on the Vivaldi browser
@@ -47070,10 +42282,7 @@ func (t SessionDeviceTypeVivaldi) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "sessionDeviceTypeVivaldi",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sessionDeviceTypeVivaldi", Alias: (*Alias)(&t)})
 }
 
 // SessionDeviceTypeWindows The session is running on a Windows device
@@ -47091,10 +42300,7 @@ func (t SessionDeviceTypeWindows) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "sessionDeviceTypeWindows",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sessionDeviceTypeWindows", Alias: (*Alias)(&t)})
 }
 
 // SessionDeviceTypeXbox The session is running on an Xbox console
@@ -47112,10 +42318,7 @@ func (t SessionDeviceTypeXbox) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "sessionDeviceTypeXbox",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sessionDeviceTypeXbox", Alias: (*Alias)(&t)})
 }
 
 // Sessions Contains a list of sessions
@@ -47135,10 +42338,7 @@ func (t Sessions) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "sessions",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sessions", Alias: (*Alias)(&t)})
 }
 
 // SessionTypeConnectedBot A business bot connected to the current user's account
@@ -47158,10 +42358,7 @@ func (t SessionTypeConnectedBot) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "sessionTypeConnectedBot",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sessionTypeConnectedBot", Alias: (*Alias)(&t)})
 }
 
 // SessionTypeDevice A regular session from a device
@@ -47181,10 +42378,7 @@ func (t SessionTypeDevice) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "sessionTypeDevice",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sessionTypeDevice", Alias: (*Alias)(&t)})
 }
 
 // SettingsSectionAppearance The appearance section
@@ -47204,10 +42398,7 @@ func (t SettingsSectionAppearance) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "settingsSectionAppearance",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "settingsSectionAppearance", Alias: (*Alias)(&t)})
 }
 
 // SettingsSectionAskQuestion The "Ask a question" section
@@ -47225,10 +42416,7 @@ func (t SettingsSectionAskQuestion) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "settingsSectionAskQuestion",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "settingsSectionAskQuestion", Alias: (*Alias)(&t)})
 }
 
 // SettingsSectionBusiness The "Telegram Business" section
@@ -47248,10 +42436,7 @@ func (t SettingsSectionBusiness) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "settingsSectionBusiness",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "settingsSectionBusiness", Alias: (*Alias)(&t)})
 }
 
 // SettingsSectionChatFolders The chat folder settings section
@@ -47271,10 +42456,7 @@ func (t SettingsSectionChatFolders) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "settingsSectionChatFolders",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "settingsSectionChatFolders", Alias: (*Alias)(&t)})
 }
 
 // SettingsSectionDataAndStorage The data and storage settings section
@@ -47294,10 +42476,7 @@ func (t SettingsSectionDataAndStorage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "settingsSectionDataAndStorage",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "settingsSectionDataAndStorage", Alias: (*Alias)(&t)})
 }
 
 // SettingsSectionDevices The Devices section
@@ -47317,10 +42496,7 @@ func (t SettingsSectionDevices) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "settingsSectionDevices",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "settingsSectionDevices", Alias: (*Alias)(&t)})
 }
 
 // SettingsSectionEditProfile The profile edit section
@@ -47340,10 +42516,7 @@ func (t SettingsSectionEditProfile) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "settingsSectionEditProfile",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "settingsSectionEditProfile", Alias: (*Alias)(&t)})
 }
 
 // SettingsSectionFaq The FAQ section
@@ -47361,10 +42534,7 @@ func (t SettingsSectionFaq) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "settingsSectionFaq",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "settingsSectionFaq", Alias: (*Alias)(&t)})
 }
 
 // SettingsSectionFeatures The "Telegram Features" section
@@ -47382,10 +42552,7 @@ func (t SettingsSectionFeatures) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "settingsSectionFeatures",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "settingsSectionFeatures", Alias: (*Alias)(&t)})
 }
 
 // SettingsSectionInAppBrowser The in-app browser settings section
@@ -47405,10 +42572,7 @@ func (t SettingsSectionInAppBrowser) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "settingsSectionInAppBrowser",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "settingsSectionInAppBrowser", Alias: (*Alias)(&t)})
 }
 
 // SettingsSectionLanguage The application language section
@@ -47428,10 +42592,7 @@ func (t SettingsSectionLanguage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "settingsSectionLanguage",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "settingsSectionLanguage", Alias: (*Alias)(&t)})
 }
 
 // SettingsSectionMyGrams The TON Gram balance and transaction section
@@ -47449,10 +42610,7 @@ func (t SettingsSectionMyGrams) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "settingsSectionMyGrams",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "settingsSectionMyGrams", Alias: (*Alias)(&t)})
 }
 
 // SettingsSectionMyStars The Telegram Star balance and transaction section
@@ -47472,10 +42630,7 @@ func (t SettingsSectionMyStars) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "settingsSectionMyStars",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "settingsSectionMyStars", Alias: (*Alias)(&t)})
 }
 
 // SettingsSectionNotifications The notification settings section
@@ -47495,10 +42650,7 @@ func (t SettingsSectionNotifications) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "settingsSectionNotifications",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "settingsSectionNotifications", Alias: (*Alias)(&t)})
 }
 
 // SettingsSectionPowerSaving The power saving settings section
@@ -47518,10 +42670,7 @@ func (t SettingsSectionPowerSaving) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "settingsSectionPowerSaving",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "settingsSectionPowerSaving", Alias: (*Alias)(&t)})
 }
 
 // SettingsSectionPremium The "Telegram Premium" section
@@ -47539,10 +42688,7 @@ func (t SettingsSectionPremium) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "settingsSectionPremium",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "settingsSectionPremium", Alias: (*Alias)(&t)})
 }
 
 // SettingsSectionPrivacyAndSecurity The privacy and security section
@@ -47562,10 +42708,7 @@ func (t SettingsSectionPrivacyAndSecurity) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "settingsSectionPrivacyAndSecurity",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "settingsSectionPrivacyAndSecurity", Alias: (*Alias)(&t)})
 }
 
 // SettingsSectionPrivacyPolicy The "Privacy Policy" section
@@ -47583,10 +42726,7 @@ func (t SettingsSectionPrivacyPolicy) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "settingsSectionPrivacyPolicy",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "settingsSectionPrivacyPolicy", Alias: (*Alias)(&t)})
 }
 
 // SettingsSectionQrCode The current user's QR code section
@@ -47606,10 +42746,7 @@ func (t SettingsSectionQrCode) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "settingsSectionQrCode",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "settingsSectionQrCode", Alias: (*Alias)(&t)})
 }
 
 // SettingsSectionSearch Search in Settings
@@ -47627,10 +42764,7 @@ func (t SettingsSectionSearch) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "settingsSectionSearch",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "settingsSectionSearch", Alias: (*Alias)(&t)})
 }
 
 // SettingsSectionSendGift The "Send a gift" section
@@ -47650,10 +42784,7 @@ func (t SettingsSectionSendGift) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "settingsSectionSendGift",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "settingsSectionSendGift", Alias: (*Alias)(&t)})
 }
 
 // SharedChat Contains information about a chat shared with a bot
@@ -47677,10 +42808,7 @@ func (t SharedChat) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "sharedChat",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sharedChat", Alias: (*Alias)(&t)})
 }
 
 // SharedUser Contains information about a user shared with a bot
@@ -47706,10 +42834,7 @@ func (t SharedUser) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "sharedUser",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sharedUser", Alias: (*Alias)(&t)})
 }
 
 // ShippingOption One shipping option
@@ -47731,10 +42856,7 @@ func (t ShippingOption) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "shippingOption",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "shippingOption", Alias: (*Alias)(&t)})
 }
 
 // SpeechRecognitionResultError The speech recognition failed
@@ -47754,10 +42876,7 @@ func (t SpeechRecognitionResultError) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "speechRecognitionResultError",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "speechRecognitionResultError", Alias: (*Alias)(&t)})
 }
 
 // SpeechRecognitionResultPending The speech recognition is ongoing
@@ -47777,10 +42896,7 @@ func (t SpeechRecognitionResultPending) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "speechRecognitionResultPending",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "speechRecognitionResultPending", Alias: (*Alias)(&t)})
 }
 
 // SpeechRecognitionResultText The speech recognition successfully finished
@@ -47800,10 +42916,7 @@ func (t SpeechRecognitionResultText) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "speechRecognitionResultText",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "speechRecognitionResultText", Alias: (*Alias)(&t)})
 }
 
 // SponsoredChat Describes a sponsored chat
@@ -47827,10 +42940,7 @@ func (t SponsoredChat) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "sponsoredChat",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sponsoredChat", Alias: (*Alias)(&t)})
 }
 
 // SponsoredChats Contains a list of sponsored chats
@@ -47848,10 +42958,7 @@ func (t SponsoredChats) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "sponsoredChats",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sponsoredChats", Alias: (*Alias)(&t)})
 }
 
 // SponsoredMessage Describes a sponsored message
@@ -47887,10 +42994,7 @@ func (t SponsoredMessage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "sponsoredMessage",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sponsoredMessage", Alias: (*Alias)(&t)})
 }
 
 func (t *SponsoredMessage) UnmarshalJSON(data []byte) error {
@@ -47933,10 +43037,7 @@ func (t SponsoredMessages) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "sponsoredMessages",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sponsoredMessages", Alias: (*Alias)(&t)})
 }
 
 // StakeDiceState Describes state of the stake dice
@@ -47964,10 +43065,7 @@ func (t StakeDiceState) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "stakeDiceState",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "stakeDiceState", Alias: (*Alias)(&t)})
 }
 
 // StarAmount Describes a possibly non-integer Telegram Star amount
@@ -47987,10 +43085,7 @@ func (t StarAmount) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starAmount",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starAmount", Alias: (*Alias)(&t)})
 }
 
 // StarCount Contains a number of Telegram Stars
@@ -48008,10 +43103,7 @@ func (t StarCount) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starCount",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starCount", Alias: (*Alias)(&t)})
 }
 
 // StarGiveawayPaymentOption Describes an option for creating of Telegram Star giveaway. Use telegramPaymentPurposeStarGiveaway for out-of-store payments
@@ -48043,10 +43135,7 @@ func (t StarGiveawayPaymentOption) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starGiveawayPaymentOption",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starGiveawayPaymentOption", Alias: (*Alias)(&t)})
 }
 
 // StarGiveawayPaymentOptions Contains a list of options for creating of Telegram Star giveaway
@@ -48064,10 +43153,7 @@ func (t StarGiveawayPaymentOptions) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starGiveawayPaymentOptions",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starGiveawayPaymentOptions", Alias: (*Alias)(&t)})
 }
 
 // StarGiveawayWinnerOption Describes an option for the number of winners of a Telegram Star giveaway
@@ -48089,10 +43175,7 @@ func (t StarGiveawayWinnerOption) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starGiveawayWinnerOption",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starGiveawayWinnerOption", Alias: (*Alias)(&t)})
 }
 
 // StarPaymentOption Describes an option for buying Telegram Stars. Use telegramPaymentPurposeStars for out-of-store payments
@@ -48118,10 +43201,7 @@ func (t StarPaymentOption) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starPaymentOption",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starPaymentOption", Alias: (*Alias)(&t)})
 }
 
 // StarPaymentOptions Contains a list of options for buying Telegram Stars
@@ -48139,10 +43219,7 @@ func (t StarPaymentOptions) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starPaymentOptions",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starPaymentOptions", Alias: (*Alias)(&t)})
 }
 
 // StarRevenueStatistics A detailed statistics about Telegram Stars earned by a user or a chat
@@ -48164,10 +43241,7 @@ func (t StarRevenueStatistics) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starRevenueStatistics",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starRevenueStatistics", Alias: (*Alias)(&t)})
 }
 
 func (t *StarRevenueStatistics) UnmarshalJSON(data []byte) error {
@@ -48216,10 +43290,7 @@ func (t StarRevenueStatus) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starRevenueStatus",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starRevenueStatus", Alias: (*Alias)(&t)})
 }
 
 // StarSubscription Contains information about subscription to a channel chat, a bot, or a business account that was paid in Telegram Stars
@@ -48249,10 +43320,7 @@ func (t StarSubscription) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starSubscription",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starSubscription", Alias: (*Alias)(&t)})
 }
 
 func (t *StarSubscription) UnmarshalJSON(data []byte) error {
@@ -48295,10 +43363,7 @@ func (t StarSubscriptionPricing) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starSubscriptionPricing",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starSubscriptionPricing", Alias: (*Alias)(&t)})
 }
 
 // StarSubscriptions Represents a list of Telegram Star subscriptions
@@ -48322,10 +43387,7 @@ func (t StarSubscriptions) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starSubscriptions",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starSubscriptions", Alias: (*Alias)(&t)})
 }
 
 // StarSubscriptionTypeBot Describes a subscription in a bot or a business account
@@ -48351,10 +43413,7 @@ func (t StarSubscriptionTypeBot) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starSubscriptionTypeBot",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starSubscriptionTypeBot", Alias: (*Alias)(&t)})
 }
 
 // StarSubscriptionTypeChannel Describes a subscription to a channel chat
@@ -48376,10 +43435,7 @@ func (t StarSubscriptionTypeChannel) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starSubscriptionTypeChannel",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starSubscriptionTypeChannel", Alias: (*Alias)(&t)})
 }
 
 // StartLiveStoryResultFail The live story failed to post with an error to be handled
@@ -48399,10 +43455,7 @@ func (t StartLiveStoryResultFail) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "startLiveStoryResultFail",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "startLiveStoryResultFail", Alias: (*Alias)(&t)})
 }
 
 func (t *StartLiveStoryResultFail) UnmarshalJSON(data []byte) error {
@@ -48445,10 +43498,7 @@ func (t StartLiveStoryResultOk) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "startLiveStoryResultOk",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "startLiveStoryResultOk", Alias: (*Alias)(&t)})
 }
 
 // StarTransaction Represents a transaction changing the amount of owned Telegram Stars
@@ -48474,10 +43524,7 @@ func (t StarTransaction) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starTransaction",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starTransaction", Alias: (*Alias)(&t)})
 }
 
 func (t *StarTransaction) UnmarshalJSON(data []byte) error {
@@ -48522,10 +43569,7 @@ func (t StarTransactions) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starTransactions",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starTransactions", Alias: (*Alias)(&t)})
 }
 
 // StarTransactionTypeAffiliateProgramCommission The transaction is a receiving of a commission from an affiliate program; relevant for regular users, bots and channel chats only
@@ -48547,10 +43591,7 @@ func (t StarTransactionTypeAffiliateProgramCommission) MarshalJSON() ([]byte, er
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starTransactionTypeAffiliateProgramCommission",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starTransactionTypeAffiliateProgramCommission", Alias: (*Alias)(&t)})
 }
 
 // StarTransactionTypeAppStoreDeposit The transaction is a deposit of Telegram Stars from App Store; relevant for regular users only
@@ -48568,10 +43609,7 @@ func (t StarTransactionTypeAppStoreDeposit) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starTransactionTypeAppStoreDeposit",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starTransactionTypeAppStoreDeposit", Alias: (*Alias)(&t)})
 }
 
 // StarTransactionTypeBotInvoicePurchase The transaction is a purchase of a product from a bot or a business account by the current user; relevant for regular users only
@@ -48593,10 +43631,7 @@ func (t StarTransactionTypeBotInvoicePurchase) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starTransactionTypeBotInvoicePurchase",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starTransactionTypeBotInvoicePurchase", Alias: (*Alias)(&t)})
 }
 
 // StarTransactionTypeBotInvoiceSale The transaction is a sale of a product by the bot; relevant for bots only
@@ -48622,10 +43657,7 @@ func (t StarTransactionTypeBotInvoiceSale) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starTransactionTypeBotInvoiceSale",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starTransactionTypeBotInvoiceSale", Alias: (*Alias)(&t)})
 }
 
 // StarTransactionTypeBotPaidMediaPurchase The transaction is a purchase of paid media from a bot or a business account by the current user; relevant for regular users only
@@ -48647,10 +43679,7 @@ func (t StarTransactionTypeBotPaidMediaPurchase) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starTransactionTypeBotPaidMediaPurchase",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starTransactionTypeBotPaidMediaPurchase", Alias: (*Alias)(&t)})
 }
 
 func (t *StarTransactionTypeBotPaidMediaPurchase) UnmarshalJSON(data []byte) error {
@@ -48702,10 +43731,7 @@ func (t StarTransactionTypeBotPaidMediaSale) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starTransactionTypeBotPaidMediaSale",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starTransactionTypeBotPaidMediaSale", Alias: (*Alias)(&t)})
 }
 
 func (t *StarTransactionTypeBotPaidMediaSale) UnmarshalJSON(data []byte) error {
@@ -48755,10 +43781,7 @@ func (t StarTransactionTypeBotSubscriptionPurchase) MarshalJSON() ([]byte, error
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starTransactionTypeBotSubscriptionPurchase",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starTransactionTypeBotSubscriptionPurchase", Alias: (*Alias)(&t)})
 }
 
 // StarTransactionTypeBotSubscriptionSale The transaction is a sale of a subscription by the bot; relevant for bots only
@@ -48786,10 +43809,7 @@ func (t StarTransactionTypeBotSubscriptionSale) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starTransactionTypeBotSubscriptionSale",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starTransactionTypeBotSubscriptionSale", Alias: (*Alias)(&t)})
 }
 
 // StarTransactionTypeBusinessBotTransferReceive The transaction is a transfer of Telegram Stars from a business account; relevant for bots only
@@ -48809,10 +43829,7 @@ func (t StarTransactionTypeBusinessBotTransferReceive) MarshalJSON() ([]byte, er
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starTransactionTypeBusinessBotTransferReceive",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starTransactionTypeBusinessBotTransferReceive", Alias: (*Alias)(&t)})
 }
 
 // StarTransactionTypeBusinessBotTransferSend The transaction is a transfer of Telegram Stars to a business bot; relevant for regular users only
@@ -48832,10 +43849,7 @@ func (t StarTransactionTypeBusinessBotTransferSend) MarshalJSON() ([]byte, error
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starTransactionTypeBusinessBotTransferSend",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starTransactionTypeBusinessBotTransferSend", Alias: (*Alias)(&t)})
 }
 
 // StarTransactionTypeChannelPaidMediaPurchase The transaction is a purchase of paid media from a channel by the current user; relevant for regular users only
@@ -48859,10 +43873,7 @@ func (t StarTransactionTypeChannelPaidMediaPurchase) MarshalJSON() ([]byte, erro
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starTransactionTypeChannelPaidMediaPurchase",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starTransactionTypeChannelPaidMediaPurchase", Alias: (*Alias)(&t)})
 }
 
 func (t *StarTransactionTypeChannelPaidMediaPurchase) UnmarshalJSON(data []byte) error {
@@ -48912,10 +43923,7 @@ func (t StarTransactionTypeChannelPaidMediaSale) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starTransactionTypeChannelPaidMediaSale",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starTransactionTypeChannelPaidMediaSale", Alias: (*Alias)(&t)})
 }
 
 func (t *StarTransactionTypeChannelPaidMediaSale) UnmarshalJSON(data []byte) error {
@@ -48963,10 +43971,7 @@ func (t StarTransactionTypeChannelPaidReactionReceive) MarshalJSON() ([]byte, er
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starTransactionTypeChannelPaidReactionReceive",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starTransactionTypeChannelPaidReactionReceive", Alias: (*Alias)(&t)})
 }
 
 // StarTransactionTypeChannelPaidReactionSend The transaction is a sending of a paid reaction to a message in a channel chat by the current user; relevant for regular users only
@@ -48988,10 +43993,7 @@ func (t StarTransactionTypeChannelPaidReactionSend) MarshalJSON() ([]byte, error
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starTransactionTypeChannelPaidReactionSend",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starTransactionTypeChannelPaidReactionSend", Alias: (*Alias)(&t)})
 }
 
 // StarTransactionTypeChannelSubscriptionPurchase The transaction is a purchase of a subscription to a channel chat by the current user; relevant for regular users only
@@ -49013,10 +44015,7 @@ func (t StarTransactionTypeChannelSubscriptionPurchase) MarshalJSON() ([]byte, e
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starTransactionTypeChannelSubscriptionPurchase",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starTransactionTypeChannelSubscriptionPurchase", Alias: (*Alias)(&t)})
 }
 
 // StarTransactionTypeChannelSubscriptionSale The transaction is a sale of a subscription by the channel chat; relevant for channel chats only
@@ -49038,10 +44037,7 @@ func (t StarTransactionTypeChannelSubscriptionSale) MarshalJSON() ([]byte, error
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starTransactionTypeChannelSubscriptionSale",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starTransactionTypeChannelSubscriptionSale", Alias: (*Alias)(&t)})
 }
 
 // StarTransactionTypeFragmentDeposit The transaction is a deposit of Telegram Stars from Fragment; relevant for regular users and bots only
@@ -49059,10 +44055,7 @@ func (t StarTransactionTypeFragmentDeposit) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starTransactionTypeFragmentDeposit",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starTransactionTypeFragmentDeposit", Alias: (*Alias)(&t)})
 }
 
 // StarTransactionTypeFragmentWithdrawal The transaction is a withdrawal of earned Telegram Stars to Fragment; relevant for regular users, bots, supergroup and channel chats only
@@ -49082,10 +44075,7 @@ func (t StarTransactionTypeFragmentWithdrawal) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starTransactionTypeFragmentWithdrawal",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starTransactionTypeFragmentWithdrawal", Alias: (*Alias)(&t)})
 }
 
 func (t *StarTransactionTypeFragmentWithdrawal) UnmarshalJSON(data []byte) error {
@@ -49130,10 +44120,7 @@ func (t StarTransactionTypeGiftAuctionBid) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starTransactionTypeGiftAuctionBid",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starTransactionTypeGiftAuctionBid", Alias: (*Alias)(&t)})
 }
 
 func (t *StarTransactionTypeGiftAuctionBid) UnmarshalJSON(data []byte) error {
@@ -49178,10 +44165,7 @@ func (t StarTransactionTypeGiftOriginalDetailsDrop) MarshalJSON() ([]byte, error
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starTransactionTypeGiftOriginalDetailsDrop",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starTransactionTypeGiftOriginalDetailsDrop", Alias: (*Alias)(&t)})
 }
 
 func (t *StarTransactionTypeGiftOriginalDetailsDrop) UnmarshalJSON(data []byte) error {
@@ -49226,10 +44210,7 @@ func (t StarTransactionTypeGiftPurchase) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starTransactionTypeGiftPurchase",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starTransactionTypeGiftPurchase", Alias: (*Alias)(&t)})
 }
 
 func (t *StarTransactionTypeGiftPurchase) UnmarshalJSON(data []byte) error {
@@ -49272,10 +44253,7 @@ func (t StarTransactionTypeGiftPurchaseOffer) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starTransactionTypeGiftPurchaseOffer",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starTransactionTypeGiftPurchaseOffer", Alias: (*Alias)(&t)})
 }
 
 // StarTransactionTypeGiftSale The transaction is a sale of a received gift; relevant for regular users and channel chats only
@@ -49297,10 +44275,7 @@ func (t StarTransactionTypeGiftSale) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starTransactionTypeGiftSale",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starTransactionTypeGiftSale", Alias: (*Alias)(&t)})
 }
 
 // StarTransactionTypeGiftTransfer The transaction is a transfer of an upgraded gift; relevant for regular users only
@@ -49322,10 +44297,7 @@ func (t StarTransactionTypeGiftTransfer) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starTransactionTypeGiftTransfer",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starTransactionTypeGiftTransfer", Alias: (*Alias)(&t)})
 }
 
 func (t *StarTransactionTypeGiftTransfer) UnmarshalJSON(data []byte) error {
@@ -49370,10 +44342,7 @@ func (t StarTransactionTypeGiftUpgrade) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starTransactionTypeGiftUpgrade",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starTransactionTypeGiftUpgrade", Alias: (*Alias)(&t)})
 }
 
 // StarTransactionTypeGiftUpgradePurchase The transaction is a purchase of an upgrade of a gift owned by another user or channel; relevant for regular users only
@@ -49395,10 +44364,7 @@ func (t StarTransactionTypeGiftUpgradePurchase) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starTransactionTypeGiftUpgradePurchase",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starTransactionTypeGiftUpgradePurchase", Alias: (*Alias)(&t)})
 }
 
 func (t *StarTransactionTypeGiftUpgradePurchase) UnmarshalJSON(data []byte) error {
@@ -49443,10 +44409,7 @@ func (t StarTransactionTypeGiveawayDeposit) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starTransactionTypeGiveawayDeposit",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starTransactionTypeGiveawayDeposit", Alias: (*Alias)(&t)})
 }
 
 // StarTransactionTypeGooglePlayDeposit The transaction is a deposit of Telegram Stars from Google Play; relevant for regular users only
@@ -49464,10 +44427,7 @@ func (t StarTransactionTypeGooglePlayDeposit) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starTransactionTypeGooglePlayDeposit",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starTransactionTypeGooglePlayDeposit", Alias: (*Alias)(&t)})
 }
 
 // StarTransactionTypePaidGroupCallMessageReceive The transaction is a receiving of a paid group call message; relevant for regular users and channel chats only
@@ -49491,10 +44451,7 @@ func (t StarTransactionTypePaidGroupCallMessageReceive) MarshalJSON() ([]byte, e
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starTransactionTypePaidGroupCallMessageReceive",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starTransactionTypePaidGroupCallMessageReceive", Alias: (*Alias)(&t)})
 }
 
 func (t *StarTransactionTypePaidGroupCallMessageReceive) UnmarshalJSON(data []byte) error {
@@ -49537,10 +44494,7 @@ func (t StarTransactionTypePaidGroupCallMessageSend) MarshalJSON() ([]byte, erro
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starTransactionTypePaidGroupCallMessageSend",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starTransactionTypePaidGroupCallMessageSend", Alias: (*Alias)(&t)})
 }
 
 // StarTransactionTypePaidGroupCallReactionReceive The transaction is a receiving of a paid group call reaction; relevant for regular users and channel chats only
@@ -49564,10 +44518,7 @@ func (t StarTransactionTypePaidGroupCallReactionReceive) MarshalJSON() ([]byte, 
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starTransactionTypePaidGroupCallReactionReceive",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starTransactionTypePaidGroupCallReactionReceive", Alias: (*Alias)(&t)})
 }
 
 func (t *StarTransactionTypePaidGroupCallReactionReceive) UnmarshalJSON(data []byte) error {
@@ -49610,10 +44561,7 @@ func (t StarTransactionTypePaidGroupCallReactionSend) MarshalJSON() ([]byte, err
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starTransactionTypePaidGroupCallReactionSend",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starTransactionTypePaidGroupCallReactionSend", Alias: (*Alias)(&t)})
 }
 
 // StarTransactionTypePaidMessageReceive The transaction is a receiving of a paid message; relevant for regular users, supergroup and channel chats only
@@ -49639,10 +44587,7 @@ func (t StarTransactionTypePaidMessageReceive) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starTransactionTypePaidMessageReceive",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starTransactionTypePaidMessageReceive", Alias: (*Alias)(&t)})
 }
 
 func (t *StarTransactionTypePaidMessageReceive) UnmarshalJSON(data []byte) error {
@@ -49687,10 +44632,7 @@ func (t StarTransactionTypePaidMessageSend) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starTransactionTypePaidMessageSend",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starTransactionTypePaidMessageSend", Alias: (*Alias)(&t)})
 }
 
 // StarTransactionTypePremiumBotDeposit The transaction is a deposit of Telegram Stars from the Premium bot; relevant for regular users only
@@ -49708,10 +44650,7 @@ func (t StarTransactionTypePremiumBotDeposit) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starTransactionTypePremiumBotDeposit",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starTransactionTypePremiumBotDeposit", Alias: (*Alias)(&t)})
 }
 
 // StarTransactionTypePremiumPurchase The transaction is a purchase of Telegram Premium subscription; relevant for regular users and bots only
@@ -49735,10 +44674,7 @@ func (t StarTransactionTypePremiumPurchase) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starTransactionTypePremiumPurchase",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starTransactionTypePremiumPurchase", Alias: (*Alias)(&t)})
 }
 
 // StarTransactionTypePublicPostSearch The transaction is a payment for search of posts in public Telegram channels; relevant for regular users only
@@ -49756,10 +44692,7 @@ func (t StarTransactionTypePublicPostSearch) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starTransactionTypePublicPostSearch",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starTransactionTypePublicPostSearch", Alias: (*Alias)(&t)})
 }
 
 // StarTransactionTypeSuggestedPostPaymentReceive The transaction is a receiving of a payment for a suggested post by the channel chat; relevant for channel chats only
@@ -49779,10 +44712,7 @@ func (t StarTransactionTypeSuggestedPostPaymentReceive) MarshalJSON() ([]byte, e
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starTransactionTypeSuggestedPostPaymentReceive",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starTransactionTypeSuggestedPostPaymentReceive", Alias: (*Alias)(&t)})
 }
 
 // StarTransactionTypeSuggestedPostPaymentSend The transaction is a payment for a suggested post; relevant for regular users only
@@ -49802,10 +44732,7 @@ func (t StarTransactionTypeSuggestedPostPaymentSend) MarshalJSON() ([]byte, erro
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starTransactionTypeSuggestedPostPaymentSend",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starTransactionTypeSuggestedPostPaymentSend", Alias: (*Alias)(&t)})
 }
 
 // StarTransactionTypeTelegramAdsWithdrawal The transaction is a withdrawal of earned Telegram Stars to Telegram Ad platform; relevant for bots and channel chats only
@@ -49823,10 +44750,7 @@ func (t StarTransactionTypeTelegramAdsWithdrawal) MarshalJSON() ([]byte, error) 
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starTransactionTypeTelegramAdsWithdrawal",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starTransactionTypeTelegramAdsWithdrawal", Alias: (*Alias)(&t)})
 }
 
 // StarTransactionTypeTelegramApiUsage The transaction is a payment for Telegram API usage; relevant for bots only
@@ -49846,10 +44770,7 @@ func (t StarTransactionTypeTelegramApiUsage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starTransactionTypeTelegramApiUsage",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starTransactionTypeTelegramApiUsage", Alias: (*Alias)(&t)})
 }
 
 // StarTransactionTypeUnsupported The transaction is a transaction of an unsupported type
@@ -49867,10 +44788,7 @@ func (t StarTransactionTypeUnsupported) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starTransactionTypeUnsupported",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starTransactionTypeUnsupported", Alias: (*Alias)(&t)})
 }
 
 // StarTransactionTypeUpgradedGiftPurchase The transaction is a purchase of an upgraded gift for some user or channel; relevant for regular users only
@@ -49892,10 +44810,7 @@ func (t StarTransactionTypeUpgradedGiftPurchase) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starTransactionTypeUpgradedGiftPurchase",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starTransactionTypeUpgradedGiftPurchase", Alias: (*Alias)(&t)})
 }
 
 // StarTransactionTypeUpgradedGiftSale The transaction is a sale of an upgraded gift; relevant for regular users only
@@ -49923,10 +44838,7 @@ func (t StarTransactionTypeUpgradedGiftSale) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starTransactionTypeUpgradedGiftSale",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starTransactionTypeUpgradedGiftSale", Alias: (*Alias)(&t)})
 }
 
 // StarTransactionTypeUserDeposit The transaction is a deposit of Telegram Stars by another user; relevant for regular users only
@@ -49948,10 +44860,7 @@ func (t StarTransactionTypeUserDeposit) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "starTransactionTypeUserDeposit",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "starTransactionTypeUserDeposit", Alias: (*Alias)(&t)})
 }
 
 // StatisticalGraphAsync The graph data to be asynchronously loaded through getStatisticalGraph
@@ -49971,10 +44880,7 @@ func (t StatisticalGraphAsync) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "statisticalGraphAsync",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "statisticalGraphAsync", Alias: (*Alias)(&t)})
 }
 
 // StatisticalGraphData A graph data
@@ -49996,10 +44902,7 @@ func (t StatisticalGraphData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "statisticalGraphData",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "statisticalGraphData", Alias: (*Alias)(&t)})
 }
 
 // StatisticalGraphError An error message to be shown to the user instead of the graph
@@ -50019,10 +44922,7 @@ func (t StatisticalGraphError) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "statisticalGraphError",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "statisticalGraphError", Alias: (*Alias)(&t)})
 }
 
 // StatisticalValue A value with information about its recent changes
@@ -50044,10 +44944,7 @@ func (t StatisticalValue) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "statisticalValue",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "statisticalValue", Alias: (*Alias)(&t)})
 }
 
 // Sticker Describes a sticker
@@ -50081,10 +44978,7 @@ func (t Sticker) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "sticker",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "sticker", Alias: (*Alias)(&t)})
 }
 
 func (t *Sticker) UnmarshalJSON(data []byte) error {
@@ -50133,10 +45027,7 @@ func (t StickerFormatTgs) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "stickerFormatTgs",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "stickerFormatTgs", Alias: (*Alias)(&t)})
 }
 
 // StickerFormatWebm The sticker is a video in WEBM format
@@ -50154,10 +45045,7 @@ func (t StickerFormatWebm) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "stickerFormatWebm",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "stickerFormatWebm", Alias: (*Alias)(&t)})
 }
 
 // StickerFormatWebp The sticker is an image in WEBP format
@@ -50175,10 +45063,7 @@ func (t StickerFormatWebp) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "stickerFormatWebp",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "stickerFormatWebp", Alias: (*Alias)(&t)})
 }
 
 // StickerFullTypeCustomEmoji The sticker is a custom emoji to be used inside message text and caption. Currently, only Telegram Premium users can use custom emoji
@@ -50200,10 +45085,7 @@ func (t StickerFullTypeCustomEmoji) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "stickerFullTypeCustomEmoji",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "stickerFullTypeCustomEmoji", Alias: (*Alias)(&t)})
 }
 
 // StickerFullTypeMask The sticker is a mask in WEBP format to be placed on photos or videos
@@ -50223,10 +45105,7 @@ func (t StickerFullTypeMask) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "stickerFullTypeMask",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "stickerFullTypeMask", Alias: (*Alias)(&t)})
 }
 
 // StickerFullTypeRegular The sticker is a regular sticker
@@ -50246,10 +45125,7 @@ func (t StickerFullTypeRegular) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "stickerFullTypeRegular",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "stickerFullTypeRegular", Alias: (*Alias)(&t)})
 }
 
 // Stickers Represents a list of stickers
@@ -50267,10 +45143,7 @@ func (t Stickers) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "stickers",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "stickers", Alias: (*Alias)(&t)})
 }
 
 // StickerSet Represents a sticker set
@@ -50316,10 +45189,7 @@ func (t StickerSet) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "stickerSet",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "stickerSet", Alias: (*Alias)(&t)})
 }
 
 func (t *StickerSet) UnmarshalJSON(data []byte) error {
@@ -50388,10 +45258,7 @@ func (t StickerSetInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "stickerSetInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "stickerSetInfo", Alias: (*Alias)(&t)})
 }
 
 func (t *StickerSetInfo) UnmarshalJSON(data []byte) error {
@@ -50434,10 +45301,7 @@ func (t StickerSets) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "stickerSets",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "stickerSets", Alias: (*Alias)(&t)})
 }
 
 // StickerTypeCustomEmoji The sticker is a custom emoji to be used inside message text and caption
@@ -50455,10 +45319,7 @@ func (t StickerTypeCustomEmoji) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "stickerTypeCustomEmoji",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "stickerTypeCustomEmoji", Alias: (*Alias)(&t)})
 }
 
 // StickerTypeMask The sticker is a mask in WEBP format to be placed on photos or videos
@@ -50476,10 +45337,7 @@ func (t StickerTypeMask) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "stickerTypeMask",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "stickerTypeMask", Alias: (*Alias)(&t)})
 }
 
 // StickerTypeRegular The sticker is a regular sticker
@@ -50497,10 +45355,7 @@ func (t StickerTypeRegular) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "stickerTypeRegular",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "stickerTypeRegular", Alias: (*Alias)(&t)})
 }
 
 // StorageStatistics Contains the exact storage usage statistics split by chats and file type
@@ -50522,10 +45377,7 @@ func (t StorageStatistics) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "storageStatistics",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "storageStatistics", Alias: (*Alias)(&t)})
 }
 
 // StorageStatisticsByChat Contains the storage usage statistics for a specific chat
@@ -50549,10 +45401,7 @@ func (t StorageStatisticsByChat) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "storageStatisticsByChat",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "storageStatisticsByChat", Alias: (*Alias)(&t)})
 }
 
 // StorageStatisticsByFileType Contains the storage usage statistics for a specific file type
@@ -50574,10 +45423,7 @@ func (t StorageStatisticsByFileType) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "storageStatisticsByFileType",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "storageStatisticsByFileType", Alias: (*Alias)(&t)})
 }
 
 func (t *StorageStatisticsByFileType) UnmarshalJSON(data []byte) error {
@@ -50626,10 +45472,7 @@ func (t StorageStatisticsFast) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "storageStatisticsFast",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "storageStatisticsFast", Alias: (*Alias)(&t)})
 }
 
 // StorePaymentPurposeGiftedStars The user buying Telegram Stars for other users
@@ -50655,10 +45498,7 @@ func (t StorePaymentPurposeGiftedStars) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "storePaymentPurposeGiftedStars",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "storePaymentPurposeGiftedStars", Alias: (*Alias)(&t)})
 }
 
 // StorePaymentPurposePremiumGift The user gifting Telegram Premium to another user
@@ -50684,10 +45524,7 @@ func (t StorePaymentPurposePremiumGift) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "storePaymentPurposePremiumGift",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "storePaymentPurposePremiumGift", Alias: (*Alias)(&t)})
 }
 
 // StorePaymentPurposePremiumGiftCodes The user boosting a chat by creating Telegram Premium gift codes for other users
@@ -50715,10 +45552,7 @@ func (t StorePaymentPurposePremiumGiftCodes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "storePaymentPurposePremiumGiftCodes",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "storePaymentPurposePremiumGiftCodes", Alias: (*Alias)(&t)})
 }
 
 // StorePaymentPurposePremiumGiveaway The user creating a Telegram Premium giveaway
@@ -50742,10 +45576,7 @@ func (t StorePaymentPurposePremiumGiveaway) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "storePaymentPurposePremiumGiveaway",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "storePaymentPurposePremiumGiveaway", Alias: (*Alias)(&t)})
 }
 
 // StorePaymentPurposePremiumSubscription The user subscribing to Telegram Premium
@@ -50767,10 +45598,7 @@ func (t StorePaymentPurposePremiumSubscription) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "storePaymentPurposePremiumSubscription",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "storePaymentPurposePremiumSubscription", Alias: (*Alias)(&t)})
 }
 
 // StorePaymentPurposeStarGiveaway The user creating a Telegram Star giveaway
@@ -50798,10 +45626,7 @@ func (t StorePaymentPurposeStarGiveaway) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "storePaymentPurposeStarGiveaway",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "storePaymentPurposeStarGiveaway", Alias: (*Alias)(&t)})
 }
 
 // StorePaymentPurposeStars The user buying Telegram Stars
@@ -50827,10 +45652,7 @@ func (t StorePaymentPurposeStars) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "storePaymentPurposeStars",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "storePaymentPurposeStars", Alias: (*Alias)(&t)})
 }
 
 // StoreTransactionAppStore A purchase through App Store
@@ -50850,10 +45672,7 @@ func (t StoreTransactionAppStore) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "storeTransactionAppStore",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "storeTransactionAppStore", Alias: (*Alias)(&t)})
 }
 
 // StoreTransactionGooglePlay A purchase through Google Play
@@ -50877,10 +45696,7 @@ func (t StoreTransactionGooglePlay) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "storeTransactionGooglePlay",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "storeTransactionGooglePlay", Alias: (*Alias)(&t)})
 }
 
 // Stories Represents a list of stories
@@ -50902,10 +45718,7 @@ func (t Stories) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "stories",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "stories", Alias: (*Alias)(&t)})
 }
 
 // Story Represents a story
@@ -50975,10 +45788,7 @@ func (t Story) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "story",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "story", Alias: (*Alias)(&t)})
 }
 
 func (t *Story) UnmarshalJSON(data []byte) error {
@@ -51049,10 +45859,7 @@ func (t StoryAlbum) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "storyAlbum",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "storyAlbum", Alias: (*Alias)(&t)})
 }
 
 // StoryAlbums Represents a list of story albums
@@ -51070,10 +45877,7 @@ func (t StoryAlbums) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "storyAlbums",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "storyAlbums", Alias: (*Alias)(&t)})
 }
 
 // StoryArea Describes a clickable rectangle area on a story media
@@ -51093,10 +45897,7 @@ func (t StoryArea) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "storyArea",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "storyArea", Alias: (*Alias)(&t)})
 }
 
 func (t *StoryArea) UnmarshalJSON(data []byte) error {
@@ -51147,10 +45948,7 @@ func (t StoryAreaPosition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "storyAreaPosition",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "storyAreaPosition", Alias: (*Alias)(&t)})
 }
 
 // StoryAreaTypeLink An area pointing to a HTTP or tg:// link
@@ -51170,10 +45968,7 @@ func (t StoryAreaTypeLink) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "storyAreaTypeLink",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "storyAreaTypeLink", Alias: (*Alias)(&t)})
 }
 
 // StoryAreaTypeLocation An area pointing to a location
@@ -51195,10 +45990,7 @@ func (t StoryAreaTypeLocation) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "storyAreaTypeLocation",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "storyAreaTypeLocation", Alias: (*Alias)(&t)})
 }
 
 // StoryAreaTypeMessage An area pointing to a message
@@ -51220,10 +46012,7 @@ func (t StoryAreaTypeMessage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "storyAreaTypeMessage",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "storyAreaTypeMessage", Alias: (*Alias)(&t)})
 }
 
 // StoryAreaTypeSuggestedReaction An area pointing to a suggested reaction. App needs to show a clickable reaction on the area and call setStoryReaction when the area is clicked
@@ -51249,10 +46038,7 @@ func (t StoryAreaTypeSuggestedReaction) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "storyAreaTypeSuggestedReaction",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "storyAreaTypeSuggestedReaction", Alias: (*Alias)(&t)})
 }
 
 func (t *StoryAreaTypeSuggestedReaction) UnmarshalJSON(data []byte) error {
@@ -51295,10 +46081,7 @@ func (t StoryAreaTypeUpgradedGift) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "storyAreaTypeUpgradedGift",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "storyAreaTypeUpgradedGift", Alias: (*Alias)(&t)})
 }
 
 // StoryAreaTypeVenue An area pointing to a venue
@@ -51318,10 +46101,7 @@ func (t StoryAreaTypeVenue) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "storyAreaTypeVenue",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "storyAreaTypeVenue", Alias: (*Alias)(&t)})
 }
 
 // StoryAreaTypeWeather An area with information about weather
@@ -51345,10 +46125,7 @@ func (t StoryAreaTypeWeather) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "storyAreaTypeWeather",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "storyAreaTypeWeather", Alias: (*Alias)(&t)})
 }
 
 // StoryContentLive A live story
@@ -51370,10 +46147,7 @@ func (t StoryContentLive) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "storyContentLive",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "storyContentLive", Alias: (*Alias)(&t)})
 }
 
 // StoryContentPhoto A photo story
@@ -51393,10 +46167,7 @@ func (t StoryContentPhoto) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "storyContentPhoto",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "storyContentPhoto", Alias: (*Alias)(&t)})
 }
 
 // StoryContentTypeLive A live story
@@ -51414,10 +46185,7 @@ func (t StoryContentTypeLive) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "storyContentTypeLive",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "storyContentTypeLive", Alias: (*Alias)(&t)})
 }
 
 // StoryContentTypePhoto A photo story
@@ -51435,10 +46203,7 @@ func (t StoryContentTypePhoto) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "storyContentTypePhoto",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "storyContentTypePhoto", Alias: (*Alias)(&t)})
 }
 
 // StoryContentTypeUnsupported A story of unknown content type
@@ -51456,10 +46221,7 @@ func (t StoryContentTypeUnsupported) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "storyContentTypeUnsupported",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "storyContentTypeUnsupported", Alias: (*Alias)(&t)})
 }
 
 // StoryContentTypeVideo A video story
@@ -51477,10 +46239,7 @@ func (t StoryContentTypeVideo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "storyContentTypeVideo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "storyContentTypeVideo", Alias: (*Alias)(&t)})
 }
 
 // StoryContentUnsupported A story content that is not supported in the current TDLib version
@@ -51498,10 +46257,7 @@ func (t StoryContentUnsupported) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "storyContentUnsupported",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "storyContentUnsupported", Alias: (*Alias)(&t)})
 }
 
 // StoryContentVideo A video story
@@ -51523,10 +46279,7 @@ func (t StoryContentVideo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "storyContentVideo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "storyContentVideo", Alias: (*Alias)(&t)})
 }
 
 // StoryFullId Contains identifier of a story along with identifier of the chat that posted it
@@ -51546,10 +46299,7 @@ func (t StoryFullId) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "storyFullId",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "storyFullId", Alias: (*Alias)(&t)})
 }
 
 // StoryInfo Contains basic information about a story
@@ -51573,10 +46323,7 @@ func (t StoryInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "storyInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "storyInfo", Alias: (*Alias)(&t)})
 }
 
 // StoryInteraction Represents interaction with a story
@@ -51600,10 +46347,7 @@ func (t StoryInteraction) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "storyInteraction",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "storyInteraction", Alias: (*Alias)(&t)})
 }
 
 func (t *StoryInteraction) UnmarshalJSON(data []byte) error {
@@ -51666,10 +46410,7 @@ func (t StoryInteractionInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "storyInteractionInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "storyInteractionInfo", Alias: (*Alias)(&t)})
 }
 
 // StoryInteractions Represents a list of interactions with a story
@@ -51695,10 +46436,7 @@ func (t StoryInteractions) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "storyInteractions",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "storyInteractions", Alias: (*Alias)(&t)})
 }
 
 // StoryInteractionTypeForward A forward of the story as a message
@@ -51718,10 +46456,7 @@ func (t StoryInteractionTypeForward) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "storyInteractionTypeForward",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "storyInteractionTypeForward", Alias: (*Alias)(&t)})
 }
 
 // StoryInteractionTypeRepost A repost of the story as a story
@@ -51741,10 +46476,7 @@ func (t StoryInteractionTypeRepost) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "storyInteractionTypeRepost",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "storyInteractionTypeRepost", Alias: (*Alias)(&t)})
 }
 
 // StoryInteractionTypeView A view of the story
@@ -51764,10 +46496,7 @@ func (t StoryInteractionTypeView) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "storyInteractionTypeView",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "storyInteractionTypeView", Alias: (*Alias)(&t)})
 }
 
 func (t *StoryInteractionTypeView) UnmarshalJSON(data []byte) error {
@@ -51808,10 +46537,7 @@ func (t StoryListArchive) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "storyListArchive",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "storyListArchive", Alias: (*Alias)(&t)})
 }
 
 // StoryListMain The list of stories, shown in the main chat list and folder chat lists
@@ -51829,10 +46555,7 @@ func (t StoryListMain) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "storyListMain",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "storyListMain", Alias: (*Alias)(&t)})
 }
 
 // StoryOriginHiddenUser The original story was posted by an unknown user
@@ -51852,10 +46575,7 @@ func (t StoryOriginHiddenUser) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "storyOriginHiddenUser",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "storyOriginHiddenUser", Alias: (*Alias)(&t)})
 }
 
 // StoryOriginPublicStory The original story was a public story that was posted by a known chat
@@ -51877,10 +46597,7 @@ func (t StoryOriginPublicStory) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "storyOriginPublicStory",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "storyOriginPublicStory", Alias: (*Alias)(&t)})
 }
 
 // StoryPrivacySettingsCloseFriends The story can be viewed by all close friends
@@ -51898,10 +46615,7 @@ func (t StoryPrivacySettingsCloseFriends) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "storyPrivacySettingsCloseFriends",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "storyPrivacySettingsCloseFriends", Alias: (*Alias)(&t)})
 }
 
 // StoryPrivacySettingsContacts The story can be viewed by all contacts except chosen users
@@ -51921,10 +46635,7 @@ func (t StoryPrivacySettingsContacts) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "storyPrivacySettingsContacts",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "storyPrivacySettingsContacts", Alias: (*Alias)(&t)})
 }
 
 // StoryPrivacySettingsEveryone The story can be viewed by everyone
@@ -51944,10 +46655,7 @@ func (t StoryPrivacySettingsEveryone) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "storyPrivacySettingsEveryone",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "storyPrivacySettingsEveryone", Alias: (*Alias)(&t)})
 }
 
 // StoryPrivacySettingsSelectedUsers The story can be viewed by certain specified users
@@ -51967,10 +46675,7 @@ func (t StoryPrivacySettingsSelectedUsers) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "storyPrivacySettingsSelectedUsers",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "storyPrivacySettingsSelectedUsers", Alias: (*Alias)(&t)})
 }
 
 // StoryRepostInfo Contains information about original story that was reposted
@@ -51990,10 +46695,7 @@ func (t StoryRepostInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "storyRepostInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "storyRepostInfo", Alias: (*Alias)(&t)})
 }
 
 func (t *StoryRepostInfo) UnmarshalJSON(data []byte) error {
@@ -52036,10 +46738,7 @@ func (t StoryStatistics) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "storyStatistics",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "storyStatistics", Alias: (*Alias)(&t)})
 }
 
 func (t *StoryStatistics) UnmarshalJSON(data []byte) error {
@@ -52106,10 +46805,7 @@ func (t StoryVideo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "storyVideo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "storyVideo", Alias: (*Alias)(&t)})
 }
 
 // SuggestedActionAddLoginPasskey Suggests the user to add a passkey for login using addLoginPasskey
@@ -52127,10 +46823,7 @@ func (t SuggestedActionAddLoginPasskey) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "suggestedActionAddLoginPasskey",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "suggestedActionAddLoginPasskey", Alias: (*Alias)(&t)})
 }
 
 // SuggestedActionCheckPassword Suggests the user to check whether they still remember their 2-step verification password
@@ -52148,10 +46841,7 @@ func (t SuggestedActionCheckPassword) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "suggestedActionCheckPassword",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "suggestedActionCheckPassword", Alias: (*Alias)(&t)})
 }
 
 // SuggestedActionCheckPhoneNumber Suggests the user to check whether authorization phone number is correct and change the phone number if it is inaccessible
@@ -52169,10 +46859,7 @@ func (t SuggestedActionCheckPhoneNumber) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "suggestedActionCheckPhoneNumber",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "suggestedActionCheckPhoneNumber", Alias: (*Alias)(&t)})
 }
 
 // SuggestedActionConvertToBroadcastGroup Suggests the user to convert specified supergroup to a broadcast group
@@ -52192,10 +46879,7 @@ func (t SuggestedActionConvertToBroadcastGroup) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "suggestedActionConvertToBroadcastGroup",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "suggestedActionConvertToBroadcastGroup", Alias: (*Alias)(&t)})
 }
 
 // SuggestedActionCustom A custom suggestion to be shown at the top of the chat list
@@ -52221,10 +46905,7 @@ func (t SuggestedActionCustom) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "suggestedActionCustom",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "suggestedActionCustom", Alias: (*Alias)(&t)})
 }
 
 // SuggestedActionEnableArchiveAndMuteNewChats Suggests the user to enable archive_and_mute_new_chats_from_unknown_users setting in archiveChatListSettings
@@ -52242,10 +46923,7 @@ func (t SuggestedActionEnableArchiveAndMuteNewChats) MarshalJSON() ([]byte, erro
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "suggestedActionEnableArchiveAndMuteNewChats",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "suggestedActionEnableArchiveAndMuteNewChats", Alias: (*Alias)(&t)})
 }
 
 // SuggestedActionExtendPremium Suggests the user to extend their expiring Telegram Premium subscription
@@ -52265,10 +46943,7 @@ func (t SuggestedActionExtendPremium) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "suggestedActionExtendPremium",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "suggestedActionExtendPremium", Alias: (*Alias)(&t)})
 }
 
 // SuggestedActionExtendStarSubscriptions Suggests the user to extend their expiring Telegram Star subscriptions. Call getStarSubscriptions with only_expiring == true
@@ -52286,10 +46961,7 @@ func (t SuggestedActionExtendStarSubscriptions) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "suggestedActionExtendStarSubscriptions",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "suggestedActionExtendStarSubscriptions", Alias: (*Alias)(&t)})
 }
 
 // SuggestedActionGiftPremiumForChristmas Suggests the user to gift Telegram Premium to friends for Christmas
@@ -52307,10 +46979,7 @@ func (t SuggestedActionGiftPremiumForChristmas) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "suggestedActionGiftPremiumForChristmas",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "suggestedActionGiftPremiumForChristmas", Alias: (*Alias)(&t)})
 }
 
 // SuggestedActionRestorePremium Suggests the user to restore a recently expired Premium subscription
@@ -52328,10 +46997,7 @@ func (t SuggestedActionRestorePremium) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "suggestedActionRestorePremium",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "suggestedActionRestorePremium", Alias: (*Alias)(&t)})
 }
 
 // SuggestedActionSetBirthdate Suggests the user to set birthdate
@@ -52349,10 +47015,7 @@ func (t SuggestedActionSetBirthdate) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "suggestedActionSetBirthdate",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "suggestedActionSetBirthdate", Alias: (*Alias)(&t)})
 }
 
 // SuggestedActionSetLoginEmailAddress Suggests the user to add login email address. Call isLoginEmailAddressRequired, and then setLoginEmailAddress or checkLoginEmailAddressCode to change the login email address
@@ -52372,10 +47035,7 @@ func (t SuggestedActionSetLoginEmailAddress) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "suggestedActionSetLoginEmailAddress",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "suggestedActionSetLoginEmailAddress", Alias: (*Alias)(&t)})
 }
 
 // SuggestedActionSetPassword Suggests the user to set a 2-step verification password to be able to log in again
@@ -52395,10 +47055,7 @@ func (t SuggestedActionSetPassword) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "suggestedActionSetPassword",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "suggestedActionSetPassword", Alias: (*Alias)(&t)})
 }
 
 // SuggestedActionSetProfilePhoto Suggests the user to set profile photo
@@ -52416,10 +47073,7 @@ func (t SuggestedActionSetProfilePhoto) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "suggestedActionSetProfilePhoto",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "suggestedActionSetProfilePhoto", Alias: (*Alias)(&t)})
 }
 
 // SuggestedActionSubscribeToAnnualPremium Suggests the user to subscribe to the Premium subscription with annual payments
@@ -52437,10 +47091,7 @@ func (t SuggestedActionSubscribeToAnnualPremium) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "suggestedActionSubscribeToAnnualPremium",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "suggestedActionSubscribeToAnnualPremium", Alias: (*Alias)(&t)})
 }
 
 // SuggestedActionUpgradePremium Suggests the user to upgrade the Premium subscription from monthly payments to annual payments
@@ -52458,10 +47109,7 @@ func (t SuggestedActionUpgradePremium) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "suggestedActionUpgradePremium",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "suggestedActionUpgradePremium", Alias: (*Alias)(&t)})
 }
 
 // SuggestedActionViewChecksHint Suggests the user to view a hint about the meaning of one and two check marks on sent messages
@@ -52479,10 +47127,7 @@ func (t SuggestedActionViewChecksHint) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "suggestedActionViewChecksHint",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "suggestedActionViewChecksHint", Alias: (*Alias)(&t)})
 }
 
 // SuggestedPostInfo Contains information about a suggested post. If the post can be approved or declined, then changes to the post can be also suggested. Use sendMessage with reply to the message
@@ -52508,10 +47153,7 @@ func (t SuggestedPostInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "suggestedPostInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "suggestedPostInfo", Alias: (*Alias)(&t)})
 }
 
 func (t *SuggestedPostInfo) UnmarshalJSON(data []byte) error {
@@ -52562,10 +47204,7 @@ func (t SuggestedPostPriceGram) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "suggestedPostPriceGram",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "suggestedPostPriceGram", Alias: (*Alias)(&t)})
 }
 
 // SuggestedPostPriceStar Describes price of a suggested post in Telegram Stars
@@ -52585,10 +47224,7 @@ func (t SuggestedPostPriceStar) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "suggestedPostPriceStar",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "suggestedPostPriceStar", Alias: (*Alias)(&t)})
 }
 
 // SuggestedPostRefundReasonPaymentRefunded The post was refunded, because the payment for the post was refunded
@@ -52606,10 +47242,7 @@ func (t SuggestedPostRefundReasonPaymentRefunded) MarshalJSON() ([]byte, error) 
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "suggestedPostRefundReasonPaymentRefunded",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "suggestedPostRefundReasonPaymentRefunded", Alias: (*Alias)(&t)})
 }
 
 // SuggestedPostRefundReasonPostDeleted The post was refunded, because it was deleted by channel administrators in less than getOption("suggested_post_lifetime_min") seconds
@@ -52627,10 +47260,7 @@ func (t SuggestedPostRefundReasonPostDeleted) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "suggestedPostRefundReasonPostDeleted",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "suggestedPostRefundReasonPostDeleted", Alias: (*Alias)(&t)})
 }
 
 // SuggestedPostStateApproved The post was approved
@@ -52648,10 +47278,7 @@ func (t SuggestedPostStateApproved) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "suggestedPostStateApproved",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "suggestedPostStateApproved", Alias: (*Alias)(&t)})
 }
 
 // SuggestedPostStateDeclined The post was declined
@@ -52669,10 +47296,7 @@ func (t SuggestedPostStateDeclined) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "suggestedPostStateDeclined",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "suggestedPostStateDeclined", Alias: (*Alias)(&t)})
 }
 
 // SuggestedPostStatePending The post must be approved or declined
@@ -52690,10 +47314,7 @@ func (t SuggestedPostStatePending) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "suggestedPostStatePending",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "suggestedPostStatePending", Alias: (*Alias)(&t)})
 }
 
 // Supergroup Represents a supergroup or channel with zero or more members (subscribers in the case of channels)
@@ -52759,10 +47380,7 @@ func (t Supergroup) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "supergroup",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "supergroup", Alias: (*Alias)(&t)})
 }
 
 func (t *Supergroup) UnmarshalJSON(data []byte) error {
@@ -52893,10 +47511,7 @@ func (t SupergroupFullInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "supergroupFullInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "supergroupFullInfo", Alias: (*Alias)(&t)})
 }
 
 func (t *SupergroupFullInfo) UnmarshalJSON(data []byte) error {
@@ -52937,10 +47552,7 @@ func (t SupergroupMembersFilterAdministrators) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "supergroupMembersFilterAdministrators",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "supergroupMembersFilterAdministrators", Alias: (*Alias)(&t)})
 }
 
 // SupergroupMembersFilterBanned Returns users banned from the supergroup or channel; can be used only by administrators
@@ -52960,10 +47572,7 @@ func (t SupergroupMembersFilterBanned) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "supergroupMembersFilterBanned",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "supergroupMembersFilterBanned", Alias: (*Alias)(&t)})
 }
 
 // SupergroupMembersFilterBots Returns bot members of the supergroup or channel
@@ -52981,10 +47590,7 @@ func (t SupergroupMembersFilterBots) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "supergroupMembersFilterBots",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "supergroupMembersFilterBots", Alias: (*Alias)(&t)})
 }
 
 // SupergroupMembersFilterContacts Returns contacts of the current user who are members of the supergroup or channel
@@ -53004,10 +47610,7 @@ func (t SupergroupMembersFilterContacts) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "supergroupMembersFilterContacts",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "supergroupMembersFilterContacts", Alias: (*Alias)(&t)})
 }
 
 // SupergroupMembersFilterMention Returns users who can be mentioned in the supergroup
@@ -53029,10 +47632,7 @@ func (t SupergroupMembersFilterMention) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "supergroupMembersFilterMention",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "supergroupMembersFilterMention", Alias: (*Alias)(&t)})
 }
 
 func (t *SupergroupMembersFilterMention) UnmarshalJSON(data []byte) error {
@@ -53073,10 +47673,7 @@ func (t SupergroupMembersFilterRecent) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "supergroupMembersFilterRecent",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "supergroupMembersFilterRecent", Alias: (*Alias)(&t)})
 }
 
 // SupergroupMembersFilterRestricted Returns restricted supergroup members; can be used only by administrators
@@ -53096,10 +47693,7 @@ func (t SupergroupMembersFilterRestricted) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "supergroupMembersFilterRestricted",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "supergroupMembersFilterRestricted", Alias: (*Alias)(&t)})
 }
 
 // SupergroupMembersFilterSearch Used to search for supergroup or channel members via a (string) query
@@ -53119,10 +47713,7 @@ func (t SupergroupMembersFilterSearch) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "supergroupMembersFilterSearch",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "supergroupMembersFilterSearch", Alias: (*Alias)(&t)})
 }
 
 // TargetChatChosen The chat needs to be chosen by the user among chats of the specified types
@@ -53142,10 +47733,7 @@ func (t TargetChatChosen) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "targetChatChosen",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "targetChatChosen", Alias: (*Alias)(&t)})
 }
 
 // TargetChatCurrent The currently opened chat and forum topic must be kept
@@ -53163,10 +47751,7 @@ func (t TargetChatCurrent) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "targetChatCurrent",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "targetChatCurrent", Alias: (*Alias)(&t)})
 }
 
 // TargetChatInternalLink The chat needs to be open with the provided internal link
@@ -53186,10 +47771,7 @@ func (t TargetChatInternalLink) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "targetChatInternalLink",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "targetChatInternalLink", Alias: (*Alias)(&t)})
 }
 
 func (t *TargetChatInternalLink) UnmarshalJSON(data []byte) error {
@@ -53236,10 +47818,7 @@ func (t TargetChatTypes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "targetChatTypes",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "targetChatTypes", Alias: (*Alias)(&t)})
 }
 
 // TelegramPaymentPurposeGiftedStars The user buying Telegram Stars for other users
@@ -53265,10 +47844,7 @@ func (t TelegramPaymentPurposeGiftedStars) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "telegramPaymentPurposeGiftedStars",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "telegramPaymentPurposeGiftedStars", Alias: (*Alias)(&t)})
 }
 
 // TelegramPaymentPurposeJoinChat The user joins a chat and subscribes to regular payments in Telegram Stars
@@ -53288,10 +47864,7 @@ func (t TelegramPaymentPurposeJoinChat) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "telegramPaymentPurposeJoinChat",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "telegramPaymentPurposeJoinChat", Alias: (*Alias)(&t)})
 }
 
 // TelegramPaymentPurposePremiumGift The user gifting Telegram Premium to another user
@@ -53319,10 +47892,7 @@ func (t TelegramPaymentPurposePremiumGift) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "telegramPaymentPurposePremiumGift",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "telegramPaymentPurposePremiumGift", Alias: (*Alias)(&t)})
 }
 
 // TelegramPaymentPurposePremiumGiftCodes The user boosting a chat by creating Telegram Premium gift codes for other users
@@ -53352,10 +47922,7 @@ func (t TelegramPaymentPurposePremiumGiftCodes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "telegramPaymentPurposePremiumGiftCodes",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "telegramPaymentPurposePremiumGiftCodes", Alias: (*Alias)(&t)})
 }
 
 // TelegramPaymentPurposePremiumGiveaway The user creating a Telegram Premium giveaway
@@ -53383,10 +47950,7 @@ func (t TelegramPaymentPurposePremiumGiveaway) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "telegramPaymentPurposePremiumGiveaway",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "telegramPaymentPurposePremiumGiveaway", Alias: (*Alias)(&t)})
 }
 
 // TelegramPaymentPurposeStarGiveaway The user creating a Telegram Star giveaway
@@ -53414,10 +47978,7 @@ func (t TelegramPaymentPurposeStarGiveaway) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "telegramPaymentPurposeStarGiveaway",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "telegramPaymentPurposeStarGiveaway", Alias: (*Alias)(&t)})
 }
 
 // TelegramPaymentPurposeStars The user buying Telegram Stars
@@ -53443,10 +48004,7 @@ func (t TelegramPaymentPurposeStars) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "telegramPaymentPurposeStars",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "telegramPaymentPurposeStars", Alias: (*Alias)(&t)})
 }
 
 // TemporaryPasswordState Returns information about the availability of a temporary password, which can be used for payments
@@ -53466,10 +48024,7 @@ func (t TemporaryPasswordState) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "temporaryPasswordState",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "temporaryPasswordState", Alias: (*Alias)(&t)})
 }
 
 // TermsOfService Contains Telegram terms of service
@@ -53491,10 +48046,7 @@ func (t TermsOfService) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "termsOfService",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "termsOfService", Alias: (*Alias)(&t)})
 }
 
 // TestBytes A simple object containing a sequence of bytes; for testing only
@@ -53512,10 +48064,7 @@ func (t TestBytes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "testBytes",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "testBytes", Alias: (*Alias)(&t)})
 }
 
 // TestInt A simple object containing a number; for testing only
@@ -53533,10 +48082,7 @@ func (t TestInt) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "testInt",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "testInt", Alias: (*Alias)(&t)})
 }
 
 // TestString A simple object containing a string; for testing only
@@ -53554,10 +48100,7 @@ func (t TestString) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "testString",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "testString", Alias: (*Alias)(&t)})
 }
 
 // TestVectorInt A simple object containing a vector of numbers; for testing only
@@ -53575,10 +48118,7 @@ func (t TestVectorInt) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "testVectorInt",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "testVectorInt", Alias: (*Alias)(&t)})
 }
 
 // TestVectorIntObject A simple object containing a vector of objects that hold a number; for testing only
@@ -53596,10 +48136,7 @@ func (t TestVectorIntObject) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "testVectorIntObject",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "testVectorIntObject", Alias: (*Alias)(&t)})
 }
 
 // TestVectorString A simple object containing a vector of strings; for testing only
@@ -53617,10 +48154,7 @@ func (t TestVectorString) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "testVectorString",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "testVectorString", Alias: (*Alias)(&t)})
 }
 
 // TestVectorStringObject A simple object containing a vector of objects that hold a string; for testing only
@@ -53638,10 +48172,7 @@ func (t TestVectorStringObject) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "testVectorStringObject",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "testVectorStringObject", Alias: (*Alias)(&t)})
 }
 
 // Text Contains some text
@@ -53659,10 +48190,7 @@ func (t Text) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "text",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "text", Alias: (*Alias)(&t)})
 }
 
 // TextCompositionStyle Describes a style that can be used to compose a text
@@ -53696,10 +48224,7 @@ func (t TextCompositionStyle) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "textCompositionStyle",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "textCompositionStyle", Alias: (*Alias)(&t)})
 }
 
 // TextCompositionStyleExample Contains an example of text composition style usage
@@ -53719,10 +48244,7 @@ func (t TextCompositionStyleExample) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "textCompositionStyleExample",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "textCompositionStyleExample", Alias: (*Alias)(&t)})
 }
 
 // TextEntities Contains a list of text entities
@@ -53740,10 +48262,7 @@ func (t TextEntities) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "textEntities",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "textEntities", Alias: (*Alias)(&t)})
 }
 
 // TextEntity Represents a part of the text that needs to be formatted in some unusual way
@@ -53765,10 +48284,7 @@ func (t TextEntity) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "textEntity",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "textEntity", Alias: (*Alias)(&t)})
 }
 
 func (t *TextEntity) UnmarshalJSON(data []byte) error {
@@ -53809,10 +48325,7 @@ func (t TextEntityTypeBankCardNumber) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "textEntityTypeBankCardNumber",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "textEntityTypeBankCardNumber", Alias: (*Alias)(&t)})
 }
 
 // TextEntityTypeBlockQuote Text that must be formatted as if inside a blockquote HTML tag; not supported in secret chats
@@ -53830,10 +48343,7 @@ func (t TextEntityTypeBlockQuote) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "textEntityTypeBlockQuote",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "textEntityTypeBlockQuote", Alias: (*Alias)(&t)})
 }
 
 // TextEntityTypeBold A bold text
@@ -53851,10 +48361,7 @@ func (t TextEntityTypeBold) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "textEntityTypeBold",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "textEntityTypeBold", Alias: (*Alias)(&t)})
 }
 
 // TextEntityTypeBotCommand A bot command, beginning with "/"
@@ -53872,10 +48379,7 @@ func (t TextEntityTypeBotCommand) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "textEntityTypeBotCommand",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "textEntityTypeBotCommand", Alias: (*Alias)(&t)})
 }
 
 // TextEntityTypeCashtag A cashtag text, beginning with "$", consisting of capital English letters (e.g., "$USD"), and optionally containing a chat username at the end
@@ -53893,10 +48397,7 @@ func (t TextEntityTypeCashtag) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "textEntityTypeCashtag",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "textEntityTypeCashtag", Alias: (*Alias)(&t)})
 }
 
 // TextEntityTypeCode Text that must be formatted as if inside a code HTML tag
@@ -53914,10 +48415,7 @@ func (t TextEntityTypeCode) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "textEntityTypeCode",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "textEntityTypeCode", Alias: (*Alias)(&t)})
 }
 
 // TextEntityTypeCustomEmoji A custom emoji. The text behind a custom emoji must be an emoji. Only premium users can use premium custom emoji
@@ -53937,10 +48435,7 @@ func (t TextEntityTypeCustomEmoji) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "textEntityTypeCustomEmoji",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "textEntityTypeCustomEmoji", Alias: (*Alias)(&t)})
 }
 
 // TextEntityTypeDateTime A date and time
@@ -53962,10 +48457,7 @@ func (t TextEntityTypeDateTime) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "textEntityTypeDateTime",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "textEntityTypeDateTime", Alias: (*Alias)(&t)})
 }
 
 func (t *TextEntityTypeDateTime) UnmarshalJSON(data []byte) error {
@@ -54006,10 +48498,7 @@ func (t TextEntityTypeEmailAddress) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "textEntityTypeEmailAddress",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "textEntityTypeEmailAddress", Alias: (*Alias)(&t)})
 }
 
 // TextEntityTypeExpandableBlockQuote Text that must be formatted as if inside a blockquote HTML tag and collapsed by default to 3 lines with the ability to show full text; not supported in secret chats
@@ -54027,10 +48516,7 @@ func (t TextEntityTypeExpandableBlockQuote) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "textEntityTypeExpandableBlockQuote",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "textEntityTypeExpandableBlockQuote", Alias: (*Alias)(&t)})
 }
 
 // TextEntityTypeHashtag A hashtag text, beginning with "#" and optionally containing a chat username at the end
@@ -54048,10 +48534,7 @@ func (t TextEntityTypeHashtag) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "textEntityTypeHashtag",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "textEntityTypeHashtag", Alias: (*Alias)(&t)})
 }
 
 // TextEntityTypeItalic An italic text
@@ -54069,10 +48552,7 @@ func (t TextEntityTypeItalic) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "textEntityTypeItalic",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "textEntityTypeItalic", Alias: (*Alias)(&t)})
 }
 
 // TextEntityTypeMediaTimestamp A media timestamp
@@ -54092,10 +48572,7 @@ func (t TextEntityTypeMediaTimestamp) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "textEntityTypeMediaTimestamp",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "textEntityTypeMediaTimestamp", Alias: (*Alias)(&t)})
 }
 
 // TextEntityTypeMention A mention of a user, a supergroup, or a channel by their username
@@ -54113,10 +48590,7 @@ func (t TextEntityTypeMention) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "textEntityTypeMention",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "textEntityTypeMention", Alias: (*Alias)(&t)})
 }
 
 // TextEntityTypeMentionName A text shows instead of a raw mention of the user (e.g., when the user has no username)
@@ -54136,10 +48610,7 @@ func (t TextEntityTypeMentionName) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "textEntityTypeMentionName",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "textEntityTypeMentionName", Alias: (*Alias)(&t)})
 }
 
 // TextEntityTypePhoneNumber A phone number
@@ -54157,10 +48628,7 @@ func (t TextEntityTypePhoneNumber) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "textEntityTypePhoneNumber",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "textEntityTypePhoneNumber", Alias: (*Alias)(&t)})
 }
 
 // TextEntityTypePre Text that must be formatted as if inside a pre HTML tag
@@ -54178,10 +48646,7 @@ func (t TextEntityTypePre) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "textEntityTypePre",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "textEntityTypePre", Alias: (*Alias)(&t)})
 }
 
 // TextEntityTypePreCode Text that must be formatted as if inside pre, and code HTML tags
@@ -54201,10 +48666,7 @@ func (t TextEntityTypePreCode) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "textEntityTypePreCode",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "textEntityTypePreCode", Alias: (*Alias)(&t)})
 }
 
 // TextEntityTypeSpoiler A spoiler text
@@ -54222,10 +48684,7 @@ func (t TextEntityTypeSpoiler) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "textEntityTypeSpoiler",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "textEntityTypeSpoiler", Alias: (*Alias)(&t)})
 }
 
 // TextEntityTypeStrikethrough A strikethrough text
@@ -54243,10 +48702,7 @@ func (t TextEntityTypeStrikethrough) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "textEntityTypeStrikethrough",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "textEntityTypeStrikethrough", Alias: (*Alias)(&t)})
 }
 
 // TextEntityTypeTextUrl A text description shown instead of a raw URL
@@ -54266,10 +48722,7 @@ func (t TextEntityTypeTextUrl) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "textEntityTypeTextUrl",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "textEntityTypeTextUrl", Alias: (*Alias)(&t)})
 }
 
 // TextEntityTypeUnderline An underlined text
@@ -54287,10 +48740,7 @@ func (t TextEntityTypeUnderline) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "textEntityTypeUnderline",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "textEntityTypeUnderline", Alias: (*Alias)(&t)})
 }
 
 // TextEntityTypeUrl An HTTP URL
@@ -54308,10 +48758,7 @@ func (t TextEntityTypeUrl) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "textEntityTypeUrl",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "textEntityTypeUrl", Alias: (*Alias)(&t)})
 }
 
 // TextParseModeHTML The text uses HTML-style formatting. The same as Telegram Bot API "HTML" parse mode
@@ -54329,10 +48776,7 @@ func (t TextParseModeHTML) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "textParseModeHTML",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "textParseModeHTML", Alias: (*Alias)(&t)})
 }
 
 // TextParseModeMarkdown The text uses Markdown-style formatting
@@ -54352,10 +48796,7 @@ func (t TextParseModeMarkdown) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "textParseModeMarkdown",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "textParseModeMarkdown", Alias: (*Alias)(&t)})
 }
 
 // TextQuote Describes manually or automatically chosen quote from another message
@@ -54377,10 +48818,7 @@ func (t TextQuote) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "textQuote",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "textQuote", Alias: (*Alias)(&t)})
 }
 
 // ThemeParameters Contains parameters of the application theme
@@ -54426,10 +48864,7 @@ func (t ThemeParameters) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "themeParameters",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "themeParameters", Alias: (*Alias)(&t)})
 }
 
 // ThemeSettings Describes theme settings
@@ -54457,10 +48892,7 @@ func (t ThemeSettings) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "themeSettings",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "themeSettings", Alias: (*Alias)(&t)})
 }
 
 func (t *ThemeSettings) UnmarshalJSON(data []byte) error {
@@ -54515,10 +48947,7 @@ func (t Thumbnail) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "thumbnail",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "thumbnail", Alias: (*Alias)(&t)})
 }
 
 func (t *Thumbnail) UnmarshalJSON(data []byte) error {
@@ -54559,10 +48988,7 @@ func (t ThumbnailFormatGif) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "thumbnailFormatGif",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "thumbnailFormatGif", Alias: (*Alias)(&t)})
 }
 
 // ThumbnailFormatJpeg The thumbnail is in JPEG format
@@ -54580,10 +49006,7 @@ func (t ThumbnailFormatJpeg) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "thumbnailFormatJpeg",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "thumbnailFormatJpeg", Alias: (*Alias)(&t)})
 }
 
 // ThumbnailFormatMpeg4 The thumbnail is in MPEG4 format. It will be used only for some animations and videos
@@ -54601,10 +49024,7 @@ func (t ThumbnailFormatMpeg4) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "thumbnailFormatMpeg4",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "thumbnailFormatMpeg4", Alias: (*Alias)(&t)})
 }
 
 // ThumbnailFormatPng The thumbnail is in PNG format. It will be used only for background patterns
@@ -54622,10 +49042,7 @@ func (t ThumbnailFormatPng) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "thumbnailFormatPng",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "thumbnailFormatPng", Alias: (*Alias)(&t)})
 }
 
 // ThumbnailFormatTgs The thumbnail is in TGS format. It will be used only for sticker sets
@@ -54643,10 +49060,7 @@ func (t ThumbnailFormatTgs) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "thumbnailFormatTgs",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "thumbnailFormatTgs", Alias: (*Alias)(&t)})
 }
 
 // ThumbnailFormatWebm The thumbnail is in WEBM format. It will be used only for sticker sets
@@ -54664,10 +49078,7 @@ func (t ThumbnailFormatWebm) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "thumbnailFormatWebm",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "thumbnailFormatWebm", Alias: (*Alias)(&t)})
 }
 
 // ThumbnailFormatWebp The thumbnail is in WEBP format. It will be used only for some stickers and sticker sets
@@ -54685,10 +49096,7 @@ func (t ThumbnailFormatWebp) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "thumbnailFormatWebp",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "thumbnailFormatWebp", Alias: (*Alias)(&t)})
 }
 
 // TimeZone Describes a time zone
@@ -54710,10 +49118,7 @@ func (t TimeZone) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "timeZone",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "timeZone", Alias: (*Alias)(&t)})
 }
 
 // TimeZones Contains a list of time zones
@@ -54731,10 +49136,7 @@ func (t TimeZones) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "timeZones",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "timeZones", Alias: (*Alias)(&t)})
 }
 
 // TMeUrl Represents a URL linking to an internal Telegram entity
@@ -54754,10 +49156,7 @@ func (t TMeUrl) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "tMeUrl",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "tMeUrl", Alias: (*Alias)(&t)})
 }
 
 func (t *TMeUrl) UnmarshalJSON(data []byte) error {
@@ -54798,10 +49197,7 @@ func (t TMeUrls) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "tMeUrls",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "tMeUrls", Alias: (*Alias)(&t)})
 }
 
 // TMeUrlTypeChatInvite A chat invite link
@@ -54821,10 +49217,7 @@ func (t TMeUrlTypeChatInvite) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "tMeUrlTypeChatInvite",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "tMeUrlTypeChatInvite", Alias: (*Alias)(&t)})
 }
 
 // TMeUrlTypeStickerSet A URL linking to a sticker set
@@ -54844,10 +49237,7 @@ func (t TMeUrlTypeStickerSet) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "tMeUrlTypeStickerSet",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "tMeUrlTypeStickerSet", Alias: (*Alias)(&t)})
 }
 
 // TMeUrlTypeSupergroup A URL linking to a public supergroup or channel
@@ -54867,10 +49257,7 @@ func (t TMeUrlTypeSupergroup) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "tMeUrlTypeSupergroup",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "tMeUrlTypeSupergroup", Alias: (*Alias)(&t)})
 }
 
 // TMeUrlTypeUser A URL linking to a user
@@ -54890,10 +49277,7 @@ func (t TMeUrlTypeUser) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "tMeUrlTypeUser",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "tMeUrlTypeUser", Alias: (*Alias)(&t)})
 }
 
 // TonTransaction Represents a transaction changing the amount of owned TON Grams
@@ -54919,10 +49303,7 @@ func (t TonTransaction) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "tonTransaction",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "tonTransaction", Alias: (*Alias)(&t)})
 }
 
 func (t *TonTransaction) UnmarshalJSON(data []byte) error {
@@ -54967,10 +49348,7 @@ func (t TonTransactions) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "tonTransactions",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "tonTransactions", Alias: (*Alias)(&t)})
 }
 
 // TonTransactionTypeFragmentDeposit The transaction is a deposit of Grams from Fragment
@@ -54992,10 +49370,7 @@ func (t TonTransactionTypeFragmentDeposit) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "tonTransactionTypeFragmentDeposit",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "tonTransactionTypeFragmentDeposit", Alias: (*Alias)(&t)})
 }
 
 // TonTransactionTypeFragmentWithdrawal The transaction is a withdrawal of earned Grams to Fragment
@@ -55015,10 +49390,7 @@ func (t TonTransactionTypeFragmentWithdrawal) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "tonTransactionTypeFragmentWithdrawal",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "tonTransactionTypeFragmentWithdrawal", Alias: (*Alias)(&t)})
 }
 
 func (t *TonTransactionTypeFragmentWithdrawal) UnmarshalJSON(data []byte) error {
@@ -55061,10 +49433,7 @@ func (t TonTransactionTypeGiftPurchaseOffer) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "tonTransactionTypeGiftPurchaseOffer",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "tonTransactionTypeGiftPurchaseOffer", Alias: (*Alias)(&t)})
 }
 
 // TonTransactionTypeStakeDicePayout The transaction is a payment for successful stake dice throw
@@ -55082,10 +49451,7 @@ func (t TonTransactionTypeStakeDicePayout) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "tonTransactionTypeStakeDicePayout",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "tonTransactionTypeStakeDicePayout", Alias: (*Alias)(&t)})
 }
 
 // TonTransactionTypeStakeDiceStake The transaction is a payment for stake dice throw
@@ -55103,10 +49469,7 @@ func (t TonTransactionTypeStakeDiceStake) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "tonTransactionTypeStakeDiceStake",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "tonTransactionTypeStakeDiceStake", Alias: (*Alias)(&t)})
 }
 
 // TonTransactionTypeSuggestedPostPayment The transaction is a payment for a suggested post
@@ -55126,10 +49489,7 @@ func (t TonTransactionTypeSuggestedPostPayment) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "tonTransactionTypeSuggestedPostPayment",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "tonTransactionTypeSuggestedPostPayment", Alias: (*Alias)(&t)})
 }
 
 // TonTransactionTypeUnsupported The transaction is a transaction of an unsupported type
@@ -55147,10 +49507,7 @@ func (t TonTransactionTypeUnsupported) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "tonTransactionTypeUnsupported",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "tonTransactionTypeUnsupported", Alias: (*Alias)(&t)})
 }
 
 // TonTransactionTypeUpgradedGiftPurchase The transaction is a purchase of an upgraded gift for some user or channel
@@ -55172,10 +49529,7 @@ func (t TonTransactionTypeUpgradedGiftPurchase) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "tonTransactionTypeUpgradedGiftPurchase",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "tonTransactionTypeUpgradedGiftPurchase", Alias: (*Alias)(&t)})
 }
 
 // TonTransactionTypeUpgradedGiftSale The transaction is a sale of an upgraded gift
@@ -55203,10 +49557,7 @@ func (t TonTransactionTypeUpgradedGiftSale) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "tonTransactionTypeUpgradedGiftSale",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "tonTransactionTypeUpgradedGiftSale", Alias: (*Alias)(&t)})
 }
 
 // TopChatCategoryBots A category containing frequently used private chats with bot users
@@ -55224,10 +49575,7 @@ func (t TopChatCategoryBots) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "topChatCategoryBots",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "topChatCategoryBots", Alias: (*Alias)(&t)})
 }
 
 // TopChatCategoryCalls A category containing frequently used chats used for calls
@@ -55245,10 +49593,7 @@ func (t TopChatCategoryCalls) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "topChatCategoryCalls",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "topChatCategoryCalls", Alias: (*Alias)(&t)})
 }
 
 // TopChatCategoryChannels A category containing frequently used channels
@@ -55266,10 +49611,7 @@ func (t TopChatCategoryChannels) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "topChatCategoryChannels",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "topChatCategoryChannels", Alias: (*Alias)(&t)})
 }
 
 // TopChatCategoryForwardChats A category containing frequently used chats used to forward messages
@@ -55287,10 +49629,7 @@ func (t TopChatCategoryForwardChats) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "topChatCategoryForwardChats",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "topChatCategoryForwardChats", Alias: (*Alias)(&t)})
 }
 
 // TopChatCategoryGroups A category containing frequently used basic groups and supergroups
@@ -55308,10 +49647,7 @@ func (t TopChatCategoryGroups) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "topChatCategoryGroups",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "topChatCategoryGroups", Alias: (*Alias)(&t)})
 }
 
 // TopChatCategoryGuestBots A category containing frequently used chats with bots, which were used as guest bots
@@ -55329,10 +49665,7 @@ func (t TopChatCategoryGuestBots) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "topChatCategoryGuestBots",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "topChatCategoryGuestBots", Alias: (*Alias)(&t)})
 }
 
 // TopChatCategoryInlineBots A category containing frequently used chats with inline bots sorted by their usage in inline mode
@@ -55350,10 +49683,7 @@ func (t TopChatCategoryInlineBots) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "topChatCategoryInlineBots",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "topChatCategoryInlineBots", Alias: (*Alias)(&t)})
 }
 
 // TopChatCategoryUsers A category containing frequently used private chats with non-bot users
@@ -55371,10 +49701,7 @@ func (t TopChatCategoryUsers) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "topChatCategoryUsers",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "topChatCategoryUsers", Alias: (*Alias)(&t)})
 }
 
 // TopChatCategoryWebAppBots A category containing frequently used chats with bots, which Web Apps were opened
@@ -55392,10 +49719,7 @@ func (t TopChatCategoryWebAppBots) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "topChatCategoryWebAppBots",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "topChatCategoryWebAppBots", Alias: (*Alias)(&t)})
 }
 
 // TransactionDirectionIncoming The transaction is incoming and increases the amount of owned currency
@@ -55413,10 +49737,7 @@ func (t TransactionDirectionIncoming) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "transactionDirectionIncoming",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "transactionDirectionIncoming", Alias: (*Alias)(&t)})
 }
 
 // TransactionDirectionOutgoing The transaction is outgoing and decreases the amount of owned currency
@@ -55434,10 +49755,7 @@ func (t TransactionDirectionOutgoing) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "transactionDirectionOutgoing",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "transactionDirectionOutgoing", Alias: (*Alias)(&t)})
 }
 
 // TrendingStickerSets Represents a list of trending sticker sets
@@ -55459,10 +49777,7 @@ func (t TrendingStickerSets) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "trendingStickerSets",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "trendingStickerSets", Alias: (*Alias)(&t)})
 }
 
 // UnconfirmedSession Contains information about an unconfirmed session
@@ -55486,10 +49801,7 @@ func (t UnconfirmedSession) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "unconfirmedSession",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "unconfirmedSession", Alias: (*Alias)(&t)})
 }
 
 func (t *UnconfirmedSession) UnmarshalJSON(data []byte) error {
@@ -55534,10 +49846,7 @@ func (t UnreadReaction) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "unreadReaction",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "unreadReaction", Alias: (*Alias)(&t)})
 }
 
 func (t *UnreadReaction) UnmarshalJSON(data []byte) error {
@@ -55590,10 +49899,7 @@ func (t UpdateAccentColors) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateAccentColors",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateAccentColors", Alias: (*Alias)(&t)})
 }
 
 // UpdateActiveEmojiReactions The list of active emoji reactions has changed
@@ -55613,10 +49919,7 @@ func (t UpdateActiveEmojiReactions) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateActiveEmojiReactions",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateActiveEmojiReactions", Alias: (*Alias)(&t)})
 }
 
 // UpdateActiveGiftAuctions The list of auctions in which the current user participates has changed
@@ -55636,10 +49939,7 @@ func (t UpdateActiveGiftAuctions) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateActiveGiftAuctions",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateActiveGiftAuctions", Alias: (*Alias)(&t)})
 }
 
 // UpdateActiveLiveLocationMessages The list of messages with active live location that need to be updated by the application has changed. The list is persistent across application restarts only if the message database is used
@@ -55659,10 +49959,7 @@ func (t UpdateActiveLiveLocationMessages) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateActiveLiveLocationMessages",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateActiveLiveLocationMessages", Alias: (*Alias)(&t)})
 }
 
 // UpdateActiveNotifications Contains active notifications that were shown on previous application launches. This update is sent only if the message database is used. In that case it comes once before any updateNotification and updateNotificationGroup update
@@ -55682,10 +49979,7 @@ func (t UpdateActiveNotifications) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateActiveNotifications",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateActiveNotifications", Alias: (*Alias)(&t)})
 }
 
 // UpdateAgeVerificationParameters The parameters for age verification of the current user's account have changed
@@ -55705,10 +49999,7 @@ func (t UpdateAgeVerificationParameters) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateAgeVerificationParameters",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateAgeVerificationParameters", Alias: (*Alias)(&t)})
 }
 
 // UpdateAnimatedEmojiMessageClicked Some animated emoji message was clicked and a big animated sticker must be played if the message is visible on the screen. chatActionWatchingAnimations with the text of the message needs to be sent if the sticker is played
@@ -55732,10 +50023,7 @@ func (t UpdateAnimatedEmojiMessageClicked) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateAnimatedEmojiMessageClicked",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateAnimatedEmojiMessageClicked", Alias: (*Alias)(&t)})
 }
 
 // UpdateAnimationSearchParameters The parameters of animation search through getOption("animation_search_bot_username") bot have changed
@@ -55757,10 +50045,7 @@ func (t UpdateAnimationSearchParameters) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateAnimationSearchParameters",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateAnimationSearchParameters", Alias: (*Alias)(&t)})
 }
 
 // UpdateApplicationRecaptchaVerificationRequired A request can't be completed unless reCAPTCHA verification is performed; for official mobile applications only.
@@ -55784,10 +50069,7 @@ func (t UpdateApplicationRecaptchaVerificationRequired) MarshalJSON() ([]byte, e
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateApplicationRecaptchaVerificationRequired",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateApplicationRecaptchaVerificationRequired", Alias: (*Alias)(&t)})
 }
 
 // UpdateApplicationVerificationRequired A request can't be completed unless application verification is performed; for official mobile applications only.
@@ -55811,10 +50093,7 @@ func (t UpdateApplicationVerificationRequired) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateApplicationVerificationRequired",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateApplicationVerificationRequired", Alias: (*Alias)(&t)})
 }
 
 // UpdateAttachmentMenuBots The list of bots added to attachment or side menu has changed
@@ -55834,10 +50113,7 @@ func (t UpdateAttachmentMenuBots) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateAttachmentMenuBots",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateAttachmentMenuBots", Alias: (*Alias)(&t)})
 }
 
 // UpdateAuthorizationState The user authorization state has changed
@@ -55857,10 +50133,7 @@ func (t UpdateAuthorizationState) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateAuthorizationState",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateAuthorizationState", Alias: (*Alias)(&t)})
 }
 
 func (t *UpdateAuthorizationState) UnmarshalJSON(data []byte) error {
@@ -55905,10 +50178,7 @@ func (t UpdateAutosaveSettings) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateAutosaveSettings",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateAutosaveSettings", Alias: (*Alias)(&t)})
 }
 
 func (t *UpdateAutosaveSettings) UnmarshalJSON(data []byte) error {
@@ -55953,10 +50223,7 @@ func (t UpdateAvailableMessageEffects) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateAvailableMessageEffects",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateAvailableMessageEffects", Alias: (*Alias)(&t)})
 }
 
 // UpdateBasicGroup Some data of a basic group has changed. This update is guaranteed to come before the basic group identifier is returned to the application
@@ -55976,10 +50243,7 @@ func (t UpdateBasicGroup) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateBasicGroup",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateBasicGroup", Alias: (*Alias)(&t)})
 }
 
 // UpdateBasicGroupFullInfo Some data in basicGroupFullInfo has been changed
@@ -56001,10 +50265,7 @@ func (t UpdateBasicGroupFullInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateBasicGroupFullInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateBasicGroupFullInfo", Alias: (*Alias)(&t)})
 }
 
 // UpdateBusinessConnection A business connection has changed; for bots only
@@ -56024,10 +50285,7 @@ func (t UpdateBusinessConnection) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateBusinessConnection",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateBusinessConnection", Alias: (*Alias)(&t)})
 }
 
 // UpdateBusinessMessageEdited A message in a business account was edited; for bots only
@@ -56049,10 +50307,7 @@ func (t UpdateBusinessMessageEdited) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateBusinessMessageEdited",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateBusinessMessageEdited", Alias: (*Alias)(&t)})
 }
 
 // UpdateBusinessMessagesDeleted Messages in a business account were deleted; for bots only
@@ -56076,10 +50331,7 @@ func (t UpdateBusinessMessagesDeleted) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateBusinessMessagesDeleted",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateBusinessMessagesDeleted", Alias: (*Alias)(&t)})
 }
 
 // UpdateCall New call was created or information about a call was updated
@@ -56099,10 +50351,7 @@ func (t UpdateCall) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateCall",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateCall", Alias: (*Alias)(&t)})
 }
 
 // UpdateChatAccentColors Chat accent colors have changed
@@ -56132,10 +50381,7 @@ func (t UpdateChatAccentColors) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateChatAccentColors",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateChatAccentColors", Alias: (*Alias)(&t)})
 }
 
 // UpdateChatAction A message sender activity in the chat has changed
@@ -56161,10 +50407,7 @@ func (t UpdateChatAction) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateChatAction",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateChatAction", Alias: (*Alias)(&t)})
 }
 
 func (t *UpdateChatAction) UnmarshalJSON(data []byte) error {
@@ -56225,10 +50468,7 @@ func (t UpdateChatActionBar) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateChatActionBar",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateChatActionBar", Alias: (*Alias)(&t)})
 }
 
 func (t *UpdateChatActionBar) UnmarshalJSON(data []byte) error {
@@ -56271,10 +50511,7 @@ func (t UpdateChatActiveStories) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateChatActiveStories",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateChatActiveStories", Alias: (*Alias)(&t)})
 }
 
 // UpdateChatAddedToList A chat was added to a chat list
@@ -56296,10 +50533,7 @@ func (t UpdateChatAddedToList) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateChatAddedToList",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateChatAddedToList", Alias: (*Alias)(&t)})
 }
 
 func (t *UpdateChatAddedToList) UnmarshalJSON(data []byte) error {
@@ -56344,10 +50578,7 @@ func (t UpdateChatAvailableReactions) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateChatAvailableReactions",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateChatAvailableReactions", Alias: (*Alias)(&t)})
 }
 
 func (t *UpdateChatAvailableReactions) UnmarshalJSON(data []byte) error {
@@ -56392,10 +50623,7 @@ func (t UpdateChatBackground) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateChatBackground",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateChatBackground", Alias: (*Alias)(&t)})
 }
 
 // UpdateChatBlockList A chat was blocked or unblocked
@@ -56417,10 +50645,7 @@ func (t UpdateChatBlockList) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateChatBlockList",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateChatBlockList", Alias: (*Alias)(&t)})
 }
 
 func (t *UpdateChatBlockList) UnmarshalJSON(data []byte) error {
@@ -56465,10 +50690,7 @@ func (t UpdateChatBoost) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateChatBoost",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateChatBoost", Alias: (*Alias)(&t)})
 }
 
 // UpdateChatBusinessBotManageBar The bar for managing business bot was changed in a chat
@@ -56490,10 +50712,7 @@ func (t UpdateChatBusinessBotManageBar) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateChatBusinessBotManageBar",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateChatBusinessBotManageBar", Alias: (*Alias)(&t)})
 }
 
 // UpdateChatDefaultDisableNotification The value of the default disable_notification parameter, used when a message is sent to the chat, was changed
@@ -56515,10 +50734,7 @@ func (t UpdateChatDefaultDisableNotification) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateChatDefaultDisableNotification",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateChatDefaultDisableNotification", Alias: (*Alias)(&t)})
 }
 
 // UpdateChatDraftMessage A chat draft has changed. Be aware that the update may come in the currently opened chat but with old content of the draft. If the user has changed the content of the draft, this update mustn't be applied
@@ -56542,10 +50758,7 @@ func (t UpdateChatDraftMessage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateChatDraftMessage",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateChatDraftMessage", Alias: (*Alias)(&t)})
 }
 
 // UpdateChatEmojiStatus Chat emoji status has changed
@@ -56567,10 +50780,7 @@ func (t UpdateChatEmojiStatus) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateChatEmojiStatus",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateChatEmojiStatus", Alias: (*Alias)(&t)})
 }
 
 // UpdateChatFolders The list of chat folders or a chat folder has changed
@@ -56594,10 +50804,7 @@ func (t UpdateChatFolders) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateChatFolders",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateChatFolders", Alias: (*Alias)(&t)})
 }
 
 // UpdateChatHasProtectedContent A chat content was allowed or restricted for saving
@@ -56619,10 +50826,7 @@ func (t UpdateChatHasProtectedContent) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateChatHasProtectedContent",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateChatHasProtectedContent", Alias: (*Alias)(&t)})
 }
 
 // UpdateChatHasScheduledMessages A chat's has_scheduled_messages field has changed
@@ -56644,10 +50848,7 @@ func (t UpdateChatHasScheduledMessages) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateChatHasScheduledMessages",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateChatHasScheduledMessages", Alias: (*Alias)(&t)})
 }
 
 // UpdateChatHasWelcomeMessages A chat's has_welcome_messages field has changed
@@ -56669,10 +50870,7 @@ func (t UpdateChatHasWelcomeMessages) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateChatHasWelcomeMessages",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateChatHasWelcomeMessages", Alias: (*Alias)(&t)})
 }
 
 // UpdateChatIsMarkedAsUnread A chat was marked as unread or was read
@@ -56694,10 +50892,7 @@ func (t UpdateChatIsMarkedAsUnread) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateChatIsMarkedAsUnread",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateChatIsMarkedAsUnread", Alias: (*Alias)(&t)})
 }
 
 // UpdateChatIsTranslatable Translation of chat messages was enabled or disabled
@@ -56719,10 +50914,7 @@ func (t UpdateChatIsTranslatable) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateChatIsTranslatable",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateChatIsTranslatable", Alias: (*Alias)(&t)})
 }
 
 // UpdateChatJoinResult A join request from the user was completed
@@ -56746,10 +50938,7 @@ func (t UpdateChatJoinResult) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateChatJoinResult",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateChatJoinResult", Alias: (*Alias)(&t)})
 }
 
 func (t *UpdateChatJoinResult) UnmarshalJSON(data []byte) error {
@@ -56796,10 +50985,7 @@ func (t UpdateChatLastMessage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateChatLastMessage",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateChatLastMessage", Alias: (*Alias)(&t)})
 }
 
 // UpdateChatMember User rights changed in a chat; for bots only
@@ -56833,10 +51019,7 @@ func (t UpdateChatMember) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateChatMember",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateChatMember", Alias: (*Alias)(&t)})
 }
 
 // UpdateChatMessageAutoDeleteTime The message auto-delete or self-destruct timer setting for a chat was changed
@@ -56858,10 +51041,7 @@ func (t UpdateChatMessageAutoDeleteTime) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateChatMessageAutoDeleteTime",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateChatMessageAutoDeleteTime", Alias: (*Alias)(&t)})
 }
 
 // UpdateChatMessageSender The message sender that is selected to send messages in a chat has changed
@@ -56883,10 +51063,7 @@ func (t UpdateChatMessageSender) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateChatMessageSender",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateChatMessageSender", Alias: (*Alias)(&t)})
 }
 
 func (t *UpdateChatMessageSender) UnmarshalJSON(data []byte) error {
@@ -56931,10 +51108,7 @@ func (t UpdateChatNotificationSettings) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateChatNotificationSettings",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateChatNotificationSettings", Alias: (*Alias)(&t)})
 }
 
 // UpdateChatOnlineMemberCount The number of online group members has changed. This update with non-zero number of online group members is sent only for currently opened chats.
@@ -56956,10 +51130,7 @@ func (t UpdateChatOnlineMemberCount) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateChatOnlineMemberCount",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateChatOnlineMemberCount", Alias: (*Alias)(&t)})
 }
 
 // UpdateChatPendingJoinRequests The chat pending join requests were changed
@@ -56981,10 +51152,7 @@ func (t UpdateChatPendingJoinRequests) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateChatPendingJoinRequests",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateChatPendingJoinRequests", Alias: (*Alias)(&t)})
 }
 
 // UpdateChatPermissions Chat permissions were changed
@@ -57006,10 +51174,7 @@ func (t UpdateChatPermissions) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateChatPermissions",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateChatPermissions", Alias: (*Alias)(&t)})
 }
 
 // UpdateChatPhoto A chat photo was changed
@@ -57031,10 +51196,7 @@ func (t UpdateChatPhoto) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateChatPhoto",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateChatPhoto", Alias: (*Alias)(&t)})
 }
 
 // UpdateChatPosition The position of a chat in a chat list has changed. An updateChatLastMessage or updateChatDraftMessage update might be sent instead of the update
@@ -57056,10 +51218,7 @@ func (t UpdateChatPosition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateChatPosition",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateChatPosition", Alias: (*Alias)(&t)})
 }
 
 // UpdateChatReadInbox Incoming messages were read or the number of unread messages has been changed
@@ -57083,10 +51242,7 @@ func (t UpdateChatReadInbox) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateChatReadInbox",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateChatReadInbox", Alias: (*Alias)(&t)})
 }
 
 // UpdateChatReadOutbox Outgoing messages were read
@@ -57108,10 +51264,7 @@ func (t UpdateChatReadOutbox) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateChatReadOutbox",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateChatReadOutbox", Alias: (*Alias)(&t)})
 }
 
 // UpdateChatRemovedFromList A chat was removed from a chat list
@@ -57133,10 +51286,7 @@ func (t UpdateChatRemovedFromList) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateChatRemovedFromList",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateChatRemovedFromList", Alias: (*Alias)(&t)})
 }
 
 func (t *UpdateChatRemovedFromList) UnmarshalJSON(data []byte) error {
@@ -57181,10 +51331,7 @@ func (t UpdateChatReplyMarkup) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateChatReplyMarkup",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateChatReplyMarkup", Alias: (*Alias)(&t)})
 }
 
 // UpdateChatRevenueAmount The revenue earned from sponsored messages in a chat has changed. If chat revenue screen is opened, then getChatRevenueTransactions may be called to fetch new transactions
@@ -57206,10 +51353,7 @@ func (t UpdateChatRevenueAmount) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateChatRevenueAmount",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateChatRevenueAmount", Alias: (*Alias)(&t)})
 }
 
 // UpdateChatTheme The chat theme was changed
@@ -57231,10 +51375,7 @@ func (t UpdateChatTheme) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateChatTheme",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateChatTheme", Alias: (*Alias)(&t)})
 }
 
 func (t *UpdateChatTheme) UnmarshalJSON(data []byte) error {
@@ -57279,10 +51420,7 @@ func (t UpdateChatTitle) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateChatTitle",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateChatTitle", Alias: (*Alias)(&t)})
 }
 
 // UpdateChatUnreadMentionCount The chat unread_mention_count has changed
@@ -57304,10 +51442,7 @@ func (t UpdateChatUnreadMentionCount) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateChatUnreadMentionCount",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateChatUnreadMentionCount", Alias: (*Alias)(&t)})
 }
 
 // UpdateChatUnreadPollVoteCount The chat unread_poll_vote_count has changed
@@ -57329,10 +51464,7 @@ func (t UpdateChatUnreadPollVoteCount) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateChatUnreadPollVoteCount",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateChatUnreadPollVoteCount", Alias: (*Alias)(&t)})
 }
 
 // UpdateChatUnreadReactionCount The chat unread_reaction_count has changed
@@ -57354,10 +51486,7 @@ func (t UpdateChatUnreadReactionCount) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateChatUnreadReactionCount",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateChatUnreadReactionCount", Alias: (*Alias)(&t)})
 }
 
 // UpdateChatVideoChat A chat video chat state has changed
@@ -57379,10 +51508,7 @@ func (t UpdateChatVideoChat) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateChatVideoChat",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateChatVideoChat", Alias: (*Alias)(&t)})
 }
 
 // UpdateChatViewAsTopics A chat default appearance has changed
@@ -57404,10 +51530,7 @@ func (t UpdateChatViewAsTopics) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateChatViewAsTopics",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateChatViewAsTopics", Alias: (*Alias)(&t)})
 }
 
 // UpdateChatWelcomeMessages The list of welcome messages of a chat has changed
@@ -57429,10 +51552,7 @@ func (t UpdateChatWelcomeMessages) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateChatWelcomeMessages",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateChatWelcomeMessages", Alias: (*Alias)(&t)})
 }
 
 // UpdateCommunity Some data of a community has changed. This update is guaranteed to come before the community identifier is returned to the application
@@ -57452,10 +51572,7 @@ func (t UpdateCommunity) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateCommunity",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateCommunity", Alias: (*Alias)(&t)})
 }
 
 // UpdateCommunityFullInfo Some data in communityFullInfo has been changed
@@ -57477,10 +51594,7 @@ func (t UpdateCommunityFullInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateCommunityFullInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateCommunityFullInfo", Alias: (*Alias)(&t)})
 }
 
 // UpdateConnectionState The connection state has changed. This update must be used only to show a human-readable description of the connection state
@@ -57500,10 +51614,7 @@ func (t UpdateConnectionState) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateConnectionState",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateConnectionState", Alias: (*Alias)(&t)})
 }
 
 func (t *UpdateConnectionState) UnmarshalJSON(data []byte) error {
@@ -57546,10 +51657,7 @@ func (t UpdateContactCloseBirthdays) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateContactCloseBirthdays",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateContactCloseBirthdays", Alias: (*Alias)(&t)})
 }
 
 // UpdateDefaultBackground The default background has changed
@@ -57571,10 +51679,7 @@ func (t UpdateDefaultBackground) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateDefaultBackground",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateDefaultBackground", Alias: (*Alias)(&t)})
 }
 
 // UpdateDefaultPaidReactionType The type of default paid reaction has changed
@@ -57594,10 +51699,7 @@ func (t UpdateDefaultPaidReactionType) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateDefaultPaidReactionType",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateDefaultPaidReactionType", Alias: (*Alias)(&t)})
 }
 
 func (t *UpdateDefaultPaidReactionType) UnmarshalJSON(data []byte) error {
@@ -57640,10 +51742,7 @@ func (t UpdateDefaultReactionType) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateDefaultReactionType",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateDefaultReactionType", Alias: (*Alias)(&t)})
 }
 
 func (t *UpdateDefaultReactionType) UnmarshalJSON(data []byte) error {
@@ -57692,10 +51791,7 @@ func (t UpdateDeleteMessages) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateDeleteMessages",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateDeleteMessages", Alias: (*Alias)(&t)})
 }
 
 // UpdateDiceEmojis The list of supported dice emojis has changed
@@ -57715,10 +51811,7 @@ func (t UpdateDiceEmojis) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateDiceEmojis",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateDiceEmojis", Alias: (*Alias)(&t)})
 }
 
 // UpdateDirectMessagesChatTopic Basic information about a topic in a channel direct messages chat administered by the current user has changed. This update is guaranteed to come before the topic identifier is returned to the application
@@ -57738,10 +51831,7 @@ func (t UpdateDirectMessagesChatTopic) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateDirectMessagesChatTopic",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateDirectMessagesChatTopic", Alias: (*Alias)(&t)})
 }
 
 // UpdateEmojiChatThemes The list of available emoji chat themes has changed
@@ -57761,10 +51851,7 @@ func (t UpdateEmojiChatThemes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateEmojiChatThemes",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateEmojiChatThemes", Alias: (*Alias)(&t)})
 }
 
 // UpdateFavoriteStickers The list of favorite stickers was updated
@@ -57784,10 +51871,7 @@ func (t UpdateFavoriteStickers) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateFavoriteStickers",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateFavoriteStickers", Alias: (*Alias)(&t)})
 }
 
 // UpdateFile Information about a file was updated
@@ -57807,10 +51891,7 @@ func (t UpdateFile) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateFile",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateFile", Alias: (*Alias)(&t)})
 }
 
 // UpdateFileAddedToDownloads A file was added to the file download list. This update is sent only after file download list is loaded for the first time
@@ -57832,10 +51913,7 @@ func (t UpdateFileAddedToDownloads) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateFileAddedToDownloads",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateFileAddedToDownloads", Alias: (*Alias)(&t)})
 }
 
 // UpdateFileDownload A file download was changed. This update is sent only after file download list is loaded for the first time
@@ -57861,10 +51939,7 @@ func (t UpdateFileDownload) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateFileDownload",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateFileDownload", Alias: (*Alias)(&t)})
 }
 
 // UpdateFileDownloads The state of the file download list has changed
@@ -57888,15 +51963,12 @@ func (t UpdateFileDownloads) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateFileDownloads",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateFileDownloads", Alias: (*Alias)(&t)})
 }
 
 // UpdateFileGenerationStart The file generation process needs to be started by the application. Use setFileGenerationProgress and finishFileGeneration to generate the file
 type UpdateFileGenerationStart struct {
-	// If the conversion is "#url#" than original_path contains an HTTP/HTTPS URL of a file that must be downloaded by the application.
+	// If the conversion is "#url#", then original_path contains an HTTP/HTTPS URL of a file that must be downloaded by the application.
 	Conversion string `json:"conversion"`
 	// The path to a file that must be created and where the new file must be generated by the application.
 	DestinationPath string `json:"destination_path"`
@@ -57917,10 +51989,7 @@ func (t UpdateFileGenerationStart) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateFileGenerationStart",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateFileGenerationStart", Alias: (*Alias)(&t)})
 }
 
 // UpdateFileGenerationStop File generation is no longer needed
@@ -57940,10 +52009,7 @@ func (t UpdateFileGenerationStop) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateFileGenerationStop",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateFileGenerationStop", Alias: (*Alias)(&t)})
 }
 
 // UpdateFileRemovedFromDownloads A file was removed from the file download list. This update is sent only after file download list is loaded for the first time
@@ -57965,10 +52031,7 @@ func (t UpdateFileRemovedFromDownloads) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateFileRemovedFromDownloads",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateFileRemovedFromDownloads", Alias: (*Alias)(&t)})
 }
 
 // UpdateForumTopic Information about a topic in a forum chat was changed
@@ -58006,10 +52069,7 @@ func (t UpdateForumTopic) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateForumTopic",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateForumTopic", Alias: (*Alias)(&t)})
 }
 
 // UpdateForumTopicInfo Basic information about a topic in a forum chat was changed
@@ -58029,10 +52089,7 @@ func (t UpdateForumTopicInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateForumTopicInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateForumTopicInfo", Alias: (*Alias)(&t)})
 }
 
 // UpdateFreezeState The freeze state of the current user's account has changed
@@ -58058,10 +52115,7 @@ func (t UpdateFreezeState) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateFreezeState",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateFreezeState", Alias: (*Alias)(&t)})
 }
 
 // UpdateGiftAuctionState State of a gift auction was updated
@@ -58081,10 +52135,7 @@ func (t UpdateGiftAuctionState) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateGiftAuctionState",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateGiftAuctionState", Alias: (*Alias)(&t)})
 }
 
 // UpdateGramRevenueStatus The TON Gram revenue earned by the current user has changed. If Gram transaction screen of the chat is opened, then getTonTransactions may be called to fetch new transactions
@@ -58104,10 +52155,7 @@ func (t UpdateGramRevenueStatus) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateGramRevenueStatus",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateGramRevenueStatus", Alias: (*Alias)(&t)})
 }
 
 // UpdateGroupCall Information about a group call was updated
@@ -58127,10 +52175,7 @@ func (t UpdateGroupCall) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateGroupCall",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateGroupCall", Alias: (*Alias)(&t)})
 }
 
 // UpdateGroupCallMessageLevels The levels of live story group call messages have changed
@@ -58150,10 +52195,7 @@ func (t UpdateGroupCallMessageLevels) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateGroupCallMessageLevels",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateGroupCallMessageLevels", Alias: (*Alias)(&t)})
 }
 
 // UpdateGroupCallMessagesDeleted Some group call messages were deleted
@@ -58175,10 +52217,7 @@ func (t UpdateGroupCallMessagesDeleted) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateGroupCallMessagesDeleted",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateGroupCallMessagesDeleted", Alias: (*Alias)(&t)})
 }
 
 // UpdateGroupCallMessageSendFailed A group call message failed to send
@@ -58202,10 +52241,7 @@ func (t UpdateGroupCallMessageSendFailed) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateGroupCallMessageSendFailed",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateGroupCallMessageSendFailed", Alias: (*Alias)(&t)})
 }
 
 // UpdateGroupCallParticipant Information about a group call participant was changed. The updates are sent only after the group call is received through getGroupCall and only if the call is joined or being joined
@@ -58227,10 +52263,7 @@ func (t UpdateGroupCallParticipant) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateGroupCallParticipant",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateGroupCallParticipant", Alias: (*Alias)(&t)})
 }
 
 // UpdateGroupCallParticipants The list of group call participants that can send and receive encrypted call data has changed; for group calls not bound to a chat only
@@ -58252,10 +52285,7 @@ func (t UpdateGroupCallParticipants) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateGroupCallParticipants",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateGroupCallParticipants", Alias: (*Alias)(&t)})
 }
 
 // UpdateGroupCallVerificationState The verification state of an encrypted group call has changed; for group calls not bound to a chat only
@@ -58279,10 +52309,7 @@ func (t UpdateGroupCallVerificationState) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateGroupCallVerificationState",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateGroupCallVerificationState", Alias: (*Alias)(&t)})
 }
 
 // UpdateHavePendingNotifications Describes whether there are some pending notification updates. Can be used to prevent application from killing, while there are some pending notifications
@@ -58304,10 +52331,7 @@ func (t UpdateHavePendingNotifications) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateHavePendingNotifications",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateHavePendingNotifications", Alias: (*Alias)(&t)})
 }
 
 // UpdateInstalledStickerSets The list of installed sticker sets was updated
@@ -58329,10 +52353,7 @@ func (t UpdateInstalledStickerSets) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateInstalledStickerSets",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateInstalledStickerSets", Alias: (*Alias)(&t)})
 }
 
 func (t *UpdateInstalledStickerSets) UnmarshalJSON(data []byte) error {
@@ -58379,10 +52400,7 @@ func (t UpdateLanguagePackStrings) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateLanguagePackStrings",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateLanguagePackStrings", Alias: (*Alias)(&t)})
 }
 
 // UpdateLiveStoryTopDonors The list of top donors in live story group call has changed
@@ -58404,10 +52422,7 @@ func (t UpdateLiveStoryTopDonors) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateLiveStoryTopDonors",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateLiveStoryTopDonors", Alias: (*Alias)(&t)})
 }
 
 // UpdateManagedBot A bot that can be managed by the current bot was created or updated; for bots only
@@ -58429,10 +52444,7 @@ func (t UpdateManagedBot) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateManagedBot",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateManagedBot", Alias: (*Alias)(&t)})
 }
 
 // UpdateMessageContainsUnreadPollVotes Unread votes were added or removed from a poll message
@@ -58458,10 +52470,7 @@ func (t UpdateMessageContainsUnreadPollVotes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateMessageContainsUnreadPollVotes",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateMessageContainsUnreadPollVotes", Alias: (*Alias)(&t)})
 }
 
 // UpdateMessageContent The message content has changed
@@ -58485,10 +52494,7 @@ func (t UpdateMessageContent) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateMessageContent",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateMessageContent", Alias: (*Alias)(&t)})
 }
 
 func (t *UpdateMessageContent) UnmarshalJSON(data []byte) error {
@@ -58533,10 +52539,7 @@ func (t UpdateMessageContentOpened) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateMessageContentOpened",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateMessageContentOpened", Alias: (*Alias)(&t)})
 }
 
 // UpdateMessageEdited A message was edited. Changes in the message content will come in a separate updateMessageContent
@@ -58562,10 +52565,7 @@ func (t UpdateMessageEdited) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateMessageEdited",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateMessageEdited", Alias: (*Alias)(&t)})
 }
 
 func (t *UpdateMessageEdited) UnmarshalJSON(data []byte) error {
@@ -58612,10 +52612,7 @@ func (t UpdateMessageEphemeralContent) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateMessageEphemeralContent",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateMessageEphemeralContent", Alias: (*Alias)(&t)})
 }
 
 // UpdateMessageFactCheck A fact-check added to a message was changed
@@ -58639,10 +52636,7 @@ func (t UpdateMessageFactCheck) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateMessageFactCheck",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateMessageFactCheck", Alias: (*Alias)(&t)})
 }
 
 // UpdateMessageInteractionInfo The information about interactions with a message has changed
@@ -58666,10 +52660,7 @@ func (t UpdateMessageInteractionInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateMessageInteractionInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateMessageInteractionInfo", Alias: (*Alias)(&t)})
 }
 
 // UpdateMessageIsPinned The message pinned state was changed
@@ -58693,10 +52684,7 @@ func (t UpdateMessageIsPinned) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateMessageIsPinned",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateMessageIsPinned", Alias: (*Alias)(&t)})
 }
 
 // UpdateMessageLiveLocationViewed A message with a live location was viewed. When the update is received, the application is expected to update the live location
@@ -58718,10 +52706,7 @@ func (t UpdateMessageLiveLocationViewed) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateMessageLiveLocationViewed",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateMessageLiveLocationViewed", Alias: (*Alias)(&t)})
 }
 
 // UpdateMessageMentionRead A message with an unread mention was read
@@ -58745,10 +52730,7 @@ func (t UpdateMessageMentionRead) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateMessageMentionRead",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateMessageMentionRead", Alias: (*Alias)(&t)})
 }
 
 // UpdateMessageReaction User changed its reactions on a message with public reactions; for bots only
@@ -58778,10 +52760,7 @@ func (t UpdateMessageReaction) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateMessageReaction",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateMessageReaction", Alias: (*Alias)(&t)})
 }
 
 func (t *UpdateMessageReaction) UnmarshalJSON(data []byte) error {
@@ -58852,10 +52831,7 @@ func (t UpdateMessageReactions) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateMessageReactions",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateMessageReactions", Alias: (*Alias)(&t)})
 }
 
 // UpdateMessageSendAcknowledged A request to send a message has reached the Telegram server. This doesn't mean that the message will be sent successfully.
@@ -58877,10 +52853,7 @@ func (t UpdateMessageSendAcknowledged) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateMessageSendAcknowledged",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateMessageSendAcknowledged", Alias: (*Alias)(&t)})
 }
 
 // UpdateMessageSendFailed A message failed to send. Be aware that some messages being sent can be irrecoverably deleted, in which case updateDeleteMessages will be received instead of this update
@@ -58904,10 +52877,7 @@ func (t UpdateMessageSendFailed) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateMessageSendFailed",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateMessageSendFailed", Alias: (*Alias)(&t)})
 }
 
 // UpdateMessageSendSucceeded A message has been successfully sent
@@ -58929,10 +52899,7 @@ func (t UpdateMessageSendSucceeded) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateMessageSendSucceeded",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateMessageSendSucceeded", Alias: (*Alias)(&t)})
 }
 
 // UpdateMessageSuggestedPostInfo Information about suggested post of a message was changed
@@ -58956,10 +52923,7 @@ func (t UpdateMessageSuggestedPostInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateMessageSuggestedPostInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateMessageSuggestedPostInfo", Alias: (*Alias)(&t)})
 }
 
 // UpdateMessageUnreadReactions The list of unread reactions added to a message was changed
@@ -58985,10 +52949,7 @@ func (t UpdateMessageUnreadReactions) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateMessageUnreadReactions",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateMessageUnreadReactions", Alias: (*Alias)(&t)})
 }
 
 // UpdateNewBusinessCallbackQuery A new incoming callback query from a business message; for bots only
@@ -59018,10 +52979,7 @@ func (t UpdateNewBusinessCallbackQuery) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateNewBusinessCallbackQuery",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateNewBusinessCallbackQuery", Alias: (*Alias)(&t)})
 }
 
 func (t *UpdateNewBusinessCallbackQuery) UnmarshalJSON(data []byte) error {
@@ -59066,10 +53024,7 @@ func (t UpdateNewBusinessMessage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateNewBusinessMessage",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateNewBusinessMessage", Alias: (*Alias)(&t)})
 }
 
 // UpdateNewCallbackQuery A new incoming callback query; for bots only
@@ -59099,10 +53054,7 @@ func (t UpdateNewCallbackQuery) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateNewCallbackQuery",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateNewCallbackQuery", Alias: (*Alias)(&t)})
 }
 
 func (t *UpdateNewCallbackQuery) UnmarshalJSON(data []byte) error {
@@ -59147,10 +53099,7 @@ func (t UpdateNewCallSignalingData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateNewCallSignalingData",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateNewCallSignalingData", Alias: (*Alias)(&t)})
 }
 
 // UpdateNewChat A new chat has been loaded/created. This update is guaranteed to come before the chat identifier is returned to the application. The chat field changes will be reported through separate updates
@@ -59170,10 +53119,7 @@ func (t UpdateNewChat) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateNewChat",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateNewChat", Alias: (*Alias)(&t)})
 }
 
 // UpdateNewChatJoinRequest A user sent a join request to a chat; for bots only
@@ -59201,10 +53147,7 @@ func (t UpdateNewChatJoinRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateNewChatJoinRequest",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateNewChatJoinRequest", Alias: (*Alias)(&t)})
 }
 
 // UpdateNewChosenInlineResult The user has chosen a result of an inline query; for bots only
@@ -59232,10 +53175,7 @@ func (t UpdateNewChosenInlineResult) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateNewChosenInlineResult",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateNewChosenInlineResult", Alias: (*Alias)(&t)})
 }
 
 // UpdateNewCustomEvent A new incoming event; for bots only
@@ -59255,10 +53195,7 @@ func (t UpdateNewCustomEvent) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateNewCustomEvent",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateNewCustomEvent", Alias: (*Alias)(&t)})
 }
 
 // UpdateNewCustomQuery A new incoming query; for bots only
@@ -59282,10 +53219,7 @@ func (t UpdateNewCustomQuery) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateNewCustomQuery",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateNewCustomQuery", Alias: (*Alias)(&t)})
 }
 
 // UpdateNewGroupCallMessage A new message was received in a group call
@@ -59307,10 +53241,7 @@ func (t UpdateNewGroupCallMessage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateNewGroupCallMessage",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateNewGroupCallMessage", Alias: (*Alias)(&t)})
 }
 
 // UpdateNewGroupCallPaidReaction A new paid reaction was received in a live story group call
@@ -59334,10 +53265,7 @@ func (t UpdateNewGroupCallPaidReaction) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateNewGroupCallPaidReaction",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateNewGroupCallPaidReaction", Alias: (*Alias)(&t)})
 }
 
 func (t *UpdateNewGroupCallPaidReaction) UnmarshalJSON(data []byte) error {
@@ -59384,10 +53312,7 @@ func (t UpdateNewGuestQuery) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateNewGuestQuery",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateNewGuestQuery", Alias: (*Alias)(&t)})
 }
 
 // UpdateNewInlineCallbackQuery A new incoming callback query from a message sent via a bot; for bots only
@@ -59415,10 +53340,7 @@ func (t UpdateNewInlineCallbackQuery) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateNewInlineCallbackQuery",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateNewInlineCallbackQuery", Alias: (*Alias)(&t)})
 }
 
 func (t *UpdateNewInlineCallbackQuery) UnmarshalJSON(data []byte) error {
@@ -59471,10 +53393,7 @@ func (t UpdateNewInlineQuery) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateNewInlineQuery",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateNewInlineQuery", Alias: (*Alias)(&t)})
 }
 
 func (t *UpdateNewInlineQuery) UnmarshalJSON(data []byte) error {
@@ -59517,10 +53436,7 @@ func (t UpdateNewMessage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateNewMessage",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateNewMessage", Alias: (*Alias)(&t)})
 }
 
 // UpdateNewOauthRequest An OAuth authorization request was received
@@ -59544,10 +53460,7 @@ func (t UpdateNewOauthRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateNewOauthRequest",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateNewOauthRequest", Alias: (*Alias)(&t)})
 }
 
 // UpdateNewPreCheckoutQuery A new incoming pre-checkout query; for bots only. Contains full information about a checkout
@@ -59579,10 +53492,7 @@ func (t UpdateNewPreCheckoutQuery) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateNewPreCheckoutQuery",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateNewPreCheckoutQuery", Alias: (*Alias)(&t)})
 }
 
 // UpdateNewShippingQuery A new incoming shipping query; for bots only. Only for invoices with flexible price
@@ -59608,10 +53518,7 @@ func (t UpdateNewShippingQuery) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateNewShippingQuery",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateNewShippingQuery", Alias: (*Alias)(&t)})
 }
 
 // UpdateNotification A notification was changed
@@ -59633,10 +53540,7 @@ func (t UpdateNotification) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateNotification",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateNotification", Alias: (*Alias)(&t)})
 }
 
 // UpdateNotificationGroup A list of active notifications in a notification group has changed
@@ -59670,10 +53574,7 @@ func (t UpdateNotificationGroup) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateNotificationGroup",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateNotificationGroup", Alias: (*Alias)(&t)})
 }
 
 func (t *UpdateNotificationGroup) UnmarshalJSON(data []byte) error {
@@ -59718,10 +53619,7 @@ func (t UpdateOption) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateOption",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateOption", Alias: (*Alias)(&t)})
 }
 
 func (t *UpdateOption) UnmarshalJSON(data []byte) error {
@@ -59764,10 +53662,7 @@ func (t UpdateOwnedGramCount) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateOwnedGramCount",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateOwnedGramCount", Alias: (*Alias)(&t)})
 }
 
 // UpdateOwnedStarCount The number of Telegram Stars owned by the current user has changed
@@ -59787,10 +53682,7 @@ func (t UpdateOwnedStarCount) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateOwnedStarCount",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateOwnedStarCount", Alias: (*Alias)(&t)})
 }
 
 // UpdatePaidMediaPurchased Paid media were purchased by a user; for bots only
@@ -59812,10 +53704,7 @@ func (t UpdatePaidMediaPurchased) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updatePaidMediaPurchased",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updatePaidMediaPurchased", Alias: (*Alias)(&t)})
 }
 
 // UpdatePendingMessage A new pending text or rich message was received in a chat with a bot. The message must be shown in the chat for at most getOption("pending_text_message_period") seconds,
@@ -59845,10 +53734,7 @@ func (t UpdatePendingMessage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updatePendingMessage",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updatePendingMessage", Alias: (*Alias)(&t)})
 }
 
 func (t *UpdatePendingMessage) UnmarshalJSON(data []byte) error {
@@ -59891,10 +53777,7 @@ func (t UpdatePoll) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updatePoll",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updatePoll", Alias: (*Alias)(&t)})
 }
 
 // UpdatePollAnswer A user changed the answer to a poll; for bots only
@@ -59920,10 +53803,7 @@ func (t UpdatePollAnswer) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updatePollAnswer",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updatePollAnswer", Alias: (*Alias)(&t)})
 }
 
 func (t *UpdatePollAnswer) UnmarshalJSON(data []byte) error {
@@ -59968,10 +53848,7 @@ func (t UpdateProfileAccentColors) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateProfileAccentColors",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateProfileAccentColors", Alias: (*Alias)(&t)})
 }
 
 // UpdateQuickReplyShortcut Basic information about a quick reply shortcut has changed. This update is guaranteed to come before the quick shortcut name is returned to the application
@@ -59991,10 +53868,7 @@ func (t UpdateQuickReplyShortcut) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateQuickReplyShortcut",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateQuickReplyShortcut", Alias: (*Alias)(&t)})
 }
 
 // UpdateQuickReplyShortcutDeleted A quick reply shortcut and all its messages were deleted
@@ -60014,10 +53888,7 @@ func (t UpdateQuickReplyShortcutDeleted) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateQuickReplyShortcutDeleted",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateQuickReplyShortcutDeleted", Alias: (*Alias)(&t)})
 }
 
 // UpdateQuickReplyShortcutMessages The list of quick reply shortcut messages has changed
@@ -60039,10 +53910,7 @@ func (t UpdateQuickReplyShortcutMessages) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateQuickReplyShortcutMessages",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateQuickReplyShortcutMessages", Alias: (*Alias)(&t)})
 }
 
 // UpdateQuickReplyShortcuts The list of quick reply shortcuts has changed
@@ -60062,10 +53930,7 @@ func (t UpdateQuickReplyShortcuts) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateQuickReplyShortcuts",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateQuickReplyShortcuts", Alias: (*Alias)(&t)})
 }
 
 // UpdateReactionNotificationSettings Notification settings for reactions were updated
@@ -60085,10 +53950,7 @@ func (t UpdateReactionNotificationSettings) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateReactionNotificationSettings",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateReactionNotificationSettings", Alias: (*Alias)(&t)})
 }
 
 // UpdateRecentStickers The list of recently used stickers was updated
@@ -60110,10 +53972,7 @@ func (t UpdateRecentStickers) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateRecentStickers",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateRecentStickers", Alias: (*Alias)(&t)})
 }
 
 // Updates Contains a list of updates
@@ -60131,10 +53990,7 @@ func (t Updates) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updates",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updates", Alias: (*Alias)(&t)})
 }
 
 func (t *Updates) UnmarshalJSON(data []byte) error {
@@ -60180,10 +54036,7 @@ func (t UpdateSavedAnimations) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateSavedAnimations",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateSavedAnimations", Alias: (*Alias)(&t)})
 }
 
 // UpdateSavedMessagesTags Tags used in Saved Messages or a Saved Messages topic have changed
@@ -60205,10 +54058,7 @@ func (t UpdateSavedMessagesTags) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateSavedMessagesTags",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateSavedMessagesTags", Alias: (*Alias)(&t)})
 }
 
 // UpdateSavedMessagesTopic Basic information about a Saved Messages topic has changed. This update is guaranteed to come before the topic identifier is returned to the application
@@ -60228,10 +54078,7 @@ func (t UpdateSavedMessagesTopic) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateSavedMessagesTopic",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateSavedMessagesTopic", Alias: (*Alias)(&t)})
 }
 
 // UpdateSavedMessagesTopicCount Number of Saved Messages topics has changed
@@ -60251,10 +54098,7 @@ func (t UpdateSavedMessagesTopicCount) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateSavedMessagesTopicCount",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateSavedMessagesTopicCount", Alias: (*Alias)(&t)})
 }
 
 // UpdateSavedNotificationSounds The list of saved notification sounds was updated. This update may not be sent until information about a notification sound was requested for the first time
@@ -60274,10 +54118,7 @@ func (t UpdateSavedNotificationSounds) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateSavedNotificationSounds",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateSavedNotificationSounds", Alias: (*Alias)(&t)})
 }
 
 // UpdateScopeNotificationSettings Notification settings for some type of chats were updated
@@ -60299,10 +54140,7 @@ func (t UpdateScopeNotificationSettings) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateScopeNotificationSettings",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateScopeNotificationSettings", Alias: (*Alias)(&t)})
 }
 
 func (t *UpdateScopeNotificationSettings) UnmarshalJSON(data []byte) error {
@@ -60345,10 +54183,7 @@ func (t UpdateSecretChat) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateSecretChat",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateSecretChat", Alias: (*Alias)(&t)})
 }
 
 // UpdateServiceNotification A service notification from the server was received. Upon receiving this the application must show a popup with the content of the notification
@@ -60370,10 +54205,7 @@ func (t UpdateServiceNotification) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateServiceNotification",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateServiceNotification", Alias: (*Alias)(&t)})
 }
 
 func (t *UpdateServiceNotification) UnmarshalJSON(data []byte) error {
@@ -60422,10 +54254,7 @@ func (t UpdateSpeechRecognitionTrial) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateSpeechRecognitionTrial",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateSpeechRecognitionTrial", Alias: (*Alias)(&t)})
 }
 
 // UpdateSpeedLimitNotification Download or upload file speed for the user was limited, but it can be restored by subscription to Telegram Premium. The notification can be postponed until a file being downloaded or uploaded is visible to the user.
@@ -60445,10 +54274,7 @@ func (t UpdateSpeedLimitNotification) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateSpeedLimitNotification",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateSpeedLimitNotification", Alias: (*Alias)(&t)})
 }
 
 // UpdateStakeDiceState The stake dice state has changed
@@ -60468,10 +54294,7 @@ func (t UpdateStakeDiceState) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateStakeDiceState",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateStakeDiceState", Alias: (*Alias)(&t)})
 }
 
 // UpdateStarRevenueStatus The Telegram Star revenue earned by a user or a chat has changed. If Telegram Star transaction screen of the chat is opened, then getStarTransactions may be called to fetch new transactions
@@ -60493,10 +54316,7 @@ func (t UpdateStarRevenueStatus) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateStarRevenueStatus",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateStarRevenueStatus", Alias: (*Alias)(&t)})
 }
 
 func (t *UpdateStarRevenueStatus) UnmarshalJSON(data []byte) error {
@@ -60539,10 +54359,7 @@ func (t UpdateStickerSet) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateStickerSet",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateStickerSet", Alias: (*Alias)(&t)})
 }
 
 // UpdateStopMessageDraft A message draft generation was stopped by the user
@@ -60566,10 +54383,7 @@ func (t UpdateStopMessageDraft) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateStopMessageDraft",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateStopMessageDraft", Alias: (*Alias)(&t)})
 }
 
 // UpdateStory A story was changed
@@ -60589,10 +54403,7 @@ func (t UpdateStory) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateStory",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateStory", Alias: (*Alias)(&t)})
 }
 
 // UpdateStoryDeleted A story became inaccessible
@@ -60614,10 +54425,7 @@ func (t UpdateStoryDeleted) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateStoryDeleted",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateStoryDeleted", Alias: (*Alias)(&t)})
 }
 
 // UpdateStoryListChatCount Number of chats in a story list has changed
@@ -60639,10 +54447,7 @@ func (t UpdateStoryListChatCount) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateStoryListChatCount",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateStoryListChatCount", Alias: (*Alias)(&t)})
 }
 
 func (t *UpdateStoryListChatCount) UnmarshalJSON(data []byte) error {
@@ -60689,10 +54494,7 @@ func (t UpdateStoryPostFailed) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateStoryPostFailed",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateStoryPostFailed", Alias: (*Alias)(&t)})
 }
 
 func (t *UpdateStoryPostFailed) UnmarshalJSON(data []byte) error {
@@ -60737,10 +54539,7 @@ func (t UpdateStoryPostSucceeded) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateStoryPostSucceeded",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateStoryPostSucceeded", Alias: (*Alias)(&t)})
 }
 
 // UpdateStoryStealthMode Story stealth mode settings have changed
@@ -60762,10 +54561,7 @@ func (t UpdateStoryStealthMode) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateStoryStealthMode",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateStoryStealthMode", Alias: (*Alias)(&t)})
 }
 
 // UpdateSuggestedActions The list of suggested to the user actions has changed
@@ -60787,10 +54583,7 @@ func (t UpdateSuggestedActions) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateSuggestedActions",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateSuggestedActions", Alias: (*Alias)(&t)})
 }
 
 func (t *UpdateSuggestedActions) UnmarshalJSON(data []byte) error {
@@ -60847,10 +54640,7 @@ func (t UpdateSupergroup) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateSupergroup",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateSupergroup", Alias: (*Alias)(&t)})
 }
 
 // UpdateSupergroupFullInfo Some data in supergroupFullInfo has been changed
@@ -60872,10 +54662,7 @@ func (t UpdateSupergroupFullInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateSupergroupFullInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateSupergroupFullInfo", Alias: (*Alias)(&t)})
 }
 
 // UpdateTermsOfService New terms of service must be accepted by the user. If the terms of service are declined, then the deleteAccount method must be called with the reason "Decline ToS update"
@@ -60897,10 +54684,7 @@ func (t UpdateTermsOfService) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateTermsOfService",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateTermsOfService", Alias: (*Alias)(&t)})
 }
 
 // UpdateTextCompositionStyles The styles supported for text composition have changed
@@ -60920,10 +54704,7 @@ func (t UpdateTextCompositionStyles) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateTextCompositionStyles",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateTextCompositionStyles", Alias: (*Alias)(&t)})
 }
 
 // UpdateTopicMessageCount Number of messages in a topic has changed; for Saved Messages and channel direct messages chat topics only
@@ -60947,10 +54728,7 @@ func (t UpdateTopicMessageCount) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateTopicMessageCount",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateTopicMessageCount", Alias: (*Alias)(&t)})
 }
 
 func (t *UpdateTopicMessageCount) UnmarshalJSON(data []byte) error {
@@ -60995,10 +54773,7 @@ func (t UpdateTrendingStickerSets) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateTrendingStickerSets",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateTrendingStickerSets", Alias: (*Alias)(&t)})
 }
 
 func (t *UpdateTrendingStickerSets) UnmarshalJSON(data []byte) error {
@@ -61041,10 +54816,7 @@ func (t UpdateTrustedMiniAppBots) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateTrustedMiniAppBots",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateTrustedMiniAppBots", Alias: (*Alias)(&t)})
 }
 
 // UpdateUnconfirmedSession The first unconfirmed session has changed
@@ -61066,10 +54838,7 @@ func (t UpdateUnconfirmedSession) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateUnconfirmedSession",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateUnconfirmedSession", Alias: (*Alias)(&t)})
 }
 
 // UpdateUnreadChatCount Number of unread chats, i.e. with unread messages or marked as unread, has changed. This update is sent only if the message database is used
@@ -61099,10 +54868,7 @@ func (t UpdateUnreadChatCount) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateUnreadChatCount",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateUnreadChatCount", Alias: (*Alias)(&t)})
 }
 
 func (t *UpdateUnreadChatCount) UnmarshalJSON(data []byte) error {
@@ -61149,10 +54915,7 @@ func (t UpdateUnreadMessageCount) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateUnreadMessageCount",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateUnreadMessageCount", Alias: (*Alias)(&t)})
 }
 
 func (t *UpdateUnreadMessageCount) UnmarshalJSON(data []byte) error {
@@ -61195,10 +54958,7 @@ func (t UpdateUser) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateUser",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateUser", Alias: (*Alias)(&t)})
 }
 
 // UpdateUserFullInfo Some data in userFullInfo has been changed
@@ -61220,10 +54980,7 @@ func (t UpdateUserFullInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateUserFullInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateUserFullInfo", Alias: (*Alias)(&t)})
 }
 
 // UpdateUserPrivacySettingRules Some privacy setting rules have been changed
@@ -61245,10 +55002,7 @@ func (t UpdateUserPrivacySettingRules) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateUserPrivacySettingRules",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateUserPrivacySettingRules", Alias: (*Alias)(&t)})
 }
 
 func (t *UpdateUserPrivacySettingRules) UnmarshalJSON(data []byte) error {
@@ -61293,10 +55047,7 @@ func (t UpdateUserStatus) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateUserStatus",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateUserStatus", Alias: (*Alias)(&t)})
 }
 
 func (t *UpdateUserStatus) UnmarshalJSON(data []byte) error {
@@ -61347,10 +55098,7 @@ func (t UpdateUserSubscription) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateUserSubscription",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateUserSubscription", Alias: (*Alias)(&t)})
 }
 
 // UpdateVideoPublished An automatically scheduled message with video has been successfully sent after conversion
@@ -61372,10 +55120,7 @@ func (t UpdateVideoPublished) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateVideoPublished",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateVideoPublished", Alias: (*Alias)(&t)})
 }
 
 // UpdateWebAppMessageSent A message was sent by an opened Web App, so the Web App needs to be closed
@@ -61395,10 +55140,7 @@ func (t UpdateWebAppMessageSent) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateWebAppMessageSent",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateWebAppMessageSent", Alias: (*Alias)(&t)})
 }
 
 // UpdateWebBrowserSettings Web browser settings have been updated
@@ -61418,10 +55160,7 @@ func (t UpdateWebBrowserSettings) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "updateWebBrowserSettings",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "updateWebBrowserSettings", Alias: (*Alias)(&t)})
 }
 
 // UpgradedGift Describes an upgraded gift that can be transferred to another owner or transferred to the TON blockchain as an NFT
@@ -61495,10 +55234,7 @@ func (t UpgradedGift) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "upgradedGift",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "upgradedGift", Alias: (*Alias)(&t)})
 }
 
 func (t *UpgradedGift) UnmarshalJSON(data []byte) error {
@@ -61549,10 +55285,7 @@ func (t UpgradedGiftAttributeIdBackdrop) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "upgradedGiftAttributeIdBackdrop",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "upgradedGiftAttributeIdBackdrop", Alias: (*Alias)(&t)})
 }
 
 // UpgradedGiftAttributeIdModel Identifier of a gift model
@@ -61572,10 +55305,7 @@ func (t UpgradedGiftAttributeIdModel) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "upgradedGiftAttributeIdModel",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "upgradedGiftAttributeIdModel", Alias: (*Alias)(&t)})
 }
 
 // UpgradedGiftAttributeIdSymbol Identifier of a gift symbol
@@ -61595,10 +55325,7 @@ func (t UpgradedGiftAttributeIdSymbol) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "upgradedGiftAttributeIdSymbol",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "upgradedGiftAttributeIdSymbol", Alias: (*Alias)(&t)})
 }
 
 // UpgradedGiftAttributeRarityEpic The attribute is epic
@@ -61616,10 +55343,7 @@ func (t UpgradedGiftAttributeRarityEpic) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "upgradedGiftAttributeRarityEpic",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "upgradedGiftAttributeRarityEpic", Alias: (*Alias)(&t)})
 }
 
 // UpgradedGiftAttributeRarityLegendary The attribute is legendary
@@ -61637,10 +55361,7 @@ func (t UpgradedGiftAttributeRarityLegendary) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "upgradedGiftAttributeRarityLegendary",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "upgradedGiftAttributeRarityLegendary", Alias: (*Alias)(&t)})
 }
 
 // UpgradedGiftAttributeRarityPerMille The rarity is represented as the numeric frequency of the model
@@ -61660,10 +55381,7 @@ func (t UpgradedGiftAttributeRarityPerMille) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "upgradedGiftAttributeRarityPerMille",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "upgradedGiftAttributeRarityPerMille", Alias: (*Alias)(&t)})
 }
 
 // UpgradedGiftAttributeRarityRare The attribute is rare
@@ -61681,10 +55399,7 @@ func (t UpgradedGiftAttributeRarityRare) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "upgradedGiftAttributeRarityRare",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "upgradedGiftAttributeRarityRare", Alias: (*Alias)(&t)})
 }
 
 // UpgradedGiftAttributeRarityUncommon The attribute is uncommon
@@ -61702,10 +55417,7 @@ func (t UpgradedGiftAttributeRarityUncommon) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "upgradedGiftAttributeRarityUncommon",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "upgradedGiftAttributeRarityUncommon", Alias: (*Alias)(&t)})
 }
 
 // UpgradedGiftBackdrop Describes a backdrop of an upgraded gift
@@ -61729,10 +55441,7 @@ func (t UpgradedGiftBackdrop) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "upgradedGiftBackdrop",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "upgradedGiftBackdrop", Alias: (*Alias)(&t)})
 }
 
 func (t *UpgradedGiftBackdrop) UnmarshalJSON(data []byte) error {
@@ -61779,10 +55488,7 @@ func (t UpgradedGiftBackdropColors) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "upgradedGiftBackdropColors",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "upgradedGiftBackdropColors", Alias: (*Alias)(&t)})
 }
 
 // UpgradedGiftBackdropCount Describes a backdrop of an upgraded gift
@@ -61802,10 +55508,7 @@ func (t UpgradedGiftBackdropCount) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "upgradedGiftBackdropCount",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "upgradedGiftBackdropCount", Alias: (*Alias)(&t)})
 }
 
 // UpgradedGiftColors Contains information about color scheme for user's name, background of empty chat photo, replies to messages and link previews
@@ -61835,10 +55538,7 @@ func (t UpgradedGiftColors) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "upgradedGiftColors",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "upgradedGiftColors", Alias: (*Alias)(&t)})
 }
 
 // UpgradedGiftModel Describes a model of an upgraded gift
@@ -61862,10 +55562,7 @@ func (t UpgradedGiftModel) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "upgradedGiftModel",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "upgradedGiftModel", Alias: (*Alias)(&t)})
 }
 
 func (t *UpgradedGiftModel) UnmarshalJSON(data []byte) error {
@@ -61908,10 +55605,7 @@ func (t UpgradedGiftModelCount) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "upgradedGiftModelCount",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "upgradedGiftModelCount", Alias: (*Alias)(&t)})
 }
 
 // UpgradedGiftOriginalDetails Describes the original details about the gift
@@ -61935,10 +55629,7 @@ func (t UpgradedGiftOriginalDetails) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "upgradedGiftOriginalDetails",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "upgradedGiftOriginalDetails", Alias: (*Alias)(&t)})
 }
 
 func (t *UpgradedGiftOriginalDetails) UnmarshalJSON(data []byte) error {
@@ -61987,10 +55678,7 @@ func (t UpgradedGiftOriginBlockchain) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "upgradedGiftOriginBlockchain",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "upgradedGiftOriginBlockchain", Alias: (*Alias)(&t)})
 }
 
 // UpgradedGiftOriginCraft The gift was crafted from other gifts
@@ -62008,10 +55696,7 @@ func (t UpgradedGiftOriginCraft) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "upgradedGiftOriginCraft",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "upgradedGiftOriginCraft", Alias: (*Alias)(&t)})
 }
 
 // UpgradedGiftOriginOffer The gift was bought through an offer
@@ -62031,10 +55716,7 @@ func (t UpgradedGiftOriginOffer) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "upgradedGiftOriginOffer",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "upgradedGiftOriginOffer", Alias: (*Alias)(&t)})
 }
 
 func (t *UpgradedGiftOriginOffer) UnmarshalJSON(data []byte) error {
@@ -62075,10 +55757,7 @@ func (t UpgradedGiftOriginPrepaidUpgrade) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "upgradedGiftOriginPrepaidUpgrade",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "upgradedGiftOriginPrepaidUpgrade", Alias: (*Alias)(&t)})
 }
 
 // UpgradedGiftOriginResale The gift was bought from another user
@@ -62098,10 +55777,7 @@ func (t UpgradedGiftOriginResale) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "upgradedGiftOriginResale",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "upgradedGiftOriginResale", Alias: (*Alias)(&t)})
 }
 
 func (t *UpgradedGiftOriginResale) UnmarshalJSON(data []byte) error {
@@ -62142,10 +55818,7 @@ func (t UpgradedGiftOriginTransfer) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "upgradedGiftOriginTransfer",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "upgradedGiftOriginTransfer", Alias: (*Alias)(&t)})
 }
 
 // UpgradedGiftOriginUpgrade The gift was obtained by upgrading of a previously received gift
@@ -62165,10 +55838,7 @@ func (t UpgradedGiftOriginUpgrade) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "upgradedGiftOriginUpgrade",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "upgradedGiftOriginUpgrade", Alias: (*Alias)(&t)})
 }
 
 // UpgradedGiftSymbol Describes a symbol shown on the pattern of an upgraded gift
@@ -62190,10 +55860,7 @@ func (t UpgradedGiftSymbol) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "upgradedGiftSymbol",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "upgradedGiftSymbol", Alias: (*Alias)(&t)})
 }
 
 func (t *UpgradedGiftSymbol) UnmarshalJSON(data []byte) error {
@@ -62236,10 +55903,7 @@ func (t UpgradedGiftSymbolCount) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "upgradedGiftSymbolCount",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "upgradedGiftSymbolCount", Alias: (*Alias)(&t)})
 }
 
 // UpgradedGiftValueInfo Contains information about value of an upgraded gift
@@ -62283,10 +55947,7 @@ func (t UpgradedGiftValueInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "upgradedGiftValueInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "upgradedGiftValueInfo", Alias: (*Alias)(&t)})
 }
 
 // UpgradeGiftResult Contains result of gift upgrading
@@ -62320,10 +55981,7 @@ func (t UpgradeGiftResult) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "upgradeGiftResult",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "upgradeGiftResult", Alias: (*Alias)(&t)})
 }
 
 // User Represents a user
@@ -62393,10 +56051,7 @@ func (t User) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "user",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "user", Alias: (*Alias)(&t)})
 }
 
 func (t *User) UnmarshalJSON(data []byte) error {
@@ -62461,10 +56116,7 @@ func (t UserAuctionBid) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "userAuctionBid",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "userAuctionBid", Alias: (*Alias)(&t)})
 }
 
 func (t *UserAuctionBid) UnmarshalJSON(data []byte) error {
@@ -62567,10 +56219,7 @@ func (t UserFullInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "userFullInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "userFullInfo", Alias: (*Alias)(&t)})
 }
 
 func (t *UserFullInfo) UnmarshalJSON(data []byte) error {
@@ -62621,10 +56270,7 @@ func (t UserLink) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "userLink",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "userLink", Alias: (*Alias)(&t)})
 }
 
 // Usernames Describes usernames assigned to a user, a supergroup, or a channel
@@ -62648,10 +56294,7 @@ func (t Usernames) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "usernames",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "usernames", Alias: (*Alias)(&t)})
 }
 
 // UserPrivacySettingAllowCalls A privacy setting for managing whether the user can be called
@@ -62669,10 +56312,7 @@ func (t UserPrivacySettingAllowCalls) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "userPrivacySettingAllowCalls",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "userPrivacySettingAllowCalls", Alias: (*Alias)(&t)})
 }
 
 // UserPrivacySettingAllowChatInvites A privacy setting for managing whether the user can be invited to chats
@@ -62690,10 +56330,7 @@ func (t UserPrivacySettingAllowChatInvites) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "userPrivacySettingAllowChatInvites",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "userPrivacySettingAllowChatInvites", Alias: (*Alias)(&t)})
 }
 
 // UserPrivacySettingAllowFindingByPhoneNumber A privacy setting for managing whether the user can be found by their phone number. Checked only if the phone number is not known to the other user. Can be set only to "Allow contacts" or "Allow all"
@@ -62711,10 +56348,7 @@ func (t UserPrivacySettingAllowFindingByPhoneNumber) MarshalJSON() ([]byte, erro
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "userPrivacySettingAllowFindingByPhoneNumber",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "userPrivacySettingAllowFindingByPhoneNumber", Alias: (*Alias)(&t)})
 }
 
 // UserPrivacySettingAllowPeerToPeerCalls A privacy setting for managing whether peer-to-peer connections can be used for calls
@@ -62732,10 +56366,7 @@ func (t UserPrivacySettingAllowPeerToPeerCalls) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "userPrivacySettingAllowPeerToPeerCalls",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "userPrivacySettingAllowPeerToPeerCalls", Alias: (*Alias)(&t)})
 }
 
 // UserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages A privacy setting for managing whether the user can receive voice and video messages in private chats; for Telegram Premium users only
@@ -62753,10 +56384,7 @@ func (t UserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages) MarshalJSON() (
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "userPrivacySettingAllowPrivateVoiceAndVideoNoteMessages",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "userPrivacySettingAllowPrivateVoiceAndVideoNoteMessages", Alias: (*Alias)(&t)})
 }
 
 // UserPrivacySettingAllowUnpaidMessages A privacy setting for managing whether the user can receive messages without additional payment
@@ -62774,10 +56402,7 @@ func (t UserPrivacySettingAllowUnpaidMessages) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "userPrivacySettingAllowUnpaidMessages",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "userPrivacySettingAllowUnpaidMessages", Alias: (*Alias)(&t)})
 }
 
 // UserPrivacySettingAutosaveGifts A privacy setting for managing whether received gifts are automatically shown on the user's profile page
@@ -62795,10 +56420,7 @@ func (t UserPrivacySettingAutosaveGifts) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "userPrivacySettingAutosaveGifts",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "userPrivacySettingAutosaveGifts", Alias: (*Alias)(&t)})
 }
 
 // UserPrivacySettingRuleAllowAll A rule to allow all users to do something
@@ -62816,10 +56438,7 @@ func (t UserPrivacySettingRuleAllowAll) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "userPrivacySettingRuleAllowAll",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "userPrivacySettingRuleAllowAll", Alias: (*Alias)(&t)})
 }
 
 // UserPrivacySettingRuleAllowBots A rule to allow all bots to do something
@@ -62837,10 +56456,7 @@ func (t UserPrivacySettingRuleAllowBots) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "userPrivacySettingRuleAllowBots",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "userPrivacySettingRuleAllowBots", Alias: (*Alias)(&t)})
 }
 
 // UserPrivacySettingRuleAllowChatMembers A rule to allow all members of certain specified basic groups and supergroups to doing something
@@ -62860,10 +56476,7 @@ func (t UserPrivacySettingRuleAllowChatMembers) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "userPrivacySettingRuleAllowChatMembers",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "userPrivacySettingRuleAllowChatMembers", Alias: (*Alias)(&t)})
 }
 
 // UserPrivacySettingRuleAllowContacts A rule to allow all contacts of the user to do something
@@ -62881,10 +56494,7 @@ func (t UserPrivacySettingRuleAllowContacts) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "userPrivacySettingRuleAllowContacts",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "userPrivacySettingRuleAllowContacts", Alias: (*Alias)(&t)})
 }
 
 // UserPrivacySettingRuleAllowPremiumUsers A rule to allow all Premium Users to do something; currently, allowed only for userPrivacySettingAllowChatInvites
@@ -62902,10 +56512,7 @@ func (t UserPrivacySettingRuleAllowPremiumUsers) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "userPrivacySettingRuleAllowPremiumUsers",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "userPrivacySettingRuleAllowPremiumUsers", Alias: (*Alias)(&t)})
 }
 
 // UserPrivacySettingRuleAllowUsers A rule to allow certain specified users to do something
@@ -62925,10 +56532,7 @@ func (t UserPrivacySettingRuleAllowUsers) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "userPrivacySettingRuleAllowUsers",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "userPrivacySettingRuleAllowUsers", Alias: (*Alias)(&t)})
 }
 
 // UserPrivacySettingRuleRestrictAll A rule to restrict all users from doing something
@@ -62946,10 +56550,7 @@ func (t UserPrivacySettingRuleRestrictAll) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "userPrivacySettingRuleRestrictAll",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "userPrivacySettingRuleRestrictAll", Alias: (*Alias)(&t)})
 }
 
 // UserPrivacySettingRuleRestrictBots A rule to restrict all bots from doing something
@@ -62967,10 +56568,7 @@ func (t UserPrivacySettingRuleRestrictBots) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "userPrivacySettingRuleRestrictBots",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "userPrivacySettingRuleRestrictBots", Alias: (*Alias)(&t)})
 }
 
 // UserPrivacySettingRuleRestrictChatMembers A rule to restrict all members of specified basic groups and supergroups from doing something
@@ -62990,10 +56588,7 @@ func (t UserPrivacySettingRuleRestrictChatMembers) MarshalJSON() ([]byte, error)
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "userPrivacySettingRuleRestrictChatMembers",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "userPrivacySettingRuleRestrictChatMembers", Alias: (*Alias)(&t)})
 }
 
 // UserPrivacySettingRuleRestrictContacts A rule to restrict all contacts of the user from doing something
@@ -63011,10 +56606,7 @@ func (t UserPrivacySettingRuleRestrictContacts) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "userPrivacySettingRuleRestrictContacts",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "userPrivacySettingRuleRestrictContacts", Alias: (*Alias)(&t)})
 }
 
 // UserPrivacySettingRuleRestrictUsers A rule to restrict all specified users from doing something
@@ -63034,10 +56626,7 @@ func (t UserPrivacySettingRuleRestrictUsers) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "userPrivacySettingRuleRestrictUsers",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "userPrivacySettingRuleRestrictUsers", Alias: (*Alias)(&t)})
 }
 
 // UserPrivacySettingRules A list of privacy rules. Rules are matched in the specified order. The first matched rule defines the privacy setting for a given user. If no rule matches, the action is not allowed
@@ -63055,10 +56644,7 @@ func (t UserPrivacySettingRules) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "userPrivacySettingRules",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "userPrivacySettingRules", Alias: (*Alias)(&t)})
 }
 
 func (t *UserPrivacySettingRules) UnmarshalJSON(data []byte) error {
@@ -63102,10 +56688,7 @@ func (t UserPrivacySettingShowBio) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "userPrivacySettingShowBio",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "userPrivacySettingShowBio", Alias: (*Alias)(&t)})
 }
 
 // UserPrivacySettingShowBirthdate A privacy setting for managing whether the user's birthdate is visible
@@ -63123,10 +56706,7 @@ func (t UserPrivacySettingShowBirthdate) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "userPrivacySettingShowBirthdate",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "userPrivacySettingShowBirthdate", Alias: (*Alias)(&t)})
 }
 
 // UserPrivacySettingShowLinkInForwardedMessages A privacy setting for managing whether a link to the user's account is included in forwarded messages
@@ -63144,10 +56724,7 @@ func (t UserPrivacySettingShowLinkInForwardedMessages) MarshalJSON() ([]byte, er
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "userPrivacySettingShowLinkInForwardedMessages",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "userPrivacySettingShowLinkInForwardedMessages", Alias: (*Alias)(&t)})
 }
 
 // UserPrivacySettingShowPhoneNumber A privacy setting for managing whether the user's phone number is visible
@@ -63165,10 +56742,7 @@ func (t UserPrivacySettingShowPhoneNumber) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "userPrivacySettingShowPhoneNumber",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "userPrivacySettingShowPhoneNumber", Alias: (*Alias)(&t)})
 }
 
 // UserPrivacySettingShowProfileAudio A privacy setting for managing whether the user's profile audio files are visible
@@ -63186,10 +56760,7 @@ func (t UserPrivacySettingShowProfileAudio) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "userPrivacySettingShowProfileAudio",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "userPrivacySettingShowProfileAudio", Alias: (*Alias)(&t)})
 }
 
 // UserPrivacySettingShowProfilePhoto A privacy setting for managing whether the user's profile photo is visible
@@ -63207,10 +56778,7 @@ func (t UserPrivacySettingShowProfilePhoto) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "userPrivacySettingShowProfilePhoto",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "userPrivacySettingShowProfilePhoto", Alias: (*Alias)(&t)})
 }
 
 // UserPrivacySettingShowStatus A privacy setting for managing whether the user's online status is visible
@@ -63228,10 +56796,7 @@ func (t UserPrivacySettingShowStatus) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "userPrivacySettingShowStatus",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "userPrivacySettingShowStatus", Alias: (*Alias)(&t)})
 }
 
 // UserRating Contains description of user rating
@@ -63257,10 +56822,7 @@ func (t UserRating) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "userRating",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "userRating", Alias: (*Alias)(&t)})
 }
 
 // Users Represents a list of users
@@ -63280,10 +56842,7 @@ func (t Users) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "users",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "users", Alias: (*Alias)(&t)})
 }
 
 // UserStatusEmpty The user's status has never been changed
@@ -63301,10 +56860,7 @@ func (t UserStatusEmpty) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "userStatusEmpty",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "userStatusEmpty", Alias: (*Alias)(&t)})
 }
 
 // UserStatusLastMonth The user is offline, but was online last month
@@ -63324,10 +56880,7 @@ func (t UserStatusLastMonth) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "userStatusLastMonth",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "userStatusLastMonth", Alias: (*Alias)(&t)})
 }
 
 // UserStatusLastWeek The user is offline, but was online last week
@@ -63347,10 +56900,7 @@ func (t UserStatusLastWeek) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "userStatusLastWeek",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "userStatusLastWeek", Alias: (*Alias)(&t)})
 }
 
 // UserStatusOffline The user is offline
@@ -63370,10 +56920,7 @@ func (t UserStatusOffline) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "userStatusOffline",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "userStatusOffline", Alias: (*Alias)(&t)})
 }
 
 // UserStatusOnline The user is online
@@ -63393,10 +56940,7 @@ func (t UserStatusOnline) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "userStatusOnline",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "userStatusOnline", Alias: (*Alias)(&t)})
 }
 
 // UserStatusRecently The user was online recently
@@ -63416,10 +56960,7 @@ func (t UserStatusRecently) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "userStatusRecently",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "userStatusRecently", Alias: (*Alias)(&t)})
 }
 
 // UserSupportInfo Contains custom information about the user
@@ -63441,10 +56982,7 @@ func (t UserSupportInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "userSupportInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "userSupportInfo", Alias: (*Alias)(&t)})
 }
 
 // UserTypeBot A bot (see https://core.telegram.org/bots)
@@ -63492,10 +57030,7 @@ func (t UserTypeBot) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "userTypeBot",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "userTypeBot", Alias: (*Alias)(&t)})
 }
 
 // UserTypeDeleted A deleted user or deleted bot. No information on the user besides the user identifier is available. It is not possible to perform any active actions on this type of user
@@ -63513,10 +57048,7 @@ func (t UserTypeDeleted) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "userTypeDeleted",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "userTypeDeleted", Alias: (*Alias)(&t)})
 }
 
 // UserTypeRegular A regular user
@@ -63534,10 +57066,7 @@ func (t UserTypeRegular) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "userTypeRegular",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "userTypeRegular", Alias: (*Alias)(&t)})
 }
 
 // UserTypeUnknown No information on the user besides the user identifier is available, yet this user has not been deleted. This object is extremely rare and must be handled like a deleted user. It is not possible to perform any actions on users of this type
@@ -63555,10 +57084,7 @@ func (t UserTypeUnknown) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "userTypeUnknown",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "userTypeUnknown", Alias: (*Alias)(&t)})
 }
 
 // ValidatedOrderInfo Contains a temporary identifier of validated order information, which is stored for one hour, and the available shipping options
@@ -63578,10 +57104,7 @@ func (t ValidatedOrderInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "validatedOrderInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "validatedOrderInfo", Alias: (*Alias)(&t)})
 }
 
 // VectorPathCommandCubicBezierCurve A cubic Bézier curve to a given point
@@ -63605,10 +57128,7 @@ func (t VectorPathCommandCubicBezierCurve) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "vectorPathCommandCubicBezierCurve",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "vectorPathCommandCubicBezierCurve", Alias: (*Alias)(&t)})
 }
 
 // VectorPathCommandLine A straight line to a given point
@@ -63628,10 +57148,7 @@ func (t VectorPathCommandLine) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "vectorPathCommandLine",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "vectorPathCommandLine", Alias: (*Alias)(&t)})
 }
 
 // Venue Describes a venue
@@ -63659,10 +57176,7 @@ func (t Venue) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "venue",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "venue", Alias: (*Alias)(&t)})
 }
 
 // VerificationStatus Contains information about verification status of a chat or a user
@@ -63686,10 +57200,7 @@ func (t VerificationStatus) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "verificationStatus",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "verificationStatus", Alias: (*Alias)(&t)})
 }
 
 // Video Describes a video file
@@ -63725,10 +57236,7 @@ func (t Video) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "video",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "video", Alias: (*Alias)(&t)})
 }
 
 // VideoChat Describes a video chat, i.e. a group call bound to a chat
@@ -63750,10 +57258,7 @@ func (t VideoChat) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "videoChat",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "videoChat", Alias: (*Alias)(&t)})
 }
 
 func (t *VideoChat) UnmarshalJSON(data []byte) error {
@@ -63808,10 +57313,7 @@ func (t VideoMessageAdvertisement) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "videoMessageAdvertisement",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "videoMessageAdvertisement", Alias: (*Alias)(&t)})
 }
 
 // VideoMessageAdvertisements Contains a list of advertisements to be shown while a video from a message is watched
@@ -63833,10 +57335,7 @@ func (t VideoMessageAdvertisements) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "videoMessageAdvertisements",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "videoMessageAdvertisements", Alias: (*Alias)(&t)})
 }
 
 // VideoNote Describes a video note. The video must be equal in width and height, cropped to a circle, and stored in MPEG4 format
@@ -63866,10 +57365,7 @@ func (t VideoNote) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "videoNote",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "videoNote", Alias: (*Alias)(&t)})
 }
 
 func (t *VideoNote) UnmarshalJSON(data []byte) error {
@@ -63916,10 +57412,7 @@ func (t VideoStoryboard) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "videoStoryboard",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "videoStoryboard", Alias: (*Alias)(&t)})
 }
 
 // VoiceNote Describes a voice note
@@ -63945,10 +57438,7 @@ func (t VoiceNote) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "voiceNote",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "voiceNote", Alias: (*Alias)(&t)})
 }
 
 func (t *VoiceNote) UnmarshalJSON(data []byte) error {
@@ -63997,10 +57487,7 @@ func (t WebApp) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "webApp",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "webApp", Alias: (*Alias)(&t)})
 }
 
 // WebAppInfo Contains information about a Web App
@@ -64020,10 +57507,7 @@ func (t WebAppInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "webAppInfo",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "webAppInfo", Alias: (*Alias)(&t)})
 }
 
 // WebAppOpenModeCompact The Web App is opened in the compact mode
@@ -64041,10 +57525,7 @@ func (t WebAppOpenModeCompact) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "webAppOpenModeCompact",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "webAppOpenModeCompact", Alias: (*Alias)(&t)})
 }
 
 // WebAppOpenModeFullScreen The Web App is opened in the full-screen mode
@@ -64062,10 +57543,7 @@ func (t WebAppOpenModeFullScreen) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "webAppOpenModeFullScreen",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "webAppOpenModeFullScreen", Alias: (*Alias)(&t)})
 }
 
 // WebAppOpenModeFullSize The Web App is opened in the full-size mode
@@ -64083,10 +57561,7 @@ func (t WebAppOpenModeFullSize) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "webAppOpenModeFullSize",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "webAppOpenModeFullSize", Alias: (*Alias)(&t)})
 }
 
 // WebAppOpenParameters Options to be used when a Web App is opened
@@ -64108,10 +57583,7 @@ func (t WebAppOpenParameters) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "webAppOpenParameters",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "webAppOpenParameters", Alias: (*Alias)(&t)})
 }
 
 func (t *WebAppOpenParameters) UnmarshalJSON(data []byte) error {
@@ -64154,10 +57626,7 @@ func (t WebAppUrl) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "webAppUrl",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "webAppUrl", Alias: (*Alias)(&t)})
 }
 
 // WebBrowserSettings Describes web browser settings
@@ -64181,10 +57650,7 @@ func (t WebBrowserSettings) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "webBrowserSettings",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "webBrowserSettings", Alias: (*Alias)(&t)})
 }
 
 // WebBrowserTypeExternal An external web browser
@@ -64202,10 +57668,7 @@ func (t WebBrowserTypeExternal) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "webBrowserTypeExternal",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "webBrowserTypeExternal", Alias: (*Alias)(&t)})
 }
 
 // WebBrowserTypeInApp The in-app browser
@@ -64223,10 +57686,7 @@ func (t WebBrowserTypeInApp) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "webBrowserTypeInApp",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "webBrowserTypeInApp", Alias: (*Alias)(&t)})
 }
 
 // WebDomainException Describes an exception for built-in browser usage
@@ -64250,10 +57710,7 @@ func (t WebDomainException) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "webDomainException",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "webDomainException", Alias: (*Alias)(&t)})
 }
 
 // WebPageInstantView Describes an instant view page for a web page
@@ -64281,10 +57738,7 @@ func (t WebPageInstantView) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "webPageInstantView",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "webPageInstantView", Alias: (*Alias)(&t)})
 }
 
 func (t *WebPageInstantView) UnmarshalJSON(data []byte) error {
@@ -64338,10 +57792,7 @@ func (t WelcomeMessage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		TypeStr string `json:"@type"`
 		*Alias
-	}{
-		TypeStr: "welcomeMessage",
-		Alias:   (*Alias)(&t),
-	})
+	}{TypeStr: "welcomeMessage", Alias: (*Alias)(&t)})
 }
 
 func (t *WelcomeMessage) UnmarshalJSON(data []byte) error {
