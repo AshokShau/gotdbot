@@ -129,6 +129,18 @@ type ChangeWebBrowserSettingsOpts struct {
 	OpenExternalBrowser bool
 }
 
+// CheckBotUsernameOpts contains optional parameters for CheckBotUsername
+type CheckBotUsernameOpts struct {
+	// Pass true to check whether the username is suitable as a secondary username for an existing bot; pass false to check whether the username is suitable for createBot
+	IsSecondary bool
+}
+
+// ClaimTonConnectRequestOpts contains optional parameters for ClaimTonConnectRequest
+type ClaimTonConnectRequestOpts struct {
+	// Pass true to reject the request
+	IsRejected bool
+}
+
 // ClearAllDraftMessagesOpts contains optional parameters for ClearAllDraftMessages
 type ClearAllDraftMessagesOpts struct {
 	// Pass true to keep local message drafts in secret chats
@@ -335,6 +347,12 @@ type DiscardCallOpts struct {
 	IsVideo bool
 }
 
+// DisconnectTonConnectSessionOpts contains optional parameters for DisconnectTonConnectSession
+type DisconnectTonConnectSessionOpts struct {
+	// Encrypted body of the disconnect event; may be empty if the session has already been closed. Use getTonConnectSessionNextEventId to get event identifier for the event
+	Body []byte
+}
+
 // DownloadFileOpts contains optional parameters for DownloadFile
 type DownloadFileOpts struct {
 	// Pass true to return response only after the file download has succeeded, has failed, has been canceled, or a new downloadFile request with different offset/limit parameters was sent; pass false to return file state immediately, just after the download has been started
@@ -379,14 +397,6 @@ type EditBusinessMessageReplyMarkupOpts struct {
 
 // EditBusinessMessageTextOpts contains optional parameters for EditBusinessMessageText
 type EditBusinessMessageTextOpts struct {
-	// The new message reply markup; pass null if none
-	ReplyMarkup ReplyMarkup
-}
-
-// EditCallbackQueryMessageOpts contains optional parameters for EditCallbackQueryMessage
-type EditCallbackQueryMessageOpts struct {
-	// Pass true if the content of the message must be protected from forwarding and saving
-	ProtectContent bool
 	// The new message reply markup; pass null if none
 	ReplyMarkup ReplyMarkup
 }
@@ -919,6 +929,12 @@ type GetTonTransactionsOpts struct {
 	Direction TransactionDirection
 }
 
+// GetTonWalletTransactionsOpts contains optional parameters for GetTonWalletTransactions
+type GetTonWalletTransactionsOpts struct {
+	// Direction of the transactions to receive; pass null to get all transactions
+	Direction TransactionDirection
+}
+
 // GetUpgradedGiftVariantsOpts contains optional parameters for GetUpgradedGiftVariants
 type GetUpgradedGiftVariantsOpts struct {
 	// Pass true to get models that can be obtained by crafting a gift from upgraded gifts
@@ -1095,6 +1111,16 @@ type RemoveFileFromDownloadsOpts struct {
 type RemoveRecentStickerOpts struct {
 	// Pass true to remove the sticker from the list of stickers recently attached to photo or video files; pass false to remove the sticker from the list of recently sent stickers
 	IsAttached bool
+}
+
+// ReplyToCallbackQueryWithEphemeralMessageOpts contains optional parameters for ReplyToCallbackQueryWithEphemeralMessage
+type ReplyToCallbackQueryWithEphemeralMessageOpts struct {
+	// Pass true if the content of the message must be protected from forwarding and saving
+	ProtectContent bool
+	// Pass true if the ephemeral message must replace the message from which the callback query originated
+	ReplaceCallbackQueryMessage bool
+	// The new message reply markup; pass null if none
+	ReplyMarkup ReplyMarkup
 }
 
 // ResendAuthenticationCodeOpts contains optional parameters for ResendAuthenticationCode
@@ -1363,6 +1389,18 @@ type SendTextMessageDraftOpts struct {
 	Text *FormattedText
 }
 
+// SendTonConnectSessionConnectResultOpts contains optional parameters for SendTonConnectSessionConnectResult
+type SendTonConnectSessionConnectResultOpts struct {
+	// Pass true to reject the request; pass false to accept it
+	IsError bool
+}
+
+// SendTonWalletTransferOpts contains optional parameters for SendTonWalletTransfer
+type SendTonWalletTransferOpts struct {
+	// Pass true if the comment is encrypted and must be decrypted using the receiver's or sender's private key
+	IsCommentEncrypted bool
+}
+
 // SetAuthenticationPhoneNumberOpts contains optional parameters for SetAuthenticationPhoneNumber
 type SetAuthenticationPhoneNumberOpts struct {
 	// Settings for the authentication of the user's phone number; pass null to use default settings
@@ -1489,6 +1527,12 @@ type SetChatThemeOpts struct {
 type SetCommandsOpts struct {
 	// The scope to which the commands are relevant; pass null to change commands in the default bot command scope
 	Scope BotCommandScope
+}
+
+// SetCommunityPhotoOpts contains optional parameters for SetCommunityPhoto
+type SetCommunityPhotoOpts struct {
+	// New chat photo; pass null to delete the chat photo
+	Photo InputChatPhoto
 }
 
 // SetDefaultBackgroundOpts contains optional parameters for SetDefaultBackground

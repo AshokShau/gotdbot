@@ -583,6 +583,8 @@ func (t AnimatedChatPhoto) MarshalJSON() ([]byte, error) {
 type AnimatedEmoji struct {
 	// Emoji modifier fitzpatrick type; 0-6; 0 if none
 	FitzpatrickType int32 `json:"fitzpatrick_type"`
+	// True, if the emoji is a regular emoji
+	IsRegularEmoji bool `json:"is_regular_emoji"`
 	// File containing the sound to be played when the sticker is clicked; may be null. The sound is encoded with the Opus codec, and stored inside an OGG container
 	Sound *File `json:"sound,omitempty"`
 	// Sticker for the emoji; may be null if yet unknown for a custom emoji. If the sticker is a custom emoji, then it can have arbitrary format
@@ -2700,7 +2702,7 @@ func (t BotMenuButton) MarshalJSON() ([]byte, error) {
 type BotVerification struct {
 	// Identifier of the bot that provided the verification
 	BotUserId int64 `json:"bot_user_id"`
-	// Custom description of verification reason set by the bot. Can contain only Mention, Hashtag, Cashtag, PhoneNumber, BankCardNumber, Url, and EmailAddress entities
+	// Custom description of verification reason set by the bot. Can contain only Mention, Hashtag, Cashtag, PhoneNumber, BankCardNumber, TonAddress, Url, and EmailAddress entities
 	CustomDescription *FormattedText `json:"custom_description"`
 	// Identifier of the custom emoji that is used as the verification sign
 	IconCustomEmojiId int64 `json:"icon_custom_emoji_id,string"`
@@ -6369,7 +6371,7 @@ func (t ChatEventHasAggressiveAntiSpamEnabledToggled) MarshalJSON() ([]byte, err
 	}{TypeStr: "chatEventHasAggressiveAntiSpamEnabledToggled", Alias: (*Alias)(&t)})
 }
 
-// ChatEventHasProtectedContentToggled The has_protected_content setting of a channel was toggled
+// ChatEventHasProtectedContentToggled The has_protected_content setting of a chat was toggled
 type ChatEventHasProtectedContentToggled struct {
 	// New value of has_protected_content
 	HasProtectedContent bool `json:"has_protected_content"`
@@ -6491,7 +6493,7 @@ func (t ChatEventIsAllHistoryAvailableToggled) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "chatEventIsAllHistoryAvailableToggled", Alias: (*Alias)(&t)})
 }
 
-// ChatEventIsForumToggled The is_forum setting of a channel was toggled
+// ChatEventIsForumToggled The is_forum setting of a supergroup was toggled
 type ChatEventIsForumToggled struct {
 	// New value of is_forum
 	IsForum bool `json:"is_forum"`
@@ -7605,7 +7607,7 @@ type ChatInviteLink struct {
 	ExpiredMemberCount int32 `json:"expired_member_count"`
 	// Chat invite link
 	InviteLink string `json:"invite_link"`
-	// True, if the link is primary. Primary invite link can't have name, expiration date, or usage limit. There is exactly one primary invite link for each administrator with can_invite_users right at a given time
+	// True, if the link is primary. Primary invite link can't have name, expiration date, or usage limit. Primary link can create join requests only if this is set up using toggleSupergroupJoinByRequest.
 	IsPrimary bool `json:"is_primary"`
 	// True, if the link was revoked
 	IsRevoked bool `json:"is_revoked"`
@@ -8907,7 +8909,7 @@ type ChatRevenueStatistics struct {
 	RevenueByHourGraph StatisticalGraph `json:"revenue_by_hour_graph"`
 	// A graph containing amount of revenue
 	RevenueGraph StatisticalGraph `json:"revenue_graph"`
-	// Current conversion rate of the cryptocurrency in which revenue is calculated to USD
+	// Current exchange rate of the cryptocurrency in which revenue is calculated to USD
 	UsdRate float64 `json:"usd_rate"`
 }
 
@@ -10791,6 +10793,62 @@ func (t CreatedBasicGroupChat) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{TypeStr: "createdBasicGroupChat", Alias: (*Alias)(&t)})
+}
+
+// Currencies Represents a list of currencies
+type Currencies struct {
+	// A list of ISO 4217 currency codes
+	Currencies []string `json:"currencies"`
+}
+
+func (t Currencies) GetType() string {
+	return "currencies"
+}
+
+func (t Currencies) MarshalJSON() ([]byte, error) {
+	type Alias Currencies
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "currencies", Alias: (*Alias)(&t)})
+}
+
+// CurrencyExchangeRate Describes exchange rate of a currency to USD
+type CurrencyExchangeRate struct {
+	// ISO 4217 currency code of the payment currency
+	Currency string `json:"currency"`
+	// Exchange rate of the currency to USD
+	Rate float64 `json:"rate"`
+}
+
+func (t CurrencyExchangeRate) GetType() string {
+	return "currencyExchangeRate"
+}
+
+func (t CurrencyExchangeRate) MarshalJSON() ([]byte, error) {
+	type Alias CurrencyExchangeRate
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "currencyExchangeRate", Alias: (*Alias)(&t)})
+}
+
+// CurrencyExchangeRates Represents a list of currency exchange rates
+type CurrencyExchangeRates struct {
+	// A list of currency exchange rates
+	Rates []CurrencyExchangeRate `json:"rates"`
+}
+
+func (t CurrencyExchangeRates) GetType() string {
+	return "currencyExchangeRates"
+}
+
+func (t CurrencyExchangeRates) MarshalJSON() ([]byte, error) {
+	type Alias CurrencyExchangeRates
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "currencyExchangeRates", Alias: (*Alias)(&t)})
 }
 
 // CurrentWeather Describes the current weather
@@ -14721,7 +14779,7 @@ type GramRevenueStatistics struct {
 	RevenueByDayGraph StatisticalGraph `json:"revenue_by_day_graph"`
 	// Amount of earned revenue
 	Status *GramRevenueStatus `json:"status"`
-	// Current conversion rate of nanogram to USD cents
+	// Current exchange rate of nanogram to USD cents
 	UsdRate float64 `json:"usd_rate"`
 }
 
@@ -22411,7 +22469,7 @@ type InternalLinkTypeRequestManagedBot struct {
 	ManagerBotUsername string `json:"manager_bot_username"`
 	// Suggested name for the bot; may be empty if not specified
 	SuggestedBotName string `json:"suggested_bot_name,omitempty"`
-	// Suggested username for the bot; always ends with "bot" case-insensitive
+	// Suggested username for the bot; always ends with "bot" or a string from updateAllowedBotUsernamePremiumSuffixes case-insensitive
 	SuggestedBotUsername string `json:"suggested_bot_username"`
 }
 
@@ -22652,6 +22710,81 @@ func (t InternalLinkTypeTheme) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{TypeStr: "internalLinkTypeTheme", Alias: (*Alias)(&t)})
+}
+
+// InternalLinkTypeTonConnect The link is a universal TON Connect link
+type InternalLinkTypeTonConnect struct {
+	// TON Connect connect request
+	ConnectRequest *TonConnectConnectRequest `json:"connect_request"`
+	// Hex-encoded public X25519 key of the dApp
+	DappClientId string `json:"dapp_client_id"`
+	// Request return strategy; one of "back", "none", or a URL to open
+	ReturnStrategy string `json:"return_strategy"`
+	// Embedded RPC request represented as base64url-encoded JSON
+	RpcRequest string `json:"rpc_request"`
+	// Identifier to trace the connection request
+	TraceId string `json:"trace_id"`
+	// TON Connect version
+	Version int32 `json:"version"`
+}
+
+func (t InternalLinkTypeTonConnect) GetType() string {
+	return "internalLinkTypeTonConnect"
+}
+
+func (t InternalLinkTypeTonConnect) internalLinkType() {}
+
+func (t InternalLinkTypeTonConnect) MarshalJSON() ([]byte, error) {
+	type Alias InternalLinkTypeTonConnect
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "internalLinkTypeTonConnect", Alias: (*Alias)(&t)})
+}
+
+// InternalLinkTypeTonWalletTransfer The link is a link for sending Grams from the user's TON wallet
+type InternalLinkTypeTonWalletTransfer struct {
+	// The pre-filled amount of TON Grams to send; in the smallest units of the cryptocurrency
+	GramAmount int64 `json:"gram_amount"`
+	// Chosen receiver of the transfer; may be null if none
+	Receiver TonWalletTransferReceiver `json:"receiver,omitempty"`
+}
+
+func (t InternalLinkTypeTonWalletTransfer) GetType() string {
+	return "internalLinkTypeTonWalletTransfer"
+}
+
+func (t InternalLinkTypeTonWalletTransfer) internalLinkType() {}
+
+func (t InternalLinkTypeTonWalletTransfer) MarshalJSON() ([]byte, error) {
+	type Alias InternalLinkTypeTonWalletTransfer
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "internalLinkTypeTonWalletTransfer", Alias: (*Alias)(&t)})
+}
+
+func (t *InternalLinkTypeTonWalletTransfer) UnmarshalJSON(data []byte) error {
+	type Alias InternalLinkTypeTonWalletTransfer
+	aux := &struct {
+		Receiver json.RawMessage `json:"receiver"`
+		*Alias
+	}{
+		Alias: (*Alias)(t),
+	}
+
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+
+	if aux.Receiver != nil {
+		v, err := UnmarshalTonWalletTransferReceiver(aux.Receiver)
+		if err != nil {
+			return err
+		}
+		t.Receiver = v
+	}
+	return nil
 }
 
 // InternalLinkTypeUnknownDeepLink The link is an unknown tg: link. Call getDeepLinkInfo to process the link
@@ -28112,6 +28245,8 @@ type MessageProperties struct {
 	CanReportSupergroupSpam bool `json:"can_report_supergroup_spam"`
 	// True, if fact check for the message can be changed through setMessageFactCheck
 	CanSetFactCheck bool `json:"can_set_fact_check"`
+	// Identifiers of custom emoji used in the message
+	CustomEmojiIds Int64Slice `json:"custom_emoji_ids"`
 	// True, if content of the message can't be saved locally, because it is protected by the current user; if true, then can_be_saved is false
 	HasProtectedContentByCurrentUser bool `json:"has_protected_content_by_current_user"`
 	// True, if content of the message can't be saved locally, because it is protected by the other user; if true, then can_be_saved is false
@@ -29579,6 +29714,87 @@ func (t MessageThreadInfo) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "messageThreadInfo", Alias: (*Alias)(&t)})
 }
 
+// MessageTonConnectRequest A request from a dApp was received through TON Connect
+type MessageTonConnectRequest struct {
+	// Name of the dApp; may be empty if unknown
+	DappName string `json:"dapp_name,omitempty"`
+	// Unique identifier of the TON Connect session
+	SessionId int64 `json:"session_id,string"`
+	// State of the request
+	State TonConnectRequestState `json:"state"`
+	// Topic of the request; may be empty if none
+	Topic string `json:"topic,omitempty"`
+	// Identifier to trace the request; may be empty if none
+	TraceId string `json:"trace_id,omitempty"`
+}
+
+func (t MessageTonConnectRequest) GetType() string {
+	return "messageTonConnectRequest"
+}
+
+func (t MessageTonConnectRequest) messageContent() {}
+
+func (t MessageTonConnectRequest) MarshalJSON() ([]byte, error) {
+	type Alias MessageTonConnectRequest
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "messageTonConnectRequest", Alias: (*Alias)(&t)})
+}
+
+func (t *MessageTonConnectRequest) UnmarshalJSON(data []byte) error {
+	type Alias MessageTonConnectRequest
+	aux := &struct {
+		State json.RawMessage `json:"state"`
+		*Alias
+	}{
+		Alias: (*Alias)(t),
+	}
+
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+
+	if aux.State != nil {
+		v, err := UnmarshalTonConnectRequestState(aux.State)
+		if err != nil {
+			return err
+		}
+		t.State = v
+	}
+	return nil
+}
+
+// MessageTonWalletTransfer Represents a transfer with the TON wallet of the current user
+type MessageTonWalletTransfer struct {
+	// The amount of received cryptocurrency, in the smallest units of the cryptocurrency; negative for outgoing transactions
+	Amount int64 `json:"amount"`
+	// Comment added to the transaction
+	Comment string `json:"comment"`
+	// True, if the comment is encrypted and must be decrypted using the receiver's or sender's private key
+	IsCommentEncrypted bool `json:"is_comment_encrypted"`
+	// Address in the TON blockchain of the transaction peer
+	PeerAddress string `json:"peer_address"`
+	// Sender of the transfer; 0 if unknown
+	SenderUserId int64 `json:"sender_user_id"`
+	// Unique identifier of the transaction; may be empty if the transfer isn't send yet. Use getTonWalletTransaction to get additional information about the transaction
+	TransactionId string `json:"transaction_id,omitempty"`
+}
+
+func (t MessageTonWalletTransfer) GetType() string {
+	return "messageTonWalletTransfer"
+}
+
+func (t MessageTonWalletTransfer) messageContent() {}
+
+func (t MessageTonWalletTransfer) MarshalJSON() ([]byte, error) {
+	type Alias MessageTonWalletTransfer
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "messageTonWalletTransfer", Alias: (*Alias)(&t)})
+}
+
 // MessageTopicDirectMessages A topic in a channel direct messages chat administered by the current user
 type MessageTopicDirectMessages struct {
 	// Unique identifier of the topic
@@ -30926,6 +31142,180 @@ func (t Ok) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{TypeStr: "ok", Alias: (*Alias)(&t)})
+}
+
+// OnRampPaymentAvailability Describes availability of cryptocurrency purchase through an on-ramp provider
+type OnRampPaymentAvailability struct {
+	// A two-letter ISO 3166-1 alpha-2 country code of the current user's country
+	CountryCode string `json:"country_code"`
+	// True, if the current user can use the provider
+	IsAllowed bool `json:"is_allowed"`
+	// True, if the current user can purchase through the provider
+	IsPurchaseAllowed bool `json:"is_purchase_allowed"`
+	// The list of available payment methods
+	Methods []OnRampPaymentMethod `json:"methods"`
+	// Code of the state of the current user; may be empty if unknown
+	State string `json:"state,omitempty"`
+}
+
+func (t OnRampPaymentAvailability) GetType() string {
+	return "onRampPaymentAvailability"
+}
+
+func (t OnRampPaymentAvailability) MarshalJSON() ([]byte, error) {
+	type Alias OnRampPaymentAvailability
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "onRampPaymentAvailability", Alias: (*Alias)(&t)})
+}
+
+// OnRampPaymentLimits Describes limits for an on-ramp purchase
+type OnRampPaymentLimits struct {
+	// The maximum allowed amount of the base currency
+	BaseCurrencyMaxAmount string `json:"base_currency_max_amount"`
+	// The minimum allowed amount of the base currency
+	BaseCurrencyMinAmount string `json:"base_currency_min_amount"`
+	// The maximum allowed amount of the bought cryptocurrency
+	CryptocurrencyMaxAmount string `json:"cryptocurrency_max_amount"`
+	// The minimum allowed amount of the bought cryptocurrency
+	CryptocurrencyMinAmount string `json:"cryptocurrency_min_amount"`
+	// The payment method to be used
+	PaymentMethod string `json:"payment_method"`
+}
+
+func (t OnRampPaymentLimits) GetType() string {
+	return "onRampPaymentLimits"
+}
+
+func (t OnRampPaymentLimits) MarshalJSON() ([]byte, error) {
+	type Alias OnRampPaymentLimits
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "onRampPaymentLimits", Alias: (*Alias)(&t)})
+}
+
+// OnRampPaymentMethod Describes a payment method of an on-ramp provider
+type OnRampPaymentMethod struct {
+	// True, if the method is available to the user
+	IsAvailable bool `json:"is_available"`
+	// Name of the method
+	Name string `json:"name"`
+}
+
+func (t OnRampPaymentMethod) GetType() string {
+	return "onRampPaymentMethod"
+}
+
+func (t OnRampPaymentMethod) MarshalJSON() ([]byte, error) {
+	type Alias OnRampPaymentMethod
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "onRampPaymentMethod", Alias: (*Alias)(&t)})
+}
+
+// OnRampPaymentQuote Describes a quote for an on-ramp purchase
+type OnRampPaymentQuote struct {
+	// Paid amount of the base currency
+	BaseCurrencyAmount string `json:"base_currency_amount"`
+	// Purchased amount of the cryptocurrency
+	CryptocurrencyAmount string `json:"cryptocurrency_amount"`
+	// The price of the cryptocurrency
+	CryptocurrencyPrice string `json:"cryptocurrency_price"`
+	// Point in time (Unix timestamp) when the quote will expire
+	ExpirationDate int32 `json:"expiration_date"`
+	// Extra fee amount
+	ExtraFeeAmount string `json:"extra_fee_amount"`
+	// Fee amount
+	FeeAmount string `json:"fee_amount"`
+	// Network fee amount
+	NetworkFeeAmount string `json:"network_fee_amount"`
+	// The payment method to be used
+	PaymentMethod string `json:"payment_method"`
+	// Total paid amount
+	TotalAmount string `json:"total_amount"`
+}
+
+func (t OnRampPaymentQuote) GetType() string {
+	return "onRampPaymentQuote"
+}
+
+func (t OnRampPaymentQuote) MarshalJSON() ([]byte, error) {
+	type Alias OnRampPaymentQuote
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "onRampPaymentQuote", Alias: (*Alias)(&t)})
+}
+
+// OnRampPaymentSession Describes a session for an on-ramp purchase
+type OnRampPaymentSession struct {
+	// Point in time (Unix timestamp) when the session will expire
+	ExpirationDate int32 `json:"expiration_date"`
+	// Identifier of the session
+	SessionId string `json:"session_id"`
+	// HTTPS URL to be opened in a WebView to complete the purchase
+	Url string `json:"url"`
+}
+
+func (t OnRampPaymentSession) GetType() string {
+	return "onRampPaymentSession"
+}
+
+func (t OnRampPaymentSession) MarshalJSON() ([]byte, error) {
+	type Alias OnRampPaymentSession
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "onRampPaymentSession", Alias: (*Alias)(&t)})
+}
+
+// OnRampProvider Describes an on-ramp provider
+type OnRampProvider struct {
+	// List of cryptocurrencies supported by the provider
+	Cryptocurrencies []string `json:"cryptocurrencies"`
+	// Unique identifier of the provider
+	Id string `json:"id"`
+	// Name of the provider
+	Name string `json:"name"`
+	// True, if the provider supports base currencies and can be used in the method getOnRampProviderBaseCurrencies
+	SupportsBaseCurrencies bool `json:"supports_base_currencies"`
+	// True, if the provider supports limits retrieval using the method getOnRampPaymentLimits
+	SupportsLimits bool `json:"supports_limits"`
+	// True, if the provider supports quote retrieval using the method getOnRampPaymentQuote
+	SupportsQuote bool `json:"supports_quote"`
+}
+
+func (t OnRampProvider) GetType() string {
+	return "onRampProvider"
+}
+
+func (t OnRampProvider) MarshalJSON() ([]byte, error) {
+	type Alias OnRampProvider
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "onRampProvider", Alias: (*Alias)(&t)})
+}
+
+// OnRampProviders Represents a list of on-ramp providers
+type OnRampProviders struct {
+	// A list of providers
+	Providers []OnRampProvider `json:"providers"`
+}
+
+func (t OnRampProviders) GetType() string {
+	return "onRampProviders"
+}
+
+func (t OnRampProviders) MarshalJSON() ([]byte, error) {
+	type Alias OnRampProviders
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "onRampProviders", Alias: (*Alias)(&t)})
 }
 
 // OptionValueBoolean Represents a boolean option
@@ -38295,6 +38685,50 @@ func (t PushMessageContentText) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "pushMessageContentText", Alias: (*Alias)(&t)})
 }
 
+// PushMessageContentTonConnectRequest A message with a request from a dApp was received through TON Connect
+type PushMessageContentTonConnectRequest struct {
+	// Name of the dApp; may be empty if unknown
+	DappName string `json:"dapp_name,omitempty"`
+}
+
+func (t PushMessageContentTonConnectRequest) GetType() string {
+	return "pushMessageContentTonConnectRequest"
+}
+
+func (t PushMessageContentTonConnectRequest) pushMessageContent() {}
+
+func (t PushMessageContentTonConnectRequest) MarshalJSON() ([]byte, error) {
+	type Alias PushMessageContentTonConnectRequest
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "pushMessageContentTonConnectRequest", Alias: (*Alias)(&t)})
+}
+
+// PushMessageContentTonWalletTransfer A message with a TON wallet transfer
+type PushMessageContentTonWalletTransfer struct {
+	// String representation of the received amount
+	Amount string `json:"amount"`
+	// Comment added to the transaction if it is public
+	Comment string `json:"comment"`
+	// Sender of the transfer; 0 if unknown
+	SenderUserId int64 `json:"sender_user_id"`
+}
+
+func (t PushMessageContentTonWalletTransfer) GetType() string {
+	return "pushMessageContentTonWalletTransfer"
+}
+
+func (t PushMessageContentTonWalletTransfer) pushMessageContent() {}
+
+func (t PushMessageContentTonWalletTransfer) MarshalJSON() ([]byte, error) {
+	type Alias PushMessageContentTonWalletTransfer
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "pushMessageContentTonWalletTransfer", Alias: (*Alias)(&t)})
+}
+
 // PushMessageContentUpgradedGift A message with an upgraded gift
 type PushMessageContentUpgradedGift struct {
 	// True, if the message is about completion of prepaid upgrade of the gift instead of actual receiving of a new gift
@@ -40969,6 +41403,51 @@ func (t *RichTextSuperscript) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
+// RichTextTonAddress An address in the TON blockchain
+type RichTextTonAddress struct {
+	// The address
+	Address string `json:"address"`
+	// Text
+	Text RichText `json:"text"`
+}
+
+func (t RichTextTonAddress) GetType() string {
+	return "richTextTonAddress"
+}
+
+func (t RichTextTonAddress) richText() {}
+
+func (t RichTextTonAddress) MarshalJSON() ([]byte, error) {
+	type Alias RichTextTonAddress
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "richTextTonAddress", Alias: (*Alias)(&t)})
+}
+
+func (t *RichTextTonAddress) UnmarshalJSON(data []byte) error {
+	type Alias RichTextTonAddress
+	aux := &struct {
+		Text json.RawMessage `json:"text"`
+		*Alias
+	}{
+		Alias: (*Alias)(t),
+	}
+
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+
+	if aux.Text != nil {
+		v, err := UnmarshalRichText(aux.Text)
+		if err != nil {
+			return err
+		}
+		t.Text = v
+	}
+	return nil
+}
+
 // RichTextUnderline An underlined rich text
 type RichTextUnderline struct {
 	// Text
@@ -43228,7 +43707,7 @@ type StarRevenueStatistics struct {
 	RevenueByDayGraph StatisticalGraph `json:"revenue_by_day_graph"`
 	// Telegram Star revenue status
 	Status *StarRevenueStatus `json:"status"`
-	// Current conversion rate of a Telegram Star to USD
+	// Current exchange rate of a Telegram Star to USD
 	UsdRate float64 `json:"usd_rate"`
 }
 
@@ -47130,6 +47609,24 @@ func (t SuggestedActionViewChecksHint) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "suggestedActionViewChecksHint", Alias: (*Alias)(&t)})
 }
 
+// SuggestedActionViewFirstTonWalletTransferHint Suggests the user to view a hint about receiving of the first TON wallet transfer
+type SuggestedActionViewFirstTonWalletTransferHint struct {
+}
+
+func (t SuggestedActionViewFirstTonWalletTransferHint) GetType() string {
+	return "suggestedActionViewFirstTonWalletTransferHint"
+}
+
+func (t SuggestedActionViewFirstTonWalletTransferHint) suggestedAction() {}
+
+func (t SuggestedActionViewFirstTonWalletTransferHint) MarshalJSON() ([]byte, error) {
+	type Alias SuggestedActionViewFirstTonWalletTransferHint
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "suggestedActionViewFirstTonWalletTransferHint", Alias: (*Alias)(&t)})
+}
+
 // SuggestedPostInfo Contains information about a suggested post. If the post can be approved or declined, then changes to the post can be also suggested. Use sendMessage with reply to the message
 type SuggestedPostInfo struct {
 	// True, if the suggested post can be approved by the current user using approveSuggestedPost; updates aren't sent when value of this field changes
@@ -47985,7 +48482,7 @@ func (t TelegramPaymentPurposeStarGiveaway) MarshalJSON() ([]byte, error) {
 type TelegramPaymentPurposeStars struct {
 	// Paid amount, in the smallest units of the currency
 	Amount int64 `json:"amount"`
-	// Identifier of the chat that is supposed to receive the Telegram Stars; pass 0 if none
+	// Identifier of the chat that is supposed to receive the Telegram Stars; pass 0 if none. If non-zero and getOption("star_top_up_disabled"),
 	ChatId int64 `json:"chat_id"`
 	// ISO 4217 currency code of the payment currency
 	Currency string `json:"currency"`
@@ -48725,6 +49222,24 @@ func (t TextEntityTypeTextUrl) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "textEntityTypeTextUrl", Alias: (*Alias)(&t)})
 }
 
+// TextEntityTypeTonAddress An address in the TON blockchain
+type TextEntityTypeTonAddress struct {
+}
+
+func (t TextEntityTypeTonAddress) GetType() string {
+	return "textEntityTypeTonAddress"
+}
+
+func (t TextEntityTypeTonAddress) textEntityType() {}
+
+func (t TextEntityTypeTonAddress) MarshalJSON() ([]byte, error) {
+	type Alias TextEntityTypeTonAddress
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "textEntityTypeTonAddress", Alias: (*Alias)(&t)})
+}
+
 // TextEntityTypeUnderline An underlined text
 type TextEntityTypeUnderline struct {
 }
@@ -48877,7 +49392,9 @@ type ThemeSettings struct {
 	Background *Background `json:"background,omitempty"`
 	// Base theme for this theme
 	BaseTheme BuiltInTheme `json:"base_theme"`
-	// Accent color of outgoing messages in ARGB format
+	// True, if there is chosen accent color for outgoing messages; otherwise, the color must be deduced from other theme settings
+	HasOutgoingMessageAccentColor bool `json:"has_outgoing_message_accent_color"`
+	// Accent color of outgoing messages in ARGB format; must be ignored if has_outgoing_message_accent_color is false
 	OutgoingMessageAccentColor int32 `json:"outgoing_message_accent_color"`
 	// The fill to be used as a background for outgoing messages; may be null if the fill from the base theme must be used instead
 	OutgoingMessageFill BackgroundFill `json:"outgoing_message_fill,omitempty"`
@@ -49280,6 +49797,626 @@ func (t TMeUrlTypeUser) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "tMeUrlTypeUser", Alias: (*Alias)(&t)})
 }
 
+// TonCenterApiRequestTypeGet A GET request
+type TonCenterApiRequestTypeGet struct {
+	// URL-encoded query of the request
+	Query string `json:"query"`
+}
+
+func (t TonCenterApiRequestTypeGet) GetType() string {
+	return "tonCenterApiRequestTypeGet"
+}
+
+func (t TonCenterApiRequestTypeGet) tonCenterApiRequestType() {}
+
+func (t TonCenterApiRequestTypeGet) MarshalJSON() ([]byte, error) {
+	type Alias TonCenterApiRequestTypeGet
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "tonCenterApiRequestTypeGet", Alias: (*Alias)(&t)})
+}
+
+// TonCenterApiRequestTypePost A POST request
+type TonCenterApiRequestTypePost struct {
+	// Payload of the request
+	Payload string `json:"payload"`
+}
+
+func (t TonCenterApiRequestTypePost) GetType() string {
+	return "tonCenterApiRequestTypePost"
+}
+
+func (t TonCenterApiRequestTypePost) tonCenterApiRequestType() {}
+
+func (t TonCenterApiRequestTypePost) MarshalJSON() ([]byte, error) {
+	type Alias TonCenterApiRequestTypePost
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "tonCenterApiRequestTypePost", Alias: (*Alias)(&t)})
+}
+
+// TonCenterStreamingApiUrl Contains an HTTP URL for TON Center Streaming API
+type TonCenterStreamingApiUrl struct {
+	// Time after which the URL expires
+	ExpiresIn int32 `json:"expires_in"`
+	// The URL
+	Url string `json:"url"`
+}
+
+func (t TonCenterStreamingApiUrl) GetType() string {
+	return "tonCenterStreamingApiUrl"
+}
+
+func (t TonCenterStreamingApiUrl) MarshalJSON() ([]byte, error) {
+	type Alias TonCenterStreamingApiUrl
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "tonCenterStreamingApiUrl", Alias: (*Alias)(&t)})
+}
+
+// TonConnectChallenge Represents a TON Connect challenge
+type TonConnectChallenge struct {
+	// 104-byte challenge
+	Challenge []byte `json:"challenge"`
+	// Unique identifier of the first outgoing event
+	EventId int64 `json:"event_id,string"`
+}
+
+func (t TonConnectChallenge) GetType() string {
+	return "tonConnectChallenge"
+}
+
+func (t TonConnectChallenge) MarshalJSON() ([]byte, error) {
+	type Alias TonConnectChallenge
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "tonConnectChallenge", Alias: (*Alias)(&t)})
+}
+
+// TonConnectConnectItemAddress Address of the wallet
+type TonConnectConnectItemAddress struct {
+	// Stringified TON network global_id (e.g. "-239" for mainnet); may be empty
+	Network string `json:"network,omitempty"`
+}
+
+func (t TonConnectConnectItemAddress) GetType() string {
+	return "tonConnectConnectItemAddress"
+}
+
+func (t TonConnectConnectItemAddress) tonConnectConnectItem() {}
+
+func (t TonConnectConnectItemAddress) MarshalJSON() ([]byte, error) {
+	type Alias TonConnectConnectItemAddress
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "tonConnectConnectItemAddress", Alias: (*Alias)(&t)})
+}
+
+// TonConnectConnectItemProof Proof of the wallet ownership
+type TonConnectConnectItemProof struct {
+	// Payload to be used for the proof (e.g. nonce + expiration timestamp)
+	Payload string `json:"payload"`
+}
+
+func (t TonConnectConnectItemProof) GetType() string {
+	return "tonConnectConnectItemProof"
+}
+
+func (t TonConnectConnectItemProof) tonConnectConnectItem() {}
+
+func (t TonConnectConnectItemProof) MarshalJSON() ([]byte, error) {
+	type Alias TonConnectConnectItemProof
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "tonConnectConnectItemProof", Alias: (*Alias)(&t)})
+}
+
+// TonConnectConnectRequest Contains information about a request to connect the user's TON wallet to a dApp using TON Connect
+type TonConnectConnectRequest struct {
+	// Items requested from the wallet
+	Items []TonConnectConnectItem `json:"items"`
+	// URL of the manifest of the dApp
+	ManifestUrl string `json:"manifest_url"`
+}
+
+func (t TonConnectConnectRequest) GetType() string {
+	return "tonConnectConnectRequest"
+}
+
+func (t TonConnectConnectRequest) MarshalJSON() ([]byte, error) {
+	type Alias TonConnectConnectRequest
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "tonConnectConnectRequest", Alias: (*Alias)(&t)})
+}
+
+func (t *TonConnectConnectRequest) UnmarshalJSON(data []byte) error {
+	type Alias TonConnectConnectRequest
+	aux := &struct {
+		Items []json.RawMessage `json:"items"`
+		*Alias
+	}{
+		Alias: (*Alias)(t),
+	}
+
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+
+	if aux.Items != nil {
+		t.Items = make([]TonConnectConnectItem, len(aux.Items))
+		for i, raw := range aux.Items {
+			v, err := UnmarshalTonConnectConnectItem(raw)
+			if err != nil {
+				return err
+			}
+			t.Items[i] = v
+		}
+	}
+	return nil
+}
+
+// TonConnectManifestFailed The manifest has failed to download
+type TonConnectManifestFailed struct {
+}
+
+func (t TonConnectManifestFailed) GetType() string {
+	return "tonConnectManifestFailed"
+}
+
+func (t TonConnectManifestFailed) tonConnectManifest() {}
+
+func (t TonConnectManifestFailed) MarshalJSON() ([]byte, error) {
+	type Alias TonConnectManifestFailed
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "tonConnectManifestFailed", Alias: (*Alias)(&t)})
+}
+
+// TonConnectManifestInfo The manifest is available
+type TonConnectManifestInfo struct {
+	// App icon in PNG or ICO format
+	Icon *Document `json:"icon"`
+	// Name of the dApp
+	Name string `json:"name"`
+	// URL of the dApp
+	Url string `json:"url"`
+}
+
+func (t TonConnectManifestInfo) GetType() string {
+	return "tonConnectManifestInfo"
+}
+
+func (t TonConnectManifestInfo) tonConnectManifest() {}
+
+func (t TonConnectManifestInfo) MarshalJSON() ([]byte, error) {
+	type Alias TonConnectManifestInfo
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "tonConnectManifestInfo", Alias: (*Alias)(&t)})
+}
+
+// TonConnectManifestInvalid The manifest is invalid
+type TonConnectManifestInvalid struct {
+}
+
+func (t TonConnectManifestInvalid) GetType() string {
+	return "tonConnectManifestInvalid"
+}
+
+func (t TonConnectManifestInvalid) tonConnectManifest() {}
+
+func (t TonConnectManifestInvalid) MarshalJSON() ([]byte, error) {
+	type Alias TonConnectManifestInvalid
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "tonConnectManifestInvalid", Alias: (*Alias)(&t)})
+}
+
+// TonConnectManifestPending The manifest is being downloaded
+type TonConnectManifestPending struct {
+}
+
+func (t TonConnectManifestPending) GetType() string {
+	return "tonConnectManifestPending"
+}
+
+func (t TonConnectManifestPending) tonConnectManifest() {}
+
+func (t TonConnectManifestPending) MarshalJSON() ([]byte, error) {
+	type Alias TonConnectManifestPending
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "tonConnectManifestPending", Alias: (*Alias)(&t)})
+}
+
+// TonConnectRequest Represents a pending TON Connect request
+type TonConnectRequest struct {
+	// Body of the request
+	Body []byte `json:"body"`
+	// Point in time (Unix timestamp) when the request will expire; 0 if never
+	ExpirationDate int32 `json:"expiration_date"`
+	// Unique identifier of the service message in the chat 777000 with the request
+	MessageId int64 `json:"message_id"`
+	// Unique identifier of the session
+	SessionId int64 `json:"session_id,string"`
+	// Topic of the request; may be empty if none
+	Topic string `json:"topic,omitempty"`
+	// Identifier to trace the request; may be empty if none
+	TraceId string `json:"trace_id,omitempty"`
+}
+
+func (t TonConnectRequest) GetType() string {
+	return "tonConnectRequest"
+}
+
+func (t TonConnectRequest) MarshalJSON() ([]byte, error) {
+	type Alias TonConnectRequest
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "tonConnectRequest", Alias: (*Alias)(&t)})
+}
+
+// TonConnectRequests Represents a session with its pending TON Connect requests
+type TonConnectRequests struct {
+	// The requests
+	Requests []TonConnectRequest `json:"requests"`
+	// The session
+	Session *TonConnectSession `json:"session"`
+}
+
+func (t TonConnectRequests) GetType() string {
+	return "tonConnectRequests"
+}
+
+func (t TonConnectRequests) MarshalJSON() ([]byte, error) {
+	type Alias TonConnectRequests
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "tonConnectRequests", Alias: (*Alias)(&t)})
+}
+
+// TonConnectRequestStateAccepted The request was accepted
+type TonConnectRequestStateAccepted struct {
+}
+
+func (t TonConnectRequestStateAccepted) GetType() string {
+	return "tonConnectRequestStateAccepted"
+}
+
+func (t TonConnectRequestStateAccepted) tonConnectRequestState() {}
+
+func (t TonConnectRequestStateAccepted) MarshalJSON() ([]byte, error) {
+	type Alias TonConnectRequestStateAccepted
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "tonConnectRequestStateAccepted", Alias: (*Alias)(&t)})
+}
+
+// TonConnectRequestStatePending The request must be accepted or rejected if it isn't expired yet
+type TonConnectRequestStatePending struct {
+	// Point in time (Unix timestamp) when the request will expire or has expired
+	ExpirationDate int32 `json:"expiration_date"`
+}
+
+func (t TonConnectRequestStatePending) GetType() string {
+	return "tonConnectRequestStatePending"
+}
+
+func (t TonConnectRequestStatePending) tonConnectRequestState() {}
+
+func (t TonConnectRequestStatePending) MarshalJSON() ([]byte, error) {
+	type Alias TonConnectRequestStatePending
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "tonConnectRequestStatePending", Alias: (*Alias)(&t)})
+}
+
+// TonConnectRequestStateRejected The request was rejected
+type TonConnectRequestStateRejected struct {
+}
+
+func (t TonConnectRequestStateRejected) GetType() string {
+	return "tonConnectRequestStateRejected"
+}
+
+func (t TonConnectRequestStateRejected) tonConnectRequestState() {}
+
+func (t TonConnectRequestStateRejected) MarshalJSON() ([]byte, error) {
+	type Alias TonConnectRequestStateRejected
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "tonConnectRequestStateRejected", Alias: (*Alias)(&t)})
+}
+
+// TonConnectSession Represents a TON Connect session. See https://github.com/ton-blockchain/ton-connect/tree/main/spec for full TON Connect protocol documentation
+type TonConnectSession struct {
+	// Point in time (Unix timestamp) when the session was created
+	CreationDate int32 `json:"creation_date"`
+	// Hex-encoded public X25519 key of the dApp
+	DappClientId string `json:"dapp_client_id"`
+	// Unique identifier of the session
+	Id int64 `json:"id,string"`
+	// Manifest of the dApp
+	Manifest TonConnectManifest `json:"manifest"`
+	// Nonce used for the session
+	Nonce []byte `json:"nonce"`
+	// Session state
+	State TonConnectSessionState `json:"state"`
+	// Hex-encoded public X25519 key of the current user's application; may be empty if none
+	WalletClientId string `json:"wallet_client_id,omitempty"`
+}
+
+func (t TonConnectSession) GetType() string {
+	return "tonConnectSession"
+}
+
+func (t TonConnectSession) MarshalJSON() ([]byte, error) {
+	type Alias TonConnectSession
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "tonConnectSession", Alias: (*Alias)(&t)})
+}
+
+func (t *TonConnectSession) UnmarshalJSON(data []byte) error {
+	type Alias TonConnectSession
+	aux := &struct {
+		Manifest json.RawMessage `json:"manifest"`
+		State    json.RawMessage `json:"state"`
+		*Alias
+	}{
+		Alias: (*Alias)(t),
+	}
+
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+
+	if aux.Manifest != nil {
+		v, err := UnmarshalTonConnectManifest(aux.Manifest)
+		if err != nil {
+			return err
+		}
+		t.Manifest = v
+	}
+	if aux.State != nil {
+		v, err := UnmarshalTonConnectSessionState(aux.State)
+		if err != nil {
+			return err
+		}
+		t.State = v
+	}
+	return nil
+}
+
+// TonConnectSessionEventId Represents identifier of an event in a TON Connect session
+type TonConnectSessionEventId struct {
+	// The event identifier
+	EventId int64 `json:"event_id,string"`
+}
+
+func (t TonConnectSessionEventId) GetType() string {
+	return "tonConnectSessionEventId"
+}
+
+func (t TonConnectSessionEventId) MarshalJSON() ([]byte, error) {
+	type Alias TonConnectSessionEventId
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "tonConnectSessionEventId", Alias: (*Alias)(&t)})
+}
+
+// TonConnectSessions Contains a list of TON Connect sessions
+type TonConnectSessions struct {
+	// The list of sessions
+	Sessions []TonConnectSession `json:"sessions"`
+}
+
+func (t TonConnectSessions) GetType() string {
+	return "tonConnectSessions"
+}
+
+func (t TonConnectSessions) MarshalJSON() ([]byte, error) {
+	type Alias TonConnectSessions
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "tonConnectSessions", Alias: (*Alias)(&t)})
+}
+
+// TonConnectSessionStateClosed The session is closed
+type TonConnectSessionStateClosed struct {
+}
+
+func (t TonConnectSessionStateClosed) GetType() string {
+	return "tonConnectSessionStateClosed"
+}
+
+func (t TonConnectSessionStateClosed) tonConnectSessionState() {}
+
+func (t TonConnectSessionStateClosed) MarshalJSON() ([]byte, error) {
+	type Alias TonConnectSessionStateClosed
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "tonConnectSessionStateClosed", Alias: (*Alias)(&t)})
+}
+
+// TonConnectSessionStateClosing The session is being closed
+type TonConnectSessionStateClosing struct {
+}
+
+func (t TonConnectSessionStateClosing) GetType() string {
+	return "tonConnectSessionStateClosing"
+}
+
+func (t TonConnectSessionStateClosing) tonConnectSessionState() {}
+
+func (t TonConnectSessionStateClosing) MarshalJSON() ([]byte, error) {
+	type Alias TonConnectSessionStateClosing
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "tonConnectSessionStateClosing", Alias: (*Alias)(&t)})
+}
+
+// TonConnectSessionStatePending The session is pending
+type TonConnectSessionStatePending struct {
+}
+
+func (t TonConnectSessionStatePending) GetType() string {
+	return "tonConnectSessionStatePending"
+}
+
+func (t TonConnectSessionStatePending) tonConnectSessionState() {}
+
+func (t TonConnectSessionStatePending) MarshalJSON() ([]byte, error) {
+	type Alias TonConnectSessionStatePending
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "tonConnectSessionStatePending", Alias: (*Alias)(&t)})
+}
+
+// TonConnectSessionStateReady The session is ready
+type TonConnectSessionStateReady struct {
+}
+
+func (t TonConnectSessionStateReady) GetType() string {
+	return "tonConnectSessionStateReady"
+}
+
+func (t TonConnectSessionStateReady) tonConnectSessionState() {}
+
+func (t TonConnectSessionStateReady) MarshalJSON() ([]byte, error) {
+	type Alias TonConnectSessionStateReady
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "tonConnectSessionStateReady", Alias: (*Alias)(&t)})
+}
+
+// TonNft Represents an NFT in the TON blockchain
+type TonNft struct {
+	// Address of the NFT
+	Address string `json:"address"`
+	// Attributes of the NFT
+	Attributes []TonNftAttribute `json:"attributes"`
+	// Address of the collection to which the NFT belongs; may be empty if unknown
+	CollectionAddress string `json:"collection_address,omitempty"`
+	// Content of the NFT; may be null if none
+	Content *Document `json:"content,omitempty"`
+	// Description of the NFT
+	Description string `json:"description"`
+	// Additional data about the NFT; may be null if none
+	Extra JsonValue `json:"extra,omitempty"`
+	// Image of the NFT; may be null if none
+	Image *PhotoSize `json:"image,omitempty"`
+	// Index of the NFT among all NFTs from the collection as a decimal number
+	Index string `json:"index"`
+	// Name of the NFT
+	Name string `json:"name"`
+	// Address of the owner of the NFT
+	OwnerAddress string `json:"owner_address"`
+	// Sticker of the NFT; may be null if none
+	Sticker *Sticker `json:"sticker,omitempty"`
+	// Thumbnail of the NFT; may be null if none
+	Thumbnail *PhotoSize `json:"thumbnail,omitempty"`
+}
+
+func (t TonNft) GetType() string {
+	return "tonNft"
+}
+
+func (t TonNft) MarshalJSON() ([]byte, error) {
+	type Alias TonNft
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "tonNft", Alias: (*Alias)(&t)})
+}
+
+func (t *TonNft) UnmarshalJSON(data []byte) error {
+	type Alias TonNft
+	aux := &struct {
+		Extra json.RawMessage `json:"extra"`
+		*Alias
+	}{
+		Alias: (*Alias)(t),
+	}
+
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+
+	if aux.Extra != nil {
+		v, err := UnmarshalJsonValue(aux.Extra)
+		if err != nil {
+			return err
+		}
+		t.Extra = v
+	}
+	return nil
+}
+
+// TonNftAttribute Represents an attribute of an NFT in the TON blockchain
+type TonNftAttribute struct {
+	// Trait type
+	TraitType string `json:"trait_type"`
+	// Value of the attribute
+	Value string `json:"value"`
+}
+
+func (t TonNftAttribute) GetType() string {
+	return "tonNftAttribute"
+}
+
+func (t TonNftAttribute) MarshalJSON() ([]byte, error) {
+	type Alias TonNftAttribute
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "tonNftAttribute", Alias: (*Alias)(&t)})
+}
+
+// TonNfts Represents a list of TON NFTs
+type TonNfts struct {
+	// The offset for the next request. If empty, then there are no more results
+	NextOffset string `json:"next_offset"`
+	// List of NFTs
+	Nfts []TonNft `json:"nfts"`
+}
+
+func (t TonNfts) GetType() string {
+	return "tonNfts"
+}
+
+func (t TonNfts) MarshalJSON() ([]byte, error) {
+	type Alias TonNfts
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "tonNfts", Alias: (*Alias)(&t)})
+}
+
 // TonTransaction Represents a transaction changing the amount of owned TON Grams
 type TonTransaction struct {
 	// Point in time (Unix timestamp) when the transaction was completed
@@ -49558,6 +50695,377 @@ func (t TonTransactionTypeUpgradedGiftSale) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{TypeStr: "tonTransactionTypeUpgradedGiftSale", Alias: (*Alias)(&t)})
+}
+
+// TonWalletGaslessTransfersInfo Represents state of gasless transfers for the current user
+type TonWalletGaslessTransfersInfo struct {
+	// Number of left gasless transfers. The daily available number of gasless transfers is available as getOption("ton_wallet_gasless_transfer_daily_count_max")
+	LeftCount int32 `json:"left_count"`
+	// Address of the relayer for gasless transfers; may be empty if unavailable
+	RelayerAddress string `json:"relayer_address,omitempty"`
+	// Point in time (Unix timestamp) when the number of left transfers will be reset; 0 if never
+	ResetDate int32 `json:"reset_date"`
+}
+
+func (t TonWalletGaslessTransfersInfo) GetType() string {
+	return "tonWalletGaslessTransfersInfo"
+}
+
+func (t TonWalletGaslessTransfersInfo) MarshalJSON() ([]byte, error) {
+	type Alias TonWalletGaslessTransfersInfo
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "tonWalletGaslessTransfersInfo", Alias: (*Alias)(&t)})
+}
+
+// TonWalletOwnershipProof Represents a proof of TON wallet ownership
+type TonWalletOwnershipProof struct {
+	// Public key of the wallet
+	PublicKey []byte `json:"public_key"`
+	// The signature prooving the ownership
+	Signature []byte `json:"signature"`
+	// The current UNIX timestamp which was used to create the proof
+	Timestamp int32 `json:"timestamp"`
+}
+
+func (t TonWalletOwnershipProof) GetType() string {
+	return "tonWalletOwnershipProof"
+}
+
+func (t TonWalletOwnershipProof) MarshalJSON() ([]byte, error) {
+	type Alias TonWalletOwnershipProof
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "tonWalletOwnershipProof", Alias: (*Alias)(&t)})
+}
+
+// TonWalletOwnershipProofChallenge Represents a challenge for TON wallet ownership proof
+type TonWalletOwnershipProofChallenge struct {
+	// Domain of the proof requester
+	Domain string `json:"domain"`
+	// Payload of the challenge
+	Payload string `json:"payload"`
+}
+
+func (t TonWalletOwnershipProofChallenge) GetType() string {
+	return "tonWalletOwnershipProofChallenge"
+}
+
+func (t TonWalletOwnershipProofChallenge) MarshalJSON() ([]byte, error) {
+	type Alias TonWalletOwnershipProofChallenge
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "tonWalletOwnershipProofChallenge", Alias: (*Alias)(&t)})
+}
+
+// TonWalletState Describes state of the wallet of the current user in the TON blockchain
+type TonWalletState struct {
+	// Address of the wallet; may be empty if none
+	Address string `json:"address,omitempty"`
+	// True, if the user can enable backup for the wallet key
+	CanEnableBackup bool `json:"can_enable_backup"`
+	// True, if the wallet key can be exported using getTonWalletSecretPhrase
+	CanExportPhrase bool `json:"can_export_phrase"`
+	// The total amount of owned TON Grams, in the smallest units of the cryptocurrency
+	GramAmount int64 `json:"gram_amount"`
+	// True, if backup for the wallet key is enabled
+	IsBackupEnabled bool `json:"is_backup_enabled"`
+	// True, if the wallet is being created
+	IsBeingCreated bool `json:"is_being_created"`
+	// Public key of the wallet; may be empty if none
+	PublicKey []byte `json:"public_key,omitempty"`
+}
+
+func (t TonWalletState) GetType() string {
+	return "tonWalletState"
+}
+
+func (t TonWalletState) MarshalJSON() ([]byte, error) {
+	type Alias TonWalletState
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "tonWalletState", Alias: (*Alias)(&t)})
+}
+
+// TonWalletTransaction Represents a transaction with the TON wallet of the current user
+type TonWalletTransaction struct {
+	// Point in time (Unix timestamp) when the transaction was completed
+	Date int32 `json:"date"`
+	// The fee amount paid for the transaction in TON Grams, in the smallest units of the cryptocurrency
+	FeeAmount int64 `json:"fee_amount"`
+	// Unique identifier of the transaction
+	Id string `json:"id"`
+	// Address in the TON blockchain of the transaction peer; may be empty if the transaction isn't a wallet transfer
+	PeerAddress string `json:"peer_address,omitempty"`
+	// Identifier of the domain assigned to the peer address; may be empty if none
+	PeerDomain string `json:"peer_domain,omitempty"`
+	// Identifier of the other user who participated in the transaction; 0 if unknown
+	PeerUserId int64 `json:"peer_user_id"`
+	// State of the transaction
+	State TonWalletTransactionState `json:"state"`
+	// Type of the transaction
+	Type TonWalletTransactionType `json:"type"`
+}
+
+func (t TonWalletTransaction) GetType() string {
+	return "tonWalletTransaction"
+}
+
+func (t TonWalletTransaction) MarshalJSON() ([]byte, error) {
+	type Alias TonWalletTransaction
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "tonWalletTransaction", Alias: (*Alias)(&t)})
+}
+
+func (t *TonWalletTransaction) UnmarshalJSON(data []byte) error {
+	type Alias TonWalletTransaction
+	aux := &struct {
+		State json.RawMessage `json:"state"`
+		Type  json.RawMessage `json:"type"`
+		*Alias
+	}{
+		Alias: (*Alias)(t),
+	}
+
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+
+	if aux.State != nil {
+		v, err := UnmarshalTonWalletTransactionState(aux.State)
+		if err != nil {
+			return err
+		}
+		t.State = v
+	}
+	if aux.Type != nil {
+		v, err := UnmarshalTonWalletTransactionType(aux.Type)
+		if err != nil {
+			return err
+		}
+		t.Type = v
+	}
+	return nil
+}
+
+// TonWalletTransactions Represents a list of TON Gram transactions
+type TonWalletTransactions struct {
+	// The total amount of owned TON Grams, in the smallest units of the cryptocurrency
+	GramAmount int64 `json:"gram_amount"`
+	// The offset for the next request. If empty, then there are no more results
+	NextOffset string `json:"next_offset"`
+	// List of transactions
+	Transactions []TonWalletTransaction `json:"transactions"`
+}
+
+func (t TonWalletTransactions) GetType() string {
+	return "tonWalletTransactions"
+}
+
+func (t TonWalletTransactions) MarshalJSON() ([]byte, error) {
+	type Alias TonWalletTransactions
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "tonWalletTransactions", Alias: (*Alias)(&t)})
+}
+
+// TonWalletTransactionStateFailed The transaction failed
+type TonWalletTransactionStateFailed struct {
+}
+
+func (t TonWalletTransactionStateFailed) GetType() string {
+	return "tonWalletTransactionStateFailed"
+}
+
+func (t TonWalletTransactionStateFailed) tonWalletTransactionState() {}
+
+func (t TonWalletTransactionStateFailed) MarshalJSON() ([]byte, error) {
+	type Alias TonWalletTransactionStateFailed
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "tonWalletTransactionStateFailed", Alias: (*Alias)(&t)})
+}
+
+// TonWalletTransactionStateSucceeded The transaction succeeded
+type TonWalletTransactionStateSucceeded struct {
+	// Hash of the transaction
+	TxHash string `json:"tx_hash"`
+}
+
+func (t TonWalletTransactionStateSucceeded) GetType() string {
+	return "tonWalletTransactionStateSucceeded"
+}
+
+func (t TonWalletTransactionStateSucceeded) tonWalletTransactionState() {}
+
+func (t TonWalletTransactionStateSucceeded) MarshalJSON() ([]byte, error) {
+	type Alias TonWalletTransactionStateSucceeded
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "tonWalletTransactionStateSucceeded", Alias: (*Alias)(&t)})
+}
+
+// TonWalletTransactionTypeKeyChange Change of the wallet key
+type TonWalletTransactionTypeKeyChange struct {
+}
+
+func (t TonWalletTransactionTypeKeyChange) GetType() string {
+	return "tonWalletTransactionTypeKeyChange"
+}
+
+func (t TonWalletTransactionTypeKeyChange) tonWalletTransactionType() {}
+
+func (t TonWalletTransactionTypeKeyChange) MarshalJSON() ([]byte, error) {
+	type Alias TonWalletTransactionTypeKeyChange
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "tonWalletTransactionTypeKeyChange", Alias: (*Alias)(&t)})
+}
+
+// TonWalletTransactionTypeNftTransfer A transfer of a TON NFT to or from the wallet
+type TonWalletTransactionTypeNftTransfer struct {
+	// Comment added to the transaction
+	Comment string `json:"comment"`
+	// True, if the comment is encrypted and must be decrypted using the user's private key
+	IsCommentEncrypted bool `json:"is_comment_encrypted"`
+	// True, if the transfer is outgoing
+	IsOutgoing bool `json:"is_outgoing"`
+	// The transferred NFT
+	Nft *TonNft `json:"nft"`
+}
+
+func (t TonWalletTransactionTypeNftTransfer) GetType() string {
+	return "tonWalletTransactionTypeNftTransfer"
+}
+
+func (t TonWalletTransactionTypeNftTransfer) tonWalletTransactionType() {}
+
+func (t TonWalletTransactionTypeNftTransfer) MarshalJSON() ([]byte, error) {
+	type Alias TonWalletTransactionTypeNftTransfer
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "tonWalletTransactionTypeNftTransfer", Alias: (*Alias)(&t)})
+}
+
+// TonWalletTransactionTypeOnRampDeposit The transaction is a deposit from an on-ramp provider
+type TonWalletTransactionTypeOnRampDeposit struct {
+	// The amount of received cryptocurrency, in the smallest units of the cryptocurrency
+	Amount int64 `json:"amount"`
+	// Name of the on-ramp provider
+	ProviderName string `json:"provider_name"`
+}
+
+func (t TonWalletTransactionTypeOnRampDeposit) GetType() string {
+	return "tonWalletTransactionTypeOnRampDeposit"
+}
+
+func (t TonWalletTransactionTypeOnRampDeposit) tonWalletTransactionType() {}
+
+func (t TonWalletTransactionTypeOnRampDeposit) MarshalJSON() ([]byte, error) {
+	type Alias TonWalletTransactionTypeOnRampDeposit
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "tonWalletTransactionTypeOnRampDeposit", Alias: (*Alias)(&t)})
+}
+
+// TonWalletTransactionTypeTransfer A transfer of TON Grams to or from the wallet
+type TonWalletTransactionTypeTransfer struct {
+	// The amount of received cryptocurrency, in the smallest units of the cryptocurrency; negative for outgoing transactions
+	Amount int64 `json:"amount"`
+	// Comment added to the transaction
+	Comment string `json:"comment"`
+	// True, if the comment is encrypted and must be decrypted using the user's private key
+	IsCommentEncrypted bool `json:"is_comment_encrypted"`
+	// True, if the fee was paid by Telegram
+	IsGasless bool `json:"is_gasless"`
+}
+
+func (t TonWalletTransactionTypeTransfer) GetType() string {
+	return "tonWalletTransactionTypeTransfer"
+}
+
+func (t TonWalletTransactionTypeTransfer) tonWalletTransactionType() {}
+
+func (t TonWalletTransactionTypeTransfer) MarshalJSON() ([]byte, error) {
+	type Alias TonWalletTransactionTypeTransfer
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "tonWalletTransactionTypeTransfer", Alias: (*Alias)(&t)})
+}
+
+// TonWalletTransferReceiverAddress The receiver is specified by its address
+type TonWalletTransferReceiverAddress struct {
+	// Address of the receiver. Use getAddressTonWallet to get information about the user's TON wallet
+	Address string `json:"address"`
+}
+
+func (t TonWalletTransferReceiverAddress) GetType() string {
+	return "tonWalletTransferReceiverAddress"
+}
+
+func (t TonWalletTransferReceiverAddress) tonWalletTransferReceiver() {}
+
+func (t TonWalletTransferReceiverAddress) MarshalJSON() ([]byte, error) {
+	type Alias TonWalletTransferReceiverAddress
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "tonWalletTransferReceiverAddress", Alias: (*Alias)(&t)})
+}
+
+// TonWalletTransferReceiverUser The receiver is specified by its username
+type TonWalletTransferReceiverUser struct {
+	// Username of the user. Use searchPublicChat to find the user, check that it is a regular user,
+	Username string `json:"username"`
+}
+
+func (t TonWalletTransferReceiverUser) GetType() string {
+	return "tonWalletTransferReceiverUser"
+}
+
+func (t TonWalletTransferReceiverUser) tonWalletTransferReceiver() {}
+
+func (t TonWalletTransferReceiverUser) MarshalJSON() ([]byte, error) {
+	type Alias TonWalletTransferReceiverUser
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "tonWalletTransferReceiverUser", Alias: (*Alias)(&t)})
+}
+
+// TonWalletTransferResult Represents result of cryptocurrency transfer from the current user's TON wallet
+type TonWalletTransferResult struct {
+	// True, if the transfer is gasless
+	IsGasless bool `json:"is_gasless"`
+	// Unique identifier of the sent message; use getTonWalletTransactionByMsgHash to poll information about the transaction
+	MsgHash []byte `json:"msg_hash"`
+	// The completed transaction; may be null if the transaction is still pending
+	Transaction *TonWalletTransaction `json:"transaction,omitempty"`
+}
+
+func (t TonWalletTransferResult) GetType() string {
+	return "tonWalletTransferResult"
+}
+
+func (t TonWalletTransferResult) MarshalJSON() ([]byte, error) {
+	type Alias TonWalletTransferResult
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "tonWalletTransferResult", Alias: (*Alias)(&t)})
 }
 
 // TopChatCategoryBots A category containing frequently used private chats with bot users
@@ -50000,6 +51508,26 @@ func (t UpdateAgeVerificationParameters) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{TypeStr: "updateAgeVerificationParameters", Alias: (*Alias)(&t)})
+}
+
+// UpdateAllowedBotUsernamePremiumSuffixes Lists of suffixes allowed in secondary bot usernames, which can be added additionally to the main username if the bot's owner has a Telegram Premium subscription
+type UpdateAllowedBotUsernamePremiumSuffixes struct {
+	// The list of allowed suffixes
+	Suffixes []string `json:"suffixes"`
+}
+
+func (t UpdateAllowedBotUsernamePremiumSuffixes) GetType() string {
+	return "updateAllowedBotUsernamePremiumSuffixes"
+}
+
+func (t UpdateAllowedBotUsernamePremiumSuffixes) update() {}
+
+func (t UpdateAllowedBotUsernamePremiumSuffixes) MarshalJSON() ([]byte, error) {
+	type Alias UpdateAllowedBotUsernamePremiumSuffixes
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "updateAllowedBotUsernamePremiumSuffixes", Alias: (*Alias)(&t)})
 }
 
 // UpdateAnimatedEmojiMessageClicked Some animated emoji message was clicked and a big animated sticker must be played if the message is visible on the screen. chatActionWatchingAnimations with the text of the message needs to be sent if the sticker is played
@@ -54707,6 +56235,86 @@ func (t UpdateTextCompositionStyles) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "updateTextCompositionStyles", Alias: (*Alias)(&t)})
 }
 
+// UpdateTonWalletGaslessTransfersInfo The information about gasless transfers has changed
+type UpdateTonWalletGaslessTransfersInfo struct {
+	// The new state of the wallet
+	Info *TonWalletGaslessTransfersInfo `json:"info"`
+}
+
+func (t UpdateTonWalletGaslessTransfersInfo) GetType() string {
+	return "updateTonWalletGaslessTransfersInfo"
+}
+
+func (t UpdateTonWalletGaslessTransfersInfo) update() {}
+
+func (t UpdateTonWalletGaslessTransfersInfo) MarshalJSON() ([]byte, error) {
+	type Alias UpdateTonWalletGaslessTransfersInfo
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "updateTonWalletGaslessTransfersInfo", Alias: (*Alias)(&t)})
+}
+
+// UpdateTonWalletState The state of the TON wallet of the current user has changed
+type UpdateTonWalletState struct {
+	// The new state of the wallet
+	State *TonWalletState `json:"state"`
+}
+
+func (t UpdateTonWalletState) GetType() string {
+	return "updateTonWalletState"
+}
+
+func (t UpdateTonWalletState) update() {}
+
+func (t UpdateTonWalletState) MarshalJSON() ([]byte, error) {
+	type Alias UpdateTonWalletState
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "updateTonWalletState", Alias: (*Alias)(&t)})
+}
+
+// UpdateTonWalletTonConnectSession A session of a TON Connect has changed
+type UpdateTonWalletTonConnectSession struct {
+	// The new state of the session
+	Session *TonConnectSession `json:"session"`
+}
+
+func (t UpdateTonWalletTonConnectSession) GetType() string {
+	return "updateTonWalletTonConnectSession"
+}
+
+func (t UpdateTonWalletTonConnectSession) update() {}
+
+func (t UpdateTonWalletTonConnectSession) MarshalJSON() ([]byte, error) {
+	type Alias UpdateTonWalletTonConnectSession
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "updateTonWalletTonConnectSession", Alias: (*Alias)(&t)})
+}
+
+// UpdateTonWalletTonConnectSessionDisconnectRequired TON Connect sessions must be disconnected in a regular way
+type UpdateTonWalletTonConnectSessionDisconnectRequired struct {
+	// Identifiers of the sessions
+	SessionIds Int64Slice `json:"session_ids"`
+}
+
+func (t UpdateTonWalletTonConnectSessionDisconnectRequired) GetType() string {
+	return "updateTonWalletTonConnectSessionDisconnectRequired"
+}
+
+func (t UpdateTonWalletTonConnectSessionDisconnectRequired) update() {}
+
+func (t UpdateTonWalletTonConnectSessionDisconnectRequired) MarshalJSON() ([]byte, error) {
+	type Alias UpdateTonWalletTonConnectSessionDisconnectRequired
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "updateTonWalletTonConnectSessionDisconnectRequired", Alias: (*Alias)(&t)})
+}
+
 // UpdateTopicMessageCount Number of messages in a topic has changed; for Saved Messages and channel direct messages chat topics only
 type UpdateTopicMessageCount struct {
 	// Identifier of the chat in topic of which the number of messages has changed
@@ -56283,6 +57891,8 @@ type Usernames struct {
 	DisabledUsernames []string `json:"disabled_usernames"`
 	// Active or disabled username, which may be changed with setUsername or setSupergroupUsername
 	EditableUsername string `json:"editable_username"`
+	// Secondary non-collectible username; for bots only. Can't be used in toggleBotUsernameIsActive; use addBotSecondaryUsername or deleteBotSecondaryUsername to edit it.
+	SecondaryUsername string `json:"secondary_username"`
 }
 
 func (t Usernames) GetType() string {
@@ -56985,6 +58595,46 @@ func (t UserSupportInfo) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "userSupportInfo", Alias: (*Alias)(&t)})
 }
 
+// UserTonWalletAddress Contains TON wallet address of a user
+type UserTonWalletAddress struct {
+	// Public key of the user
+	PublicKey []byte `json:"public_key"`
+	// Identifier of the user; 0 if unknown
+	UserId int64 `json:"user_id"`
+	// Address of the user's wallet in the TON blockchain
+	WalletAddress string `json:"wallet_address"`
+}
+
+func (t UserTonWalletAddress) GetType() string {
+	return "userTonWalletAddress"
+}
+
+func (t UserTonWalletAddress) MarshalJSON() ([]byte, error) {
+	type Alias UserTonWalletAddress
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "userTonWalletAddress", Alias: (*Alias)(&t)})
+}
+
+// UserTonWalletAddresses Represents a list of TON wallet addresses of users
+type UserTonWalletAddresses struct {
+	// A list of TON wallet addresses
+	Addresses []UserTonWalletAddress `json:"addresses"`
+}
+
+func (t UserTonWalletAddresses) GetType() string {
+	return "userTonWalletAddresses"
+}
+
+func (t UserTonWalletAddresses) MarshalJSON() ([]byte, error) {
+	type Alias UserTonWalletAddresses
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "userTonWalletAddresses", Alias: (*Alias)(&t)})
+}
+
 // UserTypeBot A bot (see https://core.telegram.org/bots)
 type UserTypeBot struct {
 	// The number of recently active users of the bot
@@ -57462,6 +59112,26 @@ func (t *VoiceNote) UnmarshalJSON(data []byte) error {
 		t.SpeechRecognitionResult = v
 	}
 	return nil
+}
+
+// WalletBotBalance Describes balance of the current user in the bot https://t.me/walt
+type WalletBotBalance struct {
+	// True, if the user has positive TON Gram balance
+	HasBalance bool `json:"has_balance"`
+	// The URL to open to launch the bot; may be empty if none
+	Url string `json:"url,omitempty"`
+}
+
+func (t WalletBotBalance) GetType() string {
+	return "walletBotBalance"
+}
+
+func (t WalletBotBalance) MarshalJSON() ([]byte, error) {
+	type Alias WalletBotBalance
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "walletBotBalance", Alias: (*Alias)(&t)})
 }
 
 // WebApp Describes a Web App. Use getInternalLink with internalLinkTypeWebApp to share the Web App
@@ -60390,6 +62060,24 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 			return nil, 0, "", err
 		}
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "currencies":
+		var obj Currencies
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "currencyExchangeRate":
+		var obj CurrencyExchangeRate
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "currencyExchangeRates":
+		var obj CurrencyExchangeRates
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "currentWeather":
 		var obj CurrentWeather
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -62958,6 +64646,18 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 			return nil, 0, "", err
 		}
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "internalLinkTypeTonConnect":
+		var obj InternalLinkTypeTonConnect
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "internalLinkTypeTonWalletTransfer":
+		var obj InternalLinkTypeTonWalletTransfer
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "internalLinkTypeUnknownDeepLink":
 		var obj InternalLinkTypeUnknownDeepLink
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -64464,6 +66164,18 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 			return nil, 0, "", err
 		}
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "messageTonConnectRequest":
+		var obj MessageTonConnectRequest
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "messageTonWalletTransfer":
+		var obj MessageTonWalletTransfer
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageTopicDirectMessages":
 		var obj MessageTopicDirectMessages
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -64748,6 +66460,48 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "ok":
 		var obj Ok
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "onRampPaymentAvailability":
+		var obj OnRampPaymentAvailability
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "onRampPaymentLimits":
+		var obj OnRampPaymentLimits
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "onRampPaymentMethod":
+		var obj OnRampPaymentMethod
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "onRampPaymentQuote":
+		var obj OnRampPaymentQuote
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "onRampPaymentSession":
+		var obj OnRampPaymentSession
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "onRampProvider":
+		var obj OnRampProvider
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "onRampProviders":
+		var obj OnRampProviders
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, 0, "", err
 		}
@@ -66486,6 +68240,18 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 			return nil, 0, "", err
 		}
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "pushMessageContentTonConnectRequest":
+		var obj PushMessageContentTonConnectRequest
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "pushMessageContentTonWalletTransfer":
+		var obj PushMessageContentTonWalletTransfer
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "pushMessageContentUpgradedGift":
 		var obj PushMessageContentUpgradedGift
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -67052,6 +68818,12 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "richTextSuperscript":
 		var obj RichTextSuperscript
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "richTextTonAddress":
+		var obj RichTextTonAddress
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, 0, "", err
 		}
@@ -68544,6 +70316,12 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 			return nil, 0, "", err
 		}
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "suggestedActionViewFirstTonWalletTransferHint":
+		var obj SuggestedActionViewFirstTonWalletTransferHint
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "suggestedPostInfo":
 		var obj SuggestedPostInfo
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -68928,6 +70706,12 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 			return nil, 0, "", err
 		}
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "textEntityTypeTonAddress":
+		var obj TextEntityTypeTonAddress
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "textEntityTypeUnderline":
 		var obj TextEntityTypeUnderline
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -69066,6 +70850,162 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 			return nil, 0, "", err
 		}
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "tonCenterApiRequestTypeGet":
+		var obj TonCenterApiRequestTypeGet
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "tonCenterApiRequestTypePost":
+		var obj TonCenterApiRequestTypePost
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "tonCenterStreamingApiUrl":
+		var obj TonCenterStreamingApiUrl
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "tonConnectChallenge":
+		var obj TonConnectChallenge
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "tonConnectConnectItemAddress":
+		var obj TonConnectConnectItemAddress
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "tonConnectConnectItemProof":
+		var obj TonConnectConnectItemProof
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "tonConnectConnectRequest":
+		var obj TonConnectConnectRequest
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "tonConnectManifestFailed":
+		var obj TonConnectManifestFailed
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "tonConnectManifestInfo":
+		var obj TonConnectManifestInfo
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "tonConnectManifestInvalid":
+		var obj TonConnectManifestInvalid
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "tonConnectManifestPending":
+		var obj TonConnectManifestPending
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "tonConnectRequest":
+		var obj TonConnectRequest
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "tonConnectRequests":
+		var obj TonConnectRequests
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "tonConnectRequestStateAccepted":
+		var obj TonConnectRequestStateAccepted
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "tonConnectRequestStatePending":
+		var obj TonConnectRequestStatePending
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "tonConnectRequestStateRejected":
+		var obj TonConnectRequestStateRejected
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "tonConnectSession":
+		var obj TonConnectSession
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "tonConnectSessionEventId":
+		var obj TonConnectSessionEventId
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "tonConnectSessions":
+		var obj TonConnectSessions
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "tonConnectSessionStateClosed":
+		var obj TonConnectSessionStateClosed
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "tonConnectSessionStateClosing":
+		var obj TonConnectSessionStateClosing
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "tonConnectSessionStatePending":
+		var obj TonConnectSessionStatePending
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "tonConnectSessionStateReady":
+		var obj TonConnectSessionStateReady
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "tonNft":
+		var obj TonNft
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "tonNftAttribute":
+		var obj TonNftAttribute
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "tonNfts":
+		var obj TonNfts
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "tonTransaction":
 		var obj TonTransaction
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -69128,6 +71068,96 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "tonTransactionTypeUpgradedGiftSale":
 		var obj TonTransactionTypeUpgradedGiftSale
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "tonWalletGaslessTransfersInfo":
+		var obj TonWalletGaslessTransfersInfo
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "tonWalletOwnershipProof":
+		var obj TonWalletOwnershipProof
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "tonWalletOwnershipProofChallenge":
+		var obj TonWalletOwnershipProofChallenge
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "tonWalletState":
+		var obj TonWalletState
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "tonWalletTransaction":
+		var obj TonWalletTransaction
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "tonWalletTransactions":
+		var obj TonWalletTransactions
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "tonWalletTransactionStateFailed":
+		var obj TonWalletTransactionStateFailed
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "tonWalletTransactionStateSucceeded":
+		var obj TonWalletTransactionStateSucceeded
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "tonWalletTransactionTypeKeyChange":
+		var obj TonWalletTransactionTypeKeyChange
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "tonWalletTransactionTypeNftTransfer":
+		var obj TonWalletTransactionTypeNftTransfer
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "tonWalletTransactionTypeOnRampDeposit":
+		var obj TonWalletTransactionTypeOnRampDeposit
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "tonWalletTransactionTypeTransfer":
+		var obj TonWalletTransactionTypeTransfer
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "tonWalletTransferReceiverAddress":
+		var obj TonWalletTransferReceiverAddress
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "tonWalletTransferReceiverUser":
+		var obj TonWalletTransferReceiverUser
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "tonWalletTransferResult":
+		var obj TonWalletTransferResult
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, 0, "", err
 		}
@@ -69248,6 +71278,12 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateAgeVerificationParameters":
 		var obj UpdateAgeVerificationParameters
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "updateAllowedBotUsernamePremiumSuffixes":
+		var obj UpdateAllowedBotUsernamePremiumSuffixes
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, 0, "", err
 		}
@@ -70272,6 +72308,30 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 			return nil, 0, "", err
 		}
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "updateTonWalletGaslessTransfersInfo":
+		var obj UpdateTonWalletGaslessTransfersInfo
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "updateTonWalletState":
+		var obj UpdateTonWalletState
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "updateTonWalletTonConnectSession":
+		var obj UpdateTonWalletTonConnectSession
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "updateTonWalletTonConnectSessionDisconnectRequired":
+		var obj UpdateTonWalletTonConnectSessionDisconnectRequired
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateTopicMessageCount":
 		var obj UpdateTopicMessageCount
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -70758,6 +72818,18 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 			return nil, 0, "", err
 		}
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "userTonWalletAddress":
+		var obj UserTonWalletAddress
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "userTonWalletAddresses":
+		var obj UserTonWalletAddresses
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "userTypeBot":
 		var obj UserTypeBot
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -70850,6 +72922,12 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "voiceNote":
 		var obj VoiceNote
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "walletBotBalance":
+		var obj WalletBotBalance
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, 0, "", err
 		}

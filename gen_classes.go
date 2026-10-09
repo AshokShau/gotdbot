@@ -5575,6 +5575,8 @@ func UnmarshalInputStoryContent(data []byte) (InputStoryContent, error) {
 //   - InternalLinkTypeStoryAlbum
 //   - InternalLinkTypeTextCompositionStyle
 //   - InternalLinkTypeTheme
+//   - InternalLinkTypeTonConnect
+//   - InternalLinkTypeTonWalletTransfer
 //   - InternalLinkTypeUnknownDeepLink
 //   - InternalLinkTypeUpgradedGift
 //   - InternalLinkTypeUserPhoneNumber
@@ -5897,6 +5899,18 @@ func UnmarshalInternalLinkType(data []byte) (InternalLinkType, error) {
 		return &obj, nil
 	case "internalLinkTypeTheme":
 		var obj InternalLinkTypeTheme
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "internalLinkTypeTonConnect":
+		var obj InternalLinkTypeTonConnect
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "internalLinkTypeTonWalletTransfer":
+		var obj InternalLinkTypeTonWalletTransfer
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -6793,6 +6807,8 @@ func UnmarshalMaskPoint(data []byte) (MaskPoint, error) {
 //   - MessageSuggestedPostRefunded
 //   - MessageSupergroupChatCreate
 //   - MessageText
+//   - MessageTonConnectRequest
+//   - MessageTonWalletTransfer
 //   - MessageUnsupported
 //   - MessageUpgradedGift
 //   - MessageUpgradedGiftPurchaseOffer
@@ -7363,6 +7379,18 @@ func UnmarshalMessageContent(data []byte) (MessageContent, error) {
 		return &obj, nil
 	case "messageText":
 		var obj MessageText
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "messageTonConnectRequest":
+		var obj MessageTonConnectRequest
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "messageTonWalletTransfer":
+		var obj MessageTonWalletTransfer
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -10068,6 +10096,8 @@ func UnmarshalPublicForward(data []byte) (PublicForward, error) {
 //   - PushMessageContentSuggestBirthdate
 //   - PushMessageContentSuggestProfilePhoto
 //   - PushMessageContentText
+//   - PushMessageContentTonConnectRequest
+//   - PushMessageContentTonWalletTransfer
 //   - PushMessageContentUpgradedGift
 //   - PushMessageContentVideo
 //   - PushMessageContentVideoChatEnded
@@ -10324,6 +10354,18 @@ func UnmarshalPushMessageContent(data []byte) (PushMessageContent, error) {
 		return &obj, nil
 	case "pushMessageContentText":
 		var obj PushMessageContentText
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "pushMessageContentTonConnectRequest":
+		var obj PushMessageContentTonConnectRequest
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "pushMessageContentTonWalletTransfer":
+		var obj PushMessageContentTonWalletTransfer
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -10959,6 +11001,7 @@ func UnmarshalRichMessageSource(data []byte) (RichMessageSource, error) {
 //   - RichTextStrikethrough
 //   - RichTextSubscript
 //   - RichTextSuperscript
+//   - RichTextTonAddress
 //   - RichTextUnderline
 //   - RichTextUrl
 //   - RichTexts
@@ -11134,6 +11177,12 @@ func UnmarshalRichText(data []byte) (RichText, error) {
 		return &obj, nil
 	case "richTextSuperscript":
 		var obj RichTextSuperscript
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "richTextTonAddress":
+		var obj RichTextTonAddress
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -12903,6 +12952,7 @@ func UnmarshalStoryPrivacySettings(data []byte) (StoryPrivacySettings, error) {
 //   - SuggestedActionSubscribeToAnnualPremium
 //   - SuggestedActionUpgradePremium
 //   - SuggestedActionViewChecksHint
+//   - SuggestedActionViewFirstTonWalletTransferHint
 type SuggestedAction interface {
 	TlObject
 	suggestedAction()
@@ -13015,6 +13065,12 @@ func UnmarshalSuggestedAction(data []byte) (SuggestedAction, error) {
 		return &obj, nil
 	case "suggestedActionViewChecksHint":
 		var obj SuggestedActionViewChecksHint
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "suggestedActionViewFirstTonWalletTransferHint":
+		var obj SuggestedActionViewFirstTonWalletTransferHint
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -13341,6 +13397,7 @@ func UnmarshalTelegramPaymentPurpose(data []byte) (TelegramPaymentPurpose, error
 //   - TextEntityTypeSpoiler
 //   - TextEntityTypeStrikethrough
 //   - TextEntityTypeTextUrl
+//   - TextEntityTypeTonAddress
 //   - TextEntityTypeUnderline
 //   - TextEntityTypeUrl
 type TextEntityType interface {
@@ -13479,6 +13536,12 @@ func UnmarshalTextEntityType(data []byte) (TextEntityType, error) {
 		return &obj, nil
 	case "textEntityTypeTextUrl":
 		var obj TextEntityTypeTextUrl
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "textEntityTypeTonAddress":
+		var obj TextEntityTypeTonAddress
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -13651,6 +13714,211 @@ func UnmarshalTMeUrlType(data []byte) (TMeUrlType, error) {
 	}
 }
 
+// TonCenterApiRequestType Describes state of active stories posted by a chat
+//   - TonCenterApiRequestTypeGet
+//   - TonCenterApiRequestTypePost
+type TonCenterApiRequestType interface {
+	TlObject
+	tonCenterApiRequestType()
+}
+
+// UnmarshalTonCenterApiRequestType unmarshals the JSON into the correct concrete implementation of TonCenterApiRequestType
+func UnmarshalTonCenterApiRequestType(data []byte) (TonCenterApiRequestType, error) {
+	var typeObj struct {
+		Type string `json:"@type"`
+	}
+	if err := json.Unmarshal(data, &typeObj); err != nil {
+		return nil, err
+	}
+	switch typeObj.Type {
+	case "tonCenterApiRequestTypeGet":
+		var obj TonCenterApiRequestTypeGet
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "tonCenterApiRequestTypePost":
+		var obj TonCenterApiRequestTypePost
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	default:
+		return nil, fmt.Errorf("unknown type: %s", typeObj.Type)
+	}
+}
+
+// TonConnectConnectItem Represents a data item to share with a dApp
+//   - TonConnectConnectItemAddress
+//   - TonConnectConnectItemProof
+type TonConnectConnectItem interface {
+	TlObject
+	tonConnectConnectItem()
+}
+
+// UnmarshalTonConnectConnectItem unmarshals the JSON into the correct concrete implementation of TonConnectConnectItem
+func UnmarshalTonConnectConnectItem(data []byte) (TonConnectConnectItem, error) {
+	var typeObj struct {
+		Type string `json:"@type"`
+	}
+	if err := json.Unmarshal(data, &typeObj); err != nil {
+		return nil, err
+	}
+	switch typeObj.Type {
+	case "tonConnectConnectItemAddress":
+		var obj TonConnectConnectItemAddress
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "tonConnectConnectItemProof":
+		var obj TonConnectConnectItemProof
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	default:
+		return nil, fmt.Errorf("unknown type: %s", typeObj.Type)
+	}
+}
+
+// TonConnectManifest Describes manifest of the dApp that is being connected using TON Connect
+//   - TonConnectManifestFailed
+//   - TonConnectManifestInfo
+//   - TonConnectManifestInvalid
+//   - TonConnectManifestPending
+type TonConnectManifest interface {
+	TlObject
+	tonConnectManifest()
+}
+
+// UnmarshalTonConnectManifest unmarshals the JSON into the correct concrete implementation of TonConnectManifest
+func UnmarshalTonConnectManifest(data []byte) (TonConnectManifest, error) {
+	var typeObj struct {
+		Type string `json:"@type"`
+	}
+	if err := json.Unmarshal(data, &typeObj); err != nil {
+		return nil, err
+	}
+	switch typeObj.Type {
+	case "tonConnectManifestFailed":
+		var obj TonConnectManifestFailed
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "tonConnectManifestInfo":
+		var obj TonConnectManifestInfo
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "tonConnectManifestInvalid":
+		var obj TonConnectManifestInvalid
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "tonConnectManifestPending":
+		var obj TonConnectManifestPending
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	default:
+		return nil, fmt.Errorf("unknown type: %s", typeObj.Type)
+	}
+}
+
+// TonConnectRequestState Describes state of a request received from a dApp through TON Connect
+//   - TonConnectRequestStateAccepted
+//   - TonConnectRequestStatePending
+//   - TonConnectRequestStateRejected
+type TonConnectRequestState interface {
+	TlObject
+	tonConnectRequestState()
+}
+
+// UnmarshalTonConnectRequestState unmarshals the JSON into the correct concrete implementation of TonConnectRequestState
+func UnmarshalTonConnectRequestState(data []byte) (TonConnectRequestState, error) {
+	var typeObj struct {
+		Type string `json:"@type"`
+	}
+	if err := json.Unmarshal(data, &typeObj); err != nil {
+		return nil, err
+	}
+	switch typeObj.Type {
+	case "tonConnectRequestStateAccepted":
+		var obj TonConnectRequestStateAccepted
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "tonConnectRequestStatePending":
+		var obj TonConnectRequestStatePending
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "tonConnectRequestStateRejected":
+		var obj TonConnectRequestStateRejected
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	default:
+		return nil, fmt.Errorf("unknown type: %s", typeObj.Type)
+	}
+}
+
+// TonConnectSessionState Describes state of a TON Connect session
+//   - TonConnectSessionStateClosed
+//   - TonConnectSessionStateClosing
+//   - TonConnectSessionStatePending
+//   - TonConnectSessionStateReady
+type TonConnectSessionState interface {
+	TlObject
+	tonConnectSessionState()
+}
+
+// UnmarshalTonConnectSessionState unmarshals the JSON into the correct concrete implementation of TonConnectSessionState
+func UnmarshalTonConnectSessionState(data []byte) (TonConnectSessionState, error) {
+	var typeObj struct {
+		Type string `json:"@type"`
+	}
+	if err := json.Unmarshal(data, &typeObj); err != nil {
+		return nil, err
+	}
+	switch typeObj.Type {
+	case "tonConnectSessionStateClosed":
+		var obj TonConnectSessionStateClosed
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "tonConnectSessionStateClosing":
+		var obj TonConnectSessionStateClosing
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "tonConnectSessionStatePending":
+		var obj TonConnectSessionStatePending
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "tonConnectSessionStateReady":
+		var obj TonConnectSessionStateReady
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	default:
+		return nil, fmt.Errorf("unknown type: %s", typeObj.Type)
+	}
+}
+
 // TonTransactionType Describes type of transaction with TON Grams
 //   - TonTransactionTypeFragmentDeposit
 //   - TonTransactionTypeFragmentWithdrawal
@@ -13725,6 +13993,122 @@ func UnmarshalTonTransactionType(data []byte) (TonTransactionType, error) {
 		return &obj, nil
 	case "tonTransactionTypeUpgradedGiftSale":
 		var obj TonTransactionTypeUpgradedGiftSale
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	default:
+		return nil, fmt.Errorf("unknown type: %s", typeObj.Type)
+	}
+}
+
+// TonWalletTransactionState Describes state of a transaction with a TON wallet
+//   - TonWalletTransactionStateFailed
+//   - TonWalletTransactionStateSucceeded
+type TonWalletTransactionState interface {
+	TlObject
+	tonWalletTransactionState()
+}
+
+// UnmarshalTonWalletTransactionState unmarshals the JSON into the correct concrete implementation of TonWalletTransactionState
+func UnmarshalTonWalletTransactionState(data []byte) (TonWalletTransactionState, error) {
+	var typeObj struct {
+		Type string `json:"@type"`
+	}
+	if err := json.Unmarshal(data, &typeObj); err != nil {
+		return nil, err
+	}
+	switch typeObj.Type {
+	case "tonWalletTransactionStateFailed":
+		var obj TonWalletTransactionStateFailed
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "tonWalletTransactionStateSucceeded":
+		var obj TonWalletTransactionStateSucceeded
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	default:
+		return nil, fmt.Errorf("unknown type: %s", typeObj.Type)
+	}
+}
+
+// TonWalletTransactionType Describes type of transaction with a TON wallet
+//   - TonWalletTransactionTypeKeyChange
+//   - TonWalletTransactionTypeNftTransfer
+//   - TonWalletTransactionTypeOnRampDeposit
+//   - TonWalletTransactionTypeTransfer
+type TonWalletTransactionType interface {
+	TlObject
+	tonWalletTransactionType()
+}
+
+// UnmarshalTonWalletTransactionType unmarshals the JSON into the correct concrete implementation of TonWalletTransactionType
+func UnmarshalTonWalletTransactionType(data []byte) (TonWalletTransactionType, error) {
+	var typeObj struct {
+		Type string `json:"@type"`
+	}
+	if err := json.Unmarshal(data, &typeObj); err != nil {
+		return nil, err
+	}
+	switch typeObj.Type {
+	case "tonWalletTransactionTypeKeyChange":
+		var obj TonWalletTransactionTypeKeyChange
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "tonWalletTransactionTypeNftTransfer":
+		var obj TonWalletTransactionTypeNftTransfer
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "tonWalletTransactionTypeOnRampDeposit":
+		var obj TonWalletTransactionTypeOnRampDeposit
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "tonWalletTransactionTypeTransfer":
+		var obj TonWalletTransactionTypeTransfer
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	default:
+		return nil, fmt.Errorf("unknown type: %s", typeObj.Type)
+	}
+}
+
+// TonWalletTransferReceiver Represents expected receiver of a TON wallet transfer
+//   - TonWalletTransferReceiverAddress
+//   - TonWalletTransferReceiverUser
+type TonWalletTransferReceiver interface {
+	TlObject
+	tonWalletTransferReceiver()
+}
+
+// UnmarshalTonWalletTransferReceiver unmarshals the JSON into the correct concrete implementation of TonWalletTransferReceiver
+func UnmarshalTonWalletTransferReceiver(data []byte) (TonWalletTransferReceiver, error) {
+	var typeObj struct {
+		Type string `json:"@type"`
+	}
+	if err := json.Unmarshal(data, &typeObj); err != nil {
+		return nil, err
+	}
+	switch typeObj.Type {
+	case "tonWalletTransferReceiverAddress":
+		var obj TonWalletTransferReceiverAddress
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "tonWalletTransferReceiverUser":
+		var obj TonWalletTransferReceiverUser
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -13858,6 +14242,7 @@ func UnmarshalTransactionDirection(data []byte) (TransactionDirection, error) {
 //   - UpdateActiveLiveLocationMessages
 //   - UpdateActiveNotifications
 //   - UpdateAgeVerificationParameters
+//   - UpdateAllowedBotUsernamePremiumSuffixes
 //   - UpdateAnimatedEmojiMessageClicked
 //   - UpdateAnimationSearchParameters
 //   - UpdateApplicationRecaptchaVerificationRequired
@@ -14027,6 +14412,10 @@ func UnmarshalTransactionDirection(data []byte) (TransactionDirection, error) {
 //   - UpdateSupergroupFullInfo
 //   - UpdateTermsOfService
 //   - UpdateTextCompositionStyles
+//   - UpdateTonWalletGaslessTransfersInfo
+//   - UpdateTonWalletState
+//   - UpdateTonWalletTonConnectSession
+//   - UpdateTonWalletTonConnectSessionDisconnectRequired
 //   - UpdateTopicMessageCount
 //   - UpdateTrendingStickerSets
 //   - UpdateTrustedMiniAppBots
@@ -14087,6 +14476,12 @@ func UnmarshalUpdate(data []byte) (Update, error) {
 		return &obj, nil
 	case "updateAgeVerificationParameters":
 		var obj UpdateAgeVerificationParameters
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "updateAllowedBotUsernamePremiumSuffixes":
+		var obj UpdateAllowedBotUsernamePremiumSuffixes
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -15101,6 +15496,30 @@ func UnmarshalUpdate(data []byte) (Update, error) {
 		return &obj, nil
 	case "updateTextCompositionStyles":
 		var obj UpdateTextCompositionStyles
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "updateTonWalletGaslessTransfersInfo":
+		var obj UpdateTonWalletGaslessTransfersInfo
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "updateTonWalletState":
+		var obj UpdateTonWalletState
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "updateTonWalletTonConnectSession":
+		var obj UpdateTonWalletTonConnectSession
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "updateTonWalletTonConnectSessionDisconnectRequired":
+		var obj UpdateTonWalletTonConnectSessionDisconnectRequired
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}

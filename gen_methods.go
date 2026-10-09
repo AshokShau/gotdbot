@@ -60,6 +60,16 @@ func (c *Client) AddBotMediaPreview(botUserId int64, content InputStoryContent, 
 	return resp.(*BotMediaPreview), nil
 }
 
+// AddBotSecondaryUsername Adds a secondary username to a bot. Can be called only if userTypeBot.can_be_edited, the bot has no secondary username and the current user has Telegram Premium subscription.
+func (c *Client) AddBotSecondaryUsername(botUserId int64, username string) error {
+	req := &AddBotSecondaryUsername{
+		BotUserId: botUserId,
+		Username:  username,
+	}
+	_, err := c.Send(req)
+	return err
+}
+
 // AddChatFolderByInviteLink Adds a chat folder by an invite link
 func (c *Client) AddChatFolderByInviteLink(chatIds []int64, inviteLink string) error {
 	req := &AddChatFolderByInviteLink{
@@ -571,6 +581,18 @@ func (c *Client) AnswerShippingQuery(errorMessage string, shippingOptions []Ship
 	return err
 }
 
+// AnswerTonConnectRequest Sends an answer for a request received through TON Connect
+func (c *Client) AnswerTonConnectRequest(body []byte, messageId int64, sessionId int64, traceId string) error {
+	req := &AnswerTonConnectRequest{
+		Body:      body,
+		MessageId: messageId,
+		SessionId: sessionId,
+		TraceId:   traceId,
+	}
+	_, err := c.Send(req)
+	return err
+}
+
 // AnswerWebAppQuery Sets the result of interaction with a Web App and sends corresponding message on behalf of the user to the chat from which the query originated; for bots only
 func (c *Client) AnswerWebAppQuery(result InputInlineQueryResult, webAppQueryId string) (*InlineMessageId, error) {
 	req := &AnswerWebAppQuery{
@@ -896,10 +918,13 @@ func (c *Client) CheckAuthenticationWebToken(dcId int32, token string) error {
 	return err
 }
 
-// CheckBotUsername Checks whether a username can be set for a new bot. Use checkChatUsername to check username for other chat types
-func (c *Client) CheckBotUsername(username string) (CheckChatUsernameResult, error) {
+// CheckBotUsername Checks whether a username can be set for a new bot or assigned as a secondary username to an existing bot. Use checkChatUsername to check username for other chat types
+func (c *Client) CheckBotUsername(username string, opts *CheckBotUsernameOpts) (CheckChatUsernameResult, error) {
 	req := &CheckBotUsername{
 		Username: username,
+	}
+	if opts != nil {
+		req.IsSecondary = opts.IsSecondary
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -1045,12 +1070,36 @@ func (c *Client) CheckStickerSetName(name string) (CheckStickerSetNameResult, er
 	return resp.(CheckStickerSetNameResult), nil
 }
 
+// CheckWalletBotBalance Returns information about balance of the current user in the bot https://t.me/walt; can be used only if getOption("can_use_ton_wallet")
+func (c *Client) CheckWalletBotBalance() (*WalletBotBalance, error) {
+	req := &CheckWalletBotBalance{}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*WalletBotBalance), nil
+}
+
 // CheckWebAppFileDownload Checks whether a file can be downloaded and saved locally by Web App request
 func (c *Client) CheckWebAppFileDownload(botUserId int64, fileName string, url string) error {
 	req := &CheckWebAppFileDownload{
 		BotUserId: botUserId,
 		FileName:  fileName,
 		Url:       url,
+	}
+	_, err := c.Send(req)
+	return err
+}
+
+// ClaimTonConnectRequest Claims a request received through TON Connect for processing on this device
+func (c *Client) ClaimTonConnectRequest(dappRequestId string, messageId int64, sessionId int64, opts *ClaimTonConnectRequestOpts) error {
+	req := &ClaimTonConnectRequest{
+		DappRequestId: dappRequestId,
+		MessageId:     messageId,
+		SessionId:     sessionId,
+	}
+	if opts != nil {
+		req.IsRejected = opts.IsRejected
 	}
 	_, err := c.Send(req)
 	return err
@@ -1590,6 +1639,28 @@ func (c *Client) CreateNewSupergroupChat(description string, messageAutoDeleteTi
 	return resp.(*Chat), nil
 }
 
+// CreateOnRampPaymentSession Creates a session for an on-ramp payment
+func (c *Client) CreateOnRampPaymentSession(address string, baseCurrency string, baseCurrencyAmount string, cryptocurrency string, cryptocurrencyAmount string, failReturnUrl string, memo string, paymentMethodName string, providerId string, successReturnUrl string, theme string) (*OnRampPaymentSession, error) {
+	req := &CreateOnRampPaymentSession{
+		Address:              address,
+		BaseCurrency:         baseCurrency,
+		BaseCurrencyAmount:   baseCurrencyAmount,
+		Cryptocurrency:       cryptocurrency,
+		CryptocurrencyAmount: cryptocurrencyAmount,
+		FailReturnUrl:        failReturnUrl,
+		Memo:                 memo,
+		PaymentMethodName:    paymentMethodName,
+		ProviderId:           providerId,
+		SuccessReturnUrl:     successReturnUrl,
+		Theme:                theme,
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*OnRampPaymentSession), nil
+}
+
 // CreatePrivateChat Returns an existing chat corresponding to a given user
 func (c *Client) CreatePrivateChat(userId int64, opts *CreatePrivateChatOpts) (*Chat, error) {
 	req := &CreatePrivateChat{
@@ -1690,6 +1761,31 @@ func (c *Client) CreateTextCompositionStyle(customEmojiId int64, prompt string, 
 		return nil, err
 	}
 	return resp.(*TextCompositionStyle), nil
+}
+
+// CreateTonConnectSession Creates a TON Connect session; can be used only if getOption("can_use_ton_wallet")
+func (c *Client) CreateTonConnectSession(dappClientId string, manifestUrl string) (*TonConnectSession, error) {
+	req := &CreateTonConnectSession{
+		DappClientId: dappClientId,
+		ManifestUrl:  manifestUrl,
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*TonConnectSession), nil
+}
+
+// CreateUserTonWallet Creates a TON wallet for the specified regular user; can be used only if getOption("can_use_ton_wallet"). The current user must have positive TON wallet balance
+func (c *Client) CreateUserTonWallet(userId int64) (*UserTonWalletAddress, error) {
+	req := &CreateUserTonWallet{
+		UserId: userId,
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*UserTonWalletAddress), nil
 }
 
 // CreateVideoChat Creates a video chat (a group call bound to a chat); for basic groups, supergroups and channels only; requires can_manage_video_chats administrator right
@@ -1811,6 +1907,15 @@ func (c *Client) DeleteBotMediaPreviews(botUserId int64, fileIds []int32, langua
 		BotUserId:    botUserId,
 		FileIds:      fileIds,
 		LanguageCode: languageCode,
+	}
+	_, err := c.Send(req)
+	return err
+}
+
+// DeleteBotSecondaryUsername Removes a secondary username from a bot. Can be called only if userTypeBot.can_be_edited == true and the bot has a secondary username
+func (c *Client) DeleteBotSecondaryUsername(botUserId int64) error {
+	req := &DeleteBotSecondaryUsername{
+		BotUserId: botUserId,
 	}
 	_, err := c.Send(req)
 	return err
@@ -1959,6 +2064,15 @@ func (c *Client) DeleteCommands(languageCode string, opts *DeleteCommandsOpts) e
 	}
 	if opts != nil {
 		req.Scope = opts.Scope
+	}
+	_, err := c.Send(req)
+	return err
+}
+
+// DeleteCommunity Deletes a community; requires owner privileges
+func (c *Client) DeleteCommunity(communityId int64) error {
+	req := &DeleteCommunity{
+		CommunityId: communityId,
 	}
 	_, err := c.Send(req)
 	return err
@@ -2235,6 +2349,15 @@ func (c *Client) DeleteTextCompositionStyle(name string) error {
 	return err
 }
 
+// DeleteTonWallet Deletes the current TON wallet of the user and creates a new one; can be used only if getOption("can_use_ton_wallet")
+func (c *Client) DeleteTonWallet(password string) error {
+	req := &DeleteTonWallet{
+		Password: password,
+	}
+	_, err := c.Send(req)
+	return err
+}
+
 // Destroy Closes the TDLib instance, destroying all local data without a proper logout. The current user session will remain in the list of all active sessions. All local data will be destroyed.
 func (c *Client) Destroy() error {
 	req := &Destroy{}
@@ -2254,6 +2377,24 @@ func (c *Client) DisableAllSupergroupUsernames(supergroupId int64) error {
 // DisableProxy Disables the currently enabled proxy. Can be called before authorization
 func (c *Client) DisableProxy() error {
 	req := &DisableProxy{}
+	_, err := c.Send(req)
+	return err
+}
+
+// DisableTonWalletBackup Disables backup of the TON wallet of the user. Works only if tonWalletState.is_backup_enabled is true
+func (c *Client) DisableTonWalletBackup(password string) error {
+	req := &DisableTonWalletBackup{
+		Password: password,
+	}
+	_, err := c.Send(req)
+	return err
+}
+
+// DisableTonWalletBackupWithProof Disables backup of the TON wallet of the user using proof of wallet ownership instead of the password. Works only if tonWalletState.is_backup_enabled is true
+func (c *Client) DisableTonWalletBackupWithProof(proof *TonWalletOwnershipProof) error {
+	req := &DisableTonWalletBackupWithProof{
+		Proof: proof,
+	}
 	_, err := c.Send(req)
 	return err
 }
@@ -2294,10 +2435,31 @@ func (c *Client) DisconnectAllWebsites() error {
 	return err
 }
 
+// DisconnectTonConnectSession Closes a TON Connect session
+func (c *Client) DisconnectTonConnectSession(sessionId int64, opts *DisconnectTonConnectSessionOpts) error {
+	req := &DisconnectTonConnectSession{
+		SessionId: sessionId,
+	}
+	if opts != nil {
+		req.Body = opts.Body
+	}
+	_, err := c.Send(req)
+	return err
+}
+
 // DisconnectWebsite Disconnects website from the current user's Telegram account
 func (c *Client) DisconnectWebsite(websiteId int64) error {
 	req := &DisconnectWebsite{
 		WebsiteId: websiteId,
+	}
+	_, err := c.Send(req)
+	return err
+}
+
+// DismissWebToken Dismissess a received web token without consumption; for official Telegram apps only
+func (c *Client) DismissWebToken(token string) error {
+	req := &DismissWebToken{
+		Token: token,
 	}
 	_, err := c.Send(req)
 	return err
@@ -2482,20 +2644,6 @@ func (c *Client) EditBusinessStory(areas *InputStoryAreas, caption *FormattedTex
 		return nil, err
 	}
 	return resp.(*Story), nil
-}
-
-// EditCallbackQueryMessage Edits the message from which a callback query has originated with an ephemeral message; for bots only
-func (c *Client) EditCallbackQueryMessage(callbackQueryId int64, inputMessageContent InputMessageContent, opts *EditCallbackQueryMessageOpts) error {
-	req := &EditCallbackQueryMessage{
-		CallbackQueryId:     callbackQueryId,
-		InputMessageContent: inputMessageContent,
-	}
-	if opts != nil {
-		req.ProtectContent = opts.ProtectContent
-		req.ReplyMarkup = opts.ReplyMarkup
-	}
-	_, err := c.Send(req)
-	return err
 }
 
 // EditChatFolder Edits existing chat folder. Returns information about the edited chat folder
@@ -2911,6 +3059,16 @@ func (c *Client) EnableProxy(proxyId int32) error {
 	return err
 }
 
+// EnableTonWalletBackup Enables backup of the TON wallet of the user. Works only if tonWalletState.can_enable_backup is true
+func (c *Client) EnableTonWalletBackup(proof *TonWalletOwnershipProof, secretPhrase string) error {
+	req := &EnableTonWalletBackup{
+		Proof:        proof,
+		SecretPhrase: secretPhrase,
+	}
+	_, err := c.Send(req)
+	return err
+}
+
 // EncryptGroupCallData Encrypts group call data before sending them over network using tgcalls
 func (c *Client) EncryptGroupCallData(data []byte, dataChannel GroupCallDataChannel, groupCallId int32, unencryptedPrefixSize int32) (*Data, error) {
 	req := &EncryptGroupCallData{
@@ -3027,6 +3185,18 @@ func (c *Client) GetActiveSessions() (*Sessions, error) {
 		return nil, err
 	}
 	return resp.(*Sessions), nil
+}
+
+// GetAddressTonWallet Returns information about a TON wallet with the given address; can be used only if getOption("can_use_ton_wallet")
+func (c *Client) GetAddressTonWallet(address string) (*UserTonWalletAddress, error) {
+	req := &GetAddressTonWallet{
+		Address: address,
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*UserTonWalletAddress), nil
 }
 
 // GetAllPassportElements Returns all available Telegram Passport elements
@@ -4163,6 +4333,18 @@ func (c *Client) GetCommands(languageCode string, opts *GetCommandsOpts) (*BotCo
 	return resp.(*BotCommands), nil
 }
 
+// GetCommunityFullInfo Returns full information about a community
+func (c *Client) GetCommunityFullInfo(communityId int64) (*CommunityFullInfo, error) {
+	req := &GetCommunityFullInfo{
+		CommunityId: communityId,
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*CommunityFullInfo), nil
+}
+
 // GetConnectedAffiliateProgram Returns an affiliate program that was connected to the given affiliate by identifier of the bot that created the program
 func (c *Client) GetConnectedAffiliateProgram(affiliate AffiliateType, botUserId int64) (*ConnectedAffiliateProgram, error) {
 	req := &GetConnectedAffiliateProgram{
@@ -4264,6 +4446,16 @@ func (c *Client) GetCreatedPublicChats(typeField PublicChatType) (*Chats, error)
 		return nil, err
 	}
 	return resp.(*Chats), nil
+}
+
+// GetCurrencyExchangeRates Returns exchange rates of currencies to USD
+func (c *Client) GetCurrencyExchangeRates() (*CurrencyExchangeRates, error) {
+	req := &GetCurrencyExchangeRates{}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*CurrencyExchangeRates), nil
 }
 
 // GetCurrentState Returns all updates needed to restore current TDLib state, i.e. all actual updateAuthorizationState/updateUser/updateNewChat and others. This is especially useful if TDLib is run in a separate process. Can be called before initialization
@@ -5644,6 +5836,77 @@ func (c *Client) GetOauthLinkInfo(inAppOrigin string, url string) (*OauthLinkInf
 	return resp.(*OauthLinkInfo), nil
 }
 
+// GetOnRampPaymentAvailability Returns the available on-ramp payment methods based on the current user location
+func (c *Client) GetOnRampPaymentAvailability(baseCurrency string, cryptocurrency string, providerId string) (*OnRampPaymentAvailability, error) {
+	req := &GetOnRampPaymentAvailability{
+		BaseCurrency:   baseCurrency,
+		Cryptocurrency: cryptocurrency,
+		ProviderId:     providerId,
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*OnRampPaymentAvailability), nil
+}
+
+// GetOnRampPaymentLimits Returns the limits for an on-ramp payment; only for providers that supports limits retrieval
+func (c *Client) GetOnRampPaymentLimits(baseCurrency string, cryptocurrency string, paymentMethodName string, providerId string) (*OnRampPaymentLimits, error) {
+	req := &GetOnRampPaymentLimits{
+		BaseCurrency:      baseCurrency,
+		Cryptocurrency:    cryptocurrency,
+		PaymentMethodName: paymentMethodName,
+		ProviderId:        providerId,
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*OnRampPaymentLimits), nil
+}
+
+// GetOnRampPaymentQuote Returns a quote for an on-ramp payment; only for providers that supports quote retrieval
+func (c *Client) GetOnRampPaymentQuote(baseCurrency string, baseCurrencyAmount string, cryptocurrency string, cryptocurrencyAmount string, paymentMethodName string, providerId string) (*OnRampPaymentQuote, error) {
+	req := &GetOnRampPaymentQuote{
+		BaseCurrency:         baseCurrency,
+		BaseCurrencyAmount:   baseCurrencyAmount,
+		Cryptocurrency:       cryptocurrency,
+		CryptocurrencyAmount: cryptocurrencyAmount,
+		PaymentMethodName:    paymentMethodName,
+		ProviderId:           providerId,
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*OnRampPaymentQuote), nil
+}
+
+// GetOnRampProviderBaseCurrencies Returns the list of fiat currencies supported by an on-ramp provider for the given cryptocurrency
+func (c *Client) GetOnRampProviderBaseCurrencies(cryptocurrency string, providerId string) (*Currencies, error) {
+	req := &GetOnRampProviderBaseCurrencies{
+		Cryptocurrency: cryptocurrency,
+		ProviderId:     providerId,
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*Currencies), nil
+}
+
+// GetOnRampProviders Returns available on-ramp providers
+func (c *Client) GetOnRampProviders(cryptocurrency string) (*OnRampProviders, error) {
+	req := &GetOnRampProviders{
+		Cryptocurrency: cryptocurrency,
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*OnRampProviders), nil
+}
+
 // GetOption Returns the value of an option by its name. (Check the list of available options on https://core.telegram.org/tdlib/options.) Can be called before authorization. Can be called synchronously for options "version" and "commit_hash"
 func (c *Client) GetOption(name string) (OptionValue, error) {
 	req := &GetOption{
@@ -6792,7 +7055,7 @@ func (c *Client) GetTextCompositionStyleExample(exampleNumber int32, name string
 	return resp.(*TextCompositionStyleExample), nil
 }
 
-// GetTextEntities Returns all entities (mentions, hashtags, cashtags, bot commands, bank card numbers, URLs, and email addresses) found in the text. Can be called synchronously
+// GetTextEntities Returns all entities (mentions, hashtags, cashtags, bot commands, bank card numbers, TON blockchain addresses, URLs, and email addresses) found in the text. Can be called synchronously
 func (c *Client) GetTextEntities(text string) (*TextEntities, error) {
 	req := &GetTextEntities{
 		Text: text,
@@ -6846,7 +7109,63 @@ func (c *Client) GetTimeZones() (*TimeZones, error) {
 	return resp.(*TimeZones), nil
 }
 
-// GetTonTransactions Returns the list of TON blockchain transactions of the current user
+// GetTonCenterStreamingApiUrl Returns a URL for TON Center Streaming API
+func (c *Client) GetTonCenterStreamingApiUrl() (*TonCenterStreamingApiUrl, error) {
+	req := &GetTonCenterStreamingApiUrl{}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*TonCenterStreamingApiUrl), nil
+}
+
+// GetTonConnectDAppPendingRequests Returns pending requests with a dApp through TON Connect
+func (c *Client) GetTonConnectDAppPendingRequests(dappClientId string) (*TonConnectRequests, error) {
+	req := &GetTonConnectDAppPendingRequests{
+		DappClientId: dappClientId,
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*TonConnectRequests), nil
+}
+
+// GetTonConnectSessionNextEventId Returns the next event identifier for the given TON Connect session
+func (c *Client) GetTonConnectSessionNextEventId(sessionId int64) (*TonConnectSessionEventId, error) {
+	req := &GetTonConnectSessionNextEventId{
+		SessionId: sessionId,
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*TonConnectSessionEventId), nil
+}
+
+// GetTonConnectSessionPendingRequests Returns pending requests in a TON Connect session
+func (c *Client) GetTonConnectSessionPendingRequests(sessionId int64) (*TonConnectRequests, error) {
+	req := &GetTonConnectSessionPendingRequests{
+		SessionId: sessionId,
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*TonConnectRequests), nil
+}
+
+// GetTonConnectSessions Returns active TON Connect sessions; can be used only if getOption("can_use_ton_wallet")
+func (c *Client) GetTonConnectSessions() (*TonConnectSessions, error) {
+	req := &GetTonConnectSessions{}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*TonConnectSessions), nil
+}
+
+// GetTonTransactions Returns the list of TON Gram transactions of the current user
 func (c *Client) GetTonTransactions(limit int32, offset string, opts *GetTonTransactionsOpts) (*TonTransactions, error) {
 	req := &GetTonTransactions{
 		Limit:  limit,
@@ -6860,6 +7179,81 @@ func (c *Client) GetTonTransactions(limit int32, offset string, opts *GetTonTran
 		return nil, err
 	}
 	return resp.(*TonTransactions), nil
+}
+
+// GetTonWalletNfts Returns NFTs stored on the TON wallet of the user; can be used only if getOption("can_use_ton_wallet")
+func (c *Client) GetTonWalletNfts(limit int32, offset string) (*TonNfts, error) {
+	req := &GetTonWalletNfts{
+		Limit:  limit,
+		Offset: offset,
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*TonNfts), nil
+}
+
+// GetTonWalletOwnershipProofChallenge Returns a challenge which may be used to proof ownership of a TON wallet; can be used only if getOption("can_use_ton_wallet")
+func (c *Client) GetTonWalletOwnershipProofChallenge() (*TonWalletOwnershipProofChallenge, error) {
+	req := &GetTonWalletOwnershipProofChallenge{}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*TonWalletOwnershipProofChallenge), nil
+}
+
+// GetTonWalletSecretPhrase Returns the secret phrase of the user's TON wallet as a space separated list of words. Works only if tonWalletState.can_export_phrase is true
+func (c *Client) GetTonWalletSecretPhrase(password string) (*Text, error) {
+	req := &GetTonWalletSecretPhrase{
+		Password: password,
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*Text), nil
+}
+
+// GetTonWalletTransaction Returns a TON wallet transaction by their identifier
+func (c *Client) GetTonWalletTransaction(transactionId string) (*TonWalletTransaction, error) {
+	req := &GetTonWalletTransaction{
+		TransactionId: transactionId,
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*TonWalletTransaction), nil
+}
+
+// GetTonWalletTransactionByMsgHash Returns a TON wallet transaction by their msg_hash; return an error if the transaction isn't finalized yet
+func (c *Client) GetTonWalletTransactionByMsgHash(msgHash string) (*TonWalletTransaction, error) {
+	req := &GetTonWalletTransactionByMsgHash{
+		MsgHash: msgHash,
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*TonWalletTransaction), nil
+}
+
+// GetTonWalletTransactions Returns the list of TON wallet transactions of the current user; can be used only if getOption("can_use_ton_wallet")
+func (c *Client) GetTonWalletTransactions(limit int32, offset string, opts *GetTonWalletTransactionsOpts) (*TonWalletTransactions, error) {
+	req := &GetTonWalletTransactions{
+		Limit:  limit,
+		Offset: offset,
+	}
+	if opts != nil {
+		req.Direction = opts.Direction
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*TonWalletTransactions), nil
 }
 
 // GetTopChats Returns a list of frequently used chats
@@ -7059,6 +7453,18 @@ func (c *Client) GetUserSupportInfo(userId int64) (*UserSupportInfo, error) {
 		return nil, err
 	}
 	return resp.(*UserSupportInfo), nil
+}
+
+// GetUserTonWalletAddresses Returns TON wallet addresses of the specified users; can be used only if getOption("can_use_ton_wallet")
+func (c *Client) GetUserTonWalletAddresses(userIds []int64) (*UserTonWalletAddresses, error) {
+	req := &GetUserTonWalletAddresses{
+		UserIds: userIds,
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*UserTonWalletAddresses), nil
 }
 
 // GetVideoChatAvailableParticipants Returns the list of participant identifiers, on whose behalf a video chat in the chat can be joined
@@ -7413,15 +7819,6 @@ func (c *Client) LoadChatWelcomeMessages(chatId int64) error {
 	return err
 }
 
-// LoadCommunityFullInfo Returns full information about a community. The data will be sent through update.
-func (c *Client) LoadCommunityFullInfo(communityId int64) error {
-	req := &LoadCommunityFullInfo{
-		CommunityId: communityId,
-	}
-	_, err := c.Send(req)
-	return err
-}
-
 // LoadDirectMessagesChatTopics Loads more topics in a channel direct messages chat administered by the current user. The loaded topics will be sent through updateDirectMessagesChatTopic.
 func (c *Client) LoadDirectMessagesChatTopics(chatId int64, limit int32) error {
 	req := &LoadDirectMessagesChatTopics{
@@ -7463,6 +7860,20 @@ func (c *Client) LoadSavedMessagesTopics(limit int32) error {
 	req := &LoadSavedMessagesTopics{
 		Limit: limit,
 	}
+	_, err := c.Send(req)
+	return err
+}
+
+// LoadTonWalletGaslessTransfersInfo Loads or reloads the current state of gasless transfers for the current user; can be used only if getOption("can_use_ton_wallet")
+func (c *Client) LoadTonWalletGaslessTransfersInfo() error {
+	req := &LoadTonWalletGaslessTransfersInfo{}
+	_, err := c.Send(req)
+	return err
+}
+
+// LoadTonWalletState Loads state of the TON wallet of the current user; can be used only if getOption("can_use_ton_wallet")
+func (c *Client) LoadTonWalletState() error {
+	req := &LoadTonWalletState{}
 	_, err := c.Send(req)
 	return err
 }
@@ -8410,6 +8821,17 @@ func (c *Client) ReplaceStickerInSet(name string, newSticker *NewSticker, oldSti
 	return err
 }
 
+// ReplaceTonWallet Replaces the current TON wallet with another existing v6r2 wallet or changes private key of the current TON wallet; can be used only if getOption("can_use_ton_wallet")
+func (c *Client) ReplaceTonWallet(anchorPublicKey []byte, password string, proof *TonWalletOwnershipProof) error {
+	req := &ReplaceTonWallet{
+		AnchorPublicKey: anchorPublicKey,
+		Password:        password,
+		Proof:           proof,
+	}
+	_, err := c.Send(req)
+	return err
+}
+
 // ReplaceVideoChatRtmpUrl Replaces the current RTMP URL for streaming to the video chat of a chat; requires owner privileges in the chat
 func (c *Client) ReplaceVideoChatRtmpUrl(chatId int64) (*RtmpUrl, error) {
 	req := &ReplaceVideoChatRtmpUrl{
@@ -8422,6 +8844,21 @@ func (c *Client) ReplaceVideoChatRtmpUrl(chatId int64) (*RtmpUrl, error) {
 	return resp.(*RtmpUrl), nil
 }
 
+// ReplyToCallbackQueryWithEphemeralMessage Replies to a callback query with an ephemeral message; for bots only
+func (c *Client) ReplyToCallbackQueryWithEphemeralMessage(callbackQueryId int64, inputMessageContent InputMessageContent, opts *ReplyToCallbackQueryWithEphemeralMessageOpts) error {
+	req := &ReplyToCallbackQueryWithEphemeralMessage{
+		CallbackQueryId:     callbackQueryId,
+		InputMessageContent: inputMessageContent,
+	}
+	if opts != nil {
+		req.ProtectContent = opts.ProtectContent
+		req.ReplaceCallbackQueryMessage = opts.ReplaceCallbackQueryMessage
+		req.ReplyMarkup = opts.ReplyMarkup
+	}
+	_, err := c.Send(req)
+	return err
+}
+
 // ReportAuthenticationCodeMissing Reports that authentication code wasn't delivered via SMS; for official mobile applications only. Works only when the current authorization state is authorizationStateWaitCode
 func (c *Client) ReportAuthenticationCodeMissing(mobileNetworkCode string) error {
 	req := &ReportAuthenticationCodeMissing{
@@ -8431,7 +8868,7 @@ func (c *Client) ReportAuthenticationCodeMissing(mobileNetworkCode string) error
 	return err
 }
 
-// ReportChat Reports a chat to the Telegram moderators. A chat can be reported only from the chat action bar, or if chat.can_be_reported
+// ReportChat Reports a chat to the Telegram moderators. A chat can be reported only from the chat action bar, if chat.can_be_reported, or if messageProperties.can_report_chat
 func (c *Client) ReportChat(chatId int64, messageIds []int64, optionId []byte, text string) (ReportChatResult, error) {
 	req := &ReportChat{
 		ChatId:     chatId,
@@ -9714,6 +10151,55 @@ func (c *Client) SendTextMessageDraft(chatId int64, draftId int64, forumTopicId 
 	return err
 }
 
+// SendTonCenterApiRequest Sends a request to TON Center API and returns its response in JSON format
+func (c *Client) SendTonCenterApiRequest(endpoint string, typeField TonCenterApiRequestType) (*Text, error) {
+	req := &SendTonCenterApiRequest{
+		Endpoint: endpoint,
+		Type:     typeField,
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*Text), nil
+}
+
+// SendTonConnectSessionConnectResult Accepts or rejects a TON Connect session
+func (c *Client) SendTonConnectSessionConnectResult(body []byte, challengeAnswer []byte, sessionId int64, traceId string, opts *SendTonConnectSessionConnectResultOpts) error {
+	req := &SendTonConnectSessionConnectResult{
+		Body:            body,
+		ChallengeAnswer: challengeAnswer,
+		SessionId:       sessionId,
+		TraceId:         traceId,
+	}
+	if opts != nil {
+		req.IsError = opts.IsError
+	}
+	_, err := c.Send(req)
+	return err
+}
+
+// SendTonWalletTransfer Sends a cryptocurrency from the user's TON wallet; can be used only if getOption("can_use_ton_wallet")
+func (c *Client) SendTonWalletTransfer(address string, amount int64, comment string, gaslessTransferData []byte, regularTransferData []byte, sendingId int32, userId int64, opts *SendTonWalletTransferOpts) (*TonWalletTransferResult, error) {
+	req := &SendTonWalletTransfer{
+		Address:             address,
+		Amount:              amount,
+		Comment:             comment,
+		GaslessTransferData: gaslessTransferData,
+		RegularTransferData: regularTransferData,
+		SendingId:           sendingId,
+		UserId:              userId,
+	}
+	if opts != nil {
+		req.IsCommentEncrypted = opts.IsCommentEncrypted
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*TonWalletTransferResult), nil
+}
+
 // SendWebAppCustomRequest Sends a custom request from a Web App
 func (c *Client) SendWebAppCustomRequest(botUserId int64, method string, parameters string) (*CustomRequestResult, error) {
 	req := &SendWebAppCustomRequest{
@@ -10350,6 +10836,28 @@ func (c *Client) SetCommunityName(communityId int64, name string) error {
 	return err
 }
 
+// SetCommunityPermissions Changes permissions of regular members in the given community; requires can_ban_members administrator right in the community
+func (c *Client) SetCommunityPermissions(communityId int64, permissions *CommunityPermissions) error {
+	req := &SetCommunityPermissions{
+		CommunityId: communityId,
+		Permissions: permissions,
+	}
+	_, err := c.Send(req)
+	return err
+}
+
+// SetCommunityPhoto Changes the photo of a community; requires can_change_info administrator right in the community
+func (c *Client) SetCommunityPhoto(communityId int64, opts *SetCommunityPhotoOpts) error {
+	req := &SetCommunityPhoto{
+		CommunityId: communityId,
+	}
+	if opts != nil {
+		req.Photo = opts.Photo
+	}
+	_, err := c.Send(req)
+	return err
+}
+
 // SetCustomEmojiStickerSetThumbnail Sets a custom emoji sticker set thumbnail
 func (c *Client) SetCustomEmojiStickerSetThumbnail(customEmojiId int64, name string) error {
 	req := &SetCustomEmojiStickerSetThumbnail{
@@ -10721,7 +11229,7 @@ func (c *Client) SetMessageSenderBlockList(senderId MessageSender, opts *SetMess
 }
 
 // SetMessageSenderBotVerification Changes the verification status of a user or a chat by an owned bot
-func (c *Client) SetMessageSenderBotVerification(botUserId int64, customDescription string, verifiedId MessageSender) error {
+func (c *Client) SetMessageSenderBotVerification(botUserId int64, customDescription *FormattedText, verifiedId MessageSender) error {
 	req := &SetMessageSenderBotVerification{
 		BotUserId:         botUserId,
 		CustomDescription: customDescription,
@@ -11152,6 +11660,19 @@ func (c *Client) SetTdlibParameters(apiHash string, apiId int32, applicationVers
 	}
 	_, err := c.Send(req)
 	return err
+}
+
+// SetTonConnectSessionWalletClientId Sets wallet_client_id for a pending TON Connect session. Then, sendTonConnectSessionConnectResult must be used to accept or reject the session
+func (c *Client) SetTonConnectSessionWalletClientId(sessionId int64, walletClientId string) (*TonConnectChallenge, error) {
+	req := &SetTonConnectSessionWalletClientId{
+		SessionId:      sessionId,
+		WalletClientId: walletClientId,
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*TonConnectChallenge), nil
 }
 
 // SetUpgradedGiftColors Changes color scheme for the current user based on an owned or a hosted upgraded gift; for Telegram Premium users only

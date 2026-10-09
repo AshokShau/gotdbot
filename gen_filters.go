@@ -27,6 +27,10 @@ type UpdateActiveNotificationsFilter func(u *UpdateActiveNotifications) bool
 // The parameters for age verification of the current user's account have changed
 type UpdateAgeVerificationParametersFilter func(u *UpdateAgeVerificationParameters) bool
 
+// UpdateAllowedBotUsernamePremiumSuffixesFilter filters UpdateAllowedBotUsernamePremiumSuffixes updates.
+// Lists of suffixes allowed in secondary bot usernames, which can be added additionally to the main username if the bot's owner has a Telegram Premium subscription
+type UpdateAllowedBotUsernamePremiumSuffixesFilter func(u *UpdateAllowedBotUsernamePremiumSuffixes) bool
+
 // UpdateAnimatedEmojiMessageClickedFilter filters UpdateAnimatedEmojiMessageClicked updates.
 // Some animated emoji message was clicked and a big animated sticker must be played if the message is visible on the screen. chatActionWatchingAnimations with the text of the message needs to be sent if the sticker is played
 type UpdateAnimatedEmojiMessageClickedFilter func(u *UpdateAnimatedEmojiMessageClicked) bool
@@ -706,6 +710,22 @@ type UpdateTermsOfServiceFilter func(u *UpdateTermsOfService) bool
 // UpdateTextCompositionStylesFilter filters UpdateTextCompositionStyles updates.
 // The styles supported for text composition have changed
 type UpdateTextCompositionStylesFilter func(u *UpdateTextCompositionStyles) bool
+
+// UpdateTonWalletGaslessTransfersInfoFilter filters UpdateTonWalletGaslessTransfersInfo updates.
+// The information about gasless transfers has changed
+type UpdateTonWalletGaslessTransfersInfoFilter func(u *UpdateTonWalletGaslessTransfersInfo) bool
+
+// UpdateTonWalletStateFilter filters UpdateTonWalletState updates.
+// The state of the TON wallet of the current user has changed
+type UpdateTonWalletStateFilter func(u *UpdateTonWalletState) bool
+
+// UpdateTonWalletTonConnectSessionFilter filters UpdateTonWalletTonConnectSession updates.
+// A session of a TON Connect has changed
+type UpdateTonWalletTonConnectSessionFilter func(u *UpdateTonWalletTonConnectSession) bool
+
+// UpdateTonWalletTonConnectSessionDisconnectRequiredFilter filters UpdateTonWalletTonConnectSessionDisconnectRequired updates.
+// TON Connect sessions must be disconnected in a regular way
+type UpdateTonWalletTonConnectSessionDisconnectRequiredFilter func(u *UpdateTonWalletTonConnectSessionDisconnectRequired) bool
 
 // UpdateTopicMessageCountFilter filters UpdateTopicMessageCount updates.
 // Number of messages in a topic has changed; for Saved Messages and channel direct messages chat topics only

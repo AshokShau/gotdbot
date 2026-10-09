@@ -125,6 +125,30 @@ func (t AddBotMediaPreview) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "addBotMediaPreview", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
+// AddBotSecondaryUsername Adds a secondary username to a bot. Can be called only if userTypeBot.can_be_edited, the bot has no secondary username and the current user has Telegram Premium subscription.
+type AddBotSecondaryUsername struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// Identifier of the target bot
+	BotUserId int64 `json:"bot_user_id"`
+	// The new secondary username; must be non-empty. Use checkBotUsername to check username validness
+	Username string `json:"username"`
+}
+
+func (t *AddBotSecondaryUsername) setExtra(extra string) { t.Extra = extra }
+
+func (t AddBotSecondaryUsername) GetType() string {
+	return "addBotSecondaryUsername"
+}
+
+func (t AddBotSecondaryUsername) MarshalJSON() ([]byte, error) {
+	type Alias AddBotSecondaryUsername
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{TypeStr: "addBotSecondaryUsername", Extra: t.Extra, Alias: (*Alias)(&t)})
+}
+
 // AddChatFolderByInviteLink Adds a chat folder by an invite link
 type AddChatFolderByInviteLink struct {
 	Extra string `json:"@extra,omitempty"` // @extra field
@@ -1181,6 +1205,34 @@ func (t AnswerShippingQuery) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "answerShippingQuery", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
+// AnswerTonConnectRequest Sends an answer for a request received through TON Connect
+type AnswerTonConnectRequest struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// Body of the response
+	Body []byte `json:"body"`
+	// Identifier of the message with the request
+	MessageId int64 `json:"message_id"`
+	// Unique identifier of the TON Connect session
+	SessionId int64 `json:"session_id,string"`
+	// Identifier to trace the request
+	TraceId string `json:"trace_id"`
+}
+
+func (t *AnswerTonConnectRequest) setExtra(extra string) { t.Extra = extra }
+
+func (t AnswerTonConnectRequest) GetType() string {
+	return "answerTonConnectRequest"
+}
+
+func (t AnswerTonConnectRequest) MarshalJSON() ([]byte, error) {
+	type Alias AnswerTonConnectRequest
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{TypeStr: "answerTonConnectRequest", Extra: t.Extra, Alias: (*Alias)(&t)})
+}
+
 // AnswerWebAppQuery Sets the result of interaction with a Web App and sends corresponding message on behalf of the user to the chat from which the query originated; for bots only
 type AnswerWebAppQuery struct {
 	Extra string `json:"@extra,omitempty"` // @extra field
@@ -1887,9 +1939,11 @@ func (t CheckAuthenticationWebToken) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "checkAuthenticationWebToken", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
-// CheckBotUsername Checks whether a username can be set for a new bot. Use checkChatUsername to check username for other chat types
+// CheckBotUsername Checks whether a username can be set for a new bot or assigned as a secondary username to an existing bot. Use checkChatUsername to check username for other chat types
 type CheckBotUsername struct {
 	Extra string `json:"@extra,omitempty"` // @extra field
+	// Pass true to check whether the username is suitable as a secondary username for an existing bot; pass false to check whether the username is suitable for createBot
+	IsSecondary bool `json:"is_secondary"`
 	// Username to be checked
 	Username string `json:"username"`
 }
@@ -2199,6 +2253,26 @@ func (t CheckStickerSetName) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "checkStickerSetName", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
+// CheckWalletBotBalance Returns information about balance of the current user in the bot https://t.me/walt; can be used only if getOption("can_use_ton_wallet")
+type CheckWalletBotBalance struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+}
+
+func (t *CheckWalletBotBalance) setExtra(extra string) { t.Extra = extra }
+
+func (t CheckWalletBotBalance) GetType() string {
+	return "checkWalletBotBalance"
+}
+
+func (t CheckWalletBotBalance) MarshalJSON() ([]byte, error) {
+	type Alias CheckWalletBotBalance
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{TypeStr: "checkWalletBotBalance", Extra: t.Extra, Alias: (*Alias)(&t)})
+}
+
 // CheckWebAppFileDownload Checks whether a file can be downloaded and saved locally by Web App request
 type CheckWebAppFileDownload struct {
 	Extra string `json:"@extra,omitempty"` // @extra field
@@ -2223,6 +2297,34 @@ func (t CheckWebAppFileDownload) MarshalJSON() ([]byte, error) {
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
 	}{TypeStr: "checkWebAppFileDownload", Extra: t.Extra, Alias: (*Alias)(&t)})
+}
+
+// ClaimTonConnectRequest Claims a request received through TON Connect for processing on this device
+type ClaimTonConnectRequest struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// Identifier of the request assigned by the dApp
+	DappRequestId string `json:"dapp_request_id"`
+	// Pass true to reject the request
+	IsRejected bool `json:"is_rejected"`
+	// Identifier of the message with the request
+	MessageId int64 `json:"message_id"`
+	// Unique identifier of the TON Connect session
+	SessionId int64 `json:"session_id,string"`
+}
+
+func (t *ClaimTonConnectRequest) setExtra(extra string) { t.Extra = extra }
+
+func (t ClaimTonConnectRequest) GetType() string {
+	return "claimTonConnectRequest"
+}
+
+func (t ClaimTonConnectRequest) MarshalJSON() ([]byte, error) {
+	type Alias ClaimTonConnectRequest
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{TypeStr: "claimTonConnectRequest", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CleanFileName Removes potentially dangerous characters from the name of a file. Returns an empty string on failure. Can be called synchronously
@@ -2886,7 +2988,7 @@ type CreateBot struct {
 	ManagerBotUserId int64 `json:"manager_bot_user_id"`
 	// Name of the bot; 1-64 characters
 	Name string `json:"name"`
-	// Username of the bot. The username must end with "bot". Use checkBotUsername to find whether the name is suitable
+	// Username of the bot. The username must end with "bot" or a string from updateAllowedBotUsernamePremiumSuffixes case-insensitive.
 	Username string `json:"username"`
 	// Pass true if the bot is created from an internalLinkTypeRequestManagedBot link
 	ViaLink bool `json:"via_link"`
@@ -3301,6 +3403,48 @@ func (t CreateNewSupergroupChat) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "createNewSupergroupChat", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
+// CreateOnRampPaymentSession Creates a session for an on-ramp payment
+type CreateOnRampPaymentSession struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// Address to which the cryptocurrency will be sent
+	Address string `json:"address"`
+	// ISO 4217 currency code of the currency that will be used for the purchase; pass an empty string if unknown
+	BaseCurrency string `json:"base_currency"`
+	// The amount of the base currency to spend; pass an empty string if the user selected cryptocurrency_amount
+	BaseCurrencyAmount string `json:"base_currency_amount"`
+	// The cryptocurrency that will be bought
+	Cryptocurrency string `json:"cryptocurrency"`
+	// The amount of the cryptocurrency to buy; pass an empty string if the user selected base_currency_amount
+	CryptocurrencyAmount string `json:"cryptocurrency_amount"`
+	// The URL opened on failed payment; pass an empty string if none
+	FailReturnUrl string `json:"fail_return_url"`
+	// Memo for the query; pass an empty string if none
+	Memo string `json:"memo"`
+	// Name of the chosen payment method; pass an empty string if none
+	PaymentMethodName string `json:"payment_method_name"`
+	// Unique identifier of the on-ramp provider
+	ProviderId string `json:"provider_id"`
+	// The URL opened on successful payment; pass an empty string if none
+	SuccessReturnUrl string `json:"success_return_url"`
+	// Preferred theme for the WebView; pass "light" for a light theme, "dark" for a dark theme, or leave empty for a default theme
+	Theme string `json:"theme"`
+}
+
+func (t *CreateOnRampPaymentSession) setExtra(extra string) { t.Extra = extra }
+
+func (t CreateOnRampPaymentSession) GetType() string {
+	return "createOnRampPaymentSession"
+}
+
+func (t CreateOnRampPaymentSession) MarshalJSON() ([]byte, error) {
+	type Alias CreateOnRampPaymentSession
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{TypeStr: "createOnRampPaymentSession", Extra: t.Extra, Alias: (*Alias)(&t)})
+}
+
 // CreatePrivateChat Returns an existing chat corresponding to a given user
 type CreatePrivateChat struct {
 	Extra string `json:"@extra,omitempty"` // @extra field
@@ -3473,6 +3617,52 @@ func (t CreateTextCompositionStyle) MarshalJSON() ([]byte, error) {
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
 	}{TypeStr: "createTextCompositionStyle", Extra: t.Extra, Alias: (*Alias)(&t)})
+}
+
+// CreateTonConnectSession Creates a TON Connect session; can be used only if getOption("can_use_ton_wallet")
+type CreateTonConnectSession struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// Hex-encoded public X25519 key of the dApp
+	DappClientId string `json:"dapp_client_id"`
+	// URL of the manifest of the dApp
+	ManifestUrl string `json:"manifest_url"`
+}
+
+func (t *CreateTonConnectSession) setExtra(extra string) { t.Extra = extra }
+
+func (t CreateTonConnectSession) GetType() string {
+	return "createTonConnectSession"
+}
+
+func (t CreateTonConnectSession) MarshalJSON() ([]byte, error) {
+	type Alias CreateTonConnectSession
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{TypeStr: "createTonConnectSession", Extra: t.Extra, Alias: (*Alias)(&t)})
+}
+
+// CreateUserTonWallet Creates a TON wallet for the specified regular user; can be used only if getOption("can_use_ton_wallet"). The current user must have positive TON wallet balance
+type CreateUserTonWallet struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// Identifier of the user
+	UserId int64 `json:"user_id"`
+}
+
+func (t *CreateUserTonWallet) setExtra(extra string) { t.Extra = extra }
+
+func (t CreateUserTonWallet) GetType() string {
+	return "createUserTonWallet"
+}
+
+func (t CreateUserTonWallet) MarshalJSON() ([]byte, error) {
+	type Alias CreateUserTonWallet
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{TypeStr: "createUserTonWallet", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // CreateVideoChat Creates a video chat (a group call bound to a chat); for basic groups, supergroups and channels only; requires can_manage_video_chats administrator right
@@ -3743,6 +3933,28 @@ func (t DeleteBotMediaPreviews) MarshalJSON() ([]byte, error) {
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
 	}{TypeStr: "deleteBotMediaPreviews", Extra: t.Extra, Alias: (*Alias)(&t)})
+}
+
+// DeleteBotSecondaryUsername Removes a secondary username from a bot. Can be called only if userTypeBot.can_be_edited == true and the bot has a secondary username
+type DeleteBotSecondaryUsername struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// Identifier of the target bot
+	BotUserId int64 `json:"bot_user_id"`
+}
+
+func (t *DeleteBotSecondaryUsername) setExtra(extra string) { t.Extra = extra }
+
+func (t DeleteBotSecondaryUsername) GetType() string {
+	return "deleteBotSecondaryUsername"
+}
+
+func (t DeleteBotSecondaryUsername) MarshalJSON() ([]byte, error) {
+	type Alias DeleteBotSecondaryUsername
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{TypeStr: "deleteBotSecondaryUsername", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DeleteBusinessChatLink Deletes a business chat link of the current account
@@ -4079,6 +4291,28 @@ func (t DeleteCommands) MarshalJSON() ([]byte, error) {
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
 	}{TypeStr: "deleteCommands", Extra: t.Extra, Alias: (*Alias)(&t)})
+}
+
+// DeleteCommunity Deletes a community; requires owner privileges
+type DeleteCommunity struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// Identifier of the community
+	CommunityId int64 `json:"community_id"`
+}
+
+func (t *DeleteCommunity) setExtra(extra string) { t.Extra = extra }
+
+func (t DeleteCommunity) GetType() string {
+	return "deleteCommunity"
+}
+
+func (t DeleteCommunity) MarshalJSON() ([]byte, error) {
+	type Alias DeleteCommunity
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{TypeStr: "deleteCommunity", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DeleteDefaultBackground Deletes default background for chats
@@ -4721,6 +4955,28 @@ func (t DeleteTextCompositionStyle) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "deleteTextCompositionStyle", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
+// DeleteTonWallet Deletes the current TON wallet of the user and creates a new one; can be used only if getOption("can_use_ton_wallet")
+type DeleteTonWallet struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// Password of the current user; pass an empty string unless receive an error with a message "PASSWORD_MISSING" for a passwordless request
+	Password string `json:"password"`
+}
+
+func (t *DeleteTonWallet) setExtra(extra string) { t.Extra = extra }
+
+func (t DeleteTonWallet) GetType() string {
+	return "deleteTonWallet"
+}
+
+func (t DeleteTonWallet) MarshalJSON() ([]byte, error) {
+	type Alias DeleteTonWallet
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{TypeStr: "deleteTonWallet", Extra: t.Extra, Alias: (*Alias)(&t)})
+}
+
 // Destroy Closes the TDLib instance, destroying all local data without a proper logout. The current user session will remain in the list of all active sessions. All local data will be destroyed.
 type Destroy struct {
 	Extra string `json:"@extra,omitempty"` // @extra field
@@ -4781,6 +5037,50 @@ func (t DisableProxy) MarshalJSON() ([]byte, error) {
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
 	}{TypeStr: "disableProxy", Extra: t.Extra, Alias: (*Alias)(&t)})
+}
+
+// DisableTonWalletBackup Disables backup of the TON wallet of the user. Works only if tonWalletState.is_backup_enabled is true
+type DisableTonWalletBackup struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// Password of the current user; pass an empty string unless receive an error with a message "PASSWORD_MISSING" for a passwordless request
+	Password string `json:"password"`
+}
+
+func (t *DisableTonWalletBackup) setExtra(extra string) { t.Extra = extra }
+
+func (t DisableTonWalletBackup) GetType() string {
+	return "disableTonWalletBackup"
+}
+
+func (t DisableTonWalletBackup) MarshalJSON() ([]byte, error) {
+	type Alias DisableTonWalletBackup
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{TypeStr: "disableTonWalletBackup", Extra: t.Extra, Alias: (*Alias)(&t)})
+}
+
+// DisableTonWalletBackupWithProof Disables backup of the TON wallet of the user using proof of wallet ownership instead of the password. Works only if tonWalletState.is_backup_enabled is true
+type DisableTonWalletBackupWithProof struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// Proof of the TON wallet ownership; use getTonWalletOwnershipProofChallenge to get a challenge for the proof
+	Proof *TonWalletOwnershipProof `json:"proof"`
+}
+
+func (t *DisableTonWalletBackupWithProof) setExtra(extra string) { t.Extra = extra }
+
+func (t DisableTonWalletBackupWithProof) GetType() string {
+	return "disableTonWalletBackupWithProof"
+}
+
+func (t DisableTonWalletBackupWithProof) MarshalJSON() ([]byte, error) {
+	type Alias DisableTonWalletBackupWithProof
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{TypeStr: "disableTonWalletBackupWithProof", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DiscardCall Discards a call
@@ -4859,6 +5159,30 @@ func (t DisconnectAllWebsites) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "disconnectAllWebsites", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
+// DisconnectTonConnectSession Closes a TON Connect session
+type DisconnectTonConnectSession struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// Encrypted body of the disconnect event; may be empty if the session has already been closed. Use getTonConnectSessionNextEventId to get event identifier for the event
+	Body []byte `json:"body,omitempty"`
+	// Unique identifier of the TON Connect session to close
+	SessionId int64 `json:"session_id,string"`
+}
+
+func (t *DisconnectTonConnectSession) setExtra(extra string) { t.Extra = extra }
+
+func (t DisconnectTonConnectSession) GetType() string {
+	return "disconnectTonConnectSession"
+}
+
+func (t DisconnectTonConnectSession) MarshalJSON() ([]byte, error) {
+	type Alias DisconnectTonConnectSession
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{TypeStr: "disconnectTonConnectSession", Extra: t.Extra, Alias: (*Alias)(&t)})
+}
+
 // DisconnectWebsite Disconnects website from the current user's Telegram account
 type DisconnectWebsite struct {
 	Extra string `json:"@extra,omitempty"` // @extra field
@@ -4879,6 +5203,28 @@ func (t DisconnectWebsite) MarshalJSON() ([]byte, error) {
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
 	}{TypeStr: "disconnectWebsite", Extra: t.Extra, Alias: (*Alias)(&t)})
+}
+
+// DismissWebToken Dismissess a received web token without consumption; for official Telegram apps only
+type DismissWebToken struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// The token to dismiss
+	Token string `json:"token"`
+}
+
+func (t *DismissWebToken) setExtra(extra string) { t.Extra = extra }
+
+func (t DismissWebToken) GetType() string {
+	return "dismissWebToken"
+}
+
+func (t DismissWebToken) MarshalJSON() ([]byte, error) {
+	type Alias DismissWebToken
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{TypeStr: "dismissWebToken", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // DownloadFile Downloads a file from the cloud. Download progress and completion of the download will be notified through updateFile updates
@@ -5197,34 +5543,6 @@ func (t EditBusinessStory) MarshalJSON() ([]byte, error) {
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
 	}{TypeStr: "editBusinessStory", Extra: t.Extra, Alias: (*Alias)(&t)})
-}
-
-// EditCallbackQueryMessage Edits the message from which a callback query has originated with an ephemeral message; for bots only
-type EditCallbackQueryMessage struct {
-	Extra string `json:"@extra,omitempty"` // @extra field
-	// Identifier of the callback query
-	CallbackQueryId int64 `json:"callback_query_id,string"`
-	// New content of the message. Must be one of the following types: inputMessageText, inputMessageAnimation,
-	InputMessageContent InputMessageContent `json:"input_message_content"`
-	// Pass true if the content of the message must be protected from forwarding and saving
-	ProtectContent bool `json:"protect_content"`
-	// The new message reply markup; pass null if none
-	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
-}
-
-func (t *EditCallbackQueryMessage) setExtra(extra string) { t.Extra = extra }
-
-func (t EditCallbackQueryMessage) GetType() string {
-	return "editCallbackQueryMessage"
-}
-
-func (t EditCallbackQueryMessage) MarshalJSON() ([]byte, error) {
-	type Alias EditCallbackQueryMessage
-	return json.Marshal(&struct {
-		TypeStr string `json:"@type"`
-		Extra   string `json:"@extra,omitempty"`
-		*Alias
-	}{TypeStr: "editCallbackQueryMessage", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // EditChatFolder Edits existing chat folder. Returns information about the edited chat folder
@@ -6013,6 +6331,30 @@ func (t EnableProxy) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "enableProxy", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
+// EnableTonWalletBackup Enables backup of the TON wallet of the user. Works only if tonWalletState.can_enable_backup is true
+type EnableTonWalletBackup struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// Proof of the TON wallet ownership; use getTonWalletOwnershipProofChallenge to get a challenge for the proof
+	Proof *TonWalletOwnershipProof `json:"proof"`
+	// The secret phrase of the user's TON wallet as a space separated list of words
+	SecretPhrase string `json:"secret_phrase"`
+}
+
+func (t *EnableTonWalletBackup) setExtra(extra string) { t.Extra = extra }
+
+func (t EnableTonWalletBackup) GetType() string {
+	return "enableTonWalletBackup"
+}
+
+func (t EnableTonWalletBackup) MarshalJSON() ([]byte, error) {
+	type Alias EnableTonWalletBackup
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{TypeStr: "enableTonWalletBackup", Extra: t.Extra, Alias: (*Alias)(&t)})
+}
+
 // EncryptGroupCallData Encrypts group call data before sending them over network using tgcalls
 type EncryptGroupCallData struct {
 	Extra string `json:"@extra,omitempty"` // @extra field
@@ -6247,6 +6589,28 @@ func (t GetActiveSessions) MarshalJSON() ([]byte, error) {
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
 	}{TypeStr: "getActiveSessions", Extra: t.Extra, Alias: (*Alias)(&t)})
+}
+
+// GetAddressTonWallet Returns information about a TON wallet with the given address; can be used only if getOption("can_use_ton_wallet")
+type GetAddressTonWallet struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// Address in the TON blockchain
+	Address string `json:"address"`
+}
+
+func (t *GetAddressTonWallet) setExtra(extra string) { t.Extra = extra }
+
+func (t GetAddressTonWallet) GetType() string {
+	return "getAddressTonWallet"
+}
+
+func (t GetAddressTonWallet) MarshalJSON() ([]byte, error) {
+	type Alias GetAddressTonWallet
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{TypeStr: "getAddressTonWallet", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetAllPassportElements Returns all available Telegram Passport elements
@@ -8291,6 +8655,28 @@ func (t GetCommands) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "getCommands", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
+// GetCommunityFullInfo Returns full information about a community
+type GetCommunityFullInfo struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// Community identifier
+	CommunityId int64 `json:"community_id"`
+}
+
+func (t *GetCommunityFullInfo) setExtra(extra string) { t.Extra = extra }
+
+func (t GetCommunityFullInfo) GetType() string {
+	return "getCommunityFullInfo"
+}
+
+func (t GetCommunityFullInfo) MarshalJSON() ([]byte, error) {
+	type Alias GetCommunityFullInfo
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{TypeStr: "getCommunityFullInfo", Extra: t.Extra, Alias: (*Alias)(&t)})
+}
+
 // GetConnectedAffiliateProgram Returns an affiliate program that was connected to the given affiliate by identifier of the bot that created the program
 type GetConnectedAffiliateProgram struct {
 	Extra string `json:"@extra,omitempty"` // @extra field
@@ -8485,6 +8871,26 @@ func (t GetCreatedPublicChats) MarshalJSON() ([]byte, error) {
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
 	}{TypeStr: "getCreatedPublicChats", Extra: t.Extra, Alias: (*Alias)(&t)})
+}
+
+// GetCurrencyExchangeRates Returns exchange rates of currencies to USD
+type GetCurrencyExchangeRates struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+}
+
+func (t *GetCurrencyExchangeRates) setExtra(extra string) { t.Extra = extra }
+
+func (t GetCurrencyExchangeRates) GetType() string {
+	return "getCurrencyExchangeRates"
+}
+
+func (t GetCurrencyExchangeRates) MarshalJSON() ([]byte, error) {
+	type Alias GetCurrencyExchangeRates
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{TypeStr: "getCurrencyExchangeRates", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetCurrentState Returns all updates needed to restore current TDLib state, i.e. all actual updateAuthorizationState/updateUser/updateNewChat and others. This is especially useful if TDLib is run in a separate process. Can be called before initialization
@@ -11011,6 +11417,138 @@ func (t GetOauthLinkInfo) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "getOauthLinkInfo", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
+// GetOnRampPaymentAvailability Returns the available on-ramp payment methods based on the current user location
+type GetOnRampPaymentAvailability struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// ISO 4217 currency code of the currency that will be used for the purchase; pass an empty string if unknown
+	BaseCurrency string `json:"base_currency"`
+	// The cryptocurrency that will be bought
+	Cryptocurrency string `json:"cryptocurrency"`
+	// Unique identifier of the on-ramp provider
+	ProviderId string `json:"provider_id"`
+}
+
+func (t *GetOnRampPaymentAvailability) setExtra(extra string) { t.Extra = extra }
+
+func (t GetOnRampPaymentAvailability) GetType() string {
+	return "getOnRampPaymentAvailability"
+}
+
+func (t GetOnRampPaymentAvailability) MarshalJSON() ([]byte, error) {
+	type Alias GetOnRampPaymentAvailability
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{TypeStr: "getOnRampPaymentAvailability", Extra: t.Extra, Alias: (*Alias)(&t)})
+}
+
+// GetOnRampPaymentLimits Returns the limits for an on-ramp payment; only for providers that supports limits retrieval
+type GetOnRampPaymentLimits struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// ISO 4217 currency code of the currency that will be used for the purchase
+	BaseCurrency string `json:"base_currency"`
+	// The cryptocurrency that will be bought
+	Cryptocurrency string `json:"cryptocurrency"`
+	// Name of the chosen payment method; pass an empty string if none
+	PaymentMethodName string `json:"payment_method_name"`
+	// Unique identifier of the on-ramp provider
+	ProviderId string `json:"provider_id"`
+}
+
+func (t *GetOnRampPaymentLimits) setExtra(extra string) { t.Extra = extra }
+
+func (t GetOnRampPaymentLimits) GetType() string {
+	return "getOnRampPaymentLimits"
+}
+
+func (t GetOnRampPaymentLimits) MarshalJSON() ([]byte, error) {
+	type Alias GetOnRampPaymentLimits
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{TypeStr: "getOnRampPaymentLimits", Extra: t.Extra, Alias: (*Alias)(&t)})
+}
+
+// GetOnRampPaymentQuote Returns a quote for an on-ramp payment; only for providers that supports quote retrieval
+type GetOnRampPaymentQuote struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// ISO 4217 currency code of the currency that will be used for the purchase
+	BaseCurrency string `json:"base_currency"`
+	// The amount of the base currency to spend; pass an empty string if the user selected cryptocurrency_amount
+	BaseCurrencyAmount string `json:"base_currency_amount"`
+	// The cryptocurrency that will be bought
+	Cryptocurrency string `json:"cryptocurrency"`
+	// The amount of the cryptocurrency to buy; pass an empty string if the user selected base_currency_amount
+	CryptocurrencyAmount string `json:"cryptocurrency_amount"`
+	// Name of the chosen payment method; pass an empty string if none
+	PaymentMethodName string `json:"payment_method_name"`
+	// Unique identifier of the on-ramp provider
+	ProviderId string `json:"provider_id"`
+}
+
+func (t *GetOnRampPaymentQuote) setExtra(extra string) { t.Extra = extra }
+
+func (t GetOnRampPaymentQuote) GetType() string {
+	return "getOnRampPaymentQuote"
+}
+
+func (t GetOnRampPaymentQuote) MarshalJSON() ([]byte, error) {
+	type Alias GetOnRampPaymentQuote
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{TypeStr: "getOnRampPaymentQuote", Extra: t.Extra, Alias: (*Alias)(&t)})
+}
+
+// GetOnRampProviderBaseCurrencies Returns the list of fiat currencies supported by an on-ramp provider for the given cryptocurrency
+type GetOnRampProviderBaseCurrencies struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// The cryptocurrency that will be bought
+	Cryptocurrency string `json:"cryptocurrency"`
+	// Unique identifier of the on-ramp provider; only for providers that supports base currencies
+	ProviderId string `json:"provider_id"`
+}
+
+func (t *GetOnRampProviderBaseCurrencies) setExtra(extra string) { t.Extra = extra }
+
+func (t GetOnRampProviderBaseCurrencies) GetType() string {
+	return "getOnRampProviderBaseCurrencies"
+}
+
+func (t GetOnRampProviderBaseCurrencies) MarshalJSON() ([]byte, error) {
+	type Alias GetOnRampProviderBaseCurrencies
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{TypeStr: "getOnRampProviderBaseCurrencies", Extra: t.Extra, Alias: (*Alias)(&t)})
+}
+
+// GetOnRampProviders Returns available on-ramp providers
+type GetOnRampProviders struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// Pass a cryptocurrency to receive only providers that support it; pass an empty string to receive all providers
+	Cryptocurrency string `json:"cryptocurrency"`
+}
+
+func (t *GetOnRampProviders) setExtra(extra string) { t.Extra = extra }
+
+func (t GetOnRampProviders) GetType() string {
+	return "getOnRampProviders"
+}
+
+func (t GetOnRampProviders) MarshalJSON() ([]byte, error) {
+	type Alias GetOnRampProviders
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{TypeStr: "getOnRampProviders", Extra: t.Extra, Alias: (*Alias)(&t)})
+}
+
 // GetOption Returns the value of an option by its name. (Check the list of available options on https://core.telegram.org/tdlib/options.) Can be called before authorization. Can be called synchronously for options "version" and "commit_hash"
 type GetOption struct {
 	Extra string `json:"@extra,omitempty"` // @extra field
@@ -13119,7 +13657,7 @@ func (t GetTextCompositionStyleExample) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "getTextCompositionStyleExample", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
-// GetTextEntities Returns all entities (mentions, hashtags, cashtags, bot commands, bank card numbers, URLs, and email addresses) found in the text. Can be called synchronously
+// GetTextEntities Returns all entities (mentions, hashtags, cashtags, bot commands, bank card numbers, TON blockchain addresses, URLs, and email addresses) found in the text. Can be called synchronously
 type GetTextEntities struct {
 	Extra string `json:"@extra,omitempty"` // @extra field
 	// The text in which to look for entities
@@ -13223,7 +13761,113 @@ func (t GetTimeZones) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "getTimeZones", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
-// GetTonTransactions Returns the list of TON blockchain transactions of the current user
+// GetTonCenterStreamingApiUrl Returns a URL for TON Center Streaming API
+type GetTonCenterStreamingApiUrl struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+}
+
+func (t *GetTonCenterStreamingApiUrl) setExtra(extra string) { t.Extra = extra }
+
+func (t GetTonCenterStreamingApiUrl) GetType() string {
+	return "getTonCenterStreamingApiUrl"
+}
+
+func (t GetTonCenterStreamingApiUrl) MarshalJSON() ([]byte, error) {
+	type Alias GetTonCenterStreamingApiUrl
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{TypeStr: "getTonCenterStreamingApiUrl", Extra: t.Extra, Alias: (*Alias)(&t)})
+}
+
+// GetTonConnectDAppPendingRequests Returns pending requests with a dApp through TON Connect
+type GetTonConnectDAppPendingRequests struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// Hex-encoded public X25519 key of the dApp
+	DappClientId string `json:"dapp_client_id"`
+}
+
+func (t *GetTonConnectDAppPendingRequests) setExtra(extra string) { t.Extra = extra }
+
+func (t GetTonConnectDAppPendingRequests) GetType() string {
+	return "getTonConnectDAppPendingRequests"
+}
+
+func (t GetTonConnectDAppPendingRequests) MarshalJSON() ([]byte, error) {
+	type Alias GetTonConnectDAppPendingRequests
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{TypeStr: "getTonConnectDAppPendingRequests", Extra: t.Extra, Alias: (*Alias)(&t)})
+}
+
+// GetTonConnectSessionNextEventId Returns the next event identifier for the given TON Connect session
+type GetTonConnectSessionNextEventId struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// Unique identifier of the TON Connect session
+	SessionId int64 `json:"session_id,string"`
+}
+
+func (t *GetTonConnectSessionNextEventId) setExtra(extra string) { t.Extra = extra }
+
+func (t GetTonConnectSessionNextEventId) GetType() string {
+	return "getTonConnectSessionNextEventId"
+}
+
+func (t GetTonConnectSessionNextEventId) MarshalJSON() ([]byte, error) {
+	type Alias GetTonConnectSessionNextEventId
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{TypeStr: "getTonConnectSessionNextEventId", Extra: t.Extra, Alias: (*Alias)(&t)})
+}
+
+// GetTonConnectSessionPendingRequests Returns pending requests in a TON Connect session
+type GetTonConnectSessionPendingRequests struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// Unique identifier of the session
+	SessionId int64 `json:"session_id,string"`
+}
+
+func (t *GetTonConnectSessionPendingRequests) setExtra(extra string) { t.Extra = extra }
+
+func (t GetTonConnectSessionPendingRequests) GetType() string {
+	return "getTonConnectSessionPendingRequests"
+}
+
+func (t GetTonConnectSessionPendingRequests) MarshalJSON() ([]byte, error) {
+	type Alias GetTonConnectSessionPendingRequests
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{TypeStr: "getTonConnectSessionPendingRequests", Extra: t.Extra, Alias: (*Alias)(&t)})
+}
+
+// GetTonConnectSessions Returns active TON Connect sessions; can be used only if getOption("can_use_ton_wallet")
+type GetTonConnectSessions struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+}
+
+func (t *GetTonConnectSessions) setExtra(extra string) { t.Extra = extra }
+
+func (t GetTonConnectSessions) GetType() string {
+	return "getTonConnectSessions"
+}
+
+func (t GetTonConnectSessions) MarshalJSON() ([]byte, error) {
+	type Alias GetTonConnectSessions
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{TypeStr: "getTonConnectSessions", Extra: t.Extra, Alias: (*Alias)(&t)})
+}
+
+// GetTonTransactions Returns the list of TON Gram transactions of the current user
 type GetTonTransactions struct {
 	Extra string `json:"@extra,omitempty"` // @extra field
 	// Direction of the transactions to receive; pass null to get all transactions
@@ -13247,6 +13891,142 @@ func (t GetTonTransactions) MarshalJSON() ([]byte, error) {
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
 	}{TypeStr: "getTonTransactions", Extra: t.Extra, Alias: (*Alias)(&t)})
+}
+
+// GetTonWalletNfts Returns NFTs stored on the TON wallet of the user; can be used only if getOption("can_use_ton_wallet")
+type GetTonWalletNfts struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// The maximum number of NFTs to be returned; must be positive and can't be greater than 20
+	Limit int32 `json:"limit"`
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
+}
+
+func (t *GetTonWalletNfts) setExtra(extra string) { t.Extra = extra }
+
+func (t GetTonWalletNfts) GetType() string {
+	return "getTonWalletNfts"
+}
+
+func (t GetTonWalletNfts) MarshalJSON() ([]byte, error) {
+	type Alias GetTonWalletNfts
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{TypeStr: "getTonWalletNfts", Extra: t.Extra, Alias: (*Alias)(&t)})
+}
+
+// GetTonWalletOwnershipProofChallenge Returns a challenge which may be used to proof ownership of a TON wallet; can be used only if getOption("can_use_ton_wallet")
+type GetTonWalletOwnershipProofChallenge struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+}
+
+func (t *GetTonWalletOwnershipProofChallenge) setExtra(extra string) { t.Extra = extra }
+
+func (t GetTonWalletOwnershipProofChallenge) GetType() string {
+	return "getTonWalletOwnershipProofChallenge"
+}
+
+func (t GetTonWalletOwnershipProofChallenge) MarshalJSON() ([]byte, error) {
+	type Alias GetTonWalletOwnershipProofChallenge
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{TypeStr: "getTonWalletOwnershipProofChallenge", Extra: t.Extra, Alias: (*Alias)(&t)})
+}
+
+// GetTonWalletSecretPhrase Returns the secret phrase of the user's TON wallet as a space separated list of words. Works only if tonWalletState.can_export_phrase is true
+type GetTonWalletSecretPhrase struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// Password of the current user; pass an empty string unless receive an error with a message "PASSWORD_MISSING" for a passwordless request
+	Password string `json:"password"`
+}
+
+func (t *GetTonWalletSecretPhrase) setExtra(extra string) { t.Extra = extra }
+
+func (t GetTonWalletSecretPhrase) GetType() string {
+	return "getTonWalletSecretPhrase"
+}
+
+func (t GetTonWalletSecretPhrase) MarshalJSON() ([]byte, error) {
+	type Alias GetTonWalletSecretPhrase
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{TypeStr: "getTonWalletSecretPhrase", Extra: t.Extra, Alias: (*Alias)(&t)})
+}
+
+// GetTonWalletTransaction Returns a TON wallet transaction by their identifier
+type GetTonWalletTransaction struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// Identifier of the transaction
+	TransactionId string `json:"transaction_id"`
+}
+
+func (t *GetTonWalletTransaction) setExtra(extra string) { t.Extra = extra }
+
+func (t GetTonWalletTransaction) GetType() string {
+	return "getTonWalletTransaction"
+}
+
+func (t GetTonWalletTransaction) MarshalJSON() ([]byte, error) {
+	type Alias GetTonWalletTransaction
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{TypeStr: "getTonWalletTransaction", Extra: t.Extra, Alias: (*Alias)(&t)})
+}
+
+// GetTonWalletTransactionByMsgHash Returns a TON wallet transaction by their msg_hash; return an error if the transaction isn't finalized yet
+type GetTonWalletTransactionByMsgHash struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// Value of msg_hash of the transaction
+	MsgHash string `json:"msg_hash"`
+}
+
+func (t *GetTonWalletTransactionByMsgHash) setExtra(extra string) { t.Extra = extra }
+
+func (t GetTonWalletTransactionByMsgHash) GetType() string {
+	return "getTonWalletTransactionByMsgHash"
+}
+
+func (t GetTonWalletTransactionByMsgHash) MarshalJSON() ([]byte, error) {
+	type Alias GetTonWalletTransactionByMsgHash
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{TypeStr: "getTonWalletTransactionByMsgHash", Extra: t.Extra, Alias: (*Alias)(&t)})
+}
+
+// GetTonWalletTransactions Returns the list of TON wallet transactions of the current user; can be used only if getOption("can_use_ton_wallet")
+type GetTonWalletTransactions struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// Direction of the transactions to receive; pass null to get all transactions
+	Direction TransactionDirection `json:"direction,omitempty"`
+	// The maximum number of transactions to return
+	Limit int32 `json:"limit"`
+	// Offset of the first transaction to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
+}
+
+func (t *GetTonWalletTransactions) setExtra(extra string) { t.Extra = extra }
+
+func (t GetTonWalletTransactions) GetType() string {
+	return "getTonWalletTransactions"
+}
+
+func (t GetTonWalletTransactions) MarshalJSON() ([]byte, error) {
+	type Alias GetTonWalletTransactions
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{TypeStr: "getTonWalletTransactions", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetTopChats Returns a list of frequently used chats
@@ -13615,6 +14395,28 @@ func (t GetUserSupportInfo) MarshalJSON() ([]byte, error) {
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
 	}{TypeStr: "getUserSupportInfo", Extra: t.Extra, Alias: (*Alias)(&t)})
+}
+
+// GetUserTonWalletAddresses Returns TON wallet addresses of the specified users; can be used only if getOption("can_use_ton_wallet")
+type GetUserTonWalletAddresses struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// Identifiers of the users whose wallet addresses have to be returned. If a user has no TON wallet, it will be skipped in the result
+	UserIds []int64 `json:"user_ids"`
+}
+
+func (t *GetUserTonWalletAddresses) setExtra(extra string) { t.Extra = extra }
+
+func (t GetUserTonWalletAddresses) GetType() string {
+	return "getUserTonWalletAddresses"
+}
+
+func (t GetUserTonWalletAddresses) MarshalJSON() ([]byte, error) {
+	type Alias GetUserTonWalletAddresses
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{TypeStr: "getUserTonWalletAddresses", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // GetVideoChatAvailableParticipants Returns the list of participant identifiers, on whose behalf a video chat in the chat can be joined
@@ -14331,28 +15133,6 @@ func (t LoadChatWelcomeMessages) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "loadChatWelcomeMessages", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
-// LoadCommunityFullInfo Returns full information about a community. The data will be sent through update.
-type LoadCommunityFullInfo struct {
-	Extra string `json:"@extra,omitempty"` // @extra field
-	// Community identifier
-	CommunityId int64 `json:"community_id"`
-}
-
-func (t *LoadCommunityFullInfo) setExtra(extra string) { t.Extra = extra }
-
-func (t LoadCommunityFullInfo) GetType() string {
-	return "loadCommunityFullInfo"
-}
-
-func (t LoadCommunityFullInfo) MarshalJSON() ([]byte, error) {
-	type Alias LoadCommunityFullInfo
-	return json.Marshal(&struct {
-		TypeStr string `json:"@type"`
-		Extra   string `json:"@extra,omitempty"`
-		*Alias
-	}{TypeStr: "loadCommunityFullInfo", Extra: t.Extra, Alias: (*Alias)(&t)})
-}
-
 // LoadDirectMessagesChatTopics Loads more topics in a channel direct messages chat administered by the current user. The loaded topics will be sent through updateDirectMessagesChatTopic.
 type LoadDirectMessagesChatTopics struct {
 	Extra string `json:"@extra,omitempty"` // @extra field
@@ -14463,6 +15243,46 @@ func (t LoadSavedMessagesTopics) MarshalJSON() ([]byte, error) {
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
 	}{TypeStr: "loadSavedMessagesTopics", Extra: t.Extra, Alias: (*Alias)(&t)})
+}
+
+// LoadTonWalletGaslessTransfersInfo Loads or reloads the current state of gasless transfers for the current user; can be used only if getOption("can_use_ton_wallet")
+type LoadTonWalletGaslessTransfersInfo struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+}
+
+func (t *LoadTonWalletGaslessTransfersInfo) setExtra(extra string) { t.Extra = extra }
+
+func (t LoadTonWalletGaslessTransfersInfo) GetType() string {
+	return "loadTonWalletGaslessTransfersInfo"
+}
+
+func (t LoadTonWalletGaslessTransfersInfo) MarshalJSON() ([]byte, error) {
+	type Alias LoadTonWalletGaslessTransfersInfo
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{TypeStr: "loadTonWalletGaslessTransfersInfo", Extra: t.Extra, Alias: (*Alias)(&t)})
+}
+
+// LoadTonWalletState Loads state of the TON wallet of the current user; can be used only if getOption("can_use_ton_wallet")
+type LoadTonWalletState struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+}
+
+func (t *LoadTonWalletState) setExtra(extra string) { t.Extra = extra }
+
+func (t LoadTonWalletState) GetType() string {
+	return "loadTonWalletState"
+}
+
+func (t LoadTonWalletState) MarshalJSON() ([]byte, error) {
+	type Alias LoadTonWalletState
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{TypeStr: "loadTonWalletState", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // LogOut Closes the TDLib instance after a proper logout. Requires an available network connection. All local data will be destroyed. After the logout completes, updateAuthorizationState with authorizationStateClosed will be sent
@@ -16525,6 +17345,32 @@ func (t ReplaceStickerInSet) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "replaceStickerInSet", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
+// ReplaceTonWallet Replaces the current TON wallet with another existing v6r2 wallet or changes private key of the current TON wallet; can be used only if getOption("can_use_ton_wallet")
+type ReplaceTonWallet struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// Original public key of the new TON wallet
+	AnchorPublicKey []byte `json:"anchor_public_key"`
+	// Password of the current user; pass an empty string unless receive an error with a message "PASSWORD_MISSING" for a passwordless request
+	Password string `json:"password"`
+	// Proof of ownership of the new private key of the TON wallet; use getTonWalletOwnershipProofChallenge to get a challenge for the proof
+	Proof *TonWalletOwnershipProof `json:"proof"`
+}
+
+func (t *ReplaceTonWallet) setExtra(extra string) { t.Extra = extra }
+
+func (t ReplaceTonWallet) GetType() string {
+	return "replaceTonWallet"
+}
+
+func (t ReplaceTonWallet) MarshalJSON() ([]byte, error) {
+	type Alias ReplaceTonWallet
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{TypeStr: "replaceTonWallet", Extra: t.Extra, Alias: (*Alias)(&t)})
+}
+
 // ReplaceVideoChatRtmpUrl Replaces the current RTMP URL for streaming to the video chat of a chat; requires owner privileges in the chat
 type ReplaceVideoChatRtmpUrl struct {
 	Extra string `json:"@extra,omitempty"` // @extra field
@@ -16545,6 +17391,36 @@ func (t ReplaceVideoChatRtmpUrl) MarshalJSON() ([]byte, error) {
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
 	}{TypeStr: "replaceVideoChatRtmpUrl", Extra: t.Extra, Alias: (*Alias)(&t)})
+}
+
+// ReplyToCallbackQueryWithEphemeralMessage Replies to a callback query with an ephemeral message; for bots only
+type ReplyToCallbackQueryWithEphemeralMessage struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// Identifier of the callback query
+	CallbackQueryId int64 `json:"callback_query_id,string"`
+	// New content of the message. Must be one of the following types: inputMessageText, inputMessageAnimation,
+	InputMessageContent InputMessageContent `json:"input_message_content"`
+	// Pass true if the content of the message must be protected from forwarding and saving
+	ProtectContent bool `json:"protect_content"`
+	// Pass true if the ephemeral message must replace the message from which the callback query originated
+	ReplaceCallbackQueryMessage bool `json:"replace_callback_query_message"`
+	// The new message reply markup; pass null if none
+	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
+}
+
+func (t *ReplyToCallbackQueryWithEphemeralMessage) setExtra(extra string) { t.Extra = extra }
+
+func (t ReplyToCallbackQueryWithEphemeralMessage) GetType() string {
+	return "replyToCallbackQueryWithEphemeralMessage"
+}
+
+func (t ReplyToCallbackQueryWithEphemeralMessage) MarshalJSON() ([]byte, error) {
+	type Alias ReplyToCallbackQueryWithEphemeralMessage
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{TypeStr: "replyToCallbackQueryWithEphemeralMessage", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // ReportAuthenticationCodeMissing Reports that authentication code wasn't delivered via SMS; for official mobile applications only. Works only when the current authorization state is authorizationStateWaitCode
@@ -16569,7 +17445,7 @@ func (t ReportAuthenticationCodeMissing) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "reportAuthenticationCodeMissing", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
-// ReportChat Reports a chat to the Telegram moderators. A chat can be reported only from the chat action bar, or if chat.can_be_reported
+// ReportChat Reports a chat to the Telegram moderators. A chat can be reported only from the chat action bar, if chat.can_be_reported, or if messageProperties.can_report_chat
 type ReportChat struct {
 	Extra string `json:"@extra,omitempty"` // @extra field
 	// Chat identifier
@@ -19015,6 +19891,96 @@ func (t SendTextMessageDraft) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "sendTextMessageDraft", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
+// SendTonCenterApiRequest Sends a request to TON Center API and returns its response in JSON format
+type SendTonCenterApiRequest struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// The path of the requested endpoint. See https://toncenter.com/api/v3/index.html for the list of supported endpoints
+	Endpoint string `json:"endpoint"`
+	// Type of the request
+	Type TonCenterApiRequestType `json:"type"`
+}
+
+func (t *SendTonCenterApiRequest) setExtra(extra string) { t.Extra = extra }
+
+func (t SendTonCenterApiRequest) GetType() string {
+	return "sendTonCenterApiRequest"
+}
+
+func (t SendTonCenterApiRequest) MarshalJSON() ([]byte, error) {
+	type Alias SendTonCenterApiRequest
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{TypeStr: "sendTonCenterApiRequest", Extra: t.Extra, Alias: (*Alias)(&t)})
+}
+
+// SendTonConnectSessionConnectResult Accepts or rejects a TON Connect session
+type SendTonConnectSessionConnectResult struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// Body of the result
+	Body []byte `json:"body"`
+	// Answer to the challenge received from setTonConnectSessionWalletClientId
+	ChallengeAnswer []byte `json:"challenge_answer"`
+	// Pass true to reject the request; pass false to accept it
+	IsError bool `json:"is_error"`
+	// Unique identifier of the session
+	SessionId int64 `json:"session_id,string"`
+	// Identifier to trace the connection request
+	TraceId string `json:"trace_id"`
+}
+
+func (t *SendTonConnectSessionConnectResult) setExtra(extra string) { t.Extra = extra }
+
+func (t SendTonConnectSessionConnectResult) GetType() string {
+	return "sendTonConnectSessionConnectResult"
+}
+
+func (t SendTonConnectSessionConnectResult) MarshalJSON() ([]byte, error) {
+	type Alias SendTonConnectSessionConnectResult
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{TypeStr: "sendTonConnectSessionConnectResult", Extra: t.Extra, Alias: (*Alias)(&t)})
+}
+
+// SendTonWalletTransfer Sends a cryptocurrency from the user's TON wallet; can be used only if getOption("can_use_ton_wallet")
+type SendTonWalletTransfer struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// Address in the TON blockchain of the transaction peer
+	Address string `json:"address"`
+	// The amount of the sent cryptocurrency, in the smallest units of the cryptocurrency
+	Amount int64 `json:"amount"`
+	// Comment added to the transaction
+	Comment string `json:"comment"`
+	// Serialized data for gasless cryptocurrency transfer request; pass an empty string to force a regular request.
+	GaslessTransferData []byte `json:"gasless_transfer_data"`
+	// Pass true if the comment is encrypted and must be decrypted using the receiver's or sender's private key
+	IsCommentEncrypted bool `json:"is_comment_encrypted"`
+	// Serialized data for regular cryptocurrency transfer request. The minimum allowed transfer amount is getOption("ton_wallet_transfer_amount_min")
+	RegularTransferData []byte `json:"regular_transfer_data"`
+	// Non-persistent identifier, which will be returned back in messageSendingStatePending object and can be used to match sent messages and corresponding updateNewMessage updates
+	SendingId int32 `json:"sending_id"`
+	// Identifier of the user who will receive the transfer; pass 0 if unknown
+	UserId int64 `json:"user_id"`
+}
+
+func (t *SendTonWalletTransfer) setExtra(extra string) { t.Extra = extra }
+
+func (t SendTonWalletTransfer) GetType() string {
+	return "sendTonWalletTransfer"
+}
+
+func (t SendTonWalletTransfer) MarshalJSON() ([]byte, error) {
+	type Alias SendTonWalletTransfer
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{TypeStr: "sendTonWalletTransfer", Extra: t.Extra, Alias: (*Alias)(&t)})
+}
+
 // SendWebAppCustomRequest Sends a custom request from a Web App
 type SendWebAppCustomRequest struct {
 	Extra string `json:"@extra,omitempty"` // @extra field
@@ -20449,6 +21415,54 @@ func (t SetCommunityName) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "setCommunityName", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
+// SetCommunityPermissions Changes permissions of regular members in the given community; requires can_ban_members administrator right in the community
+type SetCommunityPermissions struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// Identifier of the community
+	CommunityId int64 `json:"community_id"`
+	// New permissions of the community
+	Permissions *CommunityPermissions `json:"permissions"`
+}
+
+func (t *SetCommunityPermissions) setExtra(extra string) { t.Extra = extra }
+
+func (t SetCommunityPermissions) GetType() string {
+	return "setCommunityPermissions"
+}
+
+func (t SetCommunityPermissions) MarshalJSON() ([]byte, error) {
+	type Alias SetCommunityPermissions
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{TypeStr: "setCommunityPermissions", Extra: t.Extra, Alias: (*Alias)(&t)})
+}
+
+// SetCommunityPhoto Changes the photo of a community; requires can_change_info administrator right in the community
+type SetCommunityPhoto struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// Identifier of the community
+	CommunityId int64 `json:"community_id"`
+	// New chat photo; pass null to delete the chat photo
+	Photo InputChatPhoto `json:"photo,omitempty"`
+}
+
+func (t *SetCommunityPhoto) setExtra(extra string) { t.Extra = extra }
+
+func (t SetCommunityPhoto) GetType() string {
+	return "setCommunityPhoto"
+}
+
+func (t SetCommunityPhoto) MarshalJSON() ([]byte, error) {
+	type Alias SetCommunityPhoto
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{TypeStr: "setCommunityPhoto", Extra: t.Extra, Alias: (*Alias)(&t)})
+}
+
 // SetCustomEmojiStickerSetThumbnail Sets a custom emoji sticker set thumbnail
 type SetCustomEmojiStickerSetThumbnail struct {
 	Extra string `json:"@extra,omitempty"` // @extra field
@@ -21256,8 +22270,8 @@ type SetMessageSenderBotVerification struct {
 	Extra string `json:"@extra,omitempty"` // @extra field
 	// Identifier of the owned bot, which will verify the user or the chat
 	BotUserId int64 `json:"bot_user_id"`
-	// Custom description of verification reason; 0-getOption("bot_verification_custom_description_length_max").
-	CustomDescription string `json:"custom_description"`
+	// Custom description of verification reason; 0-getOption("bot_verification_custom_description_length_max") characters. Only TextUrl entities are supported.
+	CustomDescription *FormattedText `json:"custom_description"`
 	// Identifier of the user or the supergroup or channel chat, which will be verified by the bot
 	VerifiedId MessageSender `json:"verified_id"`
 }
@@ -22219,6 +23233,30 @@ func (t SetTdlibParameters) MarshalJSON() ([]byte, error) {
 		Extra   string `json:"@extra,omitempty"`
 		*Alias
 	}{TypeStr: "setTdlibParameters", Extra: t.Extra, Alias: (*Alias)(&t)})
+}
+
+// SetTonConnectSessionWalletClientId Sets wallet_client_id for a pending TON Connect session. Then, sendTonConnectSessionConnectResult must be used to accept or reject the session
+type SetTonConnectSessionWalletClientId struct {
+	Extra string `json:"@extra,omitempty"` // @extra field
+	// Unique identifier of the session
+	SessionId int64 `json:"session_id,string"`
+	// Hex-encoded public X25519 key of the current user's application calculated from the TON wallet private key and session parameters
+	WalletClientId string `json:"wallet_client_id"`
+}
+
+func (t *SetTonConnectSessionWalletClientId) setExtra(extra string) { t.Extra = extra }
+
+func (t SetTonConnectSessionWalletClientId) GetType() string {
+	return "setTonConnectSessionWalletClientId"
+}
+
+func (t SetTonConnectSessionWalletClientId) MarshalJSON() ([]byte, error) {
+	type Alias SetTonConnectSessionWalletClientId
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		Extra   string `json:"@extra,omitempty"`
+		*Alias
+	}{TypeStr: "setTonConnectSessionWalletClientId", Extra: t.Extra, Alias: (*Alias)(&t)})
 }
 
 // SetUpgradedGiftColors Changes color scheme for the current user based on an owned or a hosted upgraded gift; for Telegram Premium users only

@@ -1149,7 +1149,7 @@ func (c *Chat) ReplaceVideoRtmpUrl(client *Client) (*RtmpUrl, error) {
 	return client.ReplaceVideoChatRtmpUrl(c.Id)
 }
 
-// Report Reports a chat to the Telegram moderators. A chat can be reported only from the chat action bar, or if chat.can_be_reported
+// Report Reports a chat to the Telegram moderators. A chat can be reported only from the chat action bar, if chat.can_be_reported, or if messageProperties.can_report_chat
 // It is a helper method for Client.ReportChat
 func (c *Chat) Report(client *Client, messageIds []int64, optionId []byte, text string) (ReportChatResult, error) {
 	return client.ReportChat(c.Id, messageIds, optionId, text)
@@ -1803,6 +1803,12 @@ func (m *Message) AddPollOption(client *Client, option *InputPollOption) error {
 	return client.AddPollOption(m.ChatId, m.Id, option)
 }
 
+// AnswerTonConnectRequest Sends an answer for a request received through TON Connect
+// It is a helper method for Client.AnswerTonConnectRequest
+func (m *Message) AnswerTonConnectRequest(client *Client, body []byte, sessionId int64, traceId string) error {
+	return client.AnswerTonConnectRequest(body, m.Id, sessionId, traceId)
+}
+
 // ApproveSuggestedPost Approves a suggested post in a channel direct messages chat
 // It is a helper method for Client.ApproveSuggestedPost
 func (m *Message) ApproveSuggestedPost(client *Client, sendDate int32) error {
@@ -1813,6 +1819,12 @@ func (m *Message) ApproveSuggestedPost(client *Client, sendDate int32) error {
 // It is a helper method for Client.BlockMessageSenderFromReplies
 func (m *Message) BlockSenderFromReplies(client *Client, opts *BlockMessageSenderFromRepliesOpts) error {
 	return client.BlockMessageSenderFromReplies(m.Id, opts)
+}
+
+// ClaimTonConnectRequest Claims a request received through TON Connect for processing on this device
+// It is a helper method for Client.ClaimTonConnectRequest
+func (m *Message) ClaimTonConnectRequest(client *Client, dappRequestId string, sessionId int64, opts *ClaimTonConnectRequestOpts) error {
+	return client.ClaimTonConnectRequest(dappRequestId, m.Id, sessionId, opts)
 }
 
 // ClickAnimatedEmoji Informs TDLib that a message with an animated emoji was clicked by the user. Returns a big animated sticker to be played or a 404 error if usual animation needs to be played
@@ -2313,6 +2325,12 @@ func (u *User) CreatePrivateChat(client *Client, opts *CreatePrivateChatOpts) (*
 	return client.CreatePrivateChat(u.Id, opts)
 }
 
+// CreateTonWallet Creates a TON wallet for the specified regular user; can be used only if getOption("can_use_ton_wallet"). The current user must have positive TON wallet balance
+// It is a helper method for Client.CreateUserTonWallet
+func (u *User) CreateTonWallet(client *Client) (*UserTonWalletAddress, error) {
+	return client.CreateUserTonWallet(u.Id)
+}
+
 // EditStarSubscription Cancels or re-enables Telegram Star subscription for a user; for bots only
 // It is a helper method for Client.EditUserStarSubscription
 func (u *User) EditStarSubscription(client *Client, telegramPaymentChargeId string, opts *EditUserStarSubscriptionOpts) error {
@@ -2443,6 +2461,12 @@ func (u *User) SavePreparedInlineMessage(client *Client, chatTypes *TargetChatTy
 // It is a helper method for Client.SavePreparedKeyboardButton
 func (u *User) SavePreparedKeyboardButton(client *Client, button *KeyboardButton) (*Text, error) {
 	return client.SavePreparedKeyboardButton(button, u.Id)
+}
+
+// SendTonWalletTransfer Sends a cryptocurrency from the user's TON wallet; can be used only if getOption("can_use_ton_wallet")
+// It is a helper method for Client.SendTonWalletTransfer
+func (u *User) SendTonWalletTransfer(client *Client, address string, amount int64, comment string, gaslessTransferData []byte, regularTransferData []byte, sendingId int32, opts *SendTonWalletTransferOpts) (*TonWalletTransferResult, error) {
+	return client.SendTonWalletTransfer(address, amount, comment, gaslessTransferData, regularTransferData, sendingId, u.Id, opts)
 }
 
 // SetChatMemberTag Changes the tag or custom title of a chat member; requires can_manage_tags administrator right to change tag of other users; for basic groups and supergroups only

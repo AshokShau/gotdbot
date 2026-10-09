@@ -189,6 +189,37 @@ func (c *Client) AddUpdateAgeVerificationParametersHandlerGroup(handler func(cli
 	c.AddHandlerGroup(&updateAgeVerificationParametersHandler{filter: filter, response: handler}, group)
 }
 
+// updateAllowedBotUsernamePremiumSuffixesHandler handles UpdateAllowedBotUsernamePremiumSuffixes updates
+type updateAllowedBotUsernamePremiumSuffixesHandler struct {
+	filter   UpdateAllowedBotUsernamePremiumSuffixesFilter
+	response func(client *Client, update *UpdateAllowedBotUsernamePremiumSuffixes) error
+}
+
+func (h *updateAllowedBotUsernamePremiumSuffixesHandler) CheckUpdate(client *Client, update TlObject) bool {
+	u, ok := update.(*UpdateAllowedBotUsernamePremiumSuffixes)
+	if !ok {
+		return false
+	}
+	if h.filter != nil && !h.filter(u) {
+		return false
+	}
+	return true
+}
+
+func (h *updateAllowedBotUsernamePremiumSuffixesHandler) HandleUpdate(client *Client, update TlObject) error {
+	return h.response(client, update.(*UpdateAllowedBotUsernamePremiumSuffixes))
+}
+
+// OnUpdateAllowedBotUsernamePremiumSuffixes registers a handler for UpdateAllowedBotUsernamePremiumSuffixes updates with default group (0)
+func (c *Client) OnUpdateAllowedBotUsernamePremiumSuffixes(handler func(client *Client, update *UpdateAllowedBotUsernamePremiumSuffixes) error, filter UpdateAllowedBotUsernamePremiumSuffixesFilter) {
+	c.AddUpdateAllowedBotUsernamePremiumSuffixesHandlerGroup(handler, filter, 0)
+}
+
+// AddUpdateAllowedBotUsernamePremiumSuffixesHandlerGroup registers a handler for UpdateAllowedBotUsernamePremiumSuffixes updates with a specific group
+func (c *Client) AddUpdateAllowedBotUsernamePremiumSuffixesHandlerGroup(handler func(client *Client, update *UpdateAllowedBotUsernamePremiumSuffixes) error, filter UpdateAllowedBotUsernamePremiumSuffixesFilter, group int) {
+	c.AddHandlerGroup(&updateAllowedBotUsernamePremiumSuffixesHandler{filter: filter, response: handler}, group)
+}
+
 // updateAnimatedEmojiMessageClickedHandler handles UpdateAnimatedEmojiMessageClicked updates
 type updateAnimatedEmojiMessageClickedHandler struct {
 	filter   UpdateAnimatedEmojiMessageClickedFilter
@@ -5457,6 +5488,130 @@ func (c *Client) OnUpdateTextCompositionStyles(handler func(client *Client, upda
 // AddUpdateTextCompositionStylesHandlerGroup registers a handler for UpdateTextCompositionStyles updates with a specific group
 func (c *Client) AddUpdateTextCompositionStylesHandlerGroup(handler func(client *Client, update *UpdateTextCompositionStyles) error, filter UpdateTextCompositionStylesFilter, group int) {
 	c.AddHandlerGroup(&updateTextCompositionStylesHandler{filter: filter, response: handler}, group)
+}
+
+// updateTonWalletGaslessTransfersInfoHandler handles UpdateTonWalletGaslessTransfersInfo updates
+type updateTonWalletGaslessTransfersInfoHandler struct {
+	filter   UpdateTonWalletGaslessTransfersInfoFilter
+	response func(client *Client, update *UpdateTonWalletGaslessTransfersInfo) error
+}
+
+func (h *updateTonWalletGaslessTransfersInfoHandler) CheckUpdate(client *Client, update TlObject) bool {
+	u, ok := update.(*UpdateTonWalletGaslessTransfersInfo)
+	if !ok {
+		return false
+	}
+	if h.filter != nil && !h.filter(u) {
+		return false
+	}
+	return true
+}
+
+func (h *updateTonWalletGaslessTransfersInfoHandler) HandleUpdate(client *Client, update TlObject) error {
+	return h.response(client, update.(*UpdateTonWalletGaslessTransfersInfo))
+}
+
+// OnUpdateTonWalletGaslessTransfersInfo registers a handler for UpdateTonWalletGaslessTransfersInfo updates with default group (0)
+func (c *Client) OnUpdateTonWalletGaslessTransfersInfo(handler func(client *Client, update *UpdateTonWalletGaslessTransfersInfo) error, filter UpdateTonWalletGaslessTransfersInfoFilter) {
+	c.AddUpdateTonWalletGaslessTransfersInfoHandlerGroup(handler, filter, 0)
+}
+
+// AddUpdateTonWalletGaslessTransfersInfoHandlerGroup registers a handler for UpdateTonWalletGaslessTransfersInfo updates with a specific group
+func (c *Client) AddUpdateTonWalletGaslessTransfersInfoHandlerGroup(handler func(client *Client, update *UpdateTonWalletGaslessTransfersInfo) error, filter UpdateTonWalletGaslessTransfersInfoFilter, group int) {
+	c.AddHandlerGroup(&updateTonWalletGaslessTransfersInfoHandler{filter: filter, response: handler}, group)
+}
+
+// updateTonWalletStateHandler handles UpdateTonWalletState updates
+type updateTonWalletStateHandler struct {
+	filter   UpdateTonWalletStateFilter
+	response func(client *Client, update *UpdateTonWalletState) error
+}
+
+func (h *updateTonWalletStateHandler) CheckUpdate(client *Client, update TlObject) bool {
+	u, ok := update.(*UpdateTonWalletState)
+	if !ok {
+		return false
+	}
+	if h.filter != nil && !h.filter(u) {
+		return false
+	}
+	return true
+}
+
+func (h *updateTonWalletStateHandler) HandleUpdate(client *Client, update TlObject) error {
+	return h.response(client, update.(*UpdateTonWalletState))
+}
+
+// OnUpdateTonWalletState registers a handler for UpdateTonWalletState updates with default group (0)
+func (c *Client) OnUpdateTonWalletState(handler func(client *Client, update *UpdateTonWalletState) error, filter UpdateTonWalletStateFilter) {
+	c.AddUpdateTonWalletStateHandlerGroup(handler, filter, 0)
+}
+
+// AddUpdateTonWalletStateHandlerGroup registers a handler for UpdateTonWalletState updates with a specific group
+func (c *Client) AddUpdateTonWalletStateHandlerGroup(handler func(client *Client, update *UpdateTonWalletState) error, filter UpdateTonWalletStateFilter, group int) {
+	c.AddHandlerGroup(&updateTonWalletStateHandler{filter: filter, response: handler}, group)
+}
+
+// updateTonWalletTonConnectSessionHandler handles UpdateTonWalletTonConnectSession updates
+type updateTonWalletTonConnectSessionHandler struct {
+	filter   UpdateTonWalletTonConnectSessionFilter
+	response func(client *Client, update *UpdateTonWalletTonConnectSession) error
+}
+
+func (h *updateTonWalletTonConnectSessionHandler) CheckUpdate(client *Client, update TlObject) bool {
+	u, ok := update.(*UpdateTonWalletTonConnectSession)
+	if !ok {
+		return false
+	}
+	if h.filter != nil && !h.filter(u) {
+		return false
+	}
+	return true
+}
+
+func (h *updateTonWalletTonConnectSessionHandler) HandleUpdate(client *Client, update TlObject) error {
+	return h.response(client, update.(*UpdateTonWalletTonConnectSession))
+}
+
+// OnUpdateTonWalletTonConnectSession registers a handler for UpdateTonWalletTonConnectSession updates with default group (0)
+func (c *Client) OnUpdateTonWalletTonConnectSession(handler func(client *Client, update *UpdateTonWalletTonConnectSession) error, filter UpdateTonWalletTonConnectSessionFilter) {
+	c.AddUpdateTonWalletTonConnectSessionHandlerGroup(handler, filter, 0)
+}
+
+// AddUpdateTonWalletTonConnectSessionHandlerGroup registers a handler for UpdateTonWalletTonConnectSession updates with a specific group
+func (c *Client) AddUpdateTonWalletTonConnectSessionHandlerGroup(handler func(client *Client, update *UpdateTonWalletTonConnectSession) error, filter UpdateTonWalletTonConnectSessionFilter, group int) {
+	c.AddHandlerGroup(&updateTonWalletTonConnectSessionHandler{filter: filter, response: handler}, group)
+}
+
+// updateTonWalletTonConnectSessionDisconnectRequiredHandler handles UpdateTonWalletTonConnectSessionDisconnectRequired updates
+type updateTonWalletTonConnectSessionDisconnectRequiredHandler struct {
+	filter   UpdateTonWalletTonConnectSessionDisconnectRequiredFilter
+	response func(client *Client, update *UpdateTonWalletTonConnectSessionDisconnectRequired) error
+}
+
+func (h *updateTonWalletTonConnectSessionDisconnectRequiredHandler) CheckUpdate(client *Client, update TlObject) bool {
+	u, ok := update.(*UpdateTonWalletTonConnectSessionDisconnectRequired)
+	if !ok {
+		return false
+	}
+	if h.filter != nil && !h.filter(u) {
+		return false
+	}
+	return true
+}
+
+func (h *updateTonWalletTonConnectSessionDisconnectRequiredHandler) HandleUpdate(client *Client, update TlObject) error {
+	return h.response(client, update.(*UpdateTonWalletTonConnectSessionDisconnectRequired))
+}
+
+// OnUpdateTonWalletTonConnectSessionDisconnectRequired registers a handler for UpdateTonWalletTonConnectSessionDisconnectRequired updates with default group (0)
+func (c *Client) OnUpdateTonWalletTonConnectSessionDisconnectRequired(handler func(client *Client, update *UpdateTonWalletTonConnectSessionDisconnectRequired) error, filter UpdateTonWalletTonConnectSessionDisconnectRequiredFilter) {
+	c.AddUpdateTonWalletTonConnectSessionDisconnectRequiredHandlerGroup(handler, filter, 0)
+}
+
+// AddUpdateTonWalletTonConnectSessionDisconnectRequiredHandlerGroup registers a handler for UpdateTonWalletTonConnectSessionDisconnectRequired updates with a specific group
+func (c *Client) AddUpdateTonWalletTonConnectSessionDisconnectRequiredHandlerGroup(handler func(client *Client, update *UpdateTonWalletTonConnectSessionDisconnectRequired) error, filter UpdateTonWalletTonConnectSessionDisconnectRequiredFilter, group int) {
+	c.AddHandlerGroup(&updateTonWalletTonConnectSessionDisconnectRequiredHandler{filter: filter, response: handler}, group)
 }
 
 // updateTopicMessageCountHandler handles UpdateTopicMessageCount updates
