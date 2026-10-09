@@ -16,7 +16,6 @@ type TLType struct {
 	Description string
 	Params      []TLParam
 	ResultType  string
-	IsFunction  bool
 }
 
 type TLParam struct {

@@ -11,18 +11,22 @@ func (m *Message) GetLink(c *Client) (*MessageLink, error) {
 
 // IsPrivate checks if the message is from a private chat (user).
 func (m *Message) IsPrivate() bool {
-	return m.ChatId > 0
+	return m != nil && m.ChatId > 0 && m.ChatId < 1<<40
 }
 
-// IsGroup checks if the message is from a basic group.
+// IsGroup checks if the message is from a basic group, excluding supergroups.
 func (m *Message) IsGroup() bool {
-	// basic groups are negative, but NOT -100xxxx...
-	return m.ChatId < 0 && !isSupergroupOrChannelID(m.ChatId)
+	return m != nil && m.ChatId < 0 && m.ChatId > supergroupChatIDOffset
 }
 
-// IsSupergroupOrChannel checks if the message is from a supergroup or channel.
-func (m *Message) IsSupergroupOrChannel() bool {
-	return isSupergroupOrChannelID(m.ChatId)
+// IsSupergroup checks if the message is from a supergroup, excluding channels.
+func (m *Message) IsSupergroup() bool {
+	return m != nil && isSupergroupOrChannelID(m.ChatId) && !m.IsChannelPost
+}
+
+// IsSecret checks if the message is from a secret chat.
+func (m *Message) IsSecret() bool {
+	return m != nil && m.ChatId >= minSecretChatID && m.ChatId <= maxSecretChatID && m.ChatId != secretChatIDOffset
 }
 
 // IsOutgoingMessage returns true if the message is outgoing.
@@ -37,13 +41,12 @@ func (m *Message) IsEditedMessage() bool {
 
 // IsChannel checks if the message is from a channel.
 func (m *Message) IsChannel() bool {
-	return m.IsSupergroupOrChannel()
+	return m != nil && isSupergroupOrChannelID(m.ChatId) && m.IsChannelPost
 }
 
 func isSupergroupOrChannelID(id int64) bool {
-	// Supergroups and channels have IDs that start with -100
-	// (e.g. -1002166934878)
-	return id <= -1000000000000
+	return (id < supergroupChatIDOffset && id > maxSecretChatID) ||
+		(id < minSecretChatID && id >= -4000000000000)
 }
 
 // GetText returns the message text, for both text messages and media messages
@@ -245,21 +248,39 @@ func (m *Message) CaptionEntities() []TextEntity {
 		return nil
 	}
 	if c, ok := m.Content.(*MessagePhoto); ok {
+		if c.Caption == nil {
+			return nil
+		}
 		return c.Caption.Entities
 	}
 	if c, ok := m.Content.(*MessageVideo); ok {
+		if c.Caption == nil {
+			return nil
+		}
 		return c.Caption.Entities
 	}
 	if c, ok := m.Content.(*MessageAnimation); ok {
+		if c.Caption == nil {
+			return nil
+		}
 		return c.Caption.Entities
 	}
 	if c, ok := m.Content.(*MessageAudio); ok {
+		if c.Caption == nil {
+			return nil
+		}
 		return c.Caption.Entities
 	}
 	if c, ok := m.Content.(*MessageDocument); ok {
+		if c.Caption == nil {
+			return nil
+		}
 		return c.Caption.Entities
 	}
 	if c, ok := m.Content.(*MessageVoiceNote); ok {
+		if c.Caption == nil {
+			return nil
+		}
 		return c.Caption.Entities
 	}
 	return nil
@@ -303,41 +324,52 @@ func (m *Message) LeaveChat(c *Client) error {
 	return err
 }
 
+// mediaFile extracts the primary file without duplicating media-type switches.
+func (m *Message) mediaFile() *File {
+	if m == nil {
+		return nil
+	}
+	switch content := m.Content.(type) {
+	case *MessagePhoto:
+		if content != nil && content.Photo != nil && len(content.Photo.Sizes) > 0 {
+			return content.Photo.Sizes[len(content.Photo.Sizes)-1].Photo
+		}
+	case *MessageVideo:
+		if content != nil && content.Video != nil {
+			return content.Video.Video
+		}
+	case *MessageSticker:
+		if content != nil && content.Sticker != nil {
+			return content.Sticker.Sticker
+		}
+	case *MessageAnimation:
+		if content != nil && content.Animation != nil {
+			return content.Animation.Animation
+		}
+	case *MessageAudio:
+		if content != nil && content.Audio != nil {
+			return content.Audio.Audio
+		}
+	case *MessageDocument:
+		if content != nil && content.Document != nil {
+			return content.Document.Document
+		}
+	case *MessageVoiceNote:
+		if content != nil && content.VoiceNote != nil {
+			return content.VoiceNote.Voice
+		}
+	case *MessageVideoNote:
+		if content != nil && content.VideoNote != nil {
+			return content.VideoNote.Video
+		}
+	}
+	return nil
+}
+
 // RemoteFileID returns the remote file ID.
 func (m *Message) RemoteFileID() string {
-	if m.Content == nil {
-		return ""
-	}
-	getFileId := func(f *File) string {
-		if f != nil && f.Remote != nil {
-			return f.Remote.Id
-		}
-		return ""
-	}
-
-	if c, ok := m.Content.(*MessagePhoto); ok && len(c.Photo.Sizes) > 0 {
-		return getFileId(c.Photo.Sizes[len(c.Photo.Sizes)-1].Photo)
-	}
-	if c, ok := m.Content.(*MessageVideo); ok {
-		return getFileId(c.Video.Video)
-	}
-	if c, ok := m.Content.(*MessageSticker); ok {
-		return getFileId(c.Sticker.Sticker)
-	}
-	if c, ok := m.Content.(*MessageAnimation); ok {
-		return getFileId(c.Animation.Animation)
-	}
-	if c, ok := m.Content.(*MessageAudio); ok {
-		return getFileId(c.Audio.Audio)
-	}
-	if c, ok := m.Content.(*MessageDocument); ok {
-		return getFileId(c.Document.Document)
-	}
-	if c, ok := m.Content.(*MessageVoiceNote); ok {
-		return getFileId(c.VoiceNote.Voice)
-	}
-	if c, ok := m.Content.(*MessageVideoNote); ok {
-		return getFileId(c.VideoNote.Video)
+	if file := m.mediaFile(); file != nil && file.Remote != nil {
+		return file.Remote.Id
 	}
 	return ""
 }
@@ -365,139 +397,41 @@ func (m *Message) RemoteDuration() int32 {
 	return 0
 }
 
-// RemoteFileSize returns the remote file size.
+// RemoteFileSize returns the size, or the expected size if not known yet.
 func (m *Message) RemoteFileSize() int64 {
-	if m.Content == nil {
-		return 0
-	}
-	getFileSize := func(f *File) int64 {
-		if f != nil {
-			if f.Size > 0 {
-				return f.Size
-			}
-			return f.ExpectedSize
+	if file := m.mediaFile(); file != nil {
+		if file.Size > 0 {
+			return file.Size
 		}
-		return 0
-	}
-
-	if c, ok := m.Content.(*MessagePhoto); ok && len(c.Photo.Sizes) > 0 {
-		return getFileSize(c.Photo.Sizes[len(c.Photo.Sizes)-1].Photo)
-	}
-	if c, ok := m.Content.(*MessageVideo); ok {
-		return getFileSize(c.Video.Video)
-	}
-	if c, ok := m.Content.(*MessageSticker); ok {
-		return getFileSize(c.Sticker.Sticker)
-	}
-	if c, ok := m.Content.(*MessageAnimation); ok {
-		return getFileSize(c.Animation.Animation)
-	}
-	if c, ok := m.Content.(*MessageAudio); ok {
-		return getFileSize(c.Audio.Audio)
-	}
-	if c, ok := m.Content.(*MessageDocument); ok {
-		return getFileSize(c.Document.Document)
-	}
-	if c, ok := m.Content.(*MessageVoiceNote); ok {
-		return getFileSize(c.VoiceNote.Voice)
-	}
-	if c, ok := m.Content.(*MessageVideoNote); ok {
-		return getFileSize(c.VideoNote.Video)
+		return file.ExpectedSize
 	}
 	return 0
 }
 
 // RemoteUniqueFileID returns the remote unique file ID.
 func (m *Message) RemoteUniqueFileID() string {
-	if m.Content == nil {
-		return ""
-	}
-	getUniqueId := func(f *File) string {
-		if f != nil && f.Remote != nil {
-			return f.Remote.UniqueId
-		}
-		return ""
-	}
-
-	if c, ok := m.Content.(*MessagePhoto); ok && len(c.Photo.Sizes) > 0 {
-		return getUniqueId(c.Photo.Sizes[len(c.Photo.Sizes)-1].Photo)
-	}
-	if c, ok := m.Content.(*MessageVideo); ok {
-		return getUniqueId(c.Video.Video)
-	}
-	if c, ok := m.Content.(*MessageSticker); ok {
-		return getUniqueId(c.Sticker.Sticker)
-	}
-	if c, ok := m.Content.(*MessageAnimation); ok {
-		return getUniqueId(c.Animation.Animation)
-	}
-	if c, ok := m.Content.(*MessageAudio); ok {
-		return getUniqueId(c.Audio.Audio)
-	}
-	if c, ok := m.Content.(*MessageDocument); ok {
-		return getUniqueId(c.Document.Document)
-	}
-	if c, ok := m.Content.(*MessageVoiceNote); ok {
-		return getUniqueId(c.VoiceNote.Voice)
-	}
-	if c, ok := m.Content.(*MessageVideoNote); ok {
-		return getUniqueId(c.VideoNote.Video)
+	if file := m.mediaFile(); file != nil && file.Remote != nil {
+		return file.Remote.UniqueId
 	}
 	return ""
 }
 
 // Download downloads the media file attached to the message.
-// Returns a bound *File or nil if no downloadable media is present.
+// Returns a native *File or nil if no downloadable media is present.
 func (m *Message) Download(c *Client, priority int32, offset int64, limit int64, synchronous bool) (*File, error) {
-	if m.Content == nil {
-		return nil, nil
-	}
-
-	resolve := func(f *File) (*File, error) {
-		if f == nil {
-			return nil, nil
-		}
-		if f.Remote != nil {
-			fi, err := c.GetRemoteFile(f.Remote.Id, &GetRemoteFileOpts{})
-			if err != nil {
-				return nil, err
-			}
-			return fi, nil
-		}
-		return f, nil
-	}
-
-	var (
-		fileInfo *File
-		err      error
-	)
-
-	if c, ok := m.Content.(*MessagePhoto); ok && len(c.Photo.Sizes) > 0 {
-		fileInfo, err = resolve(c.Photo.Sizes[len(c.Photo.Sizes)-1].Photo)
-	} else if c, ok := m.Content.(*MessageVideo); ok {
-		fileInfo, err = resolve(c.Video.Video)
-	} else if c, ok := m.Content.(*MessageSticker); ok {
-		fileInfo, err = resolve(c.Sticker.Sticker)
-	} else if c, ok := m.Content.(*MessageAnimation); ok {
-		fileInfo, err = resolve(c.Animation.Animation)
-	} else if c, ok := m.Content.(*MessageAudio); ok {
-		fileInfo, err = resolve(c.Audio.Audio)
-	} else if c, ok := m.Content.(*MessageDocument); ok {
-		fileInfo, err = resolve(c.Document.Document)
-	} else if c, ok := m.Content.(*MessageVoiceNote); ok {
-		fileInfo, err = resolve(c.VoiceNote.Voice)
-	} else if c, ok := m.Content.(*MessageVideoNote); ok {
-		fileInfo, err = resolve(c.VideoNote.Video)
-	}
-
-	if err != nil {
-		return nil, err
-	}
+	fileInfo := m.mediaFile()
 	if fileInfo == nil {
 		return nil, nil
 	}
-
-	return fileInfo.Download(c, limit, offset, priority, &DownloadFileOpts{Synchronous: synchronous})
+	// A remote reference can resolve the file for the supplied client too.
+	if fileInfo.Remote != nil && fileInfo.Remote.Id != "" {
+		var err error
+		fileInfo, err = c.GetRemoteFile(fileInfo.Remote.Id, nil)
+		if err != nil {
+			return nil, err
+		}
+	}
+	return c.DownloadFile(fileInfo.Id, limit, offset, priority, &DownloadFileOpts{Synchronous: synchronous})
 }
 
 // Mention returns the text mention of the message sender.
@@ -570,21 +504,27 @@ func (m *Message) Action(c *Client, opts *SendChatActionOpts) error {
 }
 
 // ReplyText replies to the message with text.
-func (m *Message) ReplyText(c *Client, text string, opts *SendTextMessageOpts) (*Message, error) {
+func (m *Message) ReplyText(c *Client, text string, opts *SendMessageOpts) (*Message, error) {
 	if opts == nil {
-		opts = &SendTextMessageOpts{}
+		opts = &SendMessageOpts{}
+	} else {
+		copyOpts := *opts
+		opts = &copyOpts
 	}
 
 	if opts.ReplyToMessageID == 0 {
 		opts.ReplyToMessageID = m.Id
 	}
-	return c.SendTextMessage(m.ChatId, text, opts)
+	return c.SendMessage(m.ChatId, text, opts)
 }
 
 // ReplyAlbum replies to the message with an album.
 func (m *Message) ReplyAlbum(c *Client, inputMessageContents []InputMessageContent, opts *SendMessageAlbumOpts) (*Messages, error) {
 	if opts == nil {
 		opts = &SendMessageAlbumOpts{}
+	} else {
+		copyOpts := *opts
+		opts = &copyOpts
 	}
 	if opts.ReplyTo == nil {
 		opts.ReplyTo = &InputMessageReplyToMessage{
@@ -598,6 +538,9 @@ func (m *Message) ReplyAlbum(c *Client, inputMessageContents []InputMessageConte
 func (m *Message) ReplyAnimation(c *Client, animation InputFile, opts *SendAnimationOpts) (*Message, error) {
 	if opts == nil {
 		opts = &SendAnimationOpts{}
+	} else {
+		copyOpts := *opts
+		opts = &copyOpts
 	}
 	if opts.ReplyToMessageID == 0 {
 		opts.ReplyToMessageID = m.Id
@@ -609,6 +552,9 @@ func (m *Message) ReplyAnimation(c *Client, animation InputFile, opts *SendAnima
 func (m *Message) ReplyAudio(c *Client, audio InputFile, opts *SendAudioOpts) (*Message, error) {
 	if opts == nil {
 		opts = &SendAudioOpts{}
+	} else {
+		copyOpts := *opts
+		opts = &copyOpts
 	}
 	if opts.ReplyToMessageID == 0 {
 		opts.ReplyToMessageID = m.Id
@@ -620,6 +566,9 @@ func (m *Message) ReplyAudio(c *Client, audio InputFile, opts *SendAudioOpts) (*
 func (m *Message) ReplyDocument(c *Client, document InputFile, opts *SendDocumentOpts) (*Message, error) {
 	if opts == nil {
 		opts = &SendDocumentOpts{}
+	} else {
+		copyOpts := *opts
+		opts = &copyOpts
 	}
 	if opts.ReplyToMessageID == 0 {
 		opts.ReplyToMessageID = m.Id
@@ -631,6 +580,9 @@ func (m *Message) ReplyDocument(c *Client, document InputFile, opts *SendDocumen
 func (m *Message) ReplyPhoto(c *Client, photo InputFile, opts *SendPhotoOpts) (*Message, error) {
 	if opts == nil {
 		opts = &SendPhotoOpts{}
+	} else {
+		copyOpts := *opts
+		opts = &copyOpts
 	}
 	if opts.ReplyToMessageID == 0 {
 		opts.ReplyToMessageID = m.Id
@@ -642,6 +594,9 @@ func (m *Message) ReplyPhoto(c *Client, photo InputFile, opts *SendPhotoOpts) (*
 func (m *Message) ReplyVideo(c *Client, video InputFile, opts *SendVideoOpts) (*Message, error) {
 	if opts == nil {
 		opts = &SendVideoOpts{}
+	} else {
+		copyOpts := *opts
+		opts = &copyOpts
 	}
 	if opts.ReplyToMessageID == 0 {
 		opts.ReplyToMessageID = m.Id
@@ -653,6 +608,9 @@ func (m *Message) ReplyVideo(c *Client, video InputFile, opts *SendVideoOpts) (*
 func (m *Message) ReplyVideoNote(c *Client, videoNote InputFile, opts *SendVideoNoteOpts) (*Message, error) {
 	if opts == nil {
 		opts = &SendVideoNoteOpts{}
+	} else {
+		copyOpts := *opts
+		opts = &copyOpts
 	}
 	if opts.ReplyToMessageID == 0 {
 		opts.ReplyToMessageID = m.Id
@@ -664,6 +622,9 @@ func (m *Message) ReplyVideoNote(c *Client, videoNote InputFile, opts *SendVideo
 func (m *Message) ReplyVoice(c *Client, voice InputFile, opts *SendVoiceOpts) (*Message, error) {
 	if opts == nil {
 		opts = &SendVoiceOpts{}
+	} else {
+		copyOpts := *opts
+		opts = &copyOpts
 	}
 	if opts.ReplyToMessageID == 0 {
 		opts.ReplyToMessageID = m.Id
@@ -675,6 +636,9 @@ func (m *Message) ReplyVoice(c *Client, voice InputFile, opts *SendVoiceOpts) (*
 func (m *Message) ReplySticker(c *Client, sticker InputFile, opts *SendStickerOpts) (*Message, error) {
 	if opts == nil {
 		opts = &SendStickerOpts{}
+	} else {
+		copyOpts := *opts
+		opts = &copyOpts
 	}
 	if opts.ReplyToMessageID == 0 {
 		opts.ReplyToMessageID = m.Id
@@ -683,8 +647,8 @@ func (m *Message) ReplySticker(c *Client, sticker InputFile, opts *SendStickerOp
 }
 
 // Copy copies message to chat.
-func (m *Message) Copy(c *Client, chatId int64, opts *SendCopyOpts) (*Message, error) {
-	return c.SendCopy(chatId, m.ChatId, m.Id, opts)
+func (m *Message) Copy(c *Client, chatId int64, opts *CopyMessageOpts) (*Message, error) {
+	return c.CopyMessage(chatId, m.ChatId, m.Id, opts)
 }
 
 // Forward forwards message to chat.
@@ -693,19 +657,39 @@ func (m *Message) Forward(c *Client, chatId int64, opts *ForwardMessageOpts) (*M
 }
 
 // EditText edits a text message.
-func (m *Message) EditText(c *Client, text string, opts *EditTextMessageOpts) (*Message, error) {
-	return c.EditTextMessage(m.ChatId, m.Id, text, opts)
+func (m *Message) EditText(c *Client, text string, opts *EditMessageTextOpts) (*Message, error) {
+	return c.EditMessageText(m.ChatId, m.Id, text, opts)
 }
 
 // EditCaption edits the caption of a message.
-func (m *Message) EditCaption(c *Client, caption string, opts *EditCaptionOpts) (*Message, error) {
-	return c.EditCaption(m.ChatId, m.Id, caption, opts)
+func (m *Message) EditCaption(c *Client, caption string, opts *EditMessageCaptionOpts) (*Message, error) {
+	return c.EditMessageCaption(m.ChatId, m.Id, caption, opts)
+}
+
+// EditReplyMarkup replaces or removes this message's reply markup.
+func (m *Message) EditReplyMarkup(c *Client, replyMarkup ReplyMarkup) (*Message, error) {
+	return c.EditMessageReplyMarkup(m.ChatId, m.Id, &EditMessageReplyMarkupOpts{ReplyMarkup: replyMarkup})
+}
+
+// ReplyMediaGroup replies with a validated native TDLib album.
+func (m *Message) ReplyMediaGroup(c *Client, media []InputMessageContent, opts *SendMessageAlbumOpts) (*Messages, error) {
+	copyOpts := SendMessageAlbumOpts{}
+	if opts != nil {
+		copyOpts = *opts
+	}
+	if copyOpts.ReplyTo == nil {
+		copyOpts.ReplyTo = &InputMessageReplyToMessage{MessageId: m.Id}
+	}
+	return c.SendMediaGroup(m.ChatId, media, &copyOpts)
 }
 
 // ReplyChecklist replies to the message with a checklist.
 func (m *Message) ReplyChecklist(c *Client, checklist *InputChecklist, opts *SendChecklistOpts) (*Message, error) {
 	if opts == nil {
 		opts = &SendChecklistOpts{}
+	} else {
+		copyOpts := *opts
+		opts = &copyOpts
 	}
 	if opts.ReplyToMessageID == 0 {
 		opts.ReplyToMessageID = m.Id
@@ -717,6 +701,9 @@ func (m *Message) ReplyChecklist(c *Client, checklist *InputChecklist, opts *Sen
 func (m *Message) ReplyContact(c *Client, contact *Contact, opts *SendContactOpts) (*Message, error) {
 	if opts == nil {
 		opts = &SendContactOpts{}
+	} else {
+		copyOpts := *opts
+		opts = &copyOpts
 	}
 	if opts.ReplyToMessageID == 0 {
 		opts.ReplyToMessageID = m.Id
@@ -728,6 +715,9 @@ func (m *Message) ReplyContact(c *Client, contact *Contact, opts *SendContactOpt
 func (m *Message) ReplyDice(c *Client, emoji string, opts *SendDiceOpts) (*Message, error) {
 	if opts == nil {
 		opts = &SendDiceOpts{}
+	} else {
+		copyOpts := *opts
+		opts = &copyOpts
 	}
 	if opts.ReplyToMessageID == 0 {
 		opts.ReplyToMessageID = m.Id
@@ -739,6 +729,9 @@ func (m *Message) ReplyDice(c *Client, emoji string, opts *SendDiceOpts) (*Messa
 func (m *Message) ReplyGame(c *Client, botUserId int64, gameShortName string, opts *SendGameOpts) (*Message, error) {
 	if opts == nil {
 		opts = &SendGameOpts{}
+	} else {
+		copyOpts := *opts
+		opts = &copyOpts
 	}
 	if opts.ReplyToMessageID == 0 {
 		opts.ReplyToMessageID = m.Id
@@ -750,6 +743,9 @@ func (m *Message) ReplyGame(c *Client, botUserId int64, gameShortName string, op
 func (m *Message) ReplyInvoice(c *Client, invoice *Invoice, title string, description string, payload []byte, opts *SendInvoiceOpts) (*Message, error) {
 	if opts == nil {
 		opts = &SendInvoiceOpts{}
+	} else {
+		copyOpts := *opts
+		opts = &copyOpts
 	}
 	if opts.ReplyToMessageID == 0 {
 		opts.ReplyToMessageID = m.Id
@@ -761,6 +757,9 @@ func (m *Message) ReplyInvoice(c *Client, invoice *Invoice, title string, descri
 func (m *Message) ReplyLocation(c *Client, location *Location, opts *SendLocationOpts) (*Message, error) {
 	if opts == nil {
 		opts = &SendLocationOpts{}
+	} else {
+		copyOpts := *opts
+		opts = &copyOpts
 	}
 	if opts.ReplyToMessageID == 0 {
 		opts.ReplyToMessageID = m.Id
@@ -772,6 +771,9 @@ func (m *Message) ReplyLocation(c *Client, location *Location, opts *SendLocatio
 func (m *Message) ReplyPaidMedia(c *Client, starCount int64, paidMedia []InputPaidMedia, opts *SendPaidMediaOpts) (*Message, error) {
 	if opts == nil {
 		opts = &SendPaidMediaOpts{}
+	} else {
+		copyOpts := *opts
+		opts = &copyOpts
 	}
 	if opts.ReplyToMessageID == 0 {
 		opts.ReplyToMessageID = m.Id
@@ -783,6 +785,9 @@ func (m *Message) ReplyPaidMedia(c *Client, starCount int64, paidMedia []InputPa
 func (m *Message) ReplyPoll(c *Client, question string, options []InputPollOption, opts *SendPollOpts) (*Message, error) {
 	if opts == nil {
 		opts = &SendPollOpts{}
+	} else {
+		copyOpts := *opts
+		opts = &copyOpts
 	}
 	if opts.ReplyToMessageID == 0 {
 		opts.ReplyToMessageID = m.Id
@@ -794,6 +799,9 @@ func (m *Message) ReplyPoll(c *Client, question string, options []InputPollOptio
 func (m *Message) ReplyStakeDice(c *Client, stakeGramAmount int64, stateHash string, opts *SendStakeDiceOpts) (*Message, error) {
 	if opts == nil {
 		opts = &SendStakeDiceOpts{}
+	} else {
+		copyOpts := *opts
+		opts = &copyOpts
 	}
 	if opts.ReplyToMessageID == 0 {
 		opts.ReplyToMessageID = m.Id
@@ -805,6 +813,9 @@ func (m *Message) ReplyStakeDice(c *Client, stakeGramAmount int64, stateHash str
 func (m *Message) ReplyStory(c *Client, storyPosterChatId int64, storyId int32, opts *SendStoryOpts) (*Message, error) {
 	if opts == nil {
 		opts = &SendStoryOpts{}
+	} else {
+		copyOpts := *opts
+		opts = &copyOpts
 	}
 	if opts.ReplyToMessageID == 0 {
 		opts.ReplyToMessageID = m.Id
@@ -816,6 +827,9 @@ func (m *Message) ReplyStory(c *Client, storyPosterChatId int64, storyId int32, 
 func (m *Message) ReplyVenue(c *Client, venue *Venue, opts *SendVenueOpts) (*Message, error) {
 	if opts == nil {
 		opts = &SendVenueOpts{}
+	} else {
+		copyOpts := *opts
+		opts = &copyOpts
 	}
 	if opts.ReplyToMessageID == 0 {
 		opts.ReplyToMessageID = m.Id
@@ -824,14 +838,17 @@ func (m *Message) ReplyVenue(c *Client, venue *Venue, opts *SendVenueOpts) (*Mes
 }
 
 // ReplyCopy replies to the message by copying another message.
-func (m *Message) ReplyCopy(c *Client, fromChatId int64, messageId int64, opts *SendCopyOpts) (*Message, error) {
+func (m *Message) ReplyCopy(c *Client, fromChatId int64, messageId int64, opts *CopyMessageOpts) (*Message, error) {
 	if opts == nil {
-		opts = &SendCopyOpts{}
+		opts = &CopyMessageOpts{}
+	} else {
+		copyOpts := *opts
+		opts = &copyOpts
 	}
 	if opts.ReplyToMessageID == 0 {
 		opts.ReplyToMessageID = m.Id
 	}
-	return c.SendCopy(m.ChatId, fromChatId, messageId, opts)
+	return c.CopyMessage(m.ChatId, fromChatId, messageId, opts)
 }
 
 // EditContent edits the message with the given content.
@@ -840,22 +857,28 @@ func (m *Message) EditContent(c *Client, content InputMessageContent, replyMarku
 }
 
 // ReplyContent replies to the message with the given content.
-func (m *Message) ReplyContent(c *Client, content InputMessageContent, opts *SendMessageOpts) (*Message, error) {
+func (m *Message) ReplyContent(c *Client, content InputMessageContent, opts *SendMessageContentOpts) (*Message, error) {
 	if opts == nil {
-		opts = &SendMessageOpts{}
+		opts = &SendMessageContentOpts{}
+	} else {
+		copyOpts := *opts
+		opts = &copyOpts
 	}
 	if opts.ReplyTo == nil {
 		opts.ReplyTo = &InputMessageReplyToMessage{
 			MessageId: m.Id,
 		}
 	}
-	return c.SendContent(m.ChatId, content, opts)
+	return c.SendMessageContent(m.ChatId, content, opts)
 }
 
 // ReplyRichMessage replies to the message with a rich message.
-func (m *Message) ReplyRichMessage(c *Client, richMessage *InputRichMessage, opts *SendTextMessageOpts) (*Message, error) {
+func (m *Message) ReplyRichMessage(c *Client, richMessage *InputRichMessage, opts *SendMessageOpts) (*Message, error) {
 	if opts == nil {
-		opts = &SendTextMessageOpts{}
+		opts = &SendMessageOpts{}
+	} else {
+		copyOpts := *opts
+		opts = &copyOpts
 	}
 	if opts.ReplyToMessageID == 0 {
 		opts.ReplyToMessageID = m.Id
@@ -867,9 +890,37 @@ func (m *Message) ReplyRichMessage(c *Client, richMessage *InputRichMessage, opt
 func (m *Message) ReplyForwarded(c *Client, fromChatId int64, messageId int64, inGameShare bool, opts *SendForwardedOpts) (*Message, error) {
 	if opts == nil {
 		opts = &SendForwardedOpts{}
+	} else {
+		copyOpts := *opts
+		opts = &copyOpts
 	}
 	if opts.ReplyToMessageID == 0 {
 		opts.ReplyToMessageID = m.Id
 	}
 	return c.SendForwarded(m.ChatId, fromChatId, messageId, inGameShare, opts)
+}
+
+// SendMessage sends text to this chat using the familiar convenience signature.
+func (chat *Chat) SendMessage(c *Client, text string, opts *SendMessageOpts) (*Message, error) {
+	return c.SendMessage(chat.Id, text, opts)
+}
+
+// SendPhoto sends a photo to this chat.
+func (chat *Chat) SendPhoto(c *Client, photo InputFile, opts *SendPhotoOpts) (*Message, error) {
+	return c.SendPhoto(chat.Id, photo, opts)
+}
+
+// SendDocument sends a document to this chat.
+func (chat *Chat) SendDocument(c *Client, document InputFile, opts *SendDocumentOpts) (*Message, error) {
+	return c.SendDocument(chat.Id, document, opts)
+}
+
+// SendVideo sends a video to this chat.
+func (chat *Chat) SendVideo(c *Client, video InputFile, opts *SendVideoOpts) (*Message, error) {
+	return c.SendVideo(chat.Id, video, opts)
+}
+
+// SendMediaGroup sends a validated media group to this chat.
+func (chat *Chat) SendMediaGroup(c *Client, media []InputMessageContent, opts *SendMessageAlbumOpts) (*Messages, error) {
+	return c.SendMediaGroup(chat.Id, media, opts)
 }

@@ -24,7 +24,7 @@ func generateClasses(classes map[string]*TLClass) {
 
 	sb.WriteString("type tlFunction interface {\n")
 	sb.WriteString("\tTlObject\n")
-	sb.WriteString("\tsetExtra(extra string)\n")
+	sb.WriteString("\tisFunction()\n")
 	sb.WriteString("}\n\n")
 
 	sortedNames := sortKeysAZ(classes)
@@ -253,7 +253,6 @@ func generateFunctions(functions []TLType, classes map[string]*TLClass) {
 		structName := toCamelCase(t.Name)
 		fmt.Fprintf(&sb, "// %s %s\n", structName, formatDesc(t.Description))
 		fmt.Fprintf(&sb, "type %s struct {\n", structName)
-		sb.WriteString("\tExtra string `json:\"@extra,omitempty\"` // @extra field\n")
 
 		for _, p := range t.Params {
 			goType := toGoType(p.Type, classes)
@@ -274,7 +273,7 @@ func generateFunctions(functions []TLType, classes map[string]*TLClass) {
 		}
 		sb.WriteString("}\n\n")
 
-		fmt.Fprintf(&sb, "func (t *%s) setExtra(extra string) { t.Extra = extra }\n\n", structName)
+		fmt.Fprintf(&sb, "func (*%s) isFunction() {}\n\n", structName)
 
 		fmt.Fprintf(&sb, "func (t %s) GetType() string {\n", structName)
 		fmt.Fprintf(&sb, "\treturn \"%s\"\n", t.Name)
@@ -283,7 +282,7 @@ func generateFunctions(functions []TLType, classes map[string]*TLClass) {
 		// MarshalJSON
 		fmt.Fprintf(&sb, "func (t %s) MarshalJSON() ([]byte, error) {\n", structName)
 		fmt.Fprintf(&sb, "\ttype Alias %s\n", structName)
-		fmt.Fprintf(&sb, "\treturn json.Marshal(&struct{ TypeStr string `json:\"@type\"`; Extra string `json:\"@extra,omitempty\"`; *Alias }{TypeStr: \"%s\", Extra: t.Extra, Alias: (*Alias)(&t)})\n", t.Name)
+		fmt.Fprintf(&sb, "\treturn json.Marshal(&struct{ TypeStr string `json:\"@type\"`; *Alias }{TypeStr: \"%s\", Alias: (*Alias)(&t)})\n", t.Name)
 		sb.WriteString("}\n\n")
 	}
 
@@ -298,7 +297,7 @@ func generateOptions(functions []TLType, classes map[string]*TLClass) {
 	sb.WriteString("package gotdbot\n\n")
 
 	for _, fn := range functions {
-		methodName := toCamelCase(fn.Name)
+		methodName := clientMethodName(fn.Name)
 		hasOptional := false
 		for _, p := range fn.Params {
 			if p.IsOptional || p.Type == "Bool" {

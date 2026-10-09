@@ -27,7 +27,7 @@ func (c *Client) AcceptOauthRequest(matchCode string, url string, opts *AcceptOa
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*HttpUrl), nil
+	return responseAs[*HttpUrl](resp)
 }
 
 // AcceptTermsOfService Accepts Telegram terms of service
@@ -57,7 +57,7 @@ func (c *Client) AddBotMediaPreview(botUserId int64, content InputStoryContent, 
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*BotMediaPreview), nil
+	return responseAs[*BotMediaPreview](resp)
 }
 
 // AddBotSecondaryUsername Adds a secondary username to a bot. Can be called only if userTypeBot.can_be_edited, the bot has no secondary username and the current user has Telegram Premium subscription.
@@ -91,7 +91,7 @@ func (c *Client) AddChatMember(chatId int64, forwardLimit int32, userId int64) (
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*FailedToAddMembers), nil
+	return responseAs[*FailedToAddMembers](resp)
 }
 
 // AddChatMembers Adds multiple new members to a chat; requires can_invite_users member right. Currently, this method is available only in supergroups and channels.
@@ -104,7 +104,7 @@ func (c *Client) AddChatMembers(chatId int64, userIds []int64) (*FailedToAddMemb
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*FailedToAddMembers), nil
+	return responseAs[*FailedToAddMembers](resp)
 }
 
 // AddChatToList Adds a chat to a chat list. A chat can't be simultaneously in Main and Archive chat lists, so it is automatically removed from another one if needed
@@ -181,7 +181,7 @@ func (c *Client) AddFileToDownloads(chatId int64, fileId int32, messageId int64,
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*File), nil
+	return responseAs[*File](resp)
 }
 
 // AddGiftCollectionGifts Adds gifts to the beginning of a previously created collection. If the collection is owned by a channel chat, then requires can_post_messages administrator right in the channel chat. Returns the changed collection
@@ -195,7 +195,7 @@ func (c *Client) AddGiftCollectionGifts(collectionId int32, ownerId MessageSende
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*GiftCollection), nil
+	return responseAs[*GiftCollection](resp)
 }
 
 // AddLocalMessage Adds a local message to a chat. The message is persistent across application restarts only if the message database is used. Returns the added message
@@ -213,7 +213,7 @@ func (c *Client) AddLocalMessage(chatId int64, inputMessageContent InputMessageC
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Message), nil
+	return responseAs[*Message](resp)
 }
 
 // AddLoginPasskey Adds a passkey allowed to be used for the login by the current user and returns the added passkey. Call getPasskeyParameters to get parameters for creating of the passkey
@@ -226,7 +226,7 @@ func (c *Client) AddLoginPasskey(attestationObject []byte, clientData string) (*
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Passkey), nil
+	return responseAs[*Passkey](resp)
 }
 
 // AddLogMessage Adds a message to TDLib internal log. Can be called synchronously
@@ -274,7 +274,7 @@ func (c *Client) AddOffer(chatId int64, messageId int64, options *MessageSendOpt
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Message), nil
+	return responseAs[*Message](resp)
 }
 
 // AddPendingLiveStoryReaction Adds pending paid reaction in a live story group call. Can't be used in live stories posted by the current user.
@@ -334,7 +334,7 @@ func (c *Client) AddProxy(comment string, proxy *Proxy, opts *AddProxyOpts) (*Ad
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*AddedProxy), nil
+	return responseAs[*AddedProxy](resp)
 }
 
 // AddQuickReplyShortcutInlineQueryResultMessage Adds a message to a quick reply shortcut via inline bot. If shortcut doesn't exist and there are less than getOption("quick_reply_shortcut_count_max") shortcuts, then a new shortcut is created.
@@ -352,7 +352,7 @@ func (c *Client) AddQuickReplyShortcutInlineQueryResultMessage(queryId int64, re
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*QuickReplyMessage), nil
+	return responseAs[*QuickReplyMessage](resp)
 }
 
 // AddQuickReplyShortcutMessage Adds a message to a quick reply shortcut. If shortcut doesn't exist and there are less than getOption("quick_reply_shortcut_count_max") shortcuts, then a new shortcut is created.
@@ -366,7 +366,7 @@ func (c *Client) AddQuickReplyShortcutMessage(inputMessageContent InputMessageCo
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*QuickReplyMessage), nil
+	return responseAs[*QuickReplyMessage](resp)
 }
 
 // AddQuickReplyShortcutMessageAlbum Adds 2-10 messages grouped together into an album to a quick reply shortcut. Currently, only audio, document, photo and video messages can be grouped into an album.
@@ -380,7 +380,7 @@ func (c *Client) AddQuickReplyShortcutMessageAlbum(inputMessageContents []InputM
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*QuickReplyMessages), nil
+	return responseAs[*QuickReplyMessages](resp)
 }
 
 // AddRecentlyFoundChat Adds a chat to the list of recently found chats. The chat is added to the beginning of the list. If the chat is already in the list, it will be removed from the list first
@@ -404,7 +404,7 @@ func (c *Client) AddRecentSticker(sticker InputFile, opts *AddRecentStickerOpts)
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Stickers), nil
+	return responseAs[*Stickers](resp)
 }
 
 // AddSavedAnimation Manually adds a new animation to the list of saved animations. The new animation is added to the beginning of the list. If the animation was already in the list, it is removed first.
@@ -425,7 +425,7 @@ func (c *Client) AddSavedNotificationSound(sound InputFile) (*NotificationSound,
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*NotificationSound), nil
+	return responseAs[*NotificationSound](resp)
 }
 
 // AddStickerToSet Adds a new sticker to a set
@@ -450,7 +450,7 @@ func (c *Client) AddStoryAlbumStories(chatId int64, storyAlbumId int32, storyIds
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*StoryAlbum), nil
+	return responseAs[*StoryAlbum](resp)
 }
 
 // AddTextCompositionStyle Adds a custom text composition style to the list of used by the user styles. May return an error with a message "TONES_SAVED_TOO_MANY"
@@ -541,7 +541,7 @@ func (c *Client) AnswerGuestQuery(guestQueryId int64, result InputInlineQueryRes
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*InlineMessageId), nil
+	return responseAs[*InlineMessageId](resp)
 }
 
 // AnswerInlineQuery Sets the result of an inline query; for bots only
@@ -603,7 +603,7 @@ func (c *Client) AnswerWebAppQuery(result InputInlineQueryResult, webAppQueryId 
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*InlineMessageId), nil
+	return responseAs[*InlineMessageId](resp)
 }
 
 // ApplyPremiumGiftCode Applies a Telegram Premium gift code
@@ -684,7 +684,7 @@ func (c *Client) BoostChat(chatId int64, slotIds []int32) (*ChatBoostSlots, erro
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ChatBoostSlots), nil
+	return responseAs[*ChatBoostSlots](resp)
 }
 
 // BuyGiftUpgrade Pays for upgrade of a regular gift that is owned by another user or channel chat
@@ -742,7 +742,7 @@ func (c *Client) CancelRecoveryEmailAddressVerification() (*PasswordState, error
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*PasswordState), nil
+	return responseAs[*PasswordState](resp)
 }
 
 // CanPostStory Checks whether the current user can post a story on behalf of a chat; requires can_post_stories administrator right for supergroup and channel chats
@@ -754,7 +754,7 @@ func (c *Client) CanPostStory(chatId int64) (CanPostStoryResult, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(CanPostStoryResult), nil
+	return responseAs[CanPostStoryResult](resp)
 }
 
 // CanPurchaseFromStore Checks whether an in-store purchase is possible. Must be called before any in-store purchase. For official applications only
@@ -775,7 +775,7 @@ func (c *Client) CanSendGift(giftId int64) (CanSendGiftResult, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(CanSendGiftResult), nil
+	return responseAs[CanSendGiftResult](resp)
 }
 
 // CanSendMessageToUser Checks whether the current user can message another user or try to create a chat with them
@@ -790,7 +790,7 @@ func (c *Client) CanSendMessageToUser(userId int64, opts *CanSendMessageToUserOp
 	if err != nil {
 		return nil, err
 	}
-	return resp.(CanSendMessageToUserResult), nil
+	return responseAs[CanSendMessageToUserResult](resp)
 }
 
 // CanTransferOwnership Checks whether the current session can be used to transfer a chat ownership to another user
@@ -800,7 +800,7 @@ func (c *Client) CanTransferOwnership() (CanTransferOwnershipResult, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(CanTransferOwnershipResult), nil
+	return responseAs[CanTransferOwnershipResult](resp)
 }
 
 // ChangeImportedContacts Changes imported contacts using the list of contacts saved on the device. Imports newly added contacts and, if at least the file database is enabled, deletes recently deleted contacts.
@@ -812,7 +812,7 @@ func (c *Client) ChangeImportedContacts(contacts []ImportedContact) (*ImportedCo
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ImportedContacts), nil
+	return responseAs[*ImportedContacts](resp)
 }
 
 // ChangeStickerSet Installs/uninstalls or activates/archives a sticker set
@@ -930,7 +930,7 @@ func (c *Client) CheckBotUsername(username string, opts *CheckBotUsernameOpts) (
 	if err != nil {
 		return nil, err
 	}
-	return resp.(CheckChatUsernameResult), nil
+	return responseAs[CheckChatUsernameResult](resp)
 }
 
 // CheckChatFolderInviteLink Checks the validity of an invite link for a chat folder and returns information about the corresponding chat folder
@@ -942,7 +942,7 @@ func (c *Client) CheckChatFolderInviteLink(inviteLink string) (*ChatFolderInvite
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ChatFolderInviteLinkInfo), nil
+	return responseAs[*ChatFolderInviteLinkInfo](resp)
 }
 
 // CheckChatInviteLink Checks the validity of an invite link for a chat and returns information about the corresponding chat
@@ -954,7 +954,7 @@ func (c *Client) CheckChatInviteLink(inviteLink string) (*ChatInviteLinkInfo, er
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ChatInviteLinkInfo), nil
+	return responseAs[*ChatInviteLinkInfo](resp)
 }
 
 // CheckChatUsername Checks whether a username can be set for a chat
@@ -967,7 +967,7 @@ func (c *Client) CheckChatUsername(chatId int64, username string) (CheckChatUser
 	if err != nil {
 		return nil, err
 	}
-	return resp.(CheckChatUsernameResult), nil
+	return responseAs[CheckChatUsernameResult](resp)
 }
 
 // CheckCreatedPublicChatsLimit Checks whether the maximum number of owned public chats has been reached. Returns corresponding error if the limit was reached. The limit can be increased with Telegram Premium
@@ -1034,7 +1034,7 @@ func (c *Client) CheckPremiumGiftCode(code string) (*PremiumGiftCodeInfo, error)
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*PremiumGiftCodeInfo), nil
+	return responseAs[*PremiumGiftCodeInfo](resp)
 }
 
 // CheckQuickReplyShortcutName Checks validness of a name for a quick reply shortcut. Can be called synchronously
@@ -1055,7 +1055,7 @@ func (c *Client) CheckRecoveryEmailAddressCode(code string) (*PasswordState, err
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*PasswordState), nil
+	return responseAs[*PasswordState](resp)
 }
 
 // CheckStickerSetName Checks whether a name can be used for a new sticker set
@@ -1067,7 +1067,7 @@ func (c *Client) CheckStickerSetName(name string) (CheckStickerSetNameResult, er
 	if err != nil {
 		return nil, err
 	}
-	return resp.(CheckStickerSetNameResult), nil
+	return responseAs[CheckStickerSetNameResult](resp)
 }
 
 // CheckWalletBotBalance Returns information about balance of the current user in the bot https://t.me/walt; can be used only if getOption("can_use_ton_wallet")
@@ -1077,7 +1077,7 @@ func (c *Client) CheckWalletBotBalance() (*WalletBotBalance, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*WalletBotBalance), nil
+	return responseAs[*WalletBotBalance](resp)
 }
 
 // CheckWebAppFileDownload Checks whether a file can be downloaded and saved locally by Web App request
@@ -1114,7 +1114,7 @@ func (c *Client) CleanFileName(fileName string) (*Text, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Text), nil
+	return responseAs[*Text](resp)
 }
 
 // ClearAllDraftMessages Clears message drafts in all chats
@@ -1192,7 +1192,7 @@ func (c *Client) ClickAnimatedEmojiMessage(chatId int64, messageId int64) (*Stic
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Sticker), nil
+	return responseAs[*Sticker](resp)
 }
 
 // ClickChatSponsoredMessage Informs TDLib that the user opened the sponsored chat via the button, the name, the chat photo, a mention in the sponsored message text, or the media in the sponsored message
@@ -1305,7 +1305,7 @@ func (c *Client) ComposeRichMessageWithAi(customPrompt string, message *InputRic
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*RichMessage), nil
+	return responseAs[*RichMessage](resp)
 }
 
 // ComposeTextWithAi Changes text using an AI model; must not be used in secret chats. May return an error with a message "AICOMPOSE_FLOOD_PREMIUM" if Telegram Premium is required to send further requests
@@ -1322,7 +1322,7 @@ func (c *Client) ComposeTextWithAi(styleName string, text *FormattedText, transl
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*FormattedText), nil
+	return responseAs[*FormattedText](resp)
 }
 
 // ConfirmBusinessConnectedBot Confirms an unconfirmed business connection of the current user from another device
@@ -1343,7 +1343,7 @@ func (c *Client) ConfirmQrCodeAuthentication(link string) (*Session, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Session), nil
+	return responseAs[*Session](resp)
 }
 
 // ConfirmSession Confirms an unconfirmed session of the current user from another device
@@ -1365,7 +1365,7 @@ func (c *Client) ConnectAffiliateProgram(affiliate AffiliateType, botUserId int6
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ConnectedAffiliateProgram), nil
+	return responseAs[*ConnectedAffiliateProgram](resp)
 }
 
 // CraftGift Crafts a new gift from other gifts that will be permanently lost
@@ -1377,7 +1377,7 @@ func (c *Client) CraftGift(receivedGiftIds []string) (CraftGiftResult, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(CraftGiftResult), nil
+	return responseAs[CraftGiftResult](resp)
 }
 
 // CreateBasicGroupChat Returns an existing chat corresponding to a known basic group
@@ -1392,7 +1392,7 @@ func (c *Client) CreateBasicGroupChat(basicGroupId int64, opts *CreateBasicGroup
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Chat), nil
+	return responseAs[*Chat](resp)
 }
 
 // CreateBot Creates a bot which will be managed by another bot. Returns the created bot. May return an error with a message "BOT_CREATE_LIMIT_EXCEEDED"
@@ -1409,7 +1409,7 @@ func (c *Client) CreateBot(managerBotUserId int64, name string, username string,
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*User), nil
+	return responseAs[*User](resp)
 }
 
 // CreateBusinessChatLink Creates a business chat link for the current account. Requires Telegram Business subscription. There can be up to getOption("business_chat_link_count_max") links created. Returns the created link
@@ -1421,7 +1421,7 @@ func (c *Client) CreateBusinessChatLink(linkInfo *InputBusinessChatLink) (*Busin
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*BusinessChatLink), nil
+	return responseAs[*BusinessChatLink](resp)
 }
 
 // CreateCall Creates a new call
@@ -1437,7 +1437,7 @@ func (c *Client) CreateCall(protocol *CallProtocol, userId int64, opts *CreateCa
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*CallId), nil
+	return responseAs[*CallId](resp)
 }
 
 // CreateChatFolder Creates new chat folder. Returns information about the created chat folder. There can be up to getOption("chat_folder_count_max") chat folders, but the limit can be increased with Telegram Premium
@@ -1449,7 +1449,7 @@ func (c *Client) CreateChatFolder(folder *ChatFolder) (*ChatFolderInfo, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ChatFolderInfo), nil
+	return responseAs[*ChatFolderInfo](resp)
 }
 
 // CreateChatFolderInviteLink Creates a new invite link for a chat folder. A link can be created for a chat folder if it has only pinned and included chats
@@ -1463,7 +1463,7 @@ func (c *Client) CreateChatFolderInviteLink(chatFolderId int32, chatIds []int64,
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ChatFolderInviteLink), nil
+	return responseAs[*ChatFolderInviteLink](resp)
 }
 
 // CreateChatInviteLink Creates a new invite link for a chat. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat
@@ -1481,7 +1481,7 @@ func (c *Client) CreateChatInviteLink(chatId int64, expirationDate int32, member
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ChatInviteLink), nil
+	return responseAs[*ChatInviteLink](resp)
 }
 
 // CreateChatSubscriptionInviteLink Creates a new subscription invite link for a channel chat. Requires can_invite_users right in the chat
@@ -1495,7 +1495,7 @@ func (c *Client) CreateChatSubscriptionInviteLink(chatId int64, name string, sub
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ChatInviteLink), nil
+	return responseAs[*ChatInviteLink](resp)
 }
 
 // CreateCommunity Creates a new community for the given chat. Returns identifier of the created community
@@ -1511,7 +1511,7 @@ func (c *Client) CreateCommunity(chatId int64, name string, opts *CreateCommunit
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*CommunityId), nil
+	return responseAs[*CommunityId](resp)
 }
 
 // CreateForumTopic Creates a topic in a forum supergroup chat or a chat with a bot with topics; requires can_manage_topics administrator or can_create_topics member right in the supergroup
@@ -1528,7 +1528,7 @@ func (c *Client) CreateForumTopic(chatId int64, icon *ForumTopicIcon, name strin
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ForumTopicInfo), nil
+	return responseAs[*ForumTopicInfo](resp)
 }
 
 // CreateGiftCollection Creates a collection from gifts on the current user's or a channel's profile page; requires can_post_messages administrator right in the channel chat.
@@ -1542,7 +1542,7 @@ func (c *Client) CreateGiftCollection(name string, ownerId MessageSender, receiv
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*GiftCollection), nil
+	return responseAs[*GiftCollection](resp)
 }
 
 // CreateGroupCall Creates a new group call that isn't bound to a chat
@@ -1555,7 +1555,7 @@ func (c *Client) CreateGroupCall(opts *CreateGroupCallOpts) (*GroupCallInfo, err
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*GroupCallInfo), nil
+	return responseAs[*GroupCallInfo](resp)
 }
 
 // CreateInvoiceLink Creates a link for the given invoice; for bots only
@@ -1568,7 +1568,7 @@ func (c *Client) CreateInvoiceLink(businessConnectionId string, invoice InputMes
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*HttpUrl), nil
+	return responseAs[*HttpUrl](resp)
 }
 
 // CreateNewBasicGroupChat Creates a new basic group and sends a corresponding messageBasicGroupChatCreate. Returns information about the newly created chat
@@ -1584,7 +1584,7 @@ func (c *Client) CreateNewBasicGroupChat(messageAutoDeleteTime int32, title stri
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*CreatedBasicGroupChat), nil
+	return responseAs[*CreatedBasicGroupChat](resp)
 }
 
 // CreateNewSecretChat Creates a new secret chat. Returns the newly created chat
@@ -1596,7 +1596,7 @@ func (c *Client) CreateNewSecretChat(userId int64) (*Chat, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Chat), nil
+	return responseAs[*Chat](resp)
 }
 
 // CreateNewStickerSet Creates a new sticker set. Returns the newly created sticker set
@@ -1616,7 +1616,7 @@ func (c *Client) CreateNewStickerSet(name string, stickerType StickerType, stick
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*StickerSet), nil
+	return responseAs[*StickerSet](resp)
 }
 
 // CreateNewSupergroupChat Creates a new supergroup or channel and sends a corresponding messageSupergroupChatCreate. Returns the newly created chat
@@ -1636,7 +1636,7 @@ func (c *Client) CreateNewSupergroupChat(description string, messageAutoDeleteTi
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Chat), nil
+	return responseAs[*Chat](resp)
 }
 
 // CreateOnRampPaymentSession Creates a session for an on-ramp payment
@@ -1658,7 +1658,7 @@ func (c *Client) CreateOnRampPaymentSession(address string, baseCurrency string,
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*OnRampPaymentSession), nil
+	return responseAs[*OnRampPaymentSession](resp)
 }
 
 // CreatePrivateChat Returns an existing chat corresponding to a given user
@@ -1673,7 +1673,7 @@ func (c *Client) CreatePrivateChat(userId int64, opts *CreatePrivateChatOpts) (*
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Chat), nil
+	return responseAs[*Chat](resp)
 }
 
 // CreateRichMessageWithAi Creates a new rich message using an AI model. May return an error with a message "AICOMPOSE_FLOOD_PREMIUM" if Telegram Premium is required to send further requests
@@ -1689,7 +1689,7 @@ func (c *Client) CreateRichMessageWithAi(languageCode string, prompt string, opt
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*RichMessage), nil
+	return responseAs[*RichMessage](resp)
 }
 
 // CreateSecretChat Returns an existing chat corresponding to a known secret chat
@@ -1701,7 +1701,7 @@ func (c *Client) CreateSecretChat(secretChatId int32) (*Chat, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Chat), nil
+	return responseAs[*Chat](resp)
 }
 
 // CreateStoryAlbum Creates an album of stories; requires can_edit_stories administrator right for supergroup and channel chats
@@ -1715,7 +1715,7 @@ func (c *Client) CreateStoryAlbum(name string, storyIds []int32, storyPosterChat
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*StoryAlbum), nil
+	return responseAs[*StoryAlbum](resp)
 }
 
 // CreateSupergroupChat Returns an existing chat corresponding to a known supergroup or channel
@@ -1730,7 +1730,7 @@ func (c *Client) CreateSupergroupChat(supergroupId int64, opts *CreateSupergroup
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Chat), nil
+	return responseAs[*Chat](resp)
 }
 
 // CreateTemporaryPassword Creates a new temporary password for processing payments
@@ -1743,7 +1743,7 @@ func (c *Client) CreateTemporaryPassword(password string, validFor int32) (*Temp
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*TemporaryPasswordState), nil
+	return responseAs[*TemporaryPasswordState](resp)
 }
 
 // CreateTextCompositionStyle Creates a custom text composition style. May return an error with a message "TONES_SAVED_TOO_MANY" if the maximum number of added custom styles has been reached
@@ -1760,7 +1760,7 @@ func (c *Client) CreateTextCompositionStyle(customEmojiId int64, prompt string, 
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*TextCompositionStyle), nil
+	return responseAs[*TextCompositionStyle](resp)
 }
 
 // CreateTonConnectSession Creates a TON Connect session; can be used only if getOption("can_use_ton_wallet")
@@ -1773,7 +1773,7 @@ func (c *Client) CreateTonConnectSession(dappClientId string, manifestUrl string
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*TonConnectSession), nil
+	return responseAs[*TonConnectSession](resp)
 }
 
 // CreateUserTonWallet Creates a TON wallet for the specified regular user; can be used only if getOption("can_use_ton_wallet"). The current user must have positive TON wallet balance
@@ -1785,7 +1785,7 @@ func (c *Client) CreateUserTonWallet(userId int64) (*UserTonWalletAddress, error
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*UserTonWalletAddress), nil
+	return responseAs[*UserTonWalletAddress](resp)
 }
 
 // CreateVideoChat Creates a video chat (a group call bound to a chat); for basic groups, supergroups and channels only; requires can_manage_video_chats administrator right
@@ -1802,7 +1802,7 @@ func (c *Client) CreateVideoChat(chatId int64, startDate int32, title string, op
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*GroupCallId), nil
+	return responseAs[*GroupCallId](resp)
 }
 
 // DeclineGroupCallInvitation Declines an invitation to an active group call via messageGroupCall. Can be called both by the sender and the receiver of the invitation
@@ -1849,7 +1849,7 @@ func (c *Client) DecryptGroupCallData(data []byte, groupCallId int32, participan
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Data), nil
+	return responseAs[*Data](resp)
 }
 
 // DeleteAccount Deletes the account of the current user, deleting all information associated with the user from the server. The phone number of the account can be used to create a new account.
@@ -2425,7 +2425,7 @@ func (c *Client) DisconnectAffiliateProgram(affiliate AffiliateType, url string)
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ConnectedAffiliateProgram), nil
+	return responseAs[*ConnectedAffiliateProgram](resp)
 }
 
 // DisconnectAllWebsites Disconnects all websites from the current user's Telegram account
@@ -2480,7 +2480,7 @@ func (c *Client) DownloadFile(fileId int32, limit int64, offset int64, priority 
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*File), nil
+	return responseAs[*File](resp)
 }
 
 // DropGiftOriginalDetails Drops original details for an upgraded gift
@@ -2505,7 +2505,7 @@ func (c *Client) EditBotMediaPreview(botUserId int64, content InputStoryContent,
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*BotMediaPreview), nil
+	return responseAs[*BotMediaPreview](resp)
 }
 
 // EditBusinessChatLink Edits a business chat link of the current account. Requires Telegram Business subscription. Returns the edited link
@@ -2518,7 +2518,7 @@ func (c *Client) EditBusinessChatLink(link string, linkInfo *InputBusinessChatLi
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*BusinessChatLink), nil
+	return responseAs[*BusinessChatLink](resp)
 }
 
 // EditBusinessMessageCaption Edits the caption of a message sent on behalf of a business account; for bots only
@@ -2537,7 +2537,7 @@ func (c *Client) EditBusinessMessageCaption(businessConnectionId string, chatId 
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*BusinessMessage), nil
+	return responseAs[*BusinessMessage](resp)
 }
 
 // EditBusinessMessageChecklist Edits the content of a checklist in a message sent on behalf of a business account; for bots only
@@ -2555,7 +2555,7 @@ func (c *Client) EditBusinessMessageChecklist(businessConnectionId string, chatI
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*BusinessMessage), nil
+	return responseAs[*BusinessMessage](resp)
 }
 
 // EditBusinessMessageLiveLocation Edits the content of a live location in a message sent on behalf of a business account; for bots only
@@ -2573,7 +2573,7 @@ func (c *Client) EditBusinessMessageLiveLocation(businessConnectionId string, ch
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*BusinessMessage), nil
+	return responseAs[*BusinessMessage](resp)
 }
 
 // EditBusinessMessageMedia Edits the media content of a message with a text, an animation, an audio, a document, a photo or a video in a message sent on behalf of a business account; for bots only
@@ -2591,7 +2591,7 @@ func (c *Client) EditBusinessMessageMedia(businessConnectionId string, chatId in
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*BusinessMessage), nil
+	return responseAs[*BusinessMessage](resp)
 }
 
 // EditBusinessMessageReplyMarkup Edits the reply markup of a message sent on behalf of a business account; for bots only
@@ -2608,7 +2608,7 @@ func (c *Client) EditBusinessMessageReplyMarkup(businessConnectionId string, cha
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*BusinessMessage), nil
+	return responseAs[*BusinessMessage](resp)
 }
 
 // EditBusinessMessageText Edits the text of a text or game message sent on behalf of a business account; for bots only
@@ -2626,7 +2626,7 @@ func (c *Client) EditBusinessMessageText(businessConnectionId string, chatId int
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*BusinessMessage), nil
+	return responseAs[*BusinessMessage](resp)
 }
 
 // EditBusinessStory Changes a story posted by the bot on behalf of a business account; for bots only
@@ -2643,7 +2643,7 @@ func (c *Client) EditBusinessStory(areas *InputStoryAreas, caption *FormattedTex
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Story), nil
+	return responseAs[*Story](resp)
 }
 
 // EditChatFolder Edits existing chat folder. Returns information about the edited chat folder
@@ -2656,7 +2656,7 @@ func (c *Client) EditChatFolder(chatFolderId int32, folder *ChatFolder) (*ChatFo
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ChatFolderInfo), nil
+	return responseAs[*ChatFolderInfo](resp)
 }
 
 // EditChatFolderInviteLink Edits an invite link for a chat folder
@@ -2671,7 +2671,7 @@ func (c *Client) EditChatFolderInviteLink(chatFolderId int32, chatIds []int64, i
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ChatFolderInviteLink), nil
+	return responseAs[*ChatFolderInviteLink](resp)
 }
 
 // EditChatInviteLink Edits a non-primary invite link for a chat. Available in basic groups, supergroups, and channels.
@@ -2690,7 +2690,7 @@ func (c *Client) EditChatInviteLink(chatId int64, expirationDate int32, inviteLi
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ChatInviteLink), nil
+	return responseAs[*ChatInviteLink](resp)
 }
 
 // EditChatSubscriptionInviteLink Edits a subscription invite link for a channel chat. Requires can_invite_users right in the chat for own links and owner privileges for other links
@@ -2704,7 +2704,7 @@ func (c *Client) EditChatSubscriptionInviteLink(chatId int64, inviteLink string,
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ChatInviteLink), nil
+	return responseAs[*ChatInviteLink](resp)
 }
 
 // EditChatWelcomeMessage Edits a welcome message of a chat; requires can_send_welcome_messages administrator right in the chat
@@ -2838,8 +2838,8 @@ func (c *Client) EditInlineMessageText(inlineMessageId string, inputMessageConte
 	return err
 }
 
-// EditMessageCaption Edits the message content caption. Returns the edited message after the edit is completed on the server side
-func (c *Client) EditMessageCaption(chatId int64, messageId int64, opts *EditMessageCaptionOpts) (*Message, error) {
+// EditMessageCaptionText Edits the message content caption. Returns the edited message after the edit is completed on the server side
+func (c *Client) EditMessageCaptionText(chatId int64, messageId int64, opts *EditMessageCaptionTextOpts) (*Message, error) {
 	req := &EditMessageCaption{
 		ChatId:    chatId,
 		MessageId: messageId,
@@ -2853,7 +2853,7 @@ func (c *Client) EditMessageCaption(chatId int64, messageId int64, opts *EditMes
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Message), nil
+	return responseAs[*Message](resp)
 }
 
 // EditMessageChecklist Edits the message content of a checklist. Returns the edited message after the edit is completed on the server side
@@ -2870,7 +2870,7 @@ func (c *Client) EditMessageChecklist(chatId int64, checklist *InputChecklist, m
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Message), nil
+	return responseAs[*Message](resp)
 }
 
 // EditMessageLiveLocation Edits the message content of a live location. Messages can be edited for a limited period of time specified in the live location.
@@ -2887,7 +2887,7 @@ func (c *Client) EditMessageLiveLocation(chatId int64, messageId int64, opts *Ed
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Message), nil
+	return responseAs[*Message](resp)
 }
 
 // EditMessageMedia Edits the media content of a message, including message caption. If only the caption needs to be edited, use editMessageCaption instead.
@@ -2904,7 +2904,7 @@ func (c *Client) EditMessageMedia(chatId int64, inputMessageContent InputMessage
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Message), nil
+	return responseAs[*Message](resp)
 }
 
 // EditMessageReplyMarkup Edits the message reply markup; for bots only. Returns the edited message after the edit is completed on the server side
@@ -2920,7 +2920,7 @@ func (c *Client) EditMessageReplyMarkup(chatId int64, messageId int64, opts *Edi
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Message), nil
+	return responseAs[*Message](resp)
 }
 
 // EditMessageSchedulingState Edits the time when a scheduled message will be sent. Scheduling state of all messages in the same album or forwarded together with the message will be also changed
@@ -2936,8 +2936,8 @@ func (c *Client) EditMessageSchedulingState(chatId int64, messageId int64, opts 
 	return err
 }
 
-// EditMessageText Edits the text of a message (or a text of a game message). Returns the edited message after the edit is completed on the server side
-func (c *Client) EditMessageText(chatId int64, inputMessageContent InputMessageContent, messageId int64, opts *EditMessageTextOpts) (*Message, error) {
+// EditMessageTextContent Edits the text of a message (or a text of a game message). Returns the edited message after the edit is completed on the server side
+func (c *Client) EditMessageTextContent(chatId int64, inputMessageContent InputMessageContent, messageId int64, opts *EditMessageTextContentOpts) (*Message, error) {
 	req := &EditMessageText{
 		ChatId:              chatId,
 		InputMessageContent: inputMessageContent,
@@ -2950,7 +2950,7 @@ func (c *Client) EditMessageText(chatId int64, inputMessageContent InputMessageC
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Message), nil
+	return responseAs[*Message](resp)
 }
 
 // EditProxy Edits an existing proxy server for network requests. Can be called before authorization
@@ -2967,7 +2967,7 @@ func (c *Client) EditProxy(comment string, proxy *Proxy, proxyId int32, opts *Ed
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*AddedProxy), nil
+	return responseAs[*AddedProxy](resp)
 }
 
 // EditQuickReplyMessage Asynchronously edits the text, media or caption of a quick reply message. Use quickReplyMessage.can_be_edited to check whether a message can be edited.
@@ -3034,7 +3034,7 @@ func (c *Client) EditTextCompositionStyle(customEmojiId int64, name string, prom
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*TextCompositionStyle), nil
+	return responseAs[*TextCompositionStyle](resp)
 }
 
 // EditUserStarSubscription Cancels or re-enables Telegram Star subscription for a user; for bots only
@@ -3081,7 +3081,7 @@ func (c *Client) EncryptGroupCallData(data []byte, dataChannel GroupCallDataChan
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Data), nil
+	return responseAs[*Data](resp)
 }
 
 // EndGroupCall Ends a group call. Requires groupCall.can_be_managed right for video chats and live stories or groupCall.is_owned otherwise
@@ -3132,7 +3132,7 @@ func (c *Client) FixRichMessageWithAi(message *InputRichMessage) (*RichMessage, 
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*RichMessage), nil
+	return responseAs[*RichMessage](resp)
 }
 
 // FixTextWithAi Fixes text using an AI model; must not be used in secret chats. May return an error with a message "AICOMPOSE_FLOOD_PREMIUM" if Telegram Premium is required to send further requests
@@ -3144,7 +3144,7 @@ func (c *Client) FixTextWithAi(text *FormattedText) (*FixedText, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*FixedText), nil
+	return responseAs[*FixedText](resp)
 }
 
 // ForwardMessages Forwards previously sent messages. Returns the forwarded messages in the same order as the message identifiers passed in message_ids. If a message can't be forwarded, null will be returned instead of the message
@@ -3164,7 +3164,7 @@ func (c *Client) ForwardMessages(chatId int64, fromChatId int64, messageIds []in
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Messages), nil
+	return responseAs[*Messages](resp)
 }
 
 // GetAccountTtl Returns the period of inactivity after which the account of the current user will automatically be deleted
@@ -3174,7 +3174,7 @@ func (c *Client) GetAccountTtl() (*AccountTtl, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*AccountTtl), nil
+	return responseAs[*AccountTtl](resp)
 }
 
 // GetActiveSessions Returns all active sessions of the current user. Additionally, getBusinessConnectedBot must be used to show the bot on top of active sessions
@@ -3184,7 +3184,7 @@ func (c *Client) GetActiveSessions() (*Sessions, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Sessions), nil
+	return responseAs[*Sessions](resp)
 }
 
 // GetAddressTonWallet Returns information about a TON wallet with the given address; can be used only if getOption("can_use_ton_wallet")
@@ -3196,7 +3196,7 @@ func (c *Client) GetAddressTonWallet(address string) (*UserTonWalletAddress, err
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*UserTonWalletAddress), nil
+	return responseAs[*UserTonWalletAddress](resp)
 }
 
 // GetAllPassportElements Returns all available Telegram Passport elements
@@ -3208,7 +3208,7 @@ func (c *Client) GetAllPassportElements(password string) (*PassportElements, err
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*PassportElements), nil
+	return responseAs[*PassportElements](resp)
 }
 
 // GetAllStickerEmojis Returns unique emoji that correspond to stickers to be found by the getStickers(sticker_type, query, 1000000, chat_id)
@@ -3225,7 +3225,7 @@ func (c *Client) GetAllStickerEmojis(chatId int64, query string, stickerType Sti
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Emojis), nil
+	return responseAs[*Emojis](resp)
 }
 
 // GetAnimatedEmoji Returns an animated emoji corresponding to a given emoji. Returns a 404 error if the emoji has no animated emoji
@@ -3237,7 +3237,7 @@ func (c *Client) GetAnimatedEmoji(emoji string) (*AnimatedEmoji, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*AnimatedEmoji), nil
+	return responseAs[*AnimatedEmoji](resp)
 }
 
 // GetApplicationConfig Returns application config, provided by the server. Can be called before authorization
@@ -3247,7 +3247,7 @@ func (c *Client) GetApplicationConfig() (JsonValue, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(JsonValue), nil
+	return responseAs[JsonValue](resp)
 }
 
 // GetApplicationDownloadLink Returns the link for downloading official Telegram application to be used when the current user invites friends to Telegram
@@ -3257,7 +3257,7 @@ func (c *Client) GetApplicationDownloadLink() (*HttpUrl, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*HttpUrl), nil
+	return responseAs[*HttpUrl](resp)
 }
 
 // GetArchiveChatListSettings Returns settings for automatic moving of chats to and from the Archive chat lists
@@ -3267,7 +3267,7 @@ func (c *Client) GetArchiveChatListSettings() (*ArchiveChatListSettings, error) 
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ArchiveChatListSettings), nil
+	return responseAs[*ArchiveChatListSettings](resp)
 }
 
 // GetArchivedStickerSets Returns a list of archived sticker sets
@@ -3281,7 +3281,7 @@ func (c *Client) GetArchivedStickerSets(limit int32, offsetStickerSetId int64, s
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*StickerSets), nil
+	return responseAs[*StickerSets](resp)
 }
 
 // GetAttachedStickerSets Returns a list of sticker sets attached to a file, including regular, mask, and emoji sticker sets. Currently, only animations, photos, and videos can have attached sticker sets
@@ -3293,7 +3293,7 @@ func (c *Client) GetAttachedStickerSets(fileId int32) (*StickerSets, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*StickerSets), nil
+	return responseAs[*StickerSets](resp)
 }
 
 // GetAttachmentMenuBot Returns information about a bot that can be added to attachment or side menu
@@ -3305,7 +3305,7 @@ func (c *Client) GetAttachmentMenuBot(botUserId int64) (*AttachmentMenuBot, erro
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*AttachmentMenuBot), nil
+	return responseAs[*AttachmentMenuBot](resp)
 }
 
 // GetAuthenticationPasskeyParameters Returns parameters for authentication using a passkey as JSON-serialized string
@@ -3315,7 +3315,7 @@ func (c *Client) GetAuthenticationPasskeyParameters() (*Text, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Text), nil
+	return responseAs[*Text](resp)
 }
 
 // GetAuthorizationState Returns the current authorization state. This is an offline method. For informational purposes only. Use updateAuthorizationState instead to maintain the current authorization state. Can be called before initialization
@@ -3325,7 +3325,7 @@ func (c *Client) GetAuthorizationState() (AuthorizationState, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(AuthorizationState), nil
+	return responseAs[AuthorizationState](resp)
 }
 
 // GetAutoDownloadSettingsPresets Returns auto-download settings presets for the current user
@@ -3335,7 +3335,7 @@ func (c *Client) GetAutoDownloadSettingsPresets() (*AutoDownloadSettingsPresets,
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*AutoDownloadSettingsPresets), nil
+	return responseAs[*AutoDownloadSettingsPresets](resp)
 }
 
 // GetAutosaveSettings Returns autosave settings for the current user
@@ -3345,7 +3345,7 @@ func (c *Client) GetAutosaveSettings() (*AutosaveSettings, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*AutosaveSettings), nil
+	return responseAs[*AutosaveSettings](resp)
 }
 
 // GetAvailableChatBoostSlots Returns the list of available chat boost slots for the current user
@@ -3355,7 +3355,7 @@ func (c *Client) GetAvailableChatBoostSlots() (*ChatBoostSlots, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ChatBoostSlots), nil
+	return responseAs[*ChatBoostSlots](resp)
 }
 
 // GetAvailableGifts Returns gifts that can be sent to other users and channel chats
@@ -3365,7 +3365,7 @@ func (c *Client) GetAvailableGifts() (*AvailableGifts, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*AvailableGifts), nil
+	return responseAs[*AvailableGifts](resp)
 }
 
 // GetBackgroundUrl Constructs a persistent HTTP URL for a background
@@ -3378,7 +3378,7 @@ func (c *Client) GetBackgroundUrl(name string, typeField BackgroundType) (*HttpU
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*HttpUrl), nil
+	return responseAs[*HttpUrl](resp)
 }
 
 // GetBankCardInfo Returns information about a bank card
@@ -3390,7 +3390,7 @@ func (c *Client) GetBankCardInfo(bankCardNumber string) (*BankCardInfo, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*BankCardInfo), nil
+	return responseAs[*BankCardInfo](resp)
 }
 
 // GetBasicGroup Returns information about a basic group by its identifier. This is an offline method if the current user is not a bot
@@ -3402,7 +3402,7 @@ func (c *Client) GetBasicGroup(basicGroupId int64) (*BasicGroup, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*BasicGroup), nil
+	return responseAs[*BasicGroup](resp)
 }
 
 // GetBasicGroupFullInfo Returns full information about a basic group by its identifier
@@ -3414,7 +3414,7 @@ func (c *Client) GetBasicGroupFullInfo(basicGroupId int64) (*BasicGroupFullInfo,
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*BasicGroupFullInfo), nil
+	return responseAs[*BasicGroupFullInfo](resp)
 }
 
 // GetBlockedMessageSenders Returns users and chats that were blocked by the current user
@@ -3428,7 +3428,7 @@ func (c *Client) GetBlockedMessageSenders(blockList BlockList, limit int32, offs
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*MessageSenders), nil
+	return responseAs[*MessageSenders](resp)
 }
 
 // GetBotInfoDescription Returns the text shown in the chat with a bot if the chat is empty in the given language. Can be called only if userTypeBot.can_be_edited == true
@@ -3441,7 +3441,7 @@ func (c *Client) GetBotInfoDescription(botUserId int64, languageCode string) (*T
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Text), nil
+	return responseAs[*Text](resp)
 }
 
 // GetBotInfoShortDescription Returns the text shown on a bot's profile page and sent together with the link when users share the bot in the given language. Can be called only if userTypeBot.can_be_edited == true
@@ -3454,7 +3454,7 @@ func (c *Client) GetBotInfoShortDescription(botUserId int64, languageCode string
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Text), nil
+	return responseAs[*Text](resp)
 }
 
 // GetBotMediaPreviewInfo Returns the list of media previews for the given language and the list of languages for which the bot has dedicated previews
@@ -3467,7 +3467,7 @@ func (c *Client) GetBotMediaPreviewInfo(botUserId int64, languageCode string) (*
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*BotMediaPreviewInfo), nil
+	return responseAs[*BotMediaPreviewInfo](resp)
 }
 
 // GetBotMediaPreviews Returns the list of media previews of a bot
@@ -3479,7 +3479,7 @@ func (c *Client) GetBotMediaPreviews(botUserId int64) (*BotMediaPreviews, error)
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*BotMediaPreviews), nil
+	return responseAs[*BotMediaPreviews](resp)
 }
 
 // GetBotName Returns the name of a bot in the given language. Can be called only if userTypeBot.can_be_edited == true
@@ -3492,7 +3492,7 @@ func (c *Client) GetBotName(botUserId int64, languageCode string) (*Text, error)
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Text), nil
+	return responseAs[*Text](resp)
 }
 
 // GetBotSimilarBotCount Returns approximate number of bots similar to the given bot
@@ -3507,7 +3507,7 @@ func (c *Client) GetBotSimilarBotCount(botUserId int64, opts *GetBotSimilarBotCo
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Count), nil
+	return responseAs[*Count](resp)
 }
 
 // GetBotSimilarBots Returns a list of bots similar to the given bot
@@ -3519,7 +3519,7 @@ func (c *Client) GetBotSimilarBots(botUserId int64) (*Users, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Users), nil
+	return responseAs[*Users](resp)
 }
 
 // GetBusinessAccountStarAmount Returns the Telegram Star amount owned by a business account; for bots only
@@ -3531,7 +3531,7 @@ func (c *Client) GetBusinessAccountStarAmount(businessConnectionId string) (*Sta
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*StarAmount), nil
+	return responseAs[*StarAmount](resp)
 }
 
 // GetBusinessChatLinkInfo Returns information about a business chat link
@@ -3543,7 +3543,7 @@ func (c *Client) GetBusinessChatLinkInfo(linkName string) (*BusinessChatLinkInfo
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*BusinessChatLinkInfo), nil
+	return responseAs[*BusinessChatLinkInfo](resp)
 }
 
 // GetBusinessChatLinks Returns business chat links created for the current account
@@ -3553,7 +3553,7 @@ func (c *Client) GetBusinessChatLinks() (*BusinessChatLinks, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*BusinessChatLinks), nil
+	return responseAs[*BusinessChatLinks](resp)
 }
 
 // GetBusinessConnectedBot Returns information about the business bot that is connected to the current user account. Returns a 404 error if there is no connected bot
@@ -3563,7 +3563,7 @@ func (c *Client) GetBusinessConnectedBot() (*BusinessConnectedBotInfo, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*BusinessConnectedBotInfo), nil
+	return responseAs[*BusinessConnectedBotInfo](resp)
 }
 
 // GetBusinessConnection Returns information about a business connection by its identifier; for bots only
@@ -3575,7 +3575,7 @@ func (c *Client) GetBusinessConnection(connectionId string) (*BusinessConnection
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*BusinessConnection), nil
+	return responseAs[*BusinessConnection](resp)
 }
 
 // GetBusinessFeatures Returns information about features, available to Business users
@@ -3588,7 +3588,7 @@ func (c *Client) GetBusinessFeatures(opts *GetBusinessFeaturesOpts) (*BusinessFe
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*BusinessFeatures), nil
+	return responseAs[*BusinessFeatures](resp)
 }
 
 // GetCallbackQueryAnswer Sends a callback query to a bot and returns an answer. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires
@@ -3602,7 +3602,7 @@ func (c *Client) GetCallbackQueryAnswer(chatId int64, messageId int64, payload C
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*CallbackQueryAnswer), nil
+	return responseAs[*CallbackQueryAnswer](resp)
 }
 
 // GetCallbackQueryMessage Returns information about a message with the callback button that originated a callback query; for bots only
@@ -3616,7 +3616,7 @@ func (c *Client) GetCallbackQueryMessage(callbackQueryId int64, chatId int64, me
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Message), nil
+	return responseAs[*Message](resp)
 }
 
 // GetChat Returns information about a chat by its identifier. This is an offline method if the current user is not a bot
@@ -3628,7 +3628,7 @@ func (c *Client) GetChat(chatId int64) (*Chat, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Chat), nil
+	return responseAs[*Chat](resp)
 }
 
 // GetChatActiveStories Returns the list of active stories posted by the given chat
@@ -3640,7 +3640,7 @@ func (c *Client) GetChatActiveStories(chatId int64) (*ChatActiveStories, error) 
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ChatActiveStories), nil
+	return responseAs[*ChatActiveStories](resp)
 }
 
 // GetChatAdministrators Returns a list of administrators of the chat with their custom titles
@@ -3652,7 +3652,7 @@ func (c *Client) GetChatAdministrators(chatId int64) (*ChatAdministrators, error
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ChatAdministrators), nil
+	return responseAs[*ChatAdministrators](resp)
 }
 
 // GetChatArchivedStories Returns the list of all stories posted by the given chat; requires can_edit_stories administrator right in the chat.
@@ -3666,7 +3666,7 @@ func (c *Client) GetChatArchivedStories(chatId int64, fromStoryId int32, limit i
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Stories), nil
+	return responseAs[*Stories](resp)
 }
 
 // GetChatAvailableMessageSenders Returns the list of message sender identifiers, which can be used to send messages in a chat
@@ -3678,7 +3678,7 @@ func (c *Client) GetChatAvailableMessageSenders(chatId int64) (*ChatMessageSende
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ChatMessageSenders), nil
+	return responseAs[*ChatMessageSenders](resp)
 }
 
 // GetChatAvailablePaidMessageReactionSenders Returns the list of message sender identifiers, which can be used to send a paid reaction in a chat
@@ -3690,7 +3690,7 @@ func (c *Client) GetChatAvailablePaidMessageReactionSenders(chatId int64) (*Mess
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*MessageSenders), nil
+	return responseAs[*MessageSenders](resp)
 }
 
 // GetChatBoostFeatures Returns the list of features available for different chat boost levels. This is an offline method
@@ -3703,7 +3703,7 @@ func (c *Client) GetChatBoostFeatures(opts *GetChatBoostFeaturesOpts) (*ChatBoos
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ChatBoostFeatures), nil
+	return responseAs[*ChatBoostFeatures](resp)
 }
 
 // GetChatBoostLevelFeatures Returns the list of features available on the specific chat boost level. This is an offline method
@@ -3718,7 +3718,7 @@ func (c *Client) GetChatBoostLevelFeatures(level int32, opts *GetChatBoostLevelF
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ChatBoostLevelFeatures), nil
+	return responseAs[*ChatBoostLevelFeatures](resp)
 }
 
 // GetChatBoostLink Returns an HTTPS link to boost the specified supergroup or channel chat
@@ -3730,7 +3730,7 @@ func (c *Client) GetChatBoostLink(chatId int64) (*ChatBoostLink, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ChatBoostLink), nil
+	return responseAs[*ChatBoostLink](resp)
 }
 
 // GetChatBoostLinkInfo Returns information about a link to boost a chat. Can be called for any internal link of the type internalLinkTypeChatBoost
@@ -3742,7 +3742,7 @@ func (c *Client) GetChatBoostLinkInfo(url string) (*ChatBoostLinkInfo, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ChatBoostLinkInfo), nil
+	return responseAs[*ChatBoostLinkInfo](resp)
 }
 
 // GetChatBoosts Returns the list of boosts applied to a chat; requires administrator rights in the chat
@@ -3759,7 +3759,7 @@ func (c *Client) GetChatBoosts(chatId int64, limit int32, offset string, opts *G
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*FoundChatBoosts), nil
+	return responseAs[*FoundChatBoosts](resp)
 }
 
 // GetChatBoostStatus Returns the current boost status for a supergroup or a channel chat
@@ -3771,7 +3771,7 @@ func (c *Client) GetChatBoostStatus(chatId int64) (*ChatBoostStatus, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ChatBoostStatus), nil
+	return responseAs[*ChatBoostStatus](resp)
 }
 
 // GetChatEventLog Returns a list of service actions taken by chat members and administrators in the last 48 hours. Available only in supergroups and channels. Requires administrator rights. Returns results in reverse chronological order (i.e., in order of decreasing event_id)
@@ -3790,7 +3790,7 @@ func (c *Client) GetChatEventLog(chatId int64, fromEventId int64, limit int32, q
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ChatEvents), nil
+	return responseAs[*ChatEvents](resp)
 }
 
 // GetChatFolder Returns information about a chat folder by its identifier
@@ -3802,7 +3802,7 @@ func (c *Client) GetChatFolder(chatFolderId int32) (*ChatFolder, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ChatFolder), nil
+	return responseAs[*ChatFolder](resp)
 }
 
 // GetChatFolderChatCount Returns approximate number of chats in a being created chat folder. Main and archive chat lists must be fully preloaded for this function to work correctly
@@ -3814,7 +3814,7 @@ func (c *Client) GetChatFolderChatCount(folder *ChatFolder) (*Count, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Count), nil
+	return responseAs[*Count](resp)
 }
 
 // GetChatFolderChatsToLeave Returns identifiers of pinned or always included chats from a chat folder, which are suggested to be left when the chat folder is deleted
@@ -3826,7 +3826,7 @@ func (c *Client) GetChatFolderChatsToLeave(chatFolderId int32) (*Chats, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Chats), nil
+	return responseAs[*Chats](resp)
 }
 
 // GetChatFolderDefaultIconName Returns default icon name for a folder. Can be called synchronously
@@ -3838,7 +3838,7 @@ func (c *Client) GetChatFolderDefaultIconName(folder *ChatFolder) (*ChatFolderIc
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ChatFolderIcon), nil
+	return responseAs[*ChatFolderIcon](resp)
 }
 
 // GetChatFolderInviteLinks Returns invite links created by the current user for a shareable chat folder
@@ -3850,7 +3850,7 @@ func (c *Client) GetChatFolderInviteLinks(chatFolderId int32) (*ChatFolderInvite
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ChatFolderInviteLinks), nil
+	return responseAs[*ChatFolderInviteLinks](resp)
 }
 
 // GetChatFolderNewChats Returns new chats added to a shareable chat folder by its owner. The method must be called at most once in getOption("chat_folder_new_chats_update_period") for the given chat folder
@@ -3862,7 +3862,7 @@ func (c *Client) GetChatFolderNewChats(chatFolderId int32) (*Chats, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Chats), nil
+	return responseAs[*Chats](resp)
 }
 
 // GetChatHistory Returns messages in a chat. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id).
@@ -3880,7 +3880,7 @@ func (c *Client) GetChatHistory(chatId int64, fromMessageId int64, limit int32, 
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Messages), nil
+	return responseAs[*Messages](resp)
 }
 
 // GetChatInviteLink Returns information about an invite link. Requires administrator privileges and can_invite_users right in the chat to get own links and owner privileges to get other links
@@ -3893,7 +3893,7 @@ func (c *Client) GetChatInviteLink(chatId int64, inviteLink string) (*ChatInvite
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ChatInviteLink), nil
+	return responseAs[*ChatInviteLink](resp)
 }
 
 // GetChatInviteLinkCounts Returns the list of chat administrators with number of their invite links. Requires owner privileges in the chat
@@ -3905,7 +3905,7 @@ func (c *Client) GetChatInviteLinkCounts(chatId int64) (*ChatInviteLinkCounts, e
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ChatInviteLinkCounts), nil
+	return responseAs[*ChatInviteLinkCounts](resp)
 }
 
 // GetChatInviteLinkMembers Returns chat members joined a chat via an invite link. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
@@ -3923,7 +3923,7 @@ func (c *Client) GetChatInviteLinkMembers(chatId int64, inviteLink string, limit
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ChatInviteLinkMembers), nil
+	return responseAs[*ChatInviteLinkMembers](resp)
 }
 
 // GetChatInviteLinks Returns invite links for a chat created by specified administrator. Requires administrator privileges and can_invite_users right in the chat to get own links and owner privileges to get other links
@@ -3942,7 +3942,7 @@ func (c *Client) GetChatInviteLinks(chatId int64, creatorUserId int64, limit int
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ChatInviteLinks), nil
+	return responseAs[*ChatInviteLinks](resp)
 }
 
 // GetChatJoinRequests Returns pending join requests in a chat
@@ -3960,7 +3960,7 @@ func (c *Client) GetChatJoinRequests(chatId int64, inviteLink string, limit int3
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ChatJoinRequests), nil
+	return responseAs[*ChatJoinRequests](resp)
 }
 
 // GetChatListsToAddChat Returns chat lists to which the chat can be added. This is an offline method
@@ -3972,7 +3972,7 @@ func (c *Client) GetChatListsToAddChat(chatId int64) (*ChatLists, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ChatLists), nil
+	return responseAs[*ChatLists](resp)
 }
 
 // GetChatMember Returns information about a single member of a chat
@@ -3985,7 +3985,7 @@ func (c *Client) GetChatMember(chatId int64, memberId MessageSender) (*ChatMembe
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ChatMember), nil
+	return responseAs[*ChatMember](resp)
 }
 
 // GetChatMessageByDate Returns the last message sent in a chat no later than the specified date. Returns a 404 error if such message doesn't exist
@@ -3998,7 +3998,7 @@ func (c *Client) GetChatMessageByDate(chatId int64, date int32) (*Message, error
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Message), nil
+	return responseAs[*Message](resp)
 }
 
 // GetChatMessageCalendar Returns information about the next messages of the specified type in the chat split by days. Returns the results in reverse chronological order. Can return partial result for the last returned day. Behavior of this method depends on the value of the option "utc_time_offset"
@@ -4015,7 +4015,7 @@ func (c *Client) GetChatMessageCalendar(chatId int64, filter SearchMessagesFilte
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*MessageCalendar), nil
+	return responseAs[*MessageCalendar](resp)
 }
 
 // GetChatMessageCount Returns approximate number of messages of the specified type in the chat or its topic
@@ -4032,7 +4032,7 @@ func (c *Client) GetChatMessageCount(chatId int64, filter SearchMessagesFilter, 
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Count), nil
+	return responseAs[*Count](resp)
 }
 
 // GetChatMessagePosition Returns approximate 1-based position of a message among messages, which can be found by the specified filter in the chat and topic. Cannot be used in secret chats
@@ -4049,7 +4049,7 @@ func (c *Client) GetChatMessagePosition(chatId int64, filter SearchMessagesFilte
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Count), nil
+	return responseAs[*Count](resp)
 }
 
 // GetChatNotificationSettingsExceptions Returns the list of chats with non-default notification settings for new messages
@@ -4063,7 +4063,7 @@ func (c *Client) GetChatNotificationSettingsExceptions(opts *GetChatNotification
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Chats), nil
+	return responseAs[*Chats](resp)
 }
 
 // GetChatOwnerAfterLeaving Returns the user who will become the owner of the chat after 7 days if the current user does not return to the supergroup or channel during that period or immediately for basic groups;
@@ -4075,7 +4075,7 @@ func (c *Client) GetChatOwnerAfterLeaving(chatId int64) (*User, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*User), nil
+	return responseAs[*User](resp)
 }
 
 // GetChatPinnedMessage Returns information about a newest pinned message in the chat. Returns a 404 error if the message doesn't exist
@@ -4087,7 +4087,7 @@ func (c *Client) GetChatPinnedMessage(chatId int64) (*Message, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Message), nil
+	return responseAs[*Message](resp)
 }
 
 // GetChatPostedToChatPageStories Returns the list of stories that posted by the given chat to its chat page. If from_story_id == 0, then pinned stories are returned first.
@@ -4101,7 +4101,7 @@ func (c *Client) GetChatPostedToChatPageStories(chatId int64, fromStoryId int32,
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Stories), nil
+	return responseAs[*Stories](resp)
 }
 
 // GetChatRevenueStatistics Returns detailed revenue statistics about a chat. Currently, this method can be used only
@@ -4116,7 +4116,7 @@ func (c *Client) GetChatRevenueStatistics(chatId int64, opts *GetChatRevenueStat
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ChatRevenueStatistics), nil
+	return responseAs[*ChatRevenueStatistics](resp)
 }
 
 // GetChatRevenueTransactions Returns the list of revenue transactions for a chat. Currently, this method can be used only
@@ -4130,7 +4130,7 @@ func (c *Client) GetChatRevenueTransactions(chatId int64, limit int32, offset st
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ChatRevenueTransactions), nil
+	return responseAs[*ChatRevenueTransactions](resp)
 }
 
 // GetChatRevenueWithdrawalUrl Returns a URL for chat revenue withdrawal; requires owner privileges in the channel chat or the bot. Currently, this method can be used only
@@ -4143,7 +4143,7 @@ func (c *Client) GetChatRevenueWithdrawalUrl(chatId int64, password string) (*Ht
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*HttpUrl), nil
+	return responseAs[*HttpUrl](resp)
 }
 
 // GetChats Returns an ordered list of chats from the beginning of a chat list. For informational purposes only. Use loadChats and updates processing instead to maintain chat lists in a consistent state
@@ -4158,7 +4158,7 @@ func (c *Client) GetChats(limit int32, opts *GetChatsOpts) (*Chats, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Chats), nil
+	return responseAs[*Chats](resp)
 }
 
 // GetChatScheduledMessages Returns all scheduled messages in a chat. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id)
@@ -4170,7 +4170,7 @@ func (c *Client) GetChatScheduledMessages(chatId int64) (*Messages, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Messages), nil
+	return responseAs[*Messages](resp)
 }
 
 // GetChatsForChatFolderInviteLink Returns identifiers of chats from a chat folder, suitable for adding to a chat folder invite link
@@ -4182,7 +4182,7 @@ func (c *Client) GetChatsForChatFolderInviteLink(chatFolderId int32) (*Chats, er
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Chats), nil
+	return responseAs[*Chats](resp)
 }
 
 // GetChatSimilarChatCount Returns approximate number of chats similar to the given chat
@@ -4197,7 +4197,7 @@ func (c *Client) GetChatSimilarChatCount(chatId int64, opts *GetChatSimilarChatC
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Count), nil
+	return responseAs[*Count](resp)
 }
 
 // GetChatSimilarChats Returns a list of chats similar to the given chat
@@ -4209,7 +4209,7 @@ func (c *Client) GetChatSimilarChats(chatId int64) (*Chats, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Chats), nil
+	return responseAs[*Chats](resp)
 }
 
 // GetChatSparseMessagePositions Returns sparse positions of messages of the specified type in the chat to be used for Shared Media scroll implementation. Returns the results in reverse chronological order (i.e., in order of decreasing message_id).
@@ -4225,7 +4225,7 @@ func (c *Client) GetChatSparseMessagePositions(chatId int64, filter SearchMessag
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*MessagePositions), nil
+	return responseAs[*MessagePositions](resp)
 }
 
 // GetChatSponsoredMessages Returns sponsored messages to be shown in a chat; for channel chats and chats with bots only
@@ -4237,7 +4237,7 @@ func (c *Client) GetChatSponsoredMessages(chatId int64) (*SponsoredMessages, err
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*SponsoredMessages), nil
+	return responseAs[*SponsoredMessages](resp)
 }
 
 // GetChatStatistics Returns detailed statistics about a chat. Currently, this method can be used only for supergroups and channels. Can be used only if supergroupFullInfo.can_get_statistics == true
@@ -4252,7 +4252,7 @@ func (c *Client) GetChatStatistics(chatId int64, opts *GetChatStatisticsOpts) (C
 	if err != nil {
 		return nil, err
 	}
-	return resp.(ChatStatistics), nil
+	return responseAs[ChatStatistics](resp)
 }
 
 // GetChatsToPostStories Returns supergroup and channel chats in which the current user has the right to post stories. The chats must be rechecked with canPostStory before actually trying to post a story there
@@ -4262,7 +4262,7 @@ func (c *Client) GetChatsToPostStories() (*Chats, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Chats), nil
+	return responseAs[*Chats](resp)
 }
 
 // GetChatStoryAlbums Returns the list of story albums owned by the given chat
@@ -4274,7 +4274,7 @@ func (c *Client) GetChatStoryAlbums(chatId int64) (*StoryAlbums, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*StoryAlbums), nil
+	return responseAs[*StoryAlbums](resp)
 }
 
 // GetChatStoryInteractions Returns interactions with a story posted in a chat. Can be used only if story is posted on behalf of a chat and the user is an administrator in the chat
@@ -4293,7 +4293,7 @@ func (c *Client) GetChatStoryInteractions(limit int32, offset string, storyId in
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*StoryInteractions), nil
+	return responseAs[*StoryInteractions](resp)
 }
 
 // GetCloseFriends Returns all close friends of the current user
@@ -4303,7 +4303,7 @@ func (c *Client) GetCloseFriends() (*Users, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Users), nil
+	return responseAs[*Users](resp)
 }
 
 // GetCollectibleItemInfo Returns information about a given collectible item that was purchased at https://fragment.com
@@ -4315,7 +4315,7 @@ func (c *Client) GetCollectibleItemInfo(typeField CollectibleItemType) (*Collect
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*CollectibleItemInfo), nil
+	return responseAs[*CollectibleItemInfo](resp)
 }
 
 // GetCommands Returns the list of commands supported by the bot for the given user scope and language; for bots only
@@ -4330,7 +4330,7 @@ func (c *Client) GetCommands(languageCode string, opts *GetCommandsOpts) (*BotCo
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*BotCommands), nil
+	return responseAs[*BotCommands](resp)
 }
 
 // GetCommunityFullInfo Returns full information about a community
@@ -4342,7 +4342,7 @@ func (c *Client) GetCommunityFullInfo(communityId int64) (*CommunityFullInfo, er
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*CommunityFullInfo), nil
+	return responseAs[*CommunityFullInfo](resp)
 }
 
 // GetConnectedAffiliateProgram Returns an affiliate program that was connected to the given affiliate by identifier of the bot that created the program
@@ -4355,7 +4355,7 @@ func (c *Client) GetConnectedAffiliateProgram(affiliate AffiliateType, botUserId
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ConnectedAffiliateProgram), nil
+	return responseAs[*ConnectedAffiliateProgram](resp)
 }
 
 // GetConnectedAffiliatePrograms Returns affiliate programs that were connected to the given affiliate
@@ -4369,7 +4369,7 @@ func (c *Client) GetConnectedAffiliatePrograms(affiliate AffiliateType, limit in
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ConnectedAffiliatePrograms), nil
+	return responseAs[*ConnectedAffiliatePrograms](resp)
 }
 
 // GetConnectedWebsites Returns all website where the current user used Telegram to log in
@@ -4379,7 +4379,7 @@ func (c *Client) GetConnectedWebsites() (*ConnectedWebsites, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ConnectedWebsites), nil
+	return responseAs[*ConnectedWebsites](resp)
 }
 
 // GetContacts Returns all contacts of the user
@@ -4389,7 +4389,7 @@ func (c *Client) GetContacts() (*Users, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Users), nil
+	return responseAs[*Users](resp)
 }
 
 // GetCountries Returns information about existing countries. Can be called before authorization
@@ -4399,7 +4399,7 @@ func (c *Client) GetCountries() (*Countries, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Countries), nil
+	return responseAs[*Countries](resp)
 }
 
 // GetCountry Returns information about an existing country. Can be called before authorization
@@ -4411,7 +4411,7 @@ func (c *Client) GetCountry(countryCode string) (*CountryInfo, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*CountryInfo), nil
+	return responseAs[*CountryInfo](resp)
 }
 
 // GetCountryCode Uses the current IP address to find the current country. Returns two-letter ISO 3166-1 alpha-2 country code. Can be called before authorization
@@ -4421,7 +4421,7 @@ func (c *Client) GetCountryCode() (*Text, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Text), nil
+	return responseAs[*Text](resp)
 }
 
 // GetCountryFlagEmoji Returns an emoji for the flag of the given country. Returns an empty string on failure. Can be called synchronously
@@ -4433,7 +4433,7 @@ func (c *Client) GetCountryFlagEmoji(countryCode string) (*Text, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Text), nil
+	return responseAs[*Text](resp)
 }
 
 // GetCreatedPublicChats Returns a list of public chats of the specified type, owned by the user
@@ -4445,7 +4445,7 @@ func (c *Client) GetCreatedPublicChats(typeField PublicChatType) (*Chats, error)
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Chats), nil
+	return responseAs[*Chats](resp)
 }
 
 // GetCurrencyExchangeRates Returns exchange rates of currencies to USD
@@ -4455,7 +4455,7 @@ func (c *Client) GetCurrencyExchangeRates() (*CurrencyExchangeRates, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*CurrencyExchangeRates), nil
+	return responseAs[*CurrencyExchangeRates](resp)
 }
 
 // GetCurrentState Returns all updates needed to restore current TDLib state, i.e. all actual updateAuthorizationState/updateUser/updateNewChat and others. This is especially useful if TDLib is run in a separate process. Can be called before initialization
@@ -4465,7 +4465,7 @@ func (c *Client) GetCurrentState() (*Updates, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Updates), nil
+	return responseAs[*Updates](resp)
 }
 
 // GetCurrentWeather Returns the current weather in the given location
@@ -4477,7 +4477,7 @@ func (c *Client) GetCurrentWeather(location *Location) (*CurrentWeather, error) 
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*CurrentWeather), nil
+	return responseAs[*CurrentWeather](resp)
 }
 
 // GetCustomEmojiReactionAnimations Returns TGS stickers with generic animations for custom emoji reactions
@@ -4487,7 +4487,7 @@ func (c *Client) GetCustomEmojiReactionAnimations() (*Stickers, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Stickers), nil
+	return responseAs[*Stickers](resp)
 }
 
 // GetCustomEmojiStickers Returns the list of custom emoji stickers by their identifiers. Stickers are returned in arbitrary order. Only found stickers are returned
@@ -4499,7 +4499,7 @@ func (c *Client) GetCustomEmojiStickers(customEmojiIds Int64Slice) (*Stickers, e
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Stickers), nil
+	return responseAs[*Stickers](resp)
 }
 
 // GetDatabaseStatistics Returns database statistics
@@ -4509,7 +4509,7 @@ func (c *Client) GetDatabaseStatistics() (*DatabaseStatistics, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*DatabaseStatistics), nil
+	return responseAs[*DatabaseStatistics](resp)
 }
 
 // GetDeepLinkInfo Returns information about a tg:// deep link. Use "tg://need_update_for_some_feature" or "tg:some_unsupported_feature" for testing. Returns a 404 error for unknown links. Can be called before authorization
@@ -4521,7 +4521,7 @@ func (c *Client) GetDeepLinkInfo(link string) (*DeepLinkInfo, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*DeepLinkInfo), nil
+	return responseAs[*DeepLinkInfo](resp)
 }
 
 // GetDefaultBackgroundCustomEmojiStickers Returns default list of custom emoji stickers for reply background
@@ -4531,7 +4531,7 @@ func (c *Client) GetDefaultBackgroundCustomEmojiStickers() (*Stickers, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Stickers), nil
+	return responseAs[*Stickers](resp)
 }
 
 // GetDefaultChatEmojiStatuses Returns default emoji statuses for chats
@@ -4541,7 +4541,7 @@ func (c *Client) GetDefaultChatEmojiStatuses() (*EmojiStatusCustomEmojis, error)
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*EmojiStatusCustomEmojis), nil
+	return responseAs[*EmojiStatusCustomEmojis](resp)
 }
 
 // GetDefaultChatPhotoCustomEmojiStickers Returns default list of custom emoji stickers for placing on a chat photo
@@ -4551,7 +4551,7 @@ func (c *Client) GetDefaultChatPhotoCustomEmojiStickers() (*Stickers, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Stickers), nil
+	return responseAs[*Stickers](resp)
 }
 
 // GetDefaultEmojiStatuses Returns default emoji statuses for self status
@@ -4561,7 +4561,7 @@ func (c *Client) GetDefaultEmojiStatuses() (*EmojiStatusCustomEmojis, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*EmojiStatusCustomEmojis), nil
+	return responseAs[*EmojiStatusCustomEmojis](resp)
 }
 
 // GetDefaultMessageAutoDeleteTime Returns default message auto-delete time setting for new chats
@@ -4571,7 +4571,7 @@ func (c *Client) GetDefaultMessageAutoDeleteTime() (*MessageAutoDeleteTime, erro
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*MessageAutoDeleteTime), nil
+	return responseAs[*MessageAutoDeleteTime](resp)
 }
 
 // GetDefaultProfilePhotoCustomEmojiStickers Returns default list of custom emoji stickers for placing on a profile photo
@@ -4581,7 +4581,7 @@ func (c *Client) GetDefaultProfilePhotoCustomEmojiStickers() (*Stickers, error) 
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Stickers), nil
+	return responseAs[*Stickers](resp)
 }
 
 // GetDirectMessagesChatTopic Returns information about the topic in a channel direct messages chat administered by the current user
@@ -4594,7 +4594,7 @@ func (c *Client) GetDirectMessagesChatTopic(chatId int64, topicId int64) (*Direc
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*DirectMessagesChatTopic), nil
+	return responseAs[*DirectMessagesChatTopic](resp)
 }
 
 // GetDirectMessagesChatTopicHistory Returns messages in the topic in a channel direct messages chat administered by the current user. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id)
@@ -4610,7 +4610,7 @@ func (c *Client) GetDirectMessagesChatTopicHistory(chatId int64, fromMessageId i
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Messages), nil
+	return responseAs[*Messages](resp)
 }
 
 // GetDirectMessagesChatTopicMessageByDate Returns the last message sent in the topic in a channel direct messages chat administered by the current user no later than the specified date
@@ -4624,7 +4624,7 @@ func (c *Client) GetDirectMessagesChatTopicMessageByDate(chatId int64, date int3
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Message), nil
+	return responseAs[*Message](resp)
 }
 
 // GetDirectMessagesChatTopicRevenue Returns the total number of Telegram Stars received by the channel chat for direct messages from the given topic
@@ -4637,7 +4637,7 @@ func (c *Client) GetDirectMessagesChatTopicRevenue(chatId int64, topicId int64) 
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*StarCount), nil
+	return responseAs[*StarCount](resp)
 }
 
 // GetDisallowedChatEmojiStatuses Returns the list of emoji statuses, which can't be used as chat emoji status, even if they are from a sticker set with is_allowed_as_chat_emoji_status == true
@@ -4647,7 +4647,7 @@ func (c *Client) GetDisallowedChatEmojiStatuses() (*EmojiStatusCustomEmojis, err
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*EmojiStatusCustomEmojis), nil
+	return responseAs[*EmojiStatusCustomEmojis](resp)
 }
 
 // GetEmojiCategories Returns available emoji categories
@@ -4660,7 +4660,7 @@ func (c *Client) GetEmojiCategories(opts *GetEmojiCategoriesOpts) (*EmojiCategor
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*EmojiCategories), nil
+	return responseAs[*EmojiCategories](resp)
 }
 
 // GetEmojiReaction Returns information about an emoji reaction. Returns a 404 error if the reaction is not found
@@ -4672,7 +4672,7 @@ func (c *Client) GetEmojiReaction(emoji string) (*EmojiReaction, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*EmojiReaction), nil
+	return responseAs[*EmojiReaction](resp)
 }
 
 // GetEmojiSuggestionsUrl Returns an HTTP URL which can be used to automatically log in to the translation platform and suggest new emoji replacements. The URL will be valid for 30 seconds after generation
@@ -4684,7 +4684,7 @@ func (c *Client) GetEmojiSuggestionsUrl(languageCode string) (*HttpUrl, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*HttpUrl), nil
+	return responseAs[*HttpUrl](resp)
 }
 
 // GetExternalLink Returns an HTTP URL which can be used to automatically authorize the current user on a website after clicking an HTTP link.
@@ -4699,7 +4699,7 @@ func (c *Client) GetExternalLink(link string, opts *GetExternalLinkOpts) (*HttpU
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*HttpUrl), nil
+	return responseAs[*HttpUrl](resp)
 }
 
 // GetExternalLinkInfo Returns information about an action to be done when the current user clicks an external link. Don't use this method for links from secret chats
@@ -4711,7 +4711,7 @@ func (c *Client) GetExternalLinkInfo(link string) (LoginUrlInfo, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(LoginUrlInfo), nil
+	return responseAs[LoginUrlInfo](resp)
 }
 
 // GetFavoriteStickers Returns favorite stickers
@@ -4721,7 +4721,7 @@ func (c *Client) GetFavoriteStickers() (*Stickers, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Stickers), nil
+	return responseAs[*Stickers](resp)
 }
 
 // GetFile Returns information about a file. This is an offline method
@@ -4733,7 +4733,7 @@ func (c *Client) GetFile(fileId int32) (*File, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*File), nil
+	return responseAs[*File](resp)
 }
 
 // GetFileDownloadedPrefixSize Returns file downloaded prefix size from a given offset, in bytes
@@ -4746,7 +4746,7 @@ func (c *Client) GetFileDownloadedPrefixSize(fileId int32, offset int64) (*FileD
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*FileDownloadedPrefixSize), nil
+	return responseAs[*FileDownloadedPrefixSize](resp)
 }
 
 // GetFileExtension Returns the extension of a file, guessed by its MIME type. Returns an empty string on failure. Can be called synchronously
@@ -4758,7 +4758,7 @@ func (c *Client) GetFileExtension(mimeType string) (*Text, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Text), nil
+	return responseAs[*Text](resp)
 }
 
 // GetFileMimeType Returns the MIME type of a file, guessed by its extension. Returns an empty string on failure. Can be called synchronously
@@ -4770,7 +4770,7 @@ func (c *Client) GetFileMimeType(fileName string) (*Text, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Text), nil
+	return responseAs[*Text](resp)
 }
 
 // GetForumTopic Returns information about a topic in a forum supergroup chat or a chat with a bot with topics
@@ -4783,7 +4783,7 @@ func (c *Client) GetForumTopic(chatId int64, forumTopicId int32) (*ForumTopic, e
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ForumTopic), nil
+	return responseAs[*ForumTopic](resp)
 }
 
 // GetForumTopicDefaultIcons Returns the list of custom emoji, which can be used as forum topic icon by all users
@@ -4793,7 +4793,7 @@ func (c *Client) GetForumTopicDefaultIcons() (*Stickers, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Stickers), nil
+	return responseAs[*Stickers](resp)
 }
 
 // GetForumTopicHistory Returns messages in a topic in a forum supergroup chat or a chat with a bot with topics. The messages are returned in reverse chronological order
@@ -4809,7 +4809,7 @@ func (c *Client) GetForumTopicHistory(chatId int64, forumTopicId int32, fromMess
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Messages), nil
+	return responseAs[*Messages](resp)
 }
 
 // GetForumTopicLink Returns an HTTPS link to a topic in a forum supergroup chat. This is an offline method
@@ -4822,7 +4822,7 @@ func (c *Client) GetForumTopicLink(chatId int64, forumTopicId int32) (*MessageLi
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*MessageLink), nil
+	return responseAs[*MessageLink](resp)
 }
 
 // GetForumTopics Returns found forum topics in a forum supergroup chat or a chat with a bot with topics. This is a temporary method for getting information about topic list from the server
@@ -4839,7 +4839,7 @@ func (c *Client) GetForumTopics(chatId int64, limit int32, offsetDate int32, off
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ForumTopics), nil
+	return responseAs[*ForumTopics](resp)
 }
 
 // GetFullRichMessage Returns the full version of a rich message
@@ -4852,7 +4852,7 @@ func (c *Client) GetFullRichMessage(chatId int64, messageId int64) (*RichMessage
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*RichMessage), nil
+	return responseAs[*RichMessage](resp)
 }
 
 // GetGameHighScores Returns the high scores for a game and some part of the high score table in the range of the specified user; for bots only
@@ -4866,7 +4866,7 @@ func (c *Client) GetGameHighScores(chatId int64, messageId int64, userId int64) 
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*GameHighScores), nil
+	return responseAs[*GameHighScores](resp)
 }
 
 // GetGiftAuctionAcquiredGifts Returns the gifts that were acquired by the current user on a gift auction
@@ -4878,7 +4878,7 @@ func (c *Client) GetGiftAuctionAcquiredGifts(giftId int64) (*GiftAuctionAcquired
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*GiftAuctionAcquiredGifts), nil
+	return responseAs[*GiftAuctionAcquiredGifts](resp)
 }
 
 // GetGiftAuctionState Returns auction state for a gift
@@ -4890,7 +4890,7 @@ func (c *Client) GetGiftAuctionState(auctionId string) (*GiftAuctionState, error
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*GiftAuctionState), nil
+	return responseAs[*GiftAuctionState](resp)
 }
 
 // GetGiftChatThemes Returns available to the current user gift chat themes
@@ -4903,7 +4903,7 @@ func (c *Client) GetGiftChatThemes(limit int32, offset string) (*GiftChatThemes,
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*GiftChatThemes), nil
+	return responseAs[*GiftChatThemes](resp)
 }
 
 // GetGiftCollections Returns collections of gifts owned by the given user or chat
@@ -4915,7 +4915,7 @@ func (c *Client) GetGiftCollections(ownerId MessageSender) (*GiftCollections, er
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*GiftCollections), nil
+	return responseAs[*GiftCollections](resp)
 }
 
 // GetGiftsForCrafting Returns upgraded gifts of the current user who can be used to craft another gifts
@@ -4929,7 +4929,7 @@ func (c *Client) GetGiftsForCrafting(limit int32, offset string, regularGiftId i
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*GiftsForCrafting), nil
+	return responseAs[*GiftsForCrafting](resp)
 }
 
 // GetGiftUpgradePreview Returns examples of possible upgraded gifts for a regular gift
@@ -4941,7 +4941,7 @@ func (c *Client) GetGiftUpgradePreview(regularGiftId int64) (*GiftUpgradePreview
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*GiftUpgradePreview), nil
+	return responseAs[*GiftUpgradePreview](resp)
 }
 
 // GetGiveawayInfo Returns information about a giveaway
@@ -4954,7 +4954,7 @@ func (c *Client) GetGiveawayInfo(chatId int64, messageId int64) (GiveawayInfo, e
 	if err != nil {
 		return nil, err
 	}
-	return resp.(GiveawayInfo), nil
+	return responseAs[GiveawayInfo](resp)
 }
 
 // GetGramRevenueStatistics Returns detailed TON Gram revenue statistics of the current user
@@ -4967,7 +4967,7 @@ func (c *Client) GetGramRevenueStatistics(opts *GetGramRevenueStatisticsOpts) (*
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*GramRevenueStatistics), nil
+	return responseAs[*GramRevenueStatistics](resp)
 }
 
 // GetGramWithdrawalUrl Returns a URL for TON Gram withdrawal from the current user's account. The user must have at least 10 Grams to withdraw
@@ -4979,7 +4979,7 @@ func (c *Client) GetGramWithdrawalUrl(password string) (*HttpUrl, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*HttpUrl), nil
+	return responseAs[*HttpUrl](resp)
 }
 
 // GetGreetingStickers Returns greeting stickers from regular sticker sets that can be used for the start page of other users
@@ -4989,7 +4989,7 @@ func (c *Client) GetGreetingStickers() (*Stickers, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Stickers), nil
+	return responseAs[*Stickers](resp)
 }
 
 // GetGrossingWebAppBots Returns the most grossing Web App bots
@@ -5002,7 +5002,7 @@ func (c *Client) GetGrossingWebAppBots(limit int32, offset string) (*FoundUsers,
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*FoundUsers), nil
+	return responseAs[*FoundUsers](resp)
 }
 
 // GetGroupCall Returns information about a group call
@@ -5014,7 +5014,7 @@ func (c *Client) GetGroupCall(groupCallId int32) (*GroupCall, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*GroupCall), nil
+	return responseAs[*GroupCall](resp)
 }
 
 // GetGroupCallParticipants Returns information about participants of a non-joined group call that is not bound to a chat
@@ -5027,7 +5027,7 @@ func (c *Client) GetGroupCallParticipants(inputGroupCall InputGroupCall, limit i
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*GroupCallParticipants), nil
+	return responseAs[*GroupCallParticipants](resp)
 }
 
 // GetGroupCallStreams Returns information about available streams in a video chat or a live story
@@ -5039,7 +5039,7 @@ func (c *Client) GetGroupCallStreams(groupCallId int32) (*GroupCallStreams, erro
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*GroupCallStreams), nil
+	return responseAs[*GroupCallStreams](resp)
 }
 
 // GetGroupCallStreamSegment Returns a file with a segment of a video chat or live story in a modified OGG format for audio or MPEG-4 format for video
@@ -5057,7 +5057,7 @@ func (c *Client) GetGroupCallStreamSegment(channelId int32, groupCallId int32, s
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Data), nil
+	return responseAs[*Data](resp)
 }
 
 // GetGroupsInCommon Returns a list of common group chats with a given user. Chats are sorted by their type and creation date
@@ -5071,7 +5071,7 @@ func (c *Client) GetGroupsInCommon(limit int32, offsetChatId int64, userId int64
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Chats), nil
+	return responseAs[*Chats](resp)
 }
 
 // GetGuardBotWebAppUrl Returns an HTTPS URL of a Web App of a guard bot to open after receiving chatJoinResultGuardBotApprovalRequired
@@ -5084,7 +5084,7 @@ func (c *Client) GetGuardBotWebAppUrl(parameters *WebAppOpenParameters, queryId 
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*WebAppUrl), nil
+	return responseAs[*WebAppUrl](resp)
 }
 
 // GetImportedContactCount Returns the total number of imported contacts
@@ -5094,7 +5094,7 @@ func (c *Client) GetImportedContactCount() (*Count, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Count), nil
+	return responseAs[*Count](resp)
 }
 
 // GetInactiveSupergroupChats Returns a list of recently inactive supergroups and channels. Can be used when user reaches limit on the number of joined supergroups and channels and receives the error "CHANNELS_TOO_MUCH". Also, the limit can be increased with Telegram Premium
@@ -5104,7 +5104,7 @@ func (c *Client) GetInactiveSupergroupChats() (*Chats, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Chats), nil
+	return responseAs[*Chats](resp)
 }
 
 // GetInlineGameHighScores Returns game high scores and some part of the high score table in the range of the specified user; for bots only
@@ -5117,7 +5117,7 @@ func (c *Client) GetInlineGameHighScores(inlineMessageId string, userId int64) (
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*GameHighScores), nil
+	return responseAs[*GameHighScores](resp)
 }
 
 // GetInlineQueryResults Sends an inline query to a bot and returns its results. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires
@@ -5135,7 +5135,7 @@ func (c *Client) GetInlineQueryResults(botUserId int64, chatId int64, offset str
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*InlineQueryResults), nil
+	return responseAs[*InlineQueryResults](resp)
 }
 
 // GetInstalledBackgrounds Returns backgrounds installed by the user
@@ -5148,7 +5148,7 @@ func (c *Client) GetInstalledBackgrounds(opts *GetInstalledBackgroundsOpts) (*Ba
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Backgrounds), nil
+	return responseAs[*Backgrounds](resp)
 }
 
 // GetInstalledStickerSets Returns a list of installed sticker sets
@@ -5160,7 +5160,7 @@ func (c *Client) GetInstalledStickerSets(stickerType StickerType) (*StickerSets,
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*StickerSets), nil
+	return responseAs[*StickerSets](resp)
 }
 
 // GetInternalLink Returns an HTTPS or a tg: link with the given type. Can be called before authorization
@@ -5175,7 +5175,7 @@ func (c *Client) GetInternalLink(typeField InternalLinkType, opts *GetInternalLi
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*HttpUrl), nil
+	return responseAs[*HttpUrl](resp)
 }
 
 // GetInternalLinkType Returns information about the type of internal link. Returns a 404 error if the link is not internal. Can be called before authorization
@@ -5187,7 +5187,7 @@ func (c *Client) GetInternalLinkType(link string) (InternalLinkType, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(InternalLinkType), nil
+	return responseAs[InternalLinkType](resp)
 }
 
 // GetJsonString Converts a JsonValue object to corresponding JSON-serialized string. Can be called synchronously
@@ -5199,7 +5199,7 @@ func (c *Client) GetJsonString(jsonValue JsonValue) (*Text, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Text), nil
+	return responseAs[*Text](resp)
 }
 
 // GetJsonValue Converts a JSON-serialized string to corresponding JsonValue object. Can be called synchronously
@@ -5211,7 +5211,7 @@ func (c *Client) GetJsonValue(json string) (JsonValue, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(JsonValue), nil
+	return responseAs[JsonValue](resp)
 }
 
 // GetKeywordEmojis Returns emojis matching the keyword. Supported only if the file database is enabled. Order of results is unspecified
@@ -5226,7 +5226,7 @@ func (c *Client) GetKeywordEmojis(text string, opts *GetKeywordEmojisOpts) (*Emo
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Emojis), nil
+	return responseAs[*Emojis](resp)
 }
 
 // GetLanguagePackInfo Returns information about a language pack. Returned language pack identifier may be different from a provided one. Can be called before authorization
@@ -5238,7 +5238,7 @@ func (c *Client) GetLanguagePackInfo(languagePackId string) (*LanguagePackInfo, 
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*LanguagePackInfo), nil
+	return responseAs[*LanguagePackInfo](resp)
 }
 
 // GetLanguagePackString Returns a string stored in the local database from the specified localization target and language pack by its key. Returns a 404 error if the string is not found. Can be called synchronously
@@ -5253,7 +5253,7 @@ func (c *Client) GetLanguagePackString(key string, languagePackDatabasePath stri
 	if err != nil {
 		return nil, err
 	}
-	return resp.(LanguagePackStringValue), nil
+	return responseAs[LanguagePackStringValue](resp)
 }
 
 // GetLanguagePackStrings Returns strings from a language pack in the current localization target by their keys. Can be called before authorization
@@ -5266,7 +5266,7 @@ func (c *Client) GetLanguagePackStrings(keys []string, languagePackId string) (*
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*LanguagePackStrings), nil
+	return responseAs[*LanguagePackStrings](resp)
 }
 
 // GetLinkPreview Returns a link preview by the text of a message. Do not call this function too often. Returns a 404 error if the text has no link preview
@@ -5281,7 +5281,7 @@ func (c *Client) GetLinkPreview(text *FormattedText, opts *GetLinkPreviewOpts) (
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*LinkPreview), nil
+	return responseAs[*LinkPreview](resp)
 }
 
 // GetLinkWebBrowserType Returns a type of the web browser which must be used to open the link
@@ -5293,7 +5293,7 @@ func (c *Client) GetLinkWebBrowserType(link string) (WebBrowserType, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(WebBrowserType), nil
+	return responseAs[WebBrowserType](resp)
 }
 
 // GetLiveStoryAvailableMessageSenders Returns the list of message sender identifiers, on whose behalf messages can be sent to a live story
@@ -5305,7 +5305,7 @@ func (c *Client) GetLiveStoryAvailableMessageSenders(groupCallId int32) (*ChatMe
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ChatMessageSenders), nil
+	return responseAs[*ChatMessageSenders](resp)
 }
 
 // GetLiveStoryRtmpUrl Returns RTMP URL for streaming to a live story; requires can_post_stories administrator right for channel chats
@@ -5317,7 +5317,7 @@ func (c *Client) GetLiveStoryRtmpUrl(chatId int64) (*RtmpUrl, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*RtmpUrl), nil
+	return responseAs[*RtmpUrl](resp)
 }
 
 // GetLiveStoryStreamer Returns information about the user or the chat that streams to a live story; for live stories that aren't an RTMP stream only
@@ -5329,7 +5329,7 @@ func (c *Client) GetLiveStoryStreamer(groupCallId int32) (*GroupCallParticipant,
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*GroupCallParticipant), nil
+	return responseAs[*GroupCallParticipant](resp)
 }
 
 // GetLiveStoryTopDonors Returns the list of top live story donors
@@ -5341,7 +5341,7 @@ func (c *Client) GetLiveStoryTopDonors(groupCallId int32) (*LiveStoryDonors, err
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*LiveStoryDonors), nil
+	return responseAs[*LiveStoryDonors](resp)
 }
 
 // GetLocalizationTargetInfo Returns information about the current localization target. This is an offline method if only_local is true. Can be called before authorization
@@ -5354,7 +5354,7 @@ func (c *Client) GetLocalizationTargetInfo(opts *GetLocalizationTargetInfoOpts) 
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*LocalizationTargetInfo), nil
+	return responseAs[*LocalizationTargetInfo](resp)
 }
 
 // GetLoginPasskeys Returns the list of passkeys allowed to be used for the login by the current user
@@ -5364,7 +5364,7 @@ func (c *Client) GetLoginPasskeys() (*Passkeys, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Passkeys), nil
+	return responseAs[*Passkeys](resp)
 }
 
 // GetLoginUrl Returns an HTTP URL which can be used to automatically authorize the user on a website after clicking an inline button of type inlineKeyboardButtonTypeLoginUrl.
@@ -5381,7 +5381,7 @@ func (c *Client) GetLoginUrl(buttonId int64, chatId int64, messageId int64, opts
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*HttpUrl), nil
+	return responseAs[*HttpUrl](resp)
 }
 
 // GetLoginUrlInfo Returns information about a button of type inlineKeyboardButtonTypeLoginUrl. The method needs to be called when the user presses the button
@@ -5395,7 +5395,7 @@ func (c *Client) GetLoginUrlInfo(buttonId int64, chatId int64, messageId int64) 
 	if err != nil {
 		return nil, err
 	}
-	return resp.(LoginUrlInfo), nil
+	return responseAs[LoginUrlInfo](resp)
 }
 
 // GetLogStream Returns information about currently used log stream for internal logging of TDLib. Can be called synchronously
@@ -5405,7 +5405,7 @@ func (c *Client) GetLogStream() (LogStream, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(LogStream), nil
+	return responseAs[LogStream](resp)
 }
 
 // GetLogTags Returns the list of available TDLib internal log tags, for example, ["actor", "binlog", "connections", "notifications", "proxy"]. Can be called synchronously
@@ -5415,7 +5415,7 @@ func (c *Client) GetLogTags() (*LogTags, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*LogTags), nil
+	return responseAs[*LogTags](resp)
 }
 
 // GetLogTagVerbosityLevel Returns current verbosity level for a specified TDLib internal log tag. Can be called synchronously
@@ -5427,7 +5427,7 @@ func (c *Client) GetLogTagVerbosityLevel(tag string) (*LogVerbosityLevel, error)
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*LogVerbosityLevel), nil
+	return responseAs[*LogVerbosityLevel](resp)
 }
 
 // GetLogVerbosityLevel Returns current verbosity level of the internal logging of TDLib. Can be called synchronously
@@ -5437,7 +5437,7 @@ func (c *Client) GetLogVerbosityLevel() (*LogVerbosityLevel, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*LogVerbosityLevel), nil
+	return responseAs[*LogVerbosityLevel](resp)
 }
 
 // GetMainWebApp Returns information needed to open the main Web App of a bot
@@ -5452,7 +5452,7 @@ func (c *Client) GetMainWebApp(botUserId int64, chatId int64, parameters *WebApp
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*MainWebApp), nil
+	return responseAs[*MainWebApp](resp)
 }
 
 // GetManagedBotAccessSettings Returns access settings of a managed bot; for bots only
@@ -5464,7 +5464,7 @@ func (c *Client) GetManagedBotAccessSettings(botUserId int64) (*BotAccessSetting
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*BotAccessSettings), nil
+	return responseAs[*BotAccessSettings](resp)
 }
 
 // GetManagedBotToken Returns token of a managed bot; for bots only
@@ -5479,7 +5479,7 @@ func (c *Client) GetManagedBotToken(botUserId int64, opts *GetManagedBotTokenOpt
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Text), nil
+	return responseAs[*Text](resp)
 }
 
 // GetMapThumbnailFile Returns information about a file with a map thumbnail in PNG format. Only map thumbnail files with size less than 1MB can be downloaded
@@ -5496,7 +5496,7 @@ func (c *Client) GetMapThumbnailFile(chatId int64, height int32, location *Locat
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*File), nil
+	return responseAs[*File](resp)
 }
 
 // GetMarkdownText Replaces text entities with Markdown formatting in a human-friendly format. Entities that can't be represented in Markdown unambiguously are kept as is. Can be called synchronously
@@ -5508,7 +5508,7 @@ func (c *Client) GetMarkdownText(text *FormattedText) (*FormattedText, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*FormattedText), nil
+	return responseAs[*FormattedText](resp)
 }
 
 // GetMe Returns the current user
@@ -5518,7 +5518,7 @@ func (c *Client) GetMe() (*User, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*User), nil
+	return responseAs[*User](resp)
 }
 
 // GetMenuButton Returns menu button set by the bot for the given user; for bots only
@@ -5530,7 +5530,7 @@ func (c *Client) GetMenuButton(userId int64) (*BotMenuButton, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*BotMenuButton), nil
+	return responseAs[*BotMenuButton](resp)
 }
 
 // GetMessage Returns information about a message. Returns a 404 error if the message doesn't exist
@@ -5543,7 +5543,7 @@ func (c *Client) GetMessage(chatId int64, messageId int64) (*Message, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Message), nil
+	return responseAs[*Message](resp)
 }
 
 // GetMessageAddedReactions Returns reactions added for a message, along with their sender
@@ -5561,7 +5561,7 @@ func (c *Client) GetMessageAddedReactions(chatId int64, limit int32, messageId i
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*AddedReactions), nil
+	return responseAs[*AddedReactions](resp)
 }
 
 // GetMessageAuthor Returns information about actual author of a message sent on behalf of a channel. The method can be called if messageProperties.can_get_author == true
@@ -5574,7 +5574,7 @@ func (c *Client) GetMessageAuthor(chatId int64, messageId int64) (*User, error) 
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*User), nil
+	return responseAs[*User](resp)
 }
 
 // GetMessageAvailableReactions Returns reactions, which can be added to a message. The list can change after updateActiveEmojiReactions, updateChatAvailableReactions for the chat, or updateMessageInteractionInfo for the message
@@ -5588,7 +5588,7 @@ func (c *Client) GetMessageAvailableReactions(chatId int64, messageId int64, row
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*AvailableReactions), nil
+	return responseAs[*AvailableReactions](resp)
 }
 
 // GetMessageEffect Returns information about a message effect. Returns a 404 error if the effect is not found
@@ -5600,7 +5600,7 @@ func (c *Client) GetMessageEffect(effectId int64) (*MessageEffect, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*MessageEffect), nil
+	return responseAs[*MessageEffect](resp)
 }
 
 // GetMessageEmbeddingCode Returns an HTML code for embedding the message. Available only if messageProperties.can_get_embedding_code
@@ -5616,7 +5616,7 @@ func (c *Client) GetMessageEmbeddingCode(chatId int64, messageId int64, opts *Ge
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Text), nil
+	return responseAs[*Text](resp)
 }
 
 // GetMessageFileType Returns information about a file with messages exported from another application
@@ -5628,7 +5628,7 @@ func (c *Client) GetMessageFileType(messageFileHead string) (MessageFileType, er
 	if err != nil {
 		return nil, err
 	}
-	return resp.(MessageFileType), nil
+	return responseAs[MessageFileType](resp)
 }
 
 // GetMessageImportConfirmationText Returns a confirmation text to be shown to the user before starting message import
@@ -5640,7 +5640,7 @@ func (c *Client) GetMessageImportConfirmationText(chatId int64) (*Text, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Text), nil
+	return responseAs[*Text](resp)
 }
 
 // GetMessageLink Returns an HTTPS link to a message in a chat. Available only if messageProperties.can_get_link, or if messageProperties.can_get_media_timestamp_links and a media timestamp link is generated. This is an offline method
@@ -5660,7 +5660,7 @@ func (c *Client) GetMessageLink(chatId int64, checklistTaskId int32, mediaTimest
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*MessageLink), nil
+	return responseAs[*MessageLink](resp)
 }
 
 // GetMessageLinkInfo Returns information about a public or private message link. Can be called for any internal link of the type internalLinkTypeMessage
@@ -5672,7 +5672,7 @@ func (c *Client) GetMessageLinkInfo(url string) (*MessageLinkInfo, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*MessageLinkInfo), nil
+	return responseAs[*MessageLinkInfo](resp)
 }
 
 // GetMessageLocally Returns information about a message, if it is available without sending network request. Returns a 404 error if message isn't available locally. This is an offline method
@@ -5685,7 +5685,7 @@ func (c *Client) GetMessageLocally(chatId int64, messageId int64) (*Message, err
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Message), nil
+	return responseAs[*Message](resp)
 }
 
 // GetMessageProperties Returns properties of a message. This is an offline method
@@ -5698,7 +5698,7 @@ func (c *Client) GetMessageProperties(chatId int64, messageId int64) (*MessagePr
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*MessageProperties), nil
+	return responseAs[*MessageProperties](resp)
 }
 
 // GetMessagePublicForwards Returns forwarded copies of a channel message to different public channels and public reposts as a story. Can be used only if messageProperties.can_get_statistics == true. For optimal performance, the number of returned messages and stories is chosen by TDLib
@@ -5713,7 +5713,7 @@ func (c *Client) GetMessagePublicForwards(chatId int64, limit int32, messageId i
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*PublicForwards), nil
+	return responseAs[*PublicForwards](resp)
 }
 
 // GetMessageReadDate Returns read date of a recent outgoing message in a private chat. The method can be called if messageProperties.can_get_read_date == true
@@ -5726,7 +5726,7 @@ func (c *Client) GetMessageReadDate(chatId int64, messageId int64) (MessageReadD
 	if err != nil {
 		return nil, err
 	}
-	return resp.(MessageReadDate), nil
+	return responseAs[MessageReadDate](resp)
 }
 
 // GetMessages Returns information about messages. If a message is not found, returns null on the corresponding position of the result
@@ -5739,7 +5739,7 @@ func (c *Client) GetMessages(chatId int64, messageIds []int64) (*Messages, error
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Messages), nil
+	return responseAs[*Messages](resp)
 }
 
 // GetMessageStatistics Returns detailed statistics about a message. Can be used only if messageProperties.can_get_statistics == true
@@ -5755,7 +5755,7 @@ func (c *Client) GetMessageStatistics(chatId int64, messageId int64, opts *GetMe
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*MessageStatistics), nil
+	return responseAs[*MessageStatistics](resp)
 }
 
 // GetMessageThread Returns information about a message thread. Can be used only if messageProperties.can_get_message_thread == true
@@ -5768,7 +5768,7 @@ func (c *Client) GetMessageThread(chatId int64, messageId int64) (*MessageThread
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*MessageThreadInfo), nil
+	return responseAs[*MessageThreadInfo](resp)
 }
 
 // GetMessageThreadHistory Returns messages in a message thread of a message. Can be used only if messageProperties.can_get_message_thread == true. Message thread of a channel message is in the channel's linked supergroup.
@@ -5784,7 +5784,7 @@ func (c *Client) GetMessageThreadHistory(chatId int64, fromMessageId int64, limi
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Messages), nil
+	return responseAs[*Messages](resp)
 }
 
 // GetMessageViewers Returns viewers of a recent outgoing message in a basic group or a supergroup chat. For video notes and voice notes only users, opened content of the message, are returned. The method can be called if messageProperties.can_get_viewers == true
@@ -5797,7 +5797,7 @@ func (c *Client) GetMessageViewers(chatId int64, messageId int64) (*MessageViewe
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*MessageViewers), nil
+	return responseAs[*MessageViewers](resp)
 }
 
 // GetNetworkStatistics Returns network data usage statistics. Can be called before authorization
@@ -5810,7 +5810,7 @@ func (c *Client) GetNetworkStatistics(opts *GetNetworkStatisticsOpts) (*NetworkS
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*NetworkStatistics), nil
+	return responseAs[*NetworkStatistics](resp)
 }
 
 // GetNewChatPrivacySettings Returns privacy settings for new chat creation
@@ -5820,7 +5820,7 @@ func (c *Client) GetNewChatPrivacySettings() (*NewChatPrivacySettings, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*NewChatPrivacySettings), nil
+	return responseAs[*NewChatPrivacySettings](resp)
 }
 
 // GetOauthLinkInfo Returns information about an OAuth deep link. Use checkOauthRequestMatchCode, acceptOauthRequest or declineOauthRequest to process the link
@@ -5833,7 +5833,7 @@ func (c *Client) GetOauthLinkInfo(inAppOrigin string, url string) (*OauthLinkInf
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*OauthLinkInfo), nil
+	return responseAs[*OauthLinkInfo](resp)
 }
 
 // GetOnRampPaymentAvailability Returns the available on-ramp payment methods based on the current user location
@@ -5847,7 +5847,7 @@ func (c *Client) GetOnRampPaymentAvailability(baseCurrency string, cryptocurrenc
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*OnRampPaymentAvailability), nil
+	return responseAs[*OnRampPaymentAvailability](resp)
 }
 
 // GetOnRampPaymentLimits Returns the limits for an on-ramp payment; only for providers that supports limits retrieval
@@ -5862,7 +5862,7 @@ func (c *Client) GetOnRampPaymentLimits(baseCurrency string, cryptocurrency stri
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*OnRampPaymentLimits), nil
+	return responseAs[*OnRampPaymentLimits](resp)
 }
 
 // GetOnRampPaymentQuote Returns a quote for an on-ramp payment; only for providers that supports quote retrieval
@@ -5879,7 +5879,7 @@ func (c *Client) GetOnRampPaymentQuote(baseCurrency string, baseCurrencyAmount s
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*OnRampPaymentQuote), nil
+	return responseAs[*OnRampPaymentQuote](resp)
 }
 
 // GetOnRampProviderBaseCurrencies Returns the list of fiat currencies supported by an on-ramp provider for the given cryptocurrency
@@ -5892,7 +5892,7 @@ func (c *Client) GetOnRampProviderBaseCurrencies(cryptocurrency string, provider
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Currencies), nil
+	return responseAs[*Currencies](resp)
 }
 
 // GetOnRampProviders Returns available on-ramp providers
@@ -5904,7 +5904,7 @@ func (c *Client) GetOnRampProviders(cryptocurrency string) (*OnRampProviders, er
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*OnRampProviders), nil
+	return responseAs[*OnRampProviders](resp)
 }
 
 // GetOption Returns the value of an option by its name. (Check the list of available options on https://core.telegram.org/tdlib/options.) Can be called before authorization. Can be called synchronously for options "version" and "commit_hash"
@@ -5916,7 +5916,7 @@ func (c *Client) GetOption(name string) (OptionValue, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(OptionValue), nil
+	return responseAs[OptionValue](resp)
 }
 
 // GetOwnedBots Returns the list of bots owned by the current user
@@ -5926,7 +5926,7 @@ func (c *Client) GetOwnedBots() (*Users, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Users), nil
+	return responseAs[*Users](resp)
 }
 
 // GetOwnedStickerSets Returns sticker sets owned by the current user
@@ -5939,7 +5939,7 @@ func (c *Client) GetOwnedStickerSets(limit int32, offsetStickerSetId int64) (*St
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*StickerSets), nil
+	return responseAs[*StickerSets](resp)
 }
 
 // GetPaidMessageRevenue Returns the total number of Telegram Stars received by the current user for paid messages from the given user
@@ -5951,7 +5951,7 @@ func (c *Client) GetPaidMessageRevenue(userId int64) (*StarCount, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*StarCount), nil
+	return responseAs[*StarCount](resp)
 }
 
 // GetPasskeyParameters Returns parameters for creating of a new passkey as JSON-serialized string
@@ -5961,7 +5961,7 @@ func (c *Client) GetPasskeyParameters() (*Text, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Text), nil
+	return responseAs[*Text](resp)
 }
 
 // GetPassportAuthorizationForm Returns a Telegram Passport authorization form for sharing data with a service
@@ -5976,7 +5976,7 @@ func (c *Client) GetPassportAuthorizationForm(botUserId int64, nonce string, pub
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*PassportAuthorizationForm), nil
+	return responseAs[*PassportAuthorizationForm](resp)
 }
 
 // GetPassportAuthorizationFormAvailableElements Returns already available Telegram Passport elements suitable for completing a Telegram Passport authorization form. Result can be received only once for each authorization form
@@ -5989,7 +5989,7 @@ func (c *Client) GetPassportAuthorizationFormAvailableElements(authorizationForm
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*PassportElementsWithErrors), nil
+	return responseAs[*PassportElementsWithErrors](resp)
 }
 
 // GetPassportElement Returns one of the available Telegram Passport elements
@@ -6002,7 +6002,7 @@ func (c *Client) GetPassportElement(password string, typeField PassportElementTy
 	if err != nil {
 		return nil, err
 	}
-	return resp.(PassportElement), nil
+	return responseAs[PassportElement](resp)
 }
 
 // GetPasswordState Returns the current state of 2-step verification
@@ -6012,7 +6012,7 @@ func (c *Client) GetPasswordState() (*PasswordState, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*PasswordState), nil
+	return responseAs[*PasswordState](resp)
 }
 
 // GetPaymentForm Returns an invoice payment form. This method must be called when the user presses inline button of the type inlineKeyboardButtonTypeBuy, or wants to buy access to media in a messagePaidMedia message
@@ -6027,7 +6027,7 @@ func (c *Client) GetPaymentForm(inputInvoice InputInvoice, opts *GetPaymentFormO
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*PaymentForm), nil
+	return responseAs[*PaymentForm](resp)
 }
 
 // GetPaymentReceipt Returns information about a successful payment
@@ -6040,7 +6040,7 @@ func (c *Client) GetPaymentReceipt(chatId int64, messageId int64) (*PaymentRecei
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*PaymentReceipt), nil
+	return responseAs[*PaymentReceipt](resp)
 }
 
 // GetPersonalChatHistory Returns messages in the personal chat of a given user; for bots only
@@ -6053,7 +6053,7 @@ func (c *Client) GetPersonalChatHistory(limit int32, userId int64) (*Messages, e
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Messages), nil
+	return responseAs[*Messages](resp)
 }
 
 // GetPhoneNumberInfo Returns information about a phone number by its prefix. Can be called before authorization
@@ -6065,7 +6065,7 @@ func (c *Client) GetPhoneNumberInfo(phoneNumberPrefix string) (*PhoneNumberInfo,
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*PhoneNumberInfo), nil
+	return responseAs[*PhoneNumberInfo](resp)
 }
 
 // GetPhoneNumberInfoSync Returns information about a phone number by its prefix synchronously. getCountries must be called at least once after changing localization to the specified language if properly localized country information is expected. Can be called synchronously
@@ -6078,7 +6078,7 @@ func (c *Client) GetPhoneNumberInfoSync(languageCode string, phoneNumberPrefix s
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*PhoneNumberInfo), nil
+	return responseAs[*PhoneNumberInfo](resp)
 }
 
 // GetPollOptionProperties Returns properties of a poll option. This is an offline method
@@ -6092,7 +6092,7 @@ func (c *Client) GetPollOptionProperties(chatId int64, messageId int64, pollOpti
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*PollOptionProperties), nil
+	return responseAs[*PollOptionProperties](resp)
 }
 
 // GetPollVoters Returns message senders voted for the specified option in a poll; use poll.can_get_voters to check whether the method can be used.
@@ -6108,7 +6108,7 @@ func (c *Client) GetPollVoters(chatId int64, limit int32, messageId int64, offse
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*PollVoters), nil
+	return responseAs[*PollVoters](resp)
 }
 
 // GetPollVoteStatistics Returns statistics of poll votes in a poll
@@ -6124,7 +6124,7 @@ func (c *Client) GetPollVoteStatistics(chatId int64, messageId int64, opts *GetP
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*PollVoteStatistics), nil
+	return responseAs[*PollVoteStatistics](resp)
 }
 
 // GetPreferredCountryLanguage Returns an IETF language tag of the language preferred in the country, which must be used to fill native fields in Telegram Passport personal details. Returns a 404 error if unknown
@@ -6136,7 +6136,7 @@ func (c *Client) GetPreferredCountryLanguage(countryCode string) (*Text, error) 
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Text), nil
+	return responseAs[*Text](resp)
 }
 
 // GetPremiumFeatures Returns information about features, available to Premium users
@@ -6149,7 +6149,7 @@ func (c *Client) GetPremiumFeatures(opts *GetPremiumFeaturesOpts) (*PremiumFeatu
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*PremiumFeatures), nil
+	return responseAs[*PremiumFeatures](resp)
 }
 
 // GetPremiumGiftPaymentOptions Returns available options for gifting Telegram Premium to a user
@@ -6159,7 +6159,7 @@ func (c *Client) GetPremiumGiftPaymentOptions() (*PremiumGiftPaymentOptions, err
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*PremiumGiftPaymentOptions), nil
+	return responseAs[*PremiumGiftPaymentOptions](resp)
 }
 
 // GetPremiumGiveawayPaymentOptions Returns available options for creating of Telegram Premium giveaway or manual distribution of Telegram Premium among chat members
@@ -6171,7 +6171,7 @@ func (c *Client) GetPremiumGiveawayPaymentOptions(boostedChatId int64) (*Premium
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*PremiumGiveawayPaymentOptions), nil
+	return responseAs[*PremiumGiveawayPaymentOptions](resp)
 }
 
 // GetPremiumInfoSticker Returns the sticker to be used as representation of the Telegram Premium subscription
@@ -6183,7 +6183,7 @@ func (c *Client) GetPremiumInfoSticker(monthCount int32) (*Sticker, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Sticker), nil
+	return responseAs[*Sticker](resp)
 }
 
 // GetPremiumLimit Returns information about a limit, increased for Premium users. Returns a 404 error if the limit is unknown
@@ -6195,7 +6195,7 @@ func (c *Client) GetPremiumLimit(limitType PremiumLimitType) (*PremiumLimit, err
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*PremiumLimit), nil
+	return responseAs[*PremiumLimit](resp)
 }
 
 // GetPremiumState Returns state of Telegram Premium subscription and promotion videos for Premium features
@@ -6205,7 +6205,7 @@ func (c *Client) GetPremiumState() (*PremiumState, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*PremiumState), nil
+	return responseAs[*PremiumState](resp)
 }
 
 // GetPremiumStickerExamples Returns examples of premium stickers for demonstration purposes
@@ -6215,7 +6215,7 @@ func (c *Client) GetPremiumStickerExamples() (*Stickers, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Stickers), nil
+	return responseAs[*Stickers](resp)
 }
 
 // GetPremiumStickers Returns premium stickers from regular sticker sets
@@ -6227,7 +6227,7 @@ func (c *Client) GetPremiumStickers(limit int32) (*Stickers, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Stickers), nil
+	return responseAs[*Stickers](resp)
 }
 
 // GetPreparedInlineMessage Saves an inline message to be sent by the given user
@@ -6240,7 +6240,7 @@ func (c *Client) GetPreparedInlineMessage(botUserId int64, preparedMessageId str
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*PreparedInlineMessage), nil
+	return responseAs[*PreparedInlineMessage](resp)
 }
 
 // GetPreparedKeyboardButton Returns a keyboard button prepared by the bot for the user. The button will be of the type keyboardButtonTypeRequestUsers, keyboardButtonTypeRequestChat, or keyboardButtonTypeRequestManagedBot
@@ -6253,7 +6253,7 @@ func (c *Client) GetPreparedKeyboardButton(botUserId int64, preparedButtonId str
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*KeyboardButton), nil
+	return responseAs[*KeyboardButton](resp)
 }
 
 // GetProxies Returns the list of proxies that are currently set up. Can be called before authorization
@@ -6263,7 +6263,7 @@ func (c *Client) GetProxies() (*AddedProxies, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*AddedProxies), nil
+	return responseAs[*AddedProxies](resp)
 }
 
 // GetPublicPostSearchLimits Checks public post search limits without actually performing the search
@@ -6275,7 +6275,7 @@ func (c *Client) GetPublicPostSearchLimits(query string) (*PublicPostSearchLimit
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*PublicPostSearchLimits), nil
+	return responseAs[*PublicPostSearchLimits](resp)
 }
 
 // GetPushReceiverId Returns a globally unique push notification subscription identifier for identification of an account, which has received a push notification. Can be called synchronously
@@ -6287,7 +6287,7 @@ func (c *Client) GetPushReceiverId(payload string) (*PushReceiverId, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*PushReceiverId), nil
+	return responseAs[*PushReceiverId](resp)
 }
 
 // GetReadDatePrivacySettings Returns privacy settings for message read date
@@ -6297,7 +6297,7 @@ func (c *Client) GetReadDatePrivacySettings() (*ReadDatePrivacySettings, error) 
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ReadDatePrivacySettings), nil
+	return responseAs[*ReadDatePrivacySettings](resp)
 }
 
 // GetReceivedGift Returns information about a received gift
@@ -6309,7 +6309,7 @@ func (c *Client) GetReceivedGift(receivedGiftId string) (*ReceivedGift, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ReceivedGift), nil
+	return responseAs[*ReceivedGift](resp)
 }
 
 // GetReceivedGifts Returns gifts received by the given user or chat
@@ -6336,7 +6336,7 @@ func (c *Client) GetReceivedGifts(businessConnectionId string, collectionId int3
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ReceivedGifts), nil
+	return responseAs[*ReceivedGifts](resp)
 }
 
 // GetRecentEmojiStatuses Returns recent emoji statuses for self status
@@ -6346,7 +6346,7 @@ func (c *Client) GetRecentEmojiStatuses() (*EmojiStatuses, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*EmojiStatuses), nil
+	return responseAs[*EmojiStatuses](resp)
 }
 
 // GetRecentInlineBots Returns up to 20 recently used inline bots in the order of their last usage
@@ -6356,7 +6356,7 @@ func (c *Client) GetRecentInlineBots() (*Users, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Users), nil
+	return responseAs[*Users](resp)
 }
 
 // GetRecentlyOpenedChats Returns recently opened chats. This is an offline method. Returns chats in the order of last opening
@@ -6368,7 +6368,7 @@ func (c *Client) GetRecentlyOpenedChats(limit int32) (*Chats, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Chats), nil
+	return responseAs[*Chats](resp)
 }
 
 // GetRecentlyVisitedTMeUrls Returns t.me URLs recently visited by a newly registered user
@@ -6380,7 +6380,7 @@ func (c *Client) GetRecentlyVisitedTMeUrls(referrer string) (*TMeUrls, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*TMeUrls), nil
+	return responseAs[*TMeUrls](resp)
 }
 
 // GetRecentStickers Returns a list of recently used stickers
@@ -6393,7 +6393,7 @@ func (c *Client) GetRecentStickers(opts *GetRecentStickersOpts) (*Stickers, erro
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Stickers), nil
+	return responseAs[*Stickers](resp)
 }
 
 // GetRecommendedChatFolders Returns recommended chat folders for the current user
@@ -6403,7 +6403,7 @@ func (c *Client) GetRecommendedChatFolders() (*RecommendedChatFolders, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*RecommendedChatFolders), nil
+	return responseAs[*RecommendedChatFolders](resp)
 }
 
 // GetRecommendedChats Returns a list of channel chats recommended to the current user
@@ -6413,7 +6413,7 @@ func (c *Client) GetRecommendedChats() (*Chats, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Chats), nil
+	return responseAs[*Chats](resp)
 }
 
 // GetRecoveryEmailAddress Returns a 2-step verification recovery email address that was previously set up. This method can be used to verify a password provided by the user
@@ -6425,7 +6425,7 @@ func (c *Client) GetRecoveryEmailAddress(password string) (*RecoveryEmailAddress
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*RecoveryEmailAddress), nil
+	return responseAs[*RecoveryEmailAddress](resp)
 }
 
 // GetRemoteFile Returns information about a file by its remote identifier. This is an offline method. Can be used to register a URL as a file for further uploading, or sending as a message. Even if the request succeeds, the file can be used only if it is still accessible to the user.
@@ -6440,7 +6440,7 @@ func (c *Client) GetRemoteFile(remoteFileId string, opts *GetRemoteFileOpts) (*F
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*File), nil
+	return responseAs[*File](resp)
 }
 
 // GetRepliedMessage Returns information about a non-bundled message that is replied by a given message. Also, returns the pinned message for messagePinMessage,
@@ -6453,7 +6453,7 @@ func (c *Client) GetRepliedMessage(chatId int64, messageId int64) (*Message, err
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Message), nil
+	return responseAs[*Message](resp)
 }
 
 // GetSavedAnimations Returns saved animations
@@ -6463,7 +6463,7 @@ func (c *Client) GetSavedAnimations() (*Animations, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Animations), nil
+	return responseAs[*Animations](resp)
 }
 
 // GetSavedMessagesTags Returns tags used in Saved Messages or a Saved Messages topic
@@ -6475,7 +6475,7 @@ func (c *Client) GetSavedMessagesTags(savedMessagesTopicId int64) (*SavedMessage
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*SavedMessagesTags), nil
+	return responseAs[*SavedMessagesTags](resp)
 }
 
 // GetSavedMessagesTopicHistory Returns messages in a Saved Messages topic. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id)
@@ -6490,7 +6490,7 @@ func (c *Client) GetSavedMessagesTopicHistory(fromMessageId int64, limit int32, 
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Messages), nil
+	return responseAs[*Messages](resp)
 }
 
 // GetSavedMessagesTopicMessageByDate Returns the last message sent in a Saved Messages topic no later than the specified date
@@ -6503,7 +6503,7 @@ func (c *Client) GetSavedMessagesTopicMessageByDate(date int32, savedMessagesTop
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Message), nil
+	return responseAs[*Message](resp)
 }
 
 // GetSavedNotificationSound Returns saved notification sound by its identifier. Returns a 404 error if there is no saved notification sound with the specified identifier
@@ -6515,7 +6515,7 @@ func (c *Client) GetSavedNotificationSound(notificationSoundId int64) (*Notifica
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*NotificationSound), nil
+	return responseAs[*NotificationSound](resp)
 }
 
 // GetSavedNotificationSounds Returns the list of saved notification sounds. If a sound isn't in the list, then default sound needs to be used
@@ -6525,7 +6525,7 @@ func (c *Client) GetSavedNotificationSounds() (*NotificationSounds, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*NotificationSounds), nil
+	return responseAs[*NotificationSounds](resp)
 }
 
 // GetSavedOrderInfo Returns saved order information. Returns a 404 error if there is no saved order information
@@ -6535,7 +6535,7 @@ func (c *Client) GetSavedOrderInfo() (*OrderInfo, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*OrderInfo), nil
+	return responseAs[*OrderInfo](resp)
 }
 
 // GetScopeNotificationSettings Returns the notification settings for chats of a given type
@@ -6547,7 +6547,7 @@ func (c *Client) GetScopeNotificationSettings(scope NotificationSettingsScope) (
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ScopeNotificationSettings), nil
+	return responseAs[*ScopeNotificationSettings](resp)
 }
 
 // GetSearchedForTags Returns recently searched for hashtags or cashtags by their prefix
@@ -6560,7 +6560,7 @@ func (c *Client) GetSearchedForTags(limit int32, tagPrefix string) (*Hashtags, e
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Hashtags), nil
+	return responseAs[*Hashtags](resp)
 }
 
 // GetSearchSponsoredChats Returns sponsored chats to be shown in the search results
@@ -6572,7 +6572,7 @@ func (c *Client) GetSearchSponsoredChats(query string) (*SponsoredChats, error) 
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*SponsoredChats), nil
+	return responseAs[*SponsoredChats](resp)
 }
 
 // GetSecretChat Returns information about a secret chat by its identifier. This is an offline method
@@ -6584,7 +6584,7 @@ func (c *Client) GetSecretChat(secretChatId int32) (*SecretChat, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*SecretChat), nil
+	return responseAs[*SecretChat](resp)
 }
 
 // GetStakeDiceState Returns the current state of stake dice
@@ -6594,7 +6594,7 @@ func (c *Client) GetStakeDiceState() (*StakeDiceState, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*StakeDiceState), nil
+	return responseAs[*StakeDiceState](resp)
 }
 
 // GetStarAdAccountUrl Returns a URL for a Telegram Ad platform account that can be used to set up advertisements for the chat paid in the owned Telegram Stars
@@ -6606,7 +6606,7 @@ func (c *Client) GetStarAdAccountUrl(ownerId MessageSender) (*HttpUrl, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*HttpUrl), nil
+	return responseAs[*HttpUrl](resp)
 }
 
 // GetStarGiftPaymentOptions Returns available options for Telegram Stars gifting
@@ -6618,7 +6618,7 @@ func (c *Client) GetStarGiftPaymentOptions(userId int64) (*StarPaymentOptions, e
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*StarPaymentOptions), nil
+	return responseAs[*StarPaymentOptions](resp)
 }
 
 // GetStarGiveawayPaymentOptions Returns available options for Telegram Star giveaway creation
@@ -6628,7 +6628,7 @@ func (c *Client) GetStarGiveawayPaymentOptions() (*StarGiveawayPaymentOptions, e
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*StarGiveawayPaymentOptions), nil
+	return responseAs[*StarGiveawayPaymentOptions](resp)
 }
 
 // GetStarPaymentOptions Returns available options for Telegram Stars purchase
@@ -6638,7 +6638,7 @@ func (c *Client) GetStarPaymentOptions() (*StarPaymentOptions, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*StarPaymentOptions), nil
+	return responseAs[*StarPaymentOptions](resp)
 }
 
 // GetStarRevenueStatistics Returns detailed Telegram Star revenue statistics
@@ -6653,7 +6653,7 @@ func (c *Client) GetStarRevenueStatistics(ownerId MessageSender, opts *GetStarRe
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*StarRevenueStatistics), nil
+	return responseAs[*StarRevenueStatistics](resp)
 }
 
 // GetStarSubscriptions Returns the list of Telegram Star subscriptions for the current user
@@ -6668,7 +6668,7 @@ func (c *Client) GetStarSubscriptions(offset string, opts *GetStarSubscriptionsO
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*StarSubscriptions), nil
+	return responseAs[*StarSubscriptions](resp)
 }
 
 // GetStarTransactions Returns the list of Telegram Star transactions for the specified owner
@@ -6686,7 +6686,7 @@ func (c *Client) GetStarTransactions(limit int32, offset string, ownerId Message
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*StarTransactions), nil
+	return responseAs[*StarTransactions](resp)
 }
 
 // GetStarWithdrawalUrl Returns a URL for Telegram Star withdrawal
@@ -6700,7 +6700,7 @@ func (c *Client) GetStarWithdrawalUrl(ownerId MessageSender, password string, st
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*HttpUrl), nil
+	return responseAs[*HttpUrl](resp)
 }
 
 // GetStatisticalGraph Loads an asynchronous or a zoomed in statistical graph
@@ -6714,7 +6714,7 @@ func (c *Client) GetStatisticalGraph(chatId int64, token string, x int64) (Stati
 	if err != nil {
 		return nil, err
 	}
-	return resp.(StatisticalGraph), nil
+	return responseAs[StatisticalGraph](resp)
 }
 
 // GetStickerEmojis Returns emoji corresponding to a sticker. The list is only for informational purposes, because a sticker is always sent with a fixed emoji from the corresponding Sticker object
@@ -6726,7 +6726,7 @@ func (c *Client) GetStickerEmojis(sticker InputFile) (*Emojis, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Emojis), nil
+	return responseAs[*Emojis](resp)
 }
 
 // GetStickerOutline Returns outline of a sticker. This is an offline method. Returns a 404 error if the outline isn't known
@@ -6742,7 +6742,7 @@ func (c *Client) GetStickerOutline(stickerFileId int32, opts *GetStickerOutlineO
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Outline), nil
+	return responseAs[*Outline](resp)
 }
 
 // GetStickerOutlineSvgPath Returns outline of a sticker as an SVG path. This is an offline method. Returns an empty string if the outline isn't known
@@ -6758,7 +6758,7 @@ func (c *Client) GetStickerOutlineSvgPath(stickerFileId int32, opts *GetStickerO
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Text), nil
+	return responseAs[*Text](resp)
 }
 
 // GetStickers Returns stickers from the installed sticker sets that correspond to any of the given emoji or can be found by sticker-specific keywords. If the query is non-empty, then favorite, recently used or trending stickers may also be returned
@@ -6773,7 +6773,7 @@ func (c *Client) GetStickers(chatId int64, limit int32, query string, stickerTyp
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Stickers), nil
+	return responseAs[*Stickers](resp)
 }
 
 // GetStickerSet Returns information about a sticker set by its identifier
@@ -6785,7 +6785,7 @@ func (c *Client) GetStickerSet(setId int64) (*StickerSet, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*StickerSet), nil
+	return responseAs[*StickerSet](resp)
 }
 
 // GetStickerSetName Returns name of a sticker set by its identifier
@@ -6797,7 +6797,7 @@ func (c *Client) GetStickerSetName(setId int64) (*Text, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Text), nil
+	return responseAs[*Text](resp)
 }
 
 // GetStorageStatistics Returns storage usage statistics. Can be called before authorization
@@ -6809,7 +6809,7 @@ func (c *Client) GetStorageStatistics(chatLimit int32) (*StorageStatistics, erro
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*StorageStatistics), nil
+	return responseAs[*StorageStatistics](resp)
 }
 
 // GetStorageStatisticsFast Quickly returns approximate storage usage statistics. Can be called before authorization
@@ -6819,7 +6819,7 @@ func (c *Client) GetStorageStatisticsFast() (*StorageStatisticsFast, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*StorageStatisticsFast), nil
+	return responseAs[*StorageStatisticsFast](resp)
 }
 
 // GetStory Returns a story
@@ -6835,7 +6835,7 @@ func (c *Client) GetStory(storyId int32, storyPosterChatId int64, opts *GetStory
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Story), nil
+	return responseAs[*Story](resp)
 }
 
 // GetStoryAlbumStories Returns the list of stories added to the given story album. For optimal performance, the number of returned stories is chosen by TDLib
@@ -6850,7 +6850,7 @@ func (c *Client) GetStoryAlbumStories(chatId int64, limit int32, offset int32, s
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Stories), nil
+	return responseAs[*Stories](resp)
 }
 
 // GetStoryAvailableReactions Returns reactions, which can be chosen for a story
@@ -6862,7 +6862,7 @@ func (c *Client) GetStoryAvailableReactions(rowSize int32) (*AvailableReactions,
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*AvailableReactions), nil
+	return responseAs[*AvailableReactions](resp)
 }
 
 // GetStoryInteractions Returns interactions with a story. The method can be called only for stories posted on behalf of the current user
@@ -6882,7 +6882,7 @@ func (c *Client) GetStoryInteractions(limit int32, offset string, storyId int32,
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*StoryInteractions), nil
+	return responseAs[*StoryInteractions](resp)
 }
 
 // GetStoryNotificationSettingsExceptions Returns the list of chats with non-default notification settings for stories
@@ -6892,7 +6892,7 @@ func (c *Client) GetStoryNotificationSettingsExceptions() (*Chats, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Chats), nil
+	return responseAs[*Chats](resp)
 }
 
 // GetStoryPublicForwards Returns forwards of a story as a message to public chats and reposts by public channels. Can be used only if the story is posted on behalf of the current user or story.can_get_statistics == true.
@@ -6907,7 +6907,7 @@ func (c *Client) GetStoryPublicForwards(limit int32, offset string, storyId int3
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*PublicForwards), nil
+	return responseAs[*PublicForwards](resp)
 }
 
 // GetStoryStatistics Returns detailed statistics about a story. Can be used only if story.can_get_statistics == true
@@ -6923,7 +6923,7 @@ func (c *Client) GetStoryStatistics(chatId int64, storyId int32, opts *GetStoryS
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*StoryStatistics), nil
+	return responseAs[*StoryStatistics](resp)
 }
 
 // GetSuggestedFileName Returns suggested name for saving a file in a given directory
@@ -6936,7 +6936,7 @@ func (c *Client) GetSuggestedFileName(directory string, fileId int32) (*Text, er
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Text), nil
+	return responseAs[*Text](resp)
 }
 
 // GetSuggestedStickerSetName Returns a suggested name for a new sticker set with a given title
@@ -6948,7 +6948,7 @@ func (c *Client) GetSuggestedStickerSetName(title string) (*Text, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Text), nil
+	return responseAs[*Text](resp)
 }
 
 // GetSuitableDiscussionChats Returns a list of basic group and supergroup chats, which can be used as a discussion group for a channel. Returned basic group chats must be first upgraded to supergroups before they can be set as a discussion group.
@@ -6958,7 +6958,7 @@ func (c *Client) GetSuitableDiscussionChats() (*Chats, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Chats), nil
+	return responseAs[*Chats](resp)
 }
 
 // GetSuitablePersonalChats Returns a list of channel chats, which can be used as a personal chat
@@ -6968,7 +6968,7 @@ func (c *Client) GetSuitablePersonalChats() (*Chats, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Chats), nil
+	return responseAs[*Chats](resp)
 }
 
 // GetSupergroup Returns information about a supergroup or a channel by its identifier. This is an offline method if the current user is not a bot
@@ -6980,7 +6980,7 @@ func (c *Client) GetSupergroup(supergroupId int64) (*Supergroup, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Supergroup), nil
+	return responseAs[*Supergroup](resp)
 }
 
 // GetSupergroupFullInfo Returns full information about a supergroup or a channel by its identifier, cached for up to 1 minute
@@ -6992,7 +6992,7 @@ func (c *Client) GetSupergroupFullInfo(supergroupId int64) (*SupergroupFullInfo,
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*SupergroupFullInfo), nil
+	return responseAs[*SupergroupFullInfo](resp)
 }
 
 // GetSupergroupMembers Returns information about members or banned users in a supergroup or channel. Can be used only if supergroupFullInfo.can_get_members == true; additionally, administrator privileges may be required for some filters
@@ -7009,7 +7009,7 @@ func (c *Client) GetSupergroupMembers(limit int32, offset int32, supergroupId in
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ChatMembers), nil
+	return responseAs[*ChatMembers](resp)
 }
 
 // GetSupportName Returns localized name of the Telegram support user; for Telegram support only
@@ -7019,7 +7019,7 @@ func (c *Client) GetSupportName() (*Text, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Text), nil
+	return responseAs[*Text](resp)
 }
 
 // GetSupportUser Returns a user who can be contacted to get support
@@ -7029,7 +7029,7 @@ func (c *Client) GetSupportUser() (*User, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*User), nil
+	return responseAs[*User](resp)
 }
 
 // GetTemporaryPasswordState Returns information about the current temporary password
@@ -7039,7 +7039,7 @@ func (c *Client) GetTemporaryPasswordState() (*TemporaryPasswordState, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*TemporaryPasswordState), nil
+	return responseAs[*TemporaryPasswordState](resp)
 }
 
 // GetTextCompositionStyleExample Returns an example of usage of a custom text composition style
@@ -7052,7 +7052,7 @@ func (c *Client) GetTextCompositionStyleExample(exampleNumber int32, name string
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*TextCompositionStyleExample), nil
+	return responseAs[*TextCompositionStyleExample](resp)
 }
 
 // GetTextEntities Returns all entities (mentions, hashtags, cashtags, bot commands, bank card numbers, TON blockchain addresses, URLs, and email addresses) found in the text. Can be called synchronously
@@ -7064,7 +7064,7 @@ func (c *Client) GetTextEntities(text string) (*TextEntities, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*TextEntities), nil
+	return responseAs[*TextEntities](resp)
 }
 
 // GetThemedChatEmojiStatuses Returns up to 8 emoji statuses, which must be shown in the emoji status list for chats
@@ -7074,7 +7074,7 @@ func (c *Client) GetThemedChatEmojiStatuses() (*EmojiStatusCustomEmojis, error) 
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*EmojiStatusCustomEmojis), nil
+	return responseAs[*EmojiStatusCustomEmojis](resp)
 }
 
 // GetThemedEmojiStatuses Returns up to 8 emoji statuses, which must be shown right after the default Premium Badge in the emoji status list for self status
@@ -7084,7 +7084,7 @@ func (c *Client) GetThemedEmojiStatuses() (*EmojiStatusCustomEmojis, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*EmojiStatusCustomEmojis), nil
+	return responseAs[*EmojiStatusCustomEmojis](resp)
 }
 
 // GetThemeParametersJsonString Converts a themeParameters object to corresponding JSON-serialized string. Can be called synchronously
@@ -7096,7 +7096,7 @@ func (c *Client) GetThemeParametersJsonString(theme *ThemeParameters) (*Text, er
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Text), nil
+	return responseAs[*Text](resp)
 }
 
 // GetTimeZones Returns the list of supported time zones
@@ -7106,7 +7106,7 @@ func (c *Client) GetTimeZones() (*TimeZones, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*TimeZones), nil
+	return responseAs[*TimeZones](resp)
 }
 
 // GetTonCenterStreamingApiUrl Returns a URL for TON Center Streaming API
@@ -7116,7 +7116,7 @@ func (c *Client) GetTonCenterStreamingApiUrl() (*TonCenterStreamingApiUrl, error
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*TonCenterStreamingApiUrl), nil
+	return responseAs[*TonCenterStreamingApiUrl](resp)
 }
 
 // GetTonConnectDAppPendingRequests Returns pending requests with a dApp through TON Connect
@@ -7128,7 +7128,7 @@ func (c *Client) GetTonConnectDAppPendingRequests(dappClientId string) (*TonConn
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*TonConnectRequests), nil
+	return responseAs[*TonConnectRequests](resp)
 }
 
 // GetTonConnectSessionNextEventId Returns the next event identifier for the given TON Connect session
@@ -7140,7 +7140,7 @@ func (c *Client) GetTonConnectSessionNextEventId(sessionId int64) (*TonConnectSe
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*TonConnectSessionEventId), nil
+	return responseAs[*TonConnectSessionEventId](resp)
 }
 
 // GetTonConnectSessionPendingRequests Returns pending requests in a TON Connect session
@@ -7152,7 +7152,7 @@ func (c *Client) GetTonConnectSessionPendingRequests(sessionId int64) (*TonConne
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*TonConnectRequests), nil
+	return responseAs[*TonConnectRequests](resp)
 }
 
 // GetTonConnectSessions Returns active TON Connect sessions; can be used only if getOption("can_use_ton_wallet")
@@ -7162,7 +7162,7 @@ func (c *Client) GetTonConnectSessions() (*TonConnectSessions, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*TonConnectSessions), nil
+	return responseAs[*TonConnectSessions](resp)
 }
 
 // GetTonTransactions Returns the list of TON Gram transactions of the current user
@@ -7178,7 +7178,7 @@ func (c *Client) GetTonTransactions(limit int32, offset string, opts *GetTonTran
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*TonTransactions), nil
+	return responseAs[*TonTransactions](resp)
 }
 
 // GetTonWalletNfts Returns NFTs stored on the TON wallet of the user; can be used only if getOption("can_use_ton_wallet")
@@ -7191,7 +7191,7 @@ func (c *Client) GetTonWalletNfts(limit int32, offset string) (*TonNfts, error) 
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*TonNfts), nil
+	return responseAs[*TonNfts](resp)
 }
 
 // GetTonWalletOwnershipProofChallenge Returns a challenge which may be used to proof ownership of a TON wallet; can be used only if getOption("can_use_ton_wallet")
@@ -7201,7 +7201,7 @@ func (c *Client) GetTonWalletOwnershipProofChallenge() (*TonWalletOwnershipProof
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*TonWalletOwnershipProofChallenge), nil
+	return responseAs[*TonWalletOwnershipProofChallenge](resp)
 }
 
 // GetTonWalletSecretPhrase Returns the secret phrase of the user's TON wallet as a space separated list of words. Works only if tonWalletState.can_export_phrase is true
@@ -7213,7 +7213,7 @@ func (c *Client) GetTonWalletSecretPhrase(password string) (*Text, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Text), nil
+	return responseAs[*Text](resp)
 }
 
 // GetTonWalletTransaction Returns a TON wallet transaction by their identifier
@@ -7225,7 +7225,7 @@ func (c *Client) GetTonWalletTransaction(transactionId string) (*TonWalletTransa
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*TonWalletTransaction), nil
+	return responseAs[*TonWalletTransaction](resp)
 }
 
 // GetTonWalletTransactionByMsgHash Returns a TON wallet transaction by their msg_hash; return an error if the transaction isn't finalized yet
@@ -7237,7 +7237,7 @@ func (c *Client) GetTonWalletTransactionByMsgHash(msgHash string) (*TonWalletTra
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*TonWalletTransaction), nil
+	return responseAs[*TonWalletTransaction](resp)
 }
 
 // GetTonWalletTransactions Returns the list of TON wallet transactions of the current user; can be used only if getOption("can_use_ton_wallet")
@@ -7253,7 +7253,7 @@ func (c *Client) GetTonWalletTransactions(limit int32, offset string, opts *GetT
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*TonWalletTransactions), nil
+	return responseAs[*TonWalletTransactions](resp)
 }
 
 // GetTopChats Returns a list of frequently used chats
@@ -7266,7 +7266,7 @@ func (c *Client) GetTopChats(category TopChatCategory, limit int32) (*Chats, err
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Chats), nil
+	return responseAs[*Chats](resp)
 }
 
 // GetTrendingStickerSets Returns a list of trending sticker sets. For optimal performance, the number of returned sticker sets is chosen by TDLib
@@ -7280,7 +7280,7 @@ func (c *Client) GetTrendingStickerSets(limit int32, offset int32, stickerType S
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*TrendingStickerSets), nil
+	return responseAs[*TrendingStickerSets](resp)
 }
 
 // GetUpgradedGift Returns information about an upgraded gift by its name
@@ -7292,7 +7292,7 @@ func (c *Client) GetUpgradedGift(name string) (*UpgradedGift, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*UpgradedGift), nil
+	return responseAs[*UpgradedGift](resp)
 }
 
 // GetUpgradedGiftEmojiStatuses Returns available upgraded gift emoji statuses for self status
@@ -7302,7 +7302,7 @@ func (c *Client) GetUpgradedGiftEmojiStatuses() (*EmojiStatuses, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*EmojiStatuses), nil
+	return responseAs[*EmojiStatuses](resp)
 }
 
 // GetUpgradedGiftsPromotionalAnimation Returns promotional animation for upgraded gifts
@@ -7312,7 +7312,7 @@ func (c *Client) GetUpgradedGiftsPromotionalAnimation() (*Animation, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Animation), nil
+	return responseAs[*Animation](resp)
 }
 
 // GetUpgradedGiftValueInfo Returns information about value of an upgraded gift by its name
@@ -7324,7 +7324,7 @@ func (c *Client) GetUpgradedGiftValueInfo(name string) (*UpgradedGiftValueInfo, 
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*UpgradedGiftValueInfo), nil
+	return responseAs[*UpgradedGiftValueInfo](resp)
 }
 
 // GetUpgradedGiftVariants Returns all possible variants of upgraded gifts for a regular gift
@@ -7340,7 +7340,7 @@ func (c *Client) GetUpgradedGiftVariants(regularGiftId int64, opts *GetUpgradedG
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*GiftUpgradeVariants), nil
+	return responseAs[*GiftUpgradeVariants](resp)
 }
 
 // GetUpgradedGiftWithdrawalUrl Returns a URL for upgraded gift withdrawal in the TON blockchain as an NFT; requires owner privileges for gifts owned by a chat
@@ -7353,7 +7353,7 @@ func (c *Client) GetUpgradedGiftWithdrawalUrl(password string, receivedGiftId st
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*HttpUrl), nil
+	return responseAs[*HttpUrl](resp)
 }
 
 // GetUser Returns information about a user by their identifier. This is an offline method if the current user is not a bot
@@ -7365,7 +7365,7 @@ func (c *Client) GetUser(userId int64) (*User, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*User), nil
+	return responseAs[*User](resp)
 }
 
 // GetUserChatBoosts Returns the list of boosts applied to a chat by a given user; requires administrator rights in the chat; for bots only
@@ -7378,7 +7378,7 @@ func (c *Client) GetUserChatBoosts(chatId int64, userId int64) (*FoundChatBoosts
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*FoundChatBoosts), nil
+	return responseAs[*FoundChatBoosts](resp)
 }
 
 // GetUserFullInfo Returns full information about a user by their identifier
@@ -7390,7 +7390,7 @@ func (c *Client) GetUserFullInfo(userId int64) (*UserFullInfo, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*UserFullInfo), nil
+	return responseAs[*UserFullInfo](resp)
 }
 
 // GetUserLink Returns an HTTPS link, which can be used to get information about the current user
@@ -7400,7 +7400,7 @@ func (c *Client) GetUserLink() (*UserLink, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*UserLink), nil
+	return responseAs[*UserLink](resp)
 }
 
 // GetUserPrivacySettingRules Returns the current privacy settings
@@ -7412,7 +7412,7 @@ func (c *Client) GetUserPrivacySettingRules(setting UserPrivacySetting) (*UserPr
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*UserPrivacySettingRules), nil
+	return responseAs[*UserPrivacySettingRules](resp)
 }
 
 // GetUserProfileAudios Returns the list of profile audio files of a user
@@ -7426,7 +7426,7 @@ func (c *Client) GetUserProfileAudios(limit int32, offset int32, userId int64) (
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Audios), nil
+	return responseAs[*Audios](resp)
 }
 
 // GetUserProfilePhotos Returns the profile photos of a user. Personal and public photo aren't returned
@@ -7440,7 +7440,7 @@ func (c *Client) GetUserProfilePhotos(limit int32, offset int32, userId int64) (
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ChatPhotos), nil
+	return responseAs[*ChatPhotos](resp)
 }
 
 // GetUserSupportInfo Returns support information for the given user; for Telegram support only
@@ -7452,7 +7452,7 @@ func (c *Client) GetUserSupportInfo(userId int64) (*UserSupportInfo, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*UserSupportInfo), nil
+	return responseAs[*UserSupportInfo](resp)
 }
 
 // GetUserTonWalletAddresses Returns TON wallet addresses of the specified users; can be used only if getOption("can_use_ton_wallet")
@@ -7464,7 +7464,7 @@ func (c *Client) GetUserTonWalletAddresses(userIds []int64) (*UserTonWalletAddre
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*UserTonWalletAddresses), nil
+	return responseAs[*UserTonWalletAddresses](resp)
 }
 
 // GetVideoChatAvailableParticipants Returns the list of participant identifiers, on whose behalf a video chat in the chat can be joined
@@ -7476,7 +7476,7 @@ func (c *Client) GetVideoChatAvailableParticipants(chatId int64) (*MessageSender
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*MessageSenders), nil
+	return responseAs[*MessageSenders](resp)
 }
 
 // GetVideoChatInviteLink Returns invite link to a video chat in a public chat
@@ -7491,7 +7491,7 @@ func (c *Client) GetVideoChatInviteLink(groupCallId int32, opts *GetVideoChatInv
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*HttpUrl), nil
+	return responseAs[*HttpUrl](resp)
 }
 
 // GetVideoChatRtmpUrl Returns RTMP URL for streaming to the video chat of a chat; requires can_manage_video_chats administrator right
@@ -7503,7 +7503,7 @@ func (c *Client) GetVideoChatRtmpUrl(chatId int64) (*RtmpUrl, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*RtmpUrl), nil
+	return responseAs[*RtmpUrl](resp)
 }
 
 // GetVideoMessageAdvertisements Returns advertisements to be shown while a video from a message is watched. Available only if messageProperties.can_get_video_advertisements
@@ -7516,7 +7516,7 @@ func (c *Client) GetVideoMessageAdvertisements(chatId int64, messageId int64) (*
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*VideoMessageAdvertisements), nil
+	return responseAs[*VideoMessageAdvertisements](resp)
 }
 
 // GetWebAppLinkUrl Returns an HTTPS URL of a Web App to open after a link of the type internalLinkTypeWebApp is clicked
@@ -7535,7 +7535,7 @@ func (c *Client) GetWebAppLinkUrl(botUserId int64, chatId int64, parameters *Web
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*WebAppUrl), nil
+	return responseAs[*WebAppUrl](resp)
 }
 
 // GetWebAppPlaceholder Returns a default placeholder for Web Apps of a bot. This is an offline method. Returns a 404 error if the placeholder isn't known
@@ -7547,7 +7547,7 @@ func (c *Client) GetWebAppPlaceholder(botUserId int64) (*Outline, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Outline), nil
+	return responseAs[*Outline](resp)
 }
 
 // GetWebAppUrl Returns an HTTPS URL of a Web App to open from the side menu, a keyboardButtonTypeWebApp button, or an inlineQueryResultsButtonTypeWebApp button
@@ -7561,7 +7561,7 @@ func (c *Client) GetWebAppUrl(botUserId int64, parameters *WebAppOpenParameters,
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*WebAppUrl), nil
+	return responseAs[*WebAppUrl](resp)
 }
 
 // GetWebPageInstantView Returns an instant view version of a web page if available. This is an offline method if only_local is true. Returns a 404 error if the web page has no instant view page
@@ -7576,7 +7576,7 @@ func (c *Client) GetWebPageInstantView(url string, opts *GetWebPageInstantViewOp
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*WebPageInstantView), nil
+	return responseAs[*WebPageInstantView](resp)
 }
 
 // GiftPremiumWithStars Allows to buy a Telegram Premium subscription for another user with payment in Telegram Stars; for bots only
@@ -7616,7 +7616,7 @@ func (c *Client) ImportContacts(contacts []ImportedContact) (*ImportedContacts, 
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ImportedContacts), nil
+	return responseAs[*ImportedContacts](resp)
 }
 
 // ImportMessages Imports messages exported from another application
@@ -7653,7 +7653,7 @@ func (c *Client) InviteGroupCallParticipant(groupCallId int32, userId int64, opt
 	if err != nil {
 		return nil, err
 	}
-	return resp.(InviteGroupCallParticipantResult), nil
+	return responseAs[InviteGroupCallParticipantResult](resp)
 }
 
 // InviteVideoChatParticipants Invites users to an active video chat. Sends a service message of the type messageInviteVideoChatParticipants to the chat bound to the group call
@@ -7691,7 +7691,7 @@ func (c *Client) JoinChat(chatId int64) (ChatJoinResult, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(ChatJoinResult), nil
+	return responseAs[ChatJoinResult](resp)
 }
 
 // JoinChatByInviteLink Uses an invite link to add the current user to the chat if possible
@@ -7703,7 +7703,7 @@ func (c *Client) JoinChatByInviteLink(inviteLink string) (ChatJoinResult, error)
 	if err != nil {
 		return nil, err
 	}
-	return resp.(ChatJoinResult), nil
+	return responseAs[ChatJoinResult](resp)
 }
 
 // JoinGroupCall Joins a regular group call that is not bound to a chat
@@ -7716,7 +7716,7 @@ func (c *Client) JoinGroupCall(inputGroupCall InputGroupCall, joinParameters *Gr
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*GroupCallInfo), nil
+	return responseAs[*GroupCallInfo](resp)
 }
 
 // JoinLiveStory Joins a group call of an active live story. Returns join response payload for tgcalls
@@ -7729,7 +7729,7 @@ func (c *Client) JoinLiveStory(groupCallId int32, joinParameters *GroupCallJoinP
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Text), nil
+	return responseAs[*Text](resp)
 }
 
 // JoinVideoChat Joins an active video chat. Returns join response payload for tgcalls
@@ -7746,7 +7746,7 @@ func (c *Client) JoinVideoChat(groupCallId int32, inviteHash string, joinParamet
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Text), nil
+	return responseAs[*Text](resp)
 }
 
 // LaunchPrepaidGiveaway Launches a prepaid giveaway
@@ -7980,7 +7980,7 @@ func (c *Client) OpenWebApp(botUserId int64, chatId int64, parameters *WebAppOpe
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*WebAppInfo), nil
+	return responseAs[*WebAppInfo](resp)
 }
 
 // OptimizeStorage Optimizes storage usage, i.e. deletes some files and returns new storage usage statistics. Secret thumbnails can't be deleted
@@ -8002,7 +8002,7 @@ func (c *Client) OptimizeStorage(chatLimit int32, count int32, immunityDelay int
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*StorageStatistics), nil
+	return responseAs[*StorageStatistics](resp)
 }
 
 // ParseMarkdown Parses Markdown entities in a human-friendly format, ignoring markup errors. Can be called synchronously
@@ -8014,7 +8014,7 @@ func (c *Client) ParseMarkdown(text *FormattedText) (*FormattedText, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*FormattedText), nil
+	return responseAs[*FormattedText](resp)
 }
 
 // ParseTextEntities Parses Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, BlockQuote, ExpandableBlockQuote, Code, Pre, PreCode, TextUrl,
@@ -8027,7 +8027,7 @@ func (c *Client) ParseTextEntities(parseMode TextParseMode, text string) (*Forma
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*FormattedText), nil
+	return responseAs[*FormattedText](resp)
 }
 
 // PinChatMessage Pins a message in a chat. A message can be pinned only if messageProperties.can_be_pinned
@@ -8054,7 +8054,7 @@ func (c *Client) PingProxy(opts *PingProxyOpts) (*Seconds, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Seconds), nil
+	return responseAs[*Seconds](resp)
 }
 
 // PlaceGiftAuctionBid Places a bid on an auction gift
@@ -8092,7 +8092,7 @@ func (c *Client) PostStory(activePeriod int32, albumIds []int32, chatId int64, c
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Story), nil
+	return responseAs[*Story](resp)
 }
 
 // PreliminaryUploadFile Preliminarily uploads a file to the cloud before sending it in a message, which can be useful for uploading of being recorded voice and video notes.
@@ -8108,7 +8108,7 @@ func (c *Client) PreliminaryUploadFile(file InputFile, priority int32, opts *Pre
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*File), nil
+	return responseAs[*File](resp)
 }
 
 // ProcessChatFolderNewChats Process new chats added to a shareable chat folder by its owner
@@ -8291,7 +8291,7 @@ func (c *Client) ReaddQuickReplyShortcutMessages(messageIds []int64, shortcutNam
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*QuickReplyMessages), nil
+	return responseAs[*QuickReplyMessages](resp)
 }
 
 // ReadFilePart Reads a part of a file from the TDLib file cache and returns read bytes. This method is intended to be used only if the application has no direct access to TDLib's file system, because it is usually slower than a direct read from the file
@@ -8305,7 +8305,7 @@ func (c *Client) ReadFilePart(count int64, fileId int32, offset int64) (*Data, e
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Data), nil
+	return responseAs[*Data](resp)
 }
 
 // RecognizeSpeech Recognizes speech in a video note or a voice note message
@@ -8344,7 +8344,7 @@ func (c *Client) RecoverPassword(recoveryCode string, opts *RecoverPasswordOpts)
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*PasswordState), nil
+	return responseAs[*PasswordState](resp)
 }
 
 // RefundStarPayment Refunds a previously done payment in Telegram Stars; for bots only
@@ -8367,7 +8367,7 @@ func (c *Client) RegisterDevice(deviceToken DeviceToken, otherUserIds []int64) (
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*PushReceiverId), nil
+	return responseAs[*PushReceiverId](resp)
 }
 
 // RegisterUser Finishes user registration. Works only when the current authorization state is authorizationStateWaitRegistration
@@ -8461,7 +8461,7 @@ func (c *Client) RemoveGiftCollectionGifts(collectionId int32, ownerId MessageSe
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*GiftCollection), nil
+	return responseAs[*GiftCollection](resp)
 }
 
 // RemoveInstalledBackground Removes background from the list of installed backgrounds
@@ -8637,7 +8637,7 @@ func (c *Client) RemoveStoryAlbumStories(chatId int64, storyAlbumId int32, story
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*StoryAlbum), nil
+	return responseAs[*StoryAlbum](resp)
 }
 
 // RemoveTextCompositionStyle Removes a custom text composition style from the list of used by the user styles. If the style was created by the current user, then it can only be deleted
@@ -8719,7 +8719,7 @@ func (c *Client) ReorderGiftCollectionGifts(collectionId int32, ownerId MessageS
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*GiftCollection), nil
+	return responseAs[*GiftCollection](resp)
 }
 
 // ReorderGiftCollections Changes order of gift collections. If the collections are owned by a channel chat, then requires can_post_messages administrator right in the channel chat
@@ -8772,7 +8772,7 @@ func (c *Client) ReorderStoryAlbumStories(chatId int64, storyAlbumId int32, stor
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*StoryAlbum), nil
+	return responseAs[*StoryAlbum](resp)
 }
 
 // ReorderSupergroupActiveUsernames Changes order of active usernames of a supergroup or channel, requires owner privileges in the supergroup or channel
@@ -8794,7 +8794,7 @@ func (c *Client) ReplaceLiveStoryRtmpUrl(chatId int64) (*RtmpUrl, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*RtmpUrl), nil
+	return responseAs[*RtmpUrl](resp)
 }
 
 // ReplacePrimaryChatInviteLink Replaces current primary invite link for a chat with a new primary invite link. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right
@@ -8806,7 +8806,7 @@ func (c *Client) ReplacePrimaryChatInviteLink(chatId int64) (*ChatInviteLink, er
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ChatInviteLink), nil
+	return responseAs[*ChatInviteLink](resp)
 }
 
 // ReplaceStickerInSet Replaces existing sticker in a set. The function is equivalent to removeStickerFromSet, then addStickerToSet, then setStickerPositionInSet
@@ -8841,7 +8841,7 @@ func (c *Client) ReplaceVideoChatRtmpUrl(chatId int64) (*RtmpUrl, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*RtmpUrl), nil
+	return responseAs[*RtmpUrl](resp)
 }
 
 // ReplyToCallbackQueryWithEphemeralMessage Replies to a callback query with an ephemeral message; for bots only
@@ -8880,7 +8880,7 @@ func (c *Client) ReportChat(chatId int64, messageIds []int64, optionId []byte, t
 	if err != nil {
 		return nil, err
 	}
-	return resp.(ReportChatResult), nil
+	return responseAs[ReportChatResult](resp)
 }
 
 // ReportChatPhoto Reports a chat photo to the Telegram moderators. A chat photo can be reported only if chat.can_be_reported
@@ -8906,7 +8906,7 @@ func (c *Client) ReportChatSponsoredMessage(chatId int64, messageId int64, optio
 	if err != nil {
 		return nil, err
 	}
-	return resp.(ReportSponsoredResult), nil
+	return responseAs[ReportSponsoredResult](resp)
 }
 
 // ReportMessageReactions Reports reactions set on a message to the Telegram moderators. Reactions on a message can be reported only if messageProperties.can_report_reactions
@@ -8939,7 +8939,7 @@ func (c *Client) ReportSponsoredChat(optionId []byte, sponsoredChatUniqueId int6
 	if err != nil {
 		return nil, err
 	}
-	return resp.(ReportSponsoredResult), nil
+	return responseAs[ReportSponsoredResult](resp)
 }
 
 // ReportStory Reports a story to the Telegram moderators
@@ -8954,7 +8954,7 @@ func (c *Client) ReportStory(optionId []byte, storyId int32, storyPosterChatId i
 	if err != nil {
 		return nil, err
 	}
-	return resp.(ReportStoryResult), nil
+	return responseAs[ReportStoryResult](resp)
 }
 
 // ReportSupergroupAntiSpamFalsePositive Reports a false deletion of a message by aggressive anti-spam checks; requires administrator rights in the supergroup. Can be called only for messages from chatEventMessageDeleted with can_report_anti_spam_false_positive == true
@@ -8987,7 +8987,7 @@ func (c *Client) ReportVideoMessageAdvertisement(advertisementUniqueId int64, op
 	if err != nil {
 		return nil, err
 	}
-	return resp.(ReportSponsoredResult), nil
+	return responseAs[ReportSponsoredResult](resp)
 }
 
 // RequestAuthenticationPasswordRecovery Requests to send a 2-step verification password recovery code to an email address that was previously set up. Works only when the current authorization state is authorizationStateWaitPassword
@@ -9004,7 +9004,7 @@ func (c *Client) RequestPasswordRecovery() (*EmailAddressAuthenticationCodeInfo,
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*EmailAddressAuthenticationCodeInfo), nil
+	return responseAs[*EmailAddressAuthenticationCodeInfo](resp)
 }
 
 // RequestQrCodeAuthentication Requests QR code authentication by scanning a QR code on another logged in device. Works only when the current authorization state is authorizationStateWaitPhoneNumber,
@@ -9033,7 +9033,7 @@ func (c *Client) ResendEmailAddressVerificationCode() (*EmailAddressAuthenticati
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*EmailAddressAuthenticationCodeInfo), nil
+	return responseAs[*EmailAddressAuthenticationCodeInfo](resp)
 }
 
 // ResendLoginEmailAddressCode Resends the login email address verification code
@@ -9043,7 +9043,7 @@ func (c *Client) ResendLoginEmailAddressCode() (*EmailAddressAuthenticationCodeI
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*EmailAddressAuthenticationCodeInfo), nil
+	return responseAs[*EmailAddressAuthenticationCodeInfo](resp)
 }
 
 // ResendMessages Resends messages which failed to send. Can be called only for messages for which messageSendingStateFailed.can_retry is true and after specified in messageSendingStateFailed.retry_after time passed.
@@ -9060,7 +9060,7 @@ func (c *Client) ResendMessages(chatId int64, messageIds []int64, paidMessageSta
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Messages), nil
+	return responseAs[*Messages](resp)
 }
 
 // ResendPhoneNumberCode Resends the authentication code sent to a phone number. Works only if the previously received authenticationCodeInfo next_code_type was not null and the server-specified timeout has passed
@@ -9073,7 +9073,7 @@ func (c *Client) ResendPhoneNumberCode(opts *ResendPhoneNumberCodeOpts) (*Authen
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*AuthenticationCodeInfo), nil
+	return responseAs[*AuthenticationCodeInfo](resp)
 }
 
 // ResendRecoveryEmailAddressCode Resends the 2-step verification recovery email address verification code
@@ -9083,7 +9083,7 @@ func (c *Client) ResendRecoveryEmailAddressCode() (*PasswordState, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*PasswordState), nil
+	return responseAs[*PasswordState](resp)
 }
 
 // ResetAllNotificationSettings Resets all chat and scope notification settings to their default values. By default, all chats are unmuted and message previews are shown
@@ -9121,7 +9121,7 @@ func (c *Client) ResetPassword() (ResetPasswordResult, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(ResetPasswordResult), nil
+	return responseAs[ResetPasswordResult](resp)
 }
 
 // ReuseStarSubscription Reuses an active Telegram Star subscription to a channel chat and joins the chat again
@@ -9143,7 +9143,7 @@ func (c *Client) RevokeChatInviteLink(chatId int64, inviteLink string) (*ChatInv
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ChatInviteLinks), nil
+	return responseAs[*ChatInviteLinks](resp)
 }
 
 // RevokeGroupCallInviteLink Revokes invite link for a group call. Requires groupCall.can_be_managed right for video chats or groupCall.is_owned otherwise
@@ -9177,7 +9177,7 @@ func (c *Client) SavePreparedInlineMessage(chatTypes *TargetChatTypes, result In
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*PreparedInlineMessageId), nil
+	return responseAs[*PreparedInlineMessageId](resp)
 }
 
 // SavePreparedKeyboardButton Saves a keyboard button to be shown to the given user; for bots only
@@ -9190,7 +9190,7 @@ func (c *Client) SavePreparedKeyboardButton(button *KeyboardButton, userId int64
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Text), nil
+	return responseAs[*Text](resp)
 }
 
 // SearchAffiliatePrograms Searches affiliate programs that can be connected to the given affiliate
@@ -9205,7 +9205,7 @@ func (c *Client) SearchAffiliatePrograms(affiliate AffiliateType, limit int32, o
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*FoundAffiliatePrograms), nil
+	return responseAs[*FoundAffiliatePrograms](resp)
 }
 
 // SearchBackground Searches for a background by its name
@@ -9217,7 +9217,7 @@ func (c *Client) SearchBackground(name string) (*Background, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Background), nil
+	return responseAs[*Background](resp)
 }
 
 // SearchCallMessages Searches for call and group call messages. Returns the results in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
@@ -9233,7 +9233,7 @@ func (c *Client) SearchCallMessages(limit int32, offset string, opts *SearchCall
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*FoundMessages), nil
+	return responseAs[*FoundMessages](resp)
 }
 
 // SearchChatAffiliateProgram Searches a chat with an affiliate program. Returns the chat if found and the program is active
@@ -9246,7 +9246,7 @@ func (c *Client) SearchChatAffiliateProgram(referrer string, username string) (*
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Chat), nil
+	return responseAs[*Chat](resp)
 }
 
 // SearchChatMembers Searches for a specified query in the first name, last name and usernames of the members of a specified chat. Requires administrator rights if the chat is a channel
@@ -9263,7 +9263,7 @@ func (c *Client) SearchChatMembers(chatId int64, limit int32, query string, opts
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ChatMembers), nil
+	return responseAs[*ChatMembers](resp)
 }
 
 // SearchChatMessages Searches for messages with given words in the chat. Returns the results in reverse chronological order, i.e. in order of decreasing message_id. Cannot be used in secret chats with a non-empty query
@@ -9284,7 +9284,7 @@ func (c *Client) SearchChatMessages(chatId int64, fromMessageId int64, limit int
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*FoundChatMessages), nil
+	return responseAs[*FoundChatMessages](resp)
 }
 
 // SearchChatRecentLocationMessages Returns information about the recent live locations of chat members that were sent to the chat. Returns at most one live location message per user
@@ -9297,7 +9297,7 @@ func (c *Client) SearchChatRecentLocationMessages(chatId int64, limit int32) (*M
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Messages), nil
+	return responseAs[*Messages](resp)
 }
 
 // SearchChats Searches for the specified query in the title and username of already known chats. This is an offline method. Returns chats in the order seen in the main chat list
@@ -9313,7 +9313,7 @@ func (c *Client) SearchChats(limit int32, query string, opts *SearchChatsOpts) (
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Chats), nil
+	return responseAs[*Chats](resp)
 }
 
 // SearchChatsOnServer Searches for the specified query in the title and username of already known chats via request to the server. Returns chats in the order seen in the main chat list
@@ -9329,7 +9329,7 @@ func (c *Client) SearchChatsOnServer(limit int32, query string, opts *SearchChat
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Chats), nil
+	return responseAs[*Chats](resp)
 }
 
 // SearchContacts Searches for the specified query in the first names, last names and usernames of the known user contacts
@@ -9344,7 +9344,7 @@ func (c *Client) SearchContacts(limit int32, opts *SearchContactsOpts) (*Users, 
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Users), nil
+	return responseAs[*Users](resp)
 }
 
 // SearchEmojis Searches for emojis by keywords. Supported only if the file database is enabled. Order of results is unspecified
@@ -9359,7 +9359,7 @@ func (c *Client) SearchEmojis(text string, opts *SearchEmojisOpts) (*EmojiKeywor
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*EmojiKeywords), nil
+	return responseAs[*EmojiKeywords](resp)
 }
 
 // SearchFileDownloads Searches for files in the file download list or recently downloaded files from the list
@@ -9377,7 +9377,7 @@ func (c *Client) SearchFileDownloads(limit int32, offset string, opts *SearchFil
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*FoundFileDownloads), nil
+	return responseAs[*FoundFileDownloads](resp)
 }
 
 // SearchGiftsForResale Returns upgraded gifts that can be bought from other owners using sendResoldGift
@@ -9397,7 +9397,7 @@ func (c *Client) SearchGiftsForResale(attributes []UpgradedGiftAttributeId, gift
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*GiftsForResale), nil
+	return responseAs[*GiftsForResale](resp)
 }
 
 // SearchHashtags Searches for recently used hashtags by their prefix
@@ -9410,7 +9410,7 @@ func (c *Client) SearchHashtags(limit int32, prefix string) (*Hashtags, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Hashtags), nil
+	return responseAs[*Hashtags](resp)
 }
 
 // SearchInstalledStickerSets Searches for installed sticker sets by looking for specified query in their title and name
@@ -9424,7 +9424,7 @@ func (c *Client) SearchInstalledStickerSets(limit int32, query string, stickerTy
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*StickerSets), nil
+	return responseAs[*StickerSets](resp)
 }
 
 // SearchMessages Searches for messages in all chats except secret chats. Returns the results in reverse chronological order (i.e., in order of decreasing (date, chat_id, message_id)).
@@ -9445,7 +9445,7 @@ func (c *Client) SearchMessages(limit int32, maxDate int32, minDate int32, offse
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*FoundMessages), nil
+	return responseAs[*FoundMessages](resp)
 }
 
 // SearchOutgoingDocumentMessages Searches for outgoing messages with content of the type messageDocument in all chats except secret chats. Returns the results in reverse chronological order
@@ -9458,7 +9458,7 @@ func (c *Client) SearchOutgoingDocumentMessages(limit int32, query string) (*Fou
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*FoundMessages), nil
+	return responseAs[*FoundMessages](resp)
 }
 
 // SearchPublicChat Searches a public chat by its username. Currently, only private chats, supergroups and channels can be public. Returns the chat if found; otherwise, an error is returned
@@ -9470,7 +9470,7 @@ func (c *Client) SearchPublicChat(username string) (*Chat, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Chat), nil
+	return responseAs[*Chat](resp)
 }
 
 // SearchPublicChats Searches public chats by looking for specified query in their username and title. Currently, only private chats, supergroups and channels can be public. Returns a meaningful number of results.
@@ -9485,7 +9485,7 @@ func (c *Client) SearchPublicChats(query string, opts *SearchPublicChatsOpts) (*
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Chats), nil
+	return responseAs[*Chats](resp)
 }
 
 // SearchPublicMessagesByTag Searches for public channel posts containing the given hashtag or cashtag. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
@@ -9499,7 +9499,7 @@ func (c *Client) SearchPublicMessagesByTag(limit int32, offset string, tag strin
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*FoundMessages), nil
+	return responseAs[*FoundMessages](resp)
 }
 
 // SearchPublicPosts Searches for public channel posts using the given query. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
@@ -9514,7 +9514,7 @@ func (c *Client) SearchPublicPosts(limit int32, offset string, query string, sta
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*FoundPublicPosts), nil
+	return responseAs[*FoundPublicPosts](resp)
 }
 
 // SearchPublicStoriesByLocation Searches for public stories by the given address location. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
@@ -9528,7 +9528,7 @@ func (c *Client) SearchPublicStoriesByLocation(address *LocationAddress, limit i
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*FoundStories), nil
+	return responseAs[*FoundStories](resp)
 }
 
 // SearchPublicStoriesByTag Searches for public stories containing the given hashtag or cashtag. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
@@ -9543,7 +9543,7 @@ func (c *Client) SearchPublicStoriesByTag(limit int32, offset string, storyPoste
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*FoundStories), nil
+	return responseAs[*FoundStories](resp)
 }
 
 // SearchPublicStoriesByVenue Searches for public stories from the given venue. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
@@ -9558,7 +9558,7 @@ func (c *Client) SearchPublicStoriesByVenue(limit int32, offset string, venueId 
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*FoundStories), nil
+	return responseAs[*FoundStories](resp)
 }
 
 // SearchQuote Searches for a given quote in a text. Returns found quote start position in UTF-16 code units. Returns a 404 error if the quote is not found. Can be called synchronously
@@ -9572,7 +9572,7 @@ func (c *Client) SearchQuote(quote *FormattedText, quotePosition int32, text *Fo
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*FoundPosition), nil
+	return responseAs[*FoundPosition](resp)
 }
 
 // SearchRecentlyFoundChats Searches for the specified query in the title and username of up to 50 recently found chats. This is an offline method
@@ -9588,7 +9588,7 @@ func (c *Client) SearchRecentlyFoundChats(limit int32, query string, opts *Searc
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Chats), nil
+	return responseAs[*Chats](resp)
 }
 
 // SearchSavedMessages Searches for messages tagged by the given reaction and with the given words in the Saved Messages chat; for Telegram Premium users only.
@@ -9607,7 +9607,7 @@ func (c *Client) SearchSavedMessages(fromMessageId int64, limit int32, offset in
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*FoundChatMessages), nil
+	return responseAs[*FoundChatMessages](resp)
 }
 
 // SearchSecretMessages Searches for messages in secret chats. Returns the results in reverse chronological order. For optimal performance, the number of returned messages is chosen by TDLib
@@ -9625,7 +9625,7 @@ func (c *Client) SearchSecretMessages(chatId int64, limit int32, offset string, 
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*FoundMessages), nil
+	return responseAs[*FoundMessages](resp)
 }
 
 // SearchStickers Searches for stickers from public sticker sets that correspond to any of the given emoji
@@ -9644,7 +9644,7 @@ func (c *Client) SearchStickers(emojis string, limit int32, offset int32, sticke
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Stickers), nil
+	return responseAs[*Stickers](resp)
 }
 
 // SearchStickerSet Searches for a sticker set by its name
@@ -9659,7 +9659,7 @@ func (c *Client) SearchStickerSet(name string, opts *SearchStickerSetOpts) (*Sti
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*StickerSet), nil
+	return responseAs[*StickerSet](resp)
 }
 
 // SearchStickerSets Searches for sticker sets by looking for specified query in their title and name. Excludes installed sticker sets from the results
@@ -9672,7 +9672,7 @@ func (c *Client) SearchStickerSets(query string, stickerType StickerType) (*Stic
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*StickerSets), nil
+	return responseAs[*StickerSets](resp)
 }
 
 // SearchStringsByPrefix Searches specified query by word prefixes in the provided strings. Returns 0-based positions of strings that matched. Can be called synchronously
@@ -9689,7 +9689,7 @@ func (c *Client) SearchStringsByPrefix(limit int32, query string, strings []stri
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*FoundPositions), nil
+	return responseAs[*FoundPositions](resp)
 }
 
 // SearchTextCompositionStyle Searches a custom text composition style by its name
@@ -9701,7 +9701,7 @@ func (c *Client) SearchTextCompositionStyle(name string) (*TextCompositionStyle,
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*TextCompositionStyle), nil
+	return responseAs[*TextCompositionStyle](resp)
 }
 
 // SearchUserByPhoneNumber Searches a user by their phone number. Returns a 404 error if the user can't be found
@@ -9716,7 +9716,7 @@ func (c *Client) SearchUserByPhoneNumber(phoneNumber string, opts *SearchUserByP
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*User), nil
+	return responseAs[*User](resp)
 }
 
 // SearchUserByToken Searches a user by a token from the user's link
@@ -9728,7 +9728,7 @@ func (c *Client) SearchUserByToken(token string) (*User, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*User), nil
+	return responseAs[*User](resp)
 }
 
 // SearchWebApp Returns information about a Web App by its short name. Returns a 404 error if the Web App is not found
@@ -9741,7 +9741,7 @@ func (c *Client) SearchWebApp(botUserId int64, webAppShortName string) (*FoundWe
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*FoundWebApp), nil
+	return responseAs[*FoundWebApp](resp)
 }
 
 // SellGift Sells a gift for Telegram Stars; requires owner privileges for gifts owned by a chat
@@ -9774,7 +9774,7 @@ func (c *Client) SendBotStartMessage(botUserId int64, chatId int64, parameter st
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Message), nil
+	return responseAs[*Message](resp)
 }
 
 // SendBusinessMessage Sends a message on behalf of a business account; for bots only. Returns the message after it was sent
@@ -9795,7 +9795,7 @@ func (c *Client) SendBusinessMessage(businessConnectionId string, chatId int64, 
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*BusinessMessage), nil
+	return responseAs[*BusinessMessage](resp)
 }
 
 // SendBusinessMessageAlbum Sends 2-10 messages grouped together into an album on behalf of a business account; for bots only. Currently, only audio, document, photo and video messages can be grouped into an album.
@@ -9815,7 +9815,7 @@ func (c *Client) SendBusinessMessageAlbum(businessConnectionId string, chatId in
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*BusinessMessages), nil
+	return responseAs[*BusinessMessages](resp)
 }
 
 // SendCallDebugInformation Sends debug information for a call to Telegram servers
@@ -9884,7 +9884,7 @@ func (c *Client) SendCustomRequest(method string, parameters string) (*CustomReq
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*CustomRequestResult), nil
+	return responseAs[*CustomRequestResult](resp)
 }
 
 // SendEmailAddressVerificationCode Sends a code to verify an email address to be added to a user's Telegram Passport
@@ -9896,7 +9896,7 @@ func (c *Client) SendEmailAddressVerificationCode(emailAddress string) (*EmailAd
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*EmailAddressAuthenticationCodeInfo), nil
+	return responseAs[*EmailAddressAuthenticationCodeInfo](resp)
 }
 
 // SendEphemeralMessage Sends an ephemeral message which will be received only by one bot in a chat. Currently, only ephemeral bot commands and replies to bot ephemeral messages can be sent using the method.
@@ -9920,7 +9920,7 @@ func (c *Client) SendEphemeralMessage(callbackQueryId int64, chatId int64, input
 	if err != nil {
 		return nil, err
 	}
-	return c.waitMessage(resp.(*Message))
+	return responseAs[*Message](resp)
 }
 
 // SendGift Sends a gift to another user or channel chat. May return an error with a message "STARGIFT_USAGE_LIMITED" if the gift was sold out
@@ -9979,11 +9979,11 @@ func (c *Client) SendInlineQueryResultMessage(chatId int64, queryId int64, resul
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Message), nil
+	return responseAs[*Message](resp)
 }
 
-// SendMessage Sends a message. Returns the sent message
-func (c *Client) SendMessage(chatId int64, inputMessageContent InputMessageContent, opts *SendMessageOpts) (*Message, error) {
+// SendMessageContent Sends a message. Returns the sent message
+func (c *Client) SendMessageContent(chatId int64, inputMessageContent InputMessageContent, opts *SendMessageContentOpts) (*Message, error) {
 	req := &SendMessage{
 		ChatId:              chatId,
 		InputMessageContent: inputMessageContent,
@@ -9998,7 +9998,7 @@ func (c *Client) SendMessage(chatId int64, inputMessageContent InputMessageConte
 	if err != nil {
 		return nil, err
 	}
-	return c.waitMessage(resp.(*Message))
+	return responseAs[*Message](resp)
 }
 
 // SendMessageAlbum Sends 2-10 messages grouped together into an album. Currently, only audio, document, photo and video messages can be grouped into an album.
@@ -10016,7 +10016,7 @@ func (c *Client) SendMessageAlbum(chatId int64, inputMessageContents []InputMess
 	if err != nil {
 		return nil, err
 	}
-	return c.waitMessages(resp.(*Messages))
+	return responseAs[*Messages](resp)
 }
 
 // SendMessageViewMetrics Informs TDLib about details of a message view by the user from a chat, a message thread or a forum topic history. The method must be called if
@@ -10059,7 +10059,7 @@ func (c *Client) SendPaymentForm(inputInvoice InputInvoice, orderInfoId string, 
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*PaymentResult), nil
+	return responseAs[*PaymentResult](resp)
 }
 
 // SendPhoneNumberCode Sends a code to the specified phone number. Aborts previous phone number verification if there was one. On success, returns information about the sent code
@@ -10075,7 +10075,7 @@ func (c *Client) SendPhoneNumberCode(phoneNumber string, typeField PhoneNumberCo
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*AuthenticationCodeInfo), nil
+	return responseAs[*AuthenticationCodeInfo](resp)
 }
 
 // SendPhoneNumberFirebaseSms Sends Firebase Authentication SMS to the specified phone number. Works only when received a code of the type authenticationCodeTypeFirebaseAndroid or authenticationCodeTypeFirebaseIos
@@ -10098,7 +10098,7 @@ func (c *Client) SendQuickReplyShortcutMessages(chatId int64, sendingId int32, s
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Messages), nil
+	return responseAs[*Messages](resp)
 }
 
 // SendResoldGift Sends an upgraded gift that is available for resale to another user or channel chat; gifts already owned by the current user
@@ -10116,7 +10116,7 @@ func (c *Client) SendResoldGift(giftName string, ownerId MessageSender, price Gi
 	if err != nil {
 		return nil, err
 	}
-	return resp.(GiftResaleResult), nil
+	return responseAs[GiftResaleResult](resp)
 }
 
 // SendRichMessageDraft Sends a draft for a being generated rich message; for bots only
@@ -10161,7 +10161,7 @@ func (c *Client) SendTonCenterApiRequest(endpoint string, typeField TonCenterApi
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Text), nil
+	return responseAs[*Text](resp)
 }
 
 // SendTonConnectSessionConnectResult Accepts or rejects a TON Connect session
@@ -10197,7 +10197,7 @@ func (c *Client) SendTonWalletTransfer(address string, amount int64, comment str
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*TonWalletTransferResult), nil
+	return responseAs[*TonWalletTransferResult](resp)
 }
 
 // SendWebAppCustomRequest Sends a custom request from a Web App
@@ -10211,7 +10211,7 @@ func (c *Client) SendWebAppCustomRequest(botUserId int64, method string, paramet
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*CustomRequestResult), nil
+	return responseAs[*CustomRequestResult](resp)
 }
 
 // SendWebAppData Sends data received from a keyboardButtonTypeWebApp Web App to a bot
@@ -10909,7 +10909,7 @@ func (c *Client) SetDefaultBackground(opts *SetDefaultBackgroundOpts) (*Backgrou
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Background), nil
+	return responseAs[*Background](resp)
 }
 
 // SetDefaultChannelAdministratorRights Sets default administrator rights for adding the bot to channel chats; for bots only
@@ -11011,7 +11011,7 @@ func (c *Client) SetGameScore(chatId int64, messageId int64, score int32, userId
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Message), nil
+	return responseAs[*Message](resp)
 }
 
 // SetGiftCollectionName Changes name of a gift collection. If the collection is owned by a channel chat, then requires can_post_messages administrator right in the channel chat. Returns the changed collection
@@ -11025,7 +11025,7 @@ func (c *Client) SetGiftCollectionName(collectionId int32, name string, ownerId 
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*GiftCollection), nil
+	return responseAs[*GiftCollection](resp)
 }
 
 // SetGiftResalePrice Changes resale price of a unique gift owned by the current user
@@ -11072,7 +11072,7 @@ func (c *Client) SetGroupCallParticipantIsSpeaking(audioSource int32, groupCallI
 	if err != nil {
 		return nil, err
 	}
-	return resp.(MessageSender), nil
+	return responseAs[MessageSender](resp)
 }
 
 // SetGroupCallParticipantVolumeLevel Changes volume level of a participant of an active group call; not supported for live stories. If the current user can manage the group call or is the owner of the group call,
@@ -11129,7 +11129,7 @@ func (c *Client) SetLoginEmailAddress(newLoginEmailAddress string) (*EmailAddres
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*EmailAddressAuthenticationCodeInfo), nil
+	return responseAs[*EmailAddressAuthenticationCodeInfo](resp)
 }
 
 // SetLogStream Sets new log stream for internal logging of TDLib. Can be called synchronously
@@ -11301,7 +11301,7 @@ func (c *Client) SetPassportElement(element InputPassportElement, password strin
 	if err != nil {
 		return nil, err
 	}
-	return resp.(PassportElement), nil
+	return responseAs[PassportElement](resp)
 }
 
 // SetPassportElementErrors Informs the user that some of the elements in their Telegram Passport contain errors; for bots only. The user will not be able to resend the elements, until the errors are fixed
@@ -11329,7 +11329,7 @@ func (c *Client) SetPassword(oldPassword string, opts *SetPasswordOpts) (*Passwo
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*PasswordState), nil
+	return responseAs[*PasswordState](resp)
 }
 
 // SetPersonalChat Changes the personal chat of the current user
@@ -11461,7 +11461,7 @@ func (c *Client) SetRecoveryEmailAddress(newRecoveryEmailAddress string, passwor
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*PasswordState), nil
+	return responseAs[*PasswordState](resp)
 }
 
 // SetSavedMessagesTagLabel Changes label of a Saved Messages tag; for Telegram Premium users only
@@ -11561,7 +11561,7 @@ func (c *Client) SetStoryAlbumName(chatId int64, name string, storyAlbumId int32
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*StoryAlbum), nil
+	return responseAs[*StoryAlbum](resp)
 }
 
 // SetStoryPrivacySettings Changes privacy settings of a story. The method can be called only for stories posted on behalf of the current user and if story.can_set_privacy_settings == true
@@ -11672,7 +11672,7 @@ func (c *Client) SetTonConnectSessionWalletClientId(sessionId int64, walletClien
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*TonConnectChallenge), nil
+	return responseAs[*TonConnectChallenge](resp)
 }
 
 // SetUpgradedGiftColors Changes color scheme for the current user based on an owned or a hosted upgraded gift; for Telegram Premium users only
@@ -11747,7 +11747,7 @@ func (c *Client) SetUserSupportInfo(message *FormattedText, userId int64) (*User
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*UserSupportInfo), nil
+	return responseAs[*UserSupportInfo](resp)
 }
 
 // SetVideoChatDefaultParticipant Changes default participant identifier, on whose behalf a video chat in the chat will be joined
@@ -11832,7 +11832,7 @@ func (c *Client) StartGroupCallScreenSharing(audioSourceId int32, groupCallId in
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Text), nil
+	return responseAs[*Text](resp)
 }
 
 // StartLiveStory Starts a new live story on behalf of a chat; requires can_post_stories administrator right for channel chats
@@ -11851,7 +11851,7 @@ func (c *Client) StartLiveStory(chatId int64, paidMessageStarCount int64, privac
 	if err != nil {
 		return nil, err
 	}
-	return resp.(StartLiveStoryResult), nil
+	return responseAs[StartLiveStoryResult](resp)
 }
 
 // StartScheduledVideoChat Starts a scheduled video chat
@@ -11877,7 +11877,7 @@ func (c *Client) StopBusinessPoll(businessConnectionId string, chatId int64, mes
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*BusinessMessage), nil
+	return responseAs[*BusinessMessage](resp)
 }
 
 // StopPendingMessage Stops a pending message generation by a bot
@@ -11938,7 +11938,7 @@ func (c *Client) SummarizeMessage(chatId int64, messageId int64, tone string, tr
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*FormattedText), nil
+	return responseAs[*FormattedText](resp)
 }
 
 // SynchronizeLanguagePack Fetches the latest versions of all strings from a language pack in the current localization target from the server.
@@ -11975,7 +11975,7 @@ func (c *Client) TestCallBytes(x []byte) (*TestBytes, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*TestBytes), nil
+	return responseAs[*TestBytes](resp)
 }
 
 // TestCallEmpty Does nothing; for testing only. This is an offline method. Can be called before authorization
@@ -11994,7 +11994,7 @@ func (c *Client) TestCallString(x string) (*TestString, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*TestString), nil
+	return responseAs[*TestString](resp)
 }
 
 // TestCallVectorInt Returns the received vector of numbers; for testing only. This is an offline method. Can be called before authorization
@@ -12006,7 +12006,7 @@ func (c *Client) TestCallVectorInt(x []int32) (*TestVectorInt, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*TestVectorInt), nil
+	return responseAs[*TestVectorInt](resp)
 }
 
 // TestCallVectorIntObject Returns the received vector of objects containing a number; for testing only. This is an offline method. Can be called before authorization
@@ -12018,7 +12018,7 @@ func (c *Client) TestCallVectorIntObject(x []TestInt) (*TestVectorIntObject, err
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*TestVectorIntObject), nil
+	return responseAs[*TestVectorIntObject](resp)
 }
 
 // TestCallVectorString Returns the received vector of strings; for testing only. This is an offline method. Can be called before authorization
@@ -12030,7 +12030,7 @@ func (c *Client) TestCallVectorString(x []string) (*TestVectorString, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*TestVectorString), nil
+	return responseAs[*TestVectorString](resp)
 }
 
 // TestCallVectorStringObject Returns the received vector of objects containing a string; for testing only. This is an offline method. Can be called before authorization
@@ -12042,7 +12042,7 @@ func (c *Client) TestCallVectorStringObject(x []TestString) (*TestVectorStringOb
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*TestVectorStringObject), nil
+	return responseAs[*TestVectorStringObject](resp)
 }
 
 // TestGetDifference Forces an updates.getDifference call to the Telegram servers; for testing only
@@ -12079,7 +12079,7 @@ func (c *Client) TestReturnError(error *Error) (*Error, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Error), nil
+	return responseAs[*Error](resp)
 }
 
 // TestSquareInt Returns the squared received number; for testing only. This is an offline method. Can be called before authorization
@@ -12091,7 +12091,7 @@ func (c *Client) TestSquareInt(x int32) (*TestInt, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*TestInt), nil
+	return responseAs[*TestInt](resp)
 }
 
 // TestUseUpdate Does nothing and ensures that the Update object is used; for testing only. This is an offline method. Can be called before authorization
@@ -12101,7 +12101,7 @@ func (c *Client) TestUseUpdate() (Update, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.(Update), nil
+	return responseAs[Update](resp)
 }
 
 // ToggleAllDownloadsArePaused Changes pause state of all files in the file download list
@@ -12683,7 +12683,7 @@ func (c *Client) TranslateMessageRichMessage(chatId int64, messageId int64, toLa
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*RichMessage), nil
+	return responseAs[*RichMessage](resp)
 }
 
 // TranslateMessageText Extracts text or caption of the given message and translates it to the given language; must not be used in secret chats. If the current user is a Telegram Premium user, then text formatting is preserved
@@ -12698,7 +12698,7 @@ func (c *Client) TranslateMessageText(chatId int64, messageId int64, toLanguageC
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*FormattedText), nil
+	return responseAs[*FormattedText](resp)
 }
 
 // TranslateRichMessage Translates a rich message to the given language
@@ -12712,7 +12712,7 @@ func (c *Client) TranslateRichMessage(message *InputRichMessage, toLanguageCode 
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*RichMessage), nil
+	return responseAs[*RichMessage](resp)
 }
 
 // TranslateText Translates a text to the given language; must not be used in secret chats. If the current user is a Telegram Premium user, then text formatting is preserved
@@ -12726,7 +12726,7 @@ func (c *Client) TranslateText(text *FormattedText, toLanguageCode string, tone 
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*FormattedText), nil
+	return responseAs[*FormattedText](resp)
 }
 
 // UnpinAllChatMessages Removes all pinned messages from a chat; requires can_pin_messages member right if the chat is a basic group or supergroup, or can_edit_messages administrator right if the chat is a channel
@@ -12777,7 +12777,7 @@ func (c *Client) UpgradeBasicGroupChatToSupergroupChat(chatId int64) (*Chat, err
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*Chat), nil
+	return responseAs[*Chat](resp)
 }
 
 // UpgradeGift Upgrades a regular gift
@@ -12794,7 +12794,7 @@ func (c *Client) UpgradeGift(businessConnectionId string, receivedGiftId string,
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*UpgradeGiftResult), nil
+	return responseAs[*UpgradeGiftResult](resp)
 }
 
 // UploadStickerFile Uploads a file with a sticker; returns the uploaded file
@@ -12808,7 +12808,7 @@ func (c *Client) UploadStickerFile(sticker InputFile, stickerFormat StickerForma
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*File), nil
+	return responseAs[*File](resp)
 }
 
 // ValidateOrderInfo Validates the order information provided by a user and returns the available shipping options for a flexible invoice
@@ -12824,7 +12824,7 @@ func (c *Client) ValidateOrderInfo(inputInvoice InputInvoice, opts *ValidateOrde
 	if err != nil {
 		return nil, err
 	}
-	return resp.(*ValidatedOrderInfo), nil
+	return responseAs[*ValidatedOrderInfo](resp)
 }
 
 // ViewMessages Informs TDLib that messages are being viewed by the user. Sponsored messages must be marked as viewed only when the entire text of the message is shown on the screen (excluding the button).

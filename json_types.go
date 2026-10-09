@@ -15,28 +15,29 @@ func (s *Int64Slice) UnmarshalJSON(data []byte) error {
 		*s = nil
 		return nil
 	}
-	var strSlice []string
-	if err := json.Unmarshal(data, &strSlice); err != nil {
+	var numbers []json.Number
+	if err := json.Unmarshal(data, &numbers); err != nil {
 		return err
 	}
-	*s = make(Int64Slice, len(strSlice))
-	for i, str := range strSlice {
-		val, err := strconv.ParseInt(str, 10, 64)
+	values := make(Int64Slice, len(numbers))
+	for i, number := range numbers {
+		val, err := number.Int64()
 		if err != nil {
 			return err
 		}
-		(*s)[i] = val
+		values[i] = val
 	}
+	*s = values
 	return nil
 }
 
 // MarshalJSON implements the json.Marshaler interface.
-func (s *Int64Slice) MarshalJSON() ([]byte, error) {
-	if s == nil || *s == nil {
+func (s Int64Slice) MarshalJSON() ([]byte, error) {
+	if s == nil {
 		return []byte("null"), nil
 	}
-	strSlice := make([]string, len(*s))
-	for i, val := range *s {
+	strSlice := make([]string, len(s))
+	for i, val := range s {
 		strSlice[i] = strconv.FormatInt(val, 10)
 	}
 	return json.Marshal(strSlice)

@@ -38,12 +38,6 @@ func main() {
 			},
 		}
 
-		content := &gotdbot.InputMessageText{
-			Text: &gotdbot.FormattedText{
-				Text: "Hello! I am an echo bot powered by gotdbot " + gotdbot.Version,
-			},
-		}
-
 		opts := &gotdbot.SendMessageOpts{
 			ReplyTo: &gotdbot.InputMessageReplyToMessage{
 				MessageId: u.Id,
@@ -51,7 +45,7 @@ func main() {
 			ReplyMarkup: kb,
 		}
 
-		_, err := c.SendMessage(u.ChatId, content, opts)
+		_, err := c.SendMessage(u.ChatId, "Hello! I am an echo bot powered by gotdbot "+gotdbot.Version, opts)
 		if err != nil {
 			log.Printf("Error sending message: %v", err)
 		}
@@ -89,7 +83,7 @@ func main() {
 			m.NumGC,
 		)
 
-		_, err := c.SendTextMessage(u.ChatId, reply, &gotdbot.SendTextMessageOpts{ReplyToMessageID: u.Id})
+		_, err := c.SendMessage(u.ChatId, reply, &gotdbot.SendMessageOpts{ReplyToMessageID: u.Id})
 		return err
 	})
 

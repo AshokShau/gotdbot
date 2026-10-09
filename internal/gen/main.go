@@ -1,12 +1,15 @@
 package main
 
 import (
+	"flag"
 	"log"
 	"sort"
 )
 
 func main() {
-	data, err := LoadTDLibJSON("https://raw.githubusercontent.com/FallenProjects/tdlib-build/refs/heads/master/tdlib.json")
+	source := flag.String("schema", "https://raw.githubusercontent.com/FallenProjects/tdlib-build/refs/heads/master/tdlib.json", "TDLib JSON schema path or HTTP(S) URL")
+	flag.Parse()
+	data, err := LoadTDLibJSON(*source)
 	if err != nil {
 		log.Fatalf("Failed to load JSON: %v", err)
 	}

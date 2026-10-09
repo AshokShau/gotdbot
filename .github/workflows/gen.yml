@@ -19,13 +19,19 @@ jobs:
       - name: Setup Go
         uses: actions/setup-go@v5
         with:
-          go-version: "1.24"
+          go-version-file: go.mod
 
       - name: Download dependencies
         run: go mod download
 
       - name: Run generators
-        run: go generate ./...
+        run: go generate .
+
+      - name: Validate generated code
+        run: |
+          go test ./...
+          go test -race ./...
+          go vet ./...
 
       - name: Check for changes
         id: changes

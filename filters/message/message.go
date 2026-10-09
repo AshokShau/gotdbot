@@ -45,9 +45,19 @@ func Private(msg *gotdbot.Message) bool {
 	return msg.IsPrivate()
 }
 
-// Group filters messages sent in group or supergroup chats.
+// Group filters messages sent in basic groups, excluding supergroups.
 func Group(msg *gotdbot.Message) bool {
-	return msg.IsGroup() || msg.IsSupergroupOrChannel()
+	return msg.IsGroup()
+}
+
+// Supergroup filters messages sent in supergroups, excluding channels.
+func Supergroup(msg *gotdbot.Message) bool {
+	return msg.IsSupergroup()
+}
+
+// Secret filters messages sent in secret chats.
+func Secret(msg *gotdbot.Message) bool {
+	return msg.IsSecret()
 }
 
 // Channel filters messages sent in channel chats.

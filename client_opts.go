@@ -37,10 +37,17 @@ type ClientOpts struct {
 	Logger                  *logger.Logger
 	QrMode                  bool
 	AuthorizationTimeout    time.Duration
-	LogVerbosityLevel       int32
-	LogStream               LogStream
-	AutoRetry               *AutoRetry
-	ParseMode               string
+	// RequestTimeout bounds each request and its send completion; default 30s.
+	RequestTimeout time.Duration
+	// UpdateWorkers bounds concurrent user handlers; default 2. Use 1 for order.
+	UpdateWorkers int
+	// UpdateQueueSize bounds updates buffered in memory per client; default 1000.
+	// Excess updates spill to temporary files, reclaimed as the queue drains.
+	UpdateQueueSize   int
+	LogVerbosityLevel int32
+	LogStream         LogStream
+	AutoRetry         *AutoRetry
+	ParseMode         string
 }
 
 // TDLibOptions contains TDLib options that can be set
@@ -211,6 +218,9 @@ func DefaultClientConfig() *ClientOpts {
 		Logger:                  logger.New(logger.WithLevel(slog.LevelInfo), logger.WithOutput(os.Stdout)),
 		QrMode:                  false,
 		AuthorizationTimeout:    60 * time.Second,
+		RequestTimeout:          30 * time.Second,
+		UpdateWorkers:           2,
+		UpdateQueueSize:         1000,
 		LogVerbosityLevel:       2,
 		AutoRetry:               &AutoRetry{},
 		ParseMode:               "",

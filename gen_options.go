@@ -467,8 +467,8 @@ type EditInlineMessageTextOpts struct {
 	ReplyMarkup ReplyMarkup
 }
 
-// EditMessageCaptionOpts contains optional parameters for EditMessageCaption
-type EditMessageCaptionOpts struct {
+// EditMessageCaptionTextOpts contains optional parameters for EditMessageCaptionText
+type EditMessageCaptionTextOpts struct {
 	// New message content caption; 0-getOption("message_caption_length_max") characters; pass null to remove caption
 	Caption *FormattedText
 	// The new message reply markup; pass null if none; for bots only
@@ -509,8 +509,8 @@ type EditMessageSchedulingStateOpts struct {
 	SchedulingState MessageSchedulingState
 }
 
-// EditMessageTextOpts contains optional parameters for EditMessageText
-type EditMessageTextOpts struct {
+// EditMessageTextContentOpts contains optional parameters for EditMessageTextContent
+type EditMessageTextContentOpts struct {
 	// The new message reply markup; pass null if none; for bots only
 	ReplyMarkup ReplyMarkup
 }
@@ -1331,8 +1331,8 @@ type SendInlineQueryResultMessageOpts struct {
 	TopicId MessageTopic
 }
 
-// SendMessageOpts contains optional parameters for SendMessage
-type SendMessageOpts struct {
+// SendMessageContentOpts contains optional parameters for SendMessageContent
+type SendMessageContentOpts struct {
 	// Options to be used to send the message; pass null to use default options
 	Options *MessageSendOptions
 	// Markup for replying to the message; pass null if none; for bots only

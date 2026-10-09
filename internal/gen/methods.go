@@ -8,15 +8,22 @@ import (
 )
 
 func generateMethods(functions []TLType, classes map[string]*TLClass) {
+	handwritten, err := handwrittenMethods(".")
+	if err != nil {
+		log.Fatal(err)
+	}
 	var sb strings.Builder
 	sb.WriteString(header)
 	sb.WriteString("package gotdbot\n\n")
 
 	for _, fn := range functions {
-		methodName := toCamelCase(fn.Name)
+		methodName := clientMethodName(fn.Name)
 
 		if methodName == "Close" {
 			continue
+		}
+		if handwritten["Client."+methodName] {
+			log.Fatalf("TDLib method %s collides with handwritten Client.%s; give its native binding an explicit name", fn.Name, methodName)
 		}
 		structName := toCamelCase(fn.Name)
 
@@ -113,13 +120,7 @@ func generateMethods(functions []TLType, classes map[string]*TLClass) {
 			sb.WriteString("\tresp, err := c.Send(req)\n")
 			sb.WriteString("\tif err != nil {\n\t\treturn nil, err\n\t}\n")
 
-			if methodName == "SendMessage" || methodName == "SendEphemeralMessage" {
-				sb.WriteString("\treturn c.waitMessage(resp.(*Message))\n")
-			} else if methodName == "SendMessageAlbum" {
-				sb.WriteString("\treturn c.waitMessages(resp.(*Messages))\n")
-			} else {
-				fmt.Fprintf(&sb, "\treturn resp.(%s), nil\n", retTypeStr)
-			}
+			fmt.Fprintf(&sb, "\treturn responseAs[%s](resp)\n", retTypeStr)
 		}
 		sb.WriteString("}\n\n")
 	}

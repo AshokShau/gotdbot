@@ -369,10 +369,10 @@ func (c *Chat) EditForumTopic(client *Client, forumTopicId int32, iconCustomEmoj
 	return client.EditForumTopic(c.Id, forumTopicId, iconCustomEmojiId, name, opts)
 }
 
-// EditMessageCaption Edits the message content caption. Returns the edited message after the edit is completed on the server side
-// It is a helper method for Client.EditMessageCaption
-func (c *Chat) EditMessageCaption(client *Client, messageId int64, opts *EditMessageCaptionOpts) (*Message, error) {
-	return client.EditMessageCaption(c.Id, messageId, opts)
+// EditMessageCaptionText Edits the message content caption. Returns the edited message after the edit is completed on the server side
+// It is a helper method for Client.EditMessageCaptionText
+func (c *Chat) EditMessageCaptionText(client *Client, messageId int64, opts *EditMessageCaptionTextOpts) (*Message, error) {
+	return client.EditMessageCaptionText(c.Id, messageId, opts)
 }
 
 // EditMessageChecklist Edits the message content of a checklist. Returns the edited message after the edit is completed on the server side
@@ -405,10 +405,10 @@ func (c *Chat) EditMessageSchedulingState(client *Client, messageId int64, opts 
 	return client.EditMessageSchedulingState(c.Id, messageId, opts)
 }
 
-// EditMessageText Edits the text of a message (or a text of a game message). Returns the edited message after the edit is completed on the server side
-// It is a helper method for Client.EditMessageText
-func (c *Chat) EditMessageText(client *Client, inputMessageContent InputMessageContent, messageId int64, opts *EditMessageTextOpts) (*Message, error) {
-	return client.EditMessageText(c.Id, inputMessageContent, messageId, opts)
+// EditMessageTextContent Edits the text of a message (or a text of a game message). Returns the edited message after the edit is completed on the server side
+// It is a helper method for Client.EditMessageTextContent
+func (c *Chat) EditMessageTextContent(client *Client, inputMessageContent InputMessageContent, messageId int64, opts *EditMessageTextContentOpts) (*Message, error) {
+	return client.EditMessageTextContent(c.Id, inputMessageContent, messageId, opts)
 }
 
 // ForwardMessages Forwards previously sent messages. Returns the forwarded messages in the same order as the message identifiers passed in message_ids. If a message can't be forwarded, null will be returned instead of the message
@@ -1251,10 +1251,10 @@ func (c *Chat) SendInlineQueryResultMessage(client *Client, queryId int64, resul
 	return client.SendInlineQueryResultMessage(c.Id, queryId, resultId, opts)
 }
 
-// SendMessage Sends a message. Returns the sent message
-// It is a helper method for Client.SendMessage
-func (c *Chat) SendMessage(client *Client, inputMessageContent InputMessageContent, opts *SendMessageOpts) (*Message, error) {
-	return client.SendMessage(c.Id, inputMessageContent, opts)
+// SendMessageContent Sends a message. Returns the sent message
+// It is a helper method for Client.SendMessageContent
+func (c *Chat) SendMessageContent(client *Client, inputMessageContent InputMessageContent, opts *SendMessageContentOpts) (*Message, error) {
+	return client.SendMessageContent(c.Id, inputMessageContent, opts)
 }
 
 // SendMessageAlbum Sends 2-10 messages grouped together into an album. Currently, only audio, document, photo and video messages can be grouped into an album.
@@ -1917,6 +1917,12 @@ func (m *Message) EditBusinessText(client *Client, businessConnectionId string, 
 	return client.EditBusinessMessageText(businessConnectionId, m.ChatId, inputMessageContent, m.Id, opts)
 }
 
+// EditCaptionText Edits the message content caption. Returns the edited message after the edit is completed on the server side
+// It is a helper method for Client.EditMessageCaptionText
+func (m *Message) EditCaptionText(client *Client, opts *EditMessageCaptionTextOpts) (*Message, error) {
+	return client.EditMessageCaptionText(m.ChatId, m.Id, opts)
+}
+
 // EditChecklist Edits the message content of a checklist. Returns the edited message after the edit is completed on the server side
 // It is a helper method for Client.EditMessageChecklist
 func (m *Message) EditChecklist(client *Client, checklist *InputChecklist, opts *EditMessageChecklistOpts) (*Message, error) {
@@ -1935,16 +1941,16 @@ func (m *Message) EditMedia(client *Client, inputMessageContent InputMessageCont
 	return client.EditMessageMedia(m.ChatId, inputMessageContent, m.Id, opts)
 }
 
-// EditReplyMarkup Edits the message reply markup; for bots only. Returns the edited message after the edit is completed on the server side
-// It is a helper method for Client.EditMessageReplyMarkup
-func (m *Message) EditReplyMarkup(client *Client, opts *EditMessageReplyMarkupOpts) (*Message, error) {
-	return client.EditMessageReplyMarkup(m.ChatId, m.Id, opts)
-}
-
 // EditSchedulingState Edits the time when a scheduled message will be sent. Scheduling state of all messages in the same album or forwarded together with the message will be also changed
 // It is a helper method for Client.EditMessageSchedulingState
 func (m *Message) EditSchedulingState(client *Client, opts *EditMessageSchedulingStateOpts) error {
 	return client.EditMessageSchedulingState(m.ChatId, m.Id, opts)
+}
+
+// EditTextContent Edits the text of a message (or a text of a game message). Returns the edited message after the edit is completed on the server side
+// It is a helper method for Client.EditMessageTextContent
+func (m *Message) EditTextContent(client *Client, inputMessageContent InputMessageContent, opts *EditMessageTextContentOpts) (*Message, error) {
+	return client.EditMessageTextContent(m.ChatId, inputMessageContent, m.Id, opts)
 }
 
 // EditQuickReply Asynchronously edits the text, media or caption of a quick reply message. Use quickReplyMessage.can_be_edited to check whether a message can be edited.

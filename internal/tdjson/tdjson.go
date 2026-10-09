@@ -3,6 +3,7 @@ package tdjson
 import (
 	"fmt"
 	"runtime"
+	"sync"
 	"unsafe"
 
 	"github.com/ebitengine/purego"
@@ -11,14 +12,18 @@ import (
 var (
 	tdCreateClientId func() int32
 	tdSend           func(int32, *byte)
-	tdReceive        func(float64) uintptr
-	tdExecute        func(*byte) uintptr
+	tdReceive        func(float64) *byte
+	tdExecute        func(*byte) *byte
 
 	libLoaded bool
+	initMu    sync.Mutex
+	resultMu  sync.Mutex
 )
 
 // Init initializes the TDLib JSON interface by loading the library.
-func Init(libPath string) error {
+func Init(libPath string) (err error) {
+	initMu.Lock()
+	defer initMu.Unlock()
 	if libLoaded {
 		return nil
 	}
@@ -31,6 +36,15 @@ func Init(libPath string) error {
 	if err != nil {
 		return fmt.Errorf("failed to load tdjson library from %s: %w", libPath, err)
 	}
+
+	defer func() {
+		if r := recover(); r != nil {
+			err = fmt.Errorf("invalid TDLib library %s: %v", libPath, r)
+		}
+		if !libLoaded {
+			_ = purego.Dlclose(lib)
+		}
+	}()
 
 	purego.RegisterLibFunc(&tdCreateClientId, lib, "td_create_client_id")
 	purego.RegisterLibFunc(&tdSend, lib, "td_send")
@@ -76,8 +90,10 @@ func SendBytes(clientID int, request []byte) {
 // Receive receives incoming updates and request responses.
 // Returns a JSON-serialized update or request response, or an empty string if the timeout expires.
 func Receive(timeout float64) string {
+	resultMu.Lock()
+	defer resultMu.Unlock()
 	ptr := tdReceive(timeout)
-	if ptr == 0 {
+	if ptr == nil {
 		return ""
 	}
 	return goString(ptr)
@@ -86,22 +102,24 @@ func Receive(timeout float64) string {
 // Execute synchronously executes a TDLib request.
 // Returns a JSON-serialized request response.
 func Execute(request string) string {
+	resultMu.Lock()
+	defer resultMu.Unlock()
 	reqBytes := append([]byte(request), 0)
 	ptr := tdExecute(&reqBytes[0])
-	if ptr == 0 {
+	if ptr == nil {
 		return ""
 	}
 	return goString(ptr)
 }
 
-func goString(ptr uintptr) string {
-	if ptr == 0 {
+func goString(ptr *byte) string {
+	if ptr == nil {
 		return ""
 	}
 
 	var length int
 	for {
-		b := *(*byte)(unsafe.Pointer(ptr + uintptr(length)))
+		b := *(*byte)(unsafe.Add(unsafe.Pointer(ptr), length))
 		if b == 0 {
 			break
 		}
@@ -111,6 +129,6 @@ func goString(ptr uintptr) string {
 		return ""
 	}
 
-	bytes := unsafe.Slice((*byte)(unsafe.Pointer(ptr)), length)
+	bytes := unsafe.Slice(ptr, length)
 	return string(bytes)
 }

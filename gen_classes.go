@@ -13,7 +13,7 @@ type TlObject interface {
 
 type tlFunction interface {
 	TlObject
-	setExtra(extra string)
+	isFunction()
 }
 
 // ActiveStoryState Describes state of active stories posted by a chat

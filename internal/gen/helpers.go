@@ -22,10 +22,9 @@ func generateHelpers(types []TLType, functions []TLType, classes map[string]*TLC
 		"User":       true,
 	}
 
-	manualMethods := map[string]bool{
-		"Message.EditText":    true,
-		"Message.EditCaption": true,
-		"Message.GetLink":     true,
+	manualMethods, err := handwrittenMethods(".")
+	if err != nil {
+		log.Fatal(err)
 	}
 
 	generatedMethods := make(map[string]bool)
@@ -97,7 +96,7 @@ func generateHelpers(types []TLType, functions []TLType, classes map[string]*TLC
 				}
 			}
 
-			methodName := toCamelCase(fn.Name)
+			methodName := clientMethodName(fn.Name)
 			helperName := methodName
 
 			typeCamel := toCamelCase(t.Name)
@@ -110,6 +109,13 @@ func generateHelpers(types []TLType, functions []TLType, classes map[string]*TLC
 			}
 
 			fullHelperName := toCamelCase(t.Name) + "." + helperName
+			for _, field := range t.Params {
+				if toCamelCase(field.Name) == helperName {
+					helperName += "Action"
+					break
+				}
+			}
+			fullHelperName = toCamelCase(t.Name) + "." + helperName
 
 			if manualMethods[fullHelperName] || generatedMethods[fullHelperName] {
 				continue
@@ -128,7 +134,7 @@ func generateHelpers(types []TLType, functions []TLType, classes map[string]*TLC
 }
 
 func generateHelperMethod(sb *strings.Builder, t TLType, fn TLType, matches map[string]string, helperName string, classes map[string]*TLClass) {
-	clientMethodName := toCamelCase(fn.Name)
+	clientMethodName := clientMethodName(fn.Name)
 	structName := toCamelCase(t.Name)
 
 	for _, p := range t.Params {

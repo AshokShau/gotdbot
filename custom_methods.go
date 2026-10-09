@@ -16,7 +16,9 @@ func (c *Client) GetFormattedText(text string, entities []TextEntity, parseMode 
 	}
 
 	if parseMode == "" {
-		parseMode = c.config.ParseMode
+		if c.config != nil {
+			parseMode = c.config.ParseMode
+		}
 	}
 
 	return c.ParseText(text, parseMode)
@@ -107,7 +109,7 @@ func (c *Client) sendMessageWithContent(
 		})
 	}
 
-	return c.SendMessage(chatId, content, &SendMessageOpts{
+	return c.SendMessageContent(chatId, content, &SendMessageContentOpts{
 		TopicId:     topicId,
 		ReplyTo:     replyTo,
 		Options:     options,
@@ -115,8 +117,8 @@ func (c *Client) sendMessageWithContent(
 	})
 }
 
-// SendTextMessageOpts contains optional parameters for SendTextMessage
-type SendTextMessageOpts struct {
+// SendMessageOpts contains optional parameters for SendMessage
+type SendMessageOpts struct {
 	ParseMode                         string
 	Entities                          []TextEntity
 	DisableWebPagePreview             bool
@@ -146,10 +148,10 @@ type SendTextMessageOpts struct {
 	ReplaceCallbackQueryMessage       bool
 }
 
-// SendTextMessage sends a text message to chat
-func (c *Client) SendTextMessage(chatId int64, text string, opts *SendTextMessageOpts) (*Message, error) {
+// SendMessage sends a text message to chat
+func (c *Client) SendMessage(chatId int64, text string, opts *SendMessageOpts) (*Message, error) {
 	if opts == nil {
-		opts = &SendTextMessageOpts{}
+		opts = &SendMessageOpts{}
 	}
 
 	formattedText, err := c.GetFormattedText(text, opts.Entities, opts.ParseMode)
@@ -724,8 +726,8 @@ func (c *Client) SendSticker(chatId int64, sticker InputFile, opts *SendStickerO
 	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup, opts.CallbackQueryID, opts.ReceiverUserID, opts.ReplaceCallbackQueryMessage)
 }
 
-// SendCopyOpts contains optional parameters for SendCopy
-type SendCopyOpts struct {
+// CopyMessageOpts contains optional parameters for CopyMessage
+type CopyMessageOpts struct {
 	InGameShare                       bool
 	ReplaceCaption                    bool
 	NewCaption                        string
@@ -750,10 +752,10 @@ type SendCopyOpts struct {
 	UpdateOrderOfInstalledStickerSets bool
 }
 
-// SendCopy copies a message to chat
-func (c *Client) SendCopy(chatId int64, fromChatId int64, messageId int64, opts *SendCopyOpts) (*Message, error) {
+// CopyMessage copies a message to chat
+func (c *Client) CopyMessage(chatId int64, fromChatId int64, messageId int64, opts *CopyMessageOpts) (*Message, error) {
 	if opts == nil {
-		opts = &SendCopyOpts{}
+		opts = &CopyMessageOpts{}
 	}
 
 	caption, err := c.GetFormattedText(opts.NewCaption, opts.NewCaptionEntities, opts.ParseMode)
@@ -896,8 +898,8 @@ func (c *Client) ForwardMessage(chatId int64, fromChatId int64, messageId int64,
 	}, nil, nil, nil, 0, nil, 0, 0, false)
 }
 
-// EditTextMessageOpts contains optional parameters for EditTextMessage
-type EditTextMessageOpts struct {
+// EditMessageTextOpts contains optional parameters for EditMessageText
+type EditMessageTextOpts struct {
 	ParseMode             string
 	Entities              []TextEntity
 	DisableWebPagePreview bool
@@ -908,13 +910,13 @@ type EditTextMessageOpts struct {
 	ReplyMarkup           ReplyMarkup
 }
 
-// EditTextMessage edits a text message
-func (c *Client) EditTextMessage(chatId int64, messageId int64, text string, opts *EditTextMessageOpts) (*Message, error) {
+// EditMessageText edits a text message
+func (c *Client) EditMessageText(chatId int64, messageId int64, text string, opts *EditMessageTextOpts) (*Message, error) {
 	if opts == nil {
-		opts = &EditTextMessageOpts{}
+		opts = &EditMessageTextOpts{}
 	}
 
-	if !*c.config.UseMessageDatabase {
+	if c.config != nil && c.config.UseMessageDatabase != nil && !*c.config.UseMessageDatabase {
 		if _, err := c.GetMessage(chatId, messageId); err != nil {
 			return nil, err
 		}
@@ -938,26 +940,26 @@ func (c *Client) EditTextMessage(chatId int64, messageId int64, text string, opt
 		LinkPreviewOptions: linkPreviewOptions,
 	}
 
-	return c.EditMessageText(chatId, content, messageId, &EditMessageTextOpts{
+	return c.EditMessageTextContent(chatId, content, messageId, &EditMessageTextContentOpts{
 		ReplyMarkup: opts.ReplyMarkup,
 	})
 }
 
-// EditCaptionOpts contains optional parameters for EditCaption
-type EditCaptionOpts struct {
+// EditMessageCaptionOpts contains optional parameters for EditMessageCaption
+type EditMessageCaptionOpts struct {
 	ParseMode             string
 	Entities              []TextEntity
 	ShowCaptionAboveMedia bool
 	ReplyMarkup           ReplyMarkup
 }
 
-// EditCaption edits the caption of a message
-func (c *Client) EditCaption(chatId int64, messageId int64, caption string, opts *EditCaptionOpts) (*Message, error) {
+// EditMessageCaption edits the caption of a message
+func (c *Client) EditMessageCaption(chatId int64, messageId int64, caption string, opts *EditMessageCaptionOpts) (*Message, error) {
 	if opts == nil {
-		opts = &EditCaptionOpts{}
+		opts = &EditMessageCaptionOpts{}
 	}
 
-	if !*c.config.UseMessageDatabase {
+	if c.config != nil && c.config.UseMessageDatabase != nil && !*c.config.UseMessageDatabase {
 		if _, err := c.GetMessage(chatId, messageId); err != nil {
 			return nil, err
 		}
@@ -968,7 +970,7 @@ func (c *Client) EditCaption(chatId int64, messageId int64, caption string, opts
 		return nil, err
 	}
 
-	return c.EditMessageCaption(chatId, messageId, &EditMessageCaptionOpts{
+	return c.EditMessageCaptionText(chatId, messageId, &EditMessageCaptionTextOpts{
 		Caption:               formattedText,
 		ReplyMarkup:           opts.ReplyMarkup,
 		ShowCaptionAboveMedia: opts.ShowCaptionAboveMedia,
@@ -1599,7 +1601,7 @@ func (c *Client) SendVenue(chatId int64, venue *Venue, opts *SendVenueOpts) (*Me
 func (c *Client) EditContent(chatId int64, messageId int64, content InputMessageContent, replyMarkup ReplyMarkup) (*Message, error) {
 	switch t := content.(type) {
 	case *InputMessageText, *InputMessageRichMessage:
-		return c.EditMessageText(chatId, content, messageId, &EditMessageTextOpts{
+		return c.EditMessageTextContent(chatId, content, messageId, &EditMessageTextContentOpts{
 			ReplyMarkup: replyMarkup,
 		})
 	case *InputMessageAnimation, *InputMessageAudio, *InputMessageDocument, *InputMessagePhoto, *InputMessageVideo:
@@ -1620,22 +1622,10 @@ func (c *Client) EditContent(chatId int64, messageId int64, content InputMessage
 	}
 }
 
-// EditReplyMarkup edits the reply markup of a message.
-func (c *Client) EditReplyMarkup(chatId int64, messageId int64, replyMarkup ReplyMarkup) (*Message, error) {
-	return c.EditMessageReplyMarkup(chatId, messageId, &EditMessageReplyMarkupOpts{
-		ReplyMarkup: replyMarkup,
-	})
-}
-
-// SendContent sends a message with the given content.
-func (c *Client) SendContent(chatId int64, content InputMessageContent, opts *SendMessageOpts) (*Message, error) {
-	return c.SendMessage(chatId, content, opts)
-}
-
 // SendRichMessage sends a rich message to chat.
-func (c *Client) SendRichMessage(chatId int64, richMessage *InputRichMessage, opts *SendTextMessageOpts) (*Message, error) {
+func (c *Client) SendRichMessage(chatId int64, richMessage *InputRichMessage, opts *SendMessageOpts) (*Message, error) {
 	if opts == nil {
-		opts = &SendTextMessageOpts{}
+		opts = &SendMessageOpts{}
 	}
 
 	content := &InputMessageRichMessage{
@@ -1703,4 +1693,344 @@ func (c *Client) SendForwarded(chatId int64, fromChatId int64, messageId int64, 
 		SendingId:                         opts.SendingId,
 		UpdateOrderOfInstalledStickerSets: opts.UpdateOrderOfInstalledStickerSets,
 	}, opts.TopicId, opts.Quote, opts.ReplyTo, opts.ReplyToMessageID, opts.ReplyMarkup, 0, 0, false)
+}
+
+// CopyMessages copies messages. Options are copied before enabling SendCopy.
+// The result uses TDLib Messages, not Bot API MessageId objects.
+func (c *Client) CopyMessages(chatId, fromChatId int64, messageIds []int64, opts *ForwardMessagesOpts) (*Messages, error) {
+	copyOpts := ForwardMessagesOpts{}
+	if opts != nil {
+		copyOpts = *opts
+	}
+	copyOpts.SendCopy = true
+	return c.ForwardMessages(chatId, fromChatId, messageIds, &copyOpts)
+}
+
+// DeleteMessage deletes a message for all chat members where permitted.
+func (c *Client) DeleteMessage(chatId, messageId int64) error {
+	return c.DeleteMessages(chatId, []int64{messageId}, &DeleteMessagesOpts{Revoke: true})
+}
+
+// SendMediaGroup sends a native TDLib album of 2-10 photo/video, audio, or
+// document contents. Audio and document albums must each contain only that type.
+func (c *Client) SendMediaGroup(chatId int64, media []InputMessageContent, opts *SendMessageAlbumOpts) (*Messages, error) {
+	if len(media) < 2 || len(media) > 10 {
+		return nil, fmt.Errorf("media group requires 2-10 items")
+	}
+	kind := ""
+	var above *bool
+	for i, item := range media {
+		category := ""
+		var captionAbove bool
+		switch v := item.(type) {
+		case *InputMessagePhoto:
+			if v == nil || v.Photo == nil || v.Photo.Photo == nil {
+				return nil, fmt.Errorf("media[%d]: photo required", i)
+			}
+			category = "visual"
+			captionAbove = v.ShowCaptionAboveMedia
+		case *InputMessageVideo:
+			if v == nil || v.Video == nil || v.Video.Video == nil {
+				return nil, fmt.Errorf("media[%d]: video required", i)
+			}
+			category = "visual"
+			captionAbove = v.ShowCaptionAboveMedia
+		case *InputMessageAudio:
+			if v == nil || v.Audio == nil || v.Audio.Audio == nil {
+				return nil, fmt.Errorf("media[%d]: audio required", i)
+			}
+			category = "audio"
+		case *InputMessageDocument:
+			if v == nil || v.Document == nil || v.Document.Document == nil {
+				return nil, fmt.Errorf("media[%d]: document required", i)
+			}
+			category = "document"
+		default:
+			return nil, fmt.Errorf("media[%d]: unsupported album content %T", i, item)
+		}
+		if kind != "" && kind != category {
+			return nil, fmt.Errorf("audio and document albums require items of the same type")
+		}
+		if above != nil && *above != captionAbove {
+			return nil, fmt.Errorf("album items must agree on ShowCaptionAboveMedia")
+		}
+		kind = category
+		value := captionAbove
+		above = &value
+	}
+	return c.SendMessageAlbum(chatId, media, opts)
+}
+
+// StopMessageLiveLocation stops an active live location.
+func (c *Client) StopMessageLiveLocation(chatId, messageId int64, replyMarkup ReplyMarkup) (*Message, error) {
+	return c.EditMessageLiveLocation(chatId, messageId, &EditMessageLiveLocationOpts{ReplyMarkup: replyMarkup})
+}
+
+// ApproveChatJoinRequest approves a user's pending join request.
+func (c *Client) ApproveChatJoinRequest(chatId, userId int64) error {
+	return c.ProcessChatJoinRequest(chatId, userId, &ProcessChatJoinRequestOpts{Approve: true})
+}
+
+// DeclineChatJoinRequest declines a user's pending join request.
+func (c *Client) DeclineChatJoinRequest(chatId, userId int64) error {
+	return c.ProcessChatJoinRequest(chatId, userId, &ProcessChatJoinRequestOpts{Approve: false})
+}
+
+// UnbanChatMember removes a ban. If onlyIfBanned is false, existing members are
+// removed as Bot API unbanChatMember does; pass true to leave members untouched.
+func (c *Client) UnbanChatMember(chatId, userId int64, onlyIfBanned bool) error {
+	sender := &MessageSenderUser{UserId: userId}
+	if onlyIfBanned {
+		member, err := c.GetChatMember(chatId, sender)
+		if err != nil {
+			return err
+		}
+		if _, banned := member.Status.(*ChatMemberStatusBanned); !banned {
+			return nil
+		}
+	}
+	return c.SetChatMemberStatus(chatId, sender, &ChatMemberStatusLeft{})
+}
+
+// RestrictChatMember preserves the user's current membership while changing
+// permissions. TDLib applies its own permission dependencies and time limits.
+func (c *Client) RestrictChatMember(chatId, userId int64, permissions *ChatPermissions, untilDate int32) error {
+	if permissions == nil {
+		return fmt.Errorf("chat permissions required")
+	}
+	sender := &MessageSenderUser{UserId: userId}
+	member, err := c.GetChatMember(chatId, sender)
+	if err != nil {
+		return err
+	}
+	isMember := false
+	switch status := member.Status.(type) {
+	case *ChatMemberStatusMember, *ChatMemberStatusAdministrator:
+		isMember = true
+	case *ChatMemberStatusCreator:
+		isMember = status.IsMember
+	case *ChatMemberStatusRestricted:
+		isMember = status.IsMember
+	}
+	return c.SetChatMemberStatus(chatId, sender, &ChatMemberStatusRestricted{IsMember: isMember, Permissions: permissions, RestrictedUntilDate: untilDate})
+}
+
+// PromoteChatMember sets administrator rights. To demote a member, pass nil.
+// Custom titles are managed separately with SetChatMemberTag.
+func (c *Client) PromoteChatMember(chatId, userId int64, rights *ChatAdministratorRights) error {
+	var status ChatMemberStatus = &ChatMemberStatusMember{}
+	if rights != nil {
+		status = &ChatMemberStatusAdministrator{Rights: rights}
+	}
+	return c.SetChatMemberStatus(chatId, &MessageSenderUser{UserId: userId}, status)
+}
+
+// BanChatSenderChat prevents a channel from sending in a group.
+func (c *Client) BanChatSenderChat(chatId, senderChatId int64) error {
+	return c.BanChatMember(0, chatId, &MessageSenderChat{ChatId: senderChatId}, &BanChatMemberOpts{RevokeMessages: true})
+}
+
+// UnbanChatSenderChat removes a sender-chat ban.
+func (c *Client) UnbanChatSenderChat(chatId, senderChatId int64) error {
+	return c.SetChatMemberStatus(chatId, &MessageSenderChat{ChatId: senderChatId}, &ChatMemberStatusLeft{})
+}
+
+// GetChatMemberCount resolves TDLib's chat type before fetching the member count.
+func (c *Client) GetChatMemberCount(chatId int64) (int32, error) {
+	chat, err := c.GetChat(chatId)
+	if err != nil {
+		return 0, err
+	}
+	switch kind := chat.Type.(type) {
+	case *ChatTypeBasicGroup:
+		group, err := c.GetBasicGroup(kind.BasicGroupId)
+		if err != nil {
+			return 0, err
+		}
+		return group.MemberCount, nil
+	case *ChatTypeSupergroup:
+		group, err := c.GetSupergroupFullInfo(kind.SupergroupId)
+		if err != nil {
+			return 0, err
+		}
+		return group.MemberCount, nil
+	default:
+		return 0, fmt.Errorf("member count requires a group or channel")
+	}
+}
+
+// ExportChatInviteLink generates a new primary link, revoking the previous one.
+func (c *Client) ExportChatInviteLink(chatId int64) (string, error) {
+	link, err := c.ReplacePrimaryChatInviteLink(chatId)
+	if err != nil {
+		return "", err
+	}
+	return link.InviteLink, nil
+}
+
+// GetChatMenuButton gets the menu for a private chat. Pass 0 for the default.
+func (c *Client) GetChatMenuButton(chatId int64) (*BotMenuButton, error) {
+	if chatId < 0 {
+		return nil, fmt.Errorf("menu buttons require a private chat or 0")
+	}
+	return c.GetMenuButton(chatId)
+}
+
+// SetChatMenuButton sets the menu for a private chat. Pass 0 for the default.
+func (c *Client) SetChatMenuButton(chatId int64, button *BotMenuButton) error {
+	if chatId < 0 || button == nil {
+		return fmt.Errorf("private chat or 0 and menu button required")
+	}
+	return c.SetMenuButton(button, chatId)
+}
+
+// CloseForumTopic closes a native TDLib forum topic.
+func (c *Client) CloseForumTopic(chatId int64, topicId int32) error {
+	return c.ToggleForumTopicIsClosed(chatId, topicId, &ToggleForumTopicIsClosedOpts{IsClosed: true})
+}
+
+// ReopenForumTopic reopens a native TDLib forum topic.
+func (c *Client) ReopenForumTopic(chatId int64, topicId int32) error {
+	return c.ToggleForumTopicIsClosed(chatId, topicId, &ToggleForumTopicIsClosedOpts{IsClosed: false})
+}
+
+// EditGeneralForumTopic edits the General topic (native topic ID 1).
+func (c *Client) EditGeneralForumTopic(chatId int64, name string) error {
+	return c.EditForumTopic(chatId, 1, 0, name, nil)
+}
+
+// CloseGeneralForumTopic closes the General topic.
+func (c *Client) CloseGeneralForumTopic(chatId int64) error { return c.CloseForumTopic(chatId, 1) }
+
+// ReopenGeneralForumTopic reopens the General topic.
+func (c *Client) ReopenGeneralForumTopic(chatId int64) error { return c.ReopenForumTopic(chatId, 1) }
+
+// HideGeneralForumTopic hides the General topic.
+func (c *Client) HideGeneralForumTopic(chatId int64) error {
+	return c.ToggleGeneralForumTopicIsHidden(chatId, &ToggleGeneralForumTopicIsHiddenOpts{IsHidden: true})
+}
+
+// UnhideGeneralForumTopic unhides the General topic.
+func (c *Client) UnhideGeneralForumTopic(chatId int64) error {
+	return c.ToggleGeneralForumTopicIsHidden(chatId, &ToggleGeneralForumTopicIsHiddenOpts{IsHidden: false})
+}
+
+// UnpinAllGeneralForumTopicMessages unpins messages in the General topic.
+func (c *Client) UnpinAllGeneralForumTopicMessages(chatId int64) error {
+	return c.UnpinAllForumTopicMessages(chatId, 1)
+}
+
+// currentBotID resolves the bot without confusing 0 with a bot identifier.
+func (c *Client) currentBotID() (int64, error) {
+	me, err := c.GetMe()
+	if err != nil {
+		return 0, err
+	}
+	if _, ok := me.Type.(*UserTypeBot); !ok {
+		return 0, fmt.Errorf("operation requires a bot account")
+	}
+	return me.Id, nil
+}
+
+// GetMyName returns the bot's name in the requested language.
+func (c *Client) GetMyName(languageCode string) (*Text, error) {
+	id, err := c.currentBotID()
+	if err != nil {
+		return nil, err
+	}
+	return c.GetBotName(id, languageCode)
+}
+
+// SetMyName sets the bot's name in the requested language.
+func (c *Client) SetMyName(name, languageCode string) error {
+	id, err := c.currentBotID()
+	if err != nil {
+		return err
+	}
+	return c.SetBotName(id, languageCode, name)
+}
+
+// GetMyDescription returns the bot's description in the requested language.
+func (c *Client) GetMyDescription(languageCode string) (*Text, error) {
+	id, err := c.currentBotID()
+	if err != nil {
+		return nil, err
+	}
+	return c.GetBotInfoDescription(id, languageCode)
+}
+
+// SetMyDescription sets the bot's description in the requested language.
+func (c *Client) SetMyDescription(description, languageCode string) error {
+	id, err := c.currentBotID()
+	if err != nil {
+		return err
+	}
+	return c.SetBotInfoDescription(id, description, languageCode)
+}
+
+// GetMyShortDescription returns the bot's short description.
+func (c *Client) GetMyShortDescription(languageCode string) (*Text, error) {
+	id, err := c.currentBotID()
+	if err != nil {
+		return nil, err
+	}
+	return c.GetBotInfoShortDescription(id, languageCode)
+}
+
+// SetMyShortDescription sets the bot's short description.
+func (c *Client) SetMyShortDescription(description, languageCode string) error {
+	id, err := c.currentBotID()
+	if err != nil {
+		return err
+	}
+	return c.SetBotInfoShortDescription(id, languageCode, description)
+}
+
+// SetMyProfilePhoto sets the bot's native profile photo.
+func (c *Client) SetMyProfilePhoto(photo InputChatPhoto) error {
+	if photo == nil {
+		return fmt.Errorf("profile photo required; use RemoveMyProfilePhoto")
+	}
+	id, err := c.currentBotID()
+	if err != nil {
+		return err
+	}
+	return c.SetBotProfilePhoto(id, &SetBotProfilePhotoOpts{Photo: photo})
+}
+
+// RemoveMyProfilePhoto removes the bot's profile photo.
+func (c *Client) RemoveMyProfilePhoto() error {
+	id, err := c.currentBotID()
+	if err != nil {
+		return err
+	}
+	return c.SetBotProfilePhoto(id, nil)
+}
+
+// SetMyDefaultAdministratorRights sets rights requested when the bot is added.
+// Pass nil to remove defaults. forChannels selects channel rather than group rights.
+func (c *Client) SetMyDefaultAdministratorRights(rights *ChatAdministratorRights, forChannels bool) error {
+	if forChannels {
+		return c.SetDefaultChannelAdministratorRights(&SetDefaultChannelAdministratorRightsOpts{DefaultChannelAdministratorRights: rights})
+	}
+	return c.SetDefaultGroupAdministratorRights(&SetDefaultGroupAdministratorRightsOpts{DefaultGroupAdministratorRights: rights})
+}
+
+// GetMyDefaultAdministratorRights gets the bot's default channel or group rights.
+func (c *Client) GetMyDefaultAdministratorRights(forChannels bool) (*ChatAdministratorRights, error) {
+	id, err := c.currentBotID()
+	if err != nil {
+		return nil, err
+	}
+	info, err := c.GetUserFullInfo(id)
+	if err != nil {
+		return nil, err
+	}
+	if info.BotInfo == nil {
+		return nil, fmt.Errorf("bot information unavailable")
+	}
+	if forChannels {
+		return info.BotInfo.DefaultChannelAdministratorRights, nil
+	}
+	return info.BotInfo.DefaultGroupAdministratorRights, nil
 }

@@ -3,26 +3,44 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"io"
 	"net/http"
+	"os"
 	"sort"
+	"strings"
+	"time"
 )
 
 // LoadTDLibJSON reads the JSON file and returns the TDLibJSON structure.
-func LoadTDLibJSON(url string) (*TDLibJSON, error) {
-	resp, err := http.Get(url)
-	if err != nil {
-		return nil, err
+func LoadTDLibJSON(source string) (*TDLibJSON, error) {
+	var body io.ReadCloser
+	if strings.HasPrefix(source, "https://") || strings.HasPrefix(source, "http://") {
+		client := &http.Client{Timeout: 30 * time.Second}
+		resp, err := client.Get(source)
+		if err != nil {
+			return nil, err
+		}
+		if resp.StatusCode != http.StatusOK {
+			resp.Body.Close()
+			return nil, fmt.Errorf("failed to fetch json: %s", resp.Status)
+		}
+		body = resp.Body
+	} else {
+		f, err := os.Open(source)
+		if err != nil {
+			return nil, err
+		}
+		body = f
 	}
-	defer resp.Body.Close()
-
-	if resp.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("failed to fetch json: %s", resp.Status)
-	}
+	defer body.Close()
 
 	var data TDLibJSON
-	decoder := json.NewDecoder(resp.Body)
+	decoder := json.NewDecoder(io.LimitReader(body, 32<<20))
 	if err := decoder.Decode(&data); err != nil {
 		return nil, err
+	}
+	if data.Version == "" || len(data.Functions) == 0 || len(data.Types) == 0 {
+		return nil, fmt.Errorf("invalid TDLib schema")
 	}
 
 	return &data, nil
@@ -44,7 +62,7 @@ func ConvertJSONToGen(data *TDLibJSON) ([]TLType, []TLType, map[string]*TLClass,
 	}
 
 	// Helper to convert TypeDef to TLType
-	convert := func(name string, def *TypeDef, isFunction bool) TLType {
+	convert := func(name string, def *TypeDef) TLType {
 		var params []TLParam
 		var argNames []string
 		for k := range def.Args {
@@ -67,23 +85,22 @@ func ConvertJSONToGen(data *TDLibJSON) ([]TLType, []TLType, map[string]*TLClass,
 			Description: def.Description,
 			Params:      params,
 			ResultType:  def.Type,
-			IsFunction:  isFunction,
 		}
 	}
 
 	// Convert Types
 	for name, def := range data.Types {
-		types = append(types, convert(name, def, false))
+		types = append(types, convert(name, def))
 	}
 
 	// Convert Updates
 	for name, def := range data.Updates {
-		types = append(types, convert(name, def, false))
+		types = append(types, convert(name, def))
 	}
 
 	// Convert Functions
 	for name, def := range data.Functions {
-		functions = append(functions, convert(name, def, true))
+		functions = append(functions, convert(name, def))
 	}
 
 	return types, functions, classes, data.Options

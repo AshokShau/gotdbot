@@ -89,7 +89,7 @@ func setupClient(c *gotdbot.Client) {
 	})
 
 	c.OnMessage(func(c *gotdbot.Client, msg *gotdbot.Message) error {
-		_, err := msg.Copy(c, msg.ChatId, &gotdbot.SendCopyOpts{
+		_, err := msg.Copy(c, msg.ChatId, &gotdbot.CopyMessageOpts{
 			ReplyMarkup: msg.ReplyMarkup,
 		})
 		return err

@@ -13,22 +13,26 @@ type Handler interface {
 
 // MatchingOptions controls which messages a handler accepts.
 type MatchingOptions struct {
-	AllowOutgoing bool
-	AllowIncoming bool
-	AllowEdited   bool
-	AllowChannel  bool
-	AllowGroup    bool
-	AllowPrivate  bool
+	AllowOutgoing   bool
+	AllowIncoming   bool
+	AllowEdited     bool
+	AllowChannel    bool
+	AllowGroup      bool // Basic groups only.
+	AllowSupergroup bool // Supergroups, excluding channels.
+	AllowPrivate    bool
+	AllowSecret     bool
 }
 
 // DefaultMatchingOptions returns the default message matching options.
 func DefaultMatchingOptions() MatchingOptions {
 	return MatchingOptions{
-		AllowIncoming: true,
-		AllowEdited:   true,
-		AllowChannel:  true,
-		AllowGroup:    true,
-		AllowPrivate:  true,
+		AllowIncoming:   true,
+		AllowEdited:     true,
+		AllowChannel:    true,
+		AllowGroup:      true,
+		AllowSupergroup: true,
+		AllowPrivate:    true,
+		AllowSecret:     true,
 	}
 }
 
@@ -58,8 +62,12 @@ func (o MatchingOptions) check(msg *Message) bool {
 		return o.AllowChannel
 	case msg.IsGroup():
 		return o.AllowGroup
+	case msg.IsSupergroup():
+		return o.AllowSupergroup
 	case msg.IsPrivate():
 		return o.AllowPrivate
+	case msg.IsSecret():
+		return o.AllowSecret
 	default:
 		// Unknown chat type.
 		return false
@@ -181,7 +189,12 @@ func splitCommand(command string) (name, username string) {
 
 // matchesBot reports whether username refers to the current bot.
 func (h *CommandHandler) matchesBot(client *Client, username string) bool {
-	if client == nil || client.Me == nil {
+	if client == nil {
+		return false
+	}
+	client.meMu.RLock()
+	defer client.meMu.RUnlock()
+	if client.Me == nil {
 		return false
 	}
 
@@ -212,17 +225,17 @@ func (h *CommandHandler) HandleUpdate(client *Client, update TlObject) error {
 func getMessageFromUpdate(update TlObject) (*Message, bool) {
 	switch u := update.(type) {
 	case *UpdateNewMessage:
-		if u.Message != nil {
+		if u != nil && u.Message != nil {
 			return u.Message, true
 		}
 
 	case *UpdateNewBusinessMessage:
-		if u.Message != nil && u.Message.Message != nil {
+		if u != nil && u.Message != nil && u.Message.Message != nil {
 			return u.Message.Message, true
 		}
 
 	case *UpdateBusinessMessageEdited:
-		if u.Message != nil && u.Message.Message != nil {
+		if u != nil && u.Message != nil && u.Message.Message != nil {
 			return u.Message.Message, true
 		}
 	}
@@ -256,12 +269,12 @@ func getChatIDFromUpdate(update TlObject) int64 {
 		return u.ChatId
 
 	case *UpdateMessageSendSucceeded:
-		if u.Message != nil {
+		if u != nil && u.Message != nil {
 			return u.Message.ChatId
 		}
 
 	case *UpdateMessageSendFailed:
-		if u.Message != nil {
+		if u != nil && u.Message != nil {
 			return u.Message.ChatId
 		}
 	}
