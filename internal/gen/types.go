@@ -14,6 +14,7 @@ func generateClasses(classes map[string]*TLClass) {
 	var sb strings.Builder
 	sb.WriteString(header)
 	sb.WriteString("package gotdbot\n\n")
+	sb.WriteString("import \"bytes\"\n")
 	sb.WriteString("import \"encoding/json\"\n")
 	sb.WriteString("import \"fmt\"\n\n")
 
@@ -55,6 +56,7 @@ func generateClasses(classes map[string]*TLClass) {
 		// Unmarshal helper
 		fmt.Fprintf(&sb, "// Unmarshal%s unmarshals the JSON into the correct concrete implementation of %s\n", structName, structName)
 		fmt.Fprintf(&sb, "func Unmarshal%s(data []byte) (%s, error) {\n", structName, structName)
+		sb.WriteString("\tif bytes.Equal(bytes.TrimSpace(data), []byte(\"null\")) { return nil, nil }\n")
 		sb.WriteString("\tvar typeObj struct { Type string `json:\"@type\"` }\n")
 		sb.WriteString("\tif err := json.Unmarshal(data, &typeObj); err != nil { return nil, err }\n")
 		sb.WriteString("\tswitch typeObj.Type {\n")

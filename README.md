@@ -84,6 +84,20 @@ go vet ./...
 ```
 
 Ordinary tests run without Telegram credentials or an installed TDLib library.
+They cover request correlation and retries, send completion, shutdown, handlers,
+conversations, memory/disk update queues, JSON bindings, filters, logging, and
+QR encoding. Native transport tests use in-process stubs.
+
+For repeated concurrency checks, fuzzing, and performance measurements:
+
+```sh
+go test -race -shuffle=on -count=20 -timeout=120s ./...
+go test -run='^$' -fuzz=FuzzInt64SliceRoundTrip -fuzztime=10s .
+go test -run='^$' -fuzz=FuzzInt64SliceDecode -fuzztime=10s .
+go test -run='^$' -fuzz=FuzzUnmarshalWithClient -fuzztime=10s .
+go test -run='^$' -fuzz=FuzzUnparseEntitiesUnicode -fuzztime=10s .
+go test -run='^$' -bench=. -benchmem .
+```
 
 ### Code generation
 

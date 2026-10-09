@@ -293,7 +293,7 @@ func CloneBitset(from *Bitset) *Bitset {
 }
 
 func (b *Bitset) Substr(start, end int) (*Bitset, error) {
-	if start > end || end > b.numBits {
+	if start < 0 || start > end || end > b.numBits {
 		return nil, fmt.Errorf("substr out of range start=%d end=%d len=%d", start, end, b.numBits)
 	}
 	res := NewBitset()
