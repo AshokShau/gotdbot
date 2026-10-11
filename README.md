@@ -52,6 +52,7 @@ go run github.com/AshokShau/gotdbot/scripts/tools
 The [examples directory](./examples) contains applications to build on:
 
 - [Echo bot](./examples/echoBot): Commands, inline keyboards, and message filters.
+- [Auto-delete bot](./examples/autoDeleteBot): Delete outgoing messages after 30 seconds and cancel timers when messages are permanently deleted.
 - [Conversation bot](./examples/conversation): Ask a question and handle the reply.
 - [Multiple bots](./examples/echoMultiBot): Run and manage several bot accounts together.
 
