@@ -93,6 +93,7 @@ func TestDecoder(t *testing.T) {
   if _, err := UnmarshalValue([]byte(data)); err == nil { t.Fatalf("invalid value accepted: %s", data) }
  }
 }
+
 `,
 	}
 	for name, content := range files {
@@ -104,5 +105,51 @@ func TestDecoder(t *testing.T) {
 	cmd.Env = append(os.Environ(), "GOWORK=off")
 	if output, err := cmd.CombinedOutput(); err != nil {
 		t.Fatalf("generated decoder: %v\n%s", err, output)
+	}
+}
+
+func TestTDLibOptionsGenerationLeavesHandwrittenConfigUntouched(t *testing.T) {
+	dir := t.TempDir()
+	t.Chdir(dir)
+	config := []byte("package gotdbot\n\n// This file belongs to the client configuration.\ntype ClientOpts struct { UpdateWorkers int }\n")
+	if err := os.WriteFile("client_opts.go", config, 0600); err != nil {
+		t.Fatal(err)
+	}
+	generateTDLibOptions(map[string]*OptionDef{
+		"online":   {Type: "Bool", Writable: true},
+		"limit":    {Type: "int64", Writable: true},
+		"language": {Type: "string", Writable: true},
+		"version":  {Type: "string", Writable: false},
+	})
+	after, err := os.ReadFile("client_opts.go")
+	if err != nil || !reflect.DeepEqual(after, config) {
+		t.Fatal("generator changed handwritten client options")
+	}
+	files := map[string]string{
+		"go.mod": "module optionsfixture\n\ngo 1.25.0\n",
+		"fixture_test.go": `package gotdbot
+import ("reflect"; "testing")
+func TestOptions(t *testing.T) {
+ opts := &TDLibOptions{Online: true, Limit: -42, Language: "en"}
+ got := map[string]any{}
+ opts.forEachSet(func(name string, value any) { got[name] = value })
+ want := map[string]any{"online": true, "limit": int64(-42), "language": "en"}
+ if !reflect.DeepEqual(got, want) { t.Fatalf("values: %v", got) }
+ if reflect.TypeOf(*opts).NumField() != 3 { t.Fatal("read-only option generated") }
+ var absent *TDLibOptions
+ absent.forEachSet(func(string, any) { t.Fatal("nil options emitted values") })
+ opts.forEachSet(nil)
+}
+`,
+	}
+	for name, content := range files {
+		if err := os.WriteFile(name, []byte(content), 0600); err != nil {
+			t.Fatal(err)
+		}
+	}
+	cmd := exec.Command("go", "test", ".")
+	cmd.Env = append(os.Environ(), "GOWORK=off")
+	if output, err := cmd.CombinedOutput(); err != nil {
+		t.Fatalf("generated options: %v\n%s", err, output)
 	}
 }

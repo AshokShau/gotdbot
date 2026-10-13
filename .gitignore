@@ -5,4 +5,4 @@ database
 *.binlog
 db_*
 libtdjson.so.*
-handlers_test.go
+*_test.go

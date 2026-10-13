@@ -119,7 +119,7 @@ func (h *plainHandler) Enabled(_ context.Context, level slog.Level) bool {
 
 func (h *plainHandler) Handle(_ context.Context, r slog.Record) error {
 	var b strings.Builder
-	
+
 	b.WriteString(r.Time.Format("15:04:05.000"))
 	b.WriteString(" ")
 

@@ -2,6 +2,8 @@ package tdjson
 
 import (
 	"fmt"
+	"os"
+	"path/filepath"
 	"runtime"
 	"sync"
 	"unsafe"
@@ -66,7 +68,14 @@ func getDefaultLibName() string {
 	case "darwin":
 		return "libtdjson.dylib"
 	default:
-		return "libtdjson.so"
+		paths, _ := filepath.Glob("libtdjson.so.*")
+		paths = append([]string{"libtdjson.so"}, paths...)
+		for _, path := range paths {
+			if info, err := os.Stat(path); err == nil && info.Mode().IsRegular() {
+				return "./" + path
+			}
+		}
+		return "./libtdjson.so"
 	}
 }
 

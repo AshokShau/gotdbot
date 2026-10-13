@@ -169,9 +169,9 @@ func TestUnparseEntities(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			result := gotdbot.UnparseEntities(tt.text, tt.entities, tt.mode)
+			result := (&gotdbot.FormattedText{Text: tt.text, Entities: tt.entities}).Format(tt.mode)
 			if result != tt.expected {
-				t.Errorf("UnparseEntities() = %v, want %v", result, tt.expected)
+				t.Errorf("Format() = %v, want %v", result, tt.expected)
 			}
 		})
 	}

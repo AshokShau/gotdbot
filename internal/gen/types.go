@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"regexp"
 	"sort"
 	"strings"
 	"unicode"
@@ -349,15 +348,6 @@ func generateTDLibOptions(options map[string]*OptionDef) {
 	}
 	sort.Strings(writableOptions)
 
-	contentBytes, err := os.ReadFile("client_opts.go")
-	if err != nil {
-		log.Fatal(err)
-	}
-	content := string(contentBytes)
-
-	structRegex := regexp.MustCompile(`(?s)(// TDLibOptions.*?\n)?type TDLibOptions struct\s*\{`)
-	forEachRegex := regexp.MustCompile(`(?s)(// forEachSet.*?\n)?func\s*\(o\s*\*TDLibOptions\)\s*forEachSet\s*\(fn func\(name string, value interface\{\}\)\)\s*\{`)
-
 	var structSb, forEachSb strings.Builder
 	structSb.WriteString("// TDLibOptions contains TDLib options that can be set\ntype TDLibOptions struct {\n")
 	for _, name := range writableOptions {
@@ -395,34 +385,8 @@ func generateTDLibOptions(options map[string]*OptionDef) {
 	}
 	forEachSb.WriteString("}")
 
-	newContent := content
-	if loc := structRegex.FindStringIndex(newContent); loc != nil {
-		end := findBalancedBrace(newContent, loc[1]-1)
-		if end != -1 {
-			for end+1 < len(newContent) && (newContent[end+1] == '\n' || newContent[end+1] == '\r') {
-				end++
-			}
-			newContent = newContent[:loc[0]] + structSb.String() + "\n\n" + newContent[end+1:]
-		}
-	}
-
-	if loc := forEachRegex.FindStringIndex(newContent); loc != nil {
-		end := findBalancedBrace(newContent, loc[1]-1)
-		if end != -1 {
-			for end+1 < len(newContent) && (newContent[end+1] == '\n' || newContent[end+1] == '\r') {
-				end++
-			}
-			newContent = newContent[:loc[0]] + forEachSb.String() + "\n\n" + newContent[end+1:]
-		}
-	} else if structLoc := structRegex.FindStringIndex(newContent); structLoc != nil {
-		structEnd := findBalancedBrace(newContent, structLoc[1]-1)
-		if structEnd != -1 {
-			insertAt := structEnd + 1
-			newContent = newContent[:insertAt] + "\n\n" + forEachSb.String() + newContent[insertAt:]
-		}
-	}
-
-	if err := os.WriteFile("client_opts.go", []byte(newContent), 0644); err != nil {
+	content := header + "package gotdbot\n\n" + structSb.String() + "\n\n" + forEachSb.String() + "\n"
+	if err := os.WriteFile("gen_tdlib_options.go", []byte(content), 0644); err != nil {
 		log.Fatal(err)
 	}
 }

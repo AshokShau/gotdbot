@@ -21,4 +21,13 @@ var (
 
 	// ErrNoFormattedText is returned when a message content does not contain text or caption.
 	ErrNoFormattedText = errors.New("message does not contain formatted text or caption")
+
+	// ErrNilUpdate is returned when an action is called on a nil update.
+	ErrNilUpdate = errors.New("telegram update is nil")
+
+	// ErrUpdateHasNoMessage is returned when an update has no single message to use.
+	ErrUpdateHasNoMessage = errors.New("update does not identify a single message")
+
+	// ErrNoMedia is returned when a message has no downloadable media file.
+	ErrNoMedia = errors.New("message has no downloadable media")
 )

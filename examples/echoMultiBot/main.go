@@ -61,9 +61,9 @@ func setupClient(c *gotdbot.Client) {
 			return cloneHandler(client, msg)
 		}
 		return nil
-	}, gotdbot.NewUpdateNewMessageFilter(func(msg *gotdbot.Message) bool {
+	}, gotdbot.MessageFilter(func(msg *gotdbot.Message) bool {
 		return message.Private(msg) && msg.ForwardInfo != nil && msg.ForwardInfo.Origin != nil
-	}))
+	}).ForNewMessage())
 
 	c.OnCommand("start", func(c *gotdbot.Client, msg *gotdbot.Message) error {
 		_, err := msg.ReplyText(c, "Hello! I am a bot managed by ClientManager.", nil)
@@ -122,13 +122,7 @@ func cloneHandler(c *gotdbot.Client, msg *gotdbot.Message) error {
 		}
 		setupClient(newBot)
 
-		me, err := newBot.GetMe()
-		if err != nil {
-			log.Printf("Failed to get me for new bot: %v", err)
-			_, _ = reply.EditText(c, "Bot started, but failed to retrieve its information.", nil)
-			return
-		}
-
+		me := newBot.Me
 		_, _ = reply.EditText(c, me.FirstName+" has been successfully started", nil)
 	}()
 

@@ -28,16 +28,26 @@ func Equal(match string) gotdbot.MessageFilter {
 }
 
 // Regex checks if the message text matches the given regex pattern.
+// Invalid patterns match nothing; use CompileRegex to receive the error.
 func Regex(pattern string) gotdbot.MessageFilter {
-	reg, err := regexp.Compile(pattern)
+	filter, err := CompileRegex(pattern)
 	if err != nil {
 		return func(msg *gotdbot.Message) bool {
 			return false
 		}
 	}
-	return func(msg *gotdbot.Message) bool {
-		return reg.MatchString(msg.GetText())
+	return filter
+}
+
+// CompileRegex creates a message filter or returns a pattern compilation error.
+func CompileRegex(pattern string) (gotdbot.MessageFilter, error) {
+	reg, err := regexp.Compile(pattern)
+	if err != nil {
+		return nil, err
 	}
+	return func(msg *gotdbot.Message) bool {
+		return msg != nil && reg.MatchString(msg.GetText())
+	}, nil
 }
 
 // Private filters messages sent in private chats.

@@ -53,7 +53,7 @@ func TestMessageTextCaptionAndArguments(t *testing.T) {
 	if !reflect.DeepEqual(m.GetEntities(), entities) {
 		t.Fatal("text entities missing")
 	}
-	for _, content := range []MessageContent{&MessagePhoto{Caption: formatted}, &MessageVideo{Caption: formatted}, &MessageAnimation{Caption: formatted}, &MessageAudio{Caption: formatted}, &MessageDocument{Caption: formatted}, &MessageVoiceNote{Caption: formatted}} {
+	for _, content := range []MessageContent{&MessagePhoto{Caption: formatted}, &MessageVideo{Caption: formatted}, &MessageAnimation{Caption: formatted}, &MessageAudio{Caption: formatted}, &MessageDocument{Caption: formatted}, &MessageVoiceNote{Caption: formatted}, &MessagePaidMedia{Caption: formatted}} {
 		m := &Message{Content: content}
 		if m.GetText() != formatted.Text || m.Text() != "" {
 			t.Errorf("%T text/caption mismatch", content)
@@ -79,6 +79,30 @@ func TestMessageTextCaptionAndArguments(t *testing.T) {
 	}
 	if plain.IsCommand() || testMessage(42, "/start").IsCommand() {
 		t.Fatal("command inferred without entity")
+	}
+}
+
+func TestMessageAccessorsHandleMissingContent(t *testing.T) {
+	messages := []*Message{nil, {}, {Content: (*MessageText)(nil)}, {Content: &MessageText{}},
+		{Content: (*MessagePhoto)(nil)}, {Content: &MessagePhoto{}},
+		{Content: (*MessageVideo)(nil)}, {Content: &MessageVideo{}},
+		{Content: &MessageAnimation{}}, {Content: &MessageAudio{}}, {Content: &MessageDocument{}},
+		{Content: &MessageVoiceNote{}}, {Content: &MessageVideoNote{}}, {Content: &MessagePaidMedia{}},
+		{SenderId: (*MessageSenderUser)(nil)}, {SenderId: (*MessageSenderChat)(nil)}, {ReplyTo: (*MessageReplyToMessage)(nil)},
+	}
+	for _, m := range messages {
+		if m.GetText() != "" || m.Text() != "" || m.Caption() != "" || len(m.GetEntities()) != 0 || !m.Empty() || m.IsCommand() {
+			t.Fatalf("unexpected text for %#v", m)
+		}
+		if m.ChatID() != 0 || m.SenderID() != 0 || m.ReplyToMessageID() != 0 || m.IsOutgoingMessage() || m.IsEditedMessage() || m.RemoteDuration() != 0 {
+			t.Fatalf("unexpected metadata for %#v", m)
+		}
+		if _, err := m.GetFormattedText(); !errors.Is(err, ErrNoFormattedText) {
+			t.Fatal(err)
+		}
+		if _, err := m.GetFormattedCaption(); !errors.Is(err, ErrNoFormattedText) {
+			t.Fatal(err)
+		}
 	}
 }
 

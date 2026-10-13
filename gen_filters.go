@@ -782,6 +782,3 @@ type UpdateWebAppMessageSentFilter func(u *UpdateWebAppMessageSent) bool
 // UpdateWebBrowserSettingsFilter filters UpdateWebBrowserSettings updates.
 // Web browser settings have been updated
 type UpdateWebBrowserSettingsFilter func(u *UpdateWebBrowserSettings) bool
-
-// MessageFilter filters Message objects.
-type MessageFilter func(msg *Message) bool

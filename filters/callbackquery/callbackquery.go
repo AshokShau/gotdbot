@@ -29,20 +29,33 @@ func Equal(match string) gotdbot.UpdateNewCallbackQueryFilter {
 }
 
 // Regex checks if the callback query data matches the given regex pattern.
+// Invalid patterns match nothing; use CompileRegex to receive the error.
 func Regex(pattern string) gotdbot.UpdateNewCallbackQueryFilter {
-	reg, err := regexp.Compile(pattern)
+	filter, err := CompileRegex(pattern)
 	if err != nil {
 		return func(u *gotdbot.UpdateNewCallbackQuery) bool {
 			return false
 		}
 	}
+	return filter
+}
+
+// CompileRegex creates a callback filter or returns a pattern compilation error.
+func CompileRegex(pattern string) (gotdbot.UpdateNewCallbackQueryFilter, error) {
+	reg, err := regexp.Compile(pattern)
+	if err != nil {
+		return nil, err
+	}
 	return func(u *gotdbot.UpdateNewCallbackQuery) bool {
+		if u == nil {
+			return false
+		}
 		data := u.CallbackData()
 		if data == nil {
 			return false
 		}
 		return reg.Match(data)
-	}
+	}, nil
 }
 
 // FromUserID checks if the callback query sender's user ID matches the given ID.

@@ -23,7 +23,7 @@ func TestUnparseUnicodeAndNestedEntities(t *testing.T) {
 	} {
 		t.Run(tc.name, func(t *testing.T) {
 			before := append([]TextEntity(nil), tc.entities...)
-			if got := UnparseEntities(tc.text, tc.entities, tc.mode); got != tc.want {
+			if got := (&FormattedText{Text: tc.text, Entities: tc.entities}).Format(tc.mode); got != tc.want {
 				t.Fatalf("got %q, want %q", got, tc.want)
 			}
 			if !reflect.DeepEqual(before, tc.entities) {
@@ -34,16 +34,13 @@ func TestUnparseUnicodeAndNestedEntities(t *testing.T) {
 }
 
 func TestFormattingConvenienceHelpers(t *testing.T) {
-	if EscapeHTML(`<a href="x">&'`) != "&lt;a href=&#34;x&#34;&gt;&amp;&#39;" {
-		t.Fatal("HTML escaping failed")
-	}
-	if got := EscapeMarkdown("_*[]()!\\", 2); got != "\\_\\*\\[\\]\\(\\)\\!\\\\" {
+	if got := (&FormattedText{Text: "_*[]()!\\"}).Format("MarkdownV2"); got != "\\_\\*\\[\\]\\(\\)\\!\\\\" {
 		t.Fatalf("Markdown escaping: %q", got)
 	}
-	if got := Mention("<name>", 42, true, true); got != `<a href="tg://user?id=42">&lt;name&gt;</a>` {
+	if got := (&User{Id: 42, FirstName: "<name>"}).Mention("HTML"); got != `<a href="tg://user?id=42">&lt;name&gt;</a>` {
 		t.Fatal(got)
 	}
-	if got := Mention("a*b", 42, false, true); got != `[a\*b](tg://user?id=42)` {
+	if got := (&User{Id: 42, FirstName: "a*b"}).Mention("MarkdownV2"); got != `[a\*b](tg://user?id=42)` {
 		t.Fatal(got)
 	}
 	m := &Message{Content: &MessageText{Text: &FormattedText{Text: "hi", Entities: []TextEntity{{Offset: 0, Length: 2, Type: &TextEntityTypeBold{}}}}}}
@@ -80,7 +77,7 @@ func FuzzUnparseEntitiesUnicode(f *testing.F) {
 		}
 		entities := []TextEntity{{Offset: 0, Length: int32(len(utf16.Encode([]rune(text)))), Type: &TextEntityTypeBold{}}}
 		want := "<b>" + strings.NewReplacer("&", "&amp;", "<", "&lt;", ">", "&gt;").Replace(text) + "</b>"
-		if got := UnparseEntities(text, entities, "html"); got != want {
+		if got := (&FormattedText{Text: text, Entities: entities}).Format("html"); got != want {
 			t.Fatalf("Unicode formatting = %q, want %q", got, want)
 		}
 	})

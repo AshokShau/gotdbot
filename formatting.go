@@ -7,60 +7,6 @@ import (
 	"unicode/utf16"
 )
 
-// OriginalMD gets the original markdown formatting of a message text.
-func (m *Message) OriginalMD() string {
-	text, err := m.GetFormattedText()
-	if err != nil {
-		return ""
-	}
-	return UnparseEntities(text.Text, text.Entities, "markdown")
-}
-
-// OriginalMDV2 gets the original markdownV2 formatting of a message text.
-func (m *Message) OriginalMDV2() string {
-	text, err := m.GetFormattedText()
-	if err != nil {
-		return ""
-	}
-	return UnparseEntities(text.Text, text.Entities, "markdownv2")
-}
-
-// OriginalHTML gets the original HTML formatting of a message text.
-func (m *Message) OriginalHTML() string {
-	text, err := m.GetFormattedText()
-	if err != nil {
-		return ""
-	}
-	return UnparseEntities(text.Text, text.Entities, "html")
-}
-
-// OriginalCaptionMD gets the original markdown formatting of a message caption.
-func (m *Message) OriginalCaptionMD() string {
-	caption, err := m.GetFormattedCaption()
-	if err != nil {
-		return ""
-	}
-	return UnparseEntities(caption.Text, caption.Entities, "markdown")
-}
-
-// OriginalCaptionMDV2 gets the original markdownV2 formatting of a message caption.
-func (m *Message) OriginalCaptionMDV2() string {
-	caption, err := m.GetFormattedCaption()
-	if err != nil {
-		return ""
-	}
-	return UnparseEntities(caption.Text, caption.Entities, "markdownv2")
-}
-
-// OriginalCaptionHTML gets the original HTML formatting of a message caption.
-func (m *Message) OriginalCaptionHTML() string {
-	caption, err := m.GetFormattedCaption()
-	if err != nil {
-		return ""
-	}
-	return UnparseEntities(caption.Text, caption.Entities, "html")
-}
-
 // entityEvent represents the start or end of an entity
 type entityEvent struct {
 	Index   int
@@ -165,8 +111,19 @@ func escapeText(text, mode string) string {
 	return text
 }
 
-// UnparseEntities converts plain text with entities into a formatted string (Markdown, MarkdownV2, HTML).
-func UnparseEntities(text string, entities []TextEntity, mode string) string {
+// Format renders the text and its entities as HTML, Markdown, or MarkdownV2.
+// Unsupported modes return plain text; a nil receiver returns an empty string.
+func (f *FormattedText) Format(parseMode string) string {
+	if f == nil {
+		return ""
+	}
+	text, entities := f.Text, f.Entities
+	mode := strings.ToLower(parseMode)
+	switch mode {
+	case "html", "markdown", "markdownv2":
+	default:
+		return text
+	}
 	if len(entities) == 0 {
 		return escapeText(text, mode)
 	}
@@ -236,12 +193,12 @@ func UnparseEntities(text string, entities []TextEntity, mode string) string {
 					}
 				}
 
-				if isRaw {
-					//
-				} else if inCode && (mode == "markdownv2" || mode == "markdown") {
-					chunk = escapeText(chunk, mode+"_code")
-				} else {
-					chunk = escapeText(chunk, mode)
+				if !isRaw {
+					if inCode && (mode == "markdownv2" || mode == "markdown") {
+						chunk = escapeText(chunk, mode+"_code")
+					} else {
+						chunk = escapeText(chunk, mode)
+					}
 				}
 
 				if inBlockQuote && mode == "markdownv2" {

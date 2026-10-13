@@ -6,8 +6,10 @@ import (
 	"sort"
 )
 
+const defaultSchemaSource = "https://raw.githubusercontent.com/FallenProjects/tdlib-build/refs/heads/master/tdlib.json"
+
 func main() {
-	source := flag.String("schema", "https://raw.githubusercontent.com/FallenProjects/tdlib-build/refs/heads/master/tdlib.json", "TDLib JSON schema path or HTTP(S) URL")
+	source := flag.String("schema", defaultSchemaSource, "TDLib JSON schema path or HTTP(S) URL")
 	flag.Parse()
 	data, err := LoadTDLibJSON(*source)
 	if err != nil {
@@ -37,7 +39,7 @@ func main() {
 	log.Println("Generating Events...")
 	generateEvents(types, classes)
 
-	filesToFmt := append([]string{"gen_classes.go", "gen_types.go", "gen_functions.go", "gen_options.go", "gen_methods.go", "client_opts.go", "gen_events.go"}, helperFiles...)
+	filesToFmt := append([]string{"gen_classes.go", "gen_types.go", "gen_functions.go", "gen_options.go", "gen_methods.go", "gen_tdlib_options.go", "gen_events.go", "gen_filters.go"}, helperFiles...)
 	gofmt(filesToFmt...)
 	log.Println("Done.")
 }
