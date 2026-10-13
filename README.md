@@ -10,6 +10,7 @@ native TDLib methods and types.
 
 [Go reference](https://pkg.go.dev/github.com/AshokShau/gotdbot) ·
 [Examples](./examples) ·
+[AI coding skill](./skills/gotdbot/SKILL.md) ·
 [Issues](https://github.com/AshokShau/gotdbot/issues)
 
 ## Features
@@ -327,6 +328,24 @@ and shutdown.
 The [Go reference](https://pkg.go.dev/github.com/AshokShau/gotdbot) documents public
 methods and options. Refer to [TDLib documentation](https://core.telegram.org/tdlib/docs/)
 for native identifiers, types, and account permissions.
+
+## AI coding skill
+
+The reusable [GotdBot skill](./skills/gotdbot/SKILL.md) helps coding agents build
+bots and user clients with this library. It includes eight detailed guides for
+authentication, handlers, conversations, messages, media, formatting, callbacks,
+administration, native TDLib APIs, and library development, plus a
+[bot starter](./skills/gotdbot/assets/bot/main.go).
+
+For Codex, copy the complete skill folder into your skills directory:
+
+```sh
+mkdir -p "${CODEX_HOME:-$HOME/.codex}/skills"
+cp -R skills/gotdbot "${CODEX_HOME:-$HOME/.codex}/skills/"
+```
+
+Then ask: `Use $gotdbot to build a Telegram bot with commands and callbacks.`
+Other coding agents can read the same SKILL.md and its linked references.
 
 ## Development
 

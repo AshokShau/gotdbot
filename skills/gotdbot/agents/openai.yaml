@@ -1,0 +1,4 @@
+interface:
+  display_name: "GotdBot"
+  short_description: "Build Telegram bots and user clients with GotdBot"
+  default_prompt: "Use $gotdbot to build a Telegram bot with commands, filters, and message helpers."
