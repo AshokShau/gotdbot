@@ -1608,8 +1608,8 @@ func (c *Client) SendMessageDraft(chatId int64, draftId int64, text string, opts
 	if err != nil {
 		return err
 	}
-	return c.SendTextMessageDraft(chatId, draftId, opts.ForumTopicId, &SendTextMessageDraftOpts{
-		Text: formatted, CanStop: opts.CanStop, KeepOnStop: opts.KeepOnStop,
+	return c.SendTextMessageDraft(chatId, draftId, &SendTextMessageDraftOpts{
+		Text: formatted, ForumTopicId: opts.ForumTopicId, CanStop: opts.CanStop, KeepOnStop: opts.KeepOnStop,
 	})
 }
 
@@ -1617,7 +1617,6 @@ func (c *Client) SendMessageDraft(chatId int64, draftId int64, text string, opts
 // must already be uploaded; draft requests cannot upload new files.
 type SendRichMessageDraftTextOpts struct {
 	SendRichMessageDraftOpts
-	ForumTopicId          int32
 	Media                 []InputRichMessageMedia
 	IsRtl                 bool
 	DetectAutomaticBlocks bool
@@ -1628,7 +1627,7 @@ func (c *Client) SendRichMessageDraftMarkdown(chatId int64, draftId int64, text 
 	if opts == nil {
 		opts = &SendRichMessageDraftTextOpts{}
 	}
-	return c.SendRichMessageDraft(chatId, draftId, opts.ForumTopicId, &InputRichMessage{
+	return c.SendRichMessageDraft(chatId, draftId, &InputRichMessage{
 		Source: &RichMessageSourceMarkdown{Text: text, Media: opts.Media},
 		IsRtl:  opts.IsRtl, DetectAutomaticBlocks: opts.DetectAutomaticBlocks,
 	}, &opts.SendRichMessageDraftOpts)
@@ -1639,7 +1638,7 @@ func (c *Client) SendRichMessageDraftHTML(chatId int64, draftId int64, text stri
 	if opts == nil {
 		opts = &SendRichMessageDraftTextOpts{}
 	}
-	return c.SendRichMessageDraft(chatId, draftId, opts.ForumTopicId, &InputRichMessage{
+	return c.SendRichMessageDraft(chatId, draftId, &InputRichMessage{
 		Source: &RichMessageSourceHtml{Text: text, Media: opts.Media},
 		IsRtl:  opts.IsRtl, DetectAutomaticBlocks: opts.DetectAutomaticBlocks,
 	}, &opts.SendRichMessageDraftOpts)

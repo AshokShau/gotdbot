@@ -100,7 +100,7 @@ func (c *Client) PromoteChatMember(chatId, userId int64, rights *ChatAdministrat
 
 // BanChatSenderChat prevents a channel from sending in a group.
 func (c *Client) BanChatSenderChat(chatId, senderChatId int64, opts *BanChatMemberOpts) error {
-	return c.BanChatMember(0, chatId, &MessageSenderChat{ChatId: senderChatId}, opts)
+	return c.BanChatMember(chatId, &MessageSenderChat{ChatId: senderChatId}, opts)
 }
 
 // UnbanChatSenderChat removes a sender-chat ban.

@@ -111,10 +111,10 @@ func (m *Message) RemoteUniqueFileID() string {
 // Download downloads the media file attached to the message.
 // It uses the attached File.Id and returns ErrNoMedia if no file is attached.
 // Use the client that received the message, since file IDs belong to that client.
-func (m *Message) Download(c *Client, priority int32, offset int64, limit int64, opts *DownloadFileOpts) (*File, error) {
+func (m *Message) Download(c *Client, priority int32, opts *DownloadFileOpts) (*File, error) {
 	fileInfo := m.GetFile()
 	if fileInfo == nil {
 		return nil, ErrNoMedia
 	}
-	return c.DownloadFile(fileInfo.Id, limit, offset, priority, opts)
+	return c.DownloadFile(fileInfo.Id, priority, opts)
 }

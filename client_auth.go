@@ -34,13 +34,13 @@ func (c *Client) authHandler(authState *UpdateAuthorizationState) {
 			c.apiHash,
 			c.apiID,
 			c.config.ApplicationVersion,
-			c.config.DatabaseDirectory,
 			[]byte(c.config.DatabaseEncryptionKey),
 			c.config.DeviceModel,
-			c.config.FilesDirectory,
 			c.config.SystemLanguageCode,
-			c.config.SystemVersion,
 			&SetTdlibParametersOpts{
+				DatabaseDirectory:   c.config.DatabaseDirectory,
+				FilesDirectory:      c.config.FilesDirectory,
+				SystemVersion:       c.config.SystemVersion,
 				UseChatInfoDatabase: *c.config.UseChatInfoDatabase,
 				UseFileDatabase:     *c.config.UseFileDatabase,
 				UseMessageDatabase:  *c.config.UseMessageDatabase,
@@ -142,7 +142,7 @@ func (c *Client) authHandler(authState *UpdateAuthorizationState) {
 		lastName, _ := reader.ReadString('\n')
 		lastName = strings.TrimSpace(lastName)
 
-		err := c.RegisterUser(firstName, lastName, nil)
+		err := c.RegisterUser(firstName, &RegisterUserOpts{LastName: lastName})
 		if err != nil {
 			c.Logger.Error("Error registering user", "error", err)
 			c.sendAuthError(err)

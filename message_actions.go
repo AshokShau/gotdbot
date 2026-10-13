@@ -6,7 +6,7 @@ import (
 
 // GetLink returns the message link.
 func (m *Message) GetLink(c *Client) (*MessageLink, error) {
-	return c.GetMessageLink(m.ChatId, 0, 0, m.Id, "", nil)
+	return c.GetMessageLink(m.ChatId, m.Id, nil)
 }
 
 // Delete deletes the message.
@@ -79,8 +79,8 @@ func (m *Message) GetMessageProperties(c *Client) (*MessageProperties, error) {
 }
 
 // GetMessageLink returns the message link.
-func (m *Message) GetMessageLink(c *Client, checklistTaskId int32, mediaTimestamp int32, pollOptionId string, opts *GetMessageLinkOpts) (*MessageLink, error) {
-	return c.GetMessageLink(m.ChatId, checklistTaskId, mediaTimestamp, m.Id, pollOptionId, opts)
+func (m *Message) GetMessageLink(c *Client, opts *GetMessageLinkOpts) (*MessageLink, error) {
+	return c.GetMessageLink(m.ChatId, m.Id, opts)
 }
 
 // GetRepliedMessage returns the replied message.
@@ -99,8 +99,8 @@ func (m *Message) SetChatMemberStatus(c *Client, status ChatMemberStatus) error 
 }
 
 // Ban bans the message sender.
-func (m *Message) Ban(c *Client, bannedUntilDate int32, opts *BanChatMemberOpts) error {
-	return c.BanChatMember(bannedUntilDate, m.ChatId, m.SenderId, opts)
+func (m *Message) Ban(c *Client, opts *BanChatMemberOpts) error {
+	return c.BanChatMember(m.ChatId, m.SenderId, opts)
 }
 
 // Kick kicks the message sender.
@@ -137,7 +137,7 @@ func (m *Message) Action(c *Client, opts *SendChatActionOpts) error {
 	if copyOpts.Action == nil {
 		copyOpts.Action = &ChatActionTyping{}
 	}
-	return c.SendChatAction("", m.ChatId, &copyOpts)
+	return c.SendChatAction(m.ChatId, &copyOpts)
 }
 
 // Copy copies message to chat.

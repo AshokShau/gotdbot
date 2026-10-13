@@ -430,7 +430,7 @@ func (c *Client) StopMessageLiveLocation(chatId, messageId int64, opts *EditMess
 
 // EditGeneralForumTopic edits the General topic (native topic ID 1).
 func (c *Client) EditGeneralForumTopic(chatId int64, name string) error {
-	return c.EditForumTopic(chatId, 1, 0, name, nil)
+	return c.EditForumTopic(chatId, 1, &EditForumTopicOpts{Name: name})
 }
 
 // EditMessagePhotoOpts controls the replacement photo, its caption, and reply markup.

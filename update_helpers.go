@@ -342,12 +342,12 @@ func (u *UpdateMessageSendFailed) GetMessage() *Message {
 	return u.Message
 }
 
-// Answer sends results for this inline query. cacheTime is measured in seconds.
-func (u *UpdateNewInlineQuery) Answer(c *Client, cacheTime int32, nextOffset string, results []InputInlineQueryResult, opts *AnswerInlineQueryOpts) error {
+// Answer sends results for this inline query.
+func (u *UpdateNewInlineQuery) Answer(c *Client, results []InputInlineQueryResult, opts *AnswerInlineQueryOpts) error {
 	if u == nil {
 		return ErrNilUpdate
 	}
-	return c.AnswerInlineQuery(cacheTime, u.Id, nextOffset, results, opts)
+	return c.AnswerInlineQuery(u.Id, results, opts)
 }
 
 // Answer accepts the checkout when errorMessage is empty, or rejects it with
@@ -356,16 +356,16 @@ func (u *UpdateNewPreCheckoutQuery) Answer(c *Client, errorMessage string) error
 	if u == nil {
 		return ErrNilUpdate
 	}
-	return c.AnswerPreCheckoutQuery(errorMessage, u.Id)
+	return c.AnswerPreCheckoutQuery(u.Id, &AnswerPreCheckoutQueryOpts{ErrorMessage: errorMessage})
 }
 
 // Answer supplies available shipping options, or rejects the query when
-// errorMessage is non-empty.
-func (u *UpdateNewShippingQuery) Answer(c *Client, shippingOptions []ShippingOption, errorMessage string) error {
+// opts.ErrorMessage is non-empty.
+func (u *UpdateNewShippingQuery) Answer(c *Client, shippingOptions []ShippingOption, opts *AnswerShippingQueryOpts) error {
 	if u == nil {
 		return ErrNilUpdate
 	}
-	return c.AnswerShippingQuery(errorMessage, shippingOptions, u.Id)
+	return c.AnswerShippingQuery(shippingOptions, u.Id, opts)
 }
 
 // Approve accepts this user's join request.

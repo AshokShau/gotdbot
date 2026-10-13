@@ -299,20 +299,14 @@ func generateOptions(functions []TLType, classes map[string]*TLClass) {
 
 	for _, fn := range functions {
 		methodName := clientMethodName(fn.Name)
-		hasOptional := false
-		for _, p := range fn.Params {
-			if p.IsOptional || p.Type == "Bool" {
-				hasOptional = true
-				break
-			}
-		}
+		hasOptional := hasOptionParameters(fn)
 
 		if hasOptional {
 			optsStructName := methodName + "Opts"
 			fmt.Fprintf(&sb, "// %s contains optional parameters for %s\n", optsStructName, methodName)
 			fmt.Fprintf(&sb, "type %s struct {\n", optsStructName)
 			for _, p := range fn.Params {
-				if p.IsOptional || p.Type == "Bool" {
+				if isOptionParameter(fn, p) {
 					fmt.Fprintf(&sb, "\t// %s\n", formatDesc(p.Description))
 					goType := toGoType(p.Type, classes)
 					fieldName := toCamelCase(p.Name)

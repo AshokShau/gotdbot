@@ -243,7 +243,9 @@ func (c *Client) answerCallbackQuery(id int64, text string, opts *CallbackAnswer
 	if opts == nil {
 		opts = &CallbackAnswerOpts{}
 	}
-	return c.AnswerCallbackQuery(opts.CacheTime, id, text, opts.Url, &AnswerCallbackQueryOpts{ShowAlert: opts.ShowAlert})
+	return c.AnswerCallbackQuery(id, &AnswerCallbackQueryOpts{
+		Text: text, Url: opts.Url, CacheTime: opts.CacheTime, ShowAlert: opts.ShowAlert,
+	})
 }
 
 // EditRichMessage replaces the callback's message with rich content.

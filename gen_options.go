@@ -11,6 +11,18 @@ type AcceptOauthRequestOpts struct {
 	AllowWriteAccess bool
 }
 
+// AddBotMediaPreviewOpts contains optional parameters for AddBotMediaPreview
+type AddBotMediaPreviewOpts struct {
+	// A two-letter ISO 639-1 language code for which preview is added. If empty, then the preview will be shown to all users for whose languages there are no dedicated previews.
+	LanguageCode string
+}
+
+// AddChatMemberOpts contains optional parameters for AddChatMember
+type AddChatMemberOpts struct {
+	// The number of earlier messages from the chat to be forwarded to the new member; up to 100. Ignored for supergroups and channels, or if the added user is a bot
+	ForwardLimit int32
+}
+
 // AddContactOpts contains optional parameters for AddContact
 type AddContactOpts struct {
 	// The contact to add or edit; phone number may be empty and needs to be specified only if known
@@ -43,6 +55,8 @@ type AddPendingPaidMessageReactionOpts struct {
 
 // AddProxyOpts contains optional parameters for AddProxy
 type AddProxyOpts struct {
+	// Comment to set for the proxy
+	Comment string
 	// Pass true to immediately enable the proxy
 	Enable bool
 }
@@ -51,6 +65,20 @@ type AddProxyOpts struct {
 type AddQuickReplyShortcutInlineQueryResultMessageOpts struct {
 	// Pass true to hide the bot, via which the message is sent. Can be used only for bots getOption("animation_search_bot_username"), getOption("photo_search_bot_username"), and getOption("venue_search_bot_username")
 	HideViaBot bool
+	// Identifier of a quick reply message in the same shortcut to be replied; pass 0 if none
+	ReplyToMessageId int64
+}
+
+// AddQuickReplyShortcutMessageOpts contains optional parameters for AddQuickReplyShortcutMessage
+type AddQuickReplyShortcutMessageOpts struct {
+	// Identifier of a quick reply message in the same shortcut to be replied; pass 0 if none
+	ReplyToMessageId int64
+}
+
+// AddQuickReplyShortcutMessageAlbumOpts contains optional parameters for AddQuickReplyShortcutMessageAlbum
+type AddQuickReplyShortcutMessageAlbumOpts struct {
+	// Identifier of a quick reply message in the same shortcut to be replied; pass 0 if none
+	ReplyToMessageId int64
 }
 
 // AddRecentStickerOpts contains optional parameters for AddRecentSticker
@@ -73,20 +101,50 @@ type AllowUnpaidMessagesFromUserOpts struct {
 
 // AnswerCallbackQueryOpts contains optional parameters for AnswerCallbackQuery
 type AnswerCallbackQueryOpts struct {
+	// Time during which the result of the query can be cached, in seconds
+	CacheTime int32
 	// Pass true to show an alert to the user instead of a toast notification
 	ShowAlert bool
+	// Text of the answer
+	Text string
+	// URL to be opened
+	Url string
 }
 
 // AnswerInlineQueryOpts contains optional parameters for AnswerInlineQuery
 type AnswerInlineQueryOpts struct {
 	// Button to be shown above inline query results; pass null if none
 	Button *InlineQueryResultsButton
+	// Allowed time to cache the results of the query, in seconds
+	CacheTime int32
 	// Pass true if results may be cached and returned only for the user who sent the query. By default, results may be returned to any user who sends the same query
 	IsPersonal bool
+	// Offset for the next inline query; pass an empty string if there are no more results
+	NextOffset string
+}
+
+// AnswerPreCheckoutQueryOpts contains optional parameters for AnswerPreCheckoutQuery
+type AnswerPreCheckoutQueryOpts struct {
+	// An error message, empty on success
+	ErrorMessage string
+}
+
+// AnswerShippingQueryOpts contains optional parameters for AnswerShippingQuery
+type AnswerShippingQueryOpts struct {
+	// An error message, empty on success
+	ErrorMessage string
+}
+
+// ApproveSuggestedPostOpts contains optional parameters for ApproveSuggestedPost
+type ApproveSuggestedPostOpts struct {
+	// Point in time (Unix timestamp) when the post is expected to be published; pass 0 if the date has already been chosen. If specified,
+	SendDate int32
 }
 
 // BanChatMemberOpts contains optional parameters for BanChatMember
 type BanChatMemberOpts struct {
+	// Point in time (Unix timestamp) when the user will be unbanned; 0 if never. If the user is banned for more than 366 days or for less than 30 seconds from the current time, the user is considered to be banned forever. Ignored in basic groups and if a chat is banned
+	BannedUntilDate int32
 	// Pass true to delete all messages in the chat for the user who is being removed. Always true for supergroups and channels
 	RevokeMessages bool
 }
@@ -141,24 +199,6 @@ type ClaimTonConnectRequestOpts struct {
 	IsRejected bool
 }
 
-// ClearAllDraftMessagesOpts contains optional parameters for ClearAllDraftMessages
-type ClearAllDraftMessagesOpts struct {
-	// Pass true to keep local message drafts in secret chats
-	ExcludeSecretChats bool
-}
-
-// ClearRecentStickersOpts contains optional parameters for ClearRecentStickers
-type ClearRecentStickersOpts struct {
-	// Pass true to clear the list of stickers recently attached to photo or video files; pass false to clear the list of recently sent stickers
-	IsAttached bool
-}
-
-// ClearSearchedForTagsOpts contains optional parameters for ClearSearchedForTags
-type ClearSearchedForTagsOpts struct {
-	// Pass true to clear the list of recently searched for cashtags; otherwise, the list of recently searched for hashtags will be cleared
-	ClearCashtags bool
-}
-
 // ClickChatSponsoredMessageOpts contains optional parameters for ClickChatSponsoredMessage
 type ClickChatSponsoredMessageOpts struct {
 	// Pass true if the user expanded the video from the sponsored message fullscreen before the click
@@ -171,12 +211,22 @@ type ClickChatSponsoredMessageOpts struct {
 type ComposeRichMessageWithAiOpts struct {
 	// Pass true to add emoji to the text
 	AddEmojis bool
+	// Custom prompt that will be used instead of style_name; 0-getOption("text_composition_style_prompt_length_max") characters
+	CustomPrompt string
+	// Name of the style of the resulted text; handle updateTextCompositionStyles to get the list of supported styles; pass an empty string to keep the current style of the text or if a custom prompt is used
+	StyleName string
+	// Pass a language code to which the text will be translated; pass an empty string if translation isn't needed. See translateText.to_language_code for the list of supported values
+	TranslateToLanguageCode string
 }
 
 // ComposeTextWithAiOpts contains optional parameters for ComposeTextWithAi
 type ComposeTextWithAiOpts struct {
 	// Pass true to add emoji to the text
 	AddEmojis bool
+	// Name of the style of the resulted text; handle updateTextCompositionStyles to get the list of supported styles; pass an empty string to keep the current style of the text
+	StyleName string
+	// Pass a language code to which the text will be translated; pass an empty string if translation isn't needed. See translateText.to_language_code for the list of supported values
+	TranslateToLanguageCode string
 }
 
 // CreateBasicGroupChatOpts contains optional parameters for CreateBasicGroupChat
@@ -197,10 +247,28 @@ type CreateCallOpts struct {
 	IsVideo bool
 }
 
+// CreateChatFolderInviteLinkOpts contains optional parameters for CreateChatFolderInviteLink
+type CreateChatFolderInviteLinkOpts struct {
+	// Name of the link; 0-32 characters
+	Name string
+}
+
 // CreateChatInviteLinkOpts contains optional parameters for CreateChatInviteLink
 type CreateChatInviteLinkOpts struct {
 	// Pass true if users joining the chat via the link need to be approved by chat administrators. In this case, member_limit must be 0
 	CreatesJoinRequest bool
+	// Point in time (Unix timestamp) when the link will expire; pass 0 if never
+	ExpirationDate int32
+	// The maximum number of chat members that can join the chat via the link simultaneously; 0-99999; pass 0 if not limited
+	MemberLimit int32
+	// Invite link name; 0-32 characters
+	Name string
+}
+
+// CreateChatSubscriptionInviteLinkOpts contains optional parameters for CreateChatSubscriptionInviteLink
+type CreateChatSubscriptionInviteLinkOpts struct {
+	// Invite link name; 0-32 characters
+	Name string
 }
 
 // CreateCommunityOpts contains optional parameters for CreateCommunity
@@ -215,14 +283,10 @@ type CreateForumTopicOpts struct {
 	IsNameImplicit bool
 }
 
-// CreateGroupCallOpts contains optional parameters for CreateGroupCall
-type CreateGroupCallOpts struct {
-	// Parameters to join the call; pass null to only create call link without joining the call
-	JoinParameters *GroupCallJoinParameters
-}
-
 // CreateNewBasicGroupChatOpts contains optional parameters for CreateNewBasicGroupChat
 type CreateNewBasicGroupChatOpts struct {
+	// Message auto-delete time value, in seconds; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
+	MessageAutoDeleteTime int32
 	// Identifiers of users to be added to the basic group; may be empty to create a basic group without other members
 	UserIds []int64
 }
@@ -237,6 +301,8 @@ type CreateNewStickerSetOpts struct {
 
 // CreateNewSupergroupChatOpts contains optional parameters for CreateNewSupergroupChat
 type CreateNewSupergroupChatOpts struct {
+	// Chat description; 0-255 characters
+	Description string
 	// Pass true to create a supergroup for importing messages using importMessages
 	ForImport bool
 	// Pass true to create a channel chat; ignored if a forum is created
@@ -245,6 +311,24 @@ type CreateNewSupergroupChatOpts struct {
 	IsForum bool
 	// Chat location if a location-based supergroup is being created; pass null to create an ordinary supergroup chat
 	Location *ChatLocation
+	// Message auto-delete time value, in seconds; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
+	MessageAutoDeleteTime int32
+}
+
+// CreateOnRampPaymentSessionOpts contains optional parameters for CreateOnRampPaymentSession
+type CreateOnRampPaymentSessionOpts struct {
+	// ISO 4217 currency code of the currency that will be used for the purchase; pass an empty string if unknown
+	BaseCurrency string
+	// The URL opened on failed payment; pass an empty string if none
+	FailReturnUrl string
+	// Memo for the query; pass an empty string if none
+	Memo string
+	// Name of the chosen payment method; pass an empty string if none
+	PaymentMethodName string
+	// The URL opened on successful payment; pass an empty string if none
+	SuccessReturnUrl string
+	// Preferred theme for the WebView; pass "light" for a light theme, "dark" for a dark theme, or leave empty for a default theme
+	Theme string
 }
 
 // CreatePrivateChatOpts contains optional parameters for CreatePrivateChat
@@ -275,6 +359,16 @@ type CreateTextCompositionStyleOpts struct {
 type CreateVideoChatOpts struct {
 	// Pass true to create an RTMP stream instead of an ordinary video chat
 	IsRtmpStream bool
+	// Point in time (Unix timestamp) when the group call is expected to be started by an administrator; 0 to start the video chat immediately. The date must be at least 10 seconds and at most 8 days in the future
+	StartDate int32
+	// Group call title; if empty, chat title will be used
+	Title string
+}
+
+// DeclineSuggestedPostOpts contains optional parameters for DeclineSuggestedPost
+type DeclineSuggestedPostOpts struct {
+	// Comment for the creator of the suggested post; 0-128 characters
+	Comment string
 }
 
 // DecryptGroupCallDataOpts contains optional parameters for DecryptGroupCallData
@@ -283,10 +377,16 @@ type DecryptGroupCallDataOpts struct {
 	DataChannel GroupCallDataChannel
 }
 
-// DeleteAllCallMessagesOpts contains optional parameters for DeleteAllCallMessages
-type DeleteAllCallMessagesOpts struct {
-	// Pass true to delete the messages for all users
-	Revoke bool
+// DeleteAccountOpts contains optional parameters for DeleteAccount
+type DeleteAccountOpts struct {
+	// The reason why the account was deleted; optional
+	Reason string
+}
+
+// DeleteBotMediaPreviewsOpts contains optional parameters for DeleteBotMediaPreviews
+type DeleteBotMediaPreviewsOpts struct {
+	// Language code of the media previews to delete
+	LanguageCode string
 }
 
 // DeleteChatBackgroundOpts contains optional parameters for DeleteChatBackground
@@ -311,14 +411,10 @@ type DeleteChatMessagesByDateOpts struct {
 
 // DeleteCommandsOpts contains optional parameters for DeleteCommands
 type DeleteCommandsOpts struct {
+	// A two-letter ISO 639-1 language code or an empty string
+	LanguageCode string
 	// The scope to which the commands are relevant; pass null to delete commands in the default bot command scope
 	Scope BotCommandScope
-}
-
-// DeleteDefaultBackgroundOpts contains optional parameters for DeleteDefaultBackground
-type DeleteDefaultBackgroundOpts struct {
-	// Pass true if the background is deleted for a dark theme
-	ForDarkTheme bool
 }
 
 // DeleteGroupCallMessagesOpts contains optional parameters for DeleteGroupCallMessages
@@ -341,6 +437,8 @@ type DeleteMessagesOpts struct {
 
 // DiscardCallOpts contains optional parameters for DiscardCall
 type DiscardCallOpts struct {
+	// If the call was upgraded to a group call, pass invite link to the group call
+	InviteLink string
 	// Pass true if the user was disconnected
 	IsDisconnected bool
 	// Pass true if the call was a video call
@@ -355,8 +453,18 @@ type DisconnectTonConnectSessionOpts struct {
 
 // DownloadFileOpts contains optional parameters for DownloadFile
 type DownloadFileOpts struct {
+	// Number of bytes which need to be downloaded starting from the "offset" position before the download will automatically be canceled; use 0 to download without a limit
+	Limit int64
+	// The starting position from which the file needs to be downloaded
+	Offset int64
 	// Pass true to return response only after the file download has succeeded, has failed, has been canceled, or a new downloadFile request with different offset/limit parameters was sent; pass false to return file state immediately, just after the download has been started
 	Synchronous bool
+}
+
+// EditBotMediaPreviewOpts contains optional parameters for EditBotMediaPreview
+type EditBotMediaPreviewOpts struct {
+	// Language code of the media preview to edit
+	LanguageCode string
 }
 
 // EditBusinessMessageCaptionOpts contains optional parameters for EditBusinessMessageCaption
@@ -401,10 +509,28 @@ type EditBusinessMessageTextOpts struct {
 	ReplyMarkup ReplyMarkup
 }
 
+// EditChatFolderInviteLinkOpts contains optional parameters for EditChatFolderInviteLink
+type EditChatFolderInviteLinkOpts struct {
+	// New name of the link; 0-32 characters
+	Name string
+}
+
 // EditChatInviteLinkOpts contains optional parameters for EditChatInviteLink
 type EditChatInviteLinkOpts struct {
 	// Pass true if users joining the chat via the link need to be approved by chat administrators. In this case, member_limit must be 0
 	CreatesJoinRequest bool
+	// Point in time (Unix timestamp) when the link will expire; pass 0 if never
+	ExpirationDate int32
+	// The maximum number of chat members that can join the chat via the link simultaneously; 0-99999; pass 0 if not limited
+	MemberLimit int32
+	// Invite link name; 0-32 characters
+	Name string
+}
+
+// EditChatSubscriptionInviteLinkOpts contains optional parameters for EditChatSubscriptionInviteLink
+type EditChatSubscriptionInviteLinkOpts struct {
+	// Invite link name; 0-32 characters
+	Name string
 }
 
 // EditEphemeralMessageOpts contains optional parameters for EditEphemeralMessage
@@ -429,6 +555,10 @@ type EditEphemeralMessageCaptionOpts struct {
 type EditForumTopicOpts struct {
 	// Pass true to edit the icon of the topic. Icon of the General topic can't be edited
 	EditIconCustomEmoji bool
+	// Identifier of the new custom emoji for topic icon; pass 0 to remove the custom emoji. Ignored if edit_icon_custom_emoji is false. Telegram Premium users can use any custom emoji, other users can use only a custom emoji returned by getForumTopicDefaultIcons
+	IconCustomEmojiId int64
+	// New name of the topic; 0-128 characters. If empty, the previous topic name is kept
+	Name string
 }
 
 // EditInlineMessageCaptionOpts contains optional parameters for EditInlineMessageCaption
@@ -517,6 +647,8 @@ type EditMessageTextContentOpts struct {
 
 // EditProxyOpts contains optional parameters for EditProxy
 type EditProxyOpts struct {
+	// New comment for the proxy
+	Comment string
 	// Pass true to immediately enable the proxy
 	Enable bool
 }
@@ -573,22 +705,52 @@ type GetAllStickerEmojisOpts struct {
 	ReturnOnlyMainEmoji bool
 }
 
+// GetArchivedStickerSetsOpts contains optional parameters for GetArchivedStickerSets
+type GetArchivedStickerSetsOpts struct {
+	// Identifier of the sticker set from which to return the result; use 0 to get results from the beginning
+	OffsetStickerSetId int64
+}
+
+// GetBlockedMessageSendersOpts contains optional parameters for GetBlockedMessageSenders
+type GetBlockedMessageSendersOpts struct {
+	// Number of users and chats to skip in the result; must be non-negative
+	Offset int32
+}
+
+// GetBotInfoDescriptionOpts contains optional parameters for GetBotInfoDescription
+type GetBotInfoDescriptionOpts struct {
+	// A two-letter ISO 639-1 language code or an empty string
+	LanguageCode string
+}
+
+// GetBotInfoShortDescriptionOpts contains optional parameters for GetBotInfoShortDescription
+type GetBotInfoShortDescriptionOpts struct {
+	// A two-letter ISO 639-1 language code or an empty string
+	LanguageCode string
+}
+
+// GetBotMediaPreviewInfoOpts contains optional parameters for GetBotMediaPreviewInfo
+type GetBotMediaPreviewInfoOpts struct {
+	// A two-letter ISO 639-1 language code for which to get previews. If empty, then default previews are returned
+	LanguageCode string
+}
+
+// GetBotNameOpts contains optional parameters for GetBotName
+type GetBotNameOpts struct {
+	// A two-letter ISO 639-1 language code or an empty string
+	LanguageCode string
+}
+
 // GetBotSimilarBotCountOpts contains optional parameters for GetBotSimilarBotCount
 type GetBotSimilarBotCountOpts struct {
 	// Pass true to get the number of bots without sending network requests, or -1 if the number of bots is unknown locally
 	ReturnLocal bool
 }
 
-// GetBusinessFeaturesOpts contains optional parameters for GetBusinessFeatures
-type GetBusinessFeaturesOpts struct {
-	// Source of the request; pass null if the method is called from settings or some non-standard source
-	Source BusinessFeature
-}
-
-// GetChatBoostFeaturesOpts contains optional parameters for GetChatBoostFeatures
-type GetChatBoostFeaturesOpts struct {
-	// Pass true to get the list of features for channels; pass false to get the list of features for supergroups
-	IsChannel bool
+// GetChatArchivedStoriesOpts contains optional parameters for GetChatArchivedStories
+type GetChatArchivedStoriesOpts struct {
+	// Identifier of the story starting from which stories must be returned; use 0 to get results from the last story
+	FromStoryId int32
 }
 
 // GetChatBoostLevelFeaturesOpts contains optional parameters for GetChatBoostLevelFeatures
@@ -599,6 +761,8 @@ type GetChatBoostLevelFeaturesOpts struct {
 
 // GetChatBoostsOpts contains optional parameters for GetChatBoosts
 type GetChatBoostsOpts struct {
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string
 	// Pass true to receive only boosts received from gift codes and giveaways created by the chat
 	OnlyGiftCodes bool
 }
@@ -607,10 +771,18 @@ type GetChatBoostsOpts struct {
 type GetChatEventLogOpts struct {
 	// The types of events to return; pass null to get chat events of all types
 	Filters *ChatEventLogFilters
+	// Identifier of an event from which to return results. Use 0 to get results from the latest events
+	FromEventId int64
+	// Search query by which to filter events
+	Query string
 }
 
 // GetChatHistoryOpts contains optional parameters for GetChatHistory
 type GetChatHistoryOpts struct {
+	// Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
+	FromMessageId int64
+	// Specify 0 to get results from exactly the message from_message_id or a negative number from -99 to -1 to get additionally -offset newer messages
+	Offset int32
 	// Pass true to get only messages that are available without sending network requests
 	OnlyLocal bool
 }
@@ -627,16 +799,26 @@ type GetChatInviteLinkMembersOpts struct {
 type GetChatInviteLinksOpts struct {
 	// Pass true if revoked links need to be returned instead of active or expired
 	IsRevoked bool
+	// Creation date of an invite link starting after which to return invite links; use 0 to get results from the beginning
+	OffsetDate int32
+	// Invite link starting after which to return invite links; use empty string to get results from the beginning
+	OffsetInviteLink string
 }
 
 // GetChatJoinRequestsOpts contains optional parameters for GetChatJoinRequests
 type GetChatJoinRequestsOpts struct {
+	// Invite link for which to return join requests. If empty, all join requests will be returned. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
+	InviteLink string
 	// A chat join request from which to return next requests; pass null to get results from the beginning
 	OffsetRequest *ChatJoinRequest
+	// A query to search for in the first names, last names and usernames of the users to return
+	Query string
 }
 
 // GetChatMessageCalendarOpts contains optional parameters for GetChatMessageCalendar
 type GetChatMessageCalendarOpts struct {
+	// The message identifier from which to return information about messages; use 0 to get results from the last message
+	FromMessageId int64
 	// Pass topic identifier to get the result only in specific topic; pass null to get the result in all topics; forum topics and message threads aren't supported
 	TopicId MessageTopic
 }
@@ -663,10 +845,22 @@ type GetChatNotificationSettingsExceptionsOpts struct {
 	Scope NotificationSettingsScope
 }
 
+// GetChatPostedToChatPageStoriesOpts contains optional parameters for GetChatPostedToChatPageStories
+type GetChatPostedToChatPageStoriesOpts struct {
+	// Identifier of the story starting from which stories must be returned; use 0 to get results from pinned and the newest story
+	FromStoryId int32
+}
+
 // GetChatRevenueStatisticsOpts contains optional parameters for GetChatRevenueStatistics
 type GetChatRevenueStatisticsOpts struct {
 	// Pass true if a dark theme is used by the application
 	IsDark bool
+}
+
+// GetChatRevenueTransactionsOpts contains optional parameters for GetChatRevenueTransactions
+type GetChatRevenueTransactionsOpts struct {
+	// Offset of the first transaction to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string
 }
 
 // GetChatsOpts contains optional parameters for GetChats
@@ -681,6 +875,12 @@ type GetChatSimilarChatCountOpts struct {
 	ReturnLocal bool
 }
 
+// GetChatSparseMessagePositionsOpts contains optional parameters for GetChatSparseMessagePositions
+type GetChatSparseMessagePositionsOpts struct {
+	// If not 0, only messages in the specified Saved Messages topic will be considered; pass 0 to consider all messages, or for chats other than Saved Messages
+	SavedMessagesTopicId int64
+}
+
 // GetChatStatisticsOpts contains optional parameters for GetChatStatistics
 type GetChatStatisticsOpts struct {
 	// Pass true if a dark theme is used by the application
@@ -689,6 +889,8 @@ type GetChatStatisticsOpts struct {
 
 // GetChatStoryInteractionsOpts contains optional parameters for GetChatStoryInteractions
 type GetChatStoryInteractionsOpts struct {
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string
 	// Pass true to get forwards and reposts first, then reactions, then other views; pass false to get interactions sorted just by interaction date
 	PreferForwards bool
 	// Pass the default heart reaction or a suggested reaction type to receive only interactions with the specified reaction type; pass null to receive all interactions; reactionTypePaid isn't supported
@@ -697,14 +899,24 @@ type GetChatStoryInteractionsOpts struct {
 
 // GetCommandsOpts contains optional parameters for GetCommands
 type GetCommandsOpts struct {
+	// A two-letter ISO 639-1 language code or an empty string
+	LanguageCode string
 	// The scope to which the commands are relevant; pass null to get commands in the default bot command scope
 	Scope BotCommandScope
 }
 
-// GetEmojiCategoriesOpts contains optional parameters for GetEmojiCategories
-type GetEmojiCategoriesOpts struct {
-	// Type of emoji categories to return; pass null to get default emoji categories
-	Type EmojiCategoryType
+// GetConnectedAffiliateProgramsOpts contains optional parameters for GetConnectedAffiliatePrograms
+type GetConnectedAffiliateProgramsOpts struct {
+	// Offset of the first affiliate program to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string
+}
+
+// GetDirectMessagesChatTopicHistoryOpts contains optional parameters for GetDirectMessagesChatTopicHistory
+type GetDirectMessagesChatTopicHistoryOpts struct {
+	// Identifier of the message starting from which messages must be fetched; use 0 to get results from the last message
+	FromMessageId int64
+	// Specify 0 to get results from exactly the message from_message_id or a negative number from -99 to -1 to get additionally -offset newer messages
+	Offset int32
 }
 
 // GetExternalLinkOpts contains optional parameters for GetExternalLink
@@ -713,10 +925,48 @@ type GetExternalLinkOpts struct {
 	AllowWriteAccess bool
 }
 
-// GetGramRevenueStatisticsOpts contains optional parameters for GetGramRevenueStatistics
-type GetGramRevenueStatisticsOpts struct {
-	// Pass true if a dark theme is used by the application
-	IsDark bool
+// GetFileDownloadedPrefixSizeOpts contains optional parameters for GetFileDownloadedPrefixSize
+type GetFileDownloadedPrefixSizeOpts struct {
+	// Offset from which downloaded prefix size needs to be calculated
+	Offset int64
+}
+
+// GetForumTopicHistoryOpts contains optional parameters for GetForumTopicHistory
+type GetForumTopicHistoryOpts struct {
+	// Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
+	FromMessageId int64
+	// Specify 0 to get results from exactly the message from_message_id or a negative number from -99 to -1 to get additionally -offset newer messages
+	Offset int32
+}
+
+// GetForumTopicsOpts contains optional parameters for GetForumTopics
+type GetForumTopicsOpts struct {
+	// The date starting from which the results need to be fetched. Use 0 or any date in the future to get results from the last topic
+	OffsetDate int32
+	// The forum topic identifier of the last found topic, or 0 for the first request
+	OffsetForumTopicId int32
+	// The message identifier of the last message in the last found topic, or 0 for the first request
+	OffsetMessageId int64
+	// Query to search for in the forum topic's name
+	Query string
+}
+
+// GetGiftChatThemesOpts contains optional parameters for GetGiftChatThemes
+type GetGiftChatThemesOpts struct {
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string
+}
+
+// GetGiftsForCraftingOpts contains optional parameters for GetGiftsForCrafting
+type GetGiftsForCraftingOpts struct {
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string
+}
+
+// GetGrossingWebAppBotsOpts contains optional parameters for GetGrossingWebAppBots
+type GetGrossingWebAppBotsOpts struct {
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string
 }
 
 // GetGroupCallStreamSegmentOpts contains optional parameters for GetGroupCallStreamSegment
@@ -725,16 +975,18 @@ type GetGroupCallStreamSegmentOpts struct {
 	VideoQuality GroupCallVideoQuality
 }
 
-// GetInlineQueryResultsOpts contains optional parameters for GetInlineQueryResults
-type GetInlineQueryResultsOpts struct {
-	// Location of the user; pass null if unknown or the bot doesn't need user's location
-	UserLocation *Location
+// GetGroupsInCommonOpts contains optional parameters for GetGroupsInCommon
+type GetGroupsInCommonOpts struct {
+	// Chat identifier starting from which to return chats; use 0 for the first request
+	OffsetChatId int64
 }
 
-// GetInstalledBackgroundsOpts contains optional parameters for GetInstalledBackgrounds
-type GetInstalledBackgroundsOpts struct {
-	// Pass true to order returned backgrounds for a dark theme
-	ForDarkTheme bool
+// GetInlineQueryResultsOpts contains optional parameters for GetInlineQueryResults
+type GetInlineQueryResultsOpts struct {
+	// Offset of the first entry to return; use empty string to get the first chunk of results
+	Offset string
+	// Location of the user; pass null if unknown or the bot doesn't need user's location
+	UserLocation *Location
 }
 
 // GetInternalLinkOpts contains optional parameters for GetInternalLink
@@ -755,16 +1007,16 @@ type GetLinkPreviewOpts struct {
 	LinkPreviewOptions *LinkPreviewOptions
 }
 
-// GetLocalizationTargetInfoOpts contains optional parameters for GetLocalizationTargetInfo
-type GetLocalizationTargetInfoOpts struct {
-	// Pass true to get only locally available information without sending network requests
-	OnlyLocal bool
-}
-
 // GetLoginUrlOpts contains optional parameters for GetLoginUrl
 type GetLoginUrlOpts struct {
 	// Pass true to allow the bot to send messages to the current user. Phone number access can't be requested using the button
 	AllowWriteAccess bool
+}
+
+// GetMainWebAppOpts contains optional parameters for GetMainWebApp
+type GetMainWebAppOpts struct {
+	// Start parameter from internalLinkTypeMainWebApp
+	StartParameter string
 }
 
 // GetManagedBotTokenOpts contains optional parameters for GetManagedBotToken
@@ -775,6 +1027,8 @@ type GetManagedBotTokenOpts struct {
 
 // GetMessageAddedReactionsOpts contains optional parameters for GetMessageAddedReactions
 type GetMessageAddedReactionsOpts struct {
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string
 	// Type of the reactions to return; pass null to return all added reactions; reactionTypePaid isn't supported
 	ReactionType ReactionType
 }
@@ -787,10 +1041,22 @@ type GetMessageEmbeddingCodeOpts struct {
 
 // GetMessageLinkOpts contains optional parameters for GetMessageLink
 type GetMessageLinkOpts struct {
+	// If not 0, identifier of the checklist task in the message to be linked
+	ChecklistTaskId int32
 	// Pass true to create a link for the whole media album
 	ForAlbum bool
 	// Pass true to create a link to the message as a channel post comment, in a message thread, or a forum topic
 	InMessageThread bool
+	// If not 0, timestamp from which the video/audio/video note/voice note/story playing must start, in seconds. The media can be in the message content or in its link preview
+	MediaTimestamp int32
+	// If not empty, identifier of the poll option in the message to be linked
+	PollOptionId string
+}
+
+// GetMessagePublicForwardsOpts contains optional parameters for GetMessagePublicForwards
+type GetMessagePublicForwardsOpts struct {
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string
 }
 
 // GetMessageStatisticsOpts contains optional parameters for GetMessageStatistics
@@ -799,10 +1065,42 @@ type GetMessageStatisticsOpts struct {
 	IsDark bool
 }
 
-// GetNetworkStatisticsOpts contains optional parameters for GetNetworkStatistics
-type GetNetworkStatisticsOpts struct {
-	// Pass true to get statistics only for the current library launch
-	OnlyCurrent bool
+// GetMessageThreadHistoryOpts contains optional parameters for GetMessageThreadHistory
+type GetMessageThreadHistoryOpts struct {
+	// Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
+	FromMessageId int64
+	// Specify 0 to get results from exactly the message from_message_id or a negative number from -99 to -1 to get additionally -offset newer messages
+	Offset int32
+}
+
+// GetOauthLinkInfoOpts contains optional parameters for GetOauthLinkInfo
+type GetOauthLinkInfoOpts struct {
+	// Origin of the OAuth request if the request was received from the in-app browser; pass an empty string otherwise
+	InAppOrigin string
+}
+
+// GetOnRampPaymentAvailabilityOpts contains optional parameters for GetOnRampPaymentAvailability
+type GetOnRampPaymentAvailabilityOpts struct {
+	// ISO 4217 currency code of the currency that will be used for the purchase; pass an empty string if unknown
+	BaseCurrency string
+}
+
+// GetOnRampPaymentLimitsOpts contains optional parameters for GetOnRampPaymentLimits
+type GetOnRampPaymentLimitsOpts struct {
+	// Name of the chosen payment method; pass an empty string if none
+	PaymentMethodName string
+}
+
+// GetOnRampPaymentQuoteOpts contains optional parameters for GetOnRampPaymentQuote
+type GetOnRampPaymentQuoteOpts struct {
+	// Name of the chosen payment method; pass an empty string if none
+	PaymentMethodName string
+}
+
+// GetOwnedStickerSetsOpts contains optional parameters for GetOwnedStickerSets
+type GetOwnedStickerSetsOpts struct {
+	// Identifier of the sticker set from which to return owned sticker sets; use 0 to get results from the beginning
+	OffsetStickerSetId int64
 }
 
 // GetPaymentFormOpts contains optional parameters for GetPaymentForm
@@ -811,20 +1109,22 @@ type GetPaymentFormOpts struct {
 	Theme *ThemeParameters
 }
 
+// GetPollVotersOpts contains optional parameters for GetPollVoters
+type GetPollVotersOpts struct {
+	// Number of voters to skip in the result; must be non-negative
+	Offset int32
+}
+
 // GetPollVoteStatisticsOpts contains optional parameters for GetPollVoteStatistics
 type GetPollVoteStatisticsOpts struct {
 	// Pass true if a dark theme is used by the application
 	IsDark bool
 }
 
-// GetPremiumFeaturesOpts contains optional parameters for GetPremiumFeatures
-type GetPremiumFeaturesOpts struct {
-	// Source of the request; pass null if the method is called from some non-standard source
-	Source PremiumSource
-}
-
 // GetReceivedGiftsOpts contains optional parameters for GetReceivedGifts
 type GetReceivedGiftsOpts struct {
+	// Pass collection identifier to get gifts only from the specified collection; pass 0 to get gifts regardless of collections
+	CollectionId int32
 	// Pass true to exclude gifts that are just hosted and are not owned by the owner
 	ExcludeHosted bool
 	// Pass true to exclude gifts that can be purchased limited number of times and can't be upgraded
@@ -841,20 +1141,24 @@ type GetReceivedGiftsOpts struct {
 	ExcludeUpgraded bool
 	// Pass true to exclude gifts that can't be used in setUpgradedGiftColors
 	ExcludeWithoutColors bool
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string
 	// Pass true to sort results by gift price instead of send date
 	SortByPrice bool
-}
-
-// GetRecentStickersOpts contains optional parameters for GetRecentStickers
-type GetRecentStickersOpts struct {
-	// Pass true to return stickers and masks that were recently attached to photos or video files; pass false to return recently sent stickers
-	IsAttached bool
 }
 
 // GetRemoteFileOpts contains optional parameters for GetRemoteFile
 type GetRemoteFileOpts struct {
 	// File type; pass null if unknown
 	FileType FileType
+}
+
+// GetSavedMessagesTopicHistoryOpts contains optional parameters for GetSavedMessagesTopicHistory
+type GetSavedMessagesTopicHistoryOpts struct {
+	// Identifier of the message starting from which messages must be fetched; use 0 to get results from the last message
+	FromMessageId int64
+	// Specify 0 to get results from exactly the message from_message_id or a negative number from -99 to -1 to get additionally -offset newer messages
+	Offset int32
 }
 
 // GetStarRevenueStatisticsOpts contains optional parameters for GetStarRevenueStatistics
@@ -865,6 +1169,8 @@ type GetStarRevenueStatisticsOpts struct {
 
 // GetStarSubscriptionsOpts contains optional parameters for GetStarSubscriptions
 type GetStarSubscriptionsOpts struct {
+	// Offset of the first subscription to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string
 	// Pass true to receive only expiring subscriptions for which there aren't enough Telegram Stars to extend
 	OnlyExpiring bool
 }
@@ -873,8 +1179,16 @@ type GetStarSubscriptionsOpts struct {
 type GetStarTransactionsOpts struct {
 	// Direction of the transactions to receive; pass null to get all transactions
 	Direction TransactionDirection
+	// Offset of the first transaction to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string
 	// If non-empty, only transactions related to the Star Subscription will be returned
 	SubscriptionId string
+}
+
+// GetStatisticalGraphOpts contains optional parameters for GetStatisticalGraph
+type GetStatisticalGraphOpts struct {
+	// X-value for zoomed in graph or 0 otherwise
+	X int64
 }
 
 // GetStickerOutlineOpts contains optional parameters for GetStickerOutline
@@ -893,14 +1207,28 @@ type GetStickerOutlineSvgPathOpts struct {
 	ForClickedAnimatedEmojiMessage bool
 }
 
+// GetStickersOpts contains optional parameters for GetStickers
+type GetStickersOpts struct {
+	// Search query; a space-separated list of emojis or a keyword prefix. If empty, returns all known installed stickers
+	Query string
+}
+
 // GetStoryOpts contains optional parameters for GetStory
 type GetStoryOpts struct {
 	// Pass true to get only locally available information without sending network requests
 	OnlyLocal bool
 }
 
+// GetStoryAlbumStoriesOpts contains optional parameters for GetStoryAlbumStories
+type GetStoryAlbumStoriesOpts struct {
+	// Offset of the first entry to return; use 0 to get results from the first album story
+	Offset int32
+}
+
 // GetStoryInteractionsOpts contains optional parameters for GetStoryInteractions
 type GetStoryInteractionsOpts struct {
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string
 	// Pass true to get only interactions by contacts; pass false to get all relevant interactions
 	OnlyContacts bool
 	// Pass true to get forwards and reposts first, then reactions, then other views; pass false to get interactions sorted just by interaction date
@@ -909,6 +1237,12 @@ type GetStoryInteractionsOpts struct {
 	PreferWithReaction bool
 	// Query to search for in names, usernames and titles; may be empty to get all relevant interactions
 	Query string
+}
+
+// GetStoryPublicForwardsOpts contains optional parameters for GetStoryPublicForwards
+type GetStoryPublicForwardsOpts struct {
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string
 }
 
 // GetStoryStatisticsOpts contains optional parameters for GetStoryStatistics
@@ -921,18 +1255,36 @@ type GetStoryStatisticsOpts struct {
 type GetSupergroupMembersOpts struct {
 	// The type of users to return; pass null to use supergroupMembersFilterRecent
 	Filter SupergroupMembersFilter
+	// Number of users to skip
+	Offset int32
 }
 
 // GetTonTransactionsOpts contains optional parameters for GetTonTransactions
 type GetTonTransactionsOpts struct {
 	// Direction of the transactions to receive; pass null to get all transactions
 	Direction TransactionDirection
+	// Offset of the first transaction to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string
+}
+
+// GetTonWalletNftsOpts contains optional parameters for GetTonWalletNfts
+type GetTonWalletNftsOpts struct {
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string
 }
 
 // GetTonWalletTransactionsOpts contains optional parameters for GetTonWalletTransactions
 type GetTonWalletTransactionsOpts struct {
 	// Direction of the transactions to receive; pass null to get all transactions
 	Direction TransactionDirection
+	// Offset of the first transaction to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string
+}
+
+// GetTrendingStickerSetsOpts contains optional parameters for GetTrendingStickerSets
+type GetTrendingStickerSetsOpts struct {
+	// The offset from which to return the sticker sets; must be non-negative
+	Offset int32
 }
 
 // GetUpgradedGiftVariantsOpts contains optional parameters for GetUpgradedGiftVariants
@@ -941,6 +1293,18 @@ type GetUpgradedGiftVariantsOpts struct {
 	ReturnCraftModels bool
 	// Pass true to get models that can be obtained by upgrading a regular gift
 	ReturnUpgradeModels bool
+}
+
+// GetUserProfileAudiosOpts contains optional parameters for GetUserProfileAudios
+type GetUserProfileAudiosOpts struct {
+	// The number of audio files to skip; must be non-negative
+	Offset int32
+}
+
+// GetUserProfilePhotosOpts contains optional parameters for GetUserProfilePhotos
+type GetUserProfilePhotosOpts struct {
+	// The number of photos to skip; must be non-negative
+	Offset int32
 }
 
 // GetVideoChatInviteLinkOpts contains optional parameters for GetVideoChatInviteLink
@@ -953,6 +1317,14 @@ type GetVideoChatInviteLinkOpts struct {
 type GetWebAppLinkUrlOpts struct {
 	// Pass true if the current user allowed the bot to send them messages
 	AllowWriteAccess bool
+	// Start parameter from internalLinkTypeWebApp
+	StartParameter string
+}
+
+// GetWebAppUrlOpts contains optional parameters for GetWebAppUrl
+type GetWebAppUrlOpts struct {
+	// The URL from a keyboardButtonTypeWebApp button, inlineQueryResultsButtonTypeWebApp button, or an empty string when the bot is opened from the side menu
+	Url string
 }
 
 // GetWebPageInstantViewOpts contains optional parameters for GetWebPageInstantView
@@ -969,6 +1341,8 @@ type InviteGroupCallParticipantOpts struct {
 
 // JoinVideoChatOpts contains optional parameters for JoinVideoChat
 type JoinVideoChatOpts struct {
+	// Invite hash as received from internalLinkTypeVideoChat
+	InviteHash string
 	// Identifier of a group call participant, which will be used to join the call; pass null to join as self
 	ParticipantId MessageSender
 }
@@ -985,6 +1359,8 @@ type OpenWebAppOpts struct {
 	ReplyTo InputMessageReplyTo
 	// Topic in which the message will be sent; pass null if none
 	TopicId MessageTopic
+	// The URL from an inlineKeyboardButtonTypeWebApp button, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an empty string otherwise
+	Url string
 }
 
 // OptimizeStorageOpts contains optional parameters for OptimizeStorage
@@ -1005,12 +1381,6 @@ type PinChatMessageOpts struct {
 	DisableNotification bool
 	// Pass true to pin the message only for self; private chats only
 	OnlyForSelf bool
-}
-
-// PingProxyOpts contains optional parameters for PingProxy
-type PingProxyOpts struct {
-	// The proxy to test; pass null to ping a Telegram server without a proxy
-	Proxy *Proxy
 }
 
 // PlaceGiftAuctionBidOpts contains optional parameters for PlaceGiftAuctionBid
@@ -1055,6 +1425,8 @@ type ProcessChatJoinRequestOpts struct {
 type ProcessChatJoinRequestsOpts struct {
 	// Pass true to approve all requests; pass false to decline them
 	Approve bool
+	// Invite link for which to process join requests. If empty, all join requests will be processed. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
+	InviteLink string
 }
 
 // ProcessGiftPurchaseOfferOpts contains optional parameters for ProcessGiftPurchaseOffer
@@ -1067,6 +1439,14 @@ type ProcessGiftPurchaseOfferOpts struct {
 type RateSpeechRecognitionOpts struct {
 	// Pass true if the speech recognition is good
 	IsGood bool
+}
+
+// ReadFilePartOpts contains optional parameters for ReadFilePart
+type ReadFilePartOpts struct {
+	// Number of bytes to read. An error will be returned if there are not enough bytes available in the file from the specified position. Pass 0 to read all available data from the specified position
+	Count int64
+	// The offset from which to read the file
+	Offset int64
 }
 
 // RecoverAuthenticationPasswordOpts contains optional parameters for RecoverAuthenticationPassword
@@ -1089,6 +1469,8 @@ type RecoverPasswordOpts struct {
 type RegisterUserOpts struct {
 	// Pass true to disable notification about the current user joining Telegram for other users that added them to contact list
 	DisableNotification bool
+	// The last name of the user; 0-64 characters
+	LastName string
 }
 
 // RemoveAllFilesFromDownloadsOpts contains optional parameters for RemoveAllFilesFromDownloads
@@ -1113,6 +1495,12 @@ type RemoveRecentStickerOpts struct {
 	IsAttached bool
 }
 
+// ReorderBotMediaPreviewsOpts contains optional parameters for ReorderBotMediaPreviews
+type ReorderBotMediaPreviewsOpts struct {
+	// Language code of the media previews to reorder
+	LanguageCode string
+}
+
 // ReplyToCallbackQueryWithEphemeralMessageOpts contains optional parameters for ReplyToCallbackQueryWithEphemeralMessage
 type ReplyToCallbackQueryWithEphemeralMessageOpts struct {
 	// Pass true if the content of the message must be protected from forwarding and saving
@@ -1123,10 +1511,22 @@ type ReplyToCallbackQueryWithEphemeralMessageOpts struct {
 	ReplyMarkup ReplyMarkup
 }
 
-// ResendAuthenticationCodeOpts contains optional parameters for ResendAuthenticationCode
-type ResendAuthenticationCodeOpts struct {
-	// Reason of code resending; pass null if unknown
-	Reason ResendCodeReason
+// ReportChatOpts contains optional parameters for ReportChat
+type ReportChatOpts struct {
+	// Additional report details if asked by the server; 0-1024 characters; leave empty for the initial request
+	Text string
+}
+
+// ReportChatPhotoOpts contains optional parameters for ReportChatPhoto
+type ReportChatPhotoOpts struct {
+	// Additional report details; 0-1024 characters
+	Text string
+}
+
+// ReportStoryOpts contains optional parameters for ReportStory
+type ReportStoryOpts struct {
+	// Additional report details; 0-1024 characters; leave empty for the initial request
+	Text string
 }
 
 // ResendMessagesOpts contains optional parameters for ResendMessages
@@ -1135,14 +1535,16 @@ type ResendMessagesOpts struct {
 	Quote *InputTextQuote
 }
 
-// ResendPhoneNumberCodeOpts contains optional parameters for ResendPhoneNumberCode
-type ResendPhoneNumberCodeOpts struct {
-	// Reason of code resending; pass null if unknown
-	Reason ResendCodeReason
+// SearchAffiliateProgramsOpts contains optional parameters for SearchAffiliatePrograms
+type SearchAffiliateProgramsOpts struct {
+	// Offset of the first affiliate program to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string
 }
 
 // SearchCallMessagesOpts contains optional parameters for SearchCallMessages
 type SearchCallMessagesOpts struct {
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string
 	// Pass true to search only for messages with missed/declined calls
 	OnlyMissed bool
 }
@@ -1157,6 +1559,10 @@ type SearchChatMembersOpts struct {
 type SearchChatMessagesOpts struct {
 	// Additional filter for messages to search; pass null to search for all messages
 	Filter SearchMessagesFilter
+	// Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
+	FromMessageId int64
+	// Specify 0 to get results from exactly the message from_message_id or a negative number to get the specified message and some newer messages
+	Offset int32
 	// Identifier of the sender of messages to search for; pass null to search for messages from any sender. Not supported in secret chats
 	SenderId MessageSender
 	// Pass topic identifier to search messages only in specific topic; pass null to search for messages in all topics
@@ -1189,6 +1595,8 @@ type SearchEmojisOpts struct {
 
 // SearchFileDownloadsOpts contains optional parameters for SearchFileDownloads
 type SearchFileDownloadsOpts struct {
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string
 	// Pass true to search only for active downloads, including paused
 	OnlyActive bool
 	// Pass true to search only for completed downloads
@@ -1203,6 +1611,8 @@ type SearchGiftsForResaleOpts struct {
 	ForCrafting bool
 	// Pass true to get only gifts that can be bought using Telegram Stars
 	ForStars bool
+	// Offset of the first entry to return as received from the previous request with the same order and attributes; use empty string to get the first chunk of results
+	Offset string
 }
 
 // SearchMessagesOpts contains optional parameters for SearchMessages
@@ -1213,12 +1623,48 @@ type SearchMessagesOpts struct {
 	ChatTypeFilter SearchMessagesChatTypeFilter
 	// Additional filter for messages to search; pass null to search for all messages. Filters searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction,
 	Filter SearchMessagesFilter
+	// If not 0, the maximum date of the messages to return
+	MaxDate int32
+	// If not 0, the minimum date of the messages to return
+	MinDate int32
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string
 }
 
 // SearchPublicChatsOpts contains optional parameters for SearchPublicChats
 type SearchPublicChatsOpts struct {
 	// Additional filter for type of the chats to be returned; pass null to search for chats of all types
 	TypeFilter SearchChatTypeFilter
+}
+
+// SearchPublicMessagesByTagOpts contains optional parameters for SearchPublicMessagesByTag
+type SearchPublicMessagesByTagOpts struct {
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string
+}
+
+// SearchPublicPostsOpts contains optional parameters for SearchPublicPosts
+type SearchPublicPostsOpts struct {
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string
+}
+
+// SearchPublicStoriesByLocationOpts contains optional parameters for SearchPublicStoriesByLocation
+type SearchPublicStoriesByLocationOpts struct {
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string
+}
+
+// SearchPublicStoriesByTagOpts contains optional parameters for SearchPublicStoriesByTag
+type SearchPublicStoriesByTagOpts struct {
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string
+}
+
+// SearchPublicStoriesByVenueOpts contains optional parameters for SearchPublicStoriesByVenue
+type SearchPublicStoriesByVenueOpts struct {
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string
 }
 
 // SearchRecentlyFoundChatsOpts contains optional parameters for SearchRecentlyFoundChats
@@ -1229,6 +1675,12 @@ type SearchRecentlyFoundChatsOpts struct {
 
 // SearchSavedMessagesOpts contains optional parameters for SearchSavedMessages
 type SearchSavedMessagesOpts struct {
+	// Identifier of the message starting from which messages must be fetched; use 0 to get results from the last message
+	FromMessageId int64
+	// Specify 0 to get results from exactly the message from_message_id or a negative number to get the specified message and some newer messages
+	Offset int32
+	// If not 0, only messages in the specified Saved Messages topic will be considered; pass 0 to consider all messages
+	SavedMessagesTopicId int64
 	// Tag to search for; pass null to return all suitable messages
 	Tag ReactionType
 }
@@ -1237,12 +1689,16 @@ type SearchSavedMessagesOpts struct {
 type SearchSecretMessagesOpts struct {
 	// Additional filter for messages to search; pass null to search for all messages
 	Filter SearchMessagesFilter
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string
 }
 
 // SearchStickersOpts contains optional parameters for SearchStickers
 type SearchStickersOpts struct {
 	// List of possible IETF language tags of the user's input language; may be empty if unknown
 	InputLanguageCodes []string
+	// The offset from which to return the stickers; must be non-negative
+	Offset int32
 	// Query to search for; may be empty to search for emoji only
 	Query string
 }
@@ -1263,6 +1719,12 @@ type SearchStringsByPrefixOpts struct {
 type SearchUserByPhoneNumberOpts struct {
 	// Pass true to get only locally available information without sending network requests
 	OnlyLocal bool
+}
+
+// SendBotStartMessageOpts contains optional parameters for SendBotStartMessage
+type SendBotStartMessageOpts struct {
+	// A hidden parameter sent to the bot for deep linking purposes (https://core.telegram.org/bots#deep-linking)
+	Parameter string
 }
 
 // SendBusinessMessageOpts contains optional parameters for SendBusinessMessage
@@ -1287,10 +1749,18 @@ type SendBusinessMessageAlbumOpts struct {
 	ReplyTo InputMessageReplyTo
 }
 
+// SendCallRatingOpts contains optional parameters for SendCallRating
+type SendCallRatingOpts struct {
+	// An optional user comment if the rating is less than 5
+	Comment string
+}
+
 // SendChatActionOpts contains optional parameters for SendChatAction
 type SendChatActionOpts struct {
 	// The action description; pass null to cancel the currently active action
 	Action ChatAction
+	// Unique identifier of business connection on behalf of which to send the request; for bots only
+	BusinessConnectionId string
 	// Identifier of the topic in which the action is performed; pass null if none
 	TopicId MessageTopic
 }
@@ -1357,6 +1827,10 @@ type SendMessageAlbumOpts struct {
 type SendPaymentFormOpts struct {
 	// The credentials chosen by user for payment; pass null for a payment in Telegram Stars
 	Credentials InputCredentials
+	// Identifier returned by validateOrderInfo, or an empty string
+	OrderInfoId string
+	// Identifier of a chosen shipping option, if applicable
+	ShippingOptionId string
 }
 
 // SendPhoneNumberCodeOpts contains optional parameters for SendPhoneNumberCode
@@ -1375,6 +1849,8 @@ type SendResoldGiftOpts struct {
 type SendRichMessageDraftOpts struct {
 	// Pass true to show the user a button to stop further drafts
 	CanStop bool
+	// The forum topic identifier in which the message will be sent; pass 0 if none
+	ForumTopicId int32
 	// Pass true to keep the current draft when the user stops further generation
 	KeepOnStop bool
 }
@@ -1383,6 +1859,8 @@ type SendRichMessageDraftOpts struct {
 type SendTextMessageDraftOpts struct {
 	// Pass true to show the user a button to stop further drafts
 	CanStop bool
+	// The forum topic identifier in which the message will be sent; pass 0 if none
+	ForumTopicId int32
 	// Pass true to keep the current draft when the user stops further generation
 	KeepOnStop bool
 	// Draft text of the message; pass null to show a "Thinking..." placeholder
@@ -1397,8 +1875,16 @@ type SendTonConnectSessionConnectResultOpts struct {
 
 // SendTonWalletTransferOpts contains optional parameters for SendTonWalletTransfer
 type SendTonWalletTransferOpts struct {
+	// Comment added to the transaction
+	Comment string
 	// Pass true if the comment is encrypted and must be decrypted using the receiver's or sender's private key
 	IsCommentEncrypted bool
+}
+
+// SetAccentColorOpts contains optional parameters for SetAccentColor
+type SetAccentColorOpts struct {
+	// Identifier of a custom emoji to be shown on the reply header and link preview background; 0 if none
+	BackgroundCustomEmojiId int64
 }
 
 // SetAuthenticationPhoneNumberOpts contains optional parameters for SetAuthenticationPhoneNumber
@@ -1419,16 +1905,40 @@ type SetAutosaveSettingsOpts struct {
 	Settings *ScopeAutosaveSettings
 }
 
-// SetBirthdateOpts contains optional parameters for SetBirthdate
-type SetBirthdateOpts struct {
-	// The new value of the current user's birthdate; pass null to remove the birthdate
-	Birthdate *Birthdate
+// SetBotInfoDescriptionOpts contains optional parameters for SetBotInfoDescription
+type SetBotInfoDescriptionOpts struct {
+	// A two-letter ISO 639-1 language code. If empty, the description will be shown to all users for whose languages there is no dedicated description
+	LanguageCode string
+}
+
+// SetBotInfoShortDescriptionOpts contains optional parameters for SetBotInfoShortDescription
+type SetBotInfoShortDescriptionOpts struct {
+	// A two-letter ISO 639-1 language code. If empty, the short description will be shown to all users for whose languages there is no dedicated description
+	LanguageCode string
+}
+
+// SetBotNameOpts contains optional parameters for SetBotName
+type SetBotNameOpts struct {
+	// A two-letter ISO 639-1 language code. If empty, the name will be shown to all users for whose languages there is no dedicated name
+	LanguageCode string
 }
 
 // SetBotProfilePhotoOpts contains optional parameters for SetBotProfilePhoto
 type SetBotProfilePhotoOpts struct {
 	// Profile photo to set; pass null to delete the chat photo
 	Photo InputChatPhoto
+}
+
+// SetBotUpdatesStatusOpts contains optional parameters for SetBotUpdatesStatus
+type SetBotUpdatesStatusOpts struct {
+	// The last error message
+	ErrorMessage string
+}
+
+// SetBusinessAccountNameOpts contains optional parameters for SetBusinessAccountName
+type SetBusinessAccountNameOpts struct {
+	// The new value of the optional last name for the business account; 0-64 characters
+	LastName string
 }
 
 // SetBusinessAccountProfilePhotoOpts contains optional parameters for SetBusinessAccountProfilePhoto
@@ -1439,40 +1949,16 @@ type SetBusinessAccountProfilePhotoOpts struct {
 	Photo InputChatPhoto
 }
 
-// SetBusinessAwayMessageSettingsOpts contains optional parameters for SetBusinessAwayMessageSettings
-type SetBusinessAwayMessageSettingsOpts struct {
-	// The new settings for the away message of the business; pass null to disable the away message
-	AwayMessageSettings *BusinessAwayMessageSettings
-}
-
-// SetBusinessGreetingMessageSettingsOpts contains optional parameters for SetBusinessGreetingMessageSettings
-type SetBusinessGreetingMessageSettingsOpts struct {
-	// The new settings for the greeting message of the business; pass null to disable the greeting message
-	GreetingMessageSettings *BusinessGreetingMessageSettings
-}
-
-// SetBusinessLocationOpts contains optional parameters for SetBusinessLocation
-type SetBusinessLocationOpts struct {
-	// The new location of the business; pass null to remove the location
-	Location *BusinessLocation
-}
-
 // SetBusinessMessageIsPinnedOpts contains optional parameters for SetBusinessMessageIsPinned
 type SetBusinessMessageIsPinnedOpts struct {
 	// Pass true to pin the message, pass false to unpin it
 	IsPinned bool
 }
 
-// SetBusinessOpeningHoursOpts contains optional parameters for SetBusinessOpeningHours
-type SetBusinessOpeningHoursOpts struct {
-	// The new opening hours of the business; pass null to remove the opening hours; up to 28 time intervals can be specified
-	OpeningHours *BusinessOpeningHours
-}
-
-// SetBusinessStartPageOpts contains optional parameters for SetBusinessStartPage
-type SetBusinessStartPageOpts struct {
-	// The new start page of the business; pass null to remove custom start page
-	StartPage *InputBusinessStartPage
+// SetChatAccentColorOpts contains optional parameters for SetChatAccentColor
+type SetChatAccentColorOpts struct {
+	// Identifier of a custom emoji to be shown on the reply header and link preview background; 0 if none. Use chatBoostLevelFeatures.can_set_background_custom_emoji to check whether a custom emoji can be set
+	BackgroundCustomEmojiId int64
 }
 
 // SetChatAffiliateProgramOpts contains optional parameters for SetChatAffiliateProgram
@@ -1485,6 +1971,8 @@ type SetChatAffiliateProgramOpts struct {
 type SetChatBackgroundOpts struct {
 	// The input background to use; pass null to create a new filled or chat theme background
 	Background InputBackground
+	// Dimming of the background in dark themes, as a percentage; 0-100. Applied only to Wallpaper and Fill types of background
+	DarkThemeDimming int32
 	// Pass true to set background only for self; pass false to set background for all chat users. Always false for backgrounds set in boosted chats. Background can be set for both users only by Telegram Premium users and if set background isn't of the type inputBackgroundPrevious
 	OnlyForSelf bool
 	// Background type; pass null to use default background type for the chosen background; backgroundTypeChatTheme isn't supported for private and secret chats.
@@ -1517,6 +2005,12 @@ type SetChatPhotoOpts struct {
 	Photo InputChatPhoto
 }
 
+// SetChatProfileAccentColorOpts contains optional parameters for SetChatProfileAccentColor
+type SetChatProfileAccentColorOpts struct {
+	// Identifier of a custom emoji to be shown on the chat's profile photo background; 0 if none. Use chatBoostLevelFeatures.can_set_profile_background_custom_emoji to check whether a custom emoji can be set
+	ProfileBackgroundCustomEmojiId int64
+}
+
 // SetChatThemeOpts contains optional parameters for SetChatTheme
 type SetChatThemeOpts struct {
 	// New chat theme; pass null to return the default theme
@@ -1525,6 +2019,8 @@ type SetChatThemeOpts struct {
 
 // SetCommandsOpts contains optional parameters for SetCommands
 type SetCommandsOpts struct {
+	// A two-letter ISO 639-1 language code. If empty, the commands will be applied to all users from the given scope, for which language there are no dedicated commands
+	LanguageCode string
 	// The scope to which the commands are relevant; pass null to change commands in the default bot command scope
 	Scope BotCommandScope
 }
@@ -1545,28 +2041,16 @@ type SetDefaultBackgroundOpts struct {
 	Type BackgroundType
 }
 
-// SetDefaultChannelAdministratorRightsOpts contains optional parameters for SetDefaultChannelAdministratorRights
-type SetDefaultChannelAdministratorRightsOpts struct {
-	// Default administrator rights for adding the bot to channels; pass null to remove default rights
-	DefaultChannelAdministratorRights *ChatAdministratorRights
-}
-
-// SetDefaultGroupAdministratorRightsOpts contains optional parameters for SetDefaultGroupAdministratorRights
-type SetDefaultGroupAdministratorRightsOpts struct {
-	// Default administrator rights for adding the bot to basic group and supergroup chats; pass null to remove default rights
-	DefaultGroupAdministratorRights *ChatAdministratorRights
-}
-
 // SetDirectMessagesChatTopicIsMarkedAsUnreadOpts contains optional parameters for SetDirectMessagesChatTopicIsMarkedAsUnread
 type SetDirectMessagesChatTopicIsMarkedAsUnreadOpts struct {
 	// New value of is_marked_as_unread
 	IsMarkedAsUnread bool
 }
 
-// SetEmojiStatusOpts contains optional parameters for SetEmojiStatus
-type SetEmojiStatusOpts struct {
-	// New emoji status; pass null to switch to the default badge
-	EmojiStatus *EmojiStatus
+// SetFileGenerationProgressOpts contains optional parameters for SetFileGenerationProgress
+type SetFileGenerationProgressOpts struct {
+	// Expected size of the generated file, in bytes; 0 if unknown
+	ExpectedSize int64
 }
 
 // SetGameScoreOpts contains optional parameters for SetGameScore
@@ -1585,6 +2069,8 @@ type SetGiftResalePriceOpts struct {
 
 // SetGroupCallParticipantIsSpeakingOpts contains optional parameters for SetGroupCallParticipantIsSpeaking
 type SetGroupCallParticipantIsSpeakingOpts struct {
+	// Group call participant's synchronization audio source identifier, or 0 for the current user
+	AudioSource int32
 	// Pass true if the user is speaking
 	IsSpeaking bool
 }
@@ -1615,10 +2101,10 @@ type SetMessageSenderBlockListOpts struct {
 	BlockList BlockList
 }
 
-// SetNetworkTypeOpts contains optional parameters for SetNetworkType
-type SetNetworkTypeOpts struct {
-	// The new network type; pass null to set network type to networkTypeOther
-	Type NetworkType
+// SetNameOpts contains optional parameters for SetName
+type SetNameOpts struct {
+	// The new value of the optional last name for the current user; 0-64 characters
+	LastName string
 }
 
 // SetOptionOpts contains optional parameters for SetOption
@@ -1637,6 +2123,18 @@ type SetPasswordOpts struct {
 	NewRecoveryEmailAddress string
 	// Pass true to change also the recovery email address
 	SetRecoveryEmailAddress bool
+}
+
+// SetProfileAccentColorOpts contains optional parameters for SetProfileAccentColor
+type SetProfileAccentColorOpts struct {
+	// Identifier of a custom emoji to be shown on the user's profile photo background; 0 if none
+	ProfileBackgroundCustomEmojiId int64
+}
+
+// SetProfileAudioPositionOpts contains optional parameters for SetProfileAudioPosition
+type SetProfileAudioPositionOpts struct {
+	// Identifier of the file from profile audio files after which the file will be positioned; pass 0 to move the file to the beginning of the list
+	AfterFileId int32
 }
 
 // SetProfilePhotoOpts contains optional parameters for SetProfilePhoto
@@ -1669,6 +2167,12 @@ type SetStoryReactionOpts struct {
 
 // SetTdlibParametersOpts contains optional parameters for SetTdlibParameters
 type SetTdlibParametersOpts struct {
+	// The path to the directory for the persistent database; if empty, the current working directory will be used
+	DatabaseDirectory string
+	// The path to the directory for storing files; if empty, database_directory will be used
+	FilesDirectory string
+	// Version of the operating system the application is being run on. If empty, the version is automatically detected by TDLib
+	SystemVersion string
 	// Pass true to keep cache of users, basic groups, supergroups, channels and secret chats between restarts. Implies use_file_database
 	UseChatInfoDatabase bool
 	// Pass true to keep information about downloaded and uploaded files between application restarts
@@ -1709,6 +2213,8 @@ type ShareUsersWithBotOpts struct {
 type StartGroupCallRecordingOpts struct {
 	// Pass true to record a video file instead of an audio file
 	RecordVideo bool
+	// Group call recording title; 0-64 characters
+	Title string
 	// Pass true to use portrait orientation for video instead of landscape one
 	UsePortraitOrientation bool
 }
@@ -1741,10 +2247,12 @@ type StopPollOpts struct {
 	ReplyMarkup ReplyMarkup
 }
 
-// ToggleAllDownloadsArePausedOpts contains optional parameters for ToggleAllDownloadsArePaused
-type ToggleAllDownloadsArePausedOpts struct {
-	// Pass true to pause all downloads; pass false to unpause them
-	ArePaused bool
+// SummarizeMessageOpts contains optional parameters for SummarizeMessage
+type SummarizeMessageOpts struct {
+	// Tone of the summarization; see translateText.tone for the list of supported values
+	Tone string
+	// Pass a language code to which the summary will be translated; pass an empty string if translation isn't needed. See translateText.to_language_code for the list of supported values
+	TranslateToLanguageCode string
 }
 
 // ToggleBotCanManageEmojiStatusOpts contains optional parameters for ToggleBotCanManageEmojiStatus
@@ -1777,12 +2285,6 @@ type ToggleBusinessConnectedBotChatIsPausedOpts struct {
 type ToggleChatDefaultDisableNotificationOpts struct {
 	// New value of default_disable_notification
 	DefaultDisableNotification bool
-}
-
-// ToggleChatFolderTagsOpts contains optional parameters for ToggleChatFolderTags
-type ToggleChatFolderTagsOpts struct {
-	// Pass true to enable folder tags; pass false to disable them
-	AreTagsEnabled bool
 }
 
 // ToggleChatGiftNotificationsOpts contains optional parameters for ToggleChatGiftNotifications
@@ -1895,12 +2397,6 @@ type ToggleGroupCallScreenSharingIsPausedOpts struct {
 	IsPaused bool
 }
 
-// ToggleHasSponsoredMessagesEnabledOpts contains optional parameters for ToggleHasSponsoredMessagesEnabled
-type ToggleHasSponsoredMessagesEnabledOpts struct {
-	// Pass true to enable sponsored messages for the current user; false to disable them
-	HasSponsoredMessagesEnabled bool
-}
-
 // ToggleSavedMessagesTopicIsPinnedOpts contains optional parameters for ToggleSavedMessagesTopicIsPinned
 type ToggleSavedMessagesTopicIsPinnedOpts struct {
 	// Pass true to pin the topic; pass false to unpin it
@@ -2007,6 +2503,30 @@ type ToggleVideoChatEnabledStartNotificationOpts struct {
 type ToggleVideoChatMuteNewParticipantsOpts struct {
 	// New value of the mute_new_participants setting
 	MuteNewParticipants bool
+}
+
+// TranslateMessageRichMessageOpts contains optional parameters for TranslateMessageRichMessage
+type TranslateMessageRichMessageOpts struct {
+	// Tone of the translation; see translateText.tone for the list of supported values
+	Tone string
+}
+
+// TranslateMessageTextOpts contains optional parameters for TranslateMessageText
+type TranslateMessageTextOpts struct {
+	// Tone of the translation; see translateText.tone for the list of supported values
+	Tone string
+}
+
+// TranslateRichMessageOpts contains optional parameters for TranslateRichMessage
+type TranslateRichMessageOpts struct {
+	// Tone of the translation; see translateText.tone for the list of supported values
+	Tone string
+}
+
+// TranslateTextOpts contains optional parameters for TranslateText
+type TranslateTextOpts struct {
+	// Tone of the translation; must be one of "", "formal", "neutral", "casual"; defaults to "neutral"
+	Tone string
 }
 
 // UpgradeGiftOpts contains optional parameters for UpgradeGift

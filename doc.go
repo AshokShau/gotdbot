@@ -49,6 +49,8 @@
 // Client.GetUpdateMessage resolves a message carried or identified by an update.
 // Client.UpdateChatID, UpdateMessageID, and UpdateSenderID extract update identifiers.
 // Client.Send and SendWithContext execute typed TDLib requests directly.
+// Native methods group booleans, nullable values, and supported integer and string
+// defaults in Opts structs. Functions with one argument accept it directly.
 // Client.Init starts the client for requests that do not require authentication.
 // Bindings can be regenerated with go generate; the installed TDLib shared library
 // must support the schema used to generate the bindings.

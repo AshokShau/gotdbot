@@ -24,16 +24,16 @@ func (c *Client) GetMyName(languageCode string) (*Text, error) {
 	if err != nil {
 		return nil, err
 	}
-	return c.GetBotName(id, languageCode)
+	return c.GetBotName(id, &GetBotNameOpts{LanguageCode: languageCode})
 }
 
 // SetMyName sets the bot's name in the requested language.
-func (c *Client) SetMyName(name, languageCode string) error {
+func (c *Client) SetMyName(name string, opts *SetBotNameOpts) error {
 	id, err := c.currentBotID()
 	if err != nil {
 		return err
 	}
-	return c.SetBotName(id, languageCode, name)
+	return c.SetBotName(id, name, opts)
 }
 
 // GetMyDescription returns the bot's description in the requested language.
@@ -42,16 +42,16 @@ func (c *Client) GetMyDescription(languageCode string) (*Text, error) {
 	if err != nil {
 		return nil, err
 	}
-	return c.GetBotInfoDescription(id, languageCode)
+	return c.GetBotInfoDescription(id, &GetBotInfoDescriptionOpts{LanguageCode: languageCode})
 }
 
 // SetMyDescription sets the bot's description in the requested language.
-func (c *Client) SetMyDescription(description, languageCode string) error {
+func (c *Client) SetMyDescription(description string, opts *SetBotInfoDescriptionOpts) error {
 	id, err := c.currentBotID()
 	if err != nil {
 		return err
 	}
-	return c.SetBotInfoDescription(id, description, languageCode)
+	return c.SetBotInfoDescription(id, description, opts)
 }
 
 // GetMyShortDescription returns the bot's short description.
@@ -60,16 +60,16 @@ func (c *Client) GetMyShortDescription(languageCode string) (*Text, error) {
 	if err != nil {
 		return nil, err
 	}
-	return c.GetBotInfoShortDescription(id, languageCode)
+	return c.GetBotInfoShortDescription(id, &GetBotInfoShortDescriptionOpts{LanguageCode: languageCode})
 }
 
 // SetMyShortDescription sets the bot's short description.
-func (c *Client) SetMyShortDescription(description, languageCode string) error {
+func (c *Client) SetMyShortDescription(description string, opts *SetBotInfoShortDescriptionOpts) error {
 	id, err := c.currentBotID()
 	if err != nil {
 		return err
 	}
-	return c.SetBotInfoShortDescription(id, languageCode, description)
+	return c.SetBotInfoShortDescription(id, description, opts)
 }
 
 // SetMyProfilePhoto sets the bot's native profile photo.
@@ -97,9 +97,9 @@ func (c *Client) RemoveMyProfilePhoto() error {
 // Pass nil to remove defaults. forChannels selects channel rather than group rights.
 func (c *Client) SetMyDefaultAdministratorRights(rights *ChatAdministratorRights, forChannels bool) error {
 	if forChannels {
-		return c.SetDefaultChannelAdministratorRights(&SetDefaultChannelAdministratorRightsOpts{DefaultChannelAdministratorRights: rights})
+		return c.SetDefaultChannelAdministratorRights(rights)
 	}
-	return c.SetDefaultGroupAdministratorRights(&SetDefaultGroupAdministratorRightsOpts{DefaultGroupAdministratorRights: rights})
+	return c.SetDefaultGroupAdministratorRights(rights)
 }
 
 // GetMyDefaultAdministratorRights gets the bot's default channel or group rights.

@@ -47,11 +47,13 @@ func (c *Client) ActivateStoryStealthMode() error {
 }
 
 // AddBotMediaPreview Adds a new media preview to the beginning of the list of media previews of a bot. Returns the added preview after addition is completed server-side. The total number of previews must not exceed getOption("bot_media_preview_count_max") for the given language
-func (c *Client) AddBotMediaPreview(botUserId int64, content InputStoryContent, languageCode string) (*BotMediaPreview, error) {
+func (c *Client) AddBotMediaPreview(botUserId int64, content InputStoryContent, opts *AddBotMediaPreviewOpts) (*BotMediaPreview, error) {
 	req := &AddBotMediaPreview{
-		BotUserId:    botUserId,
-		Content:      content,
-		LanguageCode: languageCode,
+		BotUserId: botUserId,
+		Content:   content,
+	}
+	if opts != nil {
+		req.LanguageCode = opts.LanguageCode
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -81,11 +83,13 @@ func (c *Client) AddChatFolderByInviteLink(chatIds []int64, inviteLink string) e
 }
 
 // AddChatMember Adds a new member to a chat; requires can_invite_users member right. Members can't be added to private or secret chats. Returns information about members that weren't added
-func (c *Client) AddChatMember(chatId int64, forwardLimit int32, userId int64) (*FailedToAddMembers, error) {
+func (c *Client) AddChatMember(chatId int64, userId int64, opts *AddChatMemberOpts) (*FailedToAddMembers, error) {
 	req := &AddChatMember{
-		ChatId:       chatId,
-		ForwardLimit: forwardLimit,
-		UserId:       userId,
+		ChatId: chatId,
+		UserId: userId,
+	}
+	if opts != nil {
+		req.ForwardLimit = opts.ForwardLimit
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -322,12 +326,12 @@ func (c *Client) AddProfileAudio(audio *InputAudio) error {
 }
 
 // AddProxy Adds a proxy server for network requests. Can be called before authorization
-func (c *Client) AddProxy(comment string, proxy *Proxy, opts *AddProxyOpts) (*AddedProxy, error) {
+func (c *Client) AddProxy(proxy *Proxy, opts *AddProxyOpts) (*AddedProxy, error) {
 	req := &AddProxy{
-		Comment: comment,
-		Proxy:   proxy,
+		Proxy: proxy,
 	}
 	if opts != nil {
+		req.Comment = opts.Comment
 		req.Enable = opts.Enable
 	}
 	resp, err := c.Send(req)
@@ -338,15 +342,15 @@ func (c *Client) AddProxy(comment string, proxy *Proxy, opts *AddProxyOpts) (*Ad
 }
 
 // AddQuickReplyShortcutInlineQueryResultMessage Adds a message to a quick reply shortcut via inline bot. If shortcut doesn't exist and there are less than getOption("quick_reply_shortcut_count_max") shortcuts, then a new shortcut is created.
-func (c *Client) AddQuickReplyShortcutInlineQueryResultMessage(queryId int64, replyToMessageId int64, resultId string, shortcutName string, opts *AddQuickReplyShortcutInlineQueryResultMessageOpts) (*QuickReplyMessage, error) {
+func (c *Client) AddQuickReplyShortcutInlineQueryResultMessage(queryId int64, resultId string, shortcutName string, opts *AddQuickReplyShortcutInlineQueryResultMessageOpts) (*QuickReplyMessage, error) {
 	req := &AddQuickReplyShortcutInlineQueryResultMessage{
-		QueryId:          queryId,
-		ReplyToMessageId: replyToMessageId,
-		ResultId:         resultId,
-		ShortcutName:     shortcutName,
+		QueryId:      queryId,
+		ResultId:     resultId,
+		ShortcutName: shortcutName,
 	}
 	if opts != nil {
 		req.HideViaBot = opts.HideViaBot
+		req.ReplyToMessageId = opts.ReplyToMessageId
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -356,11 +360,13 @@ func (c *Client) AddQuickReplyShortcutInlineQueryResultMessage(queryId int64, re
 }
 
 // AddQuickReplyShortcutMessage Adds a message to a quick reply shortcut. If shortcut doesn't exist and there are less than getOption("quick_reply_shortcut_count_max") shortcuts, then a new shortcut is created.
-func (c *Client) AddQuickReplyShortcutMessage(inputMessageContent InputMessageContent, replyToMessageId int64, shortcutName string) (*QuickReplyMessage, error) {
+func (c *Client) AddQuickReplyShortcutMessage(inputMessageContent InputMessageContent, shortcutName string, opts *AddQuickReplyShortcutMessageOpts) (*QuickReplyMessage, error) {
 	req := &AddQuickReplyShortcutMessage{
 		InputMessageContent: inputMessageContent,
-		ReplyToMessageId:    replyToMessageId,
 		ShortcutName:        shortcutName,
+	}
+	if opts != nil {
+		req.ReplyToMessageId = opts.ReplyToMessageId
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -370,11 +376,13 @@ func (c *Client) AddQuickReplyShortcutMessage(inputMessageContent InputMessageCo
 }
 
 // AddQuickReplyShortcutMessageAlbum Adds 2-10 messages grouped together into an album to a quick reply shortcut. Currently, only audio, document, photo and video messages can be grouped into an album.
-func (c *Client) AddQuickReplyShortcutMessageAlbum(inputMessageContents []InputMessageContent, replyToMessageId int64, shortcutName string) (*QuickReplyMessages, error) {
+func (c *Client) AddQuickReplyShortcutMessageAlbum(inputMessageContents []InputMessageContent, shortcutName string, opts *AddQuickReplyShortcutMessageAlbumOpts) (*QuickReplyMessages, error) {
 	req := &AddQuickReplyShortcutMessageAlbum{
 		InputMessageContents: inputMessageContents,
-		ReplyToMessageId:     replyToMessageId,
 		ShortcutName:         shortcutName,
+	}
+	if opts != nil {
+		req.ReplyToMessageId = opts.ReplyToMessageId
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -496,15 +504,15 @@ func (c *Client) AllowUnpaidMessagesFromUser(userId int64, opts *AllowUnpaidMess
 }
 
 // AnswerCallbackQuery Sets the result of a callback query; for bots only
-func (c *Client) AnswerCallbackQuery(cacheTime int32, callbackQueryId int64, text string, url string, opts *AnswerCallbackQueryOpts) error {
+func (c *Client) AnswerCallbackQuery(callbackQueryId int64, opts *AnswerCallbackQueryOpts) error {
 	req := &AnswerCallbackQuery{
-		CacheTime:       cacheTime,
 		CallbackQueryId: callbackQueryId,
-		Text:            text,
-		Url:             url,
 	}
 	if opts != nil {
+		req.CacheTime = opts.CacheTime
 		req.ShowAlert = opts.ShowAlert
+		req.Text = opts.Text
+		req.Url = opts.Url
 	}
 	_, err := c.Send(req)
 	return err
@@ -545,37 +553,41 @@ func (c *Client) AnswerGuestQuery(guestQueryId int64, result InputInlineQueryRes
 }
 
 // AnswerInlineQuery Sets the result of an inline query; for bots only
-func (c *Client) AnswerInlineQuery(cacheTime int32, inlineQueryId int64, nextOffset string, results []InputInlineQueryResult, opts *AnswerInlineQueryOpts) error {
+func (c *Client) AnswerInlineQuery(inlineQueryId int64, results []InputInlineQueryResult, opts *AnswerInlineQueryOpts) error {
 	req := &AnswerInlineQuery{
-		CacheTime:     cacheTime,
 		InlineQueryId: inlineQueryId,
-		NextOffset:    nextOffset,
 		Results:       results,
 	}
 	if opts != nil {
 		req.Button = opts.Button
+		req.CacheTime = opts.CacheTime
 		req.IsPersonal = opts.IsPersonal
+		req.NextOffset = opts.NextOffset
 	}
 	_, err := c.Send(req)
 	return err
 }
 
 // AnswerPreCheckoutQuery Sets the result of a pre-checkout query; for bots only
-func (c *Client) AnswerPreCheckoutQuery(errorMessage string, preCheckoutQueryId int64) error {
+func (c *Client) AnswerPreCheckoutQuery(preCheckoutQueryId int64, opts *AnswerPreCheckoutQueryOpts) error {
 	req := &AnswerPreCheckoutQuery{
-		ErrorMessage:       errorMessage,
 		PreCheckoutQueryId: preCheckoutQueryId,
+	}
+	if opts != nil {
+		req.ErrorMessage = opts.ErrorMessage
 	}
 	_, err := c.Send(req)
 	return err
 }
 
 // AnswerShippingQuery Sets the result of a shipping query; for bots only
-func (c *Client) AnswerShippingQuery(errorMessage string, shippingOptions []ShippingOption, shippingQueryId int64) error {
+func (c *Client) AnswerShippingQuery(shippingOptions []ShippingOption, shippingQueryId int64, opts *AnswerShippingQueryOpts) error {
 	req := &AnswerShippingQuery{
-		ErrorMessage:    errorMessage,
 		ShippingOptions: shippingOptions,
 		ShippingQueryId: shippingQueryId,
+	}
+	if opts != nil {
+		req.ErrorMessage = opts.ErrorMessage
 	}
 	_, err := c.Send(req)
 	return err
@@ -616,11 +628,13 @@ func (c *Client) ApplyPremiumGiftCode(code string) error {
 }
 
 // ApproveSuggestedPost Approves a suggested post in a channel direct messages chat
-func (c *Client) ApproveSuggestedPost(chatId int64, messageId int64, sendDate int32) error {
+func (c *Client) ApproveSuggestedPost(chatId int64, messageId int64, opts *ApproveSuggestedPostOpts) error {
 	req := &ApproveSuggestedPost{
 		ChatId:    chatId,
 		MessageId: messageId,
-		SendDate:  sendDate,
+	}
+	if opts != nil {
+		req.SendDate = opts.SendDate
 	}
 	_, err := c.Send(req)
 	return err
@@ -637,13 +651,13 @@ func (c *Client) AssignStoreTransaction(purpose StorePaymentPurpose, transaction
 }
 
 // BanChatMember Bans a member in a chat; requires can_restrict_members administrator right. Members can't be banned in private or secret chats. In supergroups and channels, the user will not be able to return to the group on their own using invite links, etc., unless unbanned first
-func (c *Client) BanChatMember(bannedUntilDate int32, chatId int64, memberId MessageSender, opts *BanChatMemberOpts) error {
+func (c *Client) BanChatMember(chatId int64, memberId MessageSender, opts *BanChatMemberOpts) error {
 	req := &BanChatMember{
-		BannedUntilDate: bannedUntilDate,
-		ChatId:          chatId,
-		MemberId:        memberId,
+		ChatId:   chatId,
+		MemberId: memberId,
 	}
 	if opts != nil {
+		req.BannedUntilDate = opts.BannedUntilDate
 		req.RevokeMessages = opts.RevokeMessages
 	}
 	_, err := c.Send(req)
@@ -1118,10 +1132,9 @@ func (c *Client) CleanFileName(fileName string) (*Text, error) {
 }
 
 // ClearAllDraftMessages Clears message drafts in all chats
-func (c *Client) ClearAllDraftMessages(opts *ClearAllDraftMessagesOpts) error {
-	req := &ClearAllDraftMessages{}
-	if opts != nil {
-		req.ExcludeSecretChats = opts.ExcludeSecretChats
+func (c *Client) ClearAllDraftMessages(excludeSecretChats bool) error {
+	req := &ClearAllDraftMessages{
+		ExcludeSecretChats: excludeSecretChats,
 	}
 	_, err := c.Send(req)
 	return err
@@ -1163,20 +1176,18 @@ func (c *Client) ClearRecentReactions() error {
 }
 
 // ClearRecentStickers Clears the list of recently used stickers
-func (c *Client) ClearRecentStickers(opts *ClearRecentStickersOpts) error {
-	req := &ClearRecentStickers{}
-	if opts != nil {
-		req.IsAttached = opts.IsAttached
+func (c *Client) ClearRecentStickers(isAttached bool) error {
+	req := &ClearRecentStickers{
+		IsAttached: isAttached,
 	}
 	_, err := c.Send(req)
 	return err
 }
 
 // ClearSearchedForTags Clears the list of recently searched for hashtags or cashtags
-func (c *Client) ClearSearchedForTags(opts *ClearSearchedForTagsOpts) error {
-	req := &ClearSearchedForTags{}
-	if opts != nil {
-		req.ClearCashtags = opts.ClearCashtags
+func (c *Client) ClearSearchedForTags(clearCashtags bool) error {
+	req := &ClearSearchedForTags{
+		ClearCashtags: clearCashtags,
 	}
 	_, err := c.Send(req)
 	return err
@@ -1291,15 +1302,15 @@ func (c *Client) CommitPendingPaidMessageReactions(chatId int64, messageId int64
 }
 
 // ComposeRichMessageWithAi Changes a rich message using an AI model. May return an error with a message "AICOMPOSE_FLOOD_PREMIUM" if Telegram Premium is required to send further requests
-func (c *Client) ComposeRichMessageWithAi(customPrompt string, message *InputRichMessage, styleName string, translateToLanguageCode string, opts *ComposeRichMessageWithAiOpts) (*RichMessage, error) {
+func (c *Client) ComposeRichMessageWithAi(message *InputRichMessage, opts *ComposeRichMessageWithAiOpts) (*RichMessage, error) {
 	req := &ComposeRichMessageWithAi{
-		CustomPrompt:            customPrompt,
-		Message:                 message,
-		StyleName:               styleName,
-		TranslateToLanguageCode: translateToLanguageCode,
+		Message: message,
 	}
 	if opts != nil {
 		req.AddEmojis = opts.AddEmojis
+		req.CustomPrompt = opts.CustomPrompt
+		req.StyleName = opts.StyleName
+		req.TranslateToLanguageCode = opts.TranslateToLanguageCode
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -1309,14 +1320,14 @@ func (c *Client) ComposeRichMessageWithAi(customPrompt string, message *InputRic
 }
 
 // ComposeTextWithAi Changes text using an AI model; must not be used in secret chats. May return an error with a message "AICOMPOSE_FLOOD_PREMIUM" if Telegram Premium is required to send further requests
-func (c *Client) ComposeTextWithAi(styleName string, text *FormattedText, translateToLanguageCode string, opts *ComposeTextWithAiOpts) (*FormattedText, error) {
+func (c *Client) ComposeTextWithAi(text *FormattedText, opts *ComposeTextWithAiOpts) (*FormattedText, error) {
 	req := &ComposeTextWithAi{
-		StyleName:               styleName,
-		Text:                    text,
-		TranslateToLanguageCode: translateToLanguageCode,
+		Text: text,
 	}
 	if opts != nil {
 		req.AddEmojis = opts.AddEmojis
+		req.StyleName = opts.StyleName
+		req.TranslateToLanguageCode = opts.TranslateToLanguageCode
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -1453,11 +1464,13 @@ func (c *Client) CreateChatFolder(folder *ChatFolder) (*ChatFolderInfo, error) {
 }
 
 // CreateChatFolderInviteLink Creates a new invite link for a chat folder. A link can be created for a chat folder if it has only pinned and included chats
-func (c *Client) CreateChatFolderInviteLink(chatFolderId int32, chatIds []int64, name string) (*ChatFolderInviteLink, error) {
+func (c *Client) CreateChatFolderInviteLink(chatFolderId int32, chatIds []int64, opts *CreateChatFolderInviteLinkOpts) (*ChatFolderInviteLink, error) {
 	req := &CreateChatFolderInviteLink{
 		ChatFolderId: chatFolderId,
 		ChatIds:      chatIds,
-		Name:         name,
+	}
+	if opts != nil {
+		req.Name = opts.Name
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -1467,15 +1480,15 @@ func (c *Client) CreateChatFolderInviteLink(chatFolderId int32, chatIds []int64,
 }
 
 // CreateChatInviteLink Creates a new invite link for a chat. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat
-func (c *Client) CreateChatInviteLink(chatId int64, expirationDate int32, memberLimit int32, name string, opts *CreateChatInviteLinkOpts) (*ChatInviteLink, error) {
+func (c *Client) CreateChatInviteLink(chatId int64, opts *CreateChatInviteLinkOpts) (*ChatInviteLink, error) {
 	req := &CreateChatInviteLink{
-		ChatId:         chatId,
-		ExpirationDate: expirationDate,
-		MemberLimit:    memberLimit,
-		Name:           name,
+		ChatId: chatId,
 	}
 	if opts != nil {
 		req.CreatesJoinRequest = opts.CreatesJoinRequest
+		req.ExpirationDate = opts.ExpirationDate
+		req.MemberLimit = opts.MemberLimit
+		req.Name = opts.Name
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -1485,11 +1498,13 @@ func (c *Client) CreateChatInviteLink(chatId int64, expirationDate int32, member
 }
 
 // CreateChatSubscriptionInviteLink Creates a new subscription invite link for a channel chat. Requires can_invite_users right in the chat
-func (c *Client) CreateChatSubscriptionInviteLink(chatId int64, name string, subscriptionPricing *StarSubscriptionPricing) (*ChatInviteLink, error) {
+func (c *Client) CreateChatSubscriptionInviteLink(chatId int64, subscriptionPricing *StarSubscriptionPricing, opts *CreateChatSubscriptionInviteLinkOpts) (*ChatInviteLink, error) {
 	req := &CreateChatSubscriptionInviteLink{
 		ChatId:              chatId,
-		Name:                name,
 		SubscriptionPricing: subscriptionPricing,
+	}
+	if opts != nil {
+		req.Name = opts.Name
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -1546,10 +1561,9 @@ func (c *Client) CreateGiftCollection(name string, ownerId MessageSender, receiv
 }
 
 // CreateGroupCall Creates a new group call that isn't bound to a chat
-func (c *Client) CreateGroupCall(opts *CreateGroupCallOpts) (*GroupCallInfo, error) {
-	req := &CreateGroupCall{}
-	if opts != nil {
-		req.JoinParameters = opts.JoinParameters
+func (c *Client) CreateGroupCall(joinParameters *GroupCallJoinParameters) (*GroupCallInfo, error) {
+	req := &CreateGroupCall{
+		JoinParameters: joinParameters,
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -1572,12 +1586,12 @@ func (c *Client) CreateInvoiceLink(businessConnectionId string, invoice InputMes
 }
 
 // CreateNewBasicGroupChat Creates a new basic group and sends a corresponding messageBasicGroupChatCreate. Returns information about the newly created chat
-func (c *Client) CreateNewBasicGroupChat(messageAutoDeleteTime int32, title string, opts *CreateNewBasicGroupChatOpts) (*CreatedBasicGroupChat, error) {
+func (c *Client) CreateNewBasicGroupChat(title string, opts *CreateNewBasicGroupChatOpts) (*CreatedBasicGroupChat, error) {
 	req := &CreateNewBasicGroupChat{
-		MessageAutoDeleteTime: messageAutoDeleteTime,
-		Title:                 title,
+		Title: title,
 	}
 	if opts != nil {
+		req.MessageAutoDeleteTime = opts.MessageAutoDeleteTime
 		req.UserIds = opts.UserIds
 	}
 	resp, err := c.Send(req)
@@ -1620,17 +1634,17 @@ func (c *Client) CreateNewStickerSet(name string, stickerType StickerType, stick
 }
 
 // CreateNewSupergroupChat Creates a new supergroup or channel and sends a corresponding messageSupergroupChatCreate. Returns the newly created chat
-func (c *Client) CreateNewSupergroupChat(description string, messageAutoDeleteTime int32, title string, opts *CreateNewSupergroupChatOpts) (*Chat, error) {
+func (c *Client) CreateNewSupergroupChat(title string, opts *CreateNewSupergroupChatOpts) (*Chat, error) {
 	req := &CreateNewSupergroupChat{
-		Description:           description,
-		MessageAutoDeleteTime: messageAutoDeleteTime,
-		Title:                 title,
+		Title: title,
 	}
 	if opts != nil {
+		req.Description = opts.Description
 		req.ForImport = opts.ForImport
 		req.IsChannel = opts.IsChannel
 		req.IsForum = opts.IsForum
 		req.Location = opts.Location
+		req.MessageAutoDeleteTime = opts.MessageAutoDeleteTime
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -1640,19 +1654,21 @@ func (c *Client) CreateNewSupergroupChat(description string, messageAutoDeleteTi
 }
 
 // CreateOnRampPaymentSession Creates a session for an on-ramp payment
-func (c *Client) CreateOnRampPaymentSession(address string, baseCurrency string, baseCurrencyAmount string, cryptocurrency string, cryptocurrencyAmount string, failReturnUrl string, memo string, paymentMethodName string, providerId string, successReturnUrl string, theme string) (*OnRampPaymentSession, error) {
+func (c *Client) CreateOnRampPaymentSession(address string, baseCurrencyAmount string, cryptocurrency string, cryptocurrencyAmount string, providerId string, opts *CreateOnRampPaymentSessionOpts) (*OnRampPaymentSession, error) {
 	req := &CreateOnRampPaymentSession{
 		Address:              address,
-		BaseCurrency:         baseCurrency,
 		BaseCurrencyAmount:   baseCurrencyAmount,
 		Cryptocurrency:       cryptocurrency,
 		CryptocurrencyAmount: cryptocurrencyAmount,
-		FailReturnUrl:        failReturnUrl,
-		Memo:                 memo,
-		PaymentMethodName:    paymentMethodName,
 		ProviderId:           providerId,
-		SuccessReturnUrl:     successReturnUrl,
-		Theme:                theme,
+	}
+	if opts != nil {
+		req.BaseCurrency = opts.BaseCurrency
+		req.FailReturnUrl = opts.FailReturnUrl
+		req.Memo = opts.Memo
+		req.PaymentMethodName = opts.PaymentMethodName
+		req.SuccessReturnUrl = opts.SuccessReturnUrl
+		req.Theme = opts.Theme
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -1789,14 +1805,14 @@ func (c *Client) CreateUserTonWallet(userId int64) (*UserTonWalletAddress, error
 }
 
 // CreateVideoChat Creates a video chat (a group call bound to a chat); for basic groups, supergroups and channels only; requires can_manage_video_chats administrator right
-func (c *Client) CreateVideoChat(chatId int64, startDate int32, title string, opts *CreateVideoChatOpts) (*GroupCallId, error) {
+func (c *Client) CreateVideoChat(chatId int64, opts *CreateVideoChatOpts) (*GroupCallId, error) {
 	req := &CreateVideoChat{
-		ChatId:    chatId,
-		StartDate: startDate,
-		Title:     title,
+		ChatId: chatId,
 	}
 	if opts != nil {
 		req.IsRtmpStream = opts.IsRtmpStream
+		req.StartDate = opts.StartDate
+		req.Title = opts.Title
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -1825,11 +1841,13 @@ func (c *Client) DeclineOauthRequest(url string) error {
 }
 
 // DeclineSuggestedPost Declines a suggested post in a channel direct messages chat
-func (c *Client) DeclineSuggestedPost(chatId int64, comment string, messageId int64) error {
+func (c *Client) DeclineSuggestedPost(chatId int64, messageId int64, opts *DeclineSuggestedPostOpts) error {
 	req := &DeclineSuggestedPost{
 		ChatId:    chatId,
-		Comment:   comment,
 		MessageId: messageId,
+	}
+	if opts != nil {
+		req.Comment = opts.Comment
 	}
 	_, err := c.Send(req)
 	return err
@@ -1853,20 +1871,21 @@ func (c *Client) DecryptGroupCallData(data []byte, groupCallId int32, participan
 }
 
 // DeleteAccount Deletes the account of the current user, deleting all information associated with the user from the server. The phone number of the account can be used to create a new account.
-func (c *Client) DeleteAccount(password string, reason string) error {
+func (c *Client) DeleteAccount(password string, opts *DeleteAccountOpts) error {
 	req := &DeleteAccount{
 		Password: password,
-		Reason:   reason,
+	}
+	if opts != nil {
+		req.Reason = opts.Reason
 	}
 	_, err := c.Send(req)
 	return err
 }
 
 // DeleteAllCallMessages Deletes all call messages
-func (c *Client) DeleteAllCallMessages(opts *DeleteAllCallMessagesOpts) error {
-	req := &DeleteAllCallMessages{}
-	if opts != nil {
-		req.Revoke = opts.Revoke
+func (c *Client) DeleteAllCallMessages(revoke bool) error {
+	req := &DeleteAllCallMessages{
+		Revoke: revoke,
 	}
 	_, err := c.Send(req)
 	return err
@@ -1902,11 +1921,13 @@ func (c *Client) DeleteAllRevokedChatInviteLinks(chatId int64, creatorUserId int
 }
 
 // DeleteBotMediaPreviews Deletes media previews from the list of media previews of a bot
-func (c *Client) DeleteBotMediaPreviews(botUserId int64, fileIds []int32, languageCode string) error {
+func (c *Client) DeleteBotMediaPreviews(botUserId int64, fileIds []int32, opts *DeleteBotMediaPreviewsOpts) error {
 	req := &DeleteBotMediaPreviews{
-		BotUserId:    botUserId,
-		FileIds:      fileIds,
-		LanguageCode: languageCode,
+		BotUserId: botUserId,
+		FileIds:   fileIds,
+	}
+	if opts != nil {
+		req.LanguageCode = opts.LanguageCode
 	}
 	_, err := c.Send(req)
 	return err
@@ -2058,11 +2079,10 @@ func (c *Client) DeleteChatWelcomeMessage(chatId int64, welcomeMessageId int32) 
 }
 
 // DeleteCommands Deletes commands supported by the bot for the given user scope and language; for bots only
-func (c *Client) DeleteCommands(languageCode string, opts *DeleteCommandsOpts) error {
-	req := &DeleteCommands{
-		LanguageCode: languageCode,
-	}
+func (c *Client) DeleteCommands(opts *DeleteCommandsOpts) error {
+	req := &DeleteCommands{}
 	if opts != nil {
+		req.LanguageCode = opts.LanguageCode
 		req.Scope = opts.Scope
 	}
 	_, err := c.Send(req)
@@ -2079,10 +2099,9 @@ func (c *Client) DeleteCommunity(communityId int64) error {
 }
 
 // DeleteDefaultBackground Deletes default background for chats
-func (c *Client) DeleteDefaultBackground(opts *DeleteDefaultBackgroundOpts) error {
-	req := &DeleteDefaultBackground{}
-	if opts != nil {
-		req.ForDarkTheme = opts.ForDarkTheme
+func (c *Client) DeleteDefaultBackground(forDarkTheme bool) error {
+	req := &DeleteDefaultBackground{
+		ForDarkTheme: forDarkTheme,
 	}
 	_, err := c.Send(req)
 	return err
@@ -2400,14 +2419,14 @@ func (c *Client) DisableTonWalletBackupWithProof(proof *TonWalletOwnershipProof)
 }
 
 // DiscardCall Discards a call
-func (c *Client) DiscardCall(callId int32, connectionId int64, duration int32, inviteLink string, opts *DiscardCallOpts) error {
+func (c *Client) DiscardCall(callId int32, connectionId int64, duration int32, opts *DiscardCallOpts) error {
 	req := &DiscardCall{
 		CallId:       callId,
 		ConnectionId: connectionId,
 		Duration:     duration,
-		InviteLink:   inviteLink,
 	}
 	if opts != nil {
+		req.InviteLink = opts.InviteLink
 		req.IsDisconnected = opts.IsDisconnected
 		req.IsVideo = opts.IsVideo
 	}
@@ -2466,14 +2485,14 @@ func (c *Client) DismissWebToken(token string) error {
 }
 
 // DownloadFile Downloads a file from the cloud. Download progress and completion of the download will be notified through updateFile updates
-func (c *Client) DownloadFile(fileId int32, limit int64, offset int64, priority int32, opts *DownloadFileOpts) (*File, error) {
+func (c *Client) DownloadFile(fileId int32, priority int32, opts *DownloadFileOpts) (*File, error) {
 	req := &DownloadFile{
 		FileId:   fileId,
-		Limit:    limit,
-		Offset:   offset,
 		Priority: priority,
 	}
 	if opts != nil {
+		req.Limit = opts.Limit
+		req.Offset = opts.Offset
 		req.Synchronous = opts.Synchronous
 	}
 	resp, err := c.Send(req)
@@ -2494,12 +2513,14 @@ func (c *Client) DropGiftOriginalDetails(receivedGiftId string, starCount int64)
 }
 
 // EditBotMediaPreview Replaces media preview in the list of media previews of a bot. Returns the new preview after edit is completed server-side
-func (c *Client) EditBotMediaPreview(botUserId int64, content InputStoryContent, fileId int32, languageCode string) (*BotMediaPreview, error) {
+func (c *Client) EditBotMediaPreview(botUserId int64, content InputStoryContent, fileId int32, opts *EditBotMediaPreviewOpts) (*BotMediaPreview, error) {
 	req := &EditBotMediaPreview{
-		BotUserId:    botUserId,
-		Content:      content,
-		FileId:       fileId,
-		LanguageCode: languageCode,
+		BotUserId: botUserId,
+		Content:   content,
+		FileId:    fileId,
+	}
+	if opts != nil {
+		req.LanguageCode = opts.LanguageCode
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -2660,12 +2681,14 @@ func (c *Client) EditChatFolder(chatFolderId int32, folder *ChatFolder) (*ChatFo
 }
 
 // EditChatFolderInviteLink Edits an invite link for a chat folder
-func (c *Client) EditChatFolderInviteLink(chatFolderId int32, chatIds []int64, inviteLink string, name string) (*ChatFolderInviteLink, error) {
+func (c *Client) EditChatFolderInviteLink(chatFolderId int32, chatIds []int64, inviteLink string, opts *EditChatFolderInviteLinkOpts) (*ChatFolderInviteLink, error) {
 	req := &EditChatFolderInviteLink{
 		ChatFolderId: chatFolderId,
 		ChatIds:      chatIds,
 		InviteLink:   inviteLink,
-		Name:         name,
+	}
+	if opts != nil {
+		req.Name = opts.Name
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -2675,16 +2698,16 @@ func (c *Client) EditChatFolderInviteLink(chatFolderId int32, chatIds []int64, i
 }
 
 // EditChatInviteLink Edits a non-primary invite link for a chat. Available in basic groups, supergroups, and channels.
-func (c *Client) EditChatInviteLink(chatId int64, expirationDate int32, inviteLink string, memberLimit int32, name string, opts *EditChatInviteLinkOpts) (*ChatInviteLink, error) {
+func (c *Client) EditChatInviteLink(chatId int64, inviteLink string, opts *EditChatInviteLinkOpts) (*ChatInviteLink, error) {
 	req := &EditChatInviteLink{
-		ChatId:         chatId,
-		ExpirationDate: expirationDate,
-		InviteLink:     inviteLink,
-		MemberLimit:    memberLimit,
-		Name:           name,
+		ChatId:     chatId,
+		InviteLink: inviteLink,
 	}
 	if opts != nil {
 		req.CreatesJoinRequest = opts.CreatesJoinRequest
+		req.ExpirationDate = opts.ExpirationDate
+		req.MemberLimit = opts.MemberLimit
+		req.Name = opts.Name
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -2694,11 +2717,13 @@ func (c *Client) EditChatInviteLink(chatId int64, expirationDate int32, inviteLi
 }
 
 // EditChatSubscriptionInviteLink Edits a subscription invite link for a channel chat. Requires can_invite_users right in the chat for own links and owner privileges for other links
-func (c *Client) EditChatSubscriptionInviteLink(chatId int64, inviteLink string, name string) (*ChatInviteLink, error) {
+func (c *Client) EditChatSubscriptionInviteLink(chatId int64, inviteLink string, opts *EditChatSubscriptionInviteLinkOpts) (*ChatInviteLink, error) {
 	req := &EditChatSubscriptionInviteLink{
 		ChatId:     chatId,
 		InviteLink: inviteLink,
-		Name:       name,
+	}
+	if opts != nil {
+		req.Name = opts.Name
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -2759,15 +2784,15 @@ func (c *Client) EditEphemeralMessageCaption(chatId int64, ephemeralMessageId in
 }
 
 // EditForumTopic Edits title and icon of a topic in a forum supergroup chat or a chat with a bot with topics; for supergroup chats requires can_manage_topics administrator right
-func (c *Client) EditForumTopic(chatId int64, forumTopicId int32, iconCustomEmojiId int64, name string, opts *EditForumTopicOpts) error {
+func (c *Client) EditForumTopic(chatId int64, forumTopicId int32, opts *EditForumTopicOpts) error {
 	req := &EditForumTopic{
-		ChatId:            chatId,
-		ForumTopicId:      forumTopicId,
-		IconCustomEmojiId: iconCustomEmojiId,
-		Name:              name,
+		ChatId:       chatId,
+		ForumTopicId: forumTopicId,
 	}
 	if opts != nil {
 		req.EditIconCustomEmoji = opts.EditIconCustomEmoji
+		req.IconCustomEmojiId = opts.IconCustomEmojiId
+		req.Name = opts.Name
 	}
 	_, err := c.Send(req)
 	return err
@@ -2954,13 +2979,13 @@ func (c *Client) EditMessageTextContent(chatId int64, inputMessageContent InputM
 }
 
 // EditProxy Edits an existing proxy server for network requests. Can be called before authorization
-func (c *Client) EditProxy(comment string, proxy *Proxy, proxyId int32, opts *EditProxyOpts) (*AddedProxy, error) {
+func (c *Client) EditProxy(proxy *Proxy, proxyId int32, opts *EditProxyOpts) (*AddedProxy, error) {
 	req := &EditProxy{
-		Comment: comment,
 		Proxy:   proxy,
 		ProxyId: proxyId,
 	}
 	if opts != nil {
+		req.Comment = opts.Comment
 		req.Enable = opts.Enable
 	}
 	resp, err := c.Send(req)
@@ -3271,11 +3296,13 @@ func (c *Client) GetArchiveChatListSettings() (*ArchiveChatListSettings, error) 
 }
 
 // GetArchivedStickerSets Returns a list of archived sticker sets
-func (c *Client) GetArchivedStickerSets(limit int32, offsetStickerSetId int64, stickerType StickerType) (*StickerSets, error) {
+func (c *Client) GetArchivedStickerSets(limit int32, stickerType StickerType, opts *GetArchivedStickerSetsOpts) (*StickerSets, error) {
 	req := &GetArchivedStickerSets{
-		Limit:              limit,
-		OffsetStickerSetId: offsetStickerSetId,
-		StickerType:        stickerType,
+		Limit:       limit,
+		StickerType: stickerType,
+	}
+	if opts != nil {
+		req.OffsetStickerSetId = opts.OffsetStickerSetId
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -3418,11 +3445,13 @@ func (c *Client) GetBasicGroupFullInfo(basicGroupId int64) (*BasicGroupFullInfo,
 }
 
 // GetBlockedMessageSenders Returns users and chats that were blocked by the current user
-func (c *Client) GetBlockedMessageSenders(blockList BlockList, limit int32, offset int32) (*MessageSenders, error) {
+func (c *Client) GetBlockedMessageSenders(blockList BlockList, limit int32, opts *GetBlockedMessageSendersOpts) (*MessageSenders, error) {
 	req := &GetBlockedMessageSenders{
 		BlockList: blockList,
 		Limit:     limit,
-		Offset:    offset,
+	}
+	if opts != nil {
+		req.Offset = opts.Offset
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -3432,10 +3461,12 @@ func (c *Client) GetBlockedMessageSenders(blockList BlockList, limit int32, offs
 }
 
 // GetBotInfoDescription Returns the text shown in the chat with a bot if the chat is empty in the given language. Can be called only if userTypeBot.can_be_edited == true
-func (c *Client) GetBotInfoDescription(botUserId int64, languageCode string) (*Text, error) {
+func (c *Client) GetBotInfoDescription(botUserId int64, opts *GetBotInfoDescriptionOpts) (*Text, error) {
 	req := &GetBotInfoDescription{
-		BotUserId:    botUserId,
-		LanguageCode: languageCode,
+		BotUserId: botUserId,
+	}
+	if opts != nil {
+		req.LanguageCode = opts.LanguageCode
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -3445,10 +3476,12 @@ func (c *Client) GetBotInfoDescription(botUserId int64, languageCode string) (*T
 }
 
 // GetBotInfoShortDescription Returns the text shown on a bot's profile page and sent together with the link when users share the bot in the given language. Can be called only if userTypeBot.can_be_edited == true
-func (c *Client) GetBotInfoShortDescription(botUserId int64, languageCode string) (*Text, error) {
+func (c *Client) GetBotInfoShortDescription(botUserId int64, opts *GetBotInfoShortDescriptionOpts) (*Text, error) {
 	req := &GetBotInfoShortDescription{
-		BotUserId:    botUserId,
-		LanguageCode: languageCode,
+		BotUserId: botUserId,
+	}
+	if opts != nil {
+		req.LanguageCode = opts.LanguageCode
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -3458,10 +3491,12 @@ func (c *Client) GetBotInfoShortDescription(botUserId int64, languageCode string
 }
 
 // GetBotMediaPreviewInfo Returns the list of media previews for the given language and the list of languages for which the bot has dedicated previews
-func (c *Client) GetBotMediaPreviewInfo(botUserId int64, languageCode string) (*BotMediaPreviewInfo, error) {
+func (c *Client) GetBotMediaPreviewInfo(botUserId int64, opts *GetBotMediaPreviewInfoOpts) (*BotMediaPreviewInfo, error) {
 	req := &GetBotMediaPreviewInfo{
-		BotUserId:    botUserId,
-		LanguageCode: languageCode,
+		BotUserId: botUserId,
+	}
+	if opts != nil {
+		req.LanguageCode = opts.LanguageCode
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -3483,10 +3518,12 @@ func (c *Client) GetBotMediaPreviews(botUserId int64) (*BotMediaPreviews, error)
 }
 
 // GetBotName Returns the name of a bot in the given language. Can be called only if userTypeBot.can_be_edited == true
-func (c *Client) GetBotName(botUserId int64, languageCode string) (*Text, error) {
+func (c *Client) GetBotName(botUserId int64, opts *GetBotNameOpts) (*Text, error) {
 	req := &GetBotName{
-		BotUserId:    botUserId,
-		LanguageCode: languageCode,
+		BotUserId: botUserId,
+	}
+	if opts != nil {
+		req.LanguageCode = opts.LanguageCode
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -3579,10 +3616,9 @@ func (c *Client) GetBusinessConnection(connectionId string) (*BusinessConnection
 }
 
 // GetBusinessFeatures Returns information about features, available to Business users
-func (c *Client) GetBusinessFeatures(opts *GetBusinessFeaturesOpts) (*BusinessFeatures, error) {
-	req := &GetBusinessFeatures{}
-	if opts != nil {
-		req.Source = opts.Source
+func (c *Client) GetBusinessFeatures(source BusinessFeature) (*BusinessFeatures, error) {
+	req := &GetBusinessFeatures{
+		Source: source,
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -3656,11 +3692,13 @@ func (c *Client) GetChatAdministrators(chatId int64) (*ChatAdministrators, error
 }
 
 // GetChatArchivedStories Returns the list of all stories posted by the given chat; requires can_edit_stories administrator right in the chat.
-func (c *Client) GetChatArchivedStories(chatId int64, fromStoryId int32, limit int32) (*Stories, error) {
+func (c *Client) GetChatArchivedStories(chatId int64, limit int32, opts *GetChatArchivedStoriesOpts) (*Stories, error) {
 	req := &GetChatArchivedStories{
-		ChatId:      chatId,
-		FromStoryId: fromStoryId,
-		Limit:       limit,
+		ChatId: chatId,
+		Limit:  limit,
+	}
+	if opts != nil {
+		req.FromStoryId = opts.FromStoryId
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -3694,10 +3732,9 @@ func (c *Client) GetChatAvailablePaidMessageReactionSenders(chatId int64) (*Mess
 }
 
 // GetChatBoostFeatures Returns the list of features available for different chat boost levels. This is an offline method
-func (c *Client) GetChatBoostFeatures(opts *GetChatBoostFeaturesOpts) (*ChatBoostFeatures, error) {
-	req := &GetChatBoostFeatures{}
-	if opts != nil {
-		req.IsChannel = opts.IsChannel
+func (c *Client) GetChatBoostFeatures(isChannel bool) (*ChatBoostFeatures, error) {
+	req := &GetChatBoostFeatures{
+		IsChannel: isChannel,
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -3746,13 +3783,13 @@ func (c *Client) GetChatBoostLinkInfo(url string) (*ChatBoostLinkInfo, error) {
 }
 
 // GetChatBoosts Returns the list of boosts applied to a chat; requires administrator rights in the chat
-func (c *Client) GetChatBoosts(chatId int64, limit int32, offset string, opts *GetChatBoostsOpts) (*FoundChatBoosts, error) {
+func (c *Client) GetChatBoosts(chatId int64, limit int32, opts *GetChatBoostsOpts) (*FoundChatBoosts, error) {
 	req := &GetChatBoosts{
 		ChatId: chatId,
 		Limit:  limit,
-		Offset: offset,
 	}
 	if opts != nil {
+		req.Offset = opts.Offset
 		req.OnlyGiftCodes = opts.OnlyGiftCodes
 	}
 	resp, err := c.Send(req)
@@ -3775,16 +3812,16 @@ func (c *Client) GetChatBoostStatus(chatId int64) (*ChatBoostStatus, error) {
 }
 
 // GetChatEventLog Returns a list of service actions taken by chat members and administrators in the last 48 hours. Available only in supergroups and channels. Requires administrator rights. Returns results in reverse chronological order (i.e., in order of decreasing event_id)
-func (c *Client) GetChatEventLog(chatId int64, fromEventId int64, limit int32, query string, userIds []int64, opts *GetChatEventLogOpts) (*ChatEvents, error) {
+func (c *Client) GetChatEventLog(chatId int64, limit int32, userIds []int64, opts *GetChatEventLogOpts) (*ChatEvents, error) {
 	req := &GetChatEventLog{
-		ChatId:      chatId,
-		FromEventId: fromEventId,
-		Limit:       limit,
-		Query:       query,
-		UserIds:     userIds,
+		ChatId:  chatId,
+		Limit:   limit,
+		UserIds: userIds,
 	}
 	if opts != nil {
 		req.Filters = opts.Filters
+		req.FromEventId = opts.FromEventId
+		req.Query = opts.Query
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -3866,14 +3903,14 @@ func (c *Client) GetChatFolderNewChats(chatFolderId int32) (*Chats, error) {
 }
 
 // GetChatHistory Returns messages in a chat. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id).
-func (c *Client) GetChatHistory(chatId int64, fromMessageId int64, limit int32, offset int32, opts *GetChatHistoryOpts) (*Messages, error) {
+func (c *Client) GetChatHistory(chatId int64, limit int32, opts *GetChatHistoryOpts) (*Messages, error) {
 	req := &GetChatHistory{
-		ChatId:        chatId,
-		FromMessageId: fromMessageId,
-		Limit:         limit,
-		Offset:        offset,
+		ChatId: chatId,
+		Limit:  limit,
 	}
 	if opts != nil {
+		req.FromMessageId = opts.FromMessageId
+		req.Offset = opts.Offset
 		req.OnlyLocal = opts.OnlyLocal
 	}
 	resp, err := c.Send(req)
@@ -3927,16 +3964,16 @@ func (c *Client) GetChatInviteLinkMembers(chatId int64, inviteLink string, limit
 }
 
 // GetChatInviteLinks Returns invite links for a chat created by specified administrator. Requires administrator privileges and can_invite_users right in the chat to get own links and owner privileges to get other links
-func (c *Client) GetChatInviteLinks(chatId int64, creatorUserId int64, limit int32, offsetDate int32, offsetInviteLink string, opts *GetChatInviteLinksOpts) (*ChatInviteLinks, error) {
+func (c *Client) GetChatInviteLinks(chatId int64, creatorUserId int64, limit int32, opts *GetChatInviteLinksOpts) (*ChatInviteLinks, error) {
 	req := &GetChatInviteLinks{
-		ChatId:           chatId,
-		CreatorUserId:    creatorUserId,
-		Limit:            limit,
-		OffsetDate:       offsetDate,
-		OffsetInviteLink: offsetInviteLink,
+		ChatId:        chatId,
+		CreatorUserId: creatorUserId,
+		Limit:         limit,
 	}
 	if opts != nil {
 		req.IsRevoked = opts.IsRevoked
+		req.OffsetDate = opts.OffsetDate
+		req.OffsetInviteLink = opts.OffsetInviteLink
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -3946,15 +3983,15 @@ func (c *Client) GetChatInviteLinks(chatId int64, creatorUserId int64, limit int
 }
 
 // GetChatJoinRequests Returns pending join requests in a chat
-func (c *Client) GetChatJoinRequests(chatId int64, inviteLink string, limit int32, query string, opts *GetChatJoinRequestsOpts) (*ChatJoinRequests, error) {
+func (c *Client) GetChatJoinRequests(chatId int64, limit int32, opts *GetChatJoinRequestsOpts) (*ChatJoinRequests, error) {
 	req := &GetChatJoinRequests{
-		ChatId:     chatId,
-		InviteLink: inviteLink,
-		Limit:      limit,
-		Query:      query,
+		ChatId: chatId,
+		Limit:  limit,
 	}
 	if opts != nil {
+		req.InviteLink = opts.InviteLink
 		req.OffsetRequest = opts.OffsetRequest
+		req.Query = opts.Query
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -4002,13 +4039,13 @@ func (c *Client) GetChatMessageByDate(chatId int64, date int32) (*Message, error
 }
 
 // GetChatMessageCalendar Returns information about the next messages of the specified type in the chat split by days. Returns the results in reverse chronological order. Can return partial result for the last returned day. Behavior of this method depends on the value of the option "utc_time_offset"
-func (c *Client) GetChatMessageCalendar(chatId int64, filter SearchMessagesFilter, fromMessageId int64, opts *GetChatMessageCalendarOpts) (*MessageCalendar, error) {
+func (c *Client) GetChatMessageCalendar(chatId int64, filter SearchMessagesFilter, opts *GetChatMessageCalendarOpts) (*MessageCalendar, error) {
 	req := &GetChatMessageCalendar{
-		ChatId:        chatId,
-		Filter:        filter,
-		FromMessageId: fromMessageId,
+		ChatId: chatId,
+		Filter: filter,
 	}
 	if opts != nil {
+		req.FromMessageId = opts.FromMessageId
 		req.TopicId = opts.TopicId
 	}
 	resp, err := c.Send(req)
@@ -4091,11 +4128,13 @@ func (c *Client) GetChatPinnedMessage(chatId int64) (*Message, error) {
 }
 
 // GetChatPostedToChatPageStories Returns the list of stories that posted by the given chat to its chat page. If from_story_id == 0, then pinned stories are returned first.
-func (c *Client) GetChatPostedToChatPageStories(chatId int64, fromStoryId int32, limit int32) (*Stories, error) {
+func (c *Client) GetChatPostedToChatPageStories(chatId int64, limit int32, opts *GetChatPostedToChatPageStoriesOpts) (*Stories, error) {
 	req := &GetChatPostedToChatPageStories{
-		ChatId:      chatId,
-		FromStoryId: fromStoryId,
-		Limit:       limit,
+		ChatId: chatId,
+		Limit:  limit,
+	}
+	if opts != nil {
+		req.FromStoryId = opts.FromStoryId
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -4120,11 +4159,13 @@ func (c *Client) GetChatRevenueStatistics(chatId int64, opts *GetChatRevenueStat
 }
 
 // GetChatRevenueTransactions Returns the list of revenue transactions for a chat. Currently, this method can be used only
-func (c *Client) GetChatRevenueTransactions(chatId int64, limit int32, offset string) (*ChatRevenueTransactions, error) {
+func (c *Client) GetChatRevenueTransactions(chatId int64, limit int32, opts *GetChatRevenueTransactionsOpts) (*ChatRevenueTransactions, error) {
 	req := &GetChatRevenueTransactions{
 		ChatId: chatId,
 		Limit:  limit,
-		Offset: offset,
+	}
+	if opts != nil {
+		req.Offset = opts.Offset
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -4213,13 +4254,15 @@ func (c *Client) GetChatSimilarChats(chatId int64) (*Chats, error) {
 }
 
 // GetChatSparseMessagePositions Returns sparse positions of messages of the specified type in the chat to be used for Shared Media scroll implementation. Returns the results in reverse chronological order (i.e., in order of decreasing message_id).
-func (c *Client) GetChatSparseMessagePositions(chatId int64, filter SearchMessagesFilter, fromMessageId int64, limit int32, savedMessagesTopicId int64) (*MessagePositions, error) {
+func (c *Client) GetChatSparseMessagePositions(chatId int64, filter SearchMessagesFilter, fromMessageId int64, limit int32, opts *GetChatSparseMessagePositionsOpts) (*MessagePositions, error) {
 	req := &GetChatSparseMessagePositions{
-		ChatId:               chatId,
-		Filter:               filter,
-		FromMessageId:        fromMessageId,
-		Limit:                limit,
-		SavedMessagesTopicId: savedMessagesTopicId,
+		ChatId:        chatId,
+		Filter:        filter,
+		FromMessageId: fromMessageId,
+		Limit:         limit,
+	}
+	if opts != nil {
+		req.SavedMessagesTopicId = opts.SavedMessagesTopicId
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -4278,14 +4321,14 @@ func (c *Client) GetChatStoryAlbums(chatId int64) (*StoryAlbums, error) {
 }
 
 // GetChatStoryInteractions Returns interactions with a story posted in a chat. Can be used only if story is posted on behalf of a chat and the user is an administrator in the chat
-func (c *Client) GetChatStoryInteractions(limit int32, offset string, storyId int32, storyPosterChatId int64, opts *GetChatStoryInteractionsOpts) (*StoryInteractions, error) {
+func (c *Client) GetChatStoryInteractions(limit int32, storyId int32, storyPosterChatId int64, opts *GetChatStoryInteractionsOpts) (*StoryInteractions, error) {
 	req := &GetChatStoryInteractions{
 		Limit:             limit,
-		Offset:            offset,
 		StoryId:           storyId,
 		StoryPosterChatId: storyPosterChatId,
 	}
 	if opts != nil {
+		req.Offset = opts.Offset
 		req.PreferForwards = opts.PreferForwards
 		req.ReactionType = opts.ReactionType
 	}
@@ -4319,11 +4362,10 @@ func (c *Client) GetCollectibleItemInfo(typeField CollectibleItemType) (*Collect
 }
 
 // GetCommands Returns the list of commands supported by the bot for the given user scope and language; for bots only
-func (c *Client) GetCommands(languageCode string, opts *GetCommandsOpts) (*BotCommands, error) {
-	req := &GetCommands{
-		LanguageCode: languageCode,
-	}
+func (c *Client) GetCommands(opts *GetCommandsOpts) (*BotCommands, error) {
+	req := &GetCommands{}
 	if opts != nil {
+		req.LanguageCode = opts.LanguageCode
 		req.Scope = opts.Scope
 	}
 	resp, err := c.Send(req)
@@ -4359,11 +4401,13 @@ func (c *Client) GetConnectedAffiliateProgram(affiliate AffiliateType, botUserId
 }
 
 // GetConnectedAffiliatePrograms Returns affiliate programs that were connected to the given affiliate
-func (c *Client) GetConnectedAffiliatePrograms(affiliate AffiliateType, limit int32, offset string) (*ConnectedAffiliatePrograms, error) {
+func (c *Client) GetConnectedAffiliatePrograms(affiliate AffiliateType, limit int32, opts *GetConnectedAffiliateProgramsOpts) (*ConnectedAffiliatePrograms, error) {
 	req := &GetConnectedAffiliatePrograms{
 		Affiliate: affiliate,
 		Limit:     limit,
-		Offset:    offset,
+	}
+	if opts != nil {
+		req.Offset = opts.Offset
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -4598,13 +4642,15 @@ func (c *Client) GetDirectMessagesChatTopic(chatId int64, topicId int64) (*Direc
 }
 
 // GetDirectMessagesChatTopicHistory Returns messages in the topic in a channel direct messages chat administered by the current user. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id)
-func (c *Client) GetDirectMessagesChatTopicHistory(chatId int64, fromMessageId int64, limit int32, offset int32, topicId int64) (*Messages, error) {
+func (c *Client) GetDirectMessagesChatTopicHistory(chatId int64, limit int32, topicId int64, opts *GetDirectMessagesChatTopicHistoryOpts) (*Messages, error) {
 	req := &GetDirectMessagesChatTopicHistory{
-		ChatId:        chatId,
-		FromMessageId: fromMessageId,
-		Limit:         limit,
-		Offset:        offset,
-		TopicId:       topicId,
+		ChatId:  chatId,
+		Limit:   limit,
+		TopicId: topicId,
+	}
+	if opts != nil {
+		req.FromMessageId = opts.FromMessageId
+		req.Offset = opts.Offset
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -4651,10 +4697,9 @@ func (c *Client) GetDisallowedChatEmojiStatuses() (*EmojiStatusCustomEmojis, err
 }
 
 // GetEmojiCategories Returns available emoji categories
-func (c *Client) GetEmojiCategories(opts *GetEmojiCategoriesOpts) (*EmojiCategories, error) {
-	req := &GetEmojiCategories{}
-	if opts != nil {
-		req.Type = opts.Type
+func (c *Client) GetEmojiCategories(typeField EmojiCategoryType) (*EmojiCategories, error) {
+	req := &GetEmojiCategories{
+		Type: typeField,
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -4737,10 +4782,12 @@ func (c *Client) GetFile(fileId int32) (*File, error) {
 }
 
 // GetFileDownloadedPrefixSize Returns file downloaded prefix size from a given offset, in bytes
-func (c *Client) GetFileDownloadedPrefixSize(fileId int32, offset int64) (*FileDownloadedPrefixSize, error) {
+func (c *Client) GetFileDownloadedPrefixSize(fileId int32, opts *GetFileDownloadedPrefixSizeOpts) (*FileDownloadedPrefixSize, error) {
 	req := &GetFileDownloadedPrefixSize{
 		FileId: fileId,
-		Offset: offset,
+	}
+	if opts != nil {
+		req.Offset = opts.Offset
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -4797,13 +4844,15 @@ func (c *Client) GetForumTopicDefaultIcons() (*Stickers, error) {
 }
 
 // GetForumTopicHistory Returns messages in a topic in a forum supergroup chat or a chat with a bot with topics. The messages are returned in reverse chronological order
-func (c *Client) GetForumTopicHistory(chatId int64, forumTopicId int32, fromMessageId int64, limit int32, offset int32) (*Messages, error) {
+func (c *Client) GetForumTopicHistory(chatId int64, forumTopicId int32, limit int32, opts *GetForumTopicHistoryOpts) (*Messages, error) {
 	req := &GetForumTopicHistory{
-		ChatId:        chatId,
-		ForumTopicId:  forumTopicId,
-		FromMessageId: fromMessageId,
-		Limit:         limit,
-		Offset:        offset,
+		ChatId:       chatId,
+		ForumTopicId: forumTopicId,
+		Limit:        limit,
+	}
+	if opts != nil {
+		req.FromMessageId = opts.FromMessageId
+		req.Offset = opts.Offset
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -4826,14 +4875,16 @@ func (c *Client) GetForumTopicLink(chatId int64, forumTopicId int32) (*MessageLi
 }
 
 // GetForumTopics Returns found forum topics in a forum supergroup chat or a chat with a bot with topics. This is a temporary method for getting information about topic list from the server
-func (c *Client) GetForumTopics(chatId int64, limit int32, offsetDate int32, offsetForumTopicId int32, offsetMessageId int64, query string) (*ForumTopics, error) {
+func (c *Client) GetForumTopics(chatId int64, limit int32, opts *GetForumTopicsOpts) (*ForumTopics, error) {
 	req := &GetForumTopics{
-		ChatId:             chatId,
-		Limit:              limit,
-		OffsetDate:         offsetDate,
-		OffsetForumTopicId: offsetForumTopicId,
-		OffsetMessageId:    offsetMessageId,
-		Query:              query,
+		ChatId: chatId,
+		Limit:  limit,
+	}
+	if opts != nil {
+		req.OffsetDate = opts.OffsetDate
+		req.OffsetForumTopicId = opts.OffsetForumTopicId
+		req.OffsetMessageId = opts.OffsetMessageId
+		req.Query = opts.Query
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -4894,10 +4945,12 @@ func (c *Client) GetGiftAuctionState(auctionId string) (*GiftAuctionState, error
 }
 
 // GetGiftChatThemes Returns available to the current user gift chat themes
-func (c *Client) GetGiftChatThemes(limit int32, offset string) (*GiftChatThemes, error) {
+func (c *Client) GetGiftChatThemes(limit int32, opts *GetGiftChatThemesOpts) (*GiftChatThemes, error) {
 	req := &GetGiftChatThemes{
-		Limit:  limit,
-		Offset: offset,
+		Limit: limit,
+	}
+	if opts != nil {
+		req.Offset = opts.Offset
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -4919,11 +4972,13 @@ func (c *Client) GetGiftCollections(ownerId MessageSender) (*GiftCollections, er
 }
 
 // GetGiftsForCrafting Returns upgraded gifts of the current user who can be used to craft another gifts
-func (c *Client) GetGiftsForCrafting(limit int32, offset string, regularGiftId int64) (*GiftsForCrafting, error) {
+func (c *Client) GetGiftsForCrafting(limit int32, regularGiftId int64, opts *GetGiftsForCraftingOpts) (*GiftsForCrafting, error) {
 	req := &GetGiftsForCrafting{
 		Limit:         limit,
-		Offset:        offset,
 		RegularGiftId: regularGiftId,
+	}
+	if opts != nil {
+		req.Offset = opts.Offset
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -4958,10 +5013,9 @@ func (c *Client) GetGiveawayInfo(chatId int64, messageId int64) (GiveawayInfo, e
 }
 
 // GetGramRevenueStatistics Returns detailed TON Gram revenue statistics of the current user
-func (c *Client) GetGramRevenueStatistics(opts *GetGramRevenueStatisticsOpts) (*GramRevenueStatistics, error) {
-	req := &GetGramRevenueStatistics{}
-	if opts != nil {
-		req.IsDark = opts.IsDark
+func (c *Client) GetGramRevenueStatistics(isDark bool) (*GramRevenueStatistics, error) {
+	req := &GetGramRevenueStatistics{
+		IsDark: isDark,
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -4993,10 +5047,12 @@ func (c *Client) GetGreetingStickers() (*Stickers, error) {
 }
 
 // GetGrossingWebAppBots Returns the most grossing Web App bots
-func (c *Client) GetGrossingWebAppBots(limit int32, offset string) (*FoundUsers, error) {
+func (c *Client) GetGrossingWebAppBots(limit int32, opts *GetGrossingWebAppBotsOpts) (*FoundUsers, error) {
 	req := &GetGrossingWebAppBots{
-		Limit:  limit,
-		Offset: offset,
+		Limit: limit,
+	}
+	if opts != nil {
+		req.Offset = opts.Offset
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -5061,11 +5117,13 @@ func (c *Client) GetGroupCallStreamSegment(channelId int32, groupCallId int32, s
 }
 
 // GetGroupsInCommon Returns a list of common group chats with a given user. Chats are sorted by their type and creation date
-func (c *Client) GetGroupsInCommon(limit int32, offsetChatId int64, userId int64) (*Chats, error) {
+func (c *Client) GetGroupsInCommon(limit int32, userId int64, opts *GetGroupsInCommonOpts) (*Chats, error) {
 	req := &GetGroupsInCommon{
-		Limit:        limit,
-		OffsetChatId: offsetChatId,
-		UserId:       userId,
+		Limit:  limit,
+		UserId: userId,
+	}
+	if opts != nil {
+		req.OffsetChatId = opts.OffsetChatId
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -5121,14 +5179,14 @@ func (c *Client) GetInlineGameHighScores(inlineMessageId string, userId int64) (
 }
 
 // GetInlineQueryResults Sends an inline query to a bot and returns its results. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires
-func (c *Client) GetInlineQueryResults(botUserId int64, chatId int64, offset string, query string, opts *GetInlineQueryResultsOpts) (*InlineQueryResults, error) {
+func (c *Client) GetInlineQueryResults(botUserId int64, chatId int64, query string, opts *GetInlineQueryResultsOpts) (*InlineQueryResults, error) {
 	req := &GetInlineQueryResults{
 		BotUserId: botUserId,
 		ChatId:    chatId,
-		Offset:    offset,
 		Query:     query,
 	}
 	if opts != nil {
+		req.Offset = opts.Offset
 		req.UserLocation = opts.UserLocation
 	}
 	resp, err := c.Send(req)
@@ -5139,10 +5197,9 @@ func (c *Client) GetInlineQueryResults(botUserId int64, chatId int64, offset str
 }
 
 // GetInstalledBackgrounds Returns backgrounds installed by the user
-func (c *Client) GetInstalledBackgrounds(opts *GetInstalledBackgroundsOpts) (*Backgrounds, error) {
-	req := &GetInstalledBackgrounds{}
-	if opts != nil {
-		req.ForDarkTheme = opts.ForDarkTheme
+func (c *Client) GetInstalledBackgrounds(forDarkTheme bool) (*Backgrounds, error) {
+	req := &GetInstalledBackgrounds{
+		ForDarkTheme: forDarkTheme,
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -5345,10 +5402,9 @@ func (c *Client) GetLiveStoryTopDonors(groupCallId int32) (*LiveStoryDonors, err
 }
 
 // GetLocalizationTargetInfo Returns information about the current localization target. This is an offline method if only_local is true. Can be called before authorization
-func (c *Client) GetLocalizationTargetInfo(opts *GetLocalizationTargetInfoOpts) (*LocalizationTargetInfo, error) {
-	req := &GetLocalizationTargetInfo{}
-	if opts != nil {
-		req.OnlyLocal = opts.OnlyLocal
+func (c *Client) GetLocalizationTargetInfo(onlyLocal bool) (*LocalizationTargetInfo, error) {
+	req := &GetLocalizationTargetInfo{
+		OnlyLocal: onlyLocal,
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -5441,12 +5497,14 @@ func (c *Client) GetLogVerbosityLevel() (*LogVerbosityLevel, error) {
 }
 
 // GetMainWebApp Returns information needed to open the main Web App of a bot
-func (c *Client) GetMainWebApp(botUserId int64, chatId int64, parameters *WebAppOpenParameters, startParameter string) (*MainWebApp, error) {
+func (c *Client) GetMainWebApp(botUserId int64, chatId int64, parameters *WebAppOpenParameters, opts *GetMainWebAppOpts) (*MainWebApp, error) {
 	req := &GetMainWebApp{
-		BotUserId:      botUserId,
-		ChatId:         chatId,
-		Parameters:     parameters,
-		StartParameter: startParameter,
+		BotUserId:  botUserId,
+		ChatId:     chatId,
+		Parameters: parameters,
+	}
+	if opts != nil {
+		req.StartParameter = opts.StartParameter
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -5547,14 +5605,14 @@ func (c *Client) GetMessage(chatId int64, messageId int64) (*Message, error) {
 }
 
 // GetMessageAddedReactions Returns reactions added for a message, along with their sender
-func (c *Client) GetMessageAddedReactions(chatId int64, limit int32, messageId int64, offset string, opts *GetMessageAddedReactionsOpts) (*AddedReactions, error) {
+func (c *Client) GetMessageAddedReactions(chatId int64, limit int32, messageId int64, opts *GetMessageAddedReactionsOpts) (*AddedReactions, error) {
 	req := &GetMessageAddedReactions{
 		ChatId:    chatId,
 		Limit:     limit,
 		MessageId: messageId,
-		Offset:    offset,
 	}
 	if opts != nil {
+		req.Offset = opts.Offset
 		req.ReactionType = opts.ReactionType
 	}
 	resp, err := c.Send(req)
@@ -5644,17 +5702,17 @@ func (c *Client) GetMessageImportConfirmationText(chatId int64) (*Text, error) {
 }
 
 // GetMessageLink Returns an HTTPS link to a message in a chat. Available only if messageProperties.can_get_link, or if messageProperties.can_get_media_timestamp_links and a media timestamp link is generated. This is an offline method
-func (c *Client) GetMessageLink(chatId int64, checklistTaskId int32, mediaTimestamp int32, messageId int64, pollOptionId string, opts *GetMessageLinkOpts) (*MessageLink, error) {
+func (c *Client) GetMessageLink(chatId int64, messageId int64, opts *GetMessageLinkOpts) (*MessageLink, error) {
 	req := &GetMessageLink{
-		ChatId:          chatId,
-		ChecklistTaskId: checklistTaskId,
-		MediaTimestamp:  mediaTimestamp,
-		MessageId:       messageId,
-		PollOptionId:    pollOptionId,
+		ChatId:    chatId,
+		MessageId: messageId,
 	}
 	if opts != nil {
+		req.ChecklistTaskId = opts.ChecklistTaskId
 		req.ForAlbum = opts.ForAlbum
 		req.InMessageThread = opts.InMessageThread
+		req.MediaTimestamp = opts.MediaTimestamp
+		req.PollOptionId = opts.PollOptionId
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -5702,12 +5760,14 @@ func (c *Client) GetMessageProperties(chatId int64, messageId int64) (*MessagePr
 }
 
 // GetMessagePublicForwards Returns forwarded copies of a channel message to different public channels and public reposts as a story. Can be used only if messageProperties.can_get_statistics == true. For optimal performance, the number of returned messages and stories is chosen by TDLib
-func (c *Client) GetMessagePublicForwards(chatId int64, limit int32, messageId int64, offset string) (*PublicForwards, error) {
+func (c *Client) GetMessagePublicForwards(chatId int64, limit int32, messageId int64, opts *GetMessagePublicForwardsOpts) (*PublicForwards, error) {
 	req := &GetMessagePublicForwards{
 		ChatId:    chatId,
 		Limit:     limit,
 		MessageId: messageId,
-		Offset:    offset,
+	}
+	if opts != nil {
+		req.Offset = opts.Offset
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -5772,13 +5832,15 @@ func (c *Client) GetMessageThread(chatId int64, messageId int64) (*MessageThread
 }
 
 // GetMessageThreadHistory Returns messages in a message thread of a message. Can be used only if messageProperties.can_get_message_thread == true. Message thread of a channel message is in the channel's linked supergroup.
-func (c *Client) GetMessageThreadHistory(chatId int64, fromMessageId int64, limit int32, messageId int64, offset int32) (*Messages, error) {
+func (c *Client) GetMessageThreadHistory(chatId int64, limit int32, messageId int64, opts *GetMessageThreadHistoryOpts) (*Messages, error) {
 	req := &GetMessageThreadHistory{
-		ChatId:        chatId,
-		FromMessageId: fromMessageId,
-		Limit:         limit,
-		MessageId:     messageId,
-		Offset:        offset,
+		ChatId:    chatId,
+		Limit:     limit,
+		MessageId: messageId,
+	}
+	if opts != nil {
+		req.FromMessageId = opts.FromMessageId
+		req.Offset = opts.Offset
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -5801,10 +5863,9 @@ func (c *Client) GetMessageViewers(chatId int64, messageId int64) (*MessageViewe
 }
 
 // GetNetworkStatistics Returns network data usage statistics. Can be called before authorization
-func (c *Client) GetNetworkStatistics(opts *GetNetworkStatisticsOpts) (*NetworkStatistics, error) {
-	req := &GetNetworkStatistics{}
-	if opts != nil {
-		req.OnlyCurrent = opts.OnlyCurrent
+func (c *Client) GetNetworkStatistics(onlyCurrent bool) (*NetworkStatistics, error) {
+	req := &GetNetworkStatistics{
+		OnlyCurrent: onlyCurrent,
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -5824,10 +5885,12 @@ func (c *Client) GetNewChatPrivacySettings() (*NewChatPrivacySettings, error) {
 }
 
 // GetOauthLinkInfo Returns information about an OAuth deep link. Use checkOauthRequestMatchCode, acceptOauthRequest or declineOauthRequest to process the link
-func (c *Client) GetOauthLinkInfo(inAppOrigin string, url string) (*OauthLinkInfo, error) {
+func (c *Client) GetOauthLinkInfo(url string, opts *GetOauthLinkInfoOpts) (*OauthLinkInfo, error) {
 	req := &GetOauthLinkInfo{
-		InAppOrigin: inAppOrigin,
-		Url:         url,
+		Url: url,
+	}
+	if opts != nil {
+		req.InAppOrigin = opts.InAppOrigin
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -5837,11 +5900,13 @@ func (c *Client) GetOauthLinkInfo(inAppOrigin string, url string) (*OauthLinkInf
 }
 
 // GetOnRampPaymentAvailability Returns the available on-ramp payment methods based on the current user location
-func (c *Client) GetOnRampPaymentAvailability(baseCurrency string, cryptocurrency string, providerId string) (*OnRampPaymentAvailability, error) {
+func (c *Client) GetOnRampPaymentAvailability(cryptocurrency string, providerId string, opts *GetOnRampPaymentAvailabilityOpts) (*OnRampPaymentAvailability, error) {
 	req := &GetOnRampPaymentAvailability{
-		BaseCurrency:   baseCurrency,
 		Cryptocurrency: cryptocurrency,
 		ProviderId:     providerId,
+	}
+	if opts != nil {
+		req.BaseCurrency = opts.BaseCurrency
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -5851,12 +5916,14 @@ func (c *Client) GetOnRampPaymentAvailability(baseCurrency string, cryptocurrenc
 }
 
 // GetOnRampPaymentLimits Returns the limits for an on-ramp payment; only for providers that supports limits retrieval
-func (c *Client) GetOnRampPaymentLimits(baseCurrency string, cryptocurrency string, paymentMethodName string, providerId string) (*OnRampPaymentLimits, error) {
+func (c *Client) GetOnRampPaymentLimits(baseCurrency string, cryptocurrency string, providerId string, opts *GetOnRampPaymentLimitsOpts) (*OnRampPaymentLimits, error) {
 	req := &GetOnRampPaymentLimits{
-		BaseCurrency:      baseCurrency,
-		Cryptocurrency:    cryptocurrency,
-		PaymentMethodName: paymentMethodName,
-		ProviderId:        providerId,
+		BaseCurrency:   baseCurrency,
+		Cryptocurrency: cryptocurrency,
+		ProviderId:     providerId,
+	}
+	if opts != nil {
+		req.PaymentMethodName = opts.PaymentMethodName
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -5866,14 +5933,16 @@ func (c *Client) GetOnRampPaymentLimits(baseCurrency string, cryptocurrency stri
 }
 
 // GetOnRampPaymentQuote Returns a quote for an on-ramp payment; only for providers that supports quote retrieval
-func (c *Client) GetOnRampPaymentQuote(baseCurrency string, baseCurrencyAmount string, cryptocurrency string, cryptocurrencyAmount string, paymentMethodName string, providerId string) (*OnRampPaymentQuote, error) {
+func (c *Client) GetOnRampPaymentQuote(baseCurrency string, baseCurrencyAmount string, cryptocurrency string, cryptocurrencyAmount string, providerId string, opts *GetOnRampPaymentQuoteOpts) (*OnRampPaymentQuote, error) {
 	req := &GetOnRampPaymentQuote{
 		BaseCurrency:         baseCurrency,
 		BaseCurrencyAmount:   baseCurrencyAmount,
 		Cryptocurrency:       cryptocurrency,
 		CryptocurrencyAmount: cryptocurrencyAmount,
-		PaymentMethodName:    paymentMethodName,
 		ProviderId:           providerId,
+	}
+	if opts != nil {
+		req.PaymentMethodName = opts.PaymentMethodName
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -5930,10 +5999,12 @@ func (c *Client) GetOwnedBots() (*Users, error) {
 }
 
 // GetOwnedStickerSets Returns sticker sets owned by the current user
-func (c *Client) GetOwnedStickerSets(limit int32, offsetStickerSetId int64) (*StickerSets, error) {
+func (c *Client) GetOwnedStickerSets(limit int32, opts *GetOwnedStickerSetsOpts) (*StickerSets, error) {
 	req := &GetOwnedStickerSets{
-		Limit:              limit,
-		OffsetStickerSetId: offsetStickerSetId,
+		Limit: limit,
+	}
+	if opts != nil {
+		req.OffsetStickerSetId = opts.OffsetStickerSetId
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -6096,13 +6167,15 @@ func (c *Client) GetPollOptionProperties(chatId int64, messageId int64, pollOpti
 }
 
 // GetPollVoters Returns message senders voted for the specified option in a poll; use poll.can_get_voters to check whether the method can be used.
-func (c *Client) GetPollVoters(chatId int64, limit int32, messageId int64, offset int32, optionId int32) (*PollVoters, error) {
+func (c *Client) GetPollVoters(chatId int64, limit int32, messageId int64, optionId int32, opts *GetPollVotersOpts) (*PollVoters, error) {
 	req := &GetPollVoters{
 		ChatId:    chatId,
 		Limit:     limit,
 		MessageId: messageId,
-		Offset:    offset,
 		OptionId:  optionId,
+	}
+	if opts != nil {
+		req.Offset = opts.Offset
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -6140,10 +6213,9 @@ func (c *Client) GetPreferredCountryLanguage(countryCode string) (*Text, error) 
 }
 
 // GetPremiumFeatures Returns information about features, available to Premium users
-func (c *Client) GetPremiumFeatures(opts *GetPremiumFeaturesOpts) (*PremiumFeatures, error) {
-	req := &GetPremiumFeatures{}
-	if opts != nil {
-		req.Source = opts.Source
+func (c *Client) GetPremiumFeatures(source PremiumSource) (*PremiumFeatures, error) {
+	req := &GetPremiumFeatures{
+		Source: source,
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -6313,15 +6385,14 @@ func (c *Client) GetReceivedGift(receivedGiftId string) (*ReceivedGift, error) {
 }
 
 // GetReceivedGifts Returns gifts received by the given user or chat
-func (c *Client) GetReceivedGifts(businessConnectionId string, collectionId int32, limit int32, offset string, ownerId MessageSender, opts *GetReceivedGiftsOpts) (*ReceivedGifts, error) {
+func (c *Client) GetReceivedGifts(businessConnectionId string, limit int32, ownerId MessageSender, opts *GetReceivedGiftsOpts) (*ReceivedGifts, error) {
 	req := &GetReceivedGifts{
 		BusinessConnectionId: businessConnectionId,
-		CollectionId:         collectionId,
 		Limit:                limit,
-		Offset:               offset,
 		OwnerId:              ownerId,
 	}
 	if opts != nil {
+		req.CollectionId = opts.CollectionId
 		req.ExcludeHosted = opts.ExcludeHosted
 		req.ExcludeNonUpgradable = opts.ExcludeNonUpgradable
 		req.ExcludeSaved = opts.ExcludeSaved
@@ -6330,6 +6401,7 @@ func (c *Client) GetReceivedGifts(businessConnectionId string, collectionId int3
 		req.ExcludeUpgradable = opts.ExcludeUpgradable
 		req.ExcludeUpgraded = opts.ExcludeUpgraded
 		req.ExcludeWithoutColors = opts.ExcludeWithoutColors
+		req.Offset = opts.Offset
 		req.SortByPrice = opts.SortByPrice
 	}
 	resp, err := c.Send(req)
@@ -6384,10 +6456,9 @@ func (c *Client) GetRecentlyVisitedTMeUrls(referrer string) (*TMeUrls, error) {
 }
 
 // GetRecentStickers Returns a list of recently used stickers
-func (c *Client) GetRecentStickers(opts *GetRecentStickersOpts) (*Stickers, error) {
-	req := &GetRecentStickers{}
-	if opts != nil {
-		req.IsAttached = opts.IsAttached
+func (c *Client) GetRecentStickers(isAttached bool) (*Stickers, error) {
+	req := &GetRecentStickers{
+		IsAttached: isAttached,
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -6479,12 +6550,14 @@ func (c *Client) GetSavedMessagesTags(savedMessagesTopicId int64) (*SavedMessage
 }
 
 // GetSavedMessagesTopicHistory Returns messages in a Saved Messages topic. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id)
-func (c *Client) GetSavedMessagesTopicHistory(fromMessageId int64, limit int32, offset int32, savedMessagesTopicId int64) (*Messages, error) {
+func (c *Client) GetSavedMessagesTopicHistory(limit int32, savedMessagesTopicId int64, opts *GetSavedMessagesTopicHistoryOpts) (*Messages, error) {
 	req := &GetSavedMessagesTopicHistory{
-		FromMessageId:        fromMessageId,
 		Limit:                limit,
-		Offset:               offset,
 		SavedMessagesTopicId: savedMessagesTopicId,
+	}
+	if opts != nil {
+		req.FromMessageId = opts.FromMessageId
+		req.Offset = opts.Offset
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -6657,11 +6730,10 @@ func (c *Client) GetStarRevenueStatistics(ownerId MessageSender, opts *GetStarRe
 }
 
 // GetStarSubscriptions Returns the list of Telegram Star subscriptions for the current user
-func (c *Client) GetStarSubscriptions(offset string, opts *GetStarSubscriptionsOpts) (*StarSubscriptions, error) {
-	req := &GetStarSubscriptions{
-		Offset: offset,
-	}
+func (c *Client) GetStarSubscriptions(opts *GetStarSubscriptionsOpts) (*StarSubscriptions, error) {
+	req := &GetStarSubscriptions{}
 	if opts != nil {
+		req.Offset = opts.Offset
 		req.OnlyExpiring = opts.OnlyExpiring
 	}
 	resp, err := c.Send(req)
@@ -6672,14 +6744,14 @@ func (c *Client) GetStarSubscriptions(offset string, opts *GetStarSubscriptionsO
 }
 
 // GetStarTransactions Returns the list of Telegram Star transactions for the specified owner
-func (c *Client) GetStarTransactions(limit int32, offset string, ownerId MessageSender, opts *GetStarTransactionsOpts) (*StarTransactions, error) {
+func (c *Client) GetStarTransactions(limit int32, ownerId MessageSender, opts *GetStarTransactionsOpts) (*StarTransactions, error) {
 	req := &GetStarTransactions{
 		Limit:   limit,
-		Offset:  offset,
 		OwnerId: ownerId,
 	}
 	if opts != nil {
 		req.Direction = opts.Direction
+		req.Offset = opts.Offset
 		req.SubscriptionId = opts.SubscriptionId
 	}
 	resp, err := c.Send(req)
@@ -6704,11 +6776,13 @@ func (c *Client) GetStarWithdrawalUrl(ownerId MessageSender, password string, st
 }
 
 // GetStatisticalGraph Loads an asynchronous or a zoomed in statistical graph
-func (c *Client) GetStatisticalGraph(chatId int64, token string, x int64) (StatisticalGraph, error) {
+func (c *Client) GetStatisticalGraph(chatId int64, token string, opts *GetStatisticalGraphOpts) (StatisticalGraph, error) {
 	req := &GetStatisticalGraph{
 		ChatId: chatId,
 		Token:  token,
-		X:      x,
+	}
+	if opts != nil {
+		req.X = opts.X
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -6762,12 +6836,14 @@ func (c *Client) GetStickerOutlineSvgPath(stickerFileId int32, opts *GetStickerO
 }
 
 // GetStickers Returns stickers from the installed sticker sets that correspond to any of the given emoji or can be found by sticker-specific keywords. If the query is non-empty, then favorite, recently used or trending stickers may also be returned
-func (c *Client) GetStickers(chatId int64, limit int32, query string, stickerType StickerType) (*Stickers, error) {
+func (c *Client) GetStickers(chatId int64, limit int32, stickerType StickerType, opts *GetStickersOpts) (*Stickers, error) {
 	req := &GetStickers{
 		ChatId:      chatId,
 		Limit:       limit,
-		Query:       query,
 		StickerType: stickerType,
+	}
+	if opts != nil {
+		req.Query = opts.Query
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -6839,12 +6915,14 @@ func (c *Client) GetStory(storyId int32, storyPosterChatId int64, opts *GetStory
 }
 
 // GetStoryAlbumStories Returns the list of stories added to the given story album. For optimal performance, the number of returned stories is chosen by TDLib
-func (c *Client) GetStoryAlbumStories(chatId int64, limit int32, offset int32, storyAlbumId int32) (*Stories, error) {
+func (c *Client) GetStoryAlbumStories(chatId int64, limit int32, storyAlbumId int32, opts *GetStoryAlbumStoriesOpts) (*Stories, error) {
 	req := &GetStoryAlbumStories{
 		ChatId:       chatId,
 		Limit:        limit,
-		Offset:       offset,
 		StoryAlbumId: storyAlbumId,
+	}
+	if opts != nil {
+		req.Offset = opts.Offset
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -6866,13 +6944,13 @@ func (c *Client) GetStoryAvailableReactions(rowSize int32) (*AvailableReactions,
 }
 
 // GetStoryInteractions Returns interactions with a story. The method can be called only for stories posted on behalf of the current user
-func (c *Client) GetStoryInteractions(limit int32, offset string, storyId int32, opts *GetStoryInteractionsOpts) (*StoryInteractions, error) {
+func (c *Client) GetStoryInteractions(limit int32, storyId int32, opts *GetStoryInteractionsOpts) (*StoryInteractions, error) {
 	req := &GetStoryInteractions{
 		Limit:   limit,
-		Offset:  offset,
 		StoryId: storyId,
 	}
 	if opts != nil {
+		req.Offset = opts.Offset
 		req.OnlyContacts = opts.OnlyContacts
 		req.PreferForwards = opts.PreferForwards
 		req.PreferWithReaction = opts.PreferWithReaction
@@ -6896,12 +6974,14 @@ func (c *Client) GetStoryNotificationSettingsExceptions() (*Chats, error) {
 }
 
 // GetStoryPublicForwards Returns forwards of a story as a message to public chats and reposts by public channels. Can be used only if the story is posted on behalf of the current user or story.can_get_statistics == true.
-func (c *Client) GetStoryPublicForwards(limit int32, offset string, storyId int32, storyPosterChatId int64) (*PublicForwards, error) {
+func (c *Client) GetStoryPublicForwards(limit int32, storyId int32, storyPosterChatId int64, opts *GetStoryPublicForwardsOpts) (*PublicForwards, error) {
 	req := &GetStoryPublicForwards{
 		Limit:             limit,
-		Offset:            offset,
 		StoryId:           storyId,
 		StoryPosterChatId: storyPosterChatId,
+	}
+	if opts != nil {
+		req.Offset = opts.Offset
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -6996,14 +7076,14 @@ func (c *Client) GetSupergroupFullInfo(supergroupId int64) (*SupergroupFullInfo,
 }
 
 // GetSupergroupMembers Returns information about members or banned users in a supergroup or channel. Can be used only if supergroupFullInfo.can_get_members == true; additionally, administrator privileges may be required for some filters
-func (c *Client) GetSupergroupMembers(limit int32, offset int32, supergroupId int64, opts *GetSupergroupMembersOpts) (*ChatMembers, error) {
+func (c *Client) GetSupergroupMembers(limit int32, supergroupId int64, opts *GetSupergroupMembersOpts) (*ChatMembers, error) {
 	req := &GetSupergroupMembers{
 		Limit:        limit,
-		Offset:       offset,
 		SupergroupId: supergroupId,
 	}
 	if opts != nil {
 		req.Filter = opts.Filter
+		req.Offset = opts.Offset
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -7166,13 +7246,13 @@ func (c *Client) GetTonConnectSessions() (*TonConnectSessions, error) {
 }
 
 // GetTonTransactions Returns the list of TON Gram transactions of the current user
-func (c *Client) GetTonTransactions(limit int32, offset string, opts *GetTonTransactionsOpts) (*TonTransactions, error) {
+func (c *Client) GetTonTransactions(limit int32, opts *GetTonTransactionsOpts) (*TonTransactions, error) {
 	req := &GetTonTransactions{
-		Limit:  limit,
-		Offset: offset,
+		Limit: limit,
 	}
 	if opts != nil {
 		req.Direction = opts.Direction
+		req.Offset = opts.Offset
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -7182,10 +7262,12 @@ func (c *Client) GetTonTransactions(limit int32, offset string, opts *GetTonTran
 }
 
 // GetTonWalletNfts Returns NFTs stored on the TON wallet of the user; can be used only if getOption("can_use_ton_wallet")
-func (c *Client) GetTonWalletNfts(limit int32, offset string) (*TonNfts, error) {
+func (c *Client) GetTonWalletNfts(limit int32, opts *GetTonWalletNftsOpts) (*TonNfts, error) {
 	req := &GetTonWalletNfts{
-		Limit:  limit,
-		Offset: offset,
+		Limit: limit,
+	}
+	if opts != nil {
+		req.Offset = opts.Offset
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -7241,13 +7323,13 @@ func (c *Client) GetTonWalletTransactionByMsgHash(msgHash string) (*TonWalletTra
 }
 
 // GetTonWalletTransactions Returns the list of TON wallet transactions of the current user; can be used only if getOption("can_use_ton_wallet")
-func (c *Client) GetTonWalletTransactions(limit int32, offset string, opts *GetTonWalletTransactionsOpts) (*TonWalletTransactions, error) {
+func (c *Client) GetTonWalletTransactions(limit int32, opts *GetTonWalletTransactionsOpts) (*TonWalletTransactions, error) {
 	req := &GetTonWalletTransactions{
-		Limit:  limit,
-		Offset: offset,
+		Limit: limit,
 	}
 	if opts != nil {
 		req.Direction = opts.Direction
+		req.Offset = opts.Offset
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -7270,11 +7352,13 @@ func (c *Client) GetTopChats(category TopChatCategory, limit int32) (*Chats, err
 }
 
 // GetTrendingStickerSets Returns a list of trending sticker sets. For optimal performance, the number of returned sticker sets is chosen by TDLib
-func (c *Client) GetTrendingStickerSets(limit int32, offset int32, stickerType StickerType) (*TrendingStickerSets, error) {
+func (c *Client) GetTrendingStickerSets(limit int32, stickerType StickerType, opts *GetTrendingStickerSetsOpts) (*TrendingStickerSets, error) {
 	req := &GetTrendingStickerSets{
 		Limit:       limit,
-		Offset:      offset,
 		StickerType: stickerType,
+	}
+	if opts != nil {
+		req.Offset = opts.Offset
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -7416,11 +7500,13 @@ func (c *Client) GetUserPrivacySettingRules(setting UserPrivacySetting) (*UserPr
 }
 
 // GetUserProfileAudios Returns the list of profile audio files of a user
-func (c *Client) GetUserProfileAudios(limit int32, offset int32, userId int64) (*Audios, error) {
+func (c *Client) GetUserProfileAudios(limit int32, userId int64, opts *GetUserProfileAudiosOpts) (*Audios, error) {
 	req := &GetUserProfileAudios{
 		Limit:  limit,
-		Offset: offset,
 		UserId: userId,
+	}
+	if opts != nil {
+		req.Offset = opts.Offset
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -7430,11 +7516,13 @@ func (c *Client) GetUserProfileAudios(limit int32, offset int32, userId int64) (
 }
 
 // GetUserProfilePhotos Returns the profile photos of a user. Personal and public photo aren't returned
-func (c *Client) GetUserProfilePhotos(limit int32, offset int32, userId int64) (*ChatPhotos, error) {
+func (c *Client) GetUserProfilePhotos(limit int32, userId int64, opts *GetUserProfilePhotosOpts) (*ChatPhotos, error) {
 	req := &GetUserProfilePhotos{
 		Limit:  limit,
-		Offset: offset,
 		UserId: userId,
+	}
+	if opts != nil {
+		req.Offset = opts.Offset
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -7520,16 +7608,16 @@ func (c *Client) GetVideoMessageAdvertisements(chatId int64, messageId int64) (*
 }
 
 // GetWebAppLinkUrl Returns an HTTPS URL of a Web App to open after a link of the type internalLinkTypeWebApp is clicked
-func (c *Client) GetWebAppLinkUrl(botUserId int64, chatId int64, parameters *WebAppOpenParameters, startParameter string, webAppShortName string, opts *GetWebAppLinkUrlOpts) (*WebAppUrl, error) {
+func (c *Client) GetWebAppLinkUrl(botUserId int64, chatId int64, parameters *WebAppOpenParameters, webAppShortName string, opts *GetWebAppLinkUrlOpts) (*WebAppUrl, error) {
 	req := &GetWebAppLinkUrl{
 		BotUserId:       botUserId,
 		ChatId:          chatId,
 		Parameters:      parameters,
-		StartParameter:  startParameter,
 		WebAppShortName: webAppShortName,
 	}
 	if opts != nil {
 		req.AllowWriteAccess = opts.AllowWriteAccess
+		req.StartParameter = opts.StartParameter
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -7551,11 +7639,13 @@ func (c *Client) GetWebAppPlaceholder(botUserId int64) (*Outline, error) {
 }
 
 // GetWebAppUrl Returns an HTTPS URL of a Web App to open from the side menu, a keyboardButtonTypeWebApp button, or an inlineQueryResultsButtonTypeWebApp button
-func (c *Client) GetWebAppUrl(botUserId int64, parameters *WebAppOpenParameters, url string) (*WebAppUrl, error) {
+func (c *Client) GetWebAppUrl(botUserId int64, parameters *WebAppOpenParameters, opts *GetWebAppUrlOpts) (*WebAppUrl, error) {
 	req := &GetWebAppUrl{
 		BotUserId:  botUserId,
 		Parameters: parameters,
-		Url:        url,
+	}
+	if opts != nil {
+		req.Url = opts.Url
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -7733,13 +7823,13 @@ func (c *Client) JoinLiveStory(groupCallId int32, joinParameters *GroupCallJoinP
 }
 
 // JoinVideoChat Joins an active video chat. Returns join response payload for tgcalls
-func (c *Client) JoinVideoChat(groupCallId int32, inviteHash string, joinParameters *GroupCallJoinParameters, opts *JoinVideoChatOpts) (*Text, error) {
+func (c *Client) JoinVideoChat(groupCallId int32, joinParameters *GroupCallJoinParameters, opts *JoinVideoChatOpts) (*Text, error) {
 	req := &JoinVideoChat{
 		GroupCallId:    groupCallId,
-		InviteHash:     inviteHash,
 		JoinParameters: joinParameters,
 	}
 	if opts != nil {
+		req.InviteHash = opts.InviteHash
 		req.ParticipantId = opts.ParticipantId
 	}
 	resp, err := c.Send(req)
@@ -7965,16 +8055,16 @@ func (c *Client) OpenStory(storyId int32, storyPosterChatId int64) error {
 }
 
 // OpenWebApp Informs TDLib that a Web App is being opened from the attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button.
-func (c *Client) OpenWebApp(botUserId int64, chatId int64, parameters *WebAppOpenParameters, url string, opts *OpenWebAppOpts) (*WebAppInfo, error) {
+func (c *Client) OpenWebApp(botUserId int64, chatId int64, parameters *WebAppOpenParameters, opts *OpenWebAppOpts) (*WebAppInfo, error) {
 	req := &OpenWebApp{
 		BotUserId:  botUserId,
 		ChatId:     chatId,
 		Parameters: parameters,
-		Url:        url,
 	}
 	if opts != nil {
 		req.ReplyTo = opts.ReplyTo
 		req.TopicId = opts.TopicId
+		req.Url = opts.Url
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -8045,10 +8135,9 @@ func (c *Client) PinChatMessage(chatId int64, messageId int64, opts *PinChatMess
 }
 
 // PingProxy Computes time needed to receive a response from a Telegram server through a proxy. Can be called before authorization
-func (c *Client) PingProxy(opts *PingProxyOpts) (*Seconds, error) {
-	req := &PingProxy{}
-	if opts != nil {
-		req.Proxy = opts.Proxy
+func (c *Client) PingProxy(proxy *Proxy) (*Seconds, error) {
+	req := &PingProxy{
+		Proxy: proxy,
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -8148,13 +8237,13 @@ func (c *Client) ProcessChatJoinRequest(chatId int64, userId int64, opts *Proces
 }
 
 // ProcessChatJoinRequests Handles all pending join requests for a given link in a chat
-func (c *Client) ProcessChatJoinRequests(chatId int64, inviteLink string, opts *ProcessChatJoinRequestsOpts) error {
+func (c *Client) ProcessChatJoinRequests(chatId int64, opts *ProcessChatJoinRequestsOpts) error {
 	req := &ProcessChatJoinRequests{
-		ChatId:     chatId,
-		InviteLink: inviteLink,
+		ChatId: chatId,
 	}
 	if opts != nil {
 		req.Approve = opts.Approve
+		req.InviteLink = opts.InviteLink
 	}
 	_, err := c.Send(req)
 	return err
@@ -8295,11 +8384,13 @@ func (c *Client) ReaddQuickReplyShortcutMessages(messageIds []int64, shortcutNam
 }
 
 // ReadFilePart Reads a part of a file from the TDLib file cache and returns read bytes. This method is intended to be used only if the application has no direct access to TDLib's file system, because it is usually slower than a direct read from the file
-func (c *Client) ReadFilePart(count int64, fileId int32, offset int64) (*Data, error) {
+func (c *Client) ReadFilePart(fileId int32, opts *ReadFilePartOpts) (*Data, error) {
 	req := &ReadFilePart{
-		Count:  count,
 		FileId: fileId,
-		Offset: offset,
+	}
+	if opts != nil {
+		req.Count = opts.Count
+		req.Offset = opts.Offset
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -8371,13 +8462,13 @@ func (c *Client) RegisterDevice(deviceToken DeviceToken, otherUserIds []int64) (
 }
 
 // RegisterUser Finishes user registration. Works only when the current authorization state is authorizationStateWaitRegistration
-func (c *Client) RegisterUser(firstName string, lastName string, opts *RegisterUserOpts) error {
+func (c *Client) RegisterUser(firstName string, opts *RegisterUserOpts) error {
 	req := &RegisterUser{
 		FirstName: firstName,
-		LastName:  lastName,
 	}
 	if opts != nil {
 		req.DisableNotification = opts.DisableNotification
+		req.LastName = opts.LastName
 	}
 	_, err := c.Send(req)
 	return err
@@ -8688,11 +8779,13 @@ func (c *Client) ReorderBotActiveUsernames(botUserId int64, usernames []string) 
 }
 
 // ReorderBotMediaPreviews Changes order of media previews in the list of media previews of a bot
-func (c *Client) ReorderBotMediaPreviews(botUserId int64, fileIds []int32, languageCode string) error {
+func (c *Client) ReorderBotMediaPreviews(botUserId int64, fileIds []int32, opts *ReorderBotMediaPreviewsOpts) error {
 	req := &ReorderBotMediaPreviews{
-		BotUserId:    botUserId,
-		FileIds:      fileIds,
-		LanguageCode: languageCode,
+		BotUserId: botUserId,
+		FileIds:   fileIds,
+	}
+	if opts != nil {
+		req.LanguageCode = opts.LanguageCode
 	}
 	_, err := c.Send(req)
 	return err
@@ -8869,12 +8962,14 @@ func (c *Client) ReportAuthenticationCodeMissing(mobileNetworkCode string) error
 }
 
 // ReportChat Reports a chat to the Telegram moderators. A chat can be reported only from the chat action bar, if chat.can_be_reported, or if messageProperties.can_report_chat
-func (c *Client) ReportChat(chatId int64, messageIds []int64, optionId []byte, text string) (ReportChatResult, error) {
+func (c *Client) ReportChat(chatId int64, messageIds []int64, optionId []byte, opts *ReportChatOpts) (ReportChatResult, error) {
 	req := &ReportChat{
 		ChatId:     chatId,
 		MessageIds: messageIds,
 		OptionId:   optionId,
-		Text:       text,
+	}
+	if opts != nil {
+		req.Text = opts.Text
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -8884,12 +8979,14 @@ func (c *Client) ReportChat(chatId int64, messageIds []int64, optionId []byte, t
 }
 
 // ReportChatPhoto Reports a chat photo to the Telegram moderators. A chat photo can be reported only if chat.can_be_reported
-func (c *Client) ReportChatPhoto(chatId int64, fileId int32, reason ReportReason, text string) error {
+func (c *Client) ReportChatPhoto(chatId int64, fileId int32, reason ReportReason, opts *ReportChatPhotoOpts) error {
 	req := &ReportChatPhoto{
 		ChatId: chatId,
 		FileId: fileId,
 		Reason: reason,
-		Text:   text,
+	}
+	if opts != nil {
+		req.Text = opts.Text
 	}
 	_, err := c.Send(req)
 	return err
@@ -8943,12 +9040,14 @@ func (c *Client) ReportSponsoredChat(optionId []byte, sponsoredChatUniqueId int6
 }
 
 // ReportStory Reports a story to the Telegram moderators
-func (c *Client) ReportStory(optionId []byte, storyId int32, storyPosterChatId int64, text string) (ReportStoryResult, error) {
+func (c *Client) ReportStory(optionId []byte, storyId int32, storyPosterChatId int64, opts *ReportStoryOpts) (ReportStoryResult, error) {
 	req := &ReportStory{
 		OptionId:          optionId,
 		StoryId:           storyId,
 		StoryPosterChatId: storyPosterChatId,
-		Text:              text,
+	}
+	if opts != nil {
+		req.Text = opts.Text
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -9017,10 +9116,9 @@ func (c *Client) RequestQrCodeAuthentication(otherUserIds []int64) error {
 }
 
 // ResendAuthenticationCode Resends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitCode, the next_code_type of the result is not null
-func (c *Client) ResendAuthenticationCode(opts *ResendAuthenticationCodeOpts) error {
-	req := &ResendAuthenticationCode{}
-	if opts != nil {
-		req.Reason = opts.Reason
+func (c *Client) ResendAuthenticationCode(reason ResendCodeReason) error {
+	req := &ResendAuthenticationCode{
+		Reason: reason,
 	}
 	_, err := c.Send(req)
 	return err
@@ -9064,10 +9162,9 @@ func (c *Client) ResendMessages(chatId int64, messageIds []int64, paidMessageSta
 }
 
 // ResendPhoneNumberCode Resends the authentication code sent to a phone number. Works only if the previously received authenticationCodeInfo next_code_type was not null and the server-specified timeout has passed
-func (c *Client) ResendPhoneNumberCode(opts *ResendPhoneNumberCodeOpts) (*AuthenticationCodeInfo, error) {
-	req := &ResendPhoneNumberCode{}
-	if opts != nil {
-		req.Reason = opts.Reason
+func (c *Client) ResendPhoneNumberCode(reason ResendCodeReason) (*AuthenticationCodeInfo, error) {
+	req := &ResendPhoneNumberCode{
+		Reason: reason,
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -9194,12 +9291,14 @@ func (c *Client) SavePreparedKeyboardButton(button *KeyboardButton, userId int64
 }
 
 // SearchAffiliatePrograms Searches affiliate programs that can be connected to the given affiliate
-func (c *Client) SearchAffiliatePrograms(affiliate AffiliateType, limit int32, offset string, sortOrder AffiliateProgramSortOrder) (*FoundAffiliatePrograms, error) {
+func (c *Client) SearchAffiliatePrograms(affiliate AffiliateType, limit int32, sortOrder AffiliateProgramSortOrder, opts *SearchAffiliateProgramsOpts) (*FoundAffiliatePrograms, error) {
 	req := &SearchAffiliatePrograms{
 		Affiliate: affiliate,
 		Limit:     limit,
-		Offset:    offset,
 		SortOrder: sortOrder,
+	}
+	if opts != nil {
+		req.Offset = opts.Offset
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -9221,12 +9320,12 @@ func (c *Client) SearchBackground(name string) (*Background, error) {
 }
 
 // SearchCallMessages Searches for call and group call messages. Returns the results in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
-func (c *Client) SearchCallMessages(limit int32, offset string, opts *SearchCallMessagesOpts) (*FoundMessages, error) {
+func (c *Client) SearchCallMessages(limit int32, opts *SearchCallMessagesOpts) (*FoundMessages, error) {
 	req := &SearchCallMessages{
-		Limit:  limit,
-		Offset: offset,
+		Limit: limit,
 	}
 	if opts != nil {
+		req.Offset = opts.Offset
 		req.OnlyMissed = opts.OnlyMissed
 	}
 	resp, err := c.Send(req)
@@ -9267,16 +9366,16 @@ func (c *Client) SearchChatMembers(chatId int64, limit int32, query string, opts
 }
 
 // SearchChatMessages Searches for messages with given words in the chat. Returns the results in reverse chronological order, i.e. in order of decreasing message_id. Cannot be used in secret chats with a non-empty query
-func (c *Client) SearchChatMessages(chatId int64, fromMessageId int64, limit int32, offset int32, query string, opts *SearchChatMessagesOpts) (*FoundChatMessages, error) {
+func (c *Client) SearchChatMessages(chatId int64, limit int32, query string, opts *SearchChatMessagesOpts) (*FoundChatMessages, error) {
 	req := &SearchChatMessages{
-		ChatId:        chatId,
-		FromMessageId: fromMessageId,
-		Limit:         limit,
-		Offset:        offset,
-		Query:         query,
+		ChatId: chatId,
+		Limit:  limit,
+		Query:  query,
 	}
 	if opts != nil {
 		req.Filter = opts.Filter
+		req.FromMessageId = opts.FromMessageId
+		req.Offset = opts.Offset
 		req.SenderId = opts.SenderId
 		req.TopicId = opts.TopicId
 	}
@@ -9363,12 +9462,12 @@ func (c *Client) SearchEmojis(text string, opts *SearchEmojisOpts) (*EmojiKeywor
 }
 
 // SearchFileDownloads Searches for files in the file download list or recently downloaded files from the list
-func (c *Client) SearchFileDownloads(limit int32, offset string, opts *SearchFileDownloadsOpts) (*FoundFileDownloads, error) {
+func (c *Client) SearchFileDownloads(limit int32, opts *SearchFileDownloadsOpts) (*FoundFileDownloads, error) {
 	req := &SearchFileDownloads{
-		Limit:  limit,
-		Offset: offset,
+		Limit: limit,
 	}
 	if opts != nil {
+		req.Offset = opts.Offset
 		req.OnlyActive = opts.OnlyActive
 		req.OnlyCompleted = opts.OnlyCompleted
 		req.Query = opts.Query
@@ -9381,17 +9480,17 @@ func (c *Client) SearchFileDownloads(limit int32, offset string, opts *SearchFil
 }
 
 // SearchGiftsForResale Returns upgraded gifts that can be bought from other owners using sendResoldGift
-func (c *Client) SearchGiftsForResale(attributes []UpgradedGiftAttributeId, giftId int64, limit int32, offset string, order GiftForResaleOrder, opts *SearchGiftsForResaleOpts) (*GiftsForResale, error) {
+func (c *Client) SearchGiftsForResale(attributes []UpgradedGiftAttributeId, giftId int64, limit int32, order GiftForResaleOrder, opts *SearchGiftsForResaleOpts) (*GiftsForResale, error) {
 	req := &SearchGiftsForResale{
 		Attributes: attributes,
 		GiftId:     giftId,
 		Limit:      limit,
-		Offset:     offset,
 		Order:      order,
 	}
 	if opts != nil {
 		req.ForCrafting = opts.ForCrafting
 		req.ForStars = opts.ForStars
+		req.Offset = opts.Offset
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -9428,18 +9527,18 @@ func (c *Client) SearchInstalledStickerSets(limit int32, query string, stickerTy
 }
 
 // SearchMessages Searches for messages in all chats except secret chats. Returns the results in reverse chronological order (i.e., in order of decreasing (date, chat_id, message_id)).
-func (c *Client) SearchMessages(limit int32, maxDate int32, minDate int32, offset string, query string, opts *SearchMessagesOpts) (*FoundMessages, error) {
+func (c *Client) SearchMessages(limit int32, query string, opts *SearchMessagesOpts) (*FoundMessages, error) {
 	req := &SearchMessages{
-		Limit:   limit,
-		MaxDate: maxDate,
-		MinDate: minDate,
-		Offset:  offset,
-		Query:   query,
+		Limit: limit,
+		Query: query,
 	}
 	if opts != nil {
 		req.ChatList = opts.ChatList
 		req.ChatTypeFilter = opts.ChatTypeFilter
 		req.Filter = opts.Filter
+		req.MaxDate = opts.MaxDate
+		req.MinDate = opts.MinDate
+		req.Offset = opts.Offset
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -9489,11 +9588,13 @@ func (c *Client) SearchPublicChats(query string, opts *SearchPublicChatsOpts) (*
 }
 
 // SearchPublicMessagesByTag Searches for public channel posts containing the given hashtag or cashtag. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
-func (c *Client) SearchPublicMessagesByTag(limit int32, offset string, tag string) (*FoundMessages, error) {
+func (c *Client) SearchPublicMessagesByTag(limit int32, tag string, opts *SearchPublicMessagesByTagOpts) (*FoundMessages, error) {
 	req := &SearchPublicMessagesByTag{
-		Limit:  limit,
-		Offset: offset,
-		Tag:    tag,
+		Limit: limit,
+		Tag:   tag,
+	}
+	if opts != nil {
+		req.Offset = opts.Offset
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -9503,12 +9604,14 @@ func (c *Client) SearchPublicMessagesByTag(limit int32, offset string, tag strin
 }
 
 // SearchPublicPosts Searches for public channel posts using the given query. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
-func (c *Client) SearchPublicPosts(limit int32, offset string, query string, starCount int64) (*FoundPublicPosts, error) {
+func (c *Client) SearchPublicPosts(limit int32, query string, starCount int64, opts *SearchPublicPostsOpts) (*FoundPublicPosts, error) {
 	req := &SearchPublicPosts{
 		Limit:     limit,
-		Offset:    offset,
 		Query:     query,
 		StarCount: starCount,
+	}
+	if opts != nil {
+		req.Offset = opts.Offset
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -9518,11 +9621,13 @@ func (c *Client) SearchPublicPosts(limit int32, offset string, query string, sta
 }
 
 // SearchPublicStoriesByLocation Searches for public stories by the given address location. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
-func (c *Client) SearchPublicStoriesByLocation(address *LocationAddress, limit int32, offset string) (*FoundStories, error) {
+func (c *Client) SearchPublicStoriesByLocation(address *LocationAddress, limit int32, opts *SearchPublicStoriesByLocationOpts) (*FoundStories, error) {
 	req := &SearchPublicStoriesByLocation{
 		Address: address,
 		Limit:   limit,
-		Offset:  offset,
+	}
+	if opts != nil {
+		req.Offset = opts.Offset
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -9532,12 +9637,14 @@ func (c *Client) SearchPublicStoriesByLocation(address *LocationAddress, limit i
 }
 
 // SearchPublicStoriesByTag Searches for public stories containing the given hashtag or cashtag. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
-func (c *Client) SearchPublicStoriesByTag(limit int32, offset string, storyPosterChatId int64, tag string) (*FoundStories, error) {
+func (c *Client) SearchPublicStoriesByTag(limit int32, storyPosterChatId int64, tag string, opts *SearchPublicStoriesByTagOpts) (*FoundStories, error) {
 	req := &SearchPublicStoriesByTag{
 		Limit:             limit,
-		Offset:            offset,
 		StoryPosterChatId: storyPosterChatId,
 		Tag:               tag,
+	}
+	if opts != nil {
+		req.Offset = opts.Offset
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -9547,12 +9654,14 @@ func (c *Client) SearchPublicStoriesByTag(limit int32, offset string, storyPoste
 }
 
 // SearchPublicStoriesByVenue Searches for public stories from the given venue. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
-func (c *Client) SearchPublicStoriesByVenue(limit int32, offset string, venueId string, venueProvider string) (*FoundStories, error) {
+func (c *Client) SearchPublicStoriesByVenue(limit int32, venueId string, venueProvider string, opts *SearchPublicStoriesByVenueOpts) (*FoundStories, error) {
 	req := &SearchPublicStoriesByVenue{
 		Limit:         limit,
-		Offset:        offset,
 		VenueId:       venueId,
 		VenueProvider: venueProvider,
+	}
+	if opts != nil {
+		req.Offset = opts.Offset
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -9592,15 +9701,15 @@ func (c *Client) SearchRecentlyFoundChats(limit int32, query string, opts *Searc
 }
 
 // SearchSavedMessages Searches for messages tagged by the given reaction and with the given words in the Saved Messages chat; for Telegram Premium users only.
-func (c *Client) SearchSavedMessages(fromMessageId int64, limit int32, offset int32, query string, savedMessagesTopicId int64, opts *SearchSavedMessagesOpts) (*FoundChatMessages, error) {
+func (c *Client) SearchSavedMessages(limit int32, query string, opts *SearchSavedMessagesOpts) (*FoundChatMessages, error) {
 	req := &SearchSavedMessages{
-		FromMessageId:        fromMessageId,
-		Limit:                limit,
-		Offset:               offset,
-		Query:                query,
-		SavedMessagesTopicId: savedMessagesTopicId,
+		Limit: limit,
+		Query: query,
 	}
 	if opts != nil {
+		req.FromMessageId = opts.FromMessageId
+		req.Offset = opts.Offset
+		req.SavedMessagesTopicId = opts.SavedMessagesTopicId
 		req.Tag = opts.Tag
 	}
 	resp, err := c.Send(req)
@@ -9611,15 +9720,15 @@ func (c *Client) SearchSavedMessages(fromMessageId int64, limit int32, offset in
 }
 
 // SearchSecretMessages Searches for messages in secret chats. Returns the results in reverse chronological order. For optimal performance, the number of returned messages is chosen by TDLib
-func (c *Client) SearchSecretMessages(chatId int64, limit int32, offset string, query string, opts *SearchSecretMessagesOpts) (*FoundMessages, error) {
+func (c *Client) SearchSecretMessages(chatId int64, limit int32, query string, opts *SearchSecretMessagesOpts) (*FoundMessages, error) {
 	req := &SearchSecretMessages{
 		ChatId: chatId,
 		Limit:  limit,
-		Offset: offset,
 		Query:  query,
 	}
 	if opts != nil {
 		req.Filter = opts.Filter
+		req.Offset = opts.Offset
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -9629,15 +9738,15 @@ func (c *Client) SearchSecretMessages(chatId int64, limit int32, offset string, 
 }
 
 // SearchStickers Searches for stickers from public sticker sets that correspond to any of the given emoji
-func (c *Client) SearchStickers(emojis string, limit int32, offset int32, stickerType StickerType, opts *SearchStickersOpts) (*Stickers, error) {
+func (c *Client) SearchStickers(emojis string, limit int32, stickerType StickerType, opts *SearchStickersOpts) (*Stickers, error) {
 	req := &SearchStickers{
 		Emojis:      emojis,
 		Limit:       limit,
-		Offset:      offset,
 		StickerType: stickerType,
 	}
 	if opts != nil {
 		req.InputLanguageCodes = opts.InputLanguageCodes
+		req.Offset = opts.Offset
 		req.Query = opts.Query
 	}
 	resp, err := c.Send(req)
@@ -9764,11 +9873,13 @@ func (c *Client) SendAuthenticationFirebaseSms(token string) error {
 }
 
 // SendBotStartMessage Invites a bot to a chat (if it is not yet a member) and sends it the /start command; requires can_invite_users member right. Bots can't be invited to a private chat other than the chat with the bot.
-func (c *Client) SendBotStartMessage(botUserId int64, chatId int64, parameter string) (*Message, error) {
+func (c *Client) SendBotStartMessage(botUserId int64, chatId int64, opts *SendBotStartMessageOpts) (*Message, error) {
 	req := &SendBotStartMessage{
 		BotUserId: botUserId,
 		ChatId:    chatId,
-		Parameter: parameter,
+	}
+	if opts != nil {
+		req.Parameter = opts.Parameter
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -9839,12 +9950,14 @@ func (c *Client) SendCallLog(callId InputCall, logFile InputFile) error {
 }
 
 // SendCallRating Sends a call rating
-func (c *Client) SendCallRating(callId InputCall, comment string, problems []CallProblem, rating int32) error {
+func (c *Client) SendCallRating(callId InputCall, problems []CallProblem, rating int32, opts *SendCallRatingOpts) error {
 	req := &SendCallRating{
 		CallId:   callId,
-		Comment:  comment,
 		Problems: problems,
 		Rating:   rating,
+	}
+	if opts != nil {
+		req.Comment = opts.Comment
 	}
 	_, err := c.Send(req)
 	return err
@@ -9861,13 +9974,13 @@ func (c *Client) SendCallSignalingData(callId int32, data []byte) error {
 }
 
 // SendChatAction Sends a notification about user activity in a chat
-func (c *Client) SendChatAction(businessConnectionId string, chatId int64, opts *SendChatActionOpts) error {
+func (c *Client) SendChatAction(chatId int64, opts *SendChatActionOpts) error {
 	req := &SendChatAction{
-		BusinessConnectionId: businessConnectionId,
-		ChatId:               chatId,
+		ChatId: chatId,
 	}
 	if opts != nil {
 		req.Action = opts.Action
+		req.BusinessConnectionId = opts.BusinessConnectionId
 		req.TopicId = opts.TopicId
 	}
 	_, err := c.Send(req)
@@ -10044,16 +10157,16 @@ func (c *Client) SendPassportAuthorizationForm(authorizationFormId int32, types 
 }
 
 // SendPaymentForm Sends a filled-out payment form to the bot for final verification
-func (c *Client) SendPaymentForm(inputInvoice InputInvoice, orderInfoId string, paymentFormId int64, shippingOptionId string, tipAmount int64, opts *SendPaymentFormOpts) (*PaymentResult, error) {
+func (c *Client) SendPaymentForm(inputInvoice InputInvoice, paymentFormId int64, tipAmount int64, opts *SendPaymentFormOpts) (*PaymentResult, error) {
 	req := &SendPaymentForm{
-		InputInvoice:     inputInvoice,
-		OrderInfoId:      orderInfoId,
-		PaymentFormId:    paymentFormId,
-		ShippingOptionId: shippingOptionId,
-		TipAmount:        tipAmount,
+		InputInvoice:  inputInvoice,
+		PaymentFormId: paymentFormId,
+		TipAmount:     tipAmount,
 	}
 	if opts != nil {
 		req.Credentials = opts.Credentials
+		req.OrderInfoId = opts.OrderInfoId
+		req.ShippingOptionId = opts.ShippingOptionId
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -10120,15 +10233,15 @@ func (c *Client) SendResoldGift(giftName string, ownerId MessageSender, price Gi
 }
 
 // SendRichMessageDraft Sends a draft for a being generated rich message; for bots only
-func (c *Client) SendRichMessageDraft(chatId int64, draftId int64, forumTopicId int32, message *InputRichMessage, opts *SendRichMessageDraftOpts) error {
+func (c *Client) SendRichMessageDraft(chatId int64, draftId int64, message *InputRichMessage, opts *SendRichMessageDraftOpts) error {
 	req := &SendRichMessageDraft{
-		ChatId:       chatId,
-		DraftId:      draftId,
-		ForumTopicId: forumTopicId,
-		Message:      message,
+		ChatId:  chatId,
+		DraftId: draftId,
+		Message: message,
 	}
 	if opts != nil {
 		req.CanStop = opts.CanStop
+		req.ForumTopicId = opts.ForumTopicId
 		req.KeepOnStop = opts.KeepOnStop
 	}
 	_, err := c.Send(req)
@@ -10136,14 +10249,14 @@ func (c *Client) SendRichMessageDraft(chatId int64, draftId int64, forumTopicId 
 }
 
 // SendTextMessageDraft Sends a draft for a being generated text message; for bots only
-func (c *Client) SendTextMessageDraft(chatId int64, draftId int64, forumTopicId int32, opts *SendTextMessageDraftOpts) error {
+func (c *Client) SendTextMessageDraft(chatId int64, draftId int64, opts *SendTextMessageDraftOpts) error {
 	req := &SendTextMessageDraft{
-		ChatId:       chatId,
-		DraftId:      draftId,
-		ForumTopicId: forumTopicId,
+		ChatId:  chatId,
+		DraftId: draftId,
 	}
 	if opts != nil {
 		req.CanStop = opts.CanStop
+		req.ForumTopicId = opts.ForumTopicId
 		req.KeepOnStop = opts.KeepOnStop
 		req.Text = opts.Text
 	}
@@ -10180,17 +10293,17 @@ func (c *Client) SendTonConnectSessionConnectResult(body []byte, challengeAnswer
 }
 
 // SendTonWalletTransfer Sends a cryptocurrency from the user's TON wallet; can be used only if getOption("can_use_ton_wallet")
-func (c *Client) SendTonWalletTransfer(address string, amount int64, comment string, gaslessTransferData []byte, regularTransferData []byte, sendingId int32, userId int64, opts *SendTonWalletTransferOpts) (*TonWalletTransferResult, error) {
+func (c *Client) SendTonWalletTransfer(address string, amount int64, gaslessTransferData []byte, regularTransferData []byte, sendingId int32, userId int64, opts *SendTonWalletTransferOpts) (*TonWalletTransferResult, error) {
 	req := &SendTonWalletTransfer{
 		Address:             address,
 		Amount:              amount,
-		Comment:             comment,
 		GaslessTransferData: gaslessTransferData,
 		RegularTransferData: regularTransferData,
 		SendingId:           sendingId,
 		UserId:              userId,
 	}
 	if opts != nil {
+		req.Comment = opts.Comment
 		req.IsCommentEncrypted = opts.IsCommentEncrypted
 	}
 	resp, err := c.Send(req)
@@ -10226,10 +10339,12 @@ func (c *Client) SendWebAppData(botUserId int64, buttonText string, data string)
 }
 
 // SetAccentColor Changes accent color and background custom emoji for the current user; for Telegram Premium users only
-func (c *Client) SetAccentColor(accentColorId int32, backgroundCustomEmojiId int64) error {
+func (c *Client) SetAccentColor(accentColorId int32, opts *SetAccentColorOpts) error {
 	req := &SetAccentColor{
-		AccentColorId:           accentColorId,
-		BackgroundCustomEmojiId: backgroundCustomEmojiId,
+		AccentColorId: accentColorId,
+	}
+	if opts != nil {
+		req.BackgroundCustomEmojiId = opts.BackgroundCustomEmojiId
 	}
 	_, err := c.Send(req)
 	return err
@@ -10340,43 +10455,48 @@ func (c *Client) SetBio(bio string) error {
 }
 
 // SetBirthdate Changes the birthdate of the current user
-func (c *Client) SetBirthdate(opts *SetBirthdateOpts) error {
-	req := &SetBirthdate{}
-	if opts != nil {
-		req.Birthdate = opts.Birthdate
+func (c *Client) SetBirthdate(birthdate *Birthdate) error {
+	req := &SetBirthdate{
+		Birthdate: birthdate,
 	}
 	_, err := c.Send(req)
 	return err
 }
 
 // SetBotInfoDescription Sets the text shown in the chat with a bot if the chat is empty. Can be called only if userTypeBot.can_be_edited == true
-func (c *Client) SetBotInfoDescription(botUserId int64, description string, languageCode string) error {
+func (c *Client) SetBotInfoDescription(botUserId int64, description string, opts *SetBotInfoDescriptionOpts) error {
 	req := &SetBotInfoDescription{
-		BotUserId:    botUserId,
-		Description:  description,
-		LanguageCode: languageCode,
+		BotUserId:   botUserId,
+		Description: description,
+	}
+	if opts != nil {
+		req.LanguageCode = opts.LanguageCode
 	}
 	_, err := c.Send(req)
 	return err
 }
 
 // SetBotInfoShortDescription Sets the text shown on a bot's profile page and sent together with the link when users share the bot. Can be called only if userTypeBot.can_be_edited == true
-func (c *Client) SetBotInfoShortDescription(botUserId int64, languageCode string, shortDescription string) error {
+func (c *Client) SetBotInfoShortDescription(botUserId int64, shortDescription string, opts *SetBotInfoShortDescriptionOpts) error {
 	req := &SetBotInfoShortDescription{
 		BotUserId:        botUserId,
-		LanguageCode:     languageCode,
 		ShortDescription: shortDescription,
+	}
+	if opts != nil {
+		req.LanguageCode = opts.LanguageCode
 	}
 	_, err := c.Send(req)
 	return err
 }
 
 // SetBotName Sets the name of a bot. Can be called only if userTypeBot.can_be_edited == true
-func (c *Client) SetBotName(botUserId int64, languageCode string, name string) error {
+func (c *Client) SetBotName(botUserId int64, name string, opts *SetBotNameOpts) error {
 	req := &SetBotName{
-		BotUserId:    botUserId,
-		LanguageCode: languageCode,
-		Name:         name,
+		BotUserId: botUserId,
+		Name:      name,
+	}
+	if opts != nil {
+		req.LanguageCode = opts.LanguageCode
 	}
 	_, err := c.Send(req)
 	return err
@@ -10395,10 +10515,12 @@ func (c *Client) SetBotProfilePhoto(botUserId int64, opts *SetBotProfilePhotoOpt
 }
 
 // SetBotUpdatesStatus Informs the server about the number of pending bot updates if they haven't been processed for a long time; for bots only
-func (c *Client) SetBotUpdatesStatus(errorMessage string, pendingUpdateCount int32) error {
+func (c *Client) SetBotUpdatesStatus(pendingUpdateCount int32, opts *SetBotUpdatesStatusOpts) error {
 	req := &SetBotUpdatesStatus{
-		ErrorMessage:       errorMessage,
 		PendingUpdateCount: pendingUpdateCount,
+	}
+	if opts != nil {
+		req.ErrorMessage = opts.ErrorMessage
 	}
 	_, err := c.Send(req)
 	return err
@@ -10425,11 +10547,13 @@ func (c *Client) SetBusinessAccountGiftSettings(businessConnectionId string, set
 }
 
 // SetBusinessAccountName Changes the first and last name of a business account; for bots only
-func (c *Client) SetBusinessAccountName(businessConnectionId string, firstName string, lastName string) error {
+func (c *Client) SetBusinessAccountName(businessConnectionId string, firstName string, opts *SetBusinessAccountNameOpts) error {
 	req := &SetBusinessAccountName{
 		BusinessConnectionId: businessConnectionId,
 		FirstName:            firstName,
-		LastName:             lastName,
+	}
+	if opts != nil {
+		req.LastName = opts.LastName
 	}
 	_, err := c.Send(req)
 	return err
@@ -10459,10 +10583,9 @@ func (c *Client) SetBusinessAccountUsername(businessConnectionId string, usernam
 }
 
 // SetBusinessAwayMessageSettings Changes the business away message settings of the current user. Requires Telegram Business subscription
-func (c *Client) SetBusinessAwayMessageSettings(opts *SetBusinessAwayMessageSettingsOpts) error {
-	req := &SetBusinessAwayMessageSettings{}
-	if opts != nil {
-		req.AwayMessageSettings = opts.AwayMessageSettings
+func (c *Client) SetBusinessAwayMessageSettings(awayMessageSettings *BusinessAwayMessageSettings) error {
+	req := &SetBusinessAwayMessageSettings{
+		AwayMessageSettings: awayMessageSettings,
 	}
 	_, err := c.Send(req)
 	return err
@@ -10478,20 +10601,18 @@ func (c *Client) SetBusinessConnectedBot(bot *BusinessConnectedBot) error {
 }
 
 // SetBusinessGreetingMessageSettings Changes the business greeting message settings of the current user. Requires Telegram Business subscription
-func (c *Client) SetBusinessGreetingMessageSettings(opts *SetBusinessGreetingMessageSettingsOpts) error {
-	req := &SetBusinessGreetingMessageSettings{}
-	if opts != nil {
-		req.GreetingMessageSettings = opts.GreetingMessageSettings
+func (c *Client) SetBusinessGreetingMessageSettings(greetingMessageSettings *BusinessGreetingMessageSettings) error {
+	req := &SetBusinessGreetingMessageSettings{
+		GreetingMessageSettings: greetingMessageSettings,
 	}
 	_, err := c.Send(req)
 	return err
 }
 
 // SetBusinessLocation Changes the business location of the current user. Requires Telegram Business subscription
-func (c *Client) SetBusinessLocation(opts *SetBusinessLocationOpts) error {
-	req := &SetBusinessLocation{}
-	if opts != nil {
-		req.Location = opts.Location
+func (c *Client) SetBusinessLocation(location *BusinessLocation) error {
+	req := &SetBusinessLocation{
+		Location: location,
 	}
 	_, err := c.Send(req)
 	return err
@@ -10512,31 +10633,31 @@ func (c *Client) SetBusinessMessageIsPinned(businessConnectionId string, chatId 
 }
 
 // SetBusinessOpeningHours Changes the business opening hours of the current user. Requires Telegram Business subscription
-func (c *Client) SetBusinessOpeningHours(opts *SetBusinessOpeningHoursOpts) error {
-	req := &SetBusinessOpeningHours{}
-	if opts != nil {
-		req.OpeningHours = opts.OpeningHours
+func (c *Client) SetBusinessOpeningHours(openingHours *BusinessOpeningHours) error {
+	req := &SetBusinessOpeningHours{
+		OpeningHours: openingHours,
 	}
 	_, err := c.Send(req)
 	return err
 }
 
 // SetBusinessStartPage Changes the business start page of the current user. Requires Telegram Business subscription
-func (c *Client) SetBusinessStartPage(opts *SetBusinessStartPageOpts) error {
-	req := &SetBusinessStartPage{}
-	if opts != nil {
-		req.StartPage = opts.StartPage
+func (c *Client) SetBusinessStartPage(startPage *InputBusinessStartPage) error {
+	req := &SetBusinessStartPage{
+		StartPage: startPage,
 	}
 	_, err := c.Send(req)
 	return err
 }
 
 // SetChatAccentColor Changes accent color and background custom emoji of a channel chat. Requires can_change_info administrator right
-func (c *Client) SetChatAccentColor(accentColorId int32, backgroundCustomEmojiId int64, chatId int64) error {
+func (c *Client) SetChatAccentColor(accentColorId int32, chatId int64, opts *SetChatAccentColorOpts) error {
 	req := &SetChatAccentColor{
-		AccentColorId:           accentColorId,
-		BackgroundCustomEmojiId: backgroundCustomEmojiId,
-		ChatId:                  chatId,
+		AccentColorId: accentColorId,
+		ChatId:        chatId,
+	}
+	if opts != nil {
+		req.BackgroundCustomEmojiId = opts.BackgroundCustomEmojiId
 	}
 	_, err := c.Send(req)
 	return err
@@ -10575,13 +10696,13 @@ func (c *Client) SetChatAvailableReactions(availableReactions ChatAvailableReact
 }
 
 // SetChatBackground Sets the background in a specific chat. Supported only in private and secret chats with non-deleted users, and in chats with sufficient boost level and can_change_info administrator right
-func (c *Client) SetChatBackground(chatId int64, darkThemeDimming int32, opts *SetChatBackgroundOpts) error {
+func (c *Client) SetChatBackground(chatId int64, opts *SetChatBackgroundOpts) error {
 	req := &SetChatBackground{
-		ChatId:           chatId,
-		DarkThemeDimming: darkThemeDimming,
+		ChatId: chatId,
 	}
 	if opts != nil {
 		req.Background = opts.Background
+		req.DarkThemeDimming = opts.DarkThemeDimming
 		req.OnlyForSelf = opts.OnlyForSelf
 		req.Type = opts.Type
 	}
@@ -10762,11 +10883,13 @@ func (c *Client) SetChatPinnedStories(chatId int64, storyIds []int32) error {
 }
 
 // SetChatProfileAccentColor Changes accent color and background custom emoji for profile of a supergroup or channel chat. Requires can_change_info administrator right
-func (c *Client) SetChatProfileAccentColor(chatId int64, profileAccentColorId int32, profileBackgroundCustomEmojiId int64) error {
+func (c *Client) SetChatProfileAccentColor(chatId int64, profileAccentColorId int32, opts *SetChatProfileAccentColorOpts) error {
 	req := &SetChatProfileAccentColor{
-		ChatId:                         chatId,
-		ProfileAccentColorId:           profileAccentColorId,
-		ProfileBackgroundCustomEmojiId: profileBackgroundCustomEmojiId,
+		ChatId:               chatId,
+		ProfileAccentColorId: profileAccentColorId,
+	}
+	if opts != nil {
+		req.ProfileBackgroundCustomEmojiId = opts.ProfileBackgroundCustomEmojiId
 	}
 	_, err := c.Send(req)
 	return err
@@ -10814,12 +10937,12 @@ func (c *Client) SetCloseFriends(userIds []int64) error {
 }
 
 // SetCommands Sets the list of commands supported by the bot for the given user scope and language; for bots only
-func (c *Client) SetCommands(commands []BotCommand, languageCode string, opts *SetCommandsOpts) error {
+func (c *Client) SetCommands(commands []BotCommand, opts *SetCommandsOpts) error {
 	req := &SetCommands{
-		Commands:     commands,
-		LanguageCode: languageCode,
+		Commands: commands,
 	}
 	if opts != nil {
+		req.LanguageCode = opts.LanguageCode
 		req.Scope = opts.Scope
 	}
 	_, err := c.Send(req)
@@ -10913,20 +11036,18 @@ func (c *Client) SetDefaultBackground(opts *SetDefaultBackgroundOpts) (*Backgrou
 }
 
 // SetDefaultChannelAdministratorRights Sets default administrator rights for adding the bot to channel chats; for bots only
-func (c *Client) SetDefaultChannelAdministratorRights(opts *SetDefaultChannelAdministratorRightsOpts) error {
-	req := &SetDefaultChannelAdministratorRights{}
-	if opts != nil {
-		req.DefaultChannelAdministratorRights = opts.DefaultChannelAdministratorRights
+func (c *Client) SetDefaultChannelAdministratorRights(defaultChannelAdministratorRights *ChatAdministratorRights) error {
+	req := &SetDefaultChannelAdministratorRights{
+		DefaultChannelAdministratorRights: defaultChannelAdministratorRights,
 	}
 	_, err := c.Send(req)
 	return err
 }
 
 // SetDefaultGroupAdministratorRights Sets default administrator rights for adding the bot to basic group and supergroup chats; for bots only
-func (c *Client) SetDefaultGroupAdministratorRights(opts *SetDefaultGroupAdministratorRightsOpts) error {
-	req := &SetDefaultGroupAdministratorRights{}
-	if opts != nil {
-		req.DefaultGroupAdministratorRights = opts.DefaultGroupAdministratorRights
+func (c *Client) SetDefaultGroupAdministratorRights(defaultGroupAdministratorRights *ChatAdministratorRights) error {
+	req := &SetDefaultGroupAdministratorRights{
+		DefaultGroupAdministratorRights: defaultGroupAdministratorRights,
 	}
 	_, err := c.Send(req)
 	return err
@@ -10964,21 +11085,22 @@ func (c *Client) SetDirectMessagesChatTopicIsMarkedAsUnread(chatId int64, topicI
 }
 
 // SetEmojiStatus Changes the emoji status of the current user; for Telegram Premium users only
-func (c *Client) SetEmojiStatus(opts *SetEmojiStatusOpts) error {
-	req := &SetEmojiStatus{}
-	if opts != nil {
-		req.EmojiStatus = opts.EmojiStatus
+func (c *Client) SetEmojiStatus(emojiStatus *EmojiStatus) error {
+	req := &SetEmojiStatus{
+		EmojiStatus: emojiStatus,
 	}
 	_, err := c.Send(req)
 	return err
 }
 
 // SetFileGenerationProgress Informs TDLib on a file generation progress
-func (c *Client) SetFileGenerationProgress(expectedSize int64, generationId int64, localPrefixSize int64) error {
+func (c *Client) SetFileGenerationProgress(generationId int64, localPrefixSize int64, opts *SetFileGenerationProgressOpts) error {
 	req := &SetFileGenerationProgress{
-		ExpectedSize:    expectedSize,
 		GenerationId:    generationId,
 		LocalPrefixSize: localPrefixSize,
+	}
+	if opts != nil {
+		req.ExpectedSize = opts.ExpectedSize
 	}
 	_, err := c.Send(req)
 	return err
@@ -11060,12 +11182,12 @@ func (c *Client) SetGroupCallPaidMessageStarCount(groupCallId int32, paidMessage
 }
 
 // SetGroupCallParticipantIsSpeaking Informs TDLib that speaking state of a participant of an active group call has changed. Returns identifier of the participant if it is found
-func (c *Client) SetGroupCallParticipantIsSpeaking(audioSource int32, groupCallId int32, opts *SetGroupCallParticipantIsSpeakingOpts) (MessageSender, error) {
+func (c *Client) SetGroupCallParticipantIsSpeaking(groupCallId int32, opts *SetGroupCallParticipantIsSpeakingOpts) (MessageSender, error) {
 	req := &SetGroupCallParticipantIsSpeaking{
-		AudioSource: audioSource,
 		GroupCallId: groupCallId,
 	}
 	if opts != nil {
+		req.AudioSource = opts.AudioSource
 		req.IsSpeaking = opts.IsSpeaking
 	}
 	resp, err := c.Send(req)
@@ -11240,20 +11362,21 @@ func (c *Client) SetMessageSenderBotVerification(botUserId int64, customDescript
 }
 
 // SetName Changes the first and last name of the current user
-func (c *Client) SetName(firstName string, lastName string) error {
+func (c *Client) SetName(firstName string, opts *SetNameOpts) error {
 	req := &SetName{
 		FirstName: firstName,
-		LastName:  lastName,
+	}
+	if opts != nil {
+		req.LastName = opts.LastName
 	}
 	_, err := c.Send(req)
 	return err
 }
 
 // SetNetworkType Sets the current network type. Can be called before authorization. Calling this method forces all network connections to reopen, mitigating the delay in switching between different networks,
-func (c *Client) SetNetworkType(opts *SetNetworkTypeOpts) error {
-	req := &SetNetworkType{}
-	if opts != nil {
-		req.Type = opts.Type
+func (c *Client) SetNetworkType(typeField NetworkType) error {
+	req := &SetNetworkType{
+		Type: typeField,
 	}
 	_, err := c.Send(req)
 	return err
@@ -11392,20 +11515,24 @@ func (c *Client) SetPollAnswer(chatId int64, messageId int64, optionIds []int32)
 }
 
 // SetProfileAccentColor Changes accent color and background custom emoji for profile of the current user; for Telegram Premium users only
-func (c *Client) SetProfileAccentColor(profileAccentColorId int32, profileBackgroundCustomEmojiId int64) error {
+func (c *Client) SetProfileAccentColor(profileAccentColorId int32, opts *SetProfileAccentColorOpts) error {
 	req := &SetProfileAccentColor{
-		ProfileAccentColorId:           profileAccentColorId,
-		ProfileBackgroundCustomEmojiId: profileBackgroundCustomEmojiId,
+		ProfileAccentColorId: profileAccentColorId,
+	}
+	if opts != nil {
+		req.ProfileBackgroundCustomEmojiId = opts.ProfileBackgroundCustomEmojiId
 	}
 	_, err := c.Send(req)
 	return err
 }
 
 // SetProfileAudioPosition Changes position of an audio file in the profile audio files of the current user
-func (c *Client) SetProfileAudioPosition(afterFileId int32, fileId int32) error {
+func (c *Client) SetProfileAudioPosition(fileId int32, opts *SetProfileAudioPositionOpts) error {
 	req := &SetProfileAudioPosition{
-		AfterFileId: afterFileId,
-		FileId:      fileId,
+		FileId: fileId,
+	}
+	if opts != nil {
+		req.AfterFileId = opts.AfterFileId
 	}
 	_, err := c.Send(req)
 	return err
@@ -11639,19 +11766,19 @@ func (c *Client) SetSupergroupUsername(supergroupId int64, username string) erro
 }
 
 // SetTdlibParameters Sets the parameters for TDLib initialization. Works only when the current authorization state is authorizationStateWaitTdlibParameters
-func (c *Client) SetTdlibParameters(apiHash string, apiId int32, applicationVersion string, databaseDirectory string, databaseEncryptionKey []byte, deviceModel string, filesDirectory string, systemLanguageCode string, systemVersion string, opts *SetTdlibParametersOpts) error {
+func (c *Client) SetTdlibParameters(apiHash string, apiId int32, applicationVersion string, databaseEncryptionKey []byte, deviceModel string, systemLanguageCode string, opts *SetTdlibParametersOpts) error {
 	req := &SetTdlibParameters{
 		ApiHash:               apiHash,
 		ApiId:                 apiId,
 		ApplicationVersion:    applicationVersion,
-		DatabaseDirectory:     databaseDirectory,
 		DatabaseEncryptionKey: databaseEncryptionKey,
 		DeviceModel:           deviceModel,
-		FilesDirectory:        filesDirectory,
 		SystemLanguageCode:    systemLanguageCode,
-		SystemVersion:         systemVersion,
 	}
 	if opts != nil {
+		req.DatabaseDirectory = opts.DatabaseDirectory
+		req.FilesDirectory = opts.FilesDirectory
+		req.SystemVersion = opts.SystemVersion
 		req.UseChatInfoDatabase = opts.UseChatInfoDatabase
 		req.UseFileDatabase = opts.UseFileDatabase
 		req.UseMessageDatabase = opts.UseMessageDatabase
@@ -11808,13 +11935,13 @@ func (c *Client) ShareUsersWithBot(buttonId int32, sharedUserIds []int64, source
 }
 
 // StartGroupCallRecording Starts recording of an active group call; for video chats only. Requires groupCall.can_be_managed right
-func (c *Client) StartGroupCallRecording(groupCallId int32, title string, opts *StartGroupCallRecordingOpts) error {
+func (c *Client) StartGroupCallRecording(groupCallId int32, opts *StartGroupCallRecordingOpts) error {
 	req := &StartGroupCallRecording{
 		GroupCallId: groupCallId,
-		Title:       title,
 	}
 	if opts != nil {
 		req.RecordVideo = opts.RecordVideo
+		req.Title = opts.Title
 		req.UsePortraitOrientation = opts.UsePortraitOrientation
 	}
 	_, err := c.Send(req)
@@ -11927,12 +12054,14 @@ func (c *Client) SuggestUserProfilePhoto(photo InputChatPhoto, userId int64) err
 }
 
 // SummarizeMessage Summarizes content of the message with non-empty summary_language_code
-func (c *Client) SummarizeMessage(chatId int64, messageId int64, tone string, translateToLanguageCode string) (*FormattedText, error) {
+func (c *Client) SummarizeMessage(chatId int64, messageId int64, opts *SummarizeMessageOpts) (*FormattedText, error) {
 	req := &SummarizeMessage{
-		ChatId:                  chatId,
-		MessageId:               messageId,
-		Tone:                    tone,
-		TranslateToLanguageCode: translateToLanguageCode,
+		ChatId:    chatId,
+		MessageId: messageId,
+	}
+	if opts != nil {
+		req.Tone = opts.Tone
+		req.TranslateToLanguageCode = opts.TranslateToLanguageCode
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -12105,10 +12234,9 @@ func (c *Client) TestUseUpdate() (Update, error) {
 }
 
 // ToggleAllDownloadsArePaused Changes pause state of all files in the file download list
-func (c *Client) ToggleAllDownloadsArePaused(opts *ToggleAllDownloadsArePausedOpts) error {
-	req := &ToggleAllDownloadsArePaused{}
-	if opts != nil {
-		req.ArePaused = opts.ArePaused
+func (c *Client) ToggleAllDownloadsArePaused(arePaused bool) error {
+	req := &ToggleAllDownloadsArePaused{
+		ArePaused: arePaused,
 	}
 	_, err := c.Send(req)
 	return err
@@ -12177,10 +12305,9 @@ func (c *Client) ToggleChatDefaultDisableNotification(chatId int64, opts *Toggle
 }
 
 // ToggleChatFolderTags Toggles whether chat folder tags are enabled
-func (c *Client) ToggleChatFolderTags(opts *ToggleChatFolderTagsOpts) error {
-	req := &ToggleChatFolderTags{}
-	if opts != nil {
-		req.AreTagsEnabled = opts.AreTagsEnabled
+func (c *Client) ToggleChatFolderTags(areTagsEnabled bool) error {
+	req := &ToggleChatFolderTags{
+		AreTagsEnabled: areTagsEnabled,
 	}
 	_, err := c.Send(req)
 	return err
@@ -12410,10 +12537,9 @@ func (c *Client) ToggleGroupCallScreenSharingIsPaused(groupCallId int32, opts *T
 }
 
 // ToggleHasSponsoredMessagesEnabled Toggles whether the current user has sponsored messages enabled. The setting has no effect for users without Telegram Premium for which sponsored messages are always enabled
-func (c *Client) ToggleHasSponsoredMessagesEnabled(opts *ToggleHasSponsoredMessagesEnabledOpts) error {
-	req := &ToggleHasSponsoredMessagesEnabled{}
-	if opts != nil {
-		req.HasSponsoredMessagesEnabled = opts.HasSponsoredMessagesEnabled
+func (c *Client) ToggleHasSponsoredMessagesEnabled(hasSponsoredMessagesEnabled bool) error {
+	req := &ToggleHasSponsoredMessagesEnabled{
+		HasSponsoredMessagesEnabled: hasSponsoredMessagesEnabled,
 	}
 	_, err := c.Send(req)
 	return err
@@ -12672,12 +12798,14 @@ func (c *Client) TransferGift(businessConnectionId string, newOwnerId MessageSen
 }
 
 // TranslateMessageRichMessage Extracts rich message of the given message and translates it to the given language
-func (c *Client) TranslateMessageRichMessage(chatId int64, messageId int64, toLanguageCode string, tone string) (*RichMessage, error) {
+func (c *Client) TranslateMessageRichMessage(chatId int64, messageId int64, toLanguageCode string, opts *TranslateMessageRichMessageOpts) (*RichMessage, error) {
 	req := &TranslateMessageRichMessage{
 		ChatId:         chatId,
 		MessageId:      messageId,
 		ToLanguageCode: toLanguageCode,
-		Tone:           tone,
+	}
+	if opts != nil {
+		req.Tone = opts.Tone
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -12687,12 +12815,14 @@ func (c *Client) TranslateMessageRichMessage(chatId int64, messageId int64, toLa
 }
 
 // TranslateMessageText Extracts text or caption of the given message and translates it to the given language; must not be used in secret chats. If the current user is a Telegram Premium user, then text formatting is preserved
-func (c *Client) TranslateMessageText(chatId int64, messageId int64, toLanguageCode string, tone string) (*FormattedText, error) {
+func (c *Client) TranslateMessageText(chatId int64, messageId int64, toLanguageCode string, opts *TranslateMessageTextOpts) (*FormattedText, error) {
 	req := &TranslateMessageText{
 		ChatId:         chatId,
 		MessageId:      messageId,
 		ToLanguageCode: toLanguageCode,
-		Tone:           tone,
+	}
+	if opts != nil {
+		req.Tone = opts.Tone
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -12702,11 +12832,13 @@ func (c *Client) TranslateMessageText(chatId int64, messageId int64, toLanguageC
 }
 
 // TranslateRichMessage Translates a rich message to the given language
-func (c *Client) TranslateRichMessage(message *InputRichMessage, toLanguageCode string, tone string) (*RichMessage, error) {
+func (c *Client) TranslateRichMessage(message *InputRichMessage, toLanguageCode string, opts *TranslateRichMessageOpts) (*RichMessage, error) {
 	req := &TranslateRichMessage{
 		Message:        message,
 		ToLanguageCode: toLanguageCode,
-		Tone:           tone,
+	}
+	if opts != nil {
+		req.Tone = opts.Tone
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -12716,11 +12848,13 @@ func (c *Client) TranslateRichMessage(message *InputRichMessage, toLanguageCode 
 }
 
 // TranslateText Translates a text to the given language; must not be used in secret chats. If the current user is a Telegram Premium user, then text formatting is preserved
-func (c *Client) TranslateText(text *FormattedText, toLanguageCode string, tone string) (*FormattedText, error) {
+func (c *Client) TranslateText(text *FormattedText, toLanguageCode string, opts *TranslateTextOpts) (*FormattedText, error) {
 	req := &TranslateText{
 		Text:           text,
 		ToLanguageCode: toLanguageCode,
-		Tone:           tone,
+	}
+	if opts != nil {
+		req.Tone = opts.Tone
 	}
 	resp, err := c.Send(req)
 	if err != nil {
