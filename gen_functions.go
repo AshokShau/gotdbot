@@ -969,9 +969,9 @@ func (t AnswerCallbackQuery) MarshalJSON() ([]byte, error) {
 type AnswerChatJoinRequestQuery struct {
 	// Identifier of the query
 	QueryId int64 `json:"query_id,string"`
-	// The result
+	// The result; must be null if a URL is passed
 	Result ChatJoinRequestResult `json:"result"`
-	// URL of the Web App to open
+	// URL of the Web App to open; must be null if a result is passed
 	Url string `json:"url"`
 }
 
@@ -21575,7 +21575,7 @@ func (t SharePhoneNumber) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "sharePhoneNumber", Alias: (*Alias)(&t)})
 }
 
-// ShareUsersWithBot Shares users after pressing a keyboardButtonTypeRequestUsers button with the bot
+// ShareUsersWithBot Shares users after pressing a keyboardButtonTypeRequestUsers or keyboardButtonTypeRequestManagedBot button with the bot
 type ShareUsersWithBot struct {
 	// Identifier of the button
 	ButtonId int32 `json:"button_id"`

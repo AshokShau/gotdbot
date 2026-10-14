@@ -12451,8 +12451,8 @@ type EncryptedPassportElement struct {
 	Data []byte `json:"data"`
 	// List of attached files
 	Files []DatedFile `json:"files"`
-	// The front side of an identity document
-	FrontSide *DatedFile `json:"front_side"`
+	// The front side of an identity document; may be null if the element isn't an identity document
+	FrontSide *DatedFile `json:"front_side,omitempty"`
 	// Hash of the entire element
 	Hash string `json:"hash"`
 	// The reverse side of an identity document; may be null
@@ -13823,8 +13823,8 @@ func (t GameHighScores) MarshalJSON() ([]byte, error) {
 type Gift struct {
 	// Information about the auction on which the gift can be purchased; may be null if the gift can be purchased directly
 	AuctionInfo *GiftAuction `json:"auction_info,omitempty"`
-	// Background of the gift
-	Background *GiftBackground `json:"background"`
+	// Background of the gift; may be null if the gift has no background
+	Background *GiftBackground `json:"background,omitempty"`
 	// Number of Telegram Stars that can be claimed by the receiver instead of the regular gift by default. If the gift was paid with just bought Telegram Stars, then full value can be claimed
 	DefaultSellStarCount int64 `json:"default_sell_star_count"`
 	// Point in time (Unix timestamp) when the gift was sent for the first time; for sold out gifts only
@@ -44241,8 +44241,8 @@ func (t *StarTransactionTypeBotPaidMediaSale) UnmarshalJSON(data []byte) error {
 
 // StarTransactionTypeBotSubscriptionPurchase The transaction is a purchase of a subscription from a bot or a business account by the current user; relevant for regular users only
 type StarTransactionTypeBotSubscriptionPurchase struct {
-	// Information about the bought subscription
-	ProductInfo *ProductInfo `json:"product_info"`
+	// Information about the bought subscription; may be null if no information about the subscription is available
+	ProductInfo *ProductInfo `json:"product_info,omitempty"`
 	// The number of seconds between consecutive Telegram Star debitings
 	SubscriptionPeriod int32 `json:"subscription_period"`
 	// Identifier of the bot or the business account user who created the subscription link
@@ -44269,8 +44269,8 @@ type StarTransactionTypeBotSubscriptionSale struct {
 	Affiliate *AffiliateInfo `json:"affiliate,omitempty"`
 	// Invoice payload
 	InvoicePayload []byte `json:"invoice_payload"`
-	// Information about the bought subscription
-	ProductInfo *ProductInfo `json:"product_info"`
+	// Information about the bought subscription; may be null if no information about the subscription is available
+	ProductInfo *ProductInfo `json:"product_info,omitempty"`
 	// The number of seconds between consecutive Telegram Star debitings
 	SubscriptionPeriod int32 `json:"subscription_period"`
 	// Identifier of the user who bought the subscription
@@ -57891,7 +57891,7 @@ type Usernames struct {
 	DisabledUsernames []string `json:"disabled_usernames"`
 	// Active or disabled username, which may be changed with setUsername or setSupergroupUsername
 	EditableUsername string `json:"editable_username"`
-	// Secondary non-collectible username; for bots only. Can't be used in toggleBotUsernameIsActive; use addBotSecondaryUsername or deleteBotSecondaryUsername to edit it.
+	// Secondary non-collectible username. Currently, must be non-empty only for bot accounts. Can't be used in toggleBotUsernameIsActive;
 	SecondaryUsername string `json:"secondary_username"`
 }
 

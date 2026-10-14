@@ -11920,7 +11920,7 @@ func (c *Client) SharePhoneNumber(userId int64) error {
 	return err
 }
 
-// ShareUsersWithBot Shares users after pressing a keyboardButtonTypeRequestUsers button with the bot
+// ShareUsersWithBot Shares users after pressing a keyboardButtonTypeRequestUsers or keyboardButtonTypeRequestManagedBot button with the bot
 func (c *Client) ShareUsersWithBot(buttonId int32, sharedUserIds []int64, source KeyboardButtonSource, opts *ShareUsersWithBotOpts) error {
 	req := &ShareUsersWithBot{
 		ButtonId:      buttonId,
