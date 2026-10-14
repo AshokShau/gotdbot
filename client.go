@@ -38,7 +38,7 @@ type Client struct {
 
 	handlers     atomic.Pointer[handlersData]
 	hMu          sync.Mutex
-	panicHandler func(client *Client, update TlObject, r interface{})
+	panicHandler func(client *Client, update TlObject, r any)
 	errorHandler func(client *Client, update TlObject, err error) error
 
 	requestMu       sync.Mutex
@@ -188,7 +188,7 @@ func (c *Client) initClient() {
 
 		workers := c.config.UpdateWorkers
 		c.wg.Add(workers)
-		for i := 0; i < workers; i++ {
+		for range workers {
 			go c.processor()
 		}
 		tdjson.Send(c.clientID, `{"@type": "getOption", "name": "version"}`)

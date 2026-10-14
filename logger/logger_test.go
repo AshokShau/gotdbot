@@ -39,14 +39,12 @@ func TestConcurrentChildLoggers(t *testing.T) {
 	const workers, records = 16, 32
 	var wg sync.WaitGroup
 	for i := range workers {
-		wg.Add(1)
-		go func() {
-			defer wg.Done()
+		wg.Go(func() {
 			child := l.With("worker", i)
 			for j := range records {
 				child.Info("record", "index", j)
 			}
-		}()
+		})
 	}
 	wg.Wait()
 	lines := strings.Split(strings.TrimSpace(out.String()), "\n")

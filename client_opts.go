@@ -23,7 +23,7 @@ type AutoRetry struct {
 
 // ClientOpts configures account storage, authentication, logging, and update handling.
 type ClientOpts struct {
-	PanicHandler func(client *Client, update TlObject, r interface{})
+	PanicHandler func(client *Client, update TlObject, r any)
 	ErrorHandler func(client *Client, update TlObject, err error) error
 
 	LibraryPath             string

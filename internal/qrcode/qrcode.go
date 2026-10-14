@@ -7,6 +7,7 @@ import (
 	"image"
 	"image/color"
 	"image/png"
+	"slices"
 )
 
 type QRCode struct {
@@ -329,7 +330,7 @@ func (b *Bitset) AppendBools(bits ...bool) {
 }
 
 func (b *Bitset) AppendNumBools(num int, value bool) {
-	for i := 0; i < num; i++ {
+	for range num {
 		b.AppendBools(value)
 	}
 }
@@ -744,8 +745,8 @@ func newGFPolyMonomial(term gfElement, degree int) gfPoly {
 func (e gfPoly) data(numTerms int) []byte {
 	result := make([]byte, numTerms)
 	i := numTerms - len(e.term)
-	for j := len(e.term) - 1; j >= 0; j-- {
-		result[i] = byte(e.term[j])
+	for _, v := range slices.Backward(e.term) {
+		result[i] = byte(v)
 		i++
 	}
 	return result
@@ -759,8 +760,8 @@ func gfPolyMultiply(a, b gfPoly) gfPoly {
 	numATerms := a.numTerms()
 	numBTerms := b.numTerms()
 	result := gfPoly{term: make([]gfElement, numATerms+numBTerms)}
-	for i := 0; i < numATerms; i++ {
-		for j := 0; j < numBTerms; j++ {
+	for i := range numATerms {
+		for j := range numBTerms {
 			if a.term[i] != 0 && b.term[j] != 0 {
 				monomial := gfPoly{term: make([]gfElement, i+j+1)}
 				monomial.term[i+j] = gfMultiply(a.term[i], b.term[j])
@@ -788,10 +789,7 @@ func gfPolyRemainder(numerator, denominator gfPoly) (gfPoly, error) {
 func gfPolyAdd(a, b gfPoly) gfPoly {
 	numATerms := a.numTerms()
 	numBTerms := b.numTerms()
-	numTerms := numATerms
-	if numBTerms > numTerms {
-		numTerms = numBTerms
-	}
+	numTerms := max(numBTerms, numATerms)
 	result := gfPoly{term: make([]gfElement, numTerms)}
 	for i := 0; i < numTerms; i++ {
 		switch {
@@ -836,7 +834,7 @@ func (e gfPoly) equals(other gfPoly) bool {
 	}
 	numMinTerms := minPoly.numTerms()
 	numMaxTerms := maxPoly.numTerms()
-	for i := 0; i < numMinTerms; i++ {
+	for i := range numMinTerms {
 		if e.term[i] != other.term[i] {
 			return false
 		}
@@ -872,7 +870,7 @@ func rsGeneratorPoly(degree int) (gfPoly, error) {
 		return gfPoly{}, fmt.Errorf("generator degree %d < 2", degree)
 	}
 	generator := gfPoly{term: []gfElement{1}}
-	for i := 0; i < degree; i++ {
+	for i := range degree {
 		nextPoly := gfPoly{term: []gfElement{gfExpTable[i], 1}}
 		generator = gfPolyMultiply(generator, nextPoly)
 	}

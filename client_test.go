@@ -6,6 +6,7 @@ import (
 	"errors"
 	"fmt"
 	"reflect"
+	"slices"
 	"sync"
 	"sync/atomic"
 	"testing"
@@ -64,8 +65,7 @@ func TestSendConcurrentSharedRequestCorrelation(t *testing.T) {
 	results := make(chan result, count)
 	var wg sync.WaitGroup
 	for range count {
-		wg.Add(1)
-		go func() { defer wg.Done(); obj, err := c.Send(req); results <- result{obj, err} }()
+		wg.Go(func() { ; obj, err := c.Send(req); results <- result{obj, err} })
 	}
 	seen := make(map[string]bool)
 	wires := make([]testWireRequest, count)
@@ -78,8 +78,8 @@ func TestSendConcurrentSharedRequestCorrelation(t *testing.T) {
 		seen[w.Extra] = true
 	}
 	// Deliver in reverse order to catch responses accidentally shared by calls.
-	for i := len(wires) - 1; i >= 0; i-- {
-		c.acceptResponse(&Chat{Id: int64(i + 1)}, wires[i].Extra, nil)
+	for i, wire := range slices.Backward(wires) {
+		c.acceptResponse(&Chat{Id: int64(i + 1)}, wire.Extra, nil)
 	}
 	ids := make(map[int64]bool)
 	for range count {
@@ -311,8 +311,7 @@ func TestCloseConcurrentIdempotent(t *testing.T) {
 	}
 	var wg sync.WaitGroup
 	for range 32 {
-		wg.Add(1)
-		go func() { defer wg.Done(); c.Close() }()
+		wg.Go(func() { ; c.Close() })
 	}
 	done := make(chan struct{})
 	go func() { wg.Wait(); close(done) }()

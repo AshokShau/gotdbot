@@ -38,15 +38,13 @@ func TestRegexFilterConcurrentReuse(t *testing.T) {
 	m := &gotdbot.Message{Content: &gotdbot.MessageText{Text: &gotdbot.FormattedText{Text: "hello 42"}}}
 	var wg sync.WaitGroup
 	for range 32 {
-		wg.Add(1)
-		go func() {
-			defer wg.Done()
+		wg.Go(func() {
 			for range 32 {
 				if !filter(m) {
 					t.Error("shared regex changed result")
 				}
 			}
-		}()
+		})
 	}
 	wg.Wait()
 }

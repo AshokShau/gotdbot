@@ -1,6 +1,7 @@
 package gotdbot
 
 import (
+	"maps"
 	"sort"
 )
 
@@ -98,9 +99,7 @@ func (c *Client) AddHandlerGroup(handler Handler, group int) {
 
 	newHandlers := make(map[int][]Handler, len(oldHandlers))
 
-	for groupID, handlers := range oldHandlers {
-		newHandlers[groupID] = handlers
-	}
+	maps.Copy(newHandlers, oldHandlers)
 
 	handlers := append(
 		[]Handler(nil),

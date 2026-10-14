@@ -130,7 +130,7 @@ func TestBitsetRoundTripAndBounds(t *testing.T) {
 }
 
 func TestGaloisFieldArithmetic(t *testing.T) {
-	for a := 0; a < 256; a++ {
+	for a := range 256 {
 		if gfAdd(gfElement(a), gfElement(a)) != 0 || gfMultiply(gfElement(a), 1) != gfElement(a) || gfMultiply(gfElement(a), 0) != 0 {
 			t.Fatalf("field identity failed for %d", a)
 		}

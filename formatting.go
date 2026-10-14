@@ -157,10 +157,7 @@ func (f *FormattedText) Format(parseMode string) string {
 	for _, ev := range events {
 		if ev.Index > lastIndex {
 			if lastIndex < len(utf16Str) {
-				end := ev.Index
-				if end > len(utf16Str) {
-					end = len(utf16Str)
-				}
+				end := min(ev.Index, len(utf16Str))
 				chunk := string(utf16.Decode(utf16Str[lastIndex:end]))
 
 				inCode := false
@@ -210,10 +207,7 @@ func (f *FormattedText) Format(parseMode string) string {
 			lastIndex = ev.Index
 		}
 
-		end := int(ev.Entity.Offset + ev.Entity.Length)
-		if end > len(utf16Str) {
-			end = len(utf16Str)
-		}
+		end := min(int(ev.Entity.Offset+ev.Entity.Length), len(utf16Str))
 		extractedText := ""
 		if ev.Entity.Offset <= int32(len(utf16Str)) {
 			extractedText = string(utf16.Decode(utf16Str[ev.Entity.Offset:end]))

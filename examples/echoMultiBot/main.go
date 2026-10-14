@@ -24,9 +24,9 @@ var (
 func main() {
 	manager = gotdbot.NewClientManager("./libtdjson.so.1.8.68")
 
-	splitTokens := strings.Split(tokens, ",")
+	splitTokens := strings.SplitSeq(tokens, ",")
 
-	for _, token := range splitTokens {
+	for token := range splitTokens {
 		token = strings.TrimSpace(token)
 		if token == "" || token == "ABC" || token == "DEF" {
 			continue

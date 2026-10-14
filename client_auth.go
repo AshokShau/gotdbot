@@ -20,7 +20,7 @@ func (c *Client) authHandler(authState *UpdateAuthorizationState) {
 	switch state := authState.AuthorizationState.(type) {
 	case *AuthorizationStateWaitTdlibParameters:
 		if c.config.TDLibOptions != nil {
-			c.config.TDLibOptions.forEachSet(func(k string, v interface{}) {
+			c.config.TDLibOptions.forEachSet(func(k string, v any) {
 				if opt := toOptionValue(v); opt != nil {
 					err := c.SetOption(k, &SetOptionOpts{Value: opt})
 					if err != nil {
@@ -177,7 +177,7 @@ func (c *Client) authHandler(authState *UpdateAuthorizationState) {
 	return
 }
 
-func toOptionValue(v interface{}) OptionValue {
+func toOptionValue(v any) OptionValue {
 	switch val := v.(type) {
 	case bool:
 		return &OptionValueBoolean{Value: val}

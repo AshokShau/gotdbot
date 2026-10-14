@@ -64,7 +64,7 @@ type TDLibOptions struct {
 }
 
 // forEachSet calls fn for each non-default TDLib option.
-func (o *TDLibOptions) forEachSet(fn func(name string, value interface{})) {
+func (o *TDLibOptions) forEachSet(fn func(name string, value any)) {
 	if o == nil || fn == nil {
 		return
 	}

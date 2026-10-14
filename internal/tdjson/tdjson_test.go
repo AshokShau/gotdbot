@@ -77,9 +77,7 @@ func TestReceiveAndExecuteSerializeNativeBufferAccess(t *testing.T) {
 	tdExecute = func(*byte) *byte { return write("execute") }
 	var wg sync.WaitGroup
 	for range 32 {
-		wg.Add(1)
-		go func() {
-			defer wg.Done()
+		wg.Go(func() {
 			for range 32 {
 				if Receive(0) != "receive" {
 					t.Error("Receive corrupted")
@@ -88,7 +86,7 @@ func TestReceiveAndExecuteSerializeNativeBufferAccess(t *testing.T) {
 					t.Error("Execute corrupted")
 				}
 			}
-		}()
+		})
 	}
 	wg.Wait()
 }
@@ -97,13 +95,11 @@ func TestInitMissingLibraryConcurrent(t *testing.T) {
 	path := filepath.Join(t.TempDir(), "missing-tdjson-library.so")
 	var wg sync.WaitGroup
 	for range 8 {
-		wg.Add(1)
-		go func() {
-			defer wg.Done()
+		wg.Go(func() {
 			if err := Init(path); err == nil || !strings.Contains(err.Error(), path) {
 				t.Errorf("missing library error = %v", err)
 			}
-		}()
+		})
 	}
 	wg.Wait()
 	if libLoaded {

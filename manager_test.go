@@ -114,7 +114,7 @@ func TestUpdateQueueCloseWakesReadersAndCleansSpool(t *testing.T) {
 		t.Fatal(err)
 	}
 	q2 := newTestQueue(t, 1)
-	for i := int64(0); i < 3; i++ {
+	for i := range int64(3) {
 		if err := q2.push(queueTestUpdate(i)); err != nil {
 			t.Fatal(err)
 		}
@@ -187,9 +187,7 @@ func TestUpdateQueueConcurrentProducersAndConsumers(t *testing.T) {
 	var workers sync.WaitGroup
 	t.Cleanup(func() { close(stop); workers.Wait() })
 	for range consumers {
-		workers.Add(1)
-		go func() {
-			defer workers.Done()
+		workers.Go(func() {
 			for {
 				obj, err := q.next(stop)
 				if errors.Is(err, ErrClientClosed) {
@@ -201,20 +199,18 @@ func TestUpdateQueueConcurrentProducersAndConsumers(t *testing.T) {
 				}
 				results <- obj.(*UpdateNewMessage).Message.Id
 			}
-		}()
+		})
 	}
 	var writers sync.WaitGroup
 	for p := range producers {
-		writers.Add(1)
-		go func() {
-			defer writers.Done()
+		writers.Go(func() {
 			for i := range perProducer {
 				if err := q.push(queueTestUpdate(int64(p*perProducer + i))); err != nil {
 					errCh <- err
 					return
 				}
 			}
-		}()
+		})
 	}
 	seen := make(map[int64]bool)
 	for range producers * perProducer {
@@ -253,15 +249,13 @@ func TestManagerStopAndClientRegistry(t *testing.T) {
 	}
 	var wg sync.WaitGroup
 	for _, c := range clients {
-		wg.Add(1)
-		go func() {
-			defer wg.Done()
+		wg.Go(func() {
 			if err := m.AddClient(c); err != nil {
 				t.Error(err)
 			}
 			_ = m.GetClients()
 			_ = m.GetClient(c.clientID)
-		}()
+		})
 	}
 	wg.Wait()
 	if len(m.GetClients()) != count {
@@ -281,8 +275,7 @@ func TestManagerStopAndClientRegistry(t *testing.T) {
 		c.closedOnce.Do(func() { close(c.closed) })
 	}
 	for range 8 {
-		wg.Add(1)
-		go func() { defer wg.Done(); m.Stop() }()
+		wg.Go(func() { ; m.Stop() })
 	}
 	done := make(chan struct{})
 	go func() { wg.Wait(); close(done) }()

@@ -112,8 +112,8 @@ func generateObjects(types []TLType, classes map[string]*TLClass) {
 			// Check if type corresponds to a class
 			isClass := false
 			typeName := p.Type
-			if strings.HasPrefix(typeName, "vector<") {
-				typeName = strings.TrimSuffix(strings.TrimPrefix(typeName, "vector<"), ">")
+			if after, ok := strings.CutPrefix(typeName, "vector<"); ok {
+				typeName = strings.TrimSuffix(after, ">")
 			}
 			if _, ok := classes[typeName]; ok {
 				isClass = true
@@ -184,8 +184,8 @@ func generateObjects(types []TLType, classes map[string]*TLClass) {
 
 				typeName := p.Type
 				isVector := false
-				if strings.HasPrefix(typeName, "vector<") {
-					typeName = strings.TrimSuffix(strings.TrimPrefix(typeName, "vector<"), ">")
+				if after, ok := strings.CutPrefix(typeName, "vector<"); ok {
+					typeName = strings.TrimSuffix(after, ">")
 					isVector = true
 				}
 				className := toCamelCase(typeName)
