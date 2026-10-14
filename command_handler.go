@@ -10,6 +10,7 @@ type CommandHandler struct {
 	Options  MatchingOptions
 	Triggers []rune
 	Command  string
+	Aliases  []string
 	Handler  func(client *Client, message *Message) error
 	Filter   MessageFilter
 }
@@ -26,6 +27,21 @@ func (h *CommandHandler) SetOptions(options MatchingOptions) *CommandHandler {
 // Configure triggers before registration or starting the client.
 func (h *CommandHandler) SetTriggers(triggers string) *CommandHandler {
 	h.Triggers = []rune(triggers)
+	return h
+}
+
+// AddAliases adds alternative command names that call the same handler.
+// Provide names without a trigger, such as "help" instead of "/help".
+// Names are trimmed and matched case-insensitively; empty names are ignored.
+// Aliases share the handler's triggers, matching options, and filters.
+// Configure aliases before registration or starting the client.
+func (h *CommandHandler) AddAliases(aliases ...string) *CommandHandler {
+	for _, alias := range aliases {
+		alias = strings.ToLower(strings.TrimSpace(alias))
+		if alias != "" {
+			h.Aliases = append(h.Aliases, alias)
+		}
+	}
 	return h
 }
 
@@ -87,7 +103,7 @@ func (h *CommandHandler) CheckUpdate(client *Client, update TlObject) bool {
 }
 
 // matchCommand checks whether text starts with one of the configured
-// command triggers and matches this handler's command.
+// command triggers and matches this handler's command or an alias.
 func (h *CommandHandler) matchCommand(client *Client, text string) bool {
 	parts := strings.Fields(text)
 	if len(parts) == 0 {
@@ -109,7 +125,16 @@ func (h *CommandHandler) matchCommand(client *Client, text string) bool {
 		if hasMention && (mentionedBot == "" || strings.ContainsRune(mentionedBot, '@')) {
 			return false
 		}
-		if !strings.EqualFold(commandName, h.Command) {
+		matched := strings.EqualFold(commandName, h.Command)
+		if !matched {
+			for _, alias := range h.Aliases {
+				if strings.EqualFold(commandName, alias) {
+					matched = true
+					break
+				}
+			}
+		}
+		if !matched {
 			continue
 		}
 

@@ -237,6 +237,16 @@ bot.OnCommand("start", func(c *gotdbot.Client, msg *gotdbot.Message) error {
 }).SetTriggers("/!.")
 ```
 
+Use `AddAliases` to send several commands to the same function:
+
+```go
+bot.OnCommand("start", startHandler).AddAliases("help", "info")
+```
+
+Here `/start`, `/help`, and `/info` all call `startHandler`. Aliases are
+case-insensitive and share the handler's triggers, filters, and matching options.
+Provide names without a prefix and configure aliases before starting the client.
+
 Filter predicates are available in `filters/message` and `filters/callbackquery`.
 Import `github.com/AshokShau/gotdbot/filters` and
 `github.com/AshokShau/gotdbot/filters/message` to compose message predicates:

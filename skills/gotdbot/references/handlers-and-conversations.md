@@ -18,11 +18,13 @@ Command/message handlers process `UpdateNewMessage`, `UpdateNewBusinessMessage`,
 
 Default `MatchingOptions` accepts incoming messages, edited messages, and private/basic-group/supergroup/channel/secret chat categories. It rejects outgoing messages. These checks run before a supplied predicate; `message.Outgoing` alone cannot enable outgoing processing. Begin with `DefaultMatchingOptions()`, change `AllowOutgoing`/`AllowIncoming`, then call `SetOptions`. A literal zero-valued `MatchingOptions` rejects all categories.
 
-`SetOptions`, `SetTriggers`, and `AddFilter` mutate handler objects. Configure them before starting updates. Handler registration uses an internal snapshot, but that does not make live field mutation safe.
+`SetOptions`, `SetTriggers`, `AddAliases`, and `AddFilter` mutate handler objects. Configure them before starting updates. Handler registration uses an internal snapshot, but that does not make live field mutation safe.
 
 ## Commands and arguments
 
 Pass `"start"`, not `"/start"`, to `OnCommand`. Commands default to `/`; `SetTriggers("/!.")` accepts each of those characters separately. Empty triggers disable matching. Matching is case-insensitive, trims surrounding whitespace, and recognizes a command as the first whitespace-separated token.
+
+Chain `AddAliases("help", "info")` to accept several command names with one callback, for example `c.OnCommand("start", startHandler).AddAliases("help", "info")`. Names have no trigger prefix; surrounding whitespace is trimmed and empty aliases are ignored. Repeated calls append aliases. Aliases share triggers, matching options, filters, and bot-username checks with the primary command. This also works with `NewCommandHandler` and `OnCommandGroup`.
 
 `/start@MyBot` matches only an active username on the cached current account. Command matching reads text/captions; it does not require a bot-command entity. By comparison, `message.Command` uses `Message.IsCommand`, which requires a `TextEntityTypeBotCommand` at offset zero. A custom `!start` trigger is not necessarily identified by that filter. Put explicit command handlers before broad handlers and use an explicit predicate for custom-trigger exclusions when needed.
 
