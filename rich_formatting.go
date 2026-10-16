@@ -28,10 +28,10 @@ func richEscape(text, mode string) string {
 	if mode == ParseModeNone {
 		return text
 	}
-	text = html.EscapeString(text)
 	if strings.HasPrefix(mode, ParseModeMarkdown) {
 		text = richMarkdownEscaper.Replace(text)
 	}
+	text = html.EscapeString(text)
 	return strings.ReplaceAll(text, "\n", "<br/>")
 }
 
