@@ -61,7 +61,7 @@ func (m *Message) OriginalMD() string {
 	if err != nil {
 		return ""
 	}
-	return text.Format("markdown")
+	return text.Format(ParseModeMarkdown)
 }
 
 // OriginalMDV2 gets the original markdownV2 formatting of a message text.
@@ -70,7 +70,7 @@ func (m *Message) OriginalMDV2() string {
 	if err != nil {
 		return ""
 	}
-	return text.Format("markdownv2")
+	return text.Format(ParseModeMarkdownV2)
 }
 
 // OriginalHTML gets the original HTML formatting of a message text.
@@ -79,7 +79,7 @@ func (m *Message) OriginalHTML() string {
 	if err != nil {
 		return ""
 	}
-	return text.Format("html")
+	return text.Format(ParseModeHTML)
 }
 
 // OriginalCaptionMD gets the original markdown formatting of a message caption.
@@ -88,7 +88,7 @@ func (m *Message) OriginalCaptionMD() string {
 	if err != nil {
 		return ""
 	}
-	return caption.Format("markdown")
+	return caption.Format(ParseModeMarkdown)
 }
 
 // OriginalCaptionMDV2 gets the original markdownV2 formatting of a message caption.
@@ -97,7 +97,7 @@ func (m *Message) OriginalCaptionMDV2() string {
 	if err != nil {
 		return ""
 	}
-	return caption.Format("markdownv2")
+	return caption.Format(ParseModeMarkdownV2)
 }
 
 // OriginalCaptionHTML gets the original HTML formatting of a message caption.
@@ -106,5 +106,5 @@ func (m *Message) OriginalCaptionHTML() string {
 	if err != nil {
 		return ""
 	}
-	return caption.Format("html")
+	return caption.Format(ParseModeHTML)
 }

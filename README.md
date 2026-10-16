@@ -135,13 +135,9 @@ Explicit text entities take precedence over the parse mode. Set
 `FormattedText.Format(parseMode)` renders stored text and entities as markup.
 `User.Mention(parseMode)` creates a text mention from a user's full name.
 
-Use `msg.OriginalHTML()`, `OriginalMD()`, or `OriginalMDV2()` to convert received
-text back to markup. Media captions have matching `OriginalCaptionHTML`,
-`OriginalCaptionMD`, and `OriginalCaptionMDV2` methods. Rendering preserves
-UTF-16 entity ranges, escapes text and attributes, and handles nested entities;
-legacy Markdown simplifies styles it cannot represent.
-`OriginalTextHTML`, `OriginalTextMD`, and `OriginalTextMDV2` select the text or
-caption automatically.
+Use `msg.OriginalTextHTML()`, `OriginalTextMD()`, or `OriginalTextMDV2()` to
+convert message text or captions back to markup. Text-only `OriginalHTML/MD/MDV2`
+and caption-only `OriginalCaptionHTML/MD/MDV2` helpers are also available.
 
 | Content | Send helpers |
 | --- | --- |
@@ -200,6 +196,46 @@ For an ephemeral message, set `ReceiverUserID` or `CallbackQueryID` in the send
 options. `SendPoll` defaults to a regular poll; `SendQuiz` takes zero-based
 correct answer IDs and optional explanation text, entities, and media.
 
+### Buttons
+
+`ParseTextWithButtons` returns formatted text and a normal inline keyboard:
+
+```go
+source := "*Choose*\n[Docs](buttonurl:https://core.telegram.org)\n[Done](buttoncallback:done:same)"
+text, keyboard, err := bot.ParseTextWithButtons(source, gotdbot.ParseModeMarkdown)
+if err != nil {
+    return err
+}
+_, err = msg.ReplyContent(bot, &gotdbot.InputMessageText{Text: text},
+    &gotdbot.SendMessageContentOpts{ReplyMarkup: keyboard})
+```
+
+For `ReplyText`, extract the buttons and pass the remaining markup:
+
+```go
+body, keyboard, err := gotdbot.ParseButtonMarkup(source, gotdbot.ParseModeMarkdown)
+if err != nil {
+    return err
+}
+_, err = msg.ReplyText(bot, body, &gotdbot.SendMessageOpts{
+    ParseMode:   gotdbot.ParseModeMarkdown,
+    ReplyMarkup: keyboard,
+})
+```
+
+Use `buttonurl:`, `buttoncallback:` or `buttoncopy:`; `:same` joins the previous
+row. Buttons use this same syntax with HTML, Markdown, MarkdownV2 or plain text
+(`ParseModeNone`).
+Add `|style=primary` or `|icon=123` inside the target for a style or custom emoji:
+`[Docs](buttonurl:https://example.com|style=primary)`.
+
+`msg.OriginalTextWithButtons(mode)` converts text or captions with their keyboard
+back to markup. All button types, styles and custom emoji icons are preserved.
+Try `/buttons` and `/format` in the [formatting example](./examples/formatting).
+
+Button syntax is inspired by
+[Paul Larsen's gotg_md2html](https://github.com/PaulSonOfLars/gotg_md2html).
+
 ### Rich messages and drafts
 
 Rich messages support structured blocks and embedded media. Rich Markdown and
@@ -218,11 +254,6 @@ if err != nil {
 _, err = sent.EditRichMessageHTML(bot, "<h1>Updated</h1><p>Rich content.</p>", nil)
 ```
 
-Use `InputRichMessage` with `RichMessageSourceBlocks` for native block content.
-`SendRichTextOpts.Media` and `EditRichTextOpts.Media` attach media referenced by
-ID in the source. Rich content has matching reply, edit, and callback helpers.
-Inline edits require previously uploaded files.
-
 `msg.OriginalRichHTML()` and `msg.OriginalRichMD()` convert received rich
 messages, ordinary text, or captions into rich markup and reusable media:
 
@@ -235,9 +266,8 @@ _, err := msg.ReplyRichMessageHTML(bot, source, &gotdbot.SendRichTextOpts{
 ```
 
 Fetch `GetFullRichMessage` when `IsFull` is false and preserve `IsRtl` when sending.
-Use `RichMessage.HTML()` or `.Markdown()` for blocks, and `RichText*` helpers for
-individual nodes. Ordinary media conversion uses the caption. See the
-[formatting example](./examples/formatting).
+Ordinary media conversion uses the caption. Native blocks are also supported
+through `RichMessageSourceBlocks`.
 
 `SendMessageDraft`, `SendRichMessageDraftMarkdown`, and
 `SendRichMessageDraftHTML` stream partial responses. Reuse a draft ID while
@@ -367,21 +397,8 @@ for native identifiers, types, and account permissions.
 
 ## AI coding skill
 
-The reusable [GotdBot skill](./skills/gotdbot/SKILL.md) helps coding agents build
-bots and user clients with this library. It includes eight detailed guides for
-authentication, handlers, conversations, messages, media, formatting, callbacks,
-administration, native TDLib APIs, and library development, plus a
-[bot starter](./skills/gotdbot/assets/bot/main.go).
-
-For Codex, copy the complete skill folder into your skills directory:
-
-```sh
-mkdir -p "${CODEX_HOME:-$HOME/.codex}/skills"
-cp -R skills/gotdbot "${CODEX_HOME:-$HOME/.codex}/skills/"
-```
-
-Then ask: `Use $gotdbot to build a Telegram bot with commands and callbacks.`
-Other coding agents can read the same SKILL.md and its linked references.
+The optional [GotdBot skill](./skills/gotdbot/SKILL.md) provides coding-agent
+guides and a [bot starter](./skills/gotdbot/assets/bot/main.go).
 
 ## Development
 

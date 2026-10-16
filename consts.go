@@ -6,9 +6,9 @@ const (
 )
 
 const (
-	ParseModeHTML       = "HTML"
-	ParseModeMarkdownV2 = "MarkdownV2"
-	ParseModeMarkdown   = "Markdown"
+	ParseModeHTML       = "html"
+	ParseModeMarkdown   = "markdown"
+	ParseModeMarkdownV2 = "markdownv2"
 	ParseModeNone       = ""
 )
 

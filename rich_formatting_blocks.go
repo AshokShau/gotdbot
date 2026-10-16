@@ -22,7 +22,7 @@ func (r *richRenderer) block(block PageBlock, mode string) string {
 	if block == nil {
 		return ""
 	}
-	if mode == "markdown" {
+	if mode == ParseModeMarkdown {
 		switch v := block.(type) {
 		case PageBlockParagraph:
 			return RichTextMarkdown(v.Text) + "\n\n"
@@ -32,7 +32,7 @@ func (r *richRenderer) block(block PageBlock, mode string) string {
 			return "---\n\n"
 		// Use HTML to preserve complex block structure.
 		default:
-			if markup := r.block(block, "html"); markup != "" {
+			if markup := r.block(block, ParseModeHTML); markup != "" {
 				return markup + "\n"
 			}
 			return ""
@@ -83,7 +83,7 @@ func (r *richRenderer) block(block PageBlock, mode string) string {
 	case PageBlockMathematicalExpression:
 		return "<tg-math-block>" + html.EscapeString(v.Expression) + "</tg-math-block>\n"
 	case PageBlockBlockQuote:
-		return "<blockquote>\n" + r.blocks(v.Blocks, "html") + credit(v.Credit) + "</blockquote>\n"
+		return "<blockquote>\n" + r.blocks(v.Blocks, ParseModeHTML) + credit(v.Credit) + "</blockquote>\n"
 	case PageBlockExpandableBlockQuote:
 		return "<blockquote expandable>" + RichTextHTML(v.Text) + credit(v.Credit) + "</blockquote>\n"
 	case PageBlockPullQuote:
@@ -93,17 +93,17 @@ func (r *richRenderer) block(block PageBlock, mode string) string {
 		if v.IsOpen {
 			open = " open"
 		}
-		return "<details" + open + "><summary>" + RichTextHTML(v.Header) + "</summary>\n" + r.blocks(v.Blocks, "html") + "</details>\n"
+		return "<details" + open + "><summary>" + RichTextHTML(v.Header) + "</summary>\n" + r.blocks(v.Blocks, ParseModeHTML) + "</details>\n"
 	case PageBlockList:
 		return r.listHTML(v.Items)
 	case PageBlockTable:
 		return richTableHTML(v)
 	case PageBlockCover:
-		return r.block(v.Cover, "html")
+		return r.block(v.Cover, ParseModeHTML)
 	case PageBlockCollage:
-		return "<tg-collage>\n" + r.blocks(v.Blocks, "html") + richCaptionHTML(v.Caption) + "</tg-collage>\n"
+		return "<tg-collage>\n" + r.blocks(v.Blocks, ParseModeHTML) + richCaptionHTML(v.Caption) + "</tg-collage>\n"
 	case PageBlockSlideshow:
-		return "<tg-slideshow>\n" + r.blocks(v.Blocks, "html") + richCaptionHTML(v.Caption) + "</tg-slideshow>\n"
+		return "<tg-slideshow>\n" + r.blocks(v.Blocks, ParseModeHTML) + richCaptionHTML(v.Caption) + "</tg-slideshow>\n"
 	case PageBlockMap:
 		if v.Location == nil {
 			return richCaptionHTML(v.Caption)
@@ -182,7 +182,7 @@ func (r *richRenderer) block(block PageBlock, mode string) string {
 	case PageBlockEmbedded:
 		return textBlock("p", RichTextUrl{Text: RichTextPlain{Text: v.Url}, Url: v.Url}) + richCaptionHTML(v.Caption)
 	case PageBlockEmbeddedPost:
-		return r.blocks(v.Blocks, "html") + richCaptionHTML(v.Caption)
+		return r.blocks(v.Blocks, ParseModeHTML) + richCaptionHTML(v.Caption)
 	case PageBlockRelatedArticles:
 		out := textBlock("h3", v.Header)
 		for _, article := range v.Articles {
@@ -273,7 +273,7 @@ func (r *richRenderer) listHTML(items []PageBlockListItem) string {
 				}
 				out.WriteString(">")
 			}
-			out.WriteString(r.blocks(item.Blocks, "html"))
+			out.WriteString(r.blocks(item.Blocks, ParseModeHTML))
 			out.WriteString("</li>\n")
 		}
 		out.WriteString("</" + tag + ">\n")

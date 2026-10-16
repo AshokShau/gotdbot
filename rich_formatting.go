@@ -10,13 +10,13 @@ import (
 )
 
 // RichTextHTML renders Telegram rich HTML.
-func RichTextHTML(text RichText) string { return renderRichText(text, "html") }
+func RichTextHTML(text RichText) string { return renderRichText(text, ParseModeHTML) }
 
 // RichTextMarkdown renders rich Markdown with HTML fallbacks.
-func RichTextMarkdown(text RichText) string { return renderRichText(text, "markdown") }
+func RichTextMarkdown(text RichText) string { return renderRichText(text, ParseModeMarkdown) }
 
 // RichTextContent returns the visible text, without formatting.
-func RichTextContent(text RichText) string { return renderRichText(text, "plain") }
+func RichTextContent(text RichText) string { return renderRichText(text, ParseModeNone) }
 
 var richMarkdownEscaper = strings.NewReplacer(
 	"\\", "\\\\", "`", "\\`", "*", "\\*", "_", "\\_", "[", "\\[", "]", "\\]",
@@ -25,11 +25,11 @@ var richMarkdownEscaper = strings.NewReplacer(
 )
 
 func richEscape(text, mode string) string {
-	if mode == "plain" {
+	if mode == ParseModeNone {
 		return text
 	}
 	text = html.EscapeString(text)
-	if strings.HasPrefix(mode, "markdown") {
+	if strings.HasPrefix(mode, ParseModeMarkdown) {
 		text = richMarkdownEscaper.Replace(text)
 	}
 	return strings.ReplaceAll(text, "\n", "<br/>")
@@ -37,21 +37,21 @@ func richEscape(text, mode string) string {
 
 func renderRichText(text RichText, mode string) string {
 	wrap := func(tag, delimiter string, child RichText) string {
-		if mode == "plain" {
+		if mode == ParseModeNone {
 			return RichTextContent(child)
 		}
-		if mode == "markdown" && delimiter != "" {
+		if mode == ParseModeMarkdown && delimiter != "" {
 			content := RichTextContent(child)
 			if content != "" && content == strings.TrimSpace(content) {
 				return delimiter + renderRichText(child, mode) + delimiter
 			}
 			// CommonMark delimiters can't enclose leading/trailing spaces.
-			return "<" + tag + ">" + renderRichText(child, "markdown_html") + "</" + tag + ">"
+			return "<" + tag + ">" + renderRichText(child, ParseModeMarkdown+"_html") + "</" + tag + ">"
 		}
 		return "<" + tag + ">" + renderRichText(child, mode) + "</" + tag + ">"
 	}
 	link := func(url string, child RichText) string {
-		if mode == "plain" {
+		if mode == ParseModeNone {
 			return RichTextContent(child)
 		}
 		return `<a href="` + html.EscapeString(url) + `">` + renderRichText(child, mode) + `</a>`
@@ -63,13 +63,13 @@ func renderRichText(text RichText, mode string) string {
 		var out strings.Builder
 		for i, child := range v.Texts {
 			childMode := mode
-			if mode == "markdown" && richMarkdownStyle(child) {
+			if mode == ParseModeMarkdown && richMarkdownStyle(child) {
 				// Avoid ambiguous Markdown delimiters between adjacent text runs.
 				for j := i - 1; j >= 0; j-- {
 					if content := RichTextContent(v.Texts[j]); content != "" {
 						last, _ := utf8.DecodeLastRuneInString(content)
 						if !unicode.IsSpace(last) {
-							childMode = "markdown_html"
+							childMode = ParseModeMarkdown + "_html"
 						}
 						break
 					}
@@ -78,7 +78,7 @@ func renderRichText(text RichText, mode string) string {
 					if content := RichTextContent(v.Texts[j]); content != "" {
 						first, _ := utf8.DecodeRuneInString(content)
 						if !unicode.IsSpace(first) {
-							childMode = "markdown_html"
+							childMode = ParseModeMarkdown + "_html"
 						}
 						break
 					}
@@ -104,7 +104,7 @@ func renderRichText(text RichText, mode string) string {
 	case RichTextSuperscript:
 		return wrap("sup", "", v.Text)
 	case RichTextFixed:
-		if mode == "plain" {
+		if mode == ParseModeNone {
 			return RichTextContent(v.Text)
 		}
 		return "<code>" + html.EscapeString(RichTextContent(v.Text)) + "</code>"
@@ -121,28 +121,28 @@ func renderRichText(text RichText, mode string) string {
 	case RichTextReferenceLink:
 		return link("#"+v.ReferenceName, v.Text)
 	case RichTextReference:
-		if mode == "plain" {
+		if mode == ParseModeNone {
 			return RichTextContent(v.Text)
 		}
 		return `<tg-reference name="` + html.EscapeString(v.Name) + `">` + renderRichText(v.Text, mode) + `</tg-reference>`
 	case RichTextAnchor:
-		if mode == "plain" {
+		if mode == ParseModeNone {
 			return ""
 		}
 		return `<a name="` + html.EscapeString(v.Name) + `"></a>`
 	case RichTextCustomEmoji:
-		if mode == "plain" {
+		if mode == ParseModeNone {
 			return v.AlternativeText
 		}
 		return fmt.Sprintf(`<tg-emoji emoji-id="%d">%s</tg-emoji>`, v.CustomEmojiId, richEscape(v.AlternativeText, mode))
 	case RichTextDateTime:
-		if mode == "plain" {
+		if mode == ParseModeNone {
 			return RichTextContent(v.Text)
 		}
-		open, close := entityTags(TextEntityTypeDateTime{UnixTime: v.UnixTime, FormattingType: v.FormattingType}, "html")
+		open, close := entityTags(TextEntityTypeDateTime{UnixTime: v.UnixTime, FormattingType: v.FormattingType}, ParseModeHTML)
 		return open + renderRichText(v.Text, mode) + close
 	case RichTextMathematicalExpression:
-		if mode == "plain" {
+		if mode == ParseModeNone {
 			return v.Expression
 		}
 		return "<tg-math>" + html.EscapeString(v.Expression) + "</tg-math>"
@@ -168,7 +168,7 @@ func renderRichText(text RichText, mode string) string {
 		if v.Button == nil {
 			return ""
 		}
-		if mode == "plain" {
+		if mode == ParseModeNone {
 			return RichTextContent(v.Button.Text)
 		}
 		return richButtonHTML(v.Button)
@@ -186,12 +186,12 @@ func richMarkdownStyle(text RichText) bool {
 
 // HTML renders available blocks as rich HTML with reusable media references.
 func (m *RichMessage) HTML() (string, []InputRichMessageMedia) {
-	return renderRichMessage(m, "html")
+	return renderRichMessage(m, ParseModeHTML)
 }
 
 // Markdown renders rich Markdown with HTML fallbacks and reusable media references.
 func (m *RichMessage) Markdown() (string, []InputRichMessageMedia) {
-	return renderRichMessage(m, "markdown")
+	return renderRichMessage(m, ParseModeMarkdown)
 }
 
 func renderRichMessage(m *RichMessage, mode string) (string, []InputRichMessageMedia) {
@@ -205,13 +205,13 @@ func renderRichMessage(m *RichMessage, mode string) (string, []InputRichMessageM
 // RichBlockHTML renders a TDLib page block and collects referenced media.
 func RichBlockHTML(block PageBlock) (string, []InputRichMessageMedia) {
 	r := richRenderer{}
-	return r.block(block, "html"), r.media
+	return r.block(block, ParseModeHTML), r.media
 }
 
 // RichBlockMarkdown renders a TDLib page block as rich Markdown and media.
 func RichBlockMarkdown(block PageBlock) (string, []InputRichMessageMedia) {
 	r := richRenderer{}
-	return r.block(block, "markdown"), r.media
+	return r.block(block, ParseModeMarkdown), r.media
 }
 
 func formattedTextRichMessage(f *FormattedText) *RichMessage {

@@ -15,7 +15,7 @@ func (c *Client) GetFormattedText(text string, entities []TextEntity, parseMode 
 		}, nil
 	}
 
-	if parseMode == "" {
+	if parseMode == ParseModeNone {
 		if c.config != nil {
 			parseMode = c.config.ParseMode
 		}
@@ -31,10 +31,10 @@ func (u *User) Mention(parseMode string) string {
 		return ""
 	}
 	text := strings.TrimSpace(u.FirstName + " " + u.LastName)
-	if strings.EqualFold(parseMode, "html") {
+	if strings.EqualFold(parseMode, ParseModeHTML) {
 		return fmt.Sprintf("<a href=\"tg://user?id=%d\">%s</a>", u.Id, html.EscapeString(text))
 	}
-	name := (&FormattedText{Text: text}).Format("MarkdownV2")
+	name := (&FormattedText{Text: text}).Format(ParseModeMarkdownV2)
 	return fmt.Sprintf("[%s](tg://user?id=%d)", name, u.Id)
 }
 
@@ -43,11 +43,11 @@ func (c *Client) ParseText(text string, parseMode string) (*FormattedText, error
 	var mode TextParseMode
 
 	switch strings.ToLower(parseMode) {
-	case "markdown":
+	case ParseModeMarkdown:
 		mode = &TextParseModeMarkdown{Version: 1}
-	case "markdownv2":
+	case ParseModeMarkdownV2:
 		mode = &TextParseModeMarkdown{Version: 2}
-	case "html":
+	case ParseModeHTML:
 		mode = &TextParseModeHTML{}
 	default:
 		return &FormattedText{Text: text}, nil

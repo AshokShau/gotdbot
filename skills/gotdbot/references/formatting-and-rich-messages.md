@@ -131,6 +131,37 @@ prefer HTML or MarkdownV2 to preserve ordinary styles.
 or a caption automatically, while `OriginalHTML` and `OriginalCaptionHTML`
 remain specific to their content type.
 
+## Ordinary button markup
+
+`Client.ParseTextWithButtons(text, mode)` returns `(*FormattedText,
+*ReplyMarkupInlineKeyboard, error)` for HTML, Markdown, MarkdownV2 or plain text
+(`ParseModeNone`).
+Attach both through native content and `ReplyMarkup`. For captions, use the
+formatted text in the native `Caption` field. Existing send helpers do not
+automatically extract buttons.
+
+Use `[Name](buttonurl:https://example.com)`, `buttoncallback:data` or
+`buttoncopy:text` in every text mode. The `:same` suffix joins the previous row.
+Add `|style=primary` or `|icon=123` inside the target. Values escape pipes and
+parentheses with a backslash. Extraction leaves code and escaped links literal
+and trims surrounding whitespace when buttons are extracted.
+
+`ParseButtonMarkup(text, mode)` returns the remaining source and keyboard
+without TDLib; the required mode identifies surrounding code spans, not button
+syntax. Use the `ParseModeHTML`, `ParseModeMarkdown`, `ParseModeMarkdownV2` or
+`ParseModeNone` constants. `Message.OriginalTextWithButtons(mode)` formats the
+body and keyboard.
+`ReplyMarkupInlineKeyboard.Format()` renders only the keyboard in the shared
+syntax, preserving every button type, styles, icons, login fields and target
+chats. Other types use `buttonpassword:`, `buttonbuy:`, `buttongame:`,
+`buttondisabled:`, `buttonlogin:`, `buttonswitch:`, `buttonuser:` and
+`buttonwebapp:`. Login options are `id` and `forward`; switch options are
+`target=current`, `target=chosen|chats=users,bots,groups,channels`, or
+`target=link|link=<native internal-link JSON>`. Binary callbacks use
+`buttoncallback64:` or `buttonpassword64:` with base64url data only. No whole
+button JSON is emitted. `ForceReply` is ignored. Sending still obeys TDLib's
+message, chat and bot restrictions.
+
 ## Rich messages are a distinct content model
 
 Rich messages use `InputRichMessage` and `InputMessageRichMessage`, not `FormattedText` with a richer parse mode. Source types are:

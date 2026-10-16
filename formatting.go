@@ -50,38 +50,38 @@ func buildFormatString(format DateTimeFormattingType) string {
 
 // escapeText escapes special characters for HTML and MDV2.
 func escapeText(text, mode string) string {
-	if mode == "html" {
+	if mode == ParseModeHTML {
 		text = strings.ReplaceAll(text, "&", "&amp;")
 		text = strings.ReplaceAll(text, "<", "&lt;")
 		text = strings.ReplaceAll(text, ">", "&gt;")
 		return text
-	} else if mode == "markdownv2" {
+	} else if mode == ParseModeMarkdownV2 {
 		specials := []string{"\\", "_", "*", "[", "]", "(", ")", "~", "`", ">", "#", "+", "-", "=", "|", "{", "}", ".", "!"}
 		for _, s := range specials {
 			text = strings.ReplaceAll(text, s, "\\"+s)
 		}
 		return text
-	} else if mode == "markdownv2_url" {
+	} else if mode == ParseModeMarkdownV2+"_url" {
 		specials := []string{"\\", ")"}
 		for _, s := range specials {
 			text = strings.ReplaceAll(text, s, "\\"+s)
 		}
 		return text
-	} else if mode == "markdown_url" {
+	} else if mode == ParseModeMarkdown+"_url" {
 		return strings.NewReplacer("\\", "\\\\", ")", "\\)").Replace(text)
-	} else if mode == "markdownv2_code" {
+	} else if mode == ParseModeMarkdownV2+"_code" {
 		specials := []string{"\\", "`"}
 		for _, s := range specials {
 			text = strings.ReplaceAll(text, s, "\\"+s)
 		}
 		return text
-	} else if mode == "markdown_code" {
+	} else if mode == ParseModeMarkdown+"_code" {
 		specials := []string{"\\", "`"}
 		for _, s := range specials {
 			text = strings.ReplaceAll(text, s, "\\"+s)
 		}
 		return text
-	} else if mode == "markdown" {
+	} else if mode == ParseModeMarkdown {
 		specials := []string{"\\", "*", "_", "`", "["}
 		for _, s := range specials {
 			text = strings.ReplaceAll(text, s, "\\"+s)
@@ -144,7 +144,7 @@ func (f *FormattedText) Format(parseMode string) string {
 		return ""
 	}
 	mode := strings.ToLower(parseMode)
-	if mode != "html" && mode != "markdown" && mode != "markdownv2" {
+	if mode != ParseModeHTML && mode != ParseModeMarkdown && mode != ParseModeMarkdownV2 {
 		return f.Text
 	}
 	units, roots := entityTree(f.Text, f.Entities)
@@ -153,7 +153,7 @@ func (f *FormattedText) Format(parseMode string) string {
 		var out strings.Builder
 		write := func(s string) {
 			// Separate italic and underline delimiters with an ignored carriage return.
-			if mode == "markdownv2" && strings.HasSuffix(out.String(), "_") && strings.HasPrefix(s, "_") {
+			if mode == ParseModeMarkdownV2 && strings.HasSuffix(out.String(), "_") && strings.HasPrefix(s, "_") {
 				out.WriteByte('\r')
 			}
 			out.WriteString(s)
@@ -163,21 +163,21 @@ func (f *FormattedText) Format(parseMode string) string {
 			write(escapeText(string(utf16.Decode(units[pos:node.start])), mode))
 			typ := node.entity.Type
 			open, close := entityTags(typ, mode)
-			if mode == "markdown" && nested {
+			if mode == ParseModeMarkdown && nested {
 				open, close = "", ""
 			}
 			var content string
 			switch typ.(type) {
 			case TextEntityTypeCode, TextEntityTypePre, TextEntityTypePreCode:
 				codeMode := mode
-				if mode != "html" && open != "" {
+				if mode != ParseModeHTML && open != "" {
 					codeMode += "_code"
 				}
 				content = escapeText(string(utf16.Decode(units[node.start:node.end])), codeMode)
 			default:
 				content = sequence(node.start, node.end, node.children, nested || open != "")
 			}
-			if mode == "markdownv2" {
+			if mode == ParseModeMarkdownV2 {
 				switch typ.(type) {
 				case TextEntityTypeBlockQuote, TextEntityTypeExpandableBlockQuote:
 					content = strings.ReplaceAll(content, "\n", "\n>")
@@ -196,13 +196,13 @@ func (f *FormattedText) Format(parseMode string) string {
 
 func entityTags(typ TextEntityType, mode string) (string, string) {
 	wrap := func(tag, delimiter string) (string, string) {
-		if mode == "html" {
+		if mode == ParseModeHTML {
 			return "<" + tag + ">", "</" + tag + ">"
 		}
 		return delimiter, delimiter
 	}
 	link := func(url string) (string, string) {
-		if mode == "html" {
+		if mode == ParseModeHTML {
 			return `<a href="` + html.EscapeString(url) + `">`, "</a>"
 		}
 		return "[", "](" + escapeText(url, mode+"_url") + ")"
@@ -215,24 +215,24 @@ func entityTags(typ TextEntityType, mode string) (string, string) {
 	case TextEntityTypeCode:
 		return wrap("code", "`")
 	case TextEntityTypeUnderline:
-		if mode != "markdown" {
+		if mode != ParseModeMarkdown {
 			return wrap("u", "__")
 		}
 	case TextEntityTypeStrikethrough:
-		if mode != "markdown" {
+		if mode != ParseModeMarkdown {
 			return wrap("s", "~")
 		}
 	case TextEntityTypeSpoiler:
-		if mode != "markdown" {
+		if mode != ParseModeMarkdown {
 			return wrap("tg-spoiler", "||")
 		}
 	case TextEntityTypePre:
-		if mode == "html" {
+		if mode == ParseModeHTML {
 			return "<pre>", "</pre>"
 		}
 		return "```\n", "```"
 	case TextEntityTypePreCode:
-		if mode == "html" {
+		if mode == ParseModeHTML {
 			return `<pre><code class="language-` + html.EscapeString(e.Language) + `">`, "</code></pre>"
 		}
 		return "```" + strings.NewReplacer("\n", "", "\r", "", "`", "").Replace(e.Language) + "\n", "```"
@@ -241,39 +241,39 @@ func entityTags(typ TextEntityType, mode string) (string, string) {
 	case TextEntityTypeMentionName:
 		return link(fmt.Sprintf("tg://user?id=%d", e.UserId))
 	case TextEntityTypeCustomEmoji:
-		if mode == "html" {
+		if mode == ParseModeHTML {
 			return fmt.Sprintf(`<tg-emoji emoji-id="%d">`, e.CustomEmojiId), "</tg-emoji>"
 		}
-		if mode == "markdownv2" {
+		if mode == ParseModeMarkdownV2 {
 			return "![", fmt.Sprintf("](tg://emoji?id=%d)", e.CustomEmojiId)
 		}
 	case TextEntityTypeDateTime:
 		format := buildFormatString(e.FormattingType)
-		if mode == "html" {
+		if mode == ParseModeHTML {
 			attr := ""
 			if format != "" {
 				attr = ` format="` + format + `"`
 			}
 			return fmt.Sprintf(`<tg-time unix="%d"%s>`, e.UnixTime, attr), "</tg-time>"
 		}
-		if mode == "markdownv2" {
+		if mode == ParseModeMarkdownV2 {
 			if format != "" {
 				format = "&format=" + format
 			}
 			return "![", fmt.Sprintf("](tg://time?unix=%d%s)", e.UnixTime, format)
 		}
 	case TextEntityTypeBlockQuote:
-		if mode == "html" {
+		if mode == ParseModeHTML {
 			return "<blockquote>", "</blockquote>"
 		}
-		if mode == "markdownv2" {
+		if mode == ParseModeMarkdownV2 {
 			return ">", ""
 		}
 	case TextEntityTypeExpandableBlockQuote:
-		if mode == "html" {
+		if mode == ParseModeHTML {
 			return "<blockquote expandable>", "</blockquote>"
 		}
-		if mode == "markdownv2" {
+		if mode == ParseModeMarkdownV2 {
 			return "**>", "||"
 		}
 	}
