@@ -135,6 +135,14 @@ Explicit text entities take precedence over the parse mode. Set
 `FormattedText.Format(parseMode)` renders stored text and entities as markup.
 `User.Mention(parseMode)` creates a text mention from a user's full name.
 
+Use `msg.OriginalHTML()`, `OriginalMD()`, or `OriginalMDV2()` to convert received
+text back to markup. Media captions have matching `OriginalCaptionHTML`,
+`OriginalCaptionMD`, and `OriginalCaptionMDV2` methods. Rendering preserves
+UTF-16 entity ranges, escapes text and attributes, and handles nested entities;
+legacy Markdown simplifies styles it cannot represent.
+`OriginalTextHTML`, `OriginalTextMD`, and `OriginalTextMDV2` select the text or
+caption automatically.
+
 | Content | Send helpers |
 | --- | --- |
 | Text and rich messages | `SendMessage`, `SendRichMessage`, `SendRichMessageMarkdown`, `SendRichMessageHTML` |
@@ -214,6 +222,22 @@ Use `InputRichMessage` with `RichMessageSourceBlocks` for native block content.
 `SendRichTextOpts.Media` and `EditRichTextOpts.Media` attach media referenced by
 ID in the source. Rich content has matching reply, edit, and callback helpers.
 Inline edits require previously uploaded files.
+
+`msg.OriginalRichHTML()` and `msg.OriginalRichMD()` convert received rich
+messages, ordinary text, or captions into rich markup and reusable media:
+
+```go
+source, media := msg.OriginalRichHTML()
+_, err := msg.ReplyRichMessageHTML(bot, source, &gotdbot.SendRichTextOpts{
+    Media: media,
+    DetectAutomaticBlocks: true,
+})
+```
+
+Fetch `GetFullRichMessage` when `IsFull` is false and preserve `IsRtl` when sending.
+Use `RichMessage.HTML()` or `.Markdown()` for blocks, and `RichText*` helpers for
+individual nodes. Ordinary media conversion uses the caption. See the
+[formatting example](./examples/formatting).
 
 `SendMessageDraft`, `SendRichMessageDraftMarkdown`, and
 `SendRichMessageDraftHTML` stream partial responses. Reuse a draft ID while
@@ -331,6 +355,8 @@ and shutdown.
 ## Examples and reference
 
 - [Echo bot](./examples/echoBot): Commands, keyboards, callbacks, and filters.
+- [Formatting bot](./examples/formatting): Reply to text, captions or rich messages
+  with `/format` to compare HTML, Markdown, MarkdownV2 and rich conversions.
 - [Auto-delete bot](./examples/autoDeleteBot): Outgoing-message timers and deletion updates.
 - [Conversation bot](./examples/conversation): Questions and reply filters.
 - [Multiple accounts](./examples/echoMultiBot): Client management and shared handlers.

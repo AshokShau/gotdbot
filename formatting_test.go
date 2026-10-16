@@ -136,7 +136,7 @@ func TestUnparseEntities(t *testing.T) {
 				{Offset: 0, Length: 19, Type: &gotdbot.TextEntityTypeUrl{}},
 			},
 			mode:     "markdownv2",
-			expected: "https://example.com",
+			expected: `https://example\.com`,
 		},
 		{
 			name: "Pre Code HTML",
@@ -154,7 +154,7 @@ func TestUnparseEntities(t *testing.T) {
 				{Offset: 0, Length: 14, Type: &gotdbot.TextEntityTypePreCode{Language: "python"}},
 			},
 			mode:     "markdownv2",
-			expected: "```python\nprint('hello')```\n",
+			expected: "```python\nprint('hello')```",
 		},
 		{
 			name: "Underline MDV2 Ambiguity Test",

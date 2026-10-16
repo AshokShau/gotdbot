@@ -1,8 +1,8 @@
 # Formatting and rich messages
 
-Contents: GetFormattedText and ParseText; parse precedence; plain text; escaping; entities; rendering; rich sources; drafts.
+Contents: GetFormattedText and ParseText; parse precedence; plain text; escaping; entities; rendering; rich sources and conversion; drafts.
 
-Source anchors: `formatting_parse.go`, `formatting.go`, `message_formatting.go`, `send_helpers.go`, `edit_messages.go`, `gen_types.go`, `formatting_edge_test.go`, `rich_message_helpers_test.go`, `message_draft_test.go`.
+Source anchors: `formatting_parse.go`, `formatting.go`, `message_formatting.go`, `rich_formatting.go`, `rich_formatting_blocks.go`, `send_helpers.go`, `edit_messages.go`, `gen_types.go`, `formatting_edge_test.go`, `rich_formatting_test.go`, `rich_message_helpers_test.go`, `message_draft_test.go`.
 
 ## GetFormattedText and ParseText
 
@@ -122,6 +122,15 @@ func BoldText(text string) *gotdbot.FormattedText {
 
 `FormattedText.Format(mode)` renders entities back into markup and escapes text. `Message.OriginalHTML`, `OriginalMD`, `OriginalMDV2`, and their `OriginalCaption*` counterparts use it. These are rendered representations, not byte-for-byte recovery of the original markup. Native limitations still apply when sending the rendered markup back to Telegram.
 
+Rendering sorts a copy of the entities for correct nesting and ignores malformed
+or crossing ranges, including ranges that split an emoji's UTF-16 surrogate
+pair. Automatic entities such as URLs and mentions still need text escaping in
+the selected output mode. Legacy Markdown simplifies nested/newer formatting;
+prefer HTML or MarkdownV2 to preserve ordinary styles.
+`OriginalTextHTML`, `OriginalTextMD`, and `OriginalTextMDV2` select ordinary text
+or a caption automatically, while `OriginalHTML` and `OriginalCaptionHTML`
+remain specific to their content type.
+
 ## Rich messages are a distinct content model
 
 Rich messages use `InputRichMessage` and `InputMessageRichMessage`, not `FormattedText` with a richer parse mode. Source types are:
@@ -133,6 +142,42 @@ Rich messages use `InputRichMessage` and `InputMessageRichMessage`, not `Formatt
 | `RichMessageSourceBlocks` | `[]InputPageBlock` | `SendRichMessage` or `ReplyRichMessage` |
 
 Rich text helpers are documented for bots only. Use native type comments for supported elements/block/media types instead of ordinary Telegram HTML or Markdown rules. `InputRichMessage.IsRtl` controls direction; `DetectAutomaticBlocks` enables URL/email and other automatic block detection.
+
+## Convert received messages to rich markup
+
+`Message.GetRichMessage() (*RichMessage, error)` reads existing rich content,
+returning `ErrNoRichMessage` for other message types. When `IsFull` is false,
+fetch `Client.GetFullRichMessage(chatID, messageID)` before rendering a full copy.
+Renderers themselves are local and never fetch missing content.
+
+`Message.OriginalRichHTML()` and `OriginalRichMD()` return
+`(string, []InputRichMessageMedia)`. They accept received rich messages, ordinary
+text, or media captions. Native `RichMessage.HTML()` and `.Markdown()` have the
+same return shape. Pass the returned media with the source to the matching rich
+send helper; file references use the TDLib client that received them. Copy
+`IsRtl` into the send options when preserving a received rich message's direction.
+
+```go
+source, media := msg.OriginalRichMD()
+_, err := msg.ReplyRichMessageMarkdown(c, source, &gotdbot.SendRichTextOpts{
+    Media: media,
+    DetectAutomaticBlocks: true,
+})
+```
+
+Rich Markdown uses `**bold**` and HTML fallbacks for structures without suitable
+Markdown syntax, including tables with spans, details, lists with explicit
+numbering and media captions. Never send this output through ordinary
+`ParseModeMarkdown` or `ParseModeMarkdownV2`. `RichTextHTML`, `RichTextMarkdown`
+and `RichTextContent` render an individual native `RichText`; `RichBlockHTML`
+and `RichBlockMarkdown` render a `PageBlock` and collect media.
+
+For ordinary media messages, rich conversion includes only their caption.
+Instant View-only blocks have best-effort fallbacks, received login buttons
+become links, and unsupported button actions retain their text. No renderer
+recovers the exact original markup spelling. The
+[`examples/formatting`](../../../examples/formatting) bot demonstrates `/sample`,
+reply-based `/format` comparisons and literal `/format source` output.
 
 For structured content, a paragraph block takes native `RichText`, not `FormattedText`:
 

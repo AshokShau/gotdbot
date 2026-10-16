@@ -2,70 +2,48 @@ package gotdbot
 
 import (
 	"fmt"
+	"html"
+	"reflect"
 	"sort"
 	"strings"
 	"unicode/utf16"
 )
 
-// entityEvent represents the start or end of an entity
-type entityEvent struct {
-	Index   int
-	IsStart bool
-	Entity  *TextEntity
-	Level   int
+// Normalize TDLib values, pointers and typed nils.
+func formattingValue[T any](value T) T {
+	v := reflect.ValueOf(value)
+	if v.IsValid() && v.Kind() == reflect.Pointer {
+		if v.IsNil() {
+			var zero T
+			return zero
+		}
+		return v.Elem().Interface().(T)
+	}
+	return value
 }
 
 func buildFormatString(format DateTimeFormattingType) string {
-	if format == nil {
-		return ""
-	}
-	switch f := format.(type) {
-	case *DateTimeFormattingTypeRelative, DateTimeFormattingTypeRelative:
+	switch f := formattingValue(format).(type) {
+	case DateTimeFormattingTypeRelative:
 		return "r"
-	case *DateTimeFormattingTypeAbsolute:
-		formatStr := ""
-		if f.ShowDayOfWeek {
-			formatStr += "w"
-		}
-		if f.DatePrecision != nil {
-			switch f.DatePrecision.(type) {
-			case *DateTimePartPrecisionShort:
-				formatStr += "d"
-			case *DateTimePartPrecisionLong:
-				formatStr += "D"
-			}
-		}
-		if f.TimePrecision != nil {
-			switch f.TimePrecision.(type) {
-			case *DateTimePartPrecisionShort:
-				formatStr += "t"
-			case *DateTimePartPrecisionLong:
-				formatStr += "T"
-			}
-		}
-		return formatStr
 	case DateTimeFormattingTypeAbsolute:
-		formatStr := ""
+		result := ""
 		if f.ShowDayOfWeek {
-			formatStr += "w"
+			result += "w"
 		}
-		if f.DatePrecision != nil {
-			switch f.DatePrecision.(type) {
-			case *DateTimePartPrecisionShort:
-				formatStr += "d"
-			case *DateTimePartPrecisionLong:
-				formatStr += "D"
-			}
+		switch formattingValue(f.DatePrecision).(type) {
+		case DateTimePartPrecisionShort:
+			result += "d"
+		case DateTimePartPrecisionLong:
+			result += "D"
 		}
-		if f.TimePrecision != nil {
-			switch f.TimePrecision.(type) {
-			case *DateTimePartPrecisionShort:
-				formatStr += "t"
-			case *DateTimePartPrecisionLong:
-				formatStr += "T"
-			}
+		switch formattingValue(f.TimePrecision).(type) {
+		case DateTimePartPrecisionShort:
+			result += "t"
+		case DateTimePartPrecisionLong:
+			result += "T"
 		}
-		return formatStr
+		return result
 	}
 	return ""
 }
@@ -89,6 +67,8 @@ func escapeText(text, mode string) string {
 			text = strings.ReplaceAll(text, s, "\\"+s)
 		}
 		return text
+	} else if mode == "markdown_url" {
+		return strings.NewReplacer("\\", "\\\\", ")", "\\)").Replace(text)
 	} else if mode == "markdownv2_code" {
 		specials := []string{"\\", "`"}
 		for _, s := range specials {
@@ -102,7 +82,7 @@ func escapeText(text, mode string) string {
 		}
 		return text
 	} else if mode == "markdown" {
-		specials := []string{"*", "_", "`", "["}
+		specials := []string{"\\", "*", "_", "`", "["}
 		for _, s := range specials {
 			text = strings.ReplaceAll(text, s, "\\"+s)
 		}
@@ -111,399 +91,191 @@ func escapeText(text, mode string) string {
 	return text
 }
 
-// Format renders the text and its entities as HTML, Markdown, or MarkdownV2.
-// Unsupported modes return plain text; a nil receiver returns an empty string.
+type formatEntity struct {
+	entity     TextEntity
+	start, end int
+	children   []*formatEntity
+}
+
+// entityTree sorts entities and skips invalid UTF-16 ranges.
+func entityTree(text string, entities []TextEntity) ([]uint16, []*formatEntity) {
+	units := utf16.Encode([]rune(text))
+	validBoundary := func(i int) bool {
+		return i >= 0 && i <= len(units) && (i == 0 || i == len(units) ||
+			!(units[i-1] >= 0xd800 && units[i-1] <= 0xdbff && units[i] >= 0xdc00 && units[i] <= 0xdfff))
+	}
+	nodes := make([]*formatEntity, 0, len(entities))
+	for _, entity := range entities {
+		start, end := int(entity.Offset), int(int64(entity.Offset)+int64(entity.Length))
+		entity.Type = formattingValue(entity.Type)
+		if entity.Length <= 0 || entity.Type == nil || !validBoundary(start) || !validBoundary(end) {
+			continue
+		}
+		nodes = append(nodes, &formatEntity{entity: entity, start: start, end: end})
+	}
+	sort.SliceStable(nodes, func(i, j int) bool {
+		if nodes[i].start != nodes[j].start {
+			return nodes[i].start < nodes[j].start
+		}
+		return nodes[i].end > nodes[j].end
+	})
+	var roots, stack []*formatEntity
+	for _, node := range nodes {
+		for len(stack) > 0 && node.start >= stack[len(stack)-1].end {
+			stack = stack[:len(stack)-1]
+		}
+		if len(stack) == 0 {
+			roots = append(roots, node)
+		} else {
+			parent := stack[len(stack)-1]
+			if node.end > parent.end {
+				continue
+			}
+			parent.children = append(parent.children, node)
+		}
+		stack = append(stack, node)
+	}
+	return units, roots
+}
+
+// Format renders Telegram HTML, Markdown or MarkdownV2; unknown modes return plain text.
 func (f *FormattedText) Format(parseMode string) string {
 	if f == nil {
 		return ""
 	}
-	text, entities := f.Text, f.Entities
 	mode := strings.ToLower(parseMode)
-	switch mode {
-	case "html", "markdown", "markdownv2":
-	default:
-		return text
+	if mode != "html" && mode != "markdown" && mode != "markdownv2" {
+		return f.Text
 	}
-	if len(entities) == 0 {
-		return escapeText(text, mode)
-	}
-
-	utf16Str := utf16.Encode([]rune(text))
-	var events []entityEvent
-
-	for i, ent := range entities {
-		e := ent
-		events = append(events, entityEvent{Index: int(e.Offset), IsStart: true, Entity: &e, Level: i})
-		events = append(events, entityEvent{Index: int(e.Offset + e.Length), IsStart: false, Entity: &e, Level: i})
-	}
-
-	sort.SliceStable(events, func(i, j int) bool {
-		if events[i].Index != events[j].Index {
-			return events[i].Index < events[j].Index
-		}
-		if events[i].IsStart != events[j].IsStart {
-			return !events[i].IsStart
-		}
-		if events[i].IsStart {
-			return events[i].Level < events[j].Level
-		}
-
-		return events[i].Level > events[j].Level
-	})
-
-	var result strings.Builder
-	lastIndex := 0
-
-	for _, ev := range events {
-		if ev.Index > lastIndex {
-			if lastIndex < len(utf16Str) {
-				end := min(ev.Index, len(utf16Str))
-				chunk := string(utf16.Decode(utf16Str[lastIndex:end]))
-
-				inCode := false
-				isRaw := false
-				inBlockQuote := false
-				for _, ent := range entities {
-					switch ent.Type.(type) {
-					case *TextEntityTypeCode, TextEntityTypeCode,
-						*TextEntityTypePre, TextEntityTypePre,
-						*TextEntityTypePreCode, TextEntityTypePreCode:
-						if int(ent.Offset) <= lastIndex && int(ent.Offset+ent.Length) >= end {
-							inCode = true
-						}
-					case *TextEntityTypeUrl, TextEntityTypeUrl,
-						*TextEntityTypeEmailAddress, TextEntityTypeEmailAddress,
-						*TextEntityTypePhoneNumber, TextEntityTypePhoneNumber,
-						*TextEntityTypeHashtag, TextEntityTypeHashtag,
-						*TextEntityTypeCashtag, TextEntityTypeCashtag,
-						*TextEntityTypeBankCardNumber, TextEntityTypeBankCardNumber,
-						*TextEntityTypeBotCommand, TextEntityTypeBotCommand,
-						*TextEntityTypeMention, TextEntityTypeMention:
-						if int(ent.Offset) <= lastIndex && int(ent.Offset+ent.Length) >= end {
-							isRaw = true
-						}
-					case *TextEntityTypeBlockQuote, TextEntityTypeBlockQuote,
-						*TextEntityTypeExpandableBlockQuote, TextEntityTypeExpandableBlockQuote:
-						if int(ent.Offset) <= lastIndex && int(ent.Offset+ent.Length) >= end {
-							inBlockQuote = true
-						}
-					}
-				}
-
-				if !isRaw {
-					if inCode && (mode == "markdownv2" || mode == "markdown") {
-						chunk = escapeText(chunk, mode+"_code")
-					} else {
-						chunk = escapeText(chunk, mode)
-					}
-				}
-
-				if inBlockQuote && mode == "markdownv2" {
-					chunk = strings.ReplaceAll(chunk, "\n", "\n>")
-				}
-
-				result.WriteString(chunk)
+	units, roots := entityTree(f.Text, f.Entities)
+	var sequence func(int, int, []*formatEntity, bool) string
+	sequence = func(start, end int, nodes []*formatEntity, nested bool) string {
+		var out strings.Builder
+		write := func(s string) {
+			// Separate italic and underline delimiters with an ignored carriage return.
+			if mode == "markdownv2" && strings.HasSuffix(out.String(), "_") && strings.HasPrefix(s, "_") {
+				out.WriteByte('\r')
 			}
-			lastIndex = ev.Index
+			out.WriteString(s)
 		}
-
-		end := min(int(ev.Entity.Offset+ev.Entity.Length), len(utf16Str))
-		extractedText := ""
-		if ev.Entity.Offset <= int32(len(utf16Str)) {
-			extractedText = string(utf16.Decode(utf16Str[ev.Entity.Offset:end]))
+		pos := start
+		for _, node := range nodes {
+			write(escapeText(string(utf16.Decode(units[pos:node.start])), mode))
+			typ := node.entity.Type
+			open, close := entityTags(typ, mode)
+			if mode == "markdown" && nested {
+				open, close = "", ""
+			}
+			var content string
+			switch typ.(type) {
+			case TextEntityTypeCode, TextEntityTypePre, TextEntityTypePreCode:
+				codeMode := mode
+				if mode != "html" && open != "" {
+					codeMode += "_code"
+				}
+				content = escapeText(string(utf16.Decode(units[node.start:node.end])), codeMode)
+			default:
+				content = sequence(node.start, node.end, node.children, nested || open != "")
+			}
+			if mode == "markdownv2" {
+				switch typ.(type) {
+				case TextEntityTypeBlockQuote, TextEntityTypeExpandableBlockQuote:
+					content = strings.ReplaceAll(content, "\n", "\n>")
+				}
+			}
+			write(open)
+			write(content)
+			write(close)
+			pos = node.end
 		}
-		tag := getTag(ev.Entity, ev.IsStart, mode, extractedText)
-		result.WriteString(tag)
+		write(escapeText(string(utf16.Decode(units[pos:end])), mode))
+		return out.String()
 	}
-
-	if lastIndex < len(utf16Str) {
-		chunk := string(utf16.Decode(utf16Str[lastIndex:]))
-		result.WriteString(escapeText(chunk, mode))
-	}
-
-	if mode == "markdownv2" || mode == "markdown" {
-		res := result.String()
-		res = strings.ReplaceAll(res, "_\r", "_")
-		res = strings.ReplaceAll(res, "\r_", "_")
-		res = strings.ReplaceAll(res, "__\r", "__")
-		res = strings.ReplaceAll(res, "\r__", "__")
-		return res
-	}
-
-	return result.String()
+	return sequence(0, len(units), roots, false)
 }
 
-func getTag(ent *TextEntity, isStart bool, mode string, _ string) string {
-	switch e := ent.Type.(type) {
-	case *TextEntityTypeBold, TextEntityTypeBold:
+func entityTags(typ TextEntityType, mode string) (string, string) {
+	wrap := func(tag, delimiter string) (string, string) {
 		if mode == "html" {
-			if isStart {
-				return "<b>"
-			} else {
-				return "</b>"
-			}
-		} else {
-			return "*"
+			return "<" + tag + ">", "</" + tag + ">"
 		}
-	case *TextEntityTypeItalic, TextEntityTypeItalic:
-		if mode == "html" {
-			if isStart {
-				return "<i>"
-			} else {
-				return "</i>"
-			}
-		} else {
-			if isStart {
-				return "_\r"
-			} else {
-				return "\r_"
-			}
-		}
-	case *TextEntityTypeUnderline, TextEntityTypeUnderline:
-		if mode == "html" {
-			if isStart {
-				return "<u>"
-			} else {
-				return "</u>"
-			}
-		} else if mode == "markdownv2" {
-			if isStart {
-				return "__\r"
-			} else {
-				return "\r__"
-			}
-		}
-	case *TextEntityTypeStrikethrough, TextEntityTypeStrikethrough:
-		if mode == "html" {
-			if isStart {
-				return "<s>"
-			} else {
-				return "</s>"
-			}
-		} else if mode == "markdownv2" {
-			return "~"
-		}
-	case *TextEntityTypeSpoiler, TextEntityTypeSpoiler:
-		if mode == "html" {
-			if isStart {
-				return "<tg-spoiler>"
-			} else {
-				return "</tg-spoiler>"
-			}
-		} else if mode == "markdownv2" {
-			return "||"
-		}
-	case *TextEntityTypeCode, TextEntityTypeCode:
-		if mode == "html" {
-			if isStart {
-				return "<code>"
-			} else {
-				return "</code>"
-			}
-		} else {
-			return "`"
-		}
-	case *TextEntityTypePre, TextEntityTypePre:
-		if mode == "html" {
-			if isStart {
-				return "<pre>"
-			} else {
-				return "</pre>"
-			}
-		} else {
-			return "```\n"
-		}
-	case *TextEntityTypePreCode:
-		lang := e.Language
-		if mode == "html" {
-			if isStart {
-				return fmt.Sprintf("<pre><code class=\"language-%s\">", lang)
-			} else {
-				return "</code></pre>"
-			}
-		} else {
-			if isStart {
-				return fmt.Sprintf("```%s\n", lang)
-			} else {
-				return "```\n"
-			}
-		}
-	case TextEntityTypePreCode:
-		lang := e.Language
-		if mode == "html" {
-			if isStart {
-				return fmt.Sprintf("<pre><code class=\"language-%s\">", lang)
-			} else {
-				return "</code></pre>"
-			}
-		} else {
-			if isStart {
-				return fmt.Sprintf("```%s\n", lang)
-			} else {
-				return "```\n"
-			}
-		}
-	case *TextEntityTypeTextUrl:
-		url := e.Url
-		if mode == "html" {
-			if isStart {
-				return fmt.Sprintf("<a href=\"%s\">", url)
-			} else {
-				return "</a>"
-			}
-		} else {
-			if isStart {
-				return "["
-			} else {
-				return fmt.Sprintf("](%s)", escapeText(url, mode+"_url"))
-			}
-		}
-	case TextEntityTypeTextUrl:
-		url := e.Url
-		if mode == "html" {
-			if isStart {
-				return fmt.Sprintf("<a href=\"%s\">", url)
-			} else {
-				return "</a>"
-			}
-		} else {
-			if isStart {
-				return "["
-			} else {
-				return fmt.Sprintf("](%s)", escapeText(url, mode+"_url"))
-			}
-		}
-	case *TextEntityTypeMentionName:
-		userId := e.UserId
-		if mode == "html" {
-			if isStart {
-				return fmt.Sprintf("<a href=\"tg://user?id=%d\">", userId)
-			} else {
-				return "</a>"
-			}
-		} else {
-			if isStart {
-				return "["
-			} else {
-				return fmt.Sprintf("](tg://user?id=%d)", userId)
-			}
-		}
-	case TextEntityTypeMentionName:
-		userId := e.UserId
-		if mode == "html" {
-			if isStart {
-				return fmt.Sprintf("<a href=\"tg://user?id=%d\">", userId)
-			} else {
-				return "</a>"
-			}
-		} else {
-			if isStart {
-				return "["
-			} else {
-				return fmt.Sprintf("](tg://user?id=%d)", userId)
-			}
-		}
-	case *TextEntityTypeCustomEmoji:
-		emojiId := e.CustomEmojiId
-		if mode == "html" {
-			if isStart {
-				return fmt.Sprintf("<tg-emoji emoji-id=\"%d\">", emojiId)
-			} else {
-				return "</tg-emoji>"
-			}
-		} else if mode == "markdownv2" {
-			if isStart {
-				return "!["
-			} else {
-				return fmt.Sprintf("](tg://emoji?id=%d)", emojiId)
-			}
-		}
-	case TextEntityTypeCustomEmoji:
-		emojiId := e.CustomEmojiId
-		if mode == "html" {
-			if isStart {
-				return fmt.Sprintf("<tg-emoji emoji-id=\"%d\">", emojiId)
-			} else {
-				return "</tg-emoji>"
-			}
-		} else if mode == "markdownv2" {
-			if isStart {
-				return "!["
-			} else {
-				return fmt.Sprintf("](tg://emoji?id=%d)", emojiId)
-			}
-		}
-	case *TextEntityTypeBlockQuote, TextEntityTypeBlockQuote:
-		if mode == "html" {
-			if isStart {
-				return "<blockquote>"
-			} else {
-				return "</blockquote>"
-			}
-		} else if mode == "markdownv2" {
-			if isStart {
-				return ">"
-			} else {
-				return ""
-			}
-		}
-	case *TextEntityTypeExpandableBlockQuote, TextEntityTypeExpandableBlockQuote:
-		if mode == "html" {
-			if isStart {
-				return "<blockquote expandable>"
-			} else {
-				return "</blockquote>"
-			}
-		} else if mode == "markdownv2" {
-			if isStart {
-				return "**>"
-			} else {
-				return "||"
-			}
-		}
-	case *TextEntityTypeDateTime, TextEntityTypeDateTime:
-		var unixTime int32
-		var formattingType DateTimeFormattingType
-		if ptr, ok := e.(*TextEntityTypeDateTime); ok {
-			unixTime = ptr.UnixTime
-			formattingType = ptr.FormattingType
-		} else {
-			val := e.(TextEntityTypeDateTime)
-			unixTime = val.UnixTime
-			formattingType = val.FormattingType
-		}
-		formatStr := buildFormatString(formattingType)
-
-		if mode == "html" {
-			if isStart {
-				if formatStr == "" {
-					return fmt.Sprintf("<tg-time unix=\"%d\">", unixTime)
-				}
-				return fmt.Sprintf("<tg-time unix=\"%d\" format=\"%s\">", unixTime, formatStr)
-			} else {
-				return "</tg-time>"
-			}
-		} else if mode == "markdownv2" {
-			if isStart {
-				return "!["
-			} else {
-				if formatStr == "" {
-					return fmt.Sprintf("](tg://time?unix=%d)", unixTime)
-				}
-				return fmt.Sprintf("](tg://time?unix=%d&format=%s)", unixTime, escapeText(formatStr, "markdownv2_url"))
-			}
-		}
-	// Entities that don't add formatting syntax because they're implicit (Urls, Emails, Phone numbers, Hashtags, etc.)
-	case *TextEntityTypeUrl, TextEntityTypeUrl,
-		*TextEntityTypeEmailAddress, TextEntityTypeEmailAddress,
-		*TextEntityTypePhoneNumber, TextEntityTypePhoneNumber,
-		*TextEntityTypeHashtag, TextEntityTypeHashtag,
-		*TextEntityTypeCashtag, TextEntityTypeCashtag,
-		*TextEntityTypeBankCardNumber, TextEntityTypeBankCardNumber,
-		*TextEntityTypeBotCommand, TextEntityTypeBotCommand,
-		*TextEntityTypeMention, TextEntityTypeMention,
-		*TextEntityTypeMediaTimestamp, TextEntityTypeMediaTimestamp:
-		return ""
+		return delimiter, delimiter
 	}
-	return ""
+	link := func(url string) (string, string) {
+		if mode == "html" {
+			return `<a href="` + html.EscapeString(url) + `">`, "</a>"
+		}
+		return "[", "](" + escapeText(url, mode+"_url") + ")"
+	}
+	switch e := typ.(type) {
+	case TextEntityTypeBold:
+		return wrap("b", "*")
+	case TextEntityTypeItalic:
+		return wrap("i", "_")
+	case TextEntityTypeCode:
+		return wrap("code", "`")
+	case TextEntityTypeUnderline:
+		if mode != "markdown" {
+			return wrap("u", "__")
+		}
+	case TextEntityTypeStrikethrough:
+		if mode != "markdown" {
+			return wrap("s", "~")
+		}
+	case TextEntityTypeSpoiler:
+		if mode != "markdown" {
+			return wrap("tg-spoiler", "||")
+		}
+	case TextEntityTypePre:
+		if mode == "html" {
+			return "<pre>", "</pre>"
+		}
+		return "```\n", "```"
+	case TextEntityTypePreCode:
+		if mode == "html" {
+			return `<pre><code class="language-` + html.EscapeString(e.Language) + `">`, "</code></pre>"
+		}
+		return "```" + strings.NewReplacer("\n", "", "\r", "", "`", "").Replace(e.Language) + "\n", "```"
+	case TextEntityTypeTextUrl:
+		return link(e.Url)
+	case TextEntityTypeMentionName:
+		return link(fmt.Sprintf("tg://user?id=%d", e.UserId))
+	case TextEntityTypeCustomEmoji:
+		if mode == "html" {
+			return fmt.Sprintf(`<tg-emoji emoji-id="%d">`, e.CustomEmojiId), "</tg-emoji>"
+		}
+		if mode == "markdownv2" {
+			return "![", fmt.Sprintf("](tg://emoji?id=%d)", e.CustomEmojiId)
+		}
+	case TextEntityTypeDateTime:
+		format := buildFormatString(e.FormattingType)
+		if mode == "html" {
+			attr := ""
+			if format != "" {
+				attr = ` format="` + format + `"`
+			}
+			return fmt.Sprintf(`<tg-time unix="%d"%s>`, e.UnixTime, attr), "</tg-time>"
+		}
+		if mode == "markdownv2" {
+			if format != "" {
+				format = "&format=" + format
+			}
+			return "![", fmt.Sprintf("](tg://time?unix=%d%s)", e.UnixTime, format)
+		}
+	case TextEntityTypeBlockQuote:
+		if mode == "html" {
+			return "<blockquote>", "</blockquote>"
+		}
+		if mode == "markdownv2" {
+			return ">", ""
+		}
+	case TextEntityTypeExpandableBlockQuote:
+		if mode == "html" {
+			return "<blockquote expandable>", "</blockquote>"
+		}
+		if mode == "markdownv2" {
+			return "**>", "||"
+		}
+	}
+	return "", ""
 }

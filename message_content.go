@@ -56,7 +56,7 @@ func (m *Message) GetText() string {
 // GetFormattedText extracts the *FormattedText from the message content if it has text.
 func (m *Message) GetFormattedText() (*FormattedText, error) {
 	if m != nil {
-		if content, ok := m.Content.(*MessageText); ok && content != nil && content.Text != nil {
+		if content, ok := formattingValue(m.Content).(MessageText); ok && content.Text != nil {
 			return content.Text, nil
 		}
 	}
@@ -203,35 +203,21 @@ func (m *Message) GetFormattedCaption() (*FormattedText, error) {
 		return nil, ErrNoFormattedText
 	}
 	var caption *FormattedText
-	switch content := m.Content.(type) {
-	case *MessageAnimation:
-		if content != nil {
-			caption = content.Caption
-		}
-	case *MessageAudio:
-		if content != nil {
-			caption = content.Caption
-		}
-	case *MessageDocument:
-		if content != nil {
-			caption = content.Caption
-		}
-	case *MessagePhoto:
-		if content != nil {
-			caption = content.Caption
-		}
-	case *MessageVideo:
-		if content != nil {
-			caption = content.Caption
-		}
-	case *MessageVoiceNote:
-		if content != nil {
-			caption = content.Caption
-		}
-	case *MessagePaidMedia:
-		if content != nil {
-			caption = content.Caption
-		}
+	switch content := formattingValue(m.Content).(type) {
+	case MessageAnimation:
+		caption = content.Caption
+	case MessageAudio:
+		caption = content.Caption
+	case MessageDocument:
+		caption = content.Caption
+	case MessagePhoto:
+		caption = content.Caption
+	case MessageVideo:
+		caption = content.Caption
+	case MessageVoiceNote:
+		caption = content.Caption
+	case MessagePaidMedia:
+		caption = content.Caption
 	}
 	if caption == nil {
 		return nil, ErrNoFormattedText
