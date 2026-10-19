@@ -332,6 +332,10 @@ and filters before starting the client.
 
 ### Working with updates
 
+Bots skip incoming messages sent/edited at least 24 hours ago, and group messages
+from before joining or while absent. Supergroups/channels also enforce the session
+authorization date. Set `ClientOpts.ReceiveOldMessages: true` to disable this filter.
+
 Typed message and guest-query updates expose their carried message through
 `GetMessage`. Business callbacks return the carried message or an error.
 `client.UpdateChatID(update)`, `UpdateMessageID`, and `UpdateSenderID` extract

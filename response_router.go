@@ -3,6 +3,7 @@ package gotdbot
 import (
 	"errors"
 	"strings"
+	"time"
 )
 
 // Protocol completion must not depend on an available application handler.
@@ -56,6 +57,10 @@ func (c *Client) acceptResponse(obj TlObject, extra string, managerStop <-chan s
 	case <-managerStop:
 		return
 	default:
+	}
+	// Track membership and filter before concurrent handlers run.
+	if c.botToken != "" && !c.config.ReceiveOldMessages && !c.acceptBotUpdate(obj, time.Now()) {
+		return
 	}
 	if err := c.updates.push(obj); err != nil && !errors.Is(err, ErrClientClosed) {
 		c.Logger.Error("Cannot queue TDLib update", "type", obj.GetType(), "error", err)

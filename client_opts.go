@@ -50,11 +50,13 @@ type ClientOpts struct {
 	UpdateWorkers int
 	// UpdateQueueSize bounds updates buffered in memory per client; default 1000.
 	// Excess updates spill to temporary files, reclaimed as the queue drains.
-	UpdateQueueSize   int
-	LogVerbosityLevel int32
-	LogStream         LogStream
-	AutoRetry         *AutoRetry
-	ParseMode         string
+	UpdateQueueSize int
+	// ReceiveOldMessages disables historical-message filtering for bots.
+	ReceiveOldMessages bool
+	LogVerbosityLevel  int32
+	LogStream          LogStream
+	AutoRetry          *AutoRetry
+	ParseMode          string
 }
 
 // DefaultClientConfig returns a fresh configuration with the library defaults.
