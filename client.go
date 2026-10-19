@@ -31,11 +31,12 @@ type Client struct {
 	config      *ClientOpts
 	Logger      *logger.Logger
 
-	updates    *updateQueue
-	botUpdates botUpdateState
-	stop       chan struct{}
-	closed     chan struct{}
-	wg         sync.WaitGroup
+	updates        *updateQueue
+	botUpdates     botUpdateState
+	startupUpdates pendingUpdateState
+	stop           chan struct{}
+	closed         chan struct{}
+	wg             sync.WaitGroup
 
 	handlers     atomic.Pointer[handlersData]
 	hMu          sync.Mutex

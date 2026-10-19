@@ -53,6 +53,8 @@ type ClientOpts struct {
 	UpdateQueueSize int
 	// ReceiveOldMessages disables historical-message filtering for bots.
 	ReceiveOldMessages bool
+	// DropPendingUpdates skips startup updates until auth and connection are ready.
+	DropPendingUpdates bool
 	LogVerbosityLevel  int32
 	LogStream          LogStream
 	AutoRetry          *AutoRetry

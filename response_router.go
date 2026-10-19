@@ -62,6 +62,9 @@ func (c *Client) acceptResponse(obj TlObject, extra string, managerStop <-chan s
 	if c.botToken != "" && !c.config.ReceiveOldMessages && !c.acceptBotUpdate(obj, time.Now()) {
 		return
 	}
+	if c.config.DropPendingUpdates && !c.acceptPendingUpdate(obj) {
+		return
+	}
 	if err := c.updates.push(obj); err != nil && !errors.Is(err, ErrClientClosed) {
 		c.Logger.Error("Cannot queue TDLib update", "type", obj.GetType(), "error", err)
 	}

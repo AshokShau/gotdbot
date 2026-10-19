@@ -383,3 +383,172 @@ func TestStartContextTimeoutAndCancellation(t *testing.T) {
 		})
 	}
 }
+
+func TestDropPendingUpdatesBeforeWorkers(t *testing.T) {
+	c := newTestClient(t)
+	c.botToken = "7:test"
+	c.config.DropPendingUpdates = true
+	c.sendRequest = func(_ int, data []byte) {
+		request := decodeTestRequest(t, data)
+		if request.Type != "getMe" {
+			t.Errorf("unexpected request: %s", request.Type)
+		}
+		c.acceptResponse(&User{Id: 7, Type: &UserTypeBot{}}, request.Extra, nil)
+	}
+
+	var commands, queries []int64
+	var membershipUpdates int
+	done := make(chan struct{}, 1)
+	c.OnCommand("ping", func(_ *Client, message *Message) error {
+		commands = append(commands, message.Id)
+		return nil
+	})
+	c.OnUpdateGroup(func(_ *Client, update Update) error {
+		switch u := update.(type) {
+		case *UpdateNewCallbackQuery:
+			queries = append(queries, u.Id)
+		case *UpdateSupergroup:
+			membershipUpdates++
+		case *UpdateOption:
+			if u.Name == "test_barrier" {
+				done <- struct{}{}
+			}
+		}
+		return nil
+	}, nil, 1)
+
+	now := int32(time.Now().Unix())
+	chatID := supergroupChatIDOffset - 42
+	command := func(id int64, date int32) {
+		message := testMessage(chatID, "/ping")
+		message.Id, message.Date = id, date
+		c.acceptResponse(&UpdateNewMessage{Message: message}, "", nil)
+	}
+	query := func(id int64) {
+		c.acceptResponse(&UpdateNewCallbackQuery{Id: id, ChatId: chatID,
+			Payload: &CallbackQueryPayloadData{Data: []byte("test")}}, "", nil)
+	}
+	c.acceptResponse(&UpdateSupergroup{Supergroup: &Supergroup{
+		Id: 42, Date: now - 100, Status: &ChatMemberStatusMember{},
+	}}, "", nil)
+	command(1, now-50)
+	query(1)
+	c.acceptResponse(&UpdateAuthorizationState{AuthorizationState: &AuthorizationStateReady{}}, "", nil)
+	c.acceptResponse(&UpdateConnectionState{State: &ConnectionStateUpdating{}}, "", nil)
+	command(2, now)
+	c.acceptResponse(&UpdateSupergroup{Supergroup: &Supergroup{
+		Id: 42, Date: now - 10, Status: &ChatMemberStatusAdministrator{},
+	}}, "", nil)
+	c.acceptResponse(&UpdateConnectionState{State: &ConnectionStateReady{}}, "", nil)
+	command(3, now-50)
+	command(4, now)
+	query(2)
+	c.acceptResponse(&UpdateConnectionState{State: &ConnectionStateUpdating{}}, "", nil)
+	command(5, now)
+	c.acceptResponse(&UpdateConnectionState{State: &ConnectionStateReady{}}, "", nil)
+	c.acceptResponse(&UpdateOption{Name: "test_barrier", Value: &OptionValueEmpty{}}, "", nil)
+	startTestProcessors(c, 1)
+	receiveTest(t, done)
+	if want := []int64{4, 5}; !reflect.DeepEqual(commands, want) {
+		t.Errorf("commands = %v, want %v", commands, want)
+	}
+	if want := []int64{2}; !reflect.DeepEqual(queries, want) {
+		t.Errorf("queries = %v, want %v", queries, want)
+	}
+	if membershipUpdates != 0 {
+		t.Errorf("delivered %d startup membership updates", membershipUpdates)
+	}
+	if !c.isAuthorized.Load() {
+		t.Fatal("dropping updates prevented authentication")
+	}
+	assertNoPendingCalls(t, c)
+}
+
+func TestDropPendingUpdatesWaitsForAuthorizationAndCurrentConnection(t *testing.T) {
+	for _, connectionFirst := range []bool{false, true} {
+		name := "authorization first"
+		if connectionFirst {
+			name = "connection first"
+		}
+		t.Run(name, func(t *testing.T) {
+			c := newTestClient(t)
+			auth := &UpdateAuthorizationState{AuthorizationState: &AuthorizationStateReady{}}
+			ready := &UpdateConnectionState{State: &ConnectionStateReady{}}
+			query := &UpdateNewInlineQuery{Id: 1}
+			var first, last TlObject = auth, ready
+			if connectionFirst {
+				first, last = ready, auth
+			}
+			c.acceptPendingUpdate(first)
+			if c.acceptPendingUpdate(query) {
+				t.Fatal("delivery started after only one readiness signal")
+			}
+			if connectionFirst {
+				c.acceptPendingUpdate(&UpdateConnectionState{State: &ConnectionStateUpdating{}})
+				c.acceptPendingUpdate(last)
+				if c.acceptPendingUpdate(query) {
+					t.Fatal("stale connection readiness enabled delivery")
+				}
+				last = ready
+			}
+			c.acceptPendingUpdate(last)
+			if !c.acceptPendingUpdate(query) {
+				t.Fatal("delivery did not resume after initial synchronization")
+			}
+		})
+	}
+}
+
+func TestDropPendingUpdatesConfiguration(t *testing.T) {
+	for _, tc := range []struct {
+		name           string
+		bot, drop, raw bool
+		want           int
+	}{
+		{"bot default", true, false, false, 1},
+		{"bot enabled", true, true, false, 0},
+		{"raw messages do not override startup drop", true, true, true, 0},
+		{"user default", false, false, false, 1},
+		{"user enabled", false, true, false, 0},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			c := newTestClient(t)
+			if tc.bot {
+				c.botToken = "7:test"
+			}
+			c.config.DropPendingUpdates, c.config.ReceiveOldMessages = tc.drop, tc.raw
+			message := &Message{ChatId: 123, Date: int32(time.Now().Unix())}
+			c.acceptResponse(&UpdateNewMessage{Message: message}, "", nil)
+			if got := len(c.updates.memory); got != tc.want {
+				t.Fatalf("queued messages = %d, want %d", got, tc.want)
+			}
+		})
+	}
+}
+
+func TestDropPendingUpdatesPreservesProtocol(t *testing.T) {
+	c := newTestClient(t)
+	c.config.DropPendingUpdates = true
+	c.sendRequest = func(_ int, data []byte) {
+		request := decodeTestRequest(t, data)
+		c.acceptResponse(&User{Id: 7}, request.Extra, nil)
+	}
+	me, err := c.GetMe()
+	if err != nil || me.Id != 7 {
+		t.Fatalf("request response lost during startup: me = %v, err = %v", me, err)
+	}
+	completed := make(chan TlObject, 1)
+	c.pendingMessages[[2]int64{123, -1}] = completed
+	completion := &UpdateMessageSendSucceeded{OldMessageId: -1, Message: &Message{ChatId: 123, Id: 2}}
+	c.acceptResponse(completion, "", nil)
+	if receiveTest(t, completed) != completion {
+		t.Fatal("send completion lost during startup")
+	}
+	c.acceptResponse(&UpdateNewMessage{Message: &Message{ChatId: 123, IsOutgoing: true}}, "", nil)
+	if got := len(c.updates.memory); got != 2 {
+		t.Fatalf("outgoing lifecycle updates lost: queued %d, want 2", got)
+	}
+	c.acceptResponse(&UpdateAuthorizationState{AuthorizationState: &AuthorizationStateClosed{}}, "", nil)
+	receiveTest(t, c.closed)
+	assertNoPendingCalls(t, c)
+}
