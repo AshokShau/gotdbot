@@ -15,6 +15,7 @@ func (c *Client) processor() {
 		if err != nil {
 			c.Logger.Error("Cannot read queued TDLib update", "error", err)
 			if update == nil {
+				c.Logger.Warn("Delaying update queue read retry", "user_id", c.Me().Id, "retry_after", time.Second)
 				timer := time.NewTimer(time.Second)
 				select {
 				case <-c.stop:

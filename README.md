@@ -106,8 +106,8 @@ func main() {
 
 Register handlers before calling `Start`. `Start` waits for authentication;
 `Idle` keeps the client running until a termination signal arrives.
-After `Start` succeeds, `bot.Me` contains the cached account identity. Use it
-when you need the account's ID or username without another `GetMe` request.
+After `Start` succeeds, `bot.Me()` returns the cached account identity without
+another request. Snapshots are safe to read concurrently; do not modify them.
 For a user account, pass a phone number instead of a bot token to `NewClient`.
 
 ## Messages
@@ -379,6 +379,11 @@ the checkout; a non-empty message rejects it.
 request timeout, update workers, retry behavior, and error/panic callbacks.
 `DefaultClientConfig` provides the defaults. Use `UpdateWorkers: 1` when handlers
 must run serially; the default is two workers.
+
+Requests have no timeout by default. Set `RequestTimeout` or use
+`SendWithContext` for a deadline; this stops waiting, not the TDLib operation.
+`AutoRetry.MaxFloodWait` allows one flood retry within its limit; zero disables it.
+Only the caller waits, occupying a worker when called inside a handler.
 
 `Ask` waits for a matching message in a chat using `WaitMessageOpts` filters and
 a timeout. `WaitForContext` waits for updates with cancellation. A blocking

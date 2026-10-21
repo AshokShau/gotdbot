@@ -34,7 +34,7 @@ Copy it into a new application's `main.go`, initialize a module if needed, add G
 | `UseFileDatabase`, `UseChatInfoDatabase`, `UseMessageDatabase` | `*bool`; nil defaults to true. Set `gotdbot.Bool(false)` to disable. |
 | `UseSecretChats`, `UseTestDC` | Ordinary booleans default false. Secret chats require appropriate account/API support. |
 | `AuthorizationTimeout` | 60 seconds when missing/nonpositive. Interactive login may need more time. |
-| `RequestTimeout` | 30 seconds when missing/nonpositive; bounds request retries and send completion together. |
+| `RequestTimeout` | Disabled by default; positive values limit requests, retries and send completion. |
 | `UpdateWorkers` | Defaults to 2 when nonpositive. Use 1 for serial processing; blocking conversations need spare workers. |
 | `UpdateQueueSize` | Defaults to 1000 when nonpositive. Overflow spills to temporary files; this is not durable restart recovery. |
 | `ParseMode` | Empty means plain text by default. Recognized modes are HTML, Markdown, MarkdownV2. |
@@ -73,10 +73,10 @@ Do not invent an `AuthCallback` or password field: this version does not expose 
 
 Use `NewClient` → register handlers → `Start` (or `StartContext`) → `Idle` or an application-owned lifetime → `Close`.
 
-- `Start` waits for authorization and caches `Me`. Check its error before using identity-dependent methods.
+- `Start` waits for authorization and caches the account identity. Check its error before using identity-dependent methods.
 - `StartContext` cancellation stops waiting; it does not close the running instance. Close it if aborting startup. Cancellation also does not cancel the interactive stdin reader.
 - `Init` starts the receiver/processors without waiting for auth. Use it only for functions documented as callable before auth; it does not authorize normal sends.
-- `Me` is library-owned, refreshed by updates, and must not be modified by the application. Fetch identity with `GetMe` when a fresh value is needed.
+- `Me()` returns a non-nil, read-only snapshot safe for concurrent reads. `GetMe` fetches identity directly from TDLib.
 - `Idle` waits for SIGINT/SIGTERM or closure, then closes the client. An existing HTTP/service host can manage shutdown instead.
 - `Close` is idempotent, can be called from a handler, and performs bounded native shutdown. It does not wait for in-flight application handlers; drain application jobs separately when needed.
 - Closure unblocks pending requests/waiters with `ErrClientClosed`. A closed client is not a restartable instance.

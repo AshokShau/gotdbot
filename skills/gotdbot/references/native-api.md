@@ -64,7 +64,7 @@ func ReadMessage(ctx context.Context, c *gotdbot.Client, chatID, messageID int64
 
 Generated Client convenience methods do not generally take a context. To cancel an individual native send, construct `&SendMessage{ChatId: ..., InputMessageContent: ..., Options: ...}` and call SendWithContext. Do not invent `SendMessageWithContext`/`GetMessageContext` methods. Native request structs use native field spelling (`ChatId`, `MessageId`), while handwritten convenience settings may use `ReplyToMessageID` or `CallbackQueryID`.
 
-The transport inserts correlation `@extra` without mutating the request struct. `Send` is SendWithContext with a background context. Both apply the configured RequestTimeout, including retries, lookup requests, and send completion.
+The transport inserts correlation `@extra` without mutating the request struct. `Send` uses a background context. A positive `RequestTimeout` limits requests, retries and send completion; otherwise only the caller's context limits waiting. Cancellation stops waiting without cancelling the TDLib operation.
 
 Outgoing send operations await `UpdateMessageSendSucceeded`/`UpdateMessageSendFailed` when TDLib returns a pending message. The returned successful message can have a different final ID from the temporary ID. Read/edit requests do not wait for another send's completion. Send results can include a message alongside an error; check the error before using the result as a confirmed send.
 

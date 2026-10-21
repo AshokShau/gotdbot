@@ -13,7 +13,8 @@ import (
 type AutoRetry struct {
 	ChatNotFound    bool
 	MessageNotFound bool
-	MaxFloodWait    time.Duration
+	// MaxFloodWait allows one flood retry within this delay; zero disables it.
+	MaxFloodWait time.Duration
 }
 
 // ClientOpts configures account storage, authentication, logging, and update handling.
@@ -39,7 +40,7 @@ type ClientOpts struct {
 	Logger                  *logger.Logger
 	QrMode                  bool
 	AuthorizationTimeout    time.Duration
-	// RequestTimeout bounds each request and its send completion; default 30s.
+	// RequestTimeout limits requests and send completion; nonpositive disables it.
 	RequestTimeout time.Duration
 	// UpdateWorkers bounds concurrent user handlers; default 2. Use 1 for order.
 	UpdateWorkers int
@@ -74,7 +75,6 @@ func DefaultClientConfig() *ClientOpts {
 		Logger:                  logger.New(logger.WithLevel(slog.LevelInfo), logger.WithOutput(os.Stdout)),
 		QrMode:                  false,
 		AuthorizationTimeout:    60 * time.Second,
-		RequestTimeout:          30 * time.Second,
 		UpdateWorkers:           2,
 		UpdateQueueSize:         1000,
 		LogVerbosityLevel:       2,

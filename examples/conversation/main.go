@@ -47,7 +47,7 @@ func main() {
 		log.Fatalf("Failed to start bot: %v", err)
 	}
 
-	me := bot.Me
+	me := bot.Me()
 	username := ""
 	if me.Usernames != nil && len(me.Usernames.ActiveUsernames) > 0 {
 		username = me.Usernames.ActiveUsernames[0]

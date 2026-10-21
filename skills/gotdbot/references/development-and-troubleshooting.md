@@ -106,7 +106,7 @@ For behavior changes, test the observable request/result or lifecycle invariant.
 | Inline media edit fails | Files must already be uploaded; use inline IDs/options and supported editable content. |
 | Moderation/profile/payment method rejected | Native account kind, ownership, member/admin rights, feature-specific constraints and target data. |
 | Messages duplicate after retry | Timeout may follow server acceptance; inspect send-completion/state before retrying. |
-| 429/flood wait | Parsed retry-after, enabled MaxFloodWait, bounded current RequestTimeout; no infinite immediate retry loops. |
+| 429/flood wait | Parsed retry-after and enabled MaxFloodWait; respect explicit deadlines and retry limits. |
 | Update backlog grows | Handler duration/worker count, spool errors and temporary-disk capacity. Queue spill is not restart persistence. |
 | Shutdown returns while jobs run | Close deliberately does not wait for application handlers; manage job draining separately. |
 

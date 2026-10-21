@@ -19,7 +19,7 @@ func (c *Client) Send(req TlObject) (TlObject, error) {
 }
 
 // SendWithContext dispatches req to TDLib and waits for the response, honouring ctx.
-func (c *Client) SendWithContext(ctx context.Context, req TlObject) (TlObject, error) {
+func (c *Client) SendWithContext(ctx context.Context, req TlObject) (obj TlObject, err error) {
 	if ctx == nil {
 		return nil, fmt.Errorf("nil context")
 	}
@@ -35,6 +35,23 @@ func (c *Client) SendWithContext(ctx context.Context, req TlObject) (TlObject, e
 	if _, isFn := req.(tlFunction); !isFn {
 		return nil, fmt.Errorf("TDLib requests must be function pointers, got %T", req)
 	}
+	started := time.Now()
+	defer func() {
+		if errors.Is(err, context.DeadlineExceeded) && !errors.Is(err, SendTimeout) {
+			err = fmt.Errorf("%w: %w", SendTimeout, err)
+		}
+		args := []any{"user_id", c.Me().Id, "method", req.GetType(), "elapsed", time.Since(started)}
+		if err == nil {
+			c.Logger.Debug("TDLib request completed", args...)
+			return
+		}
+		args = append(args, "error", err)
+		if errors.Is(err, context.DeadlineExceeded) {
+			c.Logger.Warn("TDLib request timed out", args...)
+		} else {
+			c.Logger.Debug("TDLib request failed", args...)
+		}
+	}()
 	// Serialize without mutating the request; correlation belongs to the transport.
 	data, err := json.Marshal(req)
 	if err != nil {
@@ -44,9 +61,11 @@ func (c *Client) SendWithContext(ctx context.Context, req TlObject) (TlObject, e
 	if err := json.Unmarshal(data, &wire); err != nil {
 		return nil, err
 	}
-	// Bound retries, lookup requests, send completion and flood waits together.
-	ctx, cancel := context.WithTimeout(ctx, c.config.RequestTimeout)
-	defer cancel()
+	if c.config.RequestTimeout > 0 {
+		var cancel context.CancelFunc
+		ctx, cancel = context.WithTimeout(ctx, c.config.RequestTimeout)
+		defer cancel()
+	}
 	chatLoaded := req.GetType() == "getChat"
 	messageLoaded := strings.HasPrefix(req.GetType(), "getMessage")
 	floodRetried := false
@@ -69,6 +88,7 @@ func (c *Client) SendWithContext(ctx context.Context, req TlObject) (TlObject, e
 		c.requestMu.Lock()
 		c.pendingRequests[extra] = call
 		c.requestMu.Unlock()
+		c.Logger.Debug("Sending TDLib request", "user_id", c.Me().Id, "method", req.GetType(), "request_id", extra)
 		if c.sendRequest != nil {
 			c.sendRequest(c.clientID, data)
 		} else {
@@ -79,9 +99,6 @@ func (c *Client) SendWithContext(ctx context.Context, req TlObject) (TlObject, e
 		case result = <-call.response:
 		case <-ctx.Done():
 			c.finishCall(extra)
-			if errors.Is(ctx.Err(), context.DeadlineExceeded) {
-				return nil, errors.Join(SendTimeout, ctx.Err())
-			}
 			return nil, ctx.Err()
 		case <-c.closed:
 			c.finishCall(extra)
@@ -103,9 +120,6 @@ func (c *Client) SendWithContext(ctx context.Context, req TlObject) (TlObject, e
 		}
 		if waitsForSend(req) {
 			result, err = c.waitSend(ctx, result, call)
-			if errors.Is(err, context.DeadlineExceeded) {
-				err = errors.Join(SendTimeout, err)
-			}
 		}
 		c.finishCall(extra)
 		return result, err
@@ -118,21 +132,39 @@ func (c *Client) retryRequest(ctx context.Context, req TlObject, e *Error, chatL
 		return false, nil
 	}
 	policy := c.config.AutoRetry
-	if e.Code == 429 && !*floodRetried && policy.MaxFloodWait > 0 {
+	if e.Code == 429 {
 		seconds := e.GetRetryAfter()
-		if seconds > 0 && int64(seconds) <= int64(policy.MaxFloodWait/time.Second) {
+		reason := ""
+		switch {
+		case *floodRetried:
+			reason = "retry already attempted"
+		case policy.MaxFloodWait <= 0:
+			reason = "automatic flood retry disabled"
+		case seconds <= 0:
+			reason = "invalid retry delay"
+		case int64(seconds) > int64(policy.MaxFloodWait/time.Second):
+			reason = "retry delay exceeds MaxFloodWait"
+		}
+		if reason == "" {
 			*floodRetried = true
-			timer := time.NewTimer(time.Duration(seconds) * time.Second)
+			delay := time.Duration(seconds) * time.Second
+			c.Logger.Warn("TDLib flood wait; delaying request retry", "user_id", c.Me().Id, "method", req.GetType(), "retry_after", delay)
+			timer := time.NewTimer(delay)
 			defer timer.Stop()
 			select {
 			case <-timer.C:
+				c.Logger.Debug("Retrying TDLib request after flood wait", "user_id", c.Me().Id, "method", req.GetType())
 				return true, nil
 			case <-ctx.Done():
 				return false, ctx.Err()
+			case <-c.closed:
+				return false, ErrClientClosed
 			case <-c.stop:
 				return false, ErrClientClosed
 			}
 		}
+		c.Logger.Warn("TDLib flood wait; request will not be retried", "user_id", c.Me().Id, "method", req.GetType(), "retry_after_seconds", seconds, "max_flood_wait", policy.MaxFloodWait, "reason", reason)
+		return false, nil
 	}
 	if e.Code != 400 {
 		return false, nil
@@ -141,15 +173,33 @@ func (c *Client) retryRequest(ctx context.Context, req TlObject, e *Error, chatL
 		*messageLoaded = true
 		chatID, messageID := extractChatAndMessageID(req)
 		if chatID != 0 && messageID != 0 {
+			c.Logger.Debug("Loading missing message before request retry", "user_id", c.Me().Id, "method", req.GetType(), "chat_id", chatID, "message_id", messageID)
 			_, err := c.SendWithContext(ctx, &GetMessage{ChatId: chatID, MessageId: messageID})
-			return err == nil, nil
+			if err != nil {
+				c.Logger.Warn("Cannot load missing message for request retry", "user_id", c.Me().Id, "method", req.GetType(), "error", err)
+				if errors.Is(err, context.Canceled) || errors.Is(err, context.DeadlineExceeded) || errors.Is(err, ErrClientClosed) {
+					return false, err
+				}
+				return false, nil
+			}
+			c.Logger.Debug("Retrying TDLib request after loading message", "user_id", c.Me().Id, "method", req.GetType())
+			return true, nil
 		}
 	}
 	if e.Message == "Chat not found" && !*chatLoaded && policy.ChatNotFound {
 		*chatLoaded = true
 		if id, _ := extractChatAndMessageID(req); id != 0 {
+			c.Logger.Debug("Loading missing chat before request retry", "user_id", c.Me().Id, "method", req.GetType(), "chat_id", id)
 			_, err := c.SendWithContext(ctx, &GetChat{ChatId: id})
-			return err == nil, nil
+			if err != nil {
+				c.Logger.Warn("Cannot load missing chat for request retry", "user_id", c.Me().Id, "method", req.GetType(), "error", err)
+				if errors.Is(err, context.Canceled) || errors.Is(err, context.DeadlineExceeded) || errors.Is(err, ErrClientClosed) {
+					return false, err
+				}
+				return false, nil
+			}
+			c.Logger.Debug("Retrying TDLib request after loading chat", "user_id", c.Me().Id, "method", req.GetType())
+			return true, nil
 		}
 	}
 	return false, nil
