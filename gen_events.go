@@ -7412,3 +7412,117 @@ func (c *Client) AddUpdateWebBrowserSettingsHandlerGroup(handler func(client *Cl
 	}
 	c.AddHandlerGroup(&updateWebBrowserSettingsHandler{filter: filter, response: handler}, group)
 }
+
+// updateWebProxyCarrierClosedHandler handles UpdateWebProxyCarrierClosed updates
+type updateWebProxyCarrierClosedHandler struct {
+	filter   UpdateWebProxyCarrierClosedFilter
+	response func(client *Client, update *UpdateWebProxyCarrierClosed) error
+}
+
+func (h *updateWebProxyCarrierClosedHandler) CheckUpdate(client *Client, update TlObject) bool {
+	u, ok := update.(*UpdateWebProxyCarrierClosed)
+	if !ok || u == nil || h.response == nil {
+		return false
+	}
+	if h.filter != nil && !h.filter(u) {
+		return false
+	}
+	return true
+}
+
+func (h *updateWebProxyCarrierClosedHandler) HandleUpdate(client *Client, update TlObject) error {
+	u, ok := update.(*UpdateWebProxyCarrierClosed)
+	if !ok || u == nil || h.response == nil {
+		return nil
+	}
+	return h.response(client, u)
+}
+
+// OnUpdateWebProxyCarrierClosed registers a handler for UpdateWebProxyCarrierClosed updates with default group (0)
+func (c *Client) OnUpdateWebProxyCarrierClosed(handler func(client *Client, update *UpdateWebProxyCarrierClosed) error, filter UpdateWebProxyCarrierClosedFilter) {
+	c.AddUpdateWebProxyCarrierClosedHandlerGroup(handler, filter, 0)
+}
+
+// AddUpdateWebProxyCarrierClosedHandlerGroup registers a handler for UpdateWebProxyCarrierClosed updates with a specific group
+func (c *Client) AddUpdateWebProxyCarrierClosedHandlerGroup(handler func(client *Client, update *UpdateWebProxyCarrierClosed) error, filter UpdateWebProxyCarrierClosedFilter, group int) {
+	if handler == nil {
+		return
+	}
+	c.AddHandlerGroup(&updateWebProxyCarrierClosedHandler{filter: filter, response: handler}, group)
+}
+
+// updateWebProxyCarrierDataHandler handles UpdateWebProxyCarrierData updates
+type updateWebProxyCarrierDataHandler struct {
+	filter   UpdateWebProxyCarrierDataFilter
+	response func(client *Client, update *UpdateWebProxyCarrierData) error
+}
+
+func (h *updateWebProxyCarrierDataHandler) CheckUpdate(client *Client, update TlObject) bool {
+	u, ok := update.(*UpdateWebProxyCarrierData)
+	if !ok || u == nil || h.response == nil {
+		return false
+	}
+	if h.filter != nil && !h.filter(u) {
+		return false
+	}
+	return true
+}
+
+func (h *updateWebProxyCarrierDataHandler) HandleUpdate(client *Client, update TlObject) error {
+	u, ok := update.(*UpdateWebProxyCarrierData)
+	if !ok || u == nil || h.response == nil {
+		return nil
+	}
+	return h.response(client, u)
+}
+
+// OnUpdateWebProxyCarrierData registers a handler for UpdateWebProxyCarrierData updates with default group (0)
+func (c *Client) OnUpdateWebProxyCarrierData(handler func(client *Client, update *UpdateWebProxyCarrierData) error, filter UpdateWebProxyCarrierDataFilter) {
+	c.AddUpdateWebProxyCarrierDataHandlerGroup(handler, filter, 0)
+}
+
+// AddUpdateWebProxyCarrierDataHandlerGroup registers a handler for UpdateWebProxyCarrierData updates with a specific group
+func (c *Client) AddUpdateWebProxyCarrierDataHandlerGroup(handler func(client *Client, update *UpdateWebProxyCarrierData) error, filter UpdateWebProxyCarrierDataFilter, group int) {
+	if handler == nil {
+		return
+	}
+	c.AddHandlerGroup(&updateWebProxyCarrierDataHandler{filter: filter, response: handler}, group)
+}
+
+// updateWebProxyCarrierOpenedHandler handles UpdateWebProxyCarrierOpened updates
+type updateWebProxyCarrierOpenedHandler struct {
+	filter   UpdateWebProxyCarrierOpenedFilter
+	response func(client *Client, update *UpdateWebProxyCarrierOpened) error
+}
+
+func (h *updateWebProxyCarrierOpenedHandler) CheckUpdate(client *Client, update TlObject) bool {
+	u, ok := update.(*UpdateWebProxyCarrierOpened)
+	if !ok || u == nil || h.response == nil {
+		return false
+	}
+	if h.filter != nil && !h.filter(u) {
+		return false
+	}
+	return true
+}
+
+func (h *updateWebProxyCarrierOpenedHandler) HandleUpdate(client *Client, update TlObject) error {
+	u, ok := update.(*UpdateWebProxyCarrierOpened)
+	if !ok || u == nil || h.response == nil {
+		return nil
+	}
+	return h.response(client, u)
+}
+
+// OnUpdateWebProxyCarrierOpened registers a handler for UpdateWebProxyCarrierOpened updates with default group (0)
+func (c *Client) OnUpdateWebProxyCarrierOpened(handler func(client *Client, update *UpdateWebProxyCarrierOpened) error, filter UpdateWebProxyCarrierOpenedFilter) {
+	c.AddUpdateWebProxyCarrierOpenedHandlerGroup(handler, filter, 0)
+}
+
+// AddUpdateWebProxyCarrierOpenedHandlerGroup registers a handler for UpdateWebProxyCarrierOpened updates with a specific group
+func (c *Client) AddUpdateWebProxyCarrierOpenedHandlerGroup(handler func(client *Client, update *UpdateWebProxyCarrierOpened) error, filter UpdateWebProxyCarrierOpenedFilter, group int) {
+	if handler == nil {
+		return
+	}
+	c.AddHandlerGroup(&updateWebProxyCarrierOpenedHandler{filter: filter, response: handler}, group)
+}

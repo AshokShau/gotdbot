@@ -184,11 +184,12 @@ func (r *richRenderer) block(block PageBlock, mode string) string {
 	case PageBlockEmbeddedPost:
 		return r.blocks(v.Blocks, ParseModeHTML) + richCaptionHTML(v.Caption)
 	case PageBlockRelatedArticles:
-		out := textBlock("h3", v.Header)
+		var out strings.Builder
+		out.WriteString(textBlock("h3", v.Header))
 		for _, article := range v.Articles {
-			out += textBlock("p", RichTextUrl{Text: RichTextPlain{Text: article.Title}, Url: article.Url})
+			out.WriteString(textBlock("p", RichTextUrl{Text: RichTextPlain{Text: article.Title}, Url: article.Url}))
 		}
-		return out
+		return out.String()
 	}
 	return ""
 }

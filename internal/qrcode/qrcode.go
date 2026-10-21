@@ -791,7 +791,7 @@ func gfPolyAdd(a, b gfPoly) gfPoly {
 	numBTerms := b.numTerms()
 	numTerms := max(numBTerms, numATerms)
 	result := gfPoly{term: make([]gfElement, numTerms)}
-	for i := 0; i < numTerms; i++ {
+	for i := range numTerms {
 		switch {
 		case numATerms > i && numBTerms > i:
 			result.term[i] = gfAdd(a.term[i], b.term[i])

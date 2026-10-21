@@ -9,11 +9,6 @@ import (
 	"github.com/AshokShau/gotdbot/logger"
 )
 
-// Bool returns a pointer for options that distinguish an unset value from false.
-func Bool(b bool) *bool {
-	return &b
-}
-
 // AutoRetry controls missing-object lookups and the maximum automatic flood wait.
 type AutoRetry struct {
 	ChatNotFound    bool
@@ -67,9 +62,9 @@ func DefaultClientConfig() *ClientOpts {
 		DatabaseDirectory:       "database",
 		FilesDirectory:          "",
 		DatabaseEncryptionKey:   "",
-		UseFileDatabase:         Bool(true),
-		UseChatInfoDatabase:     Bool(true),
-		UseMessageDatabase:      Bool(true),
+		UseFileDatabase:         new(true),
+		UseChatInfoDatabase:     new(true),
+		UseMessageDatabase:      new(true),
 		UseSecretChats:          false,
 		LoadMessagesBeforeReply: false,
 		SystemLanguageCode:      "en",

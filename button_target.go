@@ -177,7 +177,7 @@ func parseButtonTargetChat(options map[string]string) (TargetChat, error) {
 		if chats, exists := takeButtonOption(options, "chats"); exists {
 			chosen.Types = &TargetChatTypes{}
 			if chats != "" {
-				for _, chat := range strings.Split(chats, ",") {
+				for chat := range strings.SplitSeq(chats, ",") {
 					switch chat {
 					case "users":
 						chosen.Types.AllowUserChats = true
@@ -333,8 +333,8 @@ func splitButtonFields(target string) []string {
 
 func escapeButtonValue(value string) string {
 	value = strings.NewReplacer("\\", "\\\\", "|", "\\|", "(", "\\(", ")", "\\)", "\n", "\\n", "\r", "\\r").Replace(value)
-	if strings.HasSuffix(value, ":same") {
-		value = strings.TrimSuffix(value, ":same") + "\\:same"
+	if before, ok := strings.CutSuffix(value, ":same"); ok {
+		value = before + "\\:same"
 	}
 	return value
 }

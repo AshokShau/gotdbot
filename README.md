@@ -29,7 +29,7 @@ native TDLib methods and types.
 go get github.com/AshokShau/gotdbot
 ```
 
-You need **Go 1.26 or later** and a **TDLib 1.8.68** shared library matching the
+You need **Go 1.26 or later** and a **TDLib 1.8.69** shared library matching the
 bindings. Get a Telegram API ID and hash from [my.telegram.org](https://my.telegram.org),
 and a bot token from [@BotFather](https://t.me/BotFather) for a bot account.
 

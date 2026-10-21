@@ -11,7 +11,7 @@ Use this skill to implement working GotdBot applications or maintain the library
 
 Determine whether the task changes an application that imports GotdBot or the GotdBot library itself. Preserve the project's Go module, account type, storage paths, and chosen dependency version. For a new application, start with [assets/bot/main.go](assets/bot/main.go); it reads credentials from environment variables and registers a command and filtered echo handler.
 
-This skill was checked against library `v0.10.0`, TDLib `v1.8.68`, and a module requiring Go `1.26.0`, including shared compact button markup with `ParseModeNone`, native button types, rich formatting renderers and the reply-based formatting example. These are the bundled reference baseline, not a requirement to upgrade an existing project. Verify the actual dependency and native-library versions before adapting examples.
+This skill was checked against library `v0.10.0`, TDLib `v1.8.69`, and a module requiring Go `1.26.0`, including shared compact button markup with `ParseModeNone`, native button types, rich formatting renderers and the reply-based formatting example. These are the bundled reference baseline, not a requirement to upgrade an existing project. Verify the actual dependency and native-library versions before adapting examples.
 
 ```sh
 go list -m -json github.com/AshokShau/gotdbot

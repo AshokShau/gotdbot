@@ -40,11 +40,11 @@ type UpdateAnimatedEmojiMessageClickedFilter func(u *UpdateAnimatedEmojiMessageC
 type UpdateAnimationSearchParametersFilter func(u *UpdateAnimationSearchParameters) bool
 
 // UpdateApplicationRecaptchaVerificationRequiredFilter filters UpdateApplicationRecaptchaVerificationRequired updates.
-// A request can't be completed unless reCAPTCHA verification is performed; for official mobile applications only.
+// A request can't be completed unless reCAPTCHA verification is performed; for official mobile applications only. The method setApplicationVerificationToken must be called once the verification is completed or failed
 type UpdateApplicationRecaptchaVerificationRequiredFilter func(u *UpdateApplicationRecaptchaVerificationRequired) bool
 
 // UpdateApplicationVerificationRequiredFilter filters UpdateApplicationVerificationRequired updates.
-// A request can't be completed unless application verification is performed; for official mobile applications only.
+// A request can't be completed unless application verification is performed; for official mobile applications only. The method setApplicationVerificationToken must be called once the verification is completed or failed
 type UpdateApplicationVerificationRequiredFilter func(u *UpdateApplicationVerificationRequired) bool
 
 // UpdateAttachmentMenuBotsFilter filters UpdateAttachmentMenuBots updates.
@@ -188,7 +188,7 @@ type UpdateChatMessageSenderFilter func(u *UpdateChatMessageSender) bool
 type UpdateChatNotificationSettingsFilter func(u *UpdateChatNotificationSettings) bool
 
 // UpdateChatOnlineMemberCountFilter filters UpdateChatOnlineMemberCount updates.
-// The number of online group members has changed. This update with non-zero number of online group members is sent only for currently opened chats.
+// The number of online group members has changed. This update with non-zero number of online group members is sent only for currently opened chats. There is no guarantee that it is sent just after the number of online users has changed
 type UpdateChatOnlineMemberCountFilter func(u *UpdateChatOnlineMemberCount) bool
 
 // UpdateChatPendingJoinRequestsFilter filters UpdateChatPendingJoinRequests updates.
@@ -452,7 +452,7 @@ type UpdateMessageReactionFilter func(u *UpdateMessageReaction) bool
 type UpdateMessageReactionsFilter func(u *UpdateMessageReactions) bool
 
 // UpdateMessageSendAcknowledgedFilter filters UpdateMessageSendAcknowledged updates.
-// A request to send a message has reached the Telegram server. This doesn't mean that the message will be sent successfully.
+// A request to send a message has reached the Telegram server. This doesn't mean that the message will be sent successfully. This update is sent only if the option "use_quick_ack" is set to true. This update may be sent multiple times for the same message
 type UpdateMessageSendAcknowledgedFilter func(u *UpdateMessageSendAcknowledged) bool
 
 // UpdateMessageSendFailedFilter filters UpdateMessageSendFailed updates.
@@ -568,7 +568,7 @@ type UpdateOwnedStarCountFilter func(u *UpdateOwnedStarCount) bool
 type UpdatePaidMediaPurchasedFilter func(u *UpdatePaidMediaPurchased) bool
 
 // UpdatePendingMessageFilter filters UpdatePendingMessage updates.
-// A new pending text or rich message was received in a chat with a bot. The message must be shown in the chat for at most getOption("pending_text_message_period") seconds,
+// A new pending text or rich message was received in a chat with a bot. The message must be shown in the chat for at most getOption("pending_text_message_period") seconds, replace any other pending message with the same draft_id with animation, and be deleted whenever any incoming message or a pending message with another draft_id is received in the message thread
 type UpdatePendingMessageFilter func(u *UpdatePendingMessage) bool
 
 // UpdatePollFilter filters UpdatePoll updates.
@@ -648,7 +648,7 @@ type UpdateServiceNotificationFilter func(u *UpdateServiceNotification) bool
 type UpdateSpeechRecognitionTrialFilter func(u *UpdateSpeechRecognitionTrial) bool
 
 // UpdateSpeedLimitNotificationFilter filters UpdateSpeedLimitNotification updates.
-// Download or upload file speed for the user was limited, but it can be restored by subscription to Telegram Premium. The notification can be postponed until a file being downloaded or uploaded is visible to the user.
+// Download or upload file speed for the user was limited, but it can be restored by subscription to Telegram Premium. The notification can be postponed until a file being downloaded or uploaded is visible to the user. Use getOption("premium_download_speedup") or getOption("premium_upload_speedup") to get expected speedup after subscription to Telegram Premium
 type UpdateSpeedLimitNotificationFilter func(u *UpdateSpeedLimitNotification) bool
 
 // UpdateStakeDiceStateFilter filters UpdateStakeDiceState updates.
@@ -782,3 +782,15 @@ type UpdateWebAppMessageSentFilter func(u *UpdateWebAppMessageSent) bool
 // UpdateWebBrowserSettingsFilter filters UpdateWebBrowserSettings updates.
 // Web browser settings have been updated
 type UpdateWebBrowserSettingsFilter func(u *UpdateWebBrowserSettings) bool
+
+// UpdateWebProxyCarrierClosedFilter filters UpdateWebProxyCarrierClosed updates.
+// A web proxy carrier must be closed. If the page has passed any message to the bridge object, then the application must deliver the string {"t":"close"} to the page, so that it can end its relay session, and destroy the web view shortly after, for example, in 200 milliseconds; otherwise, the web view must be destroyed immediately. Messages from the carrier received after this update must be ignored
+type UpdateWebProxyCarrierClosedFilter func(u *UpdateWebProxyCarrierClosed) bool
+
+// UpdateWebProxyCarrierDataFilter filters UpdateWebProxyCarrierData updates.
+// Data must be delivered as an ArrayBuffer to the page of a web proxy carrier through the onmessage function of the bridge object, in the order of the updates
+type UpdateWebProxyCarrierDataFilter func(u *UpdateWebProxyCarrierData) bool
+
+// UpdateWebProxyCarrierOpenedFilter filters UpdateWebProxyCarrierOpened updates.
+// A web proxy carrier must be opened as described in webProxyCarrier. Messages passed by the page to the bridge object must be passed to processWebProxyCarrierMessage. Failures of the carrier must be reported with reportWebProxyCarrierError
+type UpdateWebProxyCarrierOpenedFilter func(u *UpdateWebProxyCarrierOpened) bool
