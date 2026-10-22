@@ -107,7 +107,7 @@ For behavior changes, test the observable request/result or lifecycle invariant.
 | Moderation/profile/payment method rejected | Native account kind, ownership, member/admin rights, feature-specific constraints and target data. |
 | Messages duplicate after retry | Timeout may follow server acceptance; inspect send-completion/state before retrying. |
 | 429/flood wait | Parsed retry-after and enabled MaxFloodWait; respect explicit deadlines and retry limits. |
-| Update backlog grows | Handler duration/worker count, spool errors and temporary-disk capacity. Queue spill is not restart persistence. |
+| Update backlog grows | Handler duration and worker count. Queued updates stay in memory until handled. |
 | Shutdown returns while jobs run | Close deliberately does not wait for application handlers; manage job draining separately. |
 
 Report which behavior was actually tested. Separate compile/unit/race checks from real-account tests when describing readiness.

@@ -44,8 +44,8 @@ type ClientOpts struct {
 	RequestTimeout time.Duration
 	// UpdateWorkers bounds concurrent user handlers; default 2. Use 1 for order.
 	UpdateWorkers int
-	// UpdateQueueSize bounds updates buffered in memory per client; default 1000.
-	// Excess updates spill to temporary files, reclaimed as the queue drains.
+	// UpdateQueueSize sets the initial queue buffer; default 1000. The queue
+	// grows in memory when full, without blocking the shared receiver.
 	UpdateQueueSize int
 	// ReceiveOldMessages disables historical-message filtering for bots.
 	ReceiveOldMessages bool

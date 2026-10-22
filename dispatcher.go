@@ -1,30 +1,13 @@
 package gotdbot
 
-import (
-	"errors"
-	"time"
-)
+import "errors"
 
 func (c *Client) processor() {
 	defer c.wg.Done()
 	for {
 		update, err := c.updates.next(c.stop)
-		if errors.Is(err, ErrClientClosed) {
-			return
-		}
 		if err != nil {
-			c.Logger.Error("Cannot read queued TDLib update", "error", err)
-			if update == nil {
-				c.Logger.Warn("Delaying update queue read retry", "user_id", c.Me().Id, "retry_after", time.Second)
-				timer := time.NewTimer(time.Second)
-				select {
-				case <-c.stop:
-					timer.Stop()
-					return
-				case <-timer.C:
-				}
-				continue
-			}
+			return
 		}
 		select {
 		case <-c.stop:
@@ -56,18 +39,7 @@ func (c *Client) processor() {
 
 			// Snapshot waiters before invoking application filters. Filters may
 			// register/remove waiters and must never execute under wMu.
-			c.wMu.RLock()
-			var candidates []*waiter
-			chatID := c.UpdateChatID(update)
-			for id, inner := range c.waiters {
-				if id == 0 || id == chatID {
-					for _, w := range inner {
-						candidates = append(candidates, w)
-					}
-				}
-			}
-			c.wMu.RUnlock()
-			for _, w := range candidates {
+			for _, w := range c.snapshotWaiters(update) {
 				if w.filter(c, update) {
 					select {
 					case w.response <- update:

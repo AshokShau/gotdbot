@@ -117,6 +117,16 @@ func TestWaitForExitPaths(t *testing.T) {
 	}
 }
 
+func TestWaiterSnapshotWithoutChatDoesNotDuplicateGlobalWaiters(t *testing.T) {
+	c := newTestClient(t)
+	global, other := &waiter{}, &waiter{}
+	c.waiters = map[int64]map[string]*waiter{0: {"global": global}, 42: {"other": other}}
+	got := c.snapshotWaiters(&UpdateConnectionState{State: &ConnectionStateReady{}})
+	if len(got) != 1 || got[0] != global {
+		t.Fatalf("waiters for update without chat = %v", got)
+	}
+}
+
 func TestAskFiltersAndCancellation(t *testing.T) {
 	for _, cancelConversation := range []bool{false, true} {
 		t.Run(map[bool]string{false: "reply", true: "cancel"}[cancelConversation], func(t *testing.T) {

@@ -380,6 +380,10 @@ request timeout, update workers, retry behavior, and error/panic callbacks.
 `DefaultClientConfig` provides the defaults. Use `UpdateWorkers: 1` when handlers
 must run serially; the default is two workers.
 
+Updates queue in memory without disk spooling. `UpdateQueueSize` sets the initial
+buffer, not a limit; memory grows if handlers cannot keep up. Increase
+`UpdateWorkers` when slow handlers delay incoming commands.
+
 Requests have no timeout by default. Set `RequestTimeout` or use
 `SendWithContext` for a deadline; this stops waiting, not the TDLib operation.
 `AutoRetry.MaxFloodWait` allows one flood retry within its limit; zero disables it.

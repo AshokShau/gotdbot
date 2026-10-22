@@ -36,7 +36,7 @@ Copy it into a new application's `main.go`, initialize a module if needed, add G
 | `AuthorizationTimeout` | 60 seconds when missing/nonpositive. Interactive login may need more time. |
 | `RequestTimeout` | Disabled by default; positive values limit requests, retries and send completion. |
 | `UpdateWorkers` | Defaults to 2 when nonpositive. Use 1 for serial processing; blocking conversations need spare workers. |
-| `UpdateQueueSize` | Defaults to 1000 when nonpositive. Overflow spills to temporary files; this is not durable restart recovery. |
+| `UpdateQueueSize` | Initial memory buffer; defaults to 1000 when nonpositive. Overflow stays in memory. |
 | `ParseMode` | Empty means plain text by default. Recognized modes are HTML, Markdown, MarkdownV2. |
 | `LoadMessagesBeforeReply` | Optional message lookup before replying. Read reply helpers when diagnosing lookup failures. |
 | `AutoRetry` | Defaults to no enabled retry features. Options are `ChatNotFound`, `MessageNotFound`, `MaxFloodWait`. |

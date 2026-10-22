@@ -1,10 +1,8 @@
 package gotdbot
 
 import (
-	"encoding/binary"
 	"errors"
-	"os"
-	"strings"
+	"strconv"
 	"sync"
 	"testing"
 )
@@ -24,76 +22,41 @@ func queueTestUpdate(id int64) TlObject {
 	return &UpdateNewMessage{Message: &Message{Id: id, ChatId: 42}}
 }
 
-func TestUpdateQueueFIFOAcrossMemoryAndDisk(t *testing.T) {
+func TestUpdateQueueFIFOAcrossBufferAndOverflow(t *testing.T) {
 	q := newTestQueue(t, 2)
-	for i := int64(1); i <= 5; i++ {
-		if err := q.push(queueTestUpdate(i)); err != nil {
+	for id := int64(1); id <= 5; id++ {
+		if err := q.push(queueTestUpdate(id)); err != nil {
 			t.Fatal(err)
 		}
 	}
-	dir := q.dir
-	if dir == "" || len(q.memory) != 2 || q.spilled != 3 {
-		t.Fatal("queue did not enforce memory bound and spill")
+	if len(q.memory) != 2 || len(q.backlog) != 3 {
+		t.Fatal("queue did not buffer overflow")
 	}
-	// Make space in memory, then append. New updates must stay behind the spool.
-	first, err := q.take()
-	if err != nil || first.(*UpdateNewMessage).Message.Id != 1 {
-		t.Fatalf("first = (%v, %v)", first, err)
+	obj, err := q.take()
+	if err != nil || obj.(*UpdateNewMessage).Message.Id != 1 {
+		t.Fatalf("first = (%v, %v)", obj, err)
 	}
 	if err := q.push(queueTestUpdate(6)); err != nil {
 		t.Fatal(err)
 	}
 	for want := int64(2); want <= 6; want++ {
 		obj, err := q.next(nil)
-		if err != nil {
-			t.Fatal(err)
-		}
-		if got := obj.(*UpdateNewMessage).Message.Id; got != want {
-			t.Fatalf("ID = %d, want %d", got, want)
+		if err != nil || obj.(*UpdateNewMessage).Message.Id != want {
+			t.Fatalf("record %d = (%v, %v)", want, obj, err)
 		}
 	}
-	if _, err := os.Stat(dir); !errors.Is(err, os.ErrNotExist) {
-		t.Fatalf("spool not removed: %v", err)
-	}
-	if q.dir != "" || q.spilled != 0 {
-		t.Fatal("spool not reset after drain")
+	if q.backlog != nil {
+		t.Fatal("drained queue retained overflow")
 	}
 	if obj, err := q.take(); obj != nil || err != nil {
 		t.Fatalf("empty = (%v, %v)", obj, err)
 	}
 	if err := q.push(queueTestUpdate(7)); err != nil || len(q.memory) != 1 {
-		t.Fatalf("did not return to memory: %v", err)
+		t.Fatalf("did not return to buffer: %v", err)
 	}
 }
 
-func TestUpdateQueueSegmentRotation(t *testing.T) {
-	q := newTestQueue(t, 0)
-	large := &UpdateNewMessage{Message: testMessage(42, strings.Repeat("x", updateSegmentSize))}
-	large.Message.Id = 1
-	if err := q.push(large); err != nil {
-		t.Fatal(err)
-	}
-	if err := q.push(queueTestUpdate(2)); err != nil {
-		t.Fatal(err)
-	}
-	if q.tail != 2 {
-		t.Fatalf("tail = %d, want two segments", q.tail)
-	}
-	firstSegment := q.segment(1)
-	obj, err := q.take()
-	if err != nil || len(obj.(*UpdateNewMessage).Message.GetText()) != updateSegmentSize {
-		t.Fatalf("large record = (%T, %v)", obj, err)
-	}
-	if _, err := os.Stat(firstSegment); !errors.Is(err, os.ErrNotExist) {
-		t.Fatalf("retired segment remains: %v", err)
-	}
-	obj, err = q.take()
-	if err != nil || obj.(*UpdateNewMessage).Message.Id != 2 {
-		t.Fatalf("next segment = (%v, %v)", obj, err)
-	}
-}
-
-func TestUpdateQueueCloseWakesReadersAndCleansSpool(t *testing.T) {
+func TestUpdateQueueCloseWakesReadersAndClearsBacklog(t *testing.T) {
 	q := newTestQueue(t, 1)
 	done := make(chan error, 8)
 	for range 8 {
@@ -114,20 +77,16 @@ func TestUpdateQueueCloseWakesReadersAndCleansSpool(t *testing.T) {
 		t.Fatal(err)
 	}
 	q2 := newTestQueue(t, 1)
-	for i := range int64(3) {
-		if err := q2.push(queueTestUpdate(i)); err != nil {
+	for id := range int64(3) {
+		if err := q2.push(queueTestUpdate(id)); err != nil {
 			t.Fatal(err)
 		}
 	}
-	dir := q2.dir
 	if err := q2.close(); err != nil {
 		t.Fatal(err)
 	}
-	if len(q2.memory) != 0 {
-		t.Fatal("closed queue retained memory backlog")
-	}
-	if _, err := os.Stat(dir); !errors.Is(err, os.ErrNotExist) {
-		t.Fatal("closed queue retained spool")
+	if len(q2.memory) != 0 || q2.backlog != nil {
+		t.Fatal("closed queue retained updates")
 	}
 	stop := make(chan struct{})
 	close(stop)
@@ -136,50 +95,39 @@ func TestUpdateQueueCloseWakesReadersAndCleansSpool(t *testing.T) {
 	}
 }
 
-func TestUpdateQueueCorruptSpool(t *testing.T) {
-	for _, corrupt := range []string{"zero length", "oversized length", "truncated header", "invalid JSON", "unknown type", "missing segment"} {
-		t.Run(corrupt, func(t *testing.T) {
-			q := newTestQueue(t, 0)
-			if err := q.push(queueTestUpdate(1)); err != nil {
-				t.Fatal(err)
-			}
-			path := q.segment(q.head)
-			data, err := os.ReadFile(path)
-			if err != nil {
-				t.Fatal(err)
-			}
-			switch corrupt {
-			case "zero length":
-				binary.BigEndian.PutUint32(data[:4], 0)
-			case "oversized length":
-				binary.BigEndian.PutUint32(data[:4], ^uint32(0))
-			case "truncated header":
-				data = data[:2]
-			case "invalid JSON":
-				data[4] = '!'
-			case "unknown type":
-				body := []byte(`{"@type":"unknownFutureUpdate"}`)
-				data = binary.BigEndian.AppendUint32(nil, uint32(len(body)))
-				data = append(data, body...)
-			case "missing segment":
-				if err := os.Remove(path); err != nil {
-					t.Fatal(err)
-				}
-			}
-			if corrupt != "missing segment" {
-				if err := os.WriteFile(path, data, 0600); err != nil {
-					t.Fatal(err)
-				}
-			}
-			if obj, err := q.take(); obj != nil || err == nil {
-				t.Fatalf("corrupt spool = (%v, %v)", obj, err)
-			}
-		})
+func TestUpdateQueueReleasesProcessedUpdates(t *testing.T) {
+	q := newTestQueue(t, 0)
+	const count = 10000
+	for id := range int64(count) {
+		if err := q.push(queueTestUpdate(id)); err != nil {
+			t.Fatal(err)
+		}
+	}
+	for want := range int64(count) {
+		backing := q.backlog
+		obj, err := q.next(nil)
+		if err != nil || obj.(*UpdateNewMessage).Message.Id != want {
+			t.Fatalf("record %d = (%v, %v)", want, obj, err)
+		}
+		if backing[0] != nil {
+			t.Fatal("processed update retained by backlog")
+		}
+	}
+	if q.backlog != nil {
+		t.Fatal("drained queue retained backing array")
 	}
 }
 
 func TestUpdateQueueConcurrentProducersAndConsumers(t *testing.T) {
-	q := newTestQueue(t, 4)
+	for _, capacity := range []int{0, 4} {
+		t.Run(strconv.Itoa(capacity), func(t *testing.T) {
+			q := newTestQueue(t, capacity)
+			testUpdateQueueConcurrentProducersAndConsumers(t, q)
+		})
+	}
+}
+
+func testUpdateQueueConcurrentProducersAndConsumers(t *testing.T, q *updateQueue) {
 	const producers, perProducer, consumers = 8, 32, 4
 	stop := make(chan struct{})
 	results := make(chan int64, producers*perProducer)
@@ -344,39 +292,21 @@ func (testUnserializableUpdate) MarshalJSON() ([]byte, error) {
 	return nil, errors.New("cannot serialize")
 }
 
-func TestUpdateQueueFailedSpillPreservesBacklog(t *testing.T) {
+func TestUpdateQueueOverflowNeedsNoDiskOrSerialization(t *testing.T) {
+	t.Setenv("TMPDIR", t.TempDir()+"/missing")
 	q := newTestQueue(t, 1)
-	if err := q.push(queueTestUpdate(1)); err != nil {
-		t.Fatal(err)
+	for range 3 {
+		if err := q.push(testUnserializableUpdate{}); err != nil {
+			t.Fatal(err)
+		}
 	}
-	if err := q.push(testUnserializableUpdate{}); err == nil {
-		t.Fatal("failed serialization accepted")
-	}
-	if q.dir != "" || q.spilled != 0 {
-		t.Fatal("failed serialization created spool")
-	}
-	if obj, err := q.take(); err != nil || obj.(*UpdateNewMessage).Message.Id != 1 {
-		t.Fatalf("backlog = (%v,%v)", obj, err)
-	}
-	if err := q.push(queueTestUpdate(2)); err != nil {
-		t.Fatal(err)
-	}
-	if err := q.push(queueTestUpdate(3)); err != nil {
-		t.Fatal(err)
-	}
-	// Simulate a broken writer after a valid disk record. A failed append must
-	// leave the earlier memory/disk records intact and readable.
-	if err := q.writer.Close(); err != nil {
-		t.Fatal(err)
-	}
-	if err := q.push(queueTestUpdate(4)); err == nil {
-		t.Fatal("closed writer accepted append")
-	}
-	q.writer = nil // Already closed; prevent an intentional double-close cleanup error.
-	for want := int64(2); want <= 3; want++ {
+	for range 3 {
 		obj, err := q.take()
-		if err != nil || obj.(*UpdateNewMessage).Message.Id != want {
-			t.Fatalf("record after failed write = (%v,%v)", obj, err)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if _, ok := obj.(testUnserializableUpdate); !ok {
+			t.Fatalf("unexpected update %T", obj)
 		}
 	}
 }
