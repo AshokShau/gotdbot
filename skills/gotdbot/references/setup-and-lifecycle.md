@@ -6,7 +6,7 @@ Source anchors: `go.mod`, `consts.go`, `client.go`, `client_opts.go`, `client_au
 
 ## Prerequisites and starter
 
-The reference baseline uses Go 1.25+, GotdBot v0.10.0, and TDLib v1.8.69. Install the application dependency with `go get github.com/AshokShau/gotdbot@<chosen-version>`, preserving an existing application's version. The native TDLib schema must match the generated bindings. Read `TDLibVersion` in the source rather than selecting an unrelated latest native build.
+The reference baseline uses Go 1.25+, GotdBot v0.10.1, and TDLib v1.8.69. Install the application dependency with `go get github.com/AshokShau/gotdbot@<chosen-version>`, preserving an existing application's version. The native TDLib schema must match the generated bindings. Read `TDLibVersion` in the source rather than selecting an unrelated latest native build.
 
 The downloader in this snapshot targets v1.8.69:
 
