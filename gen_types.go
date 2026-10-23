@@ -238,7 +238,7 @@ func (t *AddedReaction) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -1019,7 +1019,7 @@ func (t *AuthenticationCodeInfo) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -1091,7 +1091,7 @@ func (t *AuthenticationCodeTypeFirebaseAndroid) UnmarshalJSON(data []byte) error
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -1422,7 +1422,7 @@ func (t *AuthorizationStateWaitEmailCode) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -1809,7 +1809,7 @@ func (t *AvailableReaction) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -1860,7 +1860,7 @@ func (t *AvailableReactions) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -1911,7 +1911,7 @@ func (t *Background) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -2056,7 +2056,7 @@ func (t *BackgroundTypeFill) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -2105,7 +2105,7 @@ func (t *BackgroundTypePattern) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -2216,7 +2216,7 @@ func (t *BasicGroup) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -2590,7 +2590,7 @@ func (t *BotInfo) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -2654,7 +2654,7 @@ func (t *BotMediaPreview) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -3029,7 +3029,7 @@ func (t *BusinessAwayMessageSettings) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -3420,7 +3420,7 @@ func (t *BusinessFeaturePromotionAnimation) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -3479,7 +3479,7 @@ func (t *BusinessFeatures) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -3863,7 +3863,7 @@ func (t *Call) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -4312,7 +4312,7 @@ func (t *CallServer) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -4409,7 +4409,7 @@ func (t *CallStateDiscarded) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -4976,7 +4976,7 @@ func (t *Chat) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -5474,7 +5474,7 @@ func (t *ChatActiveStories) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -5633,7 +5633,7 @@ func (t *ChatAvailableReactionsSome) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -5705,7 +5705,7 @@ func (t *ChatBoost) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -6025,7 +6025,7 @@ func (t *ChatEvent) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -6146,7 +6146,7 @@ func (t *ChatEventAvailableReactionsChanged) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -6662,7 +6662,7 @@ func (t *ChatEventMemberInvited) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -6790,7 +6790,7 @@ func (t *ChatEventMemberPromoted) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -6846,7 +6846,7 @@ func (t *ChatEventMemberRestricted) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -6908,7 +6908,7 @@ func (t *ChatEventMemberSubscriptionExtended) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -7386,7 +7386,7 @@ func (t *ChatEventVideoChatParticipantIsMutedToggled) UnmarshalJSON(data []byte)
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -7431,7 +7431,7 @@ func (t *ChatEventVideoChatParticipantVolumeLevelChanged) UnmarshalJSON(data []b
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -7754,7 +7754,7 @@ func (t *ChatInviteLinkInfo) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -8131,7 +8131,7 @@ func (t *ChatLists) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -8204,7 +8204,7 @@ func (t *ChatMember) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -8364,7 +8364,7 @@ func (t *ChatMembersFilterMention) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -8551,7 +8551,7 @@ func (t *ChatMessageSender) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -8785,7 +8785,7 @@ func (t *ChatPhotoSticker) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -8882,7 +8882,7 @@ func (t *ChatPosition) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -8963,7 +8963,7 @@ func (t *ChatRevenueStatistics) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -9015,7 +9015,7 @@ func (t *ChatRevenueTransaction) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -9102,7 +9102,7 @@ func (t *ChatRevenueTransactionTypeFragmentWithdrawal) UnmarshalJSON(data []byte
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -9342,7 +9342,7 @@ func (t *ChatStatisticsChannel) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -9466,7 +9466,7 @@ func (t *ChatStatisticsInteractionInfo) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -9628,7 +9628,7 @@ func (t *ChatStatisticsSupergroup) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -9984,7 +9984,7 @@ func (t *ChecklistTask) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -10099,7 +10099,7 @@ func (t *ClosedVectorPath) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -10223,7 +10223,7 @@ func (t *Community) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -11049,7 +11049,7 @@ func (t *DateTimeFormattingTypeAbsolute) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -11495,7 +11495,7 @@ func (t *DiffEntity) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -11634,7 +11634,7 @@ func (t *DirectMessagesChatTopic) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -11732,7 +11732,7 @@ func (t *DraftMessage) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -11850,7 +11850,7 @@ func (t *DraftMessageContentVideoNote) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -11899,7 +11899,7 @@ func (t *DraftMessageContentVoiceNote) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -12084,7 +12084,7 @@ func (t *EmojiCategory) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -12351,7 +12351,7 @@ func (t *EmojiStatus) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -12556,7 +12556,7 @@ func (t *EncryptedPassportElement) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -12604,7 +12604,7 @@ func (t *EphemeralMessageContent) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -13470,7 +13470,7 @@ func (t *ForumTopicInfo) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -13547,7 +13547,7 @@ func (t *ForwardSource) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -14000,7 +14000,7 @@ func (t *GiftAuctionAcquiredGift) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -14061,7 +14061,7 @@ func (t *GiftAuctionState) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -14440,7 +14440,7 @@ func (t *GiftResaleResultPriceIncreased) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -14661,7 +14661,7 @@ func (t *GiveawayInfoOngoing) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -14872,7 +14872,7 @@ func (t *GramRevenueStatistics) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -14999,7 +14999,7 @@ func (t *GroupCall) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -15150,7 +15150,7 @@ func (t *GroupCallMessage) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -15255,7 +15255,7 @@ func (t *GroupCallParticipant) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -15298,7 +15298,7 @@ func (t *GroupCallParticipants) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -15366,7 +15366,7 @@ func (t *GroupCallRecentSpeaker) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -15635,7 +15635,7 @@ func (t *InlineButton) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -15697,7 +15697,7 @@ func (t *InlineKeyboardButton) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -15887,7 +15887,7 @@ func (t *InlineKeyboardButtonTypeSwitchInline) UnmarshalJSON(data []byte) error 
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -16210,7 +16210,7 @@ func (t *InlineQueryResults) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -16256,7 +16256,7 @@ func (t *InlineQueryResultsButton) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -16443,7 +16443,7 @@ func (t *InputAnimation) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -16492,7 +16492,7 @@ func (t *InputAudio) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -16535,7 +16535,7 @@ func (t *InputBackgroundLocal) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -16640,7 +16640,7 @@ func (t *InputBusinessStartPage) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -16727,7 +16727,7 @@ func (t *InputChatPhotoAnimation) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -16790,7 +16790,7 @@ func (t *InputChatPhotoStatic) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -17021,7 +17021,7 @@ func (t *InputDocument) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -17201,7 +17201,7 @@ func (t *InputIdentityDocument) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -17289,7 +17289,7 @@ func (t *InputInlineQueryResultAnimation) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -17356,7 +17356,7 @@ func (t *InputInlineQueryResultArticle) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -17419,7 +17419,7 @@ func (t *InputInlineQueryResultAudio) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -17482,7 +17482,7 @@ func (t *InputInlineQueryResultContact) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -17551,7 +17551,7 @@ func (t *InputInlineQueryResultDocument) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -17605,7 +17605,7 @@ func (t *InputInlineQueryResultGame) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -17665,7 +17665,7 @@ func (t *InputInlineQueryResultLocation) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -17732,7 +17732,7 @@ func (t *InputInlineQueryResultPhoto) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -17795,7 +17795,7 @@ func (t *InputInlineQueryResultSticker) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -17858,7 +17858,7 @@ func (t *InputInlineQueryResultVenue) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -17929,7 +17929,7 @@ func (t *InputInlineQueryResultVideo) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -17990,7 +17990,7 @@ func (t *InputInlineQueryResultVoiceNote) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -18082,7 +18082,7 @@ func (t *InputInvoiceTelegram) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -18429,7 +18429,7 @@ func (t *InputMessagePhoto) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -18501,7 +18501,7 @@ func (t *InputMessagePoll) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -18789,7 +18789,7 @@ func (t *InputMessageVideo) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -18834,7 +18834,7 @@ func (t *InputMessageVideoNote) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -18881,7 +18881,7 @@ func (t *InputMessageVoiceNote) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -18993,7 +18993,7 @@ func (t *InputPageBlockBlockQuote) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -19048,7 +19048,7 @@ func (t *InputPageBlockButtonRow) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -19093,7 +19093,7 @@ func (t *InputPageBlockCollage) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -19144,7 +19144,7 @@ func (t *InputPageBlockDetails) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -19240,7 +19240,7 @@ func (t *InputPageBlockExpandableBlockQuote) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -19290,7 +19290,7 @@ func (t *InputPageBlockFooter) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -19359,7 +19359,7 @@ func (t *InputPageBlockListItem) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -19453,7 +19453,7 @@ func (t *InputPageBlockParagraph) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -19522,7 +19522,7 @@ func (t *InputPageBlockPreformatted) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -19568,7 +19568,7 @@ func (t *InputPageBlockPullQuote) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -19620,7 +19620,7 @@ func (t *InputPageBlockSectionHeading) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -19665,7 +19665,7 @@ func (t *InputPageBlockSlideshow) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -19719,7 +19719,7 @@ func (t *InputPageBlockTable) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -19762,7 +19762,7 @@ func (t *InputPageBlockThinking) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -19860,7 +19860,7 @@ func (t *InputPaidMedia) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -19910,7 +19910,7 @@ func (t *InputPaidMediaTypePhoto) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -19959,7 +19959,7 @@ func (t *InputPaidMediaTypeVideo) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -20085,7 +20085,7 @@ func (t *InputPassportElementError) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -20498,7 +20498,7 @@ func (t *InputPersonalDocument) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -20563,7 +20563,7 @@ func (t *InputPhoto) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -20793,7 +20793,7 @@ func (t *InputPollOption) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -20840,7 +20840,7 @@ func (t *InputPollTypeQuiz) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -20907,7 +20907,7 @@ func (t *InputProfileShareThemeEmoji) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -20975,7 +20975,7 @@ func (t *InputRichMessage) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -21018,7 +21018,7 @@ func (t *InputRichMessageMedia) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -21065,7 +21065,7 @@ func (t *InputSticker) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -21108,7 +21108,7 @@ func (t *InputStoryArea) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -21281,7 +21281,7 @@ func (t *InputStoryAreaTypeSuggestedReaction) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -21370,7 +21370,7 @@ func (t *InputStoryContentPhoto) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -21421,7 +21421,7 @@ func (t *InputStoryContentVideo) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -21464,7 +21464,7 @@ func (t *InputSuggestedPostInfo) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -21509,7 +21509,7 @@ func (t *InputTextQuote) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -21557,7 +21557,7 @@ func (t *InputThumbnail) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -21635,7 +21635,7 @@ func (t *InputVideo) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -21689,7 +21689,7 @@ func (t *InputVideoNote) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -21734,7 +21734,7 @@ func (t *InputVoiceNote) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -21781,7 +21781,7 @@ func (t *InternalLinkTypeAttachmentMenuBot) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -22284,7 +22284,7 @@ func (t *InternalLinkTypeMainWebApp) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -22443,7 +22443,7 @@ func (t *InternalLinkTypeNewStory) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -22758,7 +22758,7 @@ func (t *InternalLinkTypeSettings) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -22961,7 +22961,7 @@ func (t *InternalLinkTypeTonWalletTransfer) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -23122,7 +23122,7 @@ func (t *InternalLinkTypeWebApp) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -23341,7 +23341,7 @@ func (t *JsonObjectMember) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -23384,7 +23384,7 @@ func (t *JsonValueArray) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -23533,7 +23533,7 @@ func (t *KeyboardButton) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -23889,7 +23889,7 @@ func (t *LanguagePackString) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -24040,7 +24040,7 @@ func (t *LinkPreview) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -24151,7 +24151,7 @@ func (t *LinkPreviewTypeAlbum) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -24279,7 +24279,7 @@ func (t *LinkPreviewTypeBackground) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -24346,7 +24346,7 @@ func (t *LinkPreviewTypeChat) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -25361,7 +25361,7 @@ func (t *MainWebApp) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -25480,7 +25480,7 @@ func (t *MaskPosition) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -25618,7 +25618,7 @@ func (t *Message) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -25836,7 +25836,7 @@ func (t *MessageBotWriteAccessAllowed) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -25925,7 +25925,7 @@ func (t *MessageCall) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -26310,7 +26310,7 @@ func (t *MessageChatSetTheme) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -26574,7 +26574,7 @@ func (t *MessageDice) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -26674,7 +26674,7 @@ func (t *MessageEffect) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -26981,7 +26981,7 @@ func (t *MessageForwardInfo) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -27107,7 +27107,7 @@ func (t *MessageGift) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -27265,7 +27265,7 @@ func (t *MessageGiveaway) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -27404,7 +27404,7 @@ func (t *MessageGiveawayWinners) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -27457,7 +27457,7 @@ func (t *MessageGroupCall) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -27585,7 +27585,7 @@ func (t *MessageInvoice) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -27660,7 +27660,7 @@ func (t *MessageLinkInfo) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -27859,7 +27859,7 @@ func (t *MessagePaidMedia) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -27969,7 +27969,7 @@ func (t *MessagePassportDataSent) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -28025,7 +28025,7 @@ func (t *MessagePaymentRefunded) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -28196,7 +28196,7 @@ func (t *MessagePoll) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -28351,7 +28351,7 @@ func (t *MessagePremiumGiftCode) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -28495,7 +28495,7 @@ func (t *MessageProximityAlertTriggered) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -28553,7 +28553,7 @@ func (t *MessageReaction) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -28737,7 +28737,7 @@ func (t *MessageRefundedUpgradedGift) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -28800,7 +28800,7 @@ func (t *MessageReplyInfo) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -28861,7 +28861,7 @@ func (t *MessageReplyToMessage) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -29109,7 +29109,7 @@ func (t *MessageSenders) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -29245,7 +29245,7 @@ func (t *MessageSendOptions) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -29495,7 +29495,7 @@ func (t *MessageStakeDice) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -29546,7 +29546,7 @@ func (t *MessageStatistics) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -29664,7 +29664,7 @@ func (t *MessageSuggestedPostApprovalFailed) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -29711,7 +29711,7 @@ func (t *MessageSuggestedPostApproved) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -29802,7 +29802,7 @@ func (t *MessageSuggestedPostRefunded) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -29945,7 +29945,7 @@ func (t *MessageTonConnectRequest) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -30166,7 +30166,7 @@ func (t *MessageUpgradedGift) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -30230,7 +30230,7 @@ func (t *MessageUpgradedGiftPurchaseOffer) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -30286,7 +30286,7 @@ func (t *MessageUpgradedGiftPurchaseOfferRejected) UnmarshalJSON(data []byte) er
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -30619,7 +30619,7 @@ func (t *NetworkStatistics) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -30671,7 +30671,7 @@ func (t *NetworkStatisticsEntryCall) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -30721,7 +30721,7 @@ func (t *NetworkStatisticsEntryFile) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -30888,7 +30888,7 @@ func (t *NewSticker) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -30942,7 +30942,7 @@ func (t *Notification) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -30991,7 +30991,7 @@ func (t *NotificationGroup) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -31257,7 +31257,7 @@ func (t *NotificationTypeNewPushMessage) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -31757,7 +31757,7 @@ func (t *PageBlockAuthorDate) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -31803,7 +31803,7 @@ func (t *PageBlockBlockQuote) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -31858,7 +31858,7 @@ func (t *PageBlockButtonRow) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -31902,7 +31902,7 @@ func (t *PageBlockCaption) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -31980,7 +31980,7 @@ func (t *PageBlockCollage) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -32026,7 +32026,7 @@ func (t *PageBlockCover) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -32074,7 +32074,7 @@ func (t *PageBlockDetails) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -32211,7 +32211,7 @@ func (t *PageBlockEmbeddedPost) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -32260,7 +32260,7 @@ func (t *PageBlockExpandableBlockQuote) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -32310,7 +32310,7 @@ func (t *PageBlockFooter) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -32353,7 +32353,7 @@ func (t *PageBlockHeader) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -32450,7 +32450,7 @@ func (t *PageBlockKicker) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -32521,7 +32521,7 @@ func (t *PageBlockListItem) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -32615,7 +32615,7 @@ func (t *PageBlockParagraph) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -32686,7 +32686,7 @@ func (t *PageBlockPreformatted) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -32732,7 +32732,7 @@ func (t *PageBlockPullQuote) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -32812,7 +32812,7 @@ func (t *PageBlockRelatedArticles) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -32857,7 +32857,7 @@ func (t *PageBlockSectionHeading) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -32902,7 +32902,7 @@ func (t *PageBlockSlideshow) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -32948,7 +32948,7 @@ func (t *PageBlockSubheader) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -32991,7 +32991,7 @@ func (t *PageBlockSubtitle) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -33042,7 +33042,7 @@ func (t *PageBlockTable) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -33095,7 +33095,7 @@ func (t *PageBlockTableCell) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -33152,7 +33152,7 @@ func (t *PageBlockThinking) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -33195,7 +33195,7 @@ func (t *PageBlockTitle) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -33512,7 +33512,7 @@ func (t *PaidReactor) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -33704,7 +33704,7 @@ func (t *PassportElementError) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -34060,7 +34060,7 @@ func (t *PassportElements) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -34106,7 +34106,7 @@ func (t *PassportElementsWithErrors) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -34448,7 +34448,7 @@ func (t *PassportSuitableElement) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -34525,7 +34525,7 @@ func (t *PaymentForm) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -34582,7 +34582,7 @@ func (t *PaymentFormTypeRegular) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -34757,7 +34757,7 @@ func (t *PaymentReceipt) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -34938,7 +34938,7 @@ func (t *PhoneNumberAuthenticationSettings) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -35163,7 +35163,7 @@ func (t *Poll) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -35433,7 +35433,7 @@ func (t *PollOption) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -35521,7 +35521,7 @@ func (t *PollTypeQuiz) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -35582,7 +35582,7 @@ func (t *PollVoter) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -35755,7 +35755,7 @@ func (t *PollVoteStatistics) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -36158,7 +36158,7 @@ func (t *PremiumFeaturePromotionAnimation) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -36258,7 +36258,7 @@ func (t *PremiumFeatures) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -36431,7 +36431,7 @@ func (t *PremiumGiftCodeInfo) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -36570,7 +36570,7 @@ func (t *PremiumLimit) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -37017,7 +37017,7 @@ func (t *PremiumPaymentOption) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -37060,7 +37060,7 @@ func (t *PremiumSourceBusinessFeature) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -37103,7 +37103,7 @@ func (t *PremiumSourceFeature) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -37146,7 +37146,7 @@ func (t *PremiumSourceLimitExceeded) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -37227,7 +37227,7 @@ func (t *PremiumSourceStoryFeature) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -37450,7 +37450,7 @@ func (t *PrepaidGiveaway) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -37495,7 +37495,7 @@ func (t *PreparedInlineMessage) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -37700,7 +37700,7 @@ func (t *ProfileShareThemeEmoji) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -37912,7 +37912,7 @@ func (t *Proxy) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -38101,7 +38101,7 @@ func (t *PublicForwards) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -38617,7 +38617,7 @@ func (t *PushMessageContentGiveaway) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -39270,7 +39270,7 @@ func (t *QuickReplyMessage) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -39377,7 +39377,7 @@ func (t *ReactionNotificationSettings) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -39663,7 +39663,7 @@ func (t *ReceivedGift) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -40527,7 +40527,7 @@ func (t *RichMessage) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -40573,7 +40573,7 @@ func (t *RichMessageSourceBlocks) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -40687,7 +40687,7 @@ func (t *RichTextAnchorLink) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -40732,7 +40732,7 @@ func (t *RichTextBankCardNumber) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -40775,7 +40775,7 @@ func (t *RichTextBold) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -40820,7 +40820,7 @@ func (t *RichTextBotCommand) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -40885,7 +40885,7 @@ func (t *RichTextCashtag) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -40955,7 +40955,7 @@ func (t *RichTextDateTime) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -41008,7 +41008,7 @@ func (t *RichTextDiff) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -41060,7 +41060,7 @@ func (t *RichTextEmailAddress) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -41103,7 +41103,7 @@ func (t *RichTextFixed) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -41148,7 +41148,7 @@ func (t *RichTextHashtag) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -41215,7 +41215,7 @@ func (t *RichTextItalic) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -41258,7 +41258,7 @@ func (t *RichTextMarked) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -41323,7 +41323,7 @@ func (t *RichTextMention) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -41368,7 +41368,7 @@ func (t *RichTextMentionName) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -41413,7 +41413,7 @@ func (t *RichTextPhoneNumber) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -41478,7 +41478,7 @@ func (t *RichTextReference) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -41525,7 +41525,7 @@ func (t *RichTextReferenceLink) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -41568,7 +41568,7 @@ func (t *RichTexts) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -41614,7 +41614,7 @@ func (t *RichTextSpoiler) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -41657,7 +41657,7 @@ func (t *RichTextStrikethrough) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -41700,7 +41700,7 @@ func (t *RichTextSubscript) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -41743,7 +41743,7 @@ func (t *RichTextSuperscript) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -41788,7 +41788,7 @@ func (t *RichTextTonAddress) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -41831,7 +41831,7 @@ func (t *RichTextUnderline) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -41878,7 +41878,7 @@ func (t *RichTextUrl) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -41963,7 +41963,7 @@ func (t *SavedMessagesTag) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -42032,7 +42032,7 @@ func (t *SavedMessagesTopic) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -42665,7 +42665,7 @@ func (t *SecretChat) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -42834,7 +42834,7 @@ func (t *Session) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -43839,7 +43839,7 @@ func (t *SponsoredMessage) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -44086,7 +44086,7 @@ func (t *StarRevenueStatistics) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -44165,7 +44165,7 @@ func (t *StarSubscription) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -44300,7 +44300,7 @@ func (t *StartLiveStoryResultFail) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -44369,7 +44369,7 @@ func (t *StarTransaction) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -44524,7 +44524,7 @@ func (t *StarTransactionTypeBotPaidMediaPurchase) UnmarshalJSON(data []byte) err
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -44576,7 +44576,7 @@ func (t *StarTransactionTypeBotPaidMediaSale) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -44718,7 +44718,7 @@ func (t *StarTransactionTypeChannelPaidMediaPurchase) UnmarshalJSON(data []byte)
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -44768,7 +44768,7 @@ func (t *StarTransactionTypeChannelPaidMediaSale) UnmarshalJSON(data []byte) err
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -44920,7 +44920,7 @@ func (t *StarTransactionTypeFragmentWithdrawal) UnmarshalJSON(data []byte) error
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -44965,7 +44965,7 @@ func (t *StarTransactionTypeGiftAuctionBid) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -45010,7 +45010,7 @@ func (t *StarTransactionTypeGiftOriginalDetailsDrop) UnmarshalJSON(data []byte) 
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -45055,7 +45055,7 @@ func (t *StarTransactionTypeGiftPurchase) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -45142,7 +45142,7 @@ func (t *StarTransactionTypeGiftTransfer) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -45209,7 +45209,7 @@ func (t *StarTransactionTypeGiftUpgradePurchase) UnmarshalJSON(data []byte) erro
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -45296,7 +45296,7 @@ func (t *StarTransactionTypePaidGroupCallMessageReceive) UnmarshalJSON(data []by
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -45363,7 +45363,7 @@ func (t *StarTransactionTypePaidGroupCallReactionReceive) UnmarshalJSON(data []b
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -45432,7 +45432,7 @@ func (t *StarTransactionTypePaidMessageReceive) UnmarshalJSON(data []byte) error
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -45824,7 +45824,7 @@ func (t *Sticker) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -46034,7 +46034,7 @@ func (t *StickerSet) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -46103,7 +46103,7 @@ func (t *StickerSetInfo) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -46268,7 +46268,7 @@ func (t *StorageStatisticsByFileType) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -46636,7 +46636,7 @@ func (t *Story) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -46742,7 +46742,7 @@ func (t *StoryArea) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -46855,7 +46855,7 @@ func (t *StoryAreaTypeSuggestedReaction) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -47166,7 +47166,7 @@ func (t *StoryInteraction) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -47313,7 +47313,7 @@ func (t *StoryInteractionTypeView) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -47512,7 +47512,7 @@ func (t *StoryRepostInfo) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -47556,7 +47556,7 @@ func (t *StoryStatistics) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -47989,7 +47989,7 @@ func (t *SuggestedPostInfo) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -48216,7 +48216,7 @@ func (t *Supergroup) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -48349,7 +48349,7 @@ func (t *SupergroupFullInfo) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -48477,7 +48477,7 @@ func (t *SupergroupMembersFilterMention) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -48616,7 +48616,7 @@ func (t *TargetChatInternalLink) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -49129,7 +49129,7 @@ func (t *TextEntity) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -49302,7 +49302,7 @@ func (t *TextEntityTypeDateTime) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -49683,7 +49683,7 @@ func (t *TextQuote) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -49786,7 +49786,7 @@ func (t *ThemeSettings) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -49840,7 +49840,7 @@ func (t *Thumbnail) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -50049,7 +50049,7 @@ func (t *TMeUrl) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -50334,7 +50334,7 @@ func (t *TonConnectConnectRequest) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -50573,7 +50573,7 @@ func (t *TonConnectSession) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -50753,7 +50753,7 @@ func (t *TonNft) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -50842,7 +50842,7 @@ func (t *TonTransaction) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -50929,7 +50929,7 @@ func (t *TonTransactionTypeFragmentWithdrawal) UnmarshalJSON(data []byte) error 
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -51285,7 +51285,7 @@ func (t *TonWalletTransaction) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -51797,7 +51797,7 @@ func (t *UnconfirmedSession) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -51843,7 +51843,7 @@ func (t *UnreadReaction) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -52149,7 +52149,7 @@ func (t *UpdateAuthorizationState) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -52194,7 +52194,7 @@ func (t *UpdateAutosaveSettings) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -52425,7 +52425,7 @@ func (t *UpdateChatAction) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -52484,7 +52484,7 @@ func (t *UpdateChatActionBar) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -52549,7 +52549,7 @@ func (t *UpdateChatAddedToList) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -52594,7 +52594,7 @@ func (t *UpdateChatAvailableReactions) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -52661,7 +52661,7 @@ func (t *UpdateChatBlockList) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -52954,7 +52954,7 @@ func (t *UpdateChatJoinResult) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -53079,7 +53079,7 @@ func (t *UpdateChatMessageSender) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -53302,7 +53302,7 @@ func (t *UpdateChatRemovedFromList) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -53391,7 +53391,7 @@ func (t *UpdateChatTheme) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -53630,7 +53630,7 @@ func (t *UpdateConnectionState) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -53715,7 +53715,7 @@ func (t *UpdateDefaultPaidReactionType) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -53758,7 +53758,7 @@ func (t *UpdateDefaultReactionType) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -54369,7 +54369,7 @@ func (t *UpdateInstalledStickerSets) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -54510,7 +54510,7 @@ func (t *UpdateMessageContent) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -54581,7 +54581,7 @@ func (t *UpdateMessageEdited) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -54778,7 +54778,7 @@ func (t *UpdateMessageReaction) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -54995,7 +54995,7 @@ func (t *UpdateNewBusinessCallbackQuery) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -55070,7 +55070,7 @@ func (t *UpdateNewCallbackQuery) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -55281,7 +55281,7 @@ func (t *UpdateNewGroupCallPaidReaction) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -55356,7 +55356,7 @@ func (t *UpdateNewInlineCallbackQuery) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -55409,7 +55409,7 @@ func (t *UpdateNewInlineQuery) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -55590,7 +55590,7 @@ func (t *UpdateNotificationGroup) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -55635,7 +55635,7 @@ func (t *UpdateOption) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -55750,7 +55750,7 @@ func (t *UpdatePendingMessage) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -55819,7 +55819,7 @@ func (t *UpdatePollAnswer) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -56006,7 +56006,7 @@ func (t *Updates) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -56156,7 +56156,7 @@ func (t *UpdateScopeNotificationSettings) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -56221,7 +56221,7 @@ func (t *UpdateServiceNotification) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -56332,7 +56332,7 @@ func (t *UpdateStarRevenueStatus) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -56463,7 +56463,7 @@ func (t *UpdateStoryListChatCount) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -56510,7 +56510,7 @@ func (t *UpdateStoryPostFailed) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -56600,7 +56600,7 @@ func (t *UpdateSuggestedActions) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -56824,7 +56824,7 @@ func (t *UpdateTopicMessageCount) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -56869,7 +56869,7 @@ func (t *UpdateTrendingStickerSets) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -56964,7 +56964,7 @@ func (t *UpdateUnreadChatCount) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -57011,7 +57011,7 @@ func (t *UpdateUnreadMessageCount) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -57098,7 +57098,7 @@ func (t *UpdateUserPrivacySettingRules) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -57143,7 +57143,7 @@ func (t *UpdateUserStatus) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -57395,7 +57395,7 @@ func (t *UpgradedGift) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -57601,7 +57601,7 @@ func (t *UpgradedGiftBackdrop) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -57762,7 +57762,7 @@ func (t *UpgradedGiftModel) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -57830,7 +57830,7 @@ func (t *UpgradedGiftOriginalDetails) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -57916,7 +57916,7 @@ func (t *UpgradedGiftOriginOffer) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -57977,7 +57977,7 @@ func (t *UpgradedGiftOriginResale) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -58060,7 +58060,7 @@ func (t *UpgradedGiftSymbol) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -58253,7 +58253,7 @@ func (t *User) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -58316,7 +58316,7 @@ func (t *UserAuctionBid) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -58425,7 +58425,7 @@ func (t *UserFullInfo) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -58860,7 +58860,7 @@ func (t *UserPrivacySettingRules) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -59514,7 +59514,7 @@ func (t *VideoChat) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -59621,7 +59621,7 @@ func (t *VideoNote) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -59694,7 +59694,7 @@ func (t *VoiceNote) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -59859,7 +59859,7 @@ func (t *WebAppOpenParameters) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -60015,7 +60015,7 @@ func (t *WebPageInstantView) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 
@@ -60230,7 +60230,7 @@ func (t *WelcomeMessage) UnmarshalJSON(data []byte) error {
 		Alias: (*Alias)(t),
 	}
 
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
 

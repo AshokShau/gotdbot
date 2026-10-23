@@ -109,6 +109,42 @@ func TestNullableClassFieldsRoundTrip(t *testing.T) {
 	}
 }
 
+func TestMessageUnmarshalNull(t *testing.T) {
+	for _, input := range []string{"null", " \n\t null \r "} {
+		t.Run(input, func(t *testing.T) {
+			got := Message{Id: 42, Content: &MessageText{Text: &FormattedText{Text: "keep"}}}
+			want := got
+			if err := json.Unmarshal([]byte(input), &got); err != nil {
+				t.Fatal(err)
+			}
+			if !reflect.DeepEqual(got, want) {
+				t.Fatal("null decode changed existing message")
+			}
+		})
+	}
+}
+
+func TestUnmarshalWithClientNullMessageElements(t *testing.T) {
+	data := []byte(`{"@type":"messages","@client_id":7,"@extra":"call-42","total_count":3,"messages":[null,{"@type":"message","id":42,"content":{"@type":"messageText","text":{"text":"hello"}}},null]}`)
+	obj, id, extra, err := UnmarshalWithClient(data)
+	if err != nil {
+		t.Fatal(err)
+	}
+	got, ok := obj.(*Messages)
+	if !ok || id != 7 || extra != "call-42" {
+		t.Fatalf("envelope = (%T,%d,%q)", obj, id, extra)
+	}
+	if got.TotalCount != 3 || len(got.Messages) != 3 {
+		t.Fatalf("decoded messages = %+v", got)
+	}
+	if !reflect.DeepEqual(got.Messages[0], Message{}) || !reflect.DeepEqual(got.Messages[2], Message{}) {
+		t.Fatal("null elements must decode as zero messages")
+	}
+	if got.Messages[1].Id != 42 || got.Messages[1].GetText() != "hello" {
+		t.Fatalf("decoded message = %+v", got.Messages[1])
+	}
+}
+
 func FuzzInt64SliceRoundTrip(f *testing.F) {
 	for _, value := range []int64{0, 1, -1, 9007199254740993, math.MinInt64, math.MaxInt64} {
 		f.Add(value)

@@ -72,16 +72,17 @@ func TestGeneratedClassDecoderHandlesNullableFields(t *testing.T) {
 	// generator and checked-in output from reintroducing the spool failure.
 	dir := t.TempDir()
 	t.Chdir(dir)
-	generateClasses(map[string]*TLClass{"Value": {Name: "Value", Implementations: []string{"stringValue"}}})
+	classes := map[string]*TLClass{"Value": {Name: "Value", Implementations: []string{"stringValue"}}}
+	generateClasses(classes)
+	generateObjects([]TLType{
+		{Name: "error", Params: []TLParam{{Name: "code", Type: "int32"}, {Name: "message", Type: "string"}}},
+		{Name: "stringValue", ResultType: "Value", Params: []TLParam{{Name: "value", Type: "string"}}},
+		{Name: "valueHolder", Params: []TLParam{{Name: "item", Type: "Value"}, {Name: "items", Type: "vector<Value>"}}},
+	}, classes)
 	files := map[string]string{
 		"go.mod": "module generatorfixture\n\ngo 1.25.0\n",
-		"fixture.go": `package gotdbot
-type StringValue struct { Value string ` + "`json:\"value\"`" + ` }
-func (*StringValue) GetType() string { return "stringValue" }
-func (*StringValue) value() {}
-`,
 		"fixture_test.go": `package gotdbot
-import "testing"
+import ("encoding/json"; "reflect"; "testing")
 func TestDecoder(t *testing.T) {
  for _, data := range []string{"null", " \n null \t "} {
   obj, err := UnmarshalValue([]byte(data))
@@ -92,6 +93,19 @@ func TestDecoder(t *testing.T) {
  for _, data := range []string{"{}", "{", "{\"@type\":\"unknown\"}"} {
   if _, err := UnmarshalValue([]byte(data)); err == nil { t.Fatalf("invalid value accepted: %s", data) }
  }
+}
+func TestObjectNull(t *testing.T) {
+ for _, data := range []string{"null", " \n null \t "} {
+  got := ValueHolder{Item: &StringValue{Value: "keep"}, Items: []Value{&StringValue{Value: "keep"}}}
+  want := got
+  if err := json.Unmarshal([]byte(data), &got); err != nil { t.Fatal(err) }
+  if !reflect.DeepEqual(got, want) { t.Fatal("null changed existing object") }
+ }
+ var holders []ValueHolder
+ if err := json.Unmarshal([]byte("[null,{\"item\":{\"@type\":\"stringValue\",\"value\":\"hello\"},\"items\":[null,{\"@type\":\"stringValue\",\"value\":\"world\"}]}]"), &holders); err != nil { t.Fatal(err) }
+ if len(holders) != 2 || !reflect.DeepEqual(holders[0], ValueHolder{}) { t.Fatalf("null element: %+v", holders) }
+ got := holders[1]
+ if got.Item.(*StringValue).Value != "hello" || len(got.Items) != 2 || got.Items[0] != nil || got.Items[1].(*StringValue).Value != "world" { t.Fatalf("class fields: %+v", got) }
 }
 
 `,
