@@ -91,7 +91,7 @@ func (c *Client) authHandler(authState *UpdateAuthorizationState) {
 		fmt.Printf("Scan the QR code below: or open the link in Telegram: %s\n", link)
 		q, err := qrcode.NewQRCode(link)
 		if err != nil {
-			fmt.Printf("Failed to generate QR: %v\nLink: %s\n", err, link)
+			c.Logger.Warn("Cannot generate authentication QR code; open the link in Telegram", "error", err, "link", link)
 		} else {
 			fmt.Println(q.ToSmallString(false))
 		}
@@ -109,7 +109,7 @@ func (c *Client) authHandler(authState *UpdateAuthorizationState) {
 			}
 			err := c.CheckAuthenticationCode(code)
 			if err != nil {
-				fmt.Printf("Error checking code: %v\n", err)
+				c.Logger.Warn("Authentication code rejected; enter another code", "error", err)
 				continue
 			}
 			break
@@ -127,7 +127,7 @@ func (c *Client) authHandler(authState *UpdateAuthorizationState) {
 			}
 			err := c.CheckAuthenticationPassword(password)
 			if err != nil {
-				fmt.Printf("Error checking password: %v\n", err)
+				c.Logger.Warn("Authentication password rejected; enter another password", "error", err)
 				continue
 			}
 			break
@@ -154,6 +154,9 @@ func (c *Client) authHandler(authState *UpdateAuthorizationState) {
 
 	case *AuthorizationStateReady:
 		me, err := c.GetMe()
+		if err == nil && me == nil {
+			err = fmt.Errorf("TDLib returned no account identity")
+		}
 		if err != nil {
 			c.Logger.Error("Failed to get me", "error", err)
 			c.sendAuthError(err)
@@ -161,7 +164,7 @@ func (c *Client) authHandler(authState *UpdateAuthorizationState) {
 		}
 
 		c.meMu.Lock()
-		c.Me = me
+		c.me = me
 		c.meMu.Unlock()
 		c.isAuthorized.Store(true)
 

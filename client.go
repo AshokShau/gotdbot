@@ -65,12 +65,19 @@ type Client struct {
 
 	stopOnce    sync.Once
 	meMu        sync.RWMutex
+	me          *User
 	lifecycleMu sync.Mutex
+}
 
-	// Me is the current account's cached User info, initialized during authorization
-	// and refreshed by user updates.
-	// Available after Start succeeds. Treat it as read-only.
-	Me *User
+// Me returns a non-nil, read-only snapshot of the cached account.
+func (c *Client) Me() *User {
+	c.meMu.RLock()
+	me := c.me
+	c.meMu.RUnlock()
+	if me == nil {
+		return &User{}
+	}
+	return me
 }
 
 // NewClient creates a client using a bot token or user phone number.
@@ -130,10 +137,6 @@ func NewClient(apiID int32, apiHash, tokenOrPhone string, config *ClientOpts) (*
 	if config.UpdateQueueSize <= 0 {
 		config.UpdateQueueSize = 1000
 	}
-	if config.RequestTimeout <= 0 {
-		config.RequestTimeout = 30 * time.Second
-	}
-
 	if err := tdjson.Init(config.LibraryPath); err != nil {
 		return nil, err
 	}
@@ -160,7 +163,9 @@ func NewClient(apiID int32, apiHash, tokenOrPhone string, config *ClientOpts) (*
 		authDone:        make(chan struct{}),
 		pendingRequests: make(map[string]*pendingCall),
 		pendingMessages: make(map[[2]int64]chan TlObject),
+		me:              &User{},
 	}
+	c.me.Id = c.botTokenUserID()
 
 	c.handlers.Store(&handlersData{
 		handlers: make(map[int][]Handler),
@@ -189,6 +194,7 @@ func (c *Client) initClient() {
 		}
 
 		workers := c.config.UpdateWorkers
+		c.Logger.Debug("Starting TDLib client workers", "user_id", c.Me().Id, "workers", workers)
 		c.wg.Add(workers)
 		for range workers {
 			go c.processor()
@@ -226,6 +232,7 @@ func (c *Client) StartContext(ctx context.Context) error {
 	case <-c.stop:
 		return ErrClientClosed
 	case <-timer.C:
+		c.Logger.Warn("TDLib authorization timed out", "user_id", c.Me().Id, "timeout", c.config.AuthorizationTimeout)
 		return fmt.Errorf("authorization timeout")
 	}
 }
@@ -255,6 +262,7 @@ func (c *Client) Idle() {
 // In-flight application handlers are not waited on; future requests fail closed.
 func (c *Client) Close() {
 	c.closeOnce.Do(func() {
+		c.Logger.Debug("Closing TDLib client", "user_id", c.Me().Id)
 		c.lifecycleMu.Lock()
 		c.closing.Store(true)
 		select {
@@ -277,7 +285,9 @@ func (c *Client) Close() {
 		}
 		c.lifecycleMu.Unlock()
 		if c.manager.Load() != nil {
-			_, _ = c.SendWithContext(ctx, &Close{})
+			if _, err := c.SendWithContext(ctx, &Close{}); err != nil {
+				c.Logger.Warn("TDLib close request failed", "user_id", c.Me().Id, "error", err)
+			}
 		} else if c.sendRequest != nil {
 			c.sendRequest(c.clientID, []byte(`{"@type":"close"}`))
 		} else {

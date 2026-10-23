@@ -9,16 +9,12 @@ import (
 	"github.com/AshokShau/gotdbot/logger"
 )
 
-// Bool returns a pointer for options that distinguish an unset value from false.
-func Bool(b bool) *bool {
-	return &b
-}
-
 // AutoRetry controls missing-object lookups and the maximum automatic flood wait.
 type AutoRetry struct {
 	ChatNotFound    bool
 	MessageNotFound bool
-	MaxFloodWait    time.Duration
+	// MaxFloodWait allows one flood retry within this delay; zero disables it.
+	MaxFloodWait time.Duration
 }
 
 // ClientOpts configures account storage, authentication, logging, and update handling.
@@ -44,12 +40,12 @@ type ClientOpts struct {
 	Logger                  *logger.Logger
 	QrMode                  bool
 	AuthorizationTimeout    time.Duration
-	// RequestTimeout bounds each request and its send completion; default 30s.
+	// RequestTimeout limits requests and send completion; nonpositive disables it.
 	RequestTimeout time.Duration
 	// UpdateWorkers bounds concurrent user handlers; default 2. Use 1 for order.
 	UpdateWorkers int
-	// UpdateQueueSize bounds updates buffered in memory per client; default 1000.
-	// Excess updates spill to temporary files, reclaimed as the queue drains.
+	// UpdateQueueSize sets the initial queue buffer; default 1000. The queue
+	// grows in memory when full, without blocking the shared receiver.
 	UpdateQueueSize int
 	// ReceiveOldMessages disables historical-message filtering for bots.
 	ReceiveOldMessages bool
@@ -67,9 +63,9 @@ func DefaultClientConfig() *ClientOpts {
 		DatabaseDirectory:       "database",
 		FilesDirectory:          "",
 		DatabaseEncryptionKey:   "",
-		UseFileDatabase:         Bool(true),
-		UseChatInfoDatabase:     Bool(true),
-		UseMessageDatabase:      Bool(true),
+		UseFileDatabase:         new(true),
+		UseChatInfoDatabase:     new(true),
+		UseMessageDatabase:      new(true),
 		UseSecretChats:          false,
 		LoadMessagesBeforeReply: false,
 		SystemLanguageCode:      "en",
@@ -79,7 +75,6 @@ func DefaultClientConfig() *ClientOpts {
 		Logger:                  logger.New(logger.WithLevel(slog.LevelInfo), logger.WithOutput(os.Stdout)),
 		QrMode:                  false,
 		AuthorizationTimeout:    60 * time.Second,
-		RequestTimeout:          30 * time.Second,
 		UpdateWorkers:           2,
 		UpdateQueueSize:         1000,
 		LogVerbosityLevel:       2,

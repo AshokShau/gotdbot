@@ -13,7 +13,7 @@ func main() {
 	apiHash := ""
 	botToken := ""
 
-	bot, err := gotdbot.NewClient(apiID, apiHash, botToken, &gotdbot.ClientOpts{LibraryPath: "./libtdjson.so.1.8.68"})
+	bot, err := gotdbot.NewClient(apiID, apiHash, botToken, &gotdbot.ClientOpts{LibraryPath: "./libtdjson.so.1.8.69"})
 	if err != nil {
 		panic(err)
 	}
@@ -47,7 +47,7 @@ func main() {
 		log.Fatalf("Failed to start bot: %v", err)
 	}
 
-	me := bot.Me
+	me := bot.Me()
 	username := ""
 	if me.Usernames != nil && len(me.Usernames.ActiveUsernames) > 0 {
 		username = me.Usernames.ActiveUsernames[0]

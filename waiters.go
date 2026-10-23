@@ -11,6 +11,28 @@ type waiter struct {
 	response chan TlObject
 }
 
+func (c *Client) snapshotWaiters(update TlObject) []*waiter {
+	c.wMu.RLock()
+	defer c.wMu.RUnlock()
+	if len(c.waiters) == 0 {
+		return nil
+	}
+	global := c.waiters[0]
+	chatID := c.UpdateChatID(update)
+	var chat map[string]*waiter
+	if chatID != 0 {
+		chat = c.waiters[chatID]
+	}
+	candidates := make([]*waiter, 0, len(global)+len(chat))
+	for _, w := range global {
+		candidates = append(candidates, w)
+	}
+	for _, w := range chat {
+		candidates = append(candidates, w)
+	}
+	return candidates
+}
+
 // WaitFor registers a waiter and blocks until a matching update arrives or timeout occurs.
 func (c *Client) WaitFor(filter func(client *Client, update TlObject) bool, timeout time.Duration) (TlObject, error) {
 	return c.WaitForChat(0, filter, timeout)

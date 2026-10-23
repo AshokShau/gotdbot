@@ -10,7 +10,7 @@
 // database directory. A nil configuration uses DefaultClientConfig.
 //
 // Register handlers before calling Client.Start, which waits for authentication.
-// Client.Me contains the account identity after Start succeeds. Client.Idle waits
+// Client.Me returns the account identity after Start succeeds. Client.Idle waits
 // for a termination signal, and Client.Close releases the account's resources.
 // ClientManager runs multiple accounts through a shared TDLib receiver.
 //

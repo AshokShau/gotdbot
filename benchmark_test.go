@@ -30,7 +30,7 @@ func BenchmarkUpdateQueue(b *testing.B) {
 	for _, capacity := range []int{0, 64} {
 		name := "memory"
 		if capacity == 0 {
-			name = "disk"
+			name = "overflow"
 		}
 		b.Run(name, func(b *testing.B) {
 			q := newUpdateQueue(capacity)

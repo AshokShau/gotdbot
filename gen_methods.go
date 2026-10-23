@@ -13,7 +13,7 @@ func (c *Client) AcceptCall(callId int32, protocol *CallProtocol) error {
 	return err
 }
 
-// AcceptOauthRequest Accepts an OAuth authorization request. Returns an HTTP URL to open after successful authorization.
+// AcceptOauthRequest Accepts an OAuth authorization request. Returns an HTTP URL to open after successful authorization. May return an empty link if just a toast about successful login has to be shown
 func (c *Client) AcceptOauthRequest(matchCode string, url string, opts *AcceptOauthRequestOpts) (*HttpUrl, error) {
 	req := &AcceptOauthRequest{
 		MatchCode: matchCode,
@@ -22,6 +22,7 @@ func (c *Client) AcceptOauthRequest(matchCode string, url string, opts *AcceptOa
 	if opts != nil {
 		req.AllowPhoneNumberAccess = opts.AllowPhoneNumberAccess
 		req.AllowWriteAccess = opts.AllowWriteAccess
+		req.TonConnectConnectData = opts.TonConnectConnectData
 	}
 	resp, err := c.Send(req)
 	if err != nil {
@@ -39,7 +40,7 @@ func (c *Client) AcceptTermsOfService(termsOfServiceId string) error {
 	return err
 }
 
-// ActivateStoryStealthMode Activates stealth mode for stories, which hides all views of stories from the current user in the last "story_stealth_mode_past_period" seconds
+// ActivateStoryStealthMode Activates stealth mode for stories, which hides all views of stories from the current user in the last "story_stealth_mode_past_period" seconds and for the next "story_stealth_mode_future_period" seconds; for Telegram Premium users only
 func (c *Client) ActivateStoryStealthMode() error {
 	req := &ActivateStoryStealthMode{}
 	_, err := c.Send(req)
@@ -62,7 +63,7 @@ func (c *Client) AddBotMediaPreview(botUserId int64, content InputStoryContent, 
 	return responseAs[*BotMediaPreview](resp)
 }
 
-// AddBotSecondaryUsername Adds a secondary username to a bot. Can be called only if userTypeBot.can_be_edited, the bot has no secondary username and the current user has Telegram Premium subscription.
+// AddBotSecondaryUsername Adds a secondary username to a bot. Can be called only if userTypeBot.can_be_edited, the bot has no secondary username and the current user has Telegram Premium subscription. May return an error with a message "OWNER_USERNAMES_LIMIT_EXCEEDED" if the current user already owns at least getOption("secondary_bot_username_count_max") bots with a secondary username
 func (c *Client) AddBotSecondaryUsername(botUserId int64, username string) error {
 	req := &AddBotSecondaryUsername{
 		BotUserId: botUserId,
@@ -98,7 +99,7 @@ func (c *Client) AddChatMember(chatId int64, userId int64, opts *AddChatMemberOp
 	return responseAs[*FailedToAddMembers](resp)
 }
 
-// AddChatMembers Adds multiple new members to a chat; requires can_invite_users member right. Currently, this method is available only in supergroups and channels.
+// AddChatMembers Adds multiple new members to a chat; requires can_invite_users member right. Currently, this method is available only in supergroups and channels. This method can't be used to join a chat. Members can't be added to a channel if it has more than 200 members. Returns information about members that weren't added
 func (c *Client) AddChatMembers(chatId int64, userIds []int64) (*FailedToAddMembers, error) {
 	req := &AddChatMembers{
 		ChatId:  chatId,
@@ -164,7 +165,7 @@ func (c *Client) AddCustomServerLanguagePack(languagePackId string) error {
 	return err
 }
 
-// AddFavoriteSticker Adds a new sticker to the list of favorite stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first.
+// AddFavoriteSticker Adds a new sticker to the list of favorite stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first. Only stickers belonging to a sticker set or in WEBP or WEBM format can be added to this list. Emoji stickers can't be added to favorite stickers
 func (c *Client) AddFavoriteSticker(sticker InputFile) error {
 	req := &AddFavoriteSticker{
 		Sticker: sticker,
@@ -173,7 +174,7 @@ func (c *Client) AddFavoriteSticker(sticker InputFile) error {
 	return err
 }
 
-// AddFileToDownloads Adds a file from a message to the list of file downloads. Download progress and completion of the download will be notified through updateFile updates.
+// AddFileToDownloads Adds a file from a message to the list of file downloads. Download progress and completion of the download will be notified through updateFile updates. If message database is used, the list of file downloads is persistent across application restarts. The downloading is independent of download using downloadFile, i.e. it continues if downloadFile is canceled or is used to download a part of the file
 func (c *Client) AddFileToDownloads(chatId int64, fileId int32, messageId int64, priority int32) (*File, error) {
 	req := &AddFileToDownloads{
 		ChatId:    chatId,
@@ -267,7 +268,7 @@ func (c *Client) AddNetworkStatistics(entry NetworkStatisticsEntry) error {
 	return err
 }
 
-// AddOffer Sends a suggested post based on a previously sent message in a channel direct messages chat. Can be also used to suggest price or time change for an existing suggested post.
+// AddOffer Sends a suggested post based on a previously sent message in a channel direct messages chat. Can be also used to suggest price or time change for an existing suggested post. Returns the sent message
 func (c *Client) AddOffer(chatId int64, messageId int64, options *MessageSendOptions) (*Message, error) {
 	req := &AddOffer{
 		ChatId:    chatId,
@@ -281,7 +282,7 @@ func (c *Client) AddOffer(chatId int64, messageId int64, options *MessageSendOpt
 	return responseAs[*Message](resp)
 }
 
-// AddPendingLiveStoryReaction Adds pending paid reaction in a live story group call. Can't be used in live stories posted by the current user.
+// AddPendingLiveStoryReaction Adds pending paid reaction in a live story group call. Can't be used in live stories posted by the current user. Call commitPendingLiveStoryReactions or removePendingLiveStoryReactions to actually send all pending reactions when the undo timer is over or abort the sending
 func (c *Client) AddPendingLiveStoryReaction(groupCallId int32, starCount int64) error {
 	req := &AddPendingLiveStoryReaction{
 		GroupCallId: groupCallId,
@@ -341,7 +342,7 @@ func (c *Client) AddProxy(proxy *Proxy, opts *AddProxyOpts) (*AddedProxy, error)
 	return responseAs[*AddedProxy](resp)
 }
 
-// AddQuickReplyShortcutInlineQueryResultMessage Adds a message to a quick reply shortcut via inline bot. If shortcut doesn't exist and there are less than getOption("quick_reply_shortcut_count_max") shortcuts, then a new shortcut is created.
+// AddQuickReplyShortcutInlineQueryResultMessage Adds a message to a quick reply shortcut via inline bot. If shortcut doesn't exist and there are less than getOption("quick_reply_shortcut_count_max") shortcuts, then a new shortcut is created. The shortcut must not contain more than getOption("quick_reply_shortcut_message_count_max") messages after adding the new message. Returns the added message
 func (c *Client) AddQuickReplyShortcutInlineQueryResultMessage(queryId int64, resultId string, shortcutName string, opts *AddQuickReplyShortcutInlineQueryResultMessageOpts) (*QuickReplyMessage, error) {
 	req := &AddQuickReplyShortcutInlineQueryResultMessage{
 		QueryId:      queryId,
@@ -359,7 +360,7 @@ func (c *Client) AddQuickReplyShortcutInlineQueryResultMessage(queryId int64, re
 	return responseAs[*QuickReplyMessage](resp)
 }
 
-// AddQuickReplyShortcutMessage Adds a message to a quick reply shortcut. If shortcut doesn't exist and there are less than getOption("quick_reply_shortcut_count_max") shortcuts, then a new shortcut is created.
+// AddQuickReplyShortcutMessage Adds a message to a quick reply shortcut. If shortcut doesn't exist and there are less than getOption("quick_reply_shortcut_count_max") shortcuts, then a new shortcut is created. The shortcut must not contain more than getOption("quick_reply_shortcut_message_count_max") messages after adding the new message. Returns the added message
 func (c *Client) AddQuickReplyShortcutMessage(inputMessageContent InputMessageContent, shortcutName string, opts *AddQuickReplyShortcutMessageOpts) (*QuickReplyMessage, error) {
 	req := &AddQuickReplyShortcutMessage{
 		InputMessageContent: inputMessageContent,
@@ -375,7 +376,7 @@ func (c *Client) AddQuickReplyShortcutMessage(inputMessageContent InputMessageCo
 	return responseAs[*QuickReplyMessage](resp)
 }
 
-// AddQuickReplyShortcutMessageAlbum Adds 2-10 messages grouped together into an album to a quick reply shortcut. Currently, only audio, document, photo and video messages can be grouped into an album.
+// AddQuickReplyShortcutMessageAlbum Adds 2-10 messages grouped together into an album to a quick reply shortcut. Currently, only audio, document, photo and video messages can be grouped into an album. Documents and audio files can be only grouped in an album with messages of the same type. Returns sent messages
 func (c *Client) AddQuickReplyShortcutMessageAlbum(inputMessageContents []InputMessageContent, shortcutName string, opts *AddQuickReplyShortcutMessageAlbumOpts) (*QuickReplyMessages, error) {
 	req := &AddQuickReplyShortcutMessageAlbum{
 		InputMessageContents: inputMessageContents,
@@ -400,7 +401,7 @@ func (c *Client) AddRecentlyFoundChat(chatId int64) error {
 	return err
 }
 
-// AddRecentSticker Manually adds a new sticker to the list of recently used stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first.
+// AddRecentSticker Manually adds a new sticker to the list of recently used stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first. Only stickers belonging to a sticker set or in WEBP or WEBM format can be added to this list. Emoji stickers can't be added to recent stickers
 func (c *Client) AddRecentSticker(sticker InputFile, opts *AddRecentStickerOpts) (*Stickers, error) {
 	req := &AddRecentSticker{
 		Sticker: sticker,
@@ -415,7 +416,7 @@ func (c *Client) AddRecentSticker(sticker InputFile, opts *AddRecentStickerOpts)
 	return responseAs[*Stickers](resp)
 }
 
-// AddSavedAnimation Manually adds a new animation to the list of saved animations. The new animation is added to the beginning of the list. If the animation was already in the list, it is removed first.
+// AddSavedAnimation Manually adds a new animation to the list of saved animations. The new animation is added to the beginning of the list. If the animation was already in the list, it is removed first. Only non-secret video animations with MIME type "video/mp4" can be added to the list
 func (c *Client) AddSavedAnimation(animation InputFile) error {
 	req := &AddSavedAnimation{
 		Animation: animation,
@@ -447,7 +448,7 @@ func (c *Client) AddStickerToSet(name string, sticker *NewSticker, userId int64)
 	return err
 }
 
-// AddStoryAlbumStories Adds stories to the beginning of a previously created story album. If the album is owned by a supergroup or a channel chat, then
+// AddStoryAlbumStories Adds stories to the beginning of a previously created story album. If the album is owned by a supergroup or a channel chat, then requires can_edit_stories administrator right in the chat. Returns the changed album
 func (c *Client) AddStoryAlbumStories(chatId int64, storyAlbumId int32, storyIds []int32) (*StoryAlbum, error) {
 	req := &AddStoryAlbumStories{
 		ChatId:       chatId,
@@ -461,7 +462,7 @@ func (c *Client) AddStoryAlbumStories(chatId int64, storyAlbumId int32, storyIds
 	return responseAs[*StoryAlbum](resp)
 }
 
-// AddTextCompositionStyle Adds a custom text composition style to the list of used by the user styles. May return an error with a message "TONES_SAVED_TOO_MANY"
+// AddTextCompositionStyle Adds a custom text composition style to the list of used by the user styles. May return an error with a message "TONES_SAVED_TOO_MANY" if the maximum number of added custom styles getOption("added_text_composition_style_count_max") has been reached
 func (c *Client) AddTextCompositionStyle(name string) error {
 	req := &AddTextCompositionStyle{
 		Name: name,
@@ -622,6 +623,16 @@ func (c *Client) AnswerWebAppQuery(result InputInlineQueryResult, webAppQueryId 
 func (c *Client) ApplyPremiumGiftCode(code string) error {
 	req := &ApplyPremiumGiftCode{
 		Code: code,
+	}
+	_, err := c.Send(req)
+	return err
+}
+
+// ApplyUnpaidMessagesToken Allows the current user to send unpaid messages to the given user, which requires payment for incoming messages, using a token from an internal link of the type internalLinkTypePublicChat, internalLinkTypeUserPhoneNumber, or internalLinkTypeUserToken. The first message sent to the user will be preceded by a messageUnpaidMessagesAllowedByLink message. Repeated calls and calls for the current user have no effect
+func (c *Client) ApplyUnpaidMessagesToken(token string, userId int64) error {
+	req := &ApplyUnpaidMessagesToken{
+		Token:  token,
+		UserId: userId,
 	}
 	_, err := c.Send(req)
 	return err
@@ -817,7 +828,7 @@ func (c *Client) CanTransferOwnership() (CanTransferOwnershipResult, error) {
 	return responseAs[CanTransferOwnershipResult](resp)
 }
 
-// ChangeImportedContacts Changes imported contacts using the list of contacts saved on the device. Imports newly added contacts and, if at least the file database is enabled, deletes recently deleted contacts.
+// ChangeImportedContacts Changes imported contacts using the list of contacts saved on the device. Imports newly added contacts and, if at least the file database is enabled, deletes recently deleted contacts. Query result depends on the result of the previous query, so only one query is possible at the same time
 func (c *Client) ChangeImportedContacts(contacts []ImportedContact) (*ImportedContacts, error) {
 	req := &ChangeImportedContacts{
 		Contacts: contacts,
@@ -880,7 +891,7 @@ func (c *Client) CheckAuthenticationEmailCode(code EmailAddressAuthentication) e
 	return err
 }
 
-// CheckAuthenticationPasskey Checks a passkey to log in to the corresponding account. Call getAuthenticationPasskeyParameters to get parameters for the passkey. Works only when the current authorization state is
+// CheckAuthenticationPasskey Checks a passkey to log in to the corresponding account. Call getAuthenticationPasskeyParameters to get parameters for the passkey. Works only when the current authorization state is authorizationStateWaitPhoneNumber or authorizationStateWaitOtherDeviceConfirmation, or if there is no pending authentication query and the current authorization state is authorizationStateWaitPremiumPurchase, authorizationStateWaitEmailAddress, authorizationStateWaitEmailCode, authorizationStateWaitCode, authorizationStateWaitRegistration, or authorizationStateWaitPassword
 func (c *Client) CheckAuthenticationPasskey(authenticatorData []byte, clientData string, credentialId string, signature []byte, userHandle []byte) error {
 	req := &CheckAuthenticationPasskey{
 		AuthenticatorData: authenticatorData,
@@ -922,7 +933,7 @@ func (c *Client) CheckAuthenticationPremiumPurchase(amount int64, currency strin
 	return err
 }
 
-// CheckAuthenticationWebToken Checks a web token to log in to the corresponding account; for official Telegram apps only. Works only when the current authorization state is
+// CheckAuthenticationWebToken Checks a web token to log in to the corresponding account; for official Telegram apps only. Works only when the current authorization state is authorizationStateWaitPhoneNumber or authorizationStateWaitOtherDeviceConfirmation
 func (c *Client) CheckAuthenticationWebToken(dcId int32, token string) error {
 	req := &CheckAuthenticationWebToken{
 		DcId:  dcId,
@@ -1011,7 +1022,7 @@ func (c *Client) CheckLoginEmailAddressCode(code EmailAddressAuthentication) err
 	return err
 }
 
-// CheckOauthRequestMatchCode Checks a match-code for an OAuth authorization request. If fails, then the authorization request has failed. Otherwise,
+// CheckOauthRequestMatchCode Checks a match-code for an OAuth authorization request. If fails, then the authorization request has failed. Otherwise, authorization confirmation dialog must be shown and the link must be processed using acceptOauthRequest or declineOauthRequest
 func (c *Client) CheckOauthRequestMatchCode(matchCode string, url string) error {
 	req := &CheckOauthRequestMatchCode{
 		MatchCode: matchCode,
@@ -1406,7 +1417,7 @@ func (c *Client) CreateBasicGroupChat(basicGroupId int64, opts *CreateBasicGroup
 	return responseAs[*Chat](resp)
 }
 
-// CreateBot Creates a bot which will be managed by another bot. Returns the created bot. May return an error with a message "BOT_CREATE_LIMIT_EXCEEDED"
+// CreateBot Creates a bot which will be managed by another bot. Returns the created bot. May return an error with a message "BOT_CREATE_LIMIT_EXCEEDED" if the user already owns the maximum allowed number of bots as per getOption("owned_bot_count_max"). An internal link "https://t.me/BotFather?start=deletebot" can be processed to handle the error
 func (c *Client) CreateBot(managerBotUserId int64, name string, username string, opts *CreateBotOpts) (*User, error) {
 	req := &CreateBot{
 		ManagerBotUserId: managerBotUserId,
@@ -1546,7 +1557,7 @@ func (c *Client) CreateForumTopic(chatId int64, icon *ForumTopicIcon, name strin
 	return responseAs[*ForumTopicInfo](resp)
 }
 
-// CreateGiftCollection Creates a collection from gifts on the current user's or a channel's profile page; requires can_post_messages administrator right in the channel chat.
+// CreateGiftCollection Creates a collection from gifts on the current user's or a channel's profile page; requires can_post_messages administrator right in the channel chat. An owner can have up to getOption("gift_collection_count_max") gift collections. The new collection will be added to the end of the gift collection list of the owner. Returns the created collection
 func (c *Client) CreateGiftCollection(name string, ownerId MessageSender, receivedGiftIds []string) (*GiftCollection, error) {
 	req := &CreateGiftCollection{
 		Name:            name,
@@ -1749,7 +1760,7 @@ func (c *Client) CreateSupergroupChat(supergroupId int64, opts *CreateSupergroup
 	return responseAs[*Chat](resp)
 }
 
-// CreateTemporaryPassword Creates a new temporary password for processing payments
+// CreateTemporaryPassword Creates a new temporary password for processing payments and withdrawal of upgraded gifts
 func (c *Client) CreateTemporaryPassword(password string, validFor int32) (*TemporaryPasswordState, error) {
 	req := &CreateTemporaryPassword{
 		Password: password,
@@ -1870,7 +1881,7 @@ func (c *Client) DecryptGroupCallData(data []byte, groupCallId int32, participan
 	return responseAs[*Data](resp)
 }
 
-// DeleteAccount Deletes the account of the current user, deleting all information associated with the user from the server. The phone number of the account can be used to create a new account.
+// DeleteAccount Deletes the account of the current user, deleting all information associated with the user from the server. The phone number of the account can be used to create a new account. Can be called before authorization when the current authorization state is authorizationStateWaitPassword
 func (c *Client) DeleteAccount(password string, opts *DeleteAccountOpts) error {
 	req := &DeleteAccount{
 		Password: password,
@@ -1980,7 +1991,7 @@ func (c *Client) DeleteBusinessStory(businessConnectionId string, storyId int32)
 	return err
 }
 
-// DeleteChat Deletes a chat along with all messages in the corresponding chat for all chat members. For group chats this will release the usernames and remove all members.
+// DeleteChat Deletes a chat along with all messages in the corresponding chat for all chat members. For group chats this will release the usernames and remove all members. Use the field chat.can_be_deleted_for_all_users to find whether the method can be applied to the chat
 func (c *Client) DeleteChat(chatId int64) error {
 	req := &DeleteChat{
 		ChatId: chatId,
@@ -2149,11 +2160,21 @@ func (c *Client) DeleteFile(fileId int32) error {
 	return err
 }
 
-// DeleteForumTopic Deletes all messages from a topic in a forum supergroup chat or a chat with a bot with topics; requires can_delete_messages administrator right in the supergroup
+// DeleteForumTopic Deletes all messages from a topic in a forum supergroup chat or a chat with a bot with topics; requires can_delete_messages administrator right in the supergroup unless the user is creator of the topic, the topic has no messages from other users and has at most 11 messages
 func (c *Client) DeleteForumTopic(chatId int64, forumTopicId int32) error {
 	req := &DeleteForumTopic{
 		ChatId:       chatId,
 		ForumTopicId: forumTopicId,
+	}
+	_, err := c.Send(req)
+	return err
+}
+
+// DeleteGift Deletes a gift without receiving Telegram Stars for it. Use receivedGift.can_be_deleted or messageGift.can_be_deleted to check whether the gift can be deleted
+func (c *Client) DeleteGift(businessConnectionId string, receivedGiftId string) error {
+	req := &DeleteGift{
+		BusinessConnectionId: businessConnectionId,
+		ReceivedGiftId:       receivedGiftId,
 	}
 	_, err := c.Send(req)
 	return err
@@ -2195,7 +2216,7 @@ func (c *Client) DeleteGroupCallMessagesBySender(groupCallId int32, senderId Mes
 	return err
 }
 
-// DeleteLanguagePack Deletes all information about a language pack in the current localization target. The language pack which is currently in use (including base language pack) or is being synchronized can't be deleted.
+// DeleteLanguagePack Deletes all information about a language pack in the current localization target. The language pack which is currently in use (including base language pack) or is being synchronized can't be deleted. Can be called before authorization
 func (c *Client) DeleteLanguagePack(languagePackId string) error {
 	req := &DeleteLanguagePack{
 		LanguagePackId: languagePackId,
@@ -2286,7 +2307,7 @@ func (c *Client) DeleteQuickReplyShortcutMessages(messageIds []int64, shortcutId
 	return err
 }
 
-// DeleteRevokedChatInviteLink Deletes revoked chat invite links. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
+// DeleteRevokedChatInviteLink Deletes a revoked chat invite link. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
 func (c *Client) DeleteRevokedChatInviteLink(chatId int64, inviteLink string) error {
 	req := &DeleteRevokedChatInviteLink{
 		ChatId:     chatId,
@@ -2377,7 +2398,7 @@ func (c *Client) DeleteTonWallet(password string) error {
 	return err
 }
 
-// Destroy Closes the TDLib instance, destroying all local data without a proper logout. The current user session will remain in the list of all active sessions. All local data will be destroyed.
+// Destroy Closes the TDLib instance, destroying all local data without a proper logout. The current user session will remain in the list of all active sessions. All local data will be destroyed. After the destruction completes updateAuthorizationState with authorizationStateClosed will be sent. Can be called before authorization
 func (c *Client) Destroy() error {
 	req := &Destroy{}
 	_, err := c.Send(req)
@@ -2475,10 +2496,22 @@ func (c *Client) DisconnectWebsite(websiteId int64) error {
 	return err
 }
 
-// DismissWebToken Dismissess a received web token without consumption; for official Telegram apps only
+// DismissWebToken Dismisses a received web token without consumption; for official Telegram apps only
 func (c *Client) DismissWebToken(token string) error {
 	req := &DismissWebToken{
 		Token: token,
+	}
+	_, err := c.Send(req)
+	return err
+}
+
+// DisplayUpgradedGift Shows an upgraded gift from the TON wallet of the current user on a profile page or hides it from all profile pages; the gift remains in the wallet
+func (c *Client) DisplayUpgradedGift(name string, opts *DisplayUpgradedGiftOpts) error {
+	req := &DisplayUpgradedGift{
+		Name: name,
+	}
+	if opts != nil {
+		req.OwnerId = opts.OwnerId
 	}
 	_, err := c.Send(req)
 	return err
@@ -2697,7 +2730,7 @@ func (c *Client) EditChatFolderInviteLink(chatFolderId int32, chatIds []int64, i
 	return responseAs[*ChatFolderInviteLink](resp)
 }
 
-// EditChatInviteLink Edits a non-primary invite link for a chat. Available in basic groups, supergroups, and channels.
+// EditChatInviteLink Edits a non-primary invite link for a chat. Available in basic groups, supergroups, and channels. If the link creates a subscription, then expiration_date, member_limit and creates_join_request must not be used. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
 func (c *Client) EditChatInviteLink(chatId int64, inviteLink string, opts *EditChatInviteLinkOpts) (*ChatInviteLink, error) {
 	req := &EditChatInviteLink{
 		ChatId:     chatId,
@@ -2783,7 +2816,7 @@ func (c *Client) EditEphemeralMessageCaption(chatId int64, ephemeralMessageId in
 	return err
 }
 
-// EditForumTopic Edits title and icon of a topic in a forum supergroup chat or a chat with a bot with topics; for supergroup chats requires can_manage_topics administrator right
+// EditForumTopic Edits title and icon of a topic in a forum supergroup chat or a chat with a bot with topics; for supergroup chats requires can_manage_topics administrator right unless the user is creator of the topic
 func (c *Client) EditForumTopic(chatId int64, forumTopicId int32, opts *EditForumTopicOpts) error {
 	req := &EditForumTopic{
 		ChatId:       chatId,
@@ -2898,7 +2931,7 @@ func (c *Client) EditMessageChecklist(chatId int64, checklist *InputChecklist, m
 	return responseAs[*Message](resp)
 }
 
-// EditMessageLiveLocation Edits the message content of a live location. Messages can be edited for a limited period of time specified in the live location.
+// EditMessageLiveLocation Edits the message content of a live location. Messages can be edited for a limited period of time specified in the live location. Returns the edited message after the edit is completed on the server side
 func (c *Client) EditMessageLiveLocation(chatId int64, messageId int64, opts *EditMessageLiveLocationOpts) (*Message, error) {
 	req := &EditMessageLiveLocation{
 		ChatId:    chatId,
@@ -2915,7 +2948,7 @@ func (c *Client) EditMessageLiveLocation(chatId int64, messageId int64, opts *Ed
 	return responseAs[*Message](resp)
 }
 
-// EditMessageMedia Edits the media content of a message, including message caption. If only the caption needs to be edited, use editMessageCaption instead.
+// EditMessageMedia Edits the media content of a message, including message caption. If only the caption needs to be edited, use editMessageCaption instead. The type of message content in an album can't be changed with exception of replacing a photo with a video or vice versa. Returns the edited message after the edit is completed on the server side
 func (c *Client) EditMessageMedia(chatId int64, inputMessageContent InputMessageContent, messageId int64, opts *EditMessageMediaOpts) (*Message, error) {
 	req := &EditMessageMedia{
 		ChatId:              chatId,
@@ -2995,7 +3028,7 @@ func (c *Client) EditProxy(proxy *Proxy, proxyId int32, opts *EditProxyOpts) (*A
 	return responseAs[*AddedProxy](resp)
 }
 
-// EditQuickReplyMessage Asynchronously edits the text, media or caption of a quick reply message. Use quickReplyMessage.can_be_edited to check whether a message can be edited.
+// EditQuickReplyMessage Asynchronously edits the text, media, or caption of a quick reply message. Use quickReplyMessage.can_be_edited to check whether a message can be edited. Media message can be edited only to a media message. Checklist messages can be edited only to a checklist message. The type of message content in an album can't be changed with exception of replacing a photo with a video or vice versa
 func (c *Client) EditQuickReplyMessage(inputMessageContent InputMessageContent, messageId int64, shortcutId int32) error {
 	req := &EditQuickReplyMessage{
 		InputMessageContent: inputMessageContent,
@@ -3691,7 +3724,7 @@ func (c *Client) GetChatAdministrators(chatId int64) (*ChatAdministrators, error
 	return responseAs[*ChatAdministrators](resp)
 }
 
-// GetChatArchivedStories Returns the list of all stories posted by the given chat; requires can_edit_stories administrator right in the chat.
+// GetChatArchivedStories Returns the list of all stories posted by the given chat; requires can_edit_stories administrator right in the chat. The stories are returned in reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
 func (c *Client) GetChatArchivedStories(chatId int64, limit int32, opts *GetChatArchivedStoriesOpts) (*Stories, error) {
 	req := &GetChatArchivedStories{
 		ChatId: chatId,
@@ -3902,7 +3935,7 @@ func (c *Client) GetChatFolderNewChats(chatFolderId int32) (*Chats, error) {
 	return responseAs[*Chats](resp)
 }
 
-// GetChatHistory Returns messages in a chat. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id).
+// GetChatHistory Returns messages in a chat. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib. This is an offline method if only_local is true
 func (c *Client) GetChatHistory(chatId int64, limit int32, opts *GetChatHistoryOpts) (*Messages, error) {
 	req := &GetChatHistory{
 		ChatId: chatId,
@@ -4103,7 +4136,7 @@ func (c *Client) GetChatNotificationSettingsExceptions(opts *GetChatNotification
 	return responseAs[*Chats](resp)
 }
 
-// GetChatOwnerAfterLeaving Returns the user who will become the owner of the chat after 7 days if the current user does not return to the supergroup or channel during that period or immediately for basic groups;
+// GetChatOwnerAfterLeaving Returns the user who will become the owner of the chat after 7 days if the current user does not return to the supergroup or channel during that period or immediately for basic groups; requires owner privileges in the chat. Available only for basic groups, supergroups, and channel chats
 func (c *Client) GetChatOwnerAfterLeaving(chatId int64) (*User, error) {
 	req := &GetChatOwnerAfterLeaving{
 		ChatId: chatId,
@@ -4115,7 +4148,7 @@ func (c *Client) GetChatOwnerAfterLeaving(chatId int64) (*User, error) {
 	return responseAs[*User](resp)
 }
 
-// GetChatPinnedMessage Returns information about a newest pinned message in the chat. Returns a 404 error if the message doesn't exist
+// GetChatPinnedMessage Returns information about the newest pinned message in the chat. Returns a 404 error if the message doesn't exist
 func (c *Client) GetChatPinnedMessage(chatId int64) (*Message, error) {
 	req := &GetChatPinnedMessage{
 		ChatId: chatId,
@@ -4127,7 +4160,7 @@ func (c *Client) GetChatPinnedMessage(chatId int64) (*Message, error) {
 	return responseAs[*Message](resp)
 }
 
-// GetChatPostedToChatPageStories Returns the list of stories that posted by the given chat to its chat page. If from_story_id == 0, then pinned stories are returned first.
+// GetChatPostedToChatPageStories Returns the list of stories that were posted by the given chat to its chat page. If from_story_id == 0, then pinned stories are returned first. Then, stories are returned in reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
 func (c *Client) GetChatPostedToChatPageStories(chatId int64, limit int32, opts *GetChatPostedToChatPageStoriesOpts) (*Stories, error) {
 	req := &GetChatPostedToChatPageStories{
 		ChatId: chatId,
@@ -4143,7 +4176,7 @@ func (c *Client) GetChatPostedToChatPageStories(chatId int64, limit int32, opts 
 	return responseAs[*Stories](resp)
 }
 
-// GetChatRevenueStatistics Returns detailed revenue statistics about a chat. Currently, this method can be used only
+// GetChatRevenueStatistics Returns detailed revenue statistics about a chat. Currently, this method can be used only for channels if supergroupFullInfo.can_get_revenue_statistics == true or bots if userFullInfo.bot_info.can_get_revenue_statistics == true
 func (c *Client) GetChatRevenueStatistics(chatId int64, opts *GetChatRevenueStatisticsOpts) (*ChatRevenueStatistics, error) {
 	req := &GetChatRevenueStatistics{
 		ChatId: chatId,
@@ -4158,7 +4191,7 @@ func (c *Client) GetChatRevenueStatistics(chatId int64, opts *GetChatRevenueStat
 	return responseAs[*ChatRevenueStatistics](resp)
 }
 
-// GetChatRevenueTransactions Returns the list of revenue transactions for a chat. Currently, this method can be used only
+// GetChatRevenueTransactions Returns the list of revenue transactions for a chat. Currently, this method can be used only for channels if supergroupFullInfo.can_get_revenue_statistics == true or bots if userFullInfo.bot_info.can_get_revenue_statistics == true
 func (c *Client) GetChatRevenueTransactions(chatId int64, limit int32, opts *GetChatRevenueTransactionsOpts) (*ChatRevenueTransactions, error) {
 	req := &GetChatRevenueTransactions{
 		ChatId: chatId,
@@ -4174,7 +4207,7 @@ func (c *Client) GetChatRevenueTransactions(chatId int64, limit int32, opts *Get
 	return responseAs[*ChatRevenueTransactions](resp)
 }
 
-// GetChatRevenueWithdrawalUrl Returns a URL for chat revenue withdrawal; requires owner privileges in the channel chat or the bot. Currently, this method can be used only
+// GetChatRevenueWithdrawalUrl Returns a URL for chat revenue withdrawal; requires owner privileges in the channel chat or the bot. Currently, this method can be used only if getOption("can_withdraw_chat_revenue") for channels with supergroupFullInfo.can_get_revenue_statistics == true or bots with userFullInfo.bot_info.can_get_revenue_statistics == true
 func (c *Client) GetChatRevenueWithdrawalUrl(chatId int64, password string) (*HttpUrl, error) {
 	req := &GetChatRevenueWithdrawalUrl{
 		ChatId:   chatId,
@@ -4253,7 +4286,7 @@ func (c *Client) GetChatSimilarChats(chatId int64) (*Chats, error) {
 	return responseAs[*Chats](resp)
 }
 
-// GetChatSparseMessagePositions Returns sparse positions of messages of the specified type in the chat to be used for Shared Media scroll implementation. Returns the results in reverse chronological order (i.e., in order of decreasing message_id).
+// GetChatSparseMessagePositions Returns sparse positions of messages of the specified type in the chat to be used for Shared Media scroll implementation. Returns the results in reverse chronological order (i.e., in order of decreasing message_id). Cannot be used in secret chats or with searchMessagesFilterFailedToSend filter without an enabled message database
 func (c *Client) GetChatSparseMessagePositions(chatId int64, filter SearchMessagesFilter, fromMessageId int64, limit int32, opts *GetChatSparseMessagePositionsOpts) (*MessagePositions, error) {
 	req := &GetChatSparseMessagePositions{
 		ChatId:        chatId,
@@ -4416,7 +4449,7 @@ func (c *Client) GetConnectedAffiliatePrograms(affiliate AffiliateType, limit in
 	return responseAs[*ConnectedAffiliatePrograms](resp)
 }
 
-// GetConnectedWebsites Returns all website where the current user used Telegram to log in
+// GetConnectedWebsites Returns all websites where the current user used Telegram to log in
 func (c *Client) GetConnectedWebsites() (*ConnectedWebsites, error) {
 	req := &GetConnectedWebsites{}
 	resp, err := c.Send(req)
@@ -4732,7 +4765,7 @@ func (c *Client) GetEmojiSuggestionsUrl(languageCode string) (*HttpUrl, error) {
 	return responseAs[*HttpUrl](resp)
 }
 
-// GetExternalLink Returns an HTTP URL which can be used to automatically authorize the current user on a website after clicking an HTTP link.
+// GetExternalLink Returns an HTTP URL which can be used to automatically authorize the current user on a website after clicking an HTTP link. Use the method getExternalLinkInfo to find whether a prior user confirmation is needed. May return an empty link if just a toast about successful login has to be shown
 func (c *Client) GetExternalLink(link string, opts *GetExternalLinkOpts) (*HttpUrl, error) {
 	req := &GetExternalLink{
 		Link: link,
@@ -4747,7 +4780,7 @@ func (c *Client) GetExternalLink(link string, opts *GetExternalLinkOpts) (*HttpU
 	return responseAs[*HttpUrl](resp)
 }
 
-// GetExternalLinkInfo Returns information about an action to be done when the current user clicks an external link. Don't use this method for links from secret chats
+// GetExternalLinkInfo Returns information about an action to be done when the current user clicks an external link. Don't use this method for links from secret chats if link preview is disabled in secret chats, and use directly getLinkWebBrowserType
 func (c *Client) GetExternalLinkInfo(link string) (LoginUrlInfo, error) {
 	req := &GetExternalLinkInfo{
 		Link: link,
@@ -4843,7 +4876,7 @@ func (c *Client) GetForumTopicDefaultIcons() (*Stickers, error) {
 	return responseAs[*Stickers](resp)
 }
 
-// GetForumTopicHistory Returns messages in a topic in a forum supergroup chat or a chat with a bot with topics. The messages are returned in reverse chronological order
+// GetForumTopicHistory Returns messages in a topic in a forum supergroup chat or a chat with a bot with topics. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
 func (c *Client) GetForumTopicHistory(chatId int64, forumTopicId int32, limit int32, opts *GetForumTopicHistoryOpts) (*Messages, error) {
 	req := &GetForumTopicHistory{
 		ChatId:       chatId,
@@ -4971,7 +5004,7 @@ func (c *Client) GetGiftCollections(ownerId MessageSender) (*GiftCollections, er
 	return responseAs[*GiftCollections](resp)
 }
 
-// GetGiftsForCrafting Returns upgraded gifts of the current user who can be used to craft another gifts
+// GetGiftsForCrafting Returns upgraded gifts of the current user, which can be used to craft other gifts
 func (c *Client) GetGiftsForCrafting(limit int32, regularGiftId int64, opts *GetGiftsForCraftingOpts) (*GiftsForCrafting, error) {
 	req := &GetGiftsForCrafting{
 		Limit:         limit,
@@ -5024,7 +5057,7 @@ func (c *Client) GetGramRevenueStatistics(isDark bool) (*GramRevenueStatistics, 
 	return responseAs[*GramRevenueStatistics](resp)
 }
 
-// GetGramWithdrawalUrl Returns a URL for TON Gram withdrawal from the current user's account. The user must have at least 10 Grams to withdraw
+// GetGramWithdrawalUrl Returns a URL for TON Gram withdrawal from the current user's account. The user must have at least 10 Grams to withdraw and can withdraw up to 100000 Grams in one transaction
 func (c *Client) GetGramWithdrawalUrl(password string) (*HttpUrl, error) {
 	req := &GetGramWithdrawalUrl{
 		Password: password,
@@ -5423,7 +5456,7 @@ func (c *Client) GetLoginPasskeys() (*Passkeys, error) {
 	return responseAs[*Passkeys](resp)
 }
 
-// GetLoginUrl Returns an HTTP URL which can be used to automatically authorize the user on a website after clicking an inline button of type inlineKeyboardButtonTypeLoginUrl.
+// GetLoginUrl Returns an HTTP URL which can be used to automatically authorize the user on a website after clicking an inline button of type inlineKeyboardButtonTypeLoginUrl. Use the method getLoginUrlInfo to find whether a prior user confirmation is needed. If an error is returned, then the button must be handled as an ordinary URL button
 func (c *Client) GetLoginUrl(buttonId int64, chatId int64, messageId int64, opts *GetLoginUrlOpts) (*HttpUrl, error) {
 	req := &GetLoginUrl{
 		ButtonId:  buttonId,
@@ -5831,7 +5864,7 @@ func (c *Client) GetMessageThread(chatId int64, messageId int64) (*MessageThread
 	return responseAs[*MessageThreadInfo](resp)
 }
 
-// GetMessageThreadHistory Returns messages in a message thread of a message. Can be used only if messageProperties.can_get_message_thread == true. Message thread of a channel message is in the channel's linked supergroup.
+// GetMessageThreadHistory Returns messages in a message thread of a message. Can be used only if messageProperties.can_get_message_thread == true. Message thread of a channel message is in the channel's linked supergroup. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
 func (c *Client) GetMessageThreadHistory(chatId int64, limit int32, messageId int64, opts *GetMessageThreadHistoryOpts) (*Messages, error) {
 	req := &GetMessageThreadHistory{
 		ChatId:    chatId,
@@ -5884,7 +5917,7 @@ func (c *Client) GetNewChatPrivacySettings() (*NewChatPrivacySettings, error) {
 	return responseAs[*NewChatPrivacySettings](resp)
 }
 
-// GetOauthLinkInfo Returns information about an OAuth deep link. Use checkOauthRequestMatchCode, acceptOauthRequest or declineOauthRequest to process the link
+// GetOauthLinkInfo Returns information about an OAuth deep link. Use checkOauthRequestMatchCode, acceptOauthRequest, or declineOauthRequest to process the link
 func (c *Client) GetOauthLinkInfo(url string, opts *GetOauthLinkInfoOpts) (*OauthLinkInfo, error) {
 	req := &GetOauthLinkInfo{
 		Url: url,
@@ -5915,7 +5948,7 @@ func (c *Client) GetOnRampPaymentAvailability(cryptocurrency string, providerId 
 	return responseAs[*OnRampPaymentAvailability](resp)
 }
 
-// GetOnRampPaymentLimits Returns the limits for an on-ramp payment; only for providers that supports limits retrieval
+// GetOnRampPaymentLimits Returns the limits for an on-ramp payment; only for providers that support limits retrieval
 func (c *Client) GetOnRampPaymentLimits(baseCurrency string, cryptocurrency string, providerId string, opts *GetOnRampPaymentLimitsOpts) (*OnRampPaymentLimits, error) {
 	req := &GetOnRampPaymentLimits{
 		BaseCurrency:   baseCurrency,
@@ -5932,7 +5965,7 @@ func (c *Client) GetOnRampPaymentLimits(baseCurrency string, cryptocurrency stri
 	return responseAs[*OnRampPaymentLimits](resp)
 }
 
-// GetOnRampPaymentQuote Returns a quote for an on-ramp payment; only for providers that supports quote retrieval
+// GetOnRampPaymentQuote Returns a quote for an on-ramp payment; only for providers that support quote retrieval
 func (c *Client) GetOnRampPaymentQuote(baseCurrency string, baseCurrencyAmount string, cryptocurrency string, cryptocurrencyAmount string, providerId string, opts *GetOnRampPaymentQuoteOpts) (*OnRampPaymentQuote, error) {
 	req := &GetOnRampPaymentQuote{
 		BaseCurrency:         baseCurrency,
@@ -6166,7 +6199,7 @@ func (c *Client) GetPollOptionProperties(chatId int64, messageId int64, pollOpti
 	return responseAs[*PollOptionProperties](resp)
 }
 
-// GetPollVoters Returns message senders voted for the specified option in a poll; use poll.can_get_voters to check whether the method can be used.
+// GetPollVoters Returns message senders voted for the specified option in a poll; use poll.can_get_voters to check whether the method can be used. For optimal performance, the number of returned users is chosen by TDLib
 func (c *Client) GetPollVoters(chatId int64, limit int32, messageId int64, optionId int32, opts *GetPollVotersOpts) (*PollVoters, error) {
 	req := &GetPollVoters{
 		ChatId:    chatId,
@@ -6302,7 +6335,7 @@ func (c *Client) GetPremiumStickers(limit int32) (*Stickers, error) {
 	return responseAs[*Stickers](resp)
 }
 
-// GetPreparedInlineMessage Saves an inline message to be sent by the given user
+// GetPreparedInlineMessage Returns an inline message prepared by a bot to be sent by the current user
 func (c *Client) GetPreparedInlineMessage(botUserId int64, preparedMessageId string) (*PreparedInlineMessage, error) {
 	req := &GetPreparedInlineMessage{
 		BotUserId:         botUserId,
@@ -6326,6 +6359,16 @@ func (c *Client) GetPreparedKeyboardButton(botUserId int64, preparedButtonId str
 		return nil, err
 	}
 	return responseAs[*KeyboardButton](resp)
+}
+
+// GetProfileShareThemeBackdrops Returns the list of backdrops, which can be used as a background of a theme of the screen for sharing a link to a user or a chat
+func (c *Client) GetProfileShareThemeBackdrops() (*ProfileShareThemeBackdrops, error) {
+	req := &GetProfileShareThemeBackdrops{}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return responseAs[*ProfileShareThemeBackdrops](resp)
 }
 
 // GetProxies Returns the list of proxies that are currently set up. Can be called before authorization
@@ -6499,7 +6542,7 @@ func (c *Client) GetRecoveryEmailAddress(password string) (*RecoveryEmailAddress
 	return responseAs[*RecoveryEmailAddress](resp)
 }
 
-// GetRemoteFile Returns information about a file by its remote identifier. This is an offline method. Can be used to register a URL as a file for further uploading, or sending as a message. Even if the request succeeds, the file can be used only if it is still accessible to the user.
+// GetRemoteFile Returns information about a file by its remote identifier. This is an offline method. Can be used to register a URL as a file for further uploading, or sending as a message. Even if the request succeeds, the file can be used only if it is still accessible to the user. For example, if the file is from a message, then the message must be not deleted and accessible to the user. If the file database is disabled, then the corresponding object with the file must be preloaded by the application
 func (c *Client) GetRemoteFile(remoteFileId string, opts *GetRemoteFileOpts) (*File, error) {
 	req := &GetRemoteFile{
 		RemoteFileId: remoteFileId,
@@ -6514,7 +6557,7 @@ func (c *Client) GetRemoteFile(remoteFileId string, opts *GetRemoteFileOpts) (*F
 	return responseAs[*File](resp)
 }
 
-// GetRepliedMessage Returns information about a non-bundled message that is replied by a given message. Also, returns the pinned message for messagePinMessage,
+// GetRepliedMessage Returns information about a non-bundled message that is replied by a given message. Also, returns the pinned message for messagePinMessage, the game message for messageGameScore, the invoice message for messagePaymentSuccessful, the message with a previously set same background for messageChatSetBackground, the giveaway message for messageGiveawayCompleted, the checklist message for messageChecklistTasksDone, messageChecklistTasksAdded, the message with suggested post information for messageSuggestedPostApprovalFailed, messageSuggestedPostApproved, messageSuggestedPostDeclined, messageSuggestedPostPaid, messageSuggestedPostRefunded, the message with the regular gift that was upgraded for messageUpgradedGift with origin of the type upgradedGiftOriginUpgrade, the message with gift purchase offer for messageUpgradedGiftPurchaseOfferRejected, the message with the request to disable content protection for messageChatHasProtectedContentToggled, the message with the poll for messagePollOptionAdded and messagePollOptionDeleted, and the topic creation message for topic messages without non-bundled replied message. Returns a 404 error if the message doesn't exist
 func (c *Client) GetRepliedMessage(chatId int64, messageId int64) (*Message, error) {
 	req := &GetRepliedMessage{
 		ChatId:    chatId,
@@ -6973,7 +7016,7 @@ func (c *Client) GetStoryNotificationSettingsExceptions() (*Chats, error) {
 	return responseAs[*Chats](resp)
 }
 
-// GetStoryPublicForwards Returns forwards of a story as a message to public chats and reposts by public channels. Can be used only if the story is posted on behalf of the current user or story.can_get_statistics == true.
+// GetStoryPublicForwards Returns forwards of a story as a message to public chats and reposts by public channels. Can be used only if the story is posted on behalf of the current user or story.can_get_statistics == true. For optimal performance, the number of returned messages and stories is chosen by TDLib
 func (c *Client) GetStoryPublicForwards(limit int32, storyId int32, storyPosterChatId int64, opts *GetStoryPublicForwardsOpts) (*PublicForwards, error) {
 	req := &GetStoryPublicForwards{
 		Limit:             limit,
@@ -7031,7 +7074,7 @@ func (c *Client) GetSuggestedStickerSetName(title string) (*Text, error) {
 	return responseAs[*Text](resp)
 }
 
-// GetSuitableDiscussionChats Returns a list of basic group and supergroup chats, which can be used as a discussion group for a channel. Returned basic group chats must be first upgraded to supergroups before they can be set as a discussion group.
+// GetSuitableDiscussionChats Returns a list of basic group and supergroup chats, which can be used as a discussion group for a channel. Returned basic group chats must be first upgraded to supergroups before they can be set as a discussion group. To set a returned supergroup as a discussion group, access to its old messages must be enabled using toggleSupergroupIsAllHistoryAvailable first
 func (c *Client) GetSuitableDiscussionChats() (*Chats, error) {
 	req := &GetSuitableDiscussionChats{}
 	resp, err := c.Send(req)
@@ -7261,6 +7304,16 @@ func (c *Client) GetTonTransactions(limit int32, opts *GetTonTransactionsOpts) (
 	return responseAs[*TonTransactions](resp)
 }
 
+// GetTonWalletCardBackgroundGiftCollectionNames Returns names of upgraded gift collections whose NFTs can be used as background_nft_address in setTonWalletCardStickers; can be used only if getOption("can_use_ton_wallet")
+func (c *Client) GetTonWalletCardBackgroundGiftCollectionNames() (*UpgradedGiftCollectionNames, error) {
+	req := &GetTonWalletCardBackgroundGiftCollectionNames{}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return responseAs[*UpgradedGiftCollectionNames](resp)
+}
+
 // GetTonWalletNfts Returns NFTs stored on the TON wallet of the user; can be used only if getOption("can_use_ton_wallet")
 func (c *Client) GetTonWalletNfts(limit int32, opts *GetTonWalletNftsOpts) (*TonNfts, error) {
 	req := &GetTonWalletNfts{
@@ -7276,7 +7329,7 @@ func (c *Client) GetTonWalletNfts(limit int32, opts *GetTonWalletNftsOpts) (*Ton
 	return responseAs[*TonNfts](resp)
 }
 
-// GetTonWalletOwnershipProofChallenge Returns a challenge which may be used to proof ownership of a TON wallet; can be used only if getOption("can_use_ton_wallet")
+// GetTonWalletOwnershipProofChallenge Returns a challenge which may be used to prove ownership of a TON wallet; can be used only if getOption("can_use_ton_wallet")
 func (c *Client) GetTonWalletOwnershipProofChallenge() (*TonWalletOwnershipProofChallenge, error) {
 	req := &GetTonWalletOwnershipProofChallenge{}
 	resp, err := c.Send(req)
@@ -7286,8 +7339,8 @@ func (c *Client) GetTonWalletOwnershipProofChallenge() (*TonWalletOwnershipProof
 	return responseAs[*TonWalletOwnershipProofChallenge](resp)
 }
 
-// GetTonWalletSecretPhrase Returns the secret phrase of the user's TON wallet as a space separated list of words. Works only if tonWalletState.can_export_phrase is true
-func (c *Client) GetTonWalletSecretPhrase(password string) (*Text, error) {
+// GetTonWalletSecretPhrase Returns the secret phrase of the user's TON wallet. Works only if tonWalletState.can_export_phrase is true
+func (c *Client) GetTonWalletSecretPhrase(password string) (*TonWalletSecretPhrase, error) {
 	req := &GetTonWalletSecretPhrase{
 		Password: password,
 	}
@@ -7295,10 +7348,10 @@ func (c *Client) GetTonWalletSecretPhrase(password string) (*Text, error) {
 	if err != nil {
 		return nil, err
 	}
-	return responseAs[*Text](resp)
+	return responseAs[*TonWalletSecretPhrase](resp)
 }
 
-// GetTonWalletTransaction Returns a TON wallet transaction by their identifier
+// GetTonWalletTransaction Returns a TON wallet transaction by its identifier
 func (c *Client) GetTonWalletTransaction(transactionId string) (*TonWalletTransaction, error) {
 	req := &GetTonWalletTransaction{
 		TransactionId: transactionId,
@@ -7310,7 +7363,7 @@ func (c *Client) GetTonWalletTransaction(transactionId string) (*TonWalletTransa
 	return responseAs[*TonWalletTransaction](resp)
 }
 
-// GetTonWalletTransactionByMsgHash Returns a TON wallet transaction by their msg_hash; return an error if the transaction isn't finalized yet
+// GetTonWalletTransactionByMsgHash Returns a TON wallet transaction by its msg_hash; returns an error if the transaction isn't finalized yet
 func (c *Client) GetTonWalletTransactionByMsgHash(msgHash string) (*TonWalletTransaction, error) {
 	req := &GetTonWalletTransactionByMsgHash{
 		MsgHash: msgHash,
@@ -7379,6 +7432,22 @@ func (c *Client) GetUpgradedGift(name string) (*UpgradedGift, error) {
 	return responseAs[*UpgradedGift](resp)
 }
 
+// GetUpgradedGiftDepositInfo Returns information needed to deposit an upgraded gift from the TON wallet of the current user to a Telegram account. Use sendTonWalletTransfer to complete transfer of the gift. The gift will be received by the new owner with a message about the gift after the transfer is confirmed in the blockchain
+func (c *Client) GetUpgradedGiftDepositInfo(name string, ownerId MessageSender, opts *GetUpgradedGiftDepositInfoOpts) (*UpgradedGiftDepositInfo, error) {
+	req := &GetUpgradedGiftDepositInfo{
+		Name:    name,
+		OwnerId: ownerId,
+	}
+	if opts != nil {
+		req.HideSender = opts.HideSender
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return responseAs[*UpgradedGiftDepositInfo](resp)
+}
+
 // GetUpgradedGiftEmojiStatuses Returns available upgraded gift emoji statuses for self status
 func (c *Client) GetUpgradedGiftEmojiStatuses() (*EmojiStatuses, error) {
 	req := &GetUpgradedGiftEmojiStatuses{}
@@ -7427,10 +7496,9 @@ func (c *Client) GetUpgradedGiftVariants(regularGiftId int64, opts *GetUpgradedG
 	return responseAs[*GiftUpgradeVariants](resp)
 }
 
-// GetUpgradedGiftWithdrawalUrl Returns a URL for upgraded gift withdrawal in the TON blockchain as an NFT; requires owner privileges for gifts owned by a chat
-func (c *Client) GetUpgradedGiftWithdrawalUrl(password string, receivedGiftId string) (*HttpUrl, error) {
+// GetUpgradedGiftWithdrawalUrl Returns a URL for upgraded gift withdrawal in the TON blockchain as an NFT; requires owner privileges for gifts owned by a chat. The user must have a valid temporary password; see createTemporaryPassword
+func (c *Client) GetUpgradedGiftWithdrawalUrl(receivedGiftId string) (*HttpUrl, error) {
 	req := &GetUpgradedGiftWithdrawalUrl{
-		Password:       password,
 		ReceivedGiftId: receivedGiftId,
 	}
 	resp, err := c.Send(req)
@@ -7478,8 +7546,13 @@ func (c *Client) GetUserFullInfo(userId int64) (*UserFullInfo, error) {
 }
 
 // GetUserLink Returns an HTTPS link, which can be used to get information about the current user
-func (c *Client) GetUserLink() (*UserLink, error) {
+func (c *Client) GetUserLink(opts *GetUserLinkOpts) (*UserLink, error) {
 	req := &GetUserLink{}
+	if opts != nil {
+		req.RemoveMessagesFee = opts.RemoveMessagesFee
+		req.ReturnPermanentLink = opts.ReturnPermanentLink
+		req.RevokePreviousLinks = opts.RevokePreviousLinks
+	}
 	resp, err := c.Send(req)
 	if err != nil {
 		return nil, err
@@ -7730,7 +7803,7 @@ func (c *Client) IncreaseGiftAuctionBid(giftId int64, starCount int64) error {
 	return err
 }
 
-// InviteGroupCallParticipant Invites a user to an active group call; for group calls not bound to a chat only. Sends a service message of the type messageGroupCall.
+// InviteGroupCallParticipant Invites a user to an active group call; for group calls not bound to a chat only. Sends a service message of the type messageGroupCall. The group call can have at most getOption("group_call_participant_count_max") participants
 func (c *Client) InviteGroupCallParticipant(groupCallId int32, userId int64, opts *InviteGroupCallParticipantOpts) (InviteGroupCallParticipantResult, error) {
 	req := &InviteGroupCallParticipant{
 		GroupCallId: groupCallId,
@@ -7879,7 +7952,7 @@ func (c *Client) ListenToAudio(audioFileId int32, duration int32) error {
 	return err
 }
 
-// LoadActiveStories Loads more active stories from a story list. The loaded stories will be sent through updates. Active stories are sorted by
+// LoadActiveStories Loads more active stories from a story list. The loaded stories will be sent through updates. Active stories are sorted by the pair (active_stories.order, active_stories.story_poster_chat_id) in descending order. Returns a 404 error if all active stories have been loaded
 func (c *Client) LoadActiveStories(storyList StoryList) error {
 	req := &LoadActiveStories{
 		StoryList: storyList,
@@ -7888,7 +7961,7 @@ func (c *Client) LoadActiveStories(storyList StoryList) error {
 	return err
 }
 
-// LoadChats Loads more chats from a chat list. The loaded chats and their positions in the chat list will be sent through updates. Chats are sorted by the pair (chat.position.order, chat.id) in descending order. Returns a 404 error if all chats have been loaded
+// LoadChats Loads more chats from a chat list. The loaded chats and their positions in the chat list will be sent through updates. Chats are sorted by the pair (chatPosition.order, chat.id) in descending order. Returns a 404 error if all chats have been loaded
 func (c *Client) LoadChats(limit int32, opts *LoadChatsOpts) error {
 	req := &LoadChats{
 		Limit: limit,
@@ -7909,7 +7982,7 @@ func (c *Client) LoadChatWelcomeMessages(chatId int64) error {
 	return err
 }
 
-// LoadDirectMessagesChatTopics Loads more topics in a channel direct messages chat administered by the current user. The loaded topics will be sent through updateDirectMessagesChatTopic.
+// LoadDirectMessagesChatTopics Loads more topics in a channel direct messages chat administered by the current user. The loaded topics will be sent through updateDirectMessagesChatTopic. Topics are sorted by their topic.order in descending order. Returns a 404 error if all topics have been loaded
 func (c *Client) LoadDirectMessagesChatTopics(chatId int64, limit int32) error {
 	req := &LoadDirectMessagesChatTopics{
 		ChatId: chatId,
@@ -7919,7 +7992,7 @@ func (c *Client) LoadDirectMessagesChatTopics(chatId int64, limit int32) error {
 	return err
 }
 
-// LoadGroupCallParticipants Loads more participants of a group call; not supported in live stories. The loaded participants will be received through updates.
+// LoadGroupCallParticipants Loads more participants of a group call; not supported in live stories. The loaded participants will be received through updates. Use the field groupCall.loaded_all_participants to check whether all participants have already been loaded
 func (c *Client) LoadGroupCallParticipants(groupCallId int32, limit int32) error {
 	req := &LoadGroupCallParticipants{
 		GroupCallId: groupCallId,
@@ -7975,7 +8048,7 @@ func (c *Client) LogOut() error {
 	return err
 }
 
-// MarkChecklistTasksAsDone Adds tasks of a checklist in a message as done or not done
+// MarkChecklistTasksAsDone Marks tasks of a checklist in a message as done or not done
 func (c *Client) MarkChecklistTasksAsDone(chatId int64, markedAsDoneTaskIds []int32, markedAsNotDoneTaskIds []int32, messageId int64) error {
 	req := &MarkChecklistTasksAsDone{
 		ChatId:                 chatId,
@@ -8025,7 +8098,7 @@ func (c *Client) OpenGiftAuction(giftId int64) error {
 	return err
 }
 
-// OpenMessageContent Informs TDLib that the message content has been opened (e.g., the user has opened a photo, video, document, location or venue, or has listened to an audio file or voice note message).
+// OpenMessageContent Informs TDLib that the message content has been opened (e.g., the user has opened a photo, video, document, location, or venue, or has listened to an audio file or voice note message). An updateMessageContentOpened update will be generated if something has changed
 func (c *Client) OpenMessageContent(chatId int64, messageId int64) error {
 	req := &OpenMessageContent{
 		ChatId:    chatId,
@@ -8054,7 +8127,7 @@ func (c *Client) OpenStory(storyId int32, storyPosterChatId int64) error {
 	return err
 }
 
-// OpenWebApp Informs TDLib that a Web App is being opened from the attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button.
+// OpenWebApp Informs TDLib that a Web App is being opened from the attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button. For each bot, a confirmation alert about data sent to the bot must be shown once
 func (c *Client) OpenWebApp(botUserId int64, chatId int64, parameters *WebAppOpenParameters, opts *OpenWebAppOpts) (*WebAppInfo, error) {
 	req := &OpenWebApp{
 		BotUserId:  botUserId,
@@ -8107,7 +8180,7 @@ func (c *Client) ParseMarkdown(text *FormattedText) (*FormattedText, error) {
 	return responseAs[*FormattedText](resp)
 }
 
-// ParseTextEntities Parses Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, BlockQuote, ExpandableBlockQuote, Code, Pre, PreCode, TextUrl,
+// ParseTextEntities Parses Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, BlockQuote, ExpandableBlockQuote, Code, Pre, PreCode, TextUrl, MentionName, and DateTime entities from a marked-up text. Can be called synchronously
 func (c *Client) ParseTextEntities(parseMode TextParseMode, text string) (*FormattedText, error) {
 	req := &ParseTextEntities{
 		ParseMode: parseMode,
@@ -8184,7 +8257,7 @@ func (c *Client) PostStory(activePeriod int32, albumIds []int32, chatId int64, c
 	return responseAs[*Story](resp)
 }
 
-// PreliminaryUploadFile Preliminarily uploads a file to the cloud before sending it in a message, which can be useful for uploading of being recorded voice and video notes.
+// PreliminaryUploadFile Preliminarily uploads a file to the cloud before sending it in a message, which can be useful for uploading of being recorded voice and video notes. In all other cases there is no need to preliminary upload a file. Updates updateFile will be used to notify about upload progress. The upload will not be completed until the file is sent in a message
 func (c *Client) PreliminaryUploadFile(file InputFile, priority int32, opts *PreliminaryUploadFileOpts) (*File, error) {
 	req := &PreliminaryUploadFile{
 		File:     file,
@@ -8200,7 +8273,7 @@ func (c *Client) PreliminaryUploadFile(file InputFile, priority int32, opts *Pre
 	return responseAs[*File](resp)
 }
 
-// ProcessChatFolderNewChats Process new chats added to a shareable chat folder by its owner
+// ProcessChatFolderNewChats Processes new chats added to a shareable chat folder by its owner
 func (c *Client) ProcessChatFolderNewChats(addedChatIds []int64, chatFolderId int32) error {
 	req := &ProcessChatFolderNewChats{
 		AddedChatIds: addedChatIds,
@@ -8265,6 +8338,16 @@ func (c *Client) ProcessGiftPurchaseOffer(messageId int64, opts *ProcessGiftPurc
 func (c *Client) ProcessPushNotification(payload string) error {
 	req := &ProcessPushNotification{
 		Payload: payload,
+	}
+	_, err := c.Send(req)
+	return err
+}
+
+// ProcessWebProxyCarrierMessage Passes a message, which the page of a web proxy carrier passed to postMessage of the bridge object, to TDLib. Must be called in the order in which the messages were passed. Can be called before authorization
+func (c *Client) ProcessWebProxyCarrierMessage(carrierId int32, message WebProxyCarrierMessage) error {
+	req := &ProcessWebProxyCarrierMessage{
+		CarrierId: carrierId,
+		Message:   message,
 	}
 	_, err := c.Send(req)
 	return err
@@ -8370,7 +8453,7 @@ func (c *Client) ReadChatList(chatList ChatList) error {
 	return err
 }
 
-// ReaddQuickReplyShortcutMessages Re-adds quick reply messages which failed to add. Can be called only for messages for which messageSendingStateFailed.can_retry is true and after specified in messageSendingStateFailed.retry_after time passed.
+// ReaddQuickReplyShortcutMessages Re-adds quick reply messages which failed to add. Can be called only for messages for which messageSendingStateFailed.can_retry is true and after specified in messageSendingStateFailed.retry_after time passed. If a message is re-added, the corresponding failed to send message is deleted. Returns the sent messages in the same order as the message identifiers passed in message_ids. If a message can't be re-added, null will be returned instead of the message
 func (c *Client) ReaddQuickReplyShortcutMessages(messageIds []int64, shortcutName string) (*QuickReplyMessages, error) {
 	req := &ReaddQuickReplyShortcutMessages{
 		MessageIds:   messageIds,
@@ -8717,7 +8800,7 @@ func (c *Client) RemoveStickerFromSet(sticker InputFile) error {
 	return err
 }
 
-// RemoveStoryAlbumStories Removes stories from an album. If the album is owned by a supergroup or a channel chat, then
+// RemoveStoryAlbumStories Removes stories from an album. If the album is owned by a supergroup or a channel chat, then requires can_edit_stories administrator right in the chat. Returns the changed album
 func (c *Client) RemoveStoryAlbumStories(chatId int64, storyAlbumId int32, storyIds []int32) (*StoryAlbum, error) {
 	req := &RemoveStoryAlbumStories{
 		ChatId:       chatId,
@@ -8854,7 +8937,7 @@ func (c *Client) ReorderStoryAlbums(chatId int64, storyAlbumIds []int32) error {
 	return err
 }
 
-// ReorderStoryAlbumStories Changes order of stories in an album. If the album is owned by a supergroup or a channel chat, then
+// ReorderStoryAlbumStories Changes order of stories in an album. If the album is owned by a supergroup or a channel chat, then requires can_edit_stories administrator right in the chat. Returns the changed album
 func (c *Client) ReorderStoryAlbumStories(chatId int64, storyAlbumId int32, storyIds []int32) (*StoryAlbum, error) {
 	req := &ReorderStoryAlbumStories{
 		ChatId:       chatId,
@@ -9089,6 +9172,16 @@ func (c *Client) ReportVideoMessageAdvertisement(advertisementUniqueId int64, op
 	return responseAs[ReportSponsoredResult](resp)
 }
 
+// ReportWebProxyCarrierError Reports that a web proxy carrier failed. TDLib closes the carrier and decides whether and when to request a new one. Can be called before authorization
+func (c *Client) ReportWebProxyCarrierError(carrierId int32, error WebProxyCarrierError) error {
+	req := &ReportWebProxyCarrierError{
+		CarrierId: carrierId,
+		Error:     error,
+	}
+	_, err := c.Send(req)
+	return err
+}
+
 // RequestAuthenticationPasswordRecovery Requests to send a 2-step verification password recovery code to an email address that was previously set up. Works only when the current authorization state is authorizationStateWaitPassword
 func (c *Client) RequestAuthenticationPasswordRecovery() error {
 	req := &RequestAuthenticationPasswordRecovery{}
@@ -9106,7 +9199,7 @@ func (c *Client) RequestPasswordRecovery() (*EmailAddressAuthenticationCodeInfo,
 	return responseAs[*EmailAddressAuthenticationCodeInfo](resp)
 }
 
-// RequestQrCodeAuthentication Requests QR code authentication by scanning a QR code on another logged in device. Works only when the current authorization state is authorizationStateWaitPhoneNumber,
+// RequestQrCodeAuthentication Requests QR code authentication by scanning a QR code on another logged in device. Works only when the current authorization state is authorizationStateWaitPhoneNumber, or if there is no pending authentication query and the current authorization state is authorizationStateWaitPremiumPurchase, authorizationStateWaitEmailAddress, authorizationStateWaitEmailCode, authorizationStateWaitCode, authorizationStateWaitRegistration, or authorizationStateWaitPassword
 func (c *Client) RequestQrCodeAuthentication(otherUserIds []int64) error {
 	req := &RequestQrCodeAuthentication{
 		OtherUserIds: otherUserIds,
@@ -9115,7 +9208,7 @@ func (c *Client) RequestQrCodeAuthentication(otherUserIds []int64) error {
 	return err
 }
 
-// ResendAuthenticationCode Resends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitCode, the next_code_type of the result is not null
+// ResendAuthenticationCode Resends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitCode, authorization_state.code_info.next_type is not null and the server-specified timeout has passed, or when the current authorization state is authorizationStateWaitEmailCode
 func (c *Client) ResendAuthenticationCode(reason ResendCodeReason) error {
 	req := &ResendAuthenticationCode{
 		Reason: reason,
@@ -9144,7 +9237,7 @@ func (c *Client) ResendLoginEmailAddressCode() (*EmailAddressAuthenticationCodeI
 	return responseAs[*EmailAddressAuthenticationCodeInfo](resp)
 }
 
-// ResendMessages Resends messages which failed to send. Can be called only for messages for which messageSendingStateFailed.can_retry is true and after specified in messageSendingStateFailed.retry_after time passed.
+// ResendMessages Resends messages which failed to send. Can be called only for messages for which messageSendingStateFailed.can_retry is true and after specified in messageSendingStateFailed.retry_after time passed. If a message is re-sent, the corresponding failed to send message is deleted. Returns the sent messages in the same order as the message identifiers passed in message_ids. If a message can't be re-sent, null will be returned instead of the message
 func (c *Client) ResendMessages(chatId int64, messageIds []int64, paidMessageStarCount int64, opts *ResendMessagesOpts) (*Messages, error) {
 	req := &ResendMessages{
 		ChatId:               chatId,
@@ -9161,7 +9254,7 @@ func (c *Client) ResendMessages(chatId int64, messageIds []int64, paidMessageSta
 	return responseAs[*Messages](resp)
 }
 
-// ResendPhoneNumberCode Resends the authentication code sent to a phone number. Works only if the previously received authenticationCodeInfo next_code_type was not null and the server-specified timeout has passed
+// ResendPhoneNumberCode Resends the authentication code sent to a phone number. Works only if the previously received authenticationCodeInfo.next_type was not null and the server-specified timeout has passed
 func (c *Client) ResendPhoneNumberCode(reason ResendCodeReason) (*AuthenticationCodeInfo, error) {
 	req := &ResendPhoneNumberCode{
 		Reason: reason,
@@ -9190,7 +9283,7 @@ func (c *Client) ResetAllNotificationSettings() error {
 	return err
 }
 
-// ResetAuthenticationEmailAddress Resets the login email address. May return an error with a message "TASK_ALREADY_EXISTS" if reset is still pending.
+// ResetAuthenticationEmailAddress Resets the login email address. May return an error with a message "TASK_ALREADY_EXISTS" if reset is still pending. Works only when the current authorization state is authorizationStateWaitEmailCode and authorization_state.email_address_reset_state != null
 func (c *Client) ResetAuthenticationEmailAddress() error {
 	req := &ResetAuthenticationEmailAddress{}
 	_, err := c.Send(req)
@@ -9230,7 +9323,7 @@ func (c *Client) ReuseStarSubscription(subscriptionId string) error {
 	return err
 }
 
-// RevokeChatInviteLink Revokes invite link for a chat. Available in basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links.
+// RevokeChatInviteLink Revokes invite link for a chat. Available in basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links. If a primary link is revoked, then additionally to the revoked link returns new primary link
 func (c *Client) RevokeChatInviteLink(chatId int64, inviteLink string) (*ChatInviteLinks, error) {
 	req := &RevokeChatInviteLink{
 		ChatId:     chatId,
@@ -9365,7 +9458,7 @@ func (c *Client) SearchChatMembers(chatId int64, limit int32, query string, opts
 	return responseAs[*ChatMembers](resp)
 }
 
-// SearchChatMessages Searches for messages with given words in the chat. Returns the results in reverse chronological order, i.e. in order of decreasing message_id. Cannot be used in secret chats with a non-empty query
+// SearchChatMessages Searches for messages with given words in the chat. Returns the results in reverse chronological order, i.e. in order of decreasing message_id. Cannot be used in secret chats with a non-empty query (searchSecretMessages must be used instead), or without an enabled message database. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit. A combination of query, sender_id, filter and topic_id search criteria is expected to be supported, only if it is required for Telegram official application implementation
 func (c *Client) SearchChatMessages(chatId int64, limit int32, query string, opts *SearchChatMessagesOpts) (*FoundChatMessages, error) {
 	req := &SearchChatMessages{
 		ChatId: chatId,
@@ -9526,7 +9619,7 @@ func (c *Client) SearchInstalledStickerSets(limit int32, query string, stickerTy
 	return responseAs[*StickerSets](resp)
 }
 
-// SearchMessages Searches for messages in all chats except secret chats. Returns the results in reverse chronological order (i.e., in order of decreasing (date, chat_id, message_id)).
+// SearchMessages Searches for messages in all chats except secret chats. Returns the results in reverse chronological order (i.e., in order of decreasing (date, chat_id, message_id)). For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
 func (c *Client) SearchMessages(limit int32, query string, opts *SearchMessagesOpts) (*FoundMessages, error) {
 	req := &SearchMessages{
 		Limit: limit,
@@ -9572,7 +9665,7 @@ func (c *Client) SearchPublicChat(username string) (*Chat, error) {
 	return responseAs[*Chat](resp)
 }
 
-// SearchPublicChats Searches public chats by looking for specified query in their username and title. Currently, only private chats, supergroups and channels can be public. Returns a meaningful number of results.
+// SearchPublicChats Searches public chats by looking for specified query in their username and title. Currently, only private chats, supergroups and channels can be public. Returns a meaningful number of results. Excludes private chats with contacts and chats from the chat list from the results
 func (c *Client) SearchPublicChats(query string, opts *SearchPublicChatsOpts) (*Chats, error) {
 	req := &SearchPublicChats{
 		Query: query,
@@ -9700,7 +9793,7 @@ func (c *Client) SearchRecentlyFoundChats(limit int32, query string, opts *Searc
 	return responseAs[*Chats](resp)
 }
 
-// SearchSavedMessages Searches for messages tagged by the given reaction and with the given words in the Saved Messages chat; for Telegram Premium users only.
+// SearchSavedMessages Searches for messages tagged by the given reaction and with the given words in the Saved Messages chat; for Telegram Premium users only. Returns the results in reverse chronological order, i.e. in order of decreasing message_id. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
 func (c *Client) SearchSavedMessages(limit int32, query string, opts *SearchSavedMessagesOpts) (*FoundChatMessages, error) {
 	req := &SearchSavedMessages{
 		Limit: limit,
@@ -9872,7 +9965,7 @@ func (c *Client) SendAuthenticationFirebaseSms(token string) error {
 	return err
 }
 
-// SendBotStartMessage Invites a bot to a chat (if it is not yet a member) and sends it the /start command; requires can_invite_users member right. Bots can't be invited to a private chat other than the chat with the bot.
+// SendBotStartMessage Invites a bot to a chat (if it is not yet a member) and sends it the /start command; requires can_invite_users member right. Bots can't be invited to a private chat other than the chat with the bot. Bots can't be invited to channels (although they can be added as admins) and secret chats. Returns the sent message
 func (c *Client) SendBotStartMessage(botUserId int64, chatId int64, opts *SendBotStartMessageOpts) (*Message, error) {
 	req := &SendBotStartMessage{
 		BotUserId: botUserId,
@@ -9909,7 +10002,7 @@ func (c *Client) SendBusinessMessage(businessConnectionId string, chatId int64, 
 	return responseAs[*BusinessMessage](resp)
 }
 
-// SendBusinessMessageAlbum Sends 2-10 messages grouped together into an album on behalf of a business account; for bots only. Currently, only audio, document, photo and video messages can be grouped into an album.
+// SendBusinessMessageAlbum Sends 2-10 messages grouped together into an album on behalf of a business account; for bots only. Currently, only audio, document, photo and video messages can be grouped into an album. Documents and audio files can be only grouped in an album with messages of the same type. Returns sent messages
 func (c *Client) SendBusinessMessageAlbum(businessConnectionId string, chatId int64, effectId int64, inputMessageContents []InputMessageContent, opts *SendBusinessMessageAlbumOpts) (*BusinessMessages, error) {
 	req := &SendBusinessMessageAlbum{
 		BusinessConnectionId: businessConnectionId,
@@ -10012,7 +10105,7 @@ func (c *Client) SendEmailAddressVerificationCode(emailAddress string) (*EmailAd
 	return responseAs[*EmailAddressAuthenticationCodeInfo](resp)
 }
 
-// SendEphemeralMessage Sends an ephemeral message which will be received only by one bot in a chat. Currently, only ephemeral bot commands and replies to bot ephemeral messages can be sent using the method.
+// SendEphemeralMessage Sends an ephemeral message which will be received only by one bot in a chat. Currently, only ephemeral bot commands and replies to bot ephemeral messages can be sent using the method. The message is persistent across application restarts only if the message database is used. Returns the sent message
 func (c *Client) SendEphemeralMessage(callbackQueryId int64, chatId int64, inputMessageContent InputMessageContent, receiverUserId int64, sendingId int32, opts *SendEphemeralMessageOpts) (*Message, error) {
 	req := &SendEphemeralMessage{
 		CallbackQueryId:     callbackQueryId,
@@ -10114,7 +10207,7 @@ func (c *Client) SendMessageContent(chatId int64, inputMessageContent InputMessa
 	return responseAs[*Message](resp)
 }
 
-// SendMessageAlbum Sends 2-10 messages grouped together into an album. Currently, only audio, document, photo and video messages can be grouped into an album.
+// SendMessageAlbum Sends 2-10 messages grouped together into an album. Currently, only audio, document, photo and video messages can be grouped into an album. Documents and audio files can be only grouped in an album with messages of the same type. Returns sent messages
 func (c *Client) SendMessageAlbum(chatId int64, inputMessageContents []InputMessageContent, opts *SendMessageAlbumOpts) (*Messages, error) {
 	req := &SendMessageAlbum{
 		ChatId:               chatId,
@@ -10132,7 +10225,7 @@ func (c *Client) SendMessageAlbum(chatId int64, inputMessageContents []InputMess
 	return responseAs[*Messages](resp)
 }
 
-// SendMessageViewMetrics Informs TDLib about details of a message view by the user from a chat, a message thread or a forum topic history. The method must be called if
+// SendMessageViewMetrics Informs TDLib about details of a message view by the user from a chat, a message thread or a forum topic history. The method must be called if the message wasn't seen for more than 300 milliseconds, the viewport was destroyed, or the total view duration exceeded 5 minutes
 func (c *Client) SendMessageViewMetrics(activeTimeInViewMs int32, chatId int64, heightToViewportRatioPerMille int32, messageId int64, seenRangeRatioPerMille int32, timeInViewMs int32) error {
 	req := &SendMessageViewMetrics{
 		ActiveTimeInViewMs:            activeTimeInViewMs,
@@ -10214,7 +10307,7 @@ func (c *Client) SendQuickReplyShortcutMessages(chatId int64, sendingId int32, s
 	return responseAs[*Messages](resp)
 }
 
-// SendResoldGift Sends an upgraded gift that is available for resale to another user or channel chat; gifts already owned by the current user
+// SendResoldGift Sends an upgraded gift that is available for resale to another user or channel chat; gifts already owned by the current user must be transferred using transferGift and can't be passed to the method
 func (c *Client) SendResoldGift(giftName string, ownerId MessageSender, price GiftResalePrice, text *FormattedText, opts *SendResoldGiftOpts) (GiftResaleResult, error) {
 	req := &SendResoldGift{
 		GiftName: giftName,
@@ -10396,7 +10489,7 @@ func (c *Client) SetAuthenticationEmailAddress(emailAddress string) error {
 	return err
 }
 
-// SetAuthenticationPhoneNumber Sets the phone number of the user and sends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitPhoneNumber,
+// SetAuthenticationPhoneNumber Sets the phone number of the user and sends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitPhoneNumber, or if there is no pending authentication query and the current authorization state is authorizationStateWaitPremiumPurchase, authorizationStateWaitEmailAddress, authorizationStateWaitEmailCode, authorizationStateWaitCode, authorizationStateWaitRegistration, or authorizationStateWaitPassword
 func (c *Client) SetAuthenticationPhoneNumber(phoneNumber string, opts *SetAuthenticationPhoneNumberOpts) error {
 	req := &SetAuthenticationPhoneNumber{
 		PhoneNumber: phoneNumber,
@@ -10788,7 +10881,7 @@ func (c *Client) SetChatLocation(chatId int64, location *ChatLocation) error {
 	return err
 }
 
-// SetChatMemberStatus Changes the status of a chat member; requires can_invite_users member right to add a chat member, can_promote_members administrator right to change administrator rights of the member,
+// SetChatMemberStatus Changes the status of a chat member; requires can_invite_users member right to add a chat member, can_promote_members administrator right to change administrator rights of the member, and can_restrict_members administrator right to change restrictions of a user. This function is currently not suitable for transferring chat ownership; use transferChatOwnership instead. Use addChatMember or banChatMember if some additional parameters need to be passed
 func (c *Client) SetChatMemberStatus(chatId int64, memberId MessageSender, status ChatMemberStatus) error {
 	req := &SetChatMemberStatus{
 		ChatId:   chatId,
@@ -10810,7 +10903,7 @@ func (c *Client) SetChatMemberTag(chatId int64, tag string, userId int64) error 
 	return err
 }
 
-// SetChatMessageAutoDeleteTime Changes the message auto-delete or self-destruct (for secret chats) time in a chat. Requires change_info administrator right in basic groups, supergroups and channels.
+// SetChatMessageAutoDeleteTime Changes the message auto-delete or self-destruct (for secret chats) time in a chat. Requires can_change_info administrator right in basic groups, supergroups and channels. Message auto-delete time can't be changed in a chat with the current user (Saved Messages) and the chat 777000 (Telegram).
 func (c *Client) SetChatMessageAutoDeleteTime(chatId int64, messageAutoDeleteTime int32) error {
 	req := &SetChatMessageAutoDeleteTime{
 		ChatId:                chatId,
@@ -11001,7 +11094,7 @@ func (c *Client) SetCustomLanguagePack(info *LanguagePackInfo, strings []Languag
 	return err
 }
 
-// SetCustomLanguagePackString Adds, edits or deletes a string in a custom local language pack. Can be called before authorization
+// SetCustomLanguagePackString Adds, edits, or deletes a string in a custom local language pack. Can be called before authorization
 func (c *Client) SetCustomLanguagePackString(languagePackId string, newString *LanguagePackString) error {
 	req := &SetCustomLanguagePackString{
 		LanguagePackId: languagePackId,
@@ -11197,7 +11290,7 @@ func (c *Client) SetGroupCallParticipantIsSpeaking(groupCallId int32, opts *SetG
 	return responseAs[MessageSender](resp)
 }
 
-// SetGroupCallParticipantVolumeLevel Changes volume level of a participant of an active group call; not supported for live stories. If the current user can manage the group call or is the owner of the group call,
+// SetGroupCallParticipantVolumeLevel Changes volume level of a participant of an active group call; not supported for live stories. If the current user can manage the group call or is the owner of the group call, then the participant's volume level will be changed for all users with the default volume level
 func (c *Client) SetGroupCallParticipantVolumeLevel(groupCallId int32, participantId MessageSender, volumeLevel int32) error {
 	req := &SetGroupCallParticipantVolumeLevel{
 		GroupCallId:   groupCallId,
@@ -11242,7 +11335,7 @@ func (c *Client) SetLiveStoryMessageSender(groupCallId int32, messageSenderId Me
 	return err
 }
 
-// SetLoginEmailAddress Changes the login email address of the user. The email address can be changed only if the current user already has login email and passwordState.login_email_address_pattern is non-empty,
+// SetLoginEmailAddress Changes the login email address of the user. The email address can be changed only if the current user already has login email and passwordState.login_email_address_pattern is non-empty, or the user received suggestedActionSetLoginEmailAddress and isLoginEmailAddressRequired succeeds. The change will not be applied until the new login email address is confirmed with checkLoginEmailAddressCode. To use Apple ID/Google ID instead of an email address, call checkLoginEmailAddressCode directly
 func (c *Client) SetLoginEmailAddress(newLoginEmailAddress string) (*EmailAddressAuthenticationCodeInfo, error) {
 	req := &SetLoginEmailAddress{
 		NewLoginEmailAddress: newLoginEmailAddress,
@@ -11373,7 +11466,7 @@ func (c *Client) SetName(firstName string, opts *SetNameOpts) error {
 	return err
 }
 
-// SetNetworkType Sets the current network type. Can be called before authorization. Calling this method forces all network connections to reopen, mitigating the delay in switching between different networks,
+// SetNetworkType Sets the current network type. Can be called before authorization. Calling this method forces all network connections to reopen, mitigating the delay in switching between different networks, so it must be called whenever the network is changed, even if the network type remains the same. Network type is used to check whether the library can use the network at all and also for collecting detailed network data usage statistics
 func (c *Client) SetNetworkType(typeField NetworkType) error {
 	req := &SetNetworkType{
 		Type: typeField,
@@ -11550,6 +11643,18 @@ func (c *Client) SetProfilePhoto(photo InputChatPhoto, opts *SetProfilePhotoOpts
 	return err
 }
 
+// SetProfileShareTheme Changes the theme of the screen for sharing a link to the current user or a chat. The chat must have a username. Requires can_change_info administrator right in supergroups and channels
+func (c *Client) SetProfileShareTheme(chatId int64, opts *SetProfileShareThemeOpts) error {
+	req := &SetProfileShareTheme{
+		ChatId: chatId,
+	}
+	if opts != nil {
+		req.Theme = opts.Theme
+	}
+	_, err := c.Send(req)
+	return err
+}
+
 // SetQuickReplyShortcutName Changes name of a quick reply shortcut
 func (c *Client) SetQuickReplyShortcutName(name string, shortcutId int32) error {
 	req := &SetQuickReplyShortcutName{
@@ -11578,7 +11683,7 @@ func (c *Client) SetReadDatePrivacySettings(settings *ReadDatePrivacySettings) e
 	return err
 }
 
-// SetRecoveryEmailAddress Changes the 2-step verification recovery email address of the user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed.
+// SetRecoveryEmailAddress Changes the 2-step verification recovery email address of the user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed. If new_recovery_email_address is the same as the email address that is currently set up, this call succeeds immediately and aborts all other requests waiting for an email confirmation
 func (c *Client) SetRecoveryEmailAddress(newRecoveryEmailAddress string, password string) (*PasswordState, error) {
 	req := &SetRecoveryEmailAddress{
 		NewRecoveryEmailAddress: newRecoveryEmailAddress,
@@ -11715,7 +11820,7 @@ func (c *Client) SetStoryReaction(storyId int32, storyPosterChatId int64, opts *
 	return err
 }
 
-// SetSupergroupCustomEmojiStickerSet Changes the custom emoji sticker set of a supergroup; requires can_change_info administrator right. The chat must have at least chatBoostFeatures.min_custom_emoji_sticker_set_boost_level boost level to pass the corresponding color
+// SetSupergroupCustomEmojiStickerSet Changes the custom emoji sticker set of a supergroup; requires can_change_info administrator right. The chat must have at least chatBoostFeatures.min_custom_emoji_sticker_set_boost_level boost level to set a custom emoji sticker set
 func (c *Client) SetSupergroupCustomEmojiStickerSet(customEmojiStickerSetId int64, supergroupId int64) error {
 	req := &SetSupergroupCustomEmojiStickerSet{
 		CustomEmojiStickerSetId: customEmojiStickerSetId,
@@ -11789,7 +11894,7 @@ func (c *Client) SetTdlibParameters(apiHash string, apiId int32, applicationVers
 	return err
 }
 
-// SetTonConnectSessionWalletClientId Sets wallet_client_id for a pending TON Connect session. Then, sendTonConnectSessionConnectResult must be used to accept or reject the session
+// SetTonConnectSessionWalletClientId Sets wallet_client_id for a pending TON Connect session. Then, sendTonConnectSessionConnectResult must be used to accept or reject the session. If the session was created for an OAuth request, then acceptOauthRequest must be used instead
 func (c *Client) SetTonConnectSessionWalletClientId(sessionId int64, walletClientId string) (*TonConnectChallenge, error) {
 	req := &SetTonConnectSessionWalletClientId{
 		SessionId:      sessionId,
@@ -11800,6 +11905,19 @@ func (c *Client) SetTonConnectSessionWalletClientId(sessionId int64, walletClien
 		return nil, err
 	}
 	return responseAs[*TonConnectChallenge](resp)
+}
+
+// SetTonWalletCardStickers Changes the list of stickers on the TON wallet card of the current user; can be used only if getOption("can_use_ton_wallet"). The whole list of stickers is replaced. The request can take up to 20 seconds to complete, so it must be called only on explicit user action. Stickers are removed automatically if the corresponding NFT leaves the wallet or the wallet is replaced. Returns the updated card
+func (c *Client) SetTonWalletCardStickers(backgroundNftAddress string, stickers []InputTonWalletCardSticker) (*TonWalletCard, error) {
+	req := &SetTonWalletCardStickers{
+		BackgroundNftAddress: backgroundNftAddress,
+		Stickers:             stickers,
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return responseAs[*TonWalletCard](resp)
 }
 
 // SetUpgradedGiftColors Changes color scheme for the current user based on an owned or a hosted upgraded gift; for Telegram Premium users only
@@ -12070,7 +12188,7 @@ func (c *Client) SummarizeMessage(chatId int64, messageId int64, opts *Summarize
 	return responseAs[*FormattedText](resp)
 }
 
-// SynchronizeLanguagePack Fetches the latest versions of all strings from a language pack in the current localization target from the server.
+// SynchronizeLanguagePack Fetches the latest versions of all strings from a language pack in the current localization target from the server. This method doesn't need to be called explicitly for the current used/base language packs. Can be called before authorization
 func (c *Client) SynchronizeLanguagePack(languagePackId string) error {
 	req := &SynchronizeLanguagePack{
 		LanguagePackId: languagePackId,
@@ -12267,7 +12385,7 @@ func (c *Client) ToggleBotIsAddedToAttachmentMenu(botUserId int64, opts *ToggleB
 	return err
 }
 
-// ToggleBotUsernameIsActive Changes active state for a username of a bot. The editable username can be disabled only if there are other active usernames.
+// ToggleBotUsernameIsActive Changes active state for a username of a bot. The editable username can be disabled only if there are other active usernames. May return an error with a message "USERNAMES_ACTIVE_TOO_MUCH" if the maximum number of active usernames has been reached. Can be called only if userTypeBot.can_be_edited == true
 func (c *Client) ToggleBotUsernameIsActive(botUserId int64, username string, opts *ToggleBotUsernameIsActiveOpts) error {
 	req := &ToggleBotUsernameIsActive{
 		BotUserId: botUserId,
@@ -12325,7 +12443,7 @@ func (c *Client) ToggleChatGiftNotifications(chatId int64, opts *ToggleChatGiftN
 	return err
 }
 
-// ToggleChatHasProtectedContent Changes the ability of users to save, forward, or copy chat content. Requires owner privileges in basic groups, supergroups and channels.
+// ToggleChatHasProtectedContent Changes the ability of users to save, forward, or copy chat content. Requires owner privileges in basic groups, supergroups and channels. Requires Telegram Premium to enable protected content in private chats. Not available in Saved Messages and private chats with bots or support accounts
 func (c *Client) ToggleChatHasProtectedContent(chatId int64, opts *ToggleChatHasProtectedContentOpts) error {
 	req := &ToggleChatHasProtectedContent{
 		ChatId: chatId,
@@ -12425,7 +12543,7 @@ func (c *Client) ToggleForumTopicIsClosed(chatId int64, forumTopicId int32, opts
 	return err
 }
 
-// ToggleForumTopicIsPinned Changes the pinned state of a topic in a forum supergroup chat or a chat with a bot with topics; requires can_manage_topics administrator right in the supergroup.
+// ToggleForumTopicIsPinned Changes the pinned state of a topic in a forum supergroup chat or a chat with a bot with topics; requires can_manage_topics administrator right in the supergroup. There can be up to getOption("pinned_forum_topic_count_max") pinned forum topics
 func (c *Client) ToggleForumTopicIsPinned(chatId int64, forumTopicId int32, opts *ToggleForumTopicIsPinnedOpts) error {
 	req := &ToggleForumTopicIsPinned{
 		ChatId:       chatId,
@@ -12498,7 +12616,7 @@ func (c *Client) ToggleGroupCallIsMyVideoPaused(groupCallId int32, opts *ToggleG
 	return err
 }
 
-// ToggleGroupCallParticipantIsHandRaised Toggles whether a group call participant hand is rased; for video chats only
+// ToggleGroupCallParticipantIsHandRaised Toggles whether a group call participant hand is raised; for video chats only
 func (c *Client) ToggleGroupCallParticipantIsHandRaised(groupCallId int32, participantId MessageSender, opts *ToggleGroupCallParticipantIsHandRaisedOpts) error {
 	req := &ToggleGroupCallParticipantIsHandRaised{
 		GroupCallId:   groupCallId,
@@ -12618,7 +12736,7 @@ func (c *Client) ToggleSupergroupHasAggressiveAntiSpamEnabled(supergroupId int64
 	return err
 }
 
-// ToggleSupergroupHasAutomaticTranslation Toggles whether messages are automatically translated in the channel chat; requires can_change_info administrator right in the channel.
+// ToggleSupergroupHasAutomaticTranslation Toggles whether messages are automatically translated in the channel chat; requires can_change_info administrator right in the channel. The chat must have at least chatBoostFeatures.min_automatic_translation_boost_level boost level to enable automatic translation
 func (c *Client) ToggleSupergroupHasAutomaticTranslation(supergroupId int64, opts *ToggleSupergroupHasAutomaticTranslationOpts) error {
 	req := &ToggleSupergroupHasAutomaticTranslation{
 		SupergroupId: supergroupId,
@@ -12715,7 +12833,7 @@ func (c *Client) ToggleSupergroupSignMessages(supergroupId int64, opts *ToggleSu
 	return err
 }
 
-// ToggleSupergroupUsernameIsActive Changes active state for a username of a supergroup or channel, requires owner privileges in the supergroup or channel. The editable username can't be disabled.
+// ToggleSupergroupUsernameIsActive Changes active state for a username of a supergroup or channel, requires owner privileges in the supergroup or channel. The editable username can't be disabled. May return an error with a message "USERNAMES_ACTIVE_TOO_MUCH" if the maximum number of active usernames has been reached
 func (c *Client) ToggleSupergroupUsernameIsActive(supergroupId int64, username string, opts *ToggleSupergroupUsernameIsActiveOpts) error {
 	req := &ToggleSupergroupUsernameIsActive{
 		SupergroupId: supergroupId,
@@ -12961,7 +13079,7 @@ func (c *Client) ValidateOrderInfo(inputInvoice InputInvoice, opts *ValidateOrde
 	return responseAs[*ValidatedOrderInfo](resp)
 }
 
-// ViewMessages Informs TDLib that messages are being viewed by the user. Sponsored messages must be marked as viewed only when the entire text of the message is shown on the screen (excluding the button).
+// ViewMessages Informs TDLib that messages are being viewed by the user. Sponsored messages must be marked as viewed only when the entire text of the message is shown on the screen (excluding the button). Many useful activities depend on whether the messages are currently being viewed or not (e.g., marking messages as read, incrementing a view counter, updating a view counter, removing deleted messages in supergroups and channels)
 func (c *Client) ViewMessages(chatId int64, messageIds []int64, opts *ViewMessagesOpts) error {
 	req := &ViewMessages{
 		ChatId:     chatId,
@@ -13006,6 +13124,18 @@ func (c *Client) ViewTrendingStickerSets(stickerSetIds Int64Slice) error {
 func (c *Client) ViewVideoMessageAdvertisement(advertisementUniqueId int64) error {
 	req := &ViewVideoMessageAdvertisement{
 		AdvertisementUniqueId: advertisementUniqueId,
+	}
+	_, err := c.Send(req)
+	return err
+}
+
+// WithdrawUpgradedGift Withdraws an upgraded gift to the TON blockchain as an NFT directly to the TON wallet of the current user, which is created automatically if the user has no wallet yet; requires owner privileges for gifts owned by a chat. The user must have a valid temporary password; see createTemporaryPassword. The gift will be received by the wallet in a few seconds after the request succeeds
+func (c *Client) WithdrawUpgradedGift(receivedGiftId string, opts *WithdrawUpgradedGiftOpts) error {
+	req := &WithdrawUpgradedGift{
+		ReceivedGiftId: receivedGiftId,
+	}
+	if opts != nil {
+		req.KeepOnProfile = opts.KeepOnProfile
 	}
 	_, err := c.Send(req)
 	return err

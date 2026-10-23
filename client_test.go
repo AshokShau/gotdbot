@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"log/slog"
 	"reflect"
 	"slices"
 	"sync"
@@ -43,6 +44,40 @@ func TestSendWithContextValidation(t *testing.T) {
 	c.closing.Store(true)
 	if _, err := c.Send(&GetMe{}); !errors.Is(err, ErrClientClosed) {
 		t.Fatalf("closed client: %v", err)
+	}
+}
+
+func TestMeSnapshots(t *testing.T) {
+	var empty Client
+	if me := empty.Me(); me == nil || me.Id != 0 {
+		t.Fatal("uninitialized client returned a nil or nonzero identity")
+	}
+	c := newTestClient(t)
+	initial := &User{Id: 7, FirstName: "initial", Usernames: &Usernames{ActiveUsernames: []string{"initial"}}}
+	c.me = initial
+	managerStop := make(chan struct{})
+	close(managerStop)
+	var readers sync.WaitGroup
+	for range 4 {
+		readers.Go(func() {
+			for range 1000 {
+				me := c.Me()
+				if me.Id != 7 || me.FirstName != me.Usernames.ActiveUsernames[0] {
+					t.Error("inconsistent account snapshot during refresh")
+					return
+				}
+			}
+		})
+	}
+	var latest *User
+	for i := range 1000 {
+		name := fmt.Sprint(i)
+		latest = &User{Id: 7, FirstName: name, Usernames: &Usernames{ActiveUsernames: []string{name}}}
+		c.acceptResponse(&UpdateUser{User: latest}, "", managerStop)
+	}
+	readers.Wait()
+	if c.Me() != latest || initial.FirstName != "initial" || initial.Usernames.ActiveUsernames[0] != "initial" {
+		t.Fatal("refresh lost the latest account or mutated an earlier snapshot")
 	}
 }
 
@@ -167,6 +202,7 @@ func TestSendLookupRetries(t *testing.T) {
 			t.Run(tc.name+"/"+scenario, func(t *testing.T) {
 				c := newTestClient(t)
 				c.config.AutoRetry = tc.policy
+				out := captureRequestLogs(c, slog.LevelDebug)
 				serverErr := &Error{Code: 400, Message: tc.rejection}
 				var calls []string
 				c.sendRequest = func(_ int, data []byte) {
@@ -200,6 +236,11 @@ func TestSendLookupRetries(t *testing.T) {
 				}
 				if scenario != "success" && err != serverErr {
 					t.Fatalf("error = %v, want original %v", err, serverErr)
+				}
+				if scenario == "lookup failure" {
+					assertRequestLog(t, out, "WARN", "Cannot load missing "+tc.name+" for request retry", map[string]any{"method": "deleteMessages"})
+				} else {
+					assertRequestLog(t, out, "DEBUG", "Retrying TDLib request after loading "+tc.name, map[string]any{"method": "deleteMessages"})
 				}
 				assertNoPendingCalls(t, c)
 			})

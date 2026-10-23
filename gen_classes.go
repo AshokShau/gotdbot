@@ -3099,7 +3099,7 @@ func UnmarshalDateTimePartPrecision(data []byte) (DateTimePartPrecision, error) 
 	}
 }
 
-// DeviceToken Represents a data needed to subscribe for push notifications through registerDevice method.
+// DeviceToken Represents a data needed to subscribe for push notifications through registerDevice method. To use specific push notification service, the correct application platform must be specified and a valid server authentication data must be uploaded at https://my.telegram.org
 //   - DeviceTokenApplePush
 //   - DeviceTokenApplePushVoIP
 //   - DeviceTokenBlackBerryPush
@@ -3542,6 +3542,43 @@ func UnmarshalEmojiStatusType(data []byte) (EmojiStatusType, error) {
 		return &obj, nil
 	case "emojiStatusTypeUpgradedGift":
 		var obj EmojiStatusTypeUpgradedGift
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	default:
+		return nil, fmt.Errorf("unknown type: %s", typeObj.Type)
+	}
+}
+
+// EmojiType Describes an emoji
+//   - EmojiTypeCustomEmoji
+//   - EmojiTypeRegular
+type EmojiType interface {
+	TlObject
+	emojiType()
+}
+
+// UnmarshalEmojiType unmarshals the JSON into the correct concrete implementation of EmojiType
+func UnmarshalEmojiType(data []byte) (EmojiType, error) {
+	if bytes.Equal(bytes.TrimSpace(data), []byte("null")) {
+		return nil, nil
+	}
+	var typeObj struct {
+		Type string `json:"@type"`
+	}
+	if err := json.Unmarshal(data, &typeObj); err != nil {
+		return nil, err
+	}
+	switch typeObj.Type {
+	case "emojiTypeCustomEmoji":
+		var obj EmojiTypeCustomEmoji
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "emojiTypeRegular":
+		var obj EmojiTypeRegular
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -5687,6 +5724,43 @@ func UnmarshalInputPollType(data []byte) (InputPollType, error) {
 	}
 }
 
+// InputProfileShareTheme Describes a theme of the screen for sharing a link to a user or a chat to be set
+//   - InputProfileShareThemeEmoji
+//   - InputProfileShareThemeUpgradedGift
+type InputProfileShareTheme interface {
+	TlObject
+	inputProfileShareTheme()
+}
+
+// UnmarshalInputProfileShareTheme unmarshals the JSON into the correct concrete implementation of InputProfileShareTheme
+func UnmarshalInputProfileShareTheme(data []byte) (InputProfileShareTheme, error) {
+	if bytes.Equal(bytes.TrimSpace(data), []byte("null")) {
+		return nil, nil
+	}
+	var typeObj struct {
+		Type string `json:"@type"`
+	}
+	if err := json.Unmarshal(data, &typeObj); err != nil {
+		return nil, err
+	}
+	switch typeObj.Type {
+	case "inputProfileShareThemeEmoji":
+		var obj InputProfileShareThemeEmoji
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "inputProfileShareThemeUpgradedGift":
+		var obj InputProfileShareThemeUpgradedGift
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	default:
+		return nil, fmt.Errorf("unknown type: %s", typeObj.Type)
+	}
+}
+
 // InputStoryAreaType Describes type of clickable area on a story media to be added
 //   - InputStoryAreaTypeFoundVenue
 //   - InputStoryAreaTypeLink
@@ -7125,6 +7199,7 @@ func UnmarshalMaskPoint(data []byte) (MaskPoint, error) {
 //   - MessageText
 //   - MessageTonConnectRequest
 //   - MessageTonWalletTransfer
+//   - MessageUnpaidMessagesAllowedByLink
 //   - MessageUnsupported
 //   - MessageUpgradedGift
 //   - MessageUpgradedGiftPurchaseOffer
@@ -7710,6 +7785,12 @@ func UnmarshalMessageContent(data []byte) (MessageContent, error) {
 		return &obj, nil
 	case "messageTonWalletTransfer":
 		var obj MessageTonWalletTransfer
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "messageUnpaidMessagesAllowedByLink":
+		var obj MessageUnpaidMessagesAllowedByLink
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -8947,7 +9028,7 @@ func UnmarshalPageBlockHorizontalAlignment(data []byte) (PageBlockHorizontalAlig
 	}
 }
 
-// PageBlockVerticalAlignment Describes a Vertical alignment of a table cell content
+// PageBlockVerticalAlignment Describes a vertical alignment of a table cell content
 //   - PageBlockVerticalAlignmentBottom
 //   - PageBlockVerticalAlignmentMiddle
 //   - PageBlockVerticalAlignmentTop
@@ -10297,6 +10378,43 @@ func UnmarshalPremiumStoryFeature(data []byte) (PremiumStoryFeature, error) {
 	}
 }
 
+// ProfileShareTheme Describes a theme of the screen for sharing a link to a user or a chat
+//   - ProfileShareThemeEmoji
+//   - ProfileShareThemeUpgradedGift
+type ProfileShareTheme interface {
+	TlObject
+	profileShareTheme()
+}
+
+// UnmarshalProfileShareTheme unmarshals the JSON into the correct concrete implementation of ProfileShareTheme
+func UnmarshalProfileShareTheme(data []byte) (ProfileShareTheme, error) {
+	if bytes.Equal(bytes.TrimSpace(data), []byte("null")) {
+		return nil, nil
+	}
+	var typeObj struct {
+		Type string `json:"@type"`
+	}
+	if err := json.Unmarshal(data, &typeObj); err != nil {
+		return nil, err
+	}
+	switch typeObj.Type {
+	case "profileShareThemeEmoji":
+		var obj ProfileShareThemeEmoji
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "profileShareThemeUpgradedGift":
+		var obj ProfileShareThemeUpgradedGift
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	default:
+		return nil, fmt.Errorf("unknown type: %s", typeObj.Type)
+	}
+}
+
 // ProfileTab Describes a tab shown in a user or a chat profile
 //   - ProfileTabFiles
 //   - ProfileTabGifs
@@ -10380,6 +10498,7 @@ func UnmarshalProfileTab(data []byte) (ProfileTab, error) {
 //   - ProxyTypeHttp
 //   - ProxyTypeMtproto
 //   - ProxyTypeSocks5
+//   - ProxyTypeWeb
 type ProxyType interface {
 	TlObject
 	proxyType()
@@ -10411,6 +10530,12 @@ func UnmarshalProxyType(data []byte) (ProxyType, error) {
 		return &obj, nil
 	case "proxyTypeSocks5":
 		var obj ProxyTypeSocks5
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "proxyTypeWeb":
+		var obj ProxyTypeWeb
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -14306,7 +14431,7 @@ func UnmarshalTMeUrlType(data []byte) (TMeUrlType, error) {
 	}
 }
 
-// TonCenterApiRequestType Describes state of active stories posted by a chat
+// TonCenterApiRequestType Describes a type of request to the TON Center API
 //   - TonCenterApiRequestTypeGet
 //   - TonCenterApiRequestTypePost
 type TonCenterApiRequestType interface {
@@ -14653,6 +14778,7 @@ func UnmarshalTonWalletTransactionState(data []byte) (TonWalletTransactionState,
 //   - TonWalletTransactionTypeKeyChange
 //   - TonWalletTransactionTypeNftTransfer
 //   - TonWalletTransactionTypeOnRampDeposit
+//   - TonWalletTransactionTypeTelegramGiftTransfer
 //   - TonWalletTransactionTypeTransfer
 type TonWalletTransactionType interface {
 	TlObject
@@ -14685,6 +14811,12 @@ func UnmarshalTonWalletTransactionType(data []byte) (TonWalletTransactionType, e
 		return &obj, nil
 	case "tonWalletTransactionTypeOnRampDeposit":
 		var obj TonWalletTransactionTypeOnRampDeposit
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "tonWalletTransactionTypeTelegramGiftTransfer":
+		var obj TonWalletTransactionTypeTelegramGiftTransfer
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -15055,6 +15187,9 @@ func UnmarshalTransactionDirection(data []byte) (TransactionDirection, error) {
 //   - UpdateVideoPublished
 //   - UpdateWebAppMessageSent
 //   - UpdateWebBrowserSettings
+//   - UpdateWebProxyCarrierClosed
+//   - UpdateWebProxyCarrierData
+//   - UpdateWebProxyCarrierOpened
 type Update interface {
 	TlObject
 	update()
@@ -16236,6 +16371,24 @@ func UnmarshalUpdate(data []byte) (Update, error) {
 			return nil, err
 		}
 		return &obj, nil
+	case "updateWebProxyCarrierClosed":
+		var obj UpdateWebProxyCarrierClosed
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "updateWebProxyCarrierData":
+		var obj UpdateWebProxyCarrierData
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "updateWebProxyCarrierOpened":
+		var obj UpdateWebProxyCarrierOpened
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
 	default:
 		return nil, fmt.Errorf("unknown type: %s", typeObj.Type)
 	}
@@ -16861,6 +17014,101 @@ func UnmarshalWebBrowserType(data []byte) (WebBrowserType, error) {
 		return &obj, nil
 	case "webBrowserTypeInApp":
 		var obj WebBrowserTypeInApp
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	default:
+		return nil, fmt.Errorf("unknown type: %s", typeObj.Type)
+	}
+}
+
+// WebProxyCarrierError Describes the reason why a web proxy carrier failed
+//   - WebProxyCarrierErrorLoadFailed
+//   - WebProxyCarrierErrorPaused
+//   - WebProxyCarrierErrorRefused
+//   - WebProxyCarrierErrorTerminated
+//   - WebProxyCarrierErrorUnsupported
+type WebProxyCarrierError interface {
+	TlObject
+	webProxyCarrierError()
+}
+
+// UnmarshalWebProxyCarrierError unmarshals the JSON into the correct concrete implementation of WebProxyCarrierError
+func UnmarshalWebProxyCarrierError(data []byte) (WebProxyCarrierError, error) {
+	if bytes.Equal(bytes.TrimSpace(data), []byte("null")) {
+		return nil, nil
+	}
+	var typeObj struct {
+		Type string `json:"@type"`
+	}
+	if err := json.Unmarshal(data, &typeObj); err != nil {
+		return nil, err
+	}
+	switch typeObj.Type {
+	case "webProxyCarrierErrorLoadFailed":
+		var obj WebProxyCarrierErrorLoadFailed
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "webProxyCarrierErrorPaused":
+		var obj WebProxyCarrierErrorPaused
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "webProxyCarrierErrorRefused":
+		var obj WebProxyCarrierErrorRefused
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "webProxyCarrierErrorTerminated":
+		var obj WebProxyCarrierErrorTerminated
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "webProxyCarrierErrorUnsupported":
+		var obj WebProxyCarrierErrorUnsupported
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	default:
+		return nil, fmt.Errorf("unknown type: %s", typeObj.Type)
+	}
+}
+
+// WebProxyCarrierMessage Describes a message passed by the page of a web proxy carrier to postMessage of the bridge object
+//   - WebProxyCarrierMessageBinary
+//   - WebProxyCarrierMessageText
+type WebProxyCarrierMessage interface {
+	TlObject
+	webProxyCarrierMessage()
+}
+
+// UnmarshalWebProxyCarrierMessage unmarshals the JSON into the correct concrete implementation of WebProxyCarrierMessage
+func UnmarshalWebProxyCarrierMessage(data []byte) (WebProxyCarrierMessage, error) {
+	if bytes.Equal(bytes.TrimSpace(data), []byte("null")) {
+		return nil, nil
+	}
+	var typeObj struct {
+		Type string `json:"@type"`
+	}
+	if err := json.Unmarshal(data, &typeObj); err != nil {
+		return nil, err
+	}
+	switch typeObj.Type {
+	case "webProxyCarrierMessageBinary":
+		var obj WebProxyCarrierMessageBinary
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "webProxyCarrierMessageText":
+		var obj WebProxyCarrierMessageText
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}

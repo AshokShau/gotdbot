@@ -17,6 +17,7 @@ func newTestClient(t testing.TB) *Client {
 		updates: newUpdateQueue(8), stop: make(chan struct{}), closed: make(chan struct{}),
 		authDone: make(chan struct{}), pendingRequests: make(map[string]*pendingCall),
 		pendingMessages: make(map[[2]int64]chan TlObject),
+		me:              &User{},
 	}
 	c.config.RequestTimeout = 3 * time.Second
 	c.config.AuthorizationTimeout = 3 * time.Second

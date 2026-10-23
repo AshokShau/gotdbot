@@ -8,7 +8,7 @@ func (c *Chat) AddMember(client *Client, userId int64, opts *AddChatMemberOpts) 
 	return client.AddChatMember(c.Id, userId, opts)
 }
 
-// AddMembers Adds multiple new members to a chat; requires can_invite_users member right. Currently, this method is available only in supergroups and channels.
+// AddMembers Adds multiple new members to a chat; requires can_invite_users member right. Currently, this method is available only in supergroups and channels. This method can't be used to join a chat. Members can't be added to a channel if it has more than 200 members. Returns information about members that weren't added
 func (c *Chat) AddMembers(client *Client, userIds []int64) (*FailedToAddMembers, error) {
 	return client.AddChatMembers(c.Id, userIds)
 }
@@ -28,7 +28,7 @@ func (c *Chat) AddChecklistTasks(client *Client, messageId int64, tasks []InputC
 	return client.AddChecklistTasks(c.Id, messageId, tasks)
 }
 
-// AddFileToDownloads Adds a file from a message to the list of file downloads. Download progress and completion of the download will be notified through updateFile updates.
+// AddFileToDownloads Adds a file from a message to the list of file downloads. Download progress and completion of the download will be notified through updateFile updates. If message database is used, the list of file downloads is persistent across application restarts. The downloading is independent of download using downloadFile, i.e. it continues if downloadFile is canceled or is used to download a part of the file
 func (c *Chat) AddFileToDownloads(client *Client, fileId int32, messageId int64, priority int32) (*File, error) {
 	return client.AddFileToDownloads(c.Id, fileId, messageId, priority)
 }
@@ -43,7 +43,7 @@ func (c *Chat) AddMessageReaction(client *Client, messageId int64, reactionType 
 	return client.AddMessageReaction(c.Id, messageId, reactionType, opts)
 }
 
-// AddOffer Sends a suggested post based on a previously sent message in a channel direct messages chat. Can be also used to suggest price or time change for an existing suggested post.
+// AddOffer Sends a suggested post based on a previously sent message in a channel direct messages chat. Can be also used to suggest price or time change for an existing suggested post. Returns the sent message
 func (c *Chat) AddOffer(client *Client, messageId int64, options *MessageSendOptions) (*Message, error) {
 	return client.AddOffer(c.Id, messageId, options)
 }
@@ -63,7 +63,7 @@ func (c *Chat) AddRecentlyFound(client *Client) error {
 	return client.AddRecentlyFoundChat(c.Id)
 }
 
-// AddStoryAlbumStories Adds stories to the beginning of a previously created story album. If the album is owned by a supergroup or a channel chat, then
+// AddStoryAlbumStories Adds stories to the beginning of a previously created story album. If the album is owned by a supergroup or a channel chat, then requires can_edit_stories administrator right in the chat. Returns the changed album
 func (c *Chat) AddStoryAlbumStories(client *Client, storyAlbumId int32, storyIds []int32) (*StoryAlbum, error) {
 	return client.AddStoryAlbumStories(c.Id, storyAlbumId, storyIds)
 }
@@ -163,7 +163,7 @@ func (c *Chat) DeleteAllRevokedInviteLinks(client *Client, creatorUserId int64) 
 	return client.DeleteAllRevokedChatInviteLinks(c.Id, creatorUserId)
 }
 
-// Delete Deletes a chat along with all messages in the corresponding chat for all chat members. For group chats this will release the usernames and remove all members.
+// Delete Deletes a chat along with all messages in the corresponding chat for all chat members. For group chats this will release the usernames and remove all members. Use the field chat.can_be_deleted_for_all_users to find whether the method can be applied to the chat
 func (c *Chat) Delete(client *Client) error {
 	return client.DeleteChat(c.Id)
 }
@@ -213,7 +213,7 @@ func (c *Chat) DeleteEphemeralMessage(client *Client, ephemeralMessageId int32, 
 	return client.DeleteEphemeralMessage(c.Id, ephemeralMessageId, receiverUserId)
 }
 
-// DeleteForumTopic Deletes all messages from a topic in a forum supergroup chat or a chat with a bot with topics; requires can_delete_messages administrator right in the supergroup
+// DeleteForumTopic Deletes all messages from a topic in a forum supergroup chat or a chat with a bot with topics; requires can_delete_messages administrator right in the supergroup unless the user is creator of the topic, the topic has no messages from other users and has at most 11 messages
 func (c *Chat) DeleteForumTopic(client *Client, forumTopicId int32) error {
 	return client.DeleteForumTopic(c.Id, forumTopicId)
 }
@@ -238,7 +238,7 @@ func (c *Chat) DeletePollOption(client *Client, messageId int64, optionId string
 	return client.DeletePollOption(c.Id, messageId, optionId)
 }
 
-// DeleteRevokedInviteLink Deletes revoked chat invite links. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
+// DeleteRevokedInviteLink Deletes a revoked chat invite link. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
 func (c *Chat) DeleteRevokedInviteLink(client *Client, inviteLink string) error {
 	return client.DeleteRevokedChatInviteLink(c.Id, inviteLink)
 }
@@ -278,7 +278,7 @@ func (c *Chat) EditBusinessMessageText(client *Client, businessConnectionId stri
 	return client.EditBusinessMessageText(businessConnectionId, c.Id, inputMessageContent, messageId, opts)
 }
 
-// EditInviteLink Edits a non-primary invite link for a chat. Available in basic groups, supergroups, and channels.
+// EditInviteLink Edits a non-primary invite link for a chat. Available in basic groups, supergroups, and channels. If the link creates a subscription, then expiration_date, member_limit and creates_join_request must not be used. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
 func (c *Chat) EditInviteLink(client *Client, inviteLink string, opts *EditChatInviteLinkOpts) (*ChatInviteLink, error) {
 	return client.EditChatInviteLink(c.Id, inviteLink, opts)
 }
@@ -303,7 +303,7 @@ func (c *Chat) EditEphemeralMessageCaption(client *Client, ephemeralMessageId in
 	return client.EditEphemeralMessageCaption(c.Id, ephemeralMessageId, receiverUserId, opts)
 }
 
-// EditForumTopic Edits title and icon of a topic in a forum supergroup chat or a chat with a bot with topics; for supergroup chats requires can_manage_topics administrator right
+// EditForumTopic Edits title and icon of a topic in a forum supergroup chat or a chat with a bot with topics; for supergroup chats requires can_manage_topics administrator right unless the user is creator of the topic
 func (c *Chat) EditForumTopic(client *Client, forumTopicId int32, opts *EditForumTopicOpts) error {
 	return client.EditForumTopic(c.Id, forumTopicId, opts)
 }
@@ -318,12 +318,12 @@ func (c *Chat) EditMessageChecklist(client *Client, checklist *InputChecklist, m
 	return client.EditMessageChecklist(c.Id, checklist, messageId, opts)
 }
 
-// EditMessageLiveLocation Edits the message content of a live location. Messages can be edited for a limited period of time specified in the live location.
+// EditMessageLiveLocation Edits the message content of a live location. Messages can be edited for a limited period of time specified in the live location. Returns the edited message after the edit is completed on the server side
 func (c *Chat) EditMessageLiveLocation(client *Client, messageId int64, opts *EditMessageLiveLocationOpts) (*Message, error) {
 	return client.EditMessageLiveLocation(c.Id, messageId, opts)
 }
 
-// EditMessageMedia Edits the media content of a message, including message caption. If only the caption needs to be edited, use editMessageCaption instead.
+// EditMessageMedia Edits the media content of a message, including message caption. If only the caption needs to be edited, use editMessageCaption instead. The type of message content in an album can't be changed with exception of replacing a photo with a video or vice versa. Returns the edited message after the edit is completed on the server side
 func (c *Chat) EditMessageMedia(client *Client, inputMessageContent InputMessageContent, messageId int64, opts *EditMessageMediaOpts) (*Message, error) {
 	return client.EditMessageMedia(c.Id, inputMessageContent, messageId, opts)
 }
@@ -378,7 +378,7 @@ func (c *Chat) GetAdministrators(client *Client) (*ChatAdministrators, error) {
 	return client.GetChatAdministrators(c.Id)
 }
 
-// GetArchivedStories Returns the list of all stories posted by the given chat; requires can_edit_stories administrator right in the chat.
+// GetArchivedStories Returns the list of all stories posted by the given chat; requires can_edit_stories administrator right in the chat. The stories are returned in reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
 func (c *Chat) GetArchivedStories(client *Client, limit int32, opts *GetChatArchivedStoriesOpts) (*Stories, error) {
 	return client.GetChatArchivedStories(c.Id, limit, opts)
 }
@@ -413,7 +413,7 @@ func (c *Chat) GetEventLog(client *Client, limit int32, userIds []int64, opts *G
 	return client.GetChatEventLog(c.Id, limit, userIds, opts)
 }
 
-// GetHistory Returns messages in a chat. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id).
+// GetHistory Returns messages in a chat. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib. This is an offline method if only_local is true
 func (c *Chat) GetHistory(client *Client, limit int32, opts *GetChatHistoryOpts) (*Messages, error) {
 	return client.GetChatHistory(c.Id, limit, opts)
 }
@@ -473,32 +473,32 @@ func (c *Chat) GetMessagePosition(client *Client, filter SearchMessagesFilter, m
 	return client.GetChatMessagePosition(c.Id, filter, messageId, opts)
 }
 
-// GetOwnerAfterLeaving Returns the user who will become the owner of the chat after 7 days if the current user does not return to the supergroup or channel during that period or immediately for basic groups;
+// GetOwnerAfterLeaving Returns the user who will become the owner of the chat after 7 days if the current user does not return to the supergroup or channel during that period or immediately for basic groups; requires owner privileges in the chat. Available only for basic groups, supergroups, and channel chats
 func (c *Chat) GetOwnerAfterLeaving(client *Client) (*User, error) {
 	return client.GetChatOwnerAfterLeaving(c.Id)
 }
 
-// GetPinnedMessage Returns information about a newest pinned message in the chat. Returns a 404 error if the message doesn't exist
+// GetPinnedMessage Returns information about the newest pinned message in the chat. Returns a 404 error if the message doesn't exist
 func (c *Chat) GetPinnedMessage(client *Client) (*Message, error) {
 	return client.GetChatPinnedMessage(c.Id)
 }
 
-// GetPostedToChatPageStories Returns the list of stories that posted by the given chat to its chat page. If from_story_id == 0, then pinned stories are returned first.
+// GetPostedToChatPageStories Returns the list of stories that were posted by the given chat to its chat page. If from_story_id == 0, then pinned stories are returned first. Then, stories are returned in reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
 func (c *Chat) GetPostedToChatPageStories(client *Client, limit int32, opts *GetChatPostedToChatPageStoriesOpts) (*Stories, error) {
 	return client.GetChatPostedToChatPageStories(c.Id, limit, opts)
 }
 
-// GetRevenueStatistics Returns detailed revenue statistics about a chat. Currently, this method can be used only
+// GetRevenueStatistics Returns detailed revenue statistics about a chat. Currently, this method can be used only for channels if supergroupFullInfo.can_get_revenue_statistics == true or bots if userFullInfo.bot_info.can_get_revenue_statistics == true
 func (c *Chat) GetRevenueStatistics(client *Client, opts *GetChatRevenueStatisticsOpts) (*ChatRevenueStatistics, error) {
 	return client.GetChatRevenueStatistics(c.Id, opts)
 }
 
-// GetRevenueTransactions Returns the list of revenue transactions for a chat. Currently, this method can be used only
+// GetRevenueTransactions Returns the list of revenue transactions for a chat. Currently, this method can be used only for channels if supergroupFullInfo.can_get_revenue_statistics == true or bots if userFullInfo.bot_info.can_get_revenue_statistics == true
 func (c *Chat) GetRevenueTransactions(client *Client, limit int32, opts *GetChatRevenueTransactionsOpts) (*ChatRevenueTransactions, error) {
 	return client.GetChatRevenueTransactions(c.Id, limit, opts)
 }
 
-// GetRevenueWithdrawalUrl Returns a URL for chat revenue withdrawal; requires owner privileges in the channel chat or the bot. Currently, this method can be used only
+// GetRevenueWithdrawalUrl Returns a URL for chat revenue withdrawal; requires owner privileges in the channel chat or the bot. Currently, this method can be used only if getOption("can_withdraw_chat_revenue") for channels with supergroupFullInfo.can_get_revenue_statistics == true or bots with userFullInfo.bot_info.can_get_revenue_statistics == true
 func (c *Chat) GetRevenueWithdrawalUrl(client *Client, password string) (*HttpUrl, error) {
 	return client.GetChatRevenueWithdrawalUrl(c.Id, password)
 }
@@ -518,7 +518,7 @@ func (c *Chat) GetSimilarChats(client *Client) (*Chats, error) {
 	return client.GetChatSimilarChats(c.Id)
 }
 
-// GetSparseMessagePositions Returns sparse positions of messages of the specified type in the chat to be used for Shared Media scroll implementation. Returns the results in reverse chronological order (i.e., in order of decreasing message_id).
+// GetSparseMessagePositions Returns sparse positions of messages of the specified type in the chat to be used for Shared Media scroll implementation. Returns the results in reverse chronological order (i.e., in order of decreasing message_id). Cannot be used in secret chats or with searchMessagesFilterFailedToSend filter without an enabled message database
 func (c *Chat) GetSparseMessagePositions(client *Client, filter SearchMessagesFilter, fromMessageId int64, limit int32, opts *GetChatSparseMessagePositionsOpts) (*MessagePositions, error) {
 	return client.GetChatSparseMessagePositions(c.Id, filter, fromMessageId, limit, opts)
 }
@@ -563,7 +563,7 @@ func (c *Chat) GetForumTopic(client *Client, forumTopicId int32) (*ForumTopic, e
 	return client.GetForumTopic(c.Id, forumTopicId)
 }
 
-// GetForumTopicHistory Returns messages in a topic in a forum supergroup chat or a chat with a bot with topics. The messages are returned in reverse chronological order
+// GetForumTopicHistory Returns messages in a topic in a forum supergroup chat or a chat with a bot with topics. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
 func (c *Chat) GetForumTopicHistory(client *Client, forumTopicId int32, limit int32, opts *GetForumTopicHistoryOpts) (*Messages, error) {
 	return client.GetForumTopicHistory(c.Id, forumTopicId, limit, opts)
 }
@@ -603,7 +603,7 @@ func (c *Chat) GetLiveStoryRtmpUrl(client *Client) (*RtmpUrl, error) {
 	return client.GetLiveStoryRtmpUrl(c.Id)
 }
 
-// GetLoginUrl Returns an HTTP URL which can be used to automatically authorize the user on a website after clicking an inline button of type inlineKeyboardButtonTypeLoginUrl.
+// GetLoginUrl Returns an HTTP URL which can be used to automatically authorize the user on a website after clicking an inline button of type inlineKeyboardButtonTypeLoginUrl. Use the method getLoginUrlInfo to find whether a prior user confirmation is needed. If an error is returned, then the button must be handled as an ordinary URL button
 func (c *Chat) GetLoginUrl(client *Client, buttonId int64, messageId int64, opts *GetLoginUrlOpts) (*HttpUrl, error) {
 	return client.GetLoginUrl(buttonId, c.Id, messageId, opts)
 }
@@ -693,7 +693,7 @@ func (c *Chat) GetMessageThread(client *Client, messageId int64) (*MessageThread
 	return client.GetMessageThread(c.Id, messageId)
 }
 
-// GetMessageThreadHistory Returns messages in a message thread of a message. Can be used only if messageProperties.can_get_message_thread == true. Message thread of a channel message is in the channel's linked supergroup.
+// GetMessageThreadHistory Returns messages in a message thread of a message. Can be used only if messageProperties.can_get_message_thread == true. Message thread of a channel message is in the channel's linked supergroup. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
 func (c *Chat) GetMessageThreadHistory(client *Client, limit int32, messageId int64, opts *GetMessageThreadHistoryOpts) (*Messages, error) {
 	return client.GetMessageThreadHistory(c.Id, limit, messageId, opts)
 }
@@ -713,7 +713,7 @@ func (c *Chat) GetPollOptionProperties(client *Client, messageId int64, pollOpti
 	return client.GetPollOptionProperties(c.Id, messageId, pollOptionId)
 }
 
-// GetPollVoters Returns message senders voted for the specified option in a poll; use poll.can_get_voters to check whether the method can be used.
+// GetPollVoters Returns message senders voted for the specified option in a poll; use poll.can_get_voters to check whether the method can be used. For optimal performance, the number of returned users is chosen by TDLib
 func (c *Chat) GetPollVoters(client *Client, limit int32, messageId int64, optionId int32, opts *GetPollVotersOpts) (*PollVoters, error) {
 	return client.GetPollVoters(c.Id, limit, messageId, optionId, opts)
 }
@@ -723,7 +723,7 @@ func (c *Chat) GetPollVoteStatistics(client *Client, messageId int64, opts *GetP
 	return client.GetPollVoteStatistics(c.Id, messageId, opts)
 }
 
-// GetRepliedMessage Returns information about a non-bundled message that is replied by a given message. Also, returns the pinned message for messagePinMessage,
+// GetRepliedMessage Returns information about a non-bundled message that is replied by a given message. Also, returns the pinned message for messagePinMessage, the game message for messageGameScore, the invoice message for messagePaymentSuccessful, the message with a previously set same background for messageChatSetBackground, the giveaway message for messageGiveawayCompleted, the checklist message for messageChecklistTasksDone, messageChecklistTasksAdded, the message with suggested post information for messageSuggestedPostApprovalFailed, messageSuggestedPostApproved, messageSuggestedPostDeclined, messageSuggestedPostPaid, messageSuggestedPostRefunded, the message with the regular gift that was upgraded for messageUpgradedGift with origin of the type upgradedGiftOriginUpgrade, the message with gift purchase offer for messageUpgradedGiftPurchaseOfferRejected, the message with the request to disable content protection for messageChatHasProtectedContentToggled, the message with the poll for messagePollOptionAdded and messagePollOptionDeleted, and the topic creation message for topic messages without non-bundled replied message. Returns a 404 error if the message doesn't exist
 func (c *Chat) GetRepliedMessage(client *Client, messageId int64) (*Message, error) {
 	return client.GetRepliedMessage(c.Id, messageId)
 }
@@ -793,12 +793,12 @@ func (c *Chat) LoadWelcomeMessages(client *Client) error {
 	return client.LoadChatWelcomeMessages(c.Id)
 }
 
-// LoadDirectMessagesTopics Loads more topics in a channel direct messages chat administered by the current user. The loaded topics will be sent through updateDirectMessagesChatTopic.
+// LoadDirectMessagesTopics Loads more topics in a channel direct messages chat administered by the current user. The loaded topics will be sent through updateDirectMessagesChatTopic. Topics are sorted by their topic.order in descending order. Returns a 404 error if all topics have been loaded
 func (c *Chat) LoadDirectMessagesTopics(client *Client, limit int32) error {
 	return client.LoadDirectMessagesChatTopics(c.Id, limit)
 }
 
-// MarkChecklistTasksAsDone Adds tasks of a checklist in a message as done or not done
+// MarkChecklistTasksAsDone Marks tasks of a checklist in a message as done or not done
 func (c *Chat) MarkChecklistTasksAsDone(client *Client, markedAsDoneTaskIds []int32, markedAsNotDoneTaskIds []int32, messageId int64) error {
 	return client.MarkChecklistTasksAsDone(c.Id, markedAsDoneTaskIds, markedAsNotDoneTaskIds, messageId)
 }
@@ -813,12 +813,12 @@ func (c *Chat) OpenSimilarChat(client *Client, openedChatId int64) error {
 	return client.OpenChatSimilarChat(c.Id, openedChatId)
 }
 
-// OpenMessageContent Informs TDLib that the message content has been opened (e.g., the user has opened a photo, video, document, location or venue, or has listened to an audio file or voice note message).
+// OpenMessageContent Informs TDLib that the message content has been opened (e.g., the user has opened a photo, video, document, location, or venue, or has listened to an audio file or voice note message). An updateMessageContentOpened update will be generated if something has changed
 func (c *Chat) OpenMessageContent(client *Client, messageId int64) error {
 	return client.OpenMessageContent(c.Id, messageId)
 }
 
-// OpenWebApp Informs TDLib that a Web App is being opened from the attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button.
+// OpenWebApp Informs TDLib that a Web App is being opened from the attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button. For each bot, a confirmation alert about data sent to the bot must be shown once
 func (c *Chat) OpenWebApp(client *Client, botUserId int64, parameters *WebAppOpenParameters, opts *OpenWebAppOpts) (*WebAppInfo, error) {
 	return client.OpenWebApp(botUserId, c.Id, parameters, opts)
 }
@@ -923,7 +923,7 @@ func (c *Chat) RemoveRecentlyFound(client *Client) error {
 	return client.RemoveRecentlyFoundChat(c.Id)
 }
 
-// RemoveStoryAlbumStories Removes stories from an album. If the album is owned by a supergroup or a channel chat, then
+// RemoveStoryAlbumStories Removes stories from an album. If the album is owned by a supergroup or a channel chat, then requires can_edit_stories administrator right in the chat. Returns the changed album
 func (c *Chat) RemoveStoryAlbumStories(client *Client, storyAlbumId int32, storyIds []int32) (*StoryAlbum, error) {
 	return client.RemoveStoryAlbumStories(c.Id, storyAlbumId, storyIds)
 }
@@ -938,7 +938,7 @@ func (c *Chat) ReorderStoryAlbums(client *Client, storyAlbumIds []int32) error {
 	return client.ReorderStoryAlbums(c.Id, storyAlbumIds)
 }
 
-// ReorderStoryAlbumStories Changes order of stories in an album. If the album is owned by a supergroup or a channel chat, then
+// ReorderStoryAlbumStories Changes order of stories in an album. If the album is owned by a supergroup or a channel chat, then requires can_edit_stories administrator right in the chat. Returns the changed album
 func (c *Chat) ReorderStoryAlbumStories(client *Client, storyAlbumId int32, storyIds []int32) (*StoryAlbum, error) {
 	return client.ReorderStoryAlbumStories(c.Id, storyAlbumId, storyIds)
 }
@@ -978,12 +978,12 @@ func (c *Chat) ReportMessageReactions(client *Client, messageId int64, senderId 
 	return client.ReportMessageReactions(c.Id, messageId, senderId)
 }
 
-// ResendMessages Resends messages which failed to send. Can be called only for messages for which messageSendingStateFailed.can_retry is true and after specified in messageSendingStateFailed.retry_after time passed.
+// ResendMessages Resends messages which failed to send. Can be called only for messages for which messageSendingStateFailed.can_retry is true and after specified in messageSendingStateFailed.retry_after time passed. If a message is re-sent, the corresponding failed to send message is deleted. Returns the sent messages in the same order as the message identifiers passed in message_ids. If a message can't be re-sent, null will be returned instead of the message
 func (c *Chat) ResendMessages(client *Client, messageIds []int64, paidMessageStarCount int64, opts *ResendMessagesOpts) (*Messages, error) {
 	return client.ResendMessages(c.Id, messageIds, paidMessageStarCount, opts)
 }
 
-// RevokeInviteLink Revokes invite link for a chat. Available in basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links.
+// RevokeInviteLink Revokes invite link for a chat. Available in basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links. If a primary link is revoked, then additionally to the revoked link returns new primary link
 func (c *Chat) RevokeInviteLink(client *Client, inviteLink string) (*ChatInviteLinks, error) {
 	return client.RevokeChatInviteLink(c.Id, inviteLink)
 }
@@ -998,7 +998,7 @@ func (c *Chat) SearchMembers(client *Client, limit int32, query string, opts *Se
 	return client.SearchChatMembers(c.Id, limit, query, opts)
 }
 
-// SearchMessages Searches for messages with given words in the chat. Returns the results in reverse chronological order, i.e. in order of decreasing message_id. Cannot be used in secret chats with a non-empty query
+// SearchMessages Searches for messages with given words in the chat. Returns the results in reverse chronological order, i.e. in order of decreasing message_id. Cannot be used in secret chats with a non-empty query (searchSecretMessages must be used instead), or without an enabled message database. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit. A combination of query, sender_id, filter and topic_id search criteria is expected to be supported, only if it is required for Telegram official application implementation
 func (c *Chat) SearchMessages(client *Client, limit int32, query string, opts *SearchChatMessagesOpts) (*FoundChatMessages, error) {
 	return client.SearchChatMessages(c.Id, limit, query, opts)
 }
@@ -1013,7 +1013,7 @@ func (c *Chat) SearchSecretMessages(client *Client, limit int32, query string, o
 	return client.SearchSecretMessages(c.Id, limit, query, opts)
 }
 
-// SendBotStartMessage Invites a bot to a chat (if it is not yet a member) and sends it the /start command; requires can_invite_users member right. Bots can't be invited to a private chat other than the chat with the bot.
+// SendBotStartMessage Invites a bot to a chat (if it is not yet a member) and sends it the /start command; requires can_invite_users member right. Bots can't be invited to a private chat other than the chat with the bot. Bots can't be invited to channels (although they can be added as admins) and secret chats. Returns the sent message
 func (c *Chat) SendBotStartMessage(client *Client, botUserId int64, opts *SendBotStartMessageOpts) (*Message, error) {
 	return client.SendBotStartMessage(botUserId, c.Id, opts)
 }
@@ -1023,7 +1023,7 @@ func (c *Chat) SendBusinessMessage(client *Client, businessConnectionId string, 
 	return client.SendBusinessMessage(businessConnectionId, c.Id, effectId, inputMessageContent, opts)
 }
 
-// SendBusinessMessageAlbum Sends 2-10 messages grouped together into an album on behalf of a business account; for bots only. Currently, only audio, document, photo and video messages can be grouped into an album.
+// SendBusinessMessageAlbum Sends 2-10 messages grouped together into an album on behalf of a business account; for bots only. Currently, only audio, document, photo and video messages can be grouped into an album. Documents and audio files can be only grouped in an album with messages of the same type. Returns sent messages
 func (c *Chat) SendBusinessMessageAlbum(client *Client, businessConnectionId string, effectId int64, inputMessageContents []InputMessageContent, opts *SendBusinessMessageAlbumOpts) (*BusinessMessages, error) {
 	return client.SendBusinessMessageAlbum(businessConnectionId, c.Id, effectId, inputMessageContents, opts)
 }
@@ -1033,7 +1033,7 @@ func (c *Chat) SendAction(client *Client, opts *SendChatActionOpts) error {
 	return client.SendChatAction(c.Id, opts)
 }
 
-// SendEphemeralMessage Sends an ephemeral message which will be received only by one bot in a chat. Currently, only ephemeral bot commands and replies to bot ephemeral messages can be sent using the method.
+// SendEphemeralMessage Sends an ephemeral message which will be received only by one bot in a chat. Currently, only ephemeral bot commands and replies to bot ephemeral messages can be sent using the method. The message is persistent across application restarts only if the message database is used. Returns the sent message
 func (c *Chat) SendEphemeralMessage(client *Client, callbackQueryId int64, inputMessageContent InputMessageContent, receiverUserId int64, sendingId int32, opts *SendEphemeralMessageOpts) (*Message, error) {
 	return client.SendEphemeralMessage(callbackQueryId, c.Id, inputMessageContent, receiverUserId, sendingId, opts)
 }
@@ -1048,12 +1048,12 @@ func (c *Chat) SendMessageContent(client *Client, inputMessageContent InputMessa
 	return client.SendMessageContent(c.Id, inputMessageContent, opts)
 }
 
-// SendMessageAlbum Sends 2-10 messages grouped together into an album. Currently, only audio, document, photo and video messages can be grouped into an album.
+// SendMessageAlbum Sends 2-10 messages grouped together into an album. Currently, only audio, document, photo and video messages can be grouped into an album. Documents and audio files can be only grouped in an album with messages of the same type. Returns sent messages
 func (c *Chat) SendMessageAlbum(client *Client, inputMessageContents []InputMessageContent, opts *SendMessageAlbumOpts) (*Messages, error) {
 	return client.SendMessageAlbum(c.Id, inputMessageContents, opts)
 }
 
-// SendMessageViewMetrics Informs TDLib about details of a message view by the user from a chat, a message thread or a forum topic history. The method must be called if
+// SendMessageViewMetrics Informs TDLib about details of a message view by the user from a chat, a message thread or a forum topic history. The method must be called if the message wasn't seen for more than 300 milliseconds, the viewport was destroyed, or the total view duration exceeded 5 minutes
 func (c *Chat) SendMessageViewMetrics(client *Client, activeTimeInViewMs int32, heightToViewportRatioPerMille int32, messageId int64, seenRangeRatioPerMille int32, timeInViewMs int32) error {
 	return client.SendMessageViewMetrics(activeTimeInViewMs, c.Id, heightToViewportRatioPerMille, messageId, seenRangeRatioPerMille, timeInViewMs)
 }
@@ -1138,7 +1138,7 @@ func (c *Chat) SetLocation(client *Client, location *ChatLocation) error {
 	return client.SetChatLocation(c.Id, location)
 }
 
-// SetMemberStatus Changes the status of a chat member; requires can_invite_users member right to add a chat member, can_promote_members administrator right to change administrator rights of the member,
+// SetMemberStatus Changes the status of a chat member; requires can_invite_users member right to add a chat member, can_promote_members administrator right to change administrator rights of the member, and can_restrict_members administrator right to change restrictions of a user. This function is currently not suitable for transferring chat ownership; use transferChatOwnership instead. Use addChatMember or banChatMember if some additional parameters need to be passed
 func (c *Chat) SetMemberStatus(client *Client, memberId MessageSender, status ChatMemberStatus) error {
 	return client.SetChatMemberStatus(c.Id, memberId, status)
 }
@@ -1148,7 +1148,7 @@ func (c *Chat) SetMemberTag(client *Client, tag string, userId int64) error {
 	return client.SetChatMemberTag(c.Id, tag, userId)
 }
 
-// SetMessageAutoDeleteTime Changes the message auto-delete or self-destruct (for secret chats) time in a chat. Requires change_info administrator right in basic groups, supergroups and channels.
+// SetMessageAutoDeleteTime Changes the message auto-delete or self-destruct (for secret chats) time in a chat. Requires can_change_info administrator right in basic groups, supergroups and channels. Message auto-delete time can't be changed in a chat with the current user (Saved Messages) and the chat 777000 (Telegram).
 func (c *Chat) SetMessageAutoDeleteTime(client *Client) error {
 	return client.SetChatMessageAutoDeleteTime(c.Id, c.MessageAutoDeleteTime)
 }
@@ -1248,6 +1248,11 @@ func (c *Chat) SetPollAnswer(client *Client, messageId int64, optionIds []int32)
 	return client.SetPollAnswer(c.Id, messageId, optionIds)
 }
 
+// SetProfileShareTheme Changes the theme of the screen for sharing a link to the current user or a chat. The chat must have a username. Requires can_change_info administrator right in supergroups and channels
+func (c *Chat) SetProfileShareTheme(client *Client, opts *SetProfileShareThemeOpts) error {
+	return client.SetProfileShareTheme(c.Id, opts)
+}
+
 // SetStoryAlbumName Changes name of an album of stories. If the album is owned by a supergroup or a channel chat, then requires can_edit_stories administrator right in the chat. Returns the changed album
 func (c *Chat) SetStoryAlbumName(client *Client, name string, storyAlbumId int32) (*StoryAlbum, error) {
 	return client.SetStoryAlbumName(c.Id, name, storyAlbumId)
@@ -1298,7 +1303,7 @@ func (c *Chat) ToggleGiftNotifications(client *Client, opts *ToggleChatGiftNotif
 	return client.ToggleChatGiftNotifications(c.Id, opts)
 }
 
-// ToggleHasProtectedContent Changes the ability of users to save, forward, or copy chat content. Requires owner privileges in basic groups, supergroups and channels.
+// ToggleHasProtectedContent Changes the ability of users to save, forward, or copy chat content. Requires owner privileges in basic groups, supergroups and channels. Requires Telegram Premium to enable protected content in private chats. Not available in Saved Messages and private chats with bots or support accounts
 func (c *Chat) ToggleHasProtectedContent(client *Client, opts *ToggleChatHasProtectedContentOpts) error {
 	return client.ToggleChatHasProtectedContent(c.Id, opts)
 }
@@ -1333,7 +1338,7 @@ func (c *Chat) ToggleForumTopicIsClosed(client *Client, forumTopicId int32, opts
 	return client.ToggleForumTopicIsClosed(c.Id, forumTopicId, opts)
 }
 
-// ToggleForumTopicIsPinned Changes the pinned state of a topic in a forum supergroup chat or a chat with a bot with topics; requires can_manage_topics administrator right in the supergroup.
+// ToggleForumTopicIsPinned Changes the pinned state of a topic in a forum supergroup chat or a chat with a bot with topics; requires can_manage_topics administrator right in the supergroup. There can be up to getOption("pinned_forum_topic_count_max") pinned forum topics
 func (c *Chat) ToggleForumTopicIsPinned(client *Client, forumTopicId int32, opts *ToggleForumTopicIsPinnedOpts) error {
 	return client.ToggleForumTopicIsPinned(c.Id, forumTopicId, opts)
 }
@@ -1383,12 +1388,12 @@ func (c *Chat) UpgradeBasicGroupToSupergroupChat(client *Client) (*Chat, error) 
 	return client.UpgradeBasicGroupChatToSupergroupChat(c.Id)
 }
 
-// ViewMessages Informs TDLib that messages are being viewed by the user. Sponsored messages must be marked as viewed only when the entire text of the message is shown on the screen (excluding the button).
+// ViewMessages Informs TDLib that messages are being viewed by the user. Sponsored messages must be marked as viewed only when the entire text of the message is shown on the screen (excluding the button). Many useful activities depend on whether the messages are currently being viewed or not (e.g., marking messages as read, incrementing a view counter, updating a view counter, removing deleted messages in supergroups and channels)
 func (c *Chat) ViewMessages(client *Client, messageIds []int64, opts *ViewMessagesOpts) error {
 	return client.ViewMessages(c.Id, messageIds, opts)
 }
 
-// AddToDownloads Adds a file from a message to the list of file downloads. Download progress and completion of the download will be notified through updateFile updates.
+// AddToDownloads Adds a file from a message to the list of file downloads. Download progress and completion of the download will be notified through updateFile updates. If message database is used, the list of file downloads is persistent across application restarts. The downloading is independent of download using downloadFile, i.e. it continues if downloadFile is canceled or is used to download a part of the file
 func (f *File) AddToDownloads(client *Client, chatId int64, messageId int64, priority int32) (*File, error) {
 	return client.AddFileToDownloads(chatId, f.Id, messageId, priority)
 }
@@ -1478,7 +1483,7 @@ func (m *Message) AddChecklistTasks(client *Client, tasks []InputChecklistTask) 
 	return client.AddChecklistTasks(m.ChatId, m.Id, tasks)
 }
 
-// AddFileToDownloads Adds a file from a message to the list of file downloads. Download progress and completion of the download will be notified through updateFile updates.
+// AddFileToDownloads Adds a file from a message to the list of file downloads. Download progress and completion of the download will be notified through updateFile updates. If message database is used, the list of file downloads is persistent across application restarts. The downloading is independent of download using downloadFile, i.e. it continues if downloadFile is canceled or is used to download a part of the file
 func (m *Message) AddFileToDownloads(client *Client, fileId int32, priority int32) (*File, error) {
 	return client.AddFileToDownloads(m.ChatId, fileId, m.Id, priority)
 }
@@ -1488,7 +1493,7 @@ func (m *Message) AddReaction(client *Client, reactionType ReactionType, opts *A
 	return client.AddMessageReaction(m.ChatId, m.Id, reactionType, opts)
 }
 
-// AddOffer Sends a suggested post based on a previously sent message in a channel direct messages chat. Can be also used to suggest price or time change for an existing suggested post.
+// AddOffer Sends a suggested post based on a previously sent message in a channel direct messages chat. Can be also used to suggest price or time change for an existing suggested post. Returns the sent message
 func (m *Message) AddOffer(client *Client, options *MessageSendOptions) (*Message, error) {
 	return client.AddOffer(m.ChatId, m.Id, options)
 }
@@ -1608,12 +1613,12 @@ func (m *Message) EditChecklist(client *Client, checklist *InputChecklist, opts 
 	return client.EditMessageChecklist(m.ChatId, checklist, m.Id, opts)
 }
 
-// EditLiveLocation Edits the message content of a live location. Messages can be edited for a limited period of time specified in the live location.
+// EditLiveLocation Edits the message content of a live location. Messages can be edited for a limited period of time specified in the live location. Returns the edited message after the edit is completed on the server side
 func (m *Message) EditLiveLocation(client *Client, opts *EditMessageLiveLocationOpts) (*Message, error) {
 	return client.EditMessageLiveLocation(m.ChatId, m.Id, opts)
 }
 
-// EditMedia Edits the media content of a message, including message caption. If only the caption needs to be edited, use editMessageCaption instead.
+// EditMedia Edits the media content of a message, including message caption. If only the caption needs to be edited, use editMessageCaption instead. The type of message content in an album can't be changed with exception of replacing a photo with a video or vice versa. Returns the edited message after the edit is completed on the server side
 func (m *Message) EditMedia(client *Client, inputMessageContent InputMessageContent, opts *EditMessageMediaOpts) (*Message, error) {
 	return client.EditMessageMedia(m.ChatId, inputMessageContent, m.Id, opts)
 }
@@ -1628,7 +1633,7 @@ func (m *Message) EditTextContent(client *Client, inputMessageContent InputMessa
 	return client.EditMessageTextContent(m.ChatId, inputMessageContent, m.Id, opts)
 }
 
-// EditQuickReply Asynchronously edits the text, media or caption of a quick reply message. Use quickReplyMessage.can_be_edited to check whether a message can be edited.
+// EditQuickReply Asynchronously edits the text, media, or caption of a quick reply message. Use quickReplyMessage.can_be_edited to check whether a message can be edited. Media message can be edited only to a media message. Checklist messages can be edited only to a checklist message. The type of message content in an album can't be changed with exception of replacing a photo with a video or vice versa
 func (m *Message) EditQuickReply(client *Client, inputMessageContent InputMessageContent, shortcutId int32) error {
 	return client.EditQuickReplyMessage(inputMessageContent, m.Id, shortcutId)
 }
@@ -1663,7 +1668,7 @@ func (m *Message) GetGiveawayInfo(client *Client) (GiveawayInfo, error) {
 	return client.GetGiveawayInfo(m.ChatId, m.Id)
 }
 
-// GetLoginUrl Returns an HTTP URL which can be used to automatically authorize the user on a website after clicking an inline button of type inlineKeyboardButtonTypeLoginUrl.
+// GetLoginUrl Returns an HTTP URL which can be used to automatically authorize the user on a website after clicking an inline button of type inlineKeyboardButtonTypeLoginUrl. Use the method getLoginUrlInfo to find whether a prior user confirmation is needed. If an error is returned, then the button must be handled as an ordinary URL button
 func (m *Message) GetLoginUrl(client *Client, buttonId int64, opts *GetLoginUrlOpts) (*HttpUrl, error) {
 	return client.GetLoginUrl(buttonId, m.ChatId, m.Id, opts)
 }
@@ -1728,7 +1733,7 @@ func (m *Message) GetThread(client *Client) (*MessageThreadInfo, error) {
 	return client.GetMessageThread(m.ChatId, m.Id)
 }
 
-// GetThreadHistory Returns messages in a message thread of a message. Can be used only if messageProperties.can_get_message_thread == true. Message thread of a channel message is in the channel's linked supergroup.
+// GetThreadHistory Returns messages in a message thread of a message. Can be used only if messageProperties.can_get_message_thread == true. Message thread of a channel message is in the channel's linked supergroup. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
 func (m *Message) GetThreadHistory(client *Client, limit int32, opts *GetMessageThreadHistoryOpts) (*Messages, error) {
 	return client.GetMessageThreadHistory(m.ChatId, limit, m.Id, opts)
 }
@@ -1748,7 +1753,7 @@ func (m *Message) GetPollOptionProperties(client *Client, pollOptionId string) (
 	return client.GetPollOptionProperties(m.ChatId, m.Id, pollOptionId)
 }
 
-// GetPollVoters Returns message senders voted for the specified option in a poll; use poll.can_get_voters to check whether the method can be used.
+// GetPollVoters Returns message senders voted for the specified option in a poll; use poll.can_get_voters to check whether the method can be used. For optimal performance, the number of returned users is chosen by TDLib
 func (m *Message) GetPollVoters(client *Client, limit int32, optionId int32, opts *GetPollVotersOpts) (*PollVoters, error) {
 	return client.GetPollVoters(m.ChatId, limit, m.Id, optionId, opts)
 }
@@ -1758,7 +1763,7 @@ func (m *Message) GetPollVoteStatistics(client *Client, opts *GetPollVoteStatist
 	return client.GetPollVoteStatistics(m.ChatId, m.Id, opts)
 }
 
-// GetReplied Returns information about a non-bundled message that is replied by a given message. Also, returns the pinned message for messagePinMessage,
+// GetReplied Returns information about a non-bundled message that is replied by a given message. Also, returns the pinned message for messagePinMessage, the game message for messageGameScore, the invoice message for messagePaymentSuccessful, the message with a previously set same background for messageChatSetBackground, the giveaway message for messageGiveawayCompleted, the checklist message for messageChecklistTasksDone, messageChecklistTasksAdded, the message with suggested post information for messageSuggestedPostApprovalFailed, messageSuggestedPostApproved, messageSuggestedPostDeclined, messageSuggestedPostPaid, messageSuggestedPostRefunded, the message with the regular gift that was upgraded for messageUpgradedGift with origin of the type upgradedGiftOriginUpgrade, the message with gift purchase offer for messageUpgradedGiftPurchaseOfferRejected, the message with the request to disable content protection for messageChatHasProtectedContentToggled, the message with the poll for messagePollOptionAdded and messagePollOptionDeleted, and the topic creation message for topic messages without non-bundled replied message. Returns a 404 error if the message doesn't exist
 func (m *Message) GetReplied(client *Client) (*Message, error) {
 	return client.GetRepliedMessage(m.ChatId, m.Id)
 }
@@ -1768,12 +1773,12 @@ func (m *Message) GetVideoAdvertisements(client *Client) (*VideoMessageAdvertise
 	return client.GetVideoMessageAdvertisements(m.ChatId, m.Id)
 }
 
-// MarkChecklistTasksAsDone Adds tasks of a checklist in a message as done or not done
+// MarkChecklistTasksAsDone Marks tasks of a checklist in a message as done or not done
 func (m *Message) MarkChecklistTasksAsDone(client *Client, markedAsDoneTaskIds []int32, markedAsNotDoneTaskIds []int32) error {
 	return client.MarkChecklistTasksAsDone(m.ChatId, markedAsDoneTaskIds, markedAsNotDoneTaskIds, m.Id)
 }
 
-// OpenContent Informs TDLib that the message content has been opened (e.g., the user has opened a photo, video, document, location or venue, or has listened to an audio file or voice note message).
+// OpenContent Informs TDLib that the message content has been opened (e.g., the user has opened a photo, video, document, location, or venue, or has listened to an audio file or voice note message). An updateMessageContentOpened update will be generated if something has changed
 func (m *Message) OpenContent(client *Client) error {
 	return client.OpenMessageContent(m.ChatId, m.Id)
 }
@@ -1828,7 +1833,7 @@ func (m *Message) ReportSupergroupAntiSpamFalsePositive(client *Client, supergro
 	return client.ReportSupergroupAntiSpamFalsePositive(m.Id, supergroupId)
 }
 
-// SendViewMetrics Informs TDLib about details of a message view by the user from a chat, a message thread or a forum topic history. The method must be called if
+// SendViewMetrics Informs TDLib about details of a message view by the user from a chat, a message thread or a forum topic history. The method must be called if the message wasn't seen for more than 300 milliseconds, the viewport was destroyed, or the total view duration exceeded 5 minutes
 func (m *Message) SendViewMetrics(client *Client, activeTimeInViewMs int32, heightToViewportRatioPerMille int32, seenRangeRatioPerMille int32, timeInViewMs int32) error {
 	return client.SendMessageViewMetrics(activeTimeInViewMs, m.ChatId, heightToViewportRatioPerMille, m.Id, seenRangeRatioPerMille, timeInViewMs)
 }
@@ -1893,7 +1898,7 @@ func (m *Message) UnpinChat(client *Client) error {
 	return client.UnpinChatMessage(m.ChatId, m.Id)
 }
 
-// Get Returns information about a file by its remote identifier. This is an offline method. Can be used to register a URL as a file for further uploading, or sending as a message. Even if the request succeeds, the file can be used only if it is still accessible to the user.
+// Get Returns information about a file by its remote identifier. This is an offline method. Can be used to register a URL as a file for further uploading, or sending as a message. Even if the request succeeds, the file can be used only if it is still accessible to the user. For example, if the file is from a message, then the message must be not deleted and accessible to the user. If the file database is disabled, then the corresponding object with the file must be preloaded by the application
 func (r *RemoteFile) Get(client *Client, opts *GetRemoteFileOpts) (*File, error) {
 	return client.GetRemoteFile(r.Id, opts)
 }
@@ -1916,6 +1921,11 @@ func (u *User) AddStickerToSet(client *Client, name string, sticker *NewSticker)
 // AllowUnpaidMessagesFrom Allows the specified user to send unpaid private messages to the current user by adding a rule to userPrivacySettingAllowUnpaidMessages
 func (u *User) AllowUnpaidMessagesFrom(client *Client, opts *AllowUnpaidMessagesFromUserOpts) error {
 	return client.AllowUnpaidMessagesFromUser(u.Id, opts)
+}
+
+// ApplyUnpaidMessagesToken Allows the current user to send unpaid messages to the given user, which requires payment for incoming messages, using a token from an internal link of the type internalLinkTypePublicChat, internalLinkTypeUserPhoneNumber, or internalLinkTypeUserToken. The first message sent to the user will be preceded by a messageUnpaidMessagesAllowedByLink message. Repeated calls and calls for the current user have no effect
+func (u *User) ApplyUnpaidMessagesToken(client *Client, token string) error {
+	return client.ApplyUnpaidMessagesToken(token, u.Id)
 }
 
 // CanSendMessageTo Checks whether the current user can message another user or try to create a chat with them
@@ -2023,7 +2033,7 @@ func (u *User) GiftPremiumWithStars(client *Client, monthCount int32, starCount 
 	return client.GiftPremiumWithStars(monthCount, starCount, text, u.Id)
 }
 
-// InviteGroupCallParticipant Invites a user to an active group call; for group calls not bound to a chat only. Sends a service message of the type messageGroupCall.
+// InviteGroupCallParticipant Invites a user to an active group call; for group calls not bound to a chat only. Sends a service message of the type messageGroupCall. The group call can have at most getOption("group_call_participant_count_max") participants
 func (u *User) InviteGroupCallParticipant(client *Client, groupCallId int32, opts *InviteGroupCallParticipantOpts) (InviteGroupCallParticipantResult, error) {
 	return client.InviteGroupCallParticipant(groupCallId, u.Id, opts)
 }

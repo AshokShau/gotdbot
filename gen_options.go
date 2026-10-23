@@ -9,11 +9,13 @@ type AcceptOauthRequestOpts struct {
 	AllowPhoneNumberAccess bool
 	// Pass true if the current user allowed the bot that was returned in getOauthLinkInfo, to send them messages
 	AllowWriteAccess bool
+	// Pass data required to access the user's TON wallet via TON Connect if the current user allowed this; pass null if the access wasn't requested or the user declined access
+	TonConnectConnectData *TonConnectConnectData
 }
 
 // AddBotMediaPreviewOpts contains optional parameters for AddBotMediaPreview
 type AddBotMediaPreviewOpts struct {
-	// A two-letter ISO 639-1 language code for which preview is added. If empty, then the preview will be shown to all users for whose languages there are no dedicated previews.
+	// A two-letter ISO 639-1 language code for which preview is added. If empty, then the preview will be shown to all users for whose languages there are no dedicated previews. If non-empty, then there must be an official language pack of the same name, which is returned by getLocalizationTargetInfo
 	LanguageCode string
 }
 
@@ -27,7 +29,7 @@ type AddChatMemberOpts struct {
 type AddContactOpts struct {
 	// The contact to add or edit; phone number may be empty and needs to be specified only if known
 	Contact *ImportedContact
-	// Pass true to share the current user's phone number with the new contact. A corresponding rule to userPrivacySettingShowPhoneNumber will be added if needed.
+	// Pass true to share the current user's phone number with the new contact. A corresponding rule to userPrivacySettingShowPhoneNumber will be added if needed. Use the field userFullInfo.need_phone_number_privacy_exception to check whether the current user needs to be asked to share their phone number
 	SharePhoneNumber bool
 }
 
@@ -137,7 +139,7 @@ type AnswerShippingQueryOpts struct {
 
 // ApproveSuggestedPostOpts contains optional parameters for ApproveSuggestedPost
 type ApproveSuggestedPostOpts struct {
-	// Point in time (Unix timestamp) when the post is expected to be published; pass 0 if the date has already been chosen. If specified,
+	// Point in time (Unix timestamp) when the post is expected to be published; pass 0 if the date has already been chosen. If specified, then the date must be in the future, but at most getOption("suggested_post_send_delay_max") seconds in the future
 	SendDate int32
 }
 
@@ -213,7 +215,7 @@ type ComposeRichMessageWithAiOpts struct {
 	AddEmojis bool
 	// Custom prompt that will be used instead of style_name; 0-getOption("text_composition_style_prompt_length_max") characters
 	CustomPrompt string
-	// Name of the style of the resulted text; handle updateTextCompositionStyles to get the list of supported styles; pass an empty string to keep the current style of the text or if a custom prompt is used
+	// Name of the style of the resulting text; handle updateTextCompositionStyles to get the list of supported styles; pass an empty string to keep the current style of the text or if a custom prompt is used
 	StyleName string
 	// Pass a language code to which the text will be translated; pass an empty string if translation isn't needed. See translateText.to_language_code for the list of supported values
 	TranslateToLanguageCode string
@@ -223,7 +225,7 @@ type ComposeRichMessageWithAiOpts struct {
 type ComposeTextWithAiOpts struct {
 	// Pass true to add emoji to the text
 	AddEmojis bool
-	// Name of the style of the resulted text; handle updateTextCompositionStyles to get the list of supported styles; pass an empty string to keep the current style of the text
+	// Name of the style of the resulting text; handle updateTextCompositionStyles to get the list of supported styles; pass an empty string to keep the current style of the text
 	StyleName string
 	// Pass a language code to which the text will be translated; pass an empty string if translation isn't needed. See translateText.to_language_code for the list of supported values
 	TranslateToLanguageCode string
@@ -391,7 +393,7 @@ type DeleteBotMediaPreviewsOpts struct {
 
 // DeleteChatBackgroundOpts contains optional parameters for DeleteChatBackground
 type DeleteChatBackgroundOpts struct {
-	// Pass true to restore previously set background. Can be used only in private and secret chats with non-deleted users if userFullInfo.set_chat_background == true.
+	// Pass true to restore previously set background. Can be used only in private and secret chats with non-deleted users if userFullInfo.set_chat_background == true. Supposed to be used from messageChatSetBackground messages with the currently set background that was set for both sides by the other user
 	RestorePrevious bool
 }
 
@@ -451,6 +453,12 @@ type DisconnectTonConnectSessionOpts struct {
 	Body []byte
 }
 
+// DisplayUpgradedGiftOpts contains optional parameters for DisplayUpgradedGift
+type DisplayUpgradedGiftOpts struct {
+	// Identifier of the current user or a channel chat owned by the current user on whose profile page the gift will be shown; pass null to hide the gift from all profile pages
+	OwnerId MessageSender
+}
+
 // DownloadFileOpts contains optional parameters for DownloadFile
 type DownloadFileOpts struct {
 	// Number of bytes which need to be downloaded starting from the "offset" position before the download will automatically be canceled; use 0 to download without a limit
@@ -485,7 +493,7 @@ type EditBusinessMessageChecklistOpts struct {
 
 // EditBusinessMessageLiveLocationOpts contains optional parameters for EditBusinessMessageLiveLocation
 type EditBusinessMessageLiveLocationOpts struct {
-	// New live location of the message; pass null to stop sharing the live location. If the new live_period isn't set to 0x7FFFFFFF,
+	// New live location of the message; pass null to stop sharing the live location. If the new live_period isn't set to 0x7FFFFFFF, then it must not exceed the current live_period by more than a day, and the live location expiration date must remain in the next 90 days
 	Location *LiveLocation
 	// The new message reply markup; pass null if none
 	ReplyMarkup ReplyMarkup
@@ -535,7 +543,7 @@ type EditChatSubscriptionInviteLinkOpts struct {
 
 // EditEphemeralMessageOpts contains optional parameters for EditEphemeralMessage
 type EditEphemeralMessageOpts struct {
-	// New content of the message; pass null to edit only reply markup. Must be one of the following types: inputMessageText, inputMessageAnimation,
+	// New content of the message; pass null to edit only reply markup. Must be one of the following types: inputMessageText, inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto, inputMessageRichMessage, inputMessageSticker, inputMessageVideo, inputMessageVideoNote, inputMessageVoiceNote
 	InputMessageContent InputMessageContent
 	// The new message reply markup; pass null if none
 	ReplyMarkup ReplyMarkup
@@ -573,7 +581,7 @@ type EditInlineMessageCaptionOpts struct {
 
 // EditInlineMessageLiveLocationOpts contains optional parameters for EditInlineMessageLiveLocation
 type EditInlineMessageLiveLocationOpts struct {
-	// New live location of the message; pass null to stop sharing the live location. If the new live_period isn't set to 0x7FFFFFFF,
+	// New live location of the message; pass null to stop sharing the live location. If the new live_period isn't set to 0x7FFFFFFF, then it must not exceed the current live_period by more than a day, and the live location expiration date must remain in the next 90 days
 	Location *LiveLocation
 	// The new message reply markup; pass null if none
 	ReplyMarkup ReplyMarkup
@@ -615,7 +623,7 @@ type EditMessageChecklistOpts struct {
 
 // EditMessageLiveLocationOpts contains optional parameters for EditMessageLiveLocation
 type EditMessageLiveLocationOpts struct {
-	// New live location of the message; pass null to stop sharing the live location. If the new live_period isn't set to 0x7FFFFFFF,
+	// New live location of the message; pass null to stop sharing the live location. If the new live_period isn't set to 0x7FFFFFFF, then it must not exceed the current live_period by more than a day, and the live location expiration date must remain in the next 90 days
 	Location *LiveLocation
 	// The new message reply markup; pass null if none; for bots only
 	ReplyMarkup ReplyMarkup
@@ -693,7 +701,7 @@ type ForwardMessagesOpts struct {
 	Options *MessageSendOptions
 	// Pass true to remove media captions of message copies. Ignored if send_copy is false
 	RemoveCaption bool
-	// Pass true to copy content of the messages without reference to the original sender. Always true if the messages are forwarded to a secret chat or are local.
+	// Pass true to copy content of the messages without reference to the original sender. Always true if the messages are forwarded to a secret chat or are local. Use messageProperties.can_be_copied and messageProperties.can_be_copied_to_secret_chat to check whether the message is suitable
 	SendCopy bool
 	// Topic in which the messages will be forwarded; message threads aren't supported; pass null if none
 	TopicId MessageTopic
@@ -1287,12 +1295,28 @@ type GetTrendingStickerSetsOpts struct {
 	Offset int32
 }
 
+// GetUpgradedGiftDepositInfoOpts contains optional parameters for GetUpgradedGiftDepositInfo
+type GetUpgradedGiftDepositInfoOpts struct {
+	// Pass true to hide the sender of the gift in the message received by the new owner
+	HideSender bool
+}
+
 // GetUpgradedGiftVariantsOpts contains optional parameters for GetUpgradedGiftVariants
 type GetUpgradedGiftVariantsOpts struct {
 	// Pass true to get models that can be obtained by crafting a gift from upgraded gifts
 	ReturnCraftModels bool
 	// Pass true to get models that can be obtained by upgrading a regular gift
 	ReturnUpgradeModels bool
+}
+
+// GetUserLinkOpts contains optional parameters for GetUserLink
+type GetUserLinkOpts struct {
+	// Pass true to get a link, which allows other users to send unpaid messages to the current user. By default, a temporary link is returned in this case
+	RemoveMessagesFee bool
+	// Pass true to get a permanent link; ignored if remove_messages_fee is false. Can be used only if can_get_permanent_link is true in a previously received userLink
+	ReturnPermanentLink bool
+	// Pass true to revoke previously created links, which allow other users to send unpaid messages to the current user; ignored if remove_messages_fee is false. If return_permanent_link is true, then the permanent link is revoked too; otherwise, only temporary links are revoked
+	RevokePreviousLinks bool
 }
 
 // GetUserProfileAudiosOpts contains optional parameters for GetUserProfileAudios
@@ -1621,7 +1645,7 @@ type SearchMessagesOpts struct {
 	ChatList ChatList
 	// Additional filter for type of the chat of the searched messages; pass null to search for messages in all chats
 	ChatTypeFilter SearchMessagesChatTypeFilter
-	// Additional filter for messages to search; pass null to search for all messages. Filters searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction,
+	// Additional filter for messages to search; pass null to search for all messages. Filters searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, searchMessagesFilterUnreadPollVote, searchMessagesFilterFailedToSend, and searchMessagesFilterPinned are unsupported in this function
 	Filter SearchMessagesFilter
 	// If not 0, the maximum date of the messages to return
 	MaxDate int32
@@ -1767,7 +1791,7 @@ type SendChatActionOpts struct {
 
 // SendEphemeralMessageOpts contains optional parameters for SendEphemeralMessage
 type SendEphemeralMessageOpts struct {
-	// Pass true to get a fake message instead of actually sending them
+	// Pass true to get a fake message instead of actually sending it
 	OnlyPreview bool
 	// Pass true if the content of the message must be protected from forwarding and saving; for bots only
 	ProtectContent bool
@@ -1963,7 +1987,7 @@ type SetChatAccentColorOpts struct {
 
 // SetChatAffiliateProgramOpts contains optional parameters for SetChatAffiliateProgram
 type SetChatAffiliateProgramOpts struct {
-	// Parameters of the affiliate program; pass null to close the currently active program. If there is an active program, then commission and program duration can only be increased.
+	// Parameters of the affiliate program; pass null to close the currently active program. If there is an active program, then commission and program duration can only be increased. If the active program is scheduled to be closed, then it can't be changed anymore
 	Parameters *AffiliateProgramParameters
 }
 
@@ -1975,7 +1999,7 @@ type SetChatBackgroundOpts struct {
 	DarkThemeDimming int32
 	// Pass true to set background only for self; pass false to set background for all chat users. Always false for backgrounds set in boosted chats. Background can be set for both users only by Telegram Premium users and if set background isn't of the type inputBackgroundPrevious
 	OnlyForSelf bool
-	// Background type; pass null to use default background type for the chosen background; backgroundTypeChatTheme isn't supported for private and secret chats.
+	// Background type; pass null to use default background type for the chosen background; backgroundTypeChatTheme isn't supported for private and secret chats. Use chatBoostLevelFeatures.chat_theme_background_count and chatBoostLevelFeatures.can_set_custom_background to check whether the background type can be set in the boosted chat
 	Type BackgroundType
 }
 
@@ -2027,7 +2051,7 @@ type SetCommandsOpts struct {
 
 // SetCommunityPhotoOpts contains optional parameters for SetCommunityPhoto
 type SetCommunityPhotoOpts struct {
-	// New chat photo; pass null to delete the chat photo
+	// New community photo; pass null to delete the community photo
 	Photo InputChatPhoto
 }
 
@@ -2063,7 +2087,7 @@ type SetGameScoreOpts struct {
 
 // SetGiftResalePriceOpts contains optional parameters for SetGiftResalePrice
 type SetGiftResalePriceOpts struct {
-	// The new price for the unique gift; pass null to disallow gift resale. The current user will receive
+	// The new price for the unique gift; pass null to disallow gift resale. The current user will receive getOption("gift_resale_star_earnings_per_mille") Telegram Stars for each 1000 Telegram Stars paid for the gift if the gift price is in Telegram Stars or getOption("gift_resale_gram_earnings_per_mille") TON Grams for each 1000 Grams paid for the gift if the gift price is in Grams
 	Price GiftResalePrice
 }
 
@@ -2143,6 +2167,12 @@ type SetProfilePhotoOpts struct {
 	IsPublic bool
 }
 
+// SetProfileShareThemeOpts contains optional parameters for SetProfileShareTheme
+type SetProfileShareThemeOpts struct {
+	// The new theme; pass null to use the default theme
+	Theme InputProfileShareTheme
+}
+
 // SetStickerMaskPositionOpts contains optional parameters for SetStickerMaskPosition
 type SetStickerMaskPositionOpts struct {
 	// Position where the mask is placed; pass null to remove mask position
@@ -2199,7 +2229,7 @@ type SetUserPersonalProfilePhotoOpts struct {
 
 // ShareChatWithBotOpts contains optional parameters for ShareChatWithBot
 type ShareChatWithBotOpts struct {
-	// Pass true to check that the chat can be shared by the button instead of actually sharing it. Doesn't check bot_is_member and bot_administrator_rights restrictions.
+	// Pass true to check that the chat can be shared by the button instead of actually sharing it. Doesn't check bot_is_member and bot_administrator_rights restrictions. If the bot must be a member, then all chats from getGroupsInCommon and all chats, where the user can add the bot, are suitable. In the latter case the bot will be automatically added to the chat. If the bot must be an administrator, then all chats, where the bot already has requested rights or can be added to administrators by the user, are suitable. In the latter case the bot will be automatically granted requested rights
 	OnlyCheck bool
 }
 
@@ -2549,4 +2579,10 @@ type ViewMessagesOpts struct {
 	ForceRead bool
 	// Source of the message view; pass null to guess the source based on chat open state
 	Source MessageSource
+}
+
+// WithdrawUpgradedGiftOpts contains optional parameters for WithdrawUpgradedGift
+type WithdrawUpgradedGiftOpts struct {
+	// Pass true to keep the gift displayed on the user's or the chat's profile page after withdrawal
+	KeepOnProfile bool
 }

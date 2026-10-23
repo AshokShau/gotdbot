@@ -22,8 +22,8 @@ func (c *Client) acceptResponse(obj TlObject, extra string, managerStop <-chan s
 		}
 		if u.User != nil {
 			c.meMu.Lock()
-			if c.Me != nil && u.User.Id == c.Me.Id {
-				c.Me = u.User
+			if c.me != nil && u.User.Id == c.me.Id {
+				c.me = u.User
 			}
 			c.meMu.Unlock()
 		}
@@ -42,6 +42,7 @@ func (c *Client) acceptResponse(obj TlObject, extra string, managerStop <-chan s
 				c.sendAuthError(ErrClientClosed)
 			}
 			c.closedOnce.Do(func() { close(c.closed) })
+			c.Logger.Debug("TDLib client closed", "user_id", c.Me().Id)
 		}
 	}
 

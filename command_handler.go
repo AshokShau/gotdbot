@@ -153,17 +153,12 @@ func (h *CommandHandler) matchesBot(client *Client, username string) bool {
 	if client == nil {
 		return false
 	}
-	client.meMu.RLock()
-	defer client.meMu.RUnlock()
-	if client.Me == nil {
+	me := client.Me()
+	if me.Usernames == nil {
 		return false
 	}
 
-	if client.Me.Usernames == nil {
-		return false
-	}
-
-	for _, botUsername := range client.Me.Usernames.ActiveUsernames {
+	for _, botUsername := range me.Usernames.ActiveUsernames {
 		if strings.EqualFold(botUsername, username) {
 			return true
 		}

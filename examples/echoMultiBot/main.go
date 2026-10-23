@@ -22,7 +22,7 @@ var (
 )
 
 func main() {
-	manager = gotdbot.NewClientManager("./libtdjson.so.1.8.68")
+	manager = gotdbot.NewClientManager("./libtdjson.so.1.8.69")
 
 	splitTokens := strings.SplitSeq(tokens, ",")
 
@@ -122,7 +122,7 @@ func cloneHandler(c *gotdbot.Client, msg *gotdbot.Message) error {
 		}
 		setupClient(newBot)
 
-		me := newBot.Me
+		me := newBot.Me()
 		_, _ = reply.EditText(c, me.FirstName+" has been successfully started", nil)
 	}()
 

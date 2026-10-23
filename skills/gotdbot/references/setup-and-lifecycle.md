@@ -6,9 +6,9 @@ Source anchors: `go.mod`, `consts.go`, `client.go`, `client_opts.go`, `client_au
 
 ## Prerequisites and starter
 
-The reference baseline uses Go 1.25+, GotdBot v0.10.0, and TDLib v1.8.68. Install the application dependency with `go get github.com/AshokShau/gotdbot@<chosen-version>`, preserving an existing application's version. The native TDLib schema must match the generated bindings. Read `TDLibVersion` in the source rather than selecting an unrelated latest native build.
+The reference baseline uses Go 1.25+, GotdBot v0.10.0, and TDLib v1.8.69. Install the application dependency with `go get github.com/AshokShau/gotdbot@<chosen-version>`, preserving an existing application's version. The native TDLib schema must match the generated bindings. Read `TDLibVersion` in the source rather than selecting an unrelated latest native build.
 
-The downloader in this snapshot targets v1.8.68:
+The downloader in this snapshot targets v1.8.69:
 
 ```sh
 go run github.com/AshokShau/gotdbot/scripts/tools
@@ -34,9 +34,9 @@ Copy it into a new application's `main.go`, initialize a module if needed, add G
 | `UseFileDatabase`, `UseChatInfoDatabase`, `UseMessageDatabase` | `*bool`; nil defaults to true. Set `gotdbot.Bool(false)` to disable. |
 | `UseSecretChats`, `UseTestDC` | Ordinary booleans default false. Secret chats require appropriate account/API support. |
 | `AuthorizationTimeout` | 60 seconds when missing/nonpositive. Interactive login may need more time. |
-| `RequestTimeout` | 30 seconds when missing/nonpositive; bounds request retries and send completion together. |
+| `RequestTimeout` | Disabled by default; positive values limit requests, retries and send completion. |
 | `UpdateWorkers` | Defaults to 2 when nonpositive. Use 1 for serial processing; blocking conversations need spare workers. |
-| `UpdateQueueSize` | Defaults to 1000 when nonpositive. Overflow spills to temporary files; this is not durable restart recovery. |
+| `UpdateQueueSize` | Initial memory buffer; defaults to 1000 when nonpositive. Overflow stays in memory. |
 | `ParseMode` | Empty means plain text by default. Recognized modes are HTML, Markdown, MarkdownV2. |
 | `LoadMessagesBeforeReply` | Optional message lookup before replying. Read reply helpers when diagnosing lookup failures. |
 | `AutoRetry` | Defaults to no enabled retry features. Options are `ChatNotFound`, `MessageNotFound`, `MaxFloodWait`. |
@@ -73,10 +73,10 @@ Do not invent an `AuthCallback` or password field: this version does not expose 
 
 Use `NewClient` → register handlers → `Start` (or `StartContext`) → `Idle` or an application-owned lifetime → `Close`.
 
-- `Start` waits for authorization and caches `Me`. Check its error before using identity-dependent methods.
+- `Start` waits for authorization and caches the account identity. Check its error before using identity-dependent methods.
 - `StartContext` cancellation stops waiting; it does not close the running instance. Close it if aborting startup. Cancellation also does not cancel the interactive stdin reader.
 - `Init` starts the receiver/processors without waiting for auth. Use it only for functions documented as callable before auth; it does not authorize normal sends.
-- `Me` is library-owned, refreshed by updates, and must not be modified by the application. Fetch identity with `GetMe` when a fresh value is needed.
+- `Me()` returns a non-nil, read-only snapshot safe for concurrent reads. `GetMe` fetches identity directly from TDLib.
 - `Idle` waits for SIGINT/SIGTERM or closure, then closes the client. An existing HTTP/service host can manage shutdown instead.
 - `Close` is idempotent, can be called from a handler, and performs bounded native shutdown. It does not wait for in-flight application handlers; drain application jobs separately when needed.
 - Closure unblocks pending requests/waiters with `ErrClientClosed`. A closed client is not a restartable instance.

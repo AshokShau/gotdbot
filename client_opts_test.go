@@ -10,7 +10,7 @@ import (
 
 func TestDefaultClientConfigIndependent(t *testing.T) {
 	a, b := DefaultClientConfig(), DefaultClientConfig()
-	if a.RequestTimeout != 30*time.Second || a.AuthorizationTimeout != time.Minute || a.UpdateWorkers != 2 || a.UpdateQueueSize != 1000 || a.Logger == nil || a.AutoRetry == nil {
+	if a.RequestTimeout != 0 || a.AuthorizationTimeout != time.Minute || a.UpdateWorkers != 2 || a.UpdateQueueSize != 1000 || a.Logger == nil || a.AutoRetry == nil {
 		t.Fatalf("unexpected defaults: %+v", a)
 	}
 	for _, enabled := range []*bool{a.UseFileDatabase, a.UseChatInfoDatabase, a.UseMessageDatabase} {

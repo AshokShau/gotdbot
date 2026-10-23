@@ -6,10 +6,8 @@ import (
 
 // currentBotID reads the identity cached during authorization.
 func (c *Client) currentBotID() (int64, error) {
-	c.meMu.RLock()
-	defer c.meMu.RUnlock()
-	me := c.Me
-	if me == nil {
+	me := c.Me()
+	if me.Id == 0 {
 		return 0, fmt.Errorf("client identity unavailable; call Start first")
 	}
 	if bot, ok := me.Type.(*UserTypeBot); !ok || bot == nil {

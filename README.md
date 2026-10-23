@@ -29,7 +29,7 @@ native TDLib methods and types.
 go get github.com/AshokShau/gotdbot
 ```
 
-You need **Go 1.26 or later** and a **TDLib 1.8.68** shared library matching the
+You need **Go 1.26 or later** and a **TDLib 1.8.69** shared library matching the
 bindings. Get a Telegram API ID and hash from [my.telegram.org](https://my.telegram.org),
 and a bot token from [@BotFather](https://t.me/BotFather) for a bot account.
 
@@ -106,8 +106,8 @@ func main() {
 
 Register handlers before calling `Start`. `Start` waits for authentication;
 `Idle` keeps the client running until a termination signal arrives.
-After `Start` succeeds, `bot.Me` contains the cached account identity. Use it
-when you need the account's ID or username without another `GetMe` request.
+After `Start` succeeds, `bot.Me()` returns the cached account identity without
+another request. Snapshots are safe to read concurrently; do not modify them.
 For a user account, pass a phone number instead of a bot token to `NewClient`.
 
 ## Messages
@@ -379,6 +379,15 @@ the checkout; a non-empty message rejects it.
 request timeout, update workers, retry behavior, and error/panic callbacks.
 `DefaultClientConfig` provides the defaults. Use `UpdateWorkers: 1` when handlers
 must run serially; the default is two workers.
+
+Updates queue in memory without disk spooling. `UpdateQueueSize` sets the initial
+buffer, not a limit; memory grows if handlers cannot keep up. Increase
+`UpdateWorkers` when slow handlers delay incoming commands.
+
+Requests have no timeout by default. Set `RequestTimeout` or use
+`SendWithContext` for a deadline; this stops waiting, not the TDLib operation.
+`AutoRetry.MaxFloodWait` allows one flood retry within its limit; zero disables it.
+Only the caller waits, occupying a worker when called inside a handler.
 
 `Ask` waits for a matching message in a chat using `WaitMessageOpts` filters and
 a timeout. `WaitForContext` waits for updates with cancellation. A blocking
