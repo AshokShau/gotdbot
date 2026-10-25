@@ -3,6 +3,7 @@ package gotdbot
 import (
 	"fmt"
 	"html"
+	"net/url"
 	"strings"
 	"unicode"
 	"unicode/utf16"
@@ -43,9 +44,11 @@ func renderRichText(text RichText, mode string) string {
 		if mode == ParseModeMarkdown && delimiter != "" {
 			content := RichTextContent(child)
 			if content != "" && content == strings.TrimSpace(content) {
-				return delimiter + renderRichText(child, mode) + delimiter
+				markup := renderRichText(child, mode)
+				if !strings.Contains(markup, delimiter) {
+					return delimiter + markup + delimiter
+				}
 			}
-			// CommonMark delimiters can't enclose leading/trailing spaces.
 			return "<" + tag + ">" + renderRichText(child, ParseModeMarkdown+"_html") + "</" + tag + ">"
 		}
 		return "<" + tag + ">" + renderRichText(child, mode) + "</" + tag + ">"
@@ -55,6 +58,12 @@ func renderRichText(text RichText, mode string) string {
 			return RichTextContent(child)
 		}
 		return `<a href="` + html.EscapeString(url) + `">` + renderRichText(child, mode) + `</a>`
+	}
+	anchorLink := func(name, target string, child RichText) string {
+		if target == "" {
+			target = "#" + strings.ReplaceAll(url.QueryEscape(name), "+", "%20")
+		}
+		return link(target, child)
 	}
 	switch v := formattingValue(text).(type) {
 	case RichTextPlain:
@@ -117,9 +126,9 @@ func renderRichText(text RichText, mode string) string {
 	case RichTextMentionName:
 		return link(fmt.Sprintf("tg://user?id=%d", v.UserId), v.Text)
 	case RichTextAnchorLink:
-		return link("#"+v.AnchorName, v.Text)
+		return anchorLink(v.AnchorName, v.Url, v.Text)
 	case RichTextReferenceLink:
-		return link("#"+v.ReferenceName, v.Text)
+		return anchorLink(v.ReferenceName, v.Url, v.Text)
 	case RichTextReference:
 		if mode == ParseModeNone {
 			return RichTextContent(v.Text)
@@ -147,6 +156,9 @@ func renderRichText(text RichText, mode string) string {
 		}
 		return "<tg-math>" + html.EscapeString(v.Expression) + "</tg-math>"
 	case RichTextMention:
+		if v.Username != "" {
+			return link("https://t.me/"+v.Username, v.Text)
+		}
 		return renderRichText(v.Text, mode)
 	case RichTextHashtag:
 		return renderRichText(v.Text, mode)
@@ -256,6 +268,8 @@ func formattedTextRichMessage(f *FormattedText) *RichMessage {
 				inner = RichTextPhoneNumber{Text: inner, PhoneNumber: RichTextContent(inner)}
 			case TextEntityTypeMentionName:
 				inner = RichTextMentionName{Text: inner, UserId: e.UserId}
+			case TextEntityTypeMention:
+				inner = RichTextMention{Text: inner, Username: strings.TrimPrefix(RichTextContent(inner), "@")}
 			case TextEntityTypeCustomEmoji:
 				inner = RichTextCustomEmoji{AlternativeText: RichTextContent(inner), CustomEmojiId: e.CustomEmojiId}
 			case TextEntityTypeDateTime:

@@ -114,7 +114,7 @@ func (r *richRenderer) block(block PageBlock, mode string) string {
 			var largest *PhotoSize
 			for i := range v.Photo.Sizes {
 				size := &v.Photo.Sizes[i]
-				if size.Photo != nil && (largest == nil || int64(size.Width)*int64(size.Height) > int64(largest.Width)*int64(largest.Height)) {
+				if size.Photo != nil && size.Photo.Id != 0 && (largest == nil || int64(size.Width)*int64(size.Height) > int64(largest.Width)*int64(largest.Height)) {
 					largest = size
 				}
 			}

@@ -82,3 +82,76 @@ func FuzzUnparseEntitiesUnicode(f *testing.F) {
 		}
 	})
 }
+
+func TestRichLinkTargets(t *testing.T) {
+	for _, tc := range []struct {
+		name, target string
+		text         RichText
+	}{
+		{"mention", "https://t.me/telegram", RichTextMention{Text: RichTextBold{Text: RichTextPlain{Text: "Telegram"}}, Username: "telegram"}},
+		{"local anchor", "#a%20%2B%23%25%26%22%2F%C3%A9", &RichTextAnchorLink{Text: RichTextBold{Text: RichTextPlain{Text: "Telegram"}}, AnchorName: "a +#%&\"/é"}},
+		{"local reference", "#a%20%2B%23%25%26%22%2F%C3%A9", RichTextReferenceLink{Text: RichTextBold{Text: RichTextPlain{Text: "Telegram"}}, ReferenceName: "a +#%&\"/é"}},
+		{"external anchor", "https://example.org/?a=1&amp;b=2#part", RichTextAnchorLink{Text: RichTextBold{Text: RichTextPlain{Text: "Telegram"}}, AnchorName: "part", Url: "https://example.org/?a=1&b=2#part"}},
+		{"external reference", "https://example.org/#note", &RichTextReferenceLink{Text: RichTextBold{Text: RichTextPlain{Text: "Telegram"}}, ReferenceName: "note", Url: "https://example.org/#note"}},
+		{"top", "#", RichTextAnchorLink{Text: RichTextBold{Text: RichTextPlain{Text: "Telegram"}}}},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			if got, want := RichTextHTML(tc.text), `<a href="`+tc.target+`"><b>Telegram</b></a>`; got != want {
+				t.Errorf("HTML = %q, want %q", got, want)
+			}
+			if got, want := RichTextMarkdown(tc.text), `<a href="`+tc.target+`">**Telegram**</a>`; got != want {
+				t.Errorf("Markdown = %q, want %q", got, want)
+			}
+			if got := RichTextContent(tc.text); got != "Telegram" {
+				t.Errorf("content = %q", got)
+			}
+		})
+	}
+	if got := RichTextHTML(RichTextMention{Text: RichTextPlain{Text: "unknown"}}); got != "unknown" {
+		t.Fatalf("missing username = %q", got)
+	}
+	message := &Message{Content: MessageText{Text: &FormattedText{
+		Text: "@telegram", Entities: []TextEntity{{Length: 9, Type: &TextEntityTypeMention{}}},
+	}}}
+	if got, _ := message.OriginalRichHTML(); got != "<p><a href=\"https://t.me/telegram\">@telegram</a></p>\n" {
+		t.Fatalf("converted mention = %q", got)
+	}
+}
+
+func TestRichMarkdownNestedDelimiters(t *testing.T) {
+	for _, tc := range []struct {
+		name, want string
+		text       RichText
+	}{
+		{"bold", "<b><b>nested</b></b>", RichTextBold{Text: RichTextBold{Text: RichTextPlain{Text: "nested"}}}},
+		{"italic", "<i><i>nested</i></i>", RichTextItalic{Text: RichTextItalic{Text: RichTextPlain{Text: "nested"}}}},
+		{"spoiler", "<tg-spoiler><tg-spoiler>nested</tg-spoiler></tg-spoiler>", RichTextSpoiler{Text: RichTextSpoiler{Text: RichTextPlain{Text: "nested"}}}},
+		{"strikethrough", "<s><s>nested</s></s>", RichTextStrikethrough{Text: RichTextStrikethrough{Text: RichTextPlain{Text: "nested"}}}},
+		{"marked", "<mark><mark>nested</mark></mark>", RichTextMarked{Text: RichTextMarked{Text: RichTextPlain{Text: "nested"}}}},
+		{"nested through italic", "<b><i><b>nested</b></i></b>", RichTextBold{Text: RichTextItalic{Text: RichTextBold{Text: RichTextPlain{Text: "nested"}}}}},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			if got := RichTextMarkdown(tc.text); got != tc.want {
+				t.Fatalf("Markdown = %q, want %q", got, tc.want)
+			}
+		})
+	}
+}
+
+func TestRichPhotoSkipsUnavailableSizes(t *testing.T) {
+	block := PageBlockPhoto{Photo: &Photo{Sizes: []PhotoSize{
+		{Width: 4000, Height: 3000, Photo: &File{}},
+		{Width: 1280, Height: 720, Photo: &File{Id: 123}},
+		{Width: 320, Height: 180, Photo: &File{Id: 456}},
+	}}}
+	for _, render := range []func(PageBlock) (string, []InputRichMessageMedia){RichBlockHTML, RichBlockMarkdown} {
+		text, media := render(block)
+		if !strings.Contains(text, `<img src="tg://photo?id=1"/>`) || len(media) != 1 {
+			t.Fatalf("photo = %q, %#v", text, media)
+		}
+		photo := media[0].Media.(*InputMessagePhoto).Photo
+		if photo.Photo.(*InputFileId).Id != 123 || photo.Width != 1280 || photo.Height != 720 {
+			t.Fatalf("photo = %#v", photo)
+		}
+	}
+}
