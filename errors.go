@@ -33,4 +33,6 @@ var (
 
 	// ErrNoMedia is returned when a message has no downloadable media file.
 	ErrNoMedia = errors.New("message has no downloadable media")
+
+	ErrNoWebAppData = errors.New("message does not contain Web App data")
 )
