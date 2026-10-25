@@ -1,6 +1,7 @@
 package gotdbot
 
 import (
+	"encoding/json"
 	"errors"
 	"reflect"
 	"testing"
@@ -146,5 +147,171 @@ func TestCallbackPayloadHelpers(t *testing.T) {
 				t.Fatal("password payload missing")
 			}
 		})
+	}
+}
+
+func TestStopLiveLocationAndTypingPreserveOptions(t *testing.T) {
+	c := newTestClient(t)
+	requests := captureHelperRequests(t, c)
+	location := &LiveLocation{Location: &Location{Latitude: 1, Longitude: 2}, LivePeriod: 60}
+	markup := &ReplyMarkupInlineKeyboard{}
+	opts := &EditMessageLiveLocationOpts{Location: location, ReplyMarkup: markup}
+	before := *opts
+	if _, err := (&Message{ChatId: 42, Id: 20}).StopLiveLocation(c, opts); err != nil {
+		t.Fatal(err)
+	}
+	if (*requests)[0].Location != nil || !reflect.DeepEqual(helperRequestMarkup(t, (*requests)[0]), markup) || !reflect.DeepEqual(*opts, before) {
+		t.Fatal("stop lost markup or changed caller location")
+	}
+	var request map[string]any
+	c.sendRequest = func(_ int, data []byte) {
+		if err := json.Unmarshal(data, &request); err != nil {
+			t.Fatal(err)
+		}
+		c.deliverResponse(request["@extra"].(string), &Ok{})
+	}
+	actionOpts := &SendChatActionOpts{TopicId: &MessageTopicForum{ForumTopicId: 9}}
+	if err := (&Message{ChatId: 42}).Action(c, actionOpts); err != nil {
+		t.Fatal(err)
+	}
+	if actionOpts.Action != nil || request["action"].(map[string]any)["@type"] != "chatActionTyping" {
+		t.Fatal("typing default changed caller options")
+	}
+}
+
+func TestDownloadUsesAttachedFileIDWithoutRemoteLookup(t *testing.T) {
+	c := newTestClient(t)
+	file := &File{Id: 9, Remote: &RemoteFile{Id: "remote-id"}}
+	message := &Message{Content: &MessagePhoto{Photo: &Photo{Sizes: []PhotoSize{
+		{Width: 1280, Height: 720, Photo: file},
+		{Width: 4000, Height: 3000},
+		{Width: 100, Height: 100, Photo: &File{Id: 2}},
+	}}}}
+	if message.GetFile() != file {
+		t.Fatal("file getter did not choose the largest available photo")
+	}
+	calls := 0
+	c.sendRequest = func(_ int, data []byte) {
+		calls++
+		var req struct {
+			Type        string `json:"@type"`
+			Extra       string `json:"@extra"`
+			FileID      int32  `json:"file_id"`
+			Priority    int32  `json:"priority"`
+			Offset      int64  `json:"offset"`
+			Limit       int64  `json:"limit"`
+			Synchronous bool   `json:"synchronous"`
+		}
+		if err := json.Unmarshal(data, &req); err != nil {
+			t.Fatal(err)
+		}
+		if req.Type != "downloadFile" || req.FileID != 9 || req.Priority != 10 || req.Offset != 11 || req.Limit != 12 || !req.Synchronous {
+			t.Fatalf("unexpected download request: %s", data)
+		}
+		c.deliverResponse(req.Extra, file)
+	}
+	got, err := message.Download(c, 10, &DownloadFileOpts{Offset: 11, Limit: 12, Synchronous: true})
+	if err != nil || got != file || calls != 1 {
+		t.Fatalf("download = %v, %v; calls = %d", got, err, calls)
+	}
+}
+
+func TestDownloadWithoutMediaReturnsAnErrorWithoutSending(t *testing.T) {
+	c := newTestClient(t)
+	c.sendRequest = func(int, []byte) { t.Fatal("missing media sent a request") }
+	for _, message := range []*Message{nil, {}, testMessage(42, "text"), {Content: &MessagePhoto{Photo: &Photo{}}}, {Content: (*MessageDocument)(nil)}} {
+		if file, err := message.Download(c, 10, nil); file != nil || !errors.Is(err, ErrNoMedia) {
+			t.Fatalf("missing media = %v, %v", file, err)
+		}
+	}
+}
+
+func TestMentionDispatchesBySenderType(t *testing.T) {
+	for _, sender := range []MessageSender{
+		&MessageSenderUser{UserId: 7}, MessageSenderUser{UserId: 7},
+		&MessageSenderChat{ChatId: -42}, MessageSenderChat{ChatId: -42},
+	} {
+		c := newTestClient(t)
+		calls := 0
+		c.sendRequest = func(_ int, data []byte) {
+			request := decodeTestRequest(t, data)
+			calls++
+			switch sender.(type) {
+			case *MessageSenderUser, MessageSenderUser:
+				if request.Type != "getUser" {
+					t.Fatalf("user lookup used %s", request.Type)
+				}
+				c.deliverResponse(request.Extra, &User{Id: 7, FirstName: "<User>"})
+			case *MessageSenderChat, MessageSenderChat:
+				if request.Type != "getChat" {
+					t.Fatalf("chat lookup used %s", request.Type)
+				}
+				c.deliverResponse(request.Extra, &Chat{Title: "<Chat>"})
+			}
+		}
+		got, err := (&Message{SenderId: sender}).Mention(c, "HTML")
+		want := "<Chat>"
+		switch sender.(type) {
+		case *MessageSenderUser, MessageSenderUser:
+			want = `<a href="tg://user?id=7">&lt;User&gt;</a>`
+		}
+		if err != nil || got != want || calls != 1 {
+			t.Fatalf("%T: mention/error/calls=%q/%v/%d", sender, got, err, calls)
+		}
+	}
+}
+
+func TestMentionAbsentSenderAndLookupError(t *testing.T) {
+	c := newTestClient(t)
+	for _, message := range []*Message{nil, {}, {SenderId: (*MessageSenderUser)(nil)}, {SenderId: (*MessageSenderChat)(nil)}} {
+		if _, err := message.Mention(c, "HTML"); err == nil {
+			t.Fatal("missing sender accepted")
+		}
+	}
+	failure := &Error{Code: 400, Message: "USER_NOT_FOUND"}
+	calls := 0
+	c.sendRequest = func(_ int, data []byte) {
+		request := decodeTestRequest(t, data)
+		calls++
+		if request.Type != "getUser" {
+			t.Fatalf("failed user lookup fell back to %s", request.Type)
+		}
+		c.deliverResponse(request.Extra, failure)
+	}
+	if _, err := (&Message{SenderId: &MessageSenderUser{UserId: 7}}).Mention(c, "HTML"); err != failure || calls != 1 {
+		t.Fatalf("error/calls=%v/%d", err, calls)
+	}
+}
+
+func TestMessageWebAppData(t *testing.T) {
+	content := MessageWebAppDataReceived{ButtonText: "Open app", Data: `{"item":"hat","quantity":2}`}
+	for _, value := range []MessageContent{content, &content} {
+		message := &Message{Content: value}
+		data, err := message.GetWebAppData()
+		if err != nil || data.ButtonText != content.ButtonText || data.Data != content.Data {
+			t.Fatalf("Web App data = %v, %v", data, err)
+		}
+		var payload struct {
+			Item     string `json:"item"`
+			Quantity int    `json:"quantity"`
+		}
+		if err := message.DecodeWebAppData(&payload); err != nil || payload.Item != "hat" || payload.Quantity != 2 {
+			t.Fatalf("decoded payload = %+v, %v", payload, err)
+		}
+		if err := message.DecodeWebAppData(nil); err == nil {
+			t.Fatal("nil destination accepted")
+		}
+	}
+	for _, message := range []*Message{nil, {}, {Content: (*MessageWebAppDataReceived)(nil)}, {Content: MessageText{}}, {Content: MessageWebAppDataSent{}}} {
+		if _, err := message.GetWebAppData(); !errors.Is(err, ErrNoWebAppData) {
+			t.Fatalf("missing Web App data = %v", err)
+		}
+		if err := message.DecodeWebAppData(new(any)); !errors.Is(err, ErrNoWebAppData) {
+			t.Fatalf("decoded missing data = %v", err)
+		}
+	}
+	message := &Message{Content: MessageWebAppDataReceived{Data: "not JSON"}}
+	if err := message.DecodeWebAppData(new(any)); err == nil {
+		t.Fatal("invalid JSON accepted")
 	}
 }

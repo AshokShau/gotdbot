@@ -34,3 +34,17 @@ func TestCallbackFilters(t *testing.T) {
 		t.Fatal("regex matched absent payload")
 	}
 }
+
+func TestCompileRegexReportsInvalidPatterns(t *testing.T) {
+	if filter, err := CompileRegex("["); err == nil || filter != nil {
+		t.Fatal("invalid pattern did not return an error")
+	}
+	filter, err := CompileRegex("^hello$")
+	if err != nil {
+		t.Fatal(err)
+	}
+	query := &gotdbot.UpdateNewCallbackQuery{Payload: &gotdbot.CallbackQueryPayloadData{Data: []byte("hello")}}
+	if !filter(query) || filter(nil) || filter(&gotdbot.UpdateNewCallbackQuery{}) {
+		t.Fatal("compiled callback filter did not match safely")
+	}
+}

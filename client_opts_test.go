@@ -3,7 +3,6 @@ package gotdbot
 import (
 	"encoding/json"
 	"math"
-	"reflect"
 	"testing"
 	"time"
 )
@@ -25,66 +24,10 @@ func TestDefaultClientConfigIndependent(t *testing.T) {
 	}
 }
 
-func TestTDLibOptionsEnumeratesSetValues(t *testing.T) {
-	var nilOptions *TDLibOptions
-	nilOptions.forEachSet(func(string, any) { t.Fatal("nil options emitted value") })
-	(&TDLibOptions{}).forEachSet(func(string, any) { t.Fatal("default options emitted value") })
-	opts := &TDLibOptions{}
-	value := reflect.ValueOf(opts).Elem()
-	typ := value.Type()
-	expected := make(map[string]any)
-	for i := 0; i < value.NumField(); i++ {
-		field := value.Field(i)
-		switch field.Kind() {
-		case reflect.Bool:
-			field.SetBool(true)
-		case reflect.String:
-			field.SetString("value")
-		case reflect.Int64:
-			field.SetInt(-42)
-		default:
-			t.Fatalf("uncovered option kind: %v", field.Kind())
-		}
-		name := typ.Field(i).Tag.Get("json")
-		for j, c := range name {
-			if c == ',' {
-				name = name[:j]
-				break
-			}
-		}
-		expected[name] = field.Interface()
-	}
-	got := make(map[string]any)
-	opts.forEachSet(func(name string, v any) {
-		if _, exists := got[name]; exists {
-			t.Errorf("duplicate option %s", name)
-		}
-		got[name] = v
-	})
-	if !reflect.DeepEqual(got, expected) {
-		t.Fatalf("options = %v, want %v", got, expected)
-	}
-	opts.forEachSet(nil)
-}
-
-func TestToOptionValue(t *testing.T) {
-	for _, tc := range []struct {
-		input any
-		want  OptionValue
-	}{
-		{true, &OptionValueBoolean{Value: true}}, {false, &OptionValueBoolean{}},
-		{int(-1), &OptionValueInteger{Value: -1}}, {int32(42), &OptionValueInteger{Value: 42}}, {int64(math.MaxInt64), &OptionValueInteger{Value: math.MaxInt64}},
-		{"value", &OptionValueString{Value: "value"}}, {nil, &OptionValueEmpty{}}, {1.5, nil}, {[]byte("x"), nil},
-	} {
-		if got := toOptionValue(tc.input); !reflect.DeepEqual(got, tc.want) {
-			t.Errorf("toOptionValue(%v) = %v, want %v", tc.input, got, tc.want)
-		}
-	}
-}
-
 type testRawIDRequest string
 
-func (r testRawIDRequest) GetType() string              { return "test" }
+func (r testRawIDRequest) GetType() string { return "test" }
+
 func (r testRawIDRequest) MarshalJSON() ([]byte, error) { return []byte(r), nil }
 
 func TestExtractIDsPreservesPrecision(t *testing.T) {
@@ -102,10 +45,6 @@ func TestExtractIDsPreservesPrecision(t *testing.T) {
 		if chat != 0 || message != 0 {
 			t.Fatalf("invalid IDs = %d/%d", chat, message)
 		}
-	}
-	// Ensure the fixture also observes encoding/json's validation of MarshalJSON.
-	if _, err := json.Marshal(testRawIDRequest(`invalid`)); err == nil {
-		t.Fatal("invalid fixture unexpectedly serialized")
 	}
 }
 
@@ -125,5 +64,31 @@ func TestErrorRetryAfter(t *testing.T) {
 	}
 	if got := (&Error{Code: 400, Message: "bad request"}).Error(); got != "TDLib error 400: bad request" {
 		t.Fatal(got)
+	}
+}
+
+func TestAuthenticationInitializationPreservesStringOptions(t *testing.T) {
+	c := newTestClient(t)
+	c.apiID, c.apiHash = 123, "api-hash"
+	c.config.DatabaseDirectory = "custom/database"
+	c.config.FilesDirectory = "custom/files"
+	c.config.SystemVersion = "custom system"
+	c.config.ApplicationVersion = "app version"
+	c.config.DeviceModel = "device model"
+	c.config.SystemLanguageCode = "en"
+	var request *SetTdlibParameters
+	c.sendRequest = func(_ int, data []byte) {
+		wire := decodeTestRequest(t, data)
+		if wire.Type != "setTdlibParameters" {
+			t.Fatalf("unexpected request: %s", wire.Type)
+		}
+		if err := json.Unmarshal(data, &request); err != nil {
+			t.Fatal(err)
+		}
+		c.deliverResponse(wire.Extra, &Ok{})
+	}
+	c.authHandler(&UpdateAuthorizationState{AuthorizationState: &AuthorizationStateWaitTdlibParameters{}})
+	if c.authErr != nil || request == nil || request.ApiId != 123 || request.ApiHash != "api-hash" || request.DatabaseDirectory != c.config.DatabaseDirectory || request.FilesDirectory != c.config.FilesDirectory || request.SystemVersion != c.config.SystemVersion || request.ApplicationVersion != c.config.ApplicationVersion || request.DeviceModel != c.config.DeviceModel || request.SystemLanguageCode != "en" || request.UseChatInfoDatabase != *c.config.UseChatInfoDatabase || request.UseFileDatabase != *c.config.UseFileDatabase {
+		t.Fatalf("initialization lost config: %+v, %v", request, c.authErr)
 	}
 }

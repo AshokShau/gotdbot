@@ -2,6 +2,7 @@ package tdjson
 
 import (
 	"fmt"
+	"os"
 	"path/filepath"
 	"runtime"
 	"strings"
@@ -107,5 +108,32 @@ func TestInitMissingLibraryConcurrent(t *testing.T) {
 	}
 	if name := getDefaultLibName(); name == "" {
 		t.Fatal(fmt.Errorf("missing library name for %s", runtime.GOOS))
+	}
+}
+
+func TestDefaultLibraryWorkingDirectory(t *testing.T) {
+	if runtime.GOOS != "linux" {
+		t.Skip("Linux shared-library filenames")
+	}
+	t.Chdir(t.TempDir())
+	external := t.TempDir()
+	t.Setenv("LD_LIBRARY_PATH", external)
+	if err := os.WriteFile(filepath.Join(external, "libtdjson.so.1.8.69"), nil, 0600); err != nil {
+		t.Fatal(err)
+	}
+	if got := getDefaultLibName(); got != "./libtdjson.so" {
+		t.Fatalf("searched outside working directory: %q", got)
+	}
+	if err := os.WriteFile("libtdjson.so.1.8.69", nil, 0600); err != nil {
+		t.Fatal(err)
+	}
+	if got := getDefaultLibName(); got != "./libtdjson.so.1.8.69" {
+		t.Fatalf("versioned library = %q", got)
+	}
+	if err := os.WriteFile("libtdjson.so", nil, 0600); err != nil {
+		t.Fatal(err)
+	}
+	if got := getDefaultLibName(); got != "./libtdjson.so" {
+		t.Fatalf("unversioned library = %q", got)
 	}
 }

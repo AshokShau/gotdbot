@@ -48,3 +48,17 @@ func TestRegexFilterConcurrentReuse(t *testing.T) {
 	}
 	wg.Wait()
 }
+
+func TestCompileRegexReportsInvalidPatterns(t *testing.T) {
+	if filter, err := CompileRegex("["); err == nil || filter != nil {
+		t.Fatal("invalid pattern did not return an error")
+	}
+	filter, err := CompileRegex("^hello$")
+	if err != nil {
+		t.Fatal(err)
+	}
+	message := &gotdbot.Message{Content: &gotdbot.MessageText{Text: &gotdbot.FormattedText{Text: "hello"}}}
+	if !filter(message) || filter(nil) || filter(&gotdbot.Message{}) {
+		t.Fatal("compiled message filter did not match safely")
+	}
+}

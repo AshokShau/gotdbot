@@ -5,4 +5,3 @@ database
 *.binlog
 db_*
 libtdjson.so.*
-*_test.go

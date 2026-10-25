@@ -2,6 +2,7 @@ package gotdbot
 
 import (
 	"encoding/json"
+	"strings"
 	"testing"
 	"time"
 
@@ -94,4 +95,81 @@ func startTestProcessors(c *Client, count int) {
 
 func testMessage(chatID int64, text string) *Message {
 	return &Message{ChatId: chatID, Content: &MessageText{Text: &FormattedText{Text: text}}}
+}
+
+type helperWireRequest struct {
+	Type                        string              `json:"@type"`
+	Extra                       string              `json:"@extra"`
+	ChatId                      int64               `json:"chat_id"`
+	MessageId                   int64               `json:"message_id"`
+	InlineMessageId             string              `json:"inline_message_id"`
+	BusinessConnectionId        string              `json:"business_connection_id"`
+	Location                    *LiveLocation       `json:"location"`
+	Checklist                   *InputChecklist     `json:"checklist"`
+	EphemeralMessageId          int32               `json:"ephemeral_message_id"`
+	ReceiverUserId              int64               `json:"receiver_user_id"`
+	CallbackQueryId             int64               `json:"callback_query_id,string"`
+	ReplaceCallbackQueryMessage bool                `json:"replace_callback_query_message"`
+	ProtectContent              bool                `json:"protect_content"`
+	OnlyPreview                 bool                `json:"only_preview"`
+	SendingId                   int32               `json:"sending_id"`
+	InputMessageContent         json.RawMessage     `json:"input_message_content"`
+	ReplyTo                     json.RawMessage     `json:"reply_to"`
+	ReplyMarkup                 json.RawMessage     `json:"reply_markup"`
+	TopicId                     json.RawMessage     `json:"topic_id"`
+	Options                     *MessageSendOptions `json:"options"`
+}
+
+func captureHelperRequests(t *testing.T, c *Client) *[]helperWireRequest {
+	t.Helper()
+	requests := []helperWireRequest{}
+	c.sendRequest = func(_ int, data []byte) {
+		var req helperWireRequest
+		if err := json.Unmarshal(data, &req); err != nil {
+			t.Fatal(err)
+		}
+		requests = append(requests, req)
+		var response TlObject = &Message{ChatId: req.ChatId, Id: 99}
+		switch {
+		case strings.HasPrefix(req.Type, "editInlineMessage"), req.Type == "editEphemeralMessage":
+			response = &Ok{}
+		case strings.HasPrefix(req.Type, "editBusinessMessage"):
+			response = &BusinessMessage{Message: &Message{ChatId: req.ChatId, Id: req.MessageId}}
+		}
+		c.deliverResponse(req.Extra, response)
+	}
+	return &requests
+}
+
+func helperRequestContent(t *testing.T, req helperWireRequest) InputMessageContent {
+	t.Helper()
+	content, err := UnmarshalInputMessageContent(req.InputMessageContent)
+	if err != nil {
+		t.Fatal(err)
+	}
+	return content
+}
+
+func helperRequestMarkup(t *testing.T, req helperWireRequest) ReplyMarkup {
+	t.Helper()
+	markup, err := UnmarshalReplyMarkup(req.ReplyMarkup)
+	if err != nil {
+		t.Fatal(err)
+	}
+	return markup
+}
+
+func helperReplyId(t *testing.T, req helperWireRequest) int64 {
+	t.Helper()
+	if len(req.ReplyTo) == 0 {
+		return 0
+	}
+	reply, err := UnmarshalInputMessageReplyTo(req.ReplyTo)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if reply == nil {
+		return 0
+	}
+	return reply.(*InputMessageReplyToMessage).MessageId
 }
