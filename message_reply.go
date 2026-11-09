@@ -1,5 +1,29 @@
 package gotdbot
 
+// ReplyWidget replies with an HTML widget, preserving caller-owned options.
+func (m *Message) ReplyWidget(c *Client, html string, opts *SendWidgetOpts) (*Message, error) {
+	copyOpts := SendWidgetOpts{}
+	if opts != nil {
+		copyOpts = *opts
+	}
+	if copyOpts.ReplyToMessageID == 0 && copyOpts.ReplyTo == nil {
+		copyOpts.ReplyToMessageID = m.Id
+	}
+	return c.SendWidget(m.ChatId, html, &copyOpts)
+}
+
+// ReplySharedWidget replies with an existing shared widget.
+func (m *Message) ReplySharedWidget(c *Client, widgetId int64, opts *SendWidgetOpts) (*Message, error) {
+	copyOpts := SendWidgetOpts{}
+	if opts != nil {
+		copyOpts = *opts
+	}
+	if copyOpts.ReplyToMessageID == 0 && copyOpts.ReplyTo == nil {
+		copyOpts.ReplyToMessageID = m.Id
+	}
+	return c.SendSharedWidget(m.ChatId, widgetId, &copyOpts)
+}
+
 // ReplyQuiz replies with a quiz. Explicit reply destinations take precedence.
 func (m *Message) ReplyQuiz(c *Client, question string, options []InputPollOption, correctOptionIds []int32, opts *SendQuizOpts) (*Message, error) {
 	copyOpts := SendQuizOpts{}

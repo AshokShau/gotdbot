@@ -4954,6 +4954,7 @@ func UnmarshalInputInvoice(data []byte) (InputInvoice, error) {
 //   - InputMessagePhoto
 //   - InputMessagePoll
 //   - InputMessageRichMessage
+//   - InputMessageSharedWidget
 //   - InputMessageStakeDice
 //   - InputMessageSticker
 //   - InputMessageStory
@@ -4962,6 +4963,7 @@ func UnmarshalInputInvoice(data []byte) (InputInvoice, error) {
 //   - InputMessageVideo
 //   - InputMessageVideoNote
 //   - InputMessageVoiceNote
+//   - InputMessageWidget
 type InputMessageContent interface {
 	TlObject
 	inputMessageContent()
@@ -5069,6 +5071,12 @@ func UnmarshalInputMessageContent(data []byte) (InputMessageContent, error) {
 			return nil, err
 		}
 		return &obj, nil
+	case "inputMessageSharedWidget":
+		var obj InputMessageSharedWidget
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
 	case "inputMessageStakeDice":
 		var obj InputMessageStakeDice
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -5113,6 +5121,12 @@ func UnmarshalInputMessageContent(data []byte) (InputMessageContent, error) {
 		return &obj, nil
 	case "inputMessageVoiceNote":
 		var obj InputMessageVoiceNote
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "inputMessageWidget":
+		var obj InputMessageWidget
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -5762,7 +5776,6 @@ func UnmarshalInputProfileShareTheme(data []byte) (InputProfileShareTheme, error
 }
 
 // InputStoryAreaType Describes type of clickable area on a story media to be added
-//   - InputStoryAreaTypeFoundVenue
 //   - InputStoryAreaTypeLink
 //   - InputStoryAreaTypeLocation
 //   - InputStoryAreaTypeMessage
@@ -5787,12 +5800,6 @@ func UnmarshalInputStoryAreaType(data []byte) (InputStoryAreaType, error) {
 		return nil, err
 	}
 	switch typeObj.Type {
-	case "inputStoryAreaTypeFoundVenue":
-		var obj InputStoryAreaTypeFoundVenue
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, err
-		}
-		return &obj, nil
 	case "inputStoryAreaTypeLink":
 		var obj InputStoryAreaTypeLink
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -7214,6 +7221,7 @@ func UnmarshalMaskPoint(data []byte) (MaskPoint, error) {
 //   - MessageVoiceNote
 //   - MessageWebAppDataReceived
 //   - MessageWebAppDataSent
+//   - MessageWidget
 type MessageContent interface {
 	TlObject
 	messageContent()
@@ -7875,6 +7883,12 @@ func UnmarshalMessageContent(data []byte) (MessageContent, error) {
 		return &obj, nil
 	case "messageWebAppDataSent":
 		var obj MessageWebAppDataSent
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "messageWidget":
+		var obj MessageWidget
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -15124,10 +15138,13 @@ func UnmarshalTransactionDirection(data []byte) (TransactionDirection, error) {
 //   - UpdateNewGuestQuery
 //   - UpdateNewInlineCallbackQuery
 //   - UpdateNewInlineQuery
+//   - UpdateNewInlineWidgetQuery
 //   - UpdateNewMessage
 //   - UpdateNewOauthRequest
 //   - UpdateNewPreCheckoutQuery
 //   - UpdateNewShippingQuery
+//   - UpdateNewWidgetCopyQuery
+//   - UpdateNewWidgetQuery
 //   - UpdateNotification
 //   - UpdateNotificationGroup
 //   - UpdateOption
@@ -15152,6 +15169,7 @@ func UnmarshalTransactionDirection(data []byte) (TransactionDirection, error) {
 //   - UpdateScopeNotificationSettings
 //   - UpdateSecretChat
 //   - UpdateServiceNotification
+//   - UpdateSpeechRecognitionInFile
 //   - UpdateSpeechRecognitionTrial
 //   - UpdateSpeedLimitNotification
 //   - UpdateStakeDiceState
@@ -15993,6 +16011,12 @@ func UnmarshalUpdate(data []byte) (Update, error) {
 			return nil, err
 		}
 		return &obj, nil
+	case "updateNewInlineWidgetQuery":
+		var obj UpdateNewInlineWidgetQuery
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
 	case "updateNewMessage":
 		var obj UpdateNewMessage
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -16013,6 +16037,18 @@ func UnmarshalUpdate(data []byte) (Update, error) {
 		return &obj, nil
 	case "updateNewShippingQuery":
 		var obj UpdateNewShippingQuery
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "updateNewWidgetCopyQuery":
+		var obj UpdateNewWidgetCopyQuery
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "updateNewWidgetQuery":
+		var obj UpdateNewWidgetQuery
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -16157,6 +16193,12 @@ func UnmarshalUpdate(data []byte) (Update, error) {
 		return &obj, nil
 	case "updateServiceNotification":
 		var obj UpdateServiceNotification
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "updateSpeechRecognitionInFile":
+		var obj UpdateSpeechRecognitionInFile
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -17109,6 +17151,50 @@ func UnmarshalWebProxyCarrierMessage(data []byte) (WebProxyCarrierMessage, error
 		return &obj, nil
 	case "webProxyCarrierMessageText":
 		var obj WebProxyCarrierMessageText
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	default:
+		return nil, fmt.Errorf("unknown type: %s", typeObj.Type)
+	}
+}
+
+// WidgetQueryType Describes type of a widget query
+//   - WidgetQueryTypeData
+//   - WidgetQueryTypeSentTransaction
+//   - WidgetQueryTypeSignData
+type WidgetQueryType interface {
+	TlObject
+	widgetQueryType()
+}
+
+// UnmarshalWidgetQueryType unmarshals the JSON into the correct concrete implementation of WidgetQueryType
+func UnmarshalWidgetQueryType(data []byte) (WidgetQueryType, error) {
+	if bytes.Equal(bytes.TrimSpace(data), []byte("null")) {
+		return nil, nil
+	}
+	var typeObj struct {
+		Type string `json:"@type"`
+	}
+	if err := json.Unmarshal(data, &typeObj); err != nil {
+		return nil, err
+	}
+	switch typeObj.Type {
+	case "widgetQueryTypeData":
+		var obj WidgetQueryTypeData
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "widgetQueryTypeSentTransaction":
+		var obj WidgetQueryTypeSentTransaction
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "widgetQueryTypeSignData":
+		var obj WidgetQueryTypeSignData
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}

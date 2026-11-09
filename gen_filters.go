@@ -527,6 +527,10 @@ type UpdateNewInlineCallbackQueryFilter func(u *UpdateNewInlineCallbackQuery) bo
 // A new incoming inline query; for bots only
 type UpdateNewInlineQueryFilter func(u *UpdateNewInlineQuery) bool
 
+// UpdateNewInlineWidgetQueryFilter filters UpdateNewInlineWidgetQuery updates.
+// A new incoming widget query from a message sent via a bot; for bots only
+type UpdateNewInlineWidgetQueryFilter func(u *UpdateNewInlineWidgetQuery) bool
+
 // UpdateNewMessageFilter filters UpdateNewMessage updates.
 // A new message was received; can also be an outgoing message
 type UpdateNewMessageFilter func(u *UpdateNewMessage) bool
@@ -542,6 +546,14 @@ type UpdateNewPreCheckoutQueryFilter func(u *UpdateNewPreCheckoutQuery) bool
 // UpdateNewShippingQueryFilter filters UpdateNewShippingQuery updates.
 // A new incoming shipping query; for bots only. Only for invoices with flexible price
 type UpdateNewShippingQueryFilter func(u *UpdateNewShippingQuery) bool
+
+// UpdateNewWidgetCopyQueryFilter filters UpdateNewWidgetCopyQuery updates.
+// A new incoming widget query from a copy of a shared widget; for bots only
+type UpdateNewWidgetCopyQueryFilter func(u *UpdateNewWidgetCopyQuery) bool
+
+// UpdateNewWidgetQueryFilter filters UpdateNewWidgetQuery updates.
+// A new incoming widget query; for bots only
+type UpdateNewWidgetQueryFilter func(u *UpdateNewWidgetQuery) bool
 
 // UpdateNotificationFilter filters UpdateNotification updates.
 // A notification was changed
@@ -642,6 +654,10 @@ type UpdateSecretChatFilter func(u *UpdateSecretChat) bool
 // UpdateServiceNotificationFilter filters UpdateServiceNotification updates.
 // A service notification from the server was received. Upon receiving this the application must show a popup with the content of the notification
 type UpdateServiceNotificationFilter func(u *UpdateServiceNotification) bool
+
+// UpdateSpeechRecognitionInFileFilter filters UpdateSpeechRecognitionInFile updates.
+// Speech in an audio file was partially recognized. The final result will be returned by the corresponding recognizeSpeechInFile request
+type UpdateSpeechRecognitionInFileFilter func(u *UpdateSpeechRecognitionInFile) bool
 
 // UpdateSpeechRecognitionTrialFilter filters UpdateSpeechRecognitionTrial updates.
 // The parameters of speech recognition without Telegram Premium subscription have changed

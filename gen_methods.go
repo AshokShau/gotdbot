@@ -143,6 +143,19 @@ func (c *Client) AddChecklistTasks(chatId int64, messageId int64, tasks []InputC
 	return err
 }
 
+// AddCommunityChat Adds a chat to a community. If the current user isn't allowed to change the list of chats in the community, then a request to add the chat is sent to administrators of the community instead and the method fails with the error "COMMUNITY_REQUEST_CREATED"
+func (c *Client) AddCommunityChat(chatId int64, communityId int64, opts *AddCommunityChatOpts) error {
+	req := &AddCommunityChat{
+		ChatId:      chatId,
+		CommunityId: communityId,
+	}
+	if opts != nil {
+		req.IsHidden = opts.IsHidden
+	}
+	_, err := c.Send(req)
+	return err
+}
+
 // AddContact Adds a user to the contact list or edits an existing contact by their user identifier
 func (c *Client) AddContact(userId int64, opts *AddContactOpts) error {
 	req := &AddContact{
@@ -617,6 +630,16 @@ func (c *Client) AnswerWebAppQuery(result InputInlineQueryResult, webAppQueryId 
 		return nil, err
 	}
 	return responseAs[*InlineMessageId](resp)
+}
+
+// AnswerWidgetQuery Sets the result of a widget query; for bots only
+func (c *Client) AnswerWidgetQuery(data string, widgetQueryId int64) error {
+	req := &AnswerWidgetQuery{
+		Data:          data,
+		WidgetQueryId: widgetQueryId,
+	}
+	_, err := c.Send(req)
+	return err
 }
 
 // ApplyPremiumGiftCode Applies a Telegram Premium gift code
@@ -2896,6 +2919,21 @@ func (c *Client) EditInlineMessageText(inlineMessageId string, inputMessageConte
 	return err
 }
 
+// EditInlineMessageWidgetData Edits data of a widget in an inline message sent via the bot; for bots only
+func (c *Client) EditInlineMessageWidgetData(chatData string, inlineMessageId string, publicData string, opts *EditInlineMessageWidgetDataOpts) error {
+	req := &EditInlineMessageWidgetData{
+		ChatData:        chatData,
+		InlineMessageId: inlineMessageId,
+		PublicData:      publicData,
+	}
+	if opts != nil {
+		req.EditChatData = opts.EditChatData
+		req.EditPublicData = opts.EditPublicData
+	}
+	_, err := c.Send(req)
+	return err
+}
+
 // EditMessageCaptionText Edits the message content caption. Returns the edited message after the edit is completed on the server side
 func (c *Client) EditMessageCaptionText(chatId int64, messageId int64, opts *EditMessageCaptionTextOpts) (*Message, error) {
 	req := &EditMessageCaption{
@@ -3011,6 +3049,22 @@ func (c *Client) EditMessageTextContent(chatId int64, inputMessageContent InputM
 	return responseAs[*Message](resp)
 }
 
+// EditMessageWidgetData Edits data of a widget sent by the bot; for bots only
+func (c *Client) EditMessageWidgetData(chatData string, chatId int64, messageId int64, publicData string, opts *EditMessageWidgetDataOpts) error {
+	req := &EditMessageWidgetData{
+		ChatData:   chatData,
+		ChatId:     chatId,
+		MessageId:  messageId,
+		PublicData: publicData,
+	}
+	if opts != nil {
+		req.EditChatData = opts.EditChatData
+		req.EditPublicData = opts.EditPublicData
+	}
+	_, err := c.Send(req)
+	return err
+}
+
 // EditProxy Edits an existing proxy server for network requests. Can be called before authorization
 func (c *Client) EditProxy(proxy *Proxy, proxyId int32, opts *EditProxyOpts) (*AddedProxy, error) {
 	req := &EditProxy{
@@ -3077,6 +3131,19 @@ func (c *Client) EditStoryCover(coverFrameTimestamp float64, storyId int32, stor
 	return err
 }
 
+// EditStoryMusic Changes music attached to a story. Can be called only if story.can_be_edited == true and the story isn't being edited now
+func (c *Client) EditStoryMusic(storyId int32, storyPosterChatId int64, opts *EditStoryMusicOpts) error {
+	req := &EditStoryMusic{
+		StoryId:           storyId,
+		StoryPosterChatId: storyPosterChatId,
+	}
+	if opts != nil {
+		req.Music = opts.Music
+	}
+	_, err := c.Send(req)
+	return err
+}
+
 // EditTextCompositionStyle Edits a custom text composition style that was created by the current user
 func (c *Client) EditTextCompositionStyle(customEmojiId int64, name string, prompt string, title string, opts *EditTextCompositionStyleOpts) (*TextCompositionStyle, error) {
 	req := &EditTextCompositionStyle{
@@ -3103,6 +3170,17 @@ func (c *Client) EditUserStarSubscription(telegramPaymentChargeId string, userId
 	}
 	if opts != nil {
 		req.IsCanceled = opts.IsCanceled
+	}
+	_, err := c.Send(req)
+	return err
+}
+
+// EditWidgetData Edits public data of a shared widget created by the bot; for bots only
+func (c *Client) EditWidgetData(cacheTime int32, publicData string, widgetId int64) error {
+	req := &EditWidgetData{
+		CacheTime:  cacheTime,
+		PublicData: publicData,
+		WidgetId:   widgetId,
 	}
 	_, err := c.Send(req)
 	return err
@@ -3179,6 +3257,30 @@ func (c *Client) FinishFileGeneration(generationId int64, opts *FinishFileGenera
 	}
 	_, err := c.Send(req)
 	return err
+}
+
+// FixRecognizedRichMessageWithAi Fixes a rich message with text received as a result of speech recognition using an AI model by correcting recognition errors and adding punctuation. May return an error with a message "AICOMPOSE_FLOOD_PREMIUM" if Telegram Premium is required to send further requests
+func (c *Client) FixRecognizedRichMessageWithAi(message *InputRichMessage) (*RichMessage, error) {
+	req := &FixRecognizedRichMessageWithAi{
+		Message: message,
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return responseAs[*RichMessage](resp)
+}
+
+// FixRecognizedTextWithAi Fixes text received as a result of speech recognition using an AI model by correcting recognition errors and adding punctuation; must not be used in secret chats. May return an error with a message "AICOMPOSE_FLOOD_PREMIUM" if Telegram Premium is required to send further requests
+func (c *Client) FixRecognizedTextWithAi(text *FormattedText) (*FormattedText, error) {
+	req := &FixRecognizedTextWithAi{
+		Text: text,
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return responseAs[*FormattedText](resp)
 }
 
 // FixRichMessageWithAi Fixes a rich message using an AI model. May return an error with a message "AICOMPOSE_FLOOD_PREMIUM" if Telegram Premium is required to send further requests
@@ -3724,7 +3826,7 @@ func (c *Client) GetChatAdministrators(chatId int64) (*ChatAdministrators, error
 	return responseAs[*ChatAdministrators](resp)
 }
 
-// GetChatArchivedStories Returns the list of all stories posted by the given chat; requires can_edit_stories administrator right in the chat. The stories are returned in reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
+// GetChatArchivedStories Returns the list of all stories posted by the given chat; requires can_edit_stories administrator right in the chat. The stories are returned in reverse chronological order (i.e., in order of decreasing story.id). For optimal performance, the number of returned stories is chosen by TDLib
 func (c *Client) GetChatArchivedStories(chatId int64, limit int32, opts *GetChatArchivedStoriesOpts) (*Stories, error) {
 	req := &GetChatArchivedStories{
 		ChatId: chatId,
@@ -3844,7 +3946,7 @@ func (c *Client) GetChatBoostStatus(chatId int64) (*ChatBoostStatus, error) {
 	return responseAs[*ChatBoostStatus](resp)
 }
 
-// GetChatEventLog Returns a list of service actions taken by chat members and administrators in the last 48 hours. Available only in supergroups and channels. Requires administrator rights. Returns results in reverse chronological order (i.e., in order of decreasing event_id)
+// GetChatEventLog Returns a list of service actions taken by chat members and administrators in the last 48 hours. Available only in supergroups and channels. Requires administrator rights. Returns results in reverse chronological order (i.e., in order of decreasing chatEvent.id)
 func (c *Client) GetChatEventLog(chatId int64, limit int32, userIds []int64, opts *GetChatEventLogOpts) (*ChatEvents, error) {
 	req := &GetChatEventLog{
 		ChatId:  chatId,
@@ -3935,7 +4037,7 @@ func (c *Client) GetChatFolderNewChats(chatFolderId int32) (*Chats, error) {
 	return responseAs[*Chats](resp)
 }
 
-// GetChatHistory Returns messages in a chat. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib. This is an offline method if only_local is true
+// GetChatHistory Returns messages in a chat. The messages are returned in reverse chronological order (i.e., in order of decreasing message.id). For optimal performance, the number of returned messages is chosen by TDLib. This is an offline method if only_local is true
 func (c *Client) GetChatHistory(chatId int64, limit int32, opts *GetChatHistoryOpts) (*Messages, error) {
 	req := &GetChatHistory{
 		ChatId: chatId,
@@ -4160,7 +4262,7 @@ func (c *Client) GetChatPinnedMessage(chatId int64) (*Message, error) {
 	return responseAs[*Message](resp)
 }
 
-// GetChatPostedToChatPageStories Returns the list of stories that were posted by the given chat to its chat page. If from_story_id == 0, then pinned stories are returned first. Then, stories are returned in reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
+// GetChatPostedToChatPageStories Returns the list of stories that were posted by the given chat to its chat page. If from_story_id == 0, then pinned stories are returned first. Then, stories are returned in reverse chronological order (i.e., in order of decreasing story.id). For optimal performance, the number of returned stories is chosen by TDLib
 func (c *Client) GetChatPostedToChatPageStories(chatId int64, limit int32, opts *GetChatPostedToChatPageStoriesOpts) (*Stories, error) {
 	req := &GetChatPostedToChatPageStories{
 		ChatId: chatId,
@@ -4235,7 +4337,7 @@ func (c *Client) GetChats(limit int32, opts *GetChatsOpts) (*Chats, error) {
 	return responseAs[*Chats](resp)
 }
 
-// GetChatScheduledMessages Returns all scheduled messages in a chat. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id)
+// GetChatScheduledMessages Returns all scheduled messages in a chat. The messages are returned in reverse chronological order (i.e., in order of decreasing message.id)
 func (c *Client) GetChatScheduledMessages(chatId int64) (*Messages, error) {
 	req := &GetChatScheduledMessages{
 		ChatId: chatId,
@@ -4408,6 +4510,20 @@ func (c *Client) GetCommands(opts *GetCommandsOpts) (*BotCommands, error) {
 	return responseAs[*BotCommands](resp)
 }
 
+// GetCommunityAddChatRequests Returns pending requests to add chats to a community. Administrators of the community with can_edit_chat_list right receive all requests; other users receive only requests sent by them
+func (c *Client) GetCommunityAddChatRequests(communityId int64, limit int32, offset string) (*CommunityAddChatRequests, error) {
+	req := &GetCommunityAddChatRequests{
+		CommunityId: communityId,
+		Limit:       limit,
+		Offset:      offset,
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return responseAs[*CommunityAddChatRequests](resp)
+}
+
 // GetCommunityFullInfo Returns full information about a community
 func (c *Client) GetCommunityFullInfo(communityId int64) (*CommunityFullInfo, error) {
 	req := &GetCommunityFullInfo{
@@ -4418,6 +4534,19 @@ func (c *Client) GetCommunityFullInfo(communityId int64) (*CommunityFullInfo, er
 		return nil, err
 	}
 	return responseAs[*CommunityFullInfo](resp)
+}
+
+// GetCommunityMemberChats Returns chats in a community, which were joined by a member of the community; requires can_ban_members administrator right in the community. Can be used to show chats that will be affected by the member ban
+func (c *Client) GetCommunityMemberChats(communityId int64, memberId MessageSender) (*CommunityMemberChats, error) {
+	req := &GetCommunityMemberChats{
+		CommunityId: communityId,
+		MemberId:    memberId,
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return responseAs[*CommunityMemberChats](resp)
 }
 
 // GetConnectedAffiliateProgram Returns an affiliate program that was connected to the given affiliate by identifier of the bot that created the program
@@ -4674,7 +4803,7 @@ func (c *Client) GetDirectMessagesChatTopic(chatId int64, topicId int64) (*Direc
 	return responseAs[*DirectMessagesChatTopic](resp)
 }
 
-// GetDirectMessagesChatTopicHistory Returns messages in the topic in a channel direct messages chat administered by the current user. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id)
+// GetDirectMessagesChatTopicHistory Returns messages in the topic in a channel direct messages chat administered by the current user. The messages are returned in reverse chronological order (i.e., in order of decreasing message.id)
 func (c *Client) GetDirectMessagesChatTopicHistory(chatId int64, limit int32, topicId int64, opts *GetDirectMessagesChatTopicHistoryOpts) (*Messages, error) {
 	req := &GetDirectMessagesChatTopicHistory{
 		ChatId:  chatId,
@@ -4876,7 +5005,7 @@ func (c *Client) GetForumTopicDefaultIcons() (*Stickers, error) {
 	return responseAs[*Stickers](resp)
 }
 
-// GetForumTopicHistory Returns messages in a topic in a forum supergroup chat or a chat with a bot with topics. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
+// GetForumTopicHistory Returns messages in a topic in a forum supergroup chat or a chat with a bot with topics. The messages are returned in reverse chronological order (i.e., in order of decreasing message.id). For optimal performance, the number of returned messages is chosen by TDLib
 func (c *Client) GetForumTopicHistory(chatId int64, forumTopicId int32, limit int32, opts *GetForumTopicHistoryOpts) (*Messages, error) {
 	req := &GetForumTopicHistory{
 		ChatId:       chatId,
@@ -4894,7 +5023,7 @@ func (c *Client) GetForumTopicHistory(chatId int64, forumTopicId int32, limit in
 	return responseAs[*Messages](resp)
 }
 
-// GetForumTopicLink Returns an HTTPS link to a topic in a forum supergroup chat. This is an offline method
+// GetForumTopicLink Returns an HTTPS link to a topic in a forum supergroup chat or a chat with a bot. This is an offline method
 func (c *Client) GetForumTopicLink(chatId int64, forumTopicId int32) (*MessageLink, error) {
 	req := &GetForumTopicLink{
 		ChatId:       chatId,
@@ -5278,6 +5407,16 @@ func (c *Client) GetInternalLinkType(link string) (InternalLinkType, error) {
 		return nil, err
 	}
 	return responseAs[InternalLinkType](resp)
+}
+
+// GetJoinedCommunities Returns the list of communities joined by the current user
+func (c *Client) GetJoinedCommunities() (*Communities, error) {
+	req := &GetJoinedCommunities{}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return responseAs[*Communities](resp)
 }
 
 // GetJsonString Converts a JsonValue object to corresponding JSON-serialized string. Can be called synchronously
@@ -5864,7 +6003,7 @@ func (c *Client) GetMessageThread(chatId int64, messageId int64) (*MessageThread
 	return responseAs[*MessageThreadInfo](resp)
 }
 
-// GetMessageThreadHistory Returns messages in a message thread of a message. Can be used only if messageProperties.can_get_message_thread == true. Message thread of a channel message is in the channel's linked supergroup. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
+// GetMessageThreadHistory Returns messages in a message thread of a message. Can be used only if messageProperties.can_get_message_thread == true. Message thread of a channel message is in the channel's linked supergroup. The messages are returned in reverse chronological order (i.e., in order of decreasing message.id). For optimal performance, the number of returned messages is chosen by TDLib
 func (c *Client) GetMessageThreadHistory(chatId int64, limit int32, messageId int64, opts *GetMessageThreadHistoryOpts) (*Messages, error) {
 	req := &GetMessageThreadHistory{
 		ChatId:    chatId,
@@ -6592,7 +6731,7 @@ func (c *Client) GetSavedMessagesTags(savedMessagesTopicId int64) (*SavedMessage
 	return responseAs[*SavedMessagesTags](resp)
 }
 
-// GetSavedMessagesTopicHistory Returns messages in a Saved Messages topic. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id)
+// GetSavedMessagesTopicHistory Returns messages in a Saved Messages topic. The messages are returned in reverse chronological order (i.e., in order of decreasing message.id)
 func (c *Client) GetSavedMessagesTopicHistory(limit int32, savedMessagesTopicId int64, opts *GetSavedMessagesTopicHistoryOpts) (*Messages, error) {
 	req := &GetSavedMessagesTopicHistory{
 		Limit:                limit,
@@ -6701,6 +6840,18 @@ func (c *Client) GetSecretChat(secretChatId int32) (*SecretChat, error) {
 		return nil, err
 	}
 	return responseAs[*SecretChat](resp)
+}
+
+// GetSpeechRecognitionLanguages Returns 1-3 most probable languages of speech in voice notes
+func (c *Client) GetSpeechRecognitionLanguages(chatId int64) (*SpeechRecognitionLanguages, error) {
+	req := &GetSpeechRecognitionLanguages{
+		ChatId: chatId,
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return responseAs[*SpeechRecognitionLanguages](resp)
 }
 
 // GetStakeDiceState Returns the current state of stake dice
@@ -7074,6 +7225,16 @@ func (c *Client) GetSuggestedStickerSetName(title string) (*Text, error) {
 	return responseAs[*Text](resp)
 }
 
+// GetSuitableCommunityChats Returns a list of supergroup and channel chats owned by the current user, which can be added to a community
+func (c *Client) GetSuitableCommunityChats() (*Chats, error) {
+	req := &GetSuitableCommunityChats{}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return responseAs[*Chats](resp)
+}
+
 // GetSuitableDiscussionChats Returns a list of basic group and supergroup chats, which can be used as a discussion group for a channel. Returned basic group chats must be first upgraded to supergroups before they can be set as a discussion group. To set a returned supergroup as a discussion group, access to its old messages must be enabled using toggleSupergroupIsAllHistoryAvailable first
 func (c *Client) GetSuitableDiscussionChats() (*Chats, error) {
 	req := &GetSuitableDiscussionChats{}
@@ -7176,6 +7337,18 @@ func (c *Client) GetTextCompositionStyleExample(exampleNumber int32, name string
 		return nil, err
 	}
 	return responseAs[*TextCompositionStyleExample](resp)
+}
+
+// GetTextEmojiRanges Returns positions of all emoji found in the text in order of their appearance. Can be called synchronously
+func (c *Client) GetTextEmojiRanges(text string) (*TextRanges, error) {
+	req := &GetTextEmojiRanges{
+		Text: text,
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return responseAs[*TextRanges](resp)
 }
 
 // GetTextEntities Returns all entities (mentions, hashtags, cashtags, bot commands, bank card numbers, TON blockchain addresses, URLs, and email addresses) found in the text. Can be called synchronously
@@ -7742,6 +7915,34 @@ func (c *Client) GetWebPageInstantView(url string, opts *GetWebPageInstantViewOp
 	return responseAs[*WebPageInstantView](resp)
 }
 
+// GetWidgetPublicData Returns the current public data of a widget. Must be called only if the widget is visible on the screen and asked to poll its public data
+func (c *Client) GetWidgetPublicData(chatId int64, messageId int64) (*WidgetPublicData, error) {
+	req := &GetWidgetPublicData{
+		ChatId:    chatId,
+		MessageId: messageId,
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return responseAs[*WidgetPublicData](resp)
+}
+
+// GetWidgetQueryAnswer Sends a widget query to a bot and returns an answer. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires
+func (c *Client) GetWidgetQueryAnswer(chatId int64, data []byte, messageId int64, queryType WidgetQueryType) (*WidgetQueryAnswer, error) {
+	req := &GetWidgetQueryAnswer{
+		ChatId:    chatId,
+		Data:      data,
+		MessageId: messageId,
+		QueryType: queryType,
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return responseAs[*WidgetQueryAnswer](resp)
+}
+
 // GiftPremiumWithStars Allows to buy a Telegram Premium subscription for another user with payment in Telegram Stars; for bots only
 func (c *Client) GiftPremiumWithStars(monthCount int32, starCount int64, text *FormattedText, userId int64) error {
 	req := &GiftPremiumWithStars{
@@ -7952,7 +8153,7 @@ func (c *Client) ListenToAudio(audioFileId int32, duration int32) error {
 	return err
 }
 
-// LoadActiveStories Loads more active stories from a story list. The loaded stories will be sent through updates. Active stories are sorted by the pair (active_stories.order, active_stories.story_poster_chat_id) in descending order. Returns a 404 error if all active stories have been loaded
+// LoadActiveStories Loads more active stories from a story list. The loaded stories will be sent through updates. Active stories are sorted by the pair (active_stories.order, active_stories.chat_id) in descending order. Returns a 404 error if all active stories have been loaded
 func (c *Client) LoadActiveStories(storyList StoryList) error {
 	req := &LoadActiveStories{
 		StoryList: storyList,
@@ -8248,6 +8449,7 @@ func (c *Client) PostStory(activePeriod int32, albumIds []int32, chatId int64, c
 		req.Caption = opts.Caption
 		req.FromStoryFullId = opts.FromStoryFullId
 		req.IsPostedToChatPage = opts.IsPostedToChatPage
+		req.Music = opts.Music
 		req.ProtectContent = opts.ProtectContent
 	}
 	resp, err := c.Send(req)
@@ -8317,6 +8519,31 @@ func (c *Client) ProcessChatJoinRequests(chatId int64, opts *ProcessChatJoinRequ
 	if opts != nil {
 		req.Approve = opts.Approve
 		req.InviteLink = opts.InviteLink
+	}
+	_, err := c.Send(req)
+	return err
+}
+
+// ProcessCommunityAddChatRequest Handles a pending request to add a chat to a community; requires can_edit_chat_list administrator right in the community
+func (c *Client) ProcessCommunityAddChatRequest(chatId int64, communityId int64, opts *ProcessCommunityAddChatRequestOpts) error {
+	req := &ProcessCommunityAddChatRequest{
+		ChatId:      chatId,
+		CommunityId: communityId,
+	}
+	if opts != nil {
+		req.Approve = opts.Approve
+	}
+	_, err := c.Send(req)
+	return err
+}
+
+// ProcessCommunityAddChatRequests Handles all pending requests to add chats to a community; requires can_edit_chat_list administrator right in the community
+func (c *Client) ProcessCommunityAddChatRequests(communityId int64, opts *ProcessCommunityAddChatRequestsOpts) error {
+	req := &ProcessCommunityAddChatRequests{
+		CommunityId: communityId,
+	}
+	if opts != nil {
+		req.Approve = opts.Approve
 	}
 	_, err := c.Send(req)
 	return err
@@ -8492,6 +8719,19 @@ func (c *Client) RecognizeSpeech(chatId int64, messageId int64) error {
 	return err
 }
 
+// RecognizeSpeechInFile Recognizes speech in an audio file and returns the recognized text. The file must be in OGG format with Opus codec and must have size up to 1 MB. The same rules as for recognizeSpeech apply to the Telegram Premium requirement and speech recognition trial; must not be used in secret chats
+func (c *Client) RecognizeSpeechInFile(audioFile InputFile, recognitionId int64) (*Text, error) {
+	req := &RecognizeSpeechInFile{
+		AudioFile:     audioFile,
+		RecognitionId: recognitionId,
+	}
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return responseAs[*Text](resp)
+}
+
 // RecoverAuthenticationPassword Recovers the 2-step verification password with a password recovery code sent to an email address that was previously set up. Works only when the current authorization state is authorizationStateWaitPassword
 func (c *Client) RecoverAuthenticationPassword(recoveryCode string, opts *RecoverAuthenticationPasswordOpts) error {
 	req := &RecoverAuthenticationPassword{
@@ -8589,6 +8829,16 @@ func (c *Client) RemoveBusinessConnectedBotFromChat(chatId int64) error {
 func (c *Client) RemoveChatActionBar(chatId int64) error {
 	req := &RemoveChatActionBar{
 		ChatId: chatId,
+	}
+	_, err := c.Send(req)
+	return err
+}
+
+// RemoveCommunityChat Removes a chat from a community. Members of the chat, which aren't members of other chats in the community, will be removed from the community. Requires owner privileges in the supergroup or channel chat, or ownership of the bot for chats with bots, or can_edit_chat_list administrator right in the community
+func (c *Client) RemoveCommunityChat(chatId int64, communityId int64) error {
+	req := &RemoveCommunityChat{
+		ChatId:      chatId,
+		CommunityId: communityId,
 	}
 	_, err := c.Send(req)
 	return err
@@ -9020,8 +9270,8 @@ func (c *Client) ReplaceVideoChatRtmpUrl(chatId int64) (*RtmpUrl, error) {
 	return responseAs[*RtmpUrl](resp)
 }
 
-// ReplyToCallbackQueryWithEphemeralMessage Replies to a callback query with an ephemeral message; for bots only
-func (c *Client) ReplyToCallbackQueryWithEphemeralMessage(callbackQueryId int64, inputMessageContent InputMessageContent, opts *ReplyToCallbackQueryWithEphemeralMessageOpts) error {
+// ReplyToCallbackQueryWithEphemeralMessage Replies to a callback query with an ephemeral message; for bots only. Returns the sent message
+func (c *Client) ReplyToCallbackQueryWithEphemeralMessage(callbackQueryId int64, inputMessageContent InputMessageContent, opts *ReplyToCallbackQueryWithEphemeralMessageOpts) (*Message, error) {
 	req := &ReplyToCallbackQueryWithEphemeralMessage{
 		CallbackQueryId:     callbackQueryId,
 		InputMessageContent: inputMessageContent,
@@ -9031,8 +9281,11 @@ func (c *Client) ReplyToCallbackQueryWithEphemeralMessage(callbackQueryId int64,
 		req.ReplaceCallbackQueryMessage = opts.ReplaceCallbackQueryMessage
 		req.ReplyMarkup = opts.ReplyMarkup
 	}
-	_, err := c.Send(req)
-	return err
+	resp, err := c.Send(req)
+	if err != nil {
+		return nil, err
+	}
+	return responseAs[*Message](resp)
 }
 
 // ReportAuthenticationCodeMissing Reports that authentication code wasn't delivered via SMS; for official mobile applications only. Works only when the current authorization state is authorizationStateWaitCode
@@ -9412,7 +9665,7 @@ func (c *Client) SearchBackground(name string) (*Background, error) {
 	return responseAs[*Background](resp)
 }
 
-// SearchCallMessages Searches for call and group call messages. Returns the results in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
+// SearchCallMessages Searches for call and group call messages. Returns the results in reverse chronological order (i.e., in order of decreasing message.id). For optimal performance, the number of returned messages is chosen by TDLib
 func (c *Client) SearchCallMessages(limit int32, opts *SearchCallMessagesOpts) (*FoundMessages, error) {
 	req := &SearchCallMessages{
 		Limit: limit,
@@ -9458,7 +9711,7 @@ func (c *Client) SearchChatMembers(chatId int64, limit int32, query string, opts
 	return responseAs[*ChatMembers](resp)
 }
 
-// SearchChatMessages Searches for messages with given words in the chat. Returns the results in reverse chronological order, i.e. in order of decreasing message_id. Cannot be used in secret chats with a non-empty query (searchSecretMessages must be used instead), or without an enabled message database. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit. A combination of query, sender_id, filter and topic_id search criteria is expected to be supported, only if it is required for Telegram official application implementation
+// SearchChatMessages Searches for messages with given words in the chat. Returns the results in reverse chronological order, i.e. in order of decreasing message.id. Cannot be used in secret chats with a non-empty query (searchSecretMessages must be used instead), or without an enabled message database. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit. A combination of query, sender_id, filter and topic_id search criteria is expected to be supported, only if it is required for Telegram official application implementation
 func (c *Client) SearchChatMessages(chatId int64, limit int32, query string, opts *SearchChatMessagesOpts) (*FoundChatMessages, error) {
 	req := &SearchChatMessages{
 		ChatId: chatId,
@@ -9619,7 +9872,7 @@ func (c *Client) SearchInstalledStickerSets(limit int32, query string, stickerTy
 	return responseAs[*StickerSets](resp)
 }
 
-// SearchMessages Searches for messages in all chats except secret chats. Returns the results in reverse chronological order (i.e., in order of decreasing (date, chat_id, message_id)). For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+// SearchMessages Searches for messages in all chats except secret chats. Returns the results in reverse chronological order (i.e., in order of decreasing (message.date, message.chat_id, message.id)). For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
 func (c *Client) SearchMessages(limit int32, query string, opts *SearchMessagesOpts) (*FoundMessages, error) {
 	req := &SearchMessages{
 		Limit: limit,
@@ -9793,7 +10046,7 @@ func (c *Client) SearchRecentlyFoundChats(limit int32, query string, opts *Searc
 	return responseAs[*Chats](resp)
 }
 
-// SearchSavedMessages Searches for messages tagged by the given reaction and with the given words in the Saved Messages chat; for Telegram Premium users only. Returns the results in reverse chronological order, i.e. in order of decreasing message_id. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+// SearchSavedMessages Searches for messages tagged by the given reaction and with the given words in the Saved Messages chat; for Telegram Premium users only. Returns the results in reverse chronological order, i.e. in order of decreasing message.id. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
 func (c *Client) SearchSavedMessages(limit int32, query string, opts *SearchSavedMessagesOpts) (*FoundChatMessages, error) {
 	req := &SearchSavedMessages{
 		Limit: limit,
@@ -11047,6 +11300,16 @@ func (c *Client) SetCommunityName(communityId int64, name string) error {
 	req := &SetCommunityName{
 		CommunityId: communityId,
 		Name:        name,
+	}
+	_, err := c.Send(req)
+	return err
+}
+
+// SetCommunityNotificationSettings Changes notification settings of a community
+func (c *Client) SetCommunityNotificationSettings(communityId int64, notificationSettings *ChatNotificationSettings) error {
+	req := &SetCommunityNotificationSettings{
+		CommunityId:          communityId,
+		NotificationSettings: notificationSettings,
 	}
 	_, err := c.Send(req)
 	return err
@@ -12504,6 +12767,31 @@ func (c *Client) ToggleChatViewAsTopics(chatId int64, opts *ToggleChatViewAsTopi
 	return err
 }
 
+// ToggleCommunityAreChatsCollapsed Changes whether all chats of a community are collapsed into one entry in the chat list. If the chats are expanded, then the community is removed from all chat folders
+func (c *Client) ToggleCommunityAreChatsCollapsed(communityId int64, opts *ToggleCommunityAreChatsCollapsedOpts) error {
+	req := &ToggleCommunityAreChatsCollapsed{
+		CommunityId: communityId,
+	}
+	if opts != nil {
+		req.AreChatsCollapsed = opts.AreChatsCollapsed
+	}
+	_, err := c.Send(req)
+	return err
+}
+
+// ToggleCommunityMemberIsBanned Bans or unbans a member of a community; requires can_ban_members administrator right in the community. A banned member is banned in all chats of the community. Administrators of the community can be banned only by the owner of the community and administrators, which can edit administrator rights of the member. If an owner of a chat in the community is banned, then the chat is removed from the community; in this case, can_edit_chat_list administrator right is also required
+func (c *Client) ToggleCommunityMemberIsBanned(communityId int64, memberId MessageSender, opts *ToggleCommunityMemberIsBannedOpts) error {
+	req := &ToggleCommunityMemberIsBanned{
+		CommunityId: communityId,
+		MemberId:    memberId,
+	}
+	if opts != nil {
+		req.IsBanned = opts.IsBanned
+	}
+	_, err := c.Send(req)
+	return err
+}
+
 // ToggleDirectMessagesChatTopicCanSendUnpaidMessages Allows to send unpaid messages to the given topic of the channel direct messages chat administered by the current user
 func (c *Client) ToggleDirectMessagesChatTopicCanSendUnpaidMessages(chatId int64, topicId int64, opts *ToggleDirectMessagesChatTopicCanSendUnpaidMessagesOpts) error {
 	req := &ToggleDirectMessagesChatTopicCanSendUnpaidMessages{
@@ -12787,6 +13075,7 @@ func (c *Client) ToggleSupergroupIsForum(supergroupId int64, opts *ToggleSupergr
 		SupergroupId: supergroupId,
 	}
 	if opts != nil {
+		req.HasForumSidebar = opts.HasForumSidebar
 		req.HasForumTabs = opts.HasForumTabs
 		req.IsForum = opts.IsForum
 	}

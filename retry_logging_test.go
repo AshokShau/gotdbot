@@ -24,7 +24,7 @@ func captureRequestLogs(c *Client, level slog.Level) *bytes.Buffer {
 
 func assertRequestLog(t *testing.T, out *bytes.Buffer, level, message string, attrs map[string]any) {
 	t.Helper()
-	for _, line := range strings.Split(strings.TrimSpace(out.String()), "\n") {
+	for line := range strings.SplitSeq(strings.TrimSpace(out.String()), "\n") {
 		var record map[string]any
 		if err := json.Unmarshal([]byte(line), &record); err != nil {
 			t.Fatalf("invalid log record: %v: %s", err, line)

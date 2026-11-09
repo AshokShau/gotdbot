@@ -19,7 +19,7 @@ func main() {
 	const deleteAfter = 30 * time.Second
 
 	bot, err := gotdbot.NewClient(apiID, apiHash, botToken, &gotdbot.ClientOpts{
-		LibraryPath: "./libtdjson.so.1.8.69",
+		LibraryPath: "./libtdjson.so.1.8.70",
 		Logger:      logger.New(logger.WithLevel(slog.LevelDebug)),
 	})
 	if err != nil {

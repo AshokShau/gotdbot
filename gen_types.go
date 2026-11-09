@@ -5447,7 +5447,7 @@ type ChatActiveStories struct {
 	List StoryList `json:"list,omitempty"`
 	// Identifier of the last read active story
 	MaxReadStoryId int32 `json:"max_read_story_id"`
-	// A parameter used to determine order of the stories in the story list; 0 if the stories don't need to be shown in the story list. Stories must be sorted by the pair (order, story_poster_chat_id) in descending order
+	// A parameter used to determine order of the stories in the story list; 0 if the stories don't need to be shown in the story list. Stories must be sorted by the pair (order, chat_id) in descending order
 	Order int64 `json:"order"`
 	// Basic information about the stories; use getStory to get full information about the stories. The stories are in chronological order (i.e., in order of increasing story identifiers)
 	Stories []StoryInfo `json:"stories"`
@@ -8601,21 +8601,21 @@ type ChatNotificationSettings struct {
 	SoundId int64 `json:"sound_id,string"`
 	// Identifier of the notification sound to be played for stories; 0 if sound is disabled
 	StorySoundId int64 `json:"story_sound_id,string"`
-	// If true, the value for the relevant type of chat or the forum chat is used instead of disable_mention_notifications
+	// If true, the value for the topic's chat, the chat's community, or the relevant type of chat is used instead of disable_mention_notifications
 	UseDefaultDisableMentionNotifications bool `json:"use_default_disable_mention_notifications"`
-	// If true, the value for the relevant type of chat or the forum chat is used instead of disable_pinned_message_notifications
+	// If true, the value for the topic's chat, the chat's community, or the relevant type of chat is used instead of disable_pinned_message_notifications
 	UseDefaultDisablePinnedMessageNotifications bool `json:"use_default_disable_pinned_message_notifications"`
-	// If true, the value for the relevant type of chat or the forum chat is used instead of mute_for
+	// If true, the value for the topic's chat, the chat's community, or the relevant type of chat is used instead of mute_for
 	UseDefaultMuteFor bool `json:"use_default_mute_for"`
-	// If true, the value for the relevant type of chat is used instead of mute_stories
+	// If true, the value for the chat's community or the relevant type of chat is used instead of mute_stories
 	UseDefaultMuteStories bool `json:"use_default_mute_stories"`
-	// If true, the value for the relevant type of chat or the forum chat is used instead of show_preview
+	// If true, the value for the topic's chat, the chat's community, or the relevant type of chat is used instead of show_preview
 	UseDefaultShowPreview bool `json:"use_default_show_preview"`
-	// If true, the value for the relevant type of chat is used instead of show_story_poster
+	// If true, the value for the chat's community or the relevant type of chat is used instead of show_story_poster
 	UseDefaultShowStoryPoster bool `json:"use_default_show_story_poster"`
-	// If true, the value for the relevant type of chat or the forum chat is used instead of sound_id
+	// If true, the value for the topic's chat, the chat's community, or the relevant type of chat is used instead of sound_id
 	UseDefaultSound bool `json:"use_default_sound"`
-	// If true, the value for the relevant type of chat is used instead of story_sound_id
+	// If true, the value for the chat's community or the relevant type of chat is used instead of story_sound_id
 	UseDefaultStorySound bool `json:"use_default_story_sound"`
 }
 
@@ -8653,7 +8653,7 @@ type ChatPermissions struct {
 	CanSendBasicMessages bool `json:"can_send_basic_messages"`
 	// True, if the user can send documents
 	CanSendDocuments bool `json:"can_send_documents"`
-	// True, if the user can send animations, games, stickers, and dice and use inline bots
+	// True, if the user can send animations, games, stickers, widgets, and dice and use inline bots
 	CanSendOtherMessages bool `json:"can_send_other_messages"`
 	// True, if the user can send photos
 	CanSendPhotos bool `json:"can_send_photos"`
@@ -10184,8 +10184,28 @@ func (t CollectibleItemTypeUsername) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "collectibleItemTypeUsername", Alias: (*Alias)(&t)})
 }
 
+// Communities Represents a list of communities
+type Communities struct {
+	// List of community identifiers
+	CommunityIds []int64 `json:"community_ids"`
+}
+
+func (t Communities) GetType() string {
+	return "communities"
+}
+
+func (t Communities) MarshalJSON() ([]byte, error) {
+	type Alias Communities
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "communities", Alias: (*Alias)(&t)})
+}
+
 // Community Represents a community consisting of supergroup chats, channel chats and chats with bots
 type Community struct {
+	// True, if all chats of the community are collapsed into one entry in the chat list
+	AreChatsCollapsed bool `json:"are_chats_collapsed"`
 	// Point in time (Unix timestamp) when the community was joined, or the point in time when the community was created, in case the user is not a member of any chat in the community
 	Date int32 `json:"date"`
 	// If false, the community is inaccessible, and the only information known about the community is inside this class. Identifier of the community can't be passed to any method
@@ -10235,6 +10255,52 @@ func (t *Community) UnmarshalJSON(data []byte) error {
 		t.Status = v
 	}
 	return nil
+}
+
+// CommunityAddChatRequest Describes a request to add a chat to a community
+type CommunityAddChatRequest struct {
+	// Identifier of the chat to be added
+	ChatId int64 `json:"chat_id"`
+	// Point in time (Unix timestamp) when the request was sent
+	Date int32 `json:"date"`
+	// True, if the chat will be visible only to administrators of the community
+	IsHidden bool `json:"is_hidden"`
+	// Identifier of the user who sent the request
+	SenderUserId int64 `json:"sender_user_id"`
+}
+
+func (t CommunityAddChatRequest) GetType() string {
+	return "communityAddChatRequest"
+}
+
+func (t CommunityAddChatRequest) MarshalJSON() ([]byte, error) {
+	type Alias CommunityAddChatRequest
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "communityAddChatRequest", Alias: (*Alias)(&t)})
+}
+
+// CommunityAddChatRequests Contains a list of requests to add chats to a community
+type CommunityAddChatRequests struct {
+	// The offset for the next getCommunityAddChatRequests request. If empty, then there are no more results
+	NextOffset string `json:"next_offset"`
+	// List of the requests
+	Requests []CommunityAddChatRequest `json:"requests"`
+	// Approximate total number of requests found
+	TotalCount int32 `json:"total_count"`
+}
+
+func (t CommunityAddChatRequests) GetType() string {
+	return "communityAddChatRequests"
+}
+
+func (t CommunityAddChatRequests) MarshalJSON() ([]byte, error) {
+	type Alias CommunityAddChatRequests
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "communityAddChatRequests", Alias: (*Alias)(&t)})
 }
 
 // CommunityAdministratorRights Describes rights of the administrator in a community
@@ -10295,6 +10361,8 @@ type CommunityFullInfo struct {
 	BannedCount int32 `json:"banned_count"`
 	// Chats belonging to the community
 	Chats []CommunityChat `json:"chats"`
+	// Notification settings for the community. Default notification settings are chosen based on the type of a chat in the community
+	NotificationSettings *ChatNotificationSettings `json:"notification_settings"`
 	// Photo of the community
 	Photo *ChatPhoto `json:"photo"`
 }
@@ -10327,6 +10395,26 @@ func (t CommunityId) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{TypeStr: "communityId", Alias: (*Alias)(&t)})
+}
+
+// CommunityMemberChats Contains information about chats in a community, which are joined or owned by a member of the community
+type CommunityMemberChats struct {
+	// Identifiers of the non-owned chats joined by the member
+	JoinedChatIds []int64 `json:"joined_chat_ids"`
+	// Identifiers of the chats owned by the member. The chats will be removed from the community if the member is banned in the community
+	OwnedChatIds []int64 `json:"owned_chat_ids"`
+}
+
+func (t CommunityMemberChats) GetType() string {
+	return "communityMemberChats"
+}
+
+func (t CommunityMemberChats) MarshalJSON() ([]byte, error) {
+	type Alias CommunityMemberChats
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "communityMemberChats", Alias: (*Alias)(&t)})
 }
 
 // CommunityMemberStatusAdministrator The user is a member of the community and has some additional privileges
@@ -17243,7 +17331,7 @@ func (t *InputIdentityDocument) UnmarshalJSON(data []byte) error {
 type InputInlineQueryResultAnimation struct {
 	// Unique identifier of the query result
 	Id string `json:"id"`
-	// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageAnimation, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue, or inputMessageContact
+	// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageAnimation, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue, inputMessageWidget, inputMessageSharedWidget, or inputMessageContact
 	InputMessageContent InputMessageContent `json:"input_message_content"`
 	// The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
@@ -17316,7 +17404,7 @@ type InputInlineQueryResultArticle struct {
 	Description string `json:"description"`
 	// Unique identifier of the query result
 	Id string `json:"id"`
-	// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue, or inputMessageContact
+	// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue, inputMessageWidget, inputMessageSharedWidget, or inputMessageContact
 	InputMessageContent InputMessageContent `json:"input_message_content"`
 	// The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
@@ -17385,7 +17473,7 @@ type InputInlineQueryResultAudio struct {
 	AudioUrl string `json:"audio_url"`
 	// Unique identifier of the query result
 	Id string `json:"id"`
-	// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageAudio, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue, or inputMessageContact
+	// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageAudio, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue, inputMessageWidget, inputMessageSharedWidget, or inputMessageContact
 	InputMessageContent InputMessageContent `json:"input_message_content"`
 	// Performer of the audio file
 	Performer string `json:"performer"`
@@ -17446,7 +17534,7 @@ type InputInlineQueryResultContact struct {
 	Contact *Contact `json:"contact"`
 	// Unique identifier of the query result
 	Id string `json:"id"`
-	// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue, or inputMessageContact
+	// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue, inputMessageWidget, inputMessageSharedWidget, or inputMessageContact
 	InputMessageContent InputMessageContent `json:"input_message_content"`
 	// The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
@@ -17511,7 +17599,7 @@ type InputInlineQueryResultDocument struct {
 	DocumentUrl string `json:"document_url"`
 	// Unique identifier of the query result
 	Id string `json:"id"`
-	// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageDocument, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue, or inputMessageContact
+	// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageDocument, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue, inputMessageWidget, inputMessageSharedWidget, or inputMessageContact
 	InputMessageContent InputMessageContent `json:"input_message_content"`
 	// MIME type of the file content; only "application/pdf" and "application/zip" are currently allowed
 	MimeType string `json:"mime_type"`
@@ -17623,7 +17711,7 @@ func (t *InputInlineQueryResultGame) UnmarshalJSON(data []byte) error {
 type InputInlineQueryResultLocation struct {
 	// Unique identifier of the query result
 	Id string `json:"id"`
-	// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue, or inputMessageContact
+	// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue, inputMessageWidget, inputMessageSharedWidget, or inputMessageContact
 	InputMessageContent InputMessageContent `json:"input_message_content"`
 	// Amount of time relative to the message sent time until the location can be updated, in seconds
 	LivePeriod int32 `json:"live_period"`
@@ -17692,7 +17780,7 @@ type InputInlineQueryResultPhoto struct {
 	Description string `json:"description"`
 	// Unique identifier of the query result
 	Id string `json:"id"`
-	// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessagePhoto, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue, or inputMessageContact
+	// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessagePhoto, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue, inputMessageWidget, inputMessageSharedWidget, or inputMessageContact
 	InputMessageContent InputMessageContent `json:"input_message_content"`
 	// Height of the photo
 	PhotoHeight int32 `json:"photo_height"`
@@ -17757,7 +17845,7 @@ func (t *InputInlineQueryResultPhoto) UnmarshalJSON(data []byte) error {
 type InputInlineQueryResultSticker struct {
 	// Unique identifier of the query result
 	Id string `json:"id"`
-	// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageSticker, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue, or inputMessageContact
+	// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageSticker, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue, inputMessageWidget, inputMessageSharedWidget, or inputMessageContact
 	InputMessageContent InputMessageContent `json:"input_message_content"`
 	// The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
@@ -17820,7 +17908,7 @@ func (t *InputInlineQueryResultSticker) UnmarshalJSON(data []byte) error {
 type InputInlineQueryResultVenue struct {
 	// Unique identifier of the query result
 	Id string `json:"id"`
-	// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue, or inputMessageContact
+	// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue, inputMessageWidget, inputMessageSharedWidget, or inputMessageContact
 	InputMessageContent InputMessageContent `json:"input_message_content"`
 	// The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
@@ -17885,7 +17973,7 @@ type InputInlineQueryResultVideo struct {
 	Description string `json:"description"`
 	// Unique identifier of the query result
 	Id string `json:"id"`
-	// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageVideo, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue, or inputMessageContact
+	// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageVideo, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue, inputMessageWidget, inputMessageSharedWidget, or inputMessageContact
 	InputMessageContent InputMessageContent `json:"input_message_content"`
 	// MIME type of the content of the video URL, only "text/html" or "video/mp4" are currently supported
 	MimeType string `json:"mime_type"`
@@ -17954,7 +18042,7 @@ func (t *InputInlineQueryResultVideo) UnmarshalJSON(data []byte) error {
 type InputInlineQueryResultVoiceNote struct {
 	// Unique identifier of the query result
 	Id string `json:"id"`
-	// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageVoiceNote, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue, or inputMessageContact
+	// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageVoiceNote, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue, inputMessageWidget, inputMessageSharedWidget, or inputMessageContact
 	InputMessageContent InputMessageContent `json:"input_message_content"`
 	// The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
 	ReplyMarkup ReplyMarkup `json:"reply_markup,omitempty"`
@@ -18640,6 +18728,32 @@ func (t InputMessageRichMessage) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "inputMessageRichMessage", Alias: (*Alias)(&t)})
 }
 
+// InputMessageSharedWidget A message with an existing shared widget; for bots only
+type InputMessageSharedWidget struct {
+	// Widget caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
+	Caption *FormattedText `json:"caption,omitempty"`
+	// Data of the widget, which is specific to the chat
+	ChatData string `json:"chat_data"`
+	// True, if the caption must be shown above the widget; otherwise, the caption must be shown below the widget
+	ShowCaptionAboveMedia bool `json:"show_caption_above_media"`
+	// Identifier of the shared widget
+	WidgetId int64 `json:"widget_id,string"`
+}
+
+func (t InputMessageSharedWidget) GetType() string {
+	return "inputMessageSharedWidget"
+}
+
+func (t InputMessageSharedWidget) inputMessageContent() {}
+
+func (t InputMessageSharedWidget) MarshalJSON() ([]byte, error) {
+	type Alias InputMessageSharedWidget
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "inputMessageSharedWidget", Alias: (*Alias)(&t)})
+}
+
 // InputMessageStakeDice A stake dice message
 type InputMessageStakeDice struct {
 	// Pass true to delete message draft in the chat
@@ -18893,6 +19007,42 @@ func (t *InputMessageVoiceNote) UnmarshalJSON(data []byte) error {
 		t.SelfDestructType = v
 	}
 	return nil
+}
+
+// InputMessageWidget A message with an HTML widget; for bots only
+type InputMessageWidget struct {
+	// Pass true to allow the widget to send queries to the bot
+	AllowQueries bool `json:"allow_queries"`
+	// Widget caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
+	Caption *FormattedText `json:"caption,omitempty"`
+	// Data of the widget, which is specific to the chat
+	ChatData string `json:"chat_data"`
+	// Height of the widget; 0 if the height of the widget isn't fixed
+	Height int32 `json:"height"`
+	// HTML code of the widget; 1-32768 bytes; must not exceed 4096 bytes when compressed by zlib with the maximal compression level
+	Html string `json:"html"`
+	// Pass true to create a shared widget, which can be sent again by its identifier
+	IsShared bool `json:"is_shared"`
+	// Public data of the widget, which will be available in copies and forwards of the message
+	PublicData string `json:"public_data"`
+	// True, if the caption must be shown above the widget; otherwise, the caption must be shown below the widget
+	ShowCaptionAboveMedia bool `json:"show_caption_above_media"`
+	// Width of the widget; 0 if the widget must occupy the whole width of the message bubble
+	Width int32 `json:"width"`
+}
+
+func (t InputMessageWidget) GetType() string {
+	return "inputMessageWidget"
+}
+
+func (t InputMessageWidget) inputMessageContent() {}
+
+func (t InputMessageWidget) MarshalJSON() ([]byte, error) {
+	type Alias InputMessageWidget
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "inputMessageWidget", Alias: (*Alias)(&t)})
 }
 
 // InputPageBlockAnchor An invisible anchor
@@ -21124,7 +21274,7 @@ func (t *InputStoryArea) UnmarshalJSON(data []byte) error {
 
 // InputStoryAreas Contains a list of story areas to be added
 type InputStoryAreas struct {
-	// List of input story areas. Currently, a story can have up to 10 inputStoryAreaTypeLocation, inputStoryAreaTypeFoundVenue, and inputStoryAreaTypePreviousVenue areas, up to getOption("story_suggested_reaction_area_count_max") inputStoryAreaTypeSuggestedReaction areas, up to 1 inputStoryAreaTypeMessage area, up to getOption("story_link_area_count_max") inputStoryAreaTypeLink areas if the current user is a Telegram Premium user, up to 3 inputStoryAreaTypeWeather areas, and up to 1 inputStoryAreaTypeUpgradedGift area
+	// List of input story areas. Currently, a story can have up to 10 inputStoryAreaTypeLocation and inputStoryAreaTypePreviousVenue areas, up to getOption("story_suggested_reaction_area_count_max") inputStoryAreaTypeSuggestedReaction areas, up to 1 inputStoryAreaTypeMessage area, up to getOption("story_link_area_count_max") inputStoryAreaTypeLink areas if the current user is a Telegram Premium user, up to 3 inputStoryAreaTypeWeather areas, and up to 1 inputStoryAreaTypeUpgradedGift area
 	Areas []InputStoryArea `json:"areas"`
 }
 
@@ -21138,28 +21288,6 @@ func (t InputStoryAreas) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{TypeStr: "inputStoryAreas", Alias: (*Alias)(&t)})
-}
-
-// InputStoryAreaTypeFoundVenue An area pointing to a venue found by the bot getOption("venue_search_bot_username")
-type InputStoryAreaTypeFoundVenue struct {
-	// Identifier of the inline query, used to find the venue
-	QueryId int64 `json:"query_id,string"`
-	// Identifier of the inline query result
-	ResultId string `json:"result_id"`
-}
-
-func (t InputStoryAreaTypeFoundVenue) GetType() string {
-	return "inputStoryAreaTypeFoundVenue"
-}
-
-func (t InputStoryAreaTypeFoundVenue) inputStoryAreaType() {}
-
-func (t InputStoryAreaTypeFoundVenue) MarshalJSON() ([]byte, error) {
-	type Alias InputStoryAreaTypeFoundVenue
-	return json.Marshal(&struct {
-		TypeStr string `json:"@type"`
-		*Alias
-	}{TypeStr: "inputStoryAreaTypeFoundVenue", Alias: (*Alias)(&t)})
 }
 
 // InputStoryAreaTypeLink An area pointing to an HTTP or tg:// link
@@ -21530,7 +21658,7 @@ func (t *InputTextQuote) UnmarshalJSON(data []byte) error {
 type InputThumbnail struct {
 	// Thumbnail height, usually shouldn't exceed 320. Use 0 if unknown
 	Height int32 `json:"height"`
-	// Thumbnail file to send. Sending thumbnails by file_id is currently not supported
+	// Thumbnail file to send. Sending thumbnails by inputFileId or inputFileRemote is currently not supported
 	Thumbnail InputFile `json:"thumbnail"`
 	// Thumbnail width, usually shouldn't exceed 320. Use 0 if unknown
 	Width int32 `json:"width"`
@@ -22933,7 +23061,7 @@ func (t InternalLinkTypeTonConnect) MarshalJSON() ([]byte, error) {
 // InternalLinkTypeTonWalletTransfer The link is a link for sending Grams from the user's TON wallet
 type InternalLinkTypeTonWalletTransfer struct {
 	// The pre-filled amount of TON Grams to send; in the smallest units of the cryptocurrency
-	GramAmount int64 `json:"gram_amount"`
+	GramAmount int64 `json:"gram_amount,string"`
 	// Chosen receiver of the transfer; may be null if none
 	Receiver TonWalletTransferReceiver `json:"receiver,omitempty"`
 }
@@ -28823,7 +28951,7 @@ type MessageReplyToMessage struct {
 	ChatId int64 `json:"chat_id"`
 	// Identifier of the checklist task in the original message that was replied; 0 if none
 	ChecklistTaskId int32 `json:"checklist_task_id"`
-	// Media content of the message if the message was from another chat or topic; may be null for messages from the same chat and messages without media. Can be only one of the following types: messageAnimation, messageAudio, messageChecklist, messageContact, messageDice, messageDocument, messageGame, messageGiveaway, messageGiveawayWinners, messageInvoice, messageLocation, messagePaidMedia, messagePhoto, messagePoll, messageStakeDice, messageSticker, messageStory, messageText (for link preview), messageVenue, messageVideo, messageVideoNote, or messageVoiceNote
+	// Media content of the message if the message was from another chat or topic; may be null for messages from the same chat and messages without media. Can be only one of the following types: messageAnimation, messageAudio, messageChecklist, messageContact, messageDice, messageDocument, messageGame, messageGiveaway, messageGiveawayWinners, messageInvoice, messageLocation, messagePaidMedia, messagePhoto, messagePoll, messageStakeDice, messageSticker, messageStory, messageText (for link preview), messageVenue, messageVideo, messageVideoNote, messageVoiceNote, or messageWidget
 	Content MessageContent `json:"content,omitempty"`
 	// The identifier of the message; may be 0 if the replied message is in unknown chat
 	MessageId int64 `json:"message_id"`
@@ -29888,7 +30016,7 @@ type MessageThreadInfo struct {
 	DraftMessage *DraftMessage `json:"draft_message,omitempty"`
 	// Message thread identifier, unique within the chat
 	MessageThreadId int64 `json:"message_thread_id"`
-	// The messages from which the thread starts. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id)
+	// The messages from which the thread starts. The messages are returned in reverse chronological order (i.e., in order of decreasing message.id)
 	Messages []Message `json:"messages"`
 	// Information about the message thread; may be null for forum topic threads
 	ReplyInfo *MessageReplyInfo `json:"reply_info,omitempty"`
@@ -29962,7 +30090,7 @@ func (t *MessageTonConnectRequest) UnmarshalJSON(data []byte) error {
 // MessageTonWalletTransfer Represents a transfer with the TON wallet of the current user
 type MessageTonWalletTransfer struct {
 	// The amount of received cryptocurrency, in the smallest units of the cryptocurrency; negative for outgoing transactions
-	Amount int64 `json:"amount"`
+	Amount int64 `json:"amount,string"`
 	// Comment added to the transaction
 	Comment string `json:"comment"`
 	// True, if the comment is encrypted and must be decrypted using the receiver's or sender's private key
@@ -30566,6 +30694,46 @@ func (t MessageWebAppDataSent) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{TypeStr: "messageWebAppDataSent", Alias: (*Alias)(&t)})
+}
+
+// MessageWidget A message with an HTML widget
+type MessageWidget struct {
+	// True, if the widget can send queries to the bot in the background
+	CanSendBackgroundQueries bool `json:"can_send_background_queries"`
+	// True, if the widget can send queries to the bot
+	CanSendQueries bool `json:"can_send_queries"`
+	// Widget caption
+	Caption *FormattedText `json:"caption"`
+	// Data of the widget, which is specific to the chat
+	ChatData string `json:"chat_data"`
+	// Height of the widget; 0 if the height of the widget isn't fixed
+	Height int32 `json:"height"`
+	// HTML code of the widget
+	Html string `json:"html"`
+	// True, if the message is a copy of the widget
+	IsCopy bool `json:"is_copy"`
+	// Public data of the widget
+	PublicData string `json:"public_data"`
+	// True, if the caption must be shown above the widget; otherwise, the caption must be shown below the widget
+	ShowCaptionAboveMedia bool `json:"show_caption_above_media"`
+	// Identifier of the shared widget; 0 if the widget isn't shared
+	WidgetId int64 `json:"widget_id,string"`
+	// Width of the widget; 0 if the widget must occupy the whole width of the message bubble
+	Width int32 `json:"width"`
+}
+
+func (t MessageWidget) GetType() string {
+	return "messageWidget"
+}
+
+func (t MessageWidget) messageContent() {}
+
+func (t MessageWidget) MarshalJSON() ([]byte, error) {
+	type Alias MessageWidget
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "messageWidget", Alias: (*Alias)(&t)})
 }
 
 // Minithumbnail Thumbnail image of a very poor quality and low resolution
@@ -43692,6 +43860,24 @@ func (t ShippingOption) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "shippingOption", Alias: (*Alias)(&t)})
 }
 
+// SpeechRecognitionLanguages Contains a list of probable languages of speech
+type SpeechRecognitionLanguages struct {
+	// IETF language tags of the languages in descending order of their probability; for example, "en-US"
+	LanguageCodes []string `json:"language_codes"`
+}
+
+func (t SpeechRecognitionLanguages) GetType() string {
+	return "speechRecognitionLanguages"
+}
+
+func (t SpeechRecognitionLanguages) MarshalJSON() ([]byte, error) {
+	type Alias SpeechRecognitionLanguages
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "speechRecognitionLanguages", Alias: (*Alias)(&t)})
+}
+
 // SpeechRecognitionResultError The speech recognition failed
 type SpeechRecognitionResultError struct {
 	// Recognition error. An error with a message "MSG_VOICE_TOO_LONG" is returned when media duration is too big to be recognized
@@ -46602,6 +46788,8 @@ type Story struct {
 	IsPostedToChatPage bool `json:"is_posted_to_chat_page"`
 	// True, if the story is visible only for the current user
 	IsVisibleOnlyForSelf bool `json:"is_visible_only_for_self"`
+	// Music attached to the story; may be null if none
+	Music *Audio `json:"music,omitempty"`
 	// Identifier of the chat that posted the story
 	PosterChatId int64 `json:"poster_chat_id"`
 	// Identifier of the user or chat that posted the story; may be null if the story is posted on behalf of the poster_chat_id
@@ -48152,6 +48340,8 @@ type Supergroup struct {
 	HasAutomaticTranslation bool `json:"has_automatic_translation"`
 	// True, if the channel has direct messages group
 	HasDirectMessagesGroup bool `json:"has_direct_messages_group"`
+	// True, if the supergroup is a forum, which topics are shown in a sidebar. If true, then has_forum_tabs is false
+	HasForumSidebar bool `json:"has_forum_sidebar"`
 	// True, if the supergroup is a forum, which topics are shown in the same way as in channel direct messages groups
 	HasForumTabs bool `json:"has_forum_tabs"`
 	// True, if the channel has a discussion group, or the supergroup is the designated discussion group for a channel
@@ -49700,6 +49890,44 @@ func (t *TextQuote) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
+// TextRange Describes a part of a text
+type TextRange struct {
+	// Length of the part, in UTF-16 code units
+	Length int32 `json:"length"`
+	// Offset of the part, in UTF-16 code units
+	Offset int32 `json:"offset"`
+}
+
+func (t TextRange) GetType() string {
+	return "textRange"
+}
+
+func (t TextRange) MarshalJSON() ([]byte, error) {
+	type Alias TextRange
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "textRange", Alias: (*Alias)(&t)})
+}
+
+// TextRanges Contains a list of text parts
+type TextRanges struct {
+	// List of text parts
+	Ranges []TextRange `json:"ranges"`
+}
+
+func (t TextRanges) GetType() string {
+	return "textRanges"
+}
+
+func (t TextRanges) MarshalJSON() ([]byte, error) {
+	type Alias TextRanges
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "textRanges", Alias: (*Alias)(&t)})
+}
+
 // ThemeParameters Contains parameters of the application theme
 type ThemeParameters struct {
 	// An accent color of the text in the RGB format
@@ -51094,7 +51322,7 @@ type TonWalletCard struct {
 	// Address of the NFT of one of the stickers, whose colors must be used for the card background; may be empty if the default background must be used
 	BackgroundNftAddress string `json:"background_nft_address,omitempty"`
 	// Balance of the wallet, in the smallest units of the cryptocurrency; may be slightly outdated
-	GramAmount int64 `json:"gram_amount"`
+	GramAmount int64 `json:"gram_amount,string"`
 	// Stickers placed on the card
 	Stickers []TonWalletCardSticker `json:"stickers"`
 }
@@ -51222,7 +51450,7 @@ type TonWalletState struct {
 	// True, if the wallet key can be exported using getTonWalletSecretPhrase
 	CanExportPhrase bool `json:"can_export_phrase"`
 	// The total amount of owned TON Grams, in the smallest units of the cryptocurrency
-	GramAmount int64 `json:"gram_amount"`
+	GramAmount int64 `json:"gram_amount,string"`
 	// True, if backup for the wallet key is enabled
 	IsBackupEnabled bool `json:"is_backup_enabled"`
 	// True, if the wallet is being created
@@ -51248,7 +51476,7 @@ type TonWalletTransaction struct {
 	// Point in time (Unix timestamp) when the transaction was completed
 	Date int32 `json:"date"`
 	// The fee amount paid for the transaction in TON Grams, in the smallest units of the cryptocurrency
-	FeeAmount int64 `json:"fee_amount"`
+	FeeAmount int64 `json:"fee_amount,string"`
 	// Unique identifier of the transaction
 	Id string `json:"id"`
 	// Address in the TON blockchain of the transaction peer; may be empty if the transaction isn't a wallet transfer
@@ -51309,7 +51537,7 @@ func (t *TonWalletTransaction) UnmarshalJSON(data []byte) error {
 // TonWalletTransactions Represents a list of TON Gram transactions
 type TonWalletTransactions struct {
 	// The total amount of owned TON Grams, in the smallest units of the cryptocurrency
-	GramAmount int64 `json:"gram_amount"`
+	GramAmount int64 `json:"gram_amount,string"`
 	// The offset for the next request. If empty, then there are no more results
 	NextOffset string `json:"next_offset"`
 	// List of transactions
@@ -51413,7 +51641,7 @@ func (t TonWalletTransactionTypeNftTransfer) MarshalJSON() ([]byte, error) {
 // TonWalletTransactionTypeOnRampDeposit The transaction is a deposit from an on-ramp provider
 type TonWalletTransactionTypeOnRampDeposit struct {
 	// The amount of received cryptocurrency, in the smallest units of the cryptocurrency
-	Amount int64 `json:"amount"`
+	Amount int64 `json:"amount,string"`
 	// Name of the on-ramp provider
 	ProviderName string `json:"provider_name"`
 }
@@ -51459,7 +51687,7 @@ func (t TonWalletTransactionTypeTelegramGiftTransfer) MarshalJSON() ([]byte, err
 // TonWalletTransactionTypeTransfer A transfer of TON Grams to or from the wallet
 type TonWalletTransactionTypeTransfer struct {
 	// The amount of received cryptocurrency, in the smallest units of the cryptocurrency; negative for outgoing transactions
-	Amount int64 `json:"amount"`
+	Amount int64 `json:"amount,string"`
 	// Comment added to the transaction
 	Comment string `json:"comment"`
 	// True, if the comment is encrypted and must be decrypted using the user's private key
@@ -55423,6 +55651,65 @@ func (t *UpdateNewInlineQuery) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
+// UpdateNewInlineWidgetQuery A new incoming widget query from a message sent via a bot; for bots only
+type UpdateNewInlineWidgetQuery struct {
+	// Identifier that uniquely corresponds to the chat to which the message was sent
+	ChatInstance int64 `json:"chat_instance,string"`
+	// Type of the chat to which the message was sent
+	ChatType string `json:"chat_type"`
+	// Data of the query
+	Data []byte `json:"data"`
+	// Unique query identifier
+	Id int64 `json:"id,string"`
+	// Identifier of the inline message from which the query originated
+	InlineMessageId string `json:"inline_message_id"`
+	// Type of the query
+	QueryType WidgetQueryType `json:"query_type"`
+	// Identifier of the user who sent the query
+	SenderUserId int64 `json:"sender_user_id"`
+	// TON wallet card of the user who sent the query; may be null if none
+	WalletCard *TonWalletCard `json:"wallet_card,omitempty"`
+	// Identifier of the shared widget from which the query originated; 0 if the widget isn't shared
+	WidgetId int64 `json:"widget_id,string"`
+}
+
+func (t UpdateNewInlineWidgetQuery) GetType() string {
+	return "updateNewInlineWidgetQuery"
+}
+
+func (t UpdateNewInlineWidgetQuery) update() {}
+
+func (t UpdateNewInlineWidgetQuery) MarshalJSON() ([]byte, error) {
+	type Alias UpdateNewInlineWidgetQuery
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "updateNewInlineWidgetQuery", Alias: (*Alias)(&t)})
+}
+
+func (t *UpdateNewInlineWidgetQuery) UnmarshalJSON(data []byte) error {
+	type Alias UpdateNewInlineWidgetQuery
+	aux := &struct {
+		QueryType json.RawMessage `json:"query_type"`
+		*Alias
+	}{
+		Alias: (*Alias)(t),
+	}
+
+	if err := json.Unmarshal(data, aux); err != nil {
+		return err
+	}
+
+	if aux.QueryType != nil {
+		v, err := UnmarshalWidgetQueryType(aux.QueryType)
+		if err != nil {
+			return err
+		}
+		t.QueryType = v
+	}
+	return nil
+}
+
 // UpdateNewMessage A new message was received; can also be an outgoing message
 type UpdateNewMessage struct {
 	// The new message
@@ -55523,6 +55810,120 @@ func (t UpdateNewShippingQuery) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{TypeStr: "updateNewShippingQuery", Alias: (*Alias)(&t)})
+}
+
+// UpdateNewWidgetCopyQuery A new incoming widget query from a copy of a shared widget; for bots only
+type UpdateNewWidgetCopyQuery struct {
+	// Data of the query
+	Data []byte `json:"data"`
+	// Unique query identifier
+	Id int64 `json:"id,string"`
+	// Type of the query
+	QueryType WidgetQueryType `json:"query_type"`
+	// Identifier of the user who sent the query
+	SenderUserId int64 `json:"sender_user_id"`
+	// TON wallet card of the user who sent the query; may be null if none
+	WalletCard *TonWalletCard `json:"wallet_card,omitempty"`
+	// Identifier of the shared widget from which the query originated
+	WidgetId int64 `json:"widget_id,string"`
+}
+
+func (t UpdateNewWidgetCopyQuery) GetType() string {
+	return "updateNewWidgetCopyQuery"
+}
+
+func (t UpdateNewWidgetCopyQuery) update() {}
+
+func (t UpdateNewWidgetCopyQuery) MarshalJSON() ([]byte, error) {
+	type Alias UpdateNewWidgetCopyQuery
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "updateNewWidgetCopyQuery", Alias: (*Alias)(&t)})
+}
+
+func (t *UpdateNewWidgetCopyQuery) UnmarshalJSON(data []byte) error {
+	type Alias UpdateNewWidgetCopyQuery
+	aux := &struct {
+		QueryType json.RawMessage `json:"query_type"`
+		*Alias
+	}{
+		Alias: (*Alias)(t),
+	}
+
+	if err := json.Unmarshal(data, aux); err != nil {
+		return err
+	}
+
+	if aux.QueryType != nil {
+		v, err := UnmarshalWidgetQueryType(aux.QueryType)
+		if err != nil {
+			return err
+		}
+		t.QueryType = v
+	}
+	return nil
+}
+
+// UpdateNewWidgetQuery A new incoming widget query; for bots only
+type UpdateNewWidgetQuery struct {
+	// Identifier of the chat where the query was sent
+	ChatId int64 `json:"chat_id"`
+	// Identifier that uniquely corresponds to the chat to which the message was sent
+	ChatInstance int64 `json:"chat_instance,string"`
+	// Type of the chat to which the message was sent
+	ChatType string `json:"chat_type"`
+	// Data of the query
+	Data []byte `json:"data"`
+	// Unique query identifier
+	Id int64 `json:"id,string"`
+	// Identifier of the message from which the query originated
+	MessageId int64 `json:"message_id"`
+	// Type of the query
+	QueryType WidgetQueryType `json:"query_type"`
+	// Identifier of the user who sent the query
+	SenderUserId int64 `json:"sender_user_id"`
+	// TON wallet card of the user who sent the query; may be null if none
+	WalletCard *TonWalletCard `json:"wallet_card,omitempty"`
+	// Identifier of the shared widget from which the query originated; 0 if the widget isn't shared
+	WidgetId int64 `json:"widget_id,string"`
+}
+
+func (t UpdateNewWidgetQuery) GetType() string {
+	return "updateNewWidgetQuery"
+}
+
+func (t UpdateNewWidgetQuery) update() {}
+
+func (t UpdateNewWidgetQuery) MarshalJSON() ([]byte, error) {
+	type Alias UpdateNewWidgetQuery
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "updateNewWidgetQuery", Alias: (*Alias)(&t)})
+}
+
+func (t *UpdateNewWidgetQuery) UnmarshalJSON(data []byte) error {
+	type Alias UpdateNewWidgetQuery
+	aux := &struct {
+		QueryType json.RawMessage `json:"query_type"`
+		*Alias
+	}{
+		Alias: (*Alias)(t),
+	}
+
+	if err := json.Unmarshal(data, aux); err != nil {
+		return err
+	}
+
+	if aux.QueryType != nil {
+		v, err := UnmarshalWidgetQueryType(aux.QueryType)
+		if err != nil {
+			return err
+		}
+		t.QueryType = v
+	}
+	return nil
 }
 
 // UpdateNotification A notification was changed
@@ -56233,6 +56634,28 @@ func (t *UpdateServiceNotification) UnmarshalJSON(data []byte) error {
 		t.Content = v
 	}
 	return nil
+}
+
+// UpdateSpeechRecognitionInFile Speech in an audio file was partially recognized. The final result will be returned by the corresponding recognizeSpeechInFile request
+type UpdateSpeechRecognitionInFile struct {
+	// Partially recognized text
+	PartialText string `json:"partial_text"`
+	// Identifier of the speech recognition as specified in recognizeSpeechInFile
+	RecognitionId int64 `json:"recognition_id,string"`
+}
+
+func (t UpdateSpeechRecognitionInFile) GetType() string {
+	return "updateSpeechRecognitionInFile"
+}
+
+func (t UpdateSpeechRecognitionInFile) update() {}
+
+func (t UpdateSpeechRecognitionInFile) MarshalJSON() ([]byte, error) {
+	type Alias UpdateSpeechRecognitionInFile
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "updateSpeechRecognitionInFile", Alias: (*Alias)(&t)})
 }
 
 // UpdateSpeechRecognitionTrial The parameters of speech recognition without Telegram Premium subscription have changed
@@ -57710,7 +58133,7 @@ func (t UpgradedGiftColors) MarshalJSON() ([]byte, error) {
 // UpgradedGiftDepositInfo Contains information needed to deposit an upgraded gift from the TON wallet of the current user to a Telegram account. The gift must be transferred by an internal message from the wallet to nft_address with gram_amount attached and with payload as the message body
 type UpgradedGiftDepositInfo struct {
 	// The amount of TON Grams that must be attached to the message to cover fees, in the smallest units of the cryptocurrency; excess amount will be returned to the wallet
-	GramAmount int64 `json:"gram_amount"`
+	GramAmount int64 `json:"gram_amount,string"`
 	// Address in TON blockchain to which the message must be sent
 	NftAddress string `json:"nft_address"`
 	// Body of the NFT transfer message
@@ -59249,6 +59672,8 @@ type UserTypeBot struct {
 	CanReadAllGroupMessages bool `json:"can_read_all_group_messages"`
 	// True, if the bot has the main Web App
 	HasMainWebApp bool `json:"has_main_web_app"`
+	// True, if the bot has topics, which are shown in a sidebar
+	HasTopicSidebar bool `json:"has_topic_sidebar"`
 	// True, if the bot has topics
 	HasTopics bool `json:"has_topics"`
 	// Placeholder for inline queries (displayed on the application input field)
@@ -60242,6 +60667,132 @@ func (t *WelcomeMessage) UnmarshalJSON(data []byte) error {
 		t.Content = v
 	}
 	return nil
+}
+
+// WidgetPublicData Contains public data of a widget
+type WidgetPublicData struct {
+	// Public data of the widget
+	Data string `json:"data"`
+	// The number of seconds after which the public data can be polled again
+	PollPeriod int32 `json:"poll_period"`
+}
+
+func (t WidgetPublicData) GetType() string {
+	return "widgetPublicData"
+}
+
+func (t WidgetPublicData) MarshalJSON() ([]byte, error) {
+	type Alias WidgetPublicData
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "widgetPublicData", Alias: (*Alias)(&t)})
+}
+
+// WidgetQueryAnswer Contains an answer to a widget query
+type WidgetQueryAnswer struct {
+	// Data returned by the bot
+	Data string `json:"data"`
+}
+
+func (t WidgetQueryAnswer) GetType() string {
+	return "widgetQueryAnswer"
+}
+
+func (t WidgetQueryAnswer) MarshalJSON() ([]byte, error) {
+	type Alias WidgetQueryAnswer
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "widgetQueryAnswer", Alias: (*Alias)(&t)})
+}
+
+// WidgetQueryTypeData The query contains data for the bot
+type WidgetQueryTypeData struct {
+	// True, if the TON wallet card of the user who sends the query is sent to the bot along with the query
+	WithWallet bool `json:"with_wallet"`
+}
+
+func (t WidgetQueryTypeData) GetType() string {
+	return "widgetQueryTypeData"
+}
+
+func (t WidgetQueryTypeData) widgetQueryType() {}
+
+func (t WidgetQueryTypeData) MarshalJSON() ([]byte, error) {
+	type Alias WidgetQueryTypeData
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "widgetQueryTypeData", Alias: (*Alias)(&t)})
+}
+
+// WidgetQueryTypeSentTransaction The query notifies the bot about a transaction sent from a TON wallet of the user who sends the query
+type WidgetQueryTypeSentTransaction struct {
+	// Value of msg_hash of the transaction
+	MsgHash string `json:"msg_hash"`
+	// The wallet from which the transaction was sent
+	Wallet *WidgetQueryWallet `json:"wallet"`
+}
+
+func (t WidgetQueryTypeSentTransaction) GetType() string {
+	return "widgetQueryTypeSentTransaction"
+}
+
+func (t WidgetQueryTypeSentTransaction) widgetQueryType() {}
+
+func (t WidgetQueryTypeSentTransaction) MarshalJSON() ([]byte, error) {
+	type Alias WidgetQueryTypeSentTransaction
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "widgetQueryTypeSentTransaction", Alias: (*Alias)(&t)})
+}
+
+// WidgetQueryTypeSignData The query contains data signed by a TON wallet of the user who sends the query
+type WidgetQueryTypeSignData struct {
+	// JSON-serialized signed data
+	SignData string `json:"sign_data"`
+	// The wallet that signed the data
+	Wallet *WidgetQueryWallet `json:"wallet"`
+}
+
+func (t WidgetQueryTypeSignData) GetType() string {
+	return "widgetQueryTypeSignData"
+}
+
+func (t WidgetQueryTypeSignData) widgetQueryType() {}
+
+func (t WidgetQueryTypeSignData) MarshalJSON() ([]byte, error) {
+	type Alias WidgetQueryTypeSignData
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "widgetQueryTypeSignData", Alias: (*Alias)(&t)})
+}
+
+// WidgetQueryWallet Describes a TON wallet of the user, who is used in a widget query
+type WidgetQueryWallet struct {
+	// Address of the wallet
+	Address string `json:"address"`
+	// Balance of the wallet, in the smallest units of the cryptocurrency
+	GramAmount int64 `json:"gram_amount,string"`
+	// Public key of the wallet; may be empty if unknown
+	PublicKey []byte `json:"public_key,omitempty"`
+	// Serialized StateInit of the wallet contract; must be empty if and only if public_key is empty
+	StateInit []byte `json:"state_init"`
+}
+
+func (t WidgetQueryWallet) GetType() string {
+	return "widgetQueryWallet"
+}
+
+func (t WidgetQueryWallet) MarshalJSON() ([]byte, error) {
+	type Alias WidgetQueryWallet
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "widgetQueryWallet", Alias: (*Alias)(&t)})
 }
 
 func Unmarshal(data []byte) (TlObject, string, error) {
@@ -62648,8 +63199,26 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 			return nil, 0, "", err
 		}
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "communities":
+		var obj Communities
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "community":
 		var obj Community
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "communityAddChatRequest":
+		var obj CommunityAddChatRequest
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "communityAddChatRequests":
+		var obj CommunityAddChatRequests
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, 0, "", err
 		}
@@ -62674,6 +63243,12 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "communityId":
 		var obj CommunityId
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "communityMemberChats":
+		var obj CommunityMemberChats
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, 0, "", err
 		}
@@ -64550,6 +65125,12 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 			return nil, 0, "", err
 		}
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "inputMessageSharedWidget":
+		var obj InputMessageSharedWidget
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputMessageStakeDice":
 		var obj InputMessageStakeDice
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -64594,6 +65175,12 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputMessageVoiceNote":
 		var obj InputMessageVoiceNote
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "inputMessageWidget":
+		var obj InputMessageWidget
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, 0, "", err
 		}
@@ -65026,12 +65613,6 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "inputStoryAreas":
 		var obj InputStoryAreas
-		if err := json.Unmarshal(data, &obj); err != nil {
-			return nil, 0, "", err
-		}
-		return &obj, typeObj.ClientId, typeObj.Extra, nil
-	case "inputStoryAreaTypeFoundVenue":
-		var obj InputStoryAreaTypeFoundVenue
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, 0, "", err
 		}
@@ -67090,6 +67671,12 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "messageWebAppDataSent":
 		var obj MessageWebAppDataSent
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "messageWidget":
+		var obj MessageWidget
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, 0, "", err
 		}
@@ -70190,6 +70777,12 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 			return nil, 0, "", err
 		}
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "speechRecognitionLanguages":
+		var obj SpeechRecognitionLanguages
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "speechRecognitionResultError":
 		var obj SpeechRecognitionResultError
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -71564,6 +72157,18 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 			return nil, 0, "", err
 		}
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "textRange":
+		var obj TextRange
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "textRanges":
+		var obj TextRanges
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "themeParameters":
 		var obj ThemeParameters
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -72884,6 +73489,12 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 			return nil, 0, "", err
 		}
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "updateNewInlineWidgetQuery":
+		var obj UpdateNewInlineWidgetQuery
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateNewMessage":
 		var obj UpdateNewMessage
 		if err := json.Unmarshal(data, &obj); err != nil {
@@ -72904,6 +73515,18 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateNewShippingQuery":
 		var obj UpdateNewShippingQuery
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "updateNewWidgetCopyQuery":
+		var obj UpdateNewWidgetCopyQuery
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "updateNewWidgetQuery":
+		var obj UpdateNewWidgetQuery
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, 0, "", err
 		}
@@ -73054,6 +73677,12 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "updateServiceNotification":
 		var obj UpdateServiceNotification
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "updateSpeechRecognitionInFile":
+		var obj UpdateSpeechRecognitionInFile
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, 0, "", err
 		}
@@ -73936,6 +74565,42 @@ func UnmarshalWithClient(data []byte) (TlObject, int, string, error) {
 		return &obj, typeObj.ClientId, typeObj.Extra, nil
 	case "welcomeMessage":
 		var obj WelcomeMessage
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "widgetPublicData":
+		var obj WidgetPublicData
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "widgetQueryAnswer":
+		var obj WidgetQueryAnswer
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "widgetQueryTypeData":
+		var obj WidgetQueryTypeData
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "widgetQueryTypeSentTransaction":
+		var obj WidgetQueryTypeSentTransaction
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "widgetQueryTypeSignData":
+		var obj WidgetQueryTypeSignData
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, 0, "", err
+		}
+		return &obj, typeObj.ClientId, typeObj.Extra, nil
+	case "widgetQueryWallet":
+		var obj WidgetQueryWallet
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, 0, "", err
 		}

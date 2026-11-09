@@ -63,6 +63,18 @@ func (m *Message) GetFormattedText() (*FormattedText, error) {
 	return nil, ErrNoFormattedText
 }
 
+// WidgetContent returns the HTML widget content carried by this message, if any.
+func (m *Message) WidgetContent() *MessageWidget {
+	if m == nil {
+		return nil
+	}
+	content, ok := formattingValue(m.Content).(MessageWidget)
+	if !ok {
+		return nil
+	}
+	return &content
+}
+
 // GetEntities returns the message entities, for both text messages and media messages.
 func (m *Message) GetEntities() []TextEntity {
 	if len(m.CaptionEntities()) > 0 {
@@ -217,6 +229,8 @@ func (m *Message) GetFormattedCaption() (*FormattedText, error) {
 	case MessageVoiceNote:
 		caption = content.Caption
 	case MessagePaidMedia:
+		caption = content.Caption
+	case MessageWidget:
 		caption = content.Caption
 	}
 	if caption == nil {
