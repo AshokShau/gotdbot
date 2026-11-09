@@ -275,6 +275,30 @@ func (t AddChecklistTasks) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "addChecklistTasks", Alias: (*Alias)(&t)})
 }
 
+// AddCommunityChat Adds a chat to a community. If the current user isn't allowed to change the list of chats in the community, then a request to add the chat is sent to administrators of the community instead and the method fails with the error "COMMUNITY_REQUEST_CREATED"
+type AddCommunityChat struct {
+	// Identifier of the chat to add; only chats with owned bots and owned basic group, supergroup and channel chats are allowed; basic group chats will be automatically upgraded to supergroup chats. A community can have up to getOption("community_chat_count_max") supergroup and channel chats and up to getOption("community_bot_count_max") chats with bots; otherwise, the method fails with the error "COMMUNITY_PEERS_TOO_MUCH"
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the community
+	CommunityId int64 `json:"community_id"`
+	// Pass true if the chat will be visible only to administrators of the community
+	IsHidden bool `json:"is_hidden"`
+}
+
+func (*AddCommunityChat) isFunction() {}
+
+func (t AddCommunityChat) GetType() string {
+	return "addCommunityChat"
+}
+
+func (t AddCommunityChat) MarshalJSON() ([]byte, error) {
+	type Alias AddCommunityChat
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "addCommunityChat", Alias: (*Alias)(&t)})
+}
+
 // AddContact Adds a user to the contact list or edits an existing contact by their user identifier
 type AddContact struct {
 	// The contact to add or edit; phone number may be empty and needs to be specified only if known
@@ -651,7 +675,7 @@ func (t AddProxy) MarshalJSON() ([]byte, error) {
 
 // AddQuickReplyShortcutInlineQueryResultMessage Adds a message to a quick reply shortcut via inline bot. If shortcut doesn't exist and there are less than getOption("quick_reply_shortcut_count_max") shortcuts, then a new shortcut is created. The shortcut must not contain more than getOption("quick_reply_shortcut_message_count_max") messages after adding the new message. Returns the added message
 type AddQuickReplyShortcutInlineQueryResultMessage struct {
-	// Pass true to hide the bot, via which the message is sent. Can be used only for bots getOption("animation_search_bot_username"), getOption("photo_search_bot_username"), and getOption("venue_search_bot_username")
+	// Pass true to hide the bot, via which the message is sent. Can be used only for bots getOption("animation_search_bot_username") and getOption("photo_search_bot_username")
 	HideViaBot bool `json:"hide_via_bot"`
 	// Identifier of the inline query
 	QueryId int64 `json:"query_id,string"`
@@ -1157,6 +1181,28 @@ func (t AnswerWebAppQuery) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{TypeStr: "answerWebAppQuery", Alias: (*Alias)(&t)})
+}
+
+// AnswerWidgetQuery Sets the result of a widget query; for bots only
+type AnswerWidgetQuery struct {
+	// Data to be returned to the widget
+	Data string `json:"data"`
+	// Identifier of the widget query
+	WidgetQueryId int64 `json:"widget_query_id,string"`
+}
+
+func (*AnswerWidgetQuery) isFunction() {}
+
+func (t AnswerWidgetQuery) GetType() string {
+	return "answerWidgetQuery"
+}
+
+func (t AnswerWidgetQuery) MarshalJSON() ([]byte, error) {
+	type Alias AnswerWidgetQuery
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "answerWidgetQuery", Alias: (*Alias)(&t)})
 }
 
 // ApplyPremiumGiftCode Applies a Telegram Premium gift code
@@ -2715,7 +2761,7 @@ func (t ConnectAffiliateProgram) MarshalJSON() ([]byte, error) {
 
 // CraftGift Crafts a new gift from other gifts that will be permanently lost
 type CraftGift struct {
-	// Identifier of the gifts to use for crafting. In the case of a successful craft, the resulting gift will have the number of the first gift. Consequently, the first gift must not have been withdrawn to the TON blockchain as an NFT and must have an empty gift_address
+	// Identifier of the gifts to use for crafting. In the case of a successful craft, the resulting gift will have the number of the first gift. Consequently, unless getOption("can_craft_from_withdrawn_first_gift") is true, the first gift must not have been withdrawn to the TON blockchain as an NFT and must have an empty gift_address
 	ReceivedGiftIds []string `json:"received_gift_ids"`
 }
 
@@ -5509,6 +5555,34 @@ func (t EditInlineMessageText) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "editInlineMessageText", Alias: (*Alias)(&t)})
 }
 
+// EditInlineMessageWidgetData Edits data of a widget in an inline message sent via the bot; for bots only
+type EditInlineMessageWidgetData struct {
+	// New data of the widget, which is specific to the chat; ignored if edit_chat_data is false
+	ChatData string `json:"chat_data"`
+	// Pass true to edit data of the widget, which is specific to the chat
+	EditChatData bool `json:"edit_chat_data"`
+	// Pass true to edit public data of the widget
+	EditPublicData bool `json:"edit_public_data"`
+	// Inline message identifier
+	InlineMessageId string `json:"inline_message_id"`
+	// New public data of the widget; ignored if edit_public_data is false
+	PublicData string `json:"public_data"`
+}
+
+func (*EditInlineMessageWidgetData) isFunction() {}
+
+func (t EditInlineMessageWidgetData) GetType() string {
+	return "editInlineMessageWidgetData"
+}
+
+func (t EditInlineMessageWidgetData) MarshalJSON() ([]byte, error) {
+	type Alias EditInlineMessageWidgetData
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "editInlineMessageWidgetData", Alias: (*Alias)(&t)})
+}
+
 // EditMessageCaption Edits the message content caption. Returns the edited message after the edit is completed on the server side
 type EditMessageCaption struct {
 	// New message content caption; 0-getOption("message_caption_length_max") characters; pass null to remove caption
@@ -5689,6 +5763,36 @@ func (t EditMessageText) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "editMessageText", Alias: (*Alias)(&t)})
 }
 
+// EditMessageWidgetData Edits data of a widget sent by the bot; for bots only
+type EditMessageWidgetData struct {
+	// New data of the widget, which is specific to the chat; ignored if edit_chat_data is false
+	ChatData string `json:"chat_data"`
+	// The chat the message belongs to
+	ChatId int64 `json:"chat_id"`
+	// Pass true to edit data of the widget, which is specific to the chat
+	EditChatData bool `json:"edit_chat_data"`
+	// Pass true to edit public data of the widget
+	EditPublicData bool `json:"edit_public_data"`
+	// Identifier of the widget message
+	MessageId int64 `json:"message_id"`
+	// New public data of the widget; ignored if edit_public_data is false
+	PublicData string `json:"public_data"`
+}
+
+func (*EditMessageWidgetData) isFunction() {}
+
+func (t EditMessageWidgetData) GetType() string {
+	return "editMessageWidgetData"
+}
+
+func (t EditMessageWidgetData) MarshalJSON() ([]byte, error) {
+	type Alias EditMessageWidgetData
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "editMessageWidgetData", Alias: (*Alias)(&t)})
+}
+
 // EditProxy Edits an existing proxy server for network requests. Can be called before authorization
 type EditProxy struct {
 	// New comment for the proxy
@@ -5813,6 +5917,30 @@ func (t EditStoryCover) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "editStoryCover", Alias: (*Alias)(&t)})
 }
 
+// EditStoryMusic Changes music attached to a story. Can be called only if story.can_be_edited == true and the story isn't being edited now
+type EditStoryMusic struct {
+	// The new music; pass null to remove music from the story. The music can be up to 60 seconds long
+	Music *InputAudio `json:"music,omitempty"`
+	// Identifier of the story to edit
+	StoryId int32 `json:"story_id"`
+	// Identifier of the chat that posted the story
+	StoryPosterChatId int64 `json:"story_poster_chat_id"`
+}
+
+func (*EditStoryMusic) isFunction() {}
+
+func (t EditStoryMusic) GetType() string {
+	return "editStoryMusic"
+}
+
+func (t EditStoryMusic) MarshalJSON() ([]byte, error) {
+	type Alias EditStoryMusic
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "editStoryMusic", Alias: (*Alias)(&t)})
+}
+
 // EditTextCompositionStyle Edits a custom text composition style that was created by the current user
 type EditTextCompositionStyle struct {
 	// Identifier of the custom emoji corresponding to the style
@@ -5863,6 +5991,30 @@ func (t EditUserStarSubscription) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{TypeStr: "editUserStarSubscription", Alias: (*Alias)(&t)})
+}
+
+// EditWidgetData Edits public data of a shared widget created by the bot; for bots only
+type EditWidgetData struct {
+	// Time during which the public data can be cached, in seconds; 5-3600. Pass 0 to keep the current value, which is 30 by default
+	CacheTime int32 `json:"cache_time"`
+	// New public data of the widget
+	PublicData string `json:"public_data"`
+	// Identifier of the shared widget
+	WidgetId int64 `json:"widget_id,string"`
+}
+
+func (*EditWidgetData) isFunction() {}
+
+func (t EditWidgetData) GetType() string {
+	return "editWidgetData"
+}
+
+func (t EditWidgetData) MarshalJSON() ([]byte, error) {
+	type Alias EditWidgetData
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "editWidgetData", Alias: (*Alias)(&t)})
 }
 
 // EnableProxy Enables a proxy. Only one proxy can be enabled at a time. Can be called before authorization
@@ -6013,6 +6165,46 @@ func (t FinishFileGeneration) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{TypeStr: "finishFileGeneration", Alias: (*Alias)(&t)})
+}
+
+// FixRecognizedRichMessageWithAi Fixes a rich message with text received as a result of speech recognition using an AI model by correcting recognition errors and adding punctuation. May return an error with a message "AICOMPOSE_FLOOD_PREMIUM" if Telegram Premium is required to send further requests
+type FixRecognizedRichMessageWithAi struct {
+	// The message with the recognized text
+	Message *InputRichMessage `json:"message"`
+}
+
+func (*FixRecognizedRichMessageWithAi) isFunction() {}
+
+func (t FixRecognizedRichMessageWithAi) GetType() string {
+	return "fixRecognizedRichMessageWithAi"
+}
+
+func (t FixRecognizedRichMessageWithAi) MarshalJSON() ([]byte, error) {
+	type Alias FixRecognizedRichMessageWithAi
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "fixRecognizedRichMessageWithAi", Alias: (*Alias)(&t)})
+}
+
+// FixRecognizedTextWithAi Fixes text received as a result of speech recognition using an AI model by correcting recognition errors and adding punctuation; must not be used in secret chats. May return an error with a message "AICOMPOSE_FLOOD_PREMIUM" if Telegram Premium is required to send further requests
+type FixRecognizedTextWithAi struct {
+	// The recognized text
+	Text *FormattedText `json:"text"`
+}
+
+func (*FixRecognizedTextWithAi) isFunction() {}
+
+func (t FixRecognizedTextWithAi) GetType() string {
+	return "fixRecognizedTextWithAi"
+}
+
+func (t FixRecognizedTextWithAi) MarshalJSON() ([]byte, error) {
+	type Alias FixRecognizedTextWithAi
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "fixRecognizedTextWithAi", Alias: (*Alias)(&t)})
 }
 
 // FixRichMessageWithAi Fixes a rich message using an AI model. May return an error with a message "AICOMPOSE_FLOOD_PREMIUM" if Telegram Premium is required to send further requests
@@ -6915,7 +7107,7 @@ func (t GetChatAdministrators) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "getChatAdministrators", Alias: (*Alias)(&t)})
 }
 
-// GetChatArchivedStories Returns the list of all stories posted by the given chat; requires can_edit_stories administrator right in the chat. The stories are returned in reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
+// GetChatArchivedStories Returns the list of all stories posted by the given chat; requires can_edit_stories administrator right in the chat. The stories are returned in reverse chronological order (i.e., in order of decreasing story.id). For optimal performance, the number of returned stories is chosen by TDLib
 type GetChatArchivedStories struct {
 	// Chat identifier
 	ChatId int64 `json:"chat_id"`
@@ -7107,7 +7299,7 @@ func (t GetChatBoostStatus) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "getChatBoostStatus", Alias: (*Alias)(&t)})
 }
 
-// GetChatEventLog Returns a list of service actions taken by chat members and administrators in the last 48 hours. Available only in supergroups and channels. Requires administrator rights. Returns results in reverse chronological order (i.e., in order of decreasing event_id)
+// GetChatEventLog Returns a list of service actions taken by chat members and administrators in the last 48 hours. Available only in supergroups and channels. Requires administrator rights. Returns results in reverse chronological order (i.e., in order of decreasing chatEvent.id)
 type GetChatEventLog struct {
 	// Chat identifier
 	ChatId int64 `json:"chat_id"`
@@ -7257,7 +7449,7 @@ func (t GetChatFolderNewChats) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "getChatFolderNewChats", Alias: (*Alias)(&t)})
 }
 
-// GetChatHistory Returns messages in a chat. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib. This is an offline method if only_local is true
+// GetChatHistory Returns messages in a chat. The messages are returned in reverse chronological order (i.e., in order of decreasing message.id). For optimal performance, the number of returned messages is chosen by TDLib. This is an offline method if only_local is true
 type GetChatHistory struct {
 	// Chat identifier
 	ChatId int64 `json:"chat_id"`
@@ -7617,7 +7809,7 @@ func (t GetChatPinnedMessage) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "getChatPinnedMessage", Alias: (*Alias)(&t)})
 }
 
-// GetChatPostedToChatPageStories Returns the list of stories that were posted by the given chat to its chat page. If from_story_id == 0, then pinned stories are returned first. Then, stories are returned in reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
+// GetChatPostedToChatPageStories Returns the list of stories that were posted by the given chat to its chat page. If from_story_id == 0, then pinned stories are returned first. Then, stories are returned in reverse chronological order (i.e., in order of decreasing story.id). For optimal performance, the number of returned stories is chosen by TDLib
 type GetChatPostedToChatPageStories struct {
 	// Chat identifier
 	ChatId int64 `json:"chat_id"`
@@ -7731,7 +7923,7 @@ func (t GetChats) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "getChats", Alias: (*Alias)(&t)})
 }
 
-// GetChatScheduledMessages Returns all scheduled messages in a chat. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id)
+// GetChatScheduledMessages Returns all scheduled messages in a chat. The messages are returned in reverse chronological order (i.e., in order of decreasing message.id)
 type GetChatScheduledMessages struct {
 	// Chat identifier
 	ChatId int64 `json:"chat_id"`
@@ -8011,6 +8203,30 @@ func (t GetCommands) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "getCommands", Alias: (*Alias)(&t)})
 }
 
+// GetCommunityAddChatRequests Returns pending requests to add chats to a community. Administrators of the community with can_edit_chat_list right receive all requests; other users receive only requests sent by them
+type GetCommunityAddChatRequests struct {
+	// Identifier of the community
+	CommunityId int64 `json:"community_id"`
+	// The maximum number of requests to return
+	Limit int32 `json:"limit"`
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
+}
+
+func (*GetCommunityAddChatRequests) isFunction() {}
+
+func (t GetCommunityAddChatRequests) GetType() string {
+	return "getCommunityAddChatRequests"
+}
+
+func (t GetCommunityAddChatRequests) MarshalJSON() ([]byte, error) {
+	type Alias GetCommunityAddChatRequests
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "getCommunityAddChatRequests", Alias: (*Alias)(&t)})
+}
+
 // GetCommunityFullInfo Returns full information about a community
 type GetCommunityFullInfo struct {
 	// Community identifier
@@ -8029,6 +8245,28 @@ func (t GetCommunityFullInfo) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{TypeStr: "getCommunityFullInfo", Alias: (*Alias)(&t)})
+}
+
+// GetCommunityMemberChats Returns chats in a community, which were joined by a member of the community; requires can_ban_members administrator right in the community. Can be used to show chats that will be affected by the member ban
+type GetCommunityMemberChats struct {
+	// Identifier of the community
+	CommunityId int64 `json:"community_id"`
+	// Identifier of the member
+	MemberId MessageSender `json:"member_id"`
+}
+
+func (*GetCommunityMemberChats) isFunction() {}
+
+func (t GetCommunityMemberChats) GetType() string {
+	return "getCommunityMemberChats"
+}
+
+func (t GetCommunityMemberChats) MarshalJSON() ([]byte, error) {
+	type Alias GetCommunityMemberChats
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "getCommunityMemberChats", Alias: (*Alias)(&t)})
 }
 
 // GetConnectedAffiliateProgram Returns an affiliate program that was connected to the given affiliate by identifier of the bot that created the program
@@ -8471,7 +8709,7 @@ func (t GetDirectMessagesChatTopic) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "getDirectMessagesChatTopic", Alias: (*Alias)(&t)})
 }
 
-// GetDirectMessagesChatTopicHistory Returns messages in the topic in a channel direct messages chat administered by the current user. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id)
+// GetDirectMessagesChatTopicHistory Returns messages in the topic in a channel direct messages chat administered by the current user. The messages are returned in reverse chronological order (i.e., in order of decreasing message.id)
 type GetDirectMessagesChatTopicHistory struct {
 	// Chat identifier of the channel direct messages chat
 	ChatId int64 `json:"chat_id"`
@@ -8805,7 +9043,7 @@ func (t GetForumTopicDefaultIcons) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "getForumTopicDefaultIcons", Alias: (*Alias)(&t)})
 }
 
-// GetForumTopicHistory Returns messages in a topic in a forum supergroup chat or a chat with a bot with topics. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
+// GetForumTopicHistory Returns messages in a topic in a forum supergroup chat or a chat with a bot with topics. The messages are returned in reverse chronological order (i.e., in order of decreasing message.id). For optimal performance, the number of returned messages is chosen by TDLib
 type GetForumTopicHistory struct {
 	// Chat identifier
 	ChatId int64 `json:"chat_id"`
@@ -8833,7 +9071,7 @@ func (t GetForumTopicHistory) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "getForumTopicHistory", Alias: (*Alias)(&t)})
 }
 
-// GetForumTopicLink Returns an HTTPS link to a topic in a forum supergroup chat. This is an offline method
+// GetForumTopicLink Returns an HTTPS link to a topic in a forum supergroup chat or a chat with a bot. This is an offline method
 type GetForumTopicLink struct {
 	// Identifier of the chat
 	ChatId int64 `json:"chat_id"`
@@ -9461,6 +9699,24 @@ func (t GetInternalLinkType) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{TypeStr: "getInternalLinkType", Alias: (*Alias)(&t)})
+}
+
+// GetJoinedCommunities Returns the list of communities joined by the current user
+type GetJoinedCommunities struct {
+}
+
+func (*GetJoinedCommunities) isFunction() {}
+
+func (t GetJoinedCommunities) GetType() string {
+	return "getJoinedCommunities"
+}
+
+func (t GetJoinedCommunities) MarshalJSON() ([]byte, error) {
+	type Alias GetJoinedCommunities
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "getJoinedCommunities", Alias: (*Alias)(&t)})
 }
 
 // GetJsonString Converts a JsonValue object to corresponding JSON-serialized string. Can be called synchronously
@@ -10425,7 +10681,7 @@ func (t GetMessageThread) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "getMessageThread", Alias: (*Alias)(&t)})
 }
 
-// GetMessageThreadHistory Returns messages in a message thread of a message. Can be used only if messageProperties.can_get_message_thread == true. Message thread of a channel message is in the channel's linked supergroup. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
+// GetMessageThreadHistory Returns messages in a message thread of a message. Can be used only if messageProperties.can_get_message_thread == true. Message thread of a channel message is in the channel's linked supergroup. The messages are returned in reverse chronological order (i.e., in order of decreasing message.id). For optimal performance, the number of returned messages is chosen by TDLib
 type GetMessageThreadHistory struct {
 	// Chat identifier
 	ChatId int64 `json:"chat_id"`
@@ -11639,7 +11895,7 @@ func (t GetSavedMessagesTags) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "getSavedMessagesTags", Alias: (*Alias)(&t)})
 }
 
-// GetSavedMessagesTopicHistory Returns messages in a Saved Messages topic. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id)
+// GetSavedMessagesTopicHistory Returns messages in a Saved Messages topic. The messages are returned in reverse chronological order (i.e., in order of decreasing message.id)
 type GetSavedMessagesTopicHistory struct {
 	// Identifier of the message starting from which messages must be fetched; use 0 to get results from the last message
 	FromMessageId int64 `json:"from_message_id"`
@@ -11823,6 +12079,26 @@ func (t GetSecretChat) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{TypeStr: "getSecretChat", Alias: (*Alias)(&t)})
+}
+
+// GetSpeechRecognitionLanguages Returns 1-3 most probable languages of speech in voice notes
+type GetSpeechRecognitionLanguages struct {
+	// Identifier of the chat; pass 0 if none
+	ChatId int64 `json:"chat_id"`
+}
+
+func (*GetSpeechRecognitionLanguages) isFunction() {}
+
+func (t GetSpeechRecognitionLanguages) GetType() string {
+	return "getSpeechRecognitionLanguages"
+}
+
+func (t GetSpeechRecognitionLanguages) MarshalJSON() ([]byte, error) {
+	type Alias GetSpeechRecognitionLanguages
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "getSpeechRecognitionLanguages", Alias: (*Alias)(&t)})
 }
 
 // GetStakeDiceState Returns the current state of stake dice
@@ -12423,6 +12699,24 @@ func (t GetSuggestedStickerSetName) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "getSuggestedStickerSetName", Alias: (*Alias)(&t)})
 }
 
+// GetSuitableCommunityChats Returns a list of supergroup and channel chats owned by the current user, which can be added to a community
+type GetSuitableCommunityChats struct {
+}
+
+func (*GetSuitableCommunityChats) isFunction() {}
+
+func (t GetSuitableCommunityChats) GetType() string {
+	return "getSuitableCommunityChats"
+}
+
+func (t GetSuitableCommunityChats) MarshalJSON() ([]byte, error) {
+	type Alias GetSuitableCommunityChats
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "getSuitableCommunityChats", Alias: (*Alias)(&t)})
+}
+
 // GetSuitableDiscussionChats Returns a list of basic group and supergroup chats, which can be used as a discussion group for a channel. Returned basic group chats must be first upgraded to supergroups before they can be set as a discussion group. To set a returned supergroup as a discussion group, access to its old messages must be enabled using toggleSupergroupIsAllHistoryAvailable first
 type GetSuitableDiscussionChats struct {
 }
@@ -12599,6 +12893,26 @@ func (t GetTextCompositionStyleExample) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{TypeStr: "getTextCompositionStyleExample", Alias: (*Alias)(&t)})
+}
+
+// GetTextEmojiRanges Returns positions of all emoji found in the text in order of their appearance. Can be called synchronously
+type GetTextEmojiRanges struct {
+	// The text in which to look for emoji
+	Text string `json:"text"`
+}
+
+func (*GetTextEmojiRanges) isFunction() {}
+
+func (t GetTextEmojiRanges) GetType() string {
+	return "getTextEmojiRanges"
+}
+
+func (t GetTextEmojiRanges) MarshalJSON() ([]byte, error) {
+	type Alias GetTextEmojiRanges
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "getTextEmojiRanges", Alias: (*Alias)(&t)})
 }
 
 // GetTextEntities Returns all entities (mentions, hashtags, cashtags, bot commands, bank card numbers, TON blockchain addresses, URLs, and email addresses) found in the text. Can be called synchronously
@@ -13521,6 +13835,54 @@ func (t GetWebPageInstantView) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "getWebPageInstantView", Alias: (*Alias)(&t)})
 }
 
+// GetWidgetPublicData Returns the current public data of a widget. Must be called only if the widget is visible on the screen and asked to poll its public data
+type GetWidgetPublicData struct {
+	// Identifier of the chat with the message
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the widget message. The message must not be scheduled
+	MessageId int64 `json:"message_id"`
+}
+
+func (*GetWidgetPublicData) isFunction() {}
+
+func (t GetWidgetPublicData) GetType() string {
+	return "getWidgetPublicData"
+}
+
+func (t GetWidgetPublicData) MarshalJSON() ([]byte, error) {
+	type Alias GetWidgetPublicData
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "getWidgetPublicData", Alias: (*Alias)(&t)})
+}
+
+// GetWidgetQueryAnswer Sends a widget query to a bot and returns an answer. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires
+type GetWidgetQueryAnswer struct {
+	// Identifier of the chat with the message
+	ChatId int64 `json:"chat_id"`
+	// Data of the query
+	Data []byte `json:"data"`
+	// Identifier of the widget message from which the query originated. The message must not be scheduled
+	MessageId int64 `json:"message_id"`
+	// Type of the query
+	QueryType WidgetQueryType `json:"query_type"`
+}
+
+func (*GetWidgetQueryAnswer) isFunction() {}
+
+func (t GetWidgetQueryAnswer) GetType() string {
+	return "getWidgetQueryAnswer"
+}
+
+func (t GetWidgetQueryAnswer) MarshalJSON() ([]byte, error) {
+	type Alias GetWidgetQueryAnswer
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "getWidgetQueryAnswer", Alias: (*Alias)(&t)})
+}
+
 // GiftPremiumWithStars Allows to buy a Telegram Premium subscription for another user with payment in Telegram Stars; for bots only
 type GiftPremiumWithStars struct {
 	// Number of months the Telegram Premium subscription will be active for the user
@@ -13933,7 +14295,7 @@ func (t ListenToAudio) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "listenToAudio", Alias: (*Alias)(&t)})
 }
 
-// LoadActiveStories Loads more active stories from a story list. The loaded stories will be sent through updates. Active stories are sorted by the pair (active_stories.order, active_stories.story_poster_chat_id) in descending order. Returns a 404 error if all active stories have been loaded
+// LoadActiveStories Loads more active stories from a story list. The loaded stories will be sent through updates. Active stories are sorted by the pair (active_stories.order, active_stories.chat_id) in descending order. Returns a 404 error if all active stories have been loaded
 type LoadActiveStories struct {
 	// The story list in which to load active stories
 	StoryList StoryList `json:"story_list"`
@@ -14525,6 +14887,8 @@ type PostStory struct {
 	FromStoryFullId *StoryFullId `json:"from_story_full_id,omitempty"`
 	// Pass true to keep the story accessible after expiration
 	IsPostedToChatPage bool `json:"is_posted_to_chat_page"`
+	// Music to be attached to the story; pass null if none. The music can be up to 60 seconds long. The bot getOption("audio_search_bot_username") can be used to find the music files
+	Music *InputAudio `json:"music,omitempty"`
 	// The privacy settings for the story; ignored for stories posted on behalf of supergroup and channel chats
 	PrivacySettings StoryPrivacySettings `json:"privacy_settings"`
 	// Pass true if the content of the story must be protected from forwarding and screenshotting
@@ -14661,6 +15025,52 @@ func (t ProcessChatJoinRequests) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{TypeStr: "processChatJoinRequests", Alias: (*Alias)(&t)})
+}
+
+// ProcessCommunityAddChatRequest Handles a pending request to add a chat to a community; requires can_edit_chat_list administrator right in the community
+type ProcessCommunityAddChatRequest struct {
+	// Pass true to approve the request and add the chat to the community; pass false to decline it. If the community already has the maximum number of chats, then approval fails with the error "COMMUNITY_PEERS_TOO_MUCH"
+	Approve bool `json:"approve"`
+	// Identifier of the chat from the request
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the community
+	CommunityId int64 `json:"community_id"`
+}
+
+func (*ProcessCommunityAddChatRequest) isFunction() {}
+
+func (t ProcessCommunityAddChatRequest) GetType() string {
+	return "processCommunityAddChatRequest"
+}
+
+func (t ProcessCommunityAddChatRequest) MarshalJSON() ([]byte, error) {
+	type Alias ProcessCommunityAddChatRequest
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "processCommunityAddChatRequest", Alias: (*Alias)(&t)})
+}
+
+// ProcessCommunityAddChatRequests Handles all pending requests to add chats to a community; requires can_edit_chat_list administrator right in the community
+type ProcessCommunityAddChatRequests struct {
+	// Pass true to approve all requests and add the chats to the community; pass false to decline them
+	Approve bool `json:"approve"`
+	// Identifier of the community
+	CommunityId int64 `json:"community_id"`
+}
+
+func (*ProcessCommunityAddChatRequests) isFunction() {}
+
+func (t ProcessCommunityAddChatRequests) GetType() string {
+	return "processCommunityAddChatRequests"
+}
+
+func (t ProcessCommunityAddChatRequests) MarshalJSON() ([]byte, error) {
+	type Alias ProcessCommunityAddChatRequests
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "processCommunityAddChatRequests", Alias: (*Alias)(&t)})
 }
 
 // ProcessGiftPurchaseOffer Handles a pending gift purchase offer
@@ -15011,6 +15421,28 @@ func (t RecognizeSpeech) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "recognizeSpeech", Alias: (*Alias)(&t)})
 }
 
+// RecognizeSpeechInFile Recognizes speech in an audio file and returns the recognized text. The file must be in OGG format with Opus codec and must have size up to 1 MB. The same rules as for recognizeSpeech apply to the Telegram Premium requirement and speech recognition trial; must not be used in secret chats
+type RecognizeSpeechInFile struct {
+	// The audio file
+	AudioFile InputFile `json:"audio_file"`
+	// Unique identifier of the speech recognition, which will be used in updateSpeechRecognitionInFile to send partially recognized text; pass 0 if partial results aren't needed
+	RecognitionId int64 `json:"recognition_id,string"`
+}
+
+func (*RecognizeSpeechInFile) isFunction() {}
+
+func (t RecognizeSpeechInFile) GetType() string {
+	return "recognizeSpeechInFile"
+}
+
+func (t RecognizeSpeechInFile) MarshalJSON() ([]byte, error) {
+	type Alias RecognizeSpeechInFile
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "recognizeSpeechInFile", Alias: (*Alias)(&t)})
+}
+
 // RecoverAuthenticationPassword Recovers the 2-step verification password with a password recovery code sent to an email address that was previously set up. Works only when the current authorization state is authorizationStateWaitPassword
 type RecoverAuthenticationPassword struct {
 	// New password hint; may be empty
@@ -15207,6 +15639,28 @@ func (t RemoveChatActionBar) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{TypeStr: "removeChatActionBar", Alias: (*Alias)(&t)})
+}
+
+// RemoveCommunityChat Removes a chat from a community. Members of the chat, which aren't members of other chats in the community, will be removed from the community. Requires owner privileges in the supergroup or channel chat, or ownership of the bot for chats with bots, or can_edit_chat_list administrator right in the community
+type RemoveCommunityChat struct {
+	// Identifier of the chat to remove
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the community
+	CommunityId int64 `json:"community_id"`
+}
+
+func (*RemoveCommunityChat) isFunction() {}
+
+func (t RemoveCommunityChat) GetType() string {
+	return "removeCommunityChat"
+}
+
+func (t RemoveCommunityChat) MarshalJSON() ([]byte, error) {
+	type Alias RemoveCommunityChat
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "removeCommunityChat", Alias: (*Alias)(&t)})
 }
 
 // RemoveContacts Removes users from the contact list
@@ -16089,11 +16543,11 @@ func (t ReplaceVideoChatRtmpUrl) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "replaceVideoChatRtmpUrl", Alias: (*Alias)(&t)})
 }
 
-// ReplyToCallbackQueryWithEphemeralMessage Replies to a callback query with an ephemeral message; for bots only
+// ReplyToCallbackQueryWithEphemeralMessage Replies to a callback query with an ephemeral message; for bots only. Returns the sent message
 type ReplyToCallbackQueryWithEphemeralMessage struct {
 	// Identifier of the callback query
 	CallbackQueryId int64 `json:"callback_query_id,string"`
-	// New content of the message. Must be one of the following types: inputMessageText, inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto, inputMessageRichMessage, inputMessageSticker, inputMessageVideo, inputMessageVideoNote, inputMessageVoiceNote
+	// New content of the message. Must be one of the following types: inputMessageText, inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto, inputMessageRichMessage, inputMessageSticker, inputMessageVideo, inputMessageVideoNote, inputMessageVoiceNote, inputMessageLocation, inputMessageVenue, inputMessageContact
 	InputMessageContent InputMessageContent `json:"input_message_content"`
 	// Pass true if the content of the message must be protected from forwarding and saving
 	ProtectContent bool `json:"protect_content"`
@@ -16141,7 +16595,7 @@ func (t ReportAuthenticationCodeMissing) MarshalJSON() ([]byte, error) {
 type ReportChat struct {
 	// Chat identifier
 	ChatId int64 `json:"chat_id"`
-	// Identifiers of reported messages. Use messageProperties.can_report_chat to check whether the message can be reported
+	// Identifiers of reported messages. Use messageProperties.can_report_chat to check whether the message can be reported. Ephemeral messages must be reported separately
 	MessageIds []int64 `json:"message_ids"`
 	// Option identifier chosen by the user; leave empty for the initial request
 	OptionId []byte `json:"option_id"`
@@ -16837,7 +17291,7 @@ func (t SearchBackground) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "searchBackground", Alias: (*Alias)(&t)})
 }
 
-// SearchCallMessages Searches for call and group call messages. Returns the results in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
+// SearchCallMessages Searches for call and group call messages. Returns the results in reverse chronological order (i.e., in order of decreasing message.id). For optimal performance, the number of returned messages is chosen by TDLib
 type SearchCallMessages struct {
 	// The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
 	Limit int32 `json:"limit"`
@@ -16909,7 +17363,7 @@ func (t SearchChatMembers) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "searchChatMembers", Alias: (*Alias)(&t)})
 }
 
-// SearchChatMessages Searches for messages with given words in the chat. Returns the results in reverse chronological order, i.e. in order of decreasing message_id. Cannot be used in secret chats with a non-empty query (searchSecretMessages must be used instead), or without an enabled message database. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit. A combination of query, sender_id, filter and topic_id search criteria is expected to be supported, only if it is required for Telegram official application implementation
+// SearchChatMessages Searches for messages with given words in the chat. Returns the results in reverse chronological order, i.e. in order of decreasing message.id. Cannot be used in secret chats with a non-empty query (searchSecretMessages must be used instead), or without an enabled message database. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit. A combination of query, sender_id, filter and topic_id search criteria is expected to be supported, only if it is required for Telegram official application implementation
 type SearchChatMessages struct {
 	// Identifier of the chat in which to search messages
 	ChatId int64 `json:"chat_id"`
@@ -17163,7 +17617,7 @@ func (t SearchInstalledStickerSets) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "searchInstalledStickerSets", Alias: (*Alias)(&t)})
 }
 
-// SearchMessages Searches for messages in all chats except secret chats. Returns the results in reverse chronological order (i.e., in order of decreasing (date, chat_id, message_id)). For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+// SearchMessages Searches for messages in all chats except secret chats. Returns the results in reverse chronological order (i.e., in order of decreasing (message.date, message.chat_id, message.id)). For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
 type SearchMessages struct {
 	// Chat list in which to search messages; pass null to search in all chats regardless of their chat list. Only Main and Archive chat lists are supported
 	ChatList ChatList `json:"chat_list,omitempty"`
@@ -17435,7 +17889,7 @@ func (t SearchRecentlyFoundChats) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "searchRecentlyFoundChats", Alias: (*Alias)(&t)})
 }
 
-// SearchSavedMessages Searches for messages tagged by the given reaction and with the given words in the Saved Messages chat; for Telegram Premium users only. Returns the results in reverse chronological order, i.e. in order of decreasing message_id. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+// SearchSavedMessages Searches for messages tagged by the given reaction and with the given words in the Saved Messages chat; for Telegram Premium users only. Returns the results in reverse chronological order, i.e. in order of decreasing message.id. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
 type SearchSavedMessages struct {
 	// Identifier of the message starting from which messages must be fetched; use 0 to get results from the last message
 	FromMessageId int64 `json:"from_message_id"`
@@ -18093,7 +18547,7 @@ func (t SendGroupCallMessage) MarshalJSON() ([]byte, error) {
 type SendInlineQueryResultMessage struct {
 	// Target chat
 	ChatId int64 `json:"chat_id"`
-	// Pass true to hide the bot, via which the message is sent. Can be used only for bots getOption("animation_search_bot_username"), getOption("photo_search_bot_username"), and getOption("venue_search_bot_username")
+	// Pass true to hide the bot, via which the message is sent. Can be used only for bots getOption("animation_search_bot_username") and getOption("photo_search_bot_username")
 	HideViaBot bool `json:"hide_via_bot"`
 	// Options to be used to send the message; pass null to use default options
 	Options *MessageSendOptions `json:"options,omitempty"`
@@ -18472,7 +18926,7 @@ type SendTonWalletTransfer struct {
 	// Address in the TON blockchain of the transaction peer
 	Address string `json:"address"`
 	// The amount of the sent cryptocurrency, in the smallest units of the cryptocurrency
-	Amount int64 `json:"amount"`
+	Amount int64 `json:"amount,string"`
 	// Comment added to the transaction
 	Comment string `json:"comment"`
 	// Serialized data for gasless cryptocurrency transfer request; pass an empty string to force a regular request. The minimum allowed transfer amount for a gasless transfer is getOption("ton_wallet_gasless_transfer_amount_min")
@@ -19815,6 +20269,28 @@ func (t SetCommunityName) MarshalJSON() ([]byte, error) {
 		TypeStr string `json:"@type"`
 		*Alias
 	}{TypeStr: "setCommunityName", Alias: (*Alias)(&t)})
+}
+
+// SetCommunityNotificationSettings Changes notification settings of a community
+type SetCommunityNotificationSettings struct {
+	// Identifier of the community
+	CommunityId int64 `json:"community_id"`
+	// New notification settings for the community
+	NotificationSettings *ChatNotificationSettings `json:"notification_settings"`
+}
+
+func (*SetCommunityNotificationSettings) isFunction() {}
+
+func (t SetCommunityNotificationSettings) GetType() string {
+	return "setCommunityNotificationSettings"
+}
+
+func (t SetCommunityNotificationSettings) MarshalJSON() ([]byte, error) {
+	type Alias SetCommunityNotificationSettings
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "setCommunityNotificationSettings", Alias: (*Alias)(&t)})
 }
 
 // SetCommunityPermissions Changes permissions of regular members in the given community; requires can_ban_members administrator right in the community
@@ -22667,6 +23143,52 @@ func (t ToggleChatViewAsTopics) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "toggleChatViewAsTopics", Alias: (*Alias)(&t)})
 }
 
+// ToggleCommunityAreChatsCollapsed Changes whether all chats of a community are collapsed into one entry in the chat list. If the chats are expanded, then the community is removed from all chat folders
+type ToggleCommunityAreChatsCollapsed struct {
+	// Pass true to collapse all chats of the community into one entry in the chat list
+	AreChatsCollapsed bool `json:"are_chats_collapsed"`
+	// Identifier of the community
+	CommunityId int64 `json:"community_id"`
+}
+
+func (*ToggleCommunityAreChatsCollapsed) isFunction() {}
+
+func (t ToggleCommunityAreChatsCollapsed) GetType() string {
+	return "toggleCommunityAreChatsCollapsed"
+}
+
+func (t ToggleCommunityAreChatsCollapsed) MarshalJSON() ([]byte, error) {
+	type Alias ToggleCommunityAreChatsCollapsed
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "toggleCommunityAreChatsCollapsed", Alias: (*Alias)(&t)})
+}
+
+// ToggleCommunityMemberIsBanned Bans or unbans a member of a community; requires can_ban_members administrator right in the community. A banned member is banned in all chats of the community. Administrators of the community can be banned only by the owner of the community and administrators, which can edit administrator rights of the member. If an owner of a chat in the community is banned, then the chat is removed from the community; in this case, can_edit_chat_list administrator right is also required
+type ToggleCommunityMemberIsBanned struct {
+	// Identifier of the community
+	CommunityId int64 `json:"community_id"`
+	// Pass true to ban the member; pass false to unban the member
+	IsBanned bool `json:"is_banned"`
+	// Identifier of the member to ban or unban
+	MemberId MessageSender `json:"member_id"`
+}
+
+func (*ToggleCommunityMemberIsBanned) isFunction() {}
+
+func (t ToggleCommunityMemberIsBanned) GetType() string {
+	return "toggleCommunityMemberIsBanned"
+}
+
+func (t ToggleCommunityMemberIsBanned) MarshalJSON() ([]byte, error) {
+	type Alias ToggleCommunityMemberIsBanned
+	return json.Marshal(&struct {
+		TypeStr string `json:"@type"`
+		*Alias
+	}{TypeStr: "toggleCommunityMemberIsBanned", Alias: (*Alias)(&t)})
+}
+
 // ToggleDirectMessagesChatTopicCanSendUnpaidMessages Allows to send unpaid messages to the given topic of the channel direct messages chat administered by the current user
 type ToggleDirectMessagesChatTopicCanSendUnpaidMessages struct {
 	// Pass true to allow unpaid messages; pass false to disallow unpaid messages
@@ -23185,6 +23707,8 @@ func (t ToggleSupergroupIsBroadcastGroup) MarshalJSON() ([]byte, error) {
 
 // ToggleSupergroupIsForum Toggles whether the supergroup is a forum; requires owner privileges in the supergroup. Discussion supergroups can't be converted to forums
 type ToggleSupergroupIsForum struct {
+	// New value of has_forum_sidebar; ignored if is_forum is false. Must be false if has_forum_tabs is true
+	HasForumSidebar bool `json:"has_forum_sidebar"`
 	// New value of has_forum_tabs; ignored if is_forum is false
 	HasForumTabs bool `json:"has_forum_tabs"`
 	// New value of is_forum

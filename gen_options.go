@@ -25,6 +25,12 @@ type AddChatMemberOpts struct {
 	ForwardLimit int32
 }
 
+// AddCommunityChatOpts contains optional parameters for AddCommunityChat
+type AddCommunityChatOpts struct {
+	// Pass true if the chat will be visible only to administrators of the community
+	IsHidden bool
+}
+
 // AddContactOpts contains optional parameters for AddContact
 type AddContactOpts struct {
 	// The contact to add or edit; phone number may be empty and needs to be specified only if known
@@ -65,7 +71,7 @@ type AddProxyOpts struct {
 
 // AddQuickReplyShortcutInlineQueryResultMessageOpts contains optional parameters for AddQuickReplyShortcutInlineQueryResultMessage
 type AddQuickReplyShortcutInlineQueryResultMessageOpts struct {
-	// Pass true to hide the bot, via which the message is sent. Can be used only for bots getOption("animation_search_bot_username"), getOption("photo_search_bot_username"), and getOption("venue_search_bot_username")
+	// Pass true to hide the bot, via which the message is sent. Can be used only for bots getOption("animation_search_bot_username") and getOption("photo_search_bot_username")
 	HideViaBot bool
 	// Identifier of a quick reply message in the same shortcut to be replied; pass 0 if none
 	ReplyToMessageId int64
@@ -605,6 +611,14 @@ type EditInlineMessageTextOpts struct {
 	ReplyMarkup ReplyMarkup
 }
 
+// EditInlineMessageWidgetDataOpts contains optional parameters for EditInlineMessageWidgetData
+type EditInlineMessageWidgetDataOpts struct {
+	// Pass true to edit data of the widget, which is specific to the chat
+	EditChatData bool
+	// Pass true to edit public data of the widget
+	EditPublicData bool
+}
+
 // EditMessageCaptionTextOpts contains optional parameters for EditMessageCaptionText
 type EditMessageCaptionTextOpts struct {
 	// New message content caption; 0-getOption("message_caption_length_max") characters; pass null to remove caption
@@ -653,6 +667,14 @@ type EditMessageTextContentOpts struct {
 	ReplyMarkup ReplyMarkup
 }
 
+// EditMessageWidgetDataOpts contains optional parameters for EditMessageWidgetData
+type EditMessageWidgetDataOpts struct {
+	// Pass true to edit data of the widget, which is specific to the chat
+	EditChatData bool
+	// Pass true to edit public data of the widget
+	EditPublicData bool
+}
+
 // EditProxyOpts contains optional parameters for EditProxy
 type EditProxyOpts struct {
 	// New comment for the proxy
@@ -675,6 +697,12 @@ type EditStoryOpts struct {
 	Caption *FormattedText
 	// New content of the story; pass null to keep the current content
 	Content InputStoryContent
+}
+
+// EditStoryMusicOpts contains optional parameters for EditStoryMusic
+type EditStoryMusicOpts struct {
+	// The new music; pass null to remove music from the story. The music can be up to 60 seconds long
+	Music *InputAudio
 }
 
 // EditTextCompositionStyleOpts contains optional parameters for EditTextCompositionStyle
@@ -1423,6 +1451,8 @@ type PostStoryOpts struct {
 	FromStoryFullId *StoryFullId
 	// Pass true to keep the story accessible after expiration
 	IsPostedToChatPage bool
+	// Music to be attached to the story; pass null if none. The music can be up to 60 seconds long. The bot getOption("audio_search_bot_username") can be used to find the music files
+	Music *InputAudio
 	// Pass true if the content of the story must be protected from forwarding and screenshotting
 	ProtectContent bool
 }
@@ -1451,6 +1481,18 @@ type ProcessChatJoinRequestsOpts struct {
 	Approve bool
 	// Invite link for which to process join requests. If empty, all join requests will be processed. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
 	InviteLink string
+}
+
+// ProcessCommunityAddChatRequestOpts contains optional parameters for ProcessCommunityAddChatRequest
+type ProcessCommunityAddChatRequestOpts struct {
+	// Pass true to approve the request and add the chat to the community; pass false to decline it. If the community already has the maximum number of chats, then approval fails with the error "COMMUNITY_PEERS_TOO_MUCH"
+	Approve bool
+}
+
+// ProcessCommunityAddChatRequestsOpts contains optional parameters for ProcessCommunityAddChatRequests
+type ProcessCommunityAddChatRequestsOpts struct {
+	// Pass true to approve all requests and add the chats to the community; pass false to decline them
+	Approve bool
 }
 
 // ProcessGiftPurchaseOfferOpts contains optional parameters for ProcessGiftPurchaseOffer
@@ -1815,7 +1857,7 @@ type SendGiftOpts struct {
 
 // SendInlineQueryResultMessageOpts contains optional parameters for SendInlineQueryResultMessage
 type SendInlineQueryResultMessageOpts struct {
-	// Pass true to hide the bot, via which the message is sent. Can be used only for bots getOption("animation_search_bot_username"), getOption("photo_search_bot_username"), and getOption("venue_search_bot_username")
+	// Pass true to hide the bot, via which the message is sent. Can be used only for bots getOption("animation_search_bot_username") and getOption("photo_search_bot_username")
 	HideViaBot bool
 	// Options to be used to send the message; pass null to use default options
 	Options *MessageSendOptions
@@ -2353,6 +2395,18 @@ type ToggleChatViewAsTopicsOpts struct {
 	ViewAsTopics bool
 }
 
+// ToggleCommunityAreChatsCollapsedOpts contains optional parameters for ToggleCommunityAreChatsCollapsed
+type ToggleCommunityAreChatsCollapsedOpts struct {
+	// Pass true to collapse all chats of the community into one entry in the chat list
+	AreChatsCollapsed bool
+}
+
+// ToggleCommunityMemberIsBannedOpts contains optional parameters for ToggleCommunityMemberIsBanned
+type ToggleCommunityMemberIsBannedOpts struct {
+	// Pass true to ban the member; pass false to unban the member
+	IsBanned bool
+}
+
 // ToggleDirectMessagesChatTopicCanSendUnpaidMessagesOpts contains optional parameters for ToggleDirectMessagesChatTopicCanSendUnpaidMessages
 type ToggleDirectMessagesChatTopicCanSendUnpaidMessagesOpts struct {
 	// Pass true to allow unpaid messages; pass false to disallow unpaid messages
@@ -2483,6 +2537,8 @@ type ToggleSupergroupIsAllHistoryAvailableOpts struct {
 
 // ToggleSupergroupIsForumOpts contains optional parameters for ToggleSupergroupIsForum
 type ToggleSupergroupIsForumOpts struct {
+	// New value of has_forum_sidebar; ignored if is_forum is false. Must be false if has_forum_tabs is true
+	HasForumSidebar bool
 	// New value of has_forum_tabs; ignored if is_forum is false
 	HasForumTabs bool
 	// New value of is_forum

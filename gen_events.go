@@ -4981,6 +4981,44 @@ func (c *Client) AddUpdateNewInlineQueryHandlerGroup(handler func(client *Client
 	c.AddHandlerGroup(&updateNewInlineQueryHandler{filter: filter, response: handler}, group)
 }
 
+// updateNewInlineWidgetQueryHandler handles UpdateNewInlineWidgetQuery updates
+type updateNewInlineWidgetQueryHandler struct {
+	filter   UpdateNewInlineWidgetQueryFilter
+	response func(client *Client, update *UpdateNewInlineWidgetQuery) error
+}
+
+func (h *updateNewInlineWidgetQueryHandler) CheckUpdate(client *Client, update TlObject) bool {
+	u, ok := update.(*UpdateNewInlineWidgetQuery)
+	if !ok || u == nil || h.response == nil {
+		return false
+	}
+	if h.filter != nil && !h.filter(u) {
+		return false
+	}
+	return true
+}
+
+func (h *updateNewInlineWidgetQueryHandler) HandleUpdate(client *Client, update TlObject) error {
+	u, ok := update.(*UpdateNewInlineWidgetQuery)
+	if !ok || u == nil || h.response == nil {
+		return nil
+	}
+	return h.response(client, u)
+}
+
+// OnUpdateNewInlineWidgetQuery registers a handler for UpdateNewInlineWidgetQuery updates with default group (0)
+func (c *Client) OnUpdateNewInlineWidgetQuery(handler func(client *Client, update *UpdateNewInlineWidgetQuery) error, filter UpdateNewInlineWidgetQueryFilter) {
+	c.AddUpdateNewInlineWidgetQueryHandlerGroup(handler, filter, 0)
+}
+
+// AddUpdateNewInlineWidgetQueryHandlerGroup registers a handler for UpdateNewInlineWidgetQuery updates with a specific group
+func (c *Client) AddUpdateNewInlineWidgetQueryHandlerGroup(handler func(client *Client, update *UpdateNewInlineWidgetQuery) error, filter UpdateNewInlineWidgetQueryFilter, group int) {
+	if handler == nil {
+		return
+	}
+	c.AddHandlerGroup(&updateNewInlineWidgetQueryHandler{filter: filter, response: handler}, group)
+}
+
 // updateNewMessageHandler handles UpdateNewMessage updates
 type updateNewMessageHandler struct {
 	filter   UpdateNewMessageFilter
@@ -5131,6 +5169,82 @@ func (c *Client) AddUpdateNewShippingQueryHandlerGroup(handler func(client *Clie
 		return
 	}
 	c.AddHandlerGroup(&updateNewShippingQueryHandler{filter: filter, response: handler}, group)
+}
+
+// updateNewWidgetCopyQueryHandler handles UpdateNewWidgetCopyQuery updates
+type updateNewWidgetCopyQueryHandler struct {
+	filter   UpdateNewWidgetCopyQueryFilter
+	response func(client *Client, update *UpdateNewWidgetCopyQuery) error
+}
+
+func (h *updateNewWidgetCopyQueryHandler) CheckUpdate(client *Client, update TlObject) bool {
+	u, ok := update.(*UpdateNewWidgetCopyQuery)
+	if !ok || u == nil || h.response == nil {
+		return false
+	}
+	if h.filter != nil && !h.filter(u) {
+		return false
+	}
+	return true
+}
+
+func (h *updateNewWidgetCopyQueryHandler) HandleUpdate(client *Client, update TlObject) error {
+	u, ok := update.(*UpdateNewWidgetCopyQuery)
+	if !ok || u == nil || h.response == nil {
+		return nil
+	}
+	return h.response(client, u)
+}
+
+// OnUpdateNewWidgetCopyQuery registers a handler for UpdateNewWidgetCopyQuery updates with default group (0)
+func (c *Client) OnUpdateNewWidgetCopyQuery(handler func(client *Client, update *UpdateNewWidgetCopyQuery) error, filter UpdateNewWidgetCopyQueryFilter) {
+	c.AddUpdateNewWidgetCopyQueryHandlerGroup(handler, filter, 0)
+}
+
+// AddUpdateNewWidgetCopyQueryHandlerGroup registers a handler for UpdateNewWidgetCopyQuery updates with a specific group
+func (c *Client) AddUpdateNewWidgetCopyQueryHandlerGroup(handler func(client *Client, update *UpdateNewWidgetCopyQuery) error, filter UpdateNewWidgetCopyQueryFilter, group int) {
+	if handler == nil {
+		return
+	}
+	c.AddHandlerGroup(&updateNewWidgetCopyQueryHandler{filter: filter, response: handler}, group)
+}
+
+// updateNewWidgetQueryHandler handles UpdateNewWidgetQuery updates
+type updateNewWidgetQueryHandler struct {
+	filter   UpdateNewWidgetQueryFilter
+	response func(client *Client, update *UpdateNewWidgetQuery) error
+}
+
+func (h *updateNewWidgetQueryHandler) CheckUpdate(client *Client, update TlObject) bool {
+	u, ok := update.(*UpdateNewWidgetQuery)
+	if !ok || u == nil || h.response == nil {
+		return false
+	}
+	if h.filter != nil && !h.filter(u) {
+		return false
+	}
+	return true
+}
+
+func (h *updateNewWidgetQueryHandler) HandleUpdate(client *Client, update TlObject) error {
+	u, ok := update.(*UpdateNewWidgetQuery)
+	if !ok || u == nil || h.response == nil {
+		return nil
+	}
+	return h.response(client, u)
+}
+
+// OnUpdateNewWidgetQuery registers a handler for UpdateNewWidgetQuery updates with default group (0)
+func (c *Client) OnUpdateNewWidgetQuery(handler func(client *Client, update *UpdateNewWidgetQuery) error, filter UpdateNewWidgetQueryFilter) {
+	c.AddUpdateNewWidgetQueryHandlerGroup(handler, filter, 0)
+}
+
+// AddUpdateNewWidgetQueryHandlerGroup registers a handler for UpdateNewWidgetQuery updates with a specific group
+func (c *Client) AddUpdateNewWidgetQueryHandlerGroup(handler func(client *Client, update *UpdateNewWidgetQuery) error, filter UpdateNewWidgetQueryFilter, group int) {
+	if handler == nil {
+		return
+	}
+	c.AddHandlerGroup(&updateNewWidgetQueryHandler{filter: filter, response: handler}, group)
 }
 
 // updateNotificationHandler handles UpdateNotification updates
@@ -6081,6 +6195,44 @@ func (c *Client) AddUpdateServiceNotificationHandlerGroup(handler func(client *C
 		return
 	}
 	c.AddHandlerGroup(&updateServiceNotificationHandler{filter: filter, response: handler}, group)
+}
+
+// updateSpeechRecognitionInFileHandler handles UpdateSpeechRecognitionInFile updates
+type updateSpeechRecognitionInFileHandler struct {
+	filter   UpdateSpeechRecognitionInFileFilter
+	response func(client *Client, update *UpdateSpeechRecognitionInFile) error
+}
+
+func (h *updateSpeechRecognitionInFileHandler) CheckUpdate(client *Client, update TlObject) bool {
+	u, ok := update.(*UpdateSpeechRecognitionInFile)
+	if !ok || u == nil || h.response == nil {
+		return false
+	}
+	if h.filter != nil && !h.filter(u) {
+		return false
+	}
+	return true
+}
+
+func (h *updateSpeechRecognitionInFileHandler) HandleUpdate(client *Client, update TlObject) error {
+	u, ok := update.(*UpdateSpeechRecognitionInFile)
+	if !ok || u == nil || h.response == nil {
+		return nil
+	}
+	return h.response(client, u)
+}
+
+// OnUpdateSpeechRecognitionInFile registers a handler for UpdateSpeechRecognitionInFile updates with default group (0)
+func (c *Client) OnUpdateSpeechRecognitionInFile(handler func(client *Client, update *UpdateSpeechRecognitionInFile) error, filter UpdateSpeechRecognitionInFileFilter) {
+	c.AddUpdateSpeechRecognitionInFileHandlerGroup(handler, filter, 0)
+}
+
+// AddUpdateSpeechRecognitionInFileHandlerGroup registers a handler for UpdateSpeechRecognitionInFile updates with a specific group
+func (c *Client) AddUpdateSpeechRecognitionInFileHandlerGroup(handler func(client *Client, update *UpdateSpeechRecognitionInFile) error, filter UpdateSpeechRecognitionInFileFilter, group int) {
+	if handler == nil {
+		return
+	}
+	c.AddHandlerGroup(&updateSpeechRecognitionInFileHandler{filter: filter, response: handler}, group)
 }
 
 // updateSpeechRecognitionTrialHandler handles UpdateSpeechRecognitionTrial updates
