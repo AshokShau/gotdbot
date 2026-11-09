@@ -1680,6 +1680,72 @@ func (c *Client) SendRichMessage(chatId int64, richMessage *InputRichMessage, op
 	})
 }
 
+// SendWidgetOpts contains widget content and the usual message delivery options.
+type SendWidgetOpts struct {
+	SendMessageOpts
+	Caption               string
+	CaptionEntities       []TextEntity
+	ChatData              string
+	PublicData            string
+	Width                 int32
+	Height                int32
+	AllowQueries          bool
+	IsShared              bool
+	ShowCaptionAboveMedia bool
+}
+
+// SendWidget sends an HTML widget to a chat. Telegram currently limits new
+// widgets to private chats and protects them from forwarding automatically.
+func (c *Client) SendWidget(chatId int64, html string, opts *SendWidgetOpts) (*Message, error) {
+	if opts == nil {
+		opts = &SendWidgetOpts{}
+	}
+	caption, err := c.GetFormattedText(opts.Caption, opts.CaptionEntities, opts.ParseMode)
+	if err != nil {
+		return nil, err
+	}
+	content := &InputMessageWidget{
+		AllowQueries: opts.AllowQueries, Caption: caption, ChatData: opts.ChatData,
+		Height: opts.Height, Html: html, IsShared: opts.IsShared,
+		PublicData: opts.PublicData, ShowCaptionAboveMedia: opts.ShowCaptionAboveMedia,
+		Width: opts.Width,
+	}
+	return c.sendMessageWithContent(chatId, content, sendContentOptionsFromMessage(&opts.SendMessageOpts))
+}
+
+// SendSharedWidget sends an existing shared widget by its identifier.
+func (c *Client) SendSharedWidget(chatId, widgetId int64, opts *SendWidgetOpts) (*Message, error) {
+	if opts == nil {
+		opts = &SendWidgetOpts{}
+	}
+	caption, err := c.GetFormattedText(opts.Caption, opts.CaptionEntities, opts.ParseMode)
+	if err != nil {
+		return nil, err
+	}
+	content := &InputMessageSharedWidget{
+		Caption: caption, ChatData: opts.ChatData, ShowCaptionAboveMedia: opts.ShowCaptionAboveMedia,
+		WidgetId: widgetId,
+	}
+	return c.sendMessageWithContent(chatId, content, sendContentOptionsFromMessage(&opts.SendMessageOpts))
+}
+
+func sendContentOptionsFromMessage(opts *SendMessageOpts) *sendMessageContentOptions {
+	return &sendMessageContentOptions{
+		Options: &MessageSendOptions{
+			DisableNotification: opts.DisableNotification, ProtectContent: opts.ProtectContent,
+			AllowPaidBroadcast: opts.AllowPaidBroadcast, EffectId: opts.EffectId,
+			FromBackground: opts.FromBackground, OnlyPreview: opts.OnlyPreview,
+			PaidMessageStarCount: opts.PaidMessageStarCount, SchedulingState: opts.SchedulingState,
+			SendingId: opts.SendingId, SuggestedPostInfo: opts.SuggestedPostInfo,
+			UpdateOrderOfInstalledStickerSets: opts.UpdateOrderOfInstalledStickerSets,
+		},
+		TopicId: opts.TopicId, Quote: opts.Quote, ReplyTo: opts.ReplyTo,
+		ReplyToMessageID: opts.ReplyToMessageID, ReplyMarkup: opts.ReplyMarkup,
+		CallbackQueryID: opts.CallbackQueryID, ReceiverUserID: opts.ReceiverUserID,
+		ReplaceCallbackQueryMessage: opts.ReplaceCallbackQueryMessage,
+	}
+}
+
 // SendRichTextOpts contains options for SendRichMessageMarkdown and
 // SendRichMessageHTML. ParseMode, Entities, and link preview options in
 // SendMessageOpts are unused: TDLib parses the rich source itself.

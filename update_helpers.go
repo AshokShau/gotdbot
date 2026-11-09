@@ -350,6 +350,55 @@ func (u *UpdateNewInlineQuery) Answer(c *Client, results []InputInlineQueryResul
 	return c.AnswerInlineQuery(u.Id, results, opts)
 }
 
+// Answer returns data to the widget that sent this query.
+func (u *UpdateNewWidgetQuery) Answer(c *Client, data string) error {
+	if u == nil {
+		return ErrNilUpdate
+	}
+	return c.AnswerWidgetQuery(data, u.Id)
+}
+
+// GetMessage fetches the widget message that originated this query.
+func (u *UpdateNewWidgetQuery) GetMessage(c *Client) (*Message, error) {
+	if u == nil {
+		return nil, ErrNilUpdate
+	}
+	return c.GetMessage(u.ChatId, u.MessageId)
+}
+
+// EditData changes the chat-specific or public data of this widget message.
+// Set the corresponding flags in opts for each value to change.
+func (u *UpdateNewWidgetQuery) EditData(c *Client, chatData, publicData string, opts *EditMessageWidgetDataOpts) error {
+	if u == nil {
+		return ErrNilUpdate
+	}
+	return c.EditMessageWidgetData(chatData, u.ChatId, u.MessageId, publicData, opts)
+}
+
+// Answer returns data to the inline widget that sent this query.
+func (u *UpdateNewInlineWidgetQuery) Answer(c *Client, data string) error {
+	if u == nil {
+		return ErrNilUpdate
+	}
+	return c.AnswerWidgetQuery(data, u.Id)
+}
+
+// EditData changes the chat-specific or public data of this inline widget.
+func (u *UpdateNewInlineWidgetQuery) EditData(c *Client, chatData, publicData string, opts *EditInlineMessageWidgetDataOpts) error {
+	if u == nil {
+		return ErrNilUpdate
+	}
+	return c.EditInlineMessageWidgetData(chatData, u.InlineMessageId, publicData, opts)
+}
+
+// Answer returns data to the shared widget copy that sent this query.
+func (u *UpdateNewWidgetCopyQuery) Answer(c *Client, data string) error {
+	if u == nil {
+		return ErrNilUpdate
+	}
+	return c.AnswerWidgetQuery(data, u.Id)
+}
+
 // Answer accepts the checkout when errorMessage is empty, or rejects it with
 // the supplied explanation. Telegram applies the payment validation rules.
 func (u *UpdateNewPreCheckoutQuery) Answer(c *Client, errorMessage string) error {

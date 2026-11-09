@@ -10,6 +10,16 @@ func (chat *Chat) SendRichMessage(c *Client, message *InputRichMessage, opts *Se
 	return c.SendRichMessage(chat.Id, message, opts)
 }
 
+// SendWidget sends an HTML widget to this chat.
+func (chat *Chat) SendWidget(c *Client, html string, opts *SendWidgetOpts) (*Message, error) {
+	return c.SendWidget(chat.Id, html, opts)
+}
+
+// SendSharedWidget sends an existing shared widget to this chat.
+func (chat *Chat) SendSharedWidget(c *Client, widgetId int64, opts *SendWidgetOpts) (*Message, error) {
+	return c.SendSharedWidget(chat.Id, widgetId, opts)
+}
+
 // SendRichMessageMarkdown sends rich Markdown to this chat.
 func (chat *Chat) SendRichMessageMarkdown(c *Client, text string, opts *SendRichTextOpts) (*Message, error) {
 	return c.SendRichMessageMarkdown(chat.Id, text, opts)
