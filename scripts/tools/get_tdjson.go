@@ -59,7 +59,11 @@ func main() {
 		if arch == "amd64" {
 			arch = "x86_64"
 		}
-		filename = fmt.Sprintf("TDLib-tdjson-linux-%s-shared.tar.gz", arch)
+		platform := "linux"
+		if _, err := os.Stat("/etc/alpine-release"); err == nil {
+			platform = "muslinux"
+		}
+		filename = fmt.Sprintf("TDLib-tdjson-%s-%s-shared.tar.gz", platform, arch)
 		matchFunc = func(name string) bool {
 			return strings.HasPrefix(name, "libtdjson.so")
 		}
