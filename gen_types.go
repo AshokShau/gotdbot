@@ -27193,7 +27193,7 @@ type MessageGift struct {
 	ReceivedGiftId string `json:"received_gift_id"`
 	// Receiver of the gift
 	ReceiverId MessageSender `json:"receiver_id"`
-	// Number of Telegram Stars that can be claimed by the receiver instead of the regular gift; 0 if the gift can't be sold by the receiver
+	// Number of Telegram Stars that can be claimed by the receiver instead of the regular gift within getOption("gift_sell_period") seconds from its sending; 0 if the gift can't be sold by the receiver
 	SellStarCount int64 `json:"sell_star_count"`
 	// Sender of the gift; may be null for outgoing messages about prepaid upgrade of gifts from unknown users
 	SenderId MessageSender `json:"sender_id,omitempty"`
@@ -39795,7 +39795,7 @@ type ReceivedGift struct {
 	PrepaidUpgradeStarCount int64 `json:"prepaid_upgrade_star_count"`
 	// Unique identifier of the received gift for the current user; only for the receiver of the gift
 	ReceivedGiftId string `json:"received_gift_id"`
-	// Number of Telegram Stars that can be claimed by the receiver instead of the regular gift; 0 if the gift can't be sold by the current user
+	// Number of Telegram Stars that can be claimed by the receiver instead of the regular gift within getOption("gift_sell_period") seconds from its sending; 0 if the gift can't be sold by the receiver
 	SellStarCount int64 `json:"sell_star_count"`
 	// Identifier of a user or a chat that sent the gift; may be null if unknown
 	SenderId MessageSender `json:"sender_id,omitempty"`

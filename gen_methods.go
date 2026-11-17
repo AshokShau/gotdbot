@@ -2193,7 +2193,7 @@ func (c *Client) DeleteForumTopic(chatId int64, forumTopicId int32) error {
 	return err
 }
 
-// DeleteGift Deletes a gift without receiving Telegram Stars for it. Use receivedGift.can_be_deleted or messageGift.can_be_deleted to check whether the gift can be deleted
+// DeleteGift Deletes a gift without receiving Telegram Stars for it. Use receivedGift.can_be_deleted or messageGift.can_be_deleted to check whether the gift can be deleted. The gift may be deleted even it can still be sold using sellGift
 func (c *Client) DeleteGift(businessConnectionId string, receivedGiftId string) error {
 	req := &DeleteGift{
 		BusinessConnectionId: businessConnectionId,
@@ -10199,7 +10199,7 @@ func (c *Client) SearchWebApp(botUserId int64, webAppShortName string) (*FoundWe
 	return responseAs[*FoundWebApp](resp)
 }
 
-// SellGift Sells a gift for Telegram Stars; requires owner privileges for gifts owned by a chat
+// SellGift Sells a gift for Telegram Stars. Use receivedGift.sell_star_count or messageGift.sell_star_count to check whether the gift is soldable. A gift can be sold if it is soldable and not more than getOption("gift_sell_period") seconds passed since gift sending
 func (c *Client) SellGift(businessConnectionId string, receivedGiftId string) error {
 	req := &SellGift{
 		BusinessConnectionId: businessConnectionId,

@@ -4163,7 +4163,7 @@ func (t DeleteForumTopic) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "deleteForumTopic", Alias: (*Alias)(&t)})
 }
 
-// DeleteGift Deletes a gift without receiving Telegram Stars for it. Use receivedGift.can_be_deleted or messageGift.can_be_deleted to check whether the gift can be deleted
+// DeleteGift Deletes a gift without receiving Telegram Stars for it. Use receivedGift.can_be_deleted or messageGift.can_be_deleted to check whether the gift can be deleted. The gift may be deleted even it can still be sold using sellGift
 type DeleteGift struct {
 	// Unique identifier of business connection on behalf of which to send the request; for bots only
 	BusinessConnectionId string `json:"business_connection_id"`
@@ -18131,7 +18131,7 @@ func (t SearchWebApp) MarshalJSON() ([]byte, error) {
 	}{TypeStr: "searchWebApp", Alias: (*Alias)(&t)})
 }
 
-// SellGift Sells a gift for Telegram Stars; requires owner privileges for gifts owned by a chat
+// SellGift Sells a gift for Telegram Stars. Use receivedGift.sell_star_count or messageGift.sell_star_count to check whether the gift is soldable. A gift can be sold if it is soldable and not more than getOption("gift_sell_period") seconds passed since gift sending
 type SellGift struct {
 	// Unique identifier of business connection on behalf of which to send the request; for bots only
 	BusinessConnectionId string `json:"business_connection_id"`
