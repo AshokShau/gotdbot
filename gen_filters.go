@@ -16,11 +16,11 @@ type UpdateActiveEmojiReactionsFilter func(u *UpdateActiveEmojiReactions) bool
 type UpdateActiveGiftAuctionsFilter func(u *UpdateActiveGiftAuctions) bool
 
 // UpdateActiveLiveLocationMessagesFilter filters UpdateActiveLiveLocationMessages updates.
-// The list of messages with active live location that need to be updated by the application has changed. The list is persistent across application restarts only if the message database is used
+// The list of messages with an active live location that need to be updated by the application has changed. The list is persistent across application restarts only if the message database is used
 type UpdateActiveLiveLocationMessagesFilter func(u *UpdateActiveLiveLocationMessages) bool
 
 // UpdateActiveNotificationsFilter filters UpdateActiveNotifications updates.
-// Contains active notifications that were shown on previous application launches. This update is sent only if the message database is used. In that case it comes once before any updateNotification and updateNotificationGroup update
+// Contains active notifications that were shown on previous application launches. This update is sent only if the message database is used. In that case, it comes once before any updateNotification and updateNotificationGroup updates
 type UpdateActiveNotificationsFilter func(u *UpdateActiveNotifications) bool
 
 // UpdateAgeVerificationParametersFilter filters UpdateAgeVerificationParameters updates.
@@ -28,7 +28,7 @@ type UpdateActiveNotificationsFilter func(u *UpdateActiveNotifications) bool
 type UpdateAgeVerificationParametersFilter func(u *UpdateAgeVerificationParameters) bool
 
 // UpdateAllowedBotUsernamePremiumSuffixesFilter filters UpdateAllowedBotUsernamePremiumSuffixes updates.
-// Lists of suffixes allowed in secondary bot usernames, which can be added additionally to the main username if the bot's owner has a Telegram Premium subscription
+// Lists of suffixes allowed in secondary bot usernames, which can be added in addition to the main username if the bot's owner has a Telegram Premium subscription
 type UpdateAllowedBotUsernamePremiumSuffixesFilter func(u *UpdateAllowedBotUsernamePremiumSuffixes) bool
 
 // UpdateAnimatedEmojiMessageClickedFilter filters UpdateAnimatedEmojiMessageClicked updates.
@@ -36,7 +36,7 @@ type UpdateAllowedBotUsernamePremiumSuffixesFilter func(u *UpdateAllowedBotUsern
 type UpdateAnimatedEmojiMessageClickedFilter func(u *UpdateAnimatedEmojiMessageClicked) bool
 
 // UpdateAnimationSearchParametersFilter filters UpdateAnimationSearchParameters updates.
-// The parameters of animation search through getOption("animation_search_bot_username") bot have changed
+// The parameters of animation search through the getOption("animation_search_bot_username") bot have changed
 type UpdateAnimationSearchParametersFilter func(u *UpdateAnimationSearchParameters) bool
 
 // UpdateApplicationRecaptchaVerificationRequiredFilter filters UpdateApplicationRecaptchaVerificationRequired updates.
@@ -48,7 +48,7 @@ type UpdateApplicationRecaptchaVerificationRequiredFilter func(u *UpdateApplicat
 type UpdateApplicationVerificationRequiredFilter func(u *UpdateApplicationVerificationRequired) bool
 
 // UpdateAttachmentMenuBotsFilter filters UpdateAttachmentMenuBots updates.
-// The list of bots added to attachment or side menu has changed
+// The list of bots added to the attachment or side menu has changed
 type UpdateAttachmentMenuBotsFilter func(u *UpdateAttachmentMenuBots) bool
 
 // UpdateAuthorizationStateFilter filters UpdateAuthorizationState updates.
@@ -84,7 +84,7 @@ type UpdateBusinessMessageEditedFilter func(u *UpdateBusinessMessageEdited) bool
 type UpdateBusinessMessagesDeletedFilter func(u *UpdateBusinessMessagesDeleted) bool
 
 // UpdateCallFilter filters UpdateCall updates.
-// New call was created or information about a call was updated
+// A new call was created or information about a call was updated
 type UpdateCallFilter func(u *UpdateCall) bool
 
 // UpdateChatAccentColorsFilter filters UpdateChatAccentColors updates.
@@ -92,7 +92,7 @@ type UpdateCallFilter func(u *UpdateCall) bool
 type UpdateChatAccentColorsFilter func(u *UpdateChatAccentColors) bool
 
 // UpdateChatActionFilter filters UpdateChatAction updates.
-// A message sender activity in the chat has changed
+// A message sender's activity in the chat has changed
 type UpdateChatActionFilter func(u *UpdateChatAction) bool
 
 // UpdateChatActionBarFilter filters UpdateChatActionBar updates.
@@ -124,7 +124,7 @@ type UpdateChatBlockListFilter func(u *UpdateChatBlockList) bool
 type UpdateChatBoostFilter func(u *UpdateChatBoost) bool
 
 // UpdateChatBusinessBotManageBarFilter filters UpdateChatBusinessBotManageBar updates.
-// The bar for managing business bot was changed in a chat
+// The bar for managing a business bot was changed in a chat
 type UpdateChatBusinessBotManageBarFilter func(u *UpdateChatBusinessBotManageBar) bool
 
 // UpdateChatDefaultDisableNotificationFilter filters UpdateChatDefaultDisableNotification updates.
@@ -136,7 +136,7 @@ type UpdateChatDefaultDisableNotificationFilter func(u *UpdateChatDefaultDisable
 type UpdateChatDraftMessageFilter func(u *UpdateChatDraftMessage) bool
 
 // UpdateChatEmojiStatusFilter filters UpdateChatEmojiStatus updates.
-// Chat emoji status has changed
+// The emoji status of a chat has changed
 type UpdateChatEmojiStatusFilter func(u *UpdateChatEmojiStatus) bool
 
 // UpdateChatFoldersFilter filters UpdateChatFolders updates.
@@ -144,7 +144,7 @@ type UpdateChatEmojiStatusFilter func(u *UpdateChatEmojiStatus) bool
 type UpdateChatFoldersFilter func(u *UpdateChatFolders) bool
 
 // UpdateChatHasProtectedContentFilter filters UpdateChatHasProtectedContent updates.
-// A chat content was allowed or restricted for saving
+// Chat content was allowed or restricted for saving
 type UpdateChatHasProtectedContentFilter func(u *UpdateChatHasProtectedContent) bool
 
 // UpdateChatHasScheduledMessagesFilter filters UpdateChatHasScheduledMessages updates.
@@ -188,7 +188,7 @@ type UpdateChatMessageSenderFilter func(u *UpdateChatMessageSender) bool
 type UpdateChatNotificationSettingsFilter func(u *UpdateChatNotificationSettings) bool
 
 // UpdateChatOnlineMemberCountFilter filters UpdateChatOnlineMemberCount updates.
-// The number of online group members has changed. This update with non-zero number of online group members is sent only for currently opened chats. There is no guarantee that it is sent just after the number of online users has changed
+// The number of online group members has changed. This update with a non-zero number of online group members is sent only for currently opened chats. There is no guarantee that it is sent just after the number of online users has changed
 type UpdateChatOnlineMemberCountFilter func(u *UpdateChatOnlineMemberCount) bool
 
 // UpdateChatPendingJoinRequestsFilter filters UpdateChatPendingJoinRequests updates.
@@ -224,8 +224,12 @@ type UpdateChatRemovedFromListFilter func(u *UpdateChatRemovedFromList) bool
 type UpdateChatReplyMarkupFilter func(u *UpdateChatReplyMarkup) bool
 
 // UpdateChatRevenueAmountFilter filters UpdateChatRevenueAmount updates.
-// The revenue earned from sponsored messages in a chat has changed. If chat revenue screen is opened, then getChatRevenueTransactions may be called to fetch new transactions
+// The revenue earned from sponsored messages in a chat has changed. If the chat revenue screen is opened, then getChatRevenueTransactions may be called to fetch new transactions
 type UpdateChatRevenueAmountFilter func(u *UpdateChatRevenueAmount) bool
+
+// UpdateChatTextCompositionParametersFilter filters UpdateChatTextCompositionParameters updates.
+// Default parameters for text composition with AI in a chat have changed
+type UpdateChatTextCompositionParametersFilter func(u *UpdateChatTextCompositionParameters) bool
 
 // UpdateChatThemeFilter filters UpdateChatTheme updates.
 // The chat theme was changed
@@ -248,11 +252,11 @@ type UpdateChatUnreadPollVoteCountFilter func(u *UpdateChatUnreadPollVoteCount) 
 type UpdateChatUnreadReactionCountFilter func(u *UpdateChatUnreadReactionCount) bool
 
 // UpdateChatVideoChatFilter filters UpdateChatVideoChat updates.
-// A chat video chat state has changed
+// A chat's video chat state has changed
 type UpdateChatVideoChatFilter func(u *UpdateChatVideoChat) bool
 
 // UpdateChatViewAsTopicsFilter filters UpdateChatViewAsTopics updates.
-// A chat default appearance has changed
+// A chat's default appearance has changed
 type UpdateChatViewAsTopicsFilter func(u *UpdateChatViewAsTopics) bool
 
 // UpdateChatWelcomeMessagesFilter filters UpdateChatWelcomeMessages updates.
@@ -272,7 +276,7 @@ type UpdateCommunityFullInfoFilter func(u *UpdateCommunityFullInfo) bool
 type UpdateConnectionStateFilter func(u *UpdateConnectionState) bool
 
 // UpdateContactCloseBirthdaysFilter filters UpdateContactCloseBirthdays updates.
-// The list of contacts that had birthdays recently or will have birthday soon has changed
+// The list of contacts who had birthdays recently or will have a birthday soon has changed
 type UpdateContactCloseBirthdaysFilter func(u *UpdateContactCloseBirthdays) bool
 
 // UpdateDefaultBackgroundFilter filters UpdateDefaultBackground updates.
@@ -312,11 +316,11 @@ type UpdateFavoriteStickersFilter func(u *UpdateFavoriteStickers) bool
 type UpdateFileFilter func(u *UpdateFile) bool
 
 // UpdateFileAddedToDownloadsFilter filters UpdateFileAddedToDownloads updates.
-// A file was added to the file download list. This update is sent only after file download list is loaded for the first time
+// A file was added to the file download list. This update is sent only after the file download list is loaded for the first time
 type UpdateFileAddedToDownloadsFilter func(u *UpdateFileAddedToDownloads) bool
 
 // UpdateFileDownloadFilter filters UpdateFileDownload updates.
-// A file download was changed. This update is sent only after file download list is loaded for the first time
+// A file download was changed. This update is sent only after the file download list is loaded for the first time
 type UpdateFileDownloadFilter func(u *UpdateFileDownload) bool
 
 // UpdateFileDownloadsFilter filters UpdateFileDownloads updates.
@@ -332,7 +336,7 @@ type UpdateFileGenerationStartFilter func(u *UpdateFileGenerationStart) bool
 type UpdateFileGenerationStopFilter func(u *UpdateFileGenerationStop) bool
 
 // UpdateFileRemovedFromDownloadsFilter filters UpdateFileRemovedFromDownloads updates.
-// A file was removed from the file download list. This update is sent only after file download list is loaded for the first time
+// A file was removed from the file download list. This update is sent only after the file download list is loaded for the first time
 type UpdateFileRemovedFromDownloadsFilter func(u *UpdateFileRemovedFromDownloads) bool
 
 // UpdateForumTopicFilter filters UpdateForumTopic updates.
@@ -348,11 +352,11 @@ type UpdateForumTopicInfoFilter func(u *UpdateForumTopicInfo) bool
 type UpdateFreezeStateFilter func(u *UpdateFreezeState) bool
 
 // UpdateGiftAuctionStateFilter filters UpdateGiftAuctionState updates.
-// State of a gift auction was updated
+// The state of a gift auction was updated
 type UpdateGiftAuctionStateFilter func(u *UpdateGiftAuctionState) bool
 
 // UpdateGramRevenueStatusFilter filters UpdateGramRevenueStatus updates.
-// The TON Gram revenue earned by the current user has changed. If Gram transaction screen of the chat is opened, then getTonTransactions may be called to fetch new transactions
+// The TON Gram revenue earned by the current user has changed. If the Gram transaction screen of the chat is opened, then getTonTransactions may be called to fetch new transactions
 type UpdateGramRevenueStatusFilter func(u *UpdateGramRevenueStatus) bool
 
 // UpdateGroupCallFilter filters UpdateGroupCall updates.
@@ -376,7 +380,7 @@ type UpdateGroupCallMessageSendFailedFilter func(u *UpdateGroupCallMessageSendFa
 type UpdateGroupCallParticipantFilter func(u *UpdateGroupCallParticipant) bool
 
 // UpdateGroupCallParticipantsFilter filters UpdateGroupCallParticipants updates.
-// The list of group call participants that can send and receive encrypted call data has changed; for group calls not bound to a chat only
+// The list of group call participants who can send and receive encrypted call data has changed; for group calls not bound to a chat only
 type UpdateGroupCallParticipantsFilter func(u *UpdateGroupCallParticipants) bool
 
 // UpdateGroupCallVerificationStateFilter filters UpdateGroupCallVerificationState updates.
@@ -384,7 +388,7 @@ type UpdateGroupCallParticipantsFilter func(u *UpdateGroupCallParticipants) bool
 type UpdateGroupCallVerificationStateFilter func(u *UpdateGroupCallVerificationState) bool
 
 // UpdateHavePendingNotificationsFilter filters UpdateHavePendingNotifications updates.
-// Describes whether there are some pending notification updates. Can be used to prevent application from killing, while there are some pending notifications
+// Describes whether there are some pending notification updates. Can be used to prevent the application from being killed while there are some pending notifications
 type UpdateHavePendingNotificationsFilter func(u *UpdateHavePendingNotifications) bool
 
 // UpdateInstalledStickerSetsFilter filters UpdateInstalledStickerSets updates.
@@ -396,7 +400,7 @@ type UpdateInstalledStickerSetsFilter func(u *UpdateInstalledStickerSets) bool
 type UpdateLanguagePackStringsFilter func(u *UpdateLanguagePackStrings) bool
 
 // UpdateLiveStoryTopDonorsFilter filters UpdateLiveStoryTopDonors updates.
-// The list of top donors in live story group call has changed
+// The list of top donors in the live story group call has changed
 type UpdateLiveStoryTopDonorsFilter func(u *UpdateLiveStoryTopDonors) bool
 
 // UpdateManagedBotFilter filters UpdateManagedBot updates.
@@ -404,7 +408,7 @@ type UpdateLiveStoryTopDonorsFilter func(u *UpdateLiveStoryTopDonors) bool
 type UpdateManagedBotFilter func(u *UpdateManagedBot) bool
 
 // UpdateMessageContainsUnreadPollVotesFilter filters UpdateMessageContainsUnreadPollVotes updates.
-// Unread votes were added or removed from a poll message
+// Unread votes were added to or removed from a poll message
 type UpdateMessageContainsUnreadPollVotesFilter func(u *UpdateMessageContainsUnreadPollVotes) bool
 
 // UpdateMessageContentFilter filters UpdateMessageContent updates.
@@ -412,7 +416,7 @@ type UpdateMessageContainsUnreadPollVotesFilter func(u *UpdateMessageContainsUnr
 type UpdateMessageContentFilter func(u *UpdateMessageContent) bool
 
 // UpdateMessageContentOpenedFilter filters UpdateMessageContentOpened updates.
-// The message content was opened. Updates voice note messages to "listened", video note messages to "viewed" and starts the self-destruct timer
+// The message content was opened. Updates voice note messages to "listened", video note messages to "viewed", and starts the self-destruct timer
 type UpdateMessageContentOpenedFilter func(u *UpdateMessageContentOpened) bool
 
 // UpdateMessageEditedFilter filters UpdateMessageEdited updates.
@@ -444,7 +448,7 @@ type UpdateMessageLiveLocationViewedFilter func(u *UpdateMessageLiveLocationView
 type UpdateMessageMentionReadFilter func(u *UpdateMessageMentionRead) bool
 
 // UpdateMessageReactionFilter filters UpdateMessageReaction updates.
-// User changed its reactions on a message with public reactions; for bots only
+// A user changed their reactions on a message with public reactions; for bots only
 type UpdateMessageReactionFilter func(u *UpdateMessageReaction) bool
 
 // UpdateMessageReactionsFilter filters UpdateMessageReactions updates.
@@ -464,7 +468,7 @@ type UpdateMessageSendFailedFilter func(u *UpdateMessageSendFailed) bool
 type UpdateMessageSendSucceededFilter func(u *UpdateMessageSendSucceeded) bool
 
 // UpdateMessageSuggestedPostInfoFilter filters UpdateMessageSuggestedPostInfo updates.
-// Information about suggested post of a message was changed
+// Information about the suggested post of a message was changed
 type UpdateMessageSuggestedPostInfoFilter func(u *UpdateMessageSuggestedPostInfo) bool
 
 // UpdateMessageUnreadReactionsFilter filters UpdateMessageUnreadReactions updates.
@@ -544,7 +548,7 @@ type UpdateNewOauthRequestFilter func(u *UpdateNewOauthRequest) bool
 type UpdateNewPreCheckoutQueryFilter func(u *UpdateNewPreCheckoutQuery) bool
 
 // UpdateNewShippingQueryFilter filters UpdateNewShippingQuery updates.
-// A new incoming shipping query; for bots only. Only for invoices with flexible price
+// A new incoming shipping query; for bots only. Only for invoices with a flexible price
 type UpdateNewShippingQueryFilter func(u *UpdateNewShippingQuery) bool
 
 // UpdateNewWidgetCopyQueryFilter filters UpdateNewWidgetCopyQuery updates.
@@ -636,7 +640,7 @@ type UpdateSavedMessagesTagsFilter func(u *UpdateSavedMessagesTags) bool
 type UpdateSavedMessagesTopicFilter func(u *UpdateSavedMessagesTopic) bool
 
 // UpdateSavedMessagesTopicCountFilter filters UpdateSavedMessagesTopicCount updates.
-// Number of Saved Messages topics has changed
+// The number of Saved Messages topics has changed
 type UpdateSavedMessagesTopicCountFilter func(u *UpdateSavedMessagesTopicCount) bool
 
 // UpdateSavedNotificationSoundsFilter filters UpdateSavedNotificationSounds updates.
@@ -652,7 +656,7 @@ type UpdateScopeNotificationSettingsFilter func(u *UpdateScopeNotificationSettin
 type UpdateSecretChatFilter func(u *UpdateSecretChat) bool
 
 // UpdateServiceNotificationFilter filters UpdateServiceNotification updates.
-// A service notification from the server was received. Upon receiving this the application must show a popup with the content of the notification
+// A service notification from the server was received. Upon receiving this, the application must show a popup with the content of the notification
 type UpdateServiceNotificationFilter func(u *UpdateServiceNotification) bool
 
 // UpdateSpeechRecognitionInFileFilter filters UpdateSpeechRecognitionInFile updates.
@@ -660,11 +664,11 @@ type UpdateServiceNotificationFilter func(u *UpdateServiceNotification) bool
 type UpdateSpeechRecognitionInFileFilter func(u *UpdateSpeechRecognitionInFile) bool
 
 // UpdateSpeechRecognitionTrialFilter filters UpdateSpeechRecognitionTrial updates.
-// The parameters of speech recognition without Telegram Premium subscription have changed
+// The parameters of speech recognition without a Telegram Premium subscription have changed
 type UpdateSpeechRecognitionTrialFilter func(u *UpdateSpeechRecognitionTrial) bool
 
 // UpdateSpeedLimitNotificationFilter filters UpdateSpeedLimitNotification updates.
-// Download or upload file speed for the user was limited, but it can be restored by subscription to Telegram Premium. The notification can be postponed until a file being downloaded or uploaded is visible to the user. Use getOption("premium_download_speedup") or getOption("premium_upload_speedup") to get expected speedup after subscription to Telegram Premium
+// Download or upload file speed for the user was limited, but it can be restored by subscription to Telegram Premium. The notification can be postponed until a file being downloaded or uploaded is visible to the user. Use getOption("premium_download_speedup") or getOption("premium_upload_speedup") to get the expected speedup after subscription to Telegram Premium
 type UpdateSpeedLimitNotificationFilter func(u *UpdateSpeedLimitNotification) bool
 
 // UpdateStakeDiceStateFilter filters UpdateStakeDiceState updates.
@@ -672,7 +676,7 @@ type UpdateSpeedLimitNotificationFilter func(u *UpdateSpeedLimitNotification) bo
 type UpdateStakeDiceStateFilter func(u *UpdateStakeDiceState) bool
 
 // UpdateStarRevenueStatusFilter filters UpdateStarRevenueStatus updates.
-// The Telegram Star revenue earned by a user or a chat has changed. If Telegram Star transaction screen of the chat is opened, then getStarTransactions may be called to fetch new transactions
+// The Telegram Star revenue earned by a user or a chat has changed. If the Telegram Star transaction screen of the chat is opened, then getStarTransactions may be called to fetch new transactions
 type UpdateStarRevenueStatusFilter func(u *UpdateStarRevenueStatus) bool
 
 // UpdateStickerSetFilter filters UpdateStickerSet updates.
@@ -692,7 +696,7 @@ type UpdateStoryFilter func(u *UpdateStory) bool
 type UpdateStoryDeletedFilter func(u *UpdateStoryDeleted) bool
 
 // UpdateStoryListChatCountFilter filters UpdateStoryListChatCount updates.
-// Number of chats in a story list has changed
+// The number of chats in a story list has changed
 type UpdateStoryListChatCountFilter func(u *UpdateStoryListChatCount) bool
 
 // UpdateStoryPostFailedFilter filters UpdateStoryPostFailed updates.
@@ -708,7 +712,7 @@ type UpdateStoryPostSucceededFilter func(u *UpdateStoryPostSucceeded) bool
 type UpdateStoryStealthModeFilter func(u *UpdateStoryStealthMode) bool
 
 // UpdateSuggestedActionsFilter filters UpdateSuggestedActions updates.
-// The list of suggested to the user actions has changed
+// The list of actions suggested to the user has changed
 type UpdateSuggestedActionsFilter func(u *UpdateSuggestedActions) bool
 
 // UpdateSupergroupFilter filters UpdateSupergroup updates.
@@ -736,7 +740,7 @@ type UpdateTonWalletGaslessTransfersInfoFilter func(u *UpdateTonWalletGaslessTra
 type UpdateTonWalletStateFilter func(u *UpdateTonWalletState) bool
 
 // UpdateTonWalletTonConnectSessionFilter filters UpdateTonWalletTonConnectSession updates.
-// A session of a TON Connect has changed
+// A TON Connect session has changed
 type UpdateTonWalletTonConnectSessionFilter func(u *UpdateTonWalletTonConnectSession) bool
 
 // UpdateTonWalletTonConnectSessionDisconnectRequiredFilter filters UpdateTonWalletTonConnectSessionDisconnectRequired updates.
@@ -744,7 +748,7 @@ type UpdateTonWalletTonConnectSessionFilter func(u *UpdateTonWalletTonConnectSes
 type UpdateTonWalletTonConnectSessionDisconnectRequiredFilter func(u *UpdateTonWalletTonConnectSessionDisconnectRequired) bool
 
 // UpdateTopicMessageCountFilter filters UpdateTopicMessageCount updates.
-// Number of messages in a topic has changed; for Saved Messages and channel direct messages chat topics only
+// The number of messages in a topic has changed; for Saved Messages and channel direct messages chat topics only
 type UpdateTopicMessageCountFilter func(u *UpdateTopicMessageCount) bool
 
 // UpdateTrendingStickerSetsFilter filters UpdateTrendingStickerSets updates.
@@ -752,7 +756,7 @@ type UpdateTopicMessageCountFilter func(u *UpdateTopicMessageCount) bool
 type UpdateTrendingStickerSetsFilter func(u *UpdateTrendingStickerSets) bool
 
 // UpdateTrustedMiniAppBotsFilter filters UpdateTrustedMiniAppBots updates.
-// Lists of bots which Mini Apps must be allowed to read text from clipboard and must be opened without a warning
+// Lists of bots whose Mini Apps must be allowed to read text from the clipboard and must be opened without a warning
 type UpdateTrustedMiniAppBotsFilter func(u *UpdateTrustedMiniAppBots) bool
 
 // UpdateUnconfirmedSessionFilter filters UpdateUnconfirmedSession updates.
@@ -760,11 +764,11 @@ type UpdateTrustedMiniAppBotsFilter func(u *UpdateTrustedMiniAppBots) bool
 type UpdateUnconfirmedSessionFilter func(u *UpdateUnconfirmedSession) bool
 
 // UpdateUnreadChatCountFilter filters UpdateUnreadChatCount updates.
-// Number of unread chats, i.e. with unread messages or marked as unread, has changed. This update is sent only if the message database is used
+// The number of unread chats, i.e., with unread messages or marked as unread, has changed. This update is sent only if the message database is used
 type UpdateUnreadChatCountFilter func(u *UpdateUnreadChatCount) bool
 
 // UpdateUnreadMessageCountFilter filters UpdateUnreadMessageCount updates.
-// Number of unread messages in a chat list has changed. This update is sent only if the message database is used
+// The number of unread messages in a chat list has changed. This update is sent only if the message database is used
 type UpdateUnreadMessageCountFilter func(u *UpdateUnreadMessageCount) bool
 
 // UpdateUserFilter filters UpdateUser updates.
@@ -784,11 +788,11 @@ type UpdateUserPrivacySettingRulesFilter func(u *UpdateUserPrivacySettingRules) 
 type UpdateUserStatusFilter func(u *UpdateUserStatus) bool
 
 // UpdateUserSubscriptionFilter filters UpdateUserSubscription updates.
-// Subscription of a user to the bot was changed; for bots only
+// The subscription of a user to the bot was changed; for bots only
 type UpdateUserSubscriptionFilter func(u *UpdateUserSubscription) bool
 
 // UpdateVideoPublishedFilter filters UpdateVideoPublished updates.
-// An automatically scheduled message with video has been successfully sent after conversion
+// An automatically scheduled message with a video has been successfully sent after conversion
 type UpdateVideoPublishedFilter func(u *UpdateVideoPublished) bool
 
 // UpdateWebAppMessageSentFilter filters UpdateWebAppMessageSent updates.

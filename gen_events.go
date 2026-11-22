@@ -2131,6 +2131,44 @@ func (c *Client) AddUpdateChatRevenueAmountHandlerGroup(handler func(client *Cli
 	c.AddHandlerGroup(&updateChatRevenueAmountHandler{filter: filter, response: handler}, group)
 }
 
+// updateChatTextCompositionParametersHandler handles UpdateChatTextCompositionParameters updates
+type updateChatTextCompositionParametersHandler struct {
+	filter   UpdateChatTextCompositionParametersFilter
+	response func(client *Client, update *UpdateChatTextCompositionParameters) error
+}
+
+func (h *updateChatTextCompositionParametersHandler) CheckUpdate(client *Client, update TlObject) bool {
+	u, ok := update.(*UpdateChatTextCompositionParameters)
+	if !ok || u == nil || h.response == nil {
+		return false
+	}
+	if h.filter != nil && !h.filter(u) {
+		return false
+	}
+	return true
+}
+
+func (h *updateChatTextCompositionParametersHandler) HandleUpdate(client *Client, update TlObject) error {
+	u, ok := update.(*UpdateChatTextCompositionParameters)
+	if !ok || u == nil || h.response == nil {
+		return nil
+	}
+	return h.response(client, u)
+}
+
+// OnUpdateChatTextCompositionParameters registers a handler for UpdateChatTextCompositionParameters updates with default group (0)
+func (c *Client) OnUpdateChatTextCompositionParameters(handler func(client *Client, update *UpdateChatTextCompositionParameters) error, filter UpdateChatTextCompositionParametersFilter) {
+	c.AddUpdateChatTextCompositionParametersHandlerGroup(handler, filter, 0)
+}
+
+// AddUpdateChatTextCompositionParametersHandlerGroup registers a handler for UpdateChatTextCompositionParameters updates with a specific group
+func (c *Client) AddUpdateChatTextCompositionParametersHandlerGroup(handler func(client *Client, update *UpdateChatTextCompositionParameters) error, filter UpdateChatTextCompositionParametersFilter, group int) {
+	if handler == nil {
+		return
+	}
+	c.AddHandlerGroup(&updateChatTextCompositionParametersHandler{filter: filter, response: handler}, group)
+}
+
 // updateChatThemeHandler handles UpdateChatTheme updates
 type updateChatThemeHandler struct {
 	filter   UpdateChatThemeFilter

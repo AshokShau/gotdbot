@@ -85,7 +85,7 @@ func (r *richRenderer) block(block PageBlock, mode string) string {
 	case PageBlockBlockQuote:
 		return "<blockquote>\n" + r.blocks(v.Blocks, ParseModeHTML) + credit(v.Credit) + "</blockquote>\n"
 	case PageBlockExpandableBlockQuote:
-		return "<blockquote expandable>" + RichTextHTML(v.Text) + credit(v.Credit) + "</blockquote>\n"
+		return "<blockquote expandable>\n" + r.blocks(v.Blocks, ParseModeHTML) + credit(v.Credit) + "</blockquote>\n"
 	case PageBlockPullQuote:
 		return "<aside>" + RichTextHTML(v.Text) + credit(v.Credit) + "</aside>\n"
 	case PageBlockDetails:
