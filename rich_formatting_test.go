@@ -48,7 +48,7 @@ func TestRichBlockStructureAndMedia(t *testing.T) {
 		}},
 		PageBlockTable{IsBordered: true, IsStriped: true, IsCompact: true, Caption: p("Table"), Cells: [][]PageBlockTableCell{{{IsHeader: true, Text: p("head"), Colspan: 2, Rowspan: 3, Align: PageBlockHorizontalAlignmentRight{}, Valign: &PageBlockVerticalAlignmentTop{}}, {Text: nil}}}},
 		PageBlockBlockQuote{Blocks: []PageBlock{PageBlockParagraph{Text: p("a\nb")}}, Credit: p("author")},
-		PageBlockExpandableBlockQuote{Text: p("hidden")},
+		PageBlockExpandableBlockQuote{Blocks: []PageBlock{PageBlockParagraph{Text: p("hidden")}, PageBlockPreformatted{Text: p("code")}}},
 		PageBlockAudio{Audio: &Audio{Audio: &File{Id: 20}, Duration: 5, Title: "song"}},
 	}}
 	before := append([]PageBlock(nil), rich.Blocks...)
@@ -57,7 +57,7 @@ func TestRichBlockStructureAndMedia(t *testing.T) {
 		if markdown {
 			text, media = rich.Markdown()
 		}
-		for _, want := range []string{`<details open><summary>More</summary>`, "<pre><code class=\"language-go\">&lt;&amp;\n`code`</code></pre>", `<li value="3" type="i">`, `<li value="7">`, `<input type="checkbox" checked>`, `<table bordered striped compact>`, `<caption>Table</caption>`, `<th colspan="2" rowspan="3" align="right" valign="top">head</th>`, `<blockquote expandable>hidden</blockquote>`, `<cite>author</cite>`, `<img src="tg://photo?id=1" tg-spoiler/>`, `<audio src="tg://audio?id=2">`, `<figcaption>photo<cite>credit</cite></figcaption>`} {
+		for _, want := range []string{`<details open><summary>More</summary>`, "<pre><code class=\"language-go\">&lt;&amp;\n`code`</code></pre>", `<li value="3" type="i">`, `<li value="7">`, `<input type="checkbox" checked>`, `<table bordered striped compact>`, `<caption>Table</caption>`, `<th colspan="2" rowspan="3" align="right" valign="top">head</th>`, "<blockquote expandable>\n<p>hidden</p>\n<pre><code>code</code></pre>\n</blockquote>", `<cite>author</cite>`, `<img src="tg://photo?id=1" tg-spoiler/>`, `<audio src="tg://audio?id=2">`, `<figcaption>photo<cite>credit</cite></figcaption>`} {
 			if !strings.Contains(text, want) {
 				t.Errorf("markdown=%v: missing %q in %s", markdown, want, text)
 			}
@@ -142,10 +142,22 @@ func TestRenderedRichMessageCanBeResent(t *testing.T) {
 func TestFormattedTextRichBlockEntities(t *testing.T) {
 	f := &FormattedText{Text: "a\nbcd", Entities: []TextEntity{{Length: 1, Type: TextEntityTypePreCode{Language: "go"}}, {Offset: 2, Length: 1, Type: TextEntityTypeBlockQuote{}}, {Offset: 3, Length: 1, Type: TextEntityTypeExpandableBlockQuote{}}, {Offset: 4, Length: 1, Type: TextEntityTypeItalic{}}}}
 	text, _ := (&Message{Content: &MessageText{Text: f}}).OriginalRichHTML()
-	for _, want := range []string{`<pre><code class="language-go">a</code></pre>`, "<blockquote>\n<p>b</p>\n</blockquote>", `<blockquote expandable>c</blockquote>`, `<p><i>d</i></p>`} {
+	for _, want := range []string{`<pre><code class="language-go">a</code></pre>`, "<blockquote>\n<p>b</p>\n</blockquote>", "<blockquote expandable>\n<p>c</p>\n</blockquote>", `<p><i>d</i></p>`} {
 		if !strings.Contains(text, want) {
 			t.Errorf("missing %q in %q", want, text)
 		}
+	}
+}
+
+func TestFormattedTextExpandableQuoteKeepsNestedBlocks(t *testing.T) {
+	f := &FormattedText{Text: "abcd", Entities: []TextEntity{
+		{Offset: 0, Length: 4, Type: TextEntityTypeExpandableBlockQuote{}},
+		{Offset: 1, Length: 2, Type: TextEntityTypePreCode{Language: "go"}},
+	}}
+	got, _ := formattedTextRichMessage(f).HTML()
+	want := "<blockquote expandable>\n<p>a</p>\n<pre><code class=\"language-go\">bc</code></pre>\n<p>d</p>\n</blockquote>\n"
+	if got != want {
+		t.Fatalf("got %q, want %q", got, want)
 	}
 }
 

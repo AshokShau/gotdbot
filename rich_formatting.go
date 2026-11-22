@@ -317,7 +317,7 @@ func formattedTextRichMessage(f *FormattedText) *RichMessage {
 			case TextEntityTypeBlockQuote:
 				blocks = append(blocks, PageBlockBlockQuote{Blocks: buildBlocks(node.start, node.end, node.children)})
 			case TextEntityTypeExpandableBlockQuote:
-				blocks = append(blocks, PageBlockExpandableBlockQuote{Text: sequence(node.start, node.end, roots)})
+				blocks = append(blocks, PageBlockExpandableBlockQuote{Blocks: buildBlocks(node.start, node.end, node.children)})
 			}
 			pos = node.end
 		}

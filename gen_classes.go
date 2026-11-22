@@ -576,6 +576,50 @@ func UnmarshalBlockList(data []byte) (BlockList, error) {
 	}
 }
 
+// BotCallbackQueryMode Describes how callback queries are received by a bot
+//   - BotCallbackQueryModeAuto
+//   - BotCallbackQueryModeDefault
+//   - BotCallbackQueryModeInline
+type BotCallbackQueryMode interface {
+	TlObject
+	botCallbackQueryMode()
+}
+
+// UnmarshalBotCallbackQueryMode unmarshals the JSON into the correct concrete implementation of BotCallbackQueryMode
+func UnmarshalBotCallbackQueryMode(data []byte) (BotCallbackQueryMode, error) {
+	if bytes.Equal(bytes.TrimSpace(data), []byte("null")) {
+		return nil, nil
+	}
+	var typeObj struct {
+		Type string `json:"@type"`
+	}
+	if err := json.Unmarshal(data, &typeObj); err != nil {
+		return nil, err
+	}
+	switch typeObj.Type {
+	case "botCallbackQueryModeAuto":
+		var obj BotCallbackQueryModeAuto
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "botCallbackQueryModeDefault":
+		var obj BotCallbackQueryModeDefault
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "botCallbackQueryModeInline":
+		var obj BotCallbackQueryModeInline
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	default:
+		return nil, fmt.Errorf("unknown type: %s", typeObj.Type)
+	}
+}
+
 // BotCommandScope Represents the scope to which bot commands are relevant
 //   - BotCommandScopeAllChatAdministrators
 //   - BotCommandScopeAllGroupChats
@@ -639,6 +683,134 @@ func UnmarshalBotCommandScope(data []byte) (BotCommandScope, error) {
 		return &obj, nil
 	case "botCommandScopeDefault":
 		var obj BotCommandScopeDefault
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	default:
+		return nil, fmt.Errorf("unknown type: %s", typeObj.Type)
+	}
+}
+
+// BotSetting Describes a setting of a bot
+//   - BotSettingAllowsUsersToCreateTopics
+//   - BotSettingCallbackQueryMode
+//   - BotSettingCanCommunicateWithBots
+//   - BotSettingCanConnectToBusiness
+//   - BotSettingCanJoinGroups
+//   - BotSettingCanManageBots
+//   - BotSettingCanReadAllGroupMessages
+//   - BotSettingHasTopicSidebar
+//   - BotSettingHasTopics
+//   - BotSettingInlineFeedback
+//   - BotSettingInlineQueryPlaceholder
+//   - BotSettingIsGuard
+//   - BotSettingIsInline
+//   - BotSettingNeedLocation
+//   - BotSettingSupportsGuestQueries
+type BotSetting interface {
+	TlObject
+	botSetting()
+}
+
+// UnmarshalBotSetting unmarshals the JSON into the correct concrete implementation of BotSetting
+func UnmarshalBotSetting(data []byte) (BotSetting, error) {
+	if bytes.Equal(bytes.TrimSpace(data), []byte("null")) {
+		return nil, nil
+	}
+	var typeObj struct {
+		Type string `json:"@type"`
+	}
+	if err := json.Unmarshal(data, &typeObj); err != nil {
+		return nil, err
+	}
+	switch typeObj.Type {
+	case "botSettingAllowsUsersToCreateTopics":
+		var obj BotSettingAllowsUsersToCreateTopics
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "botSettingCallbackQueryMode":
+		var obj BotSettingCallbackQueryMode
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "botSettingCanCommunicateWithBots":
+		var obj BotSettingCanCommunicateWithBots
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "botSettingCanConnectToBusiness":
+		var obj BotSettingCanConnectToBusiness
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "botSettingCanJoinGroups":
+		var obj BotSettingCanJoinGroups
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "botSettingCanManageBots":
+		var obj BotSettingCanManageBots
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "botSettingCanReadAllGroupMessages":
+		var obj BotSettingCanReadAllGroupMessages
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "botSettingHasTopicSidebar":
+		var obj BotSettingHasTopicSidebar
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "botSettingHasTopics":
+		var obj BotSettingHasTopics
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "botSettingInlineFeedback":
+		var obj BotSettingInlineFeedback
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "botSettingInlineQueryPlaceholder":
+		var obj BotSettingInlineQueryPlaceholder
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "botSettingIsGuard":
+		var obj BotSettingIsGuard
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "botSettingIsInline":
+		var obj BotSettingIsInline
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "botSettingNeedLocation":
+		var obj BotSettingNeedLocation
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "botSettingSupportsGuestQueries":
+		var obj BotSettingSupportsGuestQueries
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -757,7 +929,7 @@ func UnmarshalBuiltInTheme(data []byte) (BuiltInTheme, error) {
 	}
 }
 
-// BusinessAwayMessageSchedule Describes conditions for sending of away messages by a Telegram Business account
+// BusinessAwayMessageSchedule Describes conditions for sending away messages by a Telegram Business account
 //   - BusinessAwayMessageScheduleAlways
 //   - BusinessAwayMessageScheduleCustom
 //   - BusinessAwayMessageScheduleOutsideOfOpeningHours
@@ -1416,7 +1588,7 @@ func UnmarshalCanSendMessageToUserResult(data []byte) (CanSendMessageToUserResul
 	}
 }
 
-// CanTransferOwnershipResult Represents result of checking whether the current session can be used to transfer a chat ownership to another user
+// CanTransferOwnershipResult Represents result of checking whether the current session can be used to transfer chat ownership to another user
 //   - CanTransferOwnershipResultOk
 //   - CanTransferOwnershipResultPasswordNeeded
 //   - CanTransferOwnershipResultPasswordTooFresh
@@ -1595,8 +1767,9 @@ func UnmarshalChatAction(data []byte) (ChatAction, error) {
 	}
 }
 
-// ChatActionBar Describes actions which must be possible to do through a chat action bar
+// ChatActionBar Describes actions that must be possible to do through a chat action bar
 //   - ChatActionBarAddContact
+//   - ChatActionBarBotInvite
 //   - ChatActionBarInviteMembers
 //   - ChatActionBarJoinRequest
 //   - ChatActionBarReportAddBlock
@@ -1621,6 +1794,12 @@ func UnmarshalChatActionBar(data []byte) (ChatActionBar, error) {
 	switch typeObj.Type {
 	case "chatActionBarAddContact":
 		var obj ChatActionBarAddContact
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "chatActionBarBotInvite":
+		var obj ChatActionBarBotInvite
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -2411,7 +2590,7 @@ func UnmarshalChatMemberStatus(data []byte) (ChatMemberStatus, error) {
 	}
 }
 
-// ChatPhotoStickerType Describes type of sticker, which was used to create a chat photo
+// ChatPhotoStickerType Describes type of sticker that was used to create a chat photo
 //   - ChatPhotoStickerTypeCustomEmoji
 //   - ChatPhotoStickerTypeRegularOrMask
 type ChatPhotoStickerType interface {
@@ -2543,7 +2722,7 @@ func UnmarshalChatSource(data []byte) (ChatSource, error) {
 	}
 }
 
-// ChatStatistics Contains a detailed statistics about a chat
+// ChatStatistics Contains detailed statistics about a chat
 //   - ChatStatisticsChannel
 //   - ChatStatisticsSupergroup
 type ChatStatistics interface {
@@ -2580,7 +2759,7 @@ func UnmarshalChatStatistics(data []byte) (ChatStatistics, error) {
 	}
 }
 
-// ChatStatisticsObjectType Describes type of object, for which statistics are provided
+// ChatStatisticsObjectType Describes type of object for which statistics are provided
 //   - ChatStatisticsObjectTypeMessage
 //   - ChatStatisticsObjectTypeStory
 type ChatStatisticsObjectType interface {
@@ -3099,7 +3278,7 @@ func UnmarshalDateTimePartPrecision(data []byte) (DateTimePartPrecision, error) 
 	}
 }
 
-// DeviceToken Represents a data needed to subscribe for push notifications through registerDevice method. To use specific push notification service, the correct application platform must be specified and a valid server authentication data must be uploaded at https://my.telegram.org
+// DeviceToken Represents data needed to subscribe to push notifications through the registerDevice method. To use a specific push notification service, the correct application platform must be specified and valid server authentication data must be uploaded at https://my.telegram.org
 //   - DeviceTokenApplePush
 //   - DeviceTokenApplePushVoIP
 //   - DeviceTokenBlackBerryPush
@@ -3206,7 +3385,7 @@ func UnmarshalDeviceToken(data []byte) (DeviceToken, error) {
 	}
 }
 
-// DiceStickers Contains animated stickers which must be used for dice animation rendering
+// DiceStickers Contains animated stickers that must be used for dice animation rendering
 //   - DiceStickersRegular
 //   - DiceStickersSlotMachine
 type DiceStickers interface {
@@ -3904,6 +4083,115 @@ func UnmarshalGiftForResaleOrder(data []byte) (GiftForResaleOrder, error) {
 	}
 }
 
+// GiftOnChainPurchaseOfferState Describes state of an on-chain gift purchase offer
+//   - GiftOnChainPurchaseOfferStateAccepted
+//   - GiftOnChainPurchaseOfferStateCanceled
+//   - GiftOnChainPurchaseOfferStateCanceling
+//   - GiftOnChainPurchaseOfferStateDeclined
+//   - GiftOnChainPurchaseOfferStateExpired
+//   - GiftOnChainPurchaseOfferStatePending
+//   - GiftOnChainPurchaseOfferStateSettled
+type GiftOnChainPurchaseOfferState interface {
+	TlObject
+	giftOnChainPurchaseOfferState()
+}
+
+// UnmarshalGiftOnChainPurchaseOfferState unmarshals the JSON into the correct concrete implementation of GiftOnChainPurchaseOfferState
+func UnmarshalGiftOnChainPurchaseOfferState(data []byte) (GiftOnChainPurchaseOfferState, error) {
+	if bytes.Equal(bytes.TrimSpace(data), []byte("null")) {
+		return nil, nil
+	}
+	var typeObj struct {
+		Type string `json:"@type"`
+	}
+	if err := json.Unmarshal(data, &typeObj); err != nil {
+		return nil, err
+	}
+	switch typeObj.Type {
+	case "giftOnChainPurchaseOfferStateAccepted":
+		var obj GiftOnChainPurchaseOfferStateAccepted
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "giftOnChainPurchaseOfferStateCanceled":
+		var obj GiftOnChainPurchaseOfferStateCanceled
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "giftOnChainPurchaseOfferStateCanceling":
+		var obj GiftOnChainPurchaseOfferStateCanceling
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "giftOnChainPurchaseOfferStateDeclined":
+		var obj GiftOnChainPurchaseOfferStateDeclined
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "giftOnChainPurchaseOfferStateExpired":
+		var obj GiftOnChainPurchaseOfferStateExpired
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "giftOnChainPurchaseOfferStatePending":
+		var obj GiftOnChainPurchaseOfferStatePending
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "giftOnChainPurchaseOfferStateSettled":
+		var obj GiftOnChainPurchaseOfferStateSettled
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	default:
+		return nil, fmt.Errorf("unknown type: %s", typeObj.Type)
+	}
+}
+
+// GiftOnChainSaleTransaction Describes a transaction that must be sent from the TON wallet of the current user to buy an upgraded gift on-chain, put it up for sale, change its price, or cancel its sale
+//   - GiftOnChainSaleTransactionFixedPrice
+//   - GiftOnChainSaleTransactionFragment
+type GiftOnChainSaleTransaction interface {
+	TlObject
+	giftOnChainSaleTransaction()
+}
+
+// UnmarshalGiftOnChainSaleTransaction unmarshals the JSON into the correct concrete implementation of GiftOnChainSaleTransaction
+func UnmarshalGiftOnChainSaleTransaction(data []byte) (GiftOnChainSaleTransaction, error) {
+	if bytes.Equal(bytes.TrimSpace(data), []byte("null")) {
+		return nil, nil
+	}
+	var typeObj struct {
+		Type string `json:"@type"`
+	}
+	if err := json.Unmarshal(data, &typeObj); err != nil {
+		return nil, err
+	}
+	switch typeObj.Type {
+	case "giftOnChainSaleTransactionFixedPrice":
+		var obj GiftOnChainSaleTransactionFixedPrice
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "giftOnChainSaleTransactionFragment":
+		var obj GiftOnChainSaleTransactionFragment
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	default:
+		return nil, fmt.Errorf("unknown type: %s", typeObj.Type)
+	}
+}
+
 // GiftPurchaseOfferState Describes state of a gift purchase offer
 //   - GiftPurchaseOfferStateAccepted
 //   - GiftPurchaseOfferStatePending
@@ -4059,7 +4347,7 @@ func UnmarshalGiveawayInfo(data []byte) (GiveawayInfo, error) {
 	}
 }
 
-// GiveawayParticipantStatus Contains information about status of a user in a giveaway
+// GiveawayParticipantStatus Contains information about the status of a user in a giveaway
 //   - GiveawayParticipantStatusAdministrator
 //   - GiveawayParticipantStatusAlreadyWasMember
 //   - GiveawayParticipantStatusDisallowedCountry
@@ -4442,7 +4730,7 @@ func UnmarshalInlineQueryResult(data []byte) (InlineQueryResult, error) {
 	}
 }
 
-// InlineQueryResultsButtonType Represents type of button in results of inline query
+// InlineQueryResultsButtonType Represents type of button in the results of an inline query
 //   - InlineQueryResultsButtonTypeStartBot
 //   - InlineQueryResultsButtonTypeWebApp
 type InlineQueryResultsButtonType interface {
@@ -4479,7 +4767,7 @@ func UnmarshalInlineQueryResultsButtonType(data []byte) (InlineQueryResultsButto
 	}
 }
 
-// InputBackground Contains information about background to set
+// InputBackground Contains information about the background to set
 //   - InputBackgroundLocal
 //   - InputBackgroundPrevious
 //   - InputBackgroundRemote
@@ -5136,7 +5424,7 @@ func UnmarshalInputMessageContent(data []byte) (InputMessageContent, error) {
 	}
 }
 
-// InputMessageReplyTo Contains information about the message or the story to be replied
+// InputMessageReplyTo Contains information about the message or the story to be replied to
 //   - InputMessageReplyToEphemeralMessage
 //   - InputMessageReplyToExternalMessage
 //   - InputMessageReplyToMessage
@@ -5615,7 +5903,7 @@ func UnmarshalInputPassportElementErrorSource(data []byte) (InputPassportElement
 	}
 }
 
-// InputPollMedia The content of a poll media to send
+// InputPollMedia The content of poll media to send
 //   - InputPollMediaAnimation
 //   - InputPollMediaAudio
 //   - InputPollMediaDocument
@@ -5775,7 +6063,7 @@ func UnmarshalInputProfileShareTheme(data []byte) (InputProfileShareTheme, error
 	}
 }
 
-// InputStoryAreaType Describes type of clickable area on a story media to be added
+// InputStoryAreaType Describes type of clickable area on story media to be added
 //   - InputStoryAreaTypeLink
 //   - InputStoryAreaTypeLocation
 //   - InputStoryAreaTypeMessage
@@ -5889,6 +6177,7 @@ func UnmarshalInputStoryContent(data []byte) (InputStoryContent, error) {
 //   - InternalLinkTypeAuthenticationCode
 //   - InternalLinkTypeBackground
 //   - InternalLinkTypeBotAddToChannel
+//   - InternalLinkTypeBotInvite
 //   - InternalLinkTypeBotStart
 //   - InternalLinkTypeBotStartInGroup
 //   - InternalLinkTypeBusinessChat
@@ -5981,6 +6270,12 @@ func UnmarshalInternalLinkType(data []byte) (InternalLinkType, error) {
 		return &obj, nil
 	case "internalLinkTypeBotAddToChannel":
 		var obj InternalLinkTypeBotAddToChannel
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "internalLinkTypeBotInvite":
+		var obj InternalLinkTypeBotInvite
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -6371,7 +6666,7 @@ func UnmarshalInviteGroupCallParticipantResult(data []byte) (InviteGroupCallPart
 	}
 }
 
-// InviteLinkChatType Describes the type of chat to which points an invite link
+// InviteLinkChatType Describes the type of chat to which an invite link points
 //   - InviteLinkChatTypeBasicGroup
 //   - InviteLinkChatTypeChannel
 //   - InviteLinkChatTypeSupergroup
@@ -6640,7 +6935,7 @@ func UnmarshalLanguagePackStringValue(data []byte) (LanguagePackStringValue, err
 	}
 }
 
-// LinkPreviewAlbumMedia Describes a media from a link preview album
+// LinkPreviewAlbumMedia Describes media from a link preview album
 //   - LinkPreviewAlbumMediaPhoto
 //   - LinkPreviewAlbumMediaVideo
 type LinkPreviewAlbumMedia interface {
@@ -6684,6 +6979,7 @@ func UnmarshalLinkPreviewAlbumMedia(data []byte) (LinkPreviewAlbumMedia, error) 
 //   - LinkPreviewTypeArticle
 //   - LinkPreviewTypeAudio
 //   - LinkPreviewTypeBackground
+//   - LinkPreviewTypeBotInvite
 //   - LinkPreviewTypeChannelBoost
 //   - LinkPreviewTypeChat
 //   - LinkPreviewTypeDirectMessagesChat
@@ -6767,6 +7063,12 @@ func UnmarshalLinkPreviewType(data []byte) (LinkPreviewType, error) {
 		return &obj, nil
 	case "linkPreviewTypeBackground":
 		var obj LinkPreviewTypeBackground
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "linkPreviewTypeBotInvite":
+		var obj LinkPreviewTypeBotInvite
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -6980,7 +7282,7 @@ func UnmarshalLinkPreviewType(data []byte) (LinkPreviewType, error) {
 	}
 }
 
-// LoginUrlInfo Contains information about an inline button of type inlineKeyboardButtonTypeLoginUrl or an external link
+// LoginUrlInfo Contains information about an inline button of the type inlineKeyboardButtonTypeLoginUrl or an external link
 //   - LoginUrlInfoOpen
 //   - LoginUrlInfoRequestConfirmation
 type LoginUrlInfo interface {
@@ -7017,7 +7319,7 @@ func UnmarshalLoginUrlInfo(data []byte) (LoginUrlInfo, error) {
 	}
 }
 
-// LogStream Describes a stream to which TDLib internal log is written
+// LogStream Describes a stream to which the TDLib internal log is written
 //   - LogStreamDefault
 //   - LogStreamEmpty
 //   - LogStreamFile
@@ -7117,6 +7419,7 @@ func UnmarshalMaskPoint(data []byte) (MaskPoint, error) {
 //   - MessageAnimation
 //   - MessageAudio
 //   - MessageBasicGroupChatCreate
+//   - MessageBotInvite
 //   - MessageBotWriteAccessAllowed
 //   - MessageCall
 //   - MessageChatAddMembers
@@ -7209,6 +7512,7 @@ func UnmarshalMaskPoint(data []byte) (MaskPoint, error) {
 //   - MessageUnpaidMessagesAllowedByLink
 //   - MessageUnsupported
 //   - MessageUpgradedGift
+//   - MessageUpgradedGiftOnChainPurchaseOffer
 //   - MessageUpgradedGiftPurchaseOffer
 //   - MessageUpgradedGiftPurchaseOfferRejected
 //   - MessageUsersShared
@@ -7259,6 +7563,12 @@ func UnmarshalMessageContent(data []byte) (MessageContent, error) {
 		return &obj, nil
 	case "messageBasicGroupChatCreate":
 		var obj MessageBasicGroupChatCreate
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "messageBotInvite":
+		var obj MessageBotInvite
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -7811,6 +8121,12 @@ func UnmarshalMessageContent(data []byte) (MessageContent, error) {
 		return &obj, nil
 	case "messageUpgradedGift":
 		var obj MessageUpgradedGift
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "messageUpgradedGiftOnChainPurchaseOffer":
+		var obj MessageUpgradedGiftOnChainPurchaseOffer
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -9086,7 +9402,7 @@ func UnmarshalPageBlockVerticalAlignment(data []byte) (PageBlockVerticalAlignmen
 	}
 }
 
-// PaidMedia Describes a paid media
+// PaidMedia Describes paid media
 //   - PaidMediaPhoto
 //   - PaidMediaPreview
 //   - PaidMediaUnsupported
@@ -9787,7 +10103,7 @@ func UnmarshalPollType(data []byte) (PollType, error) {
 	}
 }
 
-// PollVoteRestrictionReason Reason of vote restriction in the poll for the current user
+// PollVoteRestrictionReason Reason for vote restriction in the poll for the current user
 //   - PollVoteRestrictionReasonClosed
 //   - PollVoteRestrictionReasonCountryRestricted
 //   - PollVoteRestrictionReasonMembershipRequired
@@ -10078,7 +10394,7 @@ func UnmarshalPremiumFeature(data []byte) (PremiumFeature, error) {
 	}
 }
 
-// PremiumLimitType Describes type of limit, increased for Premium users
+// PremiumLimitType Describes type of limit increased for Premium users
 //   - PremiumLimitTypeActiveStoryCount
 //   - PremiumLimitTypeBioLength
 //   - PremiumLimitTypeCaptionLength
@@ -11080,7 +11396,7 @@ func UnmarshalReactionType(data []byte) (ReactionType, error) {
 	}
 }
 
-// ReactionUnavailabilityReason Describes why the current user can't add reactions to the message, despite some other users can
+// ReactionUnavailabilityReason Describes why the current user can't add reactions to the message, even though some other users can
 //   - ReactionUnavailabilityReasonAnonymousAdministrator
 //   - ReactionUnavailabilityReasonGuest
 //   - ReactionUnavailabilityReasonRestricted
@@ -11874,7 +12190,7 @@ func UnmarshalSavedMessagesTopicType(data []byte) (SavedMessagesTopicType, error
 	}
 }
 
-// SearchChatTypeFilter Represents a filter for type of the chats to search for
+// SearchChatTypeFilter Represents a filter for the type of the chats to search for
 //   - SearchChatTypeFilterBot
 //   - SearchChatTypeFilterChannel
 type SearchChatTypeFilter interface {
@@ -11911,7 +12227,7 @@ func UnmarshalSearchChatTypeFilter(data []byte) (SearchChatTypeFilter, error) {
 	}
 }
 
-// SearchMessagesChatTypeFilter Represents a filter for type of the chats in which to search for messages
+// SearchMessagesChatTypeFilter Represents a filter for the type of the chats in which to search for messages
 //   - SearchMessagesChatTypeFilterChannel
 //   - SearchMessagesChatTypeFilterCommunity
 //   - SearchMessagesChatTypeFilterGroup
@@ -12199,7 +12515,7 @@ func UnmarshalSentGift(data []byte) (SentGift, error) {
 	}
 }
 
-// SessionDeviceType Represents the type of device from which session was created
+// SessionDeviceType Represents the type of device from which the session was created
 //   - SessionDeviceTypeAndroid
 //   - SessionDeviceTypeApple
 //   - SessionDeviceTypeBrave
@@ -13289,7 +13605,7 @@ func UnmarshalStoreTransaction(data []byte) (StoreTransaction, error) {
 	}
 }
 
-// StoryAreaType Describes type of clickable area on a story media
+// StoryAreaType Describes type of clickable area on story media
 //   - StoryAreaTypeLink
 //   - StoryAreaTypeLocation
 //   - StoryAreaTypeMessage
@@ -14094,7 +14410,7 @@ func UnmarshalTelegramPaymentPurpose(data []byte) (TelegramPaymentPurpose, error
 	}
 }
 
-// TextEntityType Represents a part of the text which must be formatted differently
+// TextEntityType Represents a part of the text that must be formatted differently
 //   - TextEntityTypeBankCardNumber
 //   - TextEntityTypeBlockQuote
 //   - TextEntityTypeBold
@@ -14792,6 +15108,15 @@ func UnmarshalTonWalletTransactionState(data []byte) (TonWalletTransactionState,
 //   - TonWalletTransactionTypeKeyChange
 //   - TonWalletTransactionTypeNftTransfer
 //   - TonWalletTransactionTypeOnRampDeposit
+//   - TonWalletTransactionTypeTelegramGiftDelisting
+//   - TonWalletTransactionTypeTelegramGiftListing
+//   - TonWalletTransactionTypeTelegramGiftOfferAcceptance
+//   - TonWalletTransactionTypeTelegramGiftOfferCancellation
+//   - TonWalletTransactionTypeTelegramGiftOfferCreation
+//   - TonWalletTransactionTypeTelegramGiftOfferDecline
+//   - TonWalletTransactionTypeTelegramGiftOfferExpiration
+//   - TonWalletTransactionTypeTelegramGiftPurchase
+//   - TonWalletTransactionTypeTelegramGiftSale
 //   - TonWalletTransactionTypeTelegramGiftTransfer
 //   - TonWalletTransactionTypeTransfer
 type TonWalletTransactionType interface {
@@ -14825,6 +15150,60 @@ func UnmarshalTonWalletTransactionType(data []byte) (TonWalletTransactionType, e
 		return &obj, nil
 	case "tonWalletTransactionTypeOnRampDeposit":
 		var obj TonWalletTransactionTypeOnRampDeposit
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "tonWalletTransactionTypeTelegramGiftDelisting":
+		var obj TonWalletTransactionTypeTelegramGiftDelisting
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "tonWalletTransactionTypeTelegramGiftListing":
+		var obj TonWalletTransactionTypeTelegramGiftListing
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "tonWalletTransactionTypeTelegramGiftOfferAcceptance":
+		var obj TonWalletTransactionTypeTelegramGiftOfferAcceptance
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "tonWalletTransactionTypeTelegramGiftOfferCancellation":
+		var obj TonWalletTransactionTypeTelegramGiftOfferCancellation
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "tonWalletTransactionTypeTelegramGiftOfferCreation":
+		var obj TonWalletTransactionTypeTelegramGiftOfferCreation
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "tonWalletTransactionTypeTelegramGiftOfferDecline":
+		var obj TonWalletTransactionTypeTelegramGiftOfferDecline
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "tonWalletTransactionTypeTelegramGiftOfferExpiration":
+		var obj TonWalletTransactionTypeTelegramGiftOfferExpiration
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "tonWalletTransactionTypeTelegramGiftPurchase":
+		var obj TonWalletTransactionTypeTelegramGiftPurchase
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "tonWalletTransactionTypeTelegramGiftSale":
+		var obj TonWalletTransactionTypeTelegramGiftSale
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -15063,6 +15442,7 @@ func UnmarshalTransactionDirection(data []byte) (TransactionDirection, error) {
 //   - UpdateChatRemovedFromList
 //   - UpdateChatReplyMarkup
 //   - UpdateChatRevenueAmount
+//   - UpdateChatTextCompositionParameters
 //   - UpdateChatTheme
 //   - UpdateChatTitle
 //   - UpdateChatUnreadMentionCount
@@ -15557,6 +15937,12 @@ func UnmarshalUpdate(data []byte) (Update, error) {
 		return &obj, nil
 	case "updateChatRevenueAmount":
 		var obj UpdateChatRevenueAmount
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "updateChatTextCompositionParameters":
+		var obj UpdateChatTextCompositionParameters
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -16542,6 +16928,8 @@ func UnmarshalUpgradedGiftAttributeRarity(data []byte) (UpgradedGiftAttributeRar
 //   - UpgradedGiftOriginBlockchain
 //   - UpgradedGiftOriginCraft
 //   - UpgradedGiftOriginOffer
+//   - UpgradedGiftOriginOnChainOffer
+//   - UpgradedGiftOriginOnChainResale
 //   - UpgradedGiftOriginPrepaidUpgrade
 //   - UpgradedGiftOriginResale
 //   - UpgradedGiftOriginTransfer
@@ -16577,6 +16965,18 @@ func UnmarshalUpgradedGiftOrigin(data []byte) (UpgradedGiftOrigin, error) {
 		return &obj, nil
 	case "upgradedGiftOriginOffer":
 		var obj UpgradedGiftOriginOffer
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "upgradedGiftOriginOnChainOffer":
+		var obj UpgradedGiftOriginOnChainOffer
+		if err := json.Unmarshal(data, &obj); err != nil {
+			return nil, err
+		}
+		return &obj, nil
+	case "upgradedGiftOriginOnChainResale":
+		var obj UpgradedGiftOriginOnChainResale
 		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
@@ -17160,7 +17560,7 @@ func UnmarshalWebProxyCarrierMessage(data []byte) (WebProxyCarrierMessage, error
 	}
 }
 
-// WidgetQueryType Describes type of a widget query
+// WidgetQueryType Describes type of widget query
 //   - WidgetQueryTypeData
 //   - WidgetQueryTypeSentTransaction
 //   - WidgetQueryTypeSignData

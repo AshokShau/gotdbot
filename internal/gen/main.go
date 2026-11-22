@@ -41,5 +41,9 @@ func main() {
 
 	filesToFmt := append([]string{"gen_classes.go", "gen_types.go", "gen_functions.go", "gen_options.go", "gen_methods.go", "gen_tdlib_options.go", "gen_events.go", "gen_filters.go"}, helperFiles...)
 	gofmt(filesToFmt...)
+	if err := updateTDLibVersionReferences(".", data.Version); err != nil {
+		log.Fatalf("Failed to update TDLib version references: %v", err)
+	}
+	gofmt("consts.go", "scripts/tools/get_tdjson.go")
 	log.Println("Done.")
 }
